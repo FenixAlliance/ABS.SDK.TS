@@ -476,6 +476,8 @@ export type NotificationDto = {
     socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
+    tenantId?: string | null;
+    categoryKey?: string | null;
 };
 
 export type NotificationDtoCollectionQueryParametersReadable = {
@@ -853,7 +855,7 @@ export type TenantCreateDto = {
     handler?: string | null;
     about?: string | null;
     slogan?: string | null;
-    currencyId: string;
+    currencyId?: string | null;
     duns?: string | null;
     taxId?: string | null;
     avatarUrl?: string | null;
@@ -1276,6 +1278,7 @@ export type TenantInvitationDto = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
+    tenantName?: string | null;
     revoked?: boolean;
     redeemed?: boolean;
     redeemedTimestamp?: string | null;
@@ -1357,6 +1360,37 @@ export type TenantInvitationDtoListEnvelopeWritable = {
     result?: Array<TenantInvitationDto> | null;
 };
 
+export type TenantInvitationSendResultDto = {
+    invitationId?: string | null;
+    emailDelivered?: boolean;
+    emailDeliveryWarning?: string | null;
+};
+
+export type TenantInvitationSendResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantInvitationSendResultDto;
+};
+
+export type TenantInvitationSendResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantInvitationSendResultDto;
+};
+
 export type TenantPositionCreateDto = {
     id?: string;
     timestamp?: string;
@@ -1373,6 +1407,11 @@ export type TenantPositionDto = {
     title?: string | null;
     description?: string | null;
     type?: string | null;
+    departmentId?: string | null;
+    capacity?: number | null;
+    filledSeats?: number | null;
+    activeHolderEnrollmentIds?: Array<string> | null;
+    hasAssignmentHistory?: boolean | null;
 };
 
 export type TenantPositionDtoCollectionQueryParametersReadable = {
@@ -2798,6 +2837,9 @@ export type WalletDto = {
     mainNetEtherBalance?: number;
     ethereumAddress?: string | null;
     ethereumPublicKey?: string | null;
+    /**
+     * @deprecated
+     */
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
 };
@@ -2867,7 +2909,7 @@ export type WebPortalDtoListEnvelopeWritable = {
     result?: Array<WebPortalDto> | null;
 };
 
-export type GetBusinessRelationshipsAsyncData = {
+export type BusinessRelationshipsGetBusinessRelationshipsData = {
     body?: BusinessRelationshipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2880,7 +2922,7 @@ export type GetBusinessRelationshipsAsyncData = {
     url: '/api/v2/TenantsService/BusinessRelationships';
 };
 
-export type GetBusinessRelationshipsAsyncErrors = {
+export type BusinessRelationshipsGetBusinessRelationshipsErrors = {
     /**
      * Bad Request
      */
@@ -2895,18 +2937,18 @@ export type GetBusinessRelationshipsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessRelationshipsAsyncError = GetBusinessRelationshipsAsyncErrors[keyof GetBusinessRelationshipsAsyncErrors];
+export type BusinessRelationshipsGetBusinessRelationshipsError = BusinessRelationshipsGetBusinessRelationshipsErrors[keyof BusinessRelationshipsGetBusinessRelationshipsErrors];
 
-export type GetBusinessRelationshipsAsyncResponses = {
+export type BusinessRelationshipsGetBusinessRelationshipsResponses = {
     /**
      * OK
      */
     200: BusinessRelationshipDtoListEnvelopeReadable;
 };
 
-export type GetBusinessRelationshipsAsyncResponse = GetBusinessRelationshipsAsyncResponses[keyof GetBusinessRelationshipsAsyncResponses];
+export type BusinessRelationshipsGetBusinessRelationshipsResponse = BusinessRelationshipsGetBusinessRelationshipsResponses[keyof BusinessRelationshipsGetBusinessRelationshipsResponses];
 
-export type CreateBusinessRelationshipAsyncData = {
+export type BusinessRelationshipsCreateBusinessRelationshipData = {
     body: BusinessRelationshipCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2919,7 +2961,7 @@ export type CreateBusinessRelationshipAsyncData = {
     url: '/api/v2/TenantsService/BusinessRelationships';
 };
 
-export type CreateBusinessRelationshipAsyncErrors = {
+export type BusinessRelationshipsCreateBusinessRelationshipErrors = {
     /**
      * Bad Request
      */
@@ -2934,18 +2976,18 @@ export type CreateBusinessRelationshipAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBusinessRelationshipAsyncError = CreateBusinessRelationshipAsyncErrors[keyof CreateBusinessRelationshipAsyncErrors];
+export type BusinessRelationshipsCreateBusinessRelationshipError = BusinessRelationshipsCreateBusinessRelationshipErrors[keyof BusinessRelationshipsCreateBusinessRelationshipErrors];
 
-export type CreateBusinessRelationshipAsyncResponses = {
+export type BusinessRelationshipsCreateBusinessRelationshipResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBusinessRelationshipAsyncResponse = CreateBusinessRelationshipAsyncResponses[keyof CreateBusinessRelationshipAsyncResponses];
+export type BusinessRelationshipsCreateBusinessRelationshipResponse = BusinessRelationshipsCreateBusinessRelationshipResponses[keyof BusinessRelationshipsCreateBusinessRelationshipResponses];
 
-export type GetBusinessRelationshipsCountAsyncData = {
+export type BusinessRelationshipsGetBusinessRelationshipsCountData = {
     body?: BusinessRelationshipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2958,7 +3000,7 @@ export type GetBusinessRelationshipsCountAsyncData = {
     url: '/api/v2/TenantsService/BusinessRelationships/Count';
 };
 
-export type GetBusinessRelationshipsCountAsyncErrors = {
+export type BusinessRelationshipsGetBusinessRelationshipsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2969,18 +3011,18 @@ export type GetBusinessRelationshipsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessRelationshipsCountAsyncError = GetBusinessRelationshipsCountAsyncErrors[keyof GetBusinessRelationshipsCountAsyncErrors];
+export type BusinessRelationshipsGetBusinessRelationshipsCountError = BusinessRelationshipsGetBusinessRelationshipsCountErrors[keyof BusinessRelationshipsGetBusinessRelationshipsCountErrors];
 
-export type GetBusinessRelationshipsCountAsyncResponses = {
+export type BusinessRelationshipsGetBusinessRelationshipsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBusinessRelationshipsCountAsyncResponse = GetBusinessRelationshipsCountAsyncResponses[keyof GetBusinessRelationshipsCountAsyncResponses];
+export type BusinessRelationshipsGetBusinessRelationshipsCountResponse = BusinessRelationshipsGetBusinessRelationshipsCountResponses[keyof BusinessRelationshipsGetBusinessRelationshipsCountResponses];
 
-export type DeleteBusinessRelationshipAsyncData = {
+export type BusinessRelationshipsDeleteBusinessRelationshipData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2995,7 +3037,7 @@ export type DeleteBusinessRelationshipAsyncData = {
     url: '/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}';
 };
 
-export type DeleteBusinessRelationshipAsyncErrors = {
+export type BusinessRelationshipsDeleteBusinessRelationshipErrors = {
     /**
      * Bad Request
      */
@@ -3010,18 +3052,18 @@ export type DeleteBusinessRelationshipAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBusinessRelationshipAsyncError = DeleteBusinessRelationshipAsyncErrors[keyof DeleteBusinessRelationshipAsyncErrors];
+export type BusinessRelationshipsDeleteBusinessRelationshipError = BusinessRelationshipsDeleteBusinessRelationshipErrors[keyof BusinessRelationshipsDeleteBusinessRelationshipErrors];
 
-export type DeleteBusinessRelationshipAsyncResponses = {
+export type BusinessRelationshipsDeleteBusinessRelationshipResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBusinessRelationshipAsyncResponse = DeleteBusinessRelationshipAsyncResponses[keyof DeleteBusinessRelationshipAsyncResponses];
+export type BusinessRelationshipsDeleteBusinessRelationshipResponse = BusinessRelationshipsDeleteBusinessRelationshipResponses[keyof BusinessRelationshipsDeleteBusinessRelationshipResponses];
 
-export type GetBusinessRelationshipByIdAsyncData = {
+export type BusinessRelationshipsGetBusinessRelationshipByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3036,7 +3078,7 @@ export type GetBusinessRelationshipByIdAsyncData = {
     url: '/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}';
 };
 
-export type GetBusinessRelationshipByIdAsyncErrors = {
+export type BusinessRelationshipsGetBusinessRelationshipByIdErrors = {
     /**
      * Bad Request
      */
@@ -3051,18 +3093,18 @@ export type GetBusinessRelationshipByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessRelationshipByIdAsyncError = GetBusinessRelationshipByIdAsyncErrors[keyof GetBusinessRelationshipByIdAsyncErrors];
+export type BusinessRelationshipsGetBusinessRelationshipByIdError = BusinessRelationshipsGetBusinessRelationshipByIdErrors[keyof BusinessRelationshipsGetBusinessRelationshipByIdErrors];
 
-export type GetBusinessRelationshipByIdAsyncResponses = {
+export type BusinessRelationshipsGetBusinessRelationshipByIdResponses = {
     /**
      * OK
      */
     200: BusinessRelationshipDtoEnvelopeReadable;
 };
 
-export type GetBusinessRelationshipByIdAsyncResponse = GetBusinessRelationshipByIdAsyncResponses[keyof GetBusinessRelationshipByIdAsyncResponses];
+export type BusinessRelationshipsGetBusinessRelationshipByIdResponse = BusinessRelationshipsGetBusinessRelationshipByIdResponses[keyof BusinessRelationshipsGetBusinessRelationshipByIdResponses];
 
-export type UpdateBusinessRelationshipAsyncData = {
+export type BusinessRelationshipsUpdateBusinessRelationshipData = {
     body: BusinessRelationshipUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3077,7 +3119,7 @@ export type UpdateBusinessRelationshipAsyncData = {
     url: '/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}';
 };
 
-export type UpdateBusinessRelationshipAsyncErrors = {
+export type BusinessRelationshipsUpdateBusinessRelationshipErrors = {
     /**
      * Bad Request
      */
@@ -3092,18 +3134,18 @@ export type UpdateBusinessRelationshipAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBusinessRelationshipAsyncError = UpdateBusinessRelationshipAsyncErrors[keyof UpdateBusinessRelationshipAsyncErrors];
+export type BusinessRelationshipsUpdateBusinessRelationshipError = BusinessRelationshipsUpdateBusinessRelationshipErrors[keyof BusinessRelationshipsUpdateBusinessRelationshipErrors];
 
-export type UpdateBusinessRelationshipAsyncResponses = {
+export type BusinessRelationshipsUpdateBusinessRelationshipResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBusinessRelationshipAsyncResponse = UpdateBusinessRelationshipAsyncResponses[keyof UpdateBusinessRelationshipAsyncResponses];
+export type BusinessRelationshipsUpdateBusinessRelationshipResponse = BusinessRelationshipsUpdateBusinessRelationshipResponses[keyof BusinessRelationshipsUpdateBusinessRelationshipResponses];
 
-export type GetTenantDepartmentsData = {
+export type DepartmentsGetTenantDepartmentsData = {
     body?: TenantDepartmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3116,7 +3158,7 @@ export type GetTenantDepartmentsData = {
     url: '/api/v2/TenantsService/Departments';
 };
 
-export type GetTenantDepartmentsErrors = {
+export type DepartmentsGetTenantDepartmentsErrors = {
     /**
      * Unauthorized
      */
@@ -3127,18 +3169,18 @@ export type GetTenantDepartmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantDepartmentsError = GetTenantDepartmentsErrors[keyof GetTenantDepartmentsErrors];
+export type DepartmentsGetTenantDepartmentsError = DepartmentsGetTenantDepartmentsErrors[keyof DepartmentsGetTenantDepartmentsErrors];
 
-export type GetTenantDepartmentsResponses = {
+export type DepartmentsGetTenantDepartmentsResponses = {
     /**
      * OK
      */
     200: TenantDepartmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantDepartmentsResponse = GetTenantDepartmentsResponses[keyof GetTenantDepartmentsResponses];
+export type DepartmentsGetTenantDepartmentsResponse = DepartmentsGetTenantDepartmentsResponses[keyof DepartmentsGetTenantDepartmentsResponses];
 
-export type CreateTenantDepartmentData = {
+export type DepartmentsCreateTenantDepartmentData = {
     body?: TenantDepartmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3151,7 +3193,7 @@ export type CreateTenantDepartmentData = {
     url: '/api/v2/TenantsService/Departments';
 };
 
-export type CreateTenantDepartmentErrors = {
+export type DepartmentsCreateTenantDepartmentErrors = {
     /**
      * Unauthorized
      */
@@ -3162,18 +3204,18 @@ export type CreateTenantDepartmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantDepartmentError = CreateTenantDepartmentErrors[keyof CreateTenantDepartmentErrors];
+export type DepartmentsCreateTenantDepartmentError = DepartmentsCreateTenantDepartmentErrors[keyof DepartmentsCreateTenantDepartmentErrors];
 
-export type CreateTenantDepartmentResponses = {
+export type DepartmentsCreateTenantDepartmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantDepartmentResponse = CreateTenantDepartmentResponses[keyof CreateTenantDepartmentResponses];
+export type DepartmentsCreateTenantDepartmentResponse = DepartmentsCreateTenantDepartmentResponses[keyof DepartmentsCreateTenantDepartmentResponses];
 
-export type GetTenantDepartmentsCountData = {
+export type DepartmentsGetTenantDepartmentsCountData = {
     body?: TenantDepartmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3186,7 +3228,7 @@ export type GetTenantDepartmentsCountData = {
     url: '/api/v2/TenantsService/Departments/Count';
 };
 
-export type GetTenantDepartmentsCountErrors = {
+export type DepartmentsGetTenantDepartmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3197,18 +3239,18 @@ export type GetTenantDepartmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantDepartmentsCountError = GetTenantDepartmentsCountErrors[keyof GetTenantDepartmentsCountErrors];
+export type DepartmentsGetTenantDepartmentsCountError = DepartmentsGetTenantDepartmentsCountErrors[keyof DepartmentsGetTenantDepartmentsCountErrors];
 
-export type GetTenantDepartmentsCountResponses = {
+export type DepartmentsGetTenantDepartmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantDepartmentsCountResponse = GetTenantDepartmentsCountResponses[keyof GetTenantDepartmentsCountResponses];
+export type DepartmentsGetTenantDepartmentsCountResponse = DepartmentsGetTenantDepartmentsCountResponses[keyof DepartmentsGetTenantDepartmentsCountResponses];
 
-export type DeleteTenantDepartmentData = {
+export type DepartmentsDeleteTenantDepartmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3223,7 +3265,7 @@ export type DeleteTenantDepartmentData = {
     url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}';
 };
 
-export type DeleteTenantDepartmentErrors = {
+export type DepartmentsDeleteTenantDepartmentErrors = {
     /**
      * Unauthorized
      */
@@ -3234,18 +3276,18 @@ export type DeleteTenantDepartmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantDepartmentError = DeleteTenantDepartmentErrors[keyof DeleteTenantDepartmentErrors];
+export type DepartmentsDeleteTenantDepartmentError = DepartmentsDeleteTenantDepartmentErrors[keyof DepartmentsDeleteTenantDepartmentErrors];
 
-export type DeleteTenantDepartmentResponses = {
+export type DepartmentsDeleteTenantDepartmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantDepartmentResponse = DeleteTenantDepartmentResponses[keyof DeleteTenantDepartmentResponses];
+export type DepartmentsDeleteTenantDepartmentResponse = DepartmentsDeleteTenantDepartmentResponses[keyof DepartmentsDeleteTenantDepartmentResponses];
 
-export type GetTenantDepartmentByIdData = {
+export type DepartmentsGetTenantDepartmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3260,7 +3302,7 @@ export type GetTenantDepartmentByIdData = {
     url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}';
 };
 
-export type GetTenantDepartmentByIdErrors = {
+export type DepartmentsGetTenantDepartmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3271,18 +3313,18 @@ export type GetTenantDepartmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantDepartmentByIdError = GetTenantDepartmentByIdErrors[keyof GetTenantDepartmentByIdErrors];
+export type DepartmentsGetTenantDepartmentByIdError = DepartmentsGetTenantDepartmentByIdErrors[keyof DepartmentsGetTenantDepartmentByIdErrors];
 
-export type GetTenantDepartmentByIdResponses = {
+export type DepartmentsGetTenantDepartmentByIdResponses = {
     /**
      * OK
      */
     200: TenantDepartmentDtoEnvelopeReadable;
 };
 
-export type GetTenantDepartmentByIdResponse = GetTenantDepartmentByIdResponses[keyof GetTenantDepartmentByIdResponses];
+export type DepartmentsGetTenantDepartmentByIdResponse = DepartmentsGetTenantDepartmentByIdResponses[keyof DepartmentsGetTenantDepartmentByIdResponses];
 
-export type PatchTenantDepartmentAsyncData = {
+export type DepartmentsPatchTenantDepartmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3297,7 +3339,7 @@ export type PatchTenantDepartmentAsyncData = {
     url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}';
 };
 
-export type PatchTenantDepartmentAsyncErrors = {
+export type DepartmentsPatchTenantDepartmentErrors = {
     /**
      * Unauthorized
      */
@@ -3308,18 +3350,18 @@ export type PatchTenantDepartmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantDepartmentAsyncError = PatchTenantDepartmentAsyncErrors[keyof PatchTenantDepartmentAsyncErrors];
+export type DepartmentsPatchTenantDepartmentError = DepartmentsPatchTenantDepartmentErrors[keyof DepartmentsPatchTenantDepartmentErrors];
 
-export type PatchTenantDepartmentAsyncResponses = {
+export type DepartmentsPatchTenantDepartmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantDepartmentAsyncResponse = PatchTenantDepartmentAsyncResponses[keyof PatchTenantDepartmentAsyncResponses];
+export type DepartmentsPatchTenantDepartmentResponse = DepartmentsPatchTenantDepartmentResponses[keyof DepartmentsPatchTenantDepartmentResponses];
 
-export type UpdateTenantDepartmentData = {
+export type DepartmentsUpdateTenantDepartmentData = {
     body?: TenantDepartmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3334,7 +3376,7 @@ export type UpdateTenantDepartmentData = {
     url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}';
 };
 
-export type UpdateTenantDepartmentErrors = {
+export type DepartmentsUpdateTenantDepartmentErrors = {
     /**
      * Unauthorized
      */
@@ -3345,18 +3387,18 @@ export type UpdateTenantDepartmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantDepartmentError = UpdateTenantDepartmentErrors[keyof UpdateTenantDepartmentErrors];
+export type DepartmentsUpdateTenantDepartmentError = DepartmentsUpdateTenantDepartmentErrors[keyof DepartmentsUpdateTenantDepartmentErrors];
 
-export type UpdateTenantDepartmentResponses = {
+export type DepartmentsUpdateTenantDepartmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantDepartmentResponse = UpdateTenantDepartmentResponses[keyof UpdateTenantDepartmentResponses];
+export type DepartmentsUpdateTenantDepartmentResponse = DepartmentsUpdateTenantDepartmentResponses[keyof DepartmentsUpdateTenantDepartmentResponses];
 
-export type GetTenantEmployeeEnrollmentsData = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsData = {
     body?: TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3369,7 +3411,7 @@ export type GetTenantEmployeeEnrollmentsData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments';
 };
 
-export type GetTenantEmployeeEnrollmentsErrors = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsErrors = {
     /**
      * Unauthorized
      */
@@ -3380,18 +3422,18 @@ export type GetTenantEmployeeEnrollmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEmployeeEnrollmentsError = GetTenantEmployeeEnrollmentsErrors[keyof GetTenantEmployeeEnrollmentsErrors];
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsError = EmployeeEnrollmentsGetTenantEmployeeEnrollmentsErrors[keyof EmployeeEnrollmentsGetTenantEmployeeEnrollmentsErrors];
 
-export type GetTenantEmployeeEnrollmentsResponses = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantTeamEmployeeEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantEmployeeEnrollmentsResponse = GetTenantEmployeeEnrollmentsResponses[keyof GetTenantEmployeeEnrollmentsResponses];
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsResponse = EmployeeEnrollmentsGetTenantEmployeeEnrollmentsResponses[keyof EmployeeEnrollmentsGetTenantEmployeeEnrollmentsResponses];
 
-export type CreateTenantEmployeeEnrollmentData = {
+export type EmployeeEnrollmentsCreateTenantEmployeeEnrollmentData = {
     body?: TenantTeamEmployeeEnrollmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3404,7 +3446,7 @@ export type CreateTenantEmployeeEnrollmentData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments';
 };
 
-export type CreateTenantEmployeeEnrollmentErrors = {
+export type EmployeeEnrollmentsCreateTenantEmployeeEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3415,18 +3457,18 @@ export type CreateTenantEmployeeEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantEmployeeEnrollmentError = CreateTenantEmployeeEnrollmentErrors[keyof CreateTenantEmployeeEnrollmentErrors];
+export type EmployeeEnrollmentsCreateTenantEmployeeEnrollmentError = EmployeeEnrollmentsCreateTenantEmployeeEnrollmentErrors[keyof EmployeeEnrollmentsCreateTenantEmployeeEnrollmentErrors];
 
-export type CreateTenantEmployeeEnrollmentResponses = {
+export type EmployeeEnrollmentsCreateTenantEmployeeEnrollmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantEmployeeEnrollmentResponse = CreateTenantEmployeeEnrollmentResponses[keyof CreateTenantEmployeeEnrollmentResponses];
+export type EmployeeEnrollmentsCreateTenantEmployeeEnrollmentResponse = EmployeeEnrollmentsCreateTenantEmployeeEnrollmentResponses[keyof EmployeeEnrollmentsCreateTenantEmployeeEnrollmentResponses];
 
-export type GetTenantEmployeeEnrollmentsCountData = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountData = {
     body?: TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3439,7 +3481,7 @@ export type GetTenantEmployeeEnrollmentsCountData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments/Count';
 };
 
-export type GetTenantEmployeeEnrollmentsCountErrors = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3450,18 +3492,18 @@ export type GetTenantEmployeeEnrollmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEmployeeEnrollmentsCountError = GetTenantEmployeeEnrollmentsCountErrors[keyof GetTenantEmployeeEnrollmentsCountErrors];
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountError = EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountErrors[keyof EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountErrors];
 
-export type GetTenantEmployeeEnrollmentsCountResponses = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantEmployeeEnrollmentsCountResponse = GetTenantEmployeeEnrollmentsCountResponses[keyof GetTenantEmployeeEnrollmentsCountResponses];
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountResponse = EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountResponses[keyof EmployeeEnrollmentsGetTenantEmployeeEnrollmentsCountResponses];
 
-export type DeleteTenantEmployeeEnrollmentData = {
+export type EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3476,7 +3518,7 @@ export type DeleteTenantEmployeeEnrollmentData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments/{tenantEmployeeEnrollmentId}';
 };
 
-export type DeleteTenantEmployeeEnrollmentErrors = {
+export type EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3487,18 +3529,18 @@ export type DeleteTenantEmployeeEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantEmployeeEnrollmentError = DeleteTenantEmployeeEnrollmentErrors[keyof DeleteTenantEmployeeEnrollmentErrors];
+export type EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentError = EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentErrors[keyof EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentErrors];
 
-export type DeleteTenantEmployeeEnrollmentResponses = {
+export type EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantEmployeeEnrollmentResponse = DeleteTenantEmployeeEnrollmentResponses[keyof DeleteTenantEmployeeEnrollmentResponses];
+export type EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentResponse = EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentResponses[keyof EmployeeEnrollmentsDeleteTenantEmployeeEnrollmentResponses];
 
-export type GetTenantEmployeeEnrollmentByIdData = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3513,7 +3555,7 @@ export type GetTenantEmployeeEnrollmentByIdData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments/{tenantEmployeeEnrollmentId}';
 };
 
-export type GetTenantEmployeeEnrollmentByIdErrors = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3524,18 +3566,18 @@ export type GetTenantEmployeeEnrollmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEmployeeEnrollmentByIdError = GetTenantEmployeeEnrollmentByIdErrors[keyof GetTenantEmployeeEnrollmentByIdErrors];
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdError = EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdErrors[keyof EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdErrors];
 
-export type GetTenantEmployeeEnrollmentByIdResponses = {
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdResponses = {
     /**
      * OK
      */
     200: TenantTeamEmployeeEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetTenantEmployeeEnrollmentByIdResponse = GetTenantEmployeeEnrollmentByIdResponses[keyof GetTenantEmployeeEnrollmentByIdResponses];
+export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdResponse = EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdResponses[keyof EmployeeEnrollmentsGetTenantEmployeeEnrollmentByIdResponses];
 
-export type PatchTenantEmployeeEnrollmentAsyncData = {
+export type EmployeeEnrollmentsPatchTenantEmployeeEnrollmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3550,7 +3592,7 @@ export type PatchTenantEmployeeEnrollmentAsyncData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments/{tenantEmployeeEnrollmentId}';
 };
 
-export type PatchTenantEmployeeEnrollmentAsyncErrors = {
+export type EmployeeEnrollmentsPatchTenantEmployeeEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3561,18 +3603,18 @@ export type PatchTenantEmployeeEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantEmployeeEnrollmentAsyncError = PatchTenantEmployeeEnrollmentAsyncErrors[keyof PatchTenantEmployeeEnrollmentAsyncErrors];
+export type EmployeeEnrollmentsPatchTenantEmployeeEnrollmentError = EmployeeEnrollmentsPatchTenantEmployeeEnrollmentErrors[keyof EmployeeEnrollmentsPatchTenantEmployeeEnrollmentErrors];
 
-export type PatchTenantEmployeeEnrollmentAsyncResponses = {
+export type EmployeeEnrollmentsPatchTenantEmployeeEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantEmployeeEnrollmentAsyncResponse = PatchTenantEmployeeEnrollmentAsyncResponses[keyof PatchTenantEmployeeEnrollmentAsyncResponses];
+export type EmployeeEnrollmentsPatchTenantEmployeeEnrollmentResponse = EmployeeEnrollmentsPatchTenantEmployeeEnrollmentResponses[keyof EmployeeEnrollmentsPatchTenantEmployeeEnrollmentResponses];
 
-export type UpdateTenantEmployeeEnrollmentData = {
+export type EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentData = {
     body?: TenantTeamEmployeeEnrollmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3587,7 +3629,7 @@ export type UpdateTenantEmployeeEnrollmentData = {
     url: '/api/v2/TenantsService/EmployeeEnrollments/{tenantEmployeeEnrollmentId}';
 };
 
-export type UpdateTenantEmployeeEnrollmentErrors = {
+export type EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3598,18 +3640,18 @@ export type UpdateTenantEmployeeEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantEmployeeEnrollmentError = UpdateTenantEmployeeEnrollmentErrors[keyof UpdateTenantEmployeeEnrollmentErrors];
+export type EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentError = EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentErrors[keyof EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentErrors];
 
-export type UpdateTenantEmployeeEnrollmentResponses = {
+export type EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantEmployeeEnrollmentResponse = UpdateTenantEmployeeEnrollmentResponses[keyof UpdateTenantEmployeeEnrollmentResponses];
+export type EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentResponse = EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentResponses[keyof EmployeeEnrollmentsUpdateTenantEmployeeEnrollmentResponses];
 
-export type GetTenantEnrollmentsData = {
+export type EnrollmentsGetTenantEnrollmentsData = {
     body?: TenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3622,7 +3664,7 @@ export type GetTenantEnrollmentsData = {
     url: '/api/v2/TenantsService/Enrollments';
 };
 
-export type GetTenantEnrollmentsErrors = {
+export type EnrollmentsGetTenantEnrollmentsErrors = {
     /**
      * Unauthorized
      */
@@ -3633,18 +3675,18 @@ export type GetTenantEnrollmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentsError = GetTenantEnrollmentsErrors[keyof GetTenantEnrollmentsErrors];
+export type EnrollmentsGetTenantEnrollmentsError = EnrollmentsGetTenantEnrollmentsErrors[keyof EnrollmentsGetTenantEnrollmentsErrors];
 
-export type GetTenantEnrollmentsResponses = {
+export type EnrollmentsGetTenantEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentsResponse = GetTenantEnrollmentsResponses[keyof GetTenantEnrollmentsResponses];
+export type EnrollmentsGetTenantEnrollmentsResponse = EnrollmentsGetTenantEnrollmentsResponses[keyof EnrollmentsGetTenantEnrollmentsResponses];
 
-export type CreateTenantEnrollmentData = {
+export type EnrollmentsCreateTenantEnrollmentData = {
     body?: TenantEnrollmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3657,7 +3699,7 @@ export type CreateTenantEnrollmentData = {
     url: '/api/v2/TenantsService/Enrollments';
 };
 
-export type CreateTenantEnrollmentErrors = {
+export type EnrollmentsCreateTenantEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3668,18 +3710,18 @@ export type CreateTenantEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantEnrollmentError = CreateTenantEnrollmentErrors[keyof CreateTenantEnrollmentErrors];
+export type EnrollmentsCreateTenantEnrollmentError = EnrollmentsCreateTenantEnrollmentErrors[keyof EnrollmentsCreateTenantEnrollmentErrors];
 
-export type CreateTenantEnrollmentResponses = {
+export type EnrollmentsCreateTenantEnrollmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantEnrollmentResponse = CreateTenantEnrollmentResponses[keyof CreateTenantEnrollmentResponses];
+export type EnrollmentsCreateTenantEnrollmentResponse = EnrollmentsCreateTenantEnrollmentResponses[keyof EnrollmentsCreateTenantEnrollmentResponses];
 
-export type GetTenantEnrollmentsCountData = {
+export type EnrollmentsGetTenantEnrollmentsCountData = {
     body?: TenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3692,7 +3734,7 @@ export type GetTenantEnrollmentsCountData = {
     url: '/api/v2/TenantsService/Enrollments/Count';
 };
 
-export type GetTenantEnrollmentsCountErrors = {
+export type EnrollmentsGetTenantEnrollmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3703,18 +3745,18 @@ export type GetTenantEnrollmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentsCountError = GetTenantEnrollmentsCountErrors[keyof GetTenantEnrollmentsCountErrors];
+export type EnrollmentsGetTenantEnrollmentsCountError = EnrollmentsGetTenantEnrollmentsCountErrors[keyof EnrollmentsGetTenantEnrollmentsCountErrors];
 
-export type GetTenantEnrollmentsCountResponses = {
+export type EnrollmentsGetTenantEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantEnrollmentsCountResponse = GetTenantEnrollmentsCountResponses[keyof GetTenantEnrollmentsCountResponses];
+export type EnrollmentsGetTenantEnrollmentsCountResponse = EnrollmentsGetTenantEnrollmentsCountResponses[keyof EnrollmentsGetTenantEnrollmentsCountResponses];
 
-export type GetExtendedTenantEnrollmentsData = {
+export type EnrollmentsGetExtendedTenantEnrollmentsData = {
     body?: ExtendedTenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3727,7 +3769,7 @@ export type GetExtendedTenantEnrollmentsData = {
     url: '/api/v2/TenantsService/Enrollments/Extended';
 };
 
-export type GetExtendedTenantEnrollmentsErrors = {
+export type EnrollmentsGetExtendedTenantEnrollmentsErrors = {
     /**
      * Unauthorized
      */
@@ -3738,18 +3780,18 @@ export type GetExtendedTenantEnrollmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedTenantEnrollmentsError = GetExtendedTenantEnrollmentsErrors[keyof GetExtendedTenantEnrollmentsErrors];
+export type EnrollmentsGetExtendedTenantEnrollmentsError = EnrollmentsGetExtendedTenantEnrollmentsErrors[keyof EnrollmentsGetExtendedTenantEnrollmentsErrors];
 
-export type GetExtendedTenantEnrollmentsResponses = {
+export type EnrollmentsGetExtendedTenantEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetExtendedTenantEnrollmentsResponse = GetExtendedTenantEnrollmentsResponses[keyof GetExtendedTenantEnrollmentsResponses];
+export type EnrollmentsGetExtendedTenantEnrollmentsResponse = EnrollmentsGetExtendedTenantEnrollmentsResponses[keyof EnrollmentsGetExtendedTenantEnrollmentsResponses];
 
-export type GetExtendedTenantEnrollmentsCountData = {
+export type EnrollmentsGetExtendedTenantEnrollmentsCountData = {
     body?: ExtendedTenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3762,7 +3804,7 @@ export type GetExtendedTenantEnrollmentsCountData = {
     url: '/api/v2/TenantsService/Enrollments/Extended/Count';
 };
 
-export type GetExtendedTenantEnrollmentsCountErrors = {
+export type EnrollmentsGetExtendedTenantEnrollmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3773,18 +3815,18 @@ export type GetExtendedTenantEnrollmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedTenantEnrollmentsCountError = GetExtendedTenantEnrollmentsCountErrors[keyof GetExtendedTenantEnrollmentsCountErrors];
+export type EnrollmentsGetExtendedTenantEnrollmentsCountError = EnrollmentsGetExtendedTenantEnrollmentsCountErrors[keyof EnrollmentsGetExtendedTenantEnrollmentsCountErrors];
 
-export type GetExtendedTenantEnrollmentsCountResponses = {
+export type EnrollmentsGetExtendedTenantEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetExtendedTenantEnrollmentsCountResponse = GetExtendedTenantEnrollmentsCountResponses[keyof GetExtendedTenantEnrollmentsCountResponses];
+export type EnrollmentsGetExtendedTenantEnrollmentsCountResponse = EnrollmentsGetExtendedTenantEnrollmentsCountResponses[keyof EnrollmentsGetExtendedTenantEnrollmentsCountResponses];
 
-export type DeleteTenantEnrollmentData = {
+export type EnrollmentsDeleteTenantEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3799,7 +3841,7 @@ export type DeleteTenantEnrollmentData = {
     url: '/api/v2/TenantsService/Enrollments/{enrollmentId}';
 };
 
-export type DeleteTenantEnrollmentErrors = {
+export type EnrollmentsDeleteTenantEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3810,18 +3852,18 @@ export type DeleteTenantEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantEnrollmentError = DeleteTenantEnrollmentErrors[keyof DeleteTenantEnrollmentErrors];
+export type EnrollmentsDeleteTenantEnrollmentError = EnrollmentsDeleteTenantEnrollmentErrors[keyof EnrollmentsDeleteTenantEnrollmentErrors];
 
-export type DeleteTenantEnrollmentResponses = {
+export type EnrollmentsDeleteTenantEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantEnrollmentResponse = DeleteTenantEnrollmentResponses[keyof DeleteTenantEnrollmentResponses];
+export type EnrollmentsDeleteTenantEnrollmentResponse = EnrollmentsDeleteTenantEnrollmentResponses[keyof EnrollmentsDeleteTenantEnrollmentResponses];
 
-export type GetTenantEnrollmentByIdData = {
+export type EnrollmentsGetTenantEnrollmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3837,7 +3879,7 @@ export type GetTenantEnrollmentByIdData = {
     url: '/api/v2/TenantsService/Enrollments/{enrollmentId}';
 };
 
-export type GetTenantEnrollmentByIdErrors = {
+export type EnrollmentsGetTenantEnrollmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3848,18 +3890,18 @@ export type GetTenantEnrollmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentByIdError = GetTenantEnrollmentByIdErrors[keyof GetTenantEnrollmentByIdErrors];
+export type EnrollmentsGetTenantEnrollmentByIdError = EnrollmentsGetTenantEnrollmentByIdErrors[keyof EnrollmentsGetTenantEnrollmentByIdErrors];
 
-export type GetTenantEnrollmentByIdResponses = {
+export type EnrollmentsGetTenantEnrollmentByIdResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentByIdResponse = GetTenantEnrollmentByIdResponses[keyof GetTenantEnrollmentByIdResponses];
+export type EnrollmentsGetTenantEnrollmentByIdResponse = EnrollmentsGetTenantEnrollmentByIdResponses[keyof EnrollmentsGetTenantEnrollmentByIdResponses];
 
-export type PatchTenantEnrollmentAsyncData = {
+export type EnrollmentsPatchTenantEnrollmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3874,7 +3916,7 @@ export type PatchTenantEnrollmentAsyncData = {
     url: '/api/v2/TenantsService/Enrollments/{enrollmentId}';
 };
 
-export type PatchTenantEnrollmentAsyncErrors = {
+export type EnrollmentsPatchTenantEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3885,18 +3927,18 @@ export type PatchTenantEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantEnrollmentAsyncError = PatchTenantEnrollmentAsyncErrors[keyof PatchTenantEnrollmentAsyncErrors];
+export type EnrollmentsPatchTenantEnrollmentError = EnrollmentsPatchTenantEnrollmentErrors[keyof EnrollmentsPatchTenantEnrollmentErrors];
 
-export type PatchTenantEnrollmentAsyncResponses = {
+export type EnrollmentsPatchTenantEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantEnrollmentAsyncResponse = PatchTenantEnrollmentAsyncResponses[keyof PatchTenantEnrollmentAsyncResponses];
+export type EnrollmentsPatchTenantEnrollmentResponse = EnrollmentsPatchTenantEnrollmentResponses[keyof EnrollmentsPatchTenantEnrollmentResponses];
 
-export type UpdateTenantEnrollmentData = {
+export type EnrollmentsUpdateTenantEnrollmentData = {
     body?: TenantEnrollmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3911,7 +3953,7 @@ export type UpdateTenantEnrollmentData = {
     url: '/api/v2/TenantsService/Enrollments/{enrollmentId}';
 };
 
-export type UpdateTenantEnrollmentErrors = {
+export type EnrollmentsUpdateTenantEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3922,83 +3964,83 @@ export type UpdateTenantEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantEnrollmentError = UpdateTenantEnrollmentErrors[keyof UpdateTenantEnrollmentErrors];
+export type EnrollmentsUpdateTenantEnrollmentError = EnrollmentsUpdateTenantEnrollmentErrors[keyof EnrollmentsUpdateTenantEnrollmentErrors];
 
-export type UpdateTenantEnrollmentResponses = {
+export type EnrollmentsUpdateTenantEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantEnrollmentResponse = UpdateTenantEnrollmentResponses[keyof UpdateTenantEnrollmentResponses];
+export type EnrollmentsUpdateTenantEnrollmentResponse = EnrollmentsUpdateTenantEnrollmentResponses[keyof EnrollmentsUpdateTenantEnrollmentResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -4008,32 +4050,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -4044,81 +4086,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -4129,25 +4171,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -4158,25 +4200,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -4187,18 +4229,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -4208,14 +4250,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -4224,14 +4266,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -4240,28 +4282,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetTenantIndustriesData = {
+export type IndustriesGetTenantIndustriesData = {
     body?: TenantIndustryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4274,7 +4316,7 @@ export type GetTenantIndustriesData = {
     url: '/api/v2/TenantsService/Industries';
 };
 
-export type GetTenantIndustriesErrors = {
+export type IndustriesGetTenantIndustriesErrors = {
     /**
      * Unauthorized
      */
@@ -4285,18 +4327,18 @@ export type GetTenantIndustriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantIndustriesError = GetTenantIndustriesErrors[keyof GetTenantIndustriesErrors];
+export type IndustriesGetTenantIndustriesError = IndustriesGetTenantIndustriesErrors[keyof IndustriesGetTenantIndustriesErrors];
 
-export type GetTenantIndustriesResponses = {
+export type IndustriesGetTenantIndustriesResponses = {
     /**
      * OK
      */
     200: TenantIndustryDtoListEnvelopeReadable;
 };
 
-export type GetTenantIndustriesResponse = GetTenantIndustriesResponses[keyof GetTenantIndustriesResponses];
+export type IndustriesGetTenantIndustriesResponse = IndustriesGetTenantIndustriesResponses[keyof IndustriesGetTenantIndustriesResponses];
 
-export type CreateTenantIndustryData = {
+export type IndustriesCreateTenantIndustryData = {
     body?: TenantIndustryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4309,7 +4351,7 @@ export type CreateTenantIndustryData = {
     url: '/api/v2/TenantsService/Industries';
 };
 
-export type CreateTenantIndustryErrors = {
+export type IndustriesCreateTenantIndustryErrors = {
     /**
      * Unauthorized
      */
@@ -4320,18 +4362,18 @@ export type CreateTenantIndustryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantIndustryError = CreateTenantIndustryErrors[keyof CreateTenantIndustryErrors];
+export type IndustriesCreateTenantIndustryError = IndustriesCreateTenantIndustryErrors[keyof IndustriesCreateTenantIndustryErrors];
 
-export type CreateTenantIndustryResponses = {
+export type IndustriesCreateTenantIndustryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantIndustryResponse = CreateTenantIndustryResponses[keyof CreateTenantIndustryResponses];
+export type IndustriesCreateTenantIndustryResponse = IndustriesCreateTenantIndustryResponses[keyof IndustriesCreateTenantIndustryResponses];
 
-export type GetTenantIndustriesCountData = {
+export type IndustriesGetTenantIndustriesCountData = {
     body?: TenantIndustryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4344,7 +4386,7 @@ export type GetTenantIndustriesCountData = {
     url: '/api/v2/TenantsService/Industries/Count';
 };
 
-export type GetTenantIndustriesCountErrors = {
+export type IndustriesGetTenantIndustriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4355,18 +4397,18 @@ export type GetTenantIndustriesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantIndustriesCountError = GetTenantIndustriesCountErrors[keyof GetTenantIndustriesCountErrors];
+export type IndustriesGetTenantIndustriesCountError = IndustriesGetTenantIndustriesCountErrors[keyof IndustriesGetTenantIndustriesCountErrors];
 
-export type GetTenantIndustriesCountResponses = {
+export type IndustriesGetTenantIndustriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantIndustriesCountResponse = GetTenantIndustriesCountResponses[keyof GetTenantIndustriesCountResponses];
+export type IndustriesGetTenantIndustriesCountResponse = IndustriesGetTenantIndustriesCountResponses[keyof IndustriesGetTenantIndustriesCountResponses];
 
-export type DeleteTenantIndustryData = {
+export type IndustriesDeleteTenantIndustryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4381,7 +4423,7 @@ export type DeleteTenantIndustryData = {
     url: '/api/v2/TenantsService/Industries/{tenantIndustryId}';
 };
 
-export type DeleteTenantIndustryErrors = {
+export type IndustriesDeleteTenantIndustryErrors = {
     /**
      * Unauthorized
      */
@@ -4392,18 +4434,18 @@ export type DeleteTenantIndustryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantIndustryError = DeleteTenantIndustryErrors[keyof DeleteTenantIndustryErrors];
+export type IndustriesDeleteTenantIndustryError = IndustriesDeleteTenantIndustryErrors[keyof IndustriesDeleteTenantIndustryErrors];
 
-export type DeleteTenantIndustryResponses = {
+export type IndustriesDeleteTenantIndustryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantIndustryResponse = DeleteTenantIndustryResponses[keyof DeleteTenantIndustryResponses];
+export type IndustriesDeleteTenantIndustryResponse = IndustriesDeleteTenantIndustryResponses[keyof IndustriesDeleteTenantIndustryResponses];
 
-export type GetTenantIndustryByIdData = {
+export type IndustriesGetTenantIndustryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4418,7 +4460,7 @@ export type GetTenantIndustryByIdData = {
     url: '/api/v2/TenantsService/Industries/{tenantIndustryId}';
 };
 
-export type GetTenantIndustryByIdErrors = {
+export type IndustriesGetTenantIndustryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4429,18 +4471,18 @@ export type GetTenantIndustryByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantIndustryByIdError = GetTenantIndustryByIdErrors[keyof GetTenantIndustryByIdErrors];
+export type IndustriesGetTenantIndustryByIdError = IndustriesGetTenantIndustryByIdErrors[keyof IndustriesGetTenantIndustryByIdErrors];
 
-export type GetTenantIndustryByIdResponses = {
+export type IndustriesGetTenantIndustryByIdResponses = {
     /**
      * OK
      */
     200: TenantIndustryDtoEnvelopeReadable;
 };
 
-export type GetTenantIndustryByIdResponse = GetTenantIndustryByIdResponses[keyof GetTenantIndustryByIdResponses];
+export type IndustriesGetTenantIndustryByIdResponse = IndustriesGetTenantIndustryByIdResponses[keyof IndustriesGetTenantIndustryByIdResponses];
 
-export type PatchTenantIndustryAsyncData = {
+export type IndustriesPatchTenantIndustryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4455,7 +4497,7 @@ export type PatchTenantIndustryAsyncData = {
     url: '/api/v2/TenantsService/Industries/{tenantIndustryId}';
 };
 
-export type PatchTenantIndustryAsyncErrors = {
+export type IndustriesPatchTenantIndustryErrors = {
     /**
      * Unauthorized
      */
@@ -4466,18 +4508,18 @@ export type PatchTenantIndustryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantIndustryAsyncError = PatchTenantIndustryAsyncErrors[keyof PatchTenantIndustryAsyncErrors];
+export type IndustriesPatchTenantIndustryError = IndustriesPatchTenantIndustryErrors[keyof IndustriesPatchTenantIndustryErrors];
 
-export type PatchTenantIndustryAsyncResponses = {
+export type IndustriesPatchTenantIndustryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantIndustryAsyncResponse = PatchTenantIndustryAsyncResponses[keyof PatchTenantIndustryAsyncResponses];
+export type IndustriesPatchTenantIndustryResponse = IndustriesPatchTenantIndustryResponses[keyof IndustriesPatchTenantIndustryResponses];
 
-export type UpdateTenantIndustryData = {
+export type IndustriesUpdateTenantIndustryData = {
     body?: TenantIndustryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4492,7 +4534,7 @@ export type UpdateTenantIndustryData = {
     url: '/api/v2/TenantsService/Industries/{tenantIndustryId}';
 };
 
-export type UpdateTenantIndustryErrors = {
+export type IndustriesUpdateTenantIndustryErrors = {
     /**
      * Unauthorized
      */
@@ -4503,18 +4545,18 @@ export type UpdateTenantIndustryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantIndustryError = UpdateTenantIndustryErrors[keyof UpdateTenantIndustryErrors];
+export type IndustriesUpdateTenantIndustryError = IndustriesUpdateTenantIndustryErrors[keyof IndustriesUpdateTenantIndustryErrors];
 
-export type UpdateTenantIndustryResponses = {
+export type IndustriesUpdateTenantIndustryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantIndustryResponse = UpdateTenantIndustryResponses[keyof UpdateTenantIndustryResponses];
+export type IndustriesUpdateTenantIndustryResponse = IndustriesUpdateTenantIndustryResponses[keyof IndustriesUpdateTenantIndustryResponses];
 
-export type GetTenantInvitationsData = {
+export type InvitationsGetTenantInvitationsData = {
     body?: TenantInvitationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4527,7 +4569,7 @@ export type GetTenantInvitationsData = {
     url: '/api/v2/TenantsService/Invitations';
 };
 
-export type GetTenantInvitationsErrors = {
+export type InvitationsGetTenantInvitationsErrors = {
     /**
      * Unauthorized
      */
@@ -4538,18 +4580,18 @@ export type GetTenantInvitationsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantInvitationsError = GetTenantInvitationsErrors[keyof GetTenantInvitationsErrors];
+export type InvitationsGetTenantInvitationsError = InvitationsGetTenantInvitationsErrors[keyof InvitationsGetTenantInvitationsErrors];
 
-export type GetTenantInvitationsResponses = {
+export type InvitationsGetTenantInvitationsResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoListEnvelopeReadable;
 };
 
-export type GetTenantInvitationsResponse = GetTenantInvitationsResponses[keyof GetTenantInvitationsResponses];
+export type InvitationsGetTenantInvitationsResponse = InvitationsGetTenantInvitationsResponses[keyof InvitationsGetTenantInvitationsResponses];
 
-export type SendTenantInvitationData = {
+export type InvitationsSendTenantInvitationData = {
     body?: TenantInvitationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4562,7 +4604,7 @@ export type SendTenantInvitationData = {
     url: '/api/v2/TenantsService/Invitations';
 };
 
-export type SendTenantInvitationErrors = {
+export type InvitationsSendTenantInvitationErrors = {
     /**
      * Unauthorized
      */
@@ -4573,18 +4615,18 @@ export type SendTenantInvitationErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SendTenantInvitationError = SendTenantInvitationErrors[keyof SendTenantInvitationErrors];
+export type InvitationsSendTenantInvitationError = InvitationsSendTenantInvitationErrors[keyof InvitationsSendTenantInvitationErrors];
 
-export type SendTenantInvitationResponses = {
+export type InvitationsSendTenantInvitationResponses = {
     /**
      * Created
      */
-    201: EmptyEnvelopeReadable;
+    201: TenantInvitationSendResultDtoEnvelopeReadable;
 };
 
-export type SendTenantInvitationResponse = SendTenantInvitationResponses[keyof SendTenantInvitationResponses];
+export type InvitationsSendTenantInvitationResponse = InvitationsSendTenantInvitationResponses[keyof InvitationsSendTenantInvitationResponses];
 
-export type GetTenantInvitationsCountData = {
+export type InvitationsGetTenantInvitationsCountData = {
     body?: TenantInvitationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4597,7 +4639,7 @@ export type GetTenantInvitationsCountData = {
     url: '/api/v2/TenantsService/Invitations/Count';
 };
 
-export type GetTenantInvitationsCountErrors = {
+export type InvitationsGetTenantInvitationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4608,18 +4650,18 @@ export type GetTenantInvitationsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantInvitationsCountError = GetTenantInvitationsCountErrors[keyof GetTenantInvitationsCountErrors];
+export type InvitationsGetTenantInvitationsCountError = InvitationsGetTenantInvitationsCountErrors[keyof InvitationsGetTenantInvitationsCountErrors];
 
-export type GetTenantInvitationsCountResponses = {
+export type InvitationsGetTenantInvitationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantInvitationsCountResponse = GetTenantInvitationsCountResponses[keyof GetTenantInvitationsCountResponses];
+export type InvitationsGetTenantInvitationsCountResponse = InvitationsGetTenantInvitationsCountResponses[keyof InvitationsGetTenantInvitationsCountResponses];
 
-export type DeleteTenantInvitationData = {
+export type InvitationsDeleteTenantInvitationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4634,7 +4676,7 @@ export type DeleteTenantInvitationData = {
     url: '/api/v2/TenantsService/Invitations/{invitationId}';
 };
 
-export type DeleteTenantInvitationErrors = {
+export type InvitationsDeleteTenantInvitationErrors = {
     /**
      * Unauthorized
      */
@@ -4645,18 +4687,18 @@ export type DeleteTenantInvitationErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantInvitationError = DeleteTenantInvitationErrors[keyof DeleteTenantInvitationErrors];
+export type InvitationsDeleteTenantInvitationError = InvitationsDeleteTenantInvitationErrors[keyof InvitationsDeleteTenantInvitationErrors];
 
-export type DeleteTenantInvitationResponses = {
+export type InvitationsDeleteTenantInvitationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantInvitationResponse = DeleteTenantInvitationResponses[keyof DeleteTenantInvitationResponses];
+export type InvitationsDeleteTenantInvitationResponse = InvitationsDeleteTenantInvitationResponses[keyof InvitationsDeleteTenantInvitationResponses];
 
-export type GetTenantInvitationByIdData = {
+export type InvitationsGetTenantInvitationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4671,7 +4713,7 @@ export type GetTenantInvitationByIdData = {
     url: '/api/v2/TenantsService/Invitations/{invitationId}';
 };
 
-export type GetTenantInvitationByIdErrors = {
+export type InvitationsGetTenantInvitationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4682,18 +4724,18 @@ export type GetTenantInvitationByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantInvitationByIdError = GetTenantInvitationByIdErrors[keyof GetTenantInvitationByIdErrors];
+export type InvitationsGetTenantInvitationByIdError = InvitationsGetTenantInvitationByIdErrors[keyof InvitationsGetTenantInvitationByIdErrors];
 
-export type GetTenantInvitationByIdResponses = {
+export type InvitationsGetTenantInvitationByIdResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoEnvelopeReadable;
 };
 
-export type GetTenantInvitationByIdResponse = GetTenantInvitationByIdResponses[keyof GetTenantInvitationByIdResponses];
+export type InvitationsGetTenantInvitationByIdResponse = InvitationsGetTenantInvitationByIdResponses[keyof InvitationsGetTenantInvitationByIdResponses];
 
-export type AcceptTenantInvitationData = {
+export type InvitationsAcceptTenantInvitationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4702,12 +4744,13 @@ export type AcceptTenantInvitationData = {
         invitationId: string;
     };
     query?: {
+        token?: string;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Invitations/{invitationId}/Accept';
 };
 
-export type AcceptTenantInvitationErrors = {
+export type InvitationsAcceptTenantInvitationErrors = {
     /**
      * Unauthorized
      */
@@ -4718,18 +4761,18 @@ export type AcceptTenantInvitationErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AcceptTenantInvitationError = AcceptTenantInvitationErrors[keyof AcceptTenantInvitationErrors];
+export type InvitationsAcceptTenantInvitationError = InvitationsAcceptTenantInvitationErrors[keyof InvitationsAcceptTenantInvitationErrors];
 
-export type AcceptTenantInvitationResponses = {
+export type InvitationsAcceptTenantInvitationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AcceptTenantInvitationResponse = AcceptTenantInvitationResponses[keyof AcceptTenantInvitationResponses];
+export type InvitationsAcceptTenantInvitationResponse = InvitationsAcceptTenantInvitationResponses[keyof InvitationsAcceptTenantInvitationResponses];
 
-export type DeclineTenantInvitationData = {
+export type InvitationsDeclineTenantInvitationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4738,12 +4781,13 @@ export type DeclineTenantInvitationData = {
         invitationId: string;
     };
     query?: {
+        token?: string;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Invitations/{invitationId}/Decline';
 };
 
-export type DeclineTenantInvitationErrors = {
+export type InvitationsDeclineTenantInvitationErrors = {
     /**
      * Unauthorized
      */
@@ -4754,18 +4798,55 @@ export type DeclineTenantInvitationErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeclineTenantInvitationError = DeclineTenantInvitationErrors[keyof DeclineTenantInvitationErrors];
+export type InvitationsDeclineTenantInvitationError = InvitationsDeclineTenantInvitationErrors[keyof InvitationsDeclineTenantInvitationErrors];
 
-export type DeclineTenantInvitationResponses = {
+export type InvitationsDeclineTenantInvitationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeclineTenantInvitationResponse = DeclineTenantInvitationResponses[keyof DeclineTenantInvitationResponses];
+export type InvitationsDeclineTenantInvitationResponse = InvitationsDeclineTenantInvitationResponses[keyof InvitationsDeclineTenantInvitationResponses];
 
-export type GetTenantOptionsData = {
+export type InvitationsResendTenantInvitationData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        invitationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Invitations/{invitationId}/Resend';
+};
+
+export type InvitationsResendTenantInvitationErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type InvitationsResendTenantInvitationError = InvitationsResendTenantInvitationErrors[keyof InvitationsResendTenantInvitationErrors];
+
+export type InvitationsResendTenantInvitationResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type InvitationsResendTenantInvitationResponse = InvitationsResendTenantInvitationResponses[keyof InvitationsResendTenantInvitationResponses];
+
+export type OptionsGetTenantOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4779,7 +4860,7 @@ export type GetTenantOptionsData = {
     url: '/api/v2/TenantsService/Options';
 };
 
-export type GetTenantOptionsErrors = {
+export type OptionsGetTenantOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -4790,18 +4871,18 @@ export type GetTenantOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantOptionsError = GetTenantOptionsErrors[keyof GetTenantOptionsErrors];
+export type OptionsGetTenantOptionsError = OptionsGetTenantOptionsErrors[keyof OptionsGetTenantOptionsErrors];
 
-export type GetTenantOptionsResponses = {
+export type OptionsGetTenantOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetTenantOptionsResponse = GetTenantOptionsResponses[keyof GetTenantOptionsResponses];
+export type OptionsGetTenantOptionsResponse = OptionsGetTenantOptionsResponses[keyof OptionsGetTenantOptionsResponses];
 
-export type CreateTenantOptionData = {
+export type OptionsCreateTenantOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4816,7 +4897,7 @@ export type CreateTenantOptionData = {
     url: '/api/v2/TenantsService/Options';
 };
 
-export type CreateTenantOptionErrors = {
+export type OptionsCreateTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -4827,18 +4908,18 @@ export type CreateTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantOptionError = CreateTenantOptionErrors[keyof CreateTenantOptionErrors];
+export type OptionsCreateTenantOptionError = OptionsCreateTenantOptionErrors[keyof OptionsCreateTenantOptionErrors];
 
-export type CreateTenantOptionResponses = {
+export type OptionsCreateTenantOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantOptionResponse = CreateTenantOptionResponses[keyof CreateTenantOptionResponses];
+export type OptionsCreateTenantOptionResponse = OptionsCreateTenantOptionResponses[keyof OptionsCreateTenantOptionResponses];
 
-export type GetTenantOptionsCountData = {
+export type OptionsGetTenantOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4852,7 +4933,7 @@ export type GetTenantOptionsCountData = {
     url: '/api/v2/TenantsService/Options/Count';
 };
 
-export type GetTenantOptionsCountErrors = {
+export type OptionsGetTenantOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4863,18 +4944,18 @@ export type GetTenantOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantOptionsCountError = GetTenantOptionsCountErrors[keyof GetTenantOptionsCountErrors];
+export type OptionsGetTenantOptionsCountError = OptionsGetTenantOptionsCountErrors[keyof OptionsGetTenantOptionsCountErrors];
 
-export type GetTenantOptionsCountResponses = {
+export type OptionsGetTenantOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantOptionsCountResponse = GetTenantOptionsCountResponses[keyof GetTenantOptionsCountResponses];
+export type OptionsGetTenantOptionsCountResponse = OptionsGetTenantOptionsCountResponses[keyof OptionsGetTenantOptionsCountResponses];
 
-export type DeleteTenantOptionData = {
+export type OptionsDeleteTenantOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4889,7 +4970,7 @@ export type DeleteTenantOptionData = {
     url: '/api/v2/TenantsService/Options/{optionId}';
 };
 
-export type DeleteTenantOptionErrors = {
+export type OptionsDeleteTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -4900,18 +4981,18 @@ export type DeleteTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantOptionError = DeleteTenantOptionErrors[keyof DeleteTenantOptionErrors];
+export type OptionsDeleteTenantOptionError = OptionsDeleteTenantOptionErrors[keyof OptionsDeleteTenantOptionErrors];
 
-export type DeleteTenantOptionResponses = {
+export type OptionsDeleteTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantOptionResponse = DeleteTenantOptionResponses[keyof DeleteTenantOptionResponses];
+export type OptionsDeleteTenantOptionResponse = OptionsDeleteTenantOptionResponses[keyof OptionsDeleteTenantOptionResponses];
 
-export type GetTenantOptionByIdData = {
+export type OptionsGetTenantOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4926,7 +5007,7 @@ export type GetTenantOptionByIdData = {
     url: '/api/v2/TenantsService/Options/{optionId}';
 };
 
-export type GetTenantOptionByIdErrors = {
+export type OptionsGetTenantOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4937,18 +5018,18 @@ export type GetTenantOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantOptionByIdError = GetTenantOptionByIdErrors[keyof GetTenantOptionByIdErrors];
+export type OptionsGetTenantOptionByIdError = OptionsGetTenantOptionByIdErrors[keyof OptionsGetTenantOptionByIdErrors];
 
-export type GetTenantOptionByIdResponses = {
+export type OptionsGetTenantOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetTenantOptionByIdResponse = GetTenantOptionByIdResponses[keyof GetTenantOptionByIdResponses];
+export type OptionsGetTenantOptionByIdResponse = OptionsGetTenantOptionByIdResponses[keyof OptionsGetTenantOptionByIdResponses];
 
-export type PatchTenantOptionData = {
+export type OptionsPatchTenantOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4963,7 +5044,7 @@ export type PatchTenantOptionData = {
     url: '/api/v2/TenantsService/Options/{optionId}';
 };
 
-export type PatchTenantOptionErrors = {
+export type OptionsPatchTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -4974,18 +5055,18 @@ export type PatchTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantOptionError = PatchTenantOptionErrors[keyof PatchTenantOptionErrors];
+export type OptionsPatchTenantOptionError = OptionsPatchTenantOptionErrors[keyof OptionsPatchTenantOptionErrors];
 
-export type PatchTenantOptionResponses = {
+export type OptionsPatchTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantOptionResponse = PatchTenantOptionResponses[keyof PatchTenantOptionResponses];
+export type OptionsPatchTenantOptionResponse = OptionsPatchTenantOptionResponses[keyof OptionsPatchTenantOptionResponses];
 
-export type UpdateTenantOptionData = {
+export type OptionsUpdateTenantOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5000,7 +5081,7 @@ export type UpdateTenantOptionData = {
     url: '/api/v2/TenantsService/Options/{optionId}';
 };
 
-export type UpdateTenantOptionErrors = {
+export type OptionsUpdateTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5011,18 +5092,18 @@ export type UpdateTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantOptionError = UpdateTenantOptionErrors[keyof UpdateTenantOptionErrors];
+export type OptionsUpdateTenantOptionError = OptionsUpdateTenantOptionErrors[keyof OptionsUpdateTenantOptionErrors];
 
-export type UpdateTenantOptionResponses = {
+export type OptionsUpdateTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantOptionResponse = UpdateTenantOptionResponses[keyof UpdateTenantOptionResponses];
+export type OptionsUpdateTenantOptionResponse = OptionsUpdateTenantOptionResponses[keyof OptionsUpdateTenantOptionResponses];
 
-export type GetTenantOptionByKeyData = {
+export type OptionsGetTenantOptionByKeyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5038,7 +5119,7 @@ export type GetTenantOptionByKeyData = {
     url: '/api/v2/TenantsService/Options/Key/{key}';
 };
 
-export type GetTenantOptionByKeyErrors = {
+export type OptionsGetTenantOptionByKeyErrors = {
     /**
      * Unauthorized
      */
@@ -5049,18 +5130,18 @@ export type GetTenantOptionByKeyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantOptionByKeyError = GetTenantOptionByKeyErrors[keyof GetTenantOptionByKeyErrors];
+export type OptionsGetTenantOptionByKeyError = OptionsGetTenantOptionByKeyErrors[keyof OptionsGetTenantOptionByKeyErrors];
 
-export type GetTenantOptionByKeyResponses = {
+export type OptionsGetTenantOptionByKeyResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetTenantOptionByKeyResponse = GetTenantOptionByKeyResponses[keyof GetTenantOptionByKeyResponses];
+export type OptionsGetTenantOptionByKeyResponse = OptionsGetTenantOptionByKeyResponses[keyof OptionsGetTenantOptionByKeyResponses];
 
-export type UpsertTenantOptionData = {
+export type OptionsUpsertTenantOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5076,7 +5157,7 @@ export type UpsertTenantOptionData = {
     url: '/api/v2/TenantsService/Options/Upsert/{key}';
 };
 
-export type UpsertTenantOptionErrors = {
+export type OptionsUpsertTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5087,18 +5168,18 @@ export type UpsertTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpsertTenantOptionError = UpsertTenantOptionErrors[keyof UpsertTenantOptionErrors];
+export type OptionsUpsertTenantOptionError = OptionsUpsertTenantOptionErrors[keyof OptionsUpsertTenantOptionErrors];
 
-export type UpsertTenantOptionResponses = {
+export type OptionsUpsertTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpsertTenantOptionResponse = UpsertTenantOptionResponses[keyof UpsertTenantOptionResponses];
+export type OptionsUpsertTenantOptionResponse = OptionsUpsertTenantOptionResponses[keyof OptionsUpsertTenantOptionResponses];
 
-export type GetTenantPositionsData = {
+export type PositionsGetTenantPositionsData = {
     body?: TenantPositionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5111,7 +5192,7 @@ export type GetTenantPositionsData = {
     url: '/api/v2/TenantsService/Positions';
 };
 
-export type GetTenantPositionsErrors = {
+export type PositionsGetTenantPositionsErrors = {
     /**
      * Unauthorized
      */
@@ -5122,18 +5203,18 @@ export type GetTenantPositionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantPositionsError = GetTenantPositionsErrors[keyof GetTenantPositionsErrors];
+export type PositionsGetTenantPositionsError = PositionsGetTenantPositionsErrors[keyof PositionsGetTenantPositionsErrors];
 
-export type GetTenantPositionsResponses = {
+export type PositionsGetTenantPositionsResponses = {
     /**
      * OK
      */
     200: TenantPositionDtoListEnvelopeReadable;
 };
 
-export type GetTenantPositionsResponse = GetTenantPositionsResponses[keyof GetTenantPositionsResponses];
+export type PositionsGetTenantPositionsResponse = PositionsGetTenantPositionsResponses[keyof PositionsGetTenantPositionsResponses];
 
-export type CreateTenantPositionData = {
+export type PositionsCreateTenantPositionData = {
     body?: TenantPositionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5146,7 +5227,7 @@ export type CreateTenantPositionData = {
     url: '/api/v2/TenantsService/Positions';
 };
 
-export type CreateTenantPositionErrors = {
+export type PositionsCreateTenantPositionErrors = {
     /**
      * Unauthorized
      */
@@ -5157,18 +5238,18 @@ export type CreateTenantPositionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantPositionError = CreateTenantPositionErrors[keyof CreateTenantPositionErrors];
+export type PositionsCreateTenantPositionError = PositionsCreateTenantPositionErrors[keyof PositionsCreateTenantPositionErrors];
 
-export type CreateTenantPositionResponses = {
+export type PositionsCreateTenantPositionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantPositionResponse = CreateTenantPositionResponses[keyof CreateTenantPositionResponses];
+export type PositionsCreateTenantPositionResponse = PositionsCreateTenantPositionResponses[keyof PositionsCreateTenantPositionResponses];
 
-export type GetTenantPositionsCountData = {
+export type PositionsGetTenantPositionsCountData = {
     body?: TenantPositionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5181,7 +5262,7 @@ export type GetTenantPositionsCountData = {
     url: '/api/v2/TenantsService/Positions/Count';
 };
 
-export type GetTenantPositionsCountErrors = {
+export type PositionsGetTenantPositionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5192,18 +5273,18 @@ export type GetTenantPositionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantPositionsCountError = GetTenantPositionsCountErrors[keyof GetTenantPositionsCountErrors];
+export type PositionsGetTenantPositionsCountError = PositionsGetTenantPositionsCountErrors[keyof PositionsGetTenantPositionsCountErrors];
 
-export type GetTenantPositionsCountResponses = {
+export type PositionsGetTenantPositionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantPositionsCountResponse = GetTenantPositionsCountResponses[keyof GetTenantPositionsCountResponses];
+export type PositionsGetTenantPositionsCountResponse = PositionsGetTenantPositionsCountResponses[keyof PositionsGetTenantPositionsCountResponses];
 
-export type DeleteTenantPositionData = {
+export type PositionsDeleteTenantPositionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5218,7 +5299,7 @@ export type DeleteTenantPositionData = {
     url: '/api/v2/TenantsService/Positions/{tenantPositionId}';
 };
 
-export type DeleteTenantPositionErrors = {
+export type PositionsDeleteTenantPositionErrors = {
     /**
      * Unauthorized
      */
@@ -5229,18 +5310,18 @@ export type DeleteTenantPositionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantPositionError = DeleteTenantPositionErrors[keyof DeleteTenantPositionErrors];
+export type PositionsDeleteTenantPositionError = PositionsDeleteTenantPositionErrors[keyof PositionsDeleteTenantPositionErrors];
 
-export type DeleteTenantPositionResponses = {
+export type PositionsDeleteTenantPositionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantPositionResponse = DeleteTenantPositionResponses[keyof DeleteTenantPositionResponses];
+export type PositionsDeleteTenantPositionResponse = PositionsDeleteTenantPositionResponses[keyof PositionsDeleteTenantPositionResponses];
 
-export type GetTenantPositionByIdData = {
+export type PositionsGetTenantPositionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5255,7 +5336,7 @@ export type GetTenantPositionByIdData = {
     url: '/api/v2/TenantsService/Positions/{tenantPositionId}';
 };
 
-export type GetTenantPositionByIdErrors = {
+export type PositionsGetTenantPositionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5266,18 +5347,18 @@ export type GetTenantPositionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantPositionByIdError = GetTenantPositionByIdErrors[keyof GetTenantPositionByIdErrors];
+export type PositionsGetTenantPositionByIdError = PositionsGetTenantPositionByIdErrors[keyof PositionsGetTenantPositionByIdErrors];
 
-export type GetTenantPositionByIdResponses = {
+export type PositionsGetTenantPositionByIdResponses = {
     /**
      * OK
      */
     200: TenantPositionDtoEnvelopeReadable;
 };
 
-export type GetTenantPositionByIdResponse = GetTenantPositionByIdResponses[keyof GetTenantPositionByIdResponses];
+export type PositionsGetTenantPositionByIdResponse = PositionsGetTenantPositionByIdResponses[keyof PositionsGetTenantPositionByIdResponses];
 
-export type PatchTenantPositionData = {
+export type PositionsPatchTenantPositionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5292,7 +5373,7 @@ export type PatchTenantPositionData = {
     url: '/api/v2/TenantsService/Positions/{tenantPositionId}';
 };
 
-export type PatchTenantPositionErrors = {
+export type PositionsPatchTenantPositionErrors = {
     /**
      * Unauthorized
      */
@@ -5303,18 +5384,18 @@ export type PatchTenantPositionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantPositionError = PatchTenantPositionErrors[keyof PatchTenantPositionErrors];
+export type PositionsPatchTenantPositionError = PositionsPatchTenantPositionErrors[keyof PositionsPatchTenantPositionErrors];
 
-export type PatchTenantPositionResponses = {
+export type PositionsPatchTenantPositionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantPositionResponse = PatchTenantPositionResponses[keyof PatchTenantPositionResponses];
+export type PositionsPatchTenantPositionResponse = PositionsPatchTenantPositionResponses[keyof PositionsPatchTenantPositionResponses];
 
-export type UpdateTenantPositionData = {
+export type PositionsUpdateTenantPositionData = {
     body?: TenantPositionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5329,7 +5410,7 @@ export type UpdateTenantPositionData = {
     url: '/api/v2/TenantsService/Positions/{tenantPositionId}';
 };
 
-export type UpdateTenantPositionErrors = {
+export type PositionsUpdateTenantPositionErrors = {
     /**
      * Unauthorized
      */
@@ -5340,18 +5421,18 @@ export type UpdateTenantPositionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantPositionError = UpdateTenantPositionErrors[keyof UpdateTenantPositionErrors];
+export type PositionsUpdateTenantPositionError = PositionsUpdateTenantPositionErrors[keyof PositionsUpdateTenantPositionErrors];
 
-export type UpdateTenantPositionResponses = {
+export type PositionsUpdateTenantPositionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantPositionResponse = UpdateTenantPositionResponses[keyof UpdateTenantPositionResponses];
+export type PositionsUpdateTenantPositionResponse = PositionsUpdateTenantPositionResponses[keyof PositionsUpdateTenantPositionResponses];
 
-export type GetTenantSegmentsData = {
+export type SegmentsGetTenantSegmentsData = {
     body?: TenantSegmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5364,7 +5445,7 @@ export type GetTenantSegmentsData = {
     url: '/api/v2/TenantsService/Segments';
 };
 
-export type GetTenantSegmentsErrors = {
+export type SegmentsGetTenantSegmentsErrors = {
     /**
      * Unauthorized
      */
@@ -5375,18 +5456,18 @@ export type GetTenantSegmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSegmentsError = GetTenantSegmentsErrors[keyof GetTenantSegmentsErrors];
+export type SegmentsGetTenantSegmentsError = SegmentsGetTenantSegmentsErrors[keyof SegmentsGetTenantSegmentsErrors];
 
-export type GetTenantSegmentsResponses = {
+export type SegmentsGetTenantSegmentsResponses = {
     /**
      * OK
      */
     200: TenantSegmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantSegmentsResponse = GetTenantSegmentsResponses[keyof GetTenantSegmentsResponses];
+export type SegmentsGetTenantSegmentsResponse = SegmentsGetTenantSegmentsResponses[keyof SegmentsGetTenantSegmentsResponses];
 
-export type CreateTenantSegmentData = {
+export type SegmentsCreateTenantSegmentData = {
     body?: TenantSegmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5399,7 +5480,7 @@ export type CreateTenantSegmentData = {
     url: '/api/v2/TenantsService/Segments';
 };
 
-export type CreateTenantSegmentErrors = {
+export type SegmentsCreateTenantSegmentErrors = {
     /**
      * Unauthorized
      */
@@ -5410,18 +5491,18 @@ export type CreateTenantSegmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantSegmentError = CreateTenantSegmentErrors[keyof CreateTenantSegmentErrors];
+export type SegmentsCreateTenantSegmentError = SegmentsCreateTenantSegmentErrors[keyof SegmentsCreateTenantSegmentErrors];
 
-export type CreateTenantSegmentResponses = {
+export type SegmentsCreateTenantSegmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantSegmentResponse = CreateTenantSegmentResponses[keyof CreateTenantSegmentResponses];
+export type SegmentsCreateTenantSegmentResponse = SegmentsCreateTenantSegmentResponses[keyof SegmentsCreateTenantSegmentResponses];
 
-export type GetTenantSegmentsCountData = {
+export type SegmentsGetTenantSegmentsCountData = {
     body?: TenantSegmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5434,7 +5515,7 @@ export type GetTenantSegmentsCountData = {
     url: '/api/v2/TenantsService/Segments/Count';
 };
 
-export type GetTenantSegmentsCountErrors = {
+export type SegmentsGetTenantSegmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5445,18 +5526,18 @@ export type GetTenantSegmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSegmentsCountError = GetTenantSegmentsCountErrors[keyof GetTenantSegmentsCountErrors];
+export type SegmentsGetTenantSegmentsCountError = SegmentsGetTenantSegmentsCountErrors[keyof SegmentsGetTenantSegmentsCountErrors];
 
-export type GetTenantSegmentsCountResponses = {
+export type SegmentsGetTenantSegmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantSegmentsCountResponse = GetTenantSegmentsCountResponses[keyof GetTenantSegmentsCountResponses];
+export type SegmentsGetTenantSegmentsCountResponse = SegmentsGetTenantSegmentsCountResponses[keyof SegmentsGetTenantSegmentsCountResponses];
 
-export type DeleteTenantSegmentData = {
+export type SegmentsDeleteTenantSegmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5471,7 +5552,7 @@ export type DeleteTenantSegmentData = {
     url: '/api/v2/TenantsService/Segments/{tenantSegmentId}';
 };
 
-export type DeleteTenantSegmentErrors = {
+export type SegmentsDeleteTenantSegmentErrors = {
     /**
      * Unauthorized
      */
@@ -5482,18 +5563,18 @@ export type DeleteTenantSegmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantSegmentError = DeleteTenantSegmentErrors[keyof DeleteTenantSegmentErrors];
+export type SegmentsDeleteTenantSegmentError = SegmentsDeleteTenantSegmentErrors[keyof SegmentsDeleteTenantSegmentErrors];
 
-export type DeleteTenantSegmentResponses = {
+export type SegmentsDeleteTenantSegmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantSegmentResponse = DeleteTenantSegmentResponses[keyof DeleteTenantSegmentResponses];
+export type SegmentsDeleteTenantSegmentResponse = SegmentsDeleteTenantSegmentResponses[keyof SegmentsDeleteTenantSegmentResponses];
 
-export type GetTenantSegmentByIdData = {
+export type SegmentsGetTenantSegmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5508,7 +5589,7 @@ export type GetTenantSegmentByIdData = {
     url: '/api/v2/TenantsService/Segments/{tenantSegmentId}';
 };
 
-export type GetTenantSegmentByIdErrors = {
+export type SegmentsGetTenantSegmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5519,18 +5600,18 @@ export type GetTenantSegmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSegmentByIdError = GetTenantSegmentByIdErrors[keyof GetTenantSegmentByIdErrors];
+export type SegmentsGetTenantSegmentByIdError = SegmentsGetTenantSegmentByIdErrors[keyof SegmentsGetTenantSegmentByIdErrors];
 
-export type GetTenantSegmentByIdResponses = {
+export type SegmentsGetTenantSegmentByIdResponses = {
     /**
      * OK
      */
     200: TenantSegmentDtoEnvelopeReadable;
 };
 
-export type GetTenantSegmentByIdResponse = GetTenantSegmentByIdResponses[keyof GetTenantSegmentByIdResponses];
+export type SegmentsGetTenantSegmentByIdResponse = SegmentsGetTenantSegmentByIdResponses[keyof SegmentsGetTenantSegmentByIdResponses];
 
-export type PatchTenantSegmentData = {
+export type SegmentsPatchTenantSegmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5545,7 +5626,7 @@ export type PatchTenantSegmentData = {
     url: '/api/v2/TenantsService/Segments/{tenantSegmentId}';
 };
 
-export type PatchTenantSegmentErrors = {
+export type SegmentsPatchTenantSegmentErrors = {
     /**
      * Unauthorized
      */
@@ -5556,18 +5637,18 @@ export type PatchTenantSegmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantSegmentError = PatchTenantSegmentErrors[keyof PatchTenantSegmentErrors];
+export type SegmentsPatchTenantSegmentError = SegmentsPatchTenantSegmentErrors[keyof SegmentsPatchTenantSegmentErrors];
 
-export type PatchTenantSegmentResponses = {
+export type SegmentsPatchTenantSegmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantSegmentResponse = PatchTenantSegmentResponses[keyof PatchTenantSegmentResponses];
+export type SegmentsPatchTenantSegmentResponse = SegmentsPatchTenantSegmentResponses[keyof SegmentsPatchTenantSegmentResponses];
 
-export type UpdateTenantSegmentData = {
+export type SegmentsUpdateTenantSegmentData = {
     body?: TenantSegmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5582,7 +5663,7 @@ export type UpdateTenantSegmentData = {
     url: '/api/v2/TenantsService/Segments/{tenantSegmentId}';
 };
 
-export type UpdateTenantSegmentErrors = {
+export type SegmentsUpdateTenantSegmentErrors = {
     /**
      * Unauthorized
      */
@@ -5593,18 +5674,18 @@ export type UpdateTenantSegmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantSegmentError = UpdateTenantSegmentErrors[keyof UpdateTenantSegmentErrors];
+export type SegmentsUpdateTenantSegmentError = SegmentsUpdateTenantSegmentErrors[keyof SegmentsUpdateTenantSegmentErrors];
 
-export type UpdateTenantSegmentResponses = {
+export type SegmentsUpdateTenantSegmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantSegmentResponse = UpdateTenantSegmentResponses[keyof UpdateTenantSegmentResponses];
+export type SegmentsUpdateTenantSegmentResponse = SegmentsUpdateTenantSegmentResponses[keyof SegmentsUpdateTenantSegmentResponses];
 
-export type GetTenantSizesData = {
+export type SizesGetTenantSizesData = {
     body?: TenantSizeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5617,7 +5698,7 @@ export type GetTenantSizesData = {
     url: '/api/v2/TenantsService/Sizes';
 };
 
-export type GetTenantSizesErrors = {
+export type SizesGetTenantSizesErrors = {
     /**
      * Unauthorized
      */
@@ -5628,18 +5709,18 @@ export type GetTenantSizesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSizesError = GetTenantSizesErrors[keyof GetTenantSizesErrors];
+export type SizesGetTenantSizesError = SizesGetTenantSizesErrors[keyof SizesGetTenantSizesErrors];
 
-export type GetTenantSizesResponses = {
+export type SizesGetTenantSizesResponses = {
     /**
      * OK
      */
     200: TenantSizeDtoListEnvelopeReadable;
 };
 
-export type GetTenantSizesResponse = GetTenantSizesResponses[keyof GetTenantSizesResponses];
+export type SizesGetTenantSizesResponse = SizesGetTenantSizesResponses[keyof SizesGetTenantSizesResponses];
 
-export type CreateTenantSizeData = {
+export type SizesCreateTenantSizeData = {
     body?: TenantSizeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5652,7 +5733,7 @@ export type CreateTenantSizeData = {
     url: '/api/v2/TenantsService/Sizes';
 };
 
-export type CreateTenantSizeErrors = {
+export type SizesCreateTenantSizeErrors = {
     /**
      * Unauthorized
      */
@@ -5663,18 +5744,18 @@ export type CreateTenantSizeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantSizeError = CreateTenantSizeErrors[keyof CreateTenantSizeErrors];
+export type SizesCreateTenantSizeError = SizesCreateTenantSizeErrors[keyof SizesCreateTenantSizeErrors];
 
-export type CreateTenantSizeResponses = {
+export type SizesCreateTenantSizeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantSizeResponse = CreateTenantSizeResponses[keyof CreateTenantSizeResponses];
+export type SizesCreateTenantSizeResponse = SizesCreateTenantSizeResponses[keyof SizesCreateTenantSizeResponses];
 
-export type GetTenantSizesCountData = {
+export type SizesGetTenantSizesCountData = {
     body?: TenantSizeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5687,7 +5768,7 @@ export type GetTenantSizesCountData = {
     url: '/api/v2/TenantsService/Sizes/Count';
 };
 
-export type GetTenantSizesCountErrors = {
+export type SizesGetTenantSizesCountErrors = {
     /**
      * Unauthorized
      */
@@ -5698,18 +5779,18 @@ export type GetTenantSizesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSizesCountError = GetTenantSizesCountErrors[keyof GetTenantSizesCountErrors];
+export type SizesGetTenantSizesCountError = SizesGetTenantSizesCountErrors[keyof SizesGetTenantSizesCountErrors];
 
-export type GetTenantSizesCountResponses = {
+export type SizesGetTenantSizesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantSizesCountResponse = GetTenantSizesCountResponses[keyof GetTenantSizesCountResponses];
+export type SizesGetTenantSizesCountResponse = SizesGetTenantSizesCountResponses[keyof SizesGetTenantSizesCountResponses];
 
-export type DeleteTenantSizeData = {
+export type SizesDeleteTenantSizeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5724,7 +5805,7 @@ export type DeleteTenantSizeData = {
     url: '/api/v2/TenantsService/Sizes/{tenantSizeId}';
 };
 
-export type DeleteTenantSizeErrors = {
+export type SizesDeleteTenantSizeErrors = {
     /**
      * Unauthorized
      */
@@ -5735,18 +5816,18 @@ export type DeleteTenantSizeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantSizeError = DeleteTenantSizeErrors[keyof DeleteTenantSizeErrors];
+export type SizesDeleteTenantSizeError = SizesDeleteTenantSizeErrors[keyof SizesDeleteTenantSizeErrors];
 
-export type DeleteTenantSizeResponses = {
+export type SizesDeleteTenantSizeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantSizeResponse = DeleteTenantSizeResponses[keyof DeleteTenantSizeResponses];
+export type SizesDeleteTenantSizeResponse = SizesDeleteTenantSizeResponses[keyof SizesDeleteTenantSizeResponses];
 
-export type GetTenantSizeByIdData = {
+export type SizesGetTenantSizeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5761,7 +5842,7 @@ export type GetTenantSizeByIdData = {
     url: '/api/v2/TenantsService/Sizes/{tenantSizeId}';
 };
 
-export type GetTenantSizeByIdErrors = {
+export type SizesGetTenantSizeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5772,18 +5853,18 @@ export type GetTenantSizeByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSizeByIdError = GetTenantSizeByIdErrors[keyof GetTenantSizeByIdErrors];
+export type SizesGetTenantSizeByIdError = SizesGetTenantSizeByIdErrors[keyof SizesGetTenantSizeByIdErrors];
 
-export type GetTenantSizeByIdResponses = {
+export type SizesGetTenantSizeByIdResponses = {
     /**
      * OK
      */
     200: TenantSizeDtoEnvelopeReadable;
 };
 
-export type GetTenantSizeByIdResponse = GetTenantSizeByIdResponses[keyof GetTenantSizeByIdResponses];
+export type SizesGetTenantSizeByIdResponse = SizesGetTenantSizeByIdResponses[keyof SizesGetTenantSizeByIdResponses];
 
-export type PatchTenantSizeData = {
+export type SizesPatchTenantSizeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5798,7 +5879,7 @@ export type PatchTenantSizeData = {
     url: '/api/v2/TenantsService/Sizes/{tenantSizeId}';
 };
 
-export type PatchTenantSizeErrors = {
+export type SizesPatchTenantSizeErrors = {
     /**
      * Unauthorized
      */
@@ -5809,18 +5890,18 @@ export type PatchTenantSizeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantSizeError = PatchTenantSizeErrors[keyof PatchTenantSizeErrors];
+export type SizesPatchTenantSizeError = SizesPatchTenantSizeErrors[keyof SizesPatchTenantSizeErrors];
 
-export type PatchTenantSizeResponses = {
+export type SizesPatchTenantSizeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantSizeResponse = PatchTenantSizeResponses[keyof PatchTenantSizeResponses];
+export type SizesPatchTenantSizeResponse = SizesPatchTenantSizeResponses[keyof SizesPatchTenantSizeResponses];
 
-export type UpdateTenantSizeData = {
+export type SizesUpdateTenantSizeData = {
     body?: TenantSizeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5835,7 +5916,7 @@ export type UpdateTenantSizeData = {
     url: '/api/v2/TenantsService/Sizes/{tenantSizeId}';
 };
 
-export type UpdateTenantSizeErrors = {
+export type SizesUpdateTenantSizeErrors = {
     /**
      * Unauthorized
      */
@@ -5846,18 +5927,18 @@ export type UpdateTenantSizeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantSizeError = UpdateTenantSizeErrors[keyof UpdateTenantSizeErrors];
+export type SizesUpdateTenantSizeError = SizesUpdateTenantSizeErrors[keyof SizesUpdateTenantSizeErrors];
 
-export type UpdateTenantSizeResponses = {
+export type SizesUpdateTenantSizeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantSizeResponse = UpdateTenantSizeResponses[keyof UpdateTenantSizeResponses];
+export type SizesUpdateTenantSizeResponse = SizesUpdateTenantSizeResponses[keyof SizesUpdateTenantSizeResponses];
 
-export type GetTenantTeamContactEnrollmentsData = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsData = {
     body?: TenantTeamContactEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5870,7 +5951,7 @@ export type GetTenantTeamContactEnrollmentsData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments';
 };
 
-export type GetTenantTeamContactEnrollmentsErrors = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsErrors = {
     /**
      * Unauthorized
      */
@@ -5881,18 +5962,18 @@ export type GetTenantTeamContactEnrollmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamContactEnrollmentsError = GetTenantTeamContactEnrollmentsErrors[keyof GetTenantTeamContactEnrollmentsErrors];
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsError = TeamContactEnrollmentsGetTenantTeamContactEnrollmentsErrors[keyof TeamContactEnrollmentsGetTenantTeamContactEnrollmentsErrors];
 
-export type GetTenantTeamContactEnrollmentsResponses = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantTeamContactEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantTeamContactEnrollmentsResponse = GetTenantTeamContactEnrollmentsResponses[keyof GetTenantTeamContactEnrollmentsResponses];
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsResponse = TeamContactEnrollmentsGetTenantTeamContactEnrollmentsResponses[keyof TeamContactEnrollmentsGetTenantTeamContactEnrollmentsResponses];
 
-export type CreateTenantTeamContactEnrollmentData = {
+export type TeamContactEnrollmentsCreateTenantTeamContactEnrollmentData = {
     body?: TenantTeamContactEnrollmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5905,7 +5986,7 @@ export type CreateTenantTeamContactEnrollmentData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments';
 };
 
-export type CreateTenantTeamContactEnrollmentErrors = {
+export type TeamContactEnrollmentsCreateTenantTeamContactEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -5916,18 +5997,18 @@ export type CreateTenantTeamContactEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantTeamContactEnrollmentError = CreateTenantTeamContactEnrollmentErrors[keyof CreateTenantTeamContactEnrollmentErrors];
+export type TeamContactEnrollmentsCreateTenantTeamContactEnrollmentError = TeamContactEnrollmentsCreateTenantTeamContactEnrollmentErrors[keyof TeamContactEnrollmentsCreateTenantTeamContactEnrollmentErrors];
 
-export type CreateTenantTeamContactEnrollmentResponses = {
+export type TeamContactEnrollmentsCreateTenantTeamContactEnrollmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantTeamContactEnrollmentResponse = CreateTenantTeamContactEnrollmentResponses[keyof CreateTenantTeamContactEnrollmentResponses];
+export type TeamContactEnrollmentsCreateTenantTeamContactEnrollmentResponse = TeamContactEnrollmentsCreateTenantTeamContactEnrollmentResponses[keyof TeamContactEnrollmentsCreateTenantTeamContactEnrollmentResponses];
 
-export type GetTenantTeamContactEnrollmentsCountData = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountData = {
     body?: TenantTeamContactEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5940,7 +6021,7 @@ export type GetTenantTeamContactEnrollmentsCountData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments/Count';
 };
 
-export type GetTenantTeamContactEnrollmentsCountErrors = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5951,18 +6032,18 @@ export type GetTenantTeamContactEnrollmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamContactEnrollmentsCountError = GetTenantTeamContactEnrollmentsCountErrors[keyof GetTenantTeamContactEnrollmentsCountErrors];
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountError = TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountErrors[keyof TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountErrors];
 
-export type GetTenantTeamContactEnrollmentsCountResponses = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantTeamContactEnrollmentsCountResponse = GetTenantTeamContactEnrollmentsCountResponses[keyof GetTenantTeamContactEnrollmentsCountResponses];
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountResponse = TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountResponses[keyof TeamContactEnrollmentsGetTenantTeamContactEnrollmentsCountResponses];
 
-export type DeleteTenantTeamContactEnrollmentData = {
+export type TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5977,7 +6058,7 @@ export type DeleteTenantTeamContactEnrollmentData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments/{tenantTeamContactEnrollmentId}';
 };
 
-export type DeleteTenantTeamContactEnrollmentErrors = {
+export type TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -5988,18 +6069,18 @@ export type DeleteTenantTeamContactEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantTeamContactEnrollmentError = DeleteTenantTeamContactEnrollmentErrors[keyof DeleteTenantTeamContactEnrollmentErrors];
+export type TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentError = TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentErrors[keyof TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentErrors];
 
-export type DeleteTenantTeamContactEnrollmentResponses = {
+export type TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantTeamContactEnrollmentResponse = DeleteTenantTeamContactEnrollmentResponses[keyof DeleteTenantTeamContactEnrollmentResponses];
+export type TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentResponse = TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentResponses[keyof TeamContactEnrollmentsDeleteTenantTeamContactEnrollmentResponses];
 
-export type GetTenantTeamContactEnrollmentByIdData = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6014,7 +6095,7 @@ export type GetTenantTeamContactEnrollmentByIdData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments/{tenantTeamContactEnrollmentId}';
 };
 
-export type GetTenantTeamContactEnrollmentByIdErrors = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6025,18 +6106,18 @@ export type GetTenantTeamContactEnrollmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamContactEnrollmentByIdError = GetTenantTeamContactEnrollmentByIdErrors[keyof GetTenantTeamContactEnrollmentByIdErrors];
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdError = TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdErrors[keyof TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdErrors];
 
-export type GetTenantTeamContactEnrollmentByIdResponses = {
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdResponses = {
     /**
      * OK
      */
     200: TenantTeamContactEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetTenantTeamContactEnrollmentByIdResponse = GetTenantTeamContactEnrollmentByIdResponses[keyof GetTenantTeamContactEnrollmentByIdResponses];
+export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdResponse = TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdResponses[keyof TeamContactEnrollmentsGetTenantTeamContactEnrollmentByIdResponses];
 
-export type PatchTenantTeamContactEnrollmentData = {
+export type TeamContactEnrollmentsPatchTenantTeamContactEnrollmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6051,7 +6132,7 @@ export type PatchTenantTeamContactEnrollmentData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments/{tenantTeamContactEnrollmentId}';
 };
 
-export type PatchTenantTeamContactEnrollmentErrors = {
+export type TeamContactEnrollmentsPatchTenantTeamContactEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -6062,18 +6143,18 @@ export type PatchTenantTeamContactEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantTeamContactEnrollmentError = PatchTenantTeamContactEnrollmentErrors[keyof PatchTenantTeamContactEnrollmentErrors];
+export type TeamContactEnrollmentsPatchTenantTeamContactEnrollmentError = TeamContactEnrollmentsPatchTenantTeamContactEnrollmentErrors[keyof TeamContactEnrollmentsPatchTenantTeamContactEnrollmentErrors];
 
-export type PatchTenantTeamContactEnrollmentResponses = {
+export type TeamContactEnrollmentsPatchTenantTeamContactEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantTeamContactEnrollmentResponse = PatchTenantTeamContactEnrollmentResponses[keyof PatchTenantTeamContactEnrollmentResponses];
+export type TeamContactEnrollmentsPatchTenantTeamContactEnrollmentResponse = TeamContactEnrollmentsPatchTenantTeamContactEnrollmentResponses[keyof TeamContactEnrollmentsPatchTenantTeamContactEnrollmentResponses];
 
-export type UpdateTenantTeamContactEnrollmentData = {
+export type TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentData = {
     body?: TenantTeamContactEnrollmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6088,7 +6169,7 @@ export type UpdateTenantTeamContactEnrollmentData = {
     url: '/api/v2/TenantsService/TeamContactEnrollments/{tenantTeamContactEnrollmentId}';
 };
 
-export type UpdateTenantTeamContactEnrollmentErrors = {
+export type TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -6099,18 +6180,18 @@ export type UpdateTenantTeamContactEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantTeamContactEnrollmentError = UpdateTenantTeamContactEnrollmentErrors[keyof UpdateTenantTeamContactEnrollmentErrors];
+export type TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentError = TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentErrors[keyof TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentErrors];
 
-export type UpdateTenantTeamContactEnrollmentResponses = {
+export type TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantTeamContactEnrollmentResponse = UpdateTenantTeamContactEnrollmentResponses[keyof UpdateTenantTeamContactEnrollmentResponses];
+export type TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentResponse = TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentResponses[keyof TeamContactEnrollmentsUpdateTenantTeamContactEnrollmentResponses];
 
-export type GetTenantTeamProjectEnrollmentsData = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsData = {
     body?: TenantTeamProjectEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6123,7 +6204,7 @@ export type GetTenantTeamProjectEnrollmentsData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments';
 };
 
-export type GetTenantTeamProjectEnrollmentsErrors = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsErrors = {
     /**
      * Unauthorized
      */
@@ -6134,18 +6215,18 @@ export type GetTenantTeamProjectEnrollmentsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamProjectEnrollmentsError = GetTenantTeamProjectEnrollmentsErrors[keyof GetTenantTeamProjectEnrollmentsErrors];
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsError = TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsErrors[keyof TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsErrors];
 
-export type GetTenantTeamProjectEnrollmentsResponses = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantTeamProjectEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantTeamProjectEnrollmentsResponse = GetTenantTeamProjectEnrollmentsResponses[keyof GetTenantTeamProjectEnrollmentsResponses];
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsResponse = TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsResponses[keyof TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsResponses];
 
-export type CreateTenantTeamProjectEnrollmentData = {
+export type TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentData = {
     body?: TenantTeamProjectEnrollmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6158,7 +6239,7 @@ export type CreateTenantTeamProjectEnrollmentData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments';
 };
 
-export type CreateTenantTeamProjectEnrollmentErrors = {
+export type TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -6169,18 +6250,18 @@ export type CreateTenantTeamProjectEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantTeamProjectEnrollmentError = CreateTenantTeamProjectEnrollmentErrors[keyof CreateTenantTeamProjectEnrollmentErrors];
+export type TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentError = TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentErrors[keyof TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentErrors];
 
-export type CreateTenantTeamProjectEnrollmentResponses = {
+export type TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantTeamProjectEnrollmentResponse = CreateTenantTeamProjectEnrollmentResponses[keyof CreateTenantTeamProjectEnrollmentResponses];
+export type TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentResponse = TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentResponses[keyof TeamProjectEnrollmentsCreateTenantTeamProjectEnrollmentResponses];
 
-export type GetTenantTeamProjectEnrollmentsCountData = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountData = {
     body?: TenantTeamProjectEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6193,7 +6274,7 @@ export type GetTenantTeamProjectEnrollmentsCountData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments/Count';
 };
 
-export type GetTenantTeamProjectEnrollmentsCountErrors = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6204,18 +6285,18 @@ export type GetTenantTeamProjectEnrollmentsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamProjectEnrollmentsCountError = GetTenantTeamProjectEnrollmentsCountErrors[keyof GetTenantTeamProjectEnrollmentsCountErrors];
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountError = TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountErrors[keyof TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountErrors];
 
-export type GetTenantTeamProjectEnrollmentsCountResponses = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantTeamProjectEnrollmentsCountResponse = GetTenantTeamProjectEnrollmentsCountResponses[keyof GetTenantTeamProjectEnrollmentsCountResponses];
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountResponse = TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountResponses[keyof TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentsCountResponses];
 
-export type DeleteTenantTeamProjectEnrollmentData = {
+export type TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6230,7 +6311,7 @@ export type DeleteTenantTeamProjectEnrollmentData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments/{tenantTeamProjectEnrollmentId}';
 };
 
-export type DeleteTenantTeamProjectEnrollmentErrors = {
+export type TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -6241,18 +6322,18 @@ export type DeleteTenantTeamProjectEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantTeamProjectEnrollmentError = DeleteTenantTeamProjectEnrollmentErrors[keyof DeleteTenantTeamProjectEnrollmentErrors];
+export type TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentError = TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentErrors[keyof TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentErrors];
 
-export type DeleteTenantTeamProjectEnrollmentResponses = {
+export type TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantTeamProjectEnrollmentResponse = DeleteTenantTeamProjectEnrollmentResponses[keyof DeleteTenantTeamProjectEnrollmentResponses];
+export type TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentResponse = TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentResponses[keyof TeamProjectEnrollmentsDeleteTenantTeamProjectEnrollmentResponses];
 
-export type GetTenantTeamProjectEnrollmentByIdData = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6267,7 +6348,7 @@ export type GetTenantTeamProjectEnrollmentByIdData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments/{tenantTeamProjectEnrollmentId}';
 };
 
-export type GetTenantTeamProjectEnrollmentByIdErrors = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6278,18 +6359,18 @@ export type GetTenantTeamProjectEnrollmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamProjectEnrollmentByIdError = GetTenantTeamProjectEnrollmentByIdErrors[keyof GetTenantTeamProjectEnrollmentByIdErrors];
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdError = TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdErrors[keyof TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdErrors];
 
-export type GetTenantTeamProjectEnrollmentByIdResponses = {
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdResponses = {
     /**
      * OK
      */
     200: TenantTeamProjectEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetTenantTeamProjectEnrollmentByIdResponse = GetTenantTeamProjectEnrollmentByIdResponses[keyof GetTenantTeamProjectEnrollmentByIdResponses];
+export type TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdResponse = TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdResponses[keyof TeamProjectEnrollmentsGetTenantTeamProjectEnrollmentByIdResponses];
 
-export type PatchTenantTeamProjectEnrollmentData = {
+export type TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6304,7 +6385,7 @@ export type PatchTenantTeamProjectEnrollmentData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments/{tenantTeamProjectEnrollmentId}';
 };
 
-export type PatchTenantTeamProjectEnrollmentErrors = {
+export type TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -6315,18 +6396,18 @@ export type PatchTenantTeamProjectEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantTeamProjectEnrollmentError = PatchTenantTeamProjectEnrollmentErrors[keyof PatchTenantTeamProjectEnrollmentErrors];
+export type TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentError = TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentErrors[keyof TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentErrors];
 
-export type PatchTenantTeamProjectEnrollmentResponses = {
+export type TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantTeamProjectEnrollmentResponse = PatchTenantTeamProjectEnrollmentResponses[keyof PatchTenantTeamProjectEnrollmentResponses];
+export type TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentResponse = TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentResponses[keyof TeamProjectEnrollmentsPatchTenantTeamProjectEnrollmentResponses];
 
-export type UpdateTenantTeamProjectEnrollmentData = {
+export type TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentData = {
     body?: TenantTeamProjectEnrollmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6341,7 +6422,7 @@ export type UpdateTenantTeamProjectEnrollmentData = {
     url: '/api/v2/TenantsService/TeamProjectEnrollments/{tenantTeamProjectEnrollmentId}';
 };
 
-export type UpdateTenantTeamProjectEnrollmentErrors = {
+export type TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -6352,18 +6433,18 @@ export type UpdateTenantTeamProjectEnrollmentErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantTeamProjectEnrollmentError = UpdateTenantTeamProjectEnrollmentErrors[keyof UpdateTenantTeamProjectEnrollmentErrors];
+export type TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentError = TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentErrors[keyof TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentErrors];
 
-export type UpdateTenantTeamProjectEnrollmentResponses = {
+export type TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantTeamProjectEnrollmentResponse = UpdateTenantTeamProjectEnrollmentResponses[keyof UpdateTenantTeamProjectEnrollmentResponses];
+export type TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentResponse = TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentResponses[keyof TeamProjectEnrollmentsUpdateTenantTeamProjectEnrollmentResponses];
 
-export type GetTenantTeamRecordsData = {
+export type TeamRecordsGetTenantTeamRecordsData = {
     body?: TenantTeamRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6376,7 +6457,7 @@ export type GetTenantTeamRecordsData = {
     url: '/api/v2/TenantsService/TeamRecords';
 };
 
-export type GetTenantTeamRecordsErrors = {
+export type TeamRecordsGetTenantTeamRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -6387,18 +6468,18 @@ export type GetTenantTeamRecordsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamRecordsError = GetTenantTeamRecordsErrors[keyof GetTenantTeamRecordsErrors];
+export type TeamRecordsGetTenantTeamRecordsError = TeamRecordsGetTenantTeamRecordsErrors[keyof TeamRecordsGetTenantTeamRecordsErrors];
 
-export type GetTenantTeamRecordsResponses = {
+export type TeamRecordsGetTenantTeamRecordsResponses = {
     /**
      * OK
      */
     200: TenantTeamRecordDtoListEnvelopeReadable;
 };
 
-export type GetTenantTeamRecordsResponse = GetTenantTeamRecordsResponses[keyof GetTenantTeamRecordsResponses];
+export type TeamRecordsGetTenantTeamRecordsResponse = TeamRecordsGetTenantTeamRecordsResponses[keyof TeamRecordsGetTenantTeamRecordsResponses];
 
-export type CreateTenantTeamRecordData = {
+export type TeamRecordsCreateTenantTeamRecordData = {
     body?: TenantTeamRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6411,7 +6492,7 @@ export type CreateTenantTeamRecordData = {
     url: '/api/v2/TenantsService/TeamRecords';
 };
 
-export type CreateTenantTeamRecordErrors = {
+export type TeamRecordsCreateTenantTeamRecordErrors = {
     /**
      * Unauthorized
      */
@@ -6422,18 +6503,18 @@ export type CreateTenantTeamRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantTeamRecordError = CreateTenantTeamRecordErrors[keyof CreateTenantTeamRecordErrors];
+export type TeamRecordsCreateTenantTeamRecordError = TeamRecordsCreateTenantTeamRecordErrors[keyof TeamRecordsCreateTenantTeamRecordErrors];
 
-export type CreateTenantTeamRecordResponses = {
+export type TeamRecordsCreateTenantTeamRecordResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantTeamRecordResponse = CreateTenantTeamRecordResponses[keyof CreateTenantTeamRecordResponses];
+export type TeamRecordsCreateTenantTeamRecordResponse = TeamRecordsCreateTenantTeamRecordResponses[keyof TeamRecordsCreateTenantTeamRecordResponses];
 
-export type GetTenantTeamRecordsCountData = {
+export type TeamRecordsGetTenantTeamRecordsCountData = {
     body?: TenantTeamRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6446,7 +6527,7 @@ export type GetTenantTeamRecordsCountData = {
     url: '/api/v2/TenantsService/TeamRecords/Count';
 };
 
-export type GetTenantTeamRecordsCountErrors = {
+export type TeamRecordsGetTenantTeamRecordsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6457,18 +6538,18 @@ export type GetTenantTeamRecordsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamRecordsCountError = GetTenantTeamRecordsCountErrors[keyof GetTenantTeamRecordsCountErrors];
+export type TeamRecordsGetTenantTeamRecordsCountError = TeamRecordsGetTenantTeamRecordsCountErrors[keyof TeamRecordsGetTenantTeamRecordsCountErrors];
 
-export type GetTenantTeamRecordsCountResponses = {
+export type TeamRecordsGetTenantTeamRecordsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantTeamRecordsCountResponse = GetTenantTeamRecordsCountResponses[keyof GetTenantTeamRecordsCountResponses];
+export type TeamRecordsGetTenantTeamRecordsCountResponse = TeamRecordsGetTenantTeamRecordsCountResponses[keyof TeamRecordsGetTenantTeamRecordsCountResponses];
 
-export type DeleteTenantTeamRecordData = {
+export type TeamRecordsDeleteTenantTeamRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6483,7 +6564,7 @@ export type DeleteTenantTeamRecordData = {
     url: '/api/v2/TenantsService/TeamRecords/{tenantTeamRecordId}';
 };
 
-export type DeleteTenantTeamRecordErrors = {
+export type TeamRecordsDeleteTenantTeamRecordErrors = {
     /**
      * Unauthorized
      */
@@ -6494,18 +6575,18 @@ export type DeleteTenantTeamRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantTeamRecordError = DeleteTenantTeamRecordErrors[keyof DeleteTenantTeamRecordErrors];
+export type TeamRecordsDeleteTenantTeamRecordError = TeamRecordsDeleteTenantTeamRecordErrors[keyof TeamRecordsDeleteTenantTeamRecordErrors];
 
-export type DeleteTenantTeamRecordResponses = {
+export type TeamRecordsDeleteTenantTeamRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantTeamRecordResponse = DeleteTenantTeamRecordResponses[keyof DeleteTenantTeamRecordResponses];
+export type TeamRecordsDeleteTenantTeamRecordResponse = TeamRecordsDeleteTenantTeamRecordResponses[keyof TeamRecordsDeleteTenantTeamRecordResponses];
 
-export type GetTenantTeamRecordByIdData = {
+export type TeamRecordsGetTenantTeamRecordByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6520,7 +6601,7 @@ export type GetTenantTeamRecordByIdData = {
     url: '/api/v2/TenantsService/TeamRecords/{tenantTeamRecordId}';
 };
 
-export type GetTenantTeamRecordByIdErrors = {
+export type TeamRecordsGetTenantTeamRecordByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6531,18 +6612,18 @@ export type GetTenantTeamRecordByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamRecordByIdError = GetTenantTeamRecordByIdErrors[keyof GetTenantTeamRecordByIdErrors];
+export type TeamRecordsGetTenantTeamRecordByIdError = TeamRecordsGetTenantTeamRecordByIdErrors[keyof TeamRecordsGetTenantTeamRecordByIdErrors];
 
-export type GetTenantTeamRecordByIdResponses = {
+export type TeamRecordsGetTenantTeamRecordByIdResponses = {
     /**
      * OK
      */
     200: TenantTeamRecordDtoEnvelopeReadable;
 };
 
-export type GetTenantTeamRecordByIdResponse = GetTenantTeamRecordByIdResponses[keyof GetTenantTeamRecordByIdResponses];
+export type TeamRecordsGetTenantTeamRecordByIdResponse = TeamRecordsGetTenantTeamRecordByIdResponses[keyof TeamRecordsGetTenantTeamRecordByIdResponses];
 
-export type PatchTenantTeamRecordData = {
+export type TeamRecordsPatchTenantTeamRecordData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6557,7 +6638,7 @@ export type PatchTenantTeamRecordData = {
     url: '/api/v2/TenantsService/TeamRecords/{tenantTeamRecordId}';
 };
 
-export type PatchTenantTeamRecordErrors = {
+export type TeamRecordsPatchTenantTeamRecordErrors = {
     /**
      * Unauthorized
      */
@@ -6568,18 +6649,18 @@ export type PatchTenantTeamRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantTeamRecordError = PatchTenantTeamRecordErrors[keyof PatchTenantTeamRecordErrors];
+export type TeamRecordsPatchTenantTeamRecordError = TeamRecordsPatchTenantTeamRecordErrors[keyof TeamRecordsPatchTenantTeamRecordErrors];
 
-export type PatchTenantTeamRecordResponses = {
+export type TeamRecordsPatchTenantTeamRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantTeamRecordResponse = PatchTenantTeamRecordResponses[keyof PatchTenantTeamRecordResponses];
+export type TeamRecordsPatchTenantTeamRecordResponse = TeamRecordsPatchTenantTeamRecordResponses[keyof TeamRecordsPatchTenantTeamRecordResponses];
 
-export type UpdateTenantTeamRecordData = {
+export type TeamRecordsUpdateTenantTeamRecordData = {
     body?: TenantTeamRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6594,7 +6675,7 @@ export type UpdateTenantTeamRecordData = {
     url: '/api/v2/TenantsService/TeamRecords/{tenantTeamRecordId}';
 };
 
-export type UpdateTenantTeamRecordErrors = {
+export type TeamRecordsUpdateTenantTeamRecordErrors = {
     /**
      * Unauthorized
      */
@@ -6605,18 +6686,18 @@ export type UpdateTenantTeamRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantTeamRecordError = UpdateTenantTeamRecordErrors[keyof UpdateTenantTeamRecordErrors];
+export type TeamRecordsUpdateTenantTeamRecordError = TeamRecordsUpdateTenantTeamRecordErrors[keyof TeamRecordsUpdateTenantTeamRecordErrors];
 
-export type UpdateTenantTeamRecordResponses = {
+export type TeamRecordsUpdateTenantTeamRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantTeamRecordResponse = UpdateTenantTeamRecordResponses[keyof UpdateTenantTeamRecordResponses];
+export type TeamRecordsUpdateTenantTeamRecordResponse = TeamRecordsUpdateTenantTeamRecordResponses[keyof TeamRecordsUpdateTenantTeamRecordResponses];
 
-export type GetTenantTeamsData = {
+export type TeamsGetTenantTeamsData = {
     body?: TenantTeamDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6629,7 +6710,7 @@ export type GetTenantTeamsData = {
     url: '/api/v2/TenantsService/Teams';
 };
 
-export type GetTenantTeamsErrors = {
+export type TeamsGetTenantTeamsErrors = {
     /**
      * Unauthorized
      */
@@ -6640,18 +6721,18 @@ export type GetTenantTeamsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamsError = GetTenantTeamsErrors[keyof GetTenantTeamsErrors];
+export type TeamsGetTenantTeamsError = TeamsGetTenantTeamsErrors[keyof TeamsGetTenantTeamsErrors];
 
-export type GetTenantTeamsResponses = {
+export type TeamsGetTenantTeamsResponses = {
     /**
      * OK
      */
     200: TenantTeamDtoListEnvelopeReadable;
 };
 
-export type GetTenantTeamsResponse = GetTenantTeamsResponses[keyof GetTenantTeamsResponses];
+export type TeamsGetTenantTeamsResponse = TeamsGetTenantTeamsResponses[keyof TeamsGetTenantTeamsResponses];
 
-export type CreateTenantTeamData = {
+export type TeamsCreateTenantTeamData = {
     body?: TenantTeamCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6664,7 +6745,7 @@ export type CreateTenantTeamData = {
     url: '/api/v2/TenantsService/Teams';
 };
 
-export type CreateTenantTeamErrors = {
+export type TeamsCreateTenantTeamErrors = {
     /**
      * Unauthorized
      */
@@ -6675,18 +6756,18 @@ export type CreateTenantTeamErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantTeamError = CreateTenantTeamErrors[keyof CreateTenantTeamErrors];
+export type TeamsCreateTenantTeamError = TeamsCreateTenantTeamErrors[keyof TeamsCreateTenantTeamErrors];
 
-export type CreateTenantTeamResponses = {
+export type TeamsCreateTenantTeamResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantTeamResponse = CreateTenantTeamResponses[keyof CreateTenantTeamResponses];
+export type TeamsCreateTenantTeamResponse = TeamsCreateTenantTeamResponses[keyof TeamsCreateTenantTeamResponses];
 
-export type GetTenantTeamsCountData = {
+export type TeamsGetTenantTeamsCountData = {
     body?: TenantTeamDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6699,7 +6780,7 @@ export type GetTenantTeamsCountData = {
     url: '/api/v2/TenantsService/Teams/Count';
 };
 
-export type GetTenantTeamsCountErrors = {
+export type TeamsGetTenantTeamsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6710,18 +6791,18 @@ export type GetTenantTeamsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamsCountError = GetTenantTeamsCountErrors[keyof GetTenantTeamsCountErrors];
+export type TeamsGetTenantTeamsCountError = TeamsGetTenantTeamsCountErrors[keyof TeamsGetTenantTeamsCountErrors];
 
-export type GetTenantTeamsCountResponses = {
+export type TeamsGetTenantTeamsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantTeamsCountResponse = GetTenantTeamsCountResponses[keyof GetTenantTeamsCountResponses];
+export type TeamsGetTenantTeamsCountResponse = TeamsGetTenantTeamsCountResponses[keyof TeamsGetTenantTeamsCountResponses];
 
-export type DeleteTenantTeamData = {
+export type TeamsDeleteTenantTeamData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6736,7 +6817,7 @@ export type DeleteTenantTeamData = {
     url: '/api/v2/TenantsService/Teams/{tenantTeamId}';
 };
 
-export type DeleteTenantTeamErrors = {
+export type TeamsDeleteTenantTeamErrors = {
     /**
      * Unauthorized
      */
@@ -6747,18 +6828,18 @@ export type DeleteTenantTeamErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantTeamError = DeleteTenantTeamErrors[keyof DeleteTenantTeamErrors];
+export type TeamsDeleteTenantTeamError = TeamsDeleteTenantTeamErrors[keyof TeamsDeleteTenantTeamErrors];
 
-export type DeleteTenantTeamResponses = {
+export type TeamsDeleteTenantTeamResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantTeamResponse = DeleteTenantTeamResponses[keyof DeleteTenantTeamResponses];
+export type TeamsDeleteTenantTeamResponse = TeamsDeleteTenantTeamResponses[keyof TeamsDeleteTenantTeamResponses];
 
-export type GetTenantTeamByIdData = {
+export type TeamsGetTenantTeamByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6773,7 +6854,7 @@ export type GetTenantTeamByIdData = {
     url: '/api/v2/TenantsService/Teams/{tenantTeamId}';
 };
 
-export type GetTenantTeamByIdErrors = {
+export type TeamsGetTenantTeamByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6784,18 +6865,18 @@ export type GetTenantTeamByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTeamByIdError = GetTenantTeamByIdErrors[keyof GetTenantTeamByIdErrors];
+export type TeamsGetTenantTeamByIdError = TeamsGetTenantTeamByIdErrors[keyof TeamsGetTenantTeamByIdErrors];
 
-export type GetTenantTeamByIdResponses = {
+export type TeamsGetTenantTeamByIdResponses = {
     /**
      * OK
      */
     200: TenantTeamDtoEnvelopeReadable;
 };
 
-export type GetTenantTeamByIdResponse = GetTenantTeamByIdResponses[keyof GetTenantTeamByIdResponses];
+export type TeamsGetTenantTeamByIdResponse = TeamsGetTenantTeamByIdResponses[keyof TeamsGetTenantTeamByIdResponses];
 
-export type PatchTenantTeamData = {
+export type TeamsPatchTenantTeamData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6810,7 +6891,7 @@ export type PatchTenantTeamData = {
     url: '/api/v2/TenantsService/Teams/{tenantTeamId}';
 };
 
-export type PatchTenantTeamErrors = {
+export type TeamsPatchTenantTeamErrors = {
     /**
      * Unauthorized
      */
@@ -6821,18 +6902,18 @@ export type PatchTenantTeamErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantTeamError = PatchTenantTeamErrors[keyof PatchTenantTeamErrors];
+export type TeamsPatchTenantTeamError = TeamsPatchTenantTeamErrors[keyof TeamsPatchTenantTeamErrors];
 
-export type PatchTenantTeamResponses = {
+export type TeamsPatchTenantTeamResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantTeamResponse = PatchTenantTeamResponses[keyof PatchTenantTeamResponses];
+export type TeamsPatchTenantTeamResponse = TeamsPatchTenantTeamResponses[keyof TeamsPatchTenantTeamResponses];
 
-export type UpdateTenantTeamData = {
+export type TeamsUpdateTenantTeamData = {
     body?: TenantTeamUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6847,7 +6928,7 @@ export type UpdateTenantTeamData = {
     url: '/api/v2/TenantsService/Teams/{tenantTeamId}';
 };
 
-export type UpdateTenantTeamErrors = {
+export type TeamsUpdateTenantTeamErrors = {
     /**
      * Unauthorized
      */
@@ -6858,18 +6939,18 @@ export type UpdateTenantTeamErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantTeamError = UpdateTenantTeamErrors[keyof UpdateTenantTeamErrors];
+export type TeamsUpdateTenantTeamError = TeamsUpdateTenantTeamErrors[keyof TeamsUpdateTenantTeamErrors];
 
-export type UpdateTenantTeamResponses = {
+export type TeamsUpdateTenantTeamResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantTeamResponse = UpdateTenantTeamResponses[keyof UpdateTenantTeamResponses];
+export type TeamsUpdateTenantTeamResponse = TeamsUpdateTenantTeamResponses[keyof TeamsUpdateTenantTeamResponses];
 
-export type GetRootTenantAsyncData = {
+export type TenantsGetRootTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6881,7 +6962,7 @@ export type GetRootTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/Root';
 };
 
-export type GetRootTenantAsyncErrors = {
+export type TenantsGetRootTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6892,18 +6973,18 @@ export type GetRootTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRootTenantAsyncError = GetRootTenantAsyncErrors[keyof GetRootTenantAsyncErrors];
+export type TenantsGetRootTenantError = TenantsGetRootTenantErrors[keyof TenantsGetRootTenantErrors];
 
-export type GetRootTenantAsyncResponses = {
+export type TenantsGetRootTenantResponses = {
     /**
      * OK
      */
     200: TenantDtoEnvelopeReadable;
 };
 
-export type GetRootTenantAsyncResponse = GetRootTenantAsyncResponses[keyof GetRootTenantAsyncResponses];
+export type TenantsGetRootTenantResponse = TenantsGetRootTenantResponses[keyof TenantsGetRootTenantResponses];
 
-export type GetCurrentTenantAsyncData = {
+export type TenantsGetCurrentTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6916,7 +6997,7 @@ export type GetCurrentTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/Current';
 };
 
-export type GetCurrentTenantAsyncErrors = {
+export type TenantsGetCurrentTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6927,18 +7008,18 @@ export type GetCurrentTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentTenantAsyncError = GetCurrentTenantAsyncErrors[keyof GetCurrentTenantAsyncErrors];
+export type TenantsGetCurrentTenantError = TenantsGetCurrentTenantErrors[keyof TenantsGetCurrentTenantErrors];
 
-export type GetCurrentTenantAsyncResponses = {
+export type TenantsGetCurrentTenantResponses = {
     /**
      * OK
      */
     200: TenantDtoEnvelopeReadable;
 };
 
-export type GetCurrentTenantAsyncResponse = GetCurrentTenantAsyncResponses[keyof GetCurrentTenantAsyncResponses];
+export type TenantsGetCurrentTenantResponse = TenantsGetCurrentTenantResponses[keyof TenantsGetCurrentTenantResponses];
 
-export type GetTenantAsyncData = {
+export type TenantsGetTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6952,7 +7033,7 @@ export type GetTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}';
 };
 
-export type GetTenantAsyncErrors = {
+export type TenantsGetTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6963,18 +7044,18 @@ export type GetTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantAsyncError = GetTenantAsyncErrors[keyof GetTenantAsyncErrors];
+export type TenantsGetTenantError = TenantsGetTenantErrors[keyof TenantsGetTenantErrors];
 
-export type GetTenantAsyncResponses = {
+export type TenantsGetTenantResponses = {
     /**
      * OK
      */
     200: TenantDtoEnvelopeReadable;
 };
 
-export type GetTenantAsyncResponse = GetTenantAsyncResponses[keyof GetTenantAsyncResponses];
+export type TenantsGetTenantResponse = TenantsGetTenantResponses[keyof TenantsGetTenantResponses];
 
-export type PatchTenantAsyncData = {
+export type TenantsPatchTenantData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6988,7 +7069,7 @@ export type PatchTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}';
 };
 
-export type PatchTenantAsyncErrors = {
+export type TenantsPatchTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6999,18 +7080,18 @@ export type PatchTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantAsyncError = PatchTenantAsyncErrors[keyof PatchTenantAsyncErrors];
+export type TenantsPatchTenantError = TenantsPatchTenantErrors[keyof TenantsPatchTenantErrors];
 
-export type PatchTenantAsyncResponses = {
+export type TenantsPatchTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantAsyncResponse = PatchTenantAsyncResponses[keyof PatchTenantAsyncResponses];
+export type TenantsPatchTenantResponse = TenantsPatchTenantResponses[keyof TenantsPatchTenantResponses];
 
-export type UpdateTenantAsyncData = {
+export type TenantsUpdateTenantData = {
     body?: TenantUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7024,7 +7105,7 @@ export type UpdateTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}';
 };
 
-export type UpdateTenantAsyncErrors = {
+export type TenantsUpdateTenantErrors = {
     /**
      * Unauthorized
      */
@@ -7035,18 +7116,18 @@ export type UpdateTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantAsyncError = UpdateTenantAsyncErrors[keyof UpdateTenantAsyncErrors];
+export type TenantsUpdateTenantError = TenantsUpdateTenantErrors[keyof TenantsUpdateTenantErrors];
 
-export type UpdateTenantAsyncResponses = {
+export type TenantsUpdateTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantAsyncResponse = UpdateTenantAsyncResponses[keyof UpdateTenantAsyncResponses];
+export type TenantsUpdateTenantResponse = TenantsUpdateTenantResponses[keyof TenantsUpdateTenantResponses];
 
-export type GetExtendedTenantAsyncData = {
+export type TenantsGetExtendedTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7060,7 +7141,7 @@ export type GetExtendedTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Extended';
 };
 
-export type GetExtendedTenantAsyncErrors = {
+export type TenantsGetExtendedTenantErrors = {
     /**
      * Unauthorized
      */
@@ -7071,18 +7152,18 @@ export type GetExtendedTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedTenantAsyncError = GetExtendedTenantAsyncErrors[keyof GetExtendedTenantAsyncErrors];
+export type TenantsGetExtendedTenantError = TenantsGetExtendedTenantErrors[keyof TenantsGetExtendedTenantErrors];
 
-export type GetExtendedTenantAsyncResponses = {
+export type TenantsGetExtendedTenantResponses = {
     /**
      * OK
      */
     200: ExtendedTenantDtoEnvelopeReadable;
 };
 
-export type GetExtendedTenantAsyncResponse = GetExtendedTenantAsyncResponses[keyof GetExtendedTenantAsyncResponses];
+export type TenantsGetExtendedTenantResponse = TenantsGetExtendedTenantResponses[keyof TenantsGetExtendedTenantResponses];
 
-export type GetTenantAvatarAsyncData = {
+export type TenantsGetTenantAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7096,7 +7177,7 @@ export type GetTenantAvatarAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Avatar';
 };
 
-export type GetTenantAvatarAsyncErrors = {
+export type TenantsGetTenantAvatarErrors = {
     /**
      * Unauthorized
      */
@@ -7107,18 +7188,18 @@ export type GetTenantAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantAvatarAsyncError = GetTenantAvatarAsyncErrors[keyof GetTenantAvatarAsyncErrors];
+export type TenantsGetTenantAvatarError = TenantsGetTenantAvatarErrors[keyof TenantsGetTenantAvatarErrors];
 
-export type GetTenantAvatarAsyncResponses = {
+export type TenantsGetTenantAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetTenantAvatarAsyncResponse = GetTenantAvatarAsyncResponses[keyof GetTenantAvatarAsyncResponses];
+export type TenantsGetTenantAvatarResponse = TenantsGetTenantAvatarResponses[keyof TenantsGetTenantAvatarResponses];
 
-export type UpdateTenantAvatarAsyncData = {
+export type TenantsUpdateTenantAvatarData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -7134,7 +7215,7 @@ export type UpdateTenantAvatarAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Avatar';
 };
 
-export type UpdateTenantAvatarAsyncErrors = {
+export type TenantsUpdateTenantAvatarErrors = {
     /**
      * Unauthorized
      */
@@ -7145,18 +7226,18 @@ export type UpdateTenantAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantAvatarAsyncError = UpdateTenantAvatarAsyncErrors[keyof UpdateTenantAvatarAsyncErrors];
+export type TenantsUpdateTenantAvatarError = TenantsUpdateTenantAvatarErrors[keyof TenantsUpdateTenantAvatarErrors];
 
-export type UpdateTenantAvatarAsyncResponses = {
+export type TenantsUpdateTenantAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantAvatarAsyncResponse = UpdateTenantAvatarAsyncResponses[keyof UpdateTenantAvatarAsyncResponses];
+export type TenantsUpdateTenantAvatarResponse = TenantsUpdateTenantAvatarResponses[keyof TenantsUpdateTenantAvatarResponses];
 
-export type GetTenantWalletAsyncData = {
+export type TenantsGetTenantWalletData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7170,7 +7251,7 @@ export type GetTenantWalletAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Wallet';
 };
 
-export type GetTenantWalletAsyncErrors = {
+export type TenantsGetTenantWalletErrors = {
     /**
      * Unauthorized
      */
@@ -7181,18 +7262,18 @@ export type GetTenantWalletAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantWalletAsyncError = GetTenantWalletAsyncErrors[keyof GetTenantWalletAsyncErrors];
+export type TenantsGetTenantWalletError = TenantsGetTenantWalletErrors[keyof TenantsGetTenantWalletErrors];
 
-export type GetTenantWalletAsyncResponses = {
+export type TenantsGetTenantWalletResponses = {
     /**
      * OK
      */
     200: WalletDtoEnvelopeReadable;
 };
 
-export type GetTenantWalletAsyncResponse = GetTenantWalletAsyncResponses[keyof GetTenantWalletAsyncResponses];
+export type TenantsGetTenantWalletResponse = TenantsGetTenantWalletResponses[keyof TenantsGetTenantWalletResponses];
 
-export type GetTenantSocialProfileAsyncData = {
+export type TenantsGetTenantSocialProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7206,7 +7287,7 @@ export type GetTenantSocialProfileAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/SocialProfile';
 };
 
-export type GetTenantSocialProfileAsyncErrors = {
+export type TenantsGetTenantSocialProfileErrors = {
     /**
      * Unauthorized
      */
@@ -7217,18 +7298,18 @@ export type GetTenantSocialProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantSocialProfileAsyncError = GetTenantSocialProfileAsyncErrors[keyof GetTenantSocialProfileAsyncErrors];
+export type TenantsGetTenantSocialProfileError = TenantsGetTenantSocialProfileErrors[keyof TenantsGetTenantSocialProfileErrors];
 
-export type GetTenantSocialProfileAsyncResponses = {
+export type TenantsGetTenantSocialProfileResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoEnvelopeReadable;
 };
 
-export type GetTenantSocialProfileAsyncResponse = GetTenantSocialProfileAsyncResponses[keyof GetTenantSocialProfileAsyncResponses];
+export type TenantsGetTenantSocialProfileResponse = TenantsGetTenantSocialProfileResponses[keyof TenantsGetTenantSocialProfileResponses];
 
-export type GetCartForTenantAsyncData = {
+export type TenantsGetCartForTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7242,7 +7323,7 @@ export type GetCartForTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Cart';
 };
 
-export type GetCartForTenantAsyncErrors = {
+export type TenantsGetCartForTenantErrors = {
     /**
      * Unauthorized
      */
@@ -7253,18 +7334,18 @@ export type GetCartForTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCartForTenantAsyncError = GetCartForTenantAsyncErrors[keyof GetCartForTenantAsyncErrors];
+export type TenantsGetCartForTenantError = TenantsGetCartForTenantErrors[keyof TenantsGetCartForTenantErrors];
 
-export type GetCartForTenantAsyncResponses = {
+export type TenantsGetCartForTenantResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetCartForTenantAsyncResponse = GetCartForTenantAsyncResponses[keyof GetCartForTenantAsyncResponses];
+export type TenantsGetCartForTenantResponse = TenantsGetCartForTenantResponses[keyof TenantsGetCartForTenantResponses];
 
-export type GetTenantUsersAsyncData = {
+export type TenantsGetTenantUsersData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7278,7 +7359,7 @@ export type GetTenantUsersAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Users';
 };
 
-export type GetTenantUsersAsyncErrors = {
+export type TenantsGetTenantUsersErrors = {
     /**
      * Unauthorized
      */
@@ -7289,18 +7370,18 @@ export type GetTenantUsersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantUsersAsyncError = GetTenantUsersAsyncErrors[keyof GetTenantUsersAsyncErrors];
+export type TenantsGetTenantUsersError = TenantsGetTenantUsersErrors[keyof TenantsGetTenantUsersErrors];
 
-export type GetTenantUsersAsyncResponses = {
+export type TenantsGetTenantUsersResponses = {
     /**
      * OK
      */
     200: UserDtoListEnvelopeReadable;
 };
 
-export type GetTenantUsersAsyncResponse = GetTenantUsersAsyncResponses[keyof GetTenantUsersAsyncResponses];
+export type TenantsGetTenantUsersResponse = TenantsGetTenantUsersResponses[keyof TenantsGetTenantUsersResponses];
 
-export type GetTenantEnrollmentsAsyncData = {
+export type TenantsGetTenantEnrollmentsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7314,7 +7395,7 @@ export type GetTenantEnrollmentsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments';
 };
 
-export type GetTenantEnrollmentsAsyncErrors = {
+export type TenantsGetTenantEnrollmentsErrors = {
     /**
      * Unauthorized
      */
@@ -7325,18 +7406,18 @@ export type GetTenantEnrollmentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentsAsyncError = GetTenantEnrollmentsAsyncErrors[keyof GetTenantEnrollmentsAsyncErrors];
+export type TenantsGetTenantEnrollmentsError = TenantsGetTenantEnrollmentsErrors[keyof TenantsGetTenantEnrollmentsErrors];
 
-export type GetTenantEnrollmentsAsyncResponses = {
+export type TenantsGetTenantEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentsAsyncResponse = GetTenantEnrollmentsAsyncResponses[keyof GetTenantEnrollmentsAsyncResponses];
+export type TenantsGetTenantEnrollmentsResponse = TenantsGetTenantEnrollmentsResponses[keyof TenantsGetTenantEnrollmentsResponses];
 
-export type GetTenantEnrollmentAsyncData = {
+export type TenantsGetTenantEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7351,7 +7432,7 @@ export type GetTenantEnrollmentAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}';
 };
 
-export type GetTenantEnrollmentAsyncErrors = {
+export type TenantsGetTenantEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -7362,18 +7443,18 @@ export type GetTenantEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentAsyncError = GetTenantEnrollmentAsyncErrors[keyof GetTenantEnrollmentAsyncErrors];
+export type TenantsGetTenantEnrollmentError = TenantsGetTenantEnrollmentErrors[keyof TenantsGetTenantEnrollmentErrors];
 
-export type GetTenantEnrollmentAsyncResponses = {
+export type TenantsGetTenantEnrollmentResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetTenantEnrollmentAsyncResponse = GetTenantEnrollmentAsyncResponses[keyof GetTenantEnrollmentAsyncResponses];
+export type TenantsGetTenantEnrollmentResponse = TenantsGetTenantEnrollmentResponses[keyof TenantsGetTenantEnrollmentResponses];
 
-export type GetExtendedTenantEnrollmentAsyncData = {
+export type TenantsGetExtendedTenantEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7388,7 +7469,7 @@ export type GetExtendedTenantEnrollmentAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Extended';
 };
 
-export type GetExtendedTenantEnrollmentAsyncErrors = {
+export type TenantsGetExtendedTenantEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -7399,18 +7480,18 @@ export type GetExtendedTenantEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedTenantEnrollmentAsyncError = GetExtendedTenantEnrollmentAsyncErrors[keyof GetExtendedTenantEnrollmentAsyncErrors];
+export type TenantsGetExtendedTenantEnrollmentError = TenantsGetExtendedTenantEnrollmentErrors[keyof TenantsGetExtendedTenantEnrollmentErrors];
 
-export type GetExtendedTenantEnrollmentAsyncResponses = {
+export type TenantsGetExtendedTenantEnrollmentResponses = {
     /**
      * OK
      */
     200: ExtendedTenantEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetExtendedTenantEnrollmentAsyncResponse = GetExtendedTenantEnrollmentAsyncResponses[keyof GetExtendedTenantEnrollmentAsyncResponses];
+export type TenantsGetExtendedTenantEnrollmentResponse = TenantsGetExtendedTenantEnrollmentResponses[keyof TenantsGetExtendedTenantEnrollmentResponses];
 
-export type GetEnrollmentPermissionsAsyncData = {
+export type TenantsGetEnrollmentPermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7425,7 +7506,7 @@ export type GetEnrollmentPermissionsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Permissions';
 };
 
-export type GetEnrollmentPermissionsAsyncErrors = {
+export type TenantsGetEnrollmentPermissionsErrors = {
     /**
      * Unauthorized
      */
@@ -7436,18 +7517,18 @@ export type GetEnrollmentPermissionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentPermissionsAsyncError = GetEnrollmentPermissionsAsyncErrors[keyof GetEnrollmentPermissionsAsyncErrors];
+export type TenantsGetEnrollmentPermissionsError = TenantsGetEnrollmentPermissionsErrors[keyof TenantsGetEnrollmentPermissionsErrors];
 
-export type GetEnrollmentPermissionsAsyncResponses = {
+export type TenantsGetEnrollmentPermissionsResponses = {
     /**
      * OK
      */
     200: StringListEnvelopeReadable;
 };
 
-export type GetEnrollmentPermissionsAsyncResponse = GetEnrollmentPermissionsAsyncResponses[keyof GetEnrollmentPermissionsAsyncResponses];
+export type TenantsGetEnrollmentPermissionsResponse = TenantsGetEnrollmentPermissionsResponses[keyof TenantsGetEnrollmentPermissionsResponses];
 
-export type ValidateEnrollmentPermissionsAsyncData = {
+export type TenantsValidateEnrollmentPermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7464,7 +7545,7 @@ export type ValidateEnrollmentPermissionsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Permissions/Validate';
 };
 
-export type ValidateEnrollmentPermissionsAsyncErrors = {
+export type TenantsValidateEnrollmentPermissionsErrors = {
     /**
      * Unauthorized
      */
@@ -7475,18 +7556,18 @@ export type ValidateEnrollmentPermissionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ValidateEnrollmentPermissionsAsyncError = ValidateEnrollmentPermissionsAsyncErrors[keyof ValidateEnrollmentPermissionsAsyncErrors];
+export type TenantsValidateEnrollmentPermissionsError = TenantsValidateEnrollmentPermissionsErrors[keyof TenantsValidateEnrollmentPermissionsErrors];
 
-export type ValidateEnrollmentPermissionsAsyncResponses = {
+export type TenantsValidateEnrollmentPermissionsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type ValidateEnrollmentPermissionsAsyncResponse = ValidateEnrollmentPermissionsAsyncResponses[keyof ValidateEnrollmentPermissionsAsyncResponses];
+export type TenantsValidateEnrollmentPermissionsResponse = TenantsValidateEnrollmentPermissionsResponses[keyof TenantsValidateEnrollmentPermissionsResponses];
 
-export type GetTenantInvitationsAsyncData = {
+export type TenantsGetTenantInvitationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7500,7 +7581,7 @@ export type GetTenantInvitationsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Invitations';
 };
 
-export type GetTenantInvitationsAsyncErrors = {
+export type TenantsGetTenantInvitationsErrors = {
     /**
      * Unauthorized
      */
@@ -7511,18 +7592,18 @@ export type GetTenantInvitationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantInvitationsAsyncError = GetTenantInvitationsAsyncErrors[keyof GetTenantInvitationsAsyncErrors];
+export type TenantsGetTenantInvitationsError = TenantsGetTenantInvitationsErrors[keyof TenantsGetTenantInvitationsErrors];
 
-export type GetTenantInvitationsAsyncResponses = {
+export type TenantsGetTenantInvitationsResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoListEnvelopeReadable;
 };
 
-export type GetTenantInvitationsAsyncResponse = GetTenantInvitationsAsyncResponses[keyof GetTenantInvitationsAsyncResponses];
+export type TenantsGetTenantInvitationsResponse = TenantsGetTenantInvitationsResponses[keyof TenantsGetTenantInvitationsResponses];
 
-export type GetTenantPendingInvitationsAsyncData = {
+export type TenantsGetTenantPendingInvitationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7536,7 +7617,7 @@ export type GetTenantPendingInvitationsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Invitations/Pending';
 };
 
-export type GetTenantPendingInvitationsAsyncErrors = {
+export type TenantsGetTenantPendingInvitationsErrors = {
     /**
      * Unauthorized
      */
@@ -7547,18 +7628,18 @@ export type GetTenantPendingInvitationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantPendingInvitationsAsyncError = GetTenantPendingInvitationsAsyncErrors[keyof GetTenantPendingInvitationsAsyncErrors];
+export type TenantsGetTenantPendingInvitationsError = TenantsGetTenantPendingInvitationsErrors[keyof TenantsGetTenantPendingInvitationsErrors];
 
-export type GetTenantPendingInvitationsAsyncResponses = {
+export type TenantsGetTenantPendingInvitationsResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoListEnvelopeReadable;
 };
 
-export type GetTenantPendingInvitationsAsyncResponse = GetTenantPendingInvitationsAsyncResponses[keyof GetTenantPendingInvitationsAsyncResponses];
+export type TenantsGetTenantPendingInvitationsResponse = TenantsGetTenantPendingInvitationsResponses[keyof TenantsGetTenantPendingInvitationsResponses];
 
-export type GetTenantRedeemedInvitationsAsyncData = {
+export type TenantsGetTenantRedeemedInvitationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7572,7 +7653,7 @@ export type GetTenantRedeemedInvitationsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Invitations/Redeemed';
 };
 
-export type GetTenantRedeemedInvitationsAsyncErrors = {
+export type TenantsGetTenantRedeemedInvitationsErrors = {
     /**
      * Unauthorized
      */
@@ -7583,18 +7664,18 @@ export type GetTenantRedeemedInvitationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantRedeemedInvitationsAsyncError = GetTenantRedeemedInvitationsAsyncErrors[keyof GetTenantRedeemedInvitationsAsyncErrors];
+export type TenantsGetTenantRedeemedInvitationsError = TenantsGetTenantRedeemedInvitationsErrors[keyof TenantsGetTenantRedeemedInvitationsErrors];
 
-export type GetTenantRedeemedInvitationsAsyncResponses = {
+export type TenantsGetTenantRedeemedInvitationsResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoListEnvelopeReadable;
 };
 
-export type GetTenantRedeemedInvitationsAsyncResponse = GetTenantRedeemedInvitationsAsyncResponses[keyof GetTenantRedeemedInvitationsAsyncResponses];
+export type TenantsGetTenantRedeemedInvitationsResponse = TenantsGetTenantRedeemedInvitationsResponses[keyof TenantsGetTenantRedeemedInvitationsResponses];
 
-export type GetTenantRevokedInvitationsAsyncData = {
+export type TenantsGetTenantRevokedInvitationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7608,7 +7689,7 @@ export type GetTenantRevokedInvitationsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Invitations/Revoked';
 };
 
-export type GetTenantRevokedInvitationsAsyncErrors = {
+export type TenantsGetTenantRevokedInvitationsErrors = {
     /**
      * Unauthorized
      */
@@ -7619,18 +7700,18 @@ export type GetTenantRevokedInvitationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantRevokedInvitationsAsyncError = GetTenantRevokedInvitationsAsyncErrors[keyof GetTenantRevokedInvitationsAsyncErrors];
+export type TenantsGetTenantRevokedInvitationsError = TenantsGetTenantRevokedInvitationsErrors[keyof TenantsGetTenantRevokedInvitationsErrors];
 
-export type GetTenantRevokedInvitationsAsyncResponses = {
+export type TenantsGetTenantRevokedInvitationsResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoListEnvelopeReadable;
 };
 
-export type GetTenantRevokedInvitationsAsyncResponse = GetTenantRevokedInvitationsAsyncResponses[keyof GetTenantRevokedInvitationsAsyncResponses];
+export type TenantsGetTenantRevokedInvitationsResponse = TenantsGetTenantRevokedInvitationsResponses[keyof TenantsGetTenantRevokedInvitationsResponses];
 
-export type GetTenantLicensesAsyncData = {
+export type TenantsGetTenantLicensesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7644,7 +7725,7 @@ export type GetTenantLicensesAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Licenses';
 };
 
-export type GetTenantLicensesAsyncErrors = {
+export type TenantsGetTenantLicensesErrors = {
     /**
      * Unauthorized
      */
@@ -7655,18 +7736,18 @@ export type GetTenantLicensesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantLicensesAsyncError = GetTenantLicensesAsyncErrors[keyof GetTenantLicensesAsyncErrors];
+export type TenantsGetTenantLicensesError = TenantsGetTenantLicensesErrors[keyof TenantsGetTenantLicensesErrors];
 
-export type GetTenantLicensesAsyncResponses = {
+export type TenantsGetTenantLicensesResponses = {
     /**
      * OK
      */
     200: SuiteLicenseDtoListEnvelopeReadable;
 };
 
-export type GetTenantLicensesAsyncResponse = GetTenantLicensesAsyncResponses[keyof GetTenantLicensesAsyncResponses];
+export type TenantsGetTenantLicensesResponse = TenantsGetTenantLicensesResponses[keyof TenantsGetTenantLicensesResponses];
 
-export type GetEnrollmentLicensesAsyncData = {
+export type TenantsGetEnrollmentLicensesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7681,7 +7762,7 @@ export type GetEnrollmentLicensesAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Licenses';
 };
 
-export type GetEnrollmentLicensesAsyncErrors = {
+export type TenantsGetEnrollmentLicensesErrors = {
     /**
      * Unauthorized
      */
@@ -7692,18 +7773,18 @@ export type GetEnrollmentLicensesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentLicensesAsyncError = GetEnrollmentLicensesAsyncErrors[keyof GetEnrollmentLicensesAsyncErrors];
+export type TenantsGetEnrollmentLicensesError = TenantsGetEnrollmentLicensesErrors[keyof TenantsGetEnrollmentLicensesErrors];
 
-export type GetEnrollmentLicensesAsyncResponses = {
+export type TenantsGetEnrollmentLicensesResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetEnrollmentLicensesAsyncResponse = GetEnrollmentLicensesAsyncResponses[keyof GetEnrollmentLicensesAsyncResponses];
+export type TenantsGetEnrollmentLicensesResponse = TenantsGetEnrollmentLicensesResponses[keyof TenantsGetEnrollmentLicensesResponses];
 
-export type RevokeLicenseAsyncData = {
+export type TenantsRevokeLicenseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7719,7 +7800,7 @@ export type RevokeLicenseAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Licenses/{licenseId}';
 };
 
-export type RevokeLicenseAsyncErrors = {
+export type TenantsRevokeLicenseErrors = {
     /**
      * Unauthorized
      */
@@ -7728,20 +7809,24 @@ export type RevokeLicenseAsyncErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type RevokeLicenseAsyncError = RevokeLicenseAsyncErrors[keyof RevokeLicenseAsyncErrors];
+export type TenantsRevokeLicenseError = TenantsRevokeLicenseErrors[keyof TenantsRevokeLicenseErrors];
 
-export type RevokeLicenseAsyncResponses = {
+export type TenantsRevokeLicenseResponses = {
     /**
      * OK
      */
-    200: SuiteLicenseDtoListEnvelopeReadable;
+    200: EmptyEnvelopeReadable;
 };
 
-export type RevokeLicenseAsyncResponse = RevokeLicenseAsyncResponses[keyof RevokeLicenseAsyncResponses];
+export type TenantsRevokeLicenseResponse = TenantsRevokeLicenseResponses[keyof TenantsRevokeLicenseResponses];
 
-export type GetEnrollmentLicenseByIdAsyncData = {
+export type TenantsGetEnrollmentLicenseByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7757,7 +7842,7 @@ export type GetEnrollmentLicenseByIdAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Licenses/{licenseId}';
 };
 
-export type GetEnrollmentLicenseByIdAsyncErrors = {
+export type TenantsGetEnrollmentLicenseByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7768,18 +7853,18 @@ export type GetEnrollmentLicenseByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentLicenseByIdAsyncError = GetEnrollmentLicenseByIdAsyncErrors[keyof GetEnrollmentLicenseByIdAsyncErrors];
+export type TenantsGetEnrollmentLicenseByIdError = TenantsGetEnrollmentLicenseByIdErrors[keyof TenantsGetEnrollmentLicenseByIdErrors];
 
-export type GetEnrollmentLicenseByIdAsyncResponses = {
+export type TenantsGetEnrollmentLicenseByIdResponses = {
     /**
      * OK
      */
     200: SuiteLicenseDtoListEnvelopeReadable;
 };
 
-export type GetEnrollmentLicenseByIdAsyncResponse = GetEnrollmentLicenseByIdAsyncResponses[keyof GetEnrollmentLicenseByIdAsyncResponses];
+export type TenantsGetEnrollmentLicenseByIdResponse = TenantsGetEnrollmentLicenseByIdResponses[keyof TenantsGetEnrollmentLicenseByIdResponses];
 
-export type AssignLicenseAsyncData = {
+export type TenantsAssignLicenseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7795,7 +7880,7 @@ export type AssignLicenseAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Licenses/{licenseId}';
 };
 
-export type AssignLicenseAsyncErrors = {
+export type TenantsAssignLicenseErrors = {
     /**
      * Unauthorized
      */
@@ -7804,20 +7889,28 @@ export type AssignLicenseAsyncErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
 };
 
-export type AssignLicenseAsyncError = AssignLicenseAsyncErrors[keyof AssignLicenseAsyncErrors];
+export type TenantsAssignLicenseError = TenantsAssignLicenseErrors[keyof TenantsAssignLicenseErrors];
 
-export type AssignLicenseAsyncResponses = {
+export type TenantsAssignLicenseResponses = {
     /**
      * OK
      */
-    200: SuiteLicenseDtoListEnvelopeReadable;
+    200: EmptyEnvelopeReadable;
 };
 
-export type AssignLicenseAsyncResponse = AssignLicenseAsyncResponses[keyof AssignLicenseAsyncResponses];
+export type TenantsAssignLicenseResponse = TenantsAssignLicenseResponses[keyof TenantsAssignLicenseResponses];
 
-export type GetAccessibleFeaturesAsyncData = {
+export type TenantsGetAccessibleFeaturesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7832,25 +7925,25 @@ export type GetAccessibleFeaturesAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Features';
 };
 
-export type GetAccessibleFeaturesAsyncErrors = {
+export type TenantsGetAccessibleFeaturesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccessibleFeaturesAsyncError = GetAccessibleFeaturesAsyncErrors[keyof GetAccessibleFeaturesAsyncErrors];
+export type TenantsGetAccessibleFeaturesError = TenantsGetAccessibleFeaturesErrors[keyof TenantsGetAccessibleFeaturesErrors];
 
-export type GetAccessibleFeaturesAsyncResponses = {
+export type TenantsGetAccessibleFeaturesResponses = {
     /**
      * OK
      */
     200: SuiteLicenseFeatureDtoListEnvelopeReadable;
 };
 
-export type GetAccessibleFeaturesAsyncResponse = GetAccessibleFeaturesAsyncResponses[keyof GetAccessibleFeaturesAsyncResponses];
+export type TenantsGetAccessibleFeaturesResponse = TenantsGetAccessibleFeaturesResponses[keyof TenantsGetAccessibleFeaturesResponses];
 
-export type ValidateEnrollmentFeatureAccessData = {
+export type TenantsValidateEnrollmentFeatureAccessData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7866,25 +7959,25 @@ export type ValidateEnrollmentFeatureAccessData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/HasAccess';
 };
 
-export type ValidateEnrollmentFeatureAccessErrors = {
+export type TenantsValidateEnrollmentFeatureAccessErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type ValidateEnrollmentFeatureAccessError = ValidateEnrollmentFeatureAccessErrors[keyof ValidateEnrollmentFeatureAccessErrors];
+export type TenantsValidateEnrollmentFeatureAccessError = TenantsValidateEnrollmentFeatureAccessErrors[keyof TenantsValidateEnrollmentFeatureAccessErrors];
 
-export type ValidateEnrollmentFeatureAccessResponses = {
+export type TenantsValidateEnrollmentFeatureAccessResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type ValidateEnrollmentFeatureAccessResponse = ValidateEnrollmentFeatureAccessResponses[keyof ValidateEnrollmentFeatureAccessResponses];
+export type TenantsValidateEnrollmentFeatureAccessResponse = TenantsValidateEnrollmentFeatureAccessResponses[keyof TenantsValidateEnrollmentFeatureAccessResponses];
 
-export type DeleteTenantAsyncData = {
+export type TenantsDeleteTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7897,7 +7990,7 @@ export type DeleteTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants';
 };
 
-export type DeleteTenantAsyncErrors = {
+export type TenantsDeleteTenantErrors = {
     /**
      * Unauthorized
      */
@@ -7908,18 +8001,18 @@ export type DeleteTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantAsyncError = DeleteTenantAsyncErrors[keyof DeleteTenantAsyncErrors];
+export type TenantsDeleteTenantError = TenantsDeleteTenantErrors[keyof TenantsDeleteTenantErrors];
 
-export type DeleteTenantAsyncResponses = {
+export type TenantsDeleteTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantAsyncResponse = DeleteTenantAsyncResponses[keyof DeleteTenantAsyncResponses];
+export type TenantsDeleteTenantResponse = TenantsDeleteTenantResponses[keyof TenantsDeleteTenantResponses];
 
-export type CreateTenantAsyncData = {
+export type TenantsCreateTenantData = {
     body?: TenantCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7931,7 +8024,7 @@ export type CreateTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants';
 };
 
-export type CreateTenantAsyncErrors = {
+export type TenantsCreateTenantErrors = {
     /**
      * Unauthorized
      */
@@ -7942,18 +8035,18 @@ export type CreateTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantAsyncError = CreateTenantAsyncErrors[keyof CreateTenantAsyncErrors];
+export type TenantsCreateTenantError = TenantsCreateTenantErrors[keyof TenantsCreateTenantErrors];
 
-export type CreateTenantAsyncResponses = {
+export type TenantsCreateTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantAsyncResponse = CreateTenantAsyncResponses[keyof CreateTenantAsyncResponses];
+export type TenantsCreateTenantResponse = TenantsCreateTenantResponses[keyof TenantsCreateTenantResponses];
 
-export type SelectTenantAsyncData = {
+export type TenantsSelectTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7967,7 +8060,7 @@ export type SelectTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Select';
 };
 
-export type SelectTenantAsyncErrors = {
+export type TenantsSelectTenantErrors = {
     /**
      * Unauthorized
      */
@@ -7978,18 +8071,18 @@ export type SelectTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SelectTenantAsyncError = SelectTenantAsyncErrors[keyof SelectTenantAsyncErrors];
+export type TenantsSelectTenantError = TenantsSelectTenantErrors[keyof TenantsSelectTenantErrors];
 
-export type SelectTenantAsyncResponses = {
+export type TenantsSelectTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SelectTenantAsyncResponse = SelectTenantAsyncResponses[keyof SelectTenantAsyncResponses];
+export type TenantsSelectTenantResponse = TenantsSelectTenantResponses[keyof TenantsSelectTenantResponses];
 
-export type DeSelectTenantAsyncData = {
+export type TenantsDeSelectTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8001,7 +8094,7 @@ export type DeSelectTenantAsyncData = {
     url: '/api/v2/TenantsService/Tenants/Deselect';
 };
 
-export type DeSelectTenantAsyncErrors = {
+export type TenantsDeSelectTenantErrors = {
     /**
      * Unauthorized
      */
@@ -8012,18 +8105,18 @@ export type DeSelectTenantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeSelectTenantAsyncError = DeSelectTenantAsyncErrors[keyof DeSelectTenantAsyncErrors];
+export type TenantsDeSelectTenantError = TenantsDeSelectTenantErrors[keyof TenantsDeSelectTenantErrors];
 
-export type DeSelectTenantAsyncResponses = {
+export type TenantsDeSelectTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeSelectTenantAsyncResponse = DeSelectTenantAsyncResponses[keyof DeSelectTenantAsyncResponses];
+export type TenantsDeSelectTenantResponse = TenantsDeSelectTenantResponses[keyof TenantsDeSelectTenantResponses];
 
-export type GetTenantWebPortalsAsyncData = {
+export type TenantsGetTenantWebPortalsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8037,7 +8130,7 @@ export type GetTenantWebPortalsAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/WebPortals';
 };
 
-export type GetTenantWebPortalsAsyncErrors = {
+export type TenantsGetTenantWebPortalsErrors = {
     /**
      * Unauthorized
      */
@@ -8048,18 +8141,18 @@ export type GetTenantWebPortalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantWebPortalsAsyncError = GetTenantWebPortalsAsyncErrors[keyof GetTenantWebPortalsAsyncErrors];
+export type TenantsGetTenantWebPortalsError = TenantsGetTenantWebPortalsErrors[keyof TenantsGetTenantWebPortalsErrors];
 
-export type GetTenantWebPortalsAsyncResponses = {
+export type TenantsGetTenantWebPortalsResponses = {
     /**
      * OK
      */
     200: WebPortalDtoListEnvelopeReadable;
 };
 
-export type GetTenantWebPortalsAsyncResponse = GetTenantWebPortalsAsyncResponses[keyof GetTenantWebPortalsAsyncResponses];
+export type TenantsGetTenantWebPortalsResponse = TenantsGetTenantWebPortalsResponses[keyof TenantsGetTenantWebPortalsResponses];
 
-export type GetTenantNotificationsAsyncData = {
+export type TenantsGetTenantNotificationsData = {
     body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8068,12 +8161,13 @@ export type GetTenantNotificationsAsyncData = {
         tenantId: string;
     };
     query?: {
+        archived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Notifications';
 };
 
-export type GetTenantNotificationsAsyncErrors = {
+export type TenantsGetTenantNotificationsErrors = {
     /**
      * Unauthorized
      */
@@ -8084,18 +8178,18 @@ export type GetTenantNotificationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantNotificationsAsyncError = GetTenantNotificationsAsyncErrors[keyof GetTenantNotificationsAsyncErrors];
+export type TenantsGetTenantNotificationsError = TenantsGetTenantNotificationsErrors[keyof TenantsGetTenantNotificationsErrors];
 
-export type GetTenantNotificationsAsyncResponses = {
+export type TenantsGetTenantNotificationsResponses = {
     /**
      * OK
      */
     200: NotificationDtoListEnvelopeReadable;
 };
 
-export type GetTenantNotificationsAsyncResponse = GetTenantNotificationsAsyncResponses[keyof GetTenantNotificationsAsyncResponses];
+export type TenantsGetTenantNotificationsResponse = TenantsGetTenantNotificationsResponses[keyof TenantsGetTenantNotificationsResponses];
 
-export type GetTenantNotificationsCountAsyncData = {
+export type TenantsGetTenantNotificationsCountData = {
     body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8104,12 +8198,13 @@ export type GetTenantNotificationsCountAsyncData = {
         tenantId: string;
     };
     query?: {
+        archived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Notifications/Count';
 };
 
-export type GetTenantNotificationsCountAsyncErrors = {
+export type TenantsGetTenantNotificationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8120,18 +8215,18 @@ export type GetTenantNotificationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantNotificationsCountAsyncError = GetTenantNotificationsCountAsyncErrors[keyof GetTenantNotificationsCountAsyncErrors];
+export type TenantsGetTenantNotificationsCountError = TenantsGetTenantNotificationsCountErrors[keyof TenantsGetTenantNotificationsCountErrors];
 
-export type GetTenantNotificationsCountAsyncResponses = {
+export type TenantsGetTenantNotificationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantNotificationsCountAsyncResponse = GetTenantNotificationsCountAsyncResponses[keyof GetTenantNotificationsCountAsyncResponses];
+export type TenantsGetTenantNotificationsCountResponse = TenantsGetTenantNotificationsCountResponses[keyof TenantsGetTenantNotificationsCountResponses];
 
-export type GetTenantTerritoriesData = {
+export type TerritoriesGetTenantTerritoriesData = {
     body?: TenantTerritoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8144,7 +8239,7 @@ export type GetTenantTerritoriesData = {
     url: '/api/v2/TenantsService/Territories';
 };
 
-export type GetTenantTerritoriesErrors = {
+export type TerritoriesGetTenantTerritoriesErrors = {
     /**
      * Unauthorized
      */
@@ -8155,18 +8250,18 @@ export type GetTenantTerritoriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTerritoriesError = GetTenantTerritoriesErrors[keyof GetTenantTerritoriesErrors];
+export type TerritoriesGetTenantTerritoriesError = TerritoriesGetTenantTerritoriesErrors[keyof TerritoriesGetTenantTerritoriesErrors];
 
-export type GetTenantTerritoriesResponses = {
+export type TerritoriesGetTenantTerritoriesResponses = {
     /**
      * OK
      */
     200: TenantTerritoryDtoListEnvelopeReadable;
 };
 
-export type GetTenantTerritoriesResponse = GetTenantTerritoriesResponses[keyof GetTenantTerritoriesResponses];
+export type TerritoriesGetTenantTerritoriesResponse = TerritoriesGetTenantTerritoriesResponses[keyof TerritoriesGetTenantTerritoriesResponses];
 
-export type CreateTenantTerritoryData = {
+export type TerritoriesCreateTenantTerritoryData = {
     body?: TenantTerritoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8179,7 +8274,7 @@ export type CreateTenantTerritoryData = {
     url: '/api/v2/TenantsService/Territories';
 };
 
-export type CreateTenantTerritoryErrors = {
+export type TerritoriesCreateTenantTerritoryErrors = {
     /**
      * Unauthorized
      */
@@ -8190,18 +8285,18 @@ export type CreateTenantTerritoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantTerritoryError = CreateTenantTerritoryErrors[keyof CreateTenantTerritoryErrors];
+export type TerritoriesCreateTenantTerritoryError = TerritoriesCreateTenantTerritoryErrors[keyof TerritoriesCreateTenantTerritoryErrors];
 
-export type CreateTenantTerritoryResponses = {
+export type TerritoriesCreateTenantTerritoryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantTerritoryResponse = CreateTenantTerritoryResponses[keyof CreateTenantTerritoryResponses];
+export type TerritoriesCreateTenantTerritoryResponse = TerritoriesCreateTenantTerritoryResponses[keyof TerritoriesCreateTenantTerritoryResponses];
 
-export type GetTenantTerritoriesCountData = {
+export type TerritoriesGetTenantTerritoriesCountData = {
     body?: TenantTerritoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8214,7 +8309,7 @@ export type GetTenantTerritoriesCountData = {
     url: '/api/v2/TenantsService/Territories/Count';
 };
 
-export type GetTenantTerritoriesCountErrors = {
+export type TerritoriesGetTenantTerritoriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -8225,18 +8320,18 @@ export type GetTenantTerritoriesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTerritoriesCountError = GetTenantTerritoriesCountErrors[keyof GetTenantTerritoriesCountErrors];
+export type TerritoriesGetTenantTerritoriesCountError = TerritoriesGetTenantTerritoriesCountErrors[keyof TerritoriesGetTenantTerritoriesCountErrors];
 
-export type GetTenantTerritoriesCountResponses = {
+export type TerritoriesGetTenantTerritoriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantTerritoriesCountResponse = GetTenantTerritoriesCountResponses[keyof GetTenantTerritoriesCountResponses];
+export type TerritoriesGetTenantTerritoriesCountResponse = TerritoriesGetTenantTerritoriesCountResponses[keyof TerritoriesGetTenantTerritoriesCountResponses];
 
-export type DeleteTenantTerritoryData = {
+export type TerritoriesDeleteTenantTerritoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8251,7 +8346,7 @@ export type DeleteTenantTerritoryData = {
     url: '/api/v2/TenantsService/Territories/{tenantTerritoryId}';
 };
 
-export type DeleteTenantTerritoryErrors = {
+export type TerritoriesDeleteTenantTerritoryErrors = {
     /**
      * Unauthorized
      */
@@ -8262,18 +8357,18 @@ export type DeleteTenantTerritoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantTerritoryError = DeleteTenantTerritoryErrors[keyof DeleteTenantTerritoryErrors];
+export type TerritoriesDeleteTenantTerritoryError = TerritoriesDeleteTenantTerritoryErrors[keyof TerritoriesDeleteTenantTerritoryErrors];
 
-export type DeleteTenantTerritoryResponses = {
+export type TerritoriesDeleteTenantTerritoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantTerritoryResponse = DeleteTenantTerritoryResponses[keyof DeleteTenantTerritoryResponses];
+export type TerritoriesDeleteTenantTerritoryResponse = TerritoriesDeleteTenantTerritoryResponses[keyof TerritoriesDeleteTenantTerritoryResponses];
 
-export type GetTenantTerritoryByIdData = {
+export type TerritoriesGetTenantTerritoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8288,7 +8383,7 @@ export type GetTenantTerritoryByIdData = {
     url: '/api/v2/TenantsService/Territories/{tenantTerritoryId}';
 };
 
-export type GetTenantTerritoryByIdErrors = {
+export type TerritoriesGetTenantTerritoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8299,18 +8394,18 @@ export type GetTenantTerritoryByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTerritoryByIdError = GetTenantTerritoryByIdErrors[keyof GetTenantTerritoryByIdErrors];
+export type TerritoriesGetTenantTerritoryByIdError = TerritoriesGetTenantTerritoryByIdErrors[keyof TerritoriesGetTenantTerritoryByIdErrors];
 
-export type GetTenantTerritoryByIdResponses = {
+export type TerritoriesGetTenantTerritoryByIdResponses = {
     /**
      * OK
      */
     200: TenantTerritoryDtoEnvelopeReadable;
 };
 
-export type GetTenantTerritoryByIdResponse = GetTenantTerritoryByIdResponses[keyof GetTenantTerritoryByIdResponses];
+export type TerritoriesGetTenantTerritoryByIdResponse = TerritoriesGetTenantTerritoryByIdResponses[keyof TerritoriesGetTenantTerritoryByIdResponses];
 
-export type PatchTenantTerritoryData = {
+export type TerritoriesPatchTenantTerritoryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8325,7 +8420,7 @@ export type PatchTenantTerritoryData = {
     url: '/api/v2/TenantsService/Territories/{tenantTerritoryId}';
 };
 
-export type PatchTenantTerritoryErrors = {
+export type TerritoriesPatchTenantTerritoryErrors = {
     /**
      * Unauthorized
      */
@@ -8336,18 +8431,18 @@ export type PatchTenantTerritoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantTerritoryError = PatchTenantTerritoryErrors[keyof PatchTenantTerritoryErrors];
+export type TerritoriesPatchTenantTerritoryError = TerritoriesPatchTenantTerritoryErrors[keyof TerritoriesPatchTenantTerritoryErrors];
 
-export type PatchTenantTerritoryResponses = {
+export type TerritoriesPatchTenantTerritoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantTerritoryResponse = PatchTenantTerritoryResponses[keyof PatchTenantTerritoryResponses];
+export type TerritoriesPatchTenantTerritoryResponse = TerritoriesPatchTenantTerritoryResponses[keyof TerritoriesPatchTenantTerritoryResponses];
 
-export type UpdateTenantTerritoryData = {
+export type TerritoriesUpdateTenantTerritoryData = {
     body?: TenantTerritoryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8362,7 +8457,7 @@ export type UpdateTenantTerritoryData = {
     url: '/api/v2/TenantsService/Territories/{tenantTerritoryId}';
 };
 
-export type UpdateTenantTerritoryErrors = {
+export type TerritoriesUpdateTenantTerritoryErrors = {
     /**
      * Unauthorized
      */
@@ -8373,18 +8468,18 @@ export type UpdateTenantTerritoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantTerritoryError = UpdateTenantTerritoryErrors[keyof UpdateTenantTerritoryErrors];
+export type TerritoriesUpdateTenantTerritoryError = TerritoriesUpdateTenantTerritoryErrors[keyof TerritoriesUpdateTenantTerritoryErrors];
 
-export type UpdateTenantTerritoryResponses = {
+export type TerritoriesUpdateTenantTerritoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantTerritoryResponse = UpdateTenantTerritoryResponses[keyof UpdateTenantTerritoryResponses];
+export type TerritoriesUpdateTenantTerritoryResponse = TerritoriesUpdateTenantTerritoryResponses[keyof TerritoriesUpdateTenantTerritoryResponses];
 
-export type GetTenantTypesData = {
+export type TypesGetTenantTypesData = {
     body?: TenantTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8397,7 +8492,7 @@ export type GetTenantTypesData = {
     url: '/api/v2/TenantsService/Types';
 };
 
-export type GetTenantTypesErrors = {
+export type TypesGetTenantTypesErrors = {
     /**
      * Unauthorized
      */
@@ -8408,18 +8503,18 @@ export type GetTenantTypesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTypesError = GetTenantTypesErrors[keyof GetTenantTypesErrors];
+export type TypesGetTenantTypesError = TypesGetTenantTypesErrors[keyof TypesGetTenantTypesErrors];
 
-export type GetTenantTypesResponses = {
+export type TypesGetTenantTypesResponses = {
     /**
      * OK
      */
     200: TenantTypeDtoListEnvelopeReadable;
 };
 
-export type GetTenantTypesResponse = GetTenantTypesResponses[keyof GetTenantTypesResponses];
+export type TypesGetTenantTypesResponse = TypesGetTenantTypesResponses[keyof TypesGetTenantTypesResponses];
 
-export type CreateTenantTypeData = {
+export type TypesCreateTenantTypeData = {
     body?: TenantTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8432,7 +8527,7 @@ export type CreateTenantTypeData = {
     url: '/api/v2/TenantsService/Types';
 };
 
-export type CreateTenantTypeErrors = {
+export type TypesCreateTenantTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8443,18 +8538,18 @@ export type CreateTenantTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantTypeError = CreateTenantTypeErrors[keyof CreateTenantTypeErrors];
+export type TypesCreateTenantTypeError = TypesCreateTenantTypeErrors[keyof TypesCreateTenantTypeErrors];
 
-export type CreateTenantTypeResponses = {
+export type TypesCreateTenantTypeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantTypeResponse = CreateTenantTypeResponses[keyof CreateTenantTypeResponses];
+export type TypesCreateTenantTypeResponse = TypesCreateTenantTypeResponses[keyof TypesCreateTenantTypeResponses];
 
-export type GetTenantTypesCountData = {
+export type TypesGetTenantTypesCountData = {
     body?: TenantTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8467,7 +8562,7 @@ export type GetTenantTypesCountData = {
     url: '/api/v2/TenantsService/Types/Count';
 };
 
-export type GetTenantTypesCountErrors = {
+export type TypesGetTenantTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -8478,18 +8573,18 @@ export type GetTenantTypesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTypesCountError = GetTenantTypesCountErrors[keyof GetTenantTypesCountErrors];
+export type TypesGetTenantTypesCountError = TypesGetTenantTypesCountErrors[keyof TypesGetTenantTypesCountErrors];
 
-export type GetTenantTypesCountResponses = {
+export type TypesGetTenantTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantTypesCountResponse = GetTenantTypesCountResponses[keyof GetTenantTypesCountResponses];
+export type TypesGetTenantTypesCountResponse = TypesGetTenantTypesCountResponses[keyof TypesGetTenantTypesCountResponses];
 
-export type DeleteTenantTypeData = {
+export type TypesDeleteTenantTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8504,7 +8599,7 @@ export type DeleteTenantTypeData = {
     url: '/api/v2/TenantsService/Types/{tenantTypeId}';
 };
 
-export type DeleteTenantTypeErrors = {
+export type TypesDeleteTenantTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8515,18 +8610,18 @@ export type DeleteTenantTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantTypeError = DeleteTenantTypeErrors[keyof DeleteTenantTypeErrors];
+export type TypesDeleteTenantTypeError = TypesDeleteTenantTypeErrors[keyof TypesDeleteTenantTypeErrors];
 
-export type DeleteTenantTypeResponses = {
+export type TypesDeleteTenantTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantTypeResponse = DeleteTenantTypeResponses[keyof DeleteTenantTypeResponses];
+export type TypesDeleteTenantTypeResponse = TypesDeleteTenantTypeResponses[keyof TypesDeleteTenantTypeResponses];
 
-export type GetTenantTypeByIdData = {
+export type TypesGetTenantTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8541,7 +8636,7 @@ export type GetTenantTypeByIdData = {
     url: '/api/v2/TenantsService/Types/{tenantTypeId}';
 };
 
-export type GetTenantTypeByIdErrors = {
+export type TypesGetTenantTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8552,18 +8647,18 @@ export type GetTenantTypeByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTypeByIdError = GetTenantTypeByIdErrors[keyof GetTenantTypeByIdErrors];
+export type TypesGetTenantTypeByIdError = TypesGetTenantTypeByIdErrors[keyof TypesGetTenantTypeByIdErrors];
 
-export type GetTenantTypeByIdResponses = {
+export type TypesGetTenantTypeByIdResponses = {
     /**
      * OK
      */
     200: TenantTypeDtoEnvelopeReadable;
 };
 
-export type GetTenantTypeByIdResponse = GetTenantTypeByIdResponses[keyof GetTenantTypeByIdResponses];
+export type TypesGetTenantTypeByIdResponse = TypesGetTenantTypeByIdResponses[keyof TypesGetTenantTypeByIdResponses];
 
-export type PatchTenantTypeData = {
+export type TypesPatchTenantTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8578,7 +8673,7 @@ export type PatchTenantTypeData = {
     url: '/api/v2/TenantsService/Types/{tenantTypeId}';
 };
 
-export type PatchTenantTypeErrors = {
+export type TypesPatchTenantTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8589,18 +8684,18 @@ export type PatchTenantTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantTypeError = PatchTenantTypeErrors[keyof PatchTenantTypeErrors];
+export type TypesPatchTenantTypeError = TypesPatchTenantTypeErrors[keyof TypesPatchTenantTypeErrors];
 
-export type PatchTenantTypeResponses = {
+export type TypesPatchTenantTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantTypeResponse = PatchTenantTypeResponses[keyof PatchTenantTypeResponses];
+export type TypesPatchTenantTypeResponse = TypesPatchTenantTypeResponses[keyof TypesPatchTenantTypeResponses];
 
-export type UpdateTenantTypeData = {
+export type TypesUpdateTenantTypeData = {
     body?: TenantTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8615,7 +8710,7 @@ export type UpdateTenantTypeData = {
     url: '/api/v2/TenantsService/Types/{tenantTypeId}';
 };
 
-export type UpdateTenantTypeErrors = {
+export type TypesUpdateTenantTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8626,18 +8721,18 @@ export type UpdateTenantTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantTypeError = UpdateTenantTypeErrors[keyof UpdateTenantTypeErrors];
+export type TypesUpdateTenantTypeError = TypesUpdateTenantTypeErrors[keyof TypesUpdateTenantTypeErrors];
 
-export type UpdateTenantTypeResponses = {
+export type TypesUpdateTenantTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantTypeResponse = UpdateTenantTypeResponses[keyof UpdateTenantTypeResponses];
+export type TypesUpdateTenantTypeResponse = TypesUpdateTenantTypeResponses[keyof TypesUpdateTenantTypeResponses];
 
-export type GetUnitGroupsAsyncData = {
+export type UnitGroupsGetUnitGroupsData = {
     body?: UnitGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8650,7 +8745,7 @@ export type GetUnitGroupsAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups';
 };
 
-export type GetUnitGroupsAsyncErrors = {
+export type UnitGroupsGetUnitGroupsErrors = {
     /**
      * Unauthorized
      */
@@ -8661,18 +8756,18 @@ export type GetUnitGroupsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUnitGroupsAsyncError = GetUnitGroupsAsyncErrors[keyof GetUnitGroupsAsyncErrors];
+export type UnitGroupsGetUnitGroupsError = UnitGroupsGetUnitGroupsErrors[keyof UnitGroupsGetUnitGroupsErrors];
 
-export type GetUnitGroupsAsyncResponses = {
+export type UnitGroupsGetUnitGroupsResponses = {
     /**
      * OK
      */
     200: UnitGroupDtoListEnvelopeReadable;
 };
 
-export type GetUnitGroupsAsyncResponse = GetUnitGroupsAsyncResponses[keyof GetUnitGroupsAsyncResponses];
+export type UnitGroupsGetUnitGroupsResponse = UnitGroupsGetUnitGroupsResponses[keyof UnitGroupsGetUnitGroupsResponses];
 
-export type CreateUnitGroupAsyncData = {
+export type UnitGroupsCreateUnitGroupData = {
     body?: UnitGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8685,7 +8780,7 @@ export type CreateUnitGroupAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups';
 };
 
-export type CreateUnitGroupAsyncErrors = {
+export type UnitGroupsCreateUnitGroupErrors = {
     /**
      * Unauthorized
      */
@@ -8696,18 +8791,18 @@ export type CreateUnitGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateUnitGroupAsyncError = CreateUnitGroupAsyncErrors[keyof CreateUnitGroupAsyncErrors];
+export type UnitGroupsCreateUnitGroupError = UnitGroupsCreateUnitGroupErrors[keyof UnitGroupsCreateUnitGroupErrors];
 
-export type CreateUnitGroupAsyncResponses = {
+export type UnitGroupsCreateUnitGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateUnitGroupAsyncResponse = CreateUnitGroupAsyncResponses[keyof CreateUnitGroupAsyncResponses];
+export type UnitGroupsCreateUnitGroupResponse = UnitGroupsCreateUnitGroupResponses[keyof UnitGroupsCreateUnitGroupResponses];
 
-export type GetUnitGroupsCountAsyncData = {
+export type UnitGroupsGetUnitGroupsCountData = {
     body?: UnitGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8720,7 +8815,7 @@ export type GetUnitGroupsCountAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/Count';
 };
 
-export type GetUnitGroupsCountAsyncErrors = {
+export type UnitGroupsGetUnitGroupsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8731,18 +8826,18 @@ export type GetUnitGroupsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUnitGroupsCountAsyncError = GetUnitGroupsCountAsyncErrors[keyof GetUnitGroupsCountAsyncErrors];
+export type UnitGroupsGetUnitGroupsCountError = UnitGroupsGetUnitGroupsCountErrors[keyof UnitGroupsGetUnitGroupsCountErrors];
 
-export type GetUnitGroupsCountAsyncResponses = {
+export type UnitGroupsGetUnitGroupsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetUnitGroupsCountAsyncResponse = GetUnitGroupsCountAsyncResponses[keyof GetUnitGroupsCountAsyncResponses];
+export type UnitGroupsGetUnitGroupsCountResponse = UnitGroupsGetUnitGroupsCountResponses[keyof UnitGroupsGetUnitGroupsCountResponses];
 
-export type DeleteUnitGroupAsyncData = {
+export type UnitGroupsDeleteUnitGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8757,7 +8852,7 @@ export type DeleteUnitGroupAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}';
 };
 
-export type DeleteUnitGroupAsyncErrors = {
+export type UnitGroupsDeleteUnitGroupErrors = {
     /**
      * Unauthorized
      */
@@ -8768,18 +8863,18 @@ export type DeleteUnitGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteUnitGroupAsyncError = DeleteUnitGroupAsyncErrors[keyof DeleteUnitGroupAsyncErrors];
+export type UnitGroupsDeleteUnitGroupError = UnitGroupsDeleteUnitGroupErrors[keyof UnitGroupsDeleteUnitGroupErrors];
 
-export type DeleteUnitGroupAsyncResponses = {
+export type UnitGroupsDeleteUnitGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteUnitGroupAsyncResponse = DeleteUnitGroupAsyncResponses[keyof DeleteUnitGroupAsyncResponses];
+export type UnitGroupsDeleteUnitGroupResponse = UnitGroupsDeleteUnitGroupResponses[keyof UnitGroupsDeleteUnitGroupResponses];
 
-export type GetUnitGroupAsyncData = {
+export type UnitGroupsGetUnitGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8794,7 +8889,7 @@ export type GetUnitGroupAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}';
 };
 
-export type GetUnitGroupAsyncErrors = {
+export type UnitGroupsGetUnitGroupErrors = {
     /**
      * Unauthorized
      */
@@ -8805,18 +8900,18 @@ export type GetUnitGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUnitGroupAsyncError = GetUnitGroupAsyncErrors[keyof GetUnitGroupAsyncErrors];
+export type UnitGroupsGetUnitGroupError = UnitGroupsGetUnitGroupErrors[keyof UnitGroupsGetUnitGroupErrors];
 
-export type GetUnitGroupAsyncResponses = {
+export type UnitGroupsGetUnitGroupResponses = {
     /**
      * OK
      */
     200: UnitGroupDtoEnvelopeReadable;
 };
 
-export type GetUnitGroupAsyncResponse = GetUnitGroupAsyncResponses[keyof GetUnitGroupAsyncResponses];
+export type UnitGroupsGetUnitGroupResponse = UnitGroupsGetUnitGroupResponses[keyof UnitGroupsGetUnitGroupResponses];
 
-export type PatchUnitGroupAsyncData = {
+export type UnitGroupsPatchUnitGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8831,7 +8926,7 @@ export type PatchUnitGroupAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}';
 };
 
-export type PatchUnitGroupAsyncErrors = {
+export type UnitGroupsPatchUnitGroupErrors = {
     /**
      * Unauthorized
      */
@@ -8842,18 +8937,18 @@ export type PatchUnitGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchUnitGroupAsyncError = PatchUnitGroupAsyncErrors[keyof PatchUnitGroupAsyncErrors];
+export type UnitGroupsPatchUnitGroupError = UnitGroupsPatchUnitGroupErrors[keyof UnitGroupsPatchUnitGroupErrors];
 
-export type PatchUnitGroupAsyncResponses = {
+export type UnitGroupsPatchUnitGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchUnitGroupAsyncResponse = PatchUnitGroupAsyncResponses[keyof PatchUnitGroupAsyncResponses];
+export type UnitGroupsPatchUnitGroupResponse = UnitGroupsPatchUnitGroupResponses[keyof UnitGroupsPatchUnitGroupResponses];
 
-export type UpdateUnitGroupAsyncData = {
+export type UnitGroupsUpdateUnitGroupData = {
     body?: UnitGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8868,7 +8963,7 @@ export type UpdateUnitGroupAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}';
 };
 
-export type UpdateUnitGroupAsyncErrors = {
+export type UnitGroupsUpdateUnitGroupErrors = {
     /**
      * Unauthorized
      */
@@ -8879,18 +8974,18 @@ export type UpdateUnitGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateUnitGroupAsyncError = UpdateUnitGroupAsyncErrors[keyof UpdateUnitGroupAsyncErrors];
+export type UnitGroupsUpdateUnitGroupError = UnitGroupsUpdateUnitGroupErrors[keyof UnitGroupsUpdateUnitGroupErrors];
 
-export type UpdateUnitGroupAsyncResponses = {
+export type UnitGroupsUpdateUnitGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateUnitGroupAsyncResponse = UpdateUnitGroupAsyncResponses[keyof UpdateUnitGroupAsyncResponses];
+export type UnitGroupsUpdateUnitGroupResponse = UnitGroupsUpdateUnitGroupResponses[keyof UnitGroupsUpdateUnitGroupResponses];
 
-export type GetUnitsAsyncData = {
+export type UnitGroupsGetUnitsData = {
     body?: UnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8905,7 +9000,7 @@ export type GetUnitsAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units';
 };
 
-export type GetUnitsAsyncErrors = {
+export type UnitGroupsGetUnitsErrors = {
     /**
      * Unauthorized
      */
@@ -8916,18 +9011,18 @@ export type GetUnitsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUnitsAsyncError = GetUnitsAsyncErrors[keyof GetUnitsAsyncErrors];
+export type UnitGroupsGetUnitsError = UnitGroupsGetUnitsErrors[keyof UnitGroupsGetUnitsErrors];
 
-export type GetUnitsAsyncResponses = {
+export type UnitGroupsGetUnitsResponses = {
     /**
      * OK
      */
     200: UnitDtoListEnvelopeReadable;
 };
 
-export type GetUnitsAsyncResponse = GetUnitsAsyncResponses[keyof GetUnitsAsyncResponses];
+export type UnitGroupsGetUnitsResponse = UnitGroupsGetUnitsResponses[keyof UnitGroupsGetUnitsResponses];
 
-export type CreateUnitAsyncData = {
+export type UnitGroupsCreateUnitData = {
     body?: UnitCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8942,7 +9037,7 @@ export type CreateUnitAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units';
 };
 
-export type CreateUnitAsyncErrors = {
+export type UnitGroupsCreateUnitErrors = {
     /**
      * Unauthorized
      */
@@ -8953,18 +9048,18 @@ export type CreateUnitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateUnitAsyncError = CreateUnitAsyncErrors[keyof CreateUnitAsyncErrors];
+export type UnitGroupsCreateUnitError = UnitGroupsCreateUnitErrors[keyof UnitGroupsCreateUnitErrors];
 
-export type CreateUnitAsyncResponses = {
+export type UnitGroupsCreateUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateUnitAsyncResponse = CreateUnitAsyncResponses[keyof CreateUnitAsyncResponses];
+export type UnitGroupsCreateUnitResponse = UnitGroupsCreateUnitResponses[keyof UnitGroupsCreateUnitResponses];
 
-export type GetUnitsCountAsyncData = {
+export type UnitGroupsGetUnitsCountData = {
     body?: UnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8979,7 +9074,7 @@ export type GetUnitsCountAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/Count';
 };
 
-export type GetUnitsCountAsyncErrors = {
+export type UnitGroupsGetUnitsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8990,18 +9085,18 @@ export type GetUnitsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUnitsCountAsyncError = GetUnitsCountAsyncErrors[keyof GetUnitsCountAsyncErrors];
+export type UnitGroupsGetUnitsCountError = UnitGroupsGetUnitsCountErrors[keyof UnitGroupsGetUnitsCountErrors];
 
-export type GetUnitsCountAsyncResponses = {
+export type UnitGroupsGetUnitsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetUnitsCountAsyncResponse = GetUnitsCountAsyncResponses[keyof GetUnitsCountAsyncResponses];
+export type UnitGroupsGetUnitsCountResponse = UnitGroupsGetUnitsCountResponses[keyof UnitGroupsGetUnitsCountResponses];
 
-export type DeleteUnitAsyncData = {
+export type UnitGroupsDeleteUnitData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9017,7 +9112,7 @@ export type DeleteUnitAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/{unitId}';
 };
 
-export type DeleteUnitAsyncErrors = {
+export type UnitGroupsDeleteUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9028,18 +9123,18 @@ export type DeleteUnitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteUnitAsyncError = DeleteUnitAsyncErrors[keyof DeleteUnitAsyncErrors];
+export type UnitGroupsDeleteUnitError = UnitGroupsDeleteUnitErrors[keyof UnitGroupsDeleteUnitErrors];
 
-export type DeleteUnitAsyncResponses = {
+export type UnitGroupsDeleteUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteUnitAsyncResponse = DeleteUnitAsyncResponses[keyof DeleteUnitAsyncResponses];
+export type UnitGroupsDeleteUnitResponse = UnitGroupsDeleteUnitResponses[keyof UnitGroupsDeleteUnitResponses];
 
-export type GetUnitAsyncData = {
+export type UnitGroupsGetUnitData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9055,7 +9150,7 @@ export type GetUnitAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/{unitId}';
 };
 
-export type GetUnitAsyncErrors = {
+export type UnitGroupsGetUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9066,18 +9161,18 @@ export type GetUnitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUnitAsyncError = GetUnitAsyncErrors[keyof GetUnitAsyncErrors];
+export type UnitGroupsGetUnitError = UnitGroupsGetUnitErrors[keyof UnitGroupsGetUnitErrors];
 
-export type GetUnitAsyncResponses = {
+export type UnitGroupsGetUnitResponses = {
     /**
      * OK
      */
     200: UnitDtoEnvelopeReadable;
 };
 
-export type GetUnitAsyncResponse = GetUnitAsyncResponses[keyof GetUnitAsyncResponses];
+export type UnitGroupsGetUnitResponse = UnitGroupsGetUnitResponses[keyof UnitGroupsGetUnitResponses];
 
-export type PatchUnitAsyncData = {
+export type UnitGroupsPatchUnitData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9093,7 +9188,7 @@ export type PatchUnitAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/{unitId}';
 };
 
-export type PatchUnitAsyncErrors = {
+export type UnitGroupsPatchUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9104,18 +9199,18 @@ export type PatchUnitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchUnitAsyncError = PatchUnitAsyncErrors[keyof PatchUnitAsyncErrors];
+export type UnitGroupsPatchUnitError = UnitGroupsPatchUnitErrors[keyof UnitGroupsPatchUnitErrors];
 
-export type PatchUnitAsyncResponses = {
+export type UnitGroupsPatchUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchUnitAsyncResponse = PatchUnitAsyncResponses[keyof PatchUnitAsyncResponses];
+export type UnitGroupsPatchUnitResponse = UnitGroupsPatchUnitResponses[keyof UnitGroupsPatchUnitResponses];
 
-export type UpdateUnitAsyncData = {
+export type UnitGroupsUpdateUnitData = {
     body?: UnitUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9131,7 +9226,7 @@ export type UpdateUnitAsyncData = {
     url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/{unitId}';
 };
 
-export type UpdateUnitAsyncErrors = {
+export type UnitGroupsUpdateUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9142,18 +9237,18 @@ export type UpdateUnitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateUnitAsyncError = UpdateUnitAsyncErrors[keyof UpdateUnitAsyncErrors];
+export type UnitGroupsUpdateUnitError = UnitGroupsUpdateUnitErrors[keyof UnitGroupsUpdateUnitErrors];
 
-export type UpdateUnitAsyncResponses = {
+export type UnitGroupsUpdateUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateUnitAsyncResponse = UpdateUnitAsyncResponses[keyof UpdateUnitAsyncResponses];
+export type UnitGroupsUpdateUnitResponse = UnitGroupsUpdateUnitResponses[keyof UnitGroupsUpdateUnitResponses];
 
-export type GetTenantUnitsData = {
+export type UnitsGetTenantUnitsData = {
     body?: TenantUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9166,7 +9261,7 @@ export type GetTenantUnitsData = {
     url: '/api/v2/TenantsService/Units';
 };
 
-export type GetTenantUnitsErrors = {
+export type UnitsGetTenantUnitsErrors = {
     /**
      * Unauthorized
      */
@@ -9177,18 +9272,18 @@ export type GetTenantUnitsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantUnitsError = GetTenantUnitsErrors[keyof GetTenantUnitsErrors];
+export type UnitsGetTenantUnitsError = UnitsGetTenantUnitsErrors[keyof UnitsGetTenantUnitsErrors];
 
-export type GetTenantUnitsResponses = {
+export type UnitsGetTenantUnitsResponses = {
     /**
      * OK
      */
     200: TenantUnitDtoListEnvelopeReadable;
 };
 
-export type GetTenantUnitsResponse = GetTenantUnitsResponses[keyof GetTenantUnitsResponses];
+export type UnitsGetTenantUnitsResponse = UnitsGetTenantUnitsResponses[keyof UnitsGetTenantUnitsResponses];
 
-export type CreateTenantUnitData = {
+export type UnitsCreateTenantUnitData = {
     body?: TenantUnitCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9201,7 +9296,7 @@ export type CreateTenantUnitData = {
     url: '/api/v2/TenantsService/Units';
 };
 
-export type CreateTenantUnitErrors = {
+export type UnitsCreateTenantUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9212,18 +9307,18 @@ export type CreateTenantUnitErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantUnitError = CreateTenantUnitErrors[keyof CreateTenantUnitErrors];
+export type UnitsCreateTenantUnitError = UnitsCreateTenantUnitErrors[keyof UnitsCreateTenantUnitErrors];
 
-export type CreateTenantUnitResponses = {
+export type UnitsCreateTenantUnitResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTenantUnitResponse = CreateTenantUnitResponses[keyof CreateTenantUnitResponses];
+export type UnitsCreateTenantUnitResponse = UnitsCreateTenantUnitResponses[keyof UnitsCreateTenantUnitResponses];
 
-export type GetTenantUnitsCountData = {
+export type UnitsGetTenantUnitsCountData = {
     body?: TenantUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9236,7 +9331,7 @@ export type GetTenantUnitsCountData = {
     url: '/api/v2/TenantsService/Units/Count';
 };
 
-export type GetTenantUnitsCountErrors = {
+export type UnitsGetTenantUnitsCountErrors = {
     /**
      * Unauthorized
      */
@@ -9247,18 +9342,18 @@ export type GetTenantUnitsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantUnitsCountError = GetTenantUnitsCountErrors[keyof GetTenantUnitsCountErrors];
+export type UnitsGetTenantUnitsCountError = UnitsGetTenantUnitsCountErrors[keyof UnitsGetTenantUnitsCountErrors];
 
-export type GetTenantUnitsCountResponses = {
+export type UnitsGetTenantUnitsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantUnitsCountResponse = GetTenantUnitsCountResponses[keyof GetTenantUnitsCountResponses];
+export type UnitsGetTenantUnitsCountResponse = UnitsGetTenantUnitsCountResponses[keyof UnitsGetTenantUnitsCountResponses];
 
-export type DeleteTenantUnitData = {
+export type UnitsDeleteTenantUnitData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9273,7 +9368,7 @@ export type DeleteTenantUnitData = {
     url: '/api/v2/TenantsService/Units/{tenantUnitId}';
 };
 
-export type DeleteTenantUnitErrors = {
+export type UnitsDeleteTenantUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9284,18 +9379,18 @@ export type DeleteTenantUnitErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantUnitError = DeleteTenantUnitErrors[keyof DeleteTenantUnitErrors];
+export type UnitsDeleteTenantUnitError = UnitsDeleteTenantUnitErrors[keyof UnitsDeleteTenantUnitErrors];
 
-export type DeleteTenantUnitResponses = {
+export type UnitsDeleteTenantUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantUnitResponse = DeleteTenantUnitResponses[keyof DeleteTenantUnitResponses];
+export type UnitsDeleteTenantUnitResponse = UnitsDeleteTenantUnitResponses[keyof UnitsDeleteTenantUnitResponses];
 
-export type GetTenantUnitByIdData = {
+export type UnitsGetTenantUnitByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9310,7 +9405,7 @@ export type GetTenantUnitByIdData = {
     url: '/api/v2/TenantsService/Units/{tenantUnitId}';
 };
 
-export type GetTenantUnitByIdErrors = {
+export type UnitsGetTenantUnitByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9321,18 +9416,18 @@ export type GetTenantUnitByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantUnitByIdError = GetTenantUnitByIdErrors[keyof GetTenantUnitByIdErrors];
+export type UnitsGetTenantUnitByIdError = UnitsGetTenantUnitByIdErrors[keyof UnitsGetTenantUnitByIdErrors];
 
-export type GetTenantUnitByIdResponses = {
+export type UnitsGetTenantUnitByIdResponses = {
     /**
      * OK
      */
     200: TenantUnitDtoEnvelopeReadable;
 };
 
-export type GetTenantUnitByIdResponse = GetTenantUnitByIdResponses[keyof GetTenantUnitByIdResponses];
+export type UnitsGetTenantUnitByIdResponse = UnitsGetTenantUnitByIdResponses[keyof UnitsGetTenantUnitByIdResponses];
 
-export type PatchTenantUnitData = {
+export type UnitsPatchTenantUnitData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9347,7 +9442,7 @@ export type PatchTenantUnitData = {
     url: '/api/v2/TenantsService/Units/{tenantUnitId}';
 };
 
-export type PatchTenantUnitErrors = {
+export type UnitsPatchTenantUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9358,18 +9453,18 @@ export type PatchTenantUnitErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantUnitError = PatchTenantUnitErrors[keyof PatchTenantUnitErrors];
+export type UnitsPatchTenantUnitError = UnitsPatchTenantUnitErrors[keyof UnitsPatchTenantUnitErrors];
 
-export type PatchTenantUnitResponses = {
+export type UnitsPatchTenantUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantUnitResponse = PatchTenantUnitResponses[keyof PatchTenantUnitResponses];
+export type UnitsPatchTenantUnitResponse = UnitsPatchTenantUnitResponses[keyof UnitsPatchTenantUnitResponses];
 
-export type UpdateTenantUnitData = {
+export type UnitsUpdateTenantUnitData = {
     body?: TenantUnitUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9384,7 +9479,7 @@ export type UpdateTenantUnitData = {
     url: '/api/v2/TenantsService/Units/{tenantUnitId}';
 };
 
-export type UpdateTenantUnitErrors = {
+export type UnitsUpdateTenantUnitErrors = {
     /**
      * Unauthorized
      */
@@ -9395,16 +9490,16 @@ export type UpdateTenantUnitErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantUnitError = UpdateTenantUnitErrors[keyof UpdateTenantUnitErrors];
+export type UnitsUpdateTenantUnitError = UnitsUpdateTenantUnitErrors[keyof UnitsUpdateTenantUnitErrors];
 
-export type UpdateTenantUnitResponses = {
+export type UnitsUpdateTenantUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantUnitResponse = UpdateTenantUnitResponses[keyof UpdateTenantUnitResponses];
+export type UnitsUpdateTenantUnitResponse = UnitsUpdateTenantUnitResponses[keyof UnitsUpdateTenantUnitResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

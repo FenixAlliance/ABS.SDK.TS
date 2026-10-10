@@ -10,887 +10,677 @@ export interface paths {
      * Get curriculum experiences
      * @description Retrieves the work-experience records of a curriculum authored on the specified social profile.
      */
-    get: operations["GetCurriculumExperiencesAsync"];
+    get: operations["CurriculumExperiences_GetCurriculumExperiences"];
     /**
      * Create a curriculum experience
      * @description Adds a work-experience record to a curriculum authored on the specified social profile.
      */
-    post: operations["CreateCurriculumExperienceAsync"];
+    post: operations["CurriculumExperiences_CreateCurriculumExperience"];
   };
   "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/Count": {
     /**
      * Count curriculum experiences
      * @description Returns the count of work-experience records of a curriculum.
      */
-    get: operations["GetCurriculumExperiencesCountAsync"];
+    get: operations["CurriculumExperiences_GetCurriculumExperiencesCount"];
   };
   "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}": {
     /**
      * Get curriculum experience by ID
      * @description Retrieves a specific work-experience record of a curriculum.
      */
-    get: operations["GetCurriculumExperienceAsync"];
+    get: operations["CurriculumExperiences_GetCurriculumExperience"];
     /**
      * Update a curriculum experience
      * @description Updates an existing work-experience record of a curriculum.
      */
-    put: operations["UpdateCurriculumExperienceAsync"];
+    put: operations["CurriculumExperiences_UpdateCurriculumExperience"];
     /**
      * Delete a curriculum experience
      * @description Removes a work-experience record from a curriculum.
      */
-    delete: operations["DeleteCurriculumExperienceAsync"];
+    delete: operations["CurriculumExperiences_DeleteCurriculumExperience"];
     /**
      * Patch a curriculum experience
      * @description Partially updates an existing work-experience record of a curriculum.
      */
-    patch: operations["PatchCurriculumExperienceAsync"];
+    patch: operations["CurriculumExperiences_PatchCurriculumExperience"];
   };
   "/api/v2/SocialService/Curriculums": {
     /**
      * Get curricula
      * @description Retrieves the curricula (CVs) authored on the specified social profile.
      */
-    get: operations["GetCurriculumsAsync"];
+    get: operations["Curriculums_GetCurriculums"];
     /**
      * Create a curriculum
      * @description Creates a curriculum (CV) on the specified social profile.
      */
-    post: operations["CreateCurriculumAsync"];
+    post: operations["Curriculums_CreateCurriculum"];
   };
   "/api/v2/SocialService/Curriculums/Count": {
     /**
      * Count curricula
      * @description Returns the count of curricula authored on the specified social profile.
      */
-    get: operations["GetCurriculumsCountAsync"];
+    get: operations["Curriculums_GetCurriculumsCount"];
   };
   "/api/v2/SocialService/Curriculums/{curriculumId}": {
     /**
      * Get curriculum by ID
      * @description Retrieves a specific curriculum authored on the specified social profile.
      */
-    get: operations["GetCurriculumAsync"];
+    get: operations["Curriculums_GetCurriculum"];
     /**
      * Update a curriculum
      * @description Updates an existing curriculum authored on the specified social profile.
      */
-    put: operations["UpdateCurriculumAsync"];
+    put: operations["Curriculums_UpdateCurriculum"];
     /**
      * Delete a curriculum
      * @description Deletes a curriculum authored on the specified social profile.
      */
-    delete: operations["DeleteCurriculumAsync"];
+    delete: operations["Curriculums_DeleteCurriculum"];
     /**
      * Patch a curriculum
      * @description Partially updates an existing curriculum authored on the specified social profile.
      */
-    patch: operations["PatchCurriculumAsync"];
+    patch: operations["Curriculums_PatchCurriculum"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/SocialService/Skills": {
     /**
      * Get skills
      * @description Retrieves the skill catalog for the specified tenant.
      */
-    get: operations["GetSkillsAsync"];
+    get: operations["Skills_GetSkills"];
     /**
      * Create a skill
      * @description Creates a new skill catalog entry for the specified tenant.
      */
-    post: operations["CreateSkillAsync"];
+    post: operations["Skills_CreateSkill"];
   };
   "/api/v2/SocialService/Skills/Count": {
     /**
      * Count skills
      * @description Counts skill catalog entries for the specified tenant.
      */
-    get: operations["GetSkillsCountAsync"];
+    get: operations["Skills_GetSkillsCount"];
   };
   "/api/v2/SocialService/Skills/{skillId}": {
     /**
      * Get skill by ID
      * @description Retrieves a specific skill by its identifier.
      */
-    get: operations["GetSkillByIdAsync"];
+    get: operations["Skills_GetSkillById"];
     /**
      * Update a skill
      * @description Updates an existing skill for the specified tenant.
      */
-    put: operations["UpdateSkillAsync"];
+    put: operations["Skills_UpdateSkill"];
     /**
      * Delete a skill
      * @description Deletes a skill for the specified tenant.
      */
-    delete: operations["DeleteSkillAsync"];
+    delete: operations["Skills_DeleteSkill"];
     /**
      * Patch a skill
      * @description Partially updates an existing skill for the specified tenant.
      */
-    patch: operations["PatchSkillAsync"];
+    patch: operations["Skills_PatchSkill"];
   };
   "/api/v2/SocialService/SocialFeeds": {
     /**
      * Get social feeds
      * @description Retrieves a list of social feeds for the specified social profile.
      */
-    get: operations["GetFeedNotifications"];
+    get: operations["SocialFeeds_GetFeedNotifications"];
   };
   "/api/v2/SocialService/SocialFeeds/Count": {
     /**
      * Count social feeds
      * @description Returns the count of social feeds for the specified social profile.
      */
-    get: operations["GetNotificationsCountAsync"];
+    get: operations["SocialFeeds_GetNotificationsCount"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}": {
     /**
      * Get social feed by ID
      * @description Retrieves a specific social feed by its ID.
      */
-    get: operations["GetNotificationAsync"];
+    get: operations["SocialFeeds_GetNotification"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts": {
     /**
      * Get social feed posts
      * @description Retrieves a list of posts for a specific social feed.
      */
-    get: operations["GetFeedPostsAsync"];
+    get: operations["SocialFeeds_GetFeedPosts"];
     /**
      * Create a social feed post
      * @description Creates a new post in a specific social feed.
      */
-    post: operations["CreateFeedPostAsync"];
+    post: operations["SocialFeeds_CreateFeedPost"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/Count": {
     /**
      * Count social feed posts
      * @description Returns the count of posts for a specific social feed.
      */
-    get: operations["GetFeedPostsCountAsync"];
+    get: operations["SocialFeeds_GetFeedPostsCount"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}": {
     /**
      * Get social feed post by ID
      * @description Retrieves a specific post from a social feed by its ID.
      */
-    get: operations["GetFeedPostAsync"];
+    get: operations["SocialFeeds_GetFeedPost"];
     /**
      * Update a social feed post
      * @description Updates an existing post in a specific social feed.
      */
-    put: operations["UpdateFeedPostAsync"];
+    put: operations["SocialFeeds_UpdateFeedPost"];
     /**
      * Delete a social feed post
      * @description Deletes a post from a specific social feed.
      */
-    delete: operations["DeleteFeedPostAsync"];
+    delete: operations["SocialFeeds_DeleteFeedPost"];
     /**
      * Patch a social feed post
      * @description Partially updates an existing post in a specific social feed using a JSON Patch document.
      */
-    patch: operations["PatchFeedPostAsync"];
+    patch: operations["SocialFeeds_PatchFeedPost"];
   };
   "/api/v2/SocialService/SocialGroups": {
     /**
      * Get social groups
      * @description Retrieves all social groups for the specified tenant.
      */
-    get: operations["GetSocialGroupsAsync"];
+    get: operations["SocialGroups_GetSocialGroups"];
     /**
      * Create a social group
      * @description Creates a new social group for the specified tenant.
      */
-    post: operations["CreateSocialGroupAsync"];
+    post: operations["SocialGroups_CreateSocialGroup"];
   };
   "/api/v2/SocialService/SocialGroups/Count": {
     /**
      * Count social groups
      * @description Counts all social groups for the specified tenant.
      */
-    get: operations["CountSocialGroupsAsync"];
+    get: operations["SocialGroups_CountSocialGroups"];
   };
   "/api/v2/SocialService/SocialGroups/{socialGroupId}": {
     /**
      * Get social group by ID
      * @description Retrieves a specific social group by its ID.
      */
-    get: operations["GetSocialGroupByIdAsync"];
+    get: operations["SocialGroups_GetSocialGroupById"];
     /**
      * Update a social group
      * @description Updates an existing social group for the specified tenant.
      */
-    put: operations["UpdateSocialGroupAsync"];
+    put: operations["SocialGroups_UpdateSocialGroup"];
     /**
      * Delete a social group
      * @description Deletes a social group for the specified tenant.
      */
-    delete: operations["DeleteSocialGroupAsync"];
+    delete: operations["SocialGroups_DeleteSocialGroup"];
     /**
      * Patch a social group
      * @description Partially updates an existing social group using a JSON Patch document.
      */
-    patch: operations["PatchSocialGroupAsync"];
+    patch: operations["SocialGroups_PatchSocialGroup"];
   };
   "/api/v2/SocialService/SocialPosts": {
     /**
      * Get social posts
      * @description Retrieves a list of social posts for the specified social profile.
      */
-    get: operations["GetSocialPostsAsync"];
+    get: operations["SocialPosts_GetSocialPosts"];
     /**
      * Create a social post
      * @description Creates a new social post for the specified social profile.
      */
-    post: operations["CreateSocialPostAsync"];
+    post: operations["SocialPosts_CreateSocialPost"];
   };
   "/api/v2/SocialService/SocialPosts/Count": {
     /**
      * Count social posts
      * @description Returns the count of social posts for the specified social profile.
      */
-    get: operations["GetSocialPostsCountAsync"];
+    get: operations["SocialPosts_GetSocialPostsCount"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}": {
     /**
      * Get social post by ID
      * @description Retrieves a specific social post by its ID.
      */
-    get: operations["GetSocialPostAsync"];
+    get: operations["SocialPosts_GetSocialPost"];
     /**
      * Update a social post
      * @description Updates an existing social post by its ID.
      */
-    put: operations["UpdateSocialPostAsync"];
+    put: operations["SocialPosts_UpdateSocialPost"];
     /**
      * Delete a social post
      * @description Deletes a social post by its ID.
      */
-    delete: operations["DeleteSocialPostAsync"];
+    delete: operations["SocialPosts_DeleteSocialPost"];
     /**
      * Patch a social post
      * @description Partially updates an existing social post by its ID using a JSON Patch document.
      */
-    patch: operations["PatchSocialPostAsync"];
+    patch: operations["SocialPosts_PatchSocialPost"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments": {
     /**
      * Get social post attachments
      * @description Retrieves a list of attachments for a specific social post.
      */
-    get: operations["GetSocialPostAttachmentsAsync"];
+    get: operations["SocialPosts_GetSocialPostAttachments"];
     /**
      * Create a social post attachment
      * @description Creates a new attachment for a specific social post.
      */
-    post: operations["CreateSocialPostAttachmentAsync"];
+    post: operations["SocialPosts_CreateSocialPostAttachment"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Count": {
     /**
      * Count social post attachments
      * @description Returns the count of attachments for a specific social post.
      */
-    get: operations["GetSocialPostAttachmentsCountAsync"];
+    get: operations["SocialPosts_GetSocialPostAttachmentsCount"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/{attachmentId}": {
     /**
      * Get social post attachment by ID
      * @description Retrieves a specific attachment from a social post by its ID.
      */
-    get: operations["GetSocialPostAttachmentAsync"];
+    get: operations["SocialPosts_GetSocialPostAttachment"];
     /**
      * Update a social post attachment
      * @description Updates an existing attachment on a specific social post.
      */
-    put: operations["UpdateSocialPostAttachmentAsync"];
+    put: operations["SocialPosts_UpdateSocialPostAttachment"];
     /**
      * Delete a social post attachment
      * @description Deletes an attachment from a specific social post.
      */
-    delete: operations["DeleteSocialPostAttachmentAsync"];
+    delete: operations["SocialPosts_DeleteSocialPostAttachment"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Image": {
     /**
      * Upload a social post image attachment
      * @description Uploads an image and attaches it to a social post, storing the bytes through the storage spine.
      */
-    post: operations["UploadSocialPostImageAttachmentAsync"];
+    post: operations["SocialPosts_UploadSocialPostImageAttachment"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions": {
     /**
      * Get social post reactions
      * @description Retrieves a list of reactions for a specific social post.
      */
-    get: operations["GetSocialPostReactionsAsync"];
+    get: operations["SocialPosts_GetSocialPostReactions"];
     /**
      * Create a social post reaction
      * @description Creates a new reaction on a specific social post.
      */
-    post: operations["CreateSocialPostReactionAsync"];
+    post: operations["SocialPosts_CreateSocialPostReaction"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/Count": {
     /**
      * Count social post reactions
      * @description Returns the count of reactions for a specific social post.
      */
-    get: operations["GetSocialPostReactionsCountAsync"];
+    get: operations["SocialPosts_GetSocialPostReactionsCount"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/{reactionId}": {
     /**
      * Get social post reaction by ID
      * @description Retrieves a specific reaction from a social post by its ID.
      */
-    get: operations["GetSocialPostReactionAsync"];
+    get: operations["SocialPosts_GetSocialPostReaction"];
     /**
      * Update a social post reaction
      * @description Updates an existing reaction on a specific social post.
      */
-    put: operations["UpdateSocialPostReactionAsync"];
+    put: operations["SocialPosts_UpdateSocialPostReaction"];
     /**
      * Delete a social post reaction
      * @description Deletes a reaction from a specific social post.
      */
-    delete: operations["DeleteSocialPostReactionAsync"];
+    delete: operations["SocialPosts_DeleteSocialPostReaction"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments": {
     /**
      * Get social post comments
      * @description Retrieves a list of comments for a specific social post.
      */
-    get: operations["GetSocialPostCommentsAsync"];
+    get: operations["SocialPosts_GetSocialPostComments"];
     /**
      * Create a social post comment
      * @description Creates a new comment on a specific social post.
      */
-    post: operations["CreateSocialPostCommentAsync"];
+    post: operations["SocialPosts_CreateSocialPostComment"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/Count": {
     /**
      * Count social post comments
      * @description Returns the count of comments for a specific social post.
      */
-    get: operations["GetSocialPostCommentsCountAsync"];
+    get: operations["SocialPosts_GetSocialPostCommentsCount"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}": {
     /**
      * Get social post comment by ID
      * @description Retrieves a specific comment from a social post by its ID.
      */
-    get: operations["GetSocialPostCommentAsync"];
+    get: operations["SocialPosts_GetSocialPostComment"];
     /**
      * Update a social post comment
      * @description Updates an existing comment on a specific social post.
      */
-    put: operations["UpdateSocialPostCommentAsync"];
+    put: operations["SocialPosts_UpdateSocialPostComment"];
     /**
      * Delete a social post comment
      * @description Deletes a comment from a specific social post.
      */
-    delete: operations["DeleteSocialPostCommentAsync"];
+    delete: operations["SocialPosts_DeleteSocialPostComment"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions": {
     /**
      * Get social comment reactions
      * @description Retrieves a list of reactions for a specific social comment.
      */
-    get: operations["GetSocialCommentReactionsAsync"];
+    get: operations["SocialPosts_GetSocialCommentReactions"];
     /**
      * Create a social comment reaction
      * @description Creates a new reaction on a specific social comment.
      */
-    post: operations["CreateSocialCommentReactionAsync"];
+    post: operations["SocialPosts_CreateSocialCommentReaction"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/Count": {
     /**
      * Count social comment reactions
      * @description Returns the count of reactions for a specific social comment.
      */
-    get: operations["GetSocialCommentReactionsCountAsync"];
+    get: operations["SocialPosts_GetSocialCommentReactionsCount"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}": {
     /**
      * Get social comment reaction by ID
      * @description Retrieves a specific reaction from a social comment by its ID.
      */
-    get: operations["GetSocialCommentReactionAsync"];
+    get: operations["SocialPosts_GetSocialCommentReaction"];
     /**
      * Update a social comment reaction
      * @description Updates an existing reaction on a specific social comment.
      */
-    put: operations["UpdateSocialCommentReactionAsync"];
+    put: operations["SocialPosts_UpdateSocialCommentReaction"];
     /**
      * Delete a social comment reaction
      * @description Deletes a reaction from a specific social comment.
      */
-    delete: operations["DeleteSocialCommentReactionAsync"];
+    delete: operations["SocialPosts_DeleteSocialCommentReaction"];
   };
   "/api/v2/SocialService/SocialProfiles": {
     /**
      * Get Social Profiles
      * @description Get a list of social profiles.
      */
-    get: operations["GetSocialProfilesAsync"];
+    get: operations["SocialProfiles_GetSocialProfiles"];
   };
   "/api/v2/SocialService/SocialProfiles/Count": {
     /**
      * Count Social Profiles
      * @description Count social profiles.
      */
-    get: operations["CountSocialProfilesAsync"];
+    get: operations["SocialProfiles_CountSocialProfiles"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}": {
     /**
      * Get Social Profile
      * @description Get a social profile by ID.
      */
-    get: operations["GetSocialProfileAsync"];
+    get: operations["SocialProfiles_GetSocialProfile"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers": {
     /**
      * Get Followers
      * @description Get a list of followers for a social profile.
      */
-    get: operations["GetFollowersAsync"];
+    get: operations["SocialProfiles_GetFollowers"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Count": {
     /**
      * Count Followers
      * @description Count followers for a social profile.
      */
-    get: operations["CountFollowersAsync"];
+    get: operations["SocialProfiles_CountFollowers"];
+  };
+  "/api/v2/SocialService/SocialProfiles/{socialProfileId}/GroupEnrollments/Count": {
+    /**
+     * Count Group Enrollments
+     * @description Count the social groups a social profile has joined.
+     */
+    get: operations["SocialProfiles_CountGroupEnrollments"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Profiles": {
     /**
      * Get Follower Profiles
      * @description Get a list of follower profiles for a social profile.
      */
-    get: operations["GetFollowerProfilesAsync"];
+    get: operations["SocialProfiles_GetFollowerProfiles"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Profiles/Count": {
     /**
      * Count Follower Profiles
      * @description Count follower profiles for a social profile.
      */
-    get: operations["CountFollowerProfilesAsync"];
+    get: operations["SocialProfiles_CountFollowerProfiles"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows": {
     /**
      * Get Follows
      * @description Get a list of follows for a social profile.
      */
-    get: operations["GetFollowsAsync"];
+    get: operations["SocialProfiles_GetFollows"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Count": {
     /**
      * Count Follows
      * @description Count follows for a social profile.
      */
-    get: operations["CountFollowsAsync"];
+    get: operations["SocialProfiles_CountFollows"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Profiles": {
     /**
      * Get Followed Profiles
      * @description Get a list of followed profiles for a social profile.
      */
-    get: operations["GetFollowedProfilesAsync"];
+    get: operations["SocialProfiles_GetFollowedProfiles"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Profiles/Count": {
     /**
      * Count Followed Profiles
      * @description Count followed profiles for a social profile.
      */
-    get: operations["CountFollowedProfilesAsync"];
+    get: operations["SocialProfiles_CountFollowedProfiles"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/{followedSocialProfileId}": {
     /**
      * Check if Follow Exists
      * @description Check if a follow record exists between two social profiles.
      */
-    get: operations["FollowExistsAsync"];
+    get: operations["SocialProfiles_FollowExists"];
     /**
      * Follow
      * @description Follow a social profile.
      */
-    post: operations["FollowAsync"];
+    post: operations["SocialProfiles_Follow"];
     /**
      * Unfollow
      * @description Unfollow a social profile.
      */
-    delete: operations["UnfollowAsync"];
+    delete: operations["SocialProfiles_Unfollow"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications": {
     /**
      * Get Notifications
      * @description Get a list of notifications for a social profile.
      */
-    get: operations["GetNotificationsAsync"];
+    get: operations["SocialProfiles_GetNotifications"];
+    /**
+     * Create Notification
+     * @description Issues a notification into the addressed party's inbox within the given tenant, and returns the server-owned ReachIntentId that the resulting occurrence, decisions and deliveries are all answerable from. A success means Reach durably accepted the intent, never that a message was delivered.
+     */
+    post: operations["SocialProfiles_CreateNotification"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/Count": {
     /**
      * Count Notifications
      * @description Count notifications for a social profile.
      */
-    get: operations["CountNotificationsAsync"];
+    get: operations["SocialProfiles_CountNotifications"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}": {
     /**
      * Get Notification
      * @description Get a notification by ID for a social profile.
      */
-    get: operations["GetNotificationByIdAsync"];
+    get: operations["SocialProfiles_GetNotificationById"];
+    /**
+     * Mark Notification Read
+     * @description Marks a notification read for the calling reader. A personal row is marked on the row; a shared tenant bulletin is marked through a per-reader receipt. Only the unread to read transition is supported.
+     */
+    put: operations["SocialProfiles_MarkNotificationRead"];
+  };
+  "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}/Archive": {
+    /**
+     * Archive Notification
+     * @description Archive a notification for the calling reader.
+     */
+    post: operations["SocialProfiles_ArchiveNotification"];
+  };
+  "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}/Unarchive": {
+    /**
+     * Unarchive Notification
+     * @description Return a notification to the calling reader's inbox.
+     */
+    post: operations["SocialProfiles_UnarchiveNotification"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations": {
     /**
      * Get Conversations
      * @description Get a list of conversations for a social profile.
      */
-    get: operations["GetConversationsAsync"];
+    get: operations["SocialProfiles_GetConversations"];
     /**
      * Create Conversation
      * @description Create a new conversation.
      */
-    post: operations["CreateConversationAsync"];
+    post: operations["SocialProfiles_CreateConversation"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations/Count": {
     /**
      * Count Conversations
      * @description Count conversations for a social profile.
      */
-    get: operations["CountConversationsAsync"];
+    get: operations["SocialProfiles_CountConversations"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations/Direct": {
     /**
      * Get or Create Direct Conversation
      * @description Get or create the direct two-party conversation between the acting profile and a counterparty.
      */
-    post: operations["GetOrCreateDirectConversationAsync"];
+    post: operations["SocialProfiles_GetOrCreateDirectConversation"];
   };
   "/api/v2/SocialService/SocialProfiles/{conversationId}/Messages": {
     /**
      * Get Messages
      * @description Get a list of messages for a conversation.
      */
-    get: operations["GetMessagesAsync"];
+    get: operations["SocialProfiles_GetMessages"];
     /**
      * Create Message
      * @description Create a new message.
      */
-    post: operations["CreateMessageAsync"];
+    post: operations["SocialProfiles_CreateMessage"];
   };
   "/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/Count": {
     /**
      * Count Messages
      * @description Count messages for a conversation.
      */
-    get: operations["CountMessagesAsync"];
+    get: operations["SocialProfiles_CountMessages"];
   };
   "/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/{messageId}": {
     /**
      * Update Message
      * @description Update a message.
      */
-    put: operations["UpdateMessageAsync"];
+    put: operations["SocialProfiles_UpdateMessage"];
     /**
      * Delete Message
      * @description Delete a message.
      */
-    delete: operations["DeleteMessageAsync"];
+    delete: operations["SocialProfiles_DeleteMessage"];
+  };
+  "/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/Read": {
+    /**
+     * Mark Conversation Read
+     * @description Mark the acting profile's unread messages in a conversation as read.
+     */
+    post: operations["SocialProfiles_MarkConversationRead"];
   };
 }
 
@@ -941,6 +731,13 @@ export interface components {
       lastMessage?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
+      counterpartySocialProfileId?: string | null;
+      counterpartyName?: string | null;
+      counterpartyAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      counterpartyType?: "User" | "Tenant" | "Contact" | null;
+      /** Format: int32 */
+      unreadCount?: number;
     };
     ConversationDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -984,6 +781,19 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ConversationDto"][] | null;
+    };
+    CreateNotificationDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      read?: boolean;
+      message?: string | null;
+      socialProfileId?: string | null;
+      icon?: string | null;
+      imageUrl?: string | null;
+      redirectUrl?: string | null;
+      categoryKey?: string | null;
     };
     CurriculumCreateDto: {
       /** Format: uuid */
@@ -1363,6 +1173,8 @@ export interface components {
       readTimestamp?: string;
       /** Format: date-time */
       issuedTimestamp?: string;
+      tenantId?: string | null;
+      categoryKey?: string | null;
     };
     NotificationDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1406,6 +1218,25 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["NotificationDto"][] | null;
+    };
+    NotificationIssuanceReceiptDto: {
+      reachIntentId?: string | null;
+      notificationId?: string | null;
+    };
+    NotificationIssuanceReceiptDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["NotificationIssuanceReceiptDto"];
     };
     PatchOperation: {
       op?: string | null;
@@ -1499,7 +1330,6 @@ export interface components {
       timestamp?: string;
       name: string;
       url?: string | null;
-      type?: string | null;
       iconUrl?: string | null;
       description?: string | null;
       /** @enum {string} */
@@ -1565,7 +1395,6 @@ export interface components {
     SkillUpdateDto: {
       name?: string | null;
       url?: string | null;
-      type?: string | null;
       iconUrl?: string | null;
       description?: string | null;
       /** @enum {string} */
@@ -2346,6 +2175,12 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    UpdateNotificationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      read?: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -2364,7 +2199,7 @@ export interface operations {
    * Get curriculum experiences
    * @description Retrieves the work-experience records of a curriculum authored on the specified social profile.
    */
-  GetCurriculumExperiencesAsync: {
+  CurriculumExperiences_GetCurriculumExperiences: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2412,7 +2247,7 @@ export interface operations {
    * Create a curriculum experience
    * @description Adds a work-experience record to a curriculum authored on the specified social profile.
    */
-  CreateCurriculumExperienceAsync: {
+  CurriculumExperiences_CreateCurriculumExperience: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2467,7 +2302,7 @@ export interface operations {
    * Count curriculum experiences
    * @description Returns the count of work-experience records of a curriculum.
    */
-  GetCurriculumExperiencesCountAsync: {
+  CurriculumExperiences_GetCurriculumExperiencesCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2515,7 +2350,7 @@ export interface operations {
    * Get curriculum experience by ID
    * @description Retrieves a specific work-experience record of a curriculum.
    */
-  GetCurriculumExperienceAsync: {
+  CurriculumExperiences_GetCurriculumExperience: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2558,7 +2393,7 @@ export interface operations {
    * Update a curriculum experience
    * @description Updates an existing work-experience record of a curriculum.
    */
-  UpdateCurriculumExperienceAsync: {
+  CurriculumExperiences_UpdateCurriculumExperience: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2614,7 +2449,7 @@ export interface operations {
    * Delete a curriculum experience
    * @description Removes a work-experience record from a curriculum.
    */
-  DeleteCurriculumExperienceAsync: {
+  CurriculumExperiences_DeleteCurriculumExperience: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2664,7 +2499,7 @@ export interface operations {
    * Patch a curriculum experience
    * @description Partially updates an existing work-experience record of a curriculum.
    */
-  PatchCurriculumExperienceAsync: {
+  CurriculumExperiences_PatchCurriculumExperience: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2720,7 +2555,7 @@ export interface operations {
    * Get curricula
    * @description Retrieves the curricula (CVs) authored on the specified social profile.
    */
-  GetCurriculumsAsync: {
+  Curriculums_GetCurriculums: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2765,7 +2600,7 @@ export interface operations {
    * Create a curriculum
    * @description Creates a curriculum (CV) on the specified social profile.
    */
-  CreateCurriculumAsync: {
+  Curriculums_CreateCurriculum: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2817,7 +2652,7 @@ export interface operations {
    * Count curricula
    * @description Returns the count of curricula authored on the specified social profile.
    */
-  GetCurriculumsCountAsync: {
+  Curriculums_GetCurriculumsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2862,7 +2697,7 @@ export interface operations {
    * Get curriculum by ID
    * @description Retrieves a specific curriculum authored on the specified social profile.
    */
-  GetCurriculumAsync: {
+  Curriculums_GetCurriculum: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2904,7 +2739,7 @@ export interface operations {
    * Update a curriculum
    * @description Updates an existing curriculum authored on the specified social profile.
    */
-  UpdateCurriculumAsync: {
+  Curriculums_UpdateCurriculum: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -2959,7 +2794,7 @@ export interface operations {
    * Delete a curriculum
    * @description Deletes a curriculum authored on the specified social profile.
    */
-  DeleteCurriculumAsync: {
+  Curriculums_DeleteCurriculum: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3008,7 +2843,7 @@ export interface operations {
    * Patch a curriculum
    * @description Partially updates an existing curriculum authored on the specified social profile.
    */
-  PatchCurriculumAsync: {
+  Curriculums_PatchCurriculum: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3059,7 +2894,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -3074,11 +2988,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get skills
    * @description Retrieves the skill catalog for the specified tenant.
    */
-  GetSkillsAsync: {
+  Skills_GetSkills: {
     parameters: {
       query: {
         tenantId: string;
@@ -3122,7 +3221,7 @@ export interface operations {
    * Create a skill
    * @description Creates a new skill catalog entry for the specified tenant.
    */
-  CreateSkillAsync: {
+  Skills_CreateSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -3173,7 +3272,7 @@ export interface operations {
    * Count skills
    * @description Counts skill catalog entries for the specified tenant.
    */
-  GetSkillsCountAsync: {
+  Skills_GetSkillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3217,7 +3316,7 @@ export interface operations {
    * Get skill by ID
    * @description Retrieves a specific skill by its identifier.
    */
-  GetSkillByIdAsync: {
+  Skills_GetSkillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3258,7 +3357,7 @@ export interface operations {
    * Update a skill
    * @description Updates an existing skill for the specified tenant.
    */
-  UpdateSkillAsync: {
+  Skills_UpdateSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -3312,7 +3411,7 @@ export interface operations {
    * Delete a skill
    * @description Deletes a skill for the specified tenant.
    */
-  DeleteSkillAsync: {
+  Skills_DeleteSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -3360,7 +3459,7 @@ export interface operations {
    * Patch a skill
    * @description Partially updates an existing skill for the specified tenant.
    */
-  PatchSkillAsync: {
+  Skills_PatchSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -3414,7 +3513,7 @@ export interface operations {
    * Get social feeds
    * @description Retrieves a list of social feeds for the specified social profile.
    */
-  GetFeedNotifications: {
+  SocialFeeds_GetFeedNotifications: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3458,7 +3557,7 @@ export interface operations {
    * Count social feeds
    * @description Returns the count of social feeds for the specified social profile.
    */
-  GetNotificationsCountAsync: {
+  SocialFeeds_GetNotificationsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3502,7 +3601,7 @@ export interface operations {
    * Get social feed by ID
    * @description Retrieves a specific social feed by its ID.
    */
-  GetNotificationAsync: {
+  SocialFeeds_GetNotification: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3543,7 +3642,7 @@ export interface operations {
    * Get social feed posts
    * @description Retrieves a list of posts for a specific social feed.
    */
-  GetFeedPostsAsync: {
+  SocialFeeds_GetFeedPosts: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3590,7 +3689,7 @@ export interface operations {
    * Create a social feed post
    * @description Creates a new post in a specific social feed.
    */
-  CreateFeedPostAsync: {
+  SocialFeeds_CreateFeedPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3637,7 +3736,7 @@ export interface operations {
    * Count social feed posts
    * @description Returns the count of posts for a specific social feed.
    */
-  GetFeedPostsCountAsync: {
+  SocialFeeds_GetFeedPostsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3684,7 +3783,7 @@ export interface operations {
    * Get social feed post by ID
    * @description Retrieves a specific post from a social feed by its ID.
    */
-  GetFeedPostAsync: {
+  SocialFeeds_GetFeedPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3726,7 +3825,7 @@ export interface operations {
    * Update a social feed post
    * @description Updates an existing post in a specific social feed.
    */
-  UpdateFeedPostAsync: {
+  SocialFeeds_UpdateFeedPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3774,7 +3873,7 @@ export interface operations {
    * Delete a social feed post
    * @description Deletes a post from a specific social feed.
    */
-  DeleteFeedPostAsync: {
+  SocialFeeds_DeleteFeedPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3816,7 +3915,7 @@ export interface operations {
    * Patch a social feed post
    * @description Partially updates an existing post in a specific social feed using a JSON Patch document.
    */
-  PatchFeedPostAsync: {
+  SocialFeeds_PatchFeedPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -3864,7 +3963,7 @@ export interface operations {
    * Get social groups
    * @description Retrieves all social groups for the specified tenant.
    */
-  GetSocialGroupsAsync: {
+  SocialGroups_GetSocialGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -3908,7 +4007,7 @@ export interface operations {
    * Create a social group
    * @description Creates a new social group for the specified tenant.
    */
-  CreateSocialGroupAsync: {
+  SocialGroups_CreateSocialGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -3953,7 +4052,7 @@ export interface operations {
    * Count social groups
    * @description Counts all social groups for the specified tenant.
    */
-  CountSocialGroupsAsync: {
+  SocialGroups_CountSocialGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -3997,7 +4096,7 @@ export interface operations {
    * Get social group by ID
    * @description Retrieves a specific social group by its ID.
    */
-  GetSocialGroupByIdAsync: {
+  SocialGroups_GetSocialGroupById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4038,7 +4137,7 @@ export interface operations {
    * Update a social group
    * @description Updates an existing social group for the specified tenant.
    */
-  UpdateSocialGroupAsync: {
+  SocialGroups_UpdateSocialGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -4086,7 +4185,7 @@ export interface operations {
    * Delete a social group
    * @description Deletes a social group for the specified tenant.
    */
-  DeleteSocialGroupAsync: {
+  SocialGroups_DeleteSocialGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -4128,7 +4227,7 @@ export interface operations {
    * Patch a social group
    * @description Partially updates an existing social group using a JSON Patch document.
    */
-  PatchSocialGroupAsync: {
+  SocialGroups_PatchSocialGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -4176,7 +4275,7 @@ export interface operations {
    * Get social posts
    * @description Retrieves a list of social posts for the specified social profile.
    */
-  GetSocialPostsAsync: {
+  SocialPosts_GetSocialPosts: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4220,7 +4319,7 @@ export interface operations {
    * Create a social post
    * @description Creates a new social post for the specified social profile.
    */
-  CreateSocialPostAsync: {
+  SocialPosts_CreateSocialPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4264,7 +4363,7 @@ export interface operations {
    * Count social posts
    * @description Returns the count of social posts for the specified social profile.
    */
-  GetSocialPostsCountAsync: {
+  SocialPosts_GetSocialPostsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4308,7 +4407,7 @@ export interface operations {
    * Get social post by ID
    * @description Retrieves a specific social post by its ID.
    */
-  GetSocialPostAsync: {
+  SocialPosts_GetSocialPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4349,7 +4448,7 @@ export interface operations {
    * Update a social post
    * @description Updates an existing social post by its ID.
    */
-  UpdateSocialPostAsync: {
+  SocialPosts_UpdateSocialPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4396,7 +4495,7 @@ export interface operations {
    * Delete a social post
    * @description Deletes a social post by its ID.
    */
-  DeleteSocialPostAsync: {
+  SocialPosts_DeleteSocialPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4437,7 +4536,7 @@ export interface operations {
    * Patch a social post
    * @description Partially updates an existing social post by its ID using a JSON Patch document.
    */
-  PatchSocialPostAsync: {
+  SocialPosts_PatchSocialPost: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4484,7 +4583,7 @@ export interface operations {
    * Get social post attachments
    * @description Retrieves a list of attachments for a specific social post.
    */
-  GetSocialPostAttachmentsAsync: {
+  SocialPosts_GetSocialPostAttachments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4530,7 +4629,7 @@ export interface operations {
    * Create a social post attachment
    * @description Creates a new attachment for a specific social post.
    */
-  CreateSocialPostAttachmentAsync: {
+  SocialPosts_CreateSocialPostAttachment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4577,7 +4676,7 @@ export interface operations {
    * Count social post attachments
    * @description Returns the count of attachments for a specific social post.
    */
-  GetSocialPostAttachmentsCountAsync: {
+  SocialPosts_GetSocialPostAttachmentsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4623,7 +4722,7 @@ export interface operations {
    * Get social post attachment by ID
    * @description Retrieves a specific attachment from a social post by its ID.
    */
-  GetSocialPostAttachmentAsync: {
+  SocialPosts_GetSocialPostAttachment: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4664,7 +4763,7 @@ export interface operations {
    * Update a social post attachment
    * @description Updates an existing attachment on a specific social post.
    */
-  UpdateSocialPostAttachmentAsync: {
+  SocialPosts_UpdateSocialPostAttachment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4712,7 +4811,7 @@ export interface operations {
    * Delete a social post attachment
    * @description Deletes an attachment from a specific social post.
    */
-  DeleteSocialPostAttachmentAsync: {
+  SocialPosts_DeleteSocialPostAttachment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4754,7 +4853,7 @@ export interface operations {
    * Upload a social post image attachment
    * @description Uploads an image and attaches it to a social post, storing the bytes through the storage spine.
    */
-  UploadSocialPostImageAttachmentAsync: {
+  SocialPosts_UploadSocialPostImageAttachment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4818,7 +4917,7 @@ export interface operations {
    * Get social post reactions
    * @description Retrieves a list of reactions for a specific social post.
    */
-  GetSocialPostReactionsAsync: {
+  SocialPosts_GetSocialPostReactions: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4865,7 +4964,7 @@ export interface operations {
    * Create a social post reaction
    * @description Creates a new reaction on a specific social post.
    */
-  CreateSocialPostReactionAsync: {
+  SocialPosts_CreateSocialPostReaction: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4912,7 +5011,7 @@ export interface operations {
    * Count social post reactions
    * @description Returns the count of reactions for a specific social post.
    */
-  GetSocialPostReactionsCountAsync: {
+  SocialPosts_GetSocialPostReactionsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -4959,7 +5058,7 @@ export interface operations {
    * Get social post reaction by ID
    * @description Retrieves a specific reaction from a social post by its ID.
    */
-  GetSocialPostReactionAsync: {
+  SocialPosts_GetSocialPostReaction: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5000,7 +5099,7 @@ export interface operations {
    * Update a social post reaction
    * @description Updates an existing reaction on a specific social post.
    */
-  UpdateSocialPostReactionAsync: {
+  SocialPosts_UpdateSocialPostReaction: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5048,7 +5147,7 @@ export interface operations {
    * Delete a social post reaction
    * @description Deletes a reaction from a specific social post.
    */
-  DeleteSocialPostReactionAsync: {
+  SocialPosts_DeleteSocialPostReaction: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5090,7 +5189,7 @@ export interface operations {
    * Get social post comments
    * @description Retrieves a list of comments for a specific social post.
    */
-  GetSocialPostCommentsAsync: {
+  SocialPosts_GetSocialPostComments: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5138,7 +5237,7 @@ export interface operations {
    * Create a social post comment
    * @description Creates a new comment on a specific social post.
    */
-  CreateSocialPostCommentAsync: {
+  SocialPosts_CreateSocialPostComment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5185,7 +5284,7 @@ export interface operations {
    * Count social post comments
    * @description Returns the count of comments for a specific social post.
    */
-  GetSocialPostCommentsCountAsync: {
+  SocialPosts_GetSocialPostCommentsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5233,7 +5332,7 @@ export interface operations {
    * Get social post comment by ID
    * @description Retrieves a specific comment from a social post by its ID.
    */
-  GetSocialPostCommentAsync: {
+  SocialPosts_GetSocialPostComment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5275,7 +5374,7 @@ export interface operations {
    * Update a social post comment
    * @description Updates an existing comment on a specific social post.
    */
-  UpdateSocialPostCommentAsync: {
+  SocialPosts_UpdateSocialPostComment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5323,7 +5422,7 @@ export interface operations {
    * Delete a social post comment
    * @description Deletes a comment from a specific social post.
    */
-  DeleteSocialPostCommentAsync: {
+  SocialPosts_DeleteSocialPostComment: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5365,7 +5464,7 @@ export interface operations {
    * Get social comment reactions
    * @description Retrieves a list of reactions for a specific social comment.
    */
-  GetSocialCommentReactionsAsync: {
+  SocialPosts_GetSocialCommentReactions: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5413,7 +5512,7 @@ export interface operations {
    * Create a social comment reaction
    * @description Creates a new reaction on a specific social comment.
    */
-  CreateSocialCommentReactionAsync: {
+  SocialPosts_CreateSocialCommentReaction: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5461,7 +5560,7 @@ export interface operations {
    * Count social comment reactions
    * @description Returns the count of reactions for a specific social comment.
    */
-  GetSocialCommentReactionsCountAsync: {
+  SocialPosts_GetSocialCommentReactionsCount: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5509,7 +5608,7 @@ export interface operations {
    * Get social comment reaction by ID
    * @description Retrieves a specific reaction from a social comment by its ID.
    */
-  GetSocialCommentReactionAsync: {
+  SocialPosts_GetSocialCommentReaction: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5551,7 +5650,7 @@ export interface operations {
    * Update a social comment reaction
    * @description Updates an existing reaction on a specific social comment.
    */
-  UpdateSocialCommentReactionAsync: {
+  SocialPosts_UpdateSocialCommentReaction: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5600,7 +5699,7 @@ export interface operations {
    * Delete a social comment reaction
    * @description Deletes a reaction from a specific social comment.
    */
-  DeleteSocialCommentReactionAsync: {
+  SocialPosts_DeleteSocialCommentReaction: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -5643,7 +5742,7 @@ export interface operations {
    * Get Social Profiles
    * @description Get a list of social profiles.
    */
-  GetSocialProfilesAsync: {
+  SocialProfiles_GetSocialProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5686,7 +5785,7 @@ export interface operations {
    * Count Social Profiles
    * @description Count social profiles.
    */
-  CountSocialProfilesAsync: {
+  SocialProfiles_CountSocialProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5729,7 +5828,7 @@ export interface operations {
    * Get Social Profile
    * @description Get a social profile by ID.
    */
-  GetSocialProfileAsync: {
+  SocialProfiles_GetSocialProfile: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5769,7 +5868,7 @@ export interface operations {
    * Get Followers
    * @description Get a list of followers for a social profile.
    */
-  GetFollowersAsync: {
+  SocialProfiles_GetFollowers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5815,7 +5914,7 @@ export interface operations {
    * Count Followers
    * @description Count followers for a social profile.
    */
-  CountFollowersAsync: {
+  SocialProfiles_CountFollowers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5858,10 +5957,57 @@ export interface operations {
     };
   };
   /**
+   * Count Group Enrollments
+   * @description Count the social groups a social profile has joined.
+   */
+  SocialProfiles_CountGroupEnrollments: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get Follower Profiles
    * @description Get a list of follower profiles for a social profile.
    */
-  GetFollowerProfilesAsync: {
+  SocialProfiles_GetFollowerProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5907,7 +6053,7 @@ export interface operations {
    * Count Follower Profiles
    * @description Count follower profiles for a social profile.
    */
-  CountFollowerProfilesAsync: {
+  SocialProfiles_CountFollowerProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5953,7 +6099,7 @@ export interface operations {
    * Get Follows
    * @description Get a list of follows for a social profile.
    */
-  GetFollowsAsync: {
+  SocialProfiles_GetFollows: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5999,7 +6145,7 @@ export interface operations {
    * Count Follows
    * @description Count follows for a social profile.
    */
-  CountFollowsAsync: {
+  SocialProfiles_CountFollows: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6045,7 +6191,7 @@ export interface operations {
    * Get Followed Profiles
    * @description Get a list of followed profiles for a social profile.
    */
-  GetFollowedProfilesAsync: {
+  SocialProfiles_GetFollowedProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6091,7 +6237,7 @@ export interface operations {
    * Count Followed Profiles
    * @description Count followed profiles for a social profile.
    */
-  CountFollowedProfilesAsync: {
+  SocialProfiles_CountFollowedProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6137,7 +6283,7 @@ export interface operations {
    * Check if Follow Exists
    * @description Check if a follow record exists between two social profiles.
    */
-  FollowExistsAsync: {
+  SocialProfiles_FollowExists: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6178,7 +6324,7 @@ export interface operations {
    * Follow
    * @description Follow a social profile.
    */
-  FollowAsync: {
+  SocialProfiles_Follow: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6219,7 +6365,7 @@ export interface operations {
    * Unfollow
    * @description Unfollow a social profile.
    */
-  UnfollowAsync: {
+  SocialProfiles_Unfollow: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6260,9 +6406,11 @@ export interface operations {
    * Get Notifications
    * @description Get a list of notifications for a social profile.
    */
-  GetNotificationsAsync: {
+  SocialProfiles_GetNotifications: {
     parameters: {
       query?: {
+        tenantId?: string;
+        archived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -6303,12 +6451,61 @@ export interface operations {
     };
   };
   /**
+   * Create Notification
+   * @description Issues a notification into the addressed party's inbox within the given tenant, and returns the server-owned ReachIntentId that the resulting occurrence, decisions and deliveries are all answerable from. A success means Reach durably accepted the intent, never that a message was delivered.
+   */
+  SocialProfiles_CreateNotification: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateNotificationDto"];
+        "application/xml": components["schemas"]["CreateNotificationDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["NotificationIssuanceReceiptDtoEnvelope"];
+          "application/xml": components["schemas"]["NotificationIssuanceReceiptDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Count Notifications
    * @description Count notifications for a social profile.
    */
-  CountNotificationsAsync: {
+  SocialProfiles_CountNotifications: {
     parameters: {
       query?: {
+        tenantId?: string;
+        archived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -6352,7 +6549,7 @@ export interface operations {
    * Get Notification
    * @description Get a notification by ID for a social profile.
    */
-  GetNotificationByIdAsync: {
+  SocialProfiles_GetNotificationById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6390,10 +6587,156 @@ export interface operations {
     };
   };
   /**
+   * Mark Notification Read
+   * @description Marks a notification read for the calling reader. A personal row is marked on the row; a shared tenant bulletin is marked through a per-reader receipt. Only the unread to read transition is supported.
+   */
+  SocialProfiles_MarkNotificationRead: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+        notificationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UpdateNotificationDto"];
+        "application/xml": components["schemas"]["UpdateNotificationDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Archive Notification
+   * @description Archive a notification for the calling reader.
+   */
+  SocialProfiles_ArchiveNotification: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+        notificationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Unarchive Notification
+   * @description Return a notification to the calling reader's inbox.
+   */
+  SocialProfiles_UnarchiveNotification: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+        notificationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get Conversations
    * @description Get a list of conversations for a social profile.
    */
-  GetConversationsAsync: {
+  SocialProfiles_GetConversations: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6439,7 +6782,7 @@ export interface operations {
    * Create Conversation
    * @description Create a new conversation.
    */
-  CreateConversationAsync: {
+  SocialProfiles_CreateConversation: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6485,7 +6828,7 @@ export interface operations {
    * Count Conversations
    * @description Count conversations for a social profile.
    */
-  CountConversationsAsync: {
+  SocialProfiles_CountConversations: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6531,7 +6874,7 @@ export interface operations {
    * Get or Create Direct Conversation
    * @description Get or create the direct two-party conversation between the acting profile and a counterparty.
    */
-  GetOrCreateDirectConversationAsync: {
+  SocialProfiles_GetOrCreateDirectConversation: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6577,7 +6920,7 @@ export interface operations {
    * Get Messages
    * @description Get a list of messages for a conversation.
    */
-  GetMessagesAsync: {
+  SocialProfiles_GetMessages: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -6624,7 +6967,7 @@ export interface operations {
    * Create Message
    * @description Create a new message.
    */
-  CreateMessageAsync: {
+  SocialProfiles_CreateMessage: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -6671,7 +7014,7 @@ export interface operations {
    * Count Messages
    * @description Count messages for a conversation.
    */
-  CountMessagesAsync: {
+  SocialProfiles_CountMessages: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -6718,7 +7061,7 @@ export interface operations {
    * Update Message
    * @description Update a message.
    */
-  UpdateMessageAsync: {
+  SocialProfiles_UpdateMessage: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -6766,7 +7109,7 @@ export interface operations {
    * Delete Message
    * @description Delete a message.
    */
-  DeleteMessageAsync: {
+  SocialProfiles_DeleteMessage: {
     parameters: {
       query: {
         socialProfileId: string;
@@ -6797,6 +7140,55 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark Conversation Read
+   * @description Mark the acting profile's unread messages in a conversation as read.
+   */
+  SocialProfiles_MarkConversationRead: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        upToMessageId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        conversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

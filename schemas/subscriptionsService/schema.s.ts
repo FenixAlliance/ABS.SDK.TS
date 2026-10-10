@@ -5,384 +5,176 @@
 
 
 export interface paths {
+  "/api/v2/SubscriptionsService/CommercialSubscriptions": {
+    /**
+     * List commercial subscriptions
+     * @description Retrieves the acting tenant's commercial subscriptions, with optional OData filtering and paging.
+     */
+    get: operations["CommercialSubscriptions_GetCommercialSubscriptions"];
+    /**
+     * Establish (purchase) a commercial subscription
+     * @description Establishes a commercial subscription from a catalog plan and stages its first period charge. This is purchase INITIATION, not a payment gateway: it NEVER calls a payment provider and NEVER marks the subscription paid or active. A positive-price establishment stays Pending, awaiting asynchronous payment finality; a zero-price establishment is satisfied on the platform's durable path. The payable obligation (invoice) is materialized ASYNCHRONOUSLY by the Billing lane, so no pay-link is returned here. Returns 200 with the new subscription id (the durable purchase coordinate): poll the commercial-subscriptions read for current LifecycleState, resolve this subscription's payable obligation via GET {subscriptionId}/PayableObligation, then obtain the pay-link via the Payments obligation-access-handle step once the obligation is materialized. The first billing period is built from the supplied UTC bounds and timezone. An optional IdempotencyKey makes a retry return the ORIGINAL subscription; the same key with different values is a 409 Conflict.
+     */
+    post: operations["CommercialSubscriptions_EstablishCommercialSubscription"];
+  };
+  "/api/v2/SubscriptionsService/CommercialSubscriptions/Purchase": {
+    /**
+     * Purchase a platform-published offering
+     * @description Purchases a platform-published offering on behalf of the acting BUYER tenant, where the seller (Fenix) is a DISTINCT tenant. The public contract starts from an opaque OFFERING token (never a raw plan id): the platform seller and the concrete plan are resolved SERVER-SIDE (the platform seller authority + the offer registry), so a buyer cannot purchase an arbitrary tenant's plan. An offering that is not a registered platform offering, or a platform seller that is not configured, fails closed. Like establishment, this is purchase INITIATION, not a payment gateway: it NEVER calls a payment provider and NEVER marks the subscription paid or active. Returns 200 with the new subscription id (the durable purchase coordinate); the invoice materializes under the SELLER asynchronously. The BillingCycle selects the plan; the price is computed server-side from the plan, the seller's price policy and forex to the buyer's cart currency (a cross-currency price on stale forex rates is a 503), and the first billing period is the plan's own period from the purchase time. An optional IdempotencyKey makes a retry return the ORIGINAL subscription; the same key with different values is a 409 Conflict.
+     */
+    post: operations["CommercialSubscriptions_PurchaseOffering"];
+  };
+  "/api/v2/SubscriptionsService/CommercialSubscriptions/Count": {
+    /**
+     * Count commercial subscriptions
+     * @description Returns the count of the acting tenant's commercial subscriptions.
+     */
+    get: operations["CommercialSubscriptions_GetCommercialSubscriptionsCount"];
+  };
+  "/api/v2/SubscriptionsService/CommercialSubscriptions/{subscriptionId}/PayableObligation": {
+    /**
+     * Get a commercial subscription's current payable obligation
+     * @description Resolves the CURRENT payable obligation coordinate for one of the acting tenant's commercial subscriptions so the purchase UI can hand it to the Payments pay-link mint. Returns the obligation reference (the materialized invoice id) with status Payable once the Billing lane has materialized the invoice; otherwise reports PendingMaterialization (charge staged, invoice not yet materialized), Satisfied (nothing outstanding) or NoOpenObligation. Fail-closed and tenant-scoped: a subscription the acting tenant does not own resolves to 404. This read NEVER mints a pay-link and NEVER calls a payment provider.
+     */
+    get: operations["CommercialSubscriptions_GetSubscriptionPayableObligation"];
+  };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
+  };
+  "/api/v2/SubscriptionsService/PlatformPricing": {
+    /**
+     * Get the platform plans priced in a currency
+     * @description Returns the platform's purchasable plans (one per offering and billing cycle) priced in the requested currency, computed exactly as a purchase computes them: the plan's price, then the seller's price list in that currency, else forex conversion. Anonymous. A plan that cannot be priced in the currency right now (for example a conversion while the forex rates are stale) is listed with no amount and its reason. The response is sent with Cache-Control: no-cache, because a converted price moves with the rates.
+     */
+    get: operations["PlatformPricing_GetPlatformPricing"];
   };
   "/api/v2/SubscriptionsService/SubscriptionPlans": {
     /**
      * Get all subscription plans
      * @description Retrieves all subscription plans for the specified tenant.
      */
-    get: operations["GetSubscriptionPlansAsync"];
+    get: operations["SubscriptionPlans_GetSubscriptionPlans"];
     /**
      * Create a subscription plan
      * @description Creates a new subscription plan for the specified tenant.
      */
-    post: operations["CreateSubscriptionPlanAsync"];
+    post: operations["SubscriptionPlans_CreateSubscriptionPlan"];
   };
   "/api/v2/SubscriptionsService/SubscriptionPlans/Count": {
     /**
      * Get subscription plans count
      * @description Returns the count of subscription plans for the specified tenant.
      */
-    get: operations["GetSubscriptionPlansCountAsync"];
+    get: operations["SubscriptionPlans_GetSubscriptionPlansCount"];
   };
   "/api/v2/SubscriptionsService/SubscriptionPlans/{planId}": {
     /**
      * Get a subscription plan by ID
      * @description Retrieves a subscription plan by its identifier.
      */
-    get: operations["GetSubscriptionPlanByIdAsync"];
+    get: operations["SubscriptionPlans_GetSubscriptionPlanById"];
     /**
      * Update a subscription plan
      * @description Updates an existing subscription plan.
      */
-    put: operations["UpdateSubscriptionPlanAsync"];
+    put: operations["SubscriptionPlans_UpdateSubscriptionPlan"];
     /**
      * Delete a subscription plan
      * @description Deletes a subscription plan by its identifier.
      */
-    delete: operations["DeleteSubscriptionPlanAsync"];
+    delete: operations["SubscriptionPlans_DeleteSubscriptionPlan"];
     /**
      * Patch a subscription plan
      * @description Patch a subscription plan
      */
-    patch: operations["PatchSubscriptionPlanAsync"];
+    patch: operations["SubscriptionPlans_PatchSubscriptionPlan"];
   };
   "/api/v2/SubscriptionsService/Subscriptions": {
     /**
      * Get all subscriptions
      * @description Retrieves all subscriptions for the specified tenant.
      */
-    get: operations["GetSubscriptionsAsync"];
+    get: operations["Subscriptions_GetSubscriptions"];
     /**
      * Create a subscription
      * @description Creates a new subscription for the specified tenant.
      */
-    post: operations["CreateSubscriptionAsync"];
+    post: operations["Subscriptions_CreateSubscription"];
   };
   "/api/v2/SubscriptionsService/Subscriptions/Count": {
     /**
      * Get subscriptions count
      * @description Returns the count of subscriptions for the specified tenant.
      */
-    get: operations["GetSubscriptionsCountAsync"];
+    get: operations["Subscriptions_GetSubscriptionsCount"];
   };
   "/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}": {
     /**
      * Get a subscription by ID
      * @description Retrieves a subscription by its identifier.
      */
-    get: operations["GetSubscriptionByIdAsync"];
+    get: operations["Subscriptions_GetSubscriptionById"];
     /**
      * Update a subscription
      * @description Updates an existing subscription.
      */
-    put: operations["UpdateSubscriptionAsync"];
+    put: operations["Subscriptions_UpdateSubscription"];
     /**
      * Delete a subscription
      * @description Deletes a subscription by its identifier.
      */
-    delete: operations["DeleteSubscriptionAsync"];
+    delete: operations["Subscriptions_DeleteSubscription"];
     /**
      * Patch a subscription
      * @description Patch a subscription
      */
-    patch: operations["PatchSubscriptionAsync"];
+    patch: operations["Subscriptions_PatchSubscription"];
   };
 }
 
@@ -396,6 +188,99 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    CommercialSubscriptionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      subscriptionPlanId?: string | null;
+      /** @enum {string|null} */
+      lifecycleState?: "Pending" | "Active" | "Suspended" | "Ended" | null;
+      /** Format: int32 */
+      quantity?: number;
+      /** Format: int32 */
+      activeCommercialTermsVersion?: number | null;
+      receiverBusinessId?: string | null;
+      organizationId?: string | null;
+      individualId?: string | null;
+      accountHolderId?: string | null;
+      /** Format: date-time */
+      startDateTime?: string;
+      /** Format: date-time */
+      endDateTime?: string;
+      /** Format: date-time */
+      nextInvoiceDateTime?: string;
+    };
+    CommercialSubscriptionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    CommercialSubscriptionDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CommercialSubscriptionDto"][] | null;
+    };
+    CommercialSubscriptionEstablishedDto: {
+      subscriptionId?: string | null;
+    };
+    CommercialSubscriptionEstablishedDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CommercialSubscriptionEstablishedDto"];
+    };
+    CommercialSubscriptionPayableObligationDto: {
+      subscriptionId?: string | null;
+      /** @enum {string} */
+      status?: "Payable" | "PendingMaterialization" | "Satisfied" | "NoOpenObligation";
+      /** @enum {string} */
+      obligationType?: "Invoice";
+      obligationReference?: string | null;
+      /** Format: int32 */
+      periodSequenceNumber?: number | null;
+    };
+    CommercialSubscriptionPayableObligationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CommercialSubscriptionPayableObligationDto"];
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -439,6 +324,21 @@ export interface components {
         [key: string]: string[] | null;
       }) | null;
       activityId?: string | null;
+    };
+    EstablishCommercialSubscriptionRequest: {
+      /** Format: uuid */
+      subscriptionPlanId: string;
+      /** @enum {string} */
+      billToMode: "Unknown" | "BusinessToConsumer" | "BusinessToBusiness" | "TenantToTenant";
+      billToReference: string;
+      /** Format: date-time */
+      periodStartUtc: string;
+      /** Format: date-time */
+      periodEndUtc: string;
+      timezoneId?: string | null;
+      /** Format: int32 */
+      quantity?: number;
+      idempotencyKey?: string | null;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -491,6 +391,57 @@ export interface components {
       path?: string | null;
       from?: string | null;
       value?: unknown;
+    };
+    PlatformPlanPriceDto: {
+      offeringKey?: string | null;
+      /** @enum {string} */
+      billingCycle?: "Monthly" | "Annual";
+      planSku?: string | null;
+      name?: string | null;
+      /** Format: int32 */
+      periodDays?: number;
+      /** Format: double */
+      amount?: number | null;
+      currencyId?: string | null;
+      /** Format: double */
+      pricedFromAmount?: number | null;
+      pricedFromCurrencyId?: string | null;
+      converted?: boolean;
+      /** Format: date-time */
+      forexRatesAsOfUtc?: string | null;
+      unavailable?: string | null;
+    };
+    PlatformPricingDto: {
+      currencyId?: string | null;
+      plans?: components["schemas"]["PlatformPlanPriceDto"][] | null;
+    };
+    PlatformPricingDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PlatformPricingDto"];
+    };
+    PurchaseOfferingRequest: {
+      offeringKey: string;
+      /** @enum {string} */
+      billingCycle?: "Monthly" | "Annual";
+      /** Format: date-time */
+      periodStartUtc?: string;
+      /** Format: date-time */
+      periodEndUtc?: string;
+      timezoneId?: string | null;
+      /** Format: int32 */
+      quantity?: number;
+      idempotencyKey?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1289,7 +1240,345 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  /**
+   * List commercial subscriptions
+   * @description Retrieves the acting tenant's commercial subscriptions, with optional OData filtering and paging.
+   */
+  CommercialSubscriptions_GetCommercialSubscriptions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CommercialSubscriptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CommercialSubscriptionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CommercialSubscriptionDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["CommercialSubscriptionDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Establish (purchase) a commercial subscription
+   * @description Establishes a commercial subscription from a catalog plan and stages its first period charge. This is purchase INITIATION, not a payment gateway: it NEVER calls a payment provider and NEVER marks the subscription paid or active. A positive-price establishment stays Pending, awaiting asynchronous payment finality; a zero-price establishment is satisfied on the platform's durable path. The payable obligation (invoice) is materialized ASYNCHRONOUSLY by the Billing lane, so no pay-link is returned here. Returns 200 with the new subscription id (the durable purchase coordinate): poll the commercial-subscriptions read for current LifecycleState, resolve this subscription's payable obligation via GET {subscriptionId}/PayableObligation, then obtain the pay-link via the Payments obligation-access-handle step once the obligation is materialized. The first billing period is built from the supplied UTC bounds and timezone. An optional IdempotencyKey makes a retry return the ORIGINAL subscription; the same key with different values is a 409 Conflict.
+   */
+  CommercialSubscriptions_EstablishCommercialSubscription: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EstablishCommercialSubscriptionRequest"];
+        "application/xml": components["schemas"]["EstablishCommercialSubscriptionRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CommercialSubscriptionEstablishedDtoEnvelope"];
+          "application/xml": components["schemas"]["CommercialSubscriptionEstablishedDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Purchase a platform-published offering
+   * @description Purchases a platform-published offering on behalf of the acting BUYER tenant, where the seller (Fenix) is a DISTINCT tenant. The public contract starts from an opaque OFFERING token (never a raw plan id): the platform seller and the concrete plan are resolved SERVER-SIDE (the platform seller authority + the offer registry), so a buyer cannot purchase an arbitrary tenant's plan. An offering that is not a registered platform offering, or a platform seller that is not configured, fails closed. Like establishment, this is purchase INITIATION, not a payment gateway: it NEVER calls a payment provider and NEVER marks the subscription paid or active. Returns 200 with the new subscription id (the durable purchase coordinate); the invoice materializes under the SELLER asynchronously. The BillingCycle selects the plan; the price is computed server-side from the plan, the seller's price policy and forex to the buyer's cart currency (a cross-currency price on stale forex rates is a 503), and the first billing period is the plan's own period from the purchase time. An optional IdempotencyKey makes a retry return the ORIGINAL subscription; the same key with different values is a 409 Conflict.
+   */
+  CommercialSubscriptions_PurchaseOffering: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PurchaseOfferingRequest"];
+        "application/xml": components["schemas"]["PurchaseOfferingRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CommercialSubscriptionEstablishedDtoEnvelope"];
+          "application/xml": components["schemas"]["CommercialSubscriptionEstablishedDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count commercial subscriptions
+   * @description Returns the count of the acting tenant's commercial subscriptions.
+   */
+  CommercialSubscriptions_GetCommercialSubscriptionsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CommercialSubscriptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CommercialSubscriptionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a commercial subscription's current payable obligation
+   * @description Resolves the CURRENT payable obligation coordinate for one of the acting tenant's commercial subscriptions so the purchase UI can hand it to the Payments pay-link mint. Returns the obligation reference (the materialized invoice id) with status Payable once the Billing lane has materialized the invoice; otherwise reports PendingMaterialization (charge staged, invoice not yet materialized), Satisfied (nothing outstanding) or NoOpenObligation. Fail-closed and tenant-scoped: a subscription the acting tenant does not own resolves to 404. This read NEVER mints a pay-link and NEVER calls a payment provider.
+   */
+  CommercialSubscriptions_GetSubscriptionPayableObligation: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        subscriptionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CommercialSubscriptionPayableObligationDtoEnvelope"];
+          "application/xml": components["schemas"]["CommercialSubscriptionPayableObligationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1304,11 +1593,234 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get the platform plans priced in a currency
+   * @description Returns the platform's purchasable plans (one per offering and billing cycle) priced in the requested currency, computed exactly as a purchase computes them: the plan's price, then the seller's price list in that currency, else forex conversion. Anonymous. A plan that cannot be priced in the currency right now (for example a conversion while the forex rates are stale) is listed with no amount and its reason. The response is sent with Cache-Control: no-cache, because a converted price moves with the rates.
+   */
+  PlatformPricing_GetPlatformPricing: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PlatformPricingDtoEnvelope"];
+          "application/xml": components["schemas"]["PlatformPricingDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /**
    * Get all subscription plans
    * @description Retrieves all subscription plans for the specified tenant.
    */
-  GetSubscriptionPlansAsync: {
+  SubscriptionPlans_GetSubscriptionPlans: {
     parameters: {
       query: {
         tenantId: string;
@@ -1352,7 +1864,7 @@ export interface operations {
    * Create a subscription plan
    * @description Creates a new subscription plan for the specified tenant.
    */
-  CreateSubscriptionPlanAsync: {
+  SubscriptionPlans_CreateSubscriptionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1396,7 +1908,7 @@ export interface operations {
    * Get subscription plans count
    * @description Returns the count of subscription plans for the specified tenant.
    */
-  GetSubscriptionPlansCountAsync: {
+  SubscriptionPlans_GetSubscriptionPlansCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1440,7 +1952,7 @@ export interface operations {
    * Get a subscription plan by ID
    * @description Retrieves a subscription plan by its identifier.
    */
-  GetSubscriptionPlanByIdAsync: {
+  SubscriptionPlans_GetSubscriptionPlanById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1481,7 +1993,7 @@ export interface operations {
    * Update a subscription plan
    * @description Updates an existing subscription plan.
    */
-  UpdateSubscriptionPlanAsync: {
+  SubscriptionPlans_UpdateSubscriptionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1528,7 +2040,7 @@ export interface operations {
    * Delete a subscription plan
    * @description Deletes a subscription plan by its identifier.
    */
-  DeleteSubscriptionPlanAsync: {
+  SubscriptionPlans_DeleteSubscriptionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1569,7 +2081,7 @@ export interface operations {
    * Patch a subscription plan
    * @description Patch a subscription plan
    */
-  PatchSubscriptionPlanAsync: {
+  SubscriptionPlans_PatchSubscriptionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1616,7 +2128,7 @@ export interface operations {
    * Get all subscriptions
    * @description Retrieves all subscriptions for the specified tenant.
    */
-  GetSubscriptionsAsync: {
+  Subscriptions_GetSubscriptions: {
     parameters: {
       query: {
         tenantId: string;
@@ -1660,7 +2172,7 @@ export interface operations {
    * Create a subscription
    * @description Creates a new subscription for the specified tenant.
    */
-  CreateSubscriptionAsync: {
+  Subscriptions_CreateSubscription: {
     parameters: {
       query: {
         tenantId: string;
@@ -1704,7 +2216,7 @@ export interface operations {
    * Get subscriptions count
    * @description Returns the count of subscriptions for the specified tenant.
    */
-  GetSubscriptionsCountAsync: {
+  Subscriptions_GetSubscriptionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1748,7 +2260,7 @@ export interface operations {
    * Get a subscription by ID
    * @description Retrieves a subscription by its identifier.
    */
-  GetSubscriptionByIdAsync: {
+  Subscriptions_GetSubscriptionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1789,7 +2301,7 @@ export interface operations {
    * Update a subscription
    * @description Updates an existing subscription.
    */
-  UpdateSubscriptionAsync: {
+  Subscriptions_UpdateSubscription: {
     parameters: {
       query: {
         tenantId: string;
@@ -1836,7 +2348,7 @@ export interface operations {
    * Delete a subscription
    * @description Deletes a subscription by its identifier.
    */
-  DeleteSubscriptionAsync: {
+  Subscriptions_DeleteSubscription: {
     parameters: {
       query: {
         tenantId: string;
@@ -1877,7 +2389,7 @@ export interface operations {
    * Patch a subscription
    * @description Patch a subscription
    */
-  PatchSubscriptionAsync: {
+  Subscriptions_PatchSubscription: {
     parameters: {
       query: {
         tenantId: string;

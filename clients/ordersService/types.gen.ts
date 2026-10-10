@@ -71,8 +71,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -132,8 +137,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type EmailDispatchRequest = {
@@ -1445,72 +1455,72 @@ export type UserDtoWritable = {
     siteTheme?: 'System' | 'Light' | 'Dark';
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1520,32 +1530,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1556,81 +1566,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1641,25 +1651,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1670,25 +1680,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1699,18 +1709,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1720,14 +1730,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1736,14 +1746,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1752,28 +1762,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type SubmitCartData = {
+export type OrdersSubmitCartData = {
     body?: never;
     path?: never;
     query: {
@@ -1782,25 +1792,25 @@ export type SubmitCartData = {
     url: '/api/v2/OrdersService/Orders/SubmitCart';
 };
 
-export type SubmitCartErrors = {
+export type OrdersSubmitCartErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type SubmitCartError = SubmitCartErrors[keyof SubmitCartErrors];
+export type OrdersSubmitCartError = OrdersSubmitCartErrors[keyof OrdersSubmitCartErrors];
 
-export type SubmitCartResponses = {
+export type OrdersSubmitCartResponses = {
     /**
      * OK
      */
     200: OrderDtoEnvelopeReadable;
 };
 
-export type SubmitCartResponse = SubmitCartResponses[keyof SubmitCartResponses];
+export type OrdersSubmitCartResponse = OrdersSubmitCartResponses[keyof OrdersSubmitCartResponses];
 
-export type GetOrdersData = {
+export type OrdersGetOrdersData = {
     body?: OrderDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1809,25 +1819,25 @@ export type GetOrdersData = {
     url: '/api/v2/OrdersService/Orders';
 };
 
-export type GetOrdersErrors = {
+export type OrdersGetOrdersErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOrdersError = GetOrdersErrors[keyof GetOrdersErrors];
+export type OrdersGetOrdersError = OrdersGetOrdersErrors[keyof OrdersGetOrdersErrors];
 
-export type GetOrdersResponses = {
+export type OrdersGetOrdersResponses = {
     /**
      * OK
      */
     200: OrderDtoListEnvelopeReadable;
 };
 
-export type GetOrdersResponse = GetOrdersResponses[keyof GetOrdersResponses];
+export type OrdersGetOrdersResponse = OrdersGetOrdersResponses[keyof OrdersGetOrdersResponses];
 
-export type CreateOrderData = {
+export type OrdersCreateOrderData = {
     body?: OrderCreateDto;
     path?: never;
     query: {
@@ -1836,25 +1846,25 @@ export type CreateOrderData = {
     url: '/api/v2/OrdersService/Orders';
 };
 
-export type CreateOrderErrors = {
+export type OrdersCreateOrderErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateOrderError = CreateOrderErrors[keyof CreateOrderErrors];
+export type OrdersCreateOrderError = OrdersCreateOrderErrors[keyof OrdersCreateOrderErrors];
 
-export type CreateOrderResponses = {
+export type OrdersCreateOrderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateOrderResponse = CreateOrderResponses[keyof CreateOrderResponses];
+export type OrdersCreateOrderResponse = OrdersCreateOrderResponses[keyof OrdersCreateOrderResponses];
 
-export type GetExtendedOrdersData = {
+export type OrdersGetExtendedOrdersData = {
     body?: ExtendedOrderDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1863,25 +1873,25 @@ export type GetExtendedOrdersData = {
     url: '/api/v2/OrdersService/Orders/Extended';
 };
 
-export type GetExtendedOrdersErrors = {
+export type OrdersGetExtendedOrdersErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedOrdersError = GetExtendedOrdersErrors[keyof GetExtendedOrdersErrors];
+export type OrdersGetExtendedOrdersError = OrdersGetExtendedOrdersErrors[keyof OrdersGetExtendedOrdersErrors];
 
-export type GetExtendedOrdersResponses = {
+export type OrdersGetExtendedOrdersResponses = {
     /**
      * OK
      */
     200: ExtendedOrderDtoListEnvelopeReadable;
 };
 
-export type GetExtendedOrdersResponse = GetExtendedOrdersResponses[keyof GetExtendedOrdersResponses];
+export type OrdersGetExtendedOrdersResponse = OrdersGetExtendedOrdersResponses[keyof OrdersGetExtendedOrdersResponses];
 
-export type GetOrdersCountData = {
+export type OrdersGetOrdersCountData = {
     body?: OrderDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1890,25 +1900,25 @@ export type GetOrdersCountData = {
     url: '/api/v2/OrdersService/Orders/Count';
 };
 
-export type GetOrdersCountErrors = {
+export type OrdersGetOrdersCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOrdersCountError = GetOrdersCountErrors[keyof GetOrdersCountErrors];
+export type OrdersGetOrdersCountError = OrdersGetOrdersCountErrors[keyof OrdersGetOrdersCountErrors];
 
-export type GetOrdersCountResponses = {
+export type OrdersGetOrdersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOrdersCountResponse = GetOrdersCountResponses[keyof GetOrdersCountResponses];
+export type OrdersGetOrdersCountResponse = OrdersGetOrdersCountResponses[keyof OrdersGetOrdersCountResponses];
 
-export type DeleteOrderData = {
+export type OrdersDeleteOrderData = {
     body?: never;
     path: {
         orderId: string;
@@ -1919,25 +1929,25 @@ export type DeleteOrderData = {
     url: '/api/v2/OrdersService/Orders/{orderId}';
 };
 
-export type DeleteOrderErrors = {
+export type OrdersDeleteOrderErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteOrderError = DeleteOrderErrors[keyof DeleteOrderErrors];
+export type OrdersDeleteOrderError = OrdersDeleteOrderErrors[keyof OrdersDeleteOrderErrors];
 
-export type DeleteOrderResponses = {
+export type OrdersDeleteOrderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteOrderResponse = DeleteOrderResponses[keyof DeleteOrderResponses];
+export type OrdersDeleteOrderResponse = OrdersDeleteOrderResponses[keyof OrdersDeleteOrderResponses];
 
-export type GetOrderData = {
+export type OrdersGetOrderData = {
     body?: never;
     path: {
         orderId: string;
@@ -1948,25 +1958,25 @@ export type GetOrderData = {
     url: '/api/v2/OrdersService/Orders/{orderId}';
 };
 
-export type GetOrderErrors = {
+export type OrdersGetOrderErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOrderError = GetOrderErrors[keyof GetOrderErrors];
+export type OrdersGetOrderError = OrdersGetOrderErrors[keyof OrdersGetOrderErrors];
 
-export type GetOrderResponses = {
+export type OrdersGetOrderResponses = {
     /**
      * OK
      */
     200: OrderDtoEnvelopeReadable;
 };
 
-export type GetOrderResponse = GetOrderResponses[keyof GetOrderResponses];
+export type OrdersGetOrderResponse = OrdersGetOrderResponses[keyof OrdersGetOrderResponses];
 
-export type PatchOrderData = {
+export type OrdersPatchOrderData = {
     body?: Array<PatchOperation>;
     path: {
         orderId: string;
@@ -1977,25 +1987,25 @@ export type PatchOrderData = {
     url: '/api/v2/OrdersService/Orders/{orderId}';
 };
 
-export type PatchOrderErrors = {
+export type OrdersPatchOrderErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchOrderError = PatchOrderErrors[keyof PatchOrderErrors];
+export type OrdersPatchOrderError = OrdersPatchOrderErrors[keyof OrdersPatchOrderErrors];
 
-export type PatchOrderResponses = {
+export type OrdersPatchOrderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchOrderResponse = PatchOrderResponses[keyof PatchOrderResponses];
+export type OrdersPatchOrderResponse = OrdersPatchOrderResponses[keyof OrdersPatchOrderResponses];
 
-export type UpdateOrderData = {
+export type OrdersUpdateOrderData = {
     body?: OrderUpdateDto;
     path: {
         orderId: string;
@@ -2006,25 +2016,25 @@ export type UpdateOrderData = {
     url: '/api/v2/OrdersService/Orders/{orderId}';
 };
 
-export type UpdateOrderErrors = {
+export type OrdersUpdateOrderErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateOrderError = UpdateOrderErrors[keyof UpdateOrderErrors];
+export type OrdersUpdateOrderError = OrdersUpdateOrderErrors[keyof OrdersUpdateOrderErrors];
 
-export type UpdateOrderResponses = {
+export type OrdersUpdateOrderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateOrderResponse = UpdateOrderResponses[keyof UpdateOrderResponses];
+export type OrdersUpdateOrderResponse = OrdersUpdateOrderResponses[keyof OrdersUpdateOrderResponses];
 
-export type CalculateOrderData = {
+export type OrdersCalculateOrderData = {
     body?: never;
     path: {
         orderId: string;
@@ -2035,25 +2045,25 @@ export type CalculateOrderData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Calculate';
 };
 
-export type CalculateOrderErrors = {
+export type OrdersCalculateOrderErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateOrderError = CalculateOrderErrors[keyof CalculateOrderErrors];
+export type OrdersCalculateOrderError = OrdersCalculateOrderErrors[keyof OrdersCalculateOrderErrors];
 
-export type CalculateOrderResponses = {
+export type OrdersCalculateOrderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateOrderResponse = CalculateOrderResponses[keyof CalculateOrderResponses];
+export type OrdersCalculateOrderResponse = OrdersCalculateOrderResponses[keyof OrdersCalculateOrderResponses];
 
-export type GetOrderLinesData = {
+export type OrdersGetOrderLinesData = {
     body?: OrderLineDtoCollectionQueryParametersWritable;
     path: {
         orderId: string;
@@ -2065,25 +2075,25 @@ export type GetOrderLinesData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines';
 };
 
-export type GetOrderLinesErrors = {
+export type OrdersGetOrderLinesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOrderLinesError = GetOrderLinesErrors[keyof GetOrderLinesErrors];
+export type OrdersGetOrderLinesError = OrdersGetOrderLinesErrors[keyof OrdersGetOrderLinesErrors];
 
-export type GetOrderLinesResponses = {
+export type OrdersGetOrderLinesResponses = {
     /**
      * OK
      */
     200: OrderLineDtoListEnvelopeReadable;
 };
 
-export type GetOrderLinesResponse = GetOrderLinesResponses[keyof GetOrderLinesResponses];
+export type OrdersGetOrderLinesResponse = OrdersGetOrderLinesResponses[keyof OrdersGetOrderLinesResponses];
 
-export type CreateOrderLineData = {
+export type OrdersCreateOrderLineData = {
     body?: OrderLineCreateDto;
     path: {
         orderId: string;
@@ -2094,25 +2104,25 @@ export type CreateOrderLineData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines';
 };
 
-export type CreateOrderLineErrors = {
+export type OrdersCreateOrderLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateOrderLineError = CreateOrderLineErrors[keyof CreateOrderLineErrors];
+export type OrdersCreateOrderLineError = OrdersCreateOrderLineErrors[keyof OrdersCreateOrderLineErrors];
 
-export type CreateOrderLineResponses = {
+export type OrdersCreateOrderLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateOrderLineResponse = CreateOrderLineResponses[keyof CreateOrderLineResponses];
+export type OrdersCreateOrderLineResponse = OrdersCreateOrderLineResponses[keyof OrdersCreateOrderLineResponses];
 
-export type GetOrderLinesCountData = {
+export type OrdersGetOrderLinesCountData = {
     body?: OrderLineDtoCollectionQueryParametersWritable;
     path: {
         orderId: string;
@@ -2123,25 +2133,25 @@ export type GetOrderLinesCountData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines/Count';
 };
 
-export type GetOrderLinesCountErrors = {
+export type OrdersGetOrderLinesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOrderLinesCountError = GetOrderLinesCountErrors[keyof GetOrderLinesCountErrors];
+export type OrdersGetOrderLinesCountError = OrdersGetOrderLinesCountErrors[keyof OrdersGetOrderLinesCountErrors];
 
-export type GetOrderLinesCountResponses = {
+export type OrdersGetOrderLinesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOrderLinesCountResponse = GetOrderLinesCountResponses[keyof GetOrderLinesCountResponses];
+export type OrdersGetOrderLinesCountResponse = OrdersGetOrderLinesCountResponses[keyof OrdersGetOrderLinesCountResponses];
 
-export type DeleteOrderLineData = {
+export type OrdersDeleteOrderLineData = {
     body?: never;
     path: {
         orderId: string;
@@ -2153,25 +2163,25 @@ export type DeleteOrderLineData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}';
 };
 
-export type DeleteOrderLineErrors = {
+export type OrdersDeleteOrderLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteOrderLineError = DeleteOrderLineErrors[keyof DeleteOrderLineErrors];
+export type OrdersDeleteOrderLineError = OrdersDeleteOrderLineErrors[keyof OrdersDeleteOrderLineErrors];
 
-export type DeleteOrderLineResponses = {
+export type OrdersDeleteOrderLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteOrderLineResponse = DeleteOrderLineResponses[keyof DeleteOrderLineResponses];
+export type OrdersDeleteOrderLineResponse = OrdersDeleteOrderLineResponses[keyof OrdersDeleteOrderLineResponses];
 
-export type GetOrderLineData = {
+export type OrdersGetOrderLineData = {
     body?: never;
     path: {
         orderId: string;
@@ -2183,25 +2193,25 @@ export type GetOrderLineData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}';
 };
 
-export type GetOrderLineErrors = {
+export type OrdersGetOrderLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOrderLineError = GetOrderLineErrors[keyof GetOrderLineErrors];
+export type OrdersGetOrderLineError = OrdersGetOrderLineErrors[keyof OrdersGetOrderLineErrors];
 
-export type GetOrderLineResponses = {
+export type OrdersGetOrderLineResponses = {
     /**
      * OK
      */
     200: OrderLineDtoEnvelopeReadable;
 };
 
-export type GetOrderLineResponse = GetOrderLineResponses[keyof GetOrderLineResponses];
+export type OrdersGetOrderLineResponse = OrdersGetOrderLineResponses[keyof OrdersGetOrderLineResponses];
 
-export type PatchOrderLineData = {
+export type OrdersPatchOrderLineData = {
     body?: Array<PatchOperation>;
     path: {
         orderId: string;
@@ -2213,25 +2223,25 @@ export type PatchOrderLineData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}';
 };
 
-export type PatchOrderLineErrors = {
+export type OrdersPatchOrderLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchOrderLineError = PatchOrderLineErrors[keyof PatchOrderLineErrors];
+export type OrdersPatchOrderLineError = OrdersPatchOrderLineErrors[keyof OrdersPatchOrderLineErrors];
 
-export type PatchOrderLineResponses = {
+export type OrdersPatchOrderLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchOrderLineResponse = PatchOrderLineResponses[keyof PatchOrderLineResponses];
+export type OrdersPatchOrderLineResponse = OrdersPatchOrderLineResponses[keyof OrdersPatchOrderLineResponses];
 
-export type UpdateOrderLineData = {
+export type OrdersUpdateOrderLineData = {
     body?: OrderLineUpdateDto;
     path: {
         orderId: string;
@@ -2243,25 +2253,25 @@ export type UpdateOrderLineData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}';
 };
 
-export type UpdateOrderLineErrors = {
+export type OrdersUpdateOrderLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateOrderLineError = UpdateOrderLineErrors[keyof UpdateOrderLineErrors];
+export type OrdersUpdateOrderLineError = OrdersUpdateOrderLineErrors[keyof OrdersUpdateOrderLineErrors];
 
-export type UpdateOrderLineResponses = {
+export type OrdersUpdateOrderLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateOrderLineResponse = UpdateOrderLineResponses[keyof UpdateOrderLineResponses];
+export type OrdersUpdateOrderLineResponse = OrdersUpdateOrderLineResponses[keyof OrdersUpdateOrderLineResponses];
 
-export type CalculateOrderLineData = {
+export type OrdersCalculateOrderLineData = {
     body?: never;
     path: {
         orderId: string;
@@ -2273,25 +2283,25 @@ export type CalculateOrderLineData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}/Calculate';
 };
 
-export type CalculateOrderLineErrors = {
+export type OrdersCalculateOrderLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateOrderLineError = CalculateOrderLineErrors[keyof CalculateOrderLineErrors];
+export type OrdersCalculateOrderLineError = OrdersCalculateOrderLineErrors[keyof OrdersCalculateOrderLineErrors];
 
-export type CalculateOrderLineResponses = {
+export type OrdersCalculateOrderLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateOrderLineResponse = CalculateOrderLineResponses[keyof CalculateOrderLineResponses];
+export type OrdersCalculateOrderLineResponse = OrdersCalculateOrderLineResponses[keyof OrdersCalculateOrderLineResponses];
 
-export type SendOrderEmailData = {
+export type OrdersSendOrderEmailData = {
     body?: EmailDispatchRequest;
     path: {
         orderId: string;
@@ -2302,7 +2312,7 @@ export type SendOrderEmailData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Emails/Send';
 };
 
-export type SendOrderEmailErrors = {
+export type OrdersSendOrderEmailErrors = {
     /**
      * Unauthorized
      */
@@ -2313,18 +2323,18 @@ export type SendOrderEmailErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SendOrderEmailError = SendOrderEmailErrors[keyof SendOrderEmailErrors];
+export type OrdersSendOrderEmailError = OrdersSendOrderEmailErrors[keyof OrdersSendOrderEmailErrors];
 
-export type SendOrderEmailResponses = {
+export type OrdersSendOrderEmailResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SendOrderEmailResponse = SendOrderEmailResponses[keyof SendOrderEmailResponses];
+export type OrdersSendOrderEmailResponse = OrdersSendOrderEmailResponses[keyof OrdersSendOrderEmailResponses];
 
-export type PreviewOrderEmailTemplateData = {
+export type OrdersPreviewOrderEmailTemplateData = {
     body?: EmailDispatchRequest;
     path: {
         orderId: string;
@@ -2335,7 +2345,7 @@ export type PreviewOrderEmailTemplateData = {
     url: '/api/v2/OrdersService/Orders/{orderId}/Emails/Preview';
 };
 
-export type PreviewOrderEmailTemplateResponses = {
+export type OrdersPreviewOrderEmailTemplateResponses = {
     /**
      * OK
      */

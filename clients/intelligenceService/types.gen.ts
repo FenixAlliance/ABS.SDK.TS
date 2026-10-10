@@ -13,6 +13,436 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type AgentExecutionDiagnosticDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    readonly statusName?: string | null;
+    createdAt?: string;
+    currentLeaseGeneration?: number | null;
+    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    readonly currentLeaseStatusName?: string | null;
+    currentLeaseClaimedAtUtc?: string | null;
+    leaseCount?: number;
+    observedAtUtc?: string;
+    anomalyCode?: 'None' | 'WaitingForApproval' | 'RetryableInfrastructure' | 'StaleFence' | 'OutcomeUnknown' | 'AlreadyFinalized' | 'ClaimNotFound' | 'StuckOrphaned';
+    readonly anomalyCodeName?: string | null;
+    recommendedAction?: 'Wait' | 'Retry' | 'Reconcile' | 'Completed' | 'ManualAction';
+    readonly recommendedActionName?: string | null;
+    diagnosticSummary?: string | null;
+    claimObserved?: boolean | null;
+    claimState?: 'Pending' | 'Claimed' | 'Executing' | 'Finalized' | 'Failed' | 'OutcomeUnknown';
+    claimFingerprintRecorded?: boolean | null;
+};
+
+export type AgentExecutionDiagnosticDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    createdAt?: string;
+    currentLeaseGeneration?: number | null;
+    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    currentLeaseClaimedAtUtc?: string | null;
+    leaseCount?: number;
+    observedAtUtc?: string;
+    anomalyCode?: 'None' | 'WaitingForApproval' | 'RetryableInfrastructure' | 'StaleFence' | 'OutcomeUnknown' | 'AlreadyFinalized' | 'ClaimNotFound' | 'StuckOrphaned';
+    recommendedAction?: 'Wait' | 'Retry' | 'Reconcile' | 'Completed' | 'ManualAction';
+    diagnosticSummary?: string | null;
+    claimObserved?: boolean | null;
+    claimState?: 'Pending' | 'Claimed' | 'Executing' | 'Finalized' | 'Failed' | 'OutcomeUnknown';
+    claimFingerprintRecorded?: boolean | null;
+};
+
+export type AgentExecutionDiagnosticDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AgentExecutionDiagnosticDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type AgentExecutionDiagnosticDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentExecutionDiagnosticDtoReadable;
+};
+
+export type AgentExecutionDiagnosticDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentExecutionDiagnosticDtoWritable;
+};
+
+export type AgentExecutionDiagnosticDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AgentExecutionDiagnosticDtoReadable> | null;
+};
+
+export type AgentExecutionDiagnosticDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AgentExecutionDiagnosticDtoWritable> | null;
+};
+
+export type AgentPermissionReadinessDto = {
+    agentId?: string | null;
+    executionEnrollmentId?: string | null;
+    required?: Array<AgentRequiredPermissionDto> | null;
+    missing?: Array<string> | null;
+    orphaned?: Array<string> | null;
+};
+
+export type AgentPermissionReadinessDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentPermissionReadinessDto;
+};
+
+export type AgentPermissionReadinessDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentPermissionReadinessDto;
+};
+
+export type AgentRequiredPermissionDto = {
+    permission?: string | null;
+    toolKeys?: Array<string> | null;
+    skillNames?: Array<string> | null;
+    held?: boolean;
+};
+
+export type AgentRuntimePoolCreationDto = {
+    poolId?: string | null;
+};
+
+export type AgentRuntimePoolCreationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentRuntimePoolCreationDto;
+};
+
+export type AgentRuntimePoolCreationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentRuntimePoolCreationDto;
+};
+
+export type AgentRuntimeWorkerRegistrationDto = {
+    workerId?: string | null;
+};
+
+export type AgentRuntimeWorkerRegistrationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentRuntimeWorkerRegistrationDto;
+};
+
+export type AgentRuntimeWorkerRegistrationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentRuntimeWorkerRegistrationDto;
+};
+
+export type AgentWorkAssignmentDto = {
+    workOrderId?: string | null;
+    leaseGeneration?: number;
+    requiredCapabilities?: string | null;
+};
+
+export type AgentWorkAssignmentDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentWorkAssignmentDto;
+};
+
+export type AgentWorkAssignmentDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentWorkAssignmentDto;
+};
+
+export type AgentWorkOrderCancellationDto = {
+    cancelled?: boolean;
+};
+
+export type AgentWorkOrderCancellationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentWorkOrderCancellationDto;
+};
+
+export type AgentWorkOrderCancellationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentWorkOrderCancellationDto;
+};
+
+export type AgentWorkOrderStatusDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    requiredCapabilities?: string | null;
+    preferredPoolId?: string | null;
+    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    readonly statusName?: string | null;
+    createdAt?: string;
+    tenantId?: string | null;
+    currentLeaseGeneration?: number | null;
+    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    readonly currentLeaseStatusName?: string | null;
+    leaseCount?: number;
+};
+
+export type AgentWorkOrderStatusDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    requiredCapabilities?: string | null;
+    preferredPoolId?: string | null;
+    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    createdAt?: string;
+    tenantId?: string | null;
+    currentLeaseGeneration?: number | null;
+    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    leaseCount?: number;
+};
+
+export type AgentWorkOrderStatusDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AgentWorkOrderStatusDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type AgentWorkOrderStatusDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentWorkOrderStatusDtoReadable;
+};
+
+export type AgentWorkOrderStatusDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentWorkOrderStatusDtoWritable;
+};
+
+export type AgentWorkOrderStatusDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AgentWorkOrderStatusDtoReadable> | null;
+};
+
+export type AgentWorkOrderStatusDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AgentWorkOrderStatusDtoWritable> | null;
+};
+
+export type AiModelAvailabilityDto = {
+    modelId?: string | null;
+    key?: string | null;
+    displayName?: string | null;
+    family?: string | null;
+    category?: string | null;
+    supportsTools?: boolean;
+    supportsReasoning?: boolean;
+    supportsVision?: boolean;
+    supportsStreaming?: boolean;
+    profileKey?: string | null;
+    specialized?: boolean;
+    jurisdiction?: string | null;
+    available?: boolean;
+    connectionScope?: 'Instance' | 'Tenant';
+};
+
+export type AiModelCategoryDto = {
+    key?: string | null;
+    displayName?: string | null;
+    models?: Array<AiModelAvailabilityDto> | null;
+};
+
+export type AiProviderAvailabilityDto = {
+    providerKey?: string | null;
+    displayName?: string | null;
+    available?: boolean;
+    connectionScope?: 'Instance' | 'Tenant';
+    categories?: Array<AiModelCategoryDto> | null;
+};
+
+export type AiProviderAvailabilityDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AiProviderAvailabilityDto> | null;
+};
+
+export type AiProviderAvailabilityDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AiProviderAvailabilityDto> | null;
+};
+
 export type AiProviderDto = {
     providerKey?: string | null;
 };
@@ -40,6 +470,396 @@ export type AiProviderDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<AiProviderDto> | null;
+};
+
+export type AiRunDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    correlationId?: string | null;
+    conversationId?: string | null;
+    agentKey?: string | null;
+    providerKey?: string | null;
+    modelId?: string | null;
+    engineKey?: string | null;
+    fundingScope?: 'Instance' | 'Tenant';
+    readonly fundingScopeName?: string | null;
+    remoteIdentifier?: string | null;
+    endpoint?: string | null;
+    credentialRef?: string | null;
+    status?: 'Started' | 'Succeeded' | 'Failed' | 'Rejected' | 'AwaitingApproval' | 'InDoubt';
+    readonly statusName?: string | null;
+    kind?: 'Chat' | 'ToolAugmented';
+    startedAt?: string;
+    completedAt?: string | null;
+    summary?: string | null;
+    errorDetail?: string | null;
+    approvalGranted?: boolean | null;
+    resultMutationRef?: string | null;
+    pendingApprovalTicketId?: string | null;
+    pendingCallId?: string | null;
+    pendingToolKey?: string | null;
+    parentRunId?: string | null;
+    promptTokens?: number | null;
+    completionTokens?: number | null;
+    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    tenantId?: string | null;
+    userId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type AiRunDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    correlationId?: string | null;
+    conversationId?: string | null;
+    agentKey?: string | null;
+    providerKey?: string | null;
+    modelId?: string | null;
+    engineKey?: string | null;
+    fundingScope?: 'Instance' | 'Tenant';
+    remoteIdentifier?: string | null;
+    endpoint?: string | null;
+    credentialRef?: string | null;
+    status?: 'Started' | 'Succeeded' | 'Failed' | 'Rejected' | 'AwaitingApproval' | 'InDoubt';
+    kind?: 'Chat' | 'ToolAugmented';
+    startedAt?: string;
+    completedAt?: string | null;
+    summary?: string | null;
+    errorDetail?: string | null;
+    approvalGranted?: boolean | null;
+    resultMutationRef?: string | null;
+    pendingApprovalTicketId?: string | null;
+    pendingCallId?: string | null;
+    pendingToolKey?: string | null;
+    parentRunId?: string | null;
+    promptTokens?: number | null;
+    completionTokens?: number | null;
+    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    tenantId?: string | null;
+    userId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type AiRunDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AiRunDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type AiRunDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AiRunDtoReadable;
+};
+
+export type AiRunDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AiRunDtoWritable;
+};
+
+export type AiRunDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AiRunDtoReadable> | null;
+};
+
+export type AiRunDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AiRunDtoWritable> | null;
+};
+
+export type AiUsageObservationDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    aiRunId?: string | null;
+    providerKey?: string | null;
+    modelKey?: string | null;
+    connectionScope?: 'Instance' | 'Tenant';
+    readonly connectionScopeName?: string | null;
+    promptUnits?: number | null;
+    completionUnits?: number | null;
+    reasoningUnits?: number | null;
+    observedAt?: string;
+    usageState?: 'Measured' | 'Unknown' | 'LateMeasured';
+    readonly usageStateName?: string | null;
+    unitsAttachedAt?: string | null;
+    source?: string | null;
+    tenantId?: string | null;
+};
+
+export type AiUsageObservationDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    aiRunId?: string | null;
+    providerKey?: string | null;
+    modelKey?: string | null;
+    connectionScope?: 'Instance' | 'Tenant';
+    promptUnits?: number | null;
+    completionUnits?: number | null;
+    reasoningUnits?: number | null;
+    observedAt?: string;
+    usageState?: 'Measured' | 'Unknown' | 'LateMeasured';
+    unitsAttachedAt?: string | null;
+    source?: string | null;
+    tenantId?: string | null;
+};
+
+export type AiUsageObservationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AiUsageObservationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type AiUsageObservationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AiUsageObservationDtoReadable;
+};
+
+export type AiUsageObservationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AiUsageObservationDtoWritable;
+};
+
+export type AiUsageObservationDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AiUsageObservationDtoReadable> | null;
+};
+
+export type AiUsageObservationDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AiUsageObservationDtoWritable> | null;
+};
+
+export type ApprovalAdviceAdvisorDisclosureDto = {
+    templateId?: string | null;
+    templateVersion?: string | null;
+    displayName?: string | null;
+    purpose?: string | null;
+    questionKind?: string | null;
+    question?: string | null;
+    answers?: Array<ApprovalAdviceAnswerDisclosureDto> | null;
+    inputSet?: string | null;
+    snapshotSchemaVersion?: string | null;
+    fields?: Array<string> | null;
+};
+
+export type ApprovalAdviceAnswerDisclosureDto = {
+    key?: string | null;
+    description?: string | null;
+};
+
+export type ApprovalAdviceConsentDto = {
+    tenantId?: string | null;
+    state?: 'OptedIn' | 'OptedOut';
+    isOptedIn?: boolean;
+    disclosureFingerprint?: string | null;
+    currentDisclosureFingerprint?: string | null;
+    isDisclosureCurrent?: boolean;
+    reconfirmationRequired?: boolean;
+    instanceEnabled?: boolean;
+    adviceActive?: boolean;
+    providerKey?: string | null;
+    modelSelector?: string | null;
+    inputSetSchemaVersions?: string | null;
+    optedInByEnrollmentId?: string | null;
+    optedInAt?: string | null;
+    optedOutByEnrollmentId?: string | null;
+    optedOutAt?: string | null;
+};
+
+export type ApprovalAdviceConsentDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ApprovalAdviceConsentDto;
+};
+
+export type ApprovalAdviceConsentDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ApprovalAdviceConsentDto;
+};
+
+export type ApprovalAdviceDisclosureDto = {
+    formatVersion?: string | null;
+    instanceEnabled?: boolean;
+    providerKey?: string | null;
+    providerDisplayName?: string | null;
+    modelSelector?: string | null;
+    connectionScope?: string | null;
+    advisors?: Array<ApprovalAdviceAdvisorDisclosureDto> | null;
+    neverSent?: Array<string> | null;
+    assurances?: Array<string> | null;
+    recordKeeping?: string | null;
+    fingerprint?: string | null;
+};
+
+export type ApprovalAdviceDisclosureDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ApprovalAdviceDisclosureDto;
+};
+
+export type ApprovalAdviceDisclosureDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ApprovalAdviceDisclosureDto;
+};
+
+export type ApprovalAdviceOptInRequestDto = {
+    disclosureFingerprint?: string | null;
+};
+
+export type BuiltInAgentCapabilityDto = {
+    key?: string | null;
+    name?: string | null;
+    description?: string | null;
+    category?: string | null;
+    kind?: 'SelfState' | 'CurrentContext';
+};
+
+export type BuiltInAgentCapabilityDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BuiltInAgentCapabilityDto> | null;
+};
+
+export type BuiltInAgentCapabilityDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BuiltInAgentCapabilityDto> | null;
 };
 
 export type CapabilityDto = {
@@ -114,6 +934,10 @@ export type CapabilityDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<CapabilityDto> | null;
+};
+
+export type ClaimNextAgentWorkerRequest = {
+    workerId?: string;
 };
 
 export type CognitiveAgentConversationCreateDto = {
@@ -735,6 +1559,12 @@ export type CognitiveSkillUpdateDto = {
     tools?: Array<CognitiveSkillToolDto> | null;
 };
 
+export type CompleteAgentWorkOrderRequest = {
+    workerId?: string;
+    workOrderId?: string;
+    leaseGeneration?: number;
+};
+
 export type ConversationAttachmentUploadResultDto = {
     fileId?: string | null;
     name?: string | null;
@@ -767,6 +1597,124 @@ export type ConversationAttachmentUploadResultDtoEnvelopeWritable = {
     result?: ConversationAttachmentUploadResultDto;
 };
 
+export type ConversationPendingApprovalDto = {
+    approvalRequestId?: string | null;
+    toolKey?: string | null;
+    toolCallId?: string | null;
+    agentId?: string | null;
+    governedInvocationId?: string | null;
+    createdAt?: string;
+};
+
+export type ConversationPendingApprovalDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<ConversationPendingApprovalDto> | null;
+};
+
+export type ConversationPendingApprovalDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<ConversationPendingApprovalDto> | null;
+};
+
+export type CreateAgentRuntimePoolRequest = {
+    name?: string | null;
+};
+
+export type DefinitionCoordinateRequest = {
+    sourceKey: string;
+    kind: 'Agent' | 'Skill' | 'Workflow';
+    key: string;
+    commitSha?: string | null;
+    path: string;
+};
+
+export type DefinitionSkillReferenceDto = {
+    key?: string | null;
+    versionRange?: string | null;
+};
+
+export type DefinitionValidationDto = {
+    kind?: 'Agent' | 'Skill' | 'Workflow';
+    key?: string | null;
+    name?: string | null;
+    description?: string | null;
+    version?: string | null;
+    sourceKey?: string | null;
+    sourcePath?: string | null;
+    commitSha?: string | null;
+    contentDigest?: string | null;
+    canonicalId?: string | null;
+    requiredCapabilities?: Array<string> | null;
+    optionalCapabilities?: Array<string> | null;
+    skills?: Array<DefinitionSkillReferenceDto> | null;
+    alreadyInstalled?: boolean;
+    installedStatus?: 'Installed' | 'UpdateAvailable' | 'MissingFromSource';
+    message?: string | null;
+};
+
+export type DefinitionValidationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: DefinitionValidationDto;
+};
+
+export type DefinitionValidationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: DefinitionValidationDto;
+};
+
+export type EmptyEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+};
+
+export type EmptyEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+};
+
 export type ErrorEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -790,8 +1738,59 @@ export type ErrorEnvelopeWritable = {
     } | null;
 };
 
+export type ExecuteAgentWorkOrderEffectRequest = {
+    workerId?: string;
+    workOrderId?: string;
+    leaseGeneration?: number;
+    effectToolKey?: string | null;
+    effectArgumentsJson?: string | null;
+};
+
+export type FaultAgentWorkOrderRequest = {
+    workerId?: string;
+    workOrderId?: string;
+    leaseGeneration?: number;
+    reason?: string | null;
+};
+
 export type ForgotPasswordRequest = {
     email: string | null;
+};
+
+export type GovernedAgentEffectDto = {
+    disposition?: string | null;
+    detail?: string | null;
+    effectContentJson?: string | null;
+    executionPrincipalId?: string | null;
+};
+
+export type GovernedAgentEffectDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: GovernedAgentEffectDto;
+};
+
+export type GovernedAgentEffectDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: GovernedAgentEffectDto;
+};
+
+export type GrantAgentToolPermissionsRequestDto = {
+    permissions?: Array<string> | null;
 };
 
 export type HttpValidationProblemDetails = {
@@ -817,6 +1816,72 @@ export type InfoRequest = {
 export type InfoResponse = {
     email: string | null;
     isEmailConfirmed: boolean;
+};
+
+export type InstalledDefinitionDto = {
+    canonicalId?: string | null;
+    kind?: 'Agent' | 'Skill' | 'Workflow';
+    definitionKey?: string | null;
+    name?: string | null;
+    version?: string | null;
+    sourceKey?: string | null;
+    sourcePath?: string | null;
+    commitSha?: string | null;
+    contentDigest?: string | null;
+    status?: 'Installed' | 'UpdateAvailable' | 'MissingFromSource';
+    installedAt?: string;
+    executionIdentityProvisioned?: boolean;
+    note?: string | null;
+};
+
+export type InstalledDefinitionDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InstalledDefinitionDto;
+};
+
+export type InstalledDefinitionDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InstalledDefinitionDto;
+};
+
+export type InstalledDefinitionDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<InstalledDefinitionDto> | null;
+};
+
+export type InstalledDefinitionDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<InstalledDefinitionDto> | null;
 };
 
 export type Int32EnvelopeReadable = {
@@ -855,6 +1920,12 @@ export type RefreshRequest = {
     refreshToken: string | null;
 };
 
+export type RegisterAgentRuntimeWorkerRequest = {
+    poolId?: string | null;
+    capabilities?: string | null;
+    maxConcurrency?: number;
+};
+
 export type RegisterRequest = {
     email: string | null;
     password: string | null;
@@ -868,6 +1939,10 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type RevokeAgentToolPermissionsRequestDto = {
+    permissions?: Array<string> | null;
 };
 
 export type TwoFactorRequest = {
@@ -886,7 +1961,525 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetAiProvidersAsyncData = {
+export type UninstallDefinitionRequestDto = {
+    canonicalId?: string | null;
+    sourceKey?: string | null;
+    kind?: 'Agent' | 'Skill' | 'Workflow';
+    key?: string | null;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsData = {
+    body?: AgentExecutionDiagnosticDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentExecutionDiagnostics';
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsError = AgentExecutionDiagnosticsGetDiagnosticsErrors[keyof AgentExecutionDiagnosticsGetDiagnosticsErrors];
+
+export type AgentExecutionDiagnosticsGetDiagnosticsResponses = {
+    /**
+     * OK
+     */
+    200: AgentExecutionDiagnosticDtoListEnvelopeReadable;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsResponse = AgentExecutionDiagnosticsGetDiagnosticsResponses[keyof AgentExecutionDiagnosticsGetDiagnosticsResponses];
+
+export type AgentExecutionDiagnosticsGetDiagnosticsCountData = {
+    body?: AgentExecutionDiagnosticDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentExecutionDiagnostics/Count';
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsCountError = AgentExecutionDiagnosticsGetDiagnosticsCountErrors[keyof AgentExecutionDiagnosticsGetDiagnosticsCountErrors];
+
+export type AgentExecutionDiagnosticsGetDiagnosticsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticsCountResponse = AgentExecutionDiagnosticsGetDiagnosticsCountResponses[keyof AgentExecutionDiagnosticsGetDiagnosticsCountResponses];
+
+export type AgentExecutionDiagnosticsGetDiagnosticByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentExecutionDiagnostics/{id}';
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticByIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticByIdError = AgentExecutionDiagnosticsGetDiagnosticByIdErrors[keyof AgentExecutionDiagnosticsGetDiagnosticByIdErrors];
+
+export type AgentExecutionDiagnosticsGetDiagnosticByIdResponses = {
+    /**
+     * OK
+     */
+    200: AgentExecutionDiagnosticDtoEnvelopeReadable;
+};
+
+export type AgentExecutionDiagnosticsGetDiagnosticByIdResponse = AgentExecutionDiagnosticsGetDiagnosticByIdResponses[keyof AgentExecutionDiagnosticsGetDiagnosticByIdResponses];
+
+export type AgentRuntimeFabricCreatePoolData = {
+    body?: CreateAgentRuntimePoolRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Pools';
+};
+
+export type AgentRuntimeFabricCreatePoolErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricCreatePoolError = AgentRuntimeFabricCreatePoolErrors[keyof AgentRuntimeFabricCreatePoolErrors];
+
+export type AgentRuntimeFabricCreatePoolResponses = {
+    /**
+     * OK
+     */
+    200: AgentRuntimePoolCreationDtoEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricCreatePoolResponse = AgentRuntimeFabricCreatePoolResponses[keyof AgentRuntimeFabricCreatePoolResponses];
+
+export type AgentRuntimeFabricRegisterData = {
+    body?: RegisterAgentRuntimeWorkerRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Register';
+};
+
+export type AgentRuntimeFabricRegisterErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricRegisterError = AgentRuntimeFabricRegisterErrors[keyof AgentRuntimeFabricRegisterErrors];
+
+export type AgentRuntimeFabricRegisterResponses = {
+    /**
+     * OK
+     */
+    200: AgentRuntimeWorkerRegistrationDtoEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricRegisterResponse = AgentRuntimeFabricRegisterResponses[keyof AgentRuntimeFabricRegisterResponses];
+
+export type AgentRuntimeFabricActivateData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        workerId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Workers/{workerId}/Activate';
+};
+
+export type AgentRuntimeFabricActivateErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricActivateError = AgentRuntimeFabricActivateErrors[keyof AgentRuntimeFabricActivateErrors];
+
+export type AgentRuntimeFabricActivateResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricActivateResponse = AgentRuntimeFabricActivateResponses[keyof AgentRuntimeFabricActivateResponses];
+
+export type AgentRuntimeFabricHeartbeatData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        workerId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Workers/{workerId}/Heartbeat';
+};
+
+export type AgentRuntimeFabricHeartbeatErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricHeartbeatError = AgentRuntimeFabricHeartbeatErrors[keyof AgentRuntimeFabricHeartbeatErrors];
+
+export type AgentRuntimeFabricHeartbeatResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricHeartbeatResponse = AgentRuntimeFabricHeartbeatResponses[keyof AgentRuntimeFabricHeartbeatResponses];
+
+export type AgentRuntimeFabricClaimData = {
+    body?: ClaimNextAgentWorkerRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Claim';
+};
+
+export type AgentRuntimeFabricClaimErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricClaimError = AgentRuntimeFabricClaimErrors[keyof AgentRuntimeFabricClaimErrors];
+
+export type AgentRuntimeFabricClaimResponses = {
+    /**
+     * OK
+     */
+    200: AgentWorkAssignmentDtoEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricClaimResponse = AgentRuntimeFabricClaimResponses[keyof AgentRuntimeFabricClaimResponses];
+
+export type AgentRuntimeFabricGetCancellationData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        workOrderId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/WorkOrders/{workOrderId}/Cancelled';
+};
+
+export type AgentRuntimeFabricGetCancellationErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricGetCancellationError = AgentRuntimeFabricGetCancellationErrors[keyof AgentRuntimeFabricGetCancellationErrors];
+
+export type AgentRuntimeFabricGetCancellationResponses = {
+    /**
+     * OK
+     */
+    200: AgentWorkOrderCancellationDtoEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricGetCancellationResponse = AgentRuntimeFabricGetCancellationResponses[keyof AgentRuntimeFabricGetCancellationResponses];
+
+export type AgentRuntimeFabricExecuteData = {
+    body?: ExecuteAgentWorkOrderEffectRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Execute';
+};
+
+export type AgentRuntimeFabricExecuteErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricExecuteError = AgentRuntimeFabricExecuteErrors[keyof AgentRuntimeFabricExecuteErrors];
+
+export type AgentRuntimeFabricExecuteResponses = {
+    /**
+     * OK
+     */
+    200: GovernedAgentEffectDtoEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricExecuteResponse = AgentRuntimeFabricExecuteResponses[keyof AgentRuntimeFabricExecuteResponses];
+
+export type AgentRuntimeFabricCompleteData = {
+    body?: CompleteAgentWorkOrderRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Complete';
+};
+
+export type AgentRuntimeFabricCompleteErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricCompleteError = AgentRuntimeFabricCompleteErrors[keyof AgentRuntimeFabricCompleteErrors];
+
+export type AgentRuntimeFabricCompleteResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricCompleteResponse = AgentRuntimeFabricCompleteResponses[keyof AgentRuntimeFabricCompleteResponses];
+
+export type AgentRuntimeFabricFaultData = {
+    body?: FaultAgentWorkOrderRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeFabric/Fault';
+};
+
+export type AgentRuntimeFabricFaultErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricFaultError = AgentRuntimeFabricFaultErrors[keyof AgentRuntimeFabricFaultErrors];
+
+export type AgentRuntimeFabricFaultResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AgentRuntimeFabricFaultResponse = AgentRuntimeFabricFaultResponses[keyof AgentRuntimeFabricFaultResponses];
+
+export type AgentRuntimeStatusGetWorkOrdersData = {
+    body?: AgentWorkOrderStatusDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders';
+};
+
+export type AgentRuntimeStatusGetWorkOrdersErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeStatusGetWorkOrdersError = AgentRuntimeStatusGetWorkOrdersErrors[keyof AgentRuntimeStatusGetWorkOrdersErrors];
+
+export type AgentRuntimeStatusGetWorkOrdersResponses = {
+    /**
+     * OK
+     */
+    200: AgentWorkOrderStatusDtoListEnvelopeReadable;
+};
+
+export type AgentRuntimeStatusGetWorkOrdersResponse = AgentRuntimeStatusGetWorkOrdersResponses[keyof AgentRuntimeStatusGetWorkOrdersResponses];
+
+export type AgentRuntimeStatusGetWorkOrdersCountData = {
+    body?: AgentWorkOrderStatusDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders/Count';
+};
+
+export type AgentRuntimeStatusGetWorkOrdersCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeStatusGetWorkOrdersCountError = AgentRuntimeStatusGetWorkOrdersCountErrors[keyof AgentRuntimeStatusGetWorkOrdersCountErrors];
+
+export type AgentRuntimeStatusGetWorkOrdersCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type AgentRuntimeStatusGetWorkOrdersCountResponse = AgentRuntimeStatusGetWorkOrdersCountResponses[keyof AgentRuntimeStatusGetWorkOrdersCountResponses];
+
+export type AgentRuntimeStatusGetWorkOrderByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders/{id}';
+};
+
+export type AgentRuntimeStatusGetWorkOrderByIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AgentRuntimeStatusGetWorkOrderByIdError = AgentRuntimeStatusGetWorkOrderByIdErrors[keyof AgentRuntimeStatusGetWorkOrderByIdErrors];
+
+export type AgentRuntimeStatusGetWorkOrderByIdResponses = {
+    /**
+     * OK
+     */
+    200: AgentWorkOrderStatusDtoEnvelopeReadable;
+};
+
+export type AgentRuntimeStatusGetWorkOrderByIdResponse = AgentRuntimeStatusGetWorkOrderByIdResponses[keyof AgentRuntimeStatusGetWorkOrderByIdResponses];
+
+export type AiProvidersGetAiProvidersData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -898,25 +2491,386 @@ export type GetAiProvidersAsyncData = {
     url: '/api/v2/IntelligenceService/AiProviders';
 };
 
-export type GetAiProvidersAsyncErrors = {
+export type AiProvidersGetAiProvidersErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetAiProvidersAsyncError = GetAiProvidersAsyncErrors[keyof GetAiProvidersAsyncErrors];
+export type AiProvidersGetAiProvidersError = AiProvidersGetAiProvidersErrors[keyof AiProvidersGetAiProvidersErrors];
 
-export type GetAiProvidersAsyncResponses = {
+export type AiProvidersGetAiProvidersResponses = {
     /**
      * OK
      */
     200: AiProviderDtoListEnvelopeReadable;
 };
 
-export type GetAiProvidersAsyncResponse = GetAiProvidersAsyncResponses[keyof GetAiProvidersAsyncResponses];
+export type AiProvidersGetAiProvidersResponse = AiProvidersGetAiProvidersResponses[keyof AiProvidersGetAiProvidersResponses];
 
-export type GetCapabilitiesAsyncData = {
+export type AiProvidersGetAiProviderAvailabilityData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiProviders/Availability';
+};
+
+export type AiProvidersGetAiProviderAvailabilityErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiProvidersGetAiProviderAvailabilityError = AiProvidersGetAiProviderAvailabilityErrors[keyof AiProvidersGetAiProviderAvailabilityErrors];
+
+export type AiProvidersGetAiProviderAvailabilityResponses = {
+    /**
+     * OK
+     */
+    200: AiProviderAvailabilityDtoListEnvelopeReadable;
+};
+
+export type AiProvidersGetAiProviderAvailabilityResponse = AiProvidersGetAiProviderAvailabilityResponses[keyof AiProvidersGetAiProviderAvailabilityResponses];
+
+export type AiRunsGetAiRunsData = {
+    body?: AiRunDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiRuns';
+};
+
+export type AiRunsGetAiRunsErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiRunsGetAiRunsError = AiRunsGetAiRunsErrors[keyof AiRunsGetAiRunsErrors];
+
+export type AiRunsGetAiRunsResponses = {
+    /**
+     * OK
+     */
+    200: AiRunDtoListEnvelopeReadable;
+};
+
+export type AiRunsGetAiRunsResponse = AiRunsGetAiRunsResponses[keyof AiRunsGetAiRunsResponses];
+
+export type AiRunsGetAiRunsCountData = {
+    body?: AiRunDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiRuns/Count';
+};
+
+export type AiRunsGetAiRunsCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiRunsGetAiRunsCountError = AiRunsGetAiRunsCountErrors[keyof AiRunsGetAiRunsCountErrors];
+
+export type AiRunsGetAiRunsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type AiRunsGetAiRunsCountResponse = AiRunsGetAiRunsCountResponses[keyof AiRunsGetAiRunsCountResponses];
+
+export type AiRunsGetAiRunByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiRuns/{id}';
+};
+
+export type AiRunsGetAiRunByIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AiRunsGetAiRunByIdError = AiRunsGetAiRunByIdErrors[keyof AiRunsGetAiRunByIdErrors];
+
+export type AiRunsGetAiRunByIdResponses = {
+    /**
+     * OK
+     */
+    200: AiRunDtoEnvelopeReadable;
+};
+
+export type AiRunsGetAiRunByIdResponse = AiRunsGetAiRunByIdResponses[keyof AiRunsGetAiRunByIdResponses];
+
+export type AiUsageObservationsGetAiUsageObservationsData = {
+    body?: AiUsageObservationDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiUsageObservations';
+};
+
+export type AiUsageObservationsGetAiUsageObservationsErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiUsageObservationsGetAiUsageObservationsError = AiUsageObservationsGetAiUsageObservationsErrors[keyof AiUsageObservationsGetAiUsageObservationsErrors];
+
+export type AiUsageObservationsGetAiUsageObservationsResponses = {
+    /**
+     * OK
+     */
+    200: AiUsageObservationDtoListEnvelopeReadable;
+};
+
+export type AiUsageObservationsGetAiUsageObservationsResponse = AiUsageObservationsGetAiUsageObservationsResponses[keyof AiUsageObservationsGetAiUsageObservationsResponses];
+
+export type AiUsageObservationsGetAiUsageObservationsCountData = {
+    body?: AiUsageObservationDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiUsageObservations/Count';
+};
+
+export type AiUsageObservationsGetAiUsageObservationsCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiUsageObservationsGetAiUsageObservationsCountError = AiUsageObservationsGetAiUsageObservationsCountErrors[keyof AiUsageObservationsGetAiUsageObservationsCountErrors];
+
+export type AiUsageObservationsGetAiUsageObservationsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type AiUsageObservationsGetAiUsageObservationsCountResponse = AiUsageObservationsGetAiUsageObservationsCountResponses[keyof AiUsageObservationsGetAiUsageObservationsCountResponses];
+
+export type AiUsageObservationsGetAiUsageObservationByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiUsageObservations/{id}';
+};
+
+export type AiUsageObservationsGetAiUsageObservationByIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AiUsageObservationsGetAiUsageObservationByIdError = AiUsageObservationsGetAiUsageObservationByIdErrors[keyof AiUsageObservationsGetAiUsageObservationByIdErrors];
+
+export type AiUsageObservationsGetAiUsageObservationByIdResponses = {
+    /**
+     * OK
+     */
+    200: AiUsageObservationDtoEnvelopeReadable;
+};
+
+export type AiUsageObservationsGetAiUsageObservationByIdResponse = AiUsageObservationsGetAiUsageObservationByIdResponses[keyof AiUsageObservationsGetAiUsageObservationByIdResponses];
+
+export type ApprovalAdviceGetApprovalAdviceDisclosureData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/ApprovalAdvice/Disclosure';
+};
+
+export type ApprovalAdviceGetApprovalAdviceDisclosureErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ApprovalAdviceGetApprovalAdviceDisclosureError = ApprovalAdviceGetApprovalAdviceDisclosureErrors[keyof ApprovalAdviceGetApprovalAdviceDisclosureErrors];
+
+export type ApprovalAdviceGetApprovalAdviceDisclosureResponses = {
+    /**
+     * OK
+     */
+    200: ApprovalAdviceDisclosureDtoEnvelopeReadable;
+};
+
+export type ApprovalAdviceGetApprovalAdviceDisclosureResponse = ApprovalAdviceGetApprovalAdviceDisclosureResponses[keyof ApprovalAdviceGetApprovalAdviceDisclosureResponses];
+
+export type ApprovalAdviceGetApprovalAdviceConsentData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/ApprovalAdvice/Consent';
+};
+
+export type ApprovalAdviceGetApprovalAdviceConsentErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ApprovalAdviceGetApprovalAdviceConsentError = ApprovalAdviceGetApprovalAdviceConsentErrors[keyof ApprovalAdviceGetApprovalAdviceConsentErrors];
+
+export type ApprovalAdviceGetApprovalAdviceConsentResponses = {
+    /**
+     * OK
+     */
+    200: ApprovalAdviceConsentDtoEnvelopeReadable;
+};
+
+export type ApprovalAdviceGetApprovalAdviceConsentResponse = ApprovalAdviceGetApprovalAdviceConsentResponses[keyof ApprovalAdviceGetApprovalAdviceConsentResponses];
+
+export type ApprovalAdviceOptInApprovalAdviceData = {
+    body?: ApprovalAdviceOptInRequestDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/ApprovalAdvice/OptIn';
+};
+
+export type ApprovalAdviceOptInApprovalAdviceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ApprovalAdviceOptInApprovalAdviceError = ApprovalAdviceOptInApprovalAdviceErrors[keyof ApprovalAdviceOptInApprovalAdviceErrors];
+
+export type ApprovalAdviceOptInApprovalAdviceResponses = {
+    /**
+     * OK
+     */
+    200: ApprovalAdviceConsentDtoEnvelopeReadable;
+};
+
+export type ApprovalAdviceOptInApprovalAdviceResponse = ApprovalAdviceOptInApprovalAdviceResponses[keyof ApprovalAdviceOptInApprovalAdviceResponses];
+
+export type ApprovalAdviceOptOutApprovalAdviceData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/ApprovalAdvice/OptOut';
+};
+
+export type ApprovalAdviceOptOutApprovalAdviceErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ApprovalAdviceOptOutApprovalAdviceError = ApprovalAdviceOptOutApprovalAdviceErrors[keyof ApprovalAdviceOptOutApprovalAdviceErrors];
+
+export type ApprovalAdviceOptOutApprovalAdviceResponses = {
+    /**
+     * OK
+     */
+    200: ApprovalAdviceConsentDtoEnvelopeReadable;
+};
+
+export type ApprovalAdviceOptOutApprovalAdviceResponse = ApprovalAdviceOptOutApprovalAdviceResponses[keyof ApprovalAdviceOptOutApprovalAdviceResponses];
+
+export type CapabilitiesGetCapabilitiesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -930,25 +2884,25 @@ export type GetCapabilitiesAsyncData = {
     url: '/api/v2/IntelligenceService/Capabilities';
 };
 
-export type GetCapabilitiesAsyncErrors = {
+export type CapabilitiesGetCapabilitiesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCapabilitiesAsyncError = GetCapabilitiesAsyncErrors[keyof GetCapabilitiesAsyncErrors];
+export type CapabilitiesGetCapabilitiesError = CapabilitiesGetCapabilitiesErrors[keyof CapabilitiesGetCapabilitiesErrors];
 
-export type GetCapabilitiesAsyncResponses = {
+export type CapabilitiesGetCapabilitiesResponses = {
     /**
      * OK
      */
     200: CapabilityDtoListEnvelopeReadable;
 };
 
-export type GetCapabilitiesAsyncResponse = GetCapabilitiesAsyncResponses[keyof GetCapabilitiesAsyncResponses];
+export type CapabilitiesGetCapabilitiesResponse = CapabilitiesGetCapabilitiesResponses[keyof CapabilitiesGetCapabilitiesResponses];
 
-export type GetCapabilitiesCountAsyncData = {
+export type CapabilitiesGetCapabilitiesCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -962,25 +2916,25 @@ export type GetCapabilitiesCountAsyncData = {
     url: '/api/v2/IntelligenceService/Capabilities/Count';
 };
 
-export type GetCapabilitiesCountAsyncErrors = {
+export type CapabilitiesGetCapabilitiesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCapabilitiesCountAsyncError = GetCapabilitiesCountAsyncErrors[keyof GetCapabilitiesCountAsyncErrors];
+export type CapabilitiesGetCapabilitiesCountError = CapabilitiesGetCapabilitiesCountErrors[keyof CapabilitiesGetCapabilitiesCountErrors];
 
-export type GetCapabilitiesCountAsyncResponses = {
+export type CapabilitiesGetCapabilitiesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCapabilitiesCountAsyncResponse = GetCapabilitiesCountAsyncResponses[keyof GetCapabilitiesCountAsyncResponses];
+export type CapabilitiesGetCapabilitiesCountResponse = CapabilitiesGetCapabilitiesCountResponses[keyof CapabilitiesGetCapabilitiesCountResponses];
 
-export type GetCapabilityByKeyAsyncData = {
+export type CapabilitiesGetCapabilityByKeyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -995,7 +2949,7 @@ export type GetCapabilityByKeyAsyncData = {
     url: '/api/v2/IntelligenceService/Capabilities/{key}';
 };
 
-export type GetCapabilityByKeyAsyncErrors = {
+export type CapabilitiesGetCapabilityByKeyErrors = {
     /**
      * Forbidden
      */
@@ -1006,18 +2960,18 @@ export type GetCapabilityByKeyAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCapabilityByKeyAsyncError = GetCapabilityByKeyAsyncErrors[keyof GetCapabilityByKeyAsyncErrors];
+export type CapabilitiesGetCapabilityByKeyError = CapabilitiesGetCapabilityByKeyErrors[keyof CapabilitiesGetCapabilityByKeyErrors];
 
-export type GetCapabilityByKeyAsyncResponses = {
+export type CapabilitiesGetCapabilityByKeyResponses = {
     /**
      * OK
      */
     200: CapabilityDtoEnvelopeReadable;
 };
 
-export type GetCapabilityByKeyAsyncResponse = GetCapabilityByKeyAsyncResponses[keyof GetCapabilityByKeyAsyncResponses];
+export type CapabilitiesGetCapabilityByKeyResponse = CapabilitiesGetCapabilityByKeyResponses[keyof CapabilitiesGetCapabilityByKeyResponses];
 
-export type UploadCognitiveAgentConversationAttachmentAsyncData = {
+export type CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentData = {
     body?: {
         file?: Blob | File;
     };
@@ -1035,7 +2989,7 @@ export type UploadCognitiveAgentConversationAttachmentAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Attachments';
 };
 
-export type UploadCognitiveAgentConversationAttachmentAsyncErrors = {
+export type CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -1050,18 +3004,18 @@ export type UploadCognitiveAgentConversationAttachmentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UploadCognitiveAgentConversationAttachmentAsyncError = UploadCognitiveAgentConversationAttachmentAsyncErrors[keyof UploadCognitiveAgentConversationAttachmentAsyncErrors];
+export type CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentError = CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentErrors[keyof CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentErrors];
 
-export type UploadCognitiveAgentConversationAttachmentAsyncResponses = {
+export type CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentResponses = {
     /**
      * OK
      */
     200: ConversationAttachmentUploadResultDtoEnvelopeReadable;
 };
 
-export type UploadCognitiveAgentConversationAttachmentAsyncResponse = UploadCognitiveAgentConversationAttachmentAsyncResponses[keyof UploadCognitiveAgentConversationAttachmentAsyncResponses];
+export type CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentResponse = CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentResponses[keyof CognitiveAgentConversationAttachmentsUploadCognitiveAgentConversationAttachmentResponses];
 
-export type GetCognitiveAgentConversationsAsyncData = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsData = {
     body?: CognitiveAgentConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1071,30 +3025,31 @@ export type GetCognitiveAgentConversationsAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations';
 };
 
-export type GetCognitiveAgentConversationsAsyncErrors = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentConversationsAsyncError = GetCognitiveAgentConversationsAsyncErrors[keyof GetCognitiveAgentConversationsAsyncErrors];
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsError = CognitiveAgentConversationsGetCognitiveAgentConversationsErrors[keyof CognitiveAgentConversationsGetCognitiveAgentConversationsErrors];
 
-export type GetCognitiveAgentConversationsAsyncResponses = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsResponses = {
     /**
      * OK
      */
     200: CognitiveAgentConversationDtoListEnvelopeReadable;
 };
 
-export type GetCognitiveAgentConversationsAsyncResponse = GetCognitiveAgentConversationsAsyncResponses[keyof GetCognitiveAgentConversationsAsyncResponses];
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsResponse = CognitiveAgentConversationsGetCognitiveAgentConversationsResponses[keyof CognitiveAgentConversationsGetCognitiveAgentConversationsResponses];
 
-export type CreateCognitiveAgentConversationAsyncData = {
+export type CognitiveAgentConversationsCreateCognitiveAgentConversationData = {
     body?: CognitiveAgentConversationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1109,7 +3064,7 @@ export type CreateCognitiveAgentConversationAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations';
 };
 
-export type CreateCognitiveAgentConversationAsyncErrors = {
+export type CognitiveAgentConversationsCreateCognitiveAgentConversationErrors = {
     /**
      * Bad Request
      */
@@ -1120,16 +3075,16 @@ export type CreateCognitiveAgentConversationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCognitiveAgentConversationAsyncError = CreateCognitiveAgentConversationAsyncErrors[keyof CreateCognitiveAgentConversationAsyncErrors];
+export type CognitiveAgentConversationsCreateCognitiveAgentConversationError = CognitiveAgentConversationsCreateCognitiveAgentConversationErrors[keyof CognitiveAgentConversationsCreateCognitiveAgentConversationErrors];
 
-export type CreateCognitiveAgentConversationAsyncResponses = {
+export type CognitiveAgentConversationsCreateCognitiveAgentConversationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentConversationsCountAsyncData = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsCountData = {
     body?: CognitiveAgentConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1139,30 +3094,31 @@ export type GetCognitiveAgentConversationsCountAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/Count';
 };
 
-export type GetCognitiveAgentConversationsCountAsyncErrors = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentConversationsCountAsyncError = GetCognitiveAgentConversationsCountAsyncErrors[keyof GetCognitiveAgentConversationsCountAsyncErrors];
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsCountError = CognitiveAgentConversationsGetCognitiveAgentConversationsCountErrors[keyof CognitiveAgentConversationsGetCognitiveAgentConversationsCountErrors];
 
-export type GetCognitiveAgentConversationsCountAsyncResponses = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCognitiveAgentConversationsCountAsyncResponse = GetCognitiveAgentConversationsCountAsyncResponses[keyof GetCognitiveAgentConversationsCountAsyncResponses];
+export type CognitiveAgentConversationsGetCognitiveAgentConversationsCountResponse = CognitiveAgentConversationsGetCognitiveAgentConversationsCountResponses[keyof CognitiveAgentConversationsGetCognitiveAgentConversationsCountResponses];
 
-export type DeleteCognitiveAgentConversationAsyncData = {
+export type CognitiveAgentConversationsDeleteCognitiveAgentConversationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1173,12 +3129,13 @@ export type DeleteCognitiveAgentConversationAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}';
 };
 
-export type DeleteCognitiveAgentConversationAsyncErrors = {
+export type CognitiveAgentConversationsDeleteCognitiveAgentConversationErrors = {
     /**
      * Forbidden
      */
@@ -1189,16 +3146,16 @@ export type DeleteCognitiveAgentConversationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCognitiveAgentConversationAsyncError = DeleteCognitiveAgentConversationAsyncErrors[keyof DeleteCognitiveAgentConversationAsyncErrors];
+export type CognitiveAgentConversationsDeleteCognitiveAgentConversationError = CognitiveAgentConversationsDeleteCognitiveAgentConversationErrors[keyof CognitiveAgentConversationsDeleteCognitiveAgentConversationErrors];
 
-export type DeleteCognitiveAgentConversationAsyncResponses = {
+export type CognitiveAgentConversationsDeleteCognitiveAgentConversationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentConversationByIdAsyncData = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1209,12 +3166,13 @@ export type GetCognitiveAgentConversationByIdAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}';
 };
 
-export type GetCognitiveAgentConversationByIdAsyncErrors = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationByIdErrors = {
     /**
      * Forbidden
      */
@@ -1225,18 +3183,18 @@ export type GetCognitiveAgentConversationByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentConversationByIdAsyncError = GetCognitiveAgentConversationByIdAsyncErrors[keyof GetCognitiveAgentConversationByIdAsyncErrors];
+export type CognitiveAgentConversationsGetCognitiveAgentConversationByIdError = CognitiveAgentConversationsGetCognitiveAgentConversationByIdErrors[keyof CognitiveAgentConversationsGetCognitiveAgentConversationByIdErrors];
 
-export type GetCognitiveAgentConversationByIdAsyncResponses = {
+export type CognitiveAgentConversationsGetCognitiveAgentConversationByIdResponses = {
     /**
      * OK
      */
     200: CognitiveAgentConversationDtoEnvelopeReadable;
 };
 
-export type GetCognitiveAgentConversationByIdAsyncResponse = GetCognitiveAgentConversationByIdAsyncResponses[keyof GetCognitiveAgentConversationByIdAsyncResponses];
+export type CognitiveAgentConversationsGetCognitiveAgentConversationByIdResponse = CognitiveAgentConversationsGetCognitiveAgentConversationByIdResponses[keyof CognitiveAgentConversationsGetCognitiveAgentConversationByIdResponses];
 
-export type UpdateCognitiveAgentConversationAsyncData = {
+export type CognitiveAgentConversationsUpdateCognitiveAgentConversationData = {
     body?: CognitiveAgentConversationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1247,12 +3205,13 @@ export type UpdateCognitiveAgentConversationAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}';
 };
 
-export type UpdateCognitiveAgentConversationAsyncErrors = {
+export type CognitiveAgentConversationsUpdateCognitiveAgentConversationErrors = {
     /**
      * Forbidden
      */
@@ -1263,16 +3222,16 @@ export type UpdateCognitiveAgentConversationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateCognitiveAgentConversationAsyncError = UpdateCognitiveAgentConversationAsyncErrors[keyof UpdateCognitiveAgentConversationAsyncErrors];
+export type CognitiveAgentConversationsUpdateCognitiveAgentConversationError = CognitiveAgentConversationsUpdateCognitiveAgentConversationErrors[keyof CognitiveAgentConversationsUpdateCognitiveAgentConversationErrors];
 
-export type UpdateCognitiveAgentConversationAsyncResponses = {
+export type CognitiveAgentConversationsUpdateCognitiveAgentConversationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentMessagesAsyncData = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesData = {
     body?: CognitiveAgentMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1283,30 +3242,31 @@ export type GetCognitiveAgentMessagesAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages';
 };
 
-export type GetCognitiveAgentMessagesAsyncErrors = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentMessagesAsyncError = GetCognitiveAgentMessagesAsyncErrors[keyof GetCognitiveAgentMessagesAsyncErrors];
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesError = CognitiveAgentMessagesGetCognitiveAgentMessagesErrors[keyof CognitiveAgentMessagesGetCognitiveAgentMessagesErrors];
 
-export type GetCognitiveAgentMessagesAsyncResponses = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesResponses = {
     /**
      * OK
      */
     200: CognitiveAgentMessageDtoListEnvelopeReadable;
 };
 
-export type GetCognitiveAgentMessagesAsyncResponse = GetCognitiveAgentMessagesAsyncResponses[keyof GetCognitiveAgentMessagesAsyncResponses];
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesResponse = CognitiveAgentMessagesGetCognitiveAgentMessagesResponses[keyof CognitiveAgentMessagesGetCognitiveAgentMessagesResponses];
 
-export type GetCognitiveAgentMessagesCountAsyncData = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesCountData = {
     body?: CognitiveAgentMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1317,30 +3277,31 @@ export type GetCognitiveAgentMessagesCountAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages/Count';
 };
 
-export type GetCognitiveAgentMessagesCountAsyncErrors = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentMessagesCountAsyncError = GetCognitiveAgentMessagesCountAsyncErrors[keyof GetCognitiveAgentMessagesCountAsyncErrors];
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesCountError = CognitiveAgentMessagesGetCognitiveAgentMessagesCountErrors[keyof CognitiveAgentMessagesGetCognitiveAgentMessagesCountErrors];
 
-export type GetCognitiveAgentMessagesCountAsyncResponses = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCognitiveAgentMessagesCountAsyncResponse = GetCognitiveAgentMessagesCountAsyncResponses[keyof GetCognitiveAgentMessagesCountAsyncResponses];
+export type CognitiveAgentMessagesGetCognitiveAgentMessagesCountResponse = CognitiveAgentMessagesGetCognitiveAgentMessagesCountResponses[keyof CognitiveAgentMessagesGetCognitiveAgentMessagesCountResponses];
 
-export type GetCognitiveAgentMessageByIdAsyncData = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1352,12 +3313,13 @@ export type GetCognitiveAgentMessageByIdAsyncData = {
     };
     query: {
         tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages/{id}';
 };
 
-export type GetCognitiveAgentMessageByIdAsyncErrors = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessageByIdErrors = {
     /**
      * Forbidden
      */
@@ -1368,18 +3330,53 @@ export type GetCognitiveAgentMessageByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentMessageByIdAsyncError = GetCognitiveAgentMessageByIdAsyncErrors[keyof GetCognitiveAgentMessageByIdAsyncErrors];
+export type CognitiveAgentMessagesGetCognitiveAgentMessageByIdError = CognitiveAgentMessagesGetCognitiveAgentMessageByIdErrors[keyof CognitiveAgentMessagesGetCognitiveAgentMessageByIdErrors];
 
-export type GetCognitiveAgentMessageByIdAsyncResponses = {
+export type CognitiveAgentMessagesGetCognitiveAgentMessageByIdResponses = {
     /**
      * OK
      */
     200: CognitiveAgentMessageDtoEnvelopeReadable;
 };
 
-export type GetCognitiveAgentMessageByIdAsyncResponse = GetCognitiveAgentMessageByIdAsyncResponses[keyof GetCognitiveAgentMessageByIdAsyncResponses];
+export type CognitiveAgentMessagesGetCognitiveAgentMessageByIdResponse = CognitiveAgentMessagesGetCognitiveAgentMessageByIdResponses[keyof CognitiveAgentMessagesGetCognitiveAgentMessageByIdResponses];
 
-export type GetCognitiveAgentsAsyncData = {
+export type CognitiveAgentMessagesGetConversationPendingApprovalsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+        conversationId: string;
+    };
+    query: {
+        tenantId: string;
+        scope?: 'Mine' | 'AllUsers';
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/PendingApprovals';
+};
+
+export type CognitiveAgentMessagesGetConversationPendingApprovalsErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CognitiveAgentMessagesGetConversationPendingApprovalsError = CognitiveAgentMessagesGetConversationPendingApprovalsErrors[keyof CognitiveAgentMessagesGetConversationPendingApprovalsErrors];
+
+export type CognitiveAgentMessagesGetConversationPendingApprovalsResponses = {
+    /**
+     * OK
+     */
+    200: ConversationPendingApprovalDtoListEnvelopeReadable;
+};
+
+export type CognitiveAgentMessagesGetConversationPendingApprovalsResponse = CognitiveAgentMessagesGetConversationPendingApprovalsResponses[keyof CognitiveAgentMessagesGetConversationPendingApprovalsResponses];
+
+export type CognitiveAgentsGetCognitiveAgentsData = {
     body?: CognitiveAgentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1392,25 +3389,25 @@ export type GetCognitiveAgentsAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents';
 };
 
-export type GetCognitiveAgentsAsyncErrors = {
+export type CognitiveAgentsGetCognitiveAgentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentsAsyncError = GetCognitiveAgentsAsyncErrors[keyof GetCognitiveAgentsAsyncErrors];
+export type CognitiveAgentsGetCognitiveAgentsError = CognitiveAgentsGetCognitiveAgentsErrors[keyof CognitiveAgentsGetCognitiveAgentsErrors];
 
-export type GetCognitiveAgentsAsyncResponses = {
+export type CognitiveAgentsGetCognitiveAgentsResponses = {
     /**
      * OK
      */
     200: CognitiveAgentDtoListEnvelopeReadable;
 };
 
-export type GetCognitiveAgentsAsyncResponse = GetCognitiveAgentsAsyncResponses[keyof GetCognitiveAgentsAsyncResponses];
+export type CognitiveAgentsGetCognitiveAgentsResponse = CognitiveAgentsGetCognitiveAgentsResponses[keyof CognitiveAgentsGetCognitiveAgentsResponses];
 
-export type CreateCognitiveAgentAsyncData = {
+export type CognitiveAgentsCreateCognitiveAgentData = {
     body?: CognitiveAgentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1423,7 +3420,7 @@ export type CreateCognitiveAgentAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents';
 };
 
-export type CreateCognitiveAgentAsyncErrors = {
+export type CognitiveAgentsCreateCognitiveAgentErrors = {
     /**
      * Bad Request
      */
@@ -1434,16 +3431,16 @@ export type CreateCognitiveAgentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCognitiveAgentAsyncError = CreateCognitiveAgentAsyncErrors[keyof CreateCognitiveAgentAsyncErrors];
+export type CognitiveAgentsCreateCognitiveAgentError = CognitiveAgentsCreateCognitiveAgentErrors[keyof CognitiveAgentsCreateCognitiveAgentErrors];
 
-export type CreateCognitiveAgentAsyncResponses = {
+export type CognitiveAgentsCreateCognitiveAgentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentsCountAsyncData = {
+export type CognitiveAgentsGetCognitiveAgentsCountData = {
     body?: CognitiveAgentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1456,25 +3453,25 @@ export type GetCognitiveAgentsCountAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/Count';
 };
 
-export type GetCognitiveAgentsCountAsyncErrors = {
+export type CognitiveAgentsGetCognitiveAgentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentsCountAsyncError = GetCognitiveAgentsCountAsyncErrors[keyof GetCognitiveAgentsCountAsyncErrors];
+export type CognitiveAgentsGetCognitiveAgentsCountError = CognitiveAgentsGetCognitiveAgentsCountErrors[keyof CognitiveAgentsGetCognitiveAgentsCountErrors];
 
-export type GetCognitiveAgentsCountAsyncResponses = {
+export type CognitiveAgentsGetCognitiveAgentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCognitiveAgentsCountAsyncResponse = GetCognitiveAgentsCountAsyncResponses[keyof GetCognitiveAgentsCountAsyncResponses];
+export type CognitiveAgentsGetCognitiveAgentsCountResponse = CognitiveAgentsGetCognitiveAgentsCountResponses[keyof CognitiveAgentsGetCognitiveAgentsCountResponses];
 
-export type DeleteCognitiveAgentAsyncData = {
+export type CognitiveAgentsDeleteCognitiveAgentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1489,7 +3486,7 @@ export type DeleteCognitiveAgentAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{id}';
 };
 
-export type DeleteCognitiveAgentAsyncErrors = {
+export type CognitiveAgentsDeleteCognitiveAgentErrors = {
     /**
      * Forbidden
      */
@@ -1500,16 +3497,16 @@ export type DeleteCognitiveAgentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCognitiveAgentAsyncError = DeleteCognitiveAgentAsyncErrors[keyof DeleteCognitiveAgentAsyncErrors];
+export type CognitiveAgentsDeleteCognitiveAgentError = CognitiveAgentsDeleteCognitiveAgentErrors[keyof CognitiveAgentsDeleteCognitiveAgentErrors];
 
-export type DeleteCognitiveAgentAsyncResponses = {
+export type CognitiveAgentsDeleteCognitiveAgentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentByIdAsyncData = {
+export type CognitiveAgentsGetCognitiveAgentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1524,7 +3521,7 @@ export type GetCognitiveAgentByIdAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{id}';
 };
 
-export type GetCognitiveAgentByIdAsyncErrors = {
+export type CognitiveAgentsGetCognitiveAgentByIdErrors = {
     /**
      * Forbidden
      */
@@ -1535,18 +3532,18 @@ export type GetCognitiveAgentByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentByIdAsyncError = GetCognitiveAgentByIdAsyncErrors[keyof GetCognitiveAgentByIdAsyncErrors];
+export type CognitiveAgentsGetCognitiveAgentByIdError = CognitiveAgentsGetCognitiveAgentByIdErrors[keyof CognitiveAgentsGetCognitiveAgentByIdErrors];
 
-export type GetCognitiveAgentByIdAsyncResponses = {
+export type CognitiveAgentsGetCognitiveAgentByIdResponses = {
     /**
      * OK
      */
     200: CognitiveAgentDtoEnvelopeReadable;
 };
 
-export type GetCognitiveAgentByIdAsyncResponse = GetCognitiveAgentByIdAsyncResponses[keyof GetCognitiveAgentByIdAsyncResponses];
+export type CognitiveAgentsGetCognitiveAgentByIdResponse = CognitiveAgentsGetCognitiveAgentByIdResponses[keyof CognitiveAgentsGetCognitiveAgentByIdResponses];
 
-export type UpdateCognitiveAgentAsyncData = {
+export type CognitiveAgentsUpdateCognitiveAgentData = {
     body?: CognitiveAgentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1561,7 +3558,7 @@ export type UpdateCognitiveAgentAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{id}';
 };
 
-export type UpdateCognitiveAgentAsyncErrors = {
+export type CognitiveAgentsUpdateCognitiveAgentErrors = {
     /**
      * Forbidden
      */
@@ -1572,16 +3569,166 @@ export type UpdateCognitiveAgentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateCognitiveAgentAsyncError = UpdateCognitiveAgentAsyncErrors[keyof UpdateCognitiveAgentAsyncErrors];
+export type CognitiveAgentsUpdateCognitiveAgentError = CognitiveAgentsUpdateCognitiveAgentErrors[keyof CognitiveAgentsUpdateCognitiveAgentErrors];
 
-export type UpdateCognitiveAgentAsyncResponses = {
+export type CognitiveAgentsUpdateCognitiveAgentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentSkillsAsyncData = {
+export type CognitiveAgentsGetAgentPermissionReadinessData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/PermissionReadiness';
+};
+
+export type CognitiveAgentsGetAgentPermissionReadinessErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CognitiveAgentsGetAgentPermissionReadinessError = CognitiveAgentsGetAgentPermissionReadinessErrors[keyof CognitiveAgentsGetAgentPermissionReadinessErrors];
+
+export type CognitiveAgentsGetAgentPermissionReadinessResponses = {
+    /**
+     * OK
+     */
+    200: AgentPermissionReadinessDtoEnvelopeReadable;
+};
+
+export type CognitiveAgentsGetAgentPermissionReadinessResponse = CognitiveAgentsGetAgentPermissionReadinessResponses[keyof CognitiveAgentsGetAgentPermissionReadinessResponses];
+
+export type CognitiveAgentsGetBuiltInAgentCapabilitiesData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/BuiltInCapabilities';
+};
+
+export type CognitiveAgentsGetBuiltInAgentCapabilitiesErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CognitiveAgentsGetBuiltInAgentCapabilitiesError = CognitiveAgentsGetBuiltInAgentCapabilitiesErrors[keyof CognitiveAgentsGetBuiltInAgentCapabilitiesErrors];
+
+export type CognitiveAgentsGetBuiltInAgentCapabilitiesResponses = {
+    /**
+     * OK
+     */
+    200: BuiltInAgentCapabilityDtoListEnvelopeReadable;
+};
+
+export type CognitiveAgentsGetBuiltInAgentCapabilitiesResponse = CognitiveAgentsGetBuiltInAgentCapabilitiesResponses[keyof CognitiveAgentsGetBuiltInAgentCapabilitiesResponses];
+
+export type CognitiveAgentsGrantAgentToolPermissionsData = {
+    body?: GrantAgentToolPermissionsRequestDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Permissions/Grant';
+};
+
+export type CognitiveAgentsGrantAgentToolPermissionsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CognitiveAgentsGrantAgentToolPermissionsError = CognitiveAgentsGrantAgentToolPermissionsErrors[keyof CognitiveAgentsGrantAgentToolPermissionsErrors];
+
+export type CognitiveAgentsGrantAgentToolPermissionsResponses = {
+    /**
+     * OK
+     */
+    200: AgentPermissionReadinessDtoEnvelopeReadable;
+};
+
+export type CognitiveAgentsGrantAgentToolPermissionsResponse = CognitiveAgentsGrantAgentToolPermissionsResponses[keyof CognitiveAgentsGrantAgentToolPermissionsResponses];
+
+export type CognitiveAgentsRevokeAgentToolPermissionsData = {
+    body?: RevokeAgentToolPermissionsRequestDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Permissions/Revoke';
+};
+
+export type CognitiveAgentsRevokeAgentToolPermissionsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CognitiveAgentsRevokeAgentToolPermissionsError = CognitiveAgentsRevokeAgentToolPermissionsErrors[keyof CognitiveAgentsRevokeAgentToolPermissionsErrors];
+
+export type CognitiveAgentsRevokeAgentToolPermissionsResponses = {
+    /**
+     * OK
+     */
+    200: AgentPermissionReadinessDtoEnvelopeReadable;
+};
+
+export type CognitiveAgentsRevokeAgentToolPermissionsResponse = CognitiveAgentsRevokeAgentToolPermissionsResponses[keyof CognitiveAgentsRevokeAgentToolPermissionsResponses];
+
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsData = {
     body?: CognitiveAgentSkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1596,25 +3743,25 @@ export type GetCognitiveAgentSkillsAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills';
 };
 
-export type GetCognitiveAgentSkillsAsyncErrors = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentSkillsAsyncError = GetCognitiveAgentSkillsAsyncErrors[keyof GetCognitiveAgentSkillsAsyncErrors];
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsError = CognitiveAgentSkillsGetCognitiveAgentSkillsErrors[keyof CognitiveAgentSkillsGetCognitiveAgentSkillsErrors];
 
-export type GetCognitiveAgentSkillsAsyncResponses = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsResponses = {
     /**
      * OK
      */
     200: CognitiveAgentSkillDtoListEnvelopeReadable;
 };
 
-export type GetCognitiveAgentSkillsAsyncResponse = GetCognitiveAgentSkillsAsyncResponses[keyof GetCognitiveAgentSkillsAsyncResponses];
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsResponse = CognitiveAgentSkillsGetCognitiveAgentSkillsResponses[keyof CognitiveAgentSkillsGetCognitiveAgentSkillsResponses];
 
-export type CreateCognitiveAgentSkillAsyncData = {
+export type CognitiveAgentSkillsCreateCognitiveAgentSkillData = {
     body?: CognitiveAgentSkillCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1629,7 +3776,7 @@ export type CreateCognitiveAgentSkillAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills';
 };
 
-export type CreateCognitiveAgentSkillAsyncErrors = {
+export type CognitiveAgentSkillsCreateCognitiveAgentSkillErrors = {
     /**
      * Bad Request
      */
@@ -1640,16 +3787,16 @@ export type CreateCognitiveAgentSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCognitiveAgentSkillAsyncError = CreateCognitiveAgentSkillAsyncErrors[keyof CreateCognitiveAgentSkillAsyncErrors];
+export type CognitiveAgentSkillsCreateCognitiveAgentSkillError = CognitiveAgentSkillsCreateCognitiveAgentSkillErrors[keyof CognitiveAgentSkillsCreateCognitiveAgentSkillErrors];
 
-export type CreateCognitiveAgentSkillAsyncResponses = {
+export type CognitiveAgentSkillsCreateCognitiveAgentSkillResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentSkillsCountAsyncData = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsCountData = {
     body?: CognitiveAgentSkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1664,25 +3811,25 @@ export type GetCognitiveAgentSkillsCountAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills/Count';
 };
 
-export type GetCognitiveAgentSkillsCountAsyncErrors = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentSkillsCountAsyncError = GetCognitiveAgentSkillsCountAsyncErrors[keyof GetCognitiveAgentSkillsCountAsyncErrors];
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsCountError = CognitiveAgentSkillsGetCognitiveAgentSkillsCountErrors[keyof CognitiveAgentSkillsGetCognitiveAgentSkillsCountErrors];
 
-export type GetCognitiveAgentSkillsCountAsyncResponses = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCognitiveAgentSkillsCountAsyncResponse = GetCognitiveAgentSkillsCountAsyncResponses[keyof GetCognitiveAgentSkillsCountAsyncResponses];
+export type CognitiveAgentSkillsGetCognitiveAgentSkillsCountResponse = CognitiveAgentSkillsGetCognitiveAgentSkillsCountResponses[keyof CognitiveAgentSkillsGetCognitiveAgentSkillsCountResponses];
 
-export type DeleteCognitiveAgentSkillAsyncData = {
+export type CognitiveAgentSkillsDeleteCognitiveAgentSkillData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1698,7 +3845,7 @@ export type DeleteCognitiveAgentSkillAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills/{id}';
 };
 
-export type DeleteCognitiveAgentSkillAsyncErrors = {
+export type CognitiveAgentSkillsDeleteCognitiveAgentSkillErrors = {
     /**
      * Forbidden
      */
@@ -1709,16 +3856,16 @@ export type DeleteCognitiveAgentSkillAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCognitiveAgentSkillAsyncError = DeleteCognitiveAgentSkillAsyncErrors[keyof DeleteCognitiveAgentSkillAsyncErrors];
+export type CognitiveAgentSkillsDeleteCognitiveAgentSkillError = CognitiveAgentSkillsDeleteCognitiveAgentSkillErrors[keyof CognitiveAgentSkillsDeleteCognitiveAgentSkillErrors];
 
-export type DeleteCognitiveAgentSkillAsyncResponses = {
+export type CognitiveAgentSkillsDeleteCognitiveAgentSkillResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentSkillByIdAsyncData = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1734,7 +3881,7 @@ export type GetCognitiveAgentSkillByIdAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills/{id}';
 };
 
-export type GetCognitiveAgentSkillByIdAsyncErrors = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillByIdErrors = {
     /**
      * Forbidden
      */
@@ -1745,18 +3892,18 @@ export type GetCognitiveAgentSkillByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentSkillByIdAsyncError = GetCognitiveAgentSkillByIdAsyncErrors[keyof GetCognitiveAgentSkillByIdAsyncErrors];
+export type CognitiveAgentSkillsGetCognitiveAgentSkillByIdError = CognitiveAgentSkillsGetCognitiveAgentSkillByIdErrors[keyof CognitiveAgentSkillsGetCognitiveAgentSkillByIdErrors];
 
-export type GetCognitiveAgentSkillByIdAsyncResponses = {
+export type CognitiveAgentSkillsGetCognitiveAgentSkillByIdResponses = {
     /**
      * OK
      */
     200: CognitiveAgentSkillDtoEnvelopeReadable;
 };
 
-export type GetCognitiveAgentSkillByIdAsyncResponse = GetCognitiveAgentSkillByIdAsyncResponses[keyof GetCognitiveAgentSkillByIdAsyncResponses];
+export type CognitiveAgentSkillsGetCognitiveAgentSkillByIdResponse = CognitiveAgentSkillsGetCognitiveAgentSkillByIdResponses[keyof CognitiveAgentSkillsGetCognitiveAgentSkillByIdResponses];
 
-export type UpdateCognitiveAgentSkillAsyncData = {
+export type CognitiveAgentSkillsUpdateCognitiveAgentSkillData = {
     body?: CognitiveAgentSkillUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1772,7 +3919,7 @@ export type UpdateCognitiveAgentSkillAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills/{id}';
 };
 
-export type UpdateCognitiveAgentSkillAsyncErrors = {
+export type CognitiveAgentSkillsUpdateCognitiveAgentSkillErrors = {
     /**
      * Forbidden
      */
@@ -1783,16 +3930,16 @@ export type UpdateCognitiveAgentSkillAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateCognitiveAgentSkillAsyncError = UpdateCognitiveAgentSkillAsyncErrors[keyof UpdateCognitiveAgentSkillAsyncErrors];
+export type CognitiveAgentSkillsUpdateCognitiveAgentSkillError = CognitiveAgentSkillsUpdateCognitiveAgentSkillErrors[keyof CognitiveAgentSkillsUpdateCognitiveAgentSkillErrors];
 
-export type UpdateCognitiveAgentSkillAsyncResponses = {
+export type CognitiveAgentSkillsUpdateCognitiveAgentSkillResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentVariablesAsyncData = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesData = {
     body?: CognitiveAgentVariableDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1807,25 +3954,25 @@ export type GetCognitiveAgentVariablesAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables';
 };
 
-export type GetCognitiveAgentVariablesAsyncErrors = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentVariablesAsyncError = GetCognitiveAgentVariablesAsyncErrors[keyof GetCognitiveAgentVariablesAsyncErrors];
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesError = CognitiveAgentVariablesGetCognitiveAgentVariablesErrors[keyof CognitiveAgentVariablesGetCognitiveAgentVariablesErrors];
 
-export type GetCognitiveAgentVariablesAsyncResponses = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesResponses = {
     /**
      * OK
      */
     200: CognitiveAgentVariableDtoListEnvelopeReadable;
 };
 
-export type GetCognitiveAgentVariablesAsyncResponse = GetCognitiveAgentVariablesAsyncResponses[keyof GetCognitiveAgentVariablesAsyncResponses];
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesResponse = CognitiveAgentVariablesGetCognitiveAgentVariablesResponses[keyof CognitiveAgentVariablesGetCognitiveAgentVariablesResponses];
 
-export type CreateCognitiveAgentVariableAsyncData = {
+export type CognitiveAgentVariablesCreateCognitiveAgentVariableData = {
     body?: CognitiveAgentVariableCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1840,7 +3987,7 @@ export type CreateCognitiveAgentVariableAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables';
 };
 
-export type CreateCognitiveAgentVariableAsyncErrors = {
+export type CognitiveAgentVariablesCreateCognitiveAgentVariableErrors = {
     /**
      * Bad Request
      */
@@ -1851,16 +3998,16 @@ export type CreateCognitiveAgentVariableAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCognitiveAgentVariableAsyncError = CreateCognitiveAgentVariableAsyncErrors[keyof CreateCognitiveAgentVariableAsyncErrors];
+export type CognitiveAgentVariablesCreateCognitiveAgentVariableError = CognitiveAgentVariablesCreateCognitiveAgentVariableErrors[keyof CognitiveAgentVariablesCreateCognitiveAgentVariableErrors];
 
-export type CreateCognitiveAgentVariableAsyncResponses = {
+export type CognitiveAgentVariablesCreateCognitiveAgentVariableResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentVariablesCountAsyncData = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesCountData = {
     body?: CognitiveAgentVariableDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1875,25 +4022,25 @@ export type GetCognitiveAgentVariablesCountAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables/Count';
 };
 
-export type GetCognitiveAgentVariablesCountAsyncErrors = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentVariablesCountAsyncError = GetCognitiveAgentVariablesCountAsyncErrors[keyof GetCognitiveAgentVariablesCountAsyncErrors];
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesCountError = CognitiveAgentVariablesGetCognitiveAgentVariablesCountErrors[keyof CognitiveAgentVariablesGetCognitiveAgentVariablesCountErrors];
 
-export type GetCognitiveAgentVariablesCountAsyncResponses = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCognitiveAgentVariablesCountAsyncResponse = GetCognitiveAgentVariablesCountAsyncResponses[keyof GetCognitiveAgentVariablesCountAsyncResponses];
+export type CognitiveAgentVariablesGetCognitiveAgentVariablesCountResponse = CognitiveAgentVariablesGetCognitiveAgentVariablesCountResponses[keyof CognitiveAgentVariablesGetCognitiveAgentVariablesCountResponses];
 
-export type DeleteCognitiveAgentVariableAsyncData = {
+export type CognitiveAgentVariablesDeleteCognitiveAgentVariableData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1909,7 +4056,7 @@ export type DeleteCognitiveAgentVariableAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables/{id}';
 };
 
-export type DeleteCognitiveAgentVariableAsyncErrors = {
+export type CognitiveAgentVariablesDeleteCognitiveAgentVariableErrors = {
     /**
      * Forbidden
      */
@@ -1920,16 +4067,16 @@ export type DeleteCognitiveAgentVariableAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCognitiveAgentVariableAsyncError = DeleteCognitiveAgentVariableAsyncErrors[keyof DeleteCognitiveAgentVariableAsyncErrors];
+export type CognitiveAgentVariablesDeleteCognitiveAgentVariableError = CognitiveAgentVariablesDeleteCognitiveAgentVariableErrors[keyof CognitiveAgentVariablesDeleteCognitiveAgentVariableErrors];
 
-export type DeleteCognitiveAgentVariableAsyncResponses = {
+export type CognitiveAgentVariablesDeleteCognitiveAgentVariableResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveAgentVariableByIdAsyncData = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariableByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1945,7 +4092,7 @@ export type GetCognitiveAgentVariableByIdAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables/{id}';
 };
 
-export type GetCognitiveAgentVariableByIdAsyncErrors = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariableByIdErrors = {
     /**
      * Forbidden
      */
@@ -1956,18 +4103,18 @@ export type GetCognitiveAgentVariableByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveAgentVariableByIdAsyncError = GetCognitiveAgentVariableByIdAsyncErrors[keyof GetCognitiveAgentVariableByIdAsyncErrors];
+export type CognitiveAgentVariablesGetCognitiveAgentVariableByIdError = CognitiveAgentVariablesGetCognitiveAgentVariableByIdErrors[keyof CognitiveAgentVariablesGetCognitiveAgentVariableByIdErrors];
 
-export type GetCognitiveAgentVariableByIdAsyncResponses = {
+export type CognitiveAgentVariablesGetCognitiveAgentVariableByIdResponses = {
     /**
      * OK
      */
     200: CognitiveAgentVariableDtoEnvelopeReadable;
 };
 
-export type GetCognitiveAgentVariableByIdAsyncResponse = GetCognitiveAgentVariableByIdAsyncResponses[keyof GetCognitiveAgentVariableByIdAsyncResponses];
+export type CognitiveAgentVariablesGetCognitiveAgentVariableByIdResponse = CognitiveAgentVariablesGetCognitiveAgentVariableByIdResponses[keyof CognitiveAgentVariablesGetCognitiveAgentVariableByIdResponses];
 
-export type UpdateCognitiveAgentVariableAsyncData = {
+export type CognitiveAgentVariablesUpdateCognitiveAgentVariableData = {
     body?: CognitiveAgentVariableUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1983,7 +4130,7 @@ export type UpdateCognitiveAgentVariableAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables/{id}';
 };
 
-export type UpdateCognitiveAgentVariableAsyncErrors = {
+export type CognitiveAgentVariablesUpdateCognitiveAgentVariableErrors = {
     /**
      * Forbidden
      */
@@ -1994,16 +4141,16 @@ export type UpdateCognitiveAgentVariableAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateCognitiveAgentVariableAsyncError = UpdateCognitiveAgentVariableAsyncErrors[keyof UpdateCognitiveAgentVariableAsyncErrors];
+export type CognitiveAgentVariablesUpdateCognitiveAgentVariableError = CognitiveAgentVariablesUpdateCognitiveAgentVariableErrors[keyof CognitiveAgentVariablesUpdateCognitiveAgentVariableErrors];
 
-export type UpdateCognitiveAgentVariableAsyncResponses = {
+export type CognitiveAgentVariablesUpdateCognitiveAgentVariableResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveSkillsAsyncData = {
+export type CognitiveSkillsGetCognitiveSkillsData = {
     body?: CognitiveSkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2016,25 +4163,25 @@ export type GetCognitiveSkillsAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveSkills';
 };
 
-export type GetCognitiveSkillsAsyncErrors = {
+export type CognitiveSkillsGetCognitiveSkillsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveSkillsAsyncError = GetCognitiveSkillsAsyncErrors[keyof GetCognitiveSkillsAsyncErrors];
+export type CognitiveSkillsGetCognitiveSkillsError = CognitiveSkillsGetCognitiveSkillsErrors[keyof CognitiveSkillsGetCognitiveSkillsErrors];
 
-export type GetCognitiveSkillsAsyncResponses = {
+export type CognitiveSkillsGetCognitiveSkillsResponses = {
     /**
      * OK
      */
     200: CognitiveSkillDtoListEnvelopeReadable;
 };
 
-export type GetCognitiveSkillsAsyncResponse = GetCognitiveSkillsAsyncResponses[keyof GetCognitiveSkillsAsyncResponses];
+export type CognitiveSkillsGetCognitiveSkillsResponse = CognitiveSkillsGetCognitiveSkillsResponses[keyof CognitiveSkillsGetCognitiveSkillsResponses];
 
-export type CreateCognitiveSkillAsyncData = {
+export type CognitiveSkillsCreateCognitiveSkillData = {
     body?: CognitiveSkillCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2047,7 +4194,7 @@ export type CreateCognitiveSkillAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveSkills';
 };
 
-export type CreateCognitiveSkillAsyncErrors = {
+export type CognitiveSkillsCreateCognitiveSkillErrors = {
     /**
      * Bad Request
      */
@@ -2058,16 +4205,16 @@ export type CreateCognitiveSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCognitiveSkillAsyncError = CreateCognitiveSkillAsyncErrors[keyof CreateCognitiveSkillAsyncErrors];
+export type CognitiveSkillsCreateCognitiveSkillError = CognitiveSkillsCreateCognitiveSkillErrors[keyof CognitiveSkillsCreateCognitiveSkillErrors];
 
-export type CreateCognitiveSkillAsyncResponses = {
+export type CognitiveSkillsCreateCognitiveSkillResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveSkillsCountAsyncData = {
+export type CognitiveSkillsGetCognitiveSkillsCountData = {
     body?: CognitiveSkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2080,25 +4227,25 @@ export type GetCognitiveSkillsCountAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveSkills/Count';
 };
 
-export type GetCognitiveSkillsCountAsyncErrors = {
+export type CognitiveSkillsGetCognitiveSkillsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveSkillsCountAsyncError = GetCognitiveSkillsCountAsyncErrors[keyof GetCognitiveSkillsCountAsyncErrors];
+export type CognitiveSkillsGetCognitiveSkillsCountError = CognitiveSkillsGetCognitiveSkillsCountErrors[keyof CognitiveSkillsGetCognitiveSkillsCountErrors];
 
-export type GetCognitiveSkillsCountAsyncResponses = {
+export type CognitiveSkillsGetCognitiveSkillsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCognitiveSkillsCountAsyncResponse = GetCognitiveSkillsCountAsyncResponses[keyof GetCognitiveSkillsCountAsyncResponses];
+export type CognitiveSkillsGetCognitiveSkillsCountResponse = CognitiveSkillsGetCognitiveSkillsCountResponses[keyof CognitiveSkillsGetCognitiveSkillsCountResponses];
 
-export type DeleteCognitiveSkillAsyncData = {
+export type CognitiveSkillsDeleteCognitiveSkillData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2113,7 +4260,7 @@ export type DeleteCognitiveSkillAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveSkills/{id}';
 };
 
-export type DeleteCognitiveSkillAsyncErrors = {
+export type CognitiveSkillsDeleteCognitiveSkillErrors = {
     /**
      * Forbidden
      */
@@ -2124,16 +4271,16 @@ export type DeleteCognitiveSkillAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCognitiveSkillAsyncError = DeleteCognitiveSkillAsyncErrors[keyof DeleteCognitiveSkillAsyncErrors];
+export type CognitiveSkillsDeleteCognitiveSkillError = CognitiveSkillsDeleteCognitiveSkillErrors[keyof CognitiveSkillsDeleteCognitiveSkillErrors];
 
-export type DeleteCognitiveSkillAsyncResponses = {
+export type CognitiveSkillsDeleteCognitiveSkillResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCognitiveSkillByIdAsyncData = {
+export type CognitiveSkillsGetCognitiveSkillByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2148,7 +4295,7 @@ export type GetCognitiveSkillByIdAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveSkills/{id}';
 };
 
-export type GetCognitiveSkillByIdAsyncErrors = {
+export type CognitiveSkillsGetCognitiveSkillByIdErrors = {
     /**
      * Forbidden
      */
@@ -2159,18 +4306,18 @@ export type GetCognitiveSkillByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCognitiveSkillByIdAsyncError = GetCognitiveSkillByIdAsyncErrors[keyof GetCognitiveSkillByIdAsyncErrors];
+export type CognitiveSkillsGetCognitiveSkillByIdError = CognitiveSkillsGetCognitiveSkillByIdErrors[keyof CognitiveSkillsGetCognitiveSkillByIdErrors];
 
-export type GetCognitiveSkillByIdAsyncResponses = {
+export type CognitiveSkillsGetCognitiveSkillByIdResponses = {
     /**
      * OK
      */
     200: CognitiveSkillDtoEnvelopeReadable;
 };
 
-export type GetCognitiveSkillByIdAsyncResponse = GetCognitiveSkillByIdAsyncResponses[keyof GetCognitiveSkillByIdAsyncResponses];
+export type CognitiveSkillsGetCognitiveSkillByIdResponse = CognitiveSkillsGetCognitiveSkillByIdResponses[keyof CognitiveSkillsGetCognitiveSkillByIdResponses];
 
-export type UpdateCognitiveSkillAsyncData = {
+export type CognitiveSkillsUpdateCognitiveSkillData = {
     body?: CognitiveSkillUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2185,7 +4332,7 @@ export type UpdateCognitiveSkillAsyncData = {
     url: '/api/v2/IntelligenceService/CognitiveSkills/{id}';
 };
 
-export type UpdateCognitiveSkillAsyncErrors = {
+export type CognitiveSkillsUpdateCognitiveSkillErrors = {
     /**
      * Forbidden
      */
@@ -2196,81 +4343,281 @@ export type UpdateCognitiveSkillAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateCognitiveSkillAsyncError = UpdateCognitiveSkillAsyncErrors[keyof UpdateCognitiveSkillAsyncErrors];
+export type CognitiveSkillsUpdateCognitiveSkillError = CognitiveSkillsUpdateCognitiveSkillErrors[keyof CognitiveSkillsUpdateCognitiveSkillErrors];
 
-export type UpdateCognitiveSkillAsyncResponses = {
+export type CognitiveSkillsUpdateCognitiveSkillResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetVersionData = {
+export type DefinitionDistributionValidateDefinitionData = {
+    body?: DefinitionCoordinateRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/DefinitionDistribution/Validate';
+};
+
+export type DefinitionDistributionValidateDefinitionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DefinitionDistributionValidateDefinitionError = DefinitionDistributionValidateDefinitionErrors[keyof DefinitionDistributionValidateDefinitionErrors];
+
+export type DefinitionDistributionValidateDefinitionResponses = {
+    /**
+     * OK
+     */
+    200: DefinitionValidationDtoEnvelopeReadable;
+};
+
+export type DefinitionDistributionValidateDefinitionResponse = DefinitionDistributionValidateDefinitionResponses[keyof DefinitionDistributionValidateDefinitionResponses];
+
+export type DefinitionDistributionInstallDefinitionData = {
+    body?: DefinitionCoordinateRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/DefinitionDistribution/Install';
+};
+
+export type DefinitionDistributionInstallDefinitionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DefinitionDistributionInstallDefinitionError = DefinitionDistributionInstallDefinitionErrors[keyof DefinitionDistributionInstallDefinitionErrors];
+
+export type DefinitionDistributionInstallDefinitionResponses = {
+    /**
+     * OK
+     */
+    200: InstalledDefinitionDtoEnvelopeReadable;
+};
+
+export type DefinitionDistributionInstallDefinitionResponse = DefinitionDistributionInstallDefinitionResponses[keyof DefinitionDistributionInstallDefinitionResponses];
+
+export type DefinitionDistributionUpdateDefinitionData = {
+    body?: DefinitionCoordinateRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/DefinitionDistribution/Update';
+};
+
+export type DefinitionDistributionUpdateDefinitionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DefinitionDistributionUpdateDefinitionError = DefinitionDistributionUpdateDefinitionErrors[keyof DefinitionDistributionUpdateDefinitionErrors];
+
+export type DefinitionDistributionUpdateDefinitionResponses = {
+    /**
+     * OK
+     */
+    200: InstalledDefinitionDtoEnvelopeReadable;
+};
+
+export type DefinitionDistributionUpdateDefinitionResponse = DefinitionDistributionUpdateDefinitionResponses[keyof DefinitionDistributionUpdateDefinitionResponses];
+
+export type DefinitionDistributionUninstallDefinitionData = {
+    body?: UninstallDefinitionRequestDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/DefinitionDistribution/Uninstall';
+};
+
+export type DefinitionDistributionUninstallDefinitionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DefinitionDistributionUninstallDefinitionError = DefinitionDistributionUninstallDefinitionErrors[keyof DefinitionDistributionUninstallDefinitionErrors];
+
+export type DefinitionDistributionUninstallDefinitionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DefinitionDistributionUninstallDefinitionResponse = DefinitionDistributionUninstallDefinitionResponses[keyof DefinitionDistributionUninstallDefinitionResponses];
+
+export type DefinitionDistributionGetInstalledDefinitionStateData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        kind?: 'Agent' | 'Skill' | 'Workflow';
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/DefinitionDistribution/InstalledState';
+};
+
+export type DefinitionDistributionGetInstalledDefinitionStateErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DefinitionDistributionGetInstalledDefinitionStateError = DefinitionDistributionGetInstalledDefinitionStateErrors[keyof DefinitionDistributionGetInstalledDefinitionStateErrors];
+
+export type DefinitionDistributionGetInstalledDefinitionStateResponses = {
+    /**
+     * OK
+     */
+    200: InstalledDefinitionDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type DefinitionDistributionGetInstalledDefinitionStateResponse = DefinitionDistributionGetInstalledDefinitionStateResponses[keyof DefinitionDistributionGetInstalledDefinitionStateResponses];
+
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2280,32 +4627,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2316,81 +4663,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2401,25 +4748,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2430,25 +4777,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2459,18 +4806,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2480,14 +4827,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2496,14 +4843,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2512,28 +4859,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type InvokeAgentSurfaceAsyncData = {
+export type PlatformInvokeAgentSurfaceData = {
     body?: never;
     path: {
         agentId: string;
@@ -2542,7 +4889,7 @@ export type InvokeAgentSurfaceAsyncData = {
     url: '/api/v2/IntelligenceService/Agents/{agentId}/agui';
 };
 
-export type InvokeAgentSurfaceAsyncResponses = {
+export type PlatformInvokeAgentSurfaceResponses = {
     /**
      * OK
      */

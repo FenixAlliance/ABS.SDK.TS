@@ -10,1336 +10,1095 @@ export interface paths {
      * Get business relationships
      * @description Retrieves the child business relationships owned by the specified parent tenant using OData query options.
      */
-    get: operations["GetBusinessRelationshipsAsync"];
+    get: operations["BusinessRelationships_GetBusinessRelationships"];
     /**
      * Create a business relationship
      * @description Creates a new business relationship owned by the specified parent tenant.
      */
-    post: operations["CreateBusinessRelationshipAsync"];
+    post: operations["BusinessRelationships_CreateBusinessRelationship"];
   };
   "/api/v2/TenantsService/BusinessRelationships/Count": {
     /**
      * Get business relationships count
      * @description Returns the count of child business relationships owned by the specified parent tenant.
      */
-    get: operations["GetBusinessRelationshipsCountAsync"];
+    get: operations["BusinessRelationships_GetBusinessRelationshipsCount"];
   };
   "/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}": {
     /**
      * Get business relationship by ID
      * @description Retrieves the details of a specific business relationship by its ID.
      */
-    get: operations["GetBusinessRelationshipByIdAsync"];
+    get: operations["BusinessRelationships_GetBusinessRelationshipById"];
     /**
      * Update a business relationship
      * @description Updates an existing business relationship by its ID.
      */
-    put: operations["UpdateBusinessRelationshipAsync"];
+    put: operations["BusinessRelationships_UpdateBusinessRelationship"];
     /**
      * Delete a business relationship
      * @description Deletes a business relationship by its ID.
      */
-    delete: operations["DeleteBusinessRelationshipAsync"];
+    delete: operations["BusinessRelationships_DeleteBusinessRelationship"];
   };
   "/api/v2/TenantsService/Departments": {
     /**
      * Retrieve a list of tenant departments
      * @description Retrieve a list of tenant departments
      */
-    get: operations["GetTenantDepartments"];
+    get: operations["Departments_GetTenantDepartments"];
     /**
      * Create a new tenant department
      * @description Create a new tenant department
      */
-    post: operations["CreateTenantDepartment"];
+    post: operations["Departments_CreateTenantDepartment"];
   };
   "/api/v2/TenantsService/Departments/Count": {
     /**
      * Get the count of tenant departments
      * @description Get the count of tenant departments
      */
-    get: operations["GetTenantDepartmentsCount"];
+    get: operations["Departments_GetTenantDepartmentsCount"];
   };
   "/api/v2/TenantsService/Departments/{tenantDepartmentId}": {
     /**
      * Retrieve a single tenant department by its ID
      * @description Retrieve a single tenant department by its ID
      */
-    get: operations["GetTenantDepartmentById"];
+    get: operations["Departments_GetTenantDepartmentById"];
     /**
      * Update a tenant department
      * @description Update a tenant department
      */
-    put: operations["UpdateTenantDepartment"];
+    put: operations["Departments_UpdateTenantDepartment"];
     /**
      * Delete a tenant department
      * @description Delete a tenant department
      */
-    delete: operations["DeleteTenantDepartment"];
+    delete: operations["Departments_DeleteTenantDepartment"];
     /**
      * Patch a tenant department
      * @description Patch a tenant department
      */
-    patch: operations["PatchTenantDepartmentAsync"];
+    patch: operations["Departments_PatchTenantDepartment"];
   };
   "/api/v2/TenantsService/EmployeeEnrollments": {
     /**
      * Retrieve a list of tenant employee enrollments
      * @description Retrieve a list of tenant employee enrollments
      */
-    get: operations["GetTenantEmployeeEnrollments"];
+    get: operations["EmployeeEnrollments_GetTenantEmployeeEnrollments"];
     /**
      * Create a new tenant employee enrollment
      * @description Create a new tenant employee enrollment
      */
-    post: operations["CreateTenantEmployeeEnrollment"];
+    post: operations["EmployeeEnrollments_CreateTenantEmployeeEnrollment"];
   };
   "/api/v2/TenantsService/EmployeeEnrollments/Count": {
     /**
      * Get the count of tenant employee enrollments
      * @description Get the count of tenant employee enrollments
      */
-    get: operations["GetTenantEmployeeEnrollmentsCount"];
+    get: operations["EmployeeEnrollments_GetTenantEmployeeEnrollmentsCount"];
   };
   "/api/v2/TenantsService/EmployeeEnrollments/{tenantEmployeeEnrollmentId}": {
     /**
      * Retrieve a single tenant employee enrollment by its ID
      * @description Retrieve a single tenant employee enrollment by its ID
      */
-    get: operations["GetTenantEmployeeEnrollmentById"];
+    get: operations["EmployeeEnrollments_GetTenantEmployeeEnrollmentById"];
     /**
      * Update a tenant employee enrollment
      * @description Update a tenant employee enrollment
      */
-    put: operations["UpdateTenantEmployeeEnrollment"];
+    put: operations["EmployeeEnrollments_UpdateTenantEmployeeEnrollment"];
     /**
      * Delete a tenant employee enrollment
      * @description Delete a tenant employee enrollment
      */
-    delete: operations["DeleteTenantEmployeeEnrollment"];
+    delete: operations["EmployeeEnrollments_DeleteTenantEmployeeEnrollment"];
     /**
      * Patch a tenant employee enrollment
      * @description Patch a tenant employee enrollment
      */
-    patch: operations["PatchTenantEmployeeEnrollmentAsync"];
+    patch: operations["EmployeeEnrollments_PatchTenantEmployeeEnrollment"];
   };
   "/api/v2/TenantsService/Enrollments": {
     /**
      * Retrieve a list of tenant enrollments
      * @description Retrieve a list of tenant enrollments
      */
-    get: operations["GetTenantEnrollments"];
+    get: operations["Enrollments_GetTenantEnrollments"];
     /**
      * Create a new tenant enrollment
      * @description Create a new tenant enrollment
      */
-    post: operations["CreateTenantEnrollment"];
+    post: operations["Enrollments_CreateTenantEnrollment"];
   };
   "/api/v2/TenantsService/Enrollments/Count": {
     /**
      * Get the count of tenant enrollments
      * @description Get the count of tenant enrollments
      */
-    get: operations["GetTenantEnrollmentsCount"];
+    get: operations["Enrollments_GetTenantEnrollmentsCount"];
   };
   "/api/v2/TenantsService/Enrollments/Extended": {
     /**
      * Retrieve a list of tenant enrollments
      * @description Retrieve a list of tenant enrollments
      */
-    get: operations["GetExtendedTenantEnrollments"];
+    get: operations["Enrollments_GetExtendedTenantEnrollments"];
   };
   "/api/v2/TenantsService/Enrollments/Extended/Count": {
     /**
      * Get the count of tenant enrollments
      * @description Get the count of tenant enrollments
      */
-    get: operations["GetExtendedTenantEnrollmentsCount"];
+    get: operations["Enrollments_GetExtendedTenantEnrollmentsCount"];
   };
   "/api/v2/TenantsService/Enrollments/{enrollmentId}": {
     /**
      * Retrieve a single tenant enrollment by its ID
      * @description Retrieve a single tenant enrollment by its ID
      */
-    get: operations["GetTenantEnrollmentById"];
+    get: operations["Enrollments_GetTenantEnrollmentById"];
     /**
      * Update a tenant enrollment
      * @description Update a tenant enrollment
      */
-    put: operations["UpdateTenantEnrollment"];
+    put: operations["Enrollments_UpdateTenantEnrollment"];
     /**
      * Delete a tenant enrollment
      * @description Delete a tenant enrollment
      */
-    delete: operations["DeleteTenantEnrollment"];
+    delete: operations["Enrollments_DeleteTenantEnrollment"];
     /**
      * Patch a tenant enrollment
      * @description Patch a tenant enrollment
      */
-    patch: operations["PatchTenantEnrollmentAsync"];
+    patch: operations["Enrollments_PatchTenantEnrollment"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/TenantsService/Industries": {
     /**
      * Retrieve a list of tenant industries
      * @description Retrieve a list of tenant industries
      */
-    get: operations["GetTenantIndustries"];
+    get: operations["Industries_GetTenantIndustries"];
     /**
      * Create a new tenant industry
      * @description Create a new tenant industry
      */
-    post: operations["CreateTenantIndustry"];
+    post: operations["Industries_CreateTenantIndustry"];
   };
   "/api/v2/TenantsService/Industries/Count": {
     /**
      * Get the count of tenant industries
      * @description Get the count of tenant industries
      */
-    get: operations["GetTenantIndustriesCount"];
+    get: operations["Industries_GetTenantIndustriesCount"];
   };
   "/api/v2/TenantsService/Industries/{tenantIndustryId}": {
     /**
      * Retrieve a single tenant industry by its ID
      * @description Retrieve a single tenant industry by its ID
      */
-    get: operations["GetTenantIndustryById"];
+    get: operations["Industries_GetTenantIndustryById"];
     /**
      * Update a tenant industry
      * @description Update a tenant industry
      */
-    put: operations["UpdateTenantIndustry"];
+    put: operations["Industries_UpdateTenantIndustry"];
     /**
      * Delete a tenant industry
      * @description Delete a tenant industry
      */
-    delete: operations["DeleteTenantIndustry"];
+    delete: operations["Industries_DeleteTenantIndustry"];
     /**
      * Patch a tenant industry
      * @description Patch a tenant industry
      */
-    patch: operations["PatchTenantIndustryAsync"];
+    patch: operations["Industries_PatchTenantIndustry"];
   };
   "/api/v2/TenantsService/Invitations": {
     /**
      * Retrieve a list of tenant invitations
      * @description Retrieve a list of tenant invitations
      */
-    get: operations["GetTenantInvitations"];
+    get: operations["Invitations_GetTenantInvitations"];
     /**
      * Send an invitation to a user to join a tenant
-     * @description Send an invitation to a user to join a tenant
+     * @description Creates the invitation and mails it. The invitation is created even when its email cannot be delivered: the result then has emailDelivered=false and an emailDeliveryWarning, and the invitation can be re-mailed with Resend.
      */
-    post: operations["SendTenantInvitation"];
+    post: operations["Invitations_SendTenantInvitation"];
   };
   "/api/v2/TenantsService/Invitations/Count": {
     /**
      * Get the count of tenant invitations
      * @description Get the count of tenant invitations
      */
-    get: operations["GetTenantInvitationsCount"];
+    get: operations["Invitations_GetTenantInvitationsCount"];
   };
   "/api/v2/TenantsService/Invitations/{invitationId}": {
     /**
      * Get a tenant invitation by its ID
      * @description Get a tenant invitation by its ID
      */
-    get: operations["GetTenantInvitationById"];
+    get: operations["Invitations_GetTenantInvitationById"];
     /**
      * Delete a tenant invitation
      * @description Delete a tenant invitation
      */
-    delete: operations["DeleteTenantInvitation"];
+    delete: operations["Invitations_DeleteTenantInvitation"];
   };
   "/api/v2/TenantsService/Invitations/{invitationId}/Accept": {
     /**
      * Accept an invitation to join a tenant
      * @description Accept an invitation to join a tenant
      */
-    post: operations["AcceptTenantInvitation"];
+    post: operations["Invitations_AcceptTenantInvitation"];
   };
   "/api/v2/TenantsService/Invitations/{invitationId}/Decline": {
     /**
      * Decline an invitation to join a tenant
      * @description Decline an invitation to join a tenant
      */
-    post: operations["DeclineTenantInvitation"];
+    post: operations["Invitations_DeclineTenantInvitation"];
+  };
+  "/api/v2/TenantsService/Invitations/{invitationId}/Resend": {
+    /**
+     * Resend a pending tenant invitation
+     * @description Re-mails a pending invitation to its addressee with a fresh acceptance link
+     */
+    post: operations["Invitations_ResendTenantInvitation"];
   };
   "/api/v2/TenantsService/Options": {
     /**
      * Retrieve a list of tenant options
      * @description Retrieve a list of tenant options
      */
-    get: operations["GetTenantOptions"];
+    get: operations["Options_GetTenantOptions"];
     /**
      * Create a new tenant option
      * @description Create a new tenant option
      */
-    post: operations["CreateTenantOption"];
+    post: operations["Options_CreateTenantOption"];
   };
   "/api/v2/TenantsService/Options/Count": {
     /**
      * Get the count of tenant options
      * @description Get the count of tenant options
      */
-    get: operations["GetTenantOptionsCount"];
+    get: operations["Options_GetTenantOptionsCount"];
   };
   "/api/v2/TenantsService/Options/{optionId}": {
     /**
      * Retrieve a single tenant option by its ID
      * @description Retrieve a single tenant option by its ID
      */
-    get: operations["GetTenantOptionById"];
+    get: operations["Options_GetTenantOptionById"];
     /**
      * Update a tenant option
      * @description Update a tenant option
      */
-    put: operations["UpdateTenantOption"];
+    put: operations["Options_UpdateTenantOption"];
     /**
      * Delete a tenant option
      * @description Delete a tenant option
      */
-    delete: operations["DeleteTenantOption"];
+    delete: operations["Options_DeleteTenantOption"];
     /**
      * Patch a tenant option
      * @description Patch a tenant option
      */
-    patch: operations["PatchTenantOption"];
+    patch: operations["Options_PatchTenantOption"];
   };
   "/api/v2/TenantsService/Options/Key/{key}": {
     /**
      * Retrieve a single tenant option by its key
      * @description Retrieve a single tenant option by its key
      */
-    get: operations["GetTenantOptionByKey"];
+    get: operations["Options_GetTenantOptionByKey"];
   };
   "/api/v2/TenantsService/Options/Upsert/{key}": {
     /**
      * Create or update a tenant option by key
      * @description Create or update a tenant option by key
      */
-    put: operations["UpsertTenantOption"];
+    put: operations["Options_UpsertTenantOption"];
   };
   "/api/v2/TenantsService/Positions": {
     /**
      * Retrieve a list of tenant positions
      * @description Retrieve a list of tenant positions
      */
-    get: operations["GetTenantPositions"];
+    get: operations["Positions_GetTenantPositions"];
     /**
      * Create a new tenant position
      * @description Create a new tenant position
      */
-    post: operations["CreateTenantPosition"];
+    post: operations["Positions_CreateTenantPosition"];
   };
   "/api/v2/TenantsService/Positions/Count": {
     /**
      * Get the count of tenant positions
      * @description Get the count of tenant positions
      */
-    get: operations["GetTenantPositionsCount"];
+    get: operations["Positions_GetTenantPositionsCount"];
   };
   "/api/v2/TenantsService/Positions/{tenantPositionId}": {
     /**
      * Retrieve a single tenant position by its ID
      * @description Retrieve a single tenant position by its ID
      */
-    get: operations["GetTenantPositionById"];
+    get: operations["Positions_GetTenantPositionById"];
     /**
      * Update a tenant position
      * @description Update a tenant position
      */
-    put: operations["UpdateTenantPosition"];
+    put: operations["Positions_UpdateTenantPosition"];
     /**
      * Delete a tenant position
      * @description Delete a tenant position
      */
-    delete: operations["DeleteTenantPosition"];
+    delete: operations["Positions_DeleteTenantPosition"];
     /**
      * Patch a tenant position
      * @description Patch a tenant position
      */
-    patch: operations["PatchTenantPosition"];
+    patch: operations["Positions_PatchTenantPosition"];
   };
   "/api/v2/TenantsService/Segments": {
     /**
      * Retrieve a list of tenant segments
      * @description Retrieve a list of tenant segments
      */
-    get: operations["GetTenantSegments"];
+    get: operations["Segments_GetTenantSegments"];
     /**
      * Create a new tenant segment
      * @description Create a new tenant segment
      */
-    post: operations["CreateTenantSegment"];
+    post: operations["Segments_CreateTenantSegment"];
   };
   "/api/v2/TenantsService/Segments/Count": {
     /**
      * Get the count of tenant segments
      * @description Get the count of tenant segments
      */
-    get: operations["GetTenantSegmentsCount"];
+    get: operations["Segments_GetTenantSegmentsCount"];
   };
   "/api/v2/TenantsService/Segments/{tenantSegmentId}": {
     /**
      * Retrieve a single tenant segment by its ID
      * @description Retrieve a single tenant segment by its ID
      */
-    get: operations["GetTenantSegmentById"];
+    get: operations["Segments_GetTenantSegmentById"];
     /**
      * Update a tenant segment
      * @description Update a tenant segment
      */
-    put: operations["UpdateTenantSegment"];
+    put: operations["Segments_UpdateTenantSegment"];
     /**
      * Delete a tenant segment
      * @description Delete a tenant segment
      */
-    delete: operations["DeleteTenantSegment"];
+    delete: operations["Segments_DeleteTenantSegment"];
     /**
      * Patch a tenant segment
      * @description Patch a tenant segment
      */
-    patch: operations["PatchTenantSegment"];
+    patch: operations["Segments_PatchTenantSegment"];
   };
   "/api/v2/TenantsService/Sizes": {
     /**
      * Retrieve a list of tenant sizes
      * @description Retrieve a list of tenant sizes
      */
-    get: operations["GetTenantSizes"];
+    get: operations["Sizes_GetTenantSizes"];
     /**
      * Create a new tenant size
      * @description Create a new tenant size
      */
-    post: operations["CreateTenantSize"];
+    post: operations["Sizes_CreateTenantSize"];
   };
   "/api/v2/TenantsService/Sizes/Count": {
     /**
      * Get the count of tenant sizes
      * @description Get the count of tenant sizes
      */
-    get: operations["GetTenantSizesCount"];
+    get: operations["Sizes_GetTenantSizesCount"];
   };
   "/api/v2/TenantsService/Sizes/{tenantSizeId}": {
     /**
      * Retrieve a single tenant size by its ID
      * @description Retrieve a single tenant size by its ID
      */
-    get: operations["GetTenantSizeById"];
+    get: operations["Sizes_GetTenantSizeById"];
     /**
      * Update a tenant size
      * @description Update a tenant size
      */
-    put: operations["UpdateTenantSize"];
+    put: operations["Sizes_UpdateTenantSize"];
     /**
      * Delete a tenant size
      * @description Delete a tenant size
      */
-    delete: operations["DeleteTenantSize"];
+    delete: operations["Sizes_DeleteTenantSize"];
     /**
      * Patch a tenant size
      * @description Patch a tenant size
      */
-    patch: operations["PatchTenantSize"];
+    patch: operations["Sizes_PatchTenantSize"];
   };
   "/api/v2/TenantsService/TeamContactEnrollments": {
     /**
      * Retrieve a list of tenant team contact enrollments
      * @description Retrieve a list of tenant team contact enrollments
      */
-    get: operations["GetTenantTeamContactEnrollments"];
+    get: operations["TeamContactEnrollments_GetTenantTeamContactEnrollments"];
     /**
      * Create a new tenant team contact enrollment
      * @description Create a new tenant team contact enrollment
      */
-    post: operations["CreateTenantTeamContactEnrollment"];
+    post: operations["TeamContactEnrollments_CreateTenantTeamContactEnrollment"];
   };
   "/api/v2/TenantsService/TeamContactEnrollments/Count": {
     /**
      * Get the count of tenant team contact enrollments
      * @description Get the count of tenant team contact enrollments
      */
-    get: operations["GetTenantTeamContactEnrollmentsCount"];
+    get: operations["TeamContactEnrollments_GetTenantTeamContactEnrollmentsCount"];
   };
   "/api/v2/TenantsService/TeamContactEnrollments/{tenantTeamContactEnrollmentId}": {
     /**
      * Retrieve a single tenant team contact enrollment by its ID
      * @description Retrieve a single tenant team contact enrollment by its ID
      */
-    get: operations["GetTenantTeamContactEnrollmentById"];
+    get: operations["TeamContactEnrollments_GetTenantTeamContactEnrollmentById"];
     /**
      * Update a tenant team contact enrollment
      * @description Update a tenant team contact enrollment
      */
-    put: operations["UpdateTenantTeamContactEnrollment"];
+    put: operations["TeamContactEnrollments_UpdateTenantTeamContactEnrollment"];
     /**
      * Delete a tenant team contact enrollment
      * @description Delete a tenant team contact enrollment
      */
-    delete: operations["DeleteTenantTeamContactEnrollment"];
+    delete: operations["TeamContactEnrollments_DeleteTenantTeamContactEnrollment"];
     /**
      * Patch a tenant team contact enrollment
      * @description Patch a tenant team contact enrollment
      */
-    patch: operations["PatchTenantTeamContactEnrollment"];
+    patch: operations["TeamContactEnrollments_PatchTenantTeamContactEnrollment"];
   };
   "/api/v2/TenantsService/TeamProjectEnrollments": {
     /**
      * Retrieve a list of tenant team project enrollments
      * @description Retrieve a list of tenant team project enrollments
      */
-    get: operations["GetTenantTeamProjectEnrollments"];
+    get: operations["TeamProjectEnrollments_GetTenantTeamProjectEnrollments"];
     /**
      * Create a new tenant team project enrollment
      * @description Create a new tenant team project enrollment
      */
-    post: operations["CreateTenantTeamProjectEnrollment"];
+    post: operations["TeamProjectEnrollments_CreateTenantTeamProjectEnrollment"];
   };
   "/api/v2/TenantsService/TeamProjectEnrollments/Count": {
     /**
      * Get the count of tenant team project enrollments
      * @description Get the count of tenant team project enrollments
      */
-    get: operations["GetTenantTeamProjectEnrollmentsCount"];
+    get: operations["TeamProjectEnrollments_GetTenantTeamProjectEnrollmentsCount"];
   };
   "/api/v2/TenantsService/TeamProjectEnrollments/{tenantTeamProjectEnrollmentId}": {
     /**
      * Retrieve a single tenant team project enrollment by its ID
      * @description Retrieve a single tenant team project enrollment by its ID
      */
-    get: operations["GetTenantTeamProjectEnrollmentById"];
+    get: operations["TeamProjectEnrollments_GetTenantTeamProjectEnrollmentById"];
     /**
      * Update a tenant team project enrollment
      * @description Update a tenant team project enrollment
      */
-    put: operations["UpdateTenantTeamProjectEnrollment"];
+    put: operations["TeamProjectEnrollments_UpdateTenantTeamProjectEnrollment"];
     /**
      * Delete a tenant team project enrollment
      * @description Delete a tenant team project enrollment
      */
-    delete: operations["DeleteTenantTeamProjectEnrollment"];
+    delete: operations["TeamProjectEnrollments_DeleteTenantTeamProjectEnrollment"];
     /**
      * Patch a tenant team project enrollment
      * @description Patch a tenant team project enrollment
      */
-    patch: operations["PatchTenantTeamProjectEnrollment"];
+    patch: operations["TeamProjectEnrollments_PatchTenantTeamProjectEnrollment"];
   };
   "/api/v2/TenantsService/TeamRecords": {
     /**
      * Retrieve a list of tenant team records
      * @description Retrieve a list of tenant team records
      */
-    get: operations["GetTenantTeamRecords"];
+    get: operations["TeamRecords_GetTenantTeamRecords"];
     /**
      * Create a new tenant team record
      * @description Create a new tenant team record
      */
-    post: operations["CreateTenantTeamRecord"];
+    post: operations["TeamRecords_CreateTenantTeamRecord"];
   };
   "/api/v2/TenantsService/TeamRecords/Count": {
     /**
      * Get the count of tenant team records
      * @description Get the count of tenant team records
      */
-    get: operations["GetTenantTeamRecordsCount"];
+    get: operations["TeamRecords_GetTenantTeamRecordsCount"];
   };
   "/api/v2/TenantsService/TeamRecords/{tenantTeamRecordId}": {
     /**
      * Retrieve a single tenant team record by its ID
      * @description Retrieve a single tenant team record by its ID
      */
-    get: operations["GetTenantTeamRecordById"];
+    get: operations["TeamRecords_GetTenantTeamRecordById"];
     /**
      * Update a tenant team record
      * @description Update a tenant team record
      */
-    put: operations["UpdateTenantTeamRecord"];
+    put: operations["TeamRecords_UpdateTenantTeamRecord"];
     /**
      * Delete a tenant team record
      * @description Delete a tenant team record
      */
-    delete: operations["DeleteTenantTeamRecord"];
+    delete: operations["TeamRecords_DeleteTenantTeamRecord"];
     /**
      * Patch a tenant team record
      * @description Patch a tenant team record
      */
-    patch: operations["PatchTenantTeamRecord"];
+    patch: operations["TeamRecords_PatchTenantTeamRecord"];
   };
   "/api/v2/TenantsService/Teams": {
     /**
      * Retrieve a list of tenant teams
      * @description Retrieve a list of tenant teams
      */
-    get: operations["GetTenantTeams"];
+    get: operations["Teams_GetTenantTeams"];
     /**
      * Create a new tenant team
      * @description Create a new tenant team
      */
-    post: operations["CreateTenantTeam"];
+    post: operations["Teams_CreateTenantTeam"];
   };
   "/api/v2/TenantsService/Teams/Count": {
     /**
      * Get the count of tenant teams
      * @description Get the count of tenant teams
      */
-    get: operations["GetTenantTeamsCount"];
+    get: operations["Teams_GetTenantTeamsCount"];
   };
   "/api/v2/TenantsService/Teams/{tenantTeamId}": {
     /**
      * Retrieve a single tenant team by its ID
      * @description Retrieve a single tenant team by its ID
      */
-    get: operations["GetTenantTeamById"];
+    get: operations["Teams_GetTenantTeamById"];
     /**
      * Update a tenant team
      * @description Update a tenant team
      */
-    put: operations["UpdateTenantTeam"];
+    put: operations["Teams_UpdateTenantTeam"];
     /**
      * Delete a tenant team
      * @description Delete a tenant team
      */
-    delete: operations["DeleteTenantTeam"];
+    delete: operations["Teams_DeleteTenantTeam"];
     /**
      * Patch a tenant team
      * @description Patch a tenant team
      */
-    patch: operations["PatchTenantTeam"];
+    patch: operations["Teams_PatchTenantTeam"];
   };
   "/api/v2/TenantsService/Tenants/Root": {
     /**
      * Get the root tenant of the platform
      * @description Get the root tenant of the platform
      */
-    get: operations["GetRootTenantAsync"];
+    get: operations["Tenants_GetRootTenant"];
   };
   "/api/v2/TenantsService/Tenants/Current": {
     /**
      * Get the user's current default tenant
      * @description Get the user's current default tenant
      */
-    get: operations["GetCurrentTenantAsync"];
+    get: operations["Tenants_GetCurrentTenant"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}": {
     /**
      * Get a specific tenant by ID
      * @description Get a specific tenant by ID
      */
-    get: operations["GetTenantAsync"];
+    get: operations["Tenants_GetTenant"];
     /**
      * Update a tenant's profile
      * @description Update a tenant's profile
      */
-    put: operations["UpdateTenantAsync"];
+    put: operations["Tenants_UpdateTenant"];
     /**
      * Patch a tenant's profile
      * @description Patch a tenant's profile
      */
-    patch: operations["PatchTenantAsync"];
+    patch: operations["Tenants_PatchTenant"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Extended": {
     /**
      * Get an extended tenant's business profile
      * @description Get an extended tenant's business profile
      */
-    get: operations["GetExtendedTenantAsync"];
+    get: operations["Tenants_GetExtendedTenant"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Avatar": {
     /**
      * Get a tenant's avatar
      * @description Get a tenant's avatar
      */
-    get: operations["GetTenantAvatarAsync"];
+    get: operations["Tenants_GetTenantAvatar"];
     /**
      * Update a tenant's avatar
      * @description Update a tenant's avatar
      */
-    post: operations["UpdateTenantAvatarAsync"];
+    post: operations["Tenants_UpdateTenantAvatar"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Wallet": {
     /**
      * Get a tenant's billing profile (A.K.A. Wallet Account)
      * @description Get a tenant's billing profile (A.K.A. Wallet Account)
      */
-    get: operations["GetTenantWalletAsync"];
+    get: operations["Tenants_GetTenantWallet"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/SocialProfile": {
     /**
      * Get a tenant's social profile
      * @description Get a tenant's social profile
      */
-    get: operations["GetTenantSocialProfileAsync"];
+    get: operations["Tenants_GetTenantSocialProfile"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Cart": {
     /**
      * Get a tenant's default cart
      * @description Get a tenant's default cart
      */
-    get: operations["GetCartForTenantAsync"];
+    get: operations["Tenants_GetCartForTenant"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Users": {
     /**
      * Get the list of users enrolled in a tenant
      * @description Get the list of users enrolled in a tenant
      */
-    get: operations["GetTenantUsersAsync"];
+    get: operations["Tenants_GetTenantUsers"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments": {
     /**
      * Get the list of user enrollments for a tenant
      * @description Get the list of user enrollments for a tenant
      */
-    get: operations["GetTenantEnrollmentsAsync"];
+    get: operations["Tenants_GetTenantEnrollments"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}": {
     /**
      * Get a specific tenant enrollment
      * @description Get a specific tenant enrollment
      */
-    get: operations["GetTenantEnrollmentAsync"];
+    get: operations["Tenants_GetTenantEnrollment"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Extended": {
     /**
      * Get a specific tenant enrollment
      * @description Get a specific tenant enrollment
      */
-    get: operations["GetExtendedTenantEnrollmentAsync"];
+    get: operations["Tenants_GetExtendedTenantEnrollment"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Permissions": {
     /**
      * Get a specific tenant enrollment's permissions list
      * @description Get a specific tenant enrollment's permissions list
      */
-    get: operations["GetEnrollmentPermissionsAsync"];
+    get: operations["Tenants_GetEnrollmentPermissions"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Permissions/Validate": {
     /**
      * Validate the existence of a list of roles and permissions for a specific enrollment
      * @description Validate the existence of a list of roles and permissions for a specific enrollment
      */
-    get: operations["ValidateEnrollmentPermissionsAsync"];
+    get: operations["Tenants_ValidateEnrollmentPermissions"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Invitations": {
     /**
      * Get the list of invitations issued by a tenant
      * @description Get the list of invitations issued by a tenant
      */
-    get: operations["GetTenantInvitationsAsync"];
+    get: operations["Tenants_GetTenantInvitations"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Invitations/Pending": {
     /**
      * Get the list of invitations issued by a tenant that are pending
      * @description Get the list of invitations issued by a tenant that are pending
      */
-    get: operations["GetTenantPendingInvitationsAsync"];
+    get: operations["Tenants_GetTenantPendingInvitations"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Invitations/Redeemed": {
     /**
      * Get the list of invitations issued by a tenant that have been redeemed
      * @description Get the list of invitations issued by a tenant that have been redeemed
      */
-    get: operations["GetTenantRedeemedInvitationsAsync"];
+    get: operations["Tenants_GetTenantRedeemedInvitations"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Invitations/Revoked": {
     /**
      * Get the list of invitations issued by a tenant that have been revoked
      * @description Get the list of invitations issued by a tenant that have been revoked
      */
-    get: operations["GetTenantRevokedInvitationsAsync"];
+    get: operations["Tenants_GetTenantRevokedInvitations"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Licenses": {
     /**
      * Get the list of licenses available to a tenant
      * @description Get the list of licenses available to a tenant
      */
-    get: operations["GetTenantLicensesAsync"];
+    get: operations["Tenants_GetTenantLicenses"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Licenses": {
     /**
      * Get the list of licenses available to a specific enrollment
      * @description Get the list of licenses available to a specific enrollment
      */
-    get: operations["GetEnrollmentLicensesAsync"];
+    get: operations["Tenants_GetEnrollmentLicenses"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Licenses/{licenseId}": {
     /**
      * Get a specific license for an enrollment
      * @description Get a specific license for an enrollment
      */
-    get: operations["GetEnrollmentLicenseByIdAsync"];
+    get: operations["Tenants_GetEnrollmentLicenseById"];
     /**
      * Assign a license to a specific enrollment
-     * @description Assign a license to a specific enrollment
+     * @description Assign a seat on a pooled suite license to a specific enrollment
      */
-    post: operations["AssignLicenseAsync"];
+    post: operations["Tenants_AssignLicense"];
     /**
      * Revoke a license from a specific enrollment
-     * @description Revoke a license from a specific enrollment
+     * @description Revoke the seat a specific enrollment holds on a pooled suite license
      */
-    delete: operations["RevokeLicenseAsync"];
+    delete: operations["Tenants_RevokeLicense"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/Features": {
     /**
      * Get the list of features accessible to a specific enrollment
      * @description Get the list of features accessible to a specific enrollment
      */
-    get: operations["GetAccessibleFeaturesAsync"];
+    get: operations["Tenants_GetAccessibleFeatures"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Enrollments/{enrollmentId}/HasAccess": {
     /**
      * Validate the access to a specific feature for a specific enrollment
      * @description Validate the access to a specific feature for a specific enrollment
      */
-    get: operations["ValidateEnrollmentFeatureAccess"];
+    get: operations["Tenants_ValidateEnrollmentFeatureAccess"];
   };
   "/api/v2/TenantsService/Tenants": {
     /**
      * Create a new business tenant
      * @description Create a new business tenant
      */
-    post: operations["CreateTenantAsync"];
+    post: operations["Tenants_CreateTenant"];
     /**
      * Delete a tenant
      * @description Delete a business tenant
      */
-    delete: operations["DeleteTenantAsync"];
+    delete: operations["Tenants_DeleteTenant"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Select": {
     /**
      * Select a business tenant as the user's default tenant
      * @description Select a business tenant as the user's default tenant
      */
-    post: operations["SelectTenantAsync"];
+    post: operations["Tenants_SelectTenant"];
   };
   "/api/v2/TenantsService/Tenants/Deselect": {
     /**
      * Deselect the user's default tenant
      * @description Deselect the user's default tenant
      */
-    post: operations["DeSelectTenantAsync"];
+    post: operations["Tenants_DeSelectTenant"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/WebPortals": {
     /**
      * Get the list of web portals for a tenant
      * @description Get the list of web portals for a tenant
      */
-    get: operations["GetTenantWebPortalsAsync"];
+    get: operations["Tenants_GetTenantWebPortals"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Notifications": {
     /**
      * Get the list of notifications for a tenant
      * @description Get the list of notifications for a tenant
      */
-    get: operations["GetTenantNotificationsAsync"];
+    get: operations["Tenants_GetTenantNotifications"];
   };
   "/api/v2/TenantsService/Tenants/{tenantId}/Notifications/Count": {
     /**
      * Get the count of notifications for a tenant
      * @description Get the count of notifications for a tenant
      */
-    get: operations["GetTenantNotificationsCountAsync"];
+    get: operations["Tenants_GetTenantNotificationsCount"];
   };
   "/api/v2/TenantsService/Territories": {
     /**
      * Retrieve a list of tenant territories
      * @description Retrieve a list of tenant territories
      */
-    get: operations["GetTenantTerritories"];
+    get: operations["Territories_GetTenantTerritories"];
     /**
      * Create a new tenant territory
      * @description Create a new tenant territory
      */
-    post: operations["CreateTenantTerritory"];
+    post: operations["Territories_CreateTenantTerritory"];
   };
   "/api/v2/TenantsService/Territories/Count": {
     /**
      * Get the count of tenant territories
      * @description Get the count of tenant territories
      */
-    get: operations["GetTenantTerritoriesCount"];
+    get: operations["Territories_GetTenantTerritoriesCount"];
   };
   "/api/v2/TenantsService/Territories/{tenantTerritoryId}": {
     /**
      * Retrieve a single tenant territory by its ID
      * @description Retrieve a single tenant territory by its ID
      */
-    get: operations["GetTenantTerritoryById"];
+    get: operations["Territories_GetTenantTerritoryById"];
     /**
      * Update a tenant territory
      * @description Update a tenant territory
      */
-    put: operations["UpdateTenantTerritory"];
+    put: operations["Territories_UpdateTenantTerritory"];
     /**
      * Delete a tenant territory
      * @description Delete a tenant territory
      */
-    delete: operations["DeleteTenantTerritory"];
+    delete: operations["Territories_DeleteTenantTerritory"];
     /**
      * Patch a tenant territory
      * @description Patch a tenant territory
      */
-    patch: operations["PatchTenantTerritory"];
+    patch: operations["Territories_PatchTenantTerritory"];
   };
   "/api/v2/TenantsService/Types": {
     /**
      * Retrieve a list of tenant types
      * @description Retrieve a list of tenant types
      */
-    get: operations["GetTenantTypes"];
+    get: operations["Types_GetTenantTypes"];
     /**
      * Create a new tenant type
      * @description Create a new tenant type
      */
-    post: operations["CreateTenantType"];
+    post: operations["Types_CreateTenantType"];
   };
   "/api/v2/TenantsService/Types/Count": {
     /**
      * Get the count of tenant types
      * @description Get the count of tenant types
      */
-    get: operations["GetTenantTypesCount"];
+    get: operations["Types_GetTenantTypesCount"];
   };
   "/api/v2/TenantsService/Types/{tenantTypeId}": {
     /**
      * Retrieve a single tenant type by its ID
      * @description Retrieve a single tenant type by its ID
      */
-    get: operations["GetTenantTypeById"];
+    get: operations["Types_GetTenantTypeById"];
     /**
      * Update a tenant type
      * @description Update a tenant type
      */
-    put: operations["UpdateTenantType"];
+    put: operations["Types_UpdateTenantType"];
     /**
      * Delete a tenant type
      * @description Delete a tenant type
      */
-    delete: operations["DeleteTenantType"];
+    delete: operations["Types_DeleteTenantType"];
     /**
      * Patch a tenant type
      * @description Patch a tenant type
      */
-    patch: operations["PatchTenantType"];
+    patch: operations["Types_PatchTenantType"];
   };
   "/api/v2/TenantsService/UnitGroups": {
     /**
      * Retrieve a list of unit groups
      * @description Retrieves a list of unit groups for the specified tenant with OData query support.
      */
-    get: operations["GetUnitGroupsAsync"];
+    get: operations["UnitGroups_GetUnitGroups"];
     /**
      * Create a new unit group
      * @description Creates a new unit group for the specified tenant.
      */
-    post: operations["CreateUnitGroupAsync"];
+    post: operations["UnitGroups_CreateUnitGroup"];
   };
   "/api/v2/TenantsService/UnitGroups/Count": {
     /**
      * Get the count of unit groups
      * @description Returns the total count of unit groups for the specified tenant with OData query support.
      */
-    get: operations["GetUnitGroupsCountAsync"];
+    get: operations["UnitGroups_GetUnitGroupsCount"];
   };
   "/api/v2/TenantsService/UnitGroups/{unitGroupId}": {
     /**
      * Retrieve a unit group by ID
      * @description Retrieves a single unit group by its unique identifier.
      */
-    get: operations["GetUnitGroupAsync"];
+    get: operations["UnitGroups_GetUnitGroup"];
     /**
      * Update a unit group
      * @description Updates an existing unit group by its unique identifier.
      */
-    put: operations["UpdateUnitGroupAsync"];
+    put: operations["UnitGroups_UpdateUnitGroup"];
     /**
      * Delete a unit group
      * @description Deletes a unit group by its unique identifier.
      */
-    delete: operations["DeleteUnitGroupAsync"];
+    delete: operations["UnitGroups_DeleteUnitGroup"];
     /**
      * Patch a unit group
      * @description Partially updates an existing unit group by its unique identifier.
      */
-    patch: operations["PatchUnitGroupAsync"];
+    patch: operations["UnitGroups_PatchUnitGroup"];
   };
   "/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units": {
     /**
      * Retrieve units for a unit group
      * @description Retrieves a list of units belonging to a specific unit group.
      */
-    get: operations["GetUnitsAsync"];
+    get: operations["UnitGroups_GetUnits"];
     /**
      * Create a unit within a unit group
      * @description Creates a new unit within a specific unit group.
      */
-    post: operations["CreateUnitAsync"];
+    post: operations["UnitGroups_CreateUnit"];
   };
   "/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/Count": {
     /**
      * Get the count of units in a unit group
      * @description Returns the total count of units in a specific unit group.
      */
-    get: operations["GetUnitsCountAsync"];
+    get: operations["UnitGroups_GetUnitsCount"];
   };
   "/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/{unitId}": {
     /**
      * Retrieve a unit by ID within a unit group
      * @description Retrieves a single unit by its unique identifier within a specific unit group.
      */
-    get: operations["GetUnitAsync"];
+    get: operations["UnitGroups_GetUnit"];
     /**
      * Update a unit within a unit group
      * @description Updates an existing unit within a specific unit group.
      */
-    put: operations["UpdateUnitAsync"];
+    put: operations["UnitGroups_UpdateUnit"];
     /**
      * Delete a unit from a unit group
      * @description Deletes a unit from a specific unit group.
      */
-    delete: operations["DeleteUnitAsync"];
+    delete: operations["UnitGroups_DeleteUnit"];
     /**
      * Patch a unit within a unit group
      * @description Partially updates an existing unit within a specific unit group.
      */
-    patch: operations["PatchUnitAsync"];
+    patch: operations["UnitGroups_PatchUnit"];
   };
   "/api/v2/TenantsService/Units": {
     /**
      * Retrieve a list of tenant units
      * @description Retrieve a list of tenant units
      */
-    get: operations["GetTenantUnits"];
+    get: operations["Units_GetTenantUnits"];
     /**
      * Create a new tenant unit
      * @description Create a new tenant unit
      */
-    post: operations["CreateTenantUnit"];
+    post: operations["Units_CreateTenantUnit"];
   };
   "/api/v2/TenantsService/Units/Count": {
     /**
      * Get the count of tenant units
      * @description Get the count of tenant units
      */
-    get: operations["GetTenantUnitsCount"];
+    get: operations["Units_GetTenantUnitsCount"];
   };
   "/api/v2/TenantsService/Units/{tenantUnitId}": {
     /**
      * Retrieve a single tenant unit by its ID
      * @description Retrieve a single tenant unit by its ID
      */
-    get: operations["GetTenantUnitById"];
+    get: operations["Units_GetTenantUnitById"];
     /**
      * Update a tenant unit
      * @description Update a tenant unit
      */
-    put: operations["UpdateTenantUnit"];
+    put: operations["Units_UpdateTenantUnit"];
     /**
      * Delete a tenant unit
      * @description Delete a tenant unit
      */
-    delete: operations["DeleteTenantUnit"];
+    delete: operations["Units_DeleteTenantUnit"];
     /**
      * Patch a tenant unit
      * @description Patch a tenant unit
      */
-    patch: operations["PatchTenantUnit"];
+    patch: operations["Units_PatchTenantUnit"];
   };
 }
 
@@ -1663,6 +1422,8 @@ export interface components {
       readTimestamp?: string;
       /** Format: date-time */
       issuedTimestamp?: string;
+      tenantId?: string | null;
+      categoryKey?: string | null;
     };
     NotificationDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1955,7 +1716,7 @@ export interface components {
       handler?: string | null;
       about?: string | null;
       slogan?: string | null;
-      currencyId: string;
+      currencyId?: string | null;
       duns?: string | null;
       taxId?: string | null;
       /** Format: uri */
@@ -2243,6 +2004,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       tenantId?: string | null;
+      tenantName?: string | null;
       revoked?: boolean;
       redeemed?: boolean;
       /** Format: date-time */
@@ -2294,6 +2056,26 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TenantInvitationDto"][] | null;
     };
+    TenantInvitationSendResultDto: {
+      invitationId?: string | null;
+      emailDelivered?: boolean;
+      emailDeliveryWarning?: string | null;
+    };
+    TenantInvitationSendResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantInvitationSendResultDto"];
+    };
     TenantPositionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2312,6 +2094,13 @@ export interface components {
       title?: string | null;
       description?: string | null;
       type?: string | null;
+      departmentId?: string | null;
+      /** Format: int32 */
+      capacity?: number | null;
+      /** Format: int32 */
+      filledSeats?: number | null;
+      activeHolderEnrollmentIds?: string[] | null;
+      hasAssignmentHistory?: boolean | null;
     };
     TenantPositionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -3318,6 +3107,7 @@ export interface components {
       mainNetEtherBalance?: number;
       ethereumAddress?: string | null;
       ethereumPublicKey?: string | null;
+      /** @deprecated */
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
@@ -3385,7 +3175,7 @@ export interface operations {
    * Get business relationships
    * @description Retrieves the child business relationships owned by the specified parent tenant using OData query options.
    */
-  GetBusinessRelationshipsAsync: {
+  BusinessRelationships_GetBusinessRelationships: {
     parameters: {
       query: {
         tenantId: string;
@@ -3436,7 +3226,7 @@ export interface operations {
    * Create a business relationship
    * @description Creates a new business relationship owned by the specified parent tenant.
    */
-  CreateBusinessRelationshipAsync: {
+  BusinessRelationships_CreateBusinessRelationship: {
     parameters: {
       query: {
         tenantId: string;
@@ -3487,7 +3277,7 @@ export interface operations {
    * Get business relationships count
    * @description Returns the count of child business relationships owned by the specified parent tenant.
    */
-  GetBusinessRelationshipsCountAsync: {
+  BusinessRelationships_GetBusinessRelationshipsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3531,7 +3321,7 @@ export interface operations {
    * Get business relationship by ID
    * @description Retrieves the details of a specific business relationship by its ID.
    */
-  GetBusinessRelationshipByIdAsync: {
+  BusinessRelationships_GetBusinessRelationshipById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3579,7 +3369,7 @@ export interface operations {
    * Update a business relationship
    * @description Updates an existing business relationship by its ID.
    */
-  UpdateBusinessRelationshipAsync: {
+  BusinessRelationships_UpdateBusinessRelationship: {
     parameters: {
       query: {
         tenantId: string;
@@ -3633,7 +3423,7 @@ export interface operations {
    * Delete a business relationship
    * @description Deletes a business relationship by its ID.
    */
-  DeleteBusinessRelationshipAsync: {
+  BusinessRelationships_DeleteBusinessRelationship: {
     parameters: {
       query: {
         tenantId: string;
@@ -3681,7 +3471,7 @@ export interface operations {
    * Retrieve a list of tenant departments
    * @description Retrieve a list of tenant departments
    */
-  GetTenantDepartments: {
+  Departments_GetTenantDepartments: {
     parameters: {
       query: {
         tenantId: string;
@@ -3725,7 +3515,7 @@ export interface operations {
    * Create a new tenant department
    * @description Create a new tenant department
    */
-  CreateTenantDepartment: {
+  Departments_CreateTenantDepartment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3769,7 +3559,7 @@ export interface operations {
    * Get the count of tenant departments
    * @description Get the count of tenant departments
    */
-  GetTenantDepartmentsCount: {
+  Departments_GetTenantDepartmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3813,7 +3603,7 @@ export interface operations {
    * Retrieve a single tenant department by its ID
    * @description Retrieve a single tenant department by its ID
    */
-  GetTenantDepartmentById: {
+  Departments_GetTenantDepartmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3854,7 +3644,7 @@ export interface operations {
    * Update a tenant department
    * @description Update a tenant department
    */
-  UpdateTenantDepartment: {
+  Departments_UpdateTenantDepartment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3901,7 +3691,7 @@ export interface operations {
    * Delete a tenant department
    * @description Delete a tenant department
    */
-  DeleteTenantDepartment: {
+  Departments_DeleteTenantDepartment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3942,7 +3732,7 @@ export interface operations {
    * Patch a tenant department
    * @description Patch a tenant department
    */
-  PatchTenantDepartmentAsync: {
+  Departments_PatchTenantDepartment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3989,7 +3779,7 @@ export interface operations {
    * Retrieve a list of tenant employee enrollments
    * @description Retrieve a list of tenant employee enrollments
    */
-  GetTenantEmployeeEnrollments: {
+  EmployeeEnrollments_GetTenantEmployeeEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -4033,7 +3823,7 @@ export interface operations {
    * Create a new tenant employee enrollment
    * @description Create a new tenant employee enrollment
    */
-  CreateTenantEmployeeEnrollment: {
+  EmployeeEnrollments_CreateTenantEmployeeEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4077,7 +3867,7 @@ export interface operations {
    * Get the count of tenant employee enrollments
    * @description Get the count of tenant employee enrollments
    */
-  GetTenantEmployeeEnrollmentsCount: {
+  EmployeeEnrollments_GetTenantEmployeeEnrollmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4121,7 +3911,7 @@ export interface operations {
    * Retrieve a single tenant employee enrollment by its ID
    * @description Retrieve a single tenant employee enrollment by its ID
    */
-  GetTenantEmployeeEnrollmentById: {
+  EmployeeEnrollments_GetTenantEmployeeEnrollmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4162,7 +3952,7 @@ export interface operations {
    * Update a tenant employee enrollment
    * @description Update a tenant employee enrollment
    */
-  UpdateTenantEmployeeEnrollment: {
+  EmployeeEnrollments_UpdateTenantEmployeeEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4209,7 +3999,7 @@ export interface operations {
    * Delete a tenant employee enrollment
    * @description Delete a tenant employee enrollment
    */
-  DeleteTenantEmployeeEnrollment: {
+  EmployeeEnrollments_DeleteTenantEmployeeEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4250,7 +4040,7 @@ export interface operations {
    * Patch a tenant employee enrollment
    * @description Patch a tenant employee enrollment
    */
-  PatchTenantEmployeeEnrollmentAsync: {
+  EmployeeEnrollments_PatchTenantEmployeeEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4297,7 +4087,7 @@ export interface operations {
    * Retrieve a list of tenant enrollments
    * @description Retrieve a list of tenant enrollments
    */
-  GetTenantEnrollments: {
+  Enrollments_GetTenantEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -4341,7 +4131,7 @@ export interface operations {
    * Create a new tenant enrollment
    * @description Create a new tenant enrollment
    */
-  CreateTenantEnrollment: {
+  Enrollments_CreateTenantEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4385,7 +4175,7 @@ export interface operations {
    * Get the count of tenant enrollments
    * @description Get the count of tenant enrollments
    */
-  GetTenantEnrollmentsCount: {
+  Enrollments_GetTenantEnrollmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4429,7 +4219,7 @@ export interface operations {
    * Retrieve a list of tenant enrollments
    * @description Retrieve a list of tenant enrollments
    */
-  GetExtendedTenantEnrollments: {
+  Enrollments_GetExtendedTenantEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -4473,7 +4263,7 @@ export interface operations {
    * Get the count of tenant enrollments
    * @description Get the count of tenant enrollments
    */
-  GetExtendedTenantEnrollmentsCount: {
+  Enrollments_GetExtendedTenantEnrollmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4517,7 +4307,7 @@ export interface operations {
    * Retrieve a single tenant enrollment by its ID
    * @description Retrieve a single tenant enrollment by its ID
    */
-  GetTenantEnrollmentById: {
+  Enrollments_GetTenantEnrollmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4559,7 +4349,7 @@ export interface operations {
    * Update a tenant enrollment
    * @description Update a tenant enrollment
    */
-  UpdateTenantEnrollment: {
+  Enrollments_UpdateTenantEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4606,7 +4396,7 @@ export interface operations {
    * Delete a tenant enrollment
    * @description Delete a tenant enrollment
    */
-  DeleteTenantEnrollment: {
+  Enrollments_DeleteTenantEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4647,7 +4437,7 @@ export interface operations {
    * Patch a tenant enrollment
    * @description Patch a tenant enrollment
    */
-  PatchTenantEnrollmentAsync: {
+  Enrollments_PatchTenantEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4690,7 +4480,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -4705,11 +4574,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Retrieve a list of tenant industries
    * @description Retrieve a list of tenant industries
    */
-  GetTenantIndustries: {
+  Industries_GetTenantIndustries: {
     parameters: {
       query: {
         tenantId: string;
@@ -4753,7 +4807,7 @@ export interface operations {
    * Create a new tenant industry
    * @description Create a new tenant industry
    */
-  CreateTenantIndustry: {
+  Industries_CreateTenantIndustry: {
     parameters: {
       query: {
         tenantId: string;
@@ -4797,7 +4851,7 @@ export interface operations {
    * Get the count of tenant industries
    * @description Get the count of tenant industries
    */
-  GetTenantIndustriesCount: {
+  Industries_GetTenantIndustriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4841,7 +4895,7 @@ export interface operations {
    * Retrieve a single tenant industry by its ID
    * @description Retrieve a single tenant industry by its ID
    */
-  GetTenantIndustryById: {
+  Industries_GetTenantIndustryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4882,7 +4936,7 @@ export interface operations {
    * Update a tenant industry
    * @description Update a tenant industry
    */
-  UpdateTenantIndustry: {
+  Industries_UpdateTenantIndustry: {
     parameters: {
       query: {
         tenantId: string;
@@ -4929,7 +4983,7 @@ export interface operations {
    * Delete a tenant industry
    * @description Delete a tenant industry
    */
-  DeleteTenantIndustry: {
+  Industries_DeleteTenantIndustry: {
     parameters: {
       query: {
         tenantId: string;
@@ -4970,7 +5024,7 @@ export interface operations {
    * Patch a tenant industry
    * @description Patch a tenant industry
    */
-  PatchTenantIndustryAsync: {
+  Industries_PatchTenantIndustry: {
     parameters: {
       query: {
         tenantId: string;
@@ -5017,7 +5071,7 @@ export interface operations {
    * Retrieve a list of tenant invitations
    * @description Retrieve a list of tenant invitations
    */
-  GetTenantInvitations: {
+  Invitations_GetTenantInvitations: {
     parameters: {
       query: {
         tenantId: string;
@@ -5059,9 +5113,9 @@ export interface operations {
   };
   /**
    * Send an invitation to a user to join a tenant
-   * @description Send an invitation to a user to join a tenant
+   * @description Creates the invitation and mails it. The invitation is created even when its email cannot be delivered: the result then has emailDelivered=false and an emailDeliveryWarning, and the invitation can be re-mailed with Resend.
    */
-  SendTenantInvitation: {
+  Invitations_SendTenantInvitation: {
     parameters: {
       query: {
         tenantId: string;
@@ -5081,8 +5135,8 @@ export interface operations {
       /** @description Created */
       201: {
         content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
+          "application/json": components["schemas"]["TenantInvitationSendResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantInvitationSendResultDtoEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -5105,7 +5159,7 @@ export interface operations {
    * Get the count of tenant invitations
    * @description Get the count of tenant invitations
    */
-  GetTenantInvitationsCount: {
+  Invitations_GetTenantInvitationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5149,7 +5203,7 @@ export interface operations {
    * Get a tenant invitation by its ID
    * @description Get a tenant invitation by its ID
    */
-  GetTenantInvitationById: {
+  Invitations_GetTenantInvitationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5190,7 +5244,7 @@ export interface operations {
    * Delete a tenant invitation
    * @description Delete a tenant invitation
    */
-  DeleteTenantInvitation: {
+  Invitations_DeleteTenantInvitation: {
     parameters: {
       query: {
         tenantId: string;
@@ -5231,9 +5285,10 @@ export interface operations {
    * Accept an invitation to join a tenant
    * @description Accept an invitation to join a tenant
    */
-  AcceptTenantInvitation: {
+  Invitations_AcceptTenantInvitation: {
     parameters: {
       query?: {
+        token?: string;
         "api-version"?: string;
       };
       header?: {
@@ -5271,9 +5326,51 @@ export interface operations {
    * Decline an invitation to join a tenant
    * @description Decline an invitation to join a tenant
    */
-  DeclineTenantInvitation: {
+  Invitations_DeclineTenantInvitation: {
     parameters: {
       query?: {
+        token?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        invitationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Resend a pending tenant invitation
+   * @description Re-mails a pending invitation to its addressee with a fresh acceptance link
+   */
+  Invitations_ResendTenantInvitation: {
+    parameters: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -5311,7 +5408,7 @@ export interface operations {
    * Retrieve a list of tenant options
    * @description Retrieve a list of tenant options
    */
-  GetTenantOptions: {
+  Options_GetTenantOptions: {
     parameters: {
       query: {
         tenantId: string;
@@ -5356,7 +5453,7 @@ export interface operations {
    * Create a new tenant option
    * @description Create a new tenant option
    */
-  CreateTenantOption: {
+  Options_CreateTenantOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5402,7 +5499,7 @@ export interface operations {
    * Get the count of tenant options
    * @description Get the count of tenant options
    */
-  GetTenantOptionsCount: {
+  Options_GetTenantOptionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5447,7 +5544,7 @@ export interface operations {
    * Retrieve a single tenant option by its ID
    * @description Retrieve a single tenant option by its ID
    */
-  GetTenantOptionById: {
+  Options_GetTenantOptionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5488,7 +5585,7 @@ export interface operations {
    * Update a tenant option
    * @description Update a tenant option
    */
-  UpdateTenantOption: {
+  Options_UpdateTenantOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5535,7 +5632,7 @@ export interface operations {
    * Delete a tenant option
    * @description Delete a tenant option
    */
-  DeleteTenantOption: {
+  Options_DeleteTenantOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5576,7 +5673,7 @@ export interface operations {
    * Patch a tenant option
    * @description Patch a tenant option
    */
-  PatchTenantOption: {
+  Options_PatchTenantOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5623,7 +5720,7 @@ export interface operations {
    * Retrieve a single tenant option by its key
    * @description Retrieve a single tenant option by its key
    */
-  GetTenantOptionByKey: {
+  Options_GetTenantOptionByKey: {
     parameters: {
       query: {
         tenantId: string;
@@ -5665,7 +5762,7 @@ export interface operations {
    * Create or update a tenant option by key
    * @description Create or update a tenant option by key
    */
-  UpsertTenantOption: {
+  Options_UpsertTenantOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5713,7 +5810,7 @@ export interface operations {
    * Retrieve a list of tenant positions
    * @description Retrieve a list of tenant positions
    */
-  GetTenantPositions: {
+  Positions_GetTenantPositions: {
     parameters: {
       query: {
         tenantId: string;
@@ -5757,7 +5854,7 @@ export interface operations {
    * Create a new tenant position
    * @description Create a new tenant position
    */
-  CreateTenantPosition: {
+  Positions_CreateTenantPosition: {
     parameters: {
       query: {
         tenantId: string;
@@ -5801,7 +5898,7 @@ export interface operations {
    * Get the count of tenant positions
    * @description Get the count of tenant positions
    */
-  GetTenantPositionsCount: {
+  Positions_GetTenantPositionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5845,7 +5942,7 @@ export interface operations {
    * Retrieve a single tenant position by its ID
    * @description Retrieve a single tenant position by its ID
    */
-  GetTenantPositionById: {
+  Positions_GetTenantPositionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5886,7 +5983,7 @@ export interface operations {
    * Update a tenant position
    * @description Update a tenant position
    */
-  UpdateTenantPosition: {
+  Positions_UpdateTenantPosition: {
     parameters: {
       query: {
         tenantId: string;
@@ -5933,7 +6030,7 @@ export interface operations {
    * Delete a tenant position
    * @description Delete a tenant position
    */
-  DeleteTenantPosition: {
+  Positions_DeleteTenantPosition: {
     parameters: {
       query: {
         tenantId: string;
@@ -5974,7 +6071,7 @@ export interface operations {
    * Patch a tenant position
    * @description Patch a tenant position
    */
-  PatchTenantPosition: {
+  Positions_PatchTenantPosition: {
     parameters: {
       query: {
         tenantId: string;
@@ -6021,7 +6118,7 @@ export interface operations {
    * Retrieve a list of tenant segments
    * @description Retrieve a list of tenant segments
    */
-  GetTenantSegments: {
+  Segments_GetTenantSegments: {
     parameters: {
       query: {
         tenantId: string;
@@ -6065,7 +6162,7 @@ export interface operations {
    * Create a new tenant segment
    * @description Create a new tenant segment
    */
-  CreateTenantSegment: {
+  Segments_CreateTenantSegment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6109,7 +6206,7 @@ export interface operations {
    * Get the count of tenant segments
    * @description Get the count of tenant segments
    */
-  GetTenantSegmentsCount: {
+  Segments_GetTenantSegmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6153,7 +6250,7 @@ export interface operations {
    * Retrieve a single tenant segment by its ID
    * @description Retrieve a single tenant segment by its ID
    */
-  GetTenantSegmentById: {
+  Segments_GetTenantSegmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6194,7 +6291,7 @@ export interface operations {
    * Update a tenant segment
    * @description Update a tenant segment
    */
-  UpdateTenantSegment: {
+  Segments_UpdateTenantSegment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6241,7 +6338,7 @@ export interface operations {
    * Delete a tenant segment
    * @description Delete a tenant segment
    */
-  DeleteTenantSegment: {
+  Segments_DeleteTenantSegment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6282,7 +6379,7 @@ export interface operations {
    * Patch a tenant segment
    * @description Patch a tenant segment
    */
-  PatchTenantSegment: {
+  Segments_PatchTenantSegment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6329,7 +6426,7 @@ export interface operations {
    * Retrieve a list of tenant sizes
    * @description Retrieve a list of tenant sizes
    */
-  GetTenantSizes: {
+  Sizes_GetTenantSizes: {
     parameters: {
       query: {
         tenantId: string;
@@ -6373,7 +6470,7 @@ export interface operations {
    * Create a new tenant size
    * @description Create a new tenant size
    */
-  CreateTenantSize: {
+  Sizes_CreateTenantSize: {
     parameters: {
       query: {
         tenantId: string;
@@ -6417,7 +6514,7 @@ export interface operations {
    * Get the count of tenant sizes
    * @description Get the count of tenant sizes
    */
-  GetTenantSizesCount: {
+  Sizes_GetTenantSizesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6461,7 +6558,7 @@ export interface operations {
    * Retrieve a single tenant size by its ID
    * @description Retrieve a single tenant size by its ID
    */
-  GetTenantSizeById: {
+  Sizes_GetTenantSizeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6502,7 +6599,7 @@ export interface operations {
    * Update a tenant size
    * @description Update a tenant size
    */
-  UpdateTenantSize: {
+  Sizes_UpdateTenantSize: {
     parameters: {
       query: {
         tenantId: string;
@@ -6549,7 +6646,7 @@ export interface operations {
    * Delete a tenant size
    * @description Delete a tenant size
    */
-  DeleteTenantSize: {
+  Sizes_DeleteTenantSize: {
     parameters: {
       query: {
         tenantId: string;
@@ -6590,7 +6687,7 @@ export interface operations {
    * Patch a tenant size
    * @description Patch a tenant size
    */
-  PatchTenantSize: {
+  Sizes_PatchTenantSize: {
     parameters: {
       query: {
         tenantId: string;
@@ -6637,7 +6734,7 @@ export interface operations {
    * Retrieve a list of tenant team contact enrollments
    * @description Retrieve a list of tenant team contact enrollments
    */
-  GetTenantTeamContactEnrollments: {
+  TeamContactEnrollments_GetTenantTeamContactEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -6681,7 +6778,7 @@ export interface operations {
    * Create a new tenant team contact enrollment
    * @description Create a new tenant team contact enrollment
    */
-  CreateTenantTeamContactEnrollment: {
+  TeamContactEnrollments_CreateTenantTeamContactEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6725,7 +6822,7 @@ export interface operations {
    * Get the count of tenant team contact enrollments
    * @description Get the count of tenant team contact enrollments
    */
-  GetTenantTeamContactEnrollmentsCount: {
+  TeamContactEnrollments_GetTenantTeamContactEnrollmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6769,7 +6866,7 @@ export interface operations {
    * Retrieve a single tenant team contact enrollment by its ID
    * @description Retrieve a single tenant team contact enrollment by its ID
    */
-  GetTenantTeamContactEnrollmentById: {
+  TeamContactEnrollments_GetTenantTeamContactEnrollmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6810,7 +6907,7 @@ export interface operations {
    * Update a tenant team contact enrollment
    * @description Update a tenant team contact enrollment
    */
-  UpdateTenantTeamContactEnrollment: {
+  TeamContactEnrollments_UpdateTenantTeamContactEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6857,7 +6954,7 @@ export interface operations {
    * Delete a tenant team contact enrollment
    * @description Delete a tenant team contact enrollment
    */
-  DeleteTenantTeamContactEnrollment: {
+  TeamContactEnrollments_DeleteTenantTeamContactEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6898,7 +6995,7 @@ export interface operations {
    * Patch a tenant team contact enrollment
    * @description Patch a tenant team contact enrollment
    */
-  PatchTenantTeamContactEnrollment: {
+  TeamContactEnrollments_PatchTenantTeamContactEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6945,7 +7042,7 @@ export interface operations {
    * Retrieve a list of tenant team project enrollments
    * @description Retrieve a list of tenant team project enrollments
    */
-  GetTenantTeamProjectEnrollments: {
+  TeamProjectEnrollments_GetTenantTeamProjectEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -6989,7 +7086,7 @@ export interface operations {
    * Create a new tenant team project enrollment
    * @description Create a new tenant team project enrollment
    */
-  CreateTenantTeamProjectEnrollment: {
+  TeamProjectEnrollments_CreateTenantTeamProjectEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -7033,7 +7130,7 @@ export interface operations {
    * Get the count of tenant team project enrollments
    * @description Get the count of tenant team project enrollments
    */
-  GetTenantTeamProjectEnrollmentsCount: {
+  TeamProjectEnrollments_GetTenantTeamProjectEnrollmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7077,7 +7174,7 @@ export interface operations {
    * Retrieve a single tenant team project enrollment by its ID
    * @description Retrieve a single tenant team project enrollment by its ID
    */
-  GetTenantTeamProjectEnrollmentById: {
+  TeamProjectEnrollments_GetTenantTeamProjectEnrollmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7118,7 +7215,7 @@ export interface operations {
    * Update a tenant team project enrollment
    * @description Update a tenant team project enrollment
    */
-  UpdateTenantTeamProjectEnrollment: {
+  TeamProjectEnrollments_UpdateTenantTeamProjectEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -7165,7 +7262,7 @@ export interface operations {
    * Delete a tenant team project enrollment
    * @description Delete a tenant team project enrollment
    */
-  DeleteTenantTeamProjectEnrollment: {
+  TeamProjectEnrollments_DeleteTenantTeamProjectEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -7206,7 +7303,7 @@ export interface operations {
    * Patch a tenant team project enrollment
    * @description Patch a tenant team project enrollment
    */
-  PatchTenantTeamProjectEnrollment: {
+  TeamProjectEnrollments_PatchTenantTeamProjectEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -7253,7 +7350,7 @@ export interface operations {
    * Retrieve a list of tenant team records
    * @description Retrieve a list of tenant team records
    */
-  GetTenantTeamRecords: {
+  TeamRecords_GetTenantTeamRecords: {
     parameters: {
       query: {
         tenantId: string;
@@ -7297,7 +7394,7 @@ export interface operations {
    * Create a new tenant team record
    * @description Create a new tenant team record
    */
-  CreateTenantTeamRecord: {
+  TeamRecords_CreateTenantTeamRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -7341,7 +7438,7 @@ export interface operations {
    * Get the count of tenant team records
    * @description Get the count of tenant team records
    */
-  GetTenantTeamRecordsCount: {
+  TeamRecords_GetTenantTeamRecordsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7385,7 +7482,7 @@ export interface operations {
    * Retrieve a single tenant team record by its ID
    * @description Retrieve a single tenant team record by its ID
    */
-  GetTenantTeamRecordById: {
+  TeamRecords_GetTenantTeamRecordById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7426,7 +7523,7 @@ export interface operations {
    * Update a tenant team record
    * @description Update a tenant team record
    */
-  UpdateTenantTeamRecord: {
+  TeamRecords_UpdateTenantTeamRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -7473,7 +7570,7 @@ export interface operations {
    * Delete a tenant team record
    * @description Delete a tenant team record
    */
-  DeleteTenantTeamRecord: {
+  TeamRecords_DeleteTenantTeamRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -7514,7 +7611,7 @@ export interface operations {
    * Patch a tenant team record
    * @description Patch a tenant team record
    */
-  PatchTenantTeamRecord: {
+  TeamRecords_PatchTenantTeamRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -7561,7 +7658,7 @@ export interface operations {
    * Retrieve a list of tenant teams
    * @description Retrieve a list of tenant teams
    */
-  GetTenantTeams: {
+  Teams_GetTenantTeams: {
     parameters: {
       query: {
         tenantId: string;
@@ -7605,7 +7702,7 @@ export interface operations {
    * Create a new tenant team
    * @description Create a new tenant team
    */
-  CreateTenantTeam: {
+  Teams_CreateTenantTeam: {
     parameters: {
       query: {
         tenantId: string;
@@ -7649,7 +7746,7 @@ export interface operations {
    * Get the count of tenant teams
    * @description Get the count of tenant teams
    */
-  GetTenantTeamsCount: {
+  Teams_GetTenantTeamsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7693,7 +7790,7 @@ export interface operations {
    * Retrieve a single tenant team by its ID
    * @description Retrieve a single tenant team by its ID
    */
-  GetTenantTeamById: {
+  Teams_GetTenantTeamById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7734,7 +7831,7 @@ export interface operations {
    * Update a tenant team
    * @description Update a tenant team
    */
-  UpdateTenantTeam: {
+  Teams_UpdateTenantTeam: {
     parameters: {
       query: {
         tenantId: string;
@@ -7781,7 +7878,7 @@ export interface operations {
    * Delete a tenant team
    * @description Delete a tenant team
    */
-  DeleteTenantTeam: {
+  Teams_DeleteTenantTeam: {
     parameters: {
       query: {
         tenantId: string;
@@ -7822,7 +7919,7 @@ export interface operations {
    * Patch a tenant team
    * @description Patch a tenant team
    */
-  PatchTenantTeam: {
+  Teams_PatchTenantTeam: {
     parameters: {
       query: {
         tenantId: string;
@@ -7869,7 +7966,7 @@ export interface operations {
    * Get the root tenant of the platform
    * @description Get the root tenant of the platform
    */
-  GetRootTenantAsync: {
+  Tenants_GetRootTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7906,7 +8003,7 @@ export interface operations {
    * Get the user's current default tenant
    * @description Get the user's current default tenant
    */
-  GetCurrentTenantAsync: {
+  Tenants_GetCurrentTenant: {
     parameters: {
       query: {
         tenantId: string;
@@ -7944,7 +8041,7 @@ export interface operations {
    * Get a specific tenant by ID
    * @description Get a specific tenant by ID
    */
-  GetTenantAsync: {
+  Tenants_GetTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7984,7 +8081,7 @@ export interface operations {
    * Update a tenant's profile
    * @description Update a tenant's profile
    */
-  UpdateTenantAsync: {
+  Tenants_UpdateTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8030,7 +8127,7 @@ export interface operations {
    * Patch a tenant's profile
    * @description Patch a tenant's profile
    */
-  PatchTenantAsync: {
+  Tenants_PatchTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8076,7 +8173,7 @@ export interface operations {
    * Get an extended tenant's business profile
    * @description Get an extended tenant's business profile
    */
-  GetExtendedTenantAsync: {
+  Tenants_GetExtendedTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8116,7 +8213,7 @@ export interface operations {
    * Get a tenant's avatar
    * @description Get a tenant's avatar
    */
-  GetTenantAvatarAsync: {
+  Tenants_GetTenantAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8156,7 +8253,7 @@ export interface operations {
    * Update a tenant's avatar
    * @description Update a tenant's avatar
    */
-  UpdateTenantAvatarAsync: {
+  Tenants_UpdateTenantAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8215,7 +8312,7 @@ export interface operations {
    * Get a tenant's billing profile (A.K.A. Wallet Account)
    * @description Get a tenant's billing profile (A.K.A. Wallet Account)
    */
-  GetTenantWalletAsync: {
+  Tenants_GetTenantWallet: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8255,7 +8352,7 @@ export interface operations {
    * Get a tenant's social profile
    * @description Get a tenant's social profile
    */
-  GetTenantSocialProfileAsync: {
+  Tenants_GetTenantSocialProfile: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8295,7 +8392,7 @@ export interface operations {
    * Get a tenant's default cart
    * @description Get a tenant's default cart
    */
-  GetCartForTenantAsync: {
+  Tenants_GetCartForTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8335,7 +8432,7 @@ export interface operations {
    * Get the list of users enrolled in a tenant
    * @description Get the list of users enrolled in a tenant
    */
-  GetTenantUsersAsync: {
+  Tenants_GetTenantUsers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8375,7 +8472,7 @@ export interface operations {
    * Get the list of user enrollments for a tenant
    * @description Get the list of user enrollments for a tenant
    */
-  GetTenantEnrollmentsAsync: {
+  Tenants_GetTenantEnrollments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8415,7 +8512,7 @@ export interface operations {
    * Get a specific tenant enrollment
    * @description Get a specific tenant enrollment
    */
-  GetTenantEnrollmentAsync: {
+  Tenants_GetTenantEnrollment: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8456,7 +8553,7 @@ export interface operations {
    * Get a specific tenant enrollment
    * @description Get a specific tenant enrollment
    */
-  GetExtendedTenantEnrollmentAsync: {
+  Tenants_GetExtendedTenantEnrollment: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8497,7 +8594,7 @@ export interface operations {
    * Get a specific tenant enrollment's permissions list
    * @description Get a specific tenant enrollment's permissions list
    */
-  GetEnrollmentPermissionsAsync: {
+  Tenants_GetEnrollmentPermissions: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8538,7 +8635,7 @@ export interface operations {
    * Validate the existence of a list of roles and permissions for a specific enrollment
    * @description Validate the existence of a list of roles and permissions for a specific enrollment
    */
-  ValidateEnrollmentPermissionsAsync: {
+  Tenants_ValidateEnrollmentPermissions: {
     parameters: {
       query?: {
         roles?: string[];
@@ -8581,7 +8678,7 @@ export interface operations {
    * Get the list of invitations issued by a tenant
    * @description Get the list of invitations issued by a tenant
    */
-  GetTenantInvitationsAsync: {
+  Tenants_GetTenantInvitations: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8621,7 +8718,7 @@ export interface operations {
    * Get the list of invitations issued by a tenant that are pending
    * @description Get the list of invitations issued by a tenant that are pending
    */
-  GetTenantPendingInvitationsAsync: {
+  Tenants_GetTenantPendingInvitations: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8661,7 +8758,7 @@ export interface operations {
    * Get the list of invitations issued by a tenant that have been redeemed
    * @description Get the list of invitations issued by a tenant that have been redeemed
    */
-  GetTenantRedeemedInvitationsAsync: {
+  Tenants_GetTenantRedeemedInvitations: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8701,7 +8798,7 @@ export interface operations {
    * Get the list of invitations issued by a tenant that have been revoked
    * @description Get the list of invitations issued by a tenant that have been revoked
    */
-  GetTenantRevokedInvitationsAsync: {
+  Tenants_GetTenantRevokedInvitations: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8741,7 +8838,7 @@ export interface operations {
    * Get the list of licenses available to a tenant
    * @description Get the list of licenses available to a tenant
    */
-  GetTenantLicensesAsync: {
+  Tenants_GetTenantLicenses: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8781,7 +8878,7 @@ export interface operations {
    * Get the list of licenses available to a specific enrollment
    * @description Get the list of licenses available to a specific enrollment
    */
-  GetEnrollmentLicensesAsync: {
+  Tenants_GetEnrollmentLicenses: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8822,7 +8919,7 @@ export interface operations {
    * Get a specific license for an enrollment
    * @description Get a specific license for an enrollment
    */
-  GetEnrollmentLicenseByIdAsync: {
+  Tenants_GetEnrollmentLicenseById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8862,9 +8959,9 @@ export interface operations {
   };
   /**
    * Assign a license to a specific enrollment
-   * @description Assign a license to a specific enrollment
+   * @description Assign a seat on a pooled suite license to a specific enrollment
    */
-  AssignLicenseAsync: {
+  Tenants_AssignLicense: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8882,8 +8979,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-          "application/xml": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -8895,6 +8992,20 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -8904,9 +9015,9 @@ export interface operations {
   };
   /**
    * Revoke a license from a specific enrollment
-   * @description Revoke a license from a specific enrollment
+   * @description Revoke the seat a specific enrollment holds on a pooled suite license
    */
-  RevokeLicenseAsync: {
+  Tenants_RevokeLicense: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8924,8 +9035,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-          "application/xml": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -8937,6 +9048,13 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -8948,7 +9066,7 @@ export interface operations {
    * Get the list of features accessible to a specific enrollment
    * @description Get the list of features accessible to a specific enrollment
    */
-  GetAccessibleFeaturesAsync: {
+  Tenants_GetAccessibleFeatures: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8982,7 +9100,7 @@ export interface operations {
    * Validate the access to a specific feature for a specific enrollment
    * @description Validate the access to a specific feature for a specific enrollment
    */
-  ValidateEnrollmentFeatureAccess: {
+  Tenants_ValidateEnrollmentFeatureAccess: {
     parameters: {
       query?: {
         feature?: string;
@@ -9017,7 +9135,7 @@ export interface operations {
    * Create a new business tenant
    * @description Create a new business tenant
    */
-  CreateTenantAsync: {
+  Tenants_CreateTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9060,7 +9178,7 @@ export interface operations {
    * Delete a tenant
    * @description Delete a business tenant
    */
-  DeleteTenantAsync: {
+  Tenants_DeleteTenant: {
     parameters: {
       query: {
         tenantId: string;
@@ -9098,7 +9216,7 @@ export interface operations {
    * Select a business tenant as the user's default tenant
    * @description Select a business tenant as the user's default tenant
    */
-  SelectTenantAsync: {
+  Tenants_SelectTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9138,7 +9256,7 @@ export interface operations {
    * Deselect the user's default tenant
    * @description Deselect the user's default tenant
    */
-  DeSelectTenantAsync: {
+  Tenants_DeSelectTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9175,7 +9293,7 @@ export interface operations {
    * Get the list of web portals for a tenant
    * @description Get the list of web portals for a tenant
    */
-  GetTenantWebPortalsAsync: {
+  Tenants_GetTenantWebPortals: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9215,9 +9333,10 @@ export interface operations {
    * Get the list of notifications for a tenant
    * @description Get the list of notifications for a tenant
    */
-  GetTenantNotificationsAsync: {
+  Tenants_GetTenantNotifications: {
     parameters: {
       query?: {
+        archived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -9261,9 +9380,10 @@ export interface operations {
    * Get the count of notifications for a tenant
    * @description Get the count of notifications for a tenant
    */
-  GetTenantNotificationsCountAsync: {
+  Tenants_GetTenantNotificationsCount: {
     parameters: {
       query?: {
+        archived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -9307,7 +9427,7 @@ export interface operations {
    * Retrieve a list of tenant territories
    * @description Retrieve a list of tenant territories
    */
-  GetTenantTerritories: {
+  Territories_GetTenantTerritories: {
     parameters: {
       query: {
         tenantId: string;
@@ -9351,7 +9471,7 @@ export interface operations {
    * Create a new tenant territory
    * @description Create a new tenant territory
    */
-  CreateTenantTerritory: {
+  Territories_CreateTenantTerritory: {
     parameters: {
       query: {
         tenantId: string;
@@ -9395,7 +9515,7 @@ export interface operations {
    * Get the count of tenant territories
    * @description Get the count of tenant territories
    */
-  GetTenantTerritoriesCount: {
+  Territories_GetTenantTerritoriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9439,7 +9559,7 @@ export interface operations {
    * Retrieve a single tenant territory by its ID
    * @description Retrieve a single tenant territory by its ID
    */
-  GetTenantTerritoryById: {
+  Territories_GetTenantTerritoryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9480,7 +9600,7 @@ export interface operations {
    * Update a tenant territory
    * @description Update a tenant territory
    */
-  UpdateTenantTerritory: {
+  Territories_UpdateTenantTerritory: {
     parameters: {
       query: {
         tenantId: string;
@@ -9527,7 +9647,7 @@ export interface operations {
    * Delete a tenant territory
    * @description Delete a tenant territory
    */
-  DeleteTenantTerritory: {
+  Territories_DeleteTenantTerritory: {
     parameters: {
       query: {
         tenantId: string;
@@ -9568,7 +9688,7 @@ export interface operations {
    * Patch a tenant territory
    * @description Patch a tenant territory
    */
-  PatchTenantTerritory: {
+  Territories_PatchTenantTerritory: {
     parameters: {
       query: {
         tenantId: string;
@@ -9615,7 +9735,7 @@ export interface operations {
    * Retrieve a list of tenant types
    * @description Retrieve a list of tenant types
    */
-  GetTenantTypes: {
+  Types_GetTenantTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -9659,7 +9779,7 @@ export interface operations {
    * Create a new tenant type
    * @description Create a new tenant type
    */
-  CreateTenantType: {
+  Types_CreateTenantType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9703,7 +9823,7 @@ export interface operations {
    * Get the count of tenant types
    * @description Get the count of tenant types
    */
-  GetTenantTypesCount: {
+  Types_GetTenantTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9747,7 +9867,7 @@ export interface operations {
    * Retrieve a single tenant type by its ID
    * @description Retrieve a single tenant type by its ID
    */
-  GetTenantTypeById: {
+  Types_GetTenantTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9788,7 +9908,7 @@ export interface operations {
    * Update a tenant type
    * @description Update a tenant type
    */
-  UpdateTenantType: {
+  Types_UpdateTenantType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9835,7 +9955,7 @@ export interface operations {
    * Delete a tenant type
    * @description Delete a tenant type
    */
-  DeleteTenantType: {
+  Types_DeleteTenantType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9876,7 +9996,7 @@ export interface operations {
    * Patch a tenant type
    * @description Patch a tenant type
    */
-  PatchTenantType: {
+  Types_PatchTenantType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9923,7 +10043,7 @@ export interface operations {
    * Retrieve a list of unit groups
    * @description Retrieves a list of unit groups for the specified tenant with OData query support.
    */
-  GetUnitGroupsAsync: {
+  UnitGroups_GetUnitGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -9967,7 +10087,7 @@ export interface operations {
    * Create a new unit group
    * @description Creates a new unit group for the specified tenant.
    */
-  CreateUnitGroupAsync: {
+  UnitGroups_CreateUnitGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -10011,7 +10131,7 @@ export interface operations {
    * Get the count of unit groups
    * @description Returns the total count of unit groups for the specified tenant with OData query support.
    */
-  GetUnitGroupsCountAsync: {
+  UnitGroups_GetUnitGroupsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10055,7 +10175,7 @@ export interface operations {
    * Retrieve a unit group by ID
    * @description Retrieves a single unit group by its unique identifier.
    */
-  GetUnitGroupAsync: {
+  UnitGroups_GetUnitGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -10096,7 +10216,7 @@ export interface operations {
    * Update a unit group
    * @description Updates an existing unit group by its unique identifier.
    */
-  UpdateUnitGroupAsync: {
+  UnitGroups_UpdateUnitGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -10143,7 +10263,7 @@ export interface operations {
    * Delete a unit group
    * @description Deletes a unit group by its unique identifier.
    */
-  DeleteUnitGroupAsync: {
+  UnitGroups_DeleteUnitGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -10184,7 +10304,7 @@ export interface operations {
    * Patch a unit group
    * @description Partially updates an existing unit group by its unique identifier.
    */
-  PatchUnitGroupAsync: {
+  UnitGroups_PatchUnitGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -10231,7 +10351,7 @@ export interface operations {
    * Retrieve units for a unit group
    * @description Retrieves a list of units belonging to a specific unit group.
    */
-  GetUnitsAsync: {
+  UnitGroups_GetUnits: {
     parameters: {
       query: {
         tenantId: string;
@@ -10278,7 +10398,7 @@ export interface operations {
    * Create a unit within a unit group
    * @description Creates a new unit within a specific unit group.
    */
-  CreateUnitAsync: {
+  UnitGroups_CreateUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10325,7 +10445,7 @@ export interface operations {
    * Get the count of units in a unit group
    * @description Returns the total count of units in a specific unit group.
    */
-  GetUnitsCountAsync: {
+  UnitGroups_GetUnitsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10372,7 +10492,7 @@ export interface operations {
    * Retrieve a unit by ID within a unit group
    * @description Retrieves a single unit by its unique identifier within a specific unit group.
    */
-  GetUnitAsync: {
+  UnitGroups_GetUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10414,7 +10534,7 @@ export interface operations {
    * Update a unit within a unit group
    * @description Updates an existing unit within a specific unit group.
    */
-  UpdateUnitAsync: {
+  UnitGroups_UpdateUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10462,7 +10582,7 @@ export interface operations {
    * Delete a unit from a unit group
    * @description Deletes a unit from a specific unit group.
    */
-  DeleteUnitAsync: {
+  UnitGroups_DeleteUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10504,7 +10624,7 @@ export interface operations {
    * Patch a unit within a unit group
    * @description Partially updates an existing unit within a specific unit group.
    */
-  PatchUnitAsync: {
+  UnitGroups_PatchUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10552,7 +10672,7 @@ export interface operations {
    * Retrieve a list of tenant units
    * @description Retrieve a list of tenant units
    */
-  GetTenantUnits: {
+  Units_GetTenantUnits: {
     parameters: {
       query: {
         tenantId: string;
@@ -10596,7 +10716,7 @@ export interface operations {
    * Create a new tenant unit
    * @description Create a new tenant unit
    */
-  CreateTenantUnit: {
+  Units_CreateTenantUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10640,7 +10760,7 @@ export interface operations {
    * Get the count of tenant units
    * @description Get the count of tenant units
    */
-  GetTenantUnitsCount: {
+  Units_GetTenantUnitsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10684,7 +10804,7 @@ export interface operations {
    * Retrieve a single tenant unit by its ID
    * @description Retrieve a single tenant unit by its ID
    */
-  GetTenantUnitById: {
+  Units_GetTenantUnitById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10725,7 +10845,7 @@ export interface operations {
    * Update a tenant unit
    * @description Update a tenant unit
    */
-  UpdateTenantUnit: {
+  Units_UpdateTenantUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10772,7 +10892,7 @@ export interface operations {
    * Delete a tenant unit
    * @description Delete a tenant unit
    */
-  DeleteTenantUnit: {
+  Units_DeleteTenantUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10813,7 +10933,7 @@ export interface operations {
    * Patch a tenant unit
    * @description Patch a tenant unit
    */
-  PatchTenantUnit: {
+  Units_PatchTenantUnit: {
     parameters: {
       query: {
         tenantId: string;

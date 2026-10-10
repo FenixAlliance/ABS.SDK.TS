@@ -10,472 +10,224 @@ export interface paths {
      * Get all countries
      * @description Retrieves a list of all countries with optional OData pagination and filtering.
      */
-    get: operations["GetAllCountries"];
+    get: operations["Countries_GetAllCountries"];
   };
   "/api/v2/GlobeService/Countries/Count": {
     /**
      * Count countries
      * @description Returns the total number of countries, with optional OData filtering.
      */
-    get: operations["CountCountries"];
+    get: operations["Countries_CountCountries"];
   };
   "/api/v2/GlobeService/Countries/Search": {
     /**
      * Search countries by name
      * @description Searches for countries whose name matches the specified search term.
      */
-    get: operations["SearchCountriesByNameAsync"];
+    get: operations["Countries_SearchCountriesByName"];
   };
   "/api/v2/GlobeService/Countries/{countryId}": {
     /**
      * Get country by ID
      * @description Retrieves a single country by its unique identifier.
      */
-    get: operations["GetCountryById"];
+    get: operations["Countries_GetCountryById"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/States": {
     /**
      * Get states for a country
      * @description Retrieves the list of states or provinces belonging to the specified country.
      */
-    get: operations["GetCountryStatesAsync"];
+    get: operations["Countries_GetCountryStates"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/States/Count": {
     /**
      * Count states for a country
      * @description Returns the total number of states or provinces for the specified country, with optional OData filtering.
      */
-    get: operations["CountCountryStatesAsync"];
+    get: operations["Countries_CountCountryStates"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}": {
     /**
      * Get state by ID
      * @description Retrieves a single state or province by its unique identifier within a country.
      */
-    get: operations["GetCountryStateByIdAsync"];
+    get: operations["Countries_GetCountryStateById"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}/Cities": {
     /**
      * Get cities for a state
      * @description Retrieves the list of cities belonging to the specified state or province.
      */
-    get: operations["GetCitiesByCountryStateIdAsync"];
+    get: operations["Countries_GetCitiesByCountryStateId"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}/Cities/Count": {
     /**
      * Count cities for a state
      * @description Returns the total number of cities for the specified state, with optional OData filtering.
      */
-    get: operations["CountCitiesByStateAsync"];
+    get: operations["Countries_CountCitiesByState"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/Timezones": {
     /**
      * Get timezones for a country
      * @description Retrieves the list of timezones associated with the specified country.
      */
-    get: operations["GetTimeZonesByCountryIdAsync"];
+    get: operations["Countries_GetTimeZonesByCountryId"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/Timezones/Count": {
     /**
      * Count timezones for a country
      * @description Returns the total number of timezones for the specified country, with optional OData filtering.
      */
-    get: operations["CountTimezonesByCountryAsync"];
+    get: operations["Countries_CountTimezonesByCountry"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/Currencies": {
     /**
      * Get currencies for a country
      * @description Retrieves the list of enabled currencies for the specified country.
      */
-    get: operations["GetEnabledCurrenciesByCountryIdAsync"];
+    get: operations["Countries_GetEnabledCurrenciesByCountryId"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/TopLevelDomains": {
     /**
      * Get top-level domains for a country
      * @description Retrieves the list of internet top-level domains (TLDs) associated with the specified country.
      */
-    get: operations["GetTopLevelDomainsByCountryIdAsync"];
+    get: operations["Countries_GetTopLevelDomainsByCountryId"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/TopLevelDomains/Count": {
     /**
      * Count top-level domains for a country
      * @description Returns the total number of top-level domains for the specified country, with optional OData filtering.
      */
-    get: operations["CountTopLevelDomainsByCountryAsync"];
+    get: operations["Countries_CountTopLevelDomainsByCountry"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/CallingCodes": {
     /**
      * Get calling codes for a country
      * @description Retrieves the list of international telephone calling codes associated with the specified country.
      */
-    get: operations["GetCallingCodesByCountryIdAsync"];
+    get: operations["Countries_GetCallingCodesByCountryId"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/CallingCodes/Count": {
     /**
      * Count calling codes for a country
      * @description Returns the total number of calling codes for the specified country, with optional OData filtering.
      */
-    get: operations["CountCallingCodesByCountryAsync"];
+    get: operations["Countries_CountCallingCodesByCountry"];
   };
   "/api/v2/GlobeService/Currencies": {
     /**
      * Get all currencies
      * @description Retrieves the list of all enabled currencies with optional OData pagination and filtering.
      */
-    get: operations["GetEnabledCurrenciesAsync"];
+    get: operations["Currencies_GetEnabledCurrencies"];
   };
   "/api/v2/GlobeService/Currencies/Count": {
     /**
      * Count currencies
      * @description Returns the total number of enabled currencies, with optional OData filtering.
      */
-    get: operations["CountCurrenciesAsync"];
+    get: operations["Currencies_CountCurrencies"];
   };
   "/api/v2/GlobeService/Currencies/{currencyId}": {
     /**
      * Get currency by ID
      * @description Retrieves a single currency by its unique identifier.
      */
-    get: operations["GetCurrencyByIdAsync"];
+    get: operations["Currencies_GetCurrencyById"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/GlobeService/Languages": {
     /**
      * Get all languages
      * @description Retrieves the list of all supported languages with optional OData pagination and filtering.
      */
-    get: operations["GetLanguagesAsync"];
+    get: operations["Languages_GetLanguages"];
   };
   "/api/v2/GlobeService/Languages/Count": {
     /**
      * Count languages
      * @description Returns the total number of supported languages, with optional OData filtering.
      */
-    get: operations["CountLanguagesAsync"];
+    get: operations["Languages_CountLanguages"];
   };
   "/api/v2/GlobeService/Languages/{languageId}": {
     /**
      * Get language by ID
      * @description Retrieves a single language by its unique identifier.
      */
-    get: operations["GetLanguageByIdAsync"];
+    get: operations["Languages_GetLanguageById"];
   };
   "/api/v2/GlobeService/Timezones": {
     /**
      * Get all timezones
      * @description Retrieves the list of all supported timezones with optional OData pagination and filtering.
      */
-    get: operations["GetTimeZonesAsync"];
+    get: operations["Timezones_GetTimeZones"];
   };
   "/api/v2/GlobeService/Timezones/Count": {
     /**
      * Count timezones
      * @description Returns the total number of supported timezones, with optional OData filtering.
      */
-    get: operations["CountTimezonesAsync"];
+    get: operations["Timezones_CountTimezones"];
   };
   "/api/v2/GlobeService/Timezones/{timeZoneId}": {
     /**
      * Get timezone by ID
      * @description Retrieves a single timezone by its unique identifier.
      */
-    get: operations["GetTimeZoneByIdAsync"];
+    get: operations["Timezones_GetTimeZoneById"];
   };
 }
 
@@ -966,7 +718,7 @@ export interface operations {
    * Get all countries
    * @description Retrieves a list of all countries with optional OData pagination and filtering.
    */
-  GetAllCountries: {
+  Countries_GetAllCountries: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1005,7 +757,7 @@ export interface operations {
    * Count countries
    * @description Returns the total number of countries, with optional OData filtering.
    */
-  CountCountries: {
+  Countries_CountCountries: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1044,7 +796,7 @@ export interface operations {
    * Search countries by name
    * @description Searches for countries whose name matches the specified search term.
    */
-  SearchCountriesByNameAsync: {
+  Countries_SearchCountriesByName: {
     parameters: {
       query: {
         countryName: string;
@@ -1079,7 +831,7 @@ export interface operations {
    * Get country by ID
    * @description Retrieves a single country by its unique identifier.
    */
-  GetCountryById: {
+  Countries_GetCountryById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1116,7 +868,7 @@ export interface operations {
    * Get states for a country
    * @description Retrieves the list of states or provinces belonging to the specified country.
    */
-  GetCountryStatesAsync: {
+  Countries_GetCountryStates: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1158,7 +910,7 @@ export interface operations {
    * Count states for a country
    * @description Returns the total number of states or provinces for the specified country, with optional OData filtering.
    */
-  CountCountryStatesAsync: {
+  Countries_CountCountryStates: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1200,7 +952,7 @@ export interface operations {
    * Get state by ID
    * @description Retrieves a single state or province by its unique identifier within a country.
    */
-  GetCountryStateByIdAsync: {
+  Countries_GetCountryStateById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1243,7 +995,7 @@ export interface operations {
    * Get cities for a state
    * @description Retrieves the list of cities belonging to the specified state or province.
    */
-  GetCitiesByCountryStateIdAsync: {
+  Countries_GetCitiesByCountryStateId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1286,7 +1038,7 @@ export interface operations {
    * Count cities for a state
    * @description Returns the total number of cities for the specified state, with optional OData filtering.
    */
-  CountCitiesByStateAsync: {
+  Countries_CountCitiesByState: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1329,7 +1081,7 @@ export interface operations {
    * Get timezones for a country
    * @description Retrieves the list of timezones associated with the specified country.
    */
-  GetTimeZonesByCountryIdAsync: {
+  Countries_GetTimeZonesByCountryId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1371,7 +1123,7 @@ export interface operations {
    * Count timezones for a country
    * @description Returns the total number of timezones for the specified country, with optional OData filtering.
    */
-  CountTimezonesByCountryAsync: {
+  Countries_CountTimezonesByCountry: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1413,7 +1165,7 @@ export interface operations {
    * Get currencies for a country
    * @description Retrieves the list of enabled currencies for the specified country.
    */
-  GetEnabledCurrenciesByCountryIdAsync: {
+  Countries_GetEnabledCurrenciesByCountryId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1455,7 +1207,7 @@ export interface operations {
    * Get top-level domains for a country
    * @description Retrieves the list of internet top-level domains (TLDs) associated with the specified country.
    */
-  GetTopLevelDomainsByCountryIdAsync: {
+  Countries_GetTopLevelDomainsByCountryId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1497,7 +1249,7 @@ export interface operations {
    * Count top-level domains for a country
    * @description Returns the total number of top-level domains for the specified country, with optional OData filtering.
    */
-  CountTopLevelDomainsByCountryAsync: {
+  Countries_CountTopLevelDomainsByCountry: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1539,7 +1291,7 @@ export interface operations {
    * Get calling codes for a country
    * @description Retrieves the list of international telephone calling codes associated with the specified country.
    */
-  GetCallingCodesByCountryIdAsync: {
+  Countries_GetCallingCodesByCountryId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1581,7 +1333,7 @@ export interface operations {
    * Count calling codes for a country
    * @description Returns the total number of calling codes for the specified country, with optional OData filtering.
    */
-  CountCallingCodesByCountryAsync: {
+  Countries_CountCallingCodesByCountry: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1623,7 +1375,7 @@ export interface operations {
    * Get all currencies
    * @description Retrieves the list of all enabled currencies with optional OData pagination and filtering.
    */
-  GetEnabledCurrenciesAsync: {
+  Currencies_GetEnabledCurrencies: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1666,7 +1418,7 @@ export interface operations {
    * Count currencies
    * @description Returns the total number of enabled currencies, with optional OData filtering.
    */
-  CountCurrenciesAsync: {
+  Currencies_CountCurrencies: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1709,7 +1461,7 @@ export interface operations {
    * Get currency by ID
    * @description Retrieves a single currency by its unique identifier.
    */
-  GetCurrencyByIdAsync: {
+  Currencies_GetCurrencyById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1745,7 +1497,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1760,11 +1591,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all languages
    * @description Retrieves the list of all supported languages with optional OData pagination and filtering.
    */
-  GetLanguagesAsync: {
+  Languages_GetLanguages: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1807,7 +1823,7 @@ export interface operations {
    * Count languages
    * @description Returns the total number of supported languages, with optional OData filtering.
    */
-  CountLanguagesAsync: {
+  Languages_CountLanguages: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1850,7 +1866,7 @@ export interface operations {
    * Get language by ID
    * @description Retrieves a single language by its unique identifier.
    */
-  GetLanguageByIdAsync: {
+  Languages_GetLanguageById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1890,7 +1906,7 @@ export interface operations {
    * Get all timezones
    * @description Retrieves the list of all supported timezones with optional OData pagination and filtering.
    */
-  GetTimeZonesAsync: {
+  Timezones_GetTimeZones: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1933,7 +1949,7 @@ export interface operations {
    * Count timezones
    * @description Returns the total number of supported timezones, with optional OData filtering.
    */
-  CountTimezonesAsync: {
+  Timezones_CountTimezones: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1976,7 +1992,7 @@ export interface operations {
    * Get timezone by ID
    * @description Retrieves a single timezone by its unique identifier.
    */
-  GetTimeZoneByIdAsync: {
+  Timezones_GetTimeZoneById: {
     parameters: {
       query?: {
         "api-version"?: string;

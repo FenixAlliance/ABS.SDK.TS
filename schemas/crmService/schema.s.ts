@@ -10,880 +10,639 @@ export interface paths {
      * Get all contact groups
      * @description Retrieves all contact groups for the specified tenant.
      */
-    get: operations["GetContactGroupsAsync"];
+    get: operations["ContactGroups_GetContactGroups"];
     /**
      * Create a new contact group
      * @description Creates a new contact group for the specified tenant.
      */
-    post: operations["CreateContactGroupAsync"];
+    post: operations["ContactGroups_CreateContactGroup"];
   };
   "/api/v2/CrmService/ContactGroups/Count": {
     /**
      * Get contact groups count
      * @description Returns the count of contact groups for the specified tenant.
      */
-    get: operations["GetContactGroupsCountAsync"];
+    get: operations["ContactGroups_GetContactGroupsCount"];
   };
   "/api/v2/CrmService/ContactGroups/{id}": {
     /**
      * Get contact group by ID
      * @description Retrieves a specific contact group by its identifier.
      */
-    get: operations["GetContactGroupByIdAsync"];
+    get: operations["ContactGroups_GetContactGroupById"];
     /**
      * Update a contact group
      * @description Updates an existing contact group for the specified tenant.
      */
-    put: operations["UpdateContactGroupAsync"];
+    put: operations["ContactGroups_UpdateContactGroup"];
     /**
      * Delete a contact group
      * @description Deletes a contact group for the specified tenant.
      */
-    delete: operations["DeleteContactGroupAsync"];
+    delete: operations["ContactGroups_DeleteContactGroup"];
     /**
      * Patch a contact group
      * @description Patch a contact group
      */
-    patch: operations["PatchContactGroupAsync"];
+    patch: operations["ContactGroups_PatchContactGroup"];
   };
   "/api/v2/CrmService/ContactProfiles": {
     /**
      * Get all contact profiles
      * @description Retrieves all contact profiles for the specified tenant.
      */
-    get: operations["GetContactProfilesAsync"];
+    get: operations["ContactProfiles_GetContactProfiles"];
     /**
      * Create a new contact profile
      * @description Creates a new contact profile for the specified tenant. The ContactId must be provided in the request body.
      */
-    post: operations["CreateContactProfileAsync"];
+    post: operations["ContactProfiles_CreateContactProfile"];
   };
   "/api/v2/CrmService/ContactProfiles/Count": {
     /**
      * Get contact profiles count
      * @description Returns the count of contact profiles for the specified tenant.
      */
-    get: operations["GetContactProfilesCountAsync"];
+    get: operations["ContactProfiles_GetContactProfilesCount"];
   };
   "/api/v2/CrmService/ContactProfiles/Patients/Count": {
     /**
      * Get patient profiles count
      * @description Returns the count of patient contact profiles for the specified tenant.
      */
-    get: operations["GetPatientProfilesCountAsync"];
+    get: operations["ContactProfiles_GetPatientProfilesCount"];
   };
   "/api/v2/CrmService/ContactProfiles/Partners/Count": {
     /**
      * Get partner profiles count
      * @description Returns the count of partner contact profiles for the specified tenant.
      */
-    get: operations["GetPartnerProfilesCountAsync"];
+    get: operations["ContactProfiles_GetPartnerProfilesCount"];
   };
   "/api/v2/CrmService/ContactProfiles/{id}": {
     /**
      * Get contact profile by ID
      * @description Retrieves a specific contact profile by its identifier.
      */
-    get: operations["GetContactProfileByIdAsync"];
+    get: operations["ContactProfiles_GetContactProfileById"];
     /**
      * Update a contact profile
      * @description Updates an existing contact profile for the specified tenant.
      */
-    put: operations["UpdateContactProfileAsync"];
+    put: operations["ContactProfiles_UpdateContactProfile"];
     /**
      * Delete a contact profile
      * @description Deletes a contact profile for the specified tenant.
      */
-    delete: operations["DeleteContactProfileAsync"];
+    delete: operations["ContactProfiles_DeleteContactProfile"];
     /**
      * Patch a contact profile
      * @description Patch a contact profile
      */
-    patch: operations["PatchContactProfileAsync"];
+    patch: operations["ContactProfiles_PatchContactProfile"];
   };
   "/api/v2/CrmService/ContactRelations": {
     /**
      * Get all contact relations
      * @description Retrieves all contact relations for the specified tenant.
      */
-    get: operations["GetContactRelationsAsync"];
+    get: operations["ContactRelations_GetContactRelations"];
     /**
      * Create a new contact relation
      * @description Creates a new contact relation for the specified tenant.
      */
-    post: operations["CreateContactRelationAsync"];
+    post: operations["ContactRelations_CreateContactRelation"];
   };
   "/api/v2/CrmService/ContactRelations/Count": {
     /**
      * Get contact relations count
      * @description Returns the count of contact relations for the specified tenant.
      */
-    get: operations["GetContactRelationsCountAsync"];
+    get: operations["ContactRelations_GetContactRelationsCount"];
   };
   "/api/v2/CrmService/ContactRelations/{id}": {
     /**
      * Get contact relation by ID
      * @description Retrieves a specific contact relation by its identifier.
      */
-    get: operations["GetContactRelationByIdAsync"];
+    get: operations["ContactRelations_GetContactRelationById"];
     /**
      * Update a contact relation
      * @description Updates an existing contact relation for the specified tenant.
      */
-    put: operations["UpdateContactRelationAsync"];
+    put: operations["ContactRelations_UpdateContactRelation"];
     /**
      * Delete a contact relation
      * @description Deletes a contact relation for the specified tenant.
      */
-    delete: operations["DeleteContactRelationAsync"];
+    delete: operations["ContactRelations_DeleteContactRelation"];
     /**
      * Patch a contact relation
      * @description Patch a contact relation
      */
-    patch: operations["PatchContactRelationAsync"];
+    patch: operations["ContactRelations_PatchContactRelation"];
   };
   "/api/v2/CrmService/ContactRelationTypes": {
     /**
      * Get all contact relation types
      * @description Retrieves all contact relation types for the specified tenant.
      */
-    get: operations["GetContactRelationTypesAsync"];
+    get: operations["ContactRelationTypes_GetContactRelationTypes"];
     /**
      * Create a new contact relation type
      * @description Creates a new contact relation type for the specified tenant.
      */
-    post: operations["CreateContactRelationTypeAsync"];
+    post: operations["ContactRelationTypes_CreateContactRelationType"];
   };
   "/api/v2/CrmService/ContactRelationTypes/Count": {
     /**
      * Get contact relation types count
      * @description Returns the count of contact relation types for the specified tenant.
      */
-    get: operations["GetContactRelationTypesCountAsync"];
+    get: operations["ContactRelationTypes_GetContactRelationTypesCount"];
   };
   "/api/v2/CrmService/ContactRelationTypes/{id}": {
     /**
      * Get contact relation type by ID
      * @description Retrieves a specific contact relation type by its identifier.
      */
-    get: operations["GetContactRelationTypeByIdAsync"];
+    get: operations["ContactRelationTypes_GetContactRelationTypeById"];
     /**
      * Update a contact relation type
      * @description Updates an existing contact relation type for the specified tenant.
      */
-    put: operations["UpdateContactRelationTypeAsync"];
+    put: operations["ContactRelationTypes_UpdateContactRelationType"];
     /**
      * Delete a contact relation type
      * @description Deletes a contact relation type for the specified tenant.
      */
-    delete: operations["DeleteContactRelationTypeAsync"];
+    delete: operations["ContactRelationTypes_DeleteContactRelationType"];
     /**
      * Patch a contact relation type
      * @description Patch a contact relation type
      */
-    patch: operations["PatchContactRelationTypeAsync"];
+    patch: operations["ContactRelationTypes_PatchContactRelationType"];
   };
   "/api/v2/CrmService/Contacts": {
     /**
      * Get all business owned contacts
      * @description Get all business owned contacts
      */
-    get: operations["GetContactsAsync"];
+    get: operations["Contacts_GetContacts"];
     /**
      * Create a new contact
      * @description Create a new contact
      */
-    post: operations["CreateContactAsync"];
+    post: operations["Contacts_CreateContact"];
   };
   "/api/v2/CrmService/Contacts/Count": {
     /**
      * Get all business owned contacts count
      * @description Get all business owned contacts count
      */
-    get: operations["GetContactsCountAsync"];
+    get: operations["Contacts_GetContactsCount"];
   };
   "/api/v2/CrmService/Contacts/Extended": {
     /**
      * Get all business owned contacts
      * @description Get all business owned contacts
      */
-    get: operations["GetExtendedContactsAsync"];
+    get: operations["Contacts_GetExtendedContacts"];
   };
   "/api/v2/CrmService/Contacts/{contactId}": {
     /**
      * Get a contact by ID
      * @description Get a contact by ID
      */
-    get: operations["GetContactAsync"];
+    get: operations["Contacts_GetContact"];
     /**
      * Update a contact
      * @description Update a contact
      */
-    put: operations["UpdateContactAsync"];
+    put: operations["Contacts_UpdateContact"];
     /**
      * Delete a contact
      * @description Delete a contact
      */
-    delete: operations["DeleteContactAsync"];
+    delete: operations["Contacts_DeleteContact"];
     /**
      * Patch a contact
      * @description Patch a contact
      */
-    patch: operations["PatchContactAsync"];
+    patch: operations["Contacts_PatchContact"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Extended": {
     /**
      * Get a contact by ID
      * @description Get a contact by ID
      */
-    get: operations["GetExtendedContactAsync"];
+    get: operations["Contacts_GetExtendedContact"];
   };
   "/api/v2/CrmService/Contacts/Individuals": {
     /**
      * Get all contacts of type individual
      * @description Get all contacts of type individual
      */
-    get: operations["GetBusinessOwnedIndividualsAsync"];
+    get: operations["Contacts_GetBusinessOwnedIndividuals"];
   };
   "/api/v2/CrmService/Contacts/Individuals/Count": {
     /**
      * Get all contacts of type individual count
      * @description Get all contacts of type individual count
      */
-    get: operations["GetBusinessOwnedIndividualsCountAsync"];
+    get: operations["Contacts_GetBusinessOwnedIndividualsCount"];
   };
   "/api/v2/CrmService/Contacts/Individuals/Extended": {
     /**
      * Get all contacts of type individual
      * @description Get all contacts of type individual
      */
-    get: operations["GetExtendedBusinessOwnedIndividualsAsync"];
+    get: operations["Contacts_GetExtendedBusinessOwnedIndividuals"];
   };
   "/api/v2/CrmService/Contacts/Individuals/{contactId}": {
     /**
      * Get a Contact of type Individual by ID
      * @description Get a Contact of type Individual by ID
      */
-    get: operations["GetBusinessOwnedIndividualAsync"];
+    get: operations["Contacts_GetBusinessOwnedIndividual"];
   };
   "/api/v2/CrmService/Contacts/Organizations": {
     /**
      * Get all contacts of type organization
      * @description Get all contacts of type organization
      */
-    get: operations["GetBusinessOwnedOrganizationsAsync"];
+    get: operations["Contacts_GetBusinessOwnedOrganizations"];
   };
   "/api/v2/CrmService/Contacts/Organizations/Count": {
     /**
      * Get all contacts of type organization count
      * @description Get all contacts of type organization count
      */
-    get: operations["GetBusinessOwnedOrganizationsCountAsync"];
+    get: operations["Contacts_GetBusinessOwnedOrganizationsCount"];
   };
   "/api/v2/CrmService/Contacts/Organizations/Extended": {
     /**
      * Get all contacts of type organization
      * @description Get all contacts of type organization
      */
-    get: operations["GetExtendedBusinessOwnedOrganizationsAsync"];
+    get: operations["Contacts_GetExtendedBusinessOwnedOrganizations"];
   };
   "/api/v2/CrmService/Contacts/Organizations/{contactId}": {
     /**
      * Get a Contact of type Organization by ID
      * @description Get a Contact of type Organization by ID
      */
-    get: operations["GetBusinessOwnedOrganizationAsync"];
+    get: operations["Contacts_GetBusinessOwnedOrganization"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Cart": {
     /**
      * Get a contact's cart
      * @description Get a contact's cart
      */
-    get: operations["GetContactCartAsync"];
+    get: operations["Contacts_GetContactCart"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Avatar": {
     /**
      * Get a contact's avatar
      * @description Get a contact's avatar
      */
-    get: operations["GetContactAvatarAsync"];
+    get: operations["Contacts_GetContactAvatar"];
     /**
      * Update a contact's avatar
      * @description Update a contact's avatar
      */
-    post: operations["UpdateContactAvatarAsync"];
+    post: operations["Contacts_UpdateContactAvatar"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Wallet": {
     /**
      * Get a contact's wallet
      * @description Get a contact's wallet
      */
-    get: operations["GetContactWalletAsync"];
+    get: operations["Contacts_GetContactWallet"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Profiles": {
     /**
      * Get a contact's social profiles
      * @description Get a contact's social profiles
      */
-    get: operations["GetProfilesForContactAsync"];
+    get: operations["Contacts_GetProfilesForContact"];
     /**
      * Create a contact profile
      * @description Creates a new profile for the specified contact.
      */
-    post: operations["CreateProfileForContactAsync"];
+    post: operations["Contacts_CreateProfileForContact"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Profiles/Count": {
     /**
      * Get contact profiles count
      * @description Returns the count of profiles for the specified contact.
      */
-    get: operations["GetProfilesForContactCountAsync"];
+    get: operations["Contacts_GetProfilesForContactCount"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Profiles/{profileId}": {
     /**
      * Update a contact profile
      * @description Updates an existing profile for the specified contact.
      */
-    put: operations["UpdateProfileForContactAsync"];
+    put: operations["Contacts_UpdateProfileForContact"];
     /**
      * Delete a contact profile
      * @description Deletes a profile for the specified contact.
      */
-    delete: operations["DeleteProfileForContactAsync"];
+    delete: operations["Contacts_DeleteProfileForContact"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/SocialProfile": {
     /**
      * Get a contact's social profile
      * @description Get a contact's social profile
      */
-    get: operations["GetContactSocialProfileAsync"];
+    get: operations["Contacts_GetContactSocialProfile"];
   };
   "/api/v2/CrmService/Contacts/Individuals/{contactId}/Organizations": {
     /**
      * Get individual related organizations
      * @description Get individual related organizations
      */
-    get: operations["GetIndividualRelatedOrganizationsAsync"];
+    get: operations["Contacts_GetIndividualRelatedOrganizations"];
   };
   "/api/v2/CrmService/Contacts/Individuals/{contactId}/Individuals": {
     /**
      * Get individual related individuals
      * @description Get individual related individuals
      */
-    get: operations["GetIndividualRelatedIndividualsAsync"];
+    get: operations["Contacts_GetIndividualRelatedIndividuals"];
   };
   "/api/v2/CrmService/Contacts/Organizations/{contactId}/Individuals": {
     /**
      * Get organization related individuals
      * @description Get organization related individuals
      */
-    get: operations["GetOrganizationRelatedIndividualsAsync"];
+    get: operations["Contacts_GetOrganizationRelatedIndividuals"];
   };
   "/api/v2/CrmService/Contacts/Organizations/{contactId}/Organizations": {
     /**
      * Get organization related organizations
      * @description Get organization related organizations
      */
-    get: operations["GetOrganizationRelatedOrganizationsAsync"];
+    get: operations["Contacts_GetOrganizationRelatedOrganizations"];
   };
   "/api/v2/CrmService/Contacts/Organizations/Upsert": {
     /**
      * Upsert a tenant onto another tenant's contact list
      * @description Upsert a tenant onto another tenant's contact list
      */
-    post: operations["UpsertTenantOntoAnotherTenantContactListAsync"];
+    post: operations["Contacts_UpsertTenantOntoAnotherTenantContactList"];
   };
   "/api/v2/CrmService/Contacts/Individuals/Upsert": {
     /**
      * Upsert a user onto a tenant's contact list
      * @description Upsert a user onto a tenant's contact list
      */
-    post: operations["UpsertUserOntoAnotherTenantContactListAsync"];
+    post: operations["Contacts_UpsertUserOntoAnotherTenantContactList"];
+  };
+  "/api/v2/CrmService/Contacts/Related": {
+    /**
+     * Create or reuse the current user's contact in a tenant's contact list
+     * @description Creates or reuses the CRM contact of the currently authenticated user in the specified tenant. The user is always the caller; it is never taken from the request.
+     */
+    post: operations["Contacts_UpsertCurrentUserRelatedContact"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails/Preview": {
     /**
      * Preview the rendered email for a contact.
      * @description This action is only available for global administrators (business_owner role).
      */
-    post: operations["PreviewContactEmailTemplate"];
+    post: operations["Contacts_PreviewContactEmailTemplate"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails/Send": {
     /**
      * Send an email to a contact.
      * @description This action is only available for global administrators (business_owner role).
      */
-    post: operations["SendContactEmail"];
+    post: operations["Contacts_SendContactEmail"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails": {
     /**
      * Get a contact's email addresses
      * @description Get all email addresses for the specified contact.
      */
-    get: operations["GetContactEmailsAsync"];
+    get: operations["Contacts_GetContactEmails"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails/Count": {
     /**
      * Get contact email addresses count
      * @description Returns the count of email addresses for the specified contact.
      */
-    get: operations["GetContactEmailsCountAsync"];
+    get: operations["Contacts_GetContactEmailsCount"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails/Addresses": {
     /**
      * Add an email address to a contact
      * @description Creates a new email address for the specified contact.
      */
-    post: operations["CreateContactEmailAsync"];
+    post: operations["Contacts_CreateContactEmail"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}": {
     /**
      * Update a contact email address
      * @description Updates an existing email address for the specified contact.
      */
-    put: operations["UpdateContactEmailAsync"];
+    put: operations["Contacts_UpdateContactEmail"];
     /**
      * Delete a contact email address
      * @description Deletes an email address from the specified contact.
      */
-    delete: operations["DeleteContactEmailAsync"];
+    delete: operations["Contacts_DeleteContactEmail"];
     /**
      * Patch a contact email address
      * @description Partially updates an existing email address for the specified contact.
      */
-    patch: operations["PatchContactEmailAsync"];
+    patch: operations["Contacts_PatchContactEmail"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}/Verify": {
     /**
      * Verify a contact email address
      * @description Marks an email address as verified on the specified contact.
      */
-    post: operations["VerifyContactEmailAsync"];
+    post: operations["Contacts_VerifyContactEmail"];
   };
   "/api/v2/CrmService/ContactSources": {
     /**
      * Get all contact sources
      * @description Retrieves all contact sources for the specified tenant.
      */
-    get: operations["GetContactSourcesAsync"];
+    get: operations["ContactSources_GetContactSources"];
     /**
      * Create a new contact source
      * @description Creates a new contact source for the specified tenant.
      */
-    post: operations["CreateContactSourceAsync"];
+    post: operations["ContactSources_CreateContactSource"];
   };
   "/api/v2/CrmService/ContactSources/Count": {
     /**
      * Get contact sources count
      * @description Returns the count of contact sources for the specified tenant.
      */
-    get: operations["GetContactSourcesCountAsync"];
+    get: operations["ContactSources_GetContactSourcesCount"];
   };
   "/api/v2/CrmService/ContactSources/{id}": {
     /**
      * Get contact source by ID
      * @description Retrieves a specific contact source by its identifier.
      */
-    get: operations["GetContactSourceByIdAsync"];
+    get: operations["ContactSources_GetContactSourceById"];
     /**
      * Update a contact source
      * @description Updates an existing contact source for the specified tenant.
      */
-    put: operations["UpdateContactSourceAsync"];
+    put: operations["ContactSources_UpdateContactSource"];
     /**
      * Delete a contact source
      * @description Deletes a contact source for the specified tenant.
      */
-    delete: operations["DeleteContactSourceAsync"];
+    delete: operations["ContactSources_DeleteContactSource"];
     /**
      * Patch a contact source
      * @description Patch a contact source
      */
-    patch: operations["PatchContactSourceAsync"];
+    patch: operations["ContactSources_PatchContactSource"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options": {
     /**
      * Retrieve a list of contact options
      * @description Retrieve a list of options for a contact
      */
-    get: operations["GetContactOptions"];
+    get: operations["Options_GetContactOptions"];
     /**
      * Create a new contact option
      * @description Create a new option for a contact
      */
-    post: operations["CreateContactOption"];
+    post: operations["Options_CreateContactOption"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options/Count": {
     /**
      * Get the count of contact options
      * @description Get the count of options for a contact
      */
-    get: operations["GetContactOptionsCount"];
+    get: operations["Options_GetContactOptionsCount"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options/{optionId}": {
     /**
      * Retrieve a single contact option by its ID
      * @description Retrieve a single contact option by its ID
      */
-    get: operations["GetContactOptionById"];
+    get: operations["Options_GetContactOptionById"];
     /**
      * Update a contact option
      * @description Update a contact option
      */
-    put: operations["UpdateContactOption"];
+    put: operations["Options_UpdateContactOption"];
     /**
      * Delete a contact option
      * @description Delete a contact option
      */
-    delete: operations["DeleteContactOption"];
+    delete: operations["Options_DeleteContactOption"];
     /**
      * Patch a contact option
      * @description Patch a contact option
      */
-    patch: operations["PatchContactOptionAsync"];
+    patch: operations["Options_PatchContactOption"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options/Key/{key}": {
     /**
      * Retrieve a single contact option by its key
      * @description Retrieve a single contact option by its key
      */
-    get: operations["GetContactOptionByKey"];
+    get: operations["Options_GetContactOptionByKey"];
     /**
      * Patch a contact option by key
      * @description Patch a contact option by key
      */
-    patch: operations["PatchContactOptionByKeyAsync"];
+    patch: operations["Options_PatchContactOptionByKey"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options/Upsert/{key}": {
     /**
      * Create or update a contact option by key
      * @description Create or update a contact option by key
      */
-    put: operations["UpsertContactOption"];
+    put: operations["Options_UpsertContactOption"];
   };
   "/api/v2/CrmService/Sync": {
     /**
      * Sync the current user into the current tenant's contact list
      * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list.
      */
-    post: operations["SyncCurrentHolderToCurrentTenantCrm"];
+    post: operations["Sync_SyncCurrentHolderToCurrentTenantCrm"];
   };
   "/api/v2/CrmService/Sync/Me": {
     /**
      * Sync the current user into a tenant's contact list
      * @description Synchronizes the currently authenticated user into the specified tenant's CRM contact list.
      */
-    post: operations["SyncCurrentHolderToTenantCrm"];
+    post: operations["Sync_SyncCurrentHolderToTenantCrm"];
   };
   "/api/v2/CrmService/Sync/User": {
     /**
      * Sync a user into a tenant's contact list
      * @description Synchronizes a specified user into the tenant's CRM contact list.
      */
-    post: operations["SyncHolderToTenantCrmAsync"];
+    post: operations["Sync_SyncHolderToTenantCrm"];
   };
   "/api/v2/CrmService/Sync/Tenant": {
     /**
      * Sync a tenant into another tenant's contact list
      * @description Synchronizes a tenant into another tenant's CRM contact list.
      */
-    post: operations["SyncTenantToTenantCrm"];
+    post: operations["Sync_SyncTenantToTenantCrm"];
   };
 }
 
@@ -1058,9 +817,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     ContactDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1670,9 +1432,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
       cart?: components["schemas"]["CartDto"];
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
@@ -2001,6 +1766,7 @@ export interface components {
       mainNetEtherBalance?: number;
       ethereumAddress?: string | null;
       ethereumPublicKey?: string | null;
+      /** @deprecated */
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
@@ -2038,7 +1804,7 @@ export interface operations {
    * Get all contact groups
    * @description Retrieves all contact groups for the specified tenant.
    */
-  GetContactGroupsAsync: {
+  ContactGroups_GetContactGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -2075,7 +1841,7 @@ export interface operations {
    * Create a new contact group
    * @description Creates a new contact group for the specified tenant.
    */
-  CreateContactGroupAsync: {
+  ContactGroups_CreateContactGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2116,7 +1882,7 @@ export interface operations {
    * Get contact groups count
    * @description Returns the count of contact groups for the specified tenant.
    */
-  GetContactGroupsCountAsync: {
+  ContactGroups_GetContactGroupsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2153,7 +1919,7 @@ export interface operations {
    * Get contact group by ID
    * @description Retrieves a specific contact group by its identifier.
    */
-  GetContactGroupByIdAsync: {
+  ContactGroups_GetContactGroupById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2194,7 +1960,7 @@ export interface operations {
    * Update a contact group
    * @description Updates an existing contact group for the specified tenant.
    */
-  UpdateContactGroupAsync: {
+  ContactGroups_UpdateContactGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2238,7 +2004,7 @@ export interface operations {
    * Delete a contact group
    * @description Deletes a contact group for the specified tenant.
    */
-  DeleteContactGroupAsync: {
+  ContactGroups_DeleteContactGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2276,7 +2042,7 @@ export interface operations {
    * Patch a contact group
    * @description Patch a contact group
    */
-  PatchContactGroupAsync: {
+  ContactGroups_PatchContactGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2323,7 +2089,7 @@ export interface operations {
    * Get all contact profiles
    * @description Retrieves all contact profiles for the specified tenant.
    */
-  GetContactProfilesAsync: {
+  ContactProfiles_GetContactProfiles: {
     parameters: {
       query: {
         tenantId: string;
@@ -2360,7 +2126,7 @@ export interface operations {
    * Create a new contact profile
    * @description Creates a new contact profile for the specified tenant. The ContactId must be provided in the request body.
    */
-  CreateContactProfileAsync: {
+  ContactProfiles_CreateContactProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -2401,7 +2167,7 @@ export interface operations {
    * Get contact profiles count
    * @description Returns the count of contact profiles for the specified tenant.
    */
-  GetContactProfilesCountAsync: {
+  ContactProfiles_GetContactProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2438,7 +2204,7 @@ export interface operations {
    * Get patient profiles count
    * @description Returns the count of patient contact profiles for the specified tenant.
    */
-  GetPatientProfilesCountAsync: {
+  ContactProfiles_GetPatientProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2475,7 +2241,7 @@ export interface operations {
    * Get partner profiles count
    * @description Returns the count of partner contact profiles for the specified tenant.
    */
-  GetPartnerProfilesCountAsync: {
+  ContactProfiles_GetPartnerProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2512,7 +2278,7 @@ export interface operations {
    * Get contact profile by ID
    * @description Retrieves a specific contact profile by its identifier.
    */
-  GetContactProfileByIdAsync: {
+  ContactProfiles_GetContactProfileById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2553,7 +2319,7 @@ export interface operations {
    * Update a contact profile
    * @description Updates an existing contact profile for the specified tenant.
    */
-  UpdateContactProfileAsync: {
+  ContactProfiles_UpdateContactProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -2597,7 +2363,7 @@ export interface operations {
    * Delete a contact profile
    * @description Deletes a contact profile for the specified tenant.
    */
-  DeleteContactProfileAsync: {
+  ContactProfiles_DeleteContactProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -2635,7 +2401,7 @@ export interface operations {
    * Patch a contact profile
    * @description Patch a contact profile
    */
-  PatchContactProfileAsync: {
+  ContactProfiles_PatchContactProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -2682,7 +2448,7 @@ export interface operations {
    * Get all contact relations
    * @description Retrieves all contact relations for the specified tenant.
    */
-  GetContactRelationsAsync: {
+  ContactRelations_GetContactRelations: {
     parameters: {
       query: {
         tenantId: string;
@@ -2719,7 +2485,7 @@ export interface operations {
    * Create a new contact relation
    * @description Creates a new contact relation for the specified tenant.
    */
-  CreateContactRelationAsync: {
+  ContactRelations_CreateContactRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -2760,7 +2526,7 @@ export interface operations {
    * Get contact relations count
    * @description Returns the count of contact relations for the specified tenant.
    */
-  GetContactRelationsCountAsync: {
+  ContactRelations_GetContactRelationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2797,7 +2563,7 @@ export interface operations {
    * Get contact relation by ID
    * @description Retrieves a specific contact relation by its identifier.
    */
-  GetContactRelationByIdAsync: {
+  ContactRelations_GetContactRelationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2838,7 +2604,7 @@ export interface operations {
    * Update a contact relation
    * @description Updates an existing contact relation for the specified tenant.
    */
-  UpdateContactRelationAsync: {
+  ContactRelations_UpdateContactRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -2882,7 +2648,7 @@ export interface operations {
    * Delete a contact relation
    * @description Deletes a contact relation for the specified tenant.
    */
-  DeleteContactRelationAsync: {
+  ContactRelations_DeleteContactRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -2920,7 +2686,7 @@ export interface operations {
    * Patch a contact relation
    * @description Patch a contact relation
    */
-  PatchContactRelationAsync: {
+  ContactRelations_PatchContactRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -2967,7 +2733,7 @@ export interface operations {
    * Get all contact relation types
    * @description Retrieves all contact relation types for the specified tenant.
    */
-  GetContactRelationTypesAsync: {
+  ContactRelationTypes_GetContactRelationTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -3004,7 +2770,7 @@ export interface operations {
    * Create a new contact relation type
    * @description Creates a new contact relation type for the specified tenant.
    */
-  CreateContactRelationTypeAsync: {
+  ContactRelationTypes_CreateContactRelationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -3045,7 +2811,7 @@ export interface operations {
    * Get contact relation types count
    * @description Returns the count of contact relation types for the specified tenant.
    */
-  GetContactRelationTypesCountAsync: {
+  ContactRelationTypes_GetContactRelationTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3082,7 +2848,7 @@ export interface operations {
    * Get contact relation type by ID
    * @description Retrieves a specific contact relation type by its identifier.
    */
-  GetContactRelationTypeByIdAsync: {
+  ContactRelationTypes_GetContactRelationTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3123,7 +2889,7 @@ export interface operations {
    * Update a contact relation type
    * @description Updates an existing contact relation type for the specified tenant.
    */
-  UpdateContactRelationTypeAsync: {
+  ContactRelationTypes_UpdateContactRelationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -3167,7 +2933,7 @@ export interface operations {
    * Delete a contact relation type
    * @description Deletes a contact relation type for the specified tenant.
    */
-  DeleteContactRelationTypeAsync: {
+  ContactRelationTypes_DeleteContactRelationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -3205,7 +2971,7 @@ export interface operations {
    * Patch a contact relation type
    * @description Patch a contact relation type
    */
-  PatchContactRelationTypeAsync: {
+  ContactRelationTypes_PatchContactRelationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -3252,7 +3018,7 @@ export interface operations {
    * Get all business owned contacts
    * @description Get all business owned contacts
    */
-  GetContactsAsync: {
+  Contacts_GetContacts: {
     parameters: {
       query: {
         tenantId: string;
@@ -3296,10 +3062,10 @@ export interface operations {
    * Create a new contact
    * @description Create a new contact
    */
-  CreateContactAsync: {
+  Contacts_CreateContact: {
     parameters: {
-      query?: {
-        tenantId?: string;
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -3340,7 +3106,7 @@ export interface operations {
    * Get all business owned contacts count
    * @description Get all business owned contacts count
    */
-  GetContactsCountAsync: {
+  Contacts_GetContactsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3384,7 +3150,7 @@ export interface operations {
    * Get all business owned contacts
    * @description Get all business owned contacts
    */
-  GetExtendedContactsAsync: {
+  Contacts_GetExtendedContacts: {
     parameters: {
       query: {
         tenantId: string;
@@ -3428,7 +3194,7 @@ export interface operations {
    * Get a contact by ID
    * @description Get a contact by ID
    */
-  GetContactAsync: {
+  Contacts_GetContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -3469,7 +3235,7 @@ export interface operations {
    * Update a contact
    * @description Update a contact
    */
-  UpdateContactAsync: {
+  Contacts_UpdateContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -3516,7 +3282,7 @@ export interface operations {
    * Delete a contact
    * @description Delete a contact
    */
-  DeleteContactAsync: {
+  Contacts_DeleteContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -3557,7 +3323,7 @@ export interface operations {
    * Patch a contact
    * @description Patch a contact
    */
-  PatchContactAsync: {
+  Contacts_PatchContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -3604,7 +3370,7 @@ export interface operations {
    * Get a contact by ID
    * @description Get a contact by ID
    */
-  GetExtendedContactAsync: {
+  Contacts_GetExtendedContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -3645,7 +3411,7 @@ export interface operations {
    * Get all contacts of type individual
    * @description Get all contacts of type individual
    */
-  GetBusinessOwnedIndividualsAsync: {
+  Contacts_GetBusinessOwnedIndividuals: {
     parameters: {
       query: {
         tenantId: string;
@@ -3689,7 +3455,7 @@ export interface operations {
    * Get all contacts of type individual count
    * @description Get all contacts of type individual count
    */
-  GetBusinessOwnedIndividualsCountAsync: {
+  Contacts_GetBusinessOwnedIndividualsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3733,7 +3499,7 @@ export interface operations {
    * Get all contacts of type individual
    * @description Get all contacts of type individual
    */
-  GetExtendedBusinessOwnedIndividualsAsync: {
+  Contacts_GetExtendedBusinessOwnedIndividuals: {
     parameters: {
       query: {
         tenantId: string;
@@ -3777,7 +3543,7 @@ export interface operations {
    * Get a Contact of type Individual by ID
    * @description Get a Contact of type Individual by ID
    */
-  GetBusinessOwnedIndividualAsync: {
+  Contacts_GetBusinessOwnedIndividual: {
     parameters: {
       query: {
         tenantId: string;
@@ -3825,7 +3591,7 @@ export interface operations {
    * Get all contacts of type organization
    * @description Get all contacts of type organization
    */
-  GetBusinessOwnedOrganizationsAsync: {
+  Contacts_GetBusinessOwnedOrganizations: {
     parameters: {
       query: {
         tenantId: string;
@@ -3869,7 +3635,7 @@ export interface operations {
    * Get all contacts of type organization count
    * @description Get all contacts of type organization count
    */
-  GetBusinessOwnedOrganizationsCountAsync: {
+  Contacts_GetBusinessOwnedOrganizationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3913,7 +3679,7 @@ export interface operations {
    * Get all contacts of type organization
    * @description Get all contacts of type organization
    */
-  GetExtendedBusinessOwnedOrganizationsAsync: {
+  Contacts_GetExtendedBusinessOwnedOrganizations: {
     parameters: {
       query: {
         tenantId: string;
@@ -3957,7 +3723,7 @@ export interface operations {
    * Get a Contact of type Organization by ID
    * @description Get a Contact of type Organization by ID
    */
-  GetBusinessOwnedOrganizationAsync: {
+  Contacts_GetBusinessOwnedOrganization: {
     parameters: {
       query: {
         tenantId: string;
@@ -4005,7 +3771,7 @@ export interface operations {
    * Get a contact's cart
    * @description Get a contact's cart
    */
-  GetContactCartAsync: {
+  Contacts_GetContactCart: {
     parameters: {
       query: {
         tenantId: string;
@@ -4053,7 +3819,7 @@ export interface operations {
    * Get a contact's avatar
    * @description Get a contact's avatar
    */
-  GetContactAvatarAsync: {
+  Contacts_GetContactAvatar: {
     parameters: {
       query: {
         tenantId: string;
@@ -4094,7 +3860,7 @@ export interface operations {
    * Update a contact's avatar
    * @description Update a contact's avatar
    */
-  UpdateContactAvatarAsync: {
+  Contacts_UpdateContactAvatar: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4151,7 +3917,7 @@ export interface operations {
    * Get a contact's wallet
    * @description Get a contact's wallet
    */
-  GetContactWalletAsync: {
+  Contacts_GetContactWallet: {
     parameters: {
       query: {
         tenantId: string;
@@ -4199,7 +3965,7 @@ export interface operations {
    * Get a contact's social profiles
    * @description Get a contact's social profiles
    */
-  GetProfilesForContactAsync: {
+  Contacts_GetProfilesForContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -4247,7 +4013,7 @@ export interface operations {
    * Create a contact profile
    * @description Creates a new profile for the specified contact.
    */
-  CreateProfileForContactAsync: {
+  Contacts_CreateProfileForContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -4291,7 +4057,7 @@ export interface operations {
    * Get contact profiles count
    * @description Returns the count of profiles for the specified contact.
    */
-  GetProfilesForContactCountAsync: {
+  Contacts_GetProfilesForContactCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4331,7 +4097,7 @@ export interface operations {
    * Update a contact profile
    * @description Updates an existing profile for the specified contact.
    */
-  UpdateProfileForContactAsync: {
+  Contacts_UpdateProfileForContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -4376,7 +4142,7 @@ export interface operations {
    * Delete a contact profile
    * @description Deletes a profile for the specified contact.
    */
-  DeleteProfileForContactAsync: {
+  Contacts_DeleteProfileForContact: {
     parameters: {
       query: {
         tenantId: string;
@@ -4415,7 +4181,7 @@ export interface operations {
    * Get a contact's social profile
    * @description Get a contact's social profile
    */
-  GetContactSocialProfileAsync: {
+  Contacts_GetContactSocialProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -4463,7 +4229,7 @@ export interface operations {
    * Get individual related organizations
    * @description Get individual related organizations
    */
-  GetIndividualRelatedOrganizationsAsync: {
+  Contacts_GetIndividualRelatedOrganizations: {
     parameters: {
       query: {
         tenantId: string;
@@ -4504,7 +4270,7 @@ export interface operations {
    * Get individual related individuals
    * @description Get individual related individuals
    */
-  GetIndividualRelatedIndividualsAsync: {
+  Contacts_GetIndividualRelatedIndividuals: {
     parameters: {
       query: {
         tenantId: string;
@@ -4545,7 +4311,7 @@ export interface operations {
    * Get organization related individuals
    * @description Get organization related individuals
    */
-  GetOrganizationRelatedIndividualsAsync: {
+  Contacts_GetOrganizationRelatedIndividuals: {
     parameters: {
       query: {
         tenantId: string;
@@ -4586,7 +4352,7 @@ export interface operations {
    * Get organization related organizations
    * @description Get organization related organizations
    */
-  GetOrganizationRelatedOrganizationsAsync: {
+  Contacts_GetOrganizationRelatedOrganizations: {
     parameters: {
       query: {
         tenantId: string;
@@ -4627,7 +4393,7 @@ export interface operations {
    * Upsert a tenant onto another tenant's contact list
    * @description Upsert a tenant onto another tenant's contact list
    */
-  UpsertTenantOntoAnotherTenantContactListAsync: {
+  Contacts_UpsertTenantOntoAnotherTenantContactList: {
     parameters: {
       query: {
         tenantId: string;
@@ -4666,7 +4432,7 @@ export interface operations {
    * Upsert a user onto a tenant's contact list
    * @description Upsert a user onto a tenant's contact list
    */
-  UpsertUserOntoAnotherTenantContactListAsync: {
+  Contacts_UpsertUserOntoAnotherTenantContactList: {
     parameters: {
       query: {
         tenantId: string;
@@ -4702,10 +4468,48 @@ export interface operations {
     };
   };
   /**
+   * Create or reuse the current user's contact in a tenant's contact list
+   * @description Creates or reuses the CRM contact of the currently authenticated user in the specified tenant. The user is always the caller; it is never taken from the request.
+   */
+  Contacts_UpsertCurrentUserRelatedContact: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactDtoEnvelope"];
+          "application/xml": components["schemas"]["ContactDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Preview the rendered email for a contact.
    * @description This action is only available for global administrators (business_owner role).
    */
-  PreviewContactEmailTemplate: {
+  Contacts_PreviewContactEmailTemplate: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4734,7 +4538,7 @@ export interface operations {
    * Send an email to a contact.
    * @description This action is only available for global administrators (business_owner role).
    */
-  SendContactEmail: {
+  Contacts_SendContactEmail: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4763,7 +4567,7 @@ export interface operations {
    * Get a contact's email addresses
    * @description Get all email addresses for the specified contact.
    */
-  GetContactEmailsAsync: {
+  Contacts_GetContactEmails: {
     parameters: {
       query: {
         tenantId: string;
@@ -4810,7 +4614,7 @@ export interface operations {
    * Get contact email addresses count
    * @description Returns the count of email addresses for the specified contact.
    */
-  GetContactEmailsCountAsync: {
+  Contacts_GetContactEmailsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4850,7 +4654,7 @@ export interface operations {
    * Add an email address to a contact
    * @description Creates a new email address for the specified contact.
    */
-  CreateContactEmailAsync: {
+  Contacts_CreateContactEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -4894,7 +4698,7 @@ export interface operations {
    * Update a contact email address
    * @description Updates an existing email address for the specified contact.
    */
-  UpdateContactEmailAsync: {
+  Contacts_UpdateContactEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -4939,7 +4743,7 @@ export interface operations {
    * Delete a contact email address
    * @description Deletes an email address from the specified contact.
    */
-  DeleteContactEmailAsync: {
+  Contacts_DeleteContactEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -4978,7 +4782,7 @@ export interface operations {
    * Patch a contact email address
    * @description Partially updates an existing email address for the specified contact.
    */
-  PatchContactEmailAsync: {
+  Contacts_PatchContactEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -5023,7 +4827,7 @@ export interface operations {
    * Verify a contact email address
    * @description Marks an email address as verified on the specified contact.
    */
-  VerifyContactEmailAsync: {
+  Contacts_VerifyContactEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -5069,7 +4873,7 @@ export interface operations {
    * Get all contact sources
    * @description Retrieves all contact sources for the specified tenant.
    */
-  GetContactSourcesAsync: {
+  ContactSources_GetContactSources: {
     parameters: {
       query: {
         tenantId: string;
@@ -5106,7 +4910,7 @@ export interface operations {
    * Create a new contact source
    * @description Creates a new contact source for the specified tenant.
    */
-  CreateContactSourceAsync: {
+  ContactSources_CreateContactSource: {
     parameters: {
       query: {
         tenantId: string;
@@ -5147,7 +4951,7 @@ export interface operations {
    * Get contact sources count
    * @description Returns the count of contact sources for the specified tenant.
    */
-  GetContactSourcesCountAsync: {
+  ContactSources_GetContactSourcesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5184,7 +4988,7 @@ export interface operations {
    * Get contact source by ID
    * @description Retrieves a specific contact source by its identifier.
    */
-  GetContactSourceByIdAsync: {
+  ContactSources_GetContactSourceById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5225,7 +5029,7 @@ export interface operations {
    * Update a contact source
    * @description Updates an existing contact source for the specified tenant.
    */
-  UpdateContactSourceAsync: {
+  ContactSources_UpdateContactSource: {
     parameters: {
       query: {
         tenantId: string;
@@ -5269,7 +5073,7 @@ export interface operations {
    * Delete a contact source
    * @description Deletes a contact source for the specified tenant.
    */
-  DeleteContactSourceAsync: {
+  ContactSources_DeleteContactSource: {
     parameters: {
       query: {
         tenantId: string;
@@ -5307,7 +5111,7 @@ export interface operations {
    * Patch a contact source
    * @description Patch a contact source
    */
-  PatchContactSourceAsync: {
+  ContactSources_PatchContactSource: {
     parameters: {
       query: {
         tenantId: string;
@@ -5350,7 +5154,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -5365,11 +5248,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Retrieve a list of contact options
    * @description Retrieve a list of options for a contact
    */
-  GetContactOptions: {
+  Options_GetContactOptions: {
     parameters: {
       query: {
         tenantId: string;
@@ -5417,7 +5485,7 @@ export interface operations {
    * Create a new contact option
    * @description Create a new option for a contact
    */
-  CreateContactOption: {
+  Options_CreateContactOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5466,7 +5534,7 @@ export interface operations {
    * Get the count of contact options
    * @description Get the count of options for a contact
    */
-  GetContactOptionsCount: {
+  Options_GetContactOptionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5514,7 +5582,7 @@ export interface operations {
    * Retrieve a single contact option by its ID
    * @description Retrieve a single contact option by its ID
    */
-  GetContactOptionById: {
+  Options_GetContactOptionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5556,7 +5624,7 @@ export interface operations {
    * Update a contact option
    * @description Update a contact option
    */
-  UpdateContactOption: {
+  Options_UpdateContactOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5604,7 +5672,7 @@ export interface operations {
    * Delete a contact option
    * @description Delete a contact option
    */
-  DeleteContactOption: {
+  Options_DeleteContactOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5646,7 +5714,7 @@ export interface operations {
    * Patch a contact option
    * @description Patch a contact option
    */
-  PatchContactOptionAsync: {
+  Options_PatchContactOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5694,7 +5762,7 @@ export interface operations {
    * Retrieve a single contact option by its key
    * @description Retrieve a single contact option by its key
    */
-  GetContactOptionByKey: {
+  Options_GetContactOptionByKey: {
     parameters: {
       query: {
         tenantId: string;
@@ -5737,7 +5805,7 @@ export interface operations {
    * Patch a contact option by key
    * @description Patch a contact option by key
    */
-  PatchContactOptionByKeyAsync: {
+  Options_PatchContactOptionByKey: {
     parameters: {
       query: {
         tenantId: string;
@@ -5785,7 +5853,7 @@ export interface operations {
    * Create or update a contact option by key
    * @description Create or update a contact option by key
    */
-  UpsertContactOption: {
+  Options_UpsertContactOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -5834,7 +5902,7 @@ export interface operations {
    * Sync the current user into the current tenant's contact list
    * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list.
    */
-  SyncCurrentHolderToCurrentTenantCrm: {
+  Sync_SyncCurrentHolderToCurrentTenantCrm: {
     parameters: {
       query: {
         tenantId: string;
@@ -5872,7 +5940,7 @@ export interface operations {
    * Sync the current user into a tenant's contact list
    * @description Synchronizes the currently authenticated user into the specified tenant's CRM contact list.
    */
-  SyncCurrentHolderToTenantCrm: {
+  Sync_SyncCurrentHolderToTenantCrm: {
     parameters: {
       query: {
         tenantId: string;
@@ -5910,7 +5978,7 @@ export interface operations {
    * Sync a user into a tenant's contact list
    * @description Synchronizes a specified user into the tenant's CRM contact list.
    */
-  SyncHolderToTenantCrmAsync: {
+  Sync_SyncHolderToTenantCrm: {
     parameters: {
       query: {
         tenantId: string;
@@ -5949,7 +6017,7 @@ export interface operations {
    * Sync a tenant into another tenant's contact list
    * @description Synchronizes a tenant into another tenant's CRM contact list.
    */
-  SyncTenantToTenantCrm: {
+  Sync_SyncTenantToTenantCrm: {
     parameters: {
       query: {
         tenantId: string;

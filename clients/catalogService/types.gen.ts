@@ -2984,72 +2984,72 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -3059,32 +3059,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -3095,81 +3095,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -3180,25 +3180,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -3209,25 +3209,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -3238,18 +3238,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -3259,14 +3259,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -3275,14 +3275,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -3291,28 +3291,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemAttachmentsAsyncData = {
+export type ItemAttachmentsGetItemAttachmentsData = {
     body?: ItemAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3325,7 +3325,7 @@ export type GetItemAttachmentsAsyncData = {
     url: '/api/v2/CatalogService/ItemAttachments';
 };
 
-export type GetItemAttachmentsAsyncErrors = {
+export type ItemAttachmentsGetItemAttachmentsErrors = {
     /**
      * Unauthorized
      */
@@ -3336,18 +3336,18 @@ export type GetItemAttachmentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttachmentsAsyncError = GetItemAttachmentsAsyncErrors[keyof GetItemAttachmentsAsyncErrors];
+export type ItemAttachmentsGetItemAttachmentsError = ItemAttachmentsGetItemAttachmentsErrors[keyof ItemAttachmentsGetItemAttachmentsErrors];
 
-export type GetItemAttachmentsAsyncResponses = {
+export type ItemAttachmentsGetItemAttachmentsResponses = {
     /**
      * OK
      */
     200: ItemAttachmentDtoListEnvelopeReadable;
 };
 
-export type GetItemAttachmentsAsyncResponse = GetItemAttachmentsAsyncResponses[keyof GetItemAttachmentsAsyncResponses];
+export type ItemAttachmentsGetItemAttachmentsResponse = ItemAttachmentsGetItemAttachmentsResponses[keyof ItemAttachmentsGetItemAttachmentsResponses];
 
-export type CreateItemAttachmentAsyncData = {
+export type ItemAttachmentsCreateItemAttachmentData = {
     body?: ItemAttachmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3360,7 +3360,7 @@ export type CreateItemAttachmentAsyncData = {
     url: '/api/v2/CatalogService/ItemAttachments';
 };
 
-export type CreateItemAttachmentAsyncErrors = {
+export type ItemAttachmentsCreateItemAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -3371,18 +3371,18 @@ export type CreateItemAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemAttachmentAsyncError = CreateItemAttachmentAsyncErrors[keyof CreateItemAttachmentAsyncErrors];
+export type ItemAttachmentsCreateItemAttachmentError = ItemAttachmentsCreateItemAttachmentErrors[keyof ItemAttachmentsCreateItemAttachmentErrors];
 
-export type CreateItemAttachmentAsyncResponses = {
+export type ItemAttachmentsCreateItemAttachmentResponses = {
     /**
      * Created
      */
     201: ItemAttachmentDtoEnvelopeReadable;
 };
 
-export type CreateItemAttachmentAsyncResponse = CreateItemAttachmentAsyncResponses[keyof CreateItemAttachmentAsyncResponses];
+export type ItemAttachmentsCreateItemAttachmentResponse = ItemAttachmentsCreateItemAttachmentResponses[keyof ItemAttachmentsCreateItemAttachmentResponses];
 
-export type DeleteItemAttachmentAsyncData = {
+export type ItemAttachmentsDeleteItemAttachmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3397,7 +3397,7 @@ export type DeleteItemAttachmentAsyncData = {
     url: '/api/v2/CatalogService/ItemAttachments/{itemAttachmentId}';
 };
 
-export type DeleteItemAttachmentAsyncErrors = {
+export type ItemAttachmentsDeleteItemAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -3408,18 +3408,18 @@ export type DeleteItemAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemAttachmentAsyncError = DeleteItemAttachmentAsyncErrors[keyof DeleteItemAttachmentAsyncErrors];
+export type ItemAttachmentsDeleteItemAttachmentError = ItemAttachmentsDeleteItemAttachmentErrors[keyof ItemAttachmentsDeleteItemAttachmentErrors];
 
-export type DeleteItemAttachmentAsyncResponses = {
+export type ItemAttachmentsDeleteItemAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteItemAttachmentAsyncResponse = DeleteItemAttachmentAsyncResponses[keyof DeleteItemAttachmentAsyncResponses];
+export type ItemAttachmentsDeleteItemAttachmentResponse = ItemAttachmentsDeleteItemAttachmentResponses[keyof ItemAttachmentsDeleteItemAttachmentResponses];
 
-export type GetItemAttachmentByIdAsyncData = {
+export type ItemAttachmentsGetItemAttachmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3434,7 +3434,7 @@ export type GetItemAttachmentByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemAttachments/{itemAttachmentId}';
 };
 
-export type GetItemAttachmentByIdAsyncErrors = {
+export type ItemAttachmentsGetItemAttachmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3445,18 +3445,18 @@ export type GetItemAttachmentByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttachmentByIdAsyncError = GetItemAttachmentByIdAsyncErrors[keyof GetItemAttachmentByIdAsyncErrors];
+export type ItemAttachmentsGetItemAttachmentByIdError = ItemAttachmentsGetItemAttachmentByIdErrors[keyof ItemAttachmentsGetItemAttachmentByIdErrors];
 
-export type GetItemAttachmentByIdAsyncResponses = {
+export type ItemAttachmentsGetItemAttachmentByIdResponses = {
     /**
      * OK
      */
     200: ItemAttachmentDtoEnvelopeReadable;
 };
 
-export type GetItemAttachmentByIdAsyncResponse = GetItemAttachmentByIdAsyncResponses[keyof GetItemAttachmentByIdAsyncResponses];
+export type ItemAttachmentsGetItemAttachmentByIdResponse = ItemAttachmentsGetItemAttachmentByIdResponses[keyof ItemAttachmentsGetItemAttachmentByIdResponses];
 
-export type PatchItemAttachmentAsyncData = {
+export type ItemAttachmentsPatchItemAttachmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3471,7 +3471,7 @@ export type PatchItemAttachmentAsyncData = {
     url: '/api/v2/CatalogService/ItemAttachments/{itemAttachmentId}';
 };
 
-export type PatchItemAttachmentAsyncErrors = {
+export type ItemAttachmentsPatchItemAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -3482,18 +3482,18 @@ export type PatchItemAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemAttachmentAsyncError = PatchItemAttachmentAsyncErrors[keyof PatchItemAttachmentAsyncErrors];
+export type ItemAttachmentsPatchItemAttachmentError = ItemAttachmentsPatchItemAttachmentErrors[keyof ItemAttachmentsPatchItemAttachmentErrors];
 
-export type PatchItemAttachmentAsyncResponses = {
+export type ItemAttachmentsPatchItemAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchItemAttachmentAsyncResponse = PatchItemAttachmentAsyncResponses[keyof PatchItemAttachmentAsyncResponses];
+export type ItemAttachmentsPatchItemAttachmentResponse = ItemAttachmentsPatchItemAttachmentResponses[keyof ItemAttachmentsPatchItemAttachmentResponses];
 
-export type UpdateItemAttachmentAsyncData = {
+export type ItemAttachmentsUpdateItemAttachmentData = {
     body?: ItemAttachmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3508,7 +3508,7 @@ export type UpdateItemAttachmentAsyncData = {
     url: '/api/v2/CatalogService/ItemAttachments/{itemAttachmentId}';
 };
 
-export type UpdateItemAttachmentAsyncErrors = {
+export type ItemAttachmentsUpdateItemAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -3519,18 +3519,18 @@ export type UpdateItemAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemAttachmentAsyncError = UpdateItemAttachmentAsyncErrors[keyof UpdateItemAttachmentAsyncErrors];
+export type ItemAttachmentsUpdateItemAttachmentError = ItemAttachmentsUpdateItemAttachmentErrors[keyof ItemAttachmentsUpdateItemAttachmentErrors];
 
-export type UpdateItemAttachmentAsyncResponses = {
+export type ItemAttachmentsUpdateItemAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateItemAttachmentAsyncResponse = UpdateItemAttachmentAsyncResponses[keyof UpdateItemAttachmentAsyncResponses];
+export type ItemAttachmentsUpdateItemAttachmentResponse = ItemAttachmentsUpdateItemAttachmentResponses[keyof ItemAttachmentsUpdateItemAttachmentResponses];
 
-export type GetItemAttributeOptionsAsyncData = {
+export type ItemAttributeOptionsGetItemAttributeOptionsData = {
     body?: ItemAttributeOptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3543,7 +3543,7 @@ export type GetItemAttributeOptionsAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions';
 };
 
-export type GetItemAttributeOptionsAsyncErrors = {
+export type ItemAttributeOptionsGetItemAttributeOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -3554,18 +3554,18 @@ export type GetItemAttributeOptionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttributeOptionsAsyncError = GetItemAttributeOptionsAsyncErrors[keyof GetItemAttributeOptionsAsyncErrors];
+export type ItemAttributeOptionsGetItemAttributeOptionsError = ItemAttributeOptionsGetItemAttributeOptionsErrors[keyof ItemAttributeOptionsGetItemAttributeOptionsErrors];
 
-export type GetItemAttributeOptionsAsyncResponses = {
+export type ItemAttributeOptionsGetItemAttributeOptionsResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoListEnvelopeReadable;
 };
 
-export type GetItemAttributeOptionsAsyncResponse = GetItemAttributeOptionsAsyncResponses[keyof GetItemAttributeOptionsAsyncResponses];
+export type ItemAttributeOptionsGetItemAttributeOptionsResponse = ItemAttributeOptionsGetItemAttributeOptionsResponses[keyof ItemAttributeOptionsGetItemAttributeOptionsResponses];
 
-export type CreateItemAttributeOptionAsyncData = {
+export type ItemAttributeOptionsCreateItemAttributeOptionData = {
     body?: ItemAttributeOptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3578,7 +3578,7 @@ export type CreateItemAttributeOptionAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions';
 };
 
-export type CreateItemAttributeOptionAsyncErrors = {
+export type ItemAttributeOptionsCreateItemAttributeOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3589,18 +3589,18 @@ export type CreateItemAttributeOptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemAttributeOptionAsyncError = CreateItemAttributeOptionAsyncErrors[keyof CreateItemAttributeOptionAsyncErrors];
+export type ItemAttributeOptionsCreateItemAttributeOptionError = ItemAttributeOptionsCreateItemAttributeOptionErrors[keyof ItemAttributeOptionsCreateItemAttributeOptionErrors];
 
-export type CreateItemAttributeOptionAsyncResponses = {
+export type ItemAttributeOptionsCreateItemAttributeOptionResponses = {
     /**
      * Created
      */
     201: ItemAttributeOptionDtoEnvelopeReadable;
 };
 
-export type CreateItemAttributeOptionAsyncResponse = CreateItemAttributeOptionAsyncResponses[keyof CreateItemAttributeOptionAsyncResponses];
+export type ItemAttributeOptionsCreateItemAttributeOptionResponse = ItemAttributeOptionsCreateItemAttributeOptionResponses[keyof ItemAttributeOptionsCreateItemAttributeOptionResponses];
 
-export type GetItemAttributeOptionsCountAsyncData = {
+export type ItemAttributeOptionsGetItemAttributeOptionsCountData = {
     body?: ItemAttributeOptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3613,7 +3613,7 @@ export type GetItemAttributeOptionsCountAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions/Count';
 };
 
-export type GetItemAttributeOptionsCountAsyncErrors = {
+export type ItemAttributeOptionsGetItemAttributeOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3624,18 +3624,18 @@ export type GetItemAttributeOptionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttributeOptionsCountAsyncError = GetItemAttributeOptionsCountAsyncErrors[keyof GetItemAttributeOptionsCountAsyncErrors];
+export type ItemAttributeOptionsGetItemAttributeOptionsCountError = ItemAttributeOptionsGetItemAttributeOptionsCountErrors[keyof ItemAttributeOptionsGetItemAttributeOptionsCountErrors];
 
-export type GetItemAttributeOptionsCountAsyncResponses = {
+export type ItemAttributeOptionsGetItemAttributeOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetItemAttributeOptionsCountAsyncResponse = GetItemAttributeOptionsCountAsyncResponses[keyof GetItemAttributeOptionsCountAsyncResponses];
+export type ItemAttributeOptionsGetItemAttributeOptionsCountResponse = ItemAttributeOptionsGetItemAttributeOptionsCountResponses[keyof ItemAttributeOptionsGetItemAttributeOptionsCountResponses];
 
-export type DeleteItemAttributeOptionAsyncData = {
+export type ItemAttributeOptionsDeleteItemAttributeOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3650,7 +3650,7 @@ export type DeleteItemAttributeOptionAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
 };
 
-export type DeleteItemAttributeOptionAsyncErrors = {
+export type ItemAttributeOptionsDeleteItemAttributeOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3661,16 +3661,16 @@ export type DeleteItemAttributeOptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemAttributeOptionAsyncError = DeleteItemAttributeOptionAsyncErrors[keyof DeleteItemAttributeOptionAsyncErrors];
+export type ItemAttributeOptionsDeleteItemAttributeOptionError = ItemAttributeOptionsDeleteItemAttributeOptionErrors[keyof ItemAttributeOptionsDeleteItemAttributeOptionErrors];
 
-export type DeleteItemAttributeOptionAsyncResponses = {
+export type ItemAttributeOptionsDeleteItemAttributeOptionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemAttributeOptionByIdAsyncData = {
+export type ItemAttributeOptionsGetItemAttributeOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3685,7 +3685,7 @@ export type GetItemAttributeOptionByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
 };
 
-export type GetItemAttributeOptionByIdAsyncErrors = {
+export type ItemAttributeOptionsGetItemAttributeOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3696,18 +3696,18 @@ export type GetItemAttributeOptionByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttributeOptionByIdAsyncError = GetItemAttributeOptionByIdAsyncErrors[keyof GetItemAttributeOptionByIdAsyncErrors];
+export type ItemAttributeOptionsGetItemAttributeOptionByIdError = ItemAttributeOptionsGetItemAttributeOptionByIdErrors[keyof ItemAttributeOptionsGetItemAttributeOptionByIdErrors];
 
-export type GetItemAttributeOptionByIdAsyncResponses = {
+export type ItemAttributeOptionsGetItemAttributeOptionByIdResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoEnvelopeReadable;
 };
 
-export type GetItemAttributeOptionByIdAsyncResponse = GetItemAttributeOptionByIdAsyncResponses[keyof GetItemAttributeOptionByIdAsyncResponses];
+export type ItemAttributeOptionsGetItemAttributeOptionByIdResponse = ItemAttributeOptionsGetItemAttributeOptionByIdResponses[keyof ItemAttributeOptionsGetItemAttributeOptionByIdResponses];
 
-export type PatchItemAttributeOptionAsyncData = {
+export type ItemAttributeOptionsPatchItemAttributeOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3722,7 +3722,7 @@ export type PatchItemAttributeOptionAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
 };
 
-export type PatchItemAttributeOptionAsyncErrors = {
+export type ItemAttributeOptionsPatchItemAttributeOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3733,18 +3733,18 @@ export type PatchItemAttributeOptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemAttributeOptionAsyncError = PatchItemAttributeOptionAsyncErrors[keyof PatchItemAttributeOptionAsyncErrors];
+export type ItemAttributeOptionsPatchItemAttributeOptionError = ItemAttributeOptionsPatchItemAttributeOptionErrors[keyof ItemAttributeOptionsPatchItemAttributeOptionErrors];
 
-export type PatchItemAttributeOptionAsyncResponses = {
+export type ItemAttributeOptionsPatchItemAttributeOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchItemAttributeOptionAsyncResponse = PatchItemAttributeOptionAsyncResponses[keyof PatchItemAttributeOptionAsyncResponses];
+export type ItemAttributeOptionsPatchItemAttributeOptionResponse = ItemAttributeOptionsPatchItemAttributeOptionResponses[keyof ItemAttributeOptionsPatchItemAttributeOptionResponses];
 
-export type UpdateItemAttributeOptionAsyncData = {
+export type ItemAttributeOptionsUpdateItemAttributeOptionData = {
     body?: ItemAttributeOptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3759,7 +3759,7 @@ export type UpdateItemAttributeOptionAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
 };
 
-export type UpdateItemAttributeOptionAsyncErrors = {
+export type ItemAttributeOptionsUpdateItemAttributeOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3770,18 +3770,18 @@ export type UpdateItemAttributeOptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemAttributeOptionAsyncError = UpdateItemAttributeOptionAsyncErrors[keyof UpdateItemAttributeOptionAsyncErrors];
+export type ItemAttributeOptionsUpdateItemAttributeOptionError = ItemAttributeOptionsUpdateItemAttributeOptionErrors[keyof ItemAttributeOptionsUpdateItemAttributeOptionErrors];
 
-export type UpdateItemAttributeOptionAsyncResponses = {
+export type ItemAttributeOptionsUpdateItemAttributeOptionResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoEnvelopeReadable;
 };
 
-export type UpdateItemAttributeOptionAsyncResponse = UpdateItemAttributeOptionAsyncResponses[keyof UpdateItemAttributeOptionAsyncResponses];
+export type ItemAttributeOptionsUpdateItemAttributeOptionResponse = ItemAttributeOptionsUpdateItemAttributeOptionResponses[keyof ItemAttributeOptionsUpdateItemAttributeOptionResponses];
 
-export type CountItemAttributesAsyncData = {
+export type ItemAttributesCountItemAttributesData = {
     body?: ItemAttributeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3794,7 +3794,7 @@ export type CountItemAttributesAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes/Count';
 };
 
-export type CountItemAttributesAsyncErrors = {
+export type ItemAttributesCountItemAttributesErrors = {
     /**
      * Unauthorized
      */
@@ -3805,18 +3805,18 @@ export type CountItemAttributesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemAttributesAsyncError = CountItemAttributesAsyncErrors[keyof CountItemAttributesAsyncErrors];
+export type ItemAttributesCountItemAttributesError = ItemAttributesCountItemAttributesErrors[keyof ItemAttributesCountItemAttributesErrors];
 
-export type CountItemAttributesAsyncResponses = {
+export type ItemAttributesCountItemAttributesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemAttributesAsyncResponse = CountItemAttributesAsyncResponses[keyof CountItemAttributesAsyncResponses];
+export type ItemAttributesCountItemAttributesResponse = ItemAttributesCountItemAttributesResponses[keyof ItemAttributesCountItemAttributesResponses];
 
-export type GetItemAttributesAsyncData = {
+export type ItemAttributesGetItemAttributesData = {
     body?: ItemAttributeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3829,7 +3829,7 @@ export type GetItemAttributesAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes';
 };
 
-export type GetItemAttributesAsyncErrors = {
+export type ItemAttributesGetItemAttributesErrors = {
     /**
      * Unauthorized
      */
@@ -3840,18 +3840,18 @@ export type GetItemAttributesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttributesAsyncError = GetItemAttributesAsyncErrors[keyof GetItemAttributesAsyncErrors];
+export type ItemAttributesGetItemAttributesError = ItemAttributesGetItemAttributesErrors[keyof ItemAttributesGetItemAttributesErrors];
 
-export type GetItemAttributesAsyncResponses = {
+export type ItemAttributesGetItemAttributesResponses = {
     /**
      * OK
      */
     200: ItemAttributeDtoListEnvelopeReadable;
 };
 
-export type GetItemAttributesAsyncResponse = GetItemAttributesAsyncResponses[keyof GetItemAttributesAsyncResponses];
+export type ItemAttributesGetItemAttributesResponse = ItemAttributesGetItemAttributesResponses[keyof ItemAttributesGetItemAttributesResponses];
 
-export type CreateItemAttributeAsyncData = {
+export type ItemAttributesCreateItemAttributeData = {
     body?: ItemAttributeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3864,7 +3864,7 @@ export type CreateItemAttributeAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes';
 };
 
-export type CreateItemAttributeAsyncErrors = {
+export type ItemAttributesCreateItemAttributeErrors = {
     /**
      * Unauthorized
      */
@@ -3875,18 +3875,18 @@ export type CreateItemAttributeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemAttributeAsyncError = CreateItemAttributeAsyncErrors[keyof CreateItemAttributeAsyncErrors];
+export type ItemAttributesCreateItemAttributeError = ItemAttributesCreateItemAttributeErrors[keyof ItemAttributesCreateItemAttributeErrors];
 
-export type CreateItemAttributeAsyncResponses = {
+export type ItemAttributesCreateItemAttributeResponses = {
     /**
      * Created
      */
     201: ItemAttributeDtoEnvelopeReadable;
 };
 
-export type CreateItemAttributeAsyncResponse = CreateItemAttributeAsyncResponses[keyof CreateItemAttributeAsyncResponses];
+export type ItemAttributesCreateItemAttributeResponse = ItemAttributesCreateItemAttributeResponses[keyof ItemAttributesCreateItemAttributeResponses];
 
-export type DeleteItemAttributeAsyncData = {
+export type ItemAttributesDeleteItemAttributeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3901,7 +3901,7 @@ export type DeleteItemAttributeAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes/{itemAttributeId}';
 };
 
-export type DeleteItemAttributeAsyncErrors = {
+export type ItemAttributesDeleteItemAttributeErrors = {
     /**
      * Unauthorized
      */
@@ -3912,16 +3912,16 @@ export type DeleteItemAttributeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemAttributeAsyncError = DeleteItemAttributeAsyncErrors[keyof DeleteItemAttributeAsyncErrors];
+export type ItemAttributesDeleteItemAttributeError = ItemAttributesDeleteItemAttributeErrors[keyof ItemAttributesDeleteItemAttributeErrors];
 
-export type DeleteItemAttributeAsyncResponses = {
+export type ItemAttributesDeleteItemAttributeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemAttributeByIdAsyncData = {
+export type ItemAttributesGetItemAttributeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3936,7 +3936,7 @@ export type GetItemAttributeByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes/{itemAttributeId}';
 };
 
-export type GetItemAttributeByIdAsyncErrors = {
+export type ItemAttributesGetItemAttributeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3947,18 +3947,18 @@ export type GetItemAttributeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemAttributeByIdAsyncError = GetItemAttributeByIdAsyncErrors[keyof GetItemAttributeByIdAsyncErrors];
+export type ItemAttributesGetItemAttributeByIdError = ItemAttributesGetItemAttributeByIdErrors[keyof ItemAttributesGetItemAttributeByIdErrors];
 
-export type GetItemAttributeByIdAsyncResponses = {
+export type ItemAttributesGetItemAttributeByIdResponses = {
     /**
      * OK
      */
     200: ItemAttributeDtoEnvelopeReadable;
 };
 
-export type GetItemAttributeByIdAsyncResponse = GetItemAttributeByIdAsyncResponses[keyof GetItemAttributeByIdAsyncResponses];
+export type ItemAttributesGetItemAttributeByIdResponse = ItemAttributesGetItemAttributeByIdResponses[keyof ItemAttributesGetItemAttributeByIdResponses];
 
-export type PatchItemAttributeAsyncData = {
+export type ItemAttributesPatchItemAttributeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3973,7 +3973,7 @@ export type PatchItemAttributeAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes/{itemAttributeId}';
 };
 
-export type PatchItemAttributeAsyncErrors = {
+export type ItemAttributesPatchItemAttributeErrors = {
     /**
      * Unauthorized
      */
@@ -3984,16 +3984,16 @@ export type PatchItemAttributeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemAttributeAsyncError = PatchItemAttributeAsyncErrors[keyof PatchItemAttributeAsyncErrors];
+export type ItemAttributesPatchItemAttributeError = ItemAttributesPatchItemAttributeErrors[keyof ItemAttributesPatchItemAttributeErrors];
 
-export type PatchItemAttributeAsyncResponses = {
+export type ItemAttributesPatchItemAttributeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemAttributeAsyncData = {
+export type ItemAttributesUpdateItemAttributeData = {
     body?: ItemAttributeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4008,7 +4008,7 @@ export type UpdateItemAttributeAsyncData = {
     url: '/api/v2/CatalogService/ItemAttributes/{itemAttributeId}';
 };
 
-export type UpdateItemAttributeAsyncErrors = {
+export type ItemAttributesUpdateItemAttributeErrors = {
     /**
      * Unauthorized
      */
@@ -4019,16 +4019,16 @@ export type UpdateItemAttributeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemAttributeAsyncError = UpdateItemAttributeAsyncErrors[keyof UpdateItemAttributeAsyncErrors];
+export type ItemAttributesUpdateItemAttributeError = ItemAttributesUpdateItemAttributeErrors[keyof ItemAttributesUpdateItemAttributeErrors];
 
-export type UpdateItemAttributeAsyncResponses = {
+export type ItemAttributesUpdateItemAttributeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemBrandsAsyncData = {
+export type ItemBrandsGetItemBrandsData = {
     body?: ItemBrandDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4041,7 +4041,7 @@ export type GetItemBrandsAsyncData = {
     url: '/api/v2/CatalogService/ItemBrands';
 };
 
-export type GetItemBrandsAsyncErrors = {
+export type ItemBrandsGetItemBrandsErrors = {
     /**
      * Unauthorized
      */
@@ -4052,18 +4052,18 @@ export type GetItemBrandsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemBrandsAsyncError = GetItemBrandsAsyncErrors[keyof GetItemBrandsAsyncErrors];
+export type ItemBrandsGetItemBrandsError = ItemBrandsGetItemBrandsErrors[keyof ItemBrandsGetItemBrandsErrors];
 
-export type GetItemBrandsAsyncResponses = {
+export type ItemBrandsGetItemBrandsResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoListEnvelopeReadable;
 };
 
-export type GetItemBrandsAsyncResponse = GetItemBrandsAsyncResponses[keyof GetItemBrandsAsyncResponses];
+export type ItemBrandsGetItemBrandsResponse = ItemBrandsGetItemBrandsResponses[keyof ItemBrandsGetItemBrandsResponses];
 
-export type CreateItemBrandAsyncData = {
+export type ItemBrandsCreateItemBrandData = {
     body?: ItemBrandCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4076,7 +4076,7 @@ export type CreateItemBrandAsyncData = {
     url: '/api/v2/CatalogService/ItemBrands';
 };
 
-export type CreateItemBrandAsyncErrors = {
+export type ItemBrandsCreateItemBrandErrors = {
     /**
      * Unauthorized
      */
@@ -4087,18 +4087,18 @@ export type CreateItemBrandAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemBrandAsyncError = CreateItemBrandAsyncErrors[keyof CreateItemBrandAsyncErrors];
+export type ItemBrandsCreateItemBrandError = ItemBrandsCreateItemBrandErrors[keyof ItemBrandsCreateItemBrandErrors];
 
-export type CreateItemBrandAsyncResponses = {
+export type ItemBrandsCreateItemBrandResponses = {
     /**
      * Created
      */
     201: ItemBrandDtoEnvelopeReadable;
 };
 
-export type CreateItemBrandAsyncResponse = CreateItemBrandAsyncResponses[keyof CreateItemBrandAsyncResponses];
+export type ItemBrandsCreateItemBrandResponse = ItemBrandsCreateItemBrandResponses[keyof ItemBrandsCreateItemBrandResponses];
 
-export type DeleteItemBrandAsyncData = {
+export type ItemBrandsDeleteItemBrandData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4113,7 +4113,7 @@ export type DeleteItemBrandAsyncData = {
     url: '/api/v2/CatalogService/ItemBrands/{itemBrandId}';
 };
 
-export type DeleteItemBrandAsyncErrors = {
+export type ItemBrandsDeleteItemBrandErrors = {
     /**
      * Unauthorized
      */
@@ -4124,16 +4124,16 @@ export type DeleteItemBrandAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemBrandAsyncError = DeleteItemBrandAsyncErrors[keyof DeleteItemBrandAsyncErrors];
+export type ItemBrandsDeleteItemBrandError = ItemBrandsDeleteItemBrandErrors[keyof ItemBrandsDeleteItemBrandErrors];
 
-export type DeleteItemBrandAsyncResponses = {
+export type ItemBrandsDeleteItemBrandResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemBrandByIdAsyncData = {
+export type ItemBrandsGetItemBrandByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4148,7 +4148,7 @@ export type GetItemBrandByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemBrands/{itemBrandId}';
 };
 
-export type GetItemBrandByIdAsyncErrors = {
+export type ItemBrandsGetItemBrandByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4159,18 +4159,18 @@ export type GetItemBrandByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemBrandByIdAsyncError = GetItemBrandByIdAsyncErrors[keyof GetItemBrandByIdAsyncErrors];
+export type ItemBrandsGetItemBrandByIdError = ItemBrandsGetItemBrandByIdErrors[keyof ItemBrandsGetItemBrandByIdErrors];
 
-export type GetItemBrandByIdAsyncResponses = {
+export type ItemBrandsGetItemBrandByIdResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoEnvelopeReadable;
 };
 
-export type GetItemBrandByIdAsyncResponse = GetItemBrandByIdAsyncResponses[keyof GetItemBrandByIdAsyncResponses];
+export type ItemBrandsGetItemBrandByIdResponse = ItemBrandsGetItemBrandByIdResponses[keyof ItemBrandsGetItemBrandByIdResponses];
 
-export type PatchItemBrandAsyncData = {
+export type ItemBrandsPatchItemBrandData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4185,7 +4185,7 @@ export type PatchItemBrandAsyncData = {
     url: '/api/v2/CatalogService/ItemBrands/{itemBrandId}';
 };
 
-export type PatchItemBrandAsyncErrors = {
+export type ItemBrandsPatchItemBrandErrors = {
     /**
      * Unauthorized
      */
@@ -4196,16 +4196,16 @@ export type PatchItemBrandAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemBrandAsyncError = PatchItemBrandAsyncErrors[keyof PatchItemBrandAsyncErrors];
+export type ItemBrandsPatchItemBrandError = ItemBrandsPatchItemBrandErrors[keyof ItemBrandsPatchItemBrandErrors];
 
-export type PatchItemBrandAsyncResponses = {
+export type ItemBrandsPatchItemBrandResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemBrandAsyncData = {
+export type ItemBrandsUpdateItemBrandData = {
     body?: ItemBrandUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4220,7 +4220,7 @@ export type UpdateItemBrandAsyncData = {
     url: '/api/v2/CatalogService/ItemBrands/{itemBrandId}';
 };
 
-export type UpdateItemBrandAsyncErrors = {
+export type ItemBrandsUpdateItemBrandErrors = {
     /**
      * Unauthorized
      */
@@ -4231,18 +4231,18 @@ export type UpdateItemBrandAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemBrandAsyncError = UpdateItemBrandAsyncErrors[keyof UpdateItemBrandAsyncErrors];
+export type ItemBrandsUpdateItemBrandError = ItemBrandsUpdateItemBrandErrors[keyof ItemBrandsUpdateItemBrandErrors];
 
-export type UpdateItemBrandAsyncResponses = {
+export type ItemBrandsUpdateItemBrandResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoEnvelopeReadable;
 };
 
-export type UpdateItemBrandAsyncResponse = UpdateItemBrandAsyncResponses[keyof UpdateItemBrandAsyncResponses];
+export type ItemBrandsUpdateItemBrandResponse = ItemBrandsUpdateItemBrandResponses[keyof ItemBrandsUpdateItemBrandResponses];
 
-export type GetItemBundlesAsyncData = {
+export type ItemBundlesGetItemBundlesData = {
     body?: ItemBundleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4255,7 +4255,7 @@ export type GetItemBundlesAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles';
 };
 
-export type GetItemBundlesAsyncErrors = {
+export type ItemBundlesGetItemBundlesErrors = {
     /**
      * Unauthorized
      */
@@ -4266,18 +4266,18 @@ export type GetItemBundlesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemBundlesAsyncError = GetItemBundlesAsyncErrors[keyof GetItemBundlesAsyncErrors];
+export type ItemBundlesGetItemBundlesError = ItemBundlesGetItemBundlesErrors[keyof ItemBundlesGetItemBundlesErrors];
 
-export type GetItemBundlesAsyncResponses = {
+export type ItemBundlesGetItemBundlesResponses = {
     /**
      * OK
      */
     200: ItemBundleDtoListEnvelopeReadable;
 };
 
-export type GetItemBundlesAsyncResponse = GetItemBundlesAsyncResponses[keyof GetItemBundlesAsyncResponses];
+export type ItemBundlesGetItemBundlesResponse = ItemBundlesGetItemBundlesResponses[keyof ItemBundlesGetItemBundlesResponses];
 
-export type CreateItemBundleAsyncData = {
+export type ItemBundlesCreateItemBundleData = {
     body?: ItemBundleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4290,7 +4290,7 @@ export type CreateItemBundleAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles';
 };
 
-export type CreateItemBundleAsyncErrors = {
+export type ItemBundlesCreateItemBundleErrors = {
     /**
      * Unauthorized
      */
@@ -4301,18 +4301,18 @@ export type CreateItemBundleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemBundleAsyncError = CreateItemBundleAsyncErrors[keyof CreateItemBundleAsyncErrors];
+export type ItemBundlesCreateItemBundleError = ItemBundlesCreateItemBundleErrors[keyof ItemBundlesCreateItemBundleErrors];
 
-export type CreateItemBundleAsyncResponses = {
+export type ItemBundlesCreateItemBundleResponses = {
     /**
      * Created
      */
     201: ItemBundleDtoEnvelopeReadable;
 };
 
-export type CreateItemBundleAsyncResponse = CreateItemBundleAsyncResponses[keyof CreateItemBundleAsyncResponses];
+export type ItemBundlesCreateItemBundleResponse = ItemBundlesCreateItemBundleResponses[keyof ItemBundlesCreateItemBundleResponses];
 
-export type GetItemBundlesCountAsyncData = {
+export type ItemBundlesGetItemBundlesCountData = {
     body?: ItemBundleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4325,7 +4325,7 @@ export type GetItemBundlesCountAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles/Count';
 };
 
-export type GetItemBundlesCountAsyncErrors = {
+export type ItemBundlesGetItemBundlesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4336,18 +4336,18 @@ export type GetItemBundlesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemBundlesCountAsyncError = GetItemBundlesCountAsyncErrors[keyof GetItemBundlesCountAsyncErrors];
+export type ItemBundlesGetItemBundlesCountError = ItemBundlesGetItemBundlesCountErrors[keyof ItemBundlesGetItemBundlesCountErrors];
 
-export type GetItemBundlesCountAsyncResponses = {
+export type ItemBundlesGetItemBundlesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetItemBundlesCountAsyncResponse = GetItemBundlesCountAsyncResponses[keyof GetItemBundlesCountAsyncResponses];
+export type ItemBundlesGetItemBundlesCountResponse = ItemBundlesGetItemBundlesCountResponses[keyof ItemBundlesGetItemBundlesCountResponses];
 
-export type DeleteItemBundleAsyncData = {
+export type ItemBundlesDeleteItemBundleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4362,7 +4362,7 @@ export type DeleteItemBundleAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
 };
 
-export type DeleteItemBundleAsyncErrors = {
+export type ItemBundlesDeleteItemBundleErrors = {
     /**
      * Unauthorized
      */
@@ -4373,16 +4373,16 @@ export type DeleteItemBundleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemBundleAsyncError = DeleteItemBundleAsyncErrors[keyof DeleteItemBundleAsyncErrors];
+export type ItemBundlesDeleteItemBundleError = ItemBundlesDeleteItemBundleErrors[keyof ItemBundlesDeleteItemBundleErrors];
 
-export type DeleteItemBundleAsyncResponses = {
+export type ItemBundlesDeleteItemBundleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemBundleByIdAsyncData = {
+export type ItemBundlesGetItemBundleByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4397,7 +4397,7 @@ export type GetItemBundleByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
 };
 
-export type GetItemBundleByIdAsyncErrors = {
+export type ItemBundlesGetItemBundleByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4408,18 +4408,18 @@ export type GetItemBundleByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemBundleByIdAsyncError = GetItemBundleByIdAsyncErrors[keyof GetItemBundleByIdAsyncErrors];
+export type ItemBundlesGetItemBundleByIdError = ItemBundlesGetItemBundleByIdErrors[keyof ItemBundlesGetItemBundleByIdErrors];
 
-export type GetItemBundleByIdAsyncResponses = {
+export type ItemBundlesGetItemBundleByIdResponses = {
     /**
      * OK
      */
     200: ItemBundleDtoEnvelopeReadable;
 };
 
-export type GetItemBundleByIdAsyncResponse = GetItemBundleByIdAsyncResponses[keyof GetItemBundleByIdAsyncResponses];
+export type ItemBundlesGetItemBundleByIdResponse = ItemBundlesGetItemBundleByIdResponses[keyof ItemBundlesGetItemBundleByIdResponses];
 
-export type PatchItemBundleAsyncData = {
+export type ItemBundlesPatchItemBundleData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4434,7 +4434,7 @@ export type PatchItemBundleAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
 };
 
-export type PatchItemBundleAsyncErrors = {
+export type ItemBundlesPatchItemBundleErrors = {
     /**
      * Unauthorized
      */
@@ -4445,18 +4445,18 @@ export type PatchItemBundleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemBundleAsyncError = PatchItemBundleAsyncErrors[keyof PatchItemBundleAsyncErrors];
+export type ItemBundlesPatchItemBundleError = ItemBundlesPatchItemBundleErrors[keyof ItemBundlesPatchItemBundleErrors];
 
-export type PatchItemBundleAsyncResponses = {
+export type ItemBundlesPatchItemBundleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchItemBundleAsyncResponse = PatchItemBundleAsyncResponses[keyof PatchItemBundleAsyncResponses];
+export type ItemBundlesPatchItemBundleResponse = ItemBundlesPatchItemBundleResponses[keyof ItemBundlesPatchItemBundleResponses];
 
-export type UpdateItemBundleAsyncData = {
+export type ItemBundlesUpdateItemBundleData = {
     body?: ItemBundleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4471,7 +4471,7 @@ export type UpdateItemBundleAsyncData = {
     url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
 };
 
-export type UpdateItemBundleAsyncErrors = {
+export type ItemBundlesUpdateItemBundleErrors = {
     /**
      * Unauthorized
      */
@@ -4482,18 +4482,18 @@ export type UpdateItemBundleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemBundleAsyncError = UpdateItemBundleAsyncErrors[keyof UpdateItemBundleAsyncErrors];
+export type ItemBundlesUpdateItemBundleError = ItemBundlesUpdateItemBundleErrors[keyof ItemBundlesUpdateItemBundleErrors];
 
-export type UpdateItemBundleAsyncResponses = {
+export type ItemBundlesUpdateItemBundleResponses = {
     /**
      * OK
      */
     200: ItemBundleDtoEnvelopeReadable;
 };
 
-export type UpdateItemBundleAsyncResponse = UpdateItemBundleAsyncResponses[keyof UpdateItemBundleAsyncResponses];
+export type ItemBundlesUpdateItemBundleResponse = ItemBundlesUpdateItemBundleResponses[keyof ItemBundlesUpdateItemBundleResponses];
 
-export type CountItemCategoriesAsyncData = {
+export type ItemCategoriesCountItemCategoriesData = {
     body?: ItemCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4506,7 +4506,7 @@ export type CountItemCategoriesAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories/Count';
 };
 
-export type CountItemCategoriesAsyncErrors = {
+export type ItemCategoriesCountItemCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -4517,18 +4517,18 @@ export type CountItemCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemCategoriesAsyncError = CountItemCategoriesAsyncErrors[keyof CountItemCategoriesAsyncErrors];
+export type ItemCategoriesCountItemCategoriesError = ItemCategoriesCountItemCategoriesErrors[keyof ItemCategoriesCountItemCategoriesErrors];
 
-export type CountItemCategoriesAsyncResponses = {
+export type ItemCategoriesCountItemCategoriesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemCategoriesAsyncResponse = CountItemCategoriesAsyncResponses[keyof CountItemCategoriesAsyncResponses];
+export type ItemCategoriesCountItemCategoriesResponse = ItemCategoriesCountItemCategoriesResponses[keyof ItemCategoriesCountItemCategoriesResponses];
 
-export type DeleteItemCategoryAsyncData = {
+export type ItemCategoriesDeleteItemCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4543,7 +4543,7 @@ export type DeleteItemCategoryAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories/{itemCategoryId}';
 };
 
-export type DeleteItemCategoryAsyncErrors = {
+export type ItemCategoriesDeleteItemCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4554,16 +4554,16 @@ export type DeleteItemCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemCategoryAsyncError = DeleteItemCategoryAsyncErrors[keyof DeleteItemCategoryAsyncErrors];
+export type ItemCategoriesDeleteItemCategoryError = ItemCategoriesDeleteItemCategoryErrors[keyof ItemCategoriesDeleteItemCategoryErrors];
 
-export type DeleteItemCategoryAsyncResponses = {
+export type ItemCategoriesDeleteItemCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemCategoryByIdAsyncData = {
+export type ItemCategoriesGetItemCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4578,7 +4578,7 @@ export type GetItemCategoryByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories/{itemCategoryId}';
 };
 
-export type GetItemCategoryByIdAsyncErrors = {
+export type ItemCategoriesGetItemCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4589,18 +4589,18 @@ export type GetItemCategoryByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemCategoryByIdAsyncError = GetItemCategoryByIdAsyncErrors[keyof GetItemCategoryByIdAsyncErrors];
+export type ItemCategoriesGetItemCategoryByIdError = ItemCategoriesGetItemCategoryByIdErrors[keyof ItemCategoriesGetItemCategoryByIdErrors];
 
-export type GetItemCategoryByIdAsyncResponses = {
+export type ItemCategoriesGetItemCategoryByIdResponses = {
     /**
      * OK
      */
     200: ItemCategoryDtoEnvelopeReadable;
 };
 
-export type GetItemCategoryByIdAsyncResponse = GetItemCategoryByIdAsyncResponses[keyof GetItemCategoryByIdAsyncResponses];
+export type ItemCategoriesGetItemCategoryByIdResponse = ItemCategoriesGetItemCategoryByIdResponses[keyof ItemCategoriesGetItemCategoryByIdResponses];
 
-export type PatchItemCategoryAsyncData = {
+export type ItemCategoriesPatchItemCategoryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4615,7 +4615,7 @@ export type PatchItemCategoryAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories/{itemCategoryId}';
 };
 
-export type PatchItemCategoryAsyncErrors = {
+export type ItemCategoriesPatchItemCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4626,16 +4626,16 @@ export type PatchItemCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemCategoryAsyncError = PatchItemCategoryAsyncErrors[keyof PatchItemCategoryAsyncErrors];
+export type ItemCategoriesPatchItemCategoryError = ItemCategoriesPatchItemCategoryErrors[keyof ItemCategoriesPatchItemCategoryErrors];
 
-export type PatchItemCategoryAsyncResponses = {
+export type ItemCategoriesPatchItemCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemCategoryAsyncData = {
+export type ItemCategoriesUpdateItemCategoryData = {
     body?: ItemCategoryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4650,7 +4650,7 @@ export type UpdateItemCategoryAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories/{itemCategoryId}';
 };
 
-export type UpdateItemCategoryAsyncErrors = {
+export type ItemCategoriesUpdateItemCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4661,16 +4661,16 @@ export type UpdateItemCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemCategoryAsyncError = UpdateItemCategoryAsyncErrors[keyof UpdateItemCategoryAsyncErrors];
+export type ItemCategoriesUpdateItemCategoryError = ItemCategoriesUpdateItemCategoryErrors[keyof ItemCategoriesUpdateItemCategoryErrors];
 
-export type UpdateItemCategoryAsyncResponses = {
+export type ItemCategoriesUpdateItemCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemCategoriesAsyncData = {
+export type ItemCategoriesGetItemCategoriesData = {
     body?: ItemCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4683,7 +4683,7 @@ export type GetItemCategoriesAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories';
 };
 
-export type GetItemCategoriesAsyncErrors = {
+export type ItemCategoriesGetItemCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -4694,18 +4694,18 @@ export type GetItemCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemCategoriesAsyncError = GetItemCategoriesAsyncErrors[keyof GetItemCategoriesAsyncErrors];
+export type ItemCategoriesGetItemCategoriesError = ItemCategoriesGetItemCategoriesErrors[keyof ItemCategoriesGetItemCategoriesErrors];
 
-export type GetItemCategoriesAsyncResponses = {
+export type ItemCategoriesGetItemCategoriesResponses = {
     /**
      * OK
      */
     200: ItemCategoryDtoListEnvelopeReadable;
 };
 
-export type GetItemCategoriesAsyncResponse = GetItemCategoriesAsyncResponses[keyof GetItemCategoriesAsyncResponses];
+export type ItemCategoriesGetItemCategoriesResponse = ItemCategoriesGetItemCategoriesResponses[keyof ItemCategoriesGetItemCategoriesResponses];
 
-export type CreateItemCategoryAsyncData = {
+export type ItemCategoriesCreateItemCategoryData = {
     body?: ItemCategoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4718,7 +4718,7 @@ export type CreateItemCategoryAsyncData = {
     url: '/api/v2/CatalogService/ItemCategories';
 };
 
-export type CreateItemCategoryAsyncErrors = {
+export type ItemCategoriesCreateItemCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4729,18 +4729,18 @@ export type CreateItemCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemCategoryAsyncError = CreateItemCategoryAsyncErrors[keyof CreateItemCategoryAsyncErrors];
+export type ItemCategoriesCreateItemCategoryError = ItemCategoriesCreateItemCategoryErrors[keyof ItemCategoriesCreateItemCategoryErrors];
 
-export type CreateItemCategoryAsyncResponses = {
+export type ItemCategoriesCreateItemCategoryResponses = {
     /**
      * Created
      */
     201: ItemCategoryDtoEnvelopeReadable;
 };
 
-export type CreateItemCategoryAsyncResponse = CreateItemCategoryAsyncResponses[keyof CreateItemCategoryAsyncResponses];
+export type ItemCategoriesCreateItemCategoryResponse = ItemCategoriesCreateItemCategoryResponses[keyof ItemCategoriesCreateItemCategoryResponses];
 
-export type GetItemFamiliesAsyncData = {
+export type ItemFamiliesGetItemFamiliesData = {
     body?: ItemFamilyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4753,7 +4753,7 @@ export type GetItemFamiliesAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies';
 };
 
-export type GetItemFamiliesAsyncErrors = {
+export type ItemFamiliesGetItemFamiliesErrors = {
     /**
      * Unauthorized
      */
@@ -4764,18 +4764,18 @@ export type GetItemFamiliesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemFamiliesAsyncError = GetItemFamiliesAsyncErrors[keyof GetItemFamiliesAsyncErrors];
+export type ItemFamiliesGetItemFamiliesError = ItemFamiliesGetItemFamiliesErrors[keyof ItemFamiliesGetItemFamiliesErrors];
 
-export type GetItemFamiliesAsyncResponses = {
+export type ItemFamiliesGetItemFamiliesResponses = {
     /**
      * OK
      */
     200: ItemFamilyDtoListEnvelopeReadable;
 };
 
-export type GetItemFamiliesAsyncResponse = GetItemFamiliesAsyncResponses[keyof GetItemFamiliesAsyncResponses];
+export type ItemFamiliesGetItemFamiliesResponse = ItemFamiliesGetItemFamiliesResponses[keyof ItemFamiliesGetItemFamiliesResponses];
 
-export type CreateItemFamilyAsyncData = {
+export type ItemFamiliesCreateItemFamilyData = {
     body?: ItemFamilyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4788,7 +4788,7 @@ export type CreateItemFamilyAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies';
 };
 
-export type CreateItemFamilyAsyncErrors = {
+export type ItemFamiliesCreateItemFamilyErrors = {
     /**
      * Unauthorized
      */
@@ -4799,18 +4799,18 @@ export type CreateItemFamilyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemFamilyAsyncError = CreateItemFamilyAsyncErrors[keyof CreateItemFamilyAsyncErrors];
+export type ItemFamiliesCreateItemFamilyError = ItemFamiliesCreateItemFamilyErrors[keyof ItemFamiliesCreateItemFamilyErrors];
 
-export type CreateItemFamilyAsyncResponses = {
+export type ItemFamiliesCreateItemFamilyResponses = {
     /**
      * Created
      */
     201: ItemFamilyDtoEnvelopeReadable;
 };
 
-export type CreateItemFamilyAsyncResponse = CreateItemFamilyAsyncResponses[keyof CreateItemFamilyAsyncResponses];
+export type ItemFamiliesCreateItemFamilyResponse = ItemFamiliesCreateItemFamilyResponses[keyof ItemFamiliesCreateItemFamilyResponses];
 
-export type GetItemFamiliesCountAsyncData = {
+export type ItemFamiliesGetItemFamiliesCountData = {
     body?: ItemFamilyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4823,7 +4823,7 @@ export type GetItemFamiliesCountAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies/Count';
 };
 
-export type GetItemFamiliesCountAsyncErrors = {
+export type ItemFamiliesGetItemFamiliesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4834,18 +4834,18 @@ export type GetItemFamiliesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemFamiliesCountAsyncError = GetItemFamiliesCountAsyncErrors[keyof GetItemFamiliesCountAsyncErrors];
+export type ItemFamiliesGetItemFamiliesCountError = ItemFamiliesGetItemFamiliesCountErrors[keyof ItemFamiliesGetItemFamiliesCountErrors];
 
-export type GetItemFamiliesCountAsyncResponses = {
+export type ItemFamiliesGetItemFamiliesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetItemFamiliesCountAsyncResponse = GetItemFamiliesCountAsyncResponses[keyof GetItemFamiliesCountAsyncResponses];
+export type ItemFamiliesGetItemFamiliesCountResponse = ItemFamiliesGetItemFamiliesCountResponses[keyof ItemFamiliesGetItemFamiliesCountResponses];
 
-export type DeleteItemFamilyAsyncData = {
+export type ItemFamiliesDeleteItemFamilyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4860,7 +4860,7 @@ export type DeleteItemFamilyAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
 };
 
-export type DeleteItemFamilyAsyncErrors = {
+export type ItemFamiliesDeleteItemFamilyErrors = {
     /**
      * Unauthorized
      */
@@ -4871,16 +4871,16 @@ export type DeleteItemFamilyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemFamilyAsyncError = DeleteItemFamilyAsyncErrors[keyof DeleteItemFamilyAsyncErrors];
+export type ItemFamiliesDeleteItemFamilyError = ItemFamiliesDeleteItemFamilyErrors[keyof ItemFamiliesDeleteItemFamilyErrors];
 
-export type DeleteItemFamilyAsyncResponses = {
+export type ItemFamiliesDeleteItemFamilyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemFamilyByIdAsyncData = {
+export type ItemFamiliesGetItemFamilyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4895,7 +4895,7 @@ export type GetItemFamilyByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
 };
 
-export type GetItemFamilyByIdAsyncErrors = {
+export type ItemFamiliesGetItemFamilyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4906,18 +4906,18 @@ export type GetItemFamilyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemFamilyByIdAsyncError = GetItemFamilyByIdAsyncErrors[keyof GetItemFamilyByIdAsyncErrors];
+export type ItemFamiliesGetItemFamilyByIdError = ItemFamiliesGetItemFamilyByIdErrors[keyof ItemFamiliesGetItemFamilyByIdErrors];
 
-export type GetItemFamilyByIdAsyncResponses = {
+export type ItemFamiliesGetItemFamilyByIdResponses = {
     /**
      * OK
      */
     200: ItemFamilyDtoEnvelopeReadable;
 };
 
-export type GetItemFamilyByIdAsyncResponse = GetItemFamilyByIdAsyncResponses[keyof GetItemFamilyByIdAsyncResponses];
+export type ItemFamiliesGetItemFamilyByIdResponse = ItemFamiliesGetItemFamilyByIdResponses[keyof ItemFamiliesGetItemFamilyByIdResponses];
 
-export type PatchItemFamilyAsyncData = {
+export type ItemFamiliesPatchItemFamilyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4932,7 +4932,7 @@ export type PatchItemFamilyAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
 };
 
-export type PatchItemFamilyAsyncErrors = {
+export type ItemFamiliesPatchItemFamilyErrors = {
     /**
      * Unauthorized
      */
@@ -4943,18 +4943,18 @@ export type PatchItemFamilyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemFamilyAsyncError = PatchItemFamilyAsyncErrors[keyof PatchItemFamilyAsyncErrors];
+export type ItemFamiliesPatchItemFamilyError = ItemFamiliesPatchItemFamilyErrors[keyof ItemFamiliesPatchItemFamilyErrors];
 
-export type PatchItemFamilyAsyncResponses = {
+export type ItemFamiliesPatchItemFamilyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchItemFamilyAsyncResponse = PatchItemFamilyAsyncResponses[keyof PatchItemFamilyAsyncResponses];
+export type ItemFamiliesPatchItemFamilyResponse = ItemFamiliesPatchItemFamilyResponses[keyof ItemFamiliesPatchItemFamilyResponses];
 
-export type UpdateItemFamilyAsyncData = {
+export type ItemFamiliesUpdateItemFamilyData = {
     body?: ItemFamilyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4969,7 +4969,7 @@ export type UpdateItemFamilyAsyncData = {
     url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
 };
 
-export type UpdateItemFamilyAsyncErrors = {
+export type ItemFamiliesUpdateItemFamilyErrors = {
     /**
      * Unauthorized
      */
@@ -4980,18 +4980,18 @@ export type UpdateItemFamilyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemFamilyAsyncError = UpdateItemFamilyAsyncErrors[keyof UpdateItemFamilyAsyncErrors];
+export type ItemFamiliesUpdateItemFamilyError = ItemFamiliesUpdateItemFamilyErrors[keyof ItemFamiliesUpdateItemFamilyErrors];
 
-export type UpdateItemFamilyAsyncResponses = {
+export type ItemFamiliesUpdateItemFamilyResponses = {
     /**
      * OK
      */
     200: ItemFamilyDtoEnvelopeReadable;
 };
 
-export type UpdateItemFamilyAsyncResponse = UpdateItemFamilyAsyncResponses[keyof UpdateItemFamilyAsyncResponses];
+export type ItemFamiliesUpdateItemFamilyResponse = ItemFamiliesUpdateItemFamilyResponses[keyof ItemFamiliesUpdateItemFamilyResponses];
 
-export type GetItemGoogleCategoriesAsyncData = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesData = {
     body?: ItemGoogleCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5003,7 +5003,7 @@ export type GetItemGoogleCategoriesAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories';
 };
 
-export type GetItemGoogleCategoriesAsyncErrors = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -5014,18 +5014,18 @@ export type GetItemGoogleCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoriesAsyncError = GetItemGoogleCategoriesAsyncErrors[keyof GetItemGoogleCategoriesAsyncErrors];
+export type ItemGoogleCategoriesGetItemGoogleCategoriesError = ItemGoogleCategoriesGetItemGoogleCategoriesErrors[keyof ItemGoogleCategoriesGetItemGoogleCategoriesErrors];
 
-export type GetItemGoogleCategoriesAsyncResponses = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoriesAsyncResponse = GetItemGoogleCategoriesAsyncResponses[keyof GetItemGoogleCategoriesAsyncResponses];
+export type ItemGoogleCategoriesGetItemGoogleCategoriesResponse = ItemGoogleCategoriesGetItemGoogleCategoriesResponses[keyof ItemGoogleCategoriesGetItemGoogleCategoriesResponses];
 
-export type GetItemGoogleCategoriesCountAsyncData = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesCountData = {
     body?: ItemGoogleCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5037,7 +5037,7 @@ export type GetItemGoogleCategoriesCountAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/Count';
 };
 
-export type GetItemGoogleCategoriesCountAsyncErrors = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -5048,18 +5048,18 @@ export type GetItemGoogleCategoriesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoriesCountAsyncError = GetItemGoogleCategoriesCountAsyncErrors[keyof GetItemGoogleCategoriesCountAsyncErrors];
+export type ItemGoogleCategoriesGetItemGoogleCategoriesCountError = ItemGoogleCategoriesGetItemGoogleCategoriesCountErrors[keyof ItemGoogleCategoriesGetItemGoogleCategoriesCountErrors];
 
-export type GetItemGoogleCategoriesCountAsyncResponses = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetItemGoogleCategoriesCountAsyncResponse = GetItemGoogleCategoriesCountAsyncResponses[keyof GetItemGoogleCategoriesCountAsyncResponses];
+export type ItemGoogleCategoriesGetItemGoogleCategoriesCountResponse = ItemGoogleCategoriesGetItemGoogleCategoriesCountResponses[keyof ItemGoogleCategoriesGetItemGoogleCategoriesCountResponses];
 
-export type GetAllItemGoogleCategoriesAsyncData = {
+export type ItemGoogleCategoriesGetAllItemGoogleCategoriesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5071,7 +5071,7 @@ export type GetAllItemGoogleCategoriesAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/All';
 };
 
-export type GetAllItemGoogleCategoriesAsyncErrors = {
+export type ItemGoogleCategoriesGetAllItemGoogleCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -5082,18 +5082,18 @@ export type GetAllItemGoogleCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAllItemGoogleCategoriesAsyncError = GetAllItemGoogleCategoriesAsyncErrors[keyof GetAllItemGoogleCategoriesAsyncErrors];
+export type ItemGoogleCategoriesGetAllItemGoogleCategoriesError = ItemGoogleCategoriesGetAllItemGoogleCategoriesErrors[keyof ItemGoogleCategoriesGetAllItemGoogleCategoriesErrors];
 
-export type GetAllItemGoogleCategoriesAsyncResponses = {
+export type ItemGoogleCategoriesGetAllItemGoogleCategoriesResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type GetAllItemGoogleCategoriesAsyncResponse = GetAllItemGoogleCategoriesAsyncResponses[keyof GetAllItemGoogleCategoriesAsyncResponses];
+export type ItemGoogleCategoriesGetAllItemGoogleCategoriesResponse = ItemGoogleCategoriesGetAllItemGoogleCategoriesResponses[keyof ItemGoogleCategoriesGetAllItemGoogleCategoriesResponses];
 
-export type GetRootItemGoogleCategoriesAsyncData = {
+export type ItemGoogleCategoriesGetRootItemGoogleCategoriesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5105,7 +5105,7 @@ export type GetRootItemGoogleCategoriesAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/Primary';
 };
 
-export type GetRootItemGoogleCategoriesAsyncErrors = {
+export type ItemGoogleCategoriesGetRootItemGoogleCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -5116,18 +5116,18 @@ export type GetRootItemGoogleCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRootItemGoogleCategoriesAsyncError = GetRootItemGoogleCategoriesAsyncErrors[keyof GetRootItemGoogleCategoriesAsyncErrors];
+export type ItemGoogleCategoriesGetRootItemGoogleCategoriesError = ItemGoogleCategoriesGetRootItemGoogleCategoriesErrors[keyof ItemGoogleCategoriesGetRootItemGoogleCategoriesErrors];
 
-export type GetRootItemGoogleCategoriesAsyncResponses = {
+export type ItemGoogleCategoriesGetRootItemGoogleCategoriesResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type GetRootItemGoogleCategoriesAsyncResponse = GetRootItemGoogleCategoriesAsyncResponses[keyof GetRootItemGoogleCategoriesAsyncResponses];
+export type ItemGoogleCategoriesGetRootItemGoogleCategoriesResponse = ItemGoogleCategoriesGetRootItemGoogleCategoriesResponses[keyof ItemGoogleCategoriesGetRootItemGoogleCategoriesResponses];
 
-export type GetItemGoogleCategoryByIdAsyncData = {
+export type ItemGoogleCategoriesGetItemGoogleCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5141,7 +5141,7 @@ export type GetItemGoogleCategoryByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/{itemCategoryId}';
 };
 
-export type GetItemGoogleCategoryByIdAsyncErrors = {
+export type ItemGoogleCategoriesGetItemGoogleCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5152,18 +5152,18 @@ export type GetItemGoogleCategoryByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoryByIdAsyncError = GetItemGoogleCategoryByIdAsyncErrors[keyof GetItemGoogleCategoryByIdAsyncErrors];
+export type ItemGoogleCategoriesGetItemGoogleCategoryByIdError = ItemGoogleCategoriesGetItemGoogleCategoryByIdErrors[keyof ItemGoogleCategoriesGetItemGoogleCategoryByIdErrors];
 
-export type GetItemGoogleCategoryByIdAsyncResponses = {
+export type ItemGoogleCategoriesGetItemGoogleCategoryByIdResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoryByIdAsyncResponse = GetItemGoogleCategoryByIdAsyncResponses[keyof GetItemGoogleCategoryByIdAsyncResponses];
+export type ItemGoogleCategoriesGetItemGoogleCategoryByIdResponse = ItemGoogleCategoriesGetItemGoogleCategoryByIdResponses[keyof ItemGoogleCategoriesGetItemGoogleCategoryByIdResponses];
 
-export type GetChildrenItemGoogleCategoriesByIdAsyncData = {
+export type ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5177,7 +5177,7 @@ export type GetChildrenItemGoogleCategoriesByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/{itemCategoryId}/Children';
 };
 
-export type GetChildrenItemGoogleCategoriesByIdAsyncErrors = {
+export type ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5188,18 +5188,18 @@ export type GetChildrenItemGoogleCategoriesByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetChildrenItemGoogleCategoriesByIdAsyncError = GetChildrenItemGoogleCategoriesByIdAsyncErrors[keyof GetChildrenItemGoogleCategoriesByIdAsyncErrors];
+export type ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdError = ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdErrors[keyof ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdErrors];
 
-export type GetChildrenItemGoogleCategoriesByIdAsyncResponses = {
+export type ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type GetChildrenItemGoogleCategoriesByIdAsyncResponse = GetChildrenItemGoogleCategoriesByIdAsyncResponses[keyof GetChildrenItemGoogleCategoriesByIdAsyncResponses];
+export type ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdResponse = ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdResponses[keyof ItemGoogleCategoriesGetChildrenItemGoogleCategoriesByIdResponses];
 
-export type GetItemGoogleCategoriesTreeAsyncData = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesTreeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5211,7 +5211,7 @@ export type GetItemGoogleCategoriesTreeAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/tree';
 };
 
-export type GetItemGoogleCategoriesTreeAsyncErrors = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesTreeErrors = {
     /**
      * Unauthorized
      */
@@ -5222,18 +5222,18 @@ export type GetItemGoogleCategoriesTreeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoriesTreeAsyncError = GetItemGoogleCategoriesTreeAsyncErrors[keyof GetItemGoogleCategoriesTreeAsyncErrors];
+export type ItemGoogleCategoriesGetItemGoogleCategoriesTreeError = ItemGoogleCategoriesGetItemGoogleCategoriesTreeErrors[keyof ItemGoogleCategoriesGetItemGoogleCategoriesTreeErrors];
 
-export type GetItemGoogleCategoriesTreeAsyncResponses = {
+export type ItemGoogleCategoriesGetItemGoogleCategoriesTreeResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type GetItemGoogleCategoriesTreeAsyncResponse = GetItemGoogleCategoriesTreeAsyncResponses[keyof GetItemGoogleCategoriesTreeAsyncResponses];
+export type ItemGoogleCategoriesGetItemGoogleCategoriesTreeResponse = ItemGoogleCategoriesGetItemGoogleCategoriesTreeResponses[keyof ItemGoogleCategoriesGetItemGoogleCategoriesTreeResponses];
 
-export type MapItemGoogleCategoriesTreeAsyncData = {
+export type ItemGoogleCategoriesMapItemGoogleCategoriesTreeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5246,7 +5246,7 @@ export type MapItemGoogleCategoriesTreeAsyncData = {
     url: '/api/v2/CatalogService/ItemGoogleCategories/tree';
 };
 
-export type MapItemGoogleCategoriesTreeAsyncErrors = {
+export type ItemGoogleCategoriesMapItemGoogleCategoriesTreeErrors = {
     /**
      * Unauthorized
      */
@@ -5257,18 +5257,18 @@ export type MapItemGoogleCategoriesTreeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type MapItemGoogleCategoriesTreeAsyncError = MapItemGoogleCategoriesTreeAsyncErrors[keyof MapItemGoogleCategoriesTreeAsyncErrors];
+export type ItemGoogleCategoriesMapItemGoogleCategoriesTreeError = ItemGoogleCategoriesMapItemGoogleCategoriesTreeErrors[keyof ItemGoogleCategoriesMapItemGoogleCategoriesTreeErrors];
 
-export type MapItemGoogleCategoriesTreeAsyncResponses = {
+export type ItemGoogleCategoriesMapItemGoogleCategoriesTreeResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type MapItemGoogleCategoriesTreeAsyncResponse = MapItemGoogleCategoriesTreeAsyncResponses[keyof MapItemGoogleCategoriesTreeAsyncResponses];
+export type ItemGoogleCategoriesMapItemGoogleCategoriesTreeResponse = ItemGoogleCategoriesMapItemGoogleCategoriesTreeResponses[keyof ItemGoogleCategoriesMapItemGoogleCategoriesTreeResponses];
 
-export type GetItemImagesAsyncData = {
+export type ItemImagesGetItemImagesData = {
     body?: ItemImageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5281,7 +5281,7 @@ export type GetItemImagesAsyncData = {
     url: '/api/v2/CatalogService/ItemImages';
 };
 
-export type GetItemImagesAsyncErrors = {
+export type ItemImagesGetItemImagesErrors = {
     /**
      * Unauthorized
      */
@@ -5292,18 +5292,18 @@ export type GetItemImagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemImagesAsyncError = GetItemImagesAsyncErrors[keyof GetItemImagesAsyncErrors];
+export type ItemImagesGetItemImagesError = ItemImagesGetItemImagesErrors[keyof ItemImagesGetItemImagesErrors];
 
-export type GetItemImagesAsyncResponses = {
+export type ItemImagesGetItemImagesResponses = {
     /**
      * OK
      */
     200: ItemImageDtoListEnvelopeReadable;
 };
 
-export type GetItemImagesAsyncResponse = GetItemImagesAsyncResponses[keyof GetItemImagesAsyncResponses];
+export type ItemImagesGetItemImagesResponse = ItemImagesGetItemImagesResponses[keyof ItemImagesGetItemImagesResponses];
 
-export type CreateItemImageAsyncData = {
+export type ItemImagesCreateItemImageData = {
     body?: ItemImageCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5316,7 +5316,7 @@ export type CreateItemImageAsyncData = {
     url: '/api/v2/CatalogService/ItemImages';
 };
 
-export type CreateItemImageAsyncErrors = {
+export type ItemImagesCreateItemImageErrors = {
     /**
      * Unauthorized
      */
@@ -5327,18 +5327,18 @@ export type CreateItemImageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemImageAsyncError = CreateItemImageAsyncErrors[keyof CreateItemImageAsyncErrors];
+export type ItemImagesCreateItemImageError = ItemImagesCreateItemImageErrors[keyof ItemImagesCreateItemImageErrors];
 
-export type CreateItemImageAsyncResponses = {
+export type ItemImagesCreateItemImageResponses = {
     /**
      * Created
      */
     201: ItemImageDtoEnvelopeReadable;
 };
 
-export type CreateItemImageAsyncResponse = CreateItemImageAsyncResponses[keyof CreateItemImageAsyncResponses];
+export type ItemImagesCreateItemImageResponse = ItemImagesCreateItemImageResponses[keyof ItemImagesCreateItemImageResponses];
 
-export type DeleteItemImageAsyncData = {
+export type ItemImagesDeleteItemImageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5353,7 +5353,7 @@ export type DeleteItemImageAsyncData = {
     url: '/api/v2/CatalogService/ItemImages/{itemImageId}';
 };
 
-export type DeleteItemImageAsyncErrors = {
+export type ItemImagesDeleteItemImageErrors = {
     /**
      * Unauthorized
      */
@@ -5364,16 +5364,16 @@ export type DeleteItemImageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemImageAsyncError = DeleteItemImageAsyncErrors[keyof DeleteItemImageAsyncErrors];
+export type ItemImagesDeleteItemImageError = ItemImagesDeleteItemImageErrors[keyof ItemImagesDeleteItemImageErrors];
 
-export type DeleteItemImageAsyncResponses = {
+export type ItemImagesDeleteItemImageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemImageByIdAsyncData = {
+export type ItemImagesGetItemImageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5388,7 +5388,7 @@ export type GetItemImageByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemImages/{itemImageId}';
 };
 
-export type GetItemImageByIdAsyncErrors = {
+export type ItemImagesGetItemImageByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5399,18 +5399,18 @@ export type GetItemImageByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemImageByIdAsyncError = GetItemImageByIdAsyncErrors[keyof GetItemImageByIdAsyncErrors];
+export type ItemImagesGetItemImageByIdError = ItemImagesGetItemImageByIdErrors[keyof ItemImagesGetItemImageByIdErrors];
 
-export type GetItemImageByIdAsyncResponses = {
+export type ItemImagesGetItemImageByIdResponses = {
     /**
      * OK
      */
     200: ItemImageDtoEnvelopeReadable;
 };
 
-export type GetItemImageByIdAsyncResponse = GetItemImageByIdAsyncResponses[keyof GetItemImageByIdAsyncResponses];
+export type ItemImagesGetItemImageByIdResponse = ItemImagesGetItemImageByIdResponses[keyof ItemImagesGetItemImageByIdResponses];
 
-export type PatchItemImageAsyncData = {
+export type ItemImagesPatchItemImageData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5425,7 +5425,7 @@ export type PatchItemImageAsyncData = {
     url: '/api/v2/CatalogService/ItemImages/{itemImageId}';
 };
 
-export type PatchItemImageAsyncErrors = {
+export type ItemImagesPatchItemImageErrors = {
     /**
      * Unauthorized
      */
@@ -5436,16 +5436,16 @@ export type PatchItemImageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemImageAsyncError = PatchItemImageAsyncErrors[keyof PatchItemImageAsyncErrors];
+export type ItemImagesPatchItemImageError = ItemImagesPatchItemImageErrors[keyof ItemImagesPatchItemImageErrors];
 
-export type PatchItemImageAsyncResponses = {
+export type ItemImagesPatchItemImageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemImageAsyncData = {
+export type ItemImagesUpdateItemImageData = {
     body?: ItemImageUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5460,7 +5460,7 @@ export type UpdateItemImageAsyncData = {
     url: '/api/v2/CatalogService/ItemImages/{itemImageId}';
 };
 
-export type UpdateItemImageAsyncErrors = {
+export type ItemImagesUpdateItemImageErrors = {
     /**
      * Unauthorized
      */
@@ -5471,16 +5471,16 @@ export type UpdateItemImageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemImageAsyncError = UpdateItemImageAsyncErrors[keyof UpdateItemImageAsyncErrors];
+export type ItemImagesUpdateItemImageError = ItemImagesUpdateItemImageErrors[keyof ItemImagesUpdateItemImageErrors];
 
-export type UpdateItemImageAsyncResponses = {
+export type ItemImagesUpdateItemImageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemQuestionsAsyncData = {
+export type ItemQuestionsGetItemQuestionsData = {
     body?: ItemQuestionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5493,7 +5493,7 @@ export type GetItemQuestionsAsyncData = {
     url: '/api/v2/CatalogService/ItemQuestions';
 };
 
-export type GetItemQuestionsAsyncErrors = {
+export type ItemQuestionsGetItemQuestionsErrors = {
     /**
      * Unauthorized
      */
@@ -5504,18 +5504,18 @@ export type GetItemQuestionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemQuestionsAsyncError = GetItemQuestionsAsyncErrors[keyof GetItemQuestionsAsyncErrors];
+export type ItemQuestionsGetItemQuestionsError = ItemQuestionsGetItemQuestionsErrors[keyof ItemQuestionsGetItemQuestionsErrors];
 
-export type GetItemQuestionsAsyncResponses = {
+export type ItemQuestionsGetItemQuestionsResponses = {
     /**
      * OK
      */
     200: ItemQuestionDtoListEnvelopeReadable;
 };
 
-export type GetItemQuestionsAsyncResponse = GetItemQuestionsAsyncResponses[keyof GetItemQuestionsAsyncResponses];
+export type ItemQuestionsGetItemQuestionsResponse = ItemQuestionsGetItemQuestionsResponses[keyof ItemQuestionsGetItemQuestionsResponses];
 
-export type CreateItemQuestionAsyncData = {
+export type ItemQuestionsCreateItemQuestionData = {
     body?: ItemQuestionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5528,7 +5528,7 @@ export type CreateItemQuestionAsyncData = {
     url: '/api/v2/CatalogService/ItemQuestions';
 };
 
-export type CreateItemQuestionAsyncErrors = {
+export type ItemQuestionsCreateItemQuestionErrors = {
     /**
      * Unauthorized
      */
@@ -5539,18 +5539,18 @@ export type CreateItemQuestionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemQuestionAsyncError = CreateItemQuestionAsyncErrors[keyof CreateItemQuestionAsyncErrors];
+export type ItemQuestionsCreateItemQuestionError = ItemQuestionsCreateItemQuestionErrors[keyof ItemQuestionsCreateItemQuestionErrors];
 
-export type CreateItemQuestionAsyncResponses = {
+export type ItemQuestionsCreateItemQuestionResponses = {
     /**
      * Created
      */
     201: ItemQuestionDtoEnvelopeReadable;
 };
 
-export type CreateItemQuestionAsyncResponse = CreateItemQuestionAsyncResponses[keyof CreateItemQuestionAsyncResponses];
+export type ItemQuestionsCreateItemQuestionResponse = ItemQuestionsCreateItemQuestionResponses[keyof ItemQuestionsCreateItemQuestionResponses];
 
-export type DeleteItemQuestionAsyncData = {
+export type ItemQuestionsDeleteItemQuestionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5565,7 +5565,7 @@ export type DeleteItemQuestionAsyncData = {
     url: '/api/v2/CatalogService/ItemQuestions/{itemQuestionId}';
 };
 
-export type DeleteItemQuestionAsyncErrors = {
+export type ItemQuestionsDeleteItemQuestionErrors = {
     /**
      * Unauthorized
      */
@@ -5576,16 +5576,16 @@ export type DeleteItemQuestionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemQuestionAsyncError = DeleteItemQuestionAsyncErrors[keyof DeleteItemQuestionAsyncErrors];
+export type ItemQuestionsDeleteItemQuestionError = ItemQuestionsDeleteItemQuestionErrors[keyof ItemQuestionsDeleteItemQuestionErrors];
 
-export type DeleteItemQuestionAsyncResponses = {
+export type ItemQuestionsDeleteItemQuestionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemQuestionByIdAsyncData = {
+export type ItemQuestionsGetItemQuestionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5600,7 +5600,7 @@ export type GetItemQuestionByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemQuestions/{itemQuestionId}';
 };
 
-export type GetItemQuestionByIdAsyncErrors = {
+export type ItemQuestionsGetItemQuestionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5611,18 +5611,18 @@ export type GetItemQuestionByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemQuestionByIdAsyncError = GetItemQuestionByIdAsyncErrors[keyof GetItemQuestionByIdAsyncErrors];
+export type ItemQuestionsGetItemQuestionByIdError = ItemQuestionsGetItemQuestionByIdErrors[keyof ItemQuestionsGetItemQuestionByIdErrors];
 
-export type GetItemQuestionByIdAsyncResponses = {
+export type ItemQuestionsGetItemQuestionByIdResponses = {
     /**
      * OK
      */
     200: ItemQuestionDtoEnvelopeReadable;
 };
 
-export type GetItemQuestionByIdAsyncResponse = GetItemQuestionByIdAsyncResponses[keyof GetItemQuestionByIdAsyncResponses];
+export type ItemQuestionsGetItemQuestionByIdResponse = ItemQuestionsGetItemQuestionByIdResponses[keyof ItemQuestionsGetItemQuestionByIdResponses];
 
-export type PatchItemQuestionAsyncData = {
+export type ItemQuestionsPatchItemQuestionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5637,7 +5637,7 @@ export type PatchItemQuestionAsyncData = {
     url: '/api/v2/CatalogService/ItemQuestions/{itemQuestionId}';
 };
 
-export type PatchItemQuestionAsyncErrors = {
+export type ItemQuestionsPatchItemQuestionErrors = {
     /**
      * Unauthorized
      */
@@ -5648,16 +5648,16 @@ export type PatchItemQuestionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemQuestionAsyncError = PatchItemQuestionAsyncErrors[keyof PatchItemQuestionAsyncErrors];
+export type ItemQuestionsPatchItemQuestionError = ItemQuestionsPatchItemQuestionErrors[keyof ItemQuestionsPatchItemQuestionErrors];
 
-export type PatchItemQuestionAsyncResponses = {
+export type ItemQuestionsPatchItemQuestionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemQuestionAsyncData = {
+export type ItemQuestionsUpdateItemQuestionData = {
     body?: ItemQuestionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5672,7 +5672,7 @@ export type UpdateItemQuestionAsyncData = {
     url: '/api/v2/CatalogService/ItemQuestions/{itemQuestionId}';
 };
 
-export type UpdateItemQuestionAsyncErrors = {
+export type ItemQuestionsUpdateItemQuestionErrors = {
     /**
      * Unauthorized
      */
@@ -5683,16 +5683,16 @@ export type UpdateItemQuestionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemQuestionAsyncError = UpdateItemQuestionAsyncErrors[keyof UpdateItemQuestionAsyncErrors];
+export type ItemQuestionsUpdateItemQuestionError = ItemQuestionsUpdateItemQuestionErrors[keyof ItemQuestionsUpdateItemQuestionErrors];
 
-export type UpdateItemQuestionAsyncResponses = {
+export type ItemQuestionsUpdateItemQuestionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemRefundPoliciesAsyncData = {
+export type ItemRefundPoliciesGetItemRefundPoliciesData = {
     body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5706,7 +5706,7 @@ export type GetItemRefundPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemRefundPolicies';
 };
 
-export type GetItemRefundPoliciesAsyncErrors = {
+export type ItemRefundPoliciesGetItemRefundPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -5717,18 +5717,18 @@ export type GetItemRefundPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemRefundPoliciesAsyncError = GetItemRefundPoliciesAsyncErrors[keyof GetItemRefundPoliciesAsyncErrors];
+export type ItemRefundPoliciesGetItemRefundPoliciesError = ItemRefundPoliciesGetItemRefundPoliciesErrors[keyof ItemRefundPoliciesGetItemRefundPoliciesErrors];
 
-export type GetItemRefundPoliciesAsyncResponses = {
+export type ItemRefundPoliciesGetItemRefundPoliciesResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoListEnvelopeReadable;
 };
 
-export type GetItemRefundPoliciesAsyncResponse = GetItemRefundPoliciesAsyncResponses[keyof GetItemRefundPoliciesAsyncResponses];
+export type ItemRefundPoliciesGetItemRefundPoliciesResponse = ItemRefundPoliciesGetItemRefundPoliciesResponses[keyof ItemRefundPoliciesGetItemRefundPoliciesResponses];
 
-export type RelateItemToRefundPolicyAsyncData = {
+export type ItemRefundPoliciesRelateItemToRefundPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5743,7 +5743,7 @@ export type RelateItemToRefundPolicyAsyncData = {
     url: '/api/v2/CatalogService/ItemRefundPolicies';
 };
 
-export type RelateItemToRefundPolicyAsyncErrors = {
+export type ItemRefundPoliciesRelateItemToRefundPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -5754,16 +5754,16 @@ export type RelateItemToRefundPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateItemToRefundPolicyAsyncError = RelateItemToRefundPolicyAsyncErrors[keyof RelateItemToRefundPolicyAsyncErrors];
+export type ItemRefundPoliciesRelateItemToRefundPolicyError = ItemRefundPoliciesRelateItemToRefundPolicyErrors[keyof ItemRefundPoliciesRelateItemToRefundPolicyErrors];
 
-export type RelateItemToRefundPolicyAsyncResponses = {
+export type ItemRefundPoliciesRelateItemToRefundPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountItemRefundPoliciesAsyncData = {
+export type ItemRefundPoliciesCountItemRefundPoliciesData = {
     body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5777,7 +5777,7 @@ export type CountItemRefundPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemRefundPolicies/Count';
 };
 
-export type CountItemRefundPoliciesAsyncErrors = {
+export type ItemRefundPoliciesCountItemRefundPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -5788,18 +5788,18 @@ export type CountItemRefundPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemRefundPoliciesAsyncError = CountItemRefundPoliciesAsyncErrors[keyof CountItemRefundPoliciesAsyncErrors];
+export type ItemRefundPoliciesCountItemRefundPoliciesError = ItemRefundPoliciesCountItemRefundPoliciesErrors[keyof ItemRefundPoliciesCountItemRefundPoliciesErrors];
 
-export type CountItemRefundPoliciesAsyncResponses = {
+export type ItemRefundPoliciesCountItemRefundPoliciesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemRefundPoliciesAsyncResponse = CountItemRefundPoliciesAsyncResponses[keyof CountItemRefundPoliciesAsyncResponses];
+export type ItemRefundPoliciesCountItemRefundPoliciesResponse = ItemRefundPoliciesCountItemRefundPoliciesResponses[keyof ItemRefundPoliciesCountItemRefundPoliciesResponses];
 
-export type RemoveRefundPolicyFromItemAsyncData = {
+export type ItemRefundPoliciesRemoveRefundPolicyFromItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5815,7 +5815,7 @@ export type RemoveRefundPolicyFromItemAsyncData = {
     url: '/api/v2/CatalogService/ItemRefundPolicies/{itemRefundPolicyId}';
 };
 
-export type RemoveRefundPolicyFromItemAsyncErrors = {
+export type ItemRefundPoliciesRemoveRefundPolicyFromItemErrors = {
     /**
      * Unauthorized
      */
@@ -5826,16 +5826,16 @@ export type RemoveRefundPolicyFromItemAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveRefundPolicyFromItemAsyncError = RemoveRefundPolicyFromItemAsyncErrors[keyof RemoveRefundPolicyFromItemAsyncErrors];
+export type ItemRefundPoliciesRemoveRefundPolicyFromItemError = ItemRefundPoliciesRemoveRefundPolicyFromItemErrors[keyof ItemRefundPoliciesRemoveRefundPolicyFromItemErrors];
 
-export type RemoveRefundPolicyFromItemAsyncResponses = {
+export type ItemRefundPoliciesRemoveRefundPolicyFromItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemRefundPolicyByIdAsyncData = {
+export type ItemRefundPoliciesGetItemRefundPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5851,7 +5851,7 @@ export type GetItemRefundPolicyByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemRefundPolicies/{itemRefundPolicyId}';
 };
 
-export type GetItemRefundPolicyByIdAsyncErrors = {
+export type ItemRefundPoliciesGetItemRefundPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5862,18 +5862,18 @@ export type GetItemRefundPolicyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemRefundPolicyByIdAsyncError = GetItemRefundPolicyByIdAsyncErrors[keyof GetItemRefundPolicyByIdAsyncErrors];
+export type ItemRefundPoliciesGetItemRefundPolicyByIdError = ItemRefundPoliciesGetItemRefundPolicyByIdErrors[keyof ItemRefundPoliciesGetItemRefundPolicyByIdErrors];
 
-export type GetItemRefundPolicyByIdAsyncResponses = {
+export type ItemRefundPoliciesGetItemRefundPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoEnvelopeReadable;
 };
 
-export type GetItemRefundPolicyByIdAsyncResponse = GetItemRefundPolicyByIdAsyncResponses[keyof GetItemRefundPolicyByIdAsyncResponses];
+export type ItemRefundPoliciesGetItemRefundPolicyByIdResponse = ItemRefundPoliciesGetItemRefundPolicyByIdResponses[keyof ItemRefundPoliciesGetItemRefundPolicyByIdResponses];
 
-export type GetItemReturnPoliciesAsyncData = {
+export type ItemReturnPoliciesGetItemReturnPoliciesData = {
     body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5887,7 +5887,7 @@ export type GetItemReturnPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemReturnPolicies';
 };
 
-export type GetItemReturnPoliciesAsyncErrors = {
+export type ItemReturnPoliciesGetItemReturnPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -5898,18 +5898,18 @@ export type GetItemReturnPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemReturnPoliciesAsyncError = GetItemReturnPoliciesAsyncErrors[keyof GetItemReturnPoliciesAsyncErrors];
+export type ItemReturnPoliciesGetItemReturnPoliciesError = ItemReturnPoliciesGetItemReturnPoliciesErrors[keyof ItemReturnPoliciesGetItemReturnPoliciesErrors];
 
-export type GetItemReturnPoliciesAsyncResponses = {
+export type ItemReturnPoliciesGetItemReturnPoliciesResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoListEnvelopeReadable;
 };
 
-export type GetItemReturnPoliciesAsyncResponse = GetItemReturnPoliciesAsyncResponses[keyof GetItemReturnPoliciesAsyncResponses];
+export type ItemReturnPoliciesGetItemReturnPoliciesResponse = ItemReturnPoliciesGetItemReturnPoliciesResponses[keyof ItemReturnPoliciesGetItemReturnPoliciesResponses];
 
-export type RelateItemToReturnPolicyAsyncData = {
+export type ItemReturnPoliciesRelateItemToReturnPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5924,7 +5924,7 @@ export type RelateItemToReturnPolicyAsyncData = {
     url: '/api/v2/CatalogService/ItemReturnPolicies';
 };
 
-export type RelateItemToReturnPolicyAsyncErrors = {
+export type ItemReturnPoliciesRelateItemToReturnPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -5935,16 +5935,16 @@ export type RelateItemToReturnPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateItemToReturnPolicyAsyncError = RelateItemToReturnPolicyAsyncErrors[keyof RelateItemToReturnPolicyAsyncErrors];
+export type ItemReturnPoliciesRelateItemToReturnPolicyError = ItemReturnPoliciesRelateItemToReturnPolicyErrors[keyof ItemReturnPoliciesRelateItemToReturnPolicyErrors];
 
-export type RelateItemToReturnPolicyAsyncResponses = {
+export type ItemReturnPoliciesRelateItemToReturnPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountItemReturnPoliciesAsyncData = {
+export type ItemReturnPoliciesCountItemReturnPoliciesData = {
     body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5958,7 +5958,7 @@ export type CountItemReturnPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemReturnPolicies/Count';
 };
 
-export type CountItemReturnPoliciesAsyncErrors = {
+export type ItemReturnPoliciesCountItemReturnPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -5969,18 +5969,18 @@ export type CountItemReturnPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemReturnPoliciesAsyncError = CountItemReturnPoliciesAsyncErrors[keyof CountItemReturnPoliciesAsyncErrors];
+export type ItemReturnPoliciesCountItemReturnPoliciesError = ItemReturnPoliciesCountItemReturnPoliciesErrors[keyof ItemReturnPoliciesCountItemReturnPoliciesErrors];
 
-export type CountItemReturnPoliciesAsyncResponses = {
+export type ItemReturnPoliciesCountItemReturnPoliciesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemReturnPoliciesAsyncResponse = CountItemReturnPoliciesAsyncResponses[keyof CountItemReturnPoliciesAsyncResponses];
+export type ItemReturnPoliciesCountItemReturnPoliciesResponse = ItemReturnPoliciesCountItemReturnPoliciesResponses[keyof ItemReturnPoliciesCountItemReturnPoliciesResponses];
 
-export type RemoveReturnPolicyFromItemAsyncData = {
+export type ItemReturnPoliciesRemoveReturnPolicyFromItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5996,7 +5996,7 @@ export type RemoveReturnPolicyFromItemAsyncData = {
     url: '/api/v2/CatalogService/ItemReturnPolicies/{itemReturnPolicyId}';
 };
 
-export type RemoveReturnPolicyFromItemAsyncErrors = {
+export type ItemReturnPoliciesRemoveReturnPolicyFromItemErrors = {
     /**
      * Unauthorized
      */
@@ -6007,16 +6007,16 @@ export type RemoveReturnPolicyFromItemAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveReturnPolicyFromItemAsyncError = RemoveReturnPolicyFromItemAsyncErrors[keyof RemoveReturnPolicyFromItemAsyncErrors];
+export type ItemReturnPoliciesRemoveReturnPolicyFromItemError = ItemReturnPoliciesRemoveReturnPolicyFromItemErrors[keyof ItemReturnPoliciesRemoveReturnPolicyFromItemErrors];
 
-export type RemoveReturnPolicyFromItemAsyncResponses = {
+export type ItemReturnPoliciesRemoveReturnPolicyFromItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemReturnPolicyByIdAsyncData = {
+export type ItemReturnPoliciesGetItemReturnPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6032,7 +6032,7 @@ export type GetItemReturnPolicyByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemReturnPolicies/{itemReturnPolicyId}';
 };
 
-export type GetItemReturnPolicyByIdAsyncErrors = {
+export type ItemReturnPoliciesGetItemReturnPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6043,18 +6043,18 @@ export type GetItemReturnPolicyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemReturnPolicyByIdAsyncError = GetItemReturnPolicyByIdAsyncErrors[keyof GetItemReturnPolicyByIdAsyncErrors];
+export type ItemReturnPoliciesGetItemReturnPolicyByIdError = ItemReturnPoliciesGetItemReturnPolicyByIdErrors[keyof ItemReturnPoliciesGetItemReturnPolicyByIdErrors];
 
-export type GetItemReturnPolicyByIdAsyncResponses = {
+export type ItemReturnPoliciesGetItemReturnPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoEnvelopeReadable;
 };
 
-export type GetItemReturnPolicyByIdAsyncResponse = GetItemReturnPolicyByIdAsyncResponses[keyof GetItemReturnPolicyByIdAsyncResponses];
+export type ItemReturnPoliciesGetItemReturnPolicyByIdResponse = ItemReturnPoliciesGetItemReturnPolicyByIdResponses[keyof ItemReturnPoliciesGetItemReturnPolicyByIdResponses];
 
-export type GetItemReviewsAsyncData = {
+export type ItemReviewsGetItemReviewsData = {
     body?: ItemReviewDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6067,7 +6067,7 @@ export type GetItemReviewsAsyncData = {
     url: '/api/v2/CatalogService/ItemReviews';
 };
 
-export type GetItemReviewsAsyncErrors = {
+export type ItemReviewsGetItemReviewsErrors = {
     /**
      * Unauthorized
      */
@@ -6078,18 +6078,18 @@ export type GetItemReviewsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemReviewsAsyncError = GetItemReviewsAsyncErrors[keyof GetItemReviewsAsyncErrors];
+export type ItemReviewsGetItemReviewsError = ItemReviewsGetItemReviewsErrors[keyof ItemReviewsGetItemReviewsErrors];
 
-export type GetItemReviewsAsyncResponses = {
+export type ItemReviewsGetItemReviewsResponses = {
     /**
      * OK
      */
     200: ItemReviewDtoListEnvelopeReadable;
 };
 
-export type GetItemReviewsAsyncResponse = GetItemReviewsAsyncResponses[keyof GetItemReviewsAsyncResponses];
+export type ItemReviewsGetItemReviewsResponse = ItemReviewsGetItemReviewsResponses[keyof ItemReviewsGetItemReviewsResponses];
 
-export type CreateItemReviewAsyncData = {
+export type ItemReviewsCreateItemReviewData = {
     body?: ItemReviewCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6102,7 +6102,7 @@ export type CreateItemReviewAsyncData = {
     url: '/api/v2/CatalogService/ItemReviews';
 };
 
-export type CreateItemReviewAsyncErrors = {
+export type ItemReviewsCreateItemReviewErrors = {
     /**
      * Unauthorized
      */
@@ -6113,18 +6113,18 @@ export type CreateItemReviewAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemReviewAsyncError = CreateItemReviewAsyncErrors[keyof CreateItemReviewAsyncErrors];
+export type ItemReviewsCreateItemReviewError = ItemReviewsCreateItemReviewErrors[keyof ItemReviewsCreateItemReviewErrors];
 
-export type CreateItemReviewAsyncResponses = {
+export type ItemReviewsCreateItemReviewResponses = {
     /**
      * Created
      */
     201: ItemReviewDtoEnvelopeReadable;
 };
 
-export type CreateItemReviewAsyncResponse = CreateItemReviewAsyncResponses[keyof CreateItemReviewAsyncResponses];
+export type ItemReviewsCreateItemReviewResponse = ItemReviewsCreateItemReviewResponses[keyof ItemReviewsCreateItemReviewResponses];
 
-export type DeleteItemReviewAsyncData = {
+export type ItemReviewsDeleteItemReviewData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6139,7 +6139,7 @@ export type DeleteItemReviewAsyncData = {
     url: '/api/v2/CatalogService/ItemReviews/{itemReviewId}';
 };
 
-export type DeleteItemReviewAsyncErrors = {
+export type ItemReviewsDeleteItemReviewErrors = {
     /**
      * Unauthorized
      */
@@ -6150,16 +6150,16 @@ export type DeleteItemReviewAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemReviewAsyncError = DeleteItemReviewAsyncErrors[keyof DeleteItemReviewAsyncErrors];
+export type ItemReviewsDeleteItemReviewError = ItemReviewsDeleteItemReviewErrors[keyof ItemReviewsDeleteItemReviewErrors];
 
-export type DeleteItemReviewAsyncResponses = {
+export type ItemReviewsDeleteItemReviewResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemReviewByIdAsyncData = {
+export type ItemReviewsGetItemReviewByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6174,7 +6174,7 @@ export type GetItemReviewByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemReviews/{itemReviewId}';
 };
 
-export type GetItemReviewByIdAsyncErrors = {
+export type ItemReviewsGetItemReviewByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6185,18 +6185,18 @@ export type GetItemReviewByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemReviewByIdAsyncError = GetItemReviewByIdAsyncErrors[keyof GetItemReviewByIdAsyncErrors];
+export type ItemReviewsGetItemReviewByIdError = ItemReviewsGetItemReviewByIdErrors[keyof ItemReviewsGetItemReviewByIdErrors];
 
-export type GetItemReviewByIdAsyncResponses = {
+export type ItemReviewsGetItemReviewByIdResponses = {
     /**
      * OK
      */
     200: ItemReviewDtoEnvelopeReadable;
 };
 
-export type GetItemReviewByIdAsyncResponse = GetItemReviewByIdAsyncResponses[keyof GetItemReviewByIdAsyncResponses];
+export type ItemReviewsGetItemReviewByIdResponse = ItemReviewsGetItemReviewByIdResponses[keyof ItemReviewsGetItemReviewByIdResponses];
 
-export type PatchItemReviewAsyncData = {
+export type ItemReviewsPatchItemReviewData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6211,7 +6211,7 @@ export type PatchItemReviewAsyncData = {
     url: '/api/v2/CatalogService/ItemReviews/{itemReviewId}';
 };
 
-export type PatchItemReviewAsyncErrors = {
+export type ItemReviewsPatchItemReviewErrors = {
     /**
      * Unauthorized
      */
@@ -6222,16 +6222,16 @@ export type PatchItemReviewAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemReviewAsyncError = PatchItemReviewAsyncErrors[keyof PatchItemReviewAsyncErrors];
+export type ItemReviewsPatchItemReviewError = ItemReviewsPatchItemReviewErrors[keyof ItemReviewsPatchItemReviewErrors];
 
-export type PatchItemReviewAsyncResponses = {
+export type ItemReviewsPatchItemReviewResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemReviewAsyncData = {
+export type ItemReviewsUpdateItemReviewData = {
     body?: ItemReviewUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6246,7 +6246,7 @@ export type UpdateItemReviewAsyncData = {
     url: '/api/v2/CatalogService/ItemReviews/{itemReviewId}';
 };
 
-export type UpdateItemReviewAsyncErrors = {
+export type ItemReviewsUpdateItemReviewErrors = {
     /**
      * Unauthorized
      */
@@ -6257,16 +6257,16 @@ export type UpdateItemReviewAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemReviewAsyncError = UpdateItemReviewAsyncErrors[keyof UpdateItemReviewAsyncErrors];
+export type ItemReviewsUpdateItemReviewError = ItemReviewsUpdateItemReviewErrors[keyof ItemReviewsUpdateItemReviewErrors];
 
-export type UpdateItemReviewAsyncResponses = {
+export type ItemReviewsUpdateItemReviewResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetStockItemsQueryData = {
+export type ItemsGetStockItemsQueryData = {
     body?: CatalogItemDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6279,7 +6279,7 @@ export type GetStockItemsQueryData = {
     url: '/api/v2/CatalogService/Items';
 };
 
-export type GetStockItemsQueryErrors = {
+export type ItemsGetStockItemsQueryErrors = {
     /**
      * Unauthorized
      */
@@ -6290,18 +6290,18 @@ export type GetStockItemsQueryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemsQueryError = GetStockItemsQueryErrors[keyof GetStockItemsQueryErrors];
+export type ItemsGetStockItemsQueryError = ItemsGetStockItemsQueryErrors[keyof ItemsGetStockItemsQueryErrors];
 
-export type GetStockItemsQueryResponses = {
+export type ItemsGetStockItemsQueryResponses = {
     /**
      * OK
      */
     200: CatalogItemDtoListEnvelopeReadable;
 };
 
-export type GetStockItemsQueryResponse = GetStockItemsQueryResponses[keyof GetStockItemsQueryResponses];
+export type ItemsGetStockItemsQueryResponse = ItemsGetStockItemsQueryResponses[keyof ItemsGetStockItemsQueryResponses];
 
-export type CreateStockItemData = {
+export type ItemsCreateStockItemData = {
     body?: CatalogItemCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6314,7 +6314,7 @@ export type CreateStockItemData = {
     url: '/api/v2/CatalogService/Items';
 };
 
-export type CreateStockItemErrors = {
+export type ItemsCreateStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6325,16 +6325,16 @@ export type CreateStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateStockItemError = CreateStockItemErrors[keyof CreateStockItemErrors];
+export type ItemsCreateStockItemError = ItemsCreateStockItemErrors[keyof ItemsCreateStockItemErrors];
 
-export type CreateStockItemResponses = {
+export type ItemsCreateStockItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetStockItemsOdataMaxPriceData = {
+export type ItemsGetStockItemsOdataMaxPriceData = {
     body?: CatalogItemDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6347,7 +6347,7 @@ export type GetStockItemsOdataMaxPriceData = {
     url: '/api/v2/CatalogService/Items/MaxPrice';
 };
 
-export type GetStockItemsOdataMaxPriceErrors = {
+export type ItemsGetStockItemsOdataMaxPriceErrors = {
     /**
      * Unauthorized
      */
@@ -6358,18 +6358,18 @@ export type GetStockItemsOdataMaxPriceErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemsOdataMaxPriceError = GetStockItemsOdataMaxPriceErrors[keyof GetStockItemsOdataMaxPriceErrors];
+export type ItemsGetStockItemsOdataMaxPriceError = ItemsGetStockItemsOdataMaxPriceErrors[keyof ItemsGetStockItemsOdataMaxPriceErrors];
 
-export type GetStockItemsOdataMaxPriceResponses = {
+export type ItemsGetStockItemsOdataMaxPriceResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetStockItemsOdataMaxPriceResponse = GetStockItemsOdataMaxPriceResponses[keyof GetStockItemsOdataMaxPriceResponses];
+export type ItemsGetStockItemsOdataMaxPriceResponse = ItemsGetStockItemsOdataMaxPriceResponses[keyof ItemsGetStockItemsOdataMaxPriceResponses];
 
-export type GetStockItemsOdataMinPriceData = {
+export type ItemsGetStockItemsOdataMinPriceData = {
     body?: CatalogItemDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6382,7 +6382,7 @@ export type GetStockItemsOdataMinPriceData = {
     url: '/api/v2/CatalogService/Items/MinPrice';
 };
 
-export type GetStockItemsOdataMinPriceErrors = {
+export type ItemsGetStockItemsOdataMinPriceErrors = {
     /**
      * Unauthorized
      */
@@ -6393,18 +6393,18 @@ export type GetStockItemsOdataMinPriceErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemsOdataMinPriceError = GetStockItemsOdataMinPriceErrors[keyof GetStockItemsOdataMinPriceErrors];
+export type ItemsGetStockItemsOdataMinPriceError = ItemsGetStockItemsOdataMinPriceErrors[keyof ItemsGetStockItemsOdataMinPriceErrors];
 
-export type GetStockItemsOdataMinPriceResponses = {
+export type ItemsGetStockItemsOdataMinPriceResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetStockItemsOdataMinPriceResponse = GetStockItemsOdataMinPriceResponses[keyof GetStockItemsOdataMinPriceResponses];
+export type ItemsGetStockItemsOdataMinPriceResponse = ItemsGetStockItemsOdataMinPriceResponses[keyof ItemsGetStockItemsOdataMinPriceResponses];
 
-export type CountStockItemsByBusinessData = {
+export type ItemsCountStockItemsByBusinessData = {
     body?: CatalogItemDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6417,7 +6417,7 @@ export type CountStockItemsByBusinessData = {
     url: '/api/v2/CatalogService/Items/Count';
 };
 
-export type CountStockItemsByBusinessErrors = {
+export type ItemsCountStockItemsByBusinessErrors = {
     /**
      * Unauthorized
      */
@@ -6428,18 +6428,18 @@ export type CountStockItemsByBusinessErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountStockItemsByBusinessError = CountStockItemsByBusinessErrors[keyof CountStockItemsByBusinessErrors];
+export type ItemsCountStockItemsByBusinessError = ItemsCountStockItemsByBusinessErrors[keyof ItemsCountStockItemsByBusinessErrors];
 
-export type CountStockItemsByBusinessResponses = {
+export type ItemsCountStockItemsByBusinessResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountStockItemsByBusinessResponse = CountStockItemsByBusinessResponses[keyof CountStockItemsByBusinessResponses];
+export type ItemsCountStockItemsByBusinessResponse = ItemsCountStockItemsByBusinessResponses[keyof ItemsCountStockItemsByBusinessResponses];
 
-export type DeleteStockItemData = {
+export type ItemsDeleteStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6454,7 +6454,7 @@ export type DeleteStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}';
 };
 
-export type DeleteStockItemErrors = {
+export type ItemsDeleteStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6465,16 +6465,16 @@ export type DeleteStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteStockItemError = DeleteStockItemErrors[keyof DeleteStockItemErrors];
+export type ItemsDeleteStockItemError = ItemsDeleteStockItemErrors[keyof ItemsDeleteStockItemErrors];
 
-export type DeleteStockItemResponses = {
+export type ItemsDeleteStockItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetStockItemByIdData = {
+export type ItemsGetStockItemByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6483,12 +6483,13 @@ export type GetStockItemByIdData = {
         itemId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}';
 };
 
-export type GetStockItemByIdErrors = {
+export type ItemsGetStockItemByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6497,20 +6498,24 @@ export type GetStockItemByIdErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemByIdError = GetStockItemByIdErrors[keyof GetStockItemByIdErrors];
+export type ItemsGetStockItemByIdError = ItemsGetStockItemByIdErrors[keyof ItemsGetStockItemByIdErrors];
 
-export type GetStockItemByIdResponses = {
+export type ItemsGetStockItemByIdResponses = {
     /**
      * OK
      */
     200: CatalogItemDtoEnvelopeReadable;
 };
 
-export type GetStockItemByIdResponse = GetStockItemByIdResponses[keyof GetStockItemByIdResponses];
+export type ItemsGetStockItemByIdResponse = ItemsGetStockItemByIdResponses[keyof ItemsGetStockItemByIdResponses];
 
-export type PatchStockItemData = {
+export type ItemsPatchStockItemData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6525,7 +6530,7 @@ export type PatchStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}';
 };
 
-export type PatchStockItemErrors = {
+export type ItemsPatchStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6536,16 +6541,16 @@ export type PatchStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchStockItemError = PatchStockItemErrors[keyof PatchStockItemErrors];
+export type ItemsPatchStockItemError = ItemsPatchStockItemErrors[keyof ItemsPatchStockItemErrors];
 
-export type PatchStockItemResponses = {
+export type ItemsPatchStockItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateStockItemData = {
+export type ItemsUpdateStockItemData = {
     body?: CatalogItemUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6560,7 +6565,7 @@ export type UpdateStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}';
 };
 
-export type UpdateStockItemErrors = {
+export type ItemsUpdateStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6571,16 +6576,117 @@ export type UpdateStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateStockItemError = UpdateStockItemErrors[keyof UpdateStockItemErrors];
+export type ItemsUpdateStockItemError = ItemsUpdateStockItemErrors[keyof ItemsUpdateStockItemErrors];
 
-export type UpdateStockItemResponses = {
+export type ItemsUpdateStockItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetExtendedStockItemByIdData = {
+export type ItemsGetExtendedStockItemByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/Items/{itemId}/Extended';
+};
+
+export type ItemsGetExtendedStockItemByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type ItemsGetExtendedStockItemByIdError = ItemsGetExtendedStockItemByIdErrors[keyof ItemsGetExtendedStockItemByIdErrors];
+
+export type ItemsGetExtendedStockItemByIdResponses = {
+    /**
+     * OK
+     */
+    200: CatalogItemDtoEnvelopeReadable;
+};
+
+export type ItemsGetExtendedStockItemByIdResponse = ItemsGetExtendedStockItemByIdResponses[keyof ItemsGetExtendedStockItemByIdResponses];
+
+export type ItemsGetPublicStockItemsData = {
+    body?: CatalogItemDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/Items/Public';
+};
+
+export type ItemsGetPublicStockItemsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type ItemsGetPublicStockItemsError = ItemsGetPublicStockItemsErrors[keyof ItemsGetPublicStockItemsErrors];
+
+export type ItemsGetPublicStockItemsResponses = {
+    /**
+     * OK
+     */
+    200: CatalogItemDtoListEnvelopeReadable;
+};
+
+export type ItemsGetPublicStockItemsResponse = ItemsGetPublicStockItemsResponses[keyof ItemsGetPublicStockItemsResponses];
+
+export type ItemsGetPublicStockItemsCountData = {
+    body?: CatalogItemDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/Items/Public/Count';
+};
+
+export type ItemsGetPublicStockItemsCountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type ItemsGetPublicStockItemsCountError = ItemsGetPublicStockItemsCountErrors[keyof ItemsGetPublicStockItemsCountErrors];
+
+export type ItemsGetPublicStockItemsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type ItemsGetPublicStockItemsCountResponse = ItemsGetPublicStockItemsCountResponses[keyof ItemsGetPublicStockItemsCountResponses];
+
+export type ItemsGetPublicStockItemByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6591,32 +6697,32 @@ export type GetExtendedStockItemByIdData = {
     query?: {
         'api-version'?: string;
     };
-    url: '/api/v2/CatalogService/Items/{itemId}/Extended';
+    url: '/api/v2/CatalogService/Items/Public/{itemId}';
 };
 
-export type GetExtendedStockItemByIdErrors = {
+export type ItemsGetPublicStockItemByIdErrors = {
     /**
-     * Unauthorized
+     * Bad Request
      */
-    401: ErrorEnvelopeReadable;
+    400: ErrorEnvelopeReadable;
     /**
-     * Forbidden
+     * Not Found
      */
-    403: ErrorEnvelopeReadable;
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedStockItemByIdError = GetExtendedStockItemByIdErrors[keyof GetExtendedStockItemByIdErrors];
+export type ItemsGetPublicStockItemByIdError = ItemsGetPublicStockItemByIdErrors[keyof ItemsGetPublicStockItemByIdErrors];
 
-export type GetExtendedStockItemByIdResponses = {
+export type ItemsGetPublicStockItemByIdResponses = {
     /**
      * OK
      */
     200: CatalogItemDtoEnvelopeReadable;
 };
 
-export type GetExtendedStockItemByIdResponse = GetExtendedStockItemByIdResponses[keyof GetExtendedStockItemByIdResponses];
+export type ItemsGetPublicStockItemByIdResponse = ItemsGetPublicStockItemByIdResponses[keyof ItemsGetPublicStockItemByIdResponses];
 
-export type BatchUpdateStockItemsData = {
+export type ItemsBatchUpdateStockItemsData = {
     body?: BatchStockItemUpdateRequest;
     headers?: {
         'x-api-version'?: string;
@@ -6629,7 +6735,7 @@ export type BatchUpdateStockItemsData = {
     url: '/api/v2/CatalogService/Items/Batch';
 };
 
-export type BatchUpdateStockItemsErrors = {
+export type ItemsBatchUpdateStockItemsErrors = {
     /**
      * Unauthorized
      */
@@ -6640,16 +6746,16 @@ export type BatchUpdateStockItemsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type BatchUpdateStockItemsError = BatchUpdateStockItemsErrors[keyof BatchUpdateStockItemsErrors];
+export type ItemsBatchUpdateStockItemsError = ItemsBatchUpdateStockItemsErrors[keyof ItemsBatchUpdateStockItemsErrors];
 
-export type BatchUpdateStockItemsResponses = {
+export type ItemsBatchUpdateStockItemsResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type BulkUpsertStockItemsData = {
+export type ItemsBulkUpsertStockItemsData = {
     body?: Array<BulkProduct>;
     headers?: {
         'x-api-version'?: string;
@@ -6662,7 +6768,7 @@ export type BulkUpsertStockItemsData = {
     url: '/api/v2/CatalogService/Items/BulkUpsert';
 };
 
-export type BulkUpsertStockItemsErrors = {
+export type ItemsBulkUpsertStockItemsErrors = {
     /**
      * Unauthorized
      */
@@ -6673,16 +6779,16 @@ export type BulkUpsertStockItemsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type BulkUpsertStockItemsError = BulkUpsertStockItemsErrors[keyof BulkUpsertStockItemsErrors];
+export type ItemsBulkUpsertStockItemsError = ItemsBulkUpsertStockItemsErrors[keyof ItemsBulkUpsertStockItemsErrors];
 
-export type BulkUpsertStockItemsResponses = {
+export type ItemsBulkUpsertStockItemsResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RecalculateStockItemPricesData = {
+export type ItemsRecalculateStockItemPricesData = {
     body?: Array<string>;
     headers?: {
         'x-api-version'?: string;
@@ -6695,7 +6801,7 @@ export type RecalculateStockItemPricesData = {
     url: '/api/v2/CatalogService/Items/RecalculatePrices';
 };
 
-export type RecalculateStockItemPricesErrors = {
+export type ItemsRecalculateStockItemPricesErrors = {
     /**
      * Unauthorized
      */
@@ -6706,16 +6812,16 @@ export type RecalculateStockItemPricesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RecalculateStockItemPricesError = RecalculateStockItemPricesErrors[keyof RecalculateStockItemPricesErrors];
+export type ItemsRecalculateStockItemPricesError = ItemsRecalculateStockItemPricesErrors[keyof ItemsRecalculateStockItemPricesErrors];
 
-export type RecalculateStockItemPricesResponses = {
+export type ItemsRecalculateStockItemPricesResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetStockItemTagsByItemIdData = {
+export type ItemsGetStockItemTagsByItemIdData = {
     body?: ItemTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6723,14 +6829,14 @@ export type GetStockItemTagsByItemIdData = {
     path: {
         itemId: string;
     };
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Tags';
 };
 
-export type GetStockItemTagsByItemIdErrors = {
+export type ItemsGetStockItemTagsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -6741,18 +6847,18 @@ export type GetStockItemTagsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemTagsByItemIdError = GetStockItemTagsByItemIdErrors[keyof GetStockItemTagsByItemIdErrors];
+export type ItemsGetStockItemTagsByItemIdError = ItemsGetStockItemTagsByItemIdErrors[keyof ItemsGetStockItemTagsByItemIdErrors];
 
-export type GetStockItemTagsByItemIdResponses = {
+export type ItemsGetStockItemTagsByItemIdResponses = {
     /**
      * OK
      */
     200: ItemTagDtoListEnvelopeReadable;
 };
 
-export type GetStockItemTagsByItemIdResponse = GetStockItemTagsByItemIdResponses[keyof GetStockItemTagsByItemIdResponses];
+export type ItemsGetStockItemTagsByItemIdResponse = ItemsGetStockItemTagsByItemIdResponses[keyof ItemsGetStockItemTagsByItemIdResponses];
 
-export type CountStockItemTagsByItemIdData = {
+export type ItemsCountStockItemTagsByItemIdData = {
     body?: ItemTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6760,14 +6866,14 @@ export type CountStockItemTagsByItemIdData = {
     path: {
         itemId: string;
     };
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Tags/Count';
 };
 
-export type CountStockItemTagsByItemIdErrors = {
+export type ItemsCountStockItemTagsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -6778,18 +6884,18 @@ export type CountStockItemTagsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountStockItemTagsByItemIdError = CountStockItemTagsByItemIdErrors[keyof CountStockItemTagsByItemIdErrors];
+export type ItemsCountStockItemTagsByItemIdError = ItemsCountStockItemTagsByItemIdErrors[keyof ItemsCountStockItemTagsByItemIdErrors];
 
-export type CountStockItemTagsByItemIdResponses = {
+export type ItemsCountStockItemTagsByItemIdResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountStockItemTagsByItemIdResponse = CountStockItemTagsByItemIdResponses[keyof CountStockItemTagsByItemIdResponses];
+export type ItemsCountStockItemTagsByItemIdResponse = ItemsCountStockItemTagsByItemIdResponses[keyof ItemsCountStockItemTagsByItemIdResponses];
 
-export type RemoveTagFromStockItemData = {
+export type ItemsRemoveTagFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6805,7 +6911,7 @@ export type RemoveTagFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Tags/{itemTagId}';
 };
 
-export type RemoveTagFromStockItemErrors = {
+export type ItemsRemoveTagFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6816,18 +6922,56 @@ export type RemoveTagFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveTagFromStockItemError = RemoveTagFromStockItemErrors[keyof RemoveTagFromStockItemErrors];
+export type ItemsRemoveTagFromStockItemError = ItemsRemoveTagFromStockItemErrors[keyof ItemsRemoveTagFromStockItemErrors];
 
-export type RemoveTagFromStockItemResponses = {
+export type ItemsRemoveTagFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemTagDtoEnvelopeReadable;
 };
 
-export type RemoveTagFromStockItemResponse = RemoveTagFromStockItemResponses[keyof RemoveTagFromStockItemResponses];
+export type ItemsRemoveTagFromStockItemResponse = ItemsRemoveTagFromStockItemResponses[keyof ItemsRemoveTagFromStockItemResponses];
 
-export type GetStockItemTagByIdData = {
+export type ItemsGetStockItemTagByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemId: string;
+        itemTagId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/Items/{itemId}/Tags/{itemTagId}';
+};
+
+export type ItemsGetStockItemTagByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ItemsGetStockItemTagByIdError = ItemsGetStockItemTagByIdErrors[keyof ItemsGetStockItemTagByIdErrors];
+
+export type ItemsGetStockItemTagByIdResponses = {
+    /**
+     * OK
+     */
+    200: ItemTagDtoEnvelopeReadable;
+};
+
+export type ItemsGetStockItemTagByIdResponse = ItemsGetStockItemTagByIdResponses[keyof ItemsGetStockItemTagByIdResponses];
+
+export type ItemsRelateTagToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6843,7 +6987,7 @@ export type GetStockItemTagByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Tags/{itemTagId}';
 };
 
-export type GetStockItemTagByIdErrors = {
+export type ItemsRelateTagToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6854,56 +6998,18 @@ export type GetStockItemTagByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemTagByIdError = GetStockItemTagByIdErrors[keyof GetStockItemTagByIdErrors];
+export type ItemsRelateTagToStockItemError = ItemsRelateTagToStockItemErrors[keyof ItemsRelateTagToStockItemErrors];
 
-export type GetStockItemTagByIdResponses = {
+export type ItemsRelateTagToStockItemResponses = {
     /**
      * OK
      */
     200: ItemTagDtoEnvelopeReadable;
 };
 
-export type GetStockItemTagByIdResponse = GetStockItemTagByIdResponses[keyof GetStockItemTagByIdResponses];
+export type ItemsRelateTagToStockItemResponse = ItemsRelateTagToStockItemResponses[keyof ItemsRelateTagToStockItemResponses];
 
-export type RelateTagToStockItemData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        itemId: string;
-        itemTagId: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/Items/{itemId}/Tags/{itemTagId}';
-};
-
-export type RelateTagToStockItemErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type RelateTagToStockItemError = RelateTagToStockItemErrors[keyof RelateTagToStockItemErrors];
-
-export type RelateTagToStockItemResponses = {
-    /**
-     * OK
-     */
-    200: ItemTagDtoEnvelopeReadable;
-};
-
-export type RelateTagToStockItemResponse = RelateTagToStockItemResponses[keyof RelateTagToStockItemResponses];
-
-export type GetStockItemTypesByItemIdData = {
+export type ItemsGetStockItemTypesByItemIdData = {
     body?: ItemTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6911,14 +7017,14 @@ export type GetStockItemTypesByItemIdData = {
     path: {
         itemId: string;
     };
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Types';
 };
 
-export type GetStockItemTypesByItemIdErrors = {
+export type ItemsGetStockItemTypesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -6929,18 +7035,18 @@ export type GetStockItemTypesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemTypesByItemIdError = GetStockItemTypesByItemIdErrors[keyof GetStockItemTypesByItemIdErrors];
+export type ItemsGetStockItemTypesByItemIdError = ItemsGetStockItemTypesByItemIdErrors[keyof ItemsGetStockItemTypesByItemIdErrors];
 
-export type GetStockItemTypesByItemIdResponses = {
+export type ItemsGetStockItemTypesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemTypeDtoListEnvelopeReadable;
 };
 
-export type GetStockItemTypesByItemIdResponse = GetStockItemTypesByItemIdResponses[keyof GetStockItemTypesByItemIdResponses];
+export type ItemsGetStockItemTypesByItemIdResponse = ItemsGetStockItemTypesByItemIdResponses[keyof ItemsGetStockItemTypesByItemIdResponses];
 
-export type RemoveTypeFromStockItemData = {
+export type ItemsRemoveTypeFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6956,7 +7062,7 @@ export type RemoveTypeFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Types/{itemTypeId}';
 };
 
-export type RemoveTypeFromStockItemErrors = {
+export type ItemsRemoveTypeFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -6967,18 +7073,56 @@ export type RemoveTypeFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveTypeFromStockItemError = RemoveTypeFromStockItemErrors[keyof RemoveTypeFromStockItemErrors];
+export type ItemsRemoveTypeFromStockItemError = ItemsRemoveTypeFromStockItemErrors[keyof ItemsRemoveTypeFromStockItemErrors];
 
-export type RemoveTypeFromStockItemResponses = {
+export type ItemsRemoveTypeFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemTypeDtoEnvelopeReadable;
 };
 
-export type RemoveTypeFromStockItemResponse = RemoveTypeFromStockItemResponses[keyof RemoveTypeFromStockItemResponses];
+export type ItemsRemoveTypeFromStockItemResponse = ItemsRemoveTypeFromStockItemResponses[keyof ItemsRemoveTypeFromStockItemResponses];
 
-export type GetStockItemTypeByIdData = {
+export type ItemsGetStockItemTypeByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemId: string;
+        itemTypeId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/Items/{itemId}/Types/{itemTypeId}';
+};
+
+export type ItemsGetStockItemTypeByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ItemsGetStockItemTypeByIdError = ItemsGetStockItemTypeByIdErrors[keyof ItemsGetStockItemTypeByIdErrors];
+
+export type ItemsGetStockItemTypeByIdResponses = {
+    /**
+     * OK
+     */
+    200: ItemTypeDtoEnvelopeReadable;
+};
+
+export type ItemsGetStockItemTypeByIdResponse = ItemsGetStockItemTypeByIdResponses[keyof ItemsGetStockItemTypeByIdResponses];
+
+export type ItemsRelateTypeToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6994,7 +7138,7 @@ export type GetStockItemTypeByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Types/{itemTypeId}';
 };
 
-export type GetStockItemTypeByIdErrors = {
+export type ItemsRelateTypeToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7005,56 +7149,18 @@ export type GetStockItemTypeByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemTypeByIdError = GetStockItemTypeByIdErrors[keyof GetStockItemTypeByIdErrors];
+export type ItemsRelateTypeToStockItemError = ItemsRelateTypeToStockItemErrors[keyof ItemsRelateTypeToStockItemErrors];
 
-export type GetStockItemTypeByIdResponses = {
+export type ItemsRelateTypeToStockItemResponses = {
     /**
      * OK
      */
     200: ItemTypeDtoEnvelopeReadable;
 };
 
-export type GetStockItemTypeByIdResponse = GetStockItemTypeByIdResponses[keyof GetStockItemTypeByIdResponses];
+export type ItemsRelateTypeToStockItemResponse = ItemsRelateTypeToStockItemResponses[keyof ItemsRelateTypeToStockItemResponses];
 
-export type RelateTypeToStockItemData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        itemId: string;
-        itemTypeId: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/Items/{itemId}/Types/{itemTypeId}';
-};
-
-export type RelateTypeToStockItemErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type RelateTypeToStockItemError = RelateTypeToStockItemErrors[keyof RelateTypeToStockItemErrors];
-
-export type RelateTypeToStockItemResponses = {
-    /**
-     * OK
-     */
-    200: ItemTypeDtoEnvelopeReadable;
-};
-
-export type RelateTypeToStockItemResponse = RelateTypeToStockItemResponses[keyof RelateTypeToStockItemResponses];
-
-export type GetProductPrimaryImageAsyncData = {
+export type ItemsGetProductPrimaryImageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7063,30 +7169,31 @@ export type GetProductPrimaryImageAsyncData = {
         itemId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Images/Primary';
 };
 
-export type GetProductPrimaryImageAsyncErrors = {
+export type ItemsGetProductPrimaryImageErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetProductPrimaryImageAsyncError = GetProductPrimaryImageAsyncErrors[keyof GetProductPrimaryImageAsyncErrors];
+export type ItemsGetProductPrimaryImageError = ItemsGetProductPrimaryImageErrors[keyof ItemsGetProductPrimaryImageErrors];
 
-export type GetProductPrimaryImageAsyncResponses = {
+export type ItemsGetProductPrimaryImageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetProductPrimaryImageAsyncResponse = GetProductPrimaryImageAsyncResponses[keyof GetProductPrimaryImageAsyncResponses];
+export type ItemsGetProductPrimaryImageResponse = ItemsGetProductPrimaryImageResponses[keyof ItemsGetProductPrimaryImageResponses];
 
-export type UpdateProductPrimaryImageAsyncData = {
+export type ItemsUpdateProductPrimaryImageData = {
     body?: {
         data?: Blob | File;
     };
@@ -7103,7 +7210,7 @@ export type UpdateProductPrimaryImageAsyncData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Images/Primary';
 };
 
-export type UpdateProductPrimaryImageAsyncErrors = {
+export type ItemsUpdateProductPrimaryImageErrors = {
     /**
      * Unauthorized
      */
@@ -7114,18 +7221,18 @@ export type UpdateProductPrimaryImageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateProductPrimaryImageAsyncError = UpdateProductPrimaryImageAsyncErrors[keyof UpdateProductPrimaryImageAsyncErrors];
+export type ItemsUpdateProductPrimaryImageError = ItemsUpdateProductPrimaryImageErrors[keyof ItemsUpdateProductPrimaryImageErrors];
 
-export type UpdateProductPrimaryImageAsyncResponses = {
+export type ItemsUpdateProductPrimaryImageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateProductPrimaryImageAsyncResponse = UpdateProductPrimaryImageAsyncResponses[keyof UpdateProductPrimaryImageAsyncResponses];
+export type ItemsUpdateProductPrimaryImageResponse = ItemsUpdateProductPrimaryImageResponses[keyof ItemsUpdateProductPrimaryImageResponses];
 
-export type GetStockItemImagesByItemIdData = {
+export type ItemsGetStockItemImagesByItemIdData = {
     body?: ItemImageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7134,12 +7241,13 @@ export type GetStockItemImagesByItemIdData = {
         itemId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Images';
 };
 
-export type GetStockItemImagesByItemIdErrors = {
+export type ItemsGetStockItemImagesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -7150,18 +7258,18 @@ export type GetStockItemImagesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemImagesByItemIdError = GetStockItemImagesByItemIdErrors[keyof GetStockItemImagesByItemIdErrors];
+export type ItemsGetStockItemImagesByItemIdError = ItemsGetStockItemImagesByItemIdErrors[keyof ItemsGetStockItemImagesByItemIdErrors];
 
-export type GetStockItemImagesByItemIdResponses = {
+export type ItemsGetStockItemImagesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemImageDtoListEnvelopeReadable;
 };
 
-export type GetStockItemImagesByItemIdResponse = GetStockItemImagesByItemIdResponses[keyof GetStockItemImagesByItemIdResponses];
+export type ItemsGetStockItemImagesByItemIdResponse = ItemsGetStockItemImagesByItemIdResponses[keyof ItemsGetStockItemImagesByItemIdResponses];
 
-export type RemoveImageFromStockItemData = {
+export type ItemsRemoveImageFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7177,7 +7285,7 @@ export type RemoveImageFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Images/{itemImageId}';
 };
 
-export type RemoveImageFromStockItemErrors = {
+export type ItemsRemoveImageFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7188,18 +7296,18 @@ export type RemoveImageFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveImageFromStockItemError = RemoveImageFromStockItemErrors[keyof RemoveImageFromStockItemErrors];
+export type ItemsRemoveImageFromStockItemError = ItemsRemoveImageFromStockItemErrors[keyof ItemsRemoveImageFromStockItemErrors];
 
-export type RemoveImageFromStockItemResponses = {
+export type ItemsRemoveImageFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemImageDtoEnvelopeReadable;
 };
 
-export type RemoveImageFromStockItemResponse = RemoveImageFromStockItemResponses[keyof RemoveImageFromStockItemResponses];
+export type ItemsRemoveImageFromStockItemResponse = ItemsRemoveImageFromStockItemResponses[keyof ItemsRemoveImageFromStockItemResponses];
 
-export type GetStockItemImageByIdData = {
+export type ItemsGetStockItemImageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7209,12 +7317,13 @@ export type GetStockItemImageByIdData = {
         itemImageId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Images/{itemImageId}';
 };
 
-export type GetStockItemImageByIdErrors = {
+export type ItemsGetStockItemImageByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7225,18 +7334,18 @@ export type GetStockItemImageByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemImageByIdError = GetStockItemImageByIdErrors[keyof GetStockItemImageByIdErrors];
+export type ItemsGetStockItemImageByIdError = ItemsGetStockItemImageByIdErrors[keyof ItemsGetStockItemImageByIdErrors];
 
-export type GetStockItemImageByIdResponses = {
+export type ItemsGetStockItemImageByIdResponses = {
     /**
      * OK
      */
     200: ItemImageDtoEnvelopeReadable;
 };
 
-export type GetStockItemImageByIdResponse = GetStockItemImageByIdResponses[keyof GetStockItemImageByIdResponses];
+export type ItemsGetStockItemImageByIdResponse = ItemsGetStockItemImageByIdResponses[keyof ItemsGetStockItemImageByIdResponses];
 
-export type RelateImageToStockItemData = {
+export type ItemsRelateImageToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7252,7 +7361,7 @@ export type RelateImageToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Images/{itemImageId}';
 };
 
-export type RelateImageToStockItemErrors = {
+export type ItemsRelateImageToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7263,18 +7372,18 @@ export type RelateImageToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateImageToStockItemError = RelateImageToStockItemErrors[keyof RelateImageToStockItemErrors];
+export type ItemsRelateImageToStockItemError = ItemsRelateImageToStockItemErrors[keyof ItemsRelateImageToStockItemErrors];
 
-export type RelateImageToStockItemResponses = {
+export type ItemsRelateImageToStockItemResponses = {
     /**
      * OK
      */
     200: ItemImageDtoEnvelopeReadable;
 };
 
-export type RelateImageToStockItemResponse = RelateImageToStockItemResponses[keyof RelateImageToStockItemResponses];
+export type ItemsRelateImageToStockItemResponse = ItemsRelateImageToStockItemResponses[keyof ItemsRelateImageToStockItemResponses];
 
-export type GetStockItemBrandsByItemIdData = {
+export type ItemsGetStockItemBrandsByItemIdData = {
     body?: ItemBrandDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7283,12 +7392,13 @@ export type GetStockItemBrandsByItemIdData = {
         itemId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Brands';
 };
 
-export type GetStockItemBrandsByItemIdErrors = {
+export type ItemsGetStockItemBrandsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -7299,18 +7409,18 @@ export type GetStockItemBrandsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemBrandsByItemIdError = GetStockItemBrandsByItemIdErrors[keyof GetStockItemBrandsByItemIdErrors];
+export type ItemsGetStockItemBrandsByItemIdError = ItemsGetStockItemBrandsByItemIdErrors[keyof ItemsGetStockItemBrandsByItemIdErrors];
 
-export type GetStockItemBrandsByItemIdResponses = {
+export type ItemsGetStockItemBrandsByItemIdResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoListEnvelopeReadable;
 };
 
-export type GetStockItemBrandsByItemIdResponse = GetStockItemBrandsByItemIdResponses[keyof GetStockItemBrandsByItemIdResponses];
+export type ItemsGetStockItemBrandsByItemIdResponse = ItemsGetStockItemBrandsByItemIdResponses[keyof ItemsGetStockItemBrandsByItemIdResponses];
 
-export type RemoveBrandFromStockItemData = {
+export type ItemsRemoveBrandFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7326,7 +7436,7 @@ export type RemoveBrandFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Brands/{itemBrandId}';
 };
 
-export type RemoveBrandFromStockItemErrors = {
+export type ItemsRemoveBrandFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7337,18 +7447,18 @@ export type RemoveBrandFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveBrandFromStockItemError = RemoveBrandFromStockItemErrors[keyof RemoveBrandFromStockItemErrors];
+export type ItemsRemoveBrandFromStockItemError = ItemsRemoveBrandFromStockItemErrors[keyof ItemsRemoveBrandFromStockItemErrors];
 
-export type RemoveBrandFromStockItemResponses = {
+export type ItemsRemoveBrandFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoEnvelopeReadable;
 };
 
-export type RemoveBrandFromStockItemResponse = RemoveBrandFromStockItemResponses[keyof RemoveBrandFromStockItemResponses];
+export type ItemsRemoveBrandFromStockItemResponse = ItemsRemoveBrandFromStockItemResponses[keyof ItemsRemoveBrandFromStockItemResponses];
 
-export type GetStockItemBrandByIdData = {
+export type ItemsGetStockItemBrandByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7358,12 +7468,13 @@ export type GetStockItemBrandByIdData = {
         itemBrandId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Brands/{itemBrandId}';
 };
 
-export type GetStockItemBrandByIdErrors = {
+export type ItemsGetStockItemBrandByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7374,18 +7485,18 @@ export type GetStockItemBrandByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemBrandByIdError = GetStockItemBrandByIdErrors[keyof GetStockItemBrandByIdErrors];
+export type ItemsGetStockItemBrandByIdError = ItemsGetStockItemBrandByIdErrors[keyof ItemsGetStockItemBrandByIdErrors];
 
-export type GetStockItemBrandByIdResponses = {
+export type ItemsGetStockItemBrandByIdResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoEnvelopeReadable;
 };
 
-export type GetStockItemBrandByIdResponse = GetStockItemBrandByIdResponses[keyof GetStockItemBrandByIdResponses];
+export type ItemsGetStockItemBrandByIdResponse = ItemsGetStockItemBrandByIdResponses[keyof ItemsGetStockItemBrandByIdResponses];
 
-export type RelateBrandToStockItemData = {
+export type ItemsRelateBrandToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7401,7 +7512,7 @@ export type RelateBrandToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Brands/{itemBrandId}';
 };
 
-export type RelateBrandToStockItemErrors = {
+export type ItemsRelateBrandToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7412,18 +7523,18 @@ export type RelateBrandToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateBrandToStockItemError = RelateBrandToStockItemErrors[keyof RelateBrandToStockItemErrors];
+export type ItemsRelateBrandToStockItemError = ItemsRelateBrandToStockItemErrors[keyof ItemsRelateBrandToStockItemErrors];
 
-export type RelateBrandToStockItemResponses = {
+export type ItemsRelateBrandToStockItemResponses = {
     /**
      * OK
      */
     200: ItemBrandDtoEnvelopeReadable;
 };
 
-export type RelateBrandToStockItemResponse = RelateBrandToStockItemResponses[keyof RelateBrandToStockItemResponses];
+export type ItemsRelateBrandToStockItemResponse = ItemsRelateBrandToStockItemResponses[keyof ItemsRelateBrandToStockItemResponses];
 
-export type GetStockItemReviewsByItemIdData = {
+export type ItemsGetStockItemReviewsByItemIdData = {
     body?: ItemReviewDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7437,7 +7548,7 @@ export type GetStockItemReviewsByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Reviews';
 };
 
-export type GetStockItemReviewsByItemIdErrors = {
+export type ItemsGetStockItemReviewsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -7448,18 +7559,18 @@ export type GetStockItemReviewsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemReviewsByItemIdError = GetStockItemReviewsByItemIdErrors[keyof GetStockItemReviewsByItemIdErrors];
+export type ItemsGetStockItemReviewsByItemIdError = ItemsGetStockItemReviewsByItemIdErrors[keyof ItemsGetStockItemReviewsByItemIdErrors];
 
-export type GetStockItemReviewsByItemIdResponses = {
+export type ItemsGetStockItemReviewsByItemIdResponses = {
     /**
      * OK
      */
     200: ItemReviewDtoListEnvelopeReadable;
 };
 
-export type GetStockItemReviewsByItemIdResponse = GetStockItemReviewsByItemIdResponses[keyof GetStockItemReviewsByItemIdResponses];
+export type ItemsGetStockItemReviewsByItemIdResponse = ItemsGetStockItemReviewsByItemIdResponses[keyof ItemsGetStockItemReviewsByItemIdResponses];
 
-export type RelateReviewToStockItemData = {
+export type ItemsRelateReviewToStockItemData = {
     body?: ItemReviewRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7474,7 +7585,7 @@ export type RelateReviewToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Reviews';
 };
 
-export type RelateReviewToStockItemErrors = {
+export type ItemsRelateReviewToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7485,18 +7596,18 @@ export type RelateReviewToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateReviewToStockItemError = RelateReviewToStockItemErrors[keyof RelateReviewToStockItemErrors];
+export type ItemsRelateReviewToStockItemError = ItemsRelateReviewToStockItemErrors[keyof ItemsRelateReviewToStockItemErrors];
 
-export type RelateReviewToStockItemResponses = {
+export type ItemsRelateReviewToStockItemResponses = {
     /**
      * OK
      */
     200: ItemReviewDtoEnvelopeReadable;
 };
 
-export type RelateReviewToStockItemResponse = RelateReviewToStockItemResponses[keyof RelateReviewToStockItemResponses];
+export type ItemsRelateReviewToStockItemResponse = ItemsRelateReviewToStockItemResponses[keyof ItemsRelateReviewToStockItemResponses];
 
-export type RemoveReviewFromStockItemData = {
+export type ItemsRemoveReviewFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7512,7 +7623,7 @@ export type RemoveReviewFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Reviews/{itemReviewId}';
 };
 
-export type RemoveReviewFromStockItemErrors = {
+export type ItemsRemoveReviewFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7523,18 +7634,18 @@ export type RemoveReviewFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveReviewFromStockItemError = RemoveReviewFromStockItemErrors[keyof RemoveReviewFromStockItemErrors];
+export type ItemsRemoveReviewFromStockItemError = ItemsRemoveReviewFromStockItemErrors[keyof ItemsRemoveReviewFromStockItemErrors];
 
-export type RemoveReviewFromStockItemResponses = {
+export type ItemsRemoveReviewFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemReviewDtoEnvelopeReadable;
 };
 
-export type RemoveReviewFromStockItemResponse = RemoveReviewFromStockItemResponses[keyof RemoveReviewFromStockItemResponses];
+export type ItemsRemoveReviewFromStockItemResponse = ItemsRemoveReviewFromStockItemResponses[keyof ItemsRemoveReviewFromStockItemResponses];
 
-export type GetStockItemReviewByIdData = {
+export type ItemsGetStockItemReviewByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7549,7 +7660,7 @@ export type GetStockItemReviewByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Reviews/{itemReviewId}';
 };
 
-export type GetStockItemReviewByIdErrors = {
+export type ItemsGetStockItemReviewByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7560,18 +7671,18 @@ export type GetStockItemReviewByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemReviewByIdError = GetStockItemReviewByIdErrors[keyof GetStockItemReviewByIdErrors];
+export type ItemsGetStockItemReviewByIdError = ItemsGetStockItemReviewByIdErrors[keyof ItemsGetStockItemReviewByIdErrors];
 
-export type GetStockItemReviewByIdResponses = {
+export type ItemsGetStockItemReviewByIdResponses = {
     /**
      * OK
      */
     200: ItemReviewDtoEnvelopeReadable;
 };
 
-export type GetStockItemReviewByIdResponse = GetStockItemReviewByIdResponses[keyof GetStockItemReviewByIdResponses];
+export type ItemsGetStockItemReviewByIdResponse = ItemsGetStockItemReviewByIdResponses[keyof ItemsGetStockItemReviewByIdResponses];
 
-export type GetStockItemQuestionsByItemIdData = {
+export type ItemsGetStockItemQuestionsByItemIdData = {
     body?: ItemQuestionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7580,12 +7691,13 @@ export type GetStockItemQuestionsByItemIdData = {
         itemId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Questions';
 };
 
-export type GetStockItemQuestionsByItemIdErrors = {
+export type ItemsGetStockItemQuestionsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -7596,18 +7708,18 @@ export type GetStockItemQuestionsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemQuestionsByItemIdError = GetStockItemQuestionsByItemIdErrors[keyof GetStockItemQuestionsByItemIdErrors];
+export type ItemsGetStockItemQuestionsByItemIdError = ItemsGetStockItemQuestionsByItemIdErrors[keyof ItemsGetStockItemQuestionsByItemIdErrors];
 
-export type GetStockItemQuestionsByItemIdResponses = {
+export type ItemsGetStockItemQuestionsByItemIdResponses = {
     /**
      * OK
      */
     200: ItemQuestionDtoListEnvelopeReadable;
 };
 
-export type GetStockItemQuestionsByItemIdResponse = GetStockItemQuestionsByItemIdResponses[keyof GetStockItemQuestionsByItemIdResponses];
+export type ItemsGetStockItemQuestionsByItemIdResponse = ItemsGetStockItemQuestionsByItemIdResponses[keyof ItemsGetStockItemQuestionsByItemIdResponses];
 
-export type RelateQuestionToStockItemData = {
+export type ItemsRelateQuestionToStockItemData = {
     body?: ItemQuestionRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7622,7 +7734,7 @@ export type RelateQuestionToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Questions';
 };
 
-export type RelateQuestionToStockItemErrors = {
+export type ItemsRelateQuestionToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7633,18 +7745,18 @@ export type RelateQuestionToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateQuestionToStockItemError = RelateQuestionToStockItemErrors[keyof RelateQuestionToStockItemErrors];
+export type ItemsRelateQuestionToStockItemError = ItemsRelateQuestionToStockItemErrors[keyof ItemsRelateQuestionToStockItemErrors];
 
-export type RelateQuestionToStockItemResponses = {
+export type ItemsRelateQuestionToStockItemResponses = {
     /**
      * OK
      */
     200: ItemQuestionDtoEnvelopeReadable;
 };
 
-export type RelateQuestionToStockItemResponse = RelateQuestionToStockItemResponses[keyof RelateQuestionToStockItemResponses];
+export type ItemsRelateQuestionToStockItemResponse = ItemsRelateQuestionToStockItemResponses[keyof ItemsRelateQuestionToStockItemResponses];
 
-export type RemoveQuestionFromStockItemData = {
+export type ItemsRemoveQuestionFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7660,7 +7772,7 @@ export type RemoveQuestionFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Questions/{itemQuestionId}';
 };
 
-export type RemoveQuestionFromStockItemErrors = {
+export type ItemsRemoveQuestionFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7671,18 +7783,18 @@ export type RemoveQuestionFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveQuestionFromStockItemError = RemoveQuestionFromStockItemErrors[keyof RemoveQuestionFromStockItemErrors];
+export type ItemsRemoveQuestionFromStockItemError = ItemsRemoveQuestionFromStockItemErrors[keyof ItemsRemoveQuestionFromStockItemErrors];
 
-export type RemoveQuestionFromStockItemResponses = {
+export type ItemsRemoveQuestionFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemQuestionDtoEnvelopeReadable;
 };
 
-export type RemoveQuestionFromStockItemResponse = RemoveQuestionFromStockItemResponses[keyof RemoveQuestionFromStockItemResponses];
+export type ItemsRemoveQuestionFromStockItemResponse = ItemsRemoveQuestionFromStockItemResponses[keyof ItemsRemoveQuestionFromStockItemResponses];
 
-export type GetStockItemQuestionByIdData = {
+export type ItemsGetStockItemQuestionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7692,12 +7804,13 @@ export type GetStockItemQuestionByIdData = {
         itemQuestionId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Questions/{itemQuestionId}';
 };
 
-export type GetStockItemQuestionByIdErrors = {
+export type ItemsGetStockItemQuestionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7708,18 +7821,18 @@ export type GetStockItemQuestionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemQuestionByIdError = GetStockItemQuestionByIdErrors[keyof GetStockItemQuestionByIdErrors];
+export type ItemsGetStockItemQuestionByIdError = ItemsGetStockItemQuestionByIdErrors[keyof ItemsGetStockItemQuestionByIdErrors];
 
-export type GetStockItemQuestionByIdResponses = {
+export type ItemsGetStockItemQuestionByIdResponses = {
     /**
      * OK
      */
     200: ItemQuestionDtoEnvelopeReadable;
 };
 
-export type GetStockItemQuestionByIdResponse = GetStockItemQuestionByIdResponses[keyof GetStockItemQuestionByIdResponses];
+export type ItemsGetStockItemQuestionByIdResponse = ItemsGetStockItemQuestionByIdResponses[keyof ItemsGetStockItemQuestionByIdResponses];
 
-export type GetStockItemCategoriesByItemIdData = {
+export type ItemsGetStockItemCategoriesByItemIdData = {
     body?: ItemCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7733,7 +7846,7 @@ export type GetStockItemCategoriesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Categories';
 };
 
-export type GetStockItemCategoriesByItemIdErrors = {
+export type ItemsGetStockItemCategoriesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -7744,18 +7857,18 @@ export type GetStockItemCategoriesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemCategoriesByItemIdError = GetStockItemCategoriesByItemIdErrors[keyof GetStockItemCategoriesByItemIdErrors];
+export type ItemsGetStockItemCategoriesByItemIdError = ItemsGetStockItemCategoriesByItemIdErrors[keyof ItemsGetStockItemCategoriesByItemIdErrors];
 
-export type GetStockItemCategoriesByItemIdResponses = {
+export type ItemsGetStockItemCategoriesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemCategoryDtoListEnvelopeReadable;
 };
 
-export type GetStockItemCategoriesByItemIdResponse = GetStockItemCategoriesByItemIdResponses[keyof GetStockItemCategoriesByItemIdResponses];
+export type ItemsGetStockItemCategoriesByItemIdResponse = ItemsGetStockItemCategoriesByItemIdResponses[keyof ItemsGetStockItemCategoriesByItemIdResponses];
 
-export type RemoveCategoryFromStockItemData = {
+export type ItemsRemoveCategoryFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7771,7 +7884,7 @@ export type RemoveCategoryFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Categories/{itemCategoryId}';
 };
 
-export type RemoveCategoryFromStockItemErrors = {
+export type ItemsRemoveCategoryFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7782,18 +7895,18 @@ export type RemoveCategoryFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveCategoryFromStockItemError = RemoveCategoryFromStockItemErrors[keyof RemoveCategoryFromStockItemErrors];
+export type ItemsRemoveCategoryFromStockItemError = ItemsRemoveCategoryFromStockItemErrors[keyof ItemsRemoveCategoryFromStockItemErrors];
 
-export type RemoveCategoryFromStockItemResponses = {
+export type ItemsRemoveCategoryFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemCategoryDtoEnvelopeReadable;
 };
 
-export type RemoveCategoryFromStockItemResponse = RemoveCategoryFromStockItemResponses[keyof RemoveCategoryFromStockItemResponses];
+export type ItemsRemoveCategoryFromStockItemResponse = ItemsRemoveCategoryFromStockItemResponses[keyof ItemsRemoveCategoryFromStockItemResponses];
 
-export type GetStockItemCategoryByIdData = {
+export type ItemsGetStockItemCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7803,12 +7916,13 @@ export type GetStockItemCategoryByIdData = {
         itemCategoryId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Categories/{itemCategoryId}';
 };
 
-export type GetStockItemCategoryByIdErrors = {
+export type ItemsGetStockItemCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7819,18 +7933,18 @@ export type GetStockItemCategoryByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemCategoryByIdError = GetStockItemCategoryByIdErrors[keyof GetStockItemCategoryByIdErrors];
+export type ItemsGetStockItemCategoryByIdError = ItemsGetStockItemCategoryByIdErrors[keyof ItemsGetStockItemCategoryByIdErrors];
 
-export type GetStockItemCategoryByIdResponses = {
+export type ItemsGetStockItemCategoryByIdResponses = {
     /**
      * OK
      */
     200: ItemCategoryDtoEnvelopeReadable;
 };
 
-export type GetStockItemCategoryByIdResponse = GetStockItemCategoryByIdResponses[keyof GetStockItemCategoryByIdResponses];
+export type ItemsGetStockItemCategoryByIdResponse = ItemsGetStockItemCategoryByIdResponses[keyof ItemsGetStockItemCategoryByIdResponses];
 
-export type RelateCategoryToStockItemData = {
+export type ItemsRelateCategoryToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7846,7 +7960,7 @@ export type RelateCategoryToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Categories/{itemCategoryId}';
 };
 
-export type RelateCategoryToStockItemErrors = {
+export type ItemsRelateCategoryToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7857,18 +7971,18 @@ export type RelateCategoryToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateCategoryToStockItemError = RelateCategoryToStockItemErrors[keyof RelateCategoryToStockItemErrors];
+export type ItemsRelateCategoryToStockItemError = ItemsRelateCategoryToStockItemErrors[keyof ItemsRelateCategoryToStockItemErrors];
 
-export type RelateCategoryToStockItemResponses = {
+export type ItemsRelateCategoryToStockItemResponses = {
     /**
      * OK
      */
     200: ItemCategoryDtoEnvelopeReadable;
 };
 
-export type RelateCategoryToStockItemResponse = RelateCategoryToStockItemResponses[keyof RelateCategoryToStockItemResponses];
+export type ItemsRelateCategoryToStockItemResponse = ItemsRelateCategoryToStockItemResponses[keyof ItemsRelateCategoryToStockItemResponses];
 
-export type GetStockItemAttachmentsByItemIdData = {
+export type ItemsGetStockItemAttachmentsByItemIdData = {
     body?: ItemAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7877,12 +7991,13 @@ export type GetStockItemAttachmentsByItemIdData = {
         itemId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Attachments';
 };
 
-export type GetStockItemAttachmentsByItemIdErrors = {
+export type ItemsGetStockItemAttachmentsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -7893,18 +8008,18 @@ export type GetStockItemAttachmentsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemAttachmentsByItemIdError = GetStockItemAttachmentsByItemIdErrors[keyof GetStockItemAttachmentsByItemIdErrors];
+export type ItemsGetStockItemAttachmentsByItemIdError = ItemsGetStockItemAttachmentsByItemIdErrors[keyof ItemsGetStockItemAttachmentsByItemIdErrors];
 
-export type GetStockItemAttachmentsByItemIdResponses = {
+export type ItemsGetStockItemAttachmentsByItemIdResponses = {
     /**
      * OK
      */
     200: ItemAttachmentDtoListEnvelopeReadable;
 };
 
-export type GetStockItemAttachmentsByItemIdResponse = GetStockItemAttachmentsByItemIdResponses[keyof GetStockItemAttachmentsByItemIdResponses];
+export type ItemsGetStockItemAttachmentsByItemIdResponse = ItemsGetStockItemAttachmentsByItemIdResponses[keyof ItemsGetStockItemAttachmentsByItemIdResponses];
 
-export type RemoveAttachmentFromStockItemData = {
+export type ItemsRemoveAttachmentFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7920,7 +8035,7 @@ export type RemoveAttachmentFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Attachments/{itemAttachmentId}';
 };
 
-export type RemoveAttachmentFromStockItemErrors = {
+export type ItemsRemoveAttachmentFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -7931,18 +8046,18 @@ export type RemoveAttachmentFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveAttachmentFromStockItemError = RemoveAttachmentFromStockItemErrors[keyof RemoveAttachmentFromStockItemErrors];
+export type ItemsRemoveAttachmentFromStockItemError = ItemsRemoveAttachmentFromStockItemErrors[keyof ItemsRemoveAttachmentFromStockItemErrors];
 
-export type RemoveAttachmentFromStockItemResponses = {
+export type ItemsRemoveAttachmentFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemAttachmentDtoEnvelopeReadable;
 };
 
-export type RemoveAttachmentFromStockItemResponse = RemoveAttachmentFromStockItemResponses[keyof RemoveAttachmentFromStockItemResponses];
+export type ItemsRemoveAttachmentFromStockItemResponse = ItemsRemoveAttachmentFromStockItemResponses[keyof ItemsRemoveAttachmentFromStockItemResponses];
 
-export type GetStockItemAttachmentByIdData = {
+export type ItemsGetStockItemAttachmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7952,12 +8067,13 @@ export type GetStockItemAttachmentByIdData = {
         itemAttachmentId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Attachments/{itemAttachmentId}';
 };
 
-export type GetStockItemAttachmentByIdErrors = {
+export type ItemsGetStockItemAttachmentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7968,18 +8084,18 @@ export type GetStockItemAttachmentByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemAttachmentByIdError = GetStockItemAttachmentByIdErrors[keyof GetStockItemAttachmentByIdErrors];
+export type ItemsGetStockItemAttachmentByIdError = ItemsGetStockItemAttachmentByIdErrors[keyof ItemsGetStockItemAttachmentByIdErrors];
 
-export type GetStockItemAttachmentByIdResponses = {
+export type ItemsGetStockItemAttachmentByIdResponses = {
     /**
      * OK
      */
     200: ItemAttachmentDtoEnvelopeReadable;
 };
 
-export type GetStockItemAttachmentByIdResponse = GetStockItemAttachmentByIdResponses[keyof GetStockItemAttachmentByIdResponses];
+export type ItemsGetStockItemAttachmentByIdResponse = ItemsGetStockItemAttachmentByIdResponses[keyof ItemsGetStockItemAttachmentByIdResponses];
 
-export type RelateAttachmentToStockItemData = {
+export type ItemsRelateAttachmentToStockItemData = {
     body?: ItemAttachmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7995,7 +8111,7 @@ export type RelateAttachmentToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/Attachments/{itemAttachmentId}';
 };
 
-export type RelateAttachmentToStockItemErrors = {
+export type ItemsRelateAttachmentToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8006,18 +8122,18 @@ export type RelateAttachmentToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateAttachmentToStockItemError = RelateAttachmentToStockItemErrors[keyof RelateAttachmentToStockItemErrors];
+export type ItemsRelateAttachmentToStockItemError = ItemsRelateAttachmentToStockItemErrors[keyof ItemsRelateAttachmentToStockItemErrors];
 
-export type RelateAttachmentToStockItemResponses = {
+export type ItemsRelateAttachmentToStockItemResponses = {
     /**
      * OK
      */
     200: ItemAttachmentDtoEnvelopeReadable;
 };
 
-export type RelateAttachmentToStockItemResponse = RelateAttachmentToStockItemResponses[keyof RelateAttachmentToStockItemResponses];
+export type ItemsRelateAttachmentToStockItemResponse = ItemsRelateAttachmentToStockItemResponses[keyof ItemsRelateAttachmentToStockItemResponses];
 
-export type GetStockItemTaxPoliciesByItemIdData = {
+export type ItemsGetStockItemTaxPoliciesByItemIdData = {
     body?: ItemTaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8031,7 +8147,7 @@ export type GetStockItemTaxPoliciesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/TaxPolicies';
 };
 
-export type GetStockItemTaxPoliciesByItemIdErrors = {
+export type ItemsGetStockItemTaxPoliciesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8042,18 +8158,18 @@ export type GetStockItemTaxPoliciesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemTaxPoliciesByItemIdError = GetStockItemTaxPoliciesByItemIdErrors[keyof GetStockItemTaxPoliciesByItemIdErrors];
+export type ItemsGetStockItemTaxPoliciesByItemIdError = ItemsGetStockItemTaxPoliciesByItemIdErrors[keyof ItemsGetStockItemTaxPoliciesByItemIdErrors];
 
-export type GetStockItemTaxPoliciesByItemIdResponses = {
+export type ItemsGetStockItemTaxPoliciesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyDtoListEnvelopeReadable;
 };
 
-export type GetStockItemTaxPoliciesByItemIdResponse = GetStockItemTaxPoliciesByItemIdResponses[keyof GetStockItemTaxPoliciesByItemIdResponses];
+export type ItemsGetStockItemTaxPoliciesByItemIdResponse = ItemsGetStockItemTaxPoliciesByItemIdResponses[keyof ItemsGetStockItemTaxPoliciesByItemIdResponses];
 
-export type RemoveTaxPolicyFromStockItemData = {
+export type ItemsRemoveTaxPolicyFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8069,7 +8185,7 @@ export type RemoveTaxPolicyFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/TaxPolicies/{itemTaxPolicyId}';
 };
 
-export type RemoveTaxPolicyFromStockItemErrors = {
+export type ItemsRemoveTaxPolicyFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8080,18 +8196,18 @@ export type RemoveTaxPolicyFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveTaxPolicyFromStockItemError = RemoveTaxPolicyFromStockItemErrors[keyof RemoveTaxPolicyFromStockItemErrors];
+export type ItemsRemoveTaxPolicyFromStockItemError = ItemsRemoveTaxPolicyFromStockItemErrors[keyof ItemsRemoveTaxPolicyFromStockItemErrors];
 
-export type RemoveTaxPolicyFromStockItemResponses = {
+export type ItemsRemoveTaxPolicyFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyDtoEnvelopeReadable;
 };
 
-export type RemoveTaxPolicyFromStockItemResponse = RemoveTaxPolicyFromStockItemResponses[keyof RemoveTaxPolicyFromStockItemResponses];
+export type ItemsRemoveTaxPolicyFromStockItemResponse = ItemsRemoveTaxPolicyFromStockItemResponses[keyof ItemsRemoveTaxPolicyFromStockItemResponses];
 
-export type GetStockItemTaxPolicyByIdData = {
+export type ItemsGetStockItemTaxPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8106,7 +8222,7 @@ export type GetStockItemTaxPolicyByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/TaxPolicies/{itemTaxPolicyId}';
 };
 
-export type GetStockItemTaxPolicyByIdErrors = {
+export type ItemsGetStockItemTaxPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8117,18 +8233,18 @@ export type GetStockItemTaxPolicyByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemTaxPolicyByIdError = GetStockItemTaxPolicyByIdErrors[keyof GetStockItemTaxPolicyByIdErrors];
+export type ItemsGetStockItemTaxPolicyByIdError = ItemsGetStockItemTaxPolicyByIdErrors[keyof ItemsGetStockItemTaxPolicyByIdErrors];
 
-export type GetStockItemTaxPolicyByIdResponses = {
+export type ItemsGetStockItemTaxPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyDtoEnvelopeReadable;
 };
 
-export type GetStockItemTaxPolicyByIdResponse = GetStockItemTaxPolicyByIdResponses[keyof GetStockItemTaxPolicyByIdResponses];
+export type ItemsGetStockItemTaxPolicyByIdResponse = ItemsGetStockItemTaxPolicyByIdResponses[keyof ItemsGetStockItemTaxPolicyByIdResponses];
 
-export type RelateTaxPolicyToStockItemData = {
+export type ItemsRelateTaxPolicyToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8144,7 +8260,7 @@ export type RelateTaxPolicyToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/TaxPolicies/{itemTaxPolicyId}';
 };
 
-export type RelateTaxPolicyToStockItemErrors = {
+export type ItemsRelateTaxPolicyToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8155,18 +8271,18 @@ export type RelateTaxPolicyToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateTaxPolicyToStockItemError = RelateTaxPolicyToStockItemErrors[keyof RelateTaxPolicyToStockItemErrors];
+export type ItemsRelateTaxPolicyToStockItemError = ItemsRelateTaxPolicyToStockItemErrors[keyof ItemsRelateTaxPolicyToStockItemErrors];
 
-export type RelateTaxPolicyToStockItemResponses = {
+export type ItemsRelateTaxPolicyToStockItemResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyDtoEnvelopeReadable;
 };
 
-export type RelateTaxPolicyToStockItemResponse = RelateTaxPolicyToStockItemResponses[keyof RelateTaxPolicyToStockItemResponses];
+export type ItemsRelateTaxPolicyToStockItemResponse = ItemsRelateTaxPolicyToStockItemResponses[keyof ItemsRelateTaxPolicyToStockItemResponses];
 
-export type GetStockItemPriceRulesByItemIdData = {
+export type ItemsGetStockItemPriceRulesByItemIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8180,7 +8296,7 @@ export type GetStockItemPriceRulesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/PriceRules';
 };
 
-export type GetStockItemPriceRulesByItemIdErrors = {
+export type ItemsGetStockItemPriceRulesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8191,18 +8307,18 @@ export type GetStockItemPriceRulesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemPriceRulesByItemIdError = GetStockItemPriceRulesByItemIdErrors[keyof GetStockItemPriceRulesByItemIdErrors];
+export type ItemsGetStockItemPriceRulesByItemIdError = ItemsGetStockItemPriceRulesByItemIdErrors[keyof ItemsGetStockItemPriceRulesByItemIdErrors];
 
-export type GetStockItemPriceRulesByItemIdResponses = {
+export type ItemsGetStockItemPriceRulesByItemIdResponses = {
     /**
      * OK
      */
     200: PricingRuleDtoListEnvelopeReadable;
 };
 
-export type GetStockItemPriceRulesByItemIdResponse = GetStockItemPriceRulesByItemIdResponses[keyof GetStockItemPriceRulesByItemIdResponses];
+export type ItemsGetStockItemPriceRulesByItemIdResponse = ItemsGetStockItemPriceRulesByItemIdResponses[keyof ItemsGetStockItemPriceRulesByItemIdResponses];
 
-export type RemovePriceRuleFromStockItemData = {
+export type ItemsRemovePriceRuleFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8217,7 +8333,7 @@ export type RemovePriceRuleFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/PriceRules/{itemPriceRuleId}';
 };
 
-export type RemovePriceRuleFromStockItemErrors = {
+export type ItemsRemovePriceRuleFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8228,18 +8344,18 @@ export type RemovePriceRuleFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemovePriceRuleFromStockItemError = RemovePriceRuleFromStockItemErrors[keyof RemovePriceRuleFromStockItemErrors];
+export type ItemsRemovePriceRuleFromStockItemError = ItemsRemovePriceRuleFromStockItemErrors[keyof ItemsRemovePriceRuleFromStockItemErrors];
 
-export type RemovePriceRuleFromStockItemResponses = {
+export type ItemsRemovePriceRuleFromStockItemResponses = {
     /**
      * OK
      */
     200: PricingRuleDtoEnvelopeReadable;
 };
 
-export type RemovePriceRuleFromStockItemResponse = RemovePriceRuleFromStockItemResponses[keyof RemovePriceRuleFromStockItemResponses];
+export type ItemsRemovePriceRuleFromStockItemResponse = ItemsRemovePriceRuleFromStockItemResponses[keyof ItemsRemovePriceRuleFromStockItemResponses];
 
-export type GetStockItemPriceRuleByIdData = {
+export type ItemsGetStockItemPriceRuleByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8254,7 +8370,7 @@ export type GetStockItemPriceRuleByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/PriceRules/{itemPriceRuleId}';
 };
 
-export type GetStockItemPriceRuleByIdErrors = {
+export type ItemsGetStockItemPriceRuleByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8265,18 +8381,18 @@ export type GetStockItemPriceRuleByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemPriceRuleByIdError = GetStockItemPriceRuleByIdErrors[keyof GetStockItemPriceRuleByIdErrors];
+export type ItemsGetStockItemPriceRuleByIdError = ItemsGetStockItemPriceRuleByIdErrors[keyof ItemsGetStockItemPriceRuleByIdErrors];
 
-export type GetStockItemPriceRuleByIdResponses = {
+export type ItemsGetStockItemPriceRuleByIdResponses = {
     /**
      * OK
      */
     200: PricingRuleDtoEnvelopeReadable;
 };
 
-export type GetStockItemPriceRuleByIdResponse = GetStockItemPriceRuleByIdResponses[keyof GetStockItemPriceRuleByIdResponses];
+export type ItemsGetStockItemPriceRuleByIdResponse = ItemsGetStockItemPriceRuleByIdResponses[keyof ItemsGetStockItemPriceRuleByIdResponses];
 
-export type RelatePriceRuleToStockItemData = {
+export type ItemsRelatePriceRuleToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8291,7 +8407,7 @@ export type RelatePriceRuleToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/PriceRules/{itemPriceRuleId}';
 };
 
-export type RelatePriceRuleToStockItemErrors = {
+export type ItemsRelatePriceRuleToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8302,18 +8418,18 @@ export type RelatePriceRuleToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelatePriceRuleToStockItemError = RelatePriceRuleToStockItemErrors[keyof RelatePriceRuleToStockItemErrors];
+export type ItemsRelatePriceRuleToStockItemError = ItemsRelatePriceRuleToStockItemErrors[keyof ItemsRelatePriceRuleToStockItemErrors];
 
-export type RelatePriceRuleToStockItemResponses = {
+export type ItemsRelatePriceRuleToStockItemResponses = {
     /**
      * OK
      */
     200: PricingRuleDtoEnvelopeReadable;
 };
 
-export type RelatePriceRuleToStockItemResponse = RelatePriceRuleToStockItemResponses[keyof RelatePriceRuleToStockItemResponses];
+export type ItemsRelatePriceRuleToStockItemResponse = ItemsRelatePriceRuleToStockItemResponses[keyof ItemsRelatePriceRuleToStockItemResponses];
 
-export type GetStockItemReturnPoliciesByItemIdData = {
+export type ItemsGetStockItemReturnPoliciesByItemIdData = {
     body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8327,7 +8443,7 @@ export type GetStockItemReturnPoliciesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ReturnPolicies';
 };
 
-export type GetStockItemReturnPoliciesByItemIdErrors = {
+export type ItemsGetStockItemReturnPoliciesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8338,18 +8454,18 @@ export type GetStockItemReturnPoliciesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemReturnPoliciesByItemIdError = GetStockItemReturnPoliciesByItemIdErrors[keyof GetStockItemReturnPoliciesByItemIdErrors];
+export type ItemsGetStockItemReturnPoliciesByItemIdError = ItemsGetStockItemReturnPoliciesByItemIdErrors[keyof ItemsGetStockItemReturnPoliciesByItemIdErrors];
 
-export type GetStockItemReturnPoliciesByItemIdResponses = {
+export type ItemsGetStockItemReturnPoliciesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoListEnvelopeReadable;
 };
 
-export type GetStockItemReturnPoliciesByItemIdResponse = GetStockItemReturnPoliciesByItemIdResponses[keyof GetStockItemReturnPoliciesByItemIdResponses];
+export type ItemsGetStockItemReturnPoliciesByItemIdResponse = ItemsGetStockItemReturnPoliciesByItemIdResponses[keyof ItemsGetStockItemReturnPoliciesByItemIdResponses];
 
-export type RemoveReturnPolicyFromStockItemData = {
+export type ItemsRemoveReturnPolicyFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8365,7 +8481,7 @@ export type RemoveReturnPolicyFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ReturnPolicies/{itemReturnPolicyId}';
 };
 
-export type RemoveReturnPolicyFromStockItemErrors = {
+export type ItemsRemoveReturnPolicyFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8376,18 +8492,18 @@ export type RemoveReturnPolicyFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveReturnPolicyFromStockItemError = RemoveReturnPolicyFromStockItemErrors[keyof RemoveReturnPolicyFromStockItemErrors];
+export type ItemsRemoveReturnPolicyFromStockItemError = ItemsRemoveReturnPolicyFromStockItemErrors[keyof ItemsRemoveReturnPolicyFromStockItemErrors];
 
-export type RemoveReturnPolicyFromStockItemResponses = {
+export type ItemsRemoveReturnPolicyFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoEnvelopeReadable;
 };
 
-export type RemoveReturnPolicyFromStockItemResponse = RemoveReturnPolicyFromStockItemResponses[keyof RemoveReturnPolicyFromStockItemResponses];
+export type ItemsRemoveReturnPolicyFromStockItemResponse = ItemsRemoveReturnPolicyFromStockItemResponses[keyof ItemsRemoveReturnPolicyFromStockItemResponses];
 
-export type GetStockItemReturnPolicyByIdData = {
+export type ItemsGetStockItemReturnPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8402,7 +8518,7 @@ export type GetStockItemReturnPolicyByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ReturnPolicies/{itemReturnPolicyId}';
 };
 
-export type GetStockItemReturnPolicyByIdErrors = {
+export type ItemsGetStockItemReturnPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8413,18 +8529,18 @@ export type GetStockItemReturnPolicyByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemReturnPolicyByIdError = GetStockItemReturnPolicyByIdErrors[keyof GetStockItemReturnPolicyByIdErrors];
+export type ItemsGetStockItemReturnPolicyByIdError = ItemsGetStockItemReturnPolicyByIdErrors[keyof ItemsGetStockItemReturnPolicyByIdErrors];
 
-export type GetStockItemReturnPolicyByIdResponses = {
+export type ItemsGetStockItemReturnPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoEnvelopeReadable;
 };
 
-export type GetStockItemReturnPolicyByIdResponse = GetStockItemReturnPolicyByIdResponses[keyof GetStockItemReturnPolicyByIdResponses];
+export type ItemsGetStockItemReturnPolicyByIdResponse = ItemsGetStockItemReturnPolicyByIdResponses[keyof ItemsGetStockItemReturnPolicyByIdResponses];
 
-export type RelateReturnPolicyToStockItemData = {
+export type ItemsRelateReturnPolicyToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8440,7 +8556,7 @@ export type RelateReturnPolicyToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ReturnPolicies/{itemReturnPolicyId}';
 };
 
-export type RelateReturnPolicyToStockItemErrors = {
+export type ItemsRelateReturnPolicyToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8451,18 +8567,18 @@ export type RelateReturnPolicyToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateReturnPolicyToStockItemError = RelateReturnPolicyToStockItemErrors[keyof RelateReturnPolicyToStockItemErrors];
+export type ItemsRelateReturnPolicyToStockItemError = ItemsRelateReturnPolicyToStockItemErrors[keyof ItemsRelateReturnPolicyToStockItemErrors];
 
-export type RelateReturnPolicyToStockItemResponses = {
+export type ItemsRelateReturnPolicyToStockItemResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoEnvelopeReadable;
 };
 
-export type RelateReturnPolicyToStockItemResponse = RelateReturnPolicyToStockItemResponses[keyof RelateReturnPolicyToStockItemResponses];
+export type ItemsRelateReturnPolicyToStockItemResponse = ItemsRelateReturnPolicyToStockItemResponses[keyof ItemsRelateReturnPolicyToStockItemResponses];
 
-export type GetStockItemRefundPoliciesByItemIdData = {
+export type ItemsGetStockItemRefundPoliciesByItemIdData = {
     body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8476,7 +8592,7 @@ export type GetStockItemRefundPoliciesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/RefundPolicies';
 };
 
-export type GetStockItemRefundPoliciesByItemIdErrors = {
+export type ItemsGetStockItemRefundPoliciesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8487,18 +8603,18 @@ export type GetStockItemRefundPoliciesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemRefundPoliciesByItemIdError = GetStockItemRefundPoliciesByItemIdErrors[keyof GetStockItemRefundPoliciesByItemIdErrors];
+export type ItemsGetStockItemRefundPoliciesByItemIdError = ItemsGetStockItemRefundPoliciesByItemIdErrors[keyof ItemsGetStockItemRefundPoliciesByItemIdErrors];
 
-export type GetStockItemRefundPoliciesByItemIdResponses = {
+export type ItemsGetStockItemRefundPoliciesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoListEnvelopeReadable;
 };
 
-export type GetStockItemRefundPoliciesByItemIdResponse = GetStockItemRefundPoliciesByItemIdResponses[keyof GetStockItemRefundPoliciesByItemIdResponses];
+export type ItemsGetStockItemRefundPoliciesByItemIdResponse = ItemsGetStockItemRefundPoliciesByItemIdResponses[keyof ItemsGetStockItemRefundPoliciesByItemIdResponses];
 
-export type RemoveRefundPolicyFromStockItemData = {
+export type ItemsRemoveRefundPolicyFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8514,7 +8630,7 @@ export type RemoveRefundPolicyFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/RefundPolicies/{itemRefundPolicyId}';
 };
 
-export type RemoveRefundPolicyFromStockItemErrors = {
+export type ItemsRemoveRefundPolicyFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8525,18 +8641,18 @@ export type RemoveRefundPolicyFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveRefundPolicyFromStockItemError = RemoveRefundPolicyFromStockItemErrors[keyof RemoveRefundPolicyFromStockItemErrors];
+export type ItemsRemoveRefundPolicyFromStockItemError = ItemsRemoveRefundPolicyFromStockItemErrors[keyof ItemsRemoveRefundPolicyFromStockItemErrors];
 
-export type RemoveRefundPolicyFromStockItemResponses = {
+export type ItemsRemoveRefundPolicyFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoEnvelopeReadable;
 };
 
-export type RemoveRefundPolicyFromStockItemResponse = RemoveRefundPolicyFromStockItemResponses[keyof RemoveRefundPolicyFromStockItemResponses];
+export type ItemsRemoveRefundPolicyFromStockItemResponse = ItemsRemoveRefundPolicyFromStockItemResponses[keyof ItemsRemoveRefundPolicyFromStockItemResponses];
 
-export type GetStockItemRefundPolicyByIdData = {
+export type ItemsGetStockItemRefundPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8551,7 +8667,7 @@ export type GetStockItemRefundPolicyByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/RefundPolicies/{itemRefundPolicyId}';
 };
 
-export type GetStockItemRefundPolicyByIdErrors = {
+export type ItemsGetStockItemRefundPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8562,18 +8678,18 @@ export type GetStockItemRefundPolicyByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemRefundPolicyByIdError = GetStockItemRefundPolicyByIdErrors[keyof GetStockItemRefundPolicyByIdErrors];
+export type ItemsGetStockItemRefundPolicyByIdError = ItemsGetStockItemRefundPolicyByIdErrors[keyof ItemsGetStockItemRefundPolicyByIdErrors];
 
-export type GetStockItemRefundPolicyByIdResponses = {
+export type ItemsGetStockItemRefundPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoEnvelopeReadable;
 };
 
-export type GetStockItemRefundPolicyByIdResponse = GetStockItemRefundPolicyByIdResponses[keyof GetStockItemRefundPolicyByIdResponses];
+export type ItemsGetStockItemRefundPolicyByIdResponse = ItemsGetStockItemRefundPolicyByIdResponses[keyof ItemsGetStockItemRefundPolicyByIdResponses];
 
-export type RelateRefundPolicyToStockItemData = {
+export type ItemsRelateRefundPolicyToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8589,7 +8705,7 @@ export type RelateRefundPolicyToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/RefundPolicies/{itemRefundPolicyId}';
 };
 
-export type RelateRefundPolicyToStockItemErrors = {
+export type ItemsRelateRefundPolicyToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8600,18 +8716,18 @@ export type RelateRefundPolicyToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateRefundPolicyToStockItemError = RelateRefundPolicyToStockItemErrors[keyof RelateRefundPolicyToStockItemErrors];
+export type ItemsRelateRefundPolicyToStockItemError = ItemsRelateRefundPolicyToStockItemErrors[keyof ItemsRelateRefundPolicyToStockItemErrors];
 
-export type RelateRefundPolicyToStockItemResponses = {
+export type ItemsRelateRefundPolicyToStockItemResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoEnvelopeReadable;
 };
 
-export type RelateRefundPolicyToStockItemResponse = RelateRefundPolicyToStockItemResponses[keyof RelateRefundPolicyToStockItemResponses];
+export type ItemsRelateRefundPolicyToStockItemResponse = ItemsRelateRefundPolicyToStockItemResponses[keyof ItemsRelateRefundPolicyToStockItemResponses];
 
-export type GetStockItemShippingPoliciesByItemIdData = {
+export type ItemsGetStockItemShippingPoliciesByItemIdData = {
     body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8625,7 +8741,7 @@ export type GetStockItemShippingPoliciesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ShippingPolicies';
 };
 
-export type GetStockItemShippingPoliciesByItemIdErrors = {
+export type ItemsGetStockItemShippingPoliciesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8636,18 +8752,18 @@ export type GetStockItemShippingPoliciesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemShippingPoliciesByItemIdError = GetStockItemShippingPoliciesByItemIdErrors[keyof GetStockItemShippingPoliciesByItemIdErrors];
+export type ItemsGetStockItemShippingPoliciesByItemIdError = ItemsGetStockItemShippingPoliciesByItemIdErrors[keyof ItemsGetStockItemShippingPoliciesByItemIdErrors];
 
-export type GetStockItemShippingPoliciesByItemIdResponses = {
+export type ItemsGetStockItemShippingPoliciesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoListEnvelopeReadable;
 };
 
-export type GetStockItemShippingPoliciesByItemIdResponse = GetStockItemShippingPoliciesByItemIdResponses[keyof GetStockItemShippingPoliciesByItemIdResponses];
+export type ItemsGetStockItemShippingPoliciesByItemIdResponse = ItemsGetStockItemShippingPoliciesByItemIdResponses[keyof ItemsGetStockItemShippingPoliciesByItemIdResponses];
 
-export type RemoveShippingPolicyFromStockItemData = {
+export type ItemsRemoveShippingPolicyFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8663,7 +8779,7 @@ export type RemoveShippingPolicyFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ShippingPolicies/{itemShippingPolicyId}';
 };
 
-export type RemoveShippingPolicyFromStockItemErrors = {
+export type ItemsRemoveShippingPolicyFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8674,18 +8790,18 @@ export type RemoveShippingPolicyFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveShippingPolicyFromStockItemError = RemoveShippingPolicyFromStockItemErrors[keyof RemoveShippingPolicyFromStockItemErrors];
+export type ItemsRemoveShippingPolicyFromStockItemError = ItemsRemoveShippingPolicyFromStockItemErrors[keyof ItemsRemoveShippingPolicyFromStockItemErrors];
 
-export type RemoveShippingPolicyFromStockItemResponses = {
+export type ItemsRemoveShippingPolicyFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoEnvelopeReadable;
 };
 
-export type RemoveShippingPolicyFromStockItemResponse = RemoveShippingPolicyFromStockItemResponses[keyof RemoveShippingPolicyFromStockItemResponses];
+export type ItemsRemoveShippingPolicyFromStockItemResponse = ItemsRemoveShippingPolicyFromStockItemResponses[keyof ItemsRemoveShippingPolicyFromStockItemResponses];
 
-export type GetStockItemShippingPolicyByIdData = {
+export type ItemsGetStockItemShippingPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8700,7 +8816,7 @@ export type GetStockItemShippingPolicyByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ShippingPolicies/{itemShippingPolicyId}';
 };
 
-export type GetStockItemShippingPolicyByIdErrors = {
+export type ItemsGetStockItemShippingPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8711,18 +8827,18 @@ export type GetStockItemShippingPolicyByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemShippingPolicyByIdError = GetStockItemShippingPolicyByIdErrors[keyof GetStockItemShippingPolicyByIdErrors];
+export type ItemsGetStockItemShippingPolicyByIdError = ItemsGetStockItemShippingPolicyByIdErrors[keyof ItemsGetStockItemShippingPolicyByIdErrors];
 
-export type GetStockItemShippingPolicyByIdResponses = {
+export type ItemsGetStockItemShippingPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoEnvelopeReadable;
 };
 
-export type GetStockItemShippingPolicyByIdResponse = GetStockItemShippingPolicyByIdResponses[keyof GetStockItemShippingPolicyByIdResponses];
+export type ItemsGetStockItemShippingPolicyByIdResponse = ItemsGetStockItemShippingPolicyByIdResponses[keyof ItemsGetStockItemShippingPolicyByIdResponses];
 
-export type RelateShippingPolicyToStockItemData = {
+export type ItemsRelateShippingPolicyToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8738,7 +8854,7 @@ export type RelateShippingPolicyToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/ShippingPolicies/{itemShippingPolicyId}';
 };
 
-export type RelateShippingPolicyToStockItemErrors = {
+export type ItemsRelateShippingPolicyToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8749,18 +8865,18 @@ export type RelateShippingPolicyToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateShippingPolicyToStockItemError = RelateShippingPolicyToStockItemErrors[keyof RelateShippingPolicyToStockItemErrors];
+export type ItemsRelateShippingPolicyToStockItemError = ItemsRelateShippingPolicyToStockItemErrors[keyof ItemsRelateShippingPolicyToStockItemErrors];
 
-export type RelateShippingPolicyToStockItemResponses = {
+export type ItemsRelateShippingPolicyToStockItemResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoEnvelopeReadable;
 };
 
-export type RelateShippingPolicyToStockItemResponse = RelateShippingPolicyToStockItemResponses[keyof RelateShippingPolicyToStockItemResponses];
+export type ItemsRelateShippingPolicyToStockItemResponse = ItemsRelateShippingPolicyToStockItemResponses[keyof ItemsRelateShippingPolicyToStockItemResponses];
 
-export type GetStockItemWarrantyPoliciesByItemIdData = {
+export type ItemsGetStockItemWarrantyPoliciesByItemIdData = {
     body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8774,7 +8890,7 @@ export type GetStockItemWarrantyPoliciesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/WarrantyPolicies';
 };
 
-export type GetStockItemWarrantyPoliciesByItemIdErrors = {
+export type ItemsGetStockItemWarrantyPoliciesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8785,18 +8901,18 @@ export type GetStockItemWarrantyPoliciesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemWarrantyPoliciesByItemIdError = GetStockItemWarrantyPoliciesByItemIdErrors[keyof GetStockItemWarrantyPoliciesByItemIdErrors];
+export type ItemsGetStockItemWarrantyPoliciesByItemIdError = ItemsGetStockItemWarrantyPoliciesByItemIdErrors[keyof ItemsGetStockItemWarrantyPoliciesByItemIdErrors];
 
-export type GetStockItemWarrantyPoliciesByItemIdResponses = {
+export type ItemsGetStockItemWarrantyPoliciesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoListEnvelopeReadable;
 };
 
-export type GetStockItemWarrantyPoliciesByItemIdResponse = GetStockItemWarrantyPoliciesByItemIdResponses[keyof GetStockItemWarrantyPoliciesByItemIdResponses];
+export type ItemsGetStockItemWarrantyPoliciesByItemIdResponse = ItemsGetStockItemWarrantyPoliciesByItemIdResponses[keyof ItemsGetStockItemWarrantyPoliciesByItemIdResponses];
 
-export type RemoveWarrantyPolicyFromStockItemData = {
+export type ItemsRemoveWarrantyPolicyFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8812,7 +8928,7 @@ export type RemoveWarrantyPolicyFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/WarrantyPolicies/{itemWarrantyPolicyId}';
 };
 
-export type RemoveWarrantyPolicyFromStockItemErrors = {
+export type ItemsRemoveWarrantyPolicyFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8823,18 +8939,18 @@ export type RemoveWarrantyPolicyFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveWarrantyPolicyFromStockItemError = RemoveWarrantyPolicyFromStockItemErrors[keyof RemoveWarrantyPolicyFromStockItemErrors];
+export type ItemsRemoveWarrantyPolicyFromStockItemError = ItemsRemoveWarrantyPolicyFromStockItemErrors[keyof ItemsRemoveWarrantyPolicyFromStockItemErrors];
 
-export type RemoveWarrantyPolicyFromStockItemResponses = {
+export type ItemsRemoveWarrantyPolicyFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoEnvelopeReadable;
 };
 
-export type RemoveWarrantyPolicyFromStockItemResponse = RemoveWarrantyPolicyFromStockItemResponses[keyof RemoveWarrantyPolicyFromStockItemResponses];
+export type ItemsRemoveWarrantyPolicyFromStockItemResponse = ItemsRemoveWarrantyPolicyFromStockItemResponses[keyof ItemsRemoveWarrantyPolicyFromStockItemResponses];
 
-export type GetStockItemWarrantyPolicyByIdData = {
+export type ItemsGetStockItemWarrantyPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8849,7 +8965,7 @@ export type GetStockItemWarrantyPolicyByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/WarrantyPolicies/{itemWarrantyPolicyId}';
 };
 
-export type GetStockItemWarrantyPolicyByIdErrors = {
+export type ItemsGetStockItemWarrantyPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8860,18 +8976,18 @@ export type GetStockItemWarrantyPolicyByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemWarrantyPolicyByIdError = GetStockItemWarrantyPolicyByIdErrors[keyof GetStockItemWarrantyPolicyByIdErrors];
+export type ItemsGetStockItemWarrantyPolicyByIdError = ItemsGetStockItemWarrantyPolicyByIdErrors[keyof ItemsGetStockItemWarrantyPolicyByIdErrors];
 
-export type GetStockItemWarrantyPolicyByIdResponses = {
+export type ItemsGetStockItemWarrantyPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoEnvelopeReadable;
 };
 
-export type GetStockItemWarrantyPolicyByIdResponse = GetStockItemWarrantyPolicyByIdResponses[keyof GetStockItemWarrantyPolicyByIdResponses];
+export type ItemsGetStockItemWarrantyPolicyByIdResponse = ItemsGetStockItemWarrantyPolicyByIdResponses[keyof ItemsGetStockItemWarrantyPolicyByIdResponses];
 
-export type RelateWarrantyPolicyToStockItemData = {
+export type ItemsRelateWarrantyPolicyToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8887,7 +9003,7 @@ export type RelateWarrantyPolicyToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/WarrantyPolicies/{itemWarrantyPolicyId}';
 };
 
-export type RelateWarrantyPolicyToStockItemErrors = {
+export type ItemsRelateWarrantyPolicyToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8898,18 +9014,18 @@ export type RelateWarrantyPolicyToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateWarrantyPolicyToStockItemError = RelateWarrantyPolicyToStockItemErrors[keyof RelateWarrantyPolicyToStockItemErrors];
+export type ItemsRelateWarrantyPolicyToStockItemError = ItemsRelateWarrantyPolicyToStockItemErrors[keyof ItemsRelateWarrantyPolicyToStockItemErrors];
 
-export type RelateWarrantyPolicyToStockItemResponses = {
+export type ItemsRelateWarrantyPolicyToStockItemResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoEnvelopeReadable;
 };
 
-export type RelateWarrantyPolicyToStockItemResponse = RelateWarrantyPolicyToStockItemResponses[keyof RelateWarrantyPolicyToStockItemResponses];
+export type ItemsRelateWarrantyPolicyToStockItemResponse = ItemsRelateWarrantyPolicyToStockItemResponses[keyof ItemsRelateWarrantyPolicyToStockItemResponses];
 
-export type GetStockItemAttributeOptionsByItemIdData = {
+export type ItemsGetStockItemAttributeOptionsByItemIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8923,7 +9039,7 @@ export type GetStockItemAttributeOptionsByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/AttributeOptions';
 };
 
-export type GetStockItemAttributeOptionsByItemIdErrors = {
+export type ItemsGetStockItemAttributeOptionsByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -8934,18 +9050,18 @@ export type GetStockItemAttributeOptionsByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemAttributeOptionsByItemIdError = GetStockItemAttributeOptionsByItemIdErrors[keyof GetStockItemAttributeOptionsByItemIdErrors];
+export type ItemsGetStockItemAttributeOptionsByItemIdError = ItemsGetStockItemAttributeOptionsByItemIdErrors[keyof ItemsGetStockItemAttributeOptionsByItemIdErrors];
 
-export type GetStockItemAttributeOptionsByItemIdResponses = {
+export type ItemsGetStockItemAttributeOptionsByItemIdResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoListEnvelopeReadable;
 };
 
-export type GetStockItemAttributeOptionsByItemIdResponse = GetStockItemAttributeOptionsByItemIdResponses[keyof GetStockItemAttributeOptionsByItemIdResponses];
+export type ItemsGetStockItemAttributeOptionsByItemIdResponse = ItemsGetStockItemAttributeOptionsByItemIdResponses[keyof ItemsGetStockItemAttributeOptionsByItemIdResponses];
 
-export type RemoveAttributeOptionFromStockItemData = {
+export type ItemsRemoveAttributeOptionFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8960,7 +9076,7 @@ export type RemoveAttributeOptionFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/AttributeOptions/{itemAttributeOptionId}';
 };
 
-export type RemoveAttributeOptionFromStockItemErrors = {
+export type ItemsRemoveAttributeOptionFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -8971,18 +9087,18 @@ export type RemoveAttributeOptionFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveAttributeOptionFromStockItemError = RemoveAttributeOptionFromStockItemErrors[keyof RemoveAttributeOptionFromStockItemErrors];
+export type ItemsRemoveAttributeOptionFromStockItemError = ItemsRemoveAttributeOptionFromStockItemErrors[keyof ItemsRemoveAttributeOptionFromStockItemErrors];
 
-export type RemoveAttributeOptionFromStockItemResponses = {
+export type ItemsRemoveAttributeOptionFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoEnvelopeReadable;
 };
 
-export type RemoveAttributeOptionFromStockItemResponse = RemoveAttributeOptionFromStockItemResponses[keyof RemoveAttributeOptionFromStockItemResponses];
+export type ItemsRemoveAttributeOptionFromStockItemResponse = ItemsRemoveAttributeOptionFromStockItemResponses[keyof ItemsRemoveAttributeOptionFromStockItemResponses];
 
-export type GetStockItemAttributeOptionByIdData = {
+export type ItemsGetStockItemAttributeOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8997,7 +9113,7 @@ export type GetStockItemAttributeOptionByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/AttributeOptions/{itemAttributeOptionId}';
 };
 
-export type GetStockItemAttributeOptionByIdErrors = {
+export type ItemsGetStockItemAttributeOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9008,18 +9124,18 @@ export type GetStockItemAttributeOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemAttributeOptionByIdError = GetStockItemAttributeOptionByIdErrors[keyof GetStockItemAttributeOptionByIdErrors];
+export type ItemsGetStockItemAttributeOptionByIdError = ItemsGetStockItemAttributeOptionByIdErrors[keyof ItemsGetStockItemAttributeOptionByIdErrors];
 
-export type GetStockItemAttributeOptionByIdResponses = {
+export type ItemsGetStockItemAttributeOptionByIdResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoEnvelopeReadable;
 };
 
-export type GetStockItemAttributeOptionByIdResponse = GetStockItemAttributeOptionByIdResponses[keyof GetStockItemAttributeOptionByIdResponses];
+export type ItemsGetStockItemAttributeOptionByIdResponse = ItemsGetStockItemAttributeOptionByIdResponses[keyof ItemsGetStockItemAttributeOptionByIdResponses];
 
-export type RelateAttributeOptionToStockItemData = {
+export type ItemsRelateAttributeOptionToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9034,7 +9150,7 @@ export type RelateAttributeOptionToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/AttributeOptions/{itemAttributeOptionId}';
 };
 
-export type RelateAttributeOptionToStockItemErrors = {
+export type ItemsRelateAttributeOptionToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -9045,18 +9161,18 @@ export type RelateAttributeOptionToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateAttributeOptionToStockItemError = RelateAttributeOptionToStockItemErrors[keyof RelateAttributeOptionToStockItemErrors];
+export type ItemsRelateAttributeOptionToStockItemError = ItemsRelateAttributeOptionToStockItemErrors[keyof ItemsRelateAttributeOptionToStockItemErrors];
 
-export type RelateAttributeOptionToStockItemResponses = {
+export type ItemsRelateAttributeOptionToStockItemResponses = {
     /**
      * OK
      */
     200: ItemAttributeOptionDtoEnvelopeReadable;
 };
 
-export type RelateAttributeOptionToStockItemResponse = RelateAttributeOptionToStockItemResponses[keyof RelateAttributeOptionToStockItemResponses];
+export type ItemsRelateAttributeOptionToStockItemResponse = ItemsRelateAttributeOptionToStockItemResponses[keyof ItemsRelateAttributeOptionToStockItemResponses];
 
-export type GetStockItemGoogleCategoriesByItemIdData = {
+export type ItemsGetStockItemGoogleCategoriesByItemIdData = {
     body?: ItemGoogleCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9070,7 +9186,7 @@ export type GetStockItemGoogleCategoriesByItemIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/GoogleCategories';
 };
 
-export type GetStockItemGoogleCategoriesByItemIdErrors = {
+export type ItemsGetStockItemGoogleCategoriesByItemIdErrors = {
     /**
      * Unauthorized
      */
@@ -9081,18 +9197,18 @@ export type GetStockItemGoogleCategoriesByItemIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemGoogleCategoriesByItemIdError = GetStockItemGoogleCategoriesByItemIdErrors[keyof GetStockItemGoogleCategoriesByItemIdErrors];
+export type ItemsGetStockItemGoogleCategoriesByItemIdError = ItemsGetStockItemGoogleCategoriesByItemIdErrors[keyof ItemsGetStockItemGoogleCategoriesByItemIdErrors];
 
-export type GetStockItemGoogleCategoriesByItemIdResponses = {
+export type ItemsGetStockItemGoogleCategoriesByItemIdResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoListEnvelopeReadable;
 };
 
-export type GetStockItemGoogleCategoriesByItemIdResponse = GetStockItemGoogleCategoriesByItemIdResponses[keyof GetStockItemGoogleCategoriesByItemIdResponses];
+export type ItemsGetStockItemGoogleCategoriesByItemIdResponse = ItemsGetStockItemGoogleCategoriesByItemIdResponses[keyof ItemsGetStockItemGoogleCategoriesByItemIdResponses];
 
-export type RemoveGoogleCategoryFromStockItemData = {
+export type ItemsRemoveGoogleCategoryFromStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9108,7 +9224,7 @@ export type RemoveGoogleCategoryFromStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/GoogleCategories/{itemGoogleCategoryId}';
 };
 
-export type RemoveGoogleCategoryFromStockItemErrors = {
+export type ItemsRemoveGoogleCategoryFromStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -9119,18 +9235,18 @@ export type RemoveGoogleCategoryFromStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveGoogleCategoryFromStockItemError = RemoveGoogleCategoryFromStockItemErrors[keyof RemoveGoogleCategoryFromStockItemErrors];
+export type ItemsRemoveGoogleCategoryFromStockItemError = ItemsRemoveGoogleCategoryFromStockItemErrors[keyof ItemsRemoveGoogleCategoryFromStockItemErrors];
 
-export type RemoveGoogleCategoryFromStockItemResponses = {
+export type ItemsRemoveGoogleCategoryFromStockItemResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoEnvelopeReadable;
 };
 
-export type RemoveGoogleCategoryFromStockItemResponse = RemoveGoogleCategoryFromStockItemResponses[keyof RemoveGoogleCategoryFromStockItemResponses];
+export type ItemsRemoveGoogleCategoryFromStockItemResponse = ItemsRemoveGoogleCategoryFromStockItemResponses[keyof ItemsRemoveGoogleCategoryFromStockItemResponses];
 
-export type GetStockItemGoogleCategoryByIdData = {
+export type ItemsGetStockItemGoogleCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9145,7 +9261,7 @@ export type GetStockItemGoogleCategoryByIdData = {
     url: '/api/v2/CatalogService/Items/{itemId}/GoogleCategories/{itemGoogleCategoryId}';
 };
 
-export type GetStockItemGoogleCategoryByIdErrors = {
+export type ItemsGetStockItemGoogleCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9156,18 +9272,18 @@ export type GetStockItemGoogleCategoryByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStockItemGoogleCategoryByIdError = GetStockItemGoogleCategoryByIdErrors[keyof GetStockItemGoogleCategoryByIdErrors];
+export type ItemsGetStockItemGoogleCategoryByIdError = ItemsGetStockItemGoogleCategoryByIdErrors[keyof ItemsGetStockItemGoogleCategoryByIdErrors];
 
-export type GetStockItemGoogleCategoryByIdResponses = {
+export type ItemsGetStockItemGoogleCategoryByIdResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoEnvelopeReadable;
 };
 
-export type GetStockItemGoogleCategoryByIdResponse = GetStockItemGoogleCategoryByIdResponses[keyof GetStockItemGoogleCategoryByIdResponses];
+export type ItemsGetStockItemGoogleCategoryByIdResponse = ItemsGetStockItemGoogleCategoryByIdResponses[keyof ItemsGetStockItemGoogleCategoryByIdResponses];
 
-export type RelateGoogleCategoryToStockItemData = {
+export type ItemsRelateGoogleCategoryToStockItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9183,7 +9299,7 @@ export type RelateGoogleCategoryToStockItemData = {
     url: '/api/v2/CatalogService/Items/{itemId}/GoogleCategories/{itemGoogleCategoryId}';
 };
 
-export type RelateGoogleCategoryToStockItemErrors = {
+export type ItemsRelateGoogleCategoryToStockItemErrors = {
     /**
      * Unauthorized
      */
@@ -9194,18 +9310,18 @@ export type RelateGoogleCategoryToStockItemErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateGoogleCategoryToStockItemError = RelateGoogleCategoryToStockItemErrors[keyof RelateGoogleCategoryToStockItemErrors];
+export type ItemsRelateGoogleCategoryToStockItemError = ItemsRelateGoogleCategoryToStockItemErrors[keyof ItemsRelateGoogleCategoryToStockItemErrors];
 
-export type RelateGoogleCategoryToStockItemResponses = {
+export type ItemsRelateGoogleCategoryToStockItemResponses = {
     /**
      * OK
      */
     200: ItemGoogleCategoryDtoEnvelopeReadable;
 };
 
-export type RelateGoogleCategoryToStockItemResponse = RelateGoogleCategoryToStockItemResponses[keyof RelateGoogleCategoryToStockItemResponses];
+export type ItemsRelateGoogleCategoryToStockItemResponse = ItemsRelateGoogleCategoryToStockItemResponses[keyof ItemsRelateGoogleCategoryToStockItemResponses];
 
-export type GetCatalogItemShippingPoliciesAsyncData = {
+export type ItemShippingPoliciesGetCatalogItemShippingPoliciesData = {
     body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9219,7 +9335,7 @@ export type GetCatalogItemShippingPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemShippingPolicies';
 };
 
-export type GetCatalogItemShippingPoliciesAsyncErrors = {
+export type ItemShippingPoliciesGetCatalogItemShippingPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -9230,18 +9346,18 @@ export type GetCatalogItemShippingPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCatalogItemShippingPoliciesAsyncError = GetCatalogItemShippingPoliciesAsyncErrors[keyof GetCatalogItemShippingPoliciesAsyncErrors];
+export type ItemShippingPoliciesGetCatalogItemShippingPoliciesError = ItemShippingPoliciesGetCatalogItemShippingPoliciesErrors[keyof ItemShippingPoliciesGetCatalogItemShippingPoliciesErrors];
 
-export type GetCatalogItemShippingPoliciesAsyncResponses = {
+export type ItemShippingPoliciesGetCatalogItemShippingPoliciesResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoListEnvelopeReadable;
 };
 
-export type GetCatalogItemShippingPoliciesAsyncResponse = GetCatalogItemShippingPoliciesAsyncResponses[keyof GetCatalogItemShippingPoliciesAsyncResponses];
+export type ItemShippingPoliciesGetCatalogItemShippingPoliciesResponse = ItemShippingPoliciesGetCatalogItemShippingPoliciesResponses[keyof ItemShippingPoliciesGetCatalogItemShippingPoliciesResponses];
 
-export type RelateItemToShippingPolicyAsyncData = {
+export type ItemShippingPoliciesRelateItemToShippingPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9256,7 +9372,7 @@ export type RelateItemToShippingPolicyAsyncData = {
     url: '/api/v2/CatalogService/ItemShippingPolicies';
 };
 
-export type RelateItemToShippingPolicyAsyncErrors = {
+export type ItemShippingPoliciesRelateItemToShippingPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -9267,16 +9383,16 @@ export type RelateItemToShippingPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateItemToShippingPolicyAsyncError = RelateItemToShippingPolicyAsyncErrors[keyof RelateItemToShippingPolicyAsyncErrors];
+export type ItemShippingPoliciesRelateItemToShippingPolicyError = ItemShippingPoliciesRelateItemToShippingPolicyErrors[keyof ItemShippingPoliciesRelateItemToShippingPolicyErrors];
 
-export type RelateItemToShippingPolicyAsyncResponses = {
+export type ItemShippingPoliciesRelateItemToShippingPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountItemShippingPoliciesAsyncData = {
+export type ItemShippingPoliciesCountItemShippingPoliciesData = {
     body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9290,7 +9406,7 @@ export type CountItemShippingPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemShippingPolicies/Count';
 };
 
-export type CountItemShippingPoliciesAsyncErrors = {
+export type ItemShippingPoliciesCountItemShippingPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -9301,18 +9417,18 @@ export type CountItemShippingPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemShippingPoliciesAsyncError = CountItemShippingPoliciesAsyncErrors[keyof CountItemShippingPoliciesAsyncErrors];
+export type ItemShippingPoliciesCountItemShippingPoliciesError = ItemShippingPoliciesCountItemShippingPoliciesErrors[keyof ItemShippingPoliciesCountItemShippingPoliciesErrors];
 
-export type CountItemShippingPoliciesAsyncResponses = {
+export type ItemShippingPoliciesCountItemShippingPoliciesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemShippingPoliciesAsyncResponse = CountItemShippingPoliciesAsyncResponses[keyof CountItemShippingPoliciesAsyncResponses];
+export type ItemShippingPoliciesCountItemShippingPoliciesResponse = ItemShippingPoliciesCountItemShippingPoliciesResponses[keyof ItemShippingPoliciesCountItemShippingPoliciesResponses];
 
-export type RemoveShippingPolicyFromItemAsyncData = {
+export type ItemShippingPoliciesRemoveShippingPolicyFromItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9328,7 +9444,7 @@ export type RemoveShippingPolicyFromItemAsyncData = {
     url: '/api/v2/CatalogService/ItemShippingPolicies/{itemShippingPolicyId}';
 };
 
-export type RemoveShippingPolicyFromItemAsyncErrors = {
+export type ItemShippingPoliciesRemoveShippingPolicyFromItemErrors = {
     /**
      * Unauthorized
      */
@@ -9339,16 +9455,16 @@ export type RemoveShippingPolicyFromItemAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveShippingPolicyFromItemAsyncError = RemoveShippingPolicyFromItemAsyncErrors[keyof RemoveShippingPolicyFromItemAsyncErrors];
+export type ItemShippingPoliciesRemoveShippingPolicyFromItemError = ItemShippingPoliciesRemoveShippingPolicyFromItemErrors[keyof ItemShippingPoliciesRemoveShippingPolicyFromItemErrors];
 
-export type RemoveShippingPolicyFromItemAsyncResponses = {
+export type ItemShippingPoliciesRemoveShippingPolicyFromItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCatalogItemShippingPolicyByIdAsyncData = {
+export type ItemShippingPoliciesGetCatalogItemShippingPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9364,7 +9480,7 @@ export type GetCatalogItemShippingPolicyByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemShippingPolicies/{itemShippingPolicyId}';
 };
 
-export type GetCatalogItemShippingPolicyByIdAsyncErrors = {
+export type ItemShippingPoliciesGetCatalogItemShippingPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9375,18 +9491,18 @@ export type GetCatalogItemShippingPolicyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCatalogItemShippingPolicyByIdAsyncError = GetCatalogItemShippingPolicyByIdAsyncErrors[keyof GetCatalogItemShippingPolicyByIdAsyncErrors];
+export type ItemShippingPoliciesGetCatalogItemShippingPolicyByIdError = ItemShippingPoliciesGetCatalogItemShippingPolicyByIdErrors[keyof ItemShippingPoliciesGetCatalogItemShippingPolicyByIdErrors];
 
-export type GetCatalogItemShippingPolicyByIdAsyncResponses = {
+export type ItemShippingPoliciesGetCatalogItemShippingPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoEnvelopeReadable;
 };
 
-export type GetCatalogItemShippingPolicyByIdAsyncResponse = GetCatalogItemShippingPolicyByIdAsyncResponses[keyof GetCatalogItemShippingPolicyByIdAsyncResponses];
+export type ItemShippingPoliciesGetCatalogItemShippingPolicyByIdResponse = ItemShippingPoliciesGetCatalogItemShippingPolicyByIdResponses[keyof ItemShippingPoliciesGetCatalogItemShippingPolicyByIdResponses];
 
-export type GetItemTagsAsyncData = {
+export type ItemTagsGetItemTagsData = {
     body?: ItemTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9399,7 +9515,7 @@ export type GetItemTagsAsyncData = {
     url: '/api/v2/CatalogService/ItemTags';
 };
 
-export type GetItemTagsAsyncErrors = {
+export type ItemTagsGetItemTagsErrors = {
     /**
      * Unauthorized
      */
@@ -9410,18 +9526,18 @@ export type GetItemTagsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTagsAsyncError = GetItemTagsAsyncErrors[keyof GetItemTagsAsyncErrors];
+export type ItemTagsGetItemTagsError = ItemTagsGetItemTagsErrors[keyof ItemTagsGetItemTagsErrors];
 
-export type GetItemTagsAsyncResponses = {
+export type ItemTagsGetItemTagsResponses = {
     /**
      * OK
      */
     200: ItemTagDtoListEnvelopeReadable;
 };
 
-export type GetItemTagsAsyncResponse = GetItemTagsAsyncResponses[keyof GetItemTagsAsyncResponses];
+export type ItemTagsGetItemTagsResponse = ItemTagsGetItemTagsResponses[keyof ItemTagsGetItemTagsResponses];
 
-export type CreateItemTagAsyncData = {
+export type ItemTagsCreateItemTagData = {
     body?: ItemTagCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9434,7 +9550,7 @@ export type CreateItemTagAsyncData = {
     url: '/api/v2/CatalogService/ItemTags';
 };
 
-export type CreateItemTagAsyncErrors = {
+export type ItemTagsCreateItemTagErrors = {
     /**
      * Unauthorized
      */
@@ -9445,18 +9561,18 @@ export type CreateItemTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemTagAsyncError = CreateItemTagAsyncErrors[keyof CreateItemTagAsyncErrors];
+export type ItemTagsCreateItemTagError = ItemTagsCreateItemTagErrors[keyof ItemTagsCreateItemTagErrors];
 
-export type CreateItemTagAsyncResponses = {
+export type ItemTagsCreateItemTagResponses = {
     /**
      * Created
      */
     201: ItemTagDtoEnvelopeReadable;
 };
 
-export type CreateItemTagAsyncResponse = CreateItemTagAsyncResponses[keyof CreateItemTagAsyncResponses];
+export type ItemTagsCreateItemTagResponse = ItemTagsCreateItemTagResponses[keyof ItemTagsCreateItemTagResponses];
 
-export type DeleteItemTagAsyncData = {
+export type ItemTagsDeleteItemTagData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9471,7 +9587,7 @@ export type DeleteItemTagAsyncData = {
     url: '/api/v2/CatalogService/ItemTags/{itemTagId}';
 };
 
-export type DeleteItemTagAsyncErrors = {
+export type ItemTagsDeleteItemTagErrors = {
     /**
      * Unauthorized
      */
@@ -9482,16 +9598,16 @@ export type DeleteItemTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemTagAsyncError = DeleteItemTagAsyncErrors[keyof DeleteItemTagAsyncErrors];
+export type ItemTagsDeleteItemTagError = ItemTagsDeleteItemTagErrors[keyof ItemTagsDeleteItemTagErrors];
 
-export type DeleteItemTagAsyncResponses = {
+export type ItemTagsDeleteItemTagResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemTagByIdAsyncData = {
+export type ItemTagsGetItemTagByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9506,7 +9622,7 @@ export type GetItemTagByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemTags/{itemTagId}';
 };
 
-export type GetItemTagByIdAsyncErrors = {
+export type ItemTagsGetItemTagByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9517,18 +9633,18 @@ export type GetItemTagByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTagByIdAsyncError = GetItemTagByIdAsyncErrors[keyof GetItemTagByIdAsyncErrors];
+export type ItemTagsGetItemTagByIdError = ItemTagsGetItemTagByIdErrors[keyof ItemTagsGetItemTagByIdErrors];
 
-export type GetItemTagByIdAsyncResponses = {
+export type ItemTagsGetItemTagByIdResponses = {
     /**
      * OK
      */
     200: ItemTagDtoEnvelopeReadable;
 };
 
-export type GetItemTagByIdAsyncResponse = GetItemTagByIdAsyncResponses[keyof GetItemTagByIdAsyncResponses];
+export type ItemTagsGetItemTagByIdResponse = ItemTagsGetItemTagByIdResponses[keyof ItemTagsGetItemTagByIdResponses];
 
-export type PatchItemTagAsyncData = {
+export type ItemTagsPatchItemTagData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9543,7 +9659,7 @@ export type PatchItemTagAsyncData = {
     url: '/api/v2/CatalogService/ItemTags/{itemTagId}';
 };
 
-export type PatchItemTagAsyncErrors = {
+export type ItemTagsPatchItemTagErrors = {
     /**
      * Unauthorized
      */
@@ -9554,16 +9670,16 @@ export type PatchItemTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemTagAsyncError = PatchItemTagAsyncErrors[keyof PatchItemTagAsyncErrors];
+export type ItemTagsPatchItemTagError = ItemTagsPatchItemTagErrors[keyof ItemTagsPatchItemTagErrors];
 
-export type PatchItemTagAsyncResponses = {
+export type ItemTagsPatchItemTagResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemTagAsyncData = {
+export type ItemTagsUpdateItemTagData = {
     body?: ItemTagUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9578,7 +9694,7 @@ export type UpdateItemTagAsyncData = {
     url: '/api/v2/CatalogService/ItemTags/{itemTagId}';
 };
 
-export type UpdateItemTagAsyncErrors = {
+export type ItemTagsUpdateItemTagErrors = {
     /**
      * Unauthorized
      */
@@ -9589,16 +9705,16 @@ export type UpdateItemTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemTagAsyncError = UpdateItemTagAsyncErrors[keyof UpdateItemTagAsyncErrors];
+export type ItemTagsUpdateItemTagError = ItemTagsUpdateItemTagErrors[keyof ItemTagsUpdateItemTagErrors];
 
-export type UpdateItemTagAsyncResponses = {
+export type ItemTagsUpdateItemTagResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemTaxPoliciesAsyncData = {
+export type ItemTaxPoliciesGetItemTaxPoliciesData = {
     body?: ItemTaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9612,7 +9728,7 @@ export type GetItemTaxPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemTaxPolicies';
 };
 
-export type GetItemTaxPoliciesAsyncErrors = {
+export type ItemTaxPoliciesGetItemTaxPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -9623,18 +9739,18 @@ export type GetItemTaxPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTaxPoliciesAsyncError = GetItemTaxPoliciesAsyncErrors[keyof GetItemTaxPoliciesAsyncErrors];
+export type ItemTaxPoliciesGetItemTaxPoliciesError = ItemTaxPoliciesGetItemTaxPoliciesErrors[keyof ItemTaxPoliciesGetItemTaxPoliciesErrors];
 
-export type GetItemTaxPoliciesAsyncResponses = {
+export type ItemTaxPoliciesGetItemTaxPoliciesResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyDtoListEnvelopeReadable;
 };
 
-export type GetItemTaxPoliciesAsyncResponse = GetItemTaxPoliciesAsyncResponses[keyof GetItemTaxPoliciesAsyncResponses];
+export type ItemTaxPoliciesGetItemTaxPoliciesResponse = ItemTaxPoliciesGetItemTaxPoliciesResponses[keyof ItemTaxPoliciesGetItemTaxPoliciesResponses];
 
-export type RelateItemToTaxPolicyAsyncData = {
+export type ItemTaxPoliciesRelateItemToTaxPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9649,7 +9765,7 @@ export type RelateItemToTaxPolicyAsyncData = {
     url: '/api/v2/CatalogService/ItemTaxPolicies';
 };
 
-export type RelateItemToTaxPolicyAsyncErrors = {
+export type ItemTaxPoliciesRelateItemToTaxPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -9660,16 +9776,16 @@ export type RelateItemToTaxPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateItemToTaxPolicyAsyncError = RelateItemToTaxPolicyAsyncErrors[keyof RelateItemToTaxPolicyAsyncErrors];
+export type ItemTaxPoliciesRelateItemToTaxPolicyError = ItemTaxPoliciesRelateItemToTaxPolicyErrors[keyof ItemTaxPoliciesRelateItemToTaxPolicyErrors];
 
-export type RelateItemToTaxPolicyAsyncResponses = {
+export type ItemTaxPoliciesRelateItemToTaxPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountItemTaxPoliciesAsyncData = {
+export type ItemTaxPoliciesCountItemTaxPoliciesData = {
     body?: ItemTaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9683,7 +9799,7 @@ export type CountItemTaxPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemTaxPolicies/Count';
 };
 
-export type CountItemTaxPoliciesAsyncErrors = {
+export type ItemTaxPoliciesCountItemTaxPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -9694,18 +9810,18 @@ export type CountItemTaxPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemTaxPoliciesAsyncError = CountItemTaxPoliciesAsyncErrors[keyof CountItemTaxPoliciesAsyncErrors];
+export type ItemTaxPoliciesCountItemTaxPoliciesError = ItemTaxPoliciesCountItemTaxPoliciesErrors[keyof ItemTaxPoliciesCountItemTaxPoliciesErrors];
 
-export type CountItemTaxPoliciesAsyncResponses = {
+export type ItemTaxPoliciesCountItemTaxPoliciesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemTaxPoliciesAsyncResponse = CountItemTaxPoliciesAsyncResponses[keyof CountItemTaxPoliciesAsyncResponses];
+export type ItemTaxPoliciesCountItemTaxPoliciesResponse = ItemTaxPoliciesCountItemTaxPoliciesResponses[keyof ItemTaxPoliciesCountItemTaxPoliciesResponses];
 
-export type RemoveTaxPolicyFromItemAsyncData = {
+export type ItemTaxPoliciesRemoveTaxPolicyFromItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9721,7 +9837,7 @@ export type RemoveTaxPolicyFromItemAsyncData = {
     url: '/api/v2/CatalogService/ItemTaxPolicies/{itemTaxPolicyId}';
 };
 
-export type RemoveTaxPolicyFromItemAsyncErrors = {
+export type ItemTaxPoliciesRemoveTaxPolicyFromItemErrors = {
     /**
      * Unauthorized
      */
@@ -9732,16 +9848,16 @@ export type RemoveTaxPolicyFromItemAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveTaxPolicyFromItemAsyncError = RemoveTaxPolicyFromItemAsyncErrors[keyof RemoveTaxPolicyFromItemAsyncErrors];
+export type ItemTaxPoliciesRemoveTaxPolicyFromItemError = ItemTaxPoliciesRemoveTaxPolicyFromItemErrors[keyof ItemTaxPoliciesRemoveTaxPolicyFromItemErrors];
 
-export type RemoveTaxPolicyFromItemAsyncResponses = {
+export type ItemTaxPoliciesRemoveTaxPolicyFromItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemTaxPolicyByIdAsyncData = {
+export type ItemTaxPoliciesGetItemTaxPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9757,7 +9873,7 @@ export type GetItemTaxPolicyByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemTaxPolicies/{itemTaxPolicyId}';
 };
 
-export type GetItemTaxPolicyByIdAsyncErrors = {
+export type ItemTaxPoliciesGetItemTaxPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9768,18 +9884,18 @@ export type GetItemTaxPolicyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTaxPolicyByIdAsyncError = GetItemTaxPolicyByIdAsyncErrors[keyof GetItemTaxPolicyByIdAsyncErrors];
+export type ItemTaxPoliciesGetItemTaxPolicyByIdError = ItemTaxPoliciesGetItemTaxPolicyByIdErrors[keyof ItemTaxPoliciesGetItemTaxPolicyByIdErrors];
 
-export type GetItemTaxPolicyByIdAsyncResponses = {
+export type ItemTaxPoliciesGetItemTaxPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyDtoEnvelopeReadable;
 };
 
-export type GetItemTaxPolicyByIdAsyncResponse = GetItemTaxPolicyByIdAsyncResponses[keyof GetItemTaxPolicyByIdAsyncResponses];
+export type ItemTaxPoliciesGetItemTaxPolicyByIdResponse = ItemTaxPoliciesGetItemTaxPolicyByIdResponses[keyof ItemTaxPoliciesGetItemTaxPolicyByIdResponses];
 
-export type CountItemTypesAsyncData = {
+export type ItemTypesCountItemTypesData = {
     body?: ItemTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9792,7 +9908,7 @@ export type CountItemTypesAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes/Count';
 };
 
-export type CountItemTypesAsyncErrors = {
+export type ItemTypesCountItemTypesErrors = {
     /**
      * Unauthorized
      */
@@ -9803,18 +9919,18 @@ export type CountItemTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemTypesAsyncError = CountItemTypesAsyncErrors[keyof CountItemTypesAsyncErrors];
+export type ItemTypesCountItemTypesError = ItemTypesCountItemTypesErrors[keyof ItemTypesCountItemTypesErrors];
 
-export type CountItemTypesAsyncResponses = {
+export type ItemTypesCountItemTypesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemTypesAsyncResponse = CountItemTypesAsyncResponses[keyof CountItemTypesAsyncResponses];
+export type ItemTypesCountItemTypesResponse = ItemTypesCountItemTypesResponses[keyof ItemTypesCountItemTypesResponses];
 
-export type GetItemTypesAsyncData = {
+export type ItemTypesGetItemTypesData = {
     body?: ItemTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9827,7 +9943,7 @@ export type GetItemTypesAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes';
 };
 
-export type GetItemTypesAsyncErrors = {
+export type ItemTypesGetItemTypesErrors = {
     /**
      * Unauthorized
      */
@@ -9838,18 +9954,18 @@ export type GetItemTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTypesAsyncError = GetItemTypesAsyncErrors[keyof GetItemTypesAsyncErrors];
+export type ItemTypesGetItemTypesError = ItemTypesGetItemTypesErrors[keyof ItemTypesGetItemTypesErrors];
 
-export type GetItemTypesAsyncResponses = {
+export type ItemTypesGetItemTypesResponses = {
     /**
      * OK
      */
     200: ItemTypeDtoListEnvelopeReadable;
 };
 
-export type GetItemTypesAsyncResponse = GetItemTypesAsyncResponses[keyof GetItemTypesAsyncResponses];
+export type ItemTypesGetItemTypesResponse = ItemTypesGetItemTypesResponses[keyof ItemTypesGetItemTypesResponses];
 
-export type CreateItemTypeAsyncData = {
+export type ItemTypesCreateItemTypeData = {
     body?: ItemTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9862,7 +9978,7 @@ export type CreateItemTypeAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes';
 };
 
-export type CreateItemTypeAsyncErrors = {
+export type ItemTypesCreateItemTypeErrors = {
     /**
      * Unauthorized
      */
@@ -9873,18 +9989,18 @@ export type CreateItemTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemTypeAsyncError = CreateItemTypeAsyncErrors[keyof CreateItemTypeAsyncErrors];
+export type ItemTypesCreateItemTypeError = ItemTypesCreateItemTypeErrors[keyof ItemTypesCreateItemTypeErrors];
 
-export type CreateItemTypeAsyncResponses = {
+export type ItemTypesCreateItemTypeResponses = {
     /**
      * Created
      */
     201: ItemTypeDtoEnvelopeReadable;
 };
 
-export type CreateItemTypeAsyncResponse = CreateItemTypeAsyncResponses[keyof CreateItemTypeAsyncResponses];
+export type ItemTypesCreateItemTypeResponse = ItemTypesCreateItemTypeResponses[keyof ItemTypesCreateItemTypeResponses];
 
-export type DeleteItemTypeAsyncData = {
+export type ItemTypesDeleteItemTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9899,7 +10015,7 @@ export type DeleteItemTypeAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes/{itemTypeID}';
 };
 
-export type DeleteItemTypeAsyncErrors = {
+export type ItemTypesDeleteItemTypeErrors = {
     /**
      * Unauthorized
      */
@@ -9910,18 +10026,18 @@ export type DeleteItemTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemTypeAsyncError = DeleteItemTypeAsyncErrors[keyof DeleteItemTypeAsyncErrors];
+export type ItemTypesDeleteItemTypeError = ItemTypesDeleteItemTypeErrors[keyof ItemTypesDeleteItemTypeErrors];
 
-export type DeleteItemTypeAsyncResponses = {
+export type ItemTypesDeleteItemTypeResponses = {
     /**
      * OK
      */
     200: ItemTypeDtoEnvelopeReadable;
 };
 
-export type DeleteItemTypeAsyncResponse = DeleteItemTypeAsyncResponses[keyof DeleteItemTypeAsyncResponses];
+export type ItemTypesDeleteItemTypeResponse = ItemTypesDeleteItemTypeResponses[keyof ItemTypesDeleteItemTypeResponses];
 
-export type GetItemTypeByIdAsyncData = {
+export type ItemTypesGetItemTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9936,7 +10052,7 @@ export type GetItemTypeByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes/{itemTypeID}';
 };
 
-export type GetItemTypeByIdAsyncErrors = {
+export type ItemTypesGetItemTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9947,18 +10063,18 @@ export type GetItemTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTypeByIdAsyncError = GetItemTypeByIdAsyncErrors[keyof GetItemTypeByIdAsyncErrors];
+export type ItemTypesGetItemTypeByIdError = ItemTypesGetItemTypeByIdErrors[keyof ItemTypesGetItemTypeByIdErrors];
 
-export type GetItemTypeByIdAsyncResponses = {
+export type ItemTypesGetItemTypeByIdResponses = {
     /**
      * OK
      */
     200: ItemTypeDtoEnvelopeReadable;
 };
 
-export type GetItemTypeByIdAsyncResponse = GetItemTypeByIdAsyncResponses[keyof GetItemTypeByIdAsyncResponses];
+export type ItemTypesGetItemTypeByIdResponse = ItemTypesGetItemTypeByIdResponses[keyof ItemTypesGetItemTypeByIdResponses];
 
-export type PatchItemTypeAsyncData = {
+export type ItemTypesPatchItemTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9973,7 +10089,7 @@ export type PatchItemTypeAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes/{itemTypeID}';
 };
 
-export type PatchItemTypeAsyncErrors = {
+export type ItemTypesPatchItemTypeErrors = {
     /**
      * Unauthorized
      */
@@ -9984,16 +10100,16 @@ export type PatchItemTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemTypeAsyncError = PatchItemTypeAsyncErrors[keyof PatchItemTypeAsyncErrors];
+export type ItemTypesPatchItemTypeError = ItemTypesPatchItemTypeErrors[keyof ItemTypesPatchItemTypeErrors];
 
-export type PatchItemTypeAsyncResponses = {
+export type ItemTypesPatchItemTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateItemTypeAsyncData = {
+export type ItemTypesUpdateItemTypeData = {
     body?: ItemTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10008,7 +10124,7 @@ export type UpdateItemTypeAsyncData = {
     url: '/api/v2/CatalogService/ItemTypes/{itemTypeID}';
 };
 
-export type UpdateItemTypeAsyncErrors = {
+export type ItemTypesUpdateItemTypeErrors = {
     /**
      * Unauthorized
      */
@@ -10019,16 +10135,16 @@ export type UpdateItemTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemTypeAsyncError = UpdateItemTypeAsyncErrors[keyof UpdateItemTypeAsyncErrors];
+export type ItemTypesUpdateItemTypeError = ItemTypesUpdateItemTypeErrors[keyof ItemTypesUpdateItemTypeErrors];
 
-export type UpdateItemTypeAsyncResponses = {
+export type ItemTypesUpdateItemTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemWarrantyPoliciesAsyncData = {
+export type ItemWarrantyPoliciesGetItemWarrantyPoliciesData = {
     body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10042,7 +10158,7 @@ export type GetItemWarrantyPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemWarrantyPolicies';
 };
 
-export type GetItemWarrantyPoliciesAsyncErrors = {
+export type ItemWarrantyPoliciesGetItemWarrantyPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -10053,18 +10169,18 @@ export type GetItemWarrantyPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemWarrantyPoliciesAsyncError = GetItemWarrantyPoliciesAsyncErrors[keyof GetItemWarrantyPoliciesAsyncErrors];
+export type ItemWarrantyPoliciesGetItemWarrantyPoliciesError = ItemWarrantyPoliciesGetItemWarrantyPoliciesErrors[keyof ItemWarrantyPoliciesGetItemWarrantyPoliciesErrors];
 
-export type GetItemWarrantyPoliciesAsyncResponses = {
+export type ItemWarrantyPoliciesGetItemWarrantyPoliciesResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoListEnvelopeReadable;
 };
 
-export type GetItemWarrantyPoliciesAsyncResponse = GetItemWarrantyPoliciesAsyncResponses[keyof GetItemWarrantyPoliciesAsyncResponses];
+export type ItemWarrantyPoliciesGetItemWarrantyPoliciesResponse = ItemWarrantyPoliciesGetItemWarrantyPoliciesResponses[keyof ItemWarrantyPoliciesGetItemWarrantyPoliciesResponses];
 
-export type RelateItemToWarrantyPolicyAsyncData = {
+export type ItemWarrantyPoliciesRelateItemToWarrantyPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10079,7 +10195,7 @@ export type RelateItemToWarrantyPolicyAsyncData = {
     url: '/api/v2/CatalogService/ItemWarrantyPolicies';
 };
 
-export type RelateItemToWarrantyPolicyAsyncErrors = {
+export type ItemWarrantyPoliciesRelateItemToWarrantyPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -10090,16 +10206,16 @@ export type RelateItemToWarrantyPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateItemToWarrantyPolicyAsyncError = RelateItemToWarrantyPolicyAsyncErrors[keyof RelateItemToWarrantyPolicyAsyncErrors];
+export type ItemWarrantyPoliciesRelateItemToWarrantyPolicyError = ItemWarrantyPoliciesRelateItemToWarrantyPolicyErrors[keyof ItemWarrantyPoliciesRelateItemToWarrantyPolicyErrors];
 
-export type RelateItemToWarrantyPolicyAsyncResponses = {
+export type ItemWarrantyPoliciesRelateItemToWarrantyPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountItemWarrantyPoliciesAsyncData = {
+export type ItemWarrantyPoliciesCountItemWarrantyPoliciesData = {
     body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10113,7 +10229,7 @@ export type CountItemWarrantyPoliciesAsyncData = {
     url: '/api/v2/CatalogService/ItemWarrantyPolicies/Count';
 };
 
-export type CountItemWarrantyPoliciesAsyncErrors = {
+export type ItemWarrantyPoliciesCountItemWarrantyPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -10124,18 +10240,18 @@ export type CountItemWarrantyPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountItemWarrantyPoliciesAsyncError = CountItemWarrantyPoliciesAsyncErrors[keyof CountItemWarrantyPoliciesAsyncErrors];
+export type ItemWarrantyPoliciesCountItemWarrantyPoliciesError = ItemWarrantyPoliciesCountItemWarrantyPoliciesErrors[keyof ItemWarrantyPoliciesCountItemWarrantyPoliciesErrors];
 
-export type CountItemWarrantyPoliciesAsyncResponses = {
+export type ItemWarrantyPoliciesCountItemWarrantyPoliciesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountItemWarrantyPoliciesAsyncResponse = CountItemWarrantyPoliciesAsyncResponses[keyof CountItemWarrantyPoliciesAsyncResponses];
+export type ItemWarrantyPoliciesCountItemWarrantyPoliciesResponse = ItemWarrantyPoliciesCountItemWarrantyPoliciesResponses[keyof ItemWarrantyPoliciesCountItemWarrantyPoliciesResponses];
 
-export type RemoveWarrantyPolicyFromItemAsyncData = {
+export type ItemWarrantyPoliciesRemoveWarrantyPolicyFromItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10151,7 +10267,7 @@ export type RemoveWarrantyPolicyFromItemAsyncData = {
     url: '/api/v2/CatalogService/ItemWarrantyPolicies/{itemWarrantyPolicyId}';
 };
 
-export type RemoveWarrantyPolicyFromItemAsyncErrors = {
+export type ItemWarrantyPoliciesRemoveWarrantyPolicyFromItemErrors = {
     /**
      * Unauthorized
      */
@@ -10162,16 +10278,16 @@ export type RemoveWarrantyPolicyFromItemAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RemoveWarrantyPolicyFromItemAsyncError = RemoveWarrantyPolicyFromItemAsyncErrors[keyof RemoveWarrantyPolicyFromItemAsyncErrors];
+export type ItemWarrantyPoliciesRemoveWarrantyPolicyFromItemError = ItemWarrantyPoliciesRemoveWarrantyPolicyFromItemErrors[keyof ItemWarrantyPoliciesRemoveWarrantyPolicyFromItemErrors];
 
-export type RemoveWarrantyPolicyFromItemAsyncResponses = {
+export type ItemWarrantyPoliciesRemoveWarrantyPolicyFromItemResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemWarrantyPolicyByIdAsyncData = {
+export type ItemWarrantyPoliciesGetItemWarrantyPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10187,7 +10303,7 @@ export type GetItemWarrantyPolicyByIdAsyncData = {
     url: '/api/v2/CatalogService/ItemWarrantyPolicies/{itemWarrantyPolicyId}';
 };
 
-export type GetItemWarrantyPolicyByIdAsyncErrors = {
+export type ItemWarrantyPoliciesGetItemWarrantyPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -10198,18 +10314,18 @@ export type GetItemWarrantyPolicyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemWarrantyPolicyByIdAsyncError = GetItemWarrantyPolicyByIdAsyncErrors[keyof GetItemWarrantyPolicyByIdAsyncErrors];
+export type ItemWarrantyPoliciesGetItemWarrantyPolicyByIdError = ItemWarrantyPoliciesGetItemWarrantyPolicyByIdErrors[keyof ItemWarrantyPoliciesGetItemWarrantyPolicyByIdErrors];
 
-export type GetItemWarrantyPolicyByIdAsyncResponses = {
+export type ItemWarrantyPoliciesGetItemWarrantyPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoEnvelopeReadable;
 };
 
-export type GetItemWarrantyPolicyByIdAsyncResponse = GetItemWarrantyPolicyByIdAsyncResponses[keyof GetItemWarrantyPolicyByIdAsyncResponses];
+export type ItemWarrantyPoliciesGetItemWarrantyPolicyByIdResponse = ItemWarrantyPoliciesGetItemWarrantyPolicyByIdResponses[keyof ItemWarrantyPoliciesGetItemWarrantyPolicyByIdResponses];
 
-export type GetMerchantsData = {
+export type MerchantsGetMerchantsData = {
     body?: MerchantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10221,7 +10337,7 @@ export type GetMerchantsData = {
     url: '/api/v2/CatalogService/Merchants';
 };
 
-export type GetMerchantsErrors = {
+export type MerchantsGetMerchantsErrors = {
     /**
      * Unauthorized
      */
@@ -10232,18 +10348,18 @@ export type GetMerchantsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMerchantsError = GetMerchantsErrors[keyof GetMerchantsErrors];
+export type MerchantsGetMerchantsError = MerchantsGetMerchantsErrors[keyof MerchantsGetMerchantsErrors];
 
-export type GetMerchantsResponses = {
+export type MerchantsGetMerchantsResponses = {
     /**
      * OK
      */
     200: MerchantDtoListEnvelopeReadable;
 };
 
-export type GetMerchantsResponse = GetMerchantsResponses[keyof GetMerchantsResponses];
+export type MerchantsGetMerchantsResponse = MerchantsGetMerchantsResponses[keyof MerchantsGetMerchantsResponses];
 
-export type GetMerchantsCountData = {
+export type MerchantsGetMerchantsCountData = {
     body?: MerchantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10255,7 +10371,7 @@ export type GetMerchantsCountData = {
     url: '/api/v2/CatalogService/Merchants/Count';
 };
 
-export type GetMerchantsCountErrors = {
+export type MerchantsGetMerchantsCountErrors = {
     /**
      * Unauthorized
      */
@@ -10266,18 +10382,18 @@ export type GetMerchantsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMerchantsCountError = GetMerchantsCountErrors[keyof GetMerchantsCountErrors];
+export type MerchantsGetMerchantsCountError = MerchantsGetMerchantsCountErrors[keyof MerchantsGetMerchantsCountErrors];
 
-export type GetMerchantsCountResponses = {
+export type MerchantsGetMerchantsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetMerchantsCountResponse = GetMerchantsCountResponses[keyof GetMerchantsCountResponses];
+export type MerchantsGetMerchantsCountResponse = MerchantsGetMerchantsCountResponses[keyof MerchantsGetMerchantsCountResponses];
 
-export type GetMerchantByIdData = {
+export type MerchantsGetMerchantByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10291,7 +10407,7 @@ export type GetMerchantByIdData = {
     url: '/api/v2/CatalogService/Merchants/{merchantId}';
 };
 
-export type GetMerchantByIdErrors = {
+export type MerchantsGetMerchantByIdErrors = {
     /**
      * Unauthorized
      */
@@ -10300,18 +10416,22 @@ export type GetMerchantByIdErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetMerchantByIdError = GetMerchantByIdErrors[keyof GetMerchantByIdErrors];
+export type MerchantsGetMerchantByIdError = MerchantsGetMerchantByIdErrors[keyof MerchantsGetMerchantByIdErrors];
 
-export type GetMerchantByIdResponses = {
+export type MerchantsGetMerchantByIdResponses = {
     /**
      * OK
      */
     200: MerchantDtoEnvelopeReadable;
 };
 
-export type GetMerchantByIdResponse = GetMerchantByIdResponses[keyof GetMerchantByIdResponses];
+export type MerchantsGetMerchantByIdResponse = MerchantsGetMerchantByIdResponses[keyof MerchantsGetMerchantByIdResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

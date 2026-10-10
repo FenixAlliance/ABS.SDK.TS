@@ -10,735 +10,487 @@ export interface paths {
      * Get email groups
      * @description Retrieves a collection of email groups for the specified tenant using OData query options.
      */
-    get: operations["GetEmailGroupsODataAsync"];
+    get: operations["EmailGroups_GetEmailGroupsOData"];
     /**
      * Create an email group
      * @description Creates a new email group for the specified tenant.
      */
-    post: operations["CreateEmailGroupAsync"];
+    post: operations["EmailGroups_CreateEmailGroup"];
   };
   "/api/v2/MarketingService/EmailGroups/Count": {
     /**
      * Get email groups count
      * @description Returns the count of email groups for the specified tenant using OData query options.
      */
-    get: operations["GetEmailGroupsCountAsync"];
+    get: operations["EmailGroups_GetEmailGroupsCount"];
   };
   "/api/v2/MarketingService/EmailGroups/{emailgroupId}": {
     /**
      * Get email group by ID
      * @description Retrieves the details of a specific email group by its ID.
      */
-    get: operations["GetEmailGroupDetailsAsync"];
+    get: operations["EmailGroups_GetEmailGroupDetails"];
     /**
      * Update an email group
      * @description Updates an existing email group by its ID.
      */
-    put: operations["UpdateEmailGroupAsync"];
+    put: operations["EmailGroups_UpdateEmailGroup"];
     /**
      * Delete an email group
      * @description Deletes an email group by its ID.
      */
-    delete: operations["DeleteEmailGroupAsync"];
+    delete: operations["EmailGroups_DeleteEmailGroup"];
     /**
      * Patch an email group
      * @description Partially updates an email group by its ID using JSON Patch.
      */
-    patch: operations["PatchEmailGroupAsync"];
+    patch: operations["EmailGroups_PatchEmailGroup"];
   };
   "/api/v2/MarketingService/EmailSignatures": {
     /**
      * Get email signatures
      * @description Retrieves a collection of email signatures for the specified tenant using OData query options.
      */
-    get: operations["GetEmailSignaturesODataAsync"];
+    get: operations["EmailSignatures_GetEmailSignaturesOData"];
     /**
      * Create an email signature
      * @description Creates a new email signature for the specified tenant.
      */
-    post: operations["CreateEmailSignatureAsync"];
+    post: operations["EmailSignatures_CreateEmailSignature"];
   };
   "/api/v2/MarketingService/EmailSignatures/Count": {
     /**
      * Get email signatures count
      * @description Returns the count of email signatures for the specified tenant using OData query options.
      */
-    get: operations["GetEmailSignaturesCountAsync"];
+    get: operations["EmailSignatures_GetEmailSignaturesCount"];
   };
   "/api/v2/MarketingService/EmailSignatures/{emailsignatureId}": {
     /**
      * Get email signature by ID
      * @description Retrieves the details of a specific email signature by its ID.
      */
-    get: operations["GetEmailSignatureDetailsAsync"];
+    get: operations["EmailSignatures_GetEmailSignatureDetails"];
     /**
      * Update an email signature
      * @description Updates an existing email signature by its ID.
      */
-    put: operations["UpdateEmailSignatureAsync"];
+    put: operations["EmailSignatures_UpdateEmailSignature"];
     /**
      * Delete an email signature
      * @description Deletes an email signature by its ID.
      */
-    delete: operations["DeleteEmailSignatureAsync"];
+    delete: operations["EmailSignatures_DeleteEmailSignature"];
     /**
      * Patch an email signature
      * @description Partially updates an email signature by its ID using JSON Patch.
      */
-    patch: operations["PatchEmailSignatureAsync"];
+    patch: operations["EmailSignatures_PatchEmailSignature"];
   };
   "/api/v2/MarketingService/EmailTemplates": {
     /**
      * Get email templates
      * @description Retrieves a collection of email templates for the specified tenant using OData query options.
      */
-    get: operations["GetEmailTemplatesODataAsync"];
+    get: operations["EmailTemplates_GetEmailTemplatesOData"];
     /**
      * Create an email template
      * @description Creates a new email template for the specified tenant.
      */
-    post: operations["CreateEmailTemplateAsync"];
+    post: operations["EmailTemplates_CreateEmailTemplate"];
   };
   "/api/v2/MarketingService/EmailTemplates/Count": {
     /**
      * Get email templates count
      * @description Returns the count of email templates for the specified tenant using OData query options.
      */
-    get: operations["GetEmailTemplatesCountAsync"];
+    get: operations["EmailTemplates_GetEmailTemplatesCount"];
   };
   "/api/v2/MarketingService/EmailTemplates/{emailTemplateId}": {
     /**
      * Get email template by ID
      * @description Retrieves the details of a specific email template by its ID.
      */
-    get: operations["GetEmailTemplateDetailsAsync"];
+    get: operations["EmailTemplates_GetEmailTemplateDetails"];
     /**
      * Update an email template
      * @description Updates an existing email template by its ID.
      */
-    put: operations["UpdateEmailTemplateAsync"];
+    put: operations["EmailTemplates_UpdateEmailTemplate"];
     /**
      * Delete an email template
      * @description Deletes an email template by its ID.
      */
-    delete: operations["DeleteEmailTemplateAsync"];
+    delete: operations["EmailTemplates_DeleteEmailTemplate"];
     /**
      * Patch an email template
      * @description Partially updates an email template by its ID using JSON Patch.
      */
-    patch: operations["PatchEmailTemplateAsync"];
+    patch: operations["EmailTemplates_PatchEmailTemplate"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/MarketingService/MarketingAreas": {
     /**
      * Get marketing areas
      * @description Retrieves marketing areas for the specified tenant.
      */
-    get: operations["GetMarketingAreasAsync"];
+    get: operations["MarketingAreas_GetMarketingAreas"];
     /**
      * Create a marketing area
      * @description Creates a new marketing area for the specified tenant.
      */
-    post: operations["CreateMarketingAreaAsync"];
+    post: operations["MarketingAreas_CreateMarketingArea"];
   };
   "/api/v2/MarketingService/MarketingAreas/Count": {
     /**
      * Count marketing areas
      * @description Counts marketing areas for the specified tenant.
      */
-    get: operations["GetMarketingAreasCountAsync"];
+    get: operations["MarketingAreas_GetMarketingAreasCount"];
   };
   "/api/v2/MarketingService/MarketingAreas/{marketingAreaId}": {
     /**
      * Get marketing area by ID
      * @description Retrieves a specific marketing area by its identifier.
      */
-    get: operations["GetMarketingAreaByIdAsync"];
+    get: operations["MarketingAreas_GetMarketingAreaById"];
     /**
      * Update a marketing area
      * @description Updates an existing marketing area for the specified tenant.
      */
-    put: operations["UpdateMarketingAreaAsync"];
+    put: operations["MarketingAreas_UpdateMarketingArea"];
     /**
      * Delete a marketing area
      * @description Deletes a marketing area for the specified tenant.
      */
-    delete: operations["DeleteMarketingAreaAsync"];
+    delete: operations["MarketingAreas_DeleteMarketingArea"];
     /**
      * Patch a marketing area
      * @description Partially updates a marketing area by its ID using JSON Patch.
      */
-    patch: operations["PatchMarketingAreaAsync"];
+    patch: operations["MarketingAreas_PatchMarketingArea"];
   };
   "/api/v2/MarketingService/MarketingCampaigns": {
     /**
      * Get marketing campaigns
      * @description Retrieves a collection of marketing campaigns for the specified tenant using OData query options.
      */
-    get: operations["GetMarketingCampaignODataAsync"];
+    get: operations["MarketingCampaigns_GetMarketingCampaignOData"];
     /**
      * Create a marketing campaign
      * @description Creates a new marketing campaign for the specified tenant.
      */
-    post: operations["CreateMarketingCampaignAsync"];
+    post: operations["MarketingCampaigns_CreateMarketingCampaign"];
   };
   "/api/v2/MarketingService/MarketingCampaigns/Count": {
     /**
      * Get marketing campaigns count
      * @description Returns the count of marketing campaigns for the specified tenant using OData query options.
      */
-    get: operations["GetMarketingCampaignsCountAsync"];
+    get: operations["MarketingCampaigns_GetMarketingCampaignsCount"];
   };
   "/api/v2/MarketingService/MarketingCampaigns/{marketingcampaignId}": {
     /**
      * Get marketing campaign by ID
      * @description Retrieves the details of a specific marketing campaign by its ID.
      */
-    get: operations["GetMarketingCampaignDetailsAsync"];
+    get: operations["MarketingCampaigns_GetMarketingCampaignDetails"];
     /**
      * Update a marketing campaign
      * @description Updates an existing marketing campaign by its ID.
      */
-    put: operations["UpdateMarketingCampaignAsync"];
+    put: operations["MarketingCampaigns_UpdateMarketingCampaign"];
     /**
      * Delete a marketing campaign
      * @description Deletes a marketing campaign by its ID.
      */
-    delete: operations["DeleteMarketingCampaignAsync"];
+    delete: operations["MarketingCampaigns_DeleteMarketingCampaign"];
     /**
      * Patch a marketing campaign
      * @description Partially updates a marketing campaign by its ID using JSON Patch.
      */
-    patch: operations["PatchMarketingCampaignAsync"];
+    patch: operations["MarketingCampaigns_PatchMarketingCampaign"];
   };
   "/api/v2/MarketingService/MarketingLeads": {
     /**
      * Get marketing leads
      * @description Retrieves a collection of marketing leads for the specified tenant using OData query options.
      */
-    get: operations["GetMarketingLeadsODataAsync"];
+    get: operations["MarketingLeads_GetMarketingLeadsOData"];
     /** Create a marketing lead */
-    post: operations["CreateMarketingLeadAsync"];
+    post: operations["MarketingLeads_CreateMarketingLead"];
   };
   "/api/v2/MarketingService/MarketingLeads/Count": {
     /** Get marketing leads count */
-    get: operations["GetMarketingLeadsCountAsync"];
+    get: operations["MarketingLeads_GetMarketingLeadsCount"];
   };
   "/api/v2/MarketingService/MarketingLeads/{marketingLeadId}": {
     /** Get marketing lead by ID */
-    get: operations["GetMarketingLeadDetailsAsync"];
+    get: operations["MarketingLeads_GetMarketingLeadDetails"];
     /** Update a marketing lead */
-    put: operations["UpdateMarketingLeadAsync"];
+    put: operations["MarketingLeads_UpdateMarketingLead"];
     /** Delete a marketing lead */
-    delete: operations["DeleteMarketingLeadAsync"];
+    delete: operations["MarketingLeads_DeleteMarketingLead"];
     /**
      * Patch a marketing lead
      * @description Partially updates a marketing lead by its ID using JSON Patch.
      */
-    patch: operations["PatchMarketingLeadAsync"];
+    patch: operations["MarketingLeads_PatchMarketingLead"];
   };
   "/api/v2/MarketingService/MarketingLists": {
     /**
      * Get marketing lists
      * @description Retrieves a collection of marketing lists for the specified tenant using OData query options.
      */
-    get: operations["GetMarketingListODataAsync"];
+    get: operations["MarketingLists_GetMarketingListOData"];
     /**
      * Create a marketing list
      * @description Creates a new marketing list for the specified tenant.
      */
-    post: operations["CreateMarketingListAsync"];
+    post: operations["MarketingLists_CreateMarketingList"];
   };
   "/api/v2/MarketingService/MarketingLists/Count": {
     /**
      * Get marketing lists count
      * @description Returns the count of marketing lists for the specified tenant using OData query options.
      */
-    get: operations["GetMarketingListsCountAsync"];
+    get: operations["MarketingLists_GetMarketingListsCount"];
   };
   "/api/v2/MarketingService/MarketingLists/{marketinglistId}": {
     /**
      * Get marketing list by ID
      * @description Retrieves the details of a specific marketing list by its ID.
      */
-    get: operations["GetMarketingListDetailsAsync"];
+    get: operations["MarketingLists_GetMarketingListDetails"];
     /**
      * Update a marketing list
      * @description Updates an existing marketing list by its ID.
      */
-    put: operations["UpdateMarketingListAsync"];
+    put: operations["MarketingLists_UpdateMarketingList"];
     /**
      * Delete a marketing list
      * @description Deletes a marketing list by its ID.
      */
-    delete: operations["DeleteMarketingListAsync"];
+    delete: operations["MarketingLists_DeleteMarketingList"];
     /**
      * Patch a marketing list
      * @description Partially updates a marketing list by its ID using JSON Patch.
      */
-    patch: operations["PatchMarketingListAsync"];
+    patch: operations["MarketingLists_PatchMarketingList"];
   };
   "/api/v2/MarketingService/Newsletters": {
     /**
      * Get newsletters
      * @description Retrieves a collection of newsletters for the specified tenant using OData query options.
      */
-    get: operations["GetNewsletterODataAsync"];
+    get: operations["Newsletters_GetNewsletterOData"];
     /**
      * Create a newsletter
      * @description Creates a new newsletter for the specified tenant.
      */
-    post: operations["CreateNewsletterAsync"];
+    post: operations["Newsletters_CreateNewsletter"];
   };
   "/api/v2/MarketingService/Newsletters/Count": {
     /**
      * Get newsletters count
      * @description Returns the count of newsletters for the specified tenant using OData query options.
      */
-    get: operations["GetNewslettersCountAsync"];
+    get: operations["Newsletters_GetNewslettersCount"];
   };
   "/api/v2/MarketingService/Newsletters/{newsletterId}": {
     /**
      * Get newsletter by ID
      * @description Retrieves the details of a specific newsletter by its ID.
      */
-    get: operations["GetNewsletterDetailsAsync"];
+    get: operations["Newsletters_GetNewsletterDetails"];
     /**
      * Update a newsletter
      * @description Updates an existing newsletter by its ID.
      */
-    put: operations["UpdateNewsletterAsync"];
+    put: operations["Newsletters_UpdateNewsletter"];
     /**
      * Delete a newsletter
      * @description Deletes a newsletter by its ID.
      */
-    delete: operations["DeleteNewsletterAsync"];
+    delete: operations["Newsletters_DeleteNewsletter"];
     /**
      * Patch a newsletter
      * @description Partially updates a newsletter by its ID using JSON Patch.
      */
-    patch: operations["PatchNewsletterAsync"];
+    patch: operations["Newsletters_PatchNewsletter"];
   };
   "/api/v2/MarketingService/NewsletterSubscriptions": {
     /**
      * Get newsletter subscriptions
      * @description Retrieves a collection of newsletter subscriptions for the specified tenant using OData query options.
      */
-    get: operations["GetNewsletterSubscriptionsAsync"];
+    get: operations["NewsletterSubscriptions_GetNewsletterSubscriptions"];
     /**
      * Create a newsletter subscription
      * @description Creates a new newsletter subscription for the specified tenant.
      */
-    post: operations["CreateNewsletterSubscriptionAsync"];
+    post: operations["NewsletterSubscriptions_CreateNewsletterSubscription"];
   };
   "/api/v2/MarketingService/NewsletterSubscriptions/Count": {
     /**
      * Get newsletter subscriptions count
      * @description Returns the count of newsletter subscriptions for the specified tenant using OData query options.
      */
-    get: operations["GetNewsletterSubscriptionsCountAsync"];
+    get: operations["NewsletterSubscriptions_GetNewsletterSubscriptionsCount"];
   };
   "/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}": {
     /**
      * Get newsletter subscription by ID
      * @description Retrieves the details of a specific newsletter subscription by its ID.
      */
-    get: operations["GetNewsletterSubscriptionByIdAsync"];
+    get: operations["NewsletterSubscriptions_GetNewsletterSubscriptionById"];
     /**
      * Update a newsletter subscription
      * @description Updates an existing newsletter subscription by its ID.
      */
-    put: operations["UpdateNewsletterSubscriptionAsync"];
+    put: operations["NewsletterSubscriptions_UpdateNewsletterSubscription"];
     /**
      * Delete a newsletter subscription
      * @description Deletes a newsletter subscription by its ID.
      */
-    delete: operations["DeleteNewsletterSubscriptionAsync"];
+    delete: operations["NewsletterSubscriptions_DeleteNewsletterSubscription"];
   };
   "/api/v2/MarketingService/SocialMediaPosts": {
     /**
      * Get social media posts
      * @description Retrieves a collection of social media posts for the specified tenant using OData query options.
      */
-    get: operations["GetSocialMediaPostsODataAsync"];
+    get: operations["SocialMediaPosts_GetSocialMediaPostsOData"];
     /**
      * Create a social media post
      * @description Creates a new social media post for the specified tenant.
      */
-    post: operations["CreateSocialMediaPostAsync"];
+    post: operations["SocialMediaPosts_CreateSocialMediaPost"];
   };
   "/api/v2/MarketingService/SocialMediaPosts/Count": {
     /**
      * Get social media posts count
      * @description Returns the count of social media posts for the specified tenant using OData query options.
      */
-    get: operations["GetSocialMediaPostsCountAsync"];
+    get: operations["SocialMediaPosts_GetSocialMediaPostsCount"];
   };
   "/api/v2/MarketingService/SocialMediaPosts/{socialmediapostId}": {
     /**
      * Get social media post by ID
      * @description Retrieves the details of a specific social media post by its ID.
      */
-    get: operations["GetSocialMediaPostDetailsAsync"];
+    get: operations["SocialMediaPosts_GetSocialMediaPostDetails"];
     /**
      * Update a social media post
      * @description Updates an existing social media post by its ID.
      */
-    put: operations["UpdateSocialMediaPostAsync"];
+    put: operations["SocialMediaPosts_UpdateSocialMediaPost"];
     /**
      * Delete a social media post
      * @description Deletes a social media post by its ID.
      */
-    delete: operations["DeleteSocialMediaPostAsync"];
+    delete: operations["SocialMediaPosts_DeleteSocialMediaPost"];
     /**
      * Patch a social media post
      * @description Partially updates a social media post by its ID using JSON Patch.
      */
-    patch: operations["PatchSocialMediaPostAsync"];
+    patch: operations["SocialMediaPosts_PatchSocialMediaPost"];
   };
   "/api/v2/MarketingService/SocialPostBuckets": {
     /**
      * Get social post buckets
      * @description Retrieves a collection of social post buckets for the specified tenant using OData query options.
      */
-    get: operations["GetSocialPostBucketsODataAsync"];
+    get: operations["SocialPostBuckets_GetSocialPostBucketsOData"];
     /**
      * Create a social post bucket
      * @description Creates a new social post bucket for the specified tenant.
      */
-    post: operations["CreateSocialPostBucketAsync"];
+    post: operations["SocialPostBuckets_CreateSocialPostBucket"];
   };
   "/api/v2/MarketingService/SocialPostBuckets/Count": {
     /**
      * Get social post buckets count
      * @description Returns the count of social post buckets for the specified tenant using OData query options.
      */
-    get: operations["GetSocialPostBucketsCountAsync"];
+    get: operations["SocialPostBuckets_GetSocialPostBucketsCount"];
   };
   "/api/v2/MarketingService/SocialPostBuckets/{socialpostbucketId}": {
     /**
      * Get social post bucket by ID
      * @description Retrieves the details of a specific social post bucket by its ID.
      */
-    get: operations["GetSocialPostBucketDetailsAsync"];
+    get: operations["SocialPostBuckets_GetSocialPostBucketDetails"];
     /**
      * Update a social post bucket
      * @description Updates an existing social post bucket by its ID.
      */
-    put: operations["UpdateSocialPostBucketAsync"];
+    put: operations["SocialPostBuckets_UpdateSocialPostBucket"];
     /**
      * Delete a social post bucket
      * @description Deletes a social post bucket by its ID.
      */
-    delete: operations["DeleteSocialPostBucketAsync"];
+    delete: operations["SocialPostBuckets_DeleteSocialPostBucket"];
     /**
      * Patch a social post bucket
      * @description Partially updates a social post bucket by its ID using JSON Patch.
      */
-    patch: operations["PatchSocialPostBucketAsync"];
+    patch: operations["SocialPostBuckets_PatchSocialPostBucket"];
   };
   "/api/v2/MarketingService/TrackingPixels/{pixelId}": {
     /**
      * Get a tracking pixel
      * @description Retrieves a tracking pixel by its ID.
      */
-    get: operations["GetTrackingPixelAsync"];
+    get: operations["TrackingPixels_GetTrackingPixel"];
   };
 }
 
@@ -2091,7 +1843,7 @@ export interface operations {
    * Get email groups
    * @description Retrieves a collection of email groups for the specified tenant using OData query options.
    */
-  GetEmailGroupsODataAsync: {
+  EmailGroups_GetEmailGroupsOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -2135,7 +1887,7 @@ export interface operations {
    * Create an email group
    * @description Creates a new email group for the specified tenant.
    */
-  CreateEmailGroupAsync: {
+  EmailGroups_CreateEmailGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2186,7 +1938,7 @@ export interface operations {
    * Get email groups count
    * @description Returns the count of email groups for the specified tenant using OData query options.
    */
-  GetEmailGroupsCountAsync: {
+  EmailGroups_GetEmailGroupsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2237,7 +1989,7 @@ export interface operations {
    * Get email group by ID
    * @description Retrieves the details of a specific email group by its ID.
    */
-  GetEmailGroupDetailsAsync: {
+  EmailGroups_GetEmailGroupDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -2285,7 +2037,7 @@ export interface operations {
    * Update an email group
    * @description Updates an existing email group by its ID.
    */
-  UpdateEmailGroupAsync: {
+  EmailGroups_UpdateEmailGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2339,7 +2091,7 @@ export interface operations {
    * Delete an email group
    * @description Deletes an email group by its ID.
    */
-  DeleteEmailGroupAsync: {
+  EmailGroups_DeleteEmailGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2387,7 +2139,7 @@ export interface operations {
    * Patch an email group
    * @description Partially updates an email group by its ID using JSON Patch.
    */
-  PatchEmailGroupAsync: {
+  EmailGroups_PatchEmailGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -2434,7 +2186,7 @@ export interface operations {
    * Get email signatures
    * @description Retrieves a collection of email signatures for the specified tenant using OData query options.
    */
-  GetEmailSignaturesODataAsync: {
+  EmailSignatures_GetEmailSignaturesOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -2478,7 +2230,7 @@ export interface operations {
    * Create an email signature
    * @description Creates a new email signature for the specified tenant.
    */
-  CreateEmailSignatureAsync: {
+  EmailSignatures_CreateEmailSignature: {
     parameters: {
       query: {
         tenantId: string;
@@ -2529,7 +2281,7 @@ export interface operations {
    * Get email signatures count
    * @description Returns the count of email signatures for the specified tenant using OData query options.
    */
-  GetEmailSignaturesCountAsync: {
+  EmailSignatures_GetEmailSignaturesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2580,7 +2332,7 @@ export interface operations {
    * Get email signature by ID
    * @description Retrieves the details of a specific email signature by its ID.
    */
-  GetEmailSignatureDetailsAsync: {
+  EmailSignatures_GetEmailSignatureDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -2628,7 +2380,7 @@ export interface operations {
    * Update an email signature
    * @description Updates an existing email signature by its ID.
    */
-  UpdateEmailSignatureAsync: {
+  EmailSignatures_UpdateEmailSignature: {
     parameters: {
       query: {
         tenantId: string;
@@ -2682,7 +2434,7 @@ export interface operations {
    * Delete an email signature
    * @description Deletes an email signature by its ID.
    */
-  DeleteEmailSignatureAsync: {
+  EmailSignatures_DeleteEmailSignature: {
     parameters: {
       query: {
         tenantId: string;
@@ -2730,7 +2482,7 @@ export interface operations {
    * Patch an email signature
    * @description Partially updates an email signature by its ID using JSON Patch.
    */
-  PatchEmailSignatureAsync: {
+  EmailSignatures_PatchEmailSignature: {
     parameters: {
       query: {
         tenantId: string;
@@ -2777,7 +2529,7 @@ export interface operations {
    * Get email templates
    * @description Retrieves a collection of email templates for the specified tenant using OData query options.
    */
-  GetEmailTemplatesODataAsync: {
+  EmailTemplates_GetEmailTemplatesOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -2821,7 +2573,7 @@ export interface operations {
    * Create an email template
    * @description Creates a new email template for the specified tenant.
    */
-  CreateEmailTemplateAsync: {
+  EmailTemplates_CreateEmailTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -2872,7 +2624,7 @@ export interface operations {
    * Get email templates count
    * @description Returns the count of email templates for the specified tenant using OData query options.
    */
-  GetEmailTemplatesCountAsync: {
+  EmailTemplates_GetEmailTemplatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2923,7 +2675,7 @@ export interface operations {
    * Get email template by ID
    * @description Retrieves the details of a specific email template by its ID.
    */
-  GetEmailTemplateDetailsAsync: {
+  EmailTemplates_GetEmailTemplateDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -2971,7 +2723,7 @@ export interface operations {
    * Update an email template
    * @description Updates an existing email template by its ID.
    */
-  UpdateEmailTemplateAsync: {
+  EmailTemplates_UpdateEmailTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3025,7 +2777,7 @@ export interface operations {
    * Delete an email template
    * @description Deletes an email template by its ID.
    */
-  DeleteEmailTemplateAsync: {
+  EmailTemplates_DeleteEmailTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3073,7 +2825,7 @@ export interface operations {
    * Patch an email template
    * @description Partially updates an email template by its ID using JSON Patch.
    */
-  PatchEmailTemplateAsync: {
+  EmailTemplates_PatchEmailTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3116,7 +2868,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -3131,11 +2962,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get marketing areas
    * @description Retrieves marketing areas for the specified tenant.
    */
-  GetMarketingAreasAsync: {
+  MarketingAreas_GetMarketingAreas: {
     parameters: {
       query: {
         tenantId: string;
@@ -3179,7 +3195,7 @@ export interface operations {
    * Create a marketing area
    * @description Creates a new marketing area for the specified tenant.
    */
-  CreateMarketingAreaAsync: {
+  MarketingAreas_CreateMarketingArea: {
     parameters: {
       query: {
         tenantId: string;
@@ -3230,7 +3246,7 @@ export interface operations {
    * Count marketing areas
    * @description Counts marketing areas for the specified tenant.
    */
-  GetMarketingAreasCountAsync: {
+  MarketingAreas_GetMarketingAreasCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3274,7 +3290,7 @@ export interface operations {
    * Get marketing area by ID
    * @description Retrieves a specific marketing area by its identifier.
    */
-  GetMarketingAreaByIdAsync: {
+  MarketingAreas_GetMarketingAreaById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3315,7 +3331,7 @@ export interface operations {
    * Update a marketing area
    * @description Updates an existing marketing area for the specified tenant.
    */
-  UpdateMarketingAreaAsync: {
+  MarketingAreas_UpdateMarketingArea: {
     parameters: {
       query: {
         tenantId: string;
@@ -3369,7 +3385,7 @@ export interface operations {
    * Delete a marketing area
    * @description Deletes a marketing area for the specified tenant.
    */
-  DeleteMarketingAreaAsync: {
+  MarketingAreas_DeleteMarketingArea: {
     parameters: {
       query: {
         tenantId: string;
@@ -3417,7 +3433,7 @@ export interface operations {
    * Patch a marketing area
    * @description Partially updates a marketing area by its ID using JSON Patch.
    */
-  PatchMarketingAreaAsync: {
+  MarketingAreas_PatchMarketingArea: {
     parameters: {
       query: {
         tenantId: string;
@@ -3464,7 +3480,7 @@ export interface operations {
    * Get marketing campaigns
    * @description Retrieves a collection of marketing campaigns for the specified tenant using OData query options.
    */
-  GetMarketingCampaignODataAsync: {
+  MarketingCampaigns_GetMarketingCampaignOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -3508,7 +3524,7 @@ export interface operations {
    * Create a marketing campaign
    * @description Creates a new marketing campaign for the specified tenant.
    */
-  CreateMarketingCampaignAsync: {
+  MarketingCampaigns_CreateMarketingCampaign: {
     parameters: {
       query: {
         tenantId: string;
@@ -3559,7 +3575,7 @@ export interface operations {
    * Get marketing campaigns count
    * @description Returns the count of marketing campaigns for the specified tenant using OData query options.
    */
-  GetMarketingCampaignsCountAsync: {
+  MarketingCampaigns_GetMarketingCampaignsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3610,7 +3626,7 @@ export interface operations {
    * Get marketing campaign by ID
    * @description Retrieves the details of a specific marketing campaign by its ID.
    */
-  GetMarketingCampaignDetailsAsync: {
+  MarketingCampaigns_GetMarketingCampaignDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -3658,7 +3674,7 @@ export interface operations {
    * Update a marketing campaign
    * @description Updates an existing marketing campaign by its ID.
    */
-  UpdateMarketingCampaignAsync: {
+  MarketingCampaigns_UpdateMarketingCampaign: {
     parameters: {
       query: {
         tenantId: string;
@@ -3712,7 +3728,7 @@ export interface operations {
    * Delete a marketing campaign
    * @description Deletes a marketing campaign by its ID.
    */
-  DeleteMarketingCampaignAsync: {
+  MarketingCampaigns_DeleteMarketingCampaign: {
     parameters: {
       query: {
         tenantId: string;
@@ -3760,7 +3776,7 @@ export interface operations {
    * Patch a marketing campaign
    * @description Partially updates a marketing campaign by its ID using JSON Patch.
    */
-  PatchMarketingCampaignAsync: {
+  MarketingCampaigns_PatchMarketingCampaign: {
     parameters: {
       query: {
         tenantId: string;
@@ -3807,7 +3823,7 @@ export interface operations {
    * Get marketing leads
    * @description Retrieves a collection of marketing leads for the specified tenant using OData query options.
    */
-  GetMarketingLeadsODataAsync: {
+  MarketingLeads_GetMarketingLeadsOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -3834,7 +3850,7 @@ export interface operations {
     };
   };
   /** Create a marketing lead */
-  CreateMarketingLeadAsync: {
+  MarketingLeads_CreateMarketingLead: {
     parameters: {
       query: {
         tenantId: string;
@@ -3861,7 +3877,7 @@ export interface operations {
     };
   };
   /** Get marketing leads count */
-  GetMarketingLeadsCountAsync: {
+  MarketingLeads_GetMarketingLeadsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3888,7 +3904,7 @@ export interface operations {
     };
   };
   /** Get marketing lead by ID */
-  GetMarketingLeadDetailsAsync: {
+  MarketingLeads_GetMarketingLeadDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -3912,7 +3928,7 @@ export interface operations {
     };
   };
   /** Update a marketing lead */
-  UpdateMarketingLeadAsync: {
+  MarketingLeads_UpdateMarketingLead: {
     parameters: {
       query: {
         tenantId: string;
@@ -3942,7 +3958,7 @@ export interface operations {
     };
   };
   /** Delete a marketing lead */
-  DeleteMarketingLeadAsync: {
+  MarketingLeads_DeleteMarketingLead: {
     parameters: {
       query: {
         tenantId: string;
@@ -3969,7 +3985,7 @@ export interface operations {
    * Patch a marketing lead
    * @description Partially updates a marketing lead by its ID using JSON Patch.
    */
-  PatchMarketingLeadAsync: {
+  MarketingLeads_PatchMarketingLead: {
     parameters: {
       query: {
         tenantId: string;
@@ -4016,7 +4032,7 @@ export interface operations {
    * Get marketing lists
    * @description Retrieves a collection of marketing lists for the specified tenant using OData query options.
    */
-  GetMarketingListODataAsync: {
+  MarketingLists_GetMarketingListOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -4060,7 +4076,7 @@ export interface operations {
    * Create a marketing list
    * @description Creates a new marketing list for the specified tenant.
    */
-  CreateMarketingListAsync: {
+  MarketingLists_CreateMarketingList: {
     parameters: {
       query: {
         tenantId: string;
@@ -4111,7 +4127,7 @@ export interface operations {
    * Get marketing lists count
    * @description Returns the count of marketing lists for the specified tenant using OData query options.
    */
-  GetMarketingListsCountAsync: {
+  MarketingLists_GetMarketingListsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4162,7 +4178,7 @@ export interface operations {
    * Get marketing list by ID
    * @description Retrieves the details of a specific marketing list by its ID.
    */
-  GetMarketingListDetailsAsync: {
+  MarketingLists_GetMarketingListDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -4210,7 +4226,7 @@ export interface operations {
    * Update a marketing list
    * @description Updates an existing marketing list by its ID.
    */
-  UpdateMarketingListAsync: {
+  MarketingLists_UpdateMarketingList: {
     parameters: {
       query: {
         tenantId: string;
@@ -4264,7 +4280,7 @@ export interface operations {
    * Delete a marketing list
    * @description Deletes a marketing list by its ID.
    */
-  DeleteMarketingListAsync: {
+  MarketingLists_DeleteMarketingList: {
     parameters: {
       query: {
         tenantId: string;
@@ -4312,7 +4328,7 @@ export interface operations {
    * Patch a marketing list
    * @description Partially updates a marketing list by its ID using JSON Patch.
    */
-  PatchMarketingListAsync: {
+  MarketingLists_PatchMarketingList: {
     parameters: {
       query: {
         tenantId: string;
@@ -4359,7 +4375,7 @@ export interface operations {
    * Get newsletters
    * @description Retrieves a collection of newsletters for the specified tenant using OData query options.
    */
-  GetNewsletterODataAsync: {
+  Newsletters_GetNewsletterOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -4403,7 +4419,7 @@ export interface operations {
    * Create a newsletter
    * @description Creates a new newsletter for the specified tenant.
    */
-  CreateNewsletterAsync: {
+  Newsletters_CreateNewsletter: {
     parameters: {
       query: {
         tenantId: string;
@@ -4454,7 +4470,7 @@ export interface operations {
    * Get newsletters count
    * @description Returns the count of newsletters for the specified tenant using OData query options.
    */
-  GetNewslettersCountAsync: {
+  Newsletters_GetNewslettersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4505,7 +4521,7 @@ export interface operations {
    * Get newsletter by ID
    * @description Retrieves the details of a specific newsletter by its ID.
    */
-  GetNewsletterDetailsAsync: {
+  Newsletters_GetNewsletterDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -4553,7 +4569,7 @@ export interface operations {
    * Update a newsletter
    * @description Updates an existing newsletter by its ID.
    */
-  UpdateNewsletterAsync: {
+  Newsletters_UpdateNewsletter: {
     parameters: {
       query: {
         tenantId: string;
@@ -4607,7 +4623,7 @@ export interface operations {
    * Delete a newsletter
    * @description Deletes a newsletter by its ID.
    */
-  DeleteNewsletterAsync: {
+  Newsletters_DeleteNewsletter: {
     parameters: {
       query: {
         tenantId: string;
@@ -4655,7 +4671,7 @@ export interface operations {
    * Patch a newsletter
    * @description Partially updates a newsletter by its ID using JSON Patch.
    */
-  PatchNewsletterAsync: {
+  Newsletters_PatchNewsletter: {
     parameters: {
       query: {
         tenantId: string;
@@ -4702,7 +4718,7 @@ export interface operations {
    * Get newsletter subscriptions
    * @description Retrieves a collection of newsletter subscriptions for the specified tenant using OData query options.
    */
-  GetNewsletterSubscriptionsAsync: {
+  NewsletterSubscriptions_GetNewsletterSubscriptions: {
     parameters: {
       query: {
         tenantId: string;
@@ -4753,7 +4769,7 @@ export interface operations {
    * Create a newsletter subscription
    * @description Creates a new newsletter subscription for the specified tenant.
    */
-  CreateNewsletterSubscriptionAsync: {
+  NewsletterSubscriptions_CreateNewsletterSubscription: {
     parameters: {
       query: {
         tenantId: string;
@@ -4804,7 +4820,7 @@ export interface operations {
    * Get newsletter subscriptions count
    * @description Returns the count of newsletter subscriptions for the specified tenant using OData query options.
    */
-  GetNewsletterSubscriptionsCountAsync: {
+  NewsletterSubscriptions_GetNewsletterSubscriptionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4855,7 +4871,7 @@ export interface operations {
    * Get newsletter subscription by ID
    * @description Retrieves the details of a specific newsletter subscription by its ID.
    */
-  GetNewsletterSubscriptionByIdAsync: {
+  NewsletterSubscriptions_GetNewsletterSubscriptionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4903,7 +4919,7 @@ export interface operations {
    * Update a newsletter subscription
    * @description Updates an existing newsletter subscription by its ID.
    */
-  UpdateNewsletterSubscriptionAsync: {
+  NewsletterSubscriptions_UpdateNewsletterSubscription: {
     parameters: {
       query: {
         tenantId: string;
@@ -4957,7 +4973,7 @@ export interface operations {
    * Delete a newsletter subscription
    * @description Deletes a newsletter subscription by its ID.
    */
-  DeleteNewsletterSubscriptionAsync: {
+  NewsletterSubscriptions_DeleteNewsletterSubscription: {
     parameters: {
       query: {
         tenantId: string;
@@ -5005,7 +5021,7 @@ export interface operations {
    * Get social media posts
    * @description Retrieves a collection of social media posts for the specified tenant using OData query options.
    */
-  GetSocialMediaPostsODataAsync: {
+  SocialMediaPosts_GetSocialMediaPostsOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -5049,7 +5065,7 @@ export interface operations {
    * Create a social media post
    * @description Creates a new social media post for the specified tenant.
    */
-  CreateSocialMediaPostAsync: {
+  SocialMediaPosts_CreateSocialMediaPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5100,7 +5116,7 @@ export interface operations {
    * Get social media posts count
    * @description Returns the count of social media posts for the specified tenant using OData query options.
    */
-  GetSocialMediaPostsCountAsync: {
+  SocialMediaPosts_GetSocialMediaPostsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5151,7 +5167,7 @@ export interface operations {
    * Get social media post by ID
    * @description Retrieves the details of a specific social media post by its ID.
    */
-  GetSocialMediaPostDetailsAsync: {
+  SocialMediaPosts_GetSocialMediaPostDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -5199,7 +5215,7 @@ export interface operations {
    * Update a social media post
    * @description Updates an existing social media post by its ID.
    */
-  UpdateSocialMediaPostAsync: {
+  SocialMediaPosts_UpdateSocialMediaPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5253,7 +5269,7 @@ export interface operations {
    * Delete a social media post
    * @description Deletes a social media post by its ID.
    */
-  DeleteSocialMediaPostAsync: {
+  SocialMediaPosts_DeleteSocialMediaPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5301,7 +5317,7 @@ export interface operations {
    * Patch a social media post
    * @description Partially updates a social media post by its ID using JSON Patch.
    */
-  PatchSocialMediaPostAsync: {
+  SocialMediaPosts_PatchSocialMediaPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5348,7 +5364,7 @@ export interface operations {
    * Get social post buckets
    * @description Retrieves a collection of social post buckets for the specified tenant using OData query options.
    */
-  GetSocialPostBucketsODataAsync: {
+  SocialPostBuckets_GetSocialPostBucketsOData: {
     parameters: {
       query: {
         tenantId: string;
@@ -5392,7 +5408,7 @@ export interface operations {
    * Create a social post bucket
    * @description Creates a new social post bucket for the specified tenant.
    */
-  CreateSocialPostBucketAsync: {
+  SocialPostBuckets_CreateSocialPostBucket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5443,7 +5459,7 @@ export interface operations {
    * Get social post buckets count
    * @description Returns the count of social post buckets for the specified tenant using OData query options.
    */
-  GetSocialPostBucketsCountAsync: {
+  SocialPostBuckets_GetSocialPostBucketsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5494,7 +5510,7 @@ export interface operations {
    * Get social post bucket by ID
    * @description Retrieves the details of a specific social post bucket by its ID.
    */
-  GetSocialPostBucketDetailsAsync: {
+  SocialPostBuckets_GetSocialPostBucketDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -5542,7 +5558,7 @@ export interface operations {
    * Update a social post bucket
    * @description Updates an existing social post bucket by its ID.
    */
-  UpdateSocialPostBucketAsync: {
+  SocialPostBuckets_UpdateSocialPostBucket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5596,7 +5612,7 @@ export interface operations {
    * Delete a social post bucket
    * @description Deletes a social post bucket by its ID.
    */
-  DeleteSocialPostBucketAsync: {
+  SocialPostBuckets_DeleteSocialPostBucket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5644,7 +5660,7 @@ export interface operations {
    * Patch a social post bucket
    * @description Partially updates a social post bucket by its ID using JSON Patch.
    */
-  PatchSocialPostBucketAsync: {
+  SocialPostBuckets_PatchSocialPostBucket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5691,7 +5707,7 @@ export interface operations {
    * Get a tracking pixel
    * @description Retrieves a tracking pixel by its ID.
    */
-  GetTrackingPixelAsync: {
+  TrackingPixels_GetTrackingPixel: {
     parameters: {
       query?: {
         "api-version"?: string;

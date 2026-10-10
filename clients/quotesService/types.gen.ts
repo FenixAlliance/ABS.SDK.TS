@@ -96,8 +96,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -157,8 +162,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type EmailDispatchRequest = {
@@ -1530,72 +1540,72 @@ export type UserDtoWritable = {
     siteTheme?: 'System' | 'Light' | 'Dark';
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1605,32 +1615,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1641,81 +1651,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1726,25 +1736,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1755,25 +1765,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1784,18 +1794,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1805,14 +1815,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1821,14 +1831,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1837,28 +1847,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetQuotesData = {
+export type QuotesGetQuotesData = {
     body?: QuoteDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1867,25 +1877,25 @@ export type GetQuotesData = {
     url: '/api/v2/QuotesService/Quotes';
 };
 
-export type GetQuotesErrors = {
+export type QuotesGetQuotesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetQuotesError = GetQuotesErrors[keyof GetQuotesErrors];
+export type QuotesGetQuotesError = QuotesGetQuotesErrors[keyof QuotesGetQuotesErrors];
 
-export type GetQuotesResponses = {
+export type QuotesGetQuotesResponses = {
     /**
      * OK
      */
     200: QuoteDtoListEnvelopeReadable;
 };
 
-export type GetQuotesResponse = GetQuotesResponses[keyof GetQuotesResponses];
+export type QuotesGetQuotesResponse = QuotesGetQuotesResponses[keyof QuotesGetQuotesResponses];
 
-export type CreateQuoteData = {
+export type QuotesCreateQuoteData = {
     body?: QuoteCreateDto;
     path?: never;
     query: {
@@ -1894,25 +1904,25 @@ export type CreateQuoteData = {
     url: '/api/v2/QuotesService/Quotes';
 };
 
-export type CreateQuoteErrors = {
+export type QuotesCreateQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateQuoteError = CreateQuoteErrors[keyof CreateQuoteErrors];
+export type QuotesCreateQuoteError = QuotesCreateQuoteErrors[keyof QuotesCreateQuoteErrors];
 
-export type CreateQuoteResponses = {
+export type QuotesCreateQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateQuoteResponse = CreateQuoteResponses[keyof CreateQuoteResponses];
+export type QuotesCreateQuoteResponse = QuotesCreateQuoteResponses[keyof QuotesCreateQuoteResponses];
 
-export type GetQuotesCountData = {
+export type QuotesGetQuotesCountData = {
     body?: QuoteDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1921,25 +1931,25 @@ export type GetQuotesCountData = {
     url: '/api/v2/QuotesService/Quotes/Count';
 };
 
-export type GetQuotesCountErrors = {
+export type QuotesGetQuotesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetQuotesCountError = GetQuotesCountErrors[keyof GetQuotesCountErrors];
+export type QuotesGetQuotesCountError = QuotesGetQuotesCountErrors[keyof QuotesGetQuotesCountErrors];
 
-export type GetQuotesCountResponses = {
+export type QuotesGetQuotesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetQuotesCountResponse = GetQuotesCountResponses[keyof GetQuotesCountResponses];
+export type QuotesGetQuotesCountResponse = QuotesGetQuotesCountResponses[keyof QuotesGetQuotesCountResponses];
 
-export type GetExtendedQuotesData = {
+export type QuotesGetExtendedQuotesData = {
     body?: ExtendedQuoteDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1948,25 +1958,25 @@ export type GetExtendedQuotesData = {
     url: '/api/v2/QuotesService/Quotes/Extended';
 };
 
-export type GetExtendedQuotesErrors = {
+export type QuotesGetExtendedQuotesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedQuotesError = GetExtendedQuotesErrors[keyof GetExtendedQuotesErrors];
+export type QuotesGetExtendedQuotesError = QuotesGetExtendedQuotesErrors[keyof QuotesGetExtendedQuotesErrors];
 
-export type GetExtendedQuotesResponses = {
+export type QuotesGetExtendedQuotesResponses = {
     /**
      * OK
      */
     200: ExtendedQuoteDtoListEnvelopeReadable;
 };
 
-export type GetExtendedQuotesResponse = GetExtendedQuotesResponses[keyof GetExtendedQuotesResponses];
+export type QuotesGetExtendedQuotesResponse = QuotesGetExtendedQuotesResponses[keyof QuotesGetExtendedQuotesResponses];
 
-export type DeleteQuoteData = {
+export type QuotesDeleteQuoteData = {
     body?: never;
     path: {
         quoteId: string;
@@ -1977,25 +1987,25 @@ export type DeleteQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}';
 };
 
-export type DeleteQuoteErrors = {
+export type QuotesDeleteQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteQuoteError = DeleteQuoteErrors[keyof DeleteQuoteErrors];
+export type QuotesDeleteQuoteError = QuotesDeleteQuoteErrors[keyof QuotesDeleteQuoteErrors];
 
-export type DeleteQuoteResponses = {
+export type QuotesDeleteQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteQuoteResponse = DeleteQuoteResponses[keyof DeleteQuoteResponses];
+export type QuotesDeleteQuoteResponse = QuotesDeleteQuoteResponses[keyof QuotesDeleteQuoteResponses];
 
-export type GetQuoteData = {
+export type QuotesGetQuoteData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2006,25 +2016,25 @@ export type GetQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}';
 };
 
-export type GetQuoteErrors = {
+export type QuotesGetQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetQuoteError = GetQuoteErrors[keyof GetQuoteErrors];
+export type QuotesGetQuoteError = QuotesGetQuoteErrors[keyof QuotesGetQuoteErrors];
 
-export type GetQuoteResponses = {
+export type QuotesGetQuoteResponses = {
     /**
      * OK
      */
     200: QuoteDtoEnvelopeReadable;
 };
 
-export type GetQuoteResponse = GetQuoteResponses[keyof GetQuoteResponses];
+export type QuotesGetQuoteResponse = QuotesGetQuoteResponses[keyof QuotesGetQuoteResponses];
 
-export type PatchQuoteAsyncData = {
+export type QuotesPatchQuoteData = {
     body?: Array<PatchOperation>;
     path: {
         quoteId: string;
@@ -2035,7 +2045,7 @@ export type PatchQuoteAsyncData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}';
 };
 
-export type PatchQuoteAsyncErrors = {
+export type QuotesPatchQuoteErrors = {
     /**
      * Unauthorized
      */
@@ -2050,18 +2060,18 @@ export type PatchQuoteAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchQuoteAsyncError = PatchQuoteAsyncErrors[keyof PatchQuoteAsyncErrors];
+export type QuotesPatchQuoteError = QuotesPatchQuoteErrors[keyof QuotesPatchQuoteErrors];
 
-export type PatchQuoteAsyncResponses = {
+export type QuotesPatchQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchQuoteAsyncResponse = PatchQuoteAsyncResponses[keyof PatchQuoteAsyncResponses];
+export type QuotesPatchQuoteResponse = QuotesPatchQuoteResponses[keyof QuotesPatchQuoteResponses];
 
-export type UpdateQuoteData = {
+export type QuotesUpdateQuoteData = {
     body?: QuoteUpdateDto;
     path: {
         quoteId: string;
@@ -2072,25 +2082,25 @@ export type UpdateQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}';
 };
 
-export type UpdateQuoteErrors = {
+export type QuotesUpdateQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateQuoteError = UpdateQuoteErrors[keyof UpdateQuoteErrors];
+export type QuotesUpdateQuoteError = QuotesUpdateQuoteErrors[keyof QuotesUpdateQuoteErrors];
 
-export type UpdateQuoteResponses = {
+export type QuotesUpdateQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateQuoteResponse = UpdateQuoteResponses[keyof UpdateQuoteResponses];
+export type QuotesUpdateQuoteResponse = QuotesUpdateQuoteResponses[keyof QuotesUpdateQuoteResponses];
 
-export type CalculateQuoteData = {
+export type QuotesCalculateQuoteData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2101,25 +2111,25 @@ export type CalculateQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Calculate';
 };
 
-export type CalculateQuoteErrors = {
+export type QuotesCalculateQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateQuoteError = CalculateQuoteErrors[keyof CalculateQuoteErrors];
+export type QuotesCalculateQuoteError = QuotesCalculateQuoteErrors[keyof QuotesCalculateQuoteErrors];
 
-export type CalculateQuoteResponses = {
+export type QuotesCalculateQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateQuoteResponse = CalculateQuoteResponses[keyof CalculateQuoteResponses];
+export type QuotesCalculateQuoteResponse = QuotesCalculateQuoteResponses[keyof QuotesCalculateQuoteResponses];
 
-export type CloseQuoteData = {
+export type QuotesCloseQuoteData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2130,25 +2140,25 @@ export type CloseQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Close';
 };
 
-export type CloseQuoteErrors = {
+export type QuotesCloseQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CloseQuoteError = CloseQuoteErrors[keyof CloseQuoteErrors];
+export type QuotesCloseQuoteError = QuotesCloseQuoteErrors[keyof QuotesCloseQuoteErrors];
 
-export type CloseQuoteResponses = {
+export type QuotesCloseQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CloseQuoteResponse = CloseQuoteResponses[keyof CloseQuoteResponses];
+export type QuotesCloseQuoteResponse = QuotesCloseQuoteResponses[keyof QuotesCloseQuoteResponses];
 
-export type ReopenQuoteData = {
+export type QuotesReopenQuoteData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2159,25 +2169,25 @@ export type ReopenQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Reopen';
 };
 
-export type ReopenQuoteErrors = {
+export type QuotesReopenQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type ReopenQuoteError = ReopenQuoteErrors[keyof ReopenQuoteErrors];
+export type QuotesReopenQuoteError = QuotesReopenQuoteErrors[keyof QuotesReopenQuoteErrors];
 
-export type ReopenQuoteResponses = {
+export type QuotesReopenQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type ReopenQuoteResponse = ReopenQuoteResponses[keyof ReopenQuoteResponses];
+export type QuotesReopenQuoteResponse = QuotesReopenQuoteResponses[keyof QuotesReopenQuoteResponses];
 
-export type CreateOrderFromQuoteData = {
+export type QuotesCreateOrderFromQuoteData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2188,25 +2198,25 @@ export type CreateOrderFromQuoteData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Orders';
 };
 
-export type CreateOrderFromQuoteErrors = {
+export type QuotesCreateOrderFromQuoteErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateOrderFromQuoteError = CreateOrderFromQuoteErrors[keyof CreateOrderFromQuoteErrors];
+export type QuotesCreateOrderFromQuoteError = QuotesCreateOrderFromQuoteErrors[keyof QuotesCreateOrderFromQuoteErrors];
 
-export type CreateOrderFromQuoteResponses = {
+export type QuotesCreateOrderFromQuoteResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateOrderFromQuoteResponse = CreateOrderFromQuoteResponses[keyof CreateOrderFromQuoteResponses];
+export type QuotesCreateOrderFromQuoteResponse = QuotesCreateOrderFromQuoteResponses[keyof QuotesCreateOrderFromQuoteResponses];
 
-export type GetQuoteLinesData = {
+export type QuotesGetQuoteLinesData = {
     body?: QuoteLineDtoCollectionQueryParametersWritable;
     path: {
         quoteId: string;
@@ -2218,25 +2228,25 @@ export type GetQuoteLinesData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines';
 };
 
-export type GetQuoteLinesErrors = {
+export type QuotesGetQuoteLinesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetQuoteLinesError = GetQuoteLinesErrors[keyof GetQuoteLinesErrors];
+export type QuotesGetQuoteLinesError = QuotesGetQuoteLinesErrors[keyof QuotesGetQuoteLinesErrors];
 
-export type GetQuoteLinesResponses = {
+export type QuotesGetQuoteLinesResponses = {
     /**
      * OK
      */
     200: QuoteLineDtoListEnvelopeReadable;
 };
 
-export type GetQuoteLinesResponse = GetQuoteLinesResponses[keyof GetQuoteLinesResponses];
+export type QuotesGetQuoteLinesResponse = QuotesGetQuoteLinesResponses[keyof QuotesGetQuoteLinesResponses];
 
-export type CreateQuoteLineData = {
+export type QuotesCreateQuoteLineData = {
     body?: QuoteLineCreateDto;
     path: {
         quoteId: string;
@@ -2247,25 +2257,25 @@ export type CreateQuoteLineData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines';
 };
 
-export type CreateQuoteLineErrors = {
+export type QuotesCreateQuoteLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateQuoteLineError = CreateQuoteLineErrors[keyof CreateQuoteLineErrors];
+export type QuotesCreateQuoteLineError = QuotesCreateQuoteLineErrors[keyof QuotesCreateQuoteLineErrors];
 
-export type CreateQuoteLineResponses = {
+export type QuotesCreateQuoteLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateQuoteLineResponse = CreateQuoteLineResponses[keyof CreateQuoteLineResponses];
+export type QuotesCreateQuoteLineResponse = QuotesCreateQuoteLineResponses[keyof QuotesCreateQuoteLineResponses];
 
-export type GetQuoteLinesCountData = {
+export type QuotesGetQuoteLinesCountData = {
     body?: QuoteLineDtoCollectionQueryParametersWritable;
     path: {
         quoteId: string;
@@ -2276,25 +2286,25 @@ export type GetQuoteLinesCountData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/Count';
 };
 
-export type GetQuoteLinesCountErrors = {
+export type QuotesGetQuoteLinesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetQuoteLinesCountError = GetQuoteLinesCountErrors[keyof GetQuoteLinesCountErrors];
+export type QuotesGetQuoteLinesCountError = QuotesGetQuoteLinesCountErrors[keyof QuotesGetQuoteLinesCountErrors];
 
-export type GetQuoteLinesCountResponses = {
+export type QuotesGetQuoteLinesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetQuoteLinesCountResponse = GetQuoteLinesCountResponses[keyof GetQuoteLinesCountResponses];
+export type QuotesGetQuoteLinesCountResponse = QuotesGetQuoteLinesCountResponses[keyof QuotesGetQuoteLinesCountResponses];
 
-export type DeleteQuoteLineData = {
+export type QuotesDeleteQuoteLineData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2306,25 +2316,25 @@ export type DeleteQuoteLineData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}';
 };
 
-export type DeleteQuoteLineErrors = {
+export type QuotesDeleteQuoteLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteQuoteLineError = DeleteQuoteLineErrors[keyof DeleteQuoteLineErrors];
+export type QuotesDeleteQuoteLineError = QuotesDeleteQuoteLineErrors[keyof QuotesDeleteQuoteLineErrors];
 
-export type DeleteQuoteLineResponses = {
+export type QuotesDeleteQuoteLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteQuoteLineResponse = DeleteQuoteLineResponses[keyof DeleteQuoteLineResponses];
+export type QuotesDeleteQuoteLineResponse = QuotesDeleteQuoteLineResponses[keyof QuotesDeleteQuoteLineResponses];
 
-export type GetQuoteLineData = {
+export type QuotesGetQuoteLineData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2336,25 +2346,25 @@ export type GetQuoteLineData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}';
 };
 
-export type GetQuoteLineErrors = {
+export type QuotesGetQuoteLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetQuoteLineError = GetQuoteLineErrors[keyof GetQuoteLineErrors];
+export type QuotesGetQuoteLineError = QuotesGetQuoteLineErrors[keyof QuotesGetQuoteLineErrors];
 
-export type GetQuoteLineResponses = {
+export type QuotesGetQuoteLineResponses = {
     /**
      * OK
      */
     200: QuoteLineDtoEnvelopeReadable;
 };
 
-export type GetQuoteLineResponse = GetQuoteLineResponses[keyof GetQuoteLineResponses];
+export type QuotesGetQuoteLineResponse = QuotesGetQuoteLineResponses[keyof QuotesGetQuoteLineResponses];
 
-export type PatchQuoteLineAsyncData = {
+export type QuotesPatchQuoteLineData = {
     body?: Array<PatchOperation>;
     path: {
         quoteId: string;
@@ -2366,7 +2376,7 @@ export type PatchQuoteLineAsyncData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}';
 };
 
-export type PatchQuoteLineAsyncErrors = {
+export type QuotesPatchQuoteLineErrors = {
     /**
      * Unauthorized
      */
@@ -2381,18 +2391,18 @@ export type PatchQuoteLineAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchQuoteLineAsyncError = PatchQuoteLineAsyncErrors[keyof PatchQuoteLineAsyncErrors];
+export type QuotesPatchQuoteLineError = QuotesPatchQuoteLineErrors[keyof QuotesPatchQuoteLineErrors];
 
-export type PatchQuoteLineAsyncResponses = {
+export type QuotesPatchQuoteLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchQuoteLineAsyncResponse = PatchQuoteLineAsyncResponses[keyof PatchQuoteLineAsyncResponses];
+export type QuotesPatchQuoteLineResponse = QuotesPatchQuoteLineResponses[keyof QuotesPatchQuoteLineResponses];
 
-export type UpdateQuoteLineData = {
+export type QuotesUpdateQuoteLineData = {
     body?: QuoteLineUpdateDto;
     path: {
         quoteId: string;
@@ -2404,25 +2414,25 @@ export type UpdateQuoteLineData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}';
 };
 
-export type UpdateQuoteLineErrors = {
+export type QuotesUpdateQuoteLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateQuoteLineError = UpdateQuoteLineErrors[keyof UpdateQuoteLineErrors];
+export type QuotesUpdateQuoteLineError = QuotesUpdateQuoteLineErrors[keyof QuotesUpdateQuoteLineErrors];
 
-export type UpdateQuoteLineResponses = {
+export type QuotesUpdateQuoteLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateQuoteLineResponse = UpdateQuoteLineResponses[keyof UpdateQuoteLineResponses];
+export type QuotesUpdateQuoteLineResponse = QuotesUpdateQuoteLineResponses[keyof QuotesUpdateQuoteLineResponses];
 
-export type UpsertQuoteLineData = {
+export type QuotesUpsertQuoteLineData = {
     body?: QuoteLineUpsertDto;
     path: {
         quoteId: string;
@@ -2434,25 +2444,25 @@ export type UpsertQuoteLineData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}/Upsert';
 };
 
-export type UpsertQuoteLineErrors = {
+export type QuotesUpsertQuoteLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpsertQuoteLineError = UpsertQuoteLineErrors[keyof UpsertQuoteLineErrors];
+export type QuotesUpsertQuoteLineError = QuotesUpsertQuoteLineErrors[keyof QuotesUpsertQuoteLineErrors];
 
-export type UpsertQuoteLineResponses = {
+export type QuotesUpsertQuoteLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpsertQuoteLineResponse = UpsertQuoteLineResponses[keyof UpsertQuoteLineResponses];
+export type QuotesUpsertQuoteLineResponse = QuotesUpsertQuoteLineResponses[keyof QuotesUpsertQuoteLineResponses];
 
-export type CalculateQuoteLineData = {
+export type QuotesCalculateQuoteLineData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2464,25 +2474,25 @@ export type CalculateQuoteLineData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}/Calculate';
 };
 
-export type CalculateQuoteLineErrors = {
+export type QuotesCalculateQuoteLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateQuoteLineError = CalculateQuoteLineErrors[keyof CalculateQuoteLineErrors];
+export type QuotesCalculateQuoteLineError = QuotesCalculateQuoteLineErrors[keyof QuotesCalculateQuoteLineErrors];
 
-export type CalculateQuoteLineResponses = {
+export type QuotesCalculateQuoteLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateQuoteLineResponse = CalculateQuoteLineResponses[keyof CalculateQuoteLineResponses];
+export type QuotesCalculateQuoteLineResponse = QuotesCalculateQuoteLineResponses[keyof QuotesCalculateQuoteLineResponses];
 
-export type QuoteLineExistsData = {
+export type QuotesQuoteLineExistsData = {
     body?: never;
     path: {
         quoteId: string;
@@ -2495,25 +2505,25 @@ export type QuoteLineExistsData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/Exists';
 };
 
-export type QuoteLineExistsErrors = {
+export type QuotesQuoteLineExistsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type QuoteLineExistsError = QuoteLineExistsErrors[keyof QuoteLineExistsErrors];
+export type QuotesQuoteLineExistsError = QuotesQuoteLineExistsErrors[keyof QuotesQuoteLineExistsErrors];
 
-export type QuoteLineExistsResponses = {
+export type QuotesQuoteLineExistsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type QuoteLineExistsResponse = QuoteLineExistsResponses[keyof QuoteLineExistsResponses];
+export type QuotesQuoteLineExistsResponse = QuotesQuoteLineExistsResponses[keyof QuotesQuoteLineExistsResponses];
 
-export type SendQuoteEmailData = {
+export type QuotesSendQuoteEmailData = {
     body?: EmailDispatchRequest;
     path: {
         quoteId: string;
@@ -2524,7 +2534,7 @@ export type SendQuoteEmailData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Emails/Send';
 };
 
-export type SendQuoteEmailErrors = {
+export type QuotesSendQuoteEmailErrors = {
     /**
      * Unauthorized
      */
@@ -2535,18 +2545,18 @@ export type SendQuoteEmailErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SendQuoteEmailError = SendQuoteEmailErrors[keyof SendQuoteEmailErrors];
+export type QuotesSendQuoteEmailError = QuotesSendQuoteEmailErrors[keyof QuotesSendQuoteEmailErrors];
 
-export type SendQuoteEmailResponses = {
+export type QuotesSendQuoteEmailResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SendQuoteEmailResponse = SendQuoteEmailResponses[keyof SendQuoteEmailResponses];
+export type QuotesSendQuoteEmailResponse = QuotesSendQuoteEmailResponses[keyof QuotesSendQuoteEmailResponses];
 
-export type PreviewQuoteEmailTemplateData = {
+export type QuotesPreviewQuoteEmailTemplateData = {
     body?: EmailDispatchRequest;
     path: {
         quoteId: string;
@@ -2557,7 +2567,7 @@ export type PreviewQuoteEmailTemplateData = {
     url: '/api/v2/QuotesService/Quotes/{quoteId}/Emails/Preview';
 };
 
-export type PreviewQuoteEmailTemplateResponses = {
+export type QuotesPreviewQuoteEmailTemplateResponses = {
     /**
      * OK
      */

@@ -10,407 +10,159 @@ export interface paths {
      * Get activity feeds
      * @description Retrieves a list of activity feeds for the specified tenant.
      */
-    get: operations["GetActivityFeedsAsync"];
+    get: operations["ActivityFeeds_GetActivityFeeds"];
   };
   "/api/v2/ActivitiesService/ActivityFeeds/Count": {
     /**
      * Count activity feeds
      * @description Returns the count of activity feeds for the specified tenant.
      */
-    get: operations["GetActivityFeedsCountAsync"];
+    get: operations["ActivityFeeds_GetActivityFeedsCount"];
   };
   "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}": {
     /**
      * Get activity feed by ID
      * @description Retrieves a specific activity feed by its ID.
      */
-    get: operations["GetActivityFeedAsync"];
+    get: operations["ActivityFeeds_GetActivityFeed"];
   };
   "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities": {
     /**
      * Get activities
      * @description Retrieves activities for a specific activity feed.
      */
-    get: operations["GetActivitiesAsync"];
+    get: operations["ActivityFeeds_GetActivities"];
     /**
      * Create an activity
      * @description Creates a new activity in a specific activity feed.
      */
-    post: operations["CreateActivityAsync"];
+    post: operations["ActivityFeeds_CreateActivity"];
   };
   "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/Count": {
     /**
      * Count activities
      * @description Returns the count of activities for a specific activity feed.
      */
-    get: operations["GetActivitiesCountAsync"];
+    get: operations["ActivityFeeds_GetActivitiesCount"];
   };
   "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/{activityId}": {
     /**
      * Get activity by ID
      * @description Retrieves a specific activity by its ID.
      */
-    get: operations["GetActivityAsync"];
+    get: operations["ActivityFeeds_GetActivity"];
     /**
      * Update an activity
      * @description Updates an existing activity.
      */
-    put: operations["UpdateActivityAsync"];
+    put: operations["ActivityFeeds_UpdateActivity"];
     /**
      * Delete an activity
      * @description Deletes an activity from an activity feed.
      */
-    delete: operations["DeleteActivityAsync"];
+    delete: operations["ActivityFeeds_DeleteActivity"];
     /**
      * Patch an activity
      * @description Patch an activity
      */
-    patch: operations["PatchActivityAsync"];
+    patch: operations["ActivityFeeds_PatchActivity"];
   };
   "/api/v2/ActivitiesService/Activities/Count": {
     /**
      * Count activity records
      * @description Returns the tenant-wide count of activity records across all feeds owned by the tenant.
      */
-    get: operations["GetActivityRecordsCountAsync"];
+    get: operations["ActivityFeeds_GetActivityRecordsCount"];
   };
   "/api/v2/ActivitiesService/ActivityTypes": {
     /**
      * Get Activity Types
      * @description Get a list of activity types for the current tenant.
      */
-    get: operations["GetActivityTypesAsync"];
+    get: operations["ActivityFeeds_GetActivityTypes"];
     /**
      * Create Activity Type
      * @description Create a new activity type.
      */
-    post: operations["CreateActivityTypeAsync"];
+    post: operations["ActivityFeeds_CreateActivityType"];
   };
   "/api/v2/ActivitiesService/ActivityTypes/Count": {
     /**
      * Count Activity Types
      * @description Count activity types for the current tenant.
      */
-    get: operations["CountActivityTypesAsync"];
+    get: operations["ActivityFeeds_CountActivityTypes"];
   };
   "/api/v2/ActivitiesService/ActivityTypes/{activityTypeId}": {
     /**
      * Get Activity Type
      * @description Get an activity type by ID.
      */
-    get: operations["GetActivityTypeByIdAsync"];
+    get: operations["ActivityFeeds_GetActivityTypeById"];
     /**
      * Update Activity Type
      * @description Update an existing activity type.
      */
-    put: operations["UpdateActivityTypeAsync"];
+    put: operations["ActivityFeeds_UpdateActivityType"];
     /**
      * Delete Activity Type
      * @description Delete an activity type.
      */
-    delete: operations["DeleteActivityTypeAsync"];
+    delete: operations["ActivityFeeds_DeleteActivityType"];
     /**
      * Patch Activity Type
      * @description Patch an activity type
      */
-    patch: operations["PatchActivityTypeAsync"];
+    patch: operations["ActivityFeeds_PatchActivityType"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
 }
 
@@ -769,7 +521,7 @@ export interface operations {
    * Get activity feeds
    * @description Retrieves a list of activity feeds for the specified tenant.
    */
-  GetActivityFeedsAsync: {
+  ActivityFeeds_GetActivityFeeds: {
     parameters: {
       query: {
         tenantId: string;
@@ -813,7 +565,7 @@ export interface operations {
    * Count activity feeds
    * @description Returns the count of activity feeds for the specified tenant.
    */
-  GetActivityFeedsCountAsync: {
+  ActivityFeeds_GetActivityFeedsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -857,7 +609,7 @@ export interface operations {
    * Get activity feed by ID
    * @description Retrieves a specific activity feed by its ID.
    */
-  GetActivityFeedAsync: {
+  ActivityFeeds_GetActivityFeed: {
     parameters: {
       query: {
         tenantId: string;
@@ -898,7 +650,7 @@ export interface operations {
    * Get activities
    * @description Retrieves activities for a specific activity feed.
    */
-  GetActivitiesAsync: {
+  ActivityFeeds_GetActivities: {
     parameters: {
       query: {
         tenantId: string;
@@ -945,7 +697,7 @@ export interface operations {
    * Create an activity
    * @description Creates a new activity in a specific activity feed.
    */
-  CreateActivityAsync: {
+  ActivityFeeds_CreateActivity: {
     parameters: {
       query: {
         tenantId: string;
@@ -992,7 +744,7 @@ export interface operations {
    * Count activities
    * @description Returns the count of activities for a specific activity feed.
    */
-  GetActivitiesCountAsync: {
+  ActivityFeeds_GetActivitiesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1039,7 +791,7 @@ export interface operations {
    * Get activity by ID
    * @description Retrieves a specific activity by its ID.
    */
-  GetActivityAsync: {
+  ActivityFeeds_GetActivity: {
     parameters: {
       query: {
         tenantId: string;
@@ -1081,7 +833,7 @@ export interface operations {
    * Update an activity
    * @description Updates an existing activity.
    */
-  UpdateActivityAsync: {
+  ActivityFeeds_UpdateActivity: {
     parameters: {
       query: {
         tenantId: string;
@@ -1129,7 +881,7 @@ export interface operations {
    * Delete an activity
    * @description Deletes an activity from an activity feed.
    */
-  DeleteActivityAsync: {
+  ActivityFeeds_DeleteActivity: {
     parameters: {
       query: {
         tenantId: string;
@@ -1171,7 +923,7 @@ export interface operations {
    * Patch an activity
    * @description Patch an activity
    */
-  PatchActivityAsync: {
+  ActivityFeeds_PatchActivity: {
     parameters: {
       query: {
         tenantId: string;
@@ -1219,7 +971,7 @@ export interface operations {
    * Count activity records
    * @description Returns the tenant-wide count of activity records across all feeds owned by the tenant.
    */
-  GetActivityRecordsCountAsync: {
+  ActivityFeeds_GetActivityRecordsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1263,7 +1015,7 @@ export interface operations {
    * Get Activity Types
    * @description Get a list of activity types for the current tenant.
    */
-  GetActivityTypesAsync: {
+  ActivityFeeds_GetActivityTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -1307,7 +1059,7 @@ export interface operations {
    * Create Activity Type
    * @description Create a new activity type.
    */
-  CreateActivityTypeAsync: {
+  ActivityFeeds_CreateActivityType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1351,7 +1103,7 @@ export interface operations {
    * Count Activity Types
    * @description Count activity types for the current tenant.
    */
-  CountActivityTypesAsync: {
+  ActivityFeeds_CountActivityTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -1395,7 +1147,7 @@ export interface operations {
    * Get Activity Type
    * @description Get an activity type by ID.
    */
-  GetActivityTypeByIdAsync: {
+  ActivityFeeds_GetActivityTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1436,7 +1188,7 @@ export interface operations {
    * Update Activity Type
    * @description Update an existing activity type.
    */
-  UpdateActivityTypeAsync: {
+  ActivityFeeds_UpdateActivityType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1483,7 +1235,7 @@ export interface operations {
    * Delete Activity Type
    * @description Delete an activity type.
    */
-  DeleteActivityTypeAsync: {
+  ActivityFeeds_DeleteActivityType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1524,7 +1276,7 @@ export interface operations {
    * Patch Activity Type
    * @description Patch an activity type
    */
-  PatchActivityTypeAsync: {
+  ActivityFeeds_PatchActivityType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1567,7 +1319,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1575,6 +1406,191 @@ export interface operations {
         changedEmail?: string;
       };
     };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
     responses: {
       /** @description OK */
       200: {

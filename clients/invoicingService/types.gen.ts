@@ -13,6 +13,43 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BillingCouponRecognitionDto = {
+    recognised?: boolean;
+    applicable?: boolean;
+    reason?: string | null;
+};
+
+export type BillingCouponRecognitionDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: BillingCouponRecognitionDto;
+};
+
+export type BillingCouponRecognitionDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: BillingCouponRecognitionDto;
+};
+
+export type CreditNoteCreateDto = {
+    amount?: number;
+    reason?: 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+    reasonDescription?: string | null;
+};
+
 export type CurrencyIdReadable = {
     readonly value?: string | null;
     code?: string | null;
@@ -22,6 +59,12 @@ export type CurrencyIdReadable = {
 export type CurrencyIdWritable = {
     code?: string | null;
     country?: string | null;
+};
+
+export type DebitNoteCreateDto = {
+    amount?: number;
+    reason?: 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+    reasonDescription?: string | null;
 };
 
 export type EmailDispatchRequest = {
@@ -200,6 +243,17 @@ export type ExtendedInvoiceDtoReadable = {
     organization?: SimpleContactDtoReadable;
     enrollment?: SimpleTenantEnrollmentDto;
     invoiceLines?: Array<InvoiceLineDto> | null;
+    invoiceEnumerationRange?: InvoiceEnumerationRangeDto;
+    expiration?: string;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
+    emisorParty?: InvoicePartyDto;
+    receiverParty?: InvoicePartyDto;
+    emisorPartyUnresolved?: boolean;
+    receiverPartyUnresolved?: boolean;
 };
 
 export type ExtendedInvoiceDtoWritable = {
@@ -290,6 +344,17 @@ export type ExtendedInvoiceDtoWritable = {
     organization?: SimpleContactDtoWritable;
     enrollment?: SimpleTenantEnrollmentDto;
     invoiceLines?: Array<InvoiceLineDto> | null;
+    invoiceEnumerationRange?: InvoiceEnumerationRangeDto;
+    expiration?: string;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
+    emisorParty?: InvoicePartyDto;
+    receiverParty?: InvoicePartyDto;
+    emisorPartyUnresolved?: boolean;
+    receiverPartyUnresolved?: boolean;
 };
 
 export type ExtendedInvoiceDtoCollectionQueryParametersReadable = {
@@ -588,6 +653,37 @@ export type InvoiceCreateDto = {
     invoiceAdjustments?: Array<InvoiceAdjustmentCreateDto> | null;
 };
 
+export type InvoiceCreditableAmountDto = {
+    invoiceId?: string | null;
+    amount?: number;
+    currencyId?: string | null;
+};
+
+export type InvoiceCreditableAmountDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InvoiceCreditableAmountDto;
+};
+
+export type InvoiceCreditableAmountDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InvoiceCreditableAmountDto;
+};
+
 export type InvoiceDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -742,6 +838,54 @@ export type InvoiceDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<InvoiceDto> | null;
+};
+
+export type InvoiceEnumerationRangeDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    prefix?: string | null;
+    suffix?: string | null;
+    identifier?: string | null;
+    qualifiedName?: string | null;
+    currentNumeration?: number;
+    numerationTo?: number;
+    numerationFrom?: number;
+    validFrom?: string;
+    validTo?: string;
+    fiscalAuthorityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
+};
+
+export type InvoiceIssuedAtBackfillResultDto = {
+    invoicesStamped?: number;
+    mayHaveMore?: boolean;
+};
+
+export type InvoiceIssuedAtBackfillResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InvoiceIssuedAtBackfillResultDto;
+};
+
+export type InvoiceIssuedAtBackfillResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InvoiceIssuedAtBackfillResultDto;
 };
 
 export type InvoiceLineAppliedTaxCreateDto = {
@@ -1145,6 +1289,59 @@ export type InvoiceLineUpdateDto = {
     invoiceLineId?: string | null;
     taxAmountInUsd?: number;
     taxBaseAmountInUsd?: number;
+};
+
+export type InvoiceNoteDto = {
+    id?: string | null;
+    parentInvoiceId?: string | null;
+    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
+    reason?: 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+    reasonDescription?: string | null;
+    enumeration?: string | null;
+    amount?: number;
+    currencyId?: string | null;
+    issuedAtUtc?: string | null;
+};
+
+export type InvoiceNoteDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InvoiceNoteDto;
+};
+
+export type InvoiceNoteDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InvoiceNoteDto;
+};
+
+export type InvoicePartyDto = {
+    registrationName?: string | null;
+    commercialName?: string | null;
+    taxId?: string | null;
+    identificationCode?: string | null;
+    verificationDigit?: string | null;
+    taxLevelCode?: string | null;
+    streetName?: string | null;
+    cityName?: string | null;
+    postalZone?: string | null;
+    countrySubentityCode?: string | null;
+    countryCode?: string | null;
+    email?: string | null;
+    phone?: string | null;
 };
 
 export type InvoiceReferenceCreateDto = {
@@ -1705,72 +1902,132 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type UnnumberedIssuingTenantDto = {
+    tenantId?: string | null;
+    unnumberedIssuedInvoices?: number;
+    lastIssuedAtUtc?: string | null;
+};
+
+export type UnnumberedIssuingTenantDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<UnnumberedIssuingTenantDto> | null;
+};
+
+export type UnnumberedIssuingTenantDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<UnnumberedIssuingTenantDto> | null;
+};
+
+export type CouponsGetBillingCouponRecognitionData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        cartId: string;
+        code: string;
+    };
+    url: '/api/v2/InvoicingService/Coupons/Recognition';
+};
+
+export type CouponsGetBillingCouponRecognitionErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CouponsGetBillingCouponRecognitionError = CouponsGetBillingCouponRecognitionErrors[keyof CouponsGetBillingCouponRecognitionErrors];
+
+export type CouponsGetBillingCouponRecognitionResponses = {
+    /**
+     * OK
+     */
+    200: BillingCouponRecognitionDtoEnvelopeReadable;
+};
+
+export type CouponsGetBillingCouponRecognitionResponse = CouponsGetBillingCouponRecognitionResponses[keyof CouponsGetBillingCouponRecognitionResponses];
+
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1780,32 +2037,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1816,81 +2073,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1901,25 +2158,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1930,25 +2187,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1959,18 +2216,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1980,14 +2237,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1996,14 +2253,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2012,28 +2269,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetInvoicesData = {
+export type InvoicesGetInvoicesData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2042,25 +2299,25 @@ export type GetInvoicesData = {
     url: '/api/v2/InvoicingService/Invoices';
 };
 
-export type GetInvoicesErrors = {
+export type InvoicesGetInvoicesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetInvoicesError = GetInvoicesErrors[keyof GetInvoicesErrors];
+export type InvoicesGetInvoicesError = InvoicesGetInvoicesErrors[keyof InvoicesGetInvoicesErrors];
 
-export type GetInvoicesResponses = {
+export type InvoicesGetInvoicesResponses = {
     /**
      * OK
      */
     200: InvoiceDtoListEnvelopeReadable;
 };
 
-export type GetInvoicesResponse = GetInvoicesResponses[keyof GetInvoicesResponses];
+export type InvoicesGetInvoicesResponse = InvoicesGetInvoicesResponses[keyof InvoicesGetInvoicesResponses];
 
-export type CreateInvoiceData = {
+export type InvoicesCreateInvoiceData = {
     body?: InvoiceCreateDto;
     path?: never;
     query: {
@@ -2069,25 +2326,25 @@ export type CreateInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices';
 };
 
-export type CreateInvoiceErrors = {
+export type InvoicesCreateInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateInvoiceError = CreateInvoiceErrors[keyof CreateInvoiceErrors];
+export type InvoicesCreateInvoiceError = InvoicesCreateInvoiceErrors[keyof InvoicesCreateInvoiceErrors];
 
-export type CreateInvoiceResponses = {
+export type InvoicesCreateInvoiceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateInvoiceResponse = CreateInvoiceResponses[keyof CreateInvoiceResponses];
+export type InvoicesCreateInvoiceResponse = InvoicesCreateInvoiceResponses[keyof InvoicesCreateInvoiceResponses];
 
-export type GetInvoicesCountData = {
+export type InvoicesGetInvoicesCountData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2096,25 +2353,25 @@ export type GetInvoicesCountData = {
     url: '/api/v2/InvoicingService/Invoices/Count';
 };
 
-export type GetInvoicesCountErrors = {
+export type InvoicesGetInvoicesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetInvoicesCountError = GetInvoicesCountErrors[keyof GetInvoicesCountErrors];
+export type InvoicesGetInvoicesCountError = InvoicesGetInvoicesCountErrors[keyof InvoicesGetInvoicesCountErrors];
 
-export type GetInvoicesCountResponses = {
+export type InvoicesGetInvoicesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoicesCountResponse = GetInvoicesCountResponses[keyof GetInvoicesCountResponses];
+export type InvoicesGetInvoicesCountResponse = InvoicesGetInvoicesCountResponses[keyof InvoicesGetInvoicesCountResponses];
 
-export type GetExtendedInvoicesData = {
+export type InvoicesGetExtendedInvoicesData = {
     body?: ExtendedInvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2123,25 +2380,25 @@ export type GetExtendedInvoicesData = {
     url: '/api/v2/InvoicingService/Invoices/Extended';
 };
 
-export type GetExtendedInvoicesErrors = {
+export type InvoicesGetExtendedInvoicesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedInvoicesError = GetExtendedInvoicesErrors[keyof GetExtendedInvoicesErrors];
+export type InvoicesGetExtendedInvoicesError = InvoicesGetExtendedInvoicesErrors[keyof InvoicesGetExtendedInvoicesErrors];
 
-export type GetExtendedInvoicesResponses = {
+export type InvoicesGetExtendedInvoicesResponses = {
     /**
      * OK
      */
     200: ExtendedInvoiceDtoListEnvelopeReadable;
 };
 
-export type GetExtendedInvoicesResponse = GetExtendedInvoicesResponses[keyof GetExtendedInvoicesResponses];
+export type InvoicesGetExtendedInvoicesResponse = InvoicesGetExtendedInvoicesResponses[keyof InvoicesGetExtendedInvoicesResponses];
 
-export type GetExtendedInvoicesCountData = {
+export type InvoicesGetExtendedInvoicesCountData = {
     body?: ExtendedInvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2150,25 +2407,25 @@ export type GetExtendedInvoicesCountData = {
     url: '/api/v2/InvoicingService/Invoices/Extended/Count';
 };
 
-export type GetExtendedInvoicesCountErrors = {
+export type InvoicesGetExtendedInvoicesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedInvoicesCountError = GetExtendedInvoicesCountErrors[keyof GetExtendedInvoicesCountErrors];
+export type InvoicesGetExtendedInvoicesCountError = InvoicesGetExtendedInvoicesCountErrors[keyof InvoicesGetExtendedInvoicesCountErrors];
 
-export type GetExtendedInvoicesCountResponses = {
+export type InvoicesGetExtendedInvoicesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetExtendedInvoicesCountResponse = GetExtendedInvoicesCountResponses[keyof GetExtendedInvoicesCountResponses];
+export type InvoicesGetExtendedInvoicesCountResponse = InvoicesGetExtendedInvoicesCountResponses[keyof InvoicesGetExtendedInvoicesCountResponses];
 
-export type GetExtendedInvoiceData = {
+export type InvoicesGetExtendedInvoiceData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2179,25 +2436,25 @@ export type GetExtendedInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Extended';
 };
 
-export type GetExtendedInvoiceErrors = {
+export type InvoicesGetExtendedInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedInvoiceError = GetExtendedInvoiceErrors[keyof GetExtendedInvoiceErrors];
+export type InvoicesGetExtendedInvoiceError = InvoicesGetExtendedInvoiceErrors[keyof InvoicesGetExtendedInvoiceErrors];
 
-export type GetExtendedInvoiceResponses = {
+export type InvoicesGetExtendedInvoiceResponses = {
     /**
      * OK
      */
     200: InvoiceDtoEnvelopeReadable;
 };
 
-export type GetExtendedInvoiceResponse = GetExtendedInvoiceResponses[keyof GetExtendedInvoiceResponses];
+export type InvoicesGetExtendedInvoiceResponse = InvoicesGetExtendedInvoiceResponses[keyof InvoicesGetExtendedInvoiceResponses];
 
-export type DeleteInvoiceData = {
+export type InvoicesDeleteInvoiceData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2208,25 +2465,25 @@ export type DeleteInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}';
 };
 
-export type DeleteInvoiceErrors = {
+export type InvoicesDeleteInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteInvoiceError = DeleteInvoiceErrors[keyof DeleteInvoiceErrors];
+export type InvoicesDeleteInvoiceError = InvoicesDeleteInvoiceErrors[keyof InvoicesDeleteInvoiceErrors];
 
-export type DeleteInvoiceResponses = {
+export type InvoicesDeleteInvoiceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceResponse = DeleteInvoiceResponses[keyof DeleteInvoiceResponses];
+export type InvoicesDeleteInvoiceResponse = InvoicesDeleteInvoiceResponses[keyof InvoicesDeleteInvoiceResponses];
 
-export type GetInvoiceData = {
+export type InvoicesGetInvoiceData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2237,25 +2494,25 @@ export type GetInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}';
 };
 
-export type GetInvoiceErrors = {
+export type InvoicesGetInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetInvoiceError = GetInvoiceErrors[keyof GetInvoiceErrors];
+export type InvoicesGetInvoiceError = InvoicesGetInvoiceErrors[keyof InvoicesGetInvoiceErrors];
 
-export type GetInvoiceResponses = {
+export type InvoicesGetInvoiceResponses = {
     /**
      * OK
      */
     200: InvoiceDtoEnvelopeReadable;
 };
 
-export type GetInvoiceResponse = GetInvoiceResponses[keyof GetInvoiceResponses];
+export type InvoicesGetInvoiceResponse = InvoicesGetInvoiceResponses[keyof InvoicesGetInvoiceResponses];
 
-export type PatchInvoiceData = {
+export type InvoicesPatchInvoiceData = {
     body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
@@ -2266,25 +2523,25 @@ export type PatchInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}';
 };
 
-export type PatchInvoiceErrors = {
+export type InvoicesPatchInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchInvoiceError = PatchInvoiceErrors[keyof PatchInvoiceErrors];
+export type InvoicesPatchInvoiceError = InvoicesPatchInvoiceErrors[keyof InvoicesPatchInvoiceErrors];
 
-export type PatchInvoiceResponses = {
+export type InvoicesPatchInvoiceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInvoiceResponse = PatchInvoiceResponses[keyof PatchInvoiceResponses];
+export type InvoicesPatchInvoiceResponse = InvoicesPatchInvoiceResponses[keyof InvoicesPatchInvoiceResponses];
 
-export type UpdateInvoiceData = {
+export type InvoicesUpdateInvoiceData = {
     body?: InvoiceUpdateDto;
     path: {
         invoiceId: string;
@@ -2295,25 +2552,25 @@ export type UpdateInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}';
 };
 
-export type UpdateInvoiceErrors = {
+export type InvoicesUpdateInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateInvoiceError = UpdateInvoiceErrors[keyof UpdateInvoiceErrors];
+export type InvoicesUpdateInvoiceError = InvoicesUpdateInvoiceErrors[keyof InvoicesUpdateInvoiceErrors];
 
-export type UpdateInvoiceResponses = {
+export type InvoicesUpdateInvoiceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInvoiceResponse = UpdateInvoiceResponses[keyof UpdateInvoiceResponses];
+export type InvoicesUpdateInvoiceResponse = InvoicesUpdateInvoiceResponses[keyof InvoicesUpdateInvoiceResponses];
 
-export type CalculateInvoiceData = {
+export type InvoicesCalculateInvoiceData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2324,25 +2581,213 @@ export type CalculateInvoiceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Calculate';
 };
 
-export type CalculateInvoiceErrors = {
+export type InvoicesCalculateInvoiceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateInvoiceError = CalculateInvoiceErrors[keyof CalculateInvoiceErrors];
+export type InvoicesCalculateInvoiceError = InvoicesCalculateInvoiceErrors[keyof InvoicesCalculateInvoiceErrors];
 
-export type CalculateInvoiceResponses = {
+export type InvoicesCalculateInvoiceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateInvoiceResponse = CalculateInvoiceResponses[keyof CalculateInvoiceResponses];
+export type InvoicesCalculateInvoiceResponse = InvoicesCalculateInvoiceResponses[keyof InvoicesCalculateInvoiceResponses];
 
-export type GetInvoiceLinesData = {
+export type InvoicesIssueInvoiceData = {
+    body?: never;
+    path: {
+        invoiceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Issue';
+};
+
+export type InvoicesIssueInvoiceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type InvoicesIssueInvoiceError = InvoicesIssueInvoiceErrors[keyof InvoicesIssueInvoiceErrors];
+
+export type InvoicesIssueInvoiceResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type InvoicesIssueInvoiceResponse = InvoicesIssueInvoiceResponses[keyof InvoicesIssueInvoiceResponses];
+
+export type InvoicesCreateCreditNoteData = {
+    body?: CreditNoteCreateDto;
+    path: {
+        invoiceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/CreditNotes';
+};
+
+export type InvoicesCreateCreditNoteErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type InvoicesCreateCreditNoteError = InvoicesCreateCreditNoteErrors[keyof InvoicesCreateCreditNoteErrors];
+
+export type InvoicesCreateCreditNoteResponses = {
+    /**
+     * OK
+     */
+    200: InvoiceNoteDtoEnvelopeReadable;
+};
+
+export type InvoicesCreateCreditNoteResponse = InvoicesCreateCreditNoteResponses[keyof InvoicesCreateCreditNoteResponses];
+
+export type InvoicesCreateDebitNoteData = {
+    body?: DebitNoteCreateDto;
+    path: {
+        invoiceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/DebitNotes';
+};
+
+export type InvoicesCreateDebitNoteErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type InvoicesCreateDebitNoteError = InvoicesCreateDebitNoteErrors[keyof InvoicesCreateDebitNoteErrors];
+
+export type InvoicesCreateDebitNoteResponses = {
+    /**
+     * OK
+     */
+    200: InvoiceNoteDtoEnvelopeReadable;
+};
+
+export type InvoicesCreateDebitNoteResponse = InvoicesCreateDebitNoteResponses[keyof InvoicesCreateDebitNoteResponses];
+
+export type InvoicesGetInvoiceCreditableAmountData = {
+    body?: never;
+    path: {
+        invoiceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/CreditableAmount';
+};
+
+export type InvoicesGetInvoiceCreditableAmountErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type InvoicesGetInvoiceCreditableAmountError = InvoicesGetInvoiceCreditableAmountErrors[keyof InvoicesGetInvoiceCreditableAmountErrors];
+
+export type InvoicesGetInvoiceCreditableAmountResponses = {
+    /**
+     * OK
+     */
+    200: InvoiceCreditableAmountDtoEnvelopeReadable;
+};
+
+export type InvoicesGetInvoiceCreditableAmountResponse = InvoicesGetInvoiceCreditableAmountResponses[keyof InvoicesGetInvoiceCreditableAmountResponses];
+
+export type InvoicesGetUnnumberedIssuingTenantsData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/IssuedUnnumbered';
+};
+
+export type InvoicesGetUnnumberedIssuingTenantsErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type InvoicesGetUnnumberedIssuingTenantsError = InvoicesGetUnnumberedIssuingTenantsErrors[keyof InvoicesGetUnnumberedIssuingTenantsErrors];
+
+export type InvoicesGetUnnumberedIssuingTenantsResponses = {
+    /**
+     * OK
+     */
+    200: UnnumberedIssuingTenantDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type InvoicesGetUnnumberedIssuingTenantsResponse = InvoicesGetUnnumberedIssuingTenantsResponses[keyof InvoicesGetUnnumberedIssuingTenantsResponses];
+
+export type InvoicesBackfillInvoiceIssuedAtData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        batchSize: number;
+        reason: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/IssuedAtBackfill';
+};
+
+export type InvoicesBackfillInvoiceIssuedAtErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type InvoicesBackfillInvoiceIssuedAtError = InvoicesBackfillInvoiceIssuedAtErrors[keyof InvoicesBackfillInvoiceIssuedAtErrors];
+
+export type InvoicesBackfillInvoiceIssuedAtResponses = {
+    /**
+     * OK
+     */
+    200: InvoiceIssuedAtBackfillResultDtoEnvelopeReadable;
+};
+
+export type InvoicesBackfillInvoiceIssuedAtResponse = InvoicesBackfillInvoiceIssuedAtResponses[keyof InvoicesBackfillInvoiceIssuedAtResponses];
+
+export type InvoicesGetInvoiceLinesData = {
     body?: InvoiceLineDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2354,16 +2799,16 @@ export type GetInvoiceLinesData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines';
 };
 
-export type GetInvoiceLinesResponses = {
+export type InvoicesGetInvoiceLinesResponses = {
     /**
      * OK
      */
     200: InvoiceLineDtoListEnvelopeReadable;
 };
 
-export type GetInvoiceLinesResponse = GetInvoiceLinesResponses[keyof GetInvoiceLinesResponses];
+export type InvoicesGetInvoiceLinesResponse = InvoicesGetInvoiceLinesResponses[keyof InvoicesGetInvoiceLinesResponses];
 
-export type CreateInvoiceLineData = {
+export type InvoicesCreateInvoiceLineData = {
     body?: InvoiceLineCreateDto;
     path: {
         invoiceId: string;
@@ -2374,16 +2819,16 @@ export type CreateInvoiceLineData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines';
 };
 
-export type CreateInvoiceLineResponses = {
+export type InvoicesCreateInvoiceLineResponses = {
     /**
      * OK
      */
     200: InvoiceLineDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type CreateInvoiceLineResponse = CreateInvoiceLineResponses[keyof CreateInvoiceLineResponses];
+export type InvoicesCreateInvoiceLineResponse = InvoicesCreateInvoiceLineResponses[keyof InvoicesCreateInvoiceLineResponses];
 
-export type GetInvoiceLinesCountData = {
+export type InvoicesGetInvoiceLinesCountData = {
     body?: InvoiceLineDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2394,16 +2839,16 @@ export type GetInvoiceLinesCountData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/Count';
 };
 
-export type GetInvoiceLinesCountResponses = {
+export type InvoicesGetInvoiceLinesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoiceLinesCountResponse = GetInvoiceLinesCountResponses[keyof GetInvoiceLinesCountResponses];
+export type InvoicesGetInvoiceLinesCountResponse = InvoicesGetInvoiceLinesCountResponses[keyof InvoicesGetInvoiceLinesCountResponses];
 
-export type DeleteInvoiceLineData = {
+export type InvoicesDeleteInvoiceLineData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2415,16 +2860,16 @@ export type DeleteInvoiceLineData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}';
 };
 
-export type DeleteInvoiceLineResponses = {
+export type InvoicesDeleteInvoiceLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceLineResponse = DeleteInvoiceLineResponses[keyof DeleteInvoiceLineResponses];
+export type InvoicesDeleteInvoiceLineResponse = InvoicesDeleteInvoiceLineResponses[keyof InvoicesDeleteInvoiceLineResponses];
 
-export type GetInvoiceLineData = {
+export type InvoicesGetInvoiceLineData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2436,16 +2881,16 @@ export type GetInvoiceLineData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}';
 };
 
-export type GetInvoiceLineResponses = {
+export type InvoicesGetInvoiceLineResponses = {
     /**
      * OK
      */
     200: InvoiceLineDtoEnvelopeReadable;
 };
 
-export type GetInvoiceLineResponse = GetInvoiceLineResponses[keyof GetInvoiceLineResponses];
+export type InvoicesGetInvoiceLineResponse = InvoicesGetInvoiceLineResponses[keyof InvoicesGetInvoiceLineResponses];
 
-export type PatchInvoiceLineData = {
+export type InvoicesPatchInvoiceLineData = {
     body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
@@ -2457,25 +2902,25 @@ export type PatchInvoiceLineData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}';
 };
 
-export type PatchInvoiceLineErrors = {
+export type InvoicesPatchInvoiceLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchInvoiceLineError = PatchInvoiceLineErrors[keyof PatchInvoiceLineErrors];
+export type InvoicesPatchInvoiceLineError = InvoicesPatchInvoiceLineErrors[keyof InvoicesPatchInvoiceLineErrors];
 
-export type PatchInvoiceLineResponses = {
+export type InvoicesPatchInvoiceLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInvoiceLineResponse = PatchInvoiceLineResponses[keyof PatchInvoiceLineResponses];
+export type InvoicesPatchInvoiceLineResponse = InvoicesPatchInvoiceLineResponses[keyof InvoicesPatchInvoiceLineResponses];
 
-export type UpdateInvoiceLineData = {
+export type InvoicesUpdateInvoiceLineData = {
     body?: InvoiceLineUpdateDto;
     path: {
         invoiceId: string;
@@ -2487,16 +2932,16 @@ export type UpdateInvoiceLineData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}';
 };
 
-export type UpdateInvoiceLineResponses = {
+export type InvoicesUpdateInvoiceLineResponses = {
     /**
      * OK
      */
     200: InvoiceLineDtoEnvelopeReadable;
 };
 
-export type UpdateInvoiceLineResponse = UpdateInvoiceLineResponses[keyof UpdateInvoiceLineResponses];
+export type InvoicesUpdateInvoiceLineResponse = InvoicesUpdateInvoiceLineResponses[keyof InvoicesUpdateInvoiceLineResponses];
 
-export type CalculateInvoiceLineData = {
+export type InvoicesCalculateInvoiceLineData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2508,16 +2953,16 @@ export type CalculateInvoiceLineData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Calculate';
 };
 
-export type CalculateInvoiceLineResponses = {
+export type InvoicesCalculateInvoiceLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateInvoiceLineResponse = CalculateInvoiceLineResponses[keyof CalculateInvoiceLineResponses];
+export type InvoicesCalculateInvoiceLineResponse = InvoicesCalculateInvoiceLineResponses[keyof InvoicesCalculateInvoiceLineResponses];
 
-export type GetInvoiceLineTaxesData = {
+export type InvoicesGetInvoiceLineTaxesData = {
     body?: InvoiceLineAppliedTaxDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2529,16 +2974,16 @@ export type GetInvoiceLineTaxesData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes';
 };
 
-export type GetInvoiceLineTaxesResponses = {
+export type InvoicesGetInvoiceLineTaxesResponses = {
     /**
      * OK
      */
     200: InvoiceLineAppliedTaxDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetInvoiceLineTaxesResponse = GetInvoiceLineTaxesResponses[keyof GetInvoiceLineTaxesResponses];
+export type InvoicesGetInvoiceLineTaxesResponse = InvoicesGetInvoiceLineTaxesResponses[keyof InvoicesGetInvoiceLineTaxesResponses];
 
-export type CreateInvoiceLineTaxData = {
+export type InvoicesCreateInvoiceLineTaxData = {
     body?: InvoiceLineAppliedTaxCreateDto;
     path: {
         invoiceId: string;
@@ -2550,16 +2995,16 @@ export type CreateInvoiceLineTaxData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes';
 };
 
-export type CreateInvoiceLineTaxResponses = {
+export type InvoicesCreateInvoiceLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateInvoiceLineTaxResponse = CreateInvoiceLineTaxResponses[keyof CreateInvoiceLineTaxResponses];
+export type InvoicesCreateInvoiceLineTaxResponse = InvoicesCreateInvoiceLineTaxResponses[keyof InvoicesCreateInvoiceLineTaxResponses];
 
-export type GetInvoiceLineTaxesCountData = {
+export type InvoicesGetInvoiceLineTaxesCountData = {
     body?: InvoiceLineAppliedTaxDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2571,16 +3016,16 @@ export type GetInvoiceLineTaxesCountData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/Count';
 };
 
-export type GetInvoiceLineTaxesCountResponses = {
+export type InvoicesGetInvoiceLineTaxesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoiceLineTaxesCountResponse = GetInvoiceLineTaxesCountResponses[keyof GetInvoiceLineTaxesCountResponses];
+export type InvoicesGetInvoiceLineTaxesCountResponse = InvoicesGetInvoiceLineTaxesCountResponses[keyof InvoicesGetInvoiceLineTaxesCountResponses];
 
-export type DeleteInvoiceLineTaxData = {
+export type InvoicesDeleteInvoiceLineTaxData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2593,16 +3038,16 @@ export type DeleteInvoiceLineTaxData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}';
 };
 
-export type DeleteInvoiceLineTaxResponses = {
+export type InvoicesDeleteInvoiceLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceLineTaxResponse = DeleteInvoiceLineTaxResponses[keyof DeleteInvoiceLineTaxResponses];
+export type InvoicesDeleteInvoiceLineTaxResponse = InvoicesDeleteInvoiceLineTaxResponses[keyof InvoicesDeleteInvoiceLineTaxResponses];
 
-export type PatchInvoiceLineTaxData = {
+export type InvoicesPatchInvoiceLineTaxData = {
     body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
@@ -2615,16 +3060,16 @@ export type PatchInvoiceLineTaxData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}';
 };
 
-export type PatchInvoiceLineTaxResponses = {
+export type InvoicesPatchInvoiceLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInvoiceLineTaxResponse = PatchInvoiceLineTaxResponses[keyof PatchInvoiceLineTaxResponses];
+export type InvoicesPatchInvoiceLineTaxResponse = InvoicesPatchInvoiceLineTaxResponses[keyof InvoicesPatchInvoiceLineTaxResponses];
 
-export type UpdateInvoiceLineTaxData = {
+export type InvoicesUpdateInvoiceLineTaxData = {
     body?: InvoiceLineAppliedTaxUpdateDto;
     path: {
         invoiceId: string;
@@ -2637,16 +3082,16 @@ export type UpdateInvoiceLineTaxData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}';
 };
 
-export type UpdateInvoiceLineTaxResponses = {
+export type InvoicesUpdateInvoiceLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInvoiceLineTaxResponse = UpdateInvoiceLineTaxResponses[keyof UpdateInvoiceLineTaxResponses];
+export type InvoicesUpdateInvoiceLineTaxResponse = InvoicesUpdateInvoiceLineTaxResponses[keyof InvoicesUpdateInvoiceLineTaxResponses];
 
-export type GetInvoiceAdjustmentsData = {
+export type InvoicesGetInvoiceAdjustmentsData = {
     body?: InvoiceAdjustmentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2657,16 +3102,16 @@ export type GetInvoiceAdjustmentsData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments';
 };
 
-export type GetInvoiceAdjustmentsResponses = {
+export type InvoicesGetInvoiceAdjustmentsResponses = {
     /**
      * OK
      */
     200: InvoiceAdjustmentDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetInvoiceAdjustmentsResponse = GetInvoiceAdjustmentsResponses[keyof GetInvoiceAdjustmentsResponses];
+export type InvoicesGetInvoiceAdjustmentsResponse = InvoicesGetInvoiceAdjustmentsResponses[keyof InvoicesGetInvoiceAdjustmentsResponses];
 
-export type CreateInvoiceAdjustmentData = {
+export type InvoicesCreateInvoiceAdjustmentData = {
     body?: InvoiceAdjustmentCreateDto;
     path: {
         invoiceId: string;
@@ -2677,16 +3122,16 @@ export type CreateInvoiceAdjustmentData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments';
 };
 
-export type CreateInvoiceAdjustmentResponses = {
+export type InvoicesCreateInvoiceAdjustmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateInvoiceAdjustmentResponse = CreateInvoiceAdjustmentResponses[keyof CreateInvoiceAdjustmentResponses];
+export type InvoicesCreateInvoiceAdjustmentResponse = InvoicesCreateInvoiceAdjustmentResponses[keyof InvoicesCreateInvoiceAdjustmentResponses];
 
-export type GetInvoiceAdjustmentsCountData = {
+export type InvoicesGetInvoiceAdjustmentsCountData = {
     body?: InvoiceAdjustmentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2697,16 +3142,16 @@ export type GetInvoiceAdjustmentsCountData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/Count';
 };
 
-export type GetInvoiceAdjustmentsCountResponses = {
+export type InvoicesGetInvoiceAdjustmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoiceAdjustmentsCountResponse = GetInvoiceAdjustmentsCountResponses[keyof GetInvoiceAdjustmentsCountResponses];
+export type InvoicesGetInvoiceAdjustmentsCountResponse = InvoicesGetInvoiceAdjustmentsCountResponses[keyof InvoicesGetInvoiceAdjustmentsCountResponses];
 
-export type DeleteInvoiceAdjustmentData = {
+export type InvoicesDeleteInvoiceAdjustmentData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2718,16 +3163,16 @@ export type DeleteInvoiceAdjustmentData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}';
 };
 
-export type DeleteInvoiceAdjustmentResponses = {
+export type InvoicesDeleteInvoiceAdjustmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceAdjustmentResponse = DeleteInvoiceAdjustmentResponses[keyof DeleteInvoiceAdjustmentResponses];
+export type InvoicesDeleteInvoiceAdjustmentResponse = InvoicesDeleteInvoiceAdjustmentResponses[keyof InvoicesDeleteInvoiceAdjustmentResponses];
 
-export type GetInvoiceAdjustmentData = {
+export type InvoicesGetInvoiceAdjustmentData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2739,16 +3184,16 @@ export type GetInvoiceAdjustmentData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}';
 };
 
-export type GetInvoiceAdjustmentResponses = {
+export type InvoicesGetInvoiceAdjustmentResponses = {
     /**
      * OK
      */
     200: InvoiceAdjustmentDtoEnvelopeReadable;
 };
 
-export type GetInvoiceAdjustmentResponse = GetInvoiceAdjustmentResponses[keyof GetInvoiceAdjustmentResponses];
+export type InvoicesGetInvoiceAdjustmentResponse = InvoicesGetInvoiceAdjustmentResponses[keyof InvoicesGetInvoiceAdjustmentResponses];
 
-export type PatchInvoiceAdjustmentData = {
+export type InvoicesPatchInvoiceAdjustmentData = {
     body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
@@ -2760,25 +3205,25 @@ export type PatchInvoiceAdjustmentData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}';
 };
 
-export type PatchInvoiceAdjustmentErrors = {
+export type InvoicesPatchInvoiceAdjustmentErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchInvoiceAdjustmentError = PatchInvoiceAdjustmentErrors[keyof PatchInvoiceAdjustmentErrors];
+export type InvoicesPatchInvoiceAdjustmentError = InvoicesPatchInvoiceAdjustmentErrors[keyof InvoicesPatchInvoiceAdjustmentErrors];
 
-export type PatchInvoiceAdjustmentResponses = {
+export type InvoicesPatchInvoiceAdjustmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInvoiceAdjustmentResponse = PatchInvoiceAdjustmentResponses[keyof PatchInvoiceAdjustmentResponses];
+export type InvoicesPatchInvoiceAdjustmentResponse = InvoicesPatchInvoiceAdjustmentResponses[keyof InvoicesPatchInvoiceAdjustmentResponses];
 
-export type UpdateInvoiceAdjustmentData = {
+export type InvoicesUpdateInvoiceAdjustmentData = {
     body?: InvoiceAdjustmentUpdateDto;
     path: {
         invoiceId: string;
@@ -2790,16 +3235,16 @@ export type UpdateInvoiceAdjustmentData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}';
 };
 
-export type UpdateInvoiceAdjustmentResponses = {
+export type InvoicesUpdateInvoiceAdjustmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInvoiceAdjustmentResponse = UpdateInvoiceAdjustmentResponses[keyof UpdateInvoiceAdjustmentResponses];
+export type InvoicesUpdateInvoiceAdjustmentResponse = InvoicesUpdateInvoiceAdjustmentResponses[keyof InvoicesUpdateInvoiceAdjustmentResponses];
 
-export type GetInvoiceReferencesData = {
+export type InvoicesGetInvoiceReferencesData = {
     body?: InvoiceReferenceDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2810,16 +3255,16 @@ export type GetInvoiceReferencesData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References';
 };
 
-export type GetInvoiceReferencesResponses = {
+export type InvoicesGetInvoiceReferencesResponses = {
     /**
      * OK
      */
     200: InvoiceReferenceDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetInvoiceReferencesResponse = GetInvoiceReferencesResponses[keyof GetInvoiceReferencesResponses];
+export type InvoicesGetInvoiceReferencesResponse = InvoicesGetInvoiceReferencesResponses[keyof InvoicesGetInvoiceReferencesResponses];
 
-export type CreateInvoiceReferenceData = {
+export type InvoicesCreateInvoiceReferenceData = {
     body?: InvoiceReferenceCreateDto;
     path: {
         invoiceId: string;
@@ -2830,16 +3275,16 @@ export type CreateInvoiceReferenceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References';
 };
 
-export type CreateInvoiceReferenceResponses = {
+export type InvoicesCreateInvoiceReferenceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateInvoiceReferenceResponse = CreateInvoiceReferenceResponses[keyof CreateInvoiceReferenceResponses];
+export type InvoicesCreateInvoiceReferenceResponse = InvoicesCreateInvoiceReferenceResponses[keyof InvoicesCreateInvoiceReferenceResponses];
 
-export type GetInvoiceReferencesCountData = {
+export type InvoicesGetInvoiceReferencesCountData = {
     body?: InvoiceReferenceDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2850,16 +3295,16 @@ export type GetInvoiceReferencesCountData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References/Count';
 };
 
-export type GetInvoiceReferencesCountResponses = {
+export type InvoicesGetInvoiceReferencesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoiceReferencesCountResponse = GetInvoiceReferencesCountResponses[keyof GetInvoiceReferencesCountResponses];
+export type InvoicesGetInvoiceReferencesCountResponse = InvoicesGetInvoiceReferencesCountResponses[keyof InvoicesGetInvoiceReferencesCountResponses];
 
-export type DeleteInvoiceReferenceData = {
+export type InvoicesDeleteInvoiceReferenceData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2871,16 +3316,16 @@ export type DeleteInvoiceReferenceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}';
 };
 
-export type DeleteInvoiceReferenceResponses = {
+export type InvoicesDeleteInvoiceReferenceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceReferenceResponse = DeleteInvoiceReferenceResponses[keyof DeleteInvoiceReferenceResponses];
+export type InvoicesDeleteInvoiceReferenceResponse = InvoicesDeleteInvoiceReferenceResponses[keyof InvoicesDeleteInvoiceReferenceResponses];
 
-export type GetInvoiceReferenceData = {
+export type InvoicesGetInvoiceReferenceData = {
     body?: never;
     path: {
         invoiceId: string;
@@ -2892,16 +3337,16 @@ export type GetInvoiceReferenceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}';
 };
 
-export type GetInvoiceReferenceResponses = {
+export type InvoicesGetInvoiceReferenceResponses = {
     /**
      * OK
      */
     200: InvoiceReferenceDtoEnvelopeReadable;
 };
 
-export type GetInvoiceReferenceResponse = GetInvoiceReferenceResponses[keyof GetInvoiceReferenceResponses];
+export type InvoicesGetInvoiceReferenceResponse = InvoicesGetInvoiceReferenceResponses[keyof InvoicesGetInvoiceReferenceResponses];
 
-export type PatchInvoiceReferenceData = {
+export type InvoicesPatchInvoiceReferenceData = {
     body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
@@ -2913,16 +3358,16 @@ export type PatchInvoiceReferenceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}';
 };
 
-export type PatchInvoiceReferenceResponses = {
+export type InvoicesPatchInvoiceReferenceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInvoiceReferenceResponse = PatchInvoiceReferenceResponses[keyof PatchInvoiceReferenceResponses];
+export type InvoicesPatchInvoiceReferenceResponse = InvoicesPatchInvoiceReferenceResponses[keyof InvoicesPatchInvoiceReferenceResponses];
 
-export type UpdateInvoiceReferenceData = {
+export type InvoicesUpdateInvoiceReferenceData = {
     body?: InvoiceReferenceUpdateDto;
     path: {
         invoiceId: string;
@@ -2934,16 +3379,16 @@ export type UpdateInvoiceReferenceData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}';
 };
 
-export type UpdateInvoiceReferenceResponses = {
+export type InvoicesUpdateInvoiceReferenceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInvoiceReferenceResponse = UpdateInvoiceReferenceResponses[keyof UpdateInvoiceReferenceResponses];
+export type InvoicesUpdateInvoiceReferenceResponse = InvoicesUpdateInvoiceReferenceResponses[keyof InvoicesUpdateInvoiceReferenceResponses];
 
-export type GetInvoicePaymentsData = {
+export type InvoicesGetInvoicePaymentsData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2954,16 +3399,16 @@ export type GetInvoicePaymentsData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Payments';
 };
 
-export type GetInvoicePaymentsResponses = {
+export type InvoicesGetInvoicePaymentsResponses = {
     /**
      * OK
      */
     200: PaymentDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetInvoicePaymentsResponse = GetInvoicePaymentsResponses[keyof GetInvoicePaymentsResponses];
+export type InvoicesGetInvoicePaymentsResponse = InvoicesGetInvoicePaymentsResponses[keyof InvoicesGetInvoicePaymentsResponses];
 
-export type GetInvoicePaymentsCountData = {
+export type InvoicesGetInvoicePaymentsCountData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
@@ -2974,16 +3419,16 @@ export type GetInvoicePaymentsCountData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Payments/Count';
 };
 
-export type GetInvoicePaymentsCountResponses = {
+export type InvoicesGetInvoicePaymentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoicePaymentsCountResponse = GetInvoicePaymentsCountResponses[keyof GetInvoicePaymentsCountResponses];
+export type InvoicesGetInvoicePaymentsCountResponse = InvoicesGetInvoicePaymentsCountResponses[keyof InvoicesGetInvoicePaymentsCountResponses];
 
-export type AggregateInvoiceTotalsData = {
+export type InvoicesAggregateInvoiceTotalsData = {
     body: Array<string>;
     path?: never;
     query: {
@@ -2993,16 +3438,16 @@ export type AggregateInvoiceTotalsData = {
     url: '/api/v2/InvoicingService/Invoices/TotalsAggregate';
 };
 
-export type AggregateInvoiceTotalsResponses = {
+export type InvoicesAggregateInvoiceTotalsResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateInvoiceTotalsResponse = AggregateInvoiceTotalsResponses[keyof AggregateInvoiceTotalsResponses];
+export type InvoicesAggregateInvoiceTotalsResponse = InvoicesAggregateInvoiceTotalsResponses[keyof InvoicesAggregateInvoiceTotalsResponses];
 
-export type AggregateInvoiceTaxesData = {
+export type InvoicesAggregateInvoiceTaxesData = {
     body: Array<string>;
     path?: never;
     query: {
@@ -3012,16 +3457,16 @@ export type AggregateInvoiceTaxesData = {
     url: '/api/v2/InvoicingService/Invoices/TaxesAggregate';
 };
 
-export type AggregateInvoiceTaxesResponses = {
+export type InvoicesAggregateInvoiceTaxesResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateInvoiceTaxesResponse = AggregateInvoiceTaxesResponses[keyof AggregateInvoiceTaxesResponses];
+export type InvoicesAggregateInvoiceTaxesResponse = InvoicesAggregateInvoiceTaxesResponses[keyof InvoicesAggregateInvoiceTaxesResponses];
 
-export type AggregateInvoiceDiscountsData = {
+export type InvoicesAggregateInvoiceDiscountsData = {
     body: Array<string>;
     path?: never;
     query: {
@@ -3031,16 +3476,16 @@ export type AggregateInvoiceDiscountsData = {
     url: '/api/v2/InvoicingService/Invoices/DiscountsAggregate';
 };
 
-export type AggregateInvoiceDiscountsResponses = {
+export type InvoicesAggregateInvoiceDiscountsResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateInvoiceDiscountsResponse = AggregateInvoiceDiscountsResponses[keyof AggregateInvoiceDiscountsResponses];
+export type InvoicesAggregateInvoiceDiscountsResponse = InvoicesAggregateInvoiceDiscountsResponses[keyof InvoicesAggregateInvoiceDiscountsResponses];
 
-export type AggregateInvoiceTaxBasesData = {
+export type InvoicesAggregateInvoiceTaxBasesData = {
     body: Array<string>;
     path?: never;
     query: {
@@ -3050,16 +3495,16 @@ export type AggregateInvoiceTaxBasesData = {
     url: '/api/v2/InvoicingService/Invoices/TaxBasesAggregate';
 };
 
-export type AggregateInvoiceTaxBasesResponses = {
+export type InvoicesAggregateInvoiceTaxBasesResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateInvoiceTaxBasesResponse = AggregateInvoiceTaxBasesResponses[keyof AggregateInvoiceTaxBasesResponses];
+export type InvoicesAggregateInvoiceTaxBasesResponse = InvoicesAggregateInvoiceTaxBasesResponses[keyof InvoicesAggregateInvoiceTaxBasesResponses];
 
-export type AggregateInvoiceGlobalSurchargesData = {
+export type InvoicesAggregateInvoiceGlobalSurchargesData = {
     body: Array<string>;
     path?: never;
     query: {
@@ -3069,16 +3514,16 @@ export type AggregateInvoiceGlobalSurchargesData = {
     url: '/api/v2/InvoicingService/Invoices/GlobalSurchargesAggregate';
 };
 
-export type AggregateInvoiceGlobalSurchargesResponses = {
+export type InvoicesAggregateInvoiceGlobalSurchargesResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateInvoiceGlobalSurchargesResponse = AggregateInvoiceGlobalSurchargesResponses[keyof AggregateInvoiceGlobalSurchargesResponses];
+export type InvoicesAggregateInvoiceGlobalSurchargesResponse = InvoicesAggregateInvoiceGlobalSurchargesResponses[keyof InvoicesAggregateInvoiceGlobalSurchargesResponses];
 
-export type GetSalesInvoicesSumData = {
+export type InvoicesGetSalesInvoicesSumData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -3087,7 +3532,7 @@ export type GetSalesInvoicesSumData = {
     url: '/api/v2/InvoicingService/Invoices/SalesInvoices/Sum';
 };
 
-export type GetSalesInvoicesSumErrors = {
+export type InvoicesGetSalesInvoicesSumErrors = {
     /**
      * Unauthorized
      */
@@ -3098,18 +3543,18 @@ export type GetSalesInvoicesSumErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSalesInvoicesSumError = GetSalesInvoicesSumErrors[keyof GetSalesInvoicesSumErrors];
+export type InvoicesGetSalesInvoicesSumError = InvoicesGetSalesInvoicesSumErrors[keyof InvoicesGetSalesInvoicesSumErrors];
 
-export type GetSalesInvoicesSumResponses = {
+export type InvoicesGetSalesInvoicesSumResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetSalesInvoicesSumResponse = GetSalesInvoicesSumResponses[keyof GetSalesInvoicesSumResponses];
+export type InvoicesGetSalesInvoicesSumResponse = InvoicesGetSalesInvoicesSumResponses[keyof InvoicesGetSalesInvoicesSumResponses];
 
-export type GetPurchaseInvoicesSumData = {
+export type InvoicesGetPurchaseInvoicesSumData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -3118,7 +3563,7 @@ export type GetPurchaseInvoicesSumData = {
     url: '/api/v2/InvoicingService/Invoices/PurchaseInvoices/Sum';
 };
 
-export type GetPurchaseInvoicesSumErrors = {
+export type InvoicesGetPurchaseInvoicesSumErrors = {
     /**
      * Unauthorized
      */
@@ -3129,18 +3574,18 @@ export type GetPurchaseInvoicesSumErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPurchaseInvoicesSumError = GetPurchaseInvoicesSumErrors[keyof GetPurchaseInvoicesSumErrors];
+export type InvoicesGetPurchaseInvoicesSumError = InvoicesGetPurchaseInvoicesSumErrors[keyof InvoicesGetPurchaseInvoicesSumErrors];
 
-export type GetPurchaseInvoicesSumResponses = {
+export type InvoicesGetPurchaseInvoicesSumResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetPurchaseInvoicesSumResponse = GetPurchaseInvoicesSumResponses[keyof GetPurchaseInvoicesSumResponses];
+export type InvoicesGetPurchaseInvoicesSumResponse = InvoicesGetPurchaseInvoicesSumResponses[keyof InvoicesGetPurchaseInvoicesSumResponses];
 
-export type SendInvoiceEmailData = {
+export type InvoicesSendInvoiceEmailData = {
     body?: EmailDispatchRequest;
     path: {
         invoiceId: string;
@@ -3151,16 +3596,16 @@ export type SendInvoiceEmailData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Send';
 };
 
-export type SendInvoiceEmailResponses = {
+export type InvoicesSendInvoiceEmailResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type SendInvoiceEmailResponse = SendInvoiceEmailResponses[keyof SendInvoiceEmailResponses];
+export type InvoicesSendInvoiceEmailResponse = InvoicesSendInvoiceEmailResponses[keyof InvoicesSendInvoiceEmailResponses];
 
-export type PreviewInvoiceEmailData = {
+export type InvoicesPreviewInvoiceEmailData = {
     body?: EmailDispatchRequest;
     path: {
         invoiceId: string;
@@ -3171,7 +3616,7 @@ export type PreviewInvoiceEmailData = {
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Preview';
 };
 
-export type PreviewInvoiceEmailResponses = {
+export type InvoicesPreviewInvoiceEmailResponses = {
     /**
      * OK
      */

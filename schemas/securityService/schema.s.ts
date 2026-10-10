@@ -10,743 +10,509 @@ export interface paths {
      * Get all application principals
      * @description Retrieves the non-human application principals enrolled in the specified tenant (including read-only system-locked platform principals).
      */
-    get: operations["GetApplicationPrincipalsAsync"];
+    get: operations["ApplicationPrincipals_GetApplicationPrincipals"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/Count": {
     /**
      * Get application principals count
      * @description Retrieves the count of application principals enrolled in the specified tenant.
      */
-    get: operations["GetApplicationPrincipalsCountAsync"];
+    get: operations["ApplicationPrincipals_GetApplicationPrincipalsCount"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/{principalId}": {
     /**
      * Get application principal by ID
      * @description Retrieves a specific application principal: owning application, tenant enrollment, lifecycle status, system-locked flag, and its explicit least-privilege permission grants.
      */
-    get: operations["GetApplicationPrincipalAsync"];
+    get: operations["ApplicationPrincipals_GetApplicationPrincipal"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/Provision": {
     /**
      * Provision an application principal
      * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application in the specified tenant. System-locked platform applications require a platform administrator.
      */
-    post: operations["ProvisionApplicationPrincipalAsync"];
+    post: operations["ApplicationPrincipals_ProvisionApplicationPrincipal"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions": {
     /**
      * Grant a permission to an application principal
      * @description Grants a single least-privilege permission to the application principal's enrollment. Owner/admin/wildcard/*_manage permissions are rejected; system-locked principals require a platform administrator.
      */
-    post: operations["GrantPermissionAsync"];
+    post: operations["ApplicationPrincipals_GrantPermission"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions/{permission}": {
     /**
      * Revoke a permission from an application principal
      * @description Revokes a direct permission grant from the application principal's enrollment. System-locked principals require a platform administrator.
      */
-    delete: operations["RevokePermissionAsync"];
+    delete: operations["ApplicationPrincipals_RevokePermission"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Enable": {
     /**
      * Enable an application principal
      * @description Reinstates the application principal to the Active lifecycle state.
      */
-    post: operations["EnableApplicationPrincipalAsync"];
+    post: operations["ApplicationPrincipals_EnableApplicationPrincipal"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Suspend": {
     /**
      * Suspend an application principal
      * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated.
      */
-    post: operations["SuspendApplicationPrincipalAsync"];
+    post: operations["ApplicationPrincipals_SuspendApplicationPrincipal"];
   };
   "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Disable": {
     /**
      * Disable an application principal
      * @description Disables the application principal; dependent unattended execution fails closed.
      */
-    post: operations["DisableApplicationPrincipalAsync"];
+    post: operations["ApplicationPrincipals_DisableApplicationPrincipal"];
   };
   "/api/v2/SecurityService/Applications": {
     /**
      * Get all business applications
      * @description Retrieves all business applications for the specified tenant.
      */
-    get: operations["GetBusinessApplicationsAsync"];
+    get: operations["Applications_GetBusinessApplications"];
     /**
      * Create a new business application
      * @description Creates a new business application for the specified tenant.
      */
-    post: operations["CreateBusinessApplicationAsync"];
+    post: operations["Applications_CreateBusinessApplication"];
   };
   "/api/v2/SecurityService/Applications/Count": {
     /**
      * Get business applications count
      * @description Retrieves the count of business applications for the specified tenant.
      */
-    get: operations["GetBusinessApplicationsCountAsync"];
+    get: operations["Applications_GetBusinessApplicationsCount"];
   };
   "/api/v2/SecurityService/Applications/{applicationId}": {
     /**
      * Get business application by ID
      * @description Retrieves a specific business application by its identifier.
      */
-    get: operations["GetBusinessApplicationByIdAsync"];
+    get: operations["Applications_GetBusinessApplicationById"];
     /**
      * Update an existing business application
      * @description Updates an existing business application for the specified tenant.
      */
-    put: operations["UpdateBusinessApplicationAsync"];
+    put: operations["Applications_UpdateBusinessApplication"];
     /**
      * Delete a business application
      * @description Deletes an existing business application for the specified tenant.
      */
-    delete: operations["DeleteBusinessApplicationAsync"];
+    delete: operations["Applications_DeleteBusinessApplication"];
     /**
      * Patch an existing business application
      * @description Partially updates an existing business application using a JSON Patch document.
      */
-    patch: operations["PatchBusinessApplicationAsync"];
+    patch: operations["Applications_PatchBusinessApplication"];
   };
   "/api/v2/SecurityService/Applications/{applicationId}/Permissions": {
     /**
      * Get permissions by application
      * @description Retrieves all security permissions granted to a specific business application.
      */
-    get: operations["GetPermissionsByApplicationAsync"];
+    get: operations["Applications_GetPermissionsByApplication"];
   };
   "/api/v2/SecurityService/Applications/{applicationId}/Roles": {
     /**
      * Get roles by application
      * @description Retrieves all security roles granted to a specific business application.
      */
-    get: operations["GetRolesByApplicationAsync"];
+    get: operations["Applications_GetRolesByApplication"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/SecurityService/Logs": {
     /**
      * Get tenant logs
      * @description Retrieves logs for the specified tenant.
      */
-    get: operations["GetLogsAsync"];
+    get: operations["Logs_GetLogs"];
   };
   "/api/v2/SecurityService/Logs/Count": {
     /**
      * Get tenant logs count
      * @description Retrieves the count of logs for the specified tenant.
      */
-    get: operations["GetLogsCountAsync"];
+    get: operations["Logs_GetLogsCount"];
+  };
+  "/api/v2/SecurityService/Logs/Me": {
+    /**
+     * Get my logs
+     * @description Retrieves the signed-in user's own log entries. Another user's entries are never returned.
+     */
+    get: operations["Logs_GetMyLogs"];
+  };
+  "/api/v2/SecurityService/Logs/Me/Count": {
+    /**
+     * Get my logs count
+     * @description Retrieves the count of the signed-in user's own log entries.
+     */
+    get: operations["Logs_GetMyLogsCount"];
   };
   "/api/v2/SecurityService/OAuthApplications": {
     /**
      * Get all OAuth applications
      * @description Retrieves all OAuth applications for the specified tenant.
      */
-    get: operations["GetOAuthApplicationsAsync"];
+    get: operations["OAuthApplications_GetOAuthApplications"];
     /**
      * Create a new OAuth application
      * @description Creates a new OAuth application for the specified tenant.
      */
-    post: operations["CreateOAuthApplicationAsync"];
+    post: operations["OAuthApplications_CreateOAuthApplication"];
   };
   "/api/v2/SecurityService/OAuthApplications/Count": {
     /**
      * Get OAuth applications count
      * @description Retrieves the count of OAuth applications for the specified tenant.
      */
-    get: operations["GetOAuthApplicationsCountAsync"];
+    get: operations["OAuthApplications_GetOAuthApplicationsCount"];
   };
   "/api/v2/SecurityService/OAuthApplications/{applicationId}": {
     /**
      * Get OAuth application by ID
      * @description Retrieves a specific OAuth application by its identifier.
      */
-    get: operations["GetOAuthApplicationByIdAsync"];
+    get: operations["OAuthApplications_GetOAuthApplicationById"];
     /**
      * Update an existing OAuth application
      * @description Updates an existing OAuth application.
      */
-    put: operations["UpdateOAuthApplicationAsync"];
+    put: operations["OAuthApplications_UpdateOAuthApplication"];
     /**
      * Delete an OAuth application
      * @description Deletes an existing OAuth application.
      */
-    delete: operations["DeleteOAuthApplicationAsync"];
+    delete: operations["OAuthApplications_DeleteOAuthApplication"];
     /**
      * Patch an existing OAuth application
      * @description Partially updates an existing OAuth application using a JSON Patch document.
      */
-    patch: operations["PatchOAuthApplicationAsync"];
+    patch: operations["OAuthApplications_PatchOAuthApplication"];
   };
   "/api/v2/SecurityService/OAuthApplications/Authorizations": {
     /**
      * Get all OAuth authorizations
      * @description Retrieves all OAuth authorizations for the specified user.
      */
-    get: operations["GetOAuthAuthorizationsAsync"];
+    get: operations["OAuthApplications_GetOAuthAuthorizations"];
   };
   "/api/v2/SecurityService/OAuthApplications/Authorizations/Count": {
     /**
      * Get OAuth authorizations count
      * @description Retrieves the count of OAuth authorizations for the specified user.
      */
-    get: operations["GetOAuthAuthorizationsCountAsync"];
+    get: operations["OAuthApplications_GetOAuthAuthorizationsCount"];
   };
   "/api/v2/SecurityService/OAuthApplications/Authorizations/{authorizationId}": {
     /**
      * Get OAuth authorization by ID
      * @description Retrieves a specific OAuth authorization by its identifier.
      */
-    get: operations["GetOAuthAuthorizationByIdAsync"];
+    get: operations["OAuthApplications_GetOAuthAuthorizationById"];
   };
   "/api/v2/SecurityService/Permissions": {
     /**
      * Get all permissions
      * @description Retrieves all security permissions for the specified tenant.
      */
-    get: operations["GetPermissionsAsync"];
+    get: operations["Permissions_GetPermissions"];
     /**
      * Create a new permission
      * @description Creates a new security permission for the specified tenant.
      */
-    post: operations["CreatePermissionAsync"];
+    post: operations["Permissions_CreatePermission"];
   };
   "/api/v2/SecurityService/Permissions/Count": {
     /**
      * Get permissions count
      * @description Retrieves the count of security permissions for the specified tenant.
      */
-    get: operations["GetPermissionsCountAsync"];
+    get: operations["Permissions_GetPermissionsCount"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}": {
     /**
      * Get permission by ID
      * @description Retrieves a specific security permission by its ID.
      */
-    get: operations["GetPermissionAsync"];
+    get: operations["Permissions_GetPermission"];
     /**
      * Update an existing permission
      * @description Updates an existing security permission for the specified tenant.
      */
-    put: operations["UpdatePermissionAsync"];
+    put: operations["Permissions_UpdatePermission"];
     /**
      * Delete an existing permission
      * @description Deletes an existing security permission for the specified tenant.
      */
-    delete: operations["DeletePermissionAsync"];
+    delete: operations["Permissions_DeletePermission"];
     /**
      * Patch an existing permission
      * @description Partially updates an existing security permission using a JSON Patch document.
      */
-    patch: operations["PatchPermissionAsync"];
+    patch: operations["Permissions_PatchPermission"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Roles/{securityRoleId}": {
     /**
      * Assign a role to a permission
      * @description Assigns a security role to a security permission.
      */
-    post: operations["AssignRoleToPermissionAsync"];
+    post: operations["Permissions_AssignRoleToPermission"];
     /**
      * Revoke a role from a permission
      * @description Revokes a security role from a security permission.
      */
-    delete: operations["RevokeRoleFromPermissionAsync"];
+    delete: operations["Permissions_RevokeRoleFromPermission"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Roles": {
     /**
      * Get roles by permission
      * @description Retrieves all security roles that have a specific permission granted.
      */
-    get: operations["GetRolesByPermissionAsync"];
+    get: operations["Permissions_GetRolesByPermission"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Applications": {
     /**
      * Get applications by permission
      * @description Retrieves all business applications that have a specific permission granted.
      */
-    get: operations["GetApplicationsByPermissionAsync"];
+    get: operations["Permissions_GetApplicationsByPermission"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Enrollments": {
     /**
      * Get enrollments by permission
      * @description Retrieves all tenant enrollments that have a specific permission.
      */
-    get: operations["GetEnrollmentsByPermissionAsync"];
+    get: operations["Permissions_GetEnrollmentsByPermission"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Enrollments/{enrollmentId}": {
     /**
      * Assign a permission to an enrollment
      * @description Assigns a security permission to a tenant enrollment.
      */
-    post: operations["AssignPermissionToEnrollmentAsync"];
+    post: operations["Permissions_AssignPermissionToEnrollment"];
     /**
      * Revoke a permission from an enrollment
      * @description Revokes a security permission from a tenant enrollment.
      */
-    delete: operations["RevokePermissionFromEnrollmentAsync"];
+    delete: operations["Permissions_RevokePermissionFromEnrollment"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Applications/{applicationId}": {
     /**
      * Assign a permission to a business application
      * @description Assigns a security permission to a business application.
      */
-    post: operations["AssignPermissionToBusinessApplicationAsync"];
+    post: operations["Permissions_AssignPermissionToBusinessApplication"];
     /**
      * Revoke a permission from a business application
      * @description Revokes a security permission from a business application.
      */
-    delete: operations["RevokePermissionFromBusinessApplicationAsync"];
+    delete: operations["Permissions_RevokePermissionFromBusinessApplication"];
   };
   "/api/v2/SecurityService/Permissions/ByEnrollment/{enrollmentId}": {
     /**
      * Get permissions by enrollment
      * @description Retrieves all security permissions granted to a specific enrollment.
      */
-    get: operations["GetPermissionsByEnrollmentAsync"];
+    get: operations["Permissions_GetPermissionsByEnrollment"];
   };
   "/api/v2/SecurityService/Roles": {
     /**
      * Get all roles
      * @description Retrieves all security roles for the specified tenant.
      */
-    get: operations["GetRolesAsync"];
+    get: operations["Roles_GetRoles"];
     /**
      * Create a new role
      * @description Creates a new security role for the specified tenant.
      */
-    post: operations["CreateRoleAsync"];
+    post: operations["Roles_CreateRole"];
   };
   "/api/v2/SecurityService/Roles/Count": {
     /**
      * Get roles count
      * @description Retrieves the count of security roles for the specified tenant.
      */
-    get: operations["GetRolesCountAsync"];
+    get: operations["Roles_GetRolesCount"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}": {
     /**
      * Get role by ID
      * @description Retrieves a specific security role by its ID.
      */
-    get: operations["GetRoleAsync"];
+    get: operations["Roles_GetRole"];
     /**
      * Update an existing role
      * @description Updates an existing security role for the specified tenant.
      */
-    put: operations["UpdateRoleAsync"];
+    put: operations["Roles_UpdateRole"];
     /**
      * Delete an existing role
      * @description Deletes an existing security role for the specified tenant.
      */
-    delete: operations["DeleteRoleAsync"];
+    delete: operations["Roles_DeleteRole"];
     /**
      * Patch an existing role
      * @description Partially updates an existing security role using a JSON Patch document.
      */
-    patch: operations["PatchRoleAsync"];
+    patch: operations["Roles_PatchRole"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Permissions": {
     /**
      * Get permissions by role
      * @description Retrieves all security permissions assigned to a specific role.
      */
-    get: operations["GetRolePermissionsAsync"];
+    get: operations["Roles_GetRolePermissions"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Permissions/{securityPermissionId}": {
     /**
      * Assign a permission to a role
      * @description Assigns a security permission to a security role.
      */
-    post: operations["AssignPermissionToRoleAsync"];
+    post: operations["Roles_AssignPermissionToRole"];
     /**
      * Revoke a permission from a role
      * @description Revokes a security permission from a security role.
      */
-    delete: operations["RevokePermissionFromRoleAsync"];
+    delete: operations["Roles_RevokePermissionFromRole"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Enrollments": {
     /**
      * Get enrollments by role
      * @description Retrieves all tenant enrollments that have a specific role.
      */
-    get: operations["GetEnrollmentsByRoleAsync"];
+    get: operations["Roles_GetEnrollmentsByRole"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Applications": {
     /**
      * Get applications by role
      * @description Retrieves all business applications that have a specific role granted.
      */
-    get: operations["GetApplicationsByRoleAsync"];
+    get: operations["Roles_GetApplicationsByRole"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Enrollments/{enrollmentId}": {
     /**
      * Assign a role to an enrollment
      * @description Assigns a security role to a tenant enrollment.
      */
-    post: operations["AssignRoleToEnrollmentAsync"];
+    post: operations["Roles_AssignRoleToEnrollment"];
     /**
      * Revoke a role from an enrollment
      * @description Revokes a security role from a tenant enrollment.
      */
-    delete: operations["RevokeRoleFromEnrollmentAsync"];
+    delete: operations["Roles_RevokeRoleFromEnrollment"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Applications/{applicationId}": {
     /**
      * Assign a role to a business application
      * @description Assigns a security role to a business application.
      */
-    post: operations["AssignRoleToBusinessApplicationAsync"];
+    post: operations["Roles_AssignRoleToBusinessApplication"];
     /**
      * Revoke a role from a business application
      * @description Revokes a security role from a business application.
      */
-    delete: operations["RevokeRoleFromBusinessApplicationAsync"];
+    delete: operations["Roles_RevokeRoleFromBusinessApplication"];
   };
   "/api/v2/SecurityService/Roles/ByEnrollment/{enrollmentId}": {
     /**
      * Get roles by enrollment
      * @description Retrieves all security roles granted to a specific enrollment.
      */
-    get: operations["GetRolesByEnrollmentAsync"];
+    get: operations["Roles_GetRolesByEnrollment"];
   };
   "/api/v2/SecurityService/SecurityCertificates": {
     /**
      * Get security certificates
      * @description Retrieves security certificates for the specified tenant.
      */
-    get: operations["GetSecurityCertificatesAsync"];
+    get: operations["SecurityCertificates_GetSecurityCertificates"];
   };
   "/api/v2/SecurityService/SecurityCertificates/Count": {
     /**
      * Get security certificates count
      * @description Retrieves the count of security certificates for the specified tenant.
      */
-    get: operations["GetSecurityCertificatesCountAsync"];
+    get: operations["SecurityCertificates_GetSecurityCertificatesCount"];
   };
   "/api/v2/SecurityService/SecurityLogs": {
     /**
      * Get business security logs
      * @description Retrieves security logs for the specified tenant.
      */
-    get: operations["GetSecurityLogsAsync"];
+    get: operations["SecurityLogs_GetSecurityLogs"];
   };
   "/api/v2/SecurityService/SecurityLogs/Count": {
     /**
      * Get business security logs count
      * @description Retrieves the count of security logs for the specified tenant.
      */
-    get: operations["GetSecurityLogsCountAsync"];
+    get: operations["SecurityLogs_GetSecurityLogsCount"];
   };
   "/api/v2/SecurityService/Webhooks": {
     /**
      * Get all webhook requests
      * @description Retrieves all webhook requests for the specified tenant.
      */
-    get: operations["GetWebhookRequestsAsync"];
+    get: operations["Webhooks_GetWebhookRequests"];
   };
   "/api/v2/SecurityService/Webhooks/Count": {
     /**
      * Get webhook requests count
      * @description Retrieves the count of webhook requests for the specified tenant.
      */
-    get: operations["GetWebhookRequestsCountAsync"];
+    get: operations["Webhooks_GetWebhookRequestsCount"];
   };
 }
 
@@ -1617,7 +1383,7 @@ export interface operations {
    * Get all application principals
    * @description Retrieves the non-human application principals enrolled in the specified tenant (including read-only system-locked platform principals).
    */
-  GetApplicationPrincipalsAsync: {
+  ApplicationPrincipals_GetApplicationPrincipals: {
     parameters: {
       query: {
         tenantId: string;
@@ -1661,7 +1427,7 @@ export interface operations {
    * Get application principals count
    * @description Retrieves the count of application principals enrolled in the specified tenant.
    */
-  GetApplicationPrincipalsCountAsync: {
+  ApplicationPrincipals_GetApplicationPrincipalsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1705,7 +1471,7 @@ export interface operations {
    * Get application principal by ID
    * @description Retrieves a specific application principal: owning application, tenant enrollment, lifecycle status, system-locked flag, and its explicit least-privilege permission grants.
    */
-  GetApplicationPrincipalAsync: {
+  ApplicationPrincipals_GetApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -1753,7 +1519,7 @@ export interface operations {
    * Provision an application principal
    * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application in the specified tenant. System-locked platform applications require a platform administrator.
    */
-  ProvisionApplicationPrincipalAsync: {
+  ApplicationPrincipals_ProvisionApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -1804,7 +1570,7 @@ export interface operations {
    * Grant a permission to an application principal
    * @description Grants a single least-privilege permission to the application principal's enrollment. Owner/admin/wildcard/*_manage permissions are rejected; system-locked principals require a platform administrator.
    */
-  GrantPermissionAsync: {
+  ApplicationPrincipals_GrantPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -1858,7 +1624,7 @@ export interface operations {
    * Revoke a permission from an application principal
    * @description Revokes a direct permission grant from the application principal's enrollment. System-locked principals require a platform administrator.
    */
-  RevokePermissionAsync: {
+  ApplicationPrincipals_RevokePermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -1907,7 +1673,7 @@ export interface operations {
    * Enable an application principal
    * @description Reinstates the application principal to the Active lifecycle state.
    */
-  EnableApplicationPrincipalAsync: {
+  ApplicationPrincipals_EnableApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -1955,7 +1721,7 @@ export interface operations {
    * Suspend an application principal
    * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated.
    */
-  SuspendApplicationPrincipalAsync: {
+  ApplicationPrincipals_SuspendApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -2003,7 +1769,7 @@ export interface operations {
    * Disable an application principal
    * @description Disables the application principal; dependent unattended execution fails closed.
    */
-  DisableApplicationPrincipalAsync: {
+  ApplicationPrincipals_DisableApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -2051,7 +1817,7 @@ export interface operations {
    * Get all business applications
    * @description Retrieves all business applications for the specified tenant.
    */
-  GetBusinessApplicationsAsync: {
+  Applications_GetBusinessApplications: {
     parameters: {
       query: {
         tenantId: string;
@@ -2095,7 +1861,7 @@ export interface operations {
    * Create a new business application
    * @description Creates a new business application for the specified tenant.
    */
-  CreateBusinessApplicationAsync: {
+  Applications_CreateBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2146,7 +1912,7 @@ export interface operations {
    * Get business applications count
    * @description Retrieves the count of business applications for the specified tenant.
    */
-  GetBusinessApplicationsCountAsync: {
+  Applications_GetBusinessApplicationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2190,7 +1956,7 @@ export interface operations {
    * Get business application by ID
    * @description Retrieves a specific business application by its identifier.
    */
-  GetBusinessApplicationByIdAsync: {
+  Applications_GetBusinessApplicationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2231,7 +1997,7 @@ export interface operations {
    * Update an existing business application
    * @description Updates an existing business application for the specified tenant.
    */
-  UpdateBusinessApplicationAsync: {
+  Applications_UpdateBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2285,7 +2051,7 @@ export interface operations {
    * Delete a business application
    * @description Deletes an existing business application for the specified tenant.
    */
-  DeleteBusinessApplicationAsync: {
+  Applications_DeleteBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2333,7 +2099,7 @@ export interface operations {
    * Patch an existing business application
    * @description Partially updates an existing business application using a JSON Patch document.
    */
-  PatchBusinessApplicationAsync: {
+  Applications_PatchBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2387,7 +2153,7 @@ export interface operations {
    * Get permissions by application
    * @description Retrieves all security permissions granted to a specific business application.
    */
-  GetPermissionsByApplicationAsync: {
+  Applications_GetPermissionsByApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2428,7 +2194,7 @@ export interface operations {
    * Get roles by application
    * @description Retrieves all security roles granted to a specific business application.
    */
-  GetRolesByApplicationAsync: {
+  Applications_GetRolesByApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2465,7 +2231,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2480,11 +2325,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get tenant logs
    * @description Retrieves logs for the specified tenant.
    */
-  GetLogsAsync: {
+  Logs_GetLogs: {
     parameters: {
       query: {
         tenantId: string;
@@ -2528,7 +2558,7 @@ export interface operations {
    * Get tenant logs count
    * @description Retrieves the count of logs for the specified tenant.
    */
-  GetLogsCountAsync: {
+  Logs_GetLogsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2569,10 +2599,82 @@ export interface operations {
     };
   };
   /**
+   * Get my logs
+   * @description Retrieves the signed-in user's own log entries. Another user's entries are never returned.
+   */
+  Logs_GetMyLogs: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LogDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LogDtoListEnvelope"];
+          "application/xml": components["schemas"]["LogDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get my logs count
+   * @description Retrieves the count of the signed-in user's own log entries.
+   */
+  Logs_GetMyLogsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LogDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all OAuth applications
    * @description Retrieves all OAuth applications for the specified tenant.
    */
-  GetOAuthApplicationsAsync: {
+  OAuthApplications_GetOAuthApplications: {
     parameters: {
       query: {
         tenantId: string;
@@ -2610,7 +2712,7 @@ export interface operations {
    * Create a new OAuth application
    * @description Creates a new OAuth application for the specified tenant.
    */
-  CreateOAuthApplicationAsync: {
+  OAuthApplications_CreateOAuthApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2661,7 +2763,7 @@ export interface operations {
    * Get OAuth applications count
    * @description Retrieves the count of OAuth applications for the specified tenant.
    */
-  GetOAuthApplicationsCountAsync: {
+  OAuthApplications_GetOAuthApplicationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2699,7 +2801,7 @@ export interface operations {
    * Get OAuth application by ID
    * @description Retrieves a specific OAuth application by its identifier.
    */
-  GetOAuthApplicationByIdAsync: {
+  OAuthApplications_GetOAuthApplicationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2740,7 +2842,7 @@ export interface operations {
    * Update an existing OAuth application
    * @description Updates an existing OAuth application.
    */
-  UpdateOAuthApplicationAsync: {
+  OAuthApplications_UpdateOAuthApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2794,7 +2896,7 @@ export interface operations {
    * Delete an OAuth application
    * @description Deletes an existing OAuth application.
    */
-  DeleteOAuthApplicationAsync: {
+  OAuthApplications_DeleteOAuthApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2842,7 +2944,7 @@ export interface operations {
    * Patch an existing OAuth application
    * @description Partially updates an existing OAuth application using a JSON Patch document.
    */
-  PatchOAuthApplicationAsync: {
+  OAuthApplications_PatchOAuthApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -2896,7 +2998,7 @@ export interface operations {
    * Get all OAuth authorizations
    * @description Retrieves all OAuth authorizations for the specified user.
    */
-  GetOAuthAuthorizationsAsync: {
+  OAuthApplications_GetOAuthAuthorizations: {
     parameters: {
       query: {
         tenantId: string;
@@ -2935,7 +3037,7 @@ export interface operations {
    * Get OAuth authorizations count
    * @description Retrieves the count of OAuth authorizations for the specified user.
    */
-  GetOAuthAuthorizationsCountAsync: {
+  OAuthApplications_GetOAuthAuthorizationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2974,7 +3076,7 @@ export interface operations {
    * Get OAuth authorization by ID
    * @description Retrieves a specific OAuth authorization by its identifier.
    */
-  GetOAuthAuthorizationByIdAsync: {
+  OAuthApplications_GetOAuthAuthorizationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3015,7 +3117,7 @@ export interface operations {
    * Get all permissions
    * @description Retrieves all security permissions for the specified tenant.
    */
-  GetPermissionsAsync: {
+  Permissions_GetPermissions: {
     parameters: {
       query: {
         tenantId: string;
@@ -3059,7 +3161,7 @@ export interface operations {
    * Create a new permission
    * @description Creates a new security permission for the specified tenant.
    */
-  CreatePermissionAsync: {
+  Permissions_CreatePermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3110,7 +3212,7 @@ export interface operations {
    * Get permissions count
    * @description Retrieves the count of security permissions for the specified tenant.
    */
-  GetPermissionsCountAsync: {
+  Permissions_GetPermissionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3154,7 +3256,7 @@ export interface operations {
    * Get permission by ID
    * @description Retrieves a specific security permission by its ID.
    */
-  GetPermissionAsync: {
+  Permissions_GetPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3195,7 +3297,7 @@ export interface operations {
    * Update an existing permission
    * @description Updates an existing security permission for the specified tenant.
    */
-  UpdatePermissionAsync: {
+  Permissions_UpdatePermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3249,7 +3351,7 @@ export interface operations {
    * Delete an existing permission
    * @description Deletes an existing security permission for the specified tenant.
    */
-  DeletePermissionAsync: {
+  Permissions_DeletePermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3297,7 +3399,7 @@ export interface operations {
    * Patch an existing permission
    * @description Partially updates an existing security permission using a JSON Patch document.
    */
-  PatchPermissionAsync: {
+  Permissions_PatchPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3351,7 +3453,7 @@ export interface operations {
    * Assign a role to a permission
    * @description Assigns a security role to a security permission.
    */
-  AssignRoleToPermissionAsync: {
+  Permissions_AssignRoleToPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3400,7 +3502,7 @@ export interface operations {
    * Revoke a role from a permission
    * @description Revokes a security role from a security permission.
    */
-  RevokeRoleFromPermissionAsync: {
+  Permissions_RevokeRoleFromPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3449,7 +3551,7 @@ export interface operations {
    * Get roles by permission
    * @description Retrieves all security roles that have a specific permission granted.
    */
-  GetRolesByPermissionAsync: {
+  Permissions_GetRolesByPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3490,7 +3592,7 @@ export interface operations {
    * Get applications by permission
    * @description Retrieves all business applications that have a specific permission granted.
    */
-  GetApplicationsByPermissionAsync: {
+  Permissions_GetApplicationsByPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3531,7 +3633,7 @@ export interface operations {
    * Get enrollments by permission
    * @description Retrieves all tenant enrollments that have a specific permission.
    */
-  GetEnrollmentsByPermissionAsync: {
+  Permissions_GetEnrollmentsByPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3572,7 +3674,7 @@ export interface operations {
    * Assign a permission to an enrollment
    * @description Assigns a security permission to a tenant enrollment.
    */
-  AssignPermissionToEnrollmentAsync: {
+  Permissions_AssignPermissionToEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3621,7 +3723,7 @@ export interface operations {
    * Revoke a permission from an enrollment
    * @description Revokes a security permission from a tenant enrollment.
    */
-  RevokePermissionFromEnrollmentAsync: {
+  Permissions_RevokePermissionFromEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3670,7 +3772,7 @@ export interface operations {
    * Assign a permission to a business application
    * @description Assigns a security permission to a business application.
    */
-  AssignPermissionToBusinessApplicationAsync: {
+  Permissions_AssignPermissionToBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -3719,7 +3821,7 @@ export interface operations {
    * Revoke a permission from a business application
    * @description Revokes a security permission from a business application.
    */
-  RevokePermissionFromBusinessApplicationAsync: {
+  Permissions_RevokePermissionFromBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -3768,7 +3870,7 @@ export interface operations {
    * Get permissions by enrollment
    * @description Retrieves all security permissions granted to a specific enrollment.
    */
-  GetPermissionsByEnrollmentAsync: {
+  Permissions_GetPermissionsByEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3809,7 +3911,7 @@ export interface operations {
    * Get all roles
    * @description Retrieves all security roles for the specified tenant.
    */
-  GetRolesAsync: {
+  Roles_GetRoles: {
     parameters: {
       query: {
         tenantId: string;
@@ -3853,7 +3955,7 @@ export interface operations {
    * Create a new role
    * @description Creates a new security role for the specified tenant.
    */
-  CreateRoleAsync: {
+  Roles_CreateRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -3904,7 +4006,7 @@ export interface operations {
    * Get roles count
    * @description Retrieves the count of security roles for the specified tenant.
    */
-  GetRolesCountAsync: {
+  Roles_GetRolesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3948,7 +4050,7 @@ export interface operations {
    * Get role by ID
    * @description Retrieves a specific security role by its ID.
    */
-  GetRoleAsync: {
+  Roles_GetRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -3989,7 +4091,7 @@ export interface operations {
    * Update an existing role
    * @description Updates an existing security role for the specified tenant.
    */
-  UpdateRoleAsync: {
+  Roles_UpdateRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4043,7 +4145,7 @@ export interface operations {
    * Delete an existing role
    * @description Deletes an existing security role for the specified tenant.
    */
-  DeleteRoleAsync: {
+  Roles_DeleteRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4091,7 +4193,7 @@ export interface operations {
    * Patch an existing role
    * @description Partially updates an existing security role using a JSON Patch document.
    */
-  PatchRoleAsync: {
+  Roles_PatchRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4145,7 +4247,7 @@ export interface operations {
    * Get permissions by role
    * @description Retrieves all security permissions assigned to a specific role.
    */
-  GetRolePermissionsAsync: {
+  Roles_GetRolePermissions: {
     parameters: {
       query: {
         tenantId: string;
@@ -4186,7 +4288,7 @@ export interface operations {
    * Assign a permission to a role
    * @description Assigns a security permission to a security role.
    */
-  AssignPermissionToRoleAsync: {
+  Roles_AssignPermissionToRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4235,7 +4337,7 @@ export interface operations {
    * Revoke a permission from a role
    * @description Revokes a security permission from a security role.
    */
-  RevokePermissionFromRoleAsync: {
+  Roles_RevokePermissionFromRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4284,7 +4386,7 @@ export interface operations {
    * Get enrollments by role
    * @description Retrieves all tenant enrollments that have a specific role.
    */
-  GetEnrollmentsByRoleAsync: {
+  Roles_GetEnrollmentsByRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4325,7 +4427,7 @@ export interface operations {
    * Get applications by role
    * @description Retrieves all business applications that have a specific role granted.
    */
-  GetApplicationsByRoleAsync: {
+  Roles_GetApplicationsByRole: {
     parameters: {
       query: {
         tenantId: string;
@@ -4366,7 +4468,7 @@ export interface operations {
    * Assign a role to an enrollment
    * @description Assigns a security role to a tenant enrollment.
    */
-  AssignRoleToEnrollmentAsync: {
+  Roles_AssignRoleToEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4415,7 +4517,7 @@ export interface operations {
    * Revoke a role from an enrollment
    * @description Revokes a security role from a tenant enrollment.
    */
-  RevokeRoleFromEnrollmentAsync: {
+  Roles_RevokeRoleFromEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4464,7 +4566,7 @@ export interface operations {
    * Assign a role to a business application
    * @description Assigns a security role to a business application.
    */
-  AssignRoleToBusinessApplicationAsync: {
+  Roles_AssignRoleToBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -4513,7 +4615,7 @@ export interface operations {
    * Revoke a role from a business application
    * @description Revokes a security role from a business application.
    */
-  RevokeRoleFromBusinessApplicationAsync: {
+  Roles_RevokeRoleFromBusinessApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -4562,7 +4664,7 @@ export interface operations {
    * Get roles by enrollment
    * @description Retrieves all security roles granted to a specific enrollment.
    */
-  GetRolesByEnrollmentAsync: {
+  Roles_GetRolesByEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4603,7 +4705,7 @@ export interface operations {
    * Get security certificates
    * @description Retrieves security certificates for the specified tenant.
    */
-  GetSecurityCertificatesAsync: {
+  SecurityCertificates_GetSecurityCertificates: {
     parameters: {
       query: {
         tenantId: string;
@@ -4647,7 +4749,7 @@ export interface operations {
    * Get security certificates count
    * @description Retrieves the count of security certificates for the specified tenant.
    */
-  GetSecurityCertificatesCountAsync: {
+  SecurityCertificates_GetSecurityCertificatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4691,7 +4793,7 @@ export interface operations {
    * Get business security logs
    * @description Retrieves security logs for the specified tenant.
    */
-  GetSecurityLogsAsync: {
+  SecurityLogs_GetSecurityLogs: {
     parameters: {
       query: {
         tenantId: string;
@@ -4735,7 +4837,7 @@ export interface operations {
    * Get business security logs count
    * @description Retrieves the count of security logs for the specified tenant.
    */
-  GetSecurityLogsCountAsync: {
+  SecurityLogs_GetSecurityLogsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4779,7 +4881,7 @@ export interface operations {
    * Get all webhook requests
    * @description Retrieves all webhook requests for the specified tenant.
    */
-  GetWebhookRequestsAsync: {
+  Webhooks_GetWebhookRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -4823,7 +4925,7 @@ export interface operations {
    * Get webhook requests count
    * @description Retrieves the count of webhook requests for the specified tenant.
    */
-  GetWebhookRequestsCountAsync: {
+  Webhooks_GetWebhookRequestsCount: {
     parameters: {
       query: {
         tenantId: string;

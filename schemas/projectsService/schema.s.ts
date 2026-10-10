@@ -6,636 +6,388 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/ProjectsService/Projects": {
     /**
      * Retrieves all projects
      * @description Gets all projects for the current tenant with OData support.
      */
-    get: operations["GetProjectsByTenantIdAsync"];
+    get: operations["Projects_GetProjectsByTenantId"];
     /**
      * Creates a new project
      * @description Creates a new project for the current tenant.
      */
-    post: operations["CreateProjectAsync"];
+    post: operations["Projects_CreateProject"];
   };
   "/api/v2/ProjectsService/Projects/Count": {
     /**
      * Counts projects
      * @description Gets the count of projects for the current tenant.
      */
-    get: operations["GetProjectsCountByTenantIdAsync"];
+    get: operations["Projects_GetProjectsCountByTenantId"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}": {
     /**
      * Gets a project by ID
      * @description Retrieves the details of a project using its unique identifier.
      */
-    get: operations["GetProjectByIdAsync"];
+    get: operations["Projects_GetProjectById"];
     /**
      * Updates a project
      * @description Updates the specified project.
      */
-    put: operations["UpdateProjectAsync"];
+    put: operations["Projects_UpdateProject"];
     /**
      * Deletes a project
      * @description Deletes the specified project.
      */
-    delete: operations["DeleteProjectAsync"];
+    delete: operations["Projects_DeleteProject"];
     /**
      * Patches a project
      * @description Partially updates the specified project.
      */
-    patch: operations["PatchProjectAsync"];
+    patch: operations["Projects_PatchProject"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Periods": {
     /**
      * Retrieves project periods
      * @description Gets all periods for a specific project.
      */
-    get: operations["GetProjectPeriodsAsync"];
+    get: operations["Projects_GetProjectPeriods"];
     /**
      * Creates a project period
      * @description Creates a new period for the specified project.
      */
-    post: operations["CreateProjectPeriodAsync"];
+    post: operations["Projects_CreateProjectPeriod"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Periods/{projectPeriodId}": {
     /**
      * Updates a project period
      * @description Updates the specified period for a project.
      */
-    put: operations["UpdateProjectPeriodAsync"];
+    put: operations["Projects_UpdateProjectPeriod"];
     /**
      * Deletes a project period
      * @description Deletes the specified period from a project.
      */
-    delete: operations["DeleteProjectPeriodAsync"];
+    delete: operations["Projects_DeleteProjectPeriod"];
     /**
      * Patches a project period
      * @description Partially updates the specified period for a project.
      */
-    patch: operations["PatchProjectPeriodAsync"];
+    patch: operations["Projects_PatchProjectPeriod"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TimeLogs": {
     /**
      * Retrieves project time logs
      * @description Gets all time log entries for a specific project with OData support.
      */
-    get: operations["GetTimeLogsForProjectAsync"];
+    get: operations["Projects_GetTimeLogsForProject"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TimeLogs/Count": {
     /**
      * Counts project time logs
      * @description Gets the count of time log entries for a specific project.
      */
-    get: operations["GetProjectTimeLogsCountAsync"];
+    get: operations["Projects_GetProjectTimeLogsCount"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Tasks": {
     /**
      * Retrieves project tasks
      * @description Gets all tasks for a specific project with OData support.
      */
-    get: operations["GetTasksForProjectAsync"];
+    get: operations["Projects_GetTasksForProject"];
     /**
      * Creates a project task
      * @description Creates a new task for the specified project.
      */
-    post: operations["CreateTaskForProjectAsync"];
+    post: operations["Projects_CreateTaskForProject"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Tasks/Count": {
     /**
      * Counts project tasks
      * @description Gets the count of tasks for a specific project.
      */
-    get: operations["GetTasksForProjectCountAsync"];
+    get: operations["Projects_GetTasksForProjectCount"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Tasks/{projectTaskId}": {
     /**
      * Updates a project task
      * @description Updates the specified task in a project.
      */
-    put: operations["UpdateTaskForProjectAsync"];
+    put: operations["Projects_UpdateTaskForProject"];
     /**
      * Deletes a project task
      * @description Deletes the specified task from a project.
      */
-    delete: operations["DeleteTaskForProjectAsync"];
+    delete: operations["Projects_DeleteTaskForProject"];
     /**
      * Patches a project task
      * @description Partially updates the specified task in a project.
      */
-    patch: operations["PatchTaskForProjectAsync"];
+    patch: operations["Projects_PatchTaskForProject"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TaskCategories": {
     /**
      * Retrieves project task categories
      * @description Gets all task categories for a specific project with OData support.
      */
-    get: operations["GetProjectTaskCategoriesAsync"];
+    get: operations["Projects_GetProjectTaskCategories"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TaskCategories/Count": {
     /**
      * Counts project task categories
      * @description Gets the count of task categories for a specific project.
      */
-    get: operations["GetProjectTaskCategoriesCountAsync"];
+    get: operations["Projects_GetProjectTaskCategoriesCount"];
   };
   "/api/v2/ProjectsService/ProjectTasks": {
     /**
      * Get all project tasks
      * @description Retrieves all project tasks for the specified tenant.
      */
-    get: operations["GetProjectTasksAsync"];
+    get: operations["ProjectTasks_GetProjectTasks"];
     /**
      * Create a project task
      * @description Creates a new project task.
      */
-    post: operations["CreateProjectTaskAsync"];
+    post: operations["ProjectTasks_CreateProjectTask"];
   };
   "/api/v2/ProjectsService/ProjectTasks/Count": {
     /**
      * Get project tasks count
      * @description Returns the count of project tasks for the specified tenant.
      */
-    get: operations["GetProjectTasksCountAsync"];
+    get: operations["ProjectTasks_GetProjectTasksCount"];
   };
   "/api/v2/ProjectsService/ProjectTasks/{projectTaskId}": {
     /**
      * Get project task by ID
      * @description Retrieves a specific project task.
      */
-    get: operations["GetProjectTaskByIdAsync"];
+    get: operations["ProjectTasks_GetProjectTaskById"];
     /**
      * Update a project task
      * @description Updates an existing project task.
      */
-    put: operations["UpdateProjectTaskAsync"];
+    put: operations["ProjectTasks_UpdateProjectTask"];
     /**
      * Delete a project task
      * @description Deletes a project task.
      */
-    delete: operations["DeleteProjectTaskAsync"];
+    delete: operations["ProjectTasks_DeleteProjectTask"];
     /**
      * Patch a project task
      * @description Partially updates an existing project task.
      */
-    patch: operations["PatchProjectTaskAsync"];
+    patch: operations["ProjectTasks_PatchProjectTask"];
   };
   "/api/v2/ProjectsService/TaskCategories": {
     /**
      * Retrieves all task categories
      * @description Gets all task categories for the current tenant with OData support.
      */
-    get: operations["GetTenantTaskCategoriesAsync"];
+    get: operations["TaskCategories_GetTenantTaskCategories"];
     /**
      * Creates a new task category
      * @description Creates a new task category for the current tenant.
      */
-    post: operations["CreateTaskCategoryAsync"];
+    post: operations["TaskCategories_CreateTaskCategory"];
   };
   "/api/v2/ProjectsService/TaskCategories/Count": {
     /**
      * Counts task categories
      * @description Gets the count of task categories for the current tenant.
      */
-    get: operations["CountTenantTaskCategoriesAsync"];
+    get: operations["TaskCategories_CountTenantTaskCategories"];
   };
   "/api/v2/ProjectsService/TaskCategories/{taskCategoryId}": {
     /**
      * Gets a task category by ID
      * @description Retrieves the details of a task category using its unique identifier.
      */
-    get: operations["GetTaskCategoryByIdAsync"];
+    get: operations["TaskCategories_GetTaskCategoryById"];
     /**
      * Updates a task category
      * @description Updates the specified task category.
      */
-    put: operations["UpdateTaskCategoryAsync"];
+    put: operations["TaskCategories_UpdateTaskCategory"];
     /**
      * Deletes a task category
      * @description Deletes the specified task category.
      */
-    delete: operations["DeleteTaskCategoryAsync"];
+    delete: operations["TaskCategories_DeleteTaskCategory"];
     /**
      * Patches a task category
      * @description Partially updates the specified task category.
      */
-    patch: operations["PatchTaskCategoryAsync"];
+    patch: operations["TaskCategories_PatchTaskCategory"];
   };
   "/api/v2/ProjectsService/TaskCategories/{taskCategoryId}/Types": {
     /**
      * Retrieves task types for a category
      * @description Gets all task types belonging to the specified task category.
      */
-    get: operations["GetTaskCategoryTaskTypesAsync"];
+    get: operations["TaskCategories_GetTaskCategoryTaskTypes"];
   };
   "/api/v2/ProjectsService/TaskTypes/{taskTypeId}": {
     /**
      * Gets a task type by ID
      * @description Retrieves the details of a task type using its unique identifier.
      */
-    get: operations["GetTaskTypeByIdAsync"];
+    get: operations["TaskTypes_GetTaskTypeById"];
     /**
      * Updates a task type
      * @description Updates the specified task type.
      */
-    put: operations["UpdateTaskTypeAsync"];
+    put: operations["TaskTypes_UpdateTaskType"];
     /**
      * Deletes a task type
      * @description Deletes the specified task type.
      */
-    delete: operations["DeleteTaskTypeAsync"];
+    delete: operations["TaskTypes_DeleteTaskType"];
     /**
      * Patches a task type
      * @description Partially updates the specified task type.
      */
-    patch: operations["PatchTaskTypeAsync"];
+    patch: operations["TaskTypes_PatchTaskType"];
   };
   "/api/v2/ProjectsService/TaskTypes": {
     /**
      * Creates a new task type
      * @description Creates a new task type for the current tenant.
      */
-    post: operations["CreateTaskTypeAsync"];
+    post: operations["TaskTypes_CreateTaskType"];
   };
   "/api/v2/ProjectsService/TimeLogApprovals": {
     /**
      * Request project hours approval
      * @description Creates a new project hours approval request.
      */
-    post: operations["RequestProjectHoursApprovalAsync"];
+    post: operations["TimeLogApprovals_RequestProjectHoursApproval"];
   };
   "/api/v2/ProjectsService/TimeLogApprovals/{approvalId}/Status": {
     /**
      * Update approval status
      * @description Updates the status of an existing project hours approval.
      */
-    put: operations["UpdateProjectHoursApprovalStatusAsync"];
+    put: operations["TimeLogApprovals_UpdateProjectHoursApprovalStatus"];
   };
   "/api/v2/ProjectsService/TimeLogApprovals/{approvalId}/Approver": {
     /**
      * Update approval approver
      * @description Updates the approver of an existing project hours approval.
      */
-    put: operations["UpdateProjectHoursApprovalApproverAsync"];
+    put: operations["TimeLogApprovals_UpdateProjectHoursApprovalApprover"];
   };
   "/api/v2/ProjectsService/TimeLogs": {
     /**
      * Retrieve project period time logs
      * @description Retrieves a list of time logs for a specific project period with OData query support.
      */
-    get: operations["GetProjectPeriodTimeLogsAsync"];
+    get: operations["TimeLogs_GetProjectPeriodTimeLogs"];
     /**
      * Create a new project time log
      * @description Creates a new project time log entry.
      */
-    post: operations["CreateProjectTimeLogAsync"];
+    post: operations["TimeLogs_CreateProjectTimeLog"];
   };
   "/api/v2/ProjectsService/TimeLogs/Count": {
     /**
      * Get the count of project period time logs
      * @description Returns the total count of time logs for a specific project period with OData query support.
      */
-    get: operations["CountProjectPeriodTimeLogsAsync"];
+    get: operations["TimeLogs_CountProjectPeriodTimeLogs"];
   };
   "/api/v2/ProjectsService/TimeLogs/ByResponsibleContact": {
     /**
      * Retrieve time logs by responsible contact
      * @description Retrieves time logs where the specified contact is the responsible party.
      */
-    get: operations["GetProjectTimeLogsByResponsibleContactAsync"];
+    get: operations["TimeLogs_GetProjectTimeLogsByResponsibleContact"];
   };
   "/api/v2/ProjectsService/TimeLogs/CreatedByContact": {
     /**
      * Retrieve time logs created by a contact
      * @description Retrieves time logs that were created by the specified contact.
      */
-    get: operations["GetProjectTimeLogsCreatedByContactAsync"];
+    get: operations["TimeLogs_GetProjectTimeLogsCreatedByContact"];
   };
   "/api/v2/ProjectsService/TimeLogs/ForProject/{projectId}": {
     /**
      * Retrieve time logs for a project
      * @description Retrieves all time logs associated with the specified project.
      */
-    get: operations["GetProjectTimeLogsAsync"];
+    get: operations["TimeLogs_GetProjectTimeLogs"];
   };
   "/api/v2/ProjectsService/TimeLogs/{timeLogId}": {
     /**
      * Retrieve a project time log by ID
      * @description Retrieves a single project time log by its unique identifier.
      */
-    get: operations["GetProjectTimeLogByIdAsync"];
+    get: operations["TimeLogs_GetProjectTimeLogById"];
     /**
      * Update a project time log
      * @description Updates an existing project time log entry.
      */
-    put: operations["UpdateProjectTimeLogAsync"];
+    put: operations["TimeLogs_UpdateProjectTimeLog"];
     /**
      * Delete a project time log
      * @description Deletes a project time log entry.
      */
-    delete: operations["DeleteProjectTimeLogAsync"];
+    delete: operations["TimeLogs_DeleteProjectTimeLog"];
     /**
      * Patch a project time log
      * @description Partially updates an existing project time log entry.
      */
-    patch: operations["PatchProjectTimeLogAsync"];
+    patch: operations["TimeLogs_PatchProjectTimeLog"];
   };
 }
 
@@ -1162,7 +914,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1177,11 +1008,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Retrieves all projects
    * @description Gets all projects for the current tenant with OData support.
    */
-  GetProjectsByTenantIdAsync: {
+  Projects_GetProjectsByTenantId: {
     parameters: {
       query: {
         tenantId: string;
@@ -1221,7 +1237,7 @@ export interface operations {
    * Creates a new project
    * @description Creates a new project for the current tenant.
    */
-  CreateProjectAsync: {
+  Projects_CreateProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1261,7 +1277,7 @@ export interface operations {
    * Counts projects
    * @description Gets the count of projects for the current tenant.
    */
-  GetProjectsCountByTenantIdAsync: {
+  Projects_GetProjectsCountByTenantId: {
     parameters: {
       query: {
         tenantId: string;
@@ -1301,7 +1317,7 @@ export interface operations {
    * Gets a project by ID
    * @description Retrieves the details of a project using its unique identifier.
    */
-  GetProjectByIdAsync: {
+  Projects_GetProjectById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1338,7 +1354,7 @@ export interface operations {
    * Updates a project
    * @description Updates the specified project.
    */
-  UpdateProjectAsync: {
+  Projects_UpdateProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1381,7 +1397,7 @@ export interface operations {
    * Deletes a project
    * @description Deletes the specified project.
    */
-  DeleteProjectAsync: {
+  Projects_DeleteProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1418,7 +1434,7 @@ export interface operations {
    * Patches a project
    * @description Partially updates the specified project.
    */
-  PatchProjectAsync: {
+  Projects_PatchProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1461,7 +1477,7 @@ export interface operations {
    * Retrieves project periods
    * @description Gets all periods for a specific project.
    */
-  GetProjectPeriodsAsync: {
+  Projects_GetProjectPeriods: {
     parameters: {
       query: {
         tenantId: string;
@@ -1498,7 +1514,7 @@ export interface operations {
    * Creates a project period
    * @description Creates a new period for the specified project.
    */
-  CreateProjectPeriodAsync: {
+  Projects_CreateProjectPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1541,7 +1557,7 @@ export interface operations {
    * Updates a project period
    * @description Updates the specified period for a project.
    */
-  UpdateProjectPeriodAsync: {
+  Projects_UpdateProjectPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1585,7 +1601,7 @@ export interface operations {
    * Deletes a project period
    * @description Deletes the specified period from a project.
    */
-  DeleteProjectPeriodAsync: {
+  Projects_DeleteProjectPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1623,7 +1639,7 @@ export interface operations {
    * Patches a project period
    * @description Partially updates the specified period for a project.
    */
-  PatchProjectPeriodAsync: {
+  Projects_PatchProjectPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1667,7 +1683,7 @@ export interface operations {
    * Retrieves project time logs
    * @description Gets all time log entries for a specific project with OData support.
    */
-  GetTimeLogsForProjectAsync: {
+  Projects_GetTimeLogsForProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1710,7 +1726,7 @@ export interface operations {
    * Counts project time logs
    * @description Gets the count of time log entries for a specific project.
    */
-  GetProjectTimeLogsCountAsync: {
+  Projects_GetProjectTimeLogsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1753,7 +1769,7 @@ export interface operations {
    * Retrieves project tasks
    * @description Gets all tasks for a specific project with OData support.
    */
-  GetTasksForProjectAsync: {
+  Projects_GetTasksForProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1796,7 +1812,7 @@ export interface operations {
    * Creates a project task
    * @description Creates a new task for the specified project.
    */
-  CreateTaskForProjectAsync: {
+  Projects_CreateTaskForProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1839,7 +1855,7 @@ export interface operations {
    * Counts project tasks
    * @description Gets the count of tasks for a specific project.
    */
-  GetTasksForProjectCountAsync: {
+  Projects_GetTasksForProjectCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1882,7 +1898,7 @@ export interface operations {
    * Updates a project task
    * @description Updates the specified task in a project.
    */
-  UpdateTaskForProjectAsync: {
+  Projects_UpdateTaskForProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1926,7 +1942,7 @@ export interface operations {
    * Deletes a project task
    * @description Deletes the specified task from a project.
    */
-  DeleteTaskForProjectAsync: {
+  Projects_DeleteTaskForProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -1964,7 +1980,7 @@ export interface operations {
    * Patches a project task
    * @description Partially updates the specified task in a project.
    */
-  PatchTaskForProjectAsync: {
+  Projects_PatchTaskForProject: {
     parameters: {
       query: {
         tenantId: string;
@@ -2008,7 +2024,7 @@ export interface operations {
    * Retrieves project task categories
    * @description Gets all task categories for a specific project with OData support.
    */
-  GetProjectTaskCategoriesAsync: {
+  Projects_GetProjectTaskCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -2051,7 +2067,7 @@ export interface operations {
    * Counts project task categories
    * @description Gets the count of task categories for a specific project.
    */
-  GetProjectTaskCategoriesCountAsync: {
+  Projects_GetProjectTaskCategoriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2094,7 +2110,7 @@ export interface operations {
    * Get all project tasks
    * @description Retrieves all project tasks for the specified tenant.
    */
-  GetProjectTasksAsync: {
+  ProjectTasks_GetProjectTasks: {
     parameters: {
       query: {
         tenantId: string;
@@ -2138,7 +2154,7 @@ export interface operations {
    * Create a project task
    * @description Creates a new project task.
    */
-  CreateProjectTaskAsync: {
+  ProjectTasks_CreateProjectTask: {
     parameters: {
       query: {
         tenantId: string;
@@ -2175,7 +2191,7 @@ export interface operations {
    * Get project tasks count
    * @description Returns the count of project tasks for the specified tenant.
    */
-  GetProjectTasksCountAsync: {
+  ProjectTasks_GetProjectTasksCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2205,7 +2221,7 @@ export interface operations {
    * Get project task by ID
    * @description Retrieves a specific project task.
    */
-  GetProjectTaskByIdAsync: {
+  ProjectTasks_GetProjectTaskById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2239,7 +2255,7 @@ export interface operations {
    * Update a project task
    * @description Updates an existing project task.
    */
-  UpdateProjectTaskAsync: {
+  ProjectTasks_UpdateProjectTask: {
     parameters: {
       query: {
         tenantId: string;
@@ -2279,7 +2295,7 @@ export interface operations {
    * Delete a project task
    * @description Deletes a project task.
    */
-  DeleteProjectTaskAsync: {
+  ProjectTasks_DeleteProjectTask: {
     parameters: {
       query: {
         tenantId: string;
@@ -2313,7 +2329,7 @@ export interface operations {
    * Patch a project task
    * @description Partially updates an existing project task.
    */
-  PatchProjectTaskAsync: {
+  ProjectTasks_PatchProjectTask: {
     parameters: {
       query: {
         tenantId: string;
@@ -2353,7 +2369,7 @@ export interface operations {
    * Retrieves all task categories
    * @description Gets all task categories for the current tenant with OData support.
    */
-  GetTenantTaskCategoriesAsync: {
+  TaskCategories_GetTenantTaskCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -2393,7 +2409,7 @@ export interface operations {
    * Creates a new task category
    * @description Creates a new task category for the current tenant.
    */
-  CreateTaskCategoryAsync: {
+  TaskCategories_CreateTaskCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2433,7 +2449,7 @@ export interface operations {
    * Counts task categories
    * @description Gets the count of task categories for the current tenant.
    */
-  CountTenantTaskCategoriesAsync: {
+  TaskCategories_CountTenantTaskCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -2473,7 +2489,7 @@ export interface operations {
    * Gets a task category by ID
    * @description Retrieves the details of a task category using its unique identifier.
    */
-  GetTaskCategoryByIdAsync: {
+  TaskCategories_GetTaskCategoryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2510,7 +2526,7 @@ export interface operations {
    * Updates a task category
    * @description Updates the specified task category.
    */
-  UpdateTaskCategoryAsync: {
+  TaskCategories_UpdateTaskCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2553,7 +2569,7 @@ export interface operations {
    * Deletes a task category
    * @description Deletes the specified task category.
    */
-  DeleteTaskCategoryAsync: {
+  TaskCategories_DeleteTaskCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2590,7 +2606,7 @@ export interface operations {
    * Patches a task category
    * @description Partially updates the specified task category.
    */
-  PatchTaskCategoryAsync: {
+  TaskCategories_PatchTaskCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2633,7 +2649,7 @@ export interface operations {
    * Retrieves task types for a category
    * @description Gets all task types belonging to the specified task category.
    */
-  GetTaskCategoryTaskTypesAsync: {
+  TaskCategories_GetTaskCategoryTaskTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -2670,7 +2686,7 @@ export interface operations {
    * Gets a task type by ID
    * @description Retrieves the details of a task type using its unique identifier.
    */
-  GetTaskTypeByIdAsync: {
+  TaskTypes_GetTaskTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2707,7 +2723,7 @@ export interface operations {
    * Updates a task type
    * @description Updates the specified task type.
    */
-  UpdateTaskTypeAsync: {
+  TaskTypes_UpdateTaskType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2750,7 +2766,7 @@ export interface operations {
    * Deletes a task type
    * @description Deletes the specified task type.
    */
-  DeleteTaskTypeAsync: {
+  TaskTypes_DeleteTaskType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2787,7 +2803,7 @@ export interface operations {
    * Patches a task type
    * @description Partially updates the specified task type.
    */
-  PatchTaskTypeAsync: {
+  TaskTypes_PatchTaskType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2830,7 +2846,7 @@ export interface operations {
    * Creates a new task type
    * @description Creates a new task type for the current tenant.
    */
-  CreateTaskTypeAsync: {
+  TaskTypes_CreateTaskType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2870,7 +2886,7 @@ export interface operations {
    * Request project hours approval
    * @description Creates a new project hours approval request.
    */
-  RequestProjectHoursApprovalAsync: {
+  TimeLogApprovals_RequestProjectHoursApproval: {
     parameters: {
       query: {
         tenantId: string;
@@ -2911,7 +2927,7 @@ export interface operations {
    * Update approval status
    * @description Updates the status of an existing project hours approval.
    */
-  UpdateProjectHoursApprovalStatusAsync: {
+  TimeLogApprovals_UpdateProjectHoursApprovalStatus: {
     parameters: {
       query: {
         tenantId: string;
@@ -2955,7 +2971,7 @@ export interface operations {
    * Update approval approver
    * @description Updates the approver of an existing project hours approval.
    */
-  UpdateProjectHoursApprovalApproverAsync: {
+  TimeLogApprovals_UpdateProjectHoursApprovalApprover: {
     parameters: {
       query: {
         tenantId: string;
@@ -2999,7 +3015,7 @@ export interface operations {
    * Retrieve project period time logs
    * @description Retrieves a list of time logs for a specific project period with OData query support.
    */
-  GetProjectPeriodTimeLogsAsync: {
+  TimeLogs_GetProjectPeriodTimeLogs: {
     parameters: {
       query: {
         tenantId: string;
@@ -3044,7 +3060,7 @@ export interface operations {
    * Create a new project time log
    * @description Creates a new project time log entry.
    */
-  CreateProjectTimeLogAsync: {
+  TimeLogs_CreateProjectTimeLog: {
     parameters: {
       query: {
         tenantId: string;
@@ -3085,7 +3101,7 @@ export interface operations {
    * Get the count of project period time logs
    * @description Returns the total count of time logs for a specific project period with OData query support.
    */
-  CountProjectPeriodTimeLogsAsync: {
+  TimeLogs_CountProjectPeriodTimeLogs: {
     parameters: {
       query: {
         tenantId: string;
@@ -3130,7 +3146,7 @@ export interface operations {
    * Retrieve time logs by responsible contact
    * @description Retrieves time logs where the specified contact is the responsible party.
    */
-  GetProjectTimeLogsByResponsibleContactAsync: {
+  TimeLogs_GetProjectTimeLogsByResponsibleContact: {
     parameters: {
       query: {
         contactId: string;
@@ -3169,7 +3185,7 @@ export interface operations {
    * Retrieve time logs created by a contact
    * @description Retrieves time logs that were created by the specified contact.
    */
-  GetProjectTimeLogsCreatedByContactAsync: {
+  TimeLogs_GetProjectTimeLogsCreatedByContact: {
     parameters: {
       query: {
         contactId: string;
@@ -3208,7 +3224,7 @@ export interface operations {
    * Retrieve time logs for a project
    * @description Retrieves all time logs associated with the specified project.
    */
-  GetProjectTimeLogsAsync: {
+  TimeLogs_GetProjectTimeLogs: {
     parameters: {
       query: {
         tenantId: string;
@@ -3249,7 +3265,7 @@ export interface operations {
    * Retrieve a project time log by ID
    * @description Retrieves a single project time log by its unique identifier.
    */
-  GetProjectTimeLogByIdAsync: {
+  TimeLogs_GetProjectTimeLogById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3290,7 +3306,7 @@ export interface operations {
    * Update a project time log
    * @description Updates an existing project time log entry.
    */
-  UpdateProjectTimeLogAsync: {
+  TimeLogs_UpdateProjectTimeLog: {
     parameters: {
       query: {
         tenantId: string;
@@ -3334,7 +3350,7 @@ export interface operations {
    * Delete a project time log
    * @description Deletes a project time log entry.
    */
-  DeleteProjectTimeLogAsync: {
+  TimeLogs_DeleteProjectTimeLog: {
     parameters: {
       query: {
         tenantId: string;
@@ -3372,7 +3388,7 @@ export interface operations {
    * Patch a project time log
    * @description Partially updates an existing project time log entry.
    */
-  PatchProjectTimeLogAsync: {
+  TimeLogs_PatchProjectTimeLog: {
     parameters: {
       query: {
         tenantId: string;

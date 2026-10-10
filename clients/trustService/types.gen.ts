@@ -185,8 +185,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -246,8 +251,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type CreateSigningParticipantDto = {
@@ -394,6 +404,91 @@ export type PatchOperation = {
     value?: unknown;
 };
 
+export type PlatformSigningKeyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    authorityId?: string | null;
+    keyId?: string | null;
+    algorithm?: string | null;
+    publicKey?: string | null;
+    custodyKeyRef?: string | null;
+    validFromUtc?: string;
+    validUntilUtc?: string;
+};
+
+export type PlatformSigningKeyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PlatformSigningKeyDto;
+};
+
+export type PlatformSigningKeyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PlatformSigningKeyDto;
+};
+
+export type PlatformSigningKeyGenerateDto = {
+    authorityId?: string | null;
+    keyId?: string | null;
+    validUntilUtc?: string;
+};
+
+export type PlatformTrustManifestComposeDto = {
+    rootKeyId?: string | null;
+    issuerKeyId?: string | null;
+    generation?: number;
+};
+
+export type PlatformTrustManifestDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    authorityId?: string | null;
+    issuerAuthorityId?: string | null;
+    rootKeyId?: string | null;
+    issuerKeyId?: string | null;
+    generation?: number;
+    document?: string | null;
+};
+
+export type PlatformTrustManifestDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PlatformTrustManifestDto;
+};
+
+export type PlatformTrustManifestDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PlatformTrustManifestDto;
+};
+
 export type QuickSignSignedDocumentDto = {
     providerName: string;
     signingCertificateId: string;
@@ -424,6 +519,11 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type SetSigningProfileExecutionBindingRequest = {
+    signingProviderKey: string;
+    signingCertificateId: string;
 };
 
 export type SignatureDto = {
@@ -827,7 +927,7 @@ export type SigningLogDto = {
     signingProfileId?: string | null;
     signingCertificateId?: string | null;
     signedDocumentId?: string | null;
-    operationType?: 'Unknown' | 'Sign' | 'Verify' | 'Seal' | 'RotateCredential' | 'ResolveCredential' | 'SubmitToAuthority' | 'ReceiveAuthorityResponse' | 'Freeze';
+    operationType?: 'Unknown' | 'Sign' | 'Verify' | 'Seal' | 'RotateCredential' | 'ResolveCredential' | 'SubmitToAuthority' | 'ReceiveAuthorityResponse' | 'Freeze' | 'ConfigureSigningBinding';
     correlationId?: string | null;
     inputHash?: string | null;
     outputHash?: string | null;
@@ -1174,6 +1274,40 @@ export type SigningProfileDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<SigningProfileDtoWritable> | null;
+};
+
+export type SigningProfileExecutionBindingDto = {
+    signingProfileId?: string;
+    signingProviderKey?: string | null;
+    signingCertificateId?: string | null;
+    isBound?: boolean;
+    custodyReadiness?: 'Unbound' | 'Ready' | 'NotReady';
+    readinessDetail?: string | null;
+};
+
+export type SigningProfileExecutionBindingDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: SigningProfileExecutionBindingDto;
+};
+
+export type SigningProfileExecutionBindingDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: SigningProfileExecutionBindingDto;
 };
 
 export type SigningProfileGraphicalRepresentationCreateDto = {
@@ -1546,72 +1680,72 @@ export type VoidSigningRequestDto = {
     voidedReason?: string | null;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1621,32 +1755,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1657,81 +1791,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1742,25 +1876,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1771,25 +1905,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1800,18 +1934,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1821,14 +1955,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1837,14 +1971,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1853,28 +1987,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSignaturesAsyncData = {
+export type SignaturesGetSignaturesData = {
     body?: SignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1887,25 +2021,25 @@ export type GetSignaturesAsyncData = {
     url: '/api/v2/TrustService/Signatures';
 };
 
-export type GetSignaturesAsyncErrors = {
+export type SignaturesGetSignaturesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSignaturesAsyncError = GetSignaturesAsyncErrors[keyof GetSignaturesAsyncErrors];
+export type SignaturesGetSignaturesError = SignaturesGetSignaturesErrors[keyof SignaturesGetSignaturesErrors];
 
-export type GetSignaturesAsyncResponses = {
+export type SignaturesGetSignaturesResponses = {
     /**
      * OK
      */
     200: SignatureDtoListEnvelopeReadable;
 };
 
-export type GetSignaturesAsyncResponse = GetSignaturesAsyncResponses[keyof GetSignaturesAsyncResponses];
+export type SignaturesGetSignaturesResponse = SignaturesGetSignaturesResponses[keyof SignaturesGetSignaturesResponses];
 
-export type GetSignaturesCountAsyncData = {
+export type SignaturesGetSignaturesCountData = {
     body?: SignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1918,25 +2052,25 @@ export type GetSignaturesCountAsyncData = {
     url: '/api/v2/TrustService/Signatures/Count';
 };
 
-export type GetSignaturesCountAsyncErrors = {
+export type SignaturesGetSignaturesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSignaturesCountAsyncError = GetSignaturesCountAsyncErrors[keyof GetSignaturesCountAsyncErrors];
+export type SignaturesGetSignaturesCountError = SignaturesGetSignaturesCountErrors[keyof SignaturesGetSignaturesCountErrors];
 
-export type GetSignaturesCountAsyncResponses = {
+export type SignaturesGetSignaturesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSignaturesCountAsyncResponse = GetSignaturesCountAsyncResponses[keyof GetSignaturesCountAsyncResponses];
+export type SignaturesGetSignaturesCountResponse = SignaturesGetSignaturesCountResponses[keyof SignaturesGetSignaturesCountResponses];
 
-export type GetSignatureByIdAsyncData = {
+export type SignaturesGetSignatureByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1951,7 +2085,7 @@ export type GetSignatureByIdAsyncData = {
     url: '/api/v2/TrustService/Signatures/{id}';
 };
 
-export type GetSignatureByIdAsyncErrors = {
+export type SignaturesGetSignatureByIdErrors = {
     /**
      * Forbidden
      */
@@ -1962,18 +2096,18 @@ export type GetSignatureByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSignatureByIdAsyncError = GetSignatureByIdAsyncErrors[keyof GetSignatureByIdAsyncErrors];
+export type SignaturesGetSignatureByIdError = SignaturesGetSignatureByIdErrors[keyof SignaturesGetSignatureByIdErrors];
 
-export type GetSignatureByIdAsyncResponses = {
+export type SignaturesGetSignatureByIdResponses = {
     /**
      * OK
      */
     200: SignatureDto;
 };
 
-export type GetSignatureByIdAsyncResponse = GetSignatureByIdAsyncResponses[keyof GetSignatureByIdAsyncResponses];
+export type SignaturesGetSignatureByIdResponse = SignaturesGetSignatureByIdResponses[keyof SignaturesGetSignatureByIdResponses];
 
-export type SetPrimaryAuthoringFileAsyncData = {
+export type SignedDocumentArtifactsSetPrimaryAuthoringFileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1989,7 +2123,7 @@ export type SetPrimaryAuthoringFileAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/primary-file/{fileUploadId}';
 };
 
-export type SetPrimaryAuthoringFileAsyncErrors = {
+export type SignedDocumentArtifactsSetPrimaryAuthoringFileErrors = {
     /**
      * Forbidden
      */
@@ -2000,16 +2134,16 @@ export type SetPrimaryAuthoringFileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type SetPrimaryAuthoringFileAsyncError = SetPrimaryAuthoringFileAsyncErrors[keyof SetPrimaryAuthoringFileAsyncErrors];
+export type SignedDocumentArtifactsSetPrimaryAuthoringFileError = SignedDocumentArtifactsSetPrimaryAuthoringFileErrors[keyof SignedDocumentArtifactsSetPrimaryAuthoringFileErrors];
 
-export type SetPrimaryAuthoringFileAsyncResponses = {
+export type SignedDocumentArtifactsSetPrimaryAuthoringFileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type FreezeAsyncData = {
+export type SignedDocumentArtifactsFreezeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2024,7 +2158,7 @@ export type FreezeAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/freeze';
 };
 
-export type FreezeAsyncErrors = {
+export type SignedDocumentArtifactsFreezeErrors = {
     /**
      * Forbidden
      */
@@ -2039,18 +2173,18 @@ export type FreezeAsyncErrors = {
     409: ErrorEnvelopeReadable;
 };
 
-export type FreezeAsyncError = FreezeAsyncErrors[keyof FreezeAsyncErrors];
+export type SignedDocumentArtifactsFreezeError = SignedDocumentArtifactsFreezeErrors[keyof SignedDocumentArtifactsFreezeErrors];
 
-export type FreezeAsyncResponses = {
+export type SignedDocumentArtifactsFreezeResponses = {
     /**
      * OK
      */
     200: TrustArtifactReferenceDtoEnvelopeReadable;
 };
 
-export type FreezeAsyncResponse = FreezeAsyncResponses[keyof FreezeAsyncResponses];
+export type SignedDocumentArtifactsFreezeResponse = SignedDocumentArtifactsFreezeResponses[keyof SignedDocumentArtifactsFreezeResponses];
 
-export type GetReferenceAsyncData = {
+export type SignedDocumentArtifactsGetReferenceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2065,7 +2199,7 @@ export type GetReferenceAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentArtifacts/reference/{fileUploadId}';
 };
 
-export type GetReferenceAsyncErrors = {
+export type SignedDocumentArtifactsGetReferenceErrors = {
     /**
      * Forbidden
      */
@@ -2076,18 +2210,18 @@ export type GetReferenceAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetReferenceAsyncError = GetReferenceAsyncErrors[keyof GetReferenceAsyncErrors];
+export type SignedDocumentArtifactsGetReferenceError = SignedDocumentArtifactsGetReferenceErrors[keyof SignedDocumentArtifactsGetReferenceErrors];
 
-export type GetReferenceAsyncResponses = {
+export type SignedDocumentArtifactsGetReferenceResponses = {
     /**
      * OK
      */
     200: TrustArtifactReferenceDtoEnvelopeReadable;
 };
 
-export type GetReferenceAsyncResponse = GetReferenceAsyncResponses[keyof GetReferenceAsyncResponses];
+export type SignedDocumentArtifactsGetReferenceResponse = SignedDocumentArtifactsGetReferenceResponses[keyof SignedDocumentArtifactsGetReferenceResponses];
 
-export type VerifyAsyncData = {
+export type SignedDocumentArtifactsVerifyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2102,7 +2236,7 @@ export type VerifyAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentArtifacts/reference/{fileUploadId}/verify';
 };
 
-export type VerifyAsyncErrors = {
+export type SignedDocumentArtifactsVerifyErrors = {
     /**
      * Forbidden
      */
@@ -2113,18 +2247,18 @@ export type VerifyAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type VerifyAsyncError = VerifyAsyncErrors[keyof VerifyAsyncErrors];
+export type SignedDocumentArtifactsVerifyError = SignedDocumentArtifactsVerifyErrors[keyof SignedDocumentArtifactsVerifyErrors];
 
-export type VerifyAsyncResponses = {
+export type SignedDocumentArtifactsVerifyResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type VerifyAsyncResponse = VerifyAsyncResponses[keyof VerifyAsyncResponses];
+export type SignedDocumentArtifactsVerifyResponse = SignedDocumentArtifactsVerifyResponses[keyof SignedDocumentArtifactsVerifyResponses];
 
-export type GetSignedDocumentAttachmentsAsyncData = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsData = {
     body?: SignedDocumentAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2137,25 +2271,25 @@ export type GetSignedDocumentAttachmentsAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments';
 };
 
-export type GetSignedDocumentAttachmentsAsyncErrors = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSignedDocumentAttachmentsAsyncError = GetSignedDocumentAttachmentsAsyncErrors[keyof GetSignedDocumentAttachmentsAsyncErrors];
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsError = SignedDocumentAttachmentsGetSignedDocumentAttachmentsErrors[keyof SignedDocumentAttachmentsGetSignedDocumentAttachmentsErrors];
 
-export type GetSignedDocumentAttachmentsAsyncResponses = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsResponses = {
     /**
      * OK
      */
     200: SignedDocumentAttachmentDtoListEnvelopeReadable;
 };
 
-export type GetSignedDocumentAttachmentsAsyncResponse = GetSignedDocumentAttachmentsAsyncResponses[keyof GetSignedDocumentAttachmentsAsyncResponses];
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsResponse = SignedDocumentAttachmentsGetSignedDocumentAttachmentsResponses[keyof SignedDocumentAttachmentsGetSignedDocumentAttachmentsResponses];
 
-export type CreateSignedDocumentAttachmentAsyncData = {
+export type SignedDocumentAttachmentsCreateSignedDocumentAttachmentData = {
     body?: SignedDocumentAttachmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2168,7 +2302,7 @@ export type CreateSignedDocumentAttachmentAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments';
 };
 
-export type CreateSignedDocumentAttachmentAsyncErrors = {
+export type SignedDocumentAttachmentsCreateSignedDocumentAttachmentErrors = {
     /**
      * Bad Request
      */
@@ -2179,16 +2313,16 @@ export type CreateSignedDocumentAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSignedDocumentAttachmentAsyncError = CreateSignedDocumentAttachmentAsyncErrors[keyof CreateSignedDocumentAttachmentAsyncErrors];
+export type SignedDocumentAttachmentsCreateSignedDocumentAttachmentError = SignedDocumentAttachmentsCreateSignedDocumentAttachmentErrors[keyof SignedDocumentAttachmentsCreateSignedDocumentAttachmentErrors];
 
-export type CreateSignedDocumentAttachmentAsyncResponses = {
+export type SignedDocumentAttachmentsCreateSignedDocumentAttachmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSignedDocumentAttachmentsCountAsyncData = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountData = {
     body?: SignedDocumentAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2201,25 +2335,25 @@ export type GetSignedDocumentAttachmentsCountAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments/Count';
 };
 
-export type GetSignedDocumentAttachmentsCountAsyncErrors = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSignedDocumentAttachmentsCountAsyncError = GetSignedDocumentAttachmentsCountAsyncErrors[keyof GetSignedDocumentAttachmentsCountAsyncErrors];
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountError = SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountErrors[keyof SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountErrors];
 
-export type GetSignedDocumentAttachmentsCountAsyncResponses = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSignedDocumentAttachmentsCountAsyncResponse = GetSignedDocumentAttachmentsCountAsyncResponses[keyof GetSignedDocumentAttachmentsCountAsyncResponses];
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountResponse = SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountResponses[keyof SignedDocumentAttachmentsGetSignedDocumentAttachmentsCountResponses];
 
-export type DeleteSignedDocumentAttachmentAsyncData = {
+export type SignedDocumentAttachmentsDeleteSignedDocumentAttachmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2234,7 +2368,7 @@ export type DeleteSignedDocumentAttachmentAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments/{id}';
 };
 
-export type DeleteSignedDocumentAttachmentAsyncErrors = {
+export type SignedDocumentAttachmentsDeleteSignedDocumentAttachmentErrors = {
     /**
      * Forbidden
      */
@@ -2245,16 +2379,16 @@ export type DeleteSignedDocumentAttachmentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteSignedDocumentAttachmentAsyncError = DeleteSignedDocumentAttachmentAsyncErrors[keyof DeleteSignedDocumentAttachmentAsyncErrors];
+export type SignedDocumentAttachmentsDeleteSignedDocumentAttachmentError = SignedDocumentAttachmentsDeleteSignedDocumentAttachmentErrors[keyof SignedDocumentAttachmentsDeleteSignedDocumentAttachmentErrors];
 
-export type DeleteSignedDocumentAttachmentAsyncResponses = {
+export type SignedDocumentAttachmentsDeleteSignedDocumentAttachmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSignedDocumentAttachmentByIdAsyncData = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2269,7 +2403,7 @@ export type GetSignedDocumentAttachmentByIdAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments/{id}';
 };
 
-export type GetSignedDocumentAttachmentByIdAsyncErrors = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdErrors = {
     /**
      * Forbidden
      */
@@ -2280,18 +2414,18 @@ export type GetSignedDocumentAttachmentByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSignedDocumentAttachmentByIdAsyncError = GetSignedDocumentAttachmentByIdAsyncErrors[keyof GetSignedDocumentAttachmentByIdAsyncErrors];
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdError = SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdErrors[keyof SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdErrors];
 
-export type GetSignedDocumentAttachmentByIdAsyncResponses = {
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdResponses = {
     /**
      * OK
      */
     200: SignedDocumentAttachmentDto;
 };
 
-export type GetSignedDocumentAttachmentByIdAsyncResponse = GetSignedDocumentAttachmentByIdAsyncResponses[keyof GetSignedDocumentAttachmentByIdAsyncResponses];
+export type SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdResponse = SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdResponses[keyof SignedDocumentAttachmentsGetSignedDocumentAttachmentByIdResponses];
 
-export type PatchSignedDocumentAttachmentAsyncData = {
+export type SignedDocumentAttachmentsPatchSignedDocumentAttachmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2306,7 +2440,7 @@ export type PatchSignedDocumentAttachmentAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments/{id}';
 };
 
-export type PatchSignedDocumentAttachmentAsyncErrors = {
+export type SignedDocumentAttachmentsPatchSignedDocumentAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -2317,18 +2451,18 @@ export type PatchSignedDocumentAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSignedDocumentAttachmentAsyncError = PatchSignedDocumentAttachmentAsyncErrors[keyof PatchSignedDocumentAttachmentAsyncErrors];
+export type SignedDocumentAttachmentsPatchSignedDocumentAttachmentError = SignedDocumentAttachmentsPatchSignedDocumentAttachmentErrors[keyof SignedDocumentAttachmentsPatchSignedDocumentAttachmentErrors];
 
-export type PatchSignedDocumentAttachmentAsyncResponses = {
+export type SignedDocumentAttachmentsPatchSignedDocumentAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSignedDocumentAttachmentAsyncResponse = PatchSignedDocumentAttachmentAsyncResponses[keyof PatchSignedDocumentAttachmentAsyncResponses];
+export type SignedDocumentAttachmentsPatchSignedDocumentAttachmentResponse = SignedDocumentAttachmentsPatchSignedDocumentAttachmentResponses[keyof SignedDocumentAttachmentsPatchSignedDocumentAttachmentResponses];
 
-export type UpdateSignedDocumentAttachmentAsyncData = {
+export type SignedDocumentAttachmentsUpdateSignedDocumentAttachmentData = {
     body?: SignedDocumentAttachmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2343,7 +2477,7 @@ export type UpdateSignedDocumentAttachmentAsyncData = {
     url: '/api/v2/TrustService/SignedDocumentAttachments/{id}';
 };
 
-export type UpdateSignedDocumentAttachmentAsyncErrors = {
+export type SignedDocumentAttachmentsUpdateSignedDocumentAttachmentErrors = {
     /**
      * Forbidden
      */
@@ -2354,16 +2488,16 @@ export type UpdateSignedDocumentAttachmentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateSignedDocumentAttachmentAsyncError = UpdateSignedDocumentAttachmentAsyncErrors[keyof UpdateSignedDocumentAttachmentAsyncErrors];
+export type SignedDocumentAttachmentsUpdateSignedDocumentAttachmentError = SignedDocumentAttachmentsUpdateSignedDocumentAttachmentErrors[keyof SignedDocumentAttachmentsUpdateSignedDocumentAttachmentErrors];
 
-export type UpdateSignedDocumentAttachmentAsyncResponses = {
+export type SignedDocumentAttachmentsUpdateSignedDocumentAttachmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSignedDocumentsAsyncData = {
+export type SignedDocumentsGetSignedDocumentsData = {
     body?: SignedDocumentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2376,25 +2510,25 @@ export type GetSignedDocumentsAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments';
 };
 
-export type GetSignedDocumentsAsyncErrors = {
+export type SignedDocumentsGetSignedDocumentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSignedDocumentsAsyncError = GetSignedDocumentsAsyncErrors[keyof GetSignedDocumentsAsyncErrors];
+export type SignedDocumentsGetSignedDocumentsError = SignedDocumentsGetSignedDocumentsErrors[keyof SignedDocumentsGetSignedDocumentsErrors];
 
-export type GetSignedDocumentsAsyncResponses = {
+export type SignedDocumentsGetSignedDocumentsResponses = {
     /**
      * OK
      */
     200: SignedDocumentDtoListEnvelopeReadable;
 };
 
-export type GetSignedDocumentsAsyncResponse = GetSignedDocumentsAsyncResponses[keyof GetSignedDocumentsAsyncResponses];
+export type SignedDocumentsGetSignedDocumentsResponse = SignedDocumentsGetSignedDocumentsResponses[keyof SignedDocumentsGetSignedDocumentsResponses];
 
-export type CreateSignedDocumentAsyncData = {
+export type SignedDocumentsCreateSignedDocumentData = {
     body?: SignedDocumentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2407,7 +2541,7 @@ export type CreateSignedDocumentAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments';
 };
 
-export type CreateSignedDocumentAsyncErrors = {
+export type SignedDocumentsCreateSignedDocumentErrors = {
     /**
      * Bad Request
      */
@@ -2418,16 +2552,16 @@ export type CreateSignedDocumentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSignedDocumentAsyncError = CreateSignedDocumentAsyncErrors[keyof CreateSignedDocumentAsyncErrors];
+export type SignedDocumentsCreateSignedDocumentError = SignedDocumentsCreateSignedDocumentErrors[keyof SignedDocumentsCreateSignedDocumentErrors];
 
-export type CreateSignedDocumentAsyncResponses = {
+export type SignedDocumentsCreateSignedDocumentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSignedDocumentsCountAsyncData = {
+export type SignedDocumentsGetSignedDocumentsCountData = {
     body?: SignedDocumentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2440,25 +2574,25 @@ export type GetSignedDocumentsCountAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/Count';
 };
 
-export type GetSignedDocumentsCountAsyncErrors = {
+export type SignedDocumentsGetSignedDocumentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSignedDocumentsCountAsyncError = GetSignedDocumentsCountAsyncErrors[keyof GetSignedDocumentsCountAsyncErrors];
+export type SignedDocumentsGetSignedDocumentsCountError = SignedDocumentsGetSignedDocumentsCountErrors[keyof SignedDocumentsGetSignedDocumentsCountErrors];
 
-export type GetSignedDocumentsCountAsyncResponses = {
+export type SignedDocumentsGetSignedDocumentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSignedDocumentsCountAsyncResponse = GetSignedDocumentsCountAsyncResponses[keyof GetSignedDocumentsCountAsyncResponses];
+export type SignedDocumentsGetSignedDocumentsCountResponse = SignedDocumentsGetSignedDocumentsCountResponses[keyof SignedDocumentsGetSignedDocumentsCountResponses];
 
-export type DeleteSignedDocumentAsyncData = {
+export type SignedDocumentsDeleteSignedDocumentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2473,7 +2607,7 @@ export type DeleteSignedDocumentAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/{id}';
 };
 
-export type DeleteSignedDocumentAsyncErrors = {
+export type SignedDocumentsDeleteSignedDocumentErrors = {
     /**
      * Forbidden
      */
@@ -2484,16 +2618,16 @@ export type DeleteSignedDocumentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteSignedDocumentAsyncError = DeleteSignedDocumentAsyncErrors[keyof DeleteSignedDocumentAsyncErrors];
+export type SignedDocumentsDeleteSignedDocumentError = SignedDocumentsDeleteSignedDocumentErrors[keyof SignedDocumentsDeleteSignedDocumentErrors];
 
-export type DeleteSignedDocumentAsyncResponses = {
+export type SignedDocumentsDeleteSignedDocumentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSignedDocumentByIdAsyncData = {
+export type SignedDocumentsGetSignedDocumentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2508,7 +2642,7 @@ export type GetSignedDocumentByIdAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/{id}';
 };
 
-export type GetSignedDocumentByIdAsyncErrors = {
+export type SignedDocumentsGetSignedDocumentByIdErrors = {
     /**
      * Forbidden
      */
@@ -2519,18 +2653,18 @@ export type GetSignedDocumentByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSignedDocumentByIdAsyncError = GetSignedDocumentByIdAsyncErrors[keyof GetSignedDocumentByIdAsyncErrors];
+export type SignedDocumentsGetSignedDocumentByIdError = SignedDocumentsGetSignedDocumentByIdErrors[keyof SignedDocumentsGetSignedDocumentByIdErrors];
 
-export type GetSignedDocumentByIdAsyncResponses = {
+export type SignedDocumentsGetSignedDocumentByIdResponses = {
     /**
      * OK
      */
     200: SignedDocumentDto;
 };
 
-export type GetSignedDocumentByIdAsyncResponse = GetSignedDocumentByIdAsyncResponses[keyof GetSignedDocumentByIdAsyncResponses];
+export type SignedDocumentsGetSignedDocumentByIdResponse = SignedDocumentsGetSignedDocumentByIdResponses[keyof SignedDocumentsGetSignedDocumentByIdResponses];
 
-export type PatchSignedDocumentAsyncData = {
+export type SignedDocumentsPatchSignedDocumentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2545,7 +2679,7 @@ export type PatchSignedDocumentAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/{id}';
 };
 
-export type PatchSignedDocumentAsyncErrors = {
+export type SignedDocumentsPatchSignedDocumentErrors = {
     /**
      * Unauthorized
      */
@@ -2556,18 +2690,18 @@ export type PatchSignedDocumentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSignedDocumentAsyncError = PatchSignedDocumentAsyncErrors[keyof PatchSignedDocumentAsyncErrors];
+export type SignedDocumentsPatchSignedDocumentError = SignedDocumentsPatchSignedDocumentErrors[keyof SignedDocumentsPatchSignedDocumentErrors];
 
-export type PatchSignedDocumentAsyncResponses = {
+export type SignedDocumentsPatchSignedDocumentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSignedDocumentAsyncResponse = PatchSignedDocumentAsyncResponses[keyof PatchSignedDocumentAsyncResponses];
+export type SignedDocumentsPatchSignedDocumentResponse = SignedDocumentsPatchSignedDocumentResponses[keyof SignedDocumentsPatchSignedDocumentResponses];
 
-export type UpdateSignedDocumentAsyncData = {
+export type SignedDocumentsUpdateSignedDocumentData = {
     body?: SignedDocumentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2582,7 +2716,7 @@ export type UpdateSignedDocumentAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/{id}';
 };
 
-export type UpdateSignedDocumentAsyncErrors = {
+export type SignedDocumentsUpdateSignedDocumentErrors = {
     /**
      * Forbidden
      */
@@ -2593,16 +2727,16 @@ export type UpdateSignedDocumentAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateSignedDocumentAsyncError = UpdateSignedDocumentAsyncErrors[keyof UpdateSignedDocumentAsyncErrors];
+export type SignedDocumentsUpdateSignedDocumentError = SignedDocumentsUpdateSignedDocumentErrors[keyof SignedDocumentsUpdateSignedDocumentErrors];
 
-export type UpdateSignedDocumentAsyncResponses = {
+export type SignedDocumentsUpdateSignedDocumentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type QuickSignSignedDocumentAsyncData = {
+export type SignedDocumentsQuickSignSignedDocumentData = {
     body?: QuickSignSignedDocumentDto;
     headers?: {
         'x-api-version'?: string;
@@ -2617,7 +2751,7 @@ export type QuickSignSignedDocumentAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/{id}/quick-sign';
 };
 
-export type QuickSignSignedDocumentAsyncErrors = {
+export type SignedDocumentsQuickSignSignedDocumentErrors = {
     /**
      * Forbidden
      */
@@ -2632,16 +2766,16 @@ export type QuickSignSignedDocumentAsyncErrors = {
     409: ErrorEnvelopeReadable;
 };
 
-export type QuickSignSignedDocumentAsyncError = QuickSignSignedDocumentAsyncErrors[keyof QuickSignSignedDocumentAsyncErrors];
+export type SignedDocumentsQuickSignSignedDocumentError = SignedDocumentsQuickSignSignedDocumentErrors[keyof SignedDocumentsQuickSignSignedDocumentErrors];
 
-export type QuickSignSignedDocumentAsyncResponses = {
+export type SignedDocumentsQuickSignSignedDocumentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PrepareAndQuickSignAsyncData = {
+export type SignedDocumentsPrepareAndQuickSignData = {
     body?: {
         id?: string;
         file?: Blob | File;
@@ -2662,7 +2796,7 @@ export type PrepareAndQuickSignAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/prepare-and-quick-sign';
 };
 
-export type PrepareAndQuickSignAsyncErrors = {
+export type SignedDocumentsPrepareAndQuickSignErrors = {
     /**
      * Bad Request
      */
@@ -2677,18 +2811,18 @@ export type PrepareAndQuickSignAsyncErrors = {
     409: ErrorEnvelopeReadable;
 };
 
-export type PrepareAndQuickSignAsyncError = PrepareAndQuickSignAsyncErrors[keyof PrepareAndQuickSignAsyncErrors];
+export type SignedDocumentsPrepareAndQuickSignError = SignedDocumentsPrepareAndQuickSignErrors[keyof SignedDocumentsPrepareAndQuickSignErrors];
 
-export type PrepareAndQuickSignAsyncResponses = {
+export type SignedDocumentsPrepareAndQuickSignResponses = {
     /**
      * OK
      */
     200: SignedDocumentDto;
 };
 
-export type PrepareAndQuickSignAsyncResponse = PrepareAndQuickSignAsyncResponses[keyof PrepareAndQuickSignAsyncResponses];
+export type SignedDocumentsPrepareAndQuickSignResponse = SignedDocumentsPrepareAndQuickSignResponses[keyof SignedDocumentsPrepareAndQuickSignResponses];
 
-export type VerifySignedDocumentSignatureAsyncData = {
+export type SignedDocumentsVerifySignedDocumentSignatureData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2703,7 +2837,7 @@ export type VerifySignedDocumentSignatureAsyncData = {
     url: '/api/v2/TrustService/SignedDocuments/{id}/verify-signature';
 };
 
-export type VerifySignedDocumentSignatureAsyncErrors = {
+export type SignedDocumentsVerifySignedDocumentSignatureErrors = {
     /**
      * Forbidden
      */
@@ -2714,18 +2848,18 @@ export type VerifySignedDocumentSignatureAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type VerifySignedDocumentSignatureAsyncError = VerifySignedDocumentSignatureAsyncErrors[keyof VerifySignedDocumentSignatureAsyncErrors];
+export type SignedDocumentsVerifySignedDocumentSignatureError = SignedDocumentsVerifySignedDocumentSignatureErrors[keyof SignedDocumentsVerifySignedDocumentSignatureErrors];
 
-export type VerifySignedDocumentSignatureAsyncResponses = {
+export type SignedDocumentsVerifySignedDocumentSignatureResponses = {
     /**
      * OK
      */
     200: SignatureVerificationDto;
 };
 
-export type VerifySignedDocumentSignatureAsyncResponse = VerifySignedDocumentSignatureAsyncResponses[keyof VerifySignedDocumentSignatureAsyncResponses];
+export type SignedDocumentsVerifySignedDocumentSignatureResponse = SignedDocumentsVerifySignedDocumentSignatureResponses[keyof SignedDocumentsVerifySignedDocumentSignatureResponses];
 
-export type GetSigningCertificatesAsyncData = {
+export type SigningCertificatesGetSigningCertificatesData = {
     body?: SigningCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2738,25 +2872,25 @@ export type GetSigningCertificatesAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates';
 };
 
-export type GetSigningCertificatesAsyncErrors = {
+export type SigningCertificatesGetSigningCertificatesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningCertificatesAsyncError = GetSigningCertificatesAsyncErrors[keyof GetSigningCertificatesAsyncErrors];
+export type SigningCertificatesGetSigningCertificatesError = SigningCertificatesGetSigningCertificatesErrors[keyof SigningCertificatesGetSigningCertificatesErrors];
 
-export type GetSigningCertificatesAsyncResponses = {
+export type SigningCertificatesGetSigningCertificatesResponses = {
     /**
      * OK
      */
     200: SigningCertificateDtoListEnvelopeReadable;
 };
 
-export type GetSigningCertificatesAsyncResponse = GetSigningCertificatesAsyncResponses[keyof GetSigningCertificatesAsyncResponses];
+export type SigningCertificatesGetSigningCertificatesResponse = SigningCertificatesGetSigningCertificatesResponses[keyof SigningCertificatesGetSigningCertificatesResponses];
 
-export type CreateSigningCertificateAsyncData = {
+export type SigningCertificatesCreateSigningCertificateData = {
     body?: SigningCertificateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2769,7 +2903,7 @@ export type CreateSigningCertificateAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates';
 };
 
-export type CreateSigningCertificateAsyncErrors = {
+export type SigningCertificatesCreateSigningCertificateErrors = {
     /**
      * Bad Request
      */
@@ -2780,16 +2914,16 @@ export type CreateSigningCertificateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSigningCertificateAsyncError = CreateSigningCertificateAsyncErrors[keyof CreateSigningCertificateAsyncErrors];
+export type SigningCertificatesCreateSigningCertificateError = SigningCertificatesCreateSigningCertificateErrors[keyof SigningCertificatesCreateSigningCertificateErrors];
 
-export type CreateSigningCertificateAsyncResponses = {
+export type SigningCertificatesCreateSigningCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningCertificatesCountAsyncData = {
+export type SigningCertificatesGetSigningCertificatesCountData = {
     body?: SigningCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2802,25 +2936,25 @@ export type GetSigningCertificatesCountAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates/Count';
 };
 
-export type GetSigningCertificatesCountAsyncErrors = {
+export type SigningCertificatesGetSigningCertificatesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningCertificatesCountAsyncError = GetSigningCertificatesCountAsyncErrors[keyof GetSigningCertificatesCountAsyncErrors];
+export type SigningCertificatesGetSigningCertificatesCountError = SigningCertificatesGetSigningCertificatesCountErrors[keyof SigningCertificatesGetSigningCertificatesCountErrors];
 
-export type GetSigningCertificatesCountAsyncResponses = {
+export type SigningCertificatesGetSigningCertificatesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSigningCertificatesCountAsyncResponse = GetSigningCertificatesCountAsyncResponses[keyof GetSigningCertificatesCountAsyncResponses];
+export type SigningCertificatesGetSigningCertificatesCountResponse = SigningCertificatesGetSigningCertificatesCountResponses[keyof SigningCertificatesGetSigningCertificatesCountResponses];
 
-export type DeleteSigningCertificateAsyncData = {
+export type SigningCertificatesDeleteSigningCertificateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2835,7 +2969,7 @@ export type DeleteSigningCertificateAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates/{id}';
 };
 
-export type DeleteSigningCertificateAsyncErrors = {
+export type SigningCertificatesDeleteSigningCertificateErrors = {
     /**
      * Forbidden
      */
@@ -2846,16 +2980,16 @@ export type DeleteSigningCertificateAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteSigningCertificateAsyncError = DeleteSigningCertificateAsyncErrors[keyof DeleteSigningCertificateAsyncErrors];
+export type SigningCertificatesDeleteSigningCertificateError = SigningCertificatesDeleteSigningCertificateErrors[keyof SigningCertificatesDeleteSigningCertificateErrors];
 
-export type DeleteSigningCertificateAsyncResponses = {
+export type SigningCertificatesDeleteSigningCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningCertificateByIdAsyncData = {
+export type SigningCertificatesGetSigningCertificateByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2870,7 +3004,7 @@ export type GetSigningCertificateByIdAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates/{id}';
 };
 
-export type GetSigningCertificateByIdAsyncErrors = {
+export type SigningCertificatesGetSigningCertificateByIdErrors = {
     /**
      * Forbidden
      */
@@ -2881,18 +3015,18 @@ export type GetSigningCertificateByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSigningCertificateByIdAsyncError = GetSigningCertificateByIdAsyncErrors[keyof GetSigningCertificateByIdAsyncErrors];
+export type SigningCertificatesGetSigningCertificateByIdError = SigningCertificatesGetSigningCertificateByIdErrors[keyof SigningCertificatesGetSigningCertificateByIdErrors];
 
-export type GetSigningCertificateByIdAsyncResponses = {
+export type SigningCertificatesGetSigningCertificateByIdResponses = {
     /**
      * OK
      */
     200: SigningCertificateDto;
 };
 
-export type GetSigningCertificateByIdAsyncResponse = GetSigningCertificateByIdAsyncResponses[keyof GetSigningCertificateByIdAsyncResponses];
+export type SigningCertificatesGetSigningCertificateByIdResponse = SigningCertificatesGetSigningCertificateByIdResponses[keyof SigningCertificatesGetSigningCertificateByIdResponses];
 
-export type PatchSigningCertificateAsyncData = {
+export type SigningCertificatesPatchSigningCertificateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2907,7 +3041,7 @@ export type PatchSigningCertificateAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates/{id}';
 };
 
-export type PatchSigningCertificateAsyncErrors = {
+export type SigningCertificatesPatchSigningCertificateErrors = {
     /**
      * Unauthorized
      */
@@ -2918,18 +3052,18 @@ export type PatchSigningCertificateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSigningCertificateAsyncError = PatchSigningCertificateAsyncErrors[keyof PatchSigningCertificateAsyncErrors];
+export type SigningCertificatesPatchSigningCertificateError = SigningCertificatesPatchSigningCertificateErrors[keyof SigningCertificatesPatchSigningCertificateErrors];
 
-export type PatchSigningCertificateAsyncResponses = {
+export type SigningCertificatesPatchSigningCertificateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSigningCertificateAsyncResponse = PatchSigningCertificateAsyncResponses[keyof PatchSigningCertificateAsyncResponses];
+export type SigningCertificatesPatchSigningCertificateResponse = SigningCertificatesPatchSigningCertificateResponses[keyof SigningCertificatesPatchSigningCertificateResponses];
 
-export type UpdateSigningCertificateAsyncData = {
+export type SigningCertificatesUpdateSigningCertificateData = {
     body?: SigningCertificateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2944,7 +3078,7 @@ export type UpdateSigningCertificateAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates/{id}';
 };
 
-export type UpdateSigningCertificateAsyncErrors = {
+export type SigningCertificatesUpdateSigningCertificateErrors = {
     /**
      * Forbidden
      */
@@ -2955,16 +3089,16 @@ export type UpdateSigningCertificateAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateSigningCertificateAsyncError = UpdateSigningCertificateAsyncErrors[keyof UpdateSigningCertificateAsyncErrors];
+export type SigningCertificatesUpdateSigningCertificateError = SigningCertificatesUpdateSigningCertificateErrors[keyof SigningCertificatesUpdateSigningCertificateErrors];
 
-export type UpdateSigningCertificateAsyncResponses = {
+export type SigningCertificatesUpdateSigningCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type ImportSigningCertificateAsyncData = {
+export type SigningCertificatesImportSigningCertificateData = {
     body?: {
         id?: string;
         file?: Blob | File;
@@ -2983,7 +3117,7 @@ export type ImportSigningCertificateAsyncData = {
     url: '/api/v2/TrustService/SigningCertificates/Import';
 };
 
-export type ImportSigningCertificateAsyncErrors = {
+export type SigningCertificatesImportSigningCertificateErrors = {
     /**
      * Bad Request
      */
@@ -2994,16 +3128,16 @@ export type ImportSigningCertificateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ImportSigningCertificateAsyncError = ImportSigningCertificateAsyncErrors[keyof ImportSigningCertificateAsyncErrors];
+export type SigningCertificatesImportSigningCertificateError = SigningCertificatesImportSigningCertificateErrors[keyof SigningCertificatesImportSigningCertificateErrors];
 
-export type ImportSigningCertificateAsyncResponses = {
+export type SigningCertificatesImportSigningCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProvidersAsyncData = {
+export type SigningEngineGetProvidersData = {
     body?: TrustSigningProviderDescriptorDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3016,25 +3150,25 @@ export type GetProvidersAsyncData = {
     url: '/api/v2/TrustService/SigningEngine/Providers';
 };
 
-export type GetProvidersAsyncErrors = {
+export type SigningEngineGetProvidersErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProvidersAsyncError = GetProvidersAsyncErrors[keyof GetProvidersAsyncErrors];
+export type SigningEngineGetProvidersError = SigningEngineGetProvidersErrors[keyof SigningEngineGetProvidersErrors];
 
-export type GetProvidersAsyncResponses = {
+export type SigningEngineGetProvidersResponses = {
     /**
      * OK
      */
     200: TrustSigningProviderDescriptorDtoListEnvelopeReadable;
 };
 
-export type GetProvidersAsyncResponse = GetProvidersAsyncResponses[keyof GetProvidersAsyncResponses];
+export type SigningEngineGetProvidersResponse = SigningEngineGetProvidersResponses[keyof SigningEngineGetProvidersResponses];
 
-export type GetProvidersCountAsyncData = {
+export type SigningEngineGetProvidersCountData = {
     body?: TrustSigningProviderDescriptorDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3047,25 +3181,25 @@ export type GetProvidersCountAsyncData = {
     url: '/api/v2/TrustService/SigningEngine/Providers/Count';
 };
 
-export type GetProvidersCountAsyncErrors = {
+export type SigningEngineGetProvidersCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProvidersCountAsyncError = GetProvidersCountAsyncErrors[keyof GetProvidersCountAsyncErrors];
+export type SigningEngineGetProvidersCountError = SigningEngineGetProvidersCountErrors[keyof SigningEngineGetProvidersCountErrors];
 
-export type GetProvidersCountAsyncResponses = {
+export type SigningEngineGetProvidersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProvidersCountAsyncResponse = GetProvidersCountAsyncResponses[keyof GetProvidersCountAsyncResponses];
+export type SigningEngineGetProvidersCountResponse = SigningEngineGetProvidersCountResponses[keyof SigningEngineGetProvidersCountResponses];
 
-export type PreviewAsyncData = {
+export type SigningEnginePreviewData = {
     body?: TrustSigningRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -3078,7 +3212,7 @@ export type PreviewAsyncData = {
     url: '/api/v2/TrustService/SigningEngine/Preview';
 };
 
-export type PreviewAsyncErrors = {
+export type SigningEnginePreviewErrors = {
     /**
      * Bad Request
      */
@@ -3089,18 +3223,57 @@ export type PreviewAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PreviewAsyncError = PreviewAsyncErrors[keyof PreviewAsyncErrors];
+export type SigningEnginePreviewError = SigningEnginePreviewErrors[keyof SigningEnginePreviewErrors];
 
-export type PreviewAsyncResponses = {
+export type SigningEnginePreviewResponses = {
     /**
      * OK
      */
     200: TrustSigningReadinessDtoEnvelopeReadable;
 };
 
-export type PreviewAsyncResponse = PreviewAsyncResponses[keyof PreviewAsyncResponses];
+export type SigningEnginePreviewResponse = SigningEnginePreviewResponses[keyof SigningEnginePreviewResponses];
 
-export type GetSigningLogsAsyncData = {
+export type SigningKeysGeneratePlatformSigningKeyData = {
+    body?: PlatformSigningKeyGenerateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningKeys/Platform';
+};
+
+export type SigningKeysGeneratePlatformSigningKeyErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type SigningKeysGeneratePlatformSigningKeyError = SigningKeysGeneratePlatformSigningKeyErrors[keyof SigningKeysGeneratePlatformSigningKeyErrors];
+
+export type SigningKeysGeneratePlatformSigningKeyResponses = {
+    /**
+     * OK
+     */
+    200: PlatformSigningKeyDtoEnvelopeReadable;
+};
+
+export type SigningKeysGeneratePlatformSigningKeyResponse = SigningKeysGeneratePlatformSigningKeyResponses[keyof SigningKeysGeneratePlatformSigningKeyResponses];
+
+export type SigningLogsGetSigningLogsData = {
     body?: SigningLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3113,25 +3286,25 @@ export type GetSigningLogsAsyncData = {
     url: '/api/v2/TrustService/SigningLogs';
 };
 
-export type GetSigningLogsAsyncErrors = {
+export type SigningLogsGetSigningLogsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningLogsAsyncError = GetSigningLogsAsyncErrors[keyof GetSigningLogsAsyncErrors];
+export type SigningLogsGetSigningLogsError = SigningLogsGetSigningLogsErrors[keyof SigningLogsGetSigningLogsErrors];
 
-export type GetSigningLogsAsyncResponses = {
+export type SigningLogsGetSigningLogsResponses = {
     /**
      * OK
      */
     200: SigningLogDtoListEnvelopeReadable;
 };
 
-export type GetSigningLogsAsyncResponse = GetSigningLogsAsyncResponses[keyof GetSigningLogsAsyncResponses];
+export type SigningLogsGetSigningLogsResponse = SigningLogsGetSigningLogsResponses[keyof SigningLogsGetSigningLogsResponses];
 
-export type GetSigningLogsCountAsyncData = {
+export type SigningLogsGetSigningLogsCountData = {
     body?: SigningLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3144,25 +3317,25 @@ export type GetSigningLogsCountAsyncData = {
     url: '/api/v2/TrustService/SigningLogs/Count';
 };
 
-export type GetSigningLogsCountAsyncErrors = {
+export type SigningLogsGetSigningLogsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningLogsCountAsyncError = GetSigningLogsCountAsyncErrors[keyof GetSigningLogsCountAsyncErrors];
+export type SigningLogsGetSigningLogsCountError = SigningLogsGetSigningLogsCountErrors[keyof SigningLogsGetSigningLogsCountErrors];
 
-export type GetSigningLogsCountAsyncResponses = {
+export type SigningLogsGetSigningLogsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSigningLogsCountAsyncResponse = GetSigningLogsCountAsyncResponses[keyof GetSigningLogsCountAsyncResponses];
+export type SigningLogsGetSigningLogsCountResponse = SigningLogsGetSigningLogsCountResponses[keyof SigningLogsGetSigningLogsCountResponses];
 
-export type GetSigningLogByIdAsyncData = {
+export type SigningLogsGetSigningLogByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3177,7 +3350,7 @@ export type GetSigningLogByIdAsyncData = {
     url: '/api/v2/TrustService/SigningLogs/{id}';
 };
 
-export type GetSigningLogByIdAsyncErrors = {
+export type SigningLogsGetSigningLogByIdErrors = {
     /**
      * Forbidden
      */
@@ -3188,18 +3361,18 @@ export type GetSigningLogByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSigningLogByIdAsyncError = GetSigningLogByIdAsyncErrors[keyof GetSigningLogByIdAsyncErrors];
+export type SigningLogsGetSigningLogByIdError = SigningLogsGetSigningLogByIdErrors[keyof SigningLogsGetSigningLogByIdErrors];
 
-export type GetSigningLogByIdAsyncResponses = {
+export type SigningLogsGetSigningLogByIdResponses = {
     /**
      * OK
      */
     200: SigningLogDto;
 };
 
-export type GetSigningLogByIdAsyncResponse = GetSigningLogByIdAsyncResponses[keyof GetSigningLogByIdAsyncResponses];
+export type SigningLogsGetSigningLogByIdResponse = SigningLogsGetSigningLogByIdResponses[keyof SigningLogsGetSigningLogByIdResponses];
 
-export type GetSigningParticipantsAsyncData = {
+export type SigningParticipantsGetSigningParticipantsData = {
     body?: SigningParticipantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3212,25 +3385,25 @@ export type GetSigningParticipantsAsyncData = {
     url: '/api/v2/TrustService/SigningParticipants';
 };
 
-export type GetSigningParticipantsAsyncErrors = {
+export type SigningParticipantsGetSigningParticipantsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningParticipantsAsyncError = GetSigningParticipantsAsyncErrors[keyof GetSigningParticipantsAsyncErrors];
+export type SigningParticipantsGetSigningParticipantsError = SigningParticipantsGetSigningParticipantsErrors[keyof SigningParticipantsGetSigningParticipantsErrors];
 
-export type GetSigningParticipantsAsyncResponses = {
+export type SigningParticipantsGetSigningParticipantsResponses = {
     /**
      * OK
      */
     200: SigningParticipantDtoListEnvelopeReadable;
 };
 
-export type GetSigningParticipantsAsyncResponse = GetSigningParticipantsAsyncResponses[keyof GetSigningParticipantsAsyncResponses];
+export type SigningParticipantsGetSigningParticipantsResponse = SigningParticipantsGetSigningParticipantsResponses[keyof SigningParticipantsGetSigningParticipantsResponses];
 
-export type GetSigningParticipantsCountAsyncData = {
+export type SigningParticipantsGetSigningParticipantsCountData = {
     body?: SigningParticipantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3243,16 +3416,16 @@ export type GetSigningParticipantsCountAsyncData = {
     url: '/api/v2/TrustService/SigningParticipants/Count';
 };
 
-export type GetSigningParticipantsCountAsyncResponses = {
+export type SigningParticipantsGetSigningParticipantsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSigningParticipantsCountAsyncResponse = GetSigningParticipantsCountAsyncResponses[keyof GetSigningParticipantsCountAsyncResponses];
+export type SigningParticipantsGetSigningParticipantsCountResponse = SigningParticipantsGetSigningParticipantsCountResponses[keyof SigningParticipantsGetSigningParticipantsCountResponses];
 
-export type GetSigningParticipantByIdAsyncData = {
+export type SigningParticipantsGetSigningParticipantByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3267,25 +3440,25 @@ export type GetSigningParticipantByIdAsyncData = {
     url: '/api/v2/TrustService/SigningParticipants/{id}';
 };
 
-export type GetSigningParticipantByIdAsyncErrors = {
+export type SigningParticipantsGetSigningParticipantByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSigningParticipantByIdAsyncError = GetSigningParticipantByIdAsyncErrors[keyof GetSigningParticipantByIdAsyncErrors];
+export type SigningParticipantsGetSigningParticipantByIdError = SigningParticipantsGetSigningParticipantByIdErrors[keyof SigningParticipantsGetSigningParticipantByIdErrors];
 
-export type GetSigningParticipantByIdAsyncResponses = {
+export type SigningParticipantsGetSigningParticipantByIdResponses = {
     /**
      * OK
      */
     200: SigningParticipantDto;
 };
 
-export type GetSigningParticipantByIdAsyncResponse = GetSigningParticipantByIdAsyncResponses[keyof GetSigningParticipantByIdAsyncResponses];
+export type SigningParticipantsGetSigningParticipantByIdResponse = SigningParticipantsGetSigningParticipantByIdResponses[keyof SigningParticipantsGetSigningParticipantByIdResponses];
 
-export type MarkViewedAsyncData = {
+export type SigningParticipantsMarkViewedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3300,14 +3473,14 @@ export type MarkViewedAsyncData = {
     url: '/api/v2/TrustService/SigningParticipants/{id}/viewed';
 };
 
-export type MarkViewedAsyncResponses = {
+export type SigningParticipantsMarkViewedResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RecordOutcomeAsyncData = {
+export type SigningParticipantsRecordOutcomeData = {
     body?: RecordSigningParticipantOutcomeDto;
     headers?: {
         'x-api-version'?: string;
@@ -3322,23 +3495,23 @@ export type RecordOutcomeAsyncData = {
     url: '/api/v2/TrustService/SigningParticipants/{id}/outcome';
 };
 
-export type RecordOutcomeAsyncErrors = {
+export type SigningParticipantsRecordOutcomeErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type RecordOutcomeAsyncError = RecordOutcomeAsyncErrors[keyof RecordOutcomeAsyncErrors];
+export type SigningParticipantsRecordOutcomeError = SigningParticipantsRecordOutcomeErrors[keyof SigningParticipantsRecordOutcomeErrors];
 
-export type RecordOutcomeAsyncResponses = {
+export type SigningParticipantsRecordOutcomeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningProfileGraphicalRepresentationsAsyncData = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsData = {
     body?: SigningProfileGraphicalRepresentationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3351,25 +3524,25 @@ export type GetSigningProfileGraphicalRepresentationsAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations';
 };
 
-export type GetSigningProfileGraphicalRepresentationsAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningProfileGraphicalRepresentationsAsyncError = GetSigningProfileGraphicalRepresentationsAsyncErrors[keyof GetSigningProfileGraphicalRepresentationsAsyncErrors];
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsError = SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsErrors[keyof SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsErrors];
 
-export type GetSigningProfileGraphicalRepresentationsAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsResponses = {
     /**
      * OK
      */
     200: SigningProfileGraphicalRepresentationDtoListEnvelopeReadable;
 };
 
-export type GetSigningProfileGraphicalRepresentationsAsyncResponse = GetSigningProfileGraphicalRepresentationsAsyncResponses[keyof GetSigningProfileGraphicalRepresentationsAsyncResponses];
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsResponse = SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsResponses[keyof SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsResponses];
 
-export type CreateSigningProfileGraphicalRepresentationAsyncData = {
+export type SigningProfileGraphicalRepresentationsCreateSigningProfileGraphicalRepresentationData = {
     body?: SigningProfileGraphicalRepresentationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3382,7 +3555,7 @@ export type CreateSigningProfileGraphicalRepresentationAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations';
 };
 
-export type CreateSigningProfileGraphicalRepresentationAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsCreateSigningProfileGraphicalRepresentationErrors = {
     /**
      * Bad Request
      */
@@ -3393,16 +3566,16 @@ export type CreateSigningProfileGraphicalRepresentationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSigningProfileGraphicalRepresentationAsyncError = CreateSigningProfileGraphicalRepresentationAsyncErrors[keyof CreateSigningProfileGraphicalRepresentationAsyncErrors];
+export type SigningProfileGraphicalRepresentationsCreateSigningProfileGraphicalRepresentationError = SigningProfileGraphicalRepresentationsCreateSigningProfileGraphicalRepresentationErrors[keyof SigningProfileGraphicalRepresentationsCreateSigningProfileGraphicalRepresentationErrors];
 
-export type CreateSigningProfileGraphicalRepresentationAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsCreateSigningProfileGraphicalRepresentationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningProfileGraphicalRepresentationsCountAsyncData = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountData = {
     body?: SigningProfileGraphicalRepresentationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3415,25 +3588,25 @@ export type GetSigningProfileGraphicalRepresentationsCountAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations/Count';
 };
 
-export type GetSigningProfileGraphicalRepresentationsCountAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningProfileGraphicalRepresentationsCountAsyncError = GetSigningProfileGraphicalRepresentationsCountAsyncErrors[keyof GetSigningProfileGraphicalRepresentationsCountAsyncErrors];
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountError = SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountErrors[keyof SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountErrors];
 
-export type GetSigningProfileGraphicalRepresentationsCountAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSigningProfileGraphicalRepresentationsCountAsyncResponse = GetSigningProfileGraphicalRepresentationsCountAsyncResponses[keyof GetSigningProfileGraphicalRepresentationsCountAsyncResponses];
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountResponse = SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountResponses[keyof SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationsCountResponses];
 
-export type DeleteSigningProfileGraphicalRepresentationAsyncData = {
+export type SigningProfileGraphicalRepresentationsDeleteSigningProfileGraphicalRepresentationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3448,7 +3621,7 @@ export type DeleteSigningProfileGraphicalRepresentationAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations/{id}';
 };
 
-export type DeleteSigningProfileGraphicalRepresentationAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsDeleteSigningProfileGraphicalRepresentationErrors = {
     /**
      * Forbidden
      */
@@ -3459,16 +3632,16 @@ export type DeleteSigningProfileGraphicalRepresentationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteSigningProfileGraphicalRepresentationAsyncError = DeleteSigningProfileGraphicalRepresentationAsyncErrors[keyof DeleteSigningProfileGraphicalRepresentationAsyncErrors];
+export type SigningProfileGraphicalRepresentationsDeleteSigningProfileGraphicalRepresentationError = SigningProfileGraphicalRepresentationsDeleteSigningProfileGraphicalRepresentationErrors[keyof SigningProfileGraphicalRepresentationsDeleteSigningProfileGraphicalRepresentationErrors];
 
-export type DeleteSigningProfileGraphicalRepresentationAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsDeleteSigningProfileGraphicalRepresentationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningProfileGraphicalRepresentationByIdAsyncData = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3483,7 +3656,7 @@ export type GetSigningProfileGraphicalRepresentationByIdAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations/{id}';
 };
 
-export type GetSigningProfileGraphicalRepresentationByIdAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdErrors = {
     /**
      * Forbidden
      */
@@ -3494,18 +3667,18 @@ export type GetSigningProfileGraphicalRepresentationByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSigningProfileGraphicalRepresentationByIdAsyncError = GetSigningProfileGraphicalRepresentationByIdAsyncErrors[keyof GetSigningProfileGraphicalRepresentationByIdAsyncErrors];
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdError = SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdErrors[keyof SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdErrors];
 
-export type GetSigningProfileGraphicalRepresentationByIdAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdResponses = {
     /**
      * OK
      */
     200: SigningProfileGraphicalRepresentationDto;
 };
 
-export type GetSigningProfileGraphicalRepresentationByIdAsyncResponse = GetSigningProfileGraphicalRepresentationByIdAsyncResponses[keyof GetSigningProfileGraphicalRepresentationByIdAsyncResponses];
+export type SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdResponse = SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdResponses[keyof SigningProfileGraphicalRepresentationsGetSigningProfileGraphicalRepresentationByIdResponses];
 
-export type PatchSigningProfileGraphicalRepresentationAsyncData = {
+export type SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3520,7 +3693,7 @@ export type PatchSigningProfileGraphicalRepresentationAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations/{id}';
 };
 
-export type PatchSigningProfileGraphicalRepresentationAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationErrors = {
     /**
      * Unauthorized
      */
@@ -3531,18 +3704,18 @@ export type PatchSigningProfileGraphicalRepresentationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSigningProfileGraphicalRepresentationAsyncError = PatchSigningProfileGraphicalRepresentationAsyncErrors[keyof PatchSigningProfileGraphicalRepresentationAsyncErrors];
+export type SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationError = SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationErrors[keyof SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationErrors];
 
-export type PatchSigningProfileGraphicalRepresentationAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSigningProfileGraphicalRepresentationAsyncResponse = PatchSigningProfileGraphicalRepresentationAsyncResponses[keyof PatchSigningProfileGraphicalRepresentationAsyncResponses];
+export type SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationResponse = SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationResponses[keyof SigningProfileGraphicalRepresentationsPatchSigningProfileGraphicalRepresentationResponses];
 
-export type UpdateSigningProfileGraphicalRepresentationAsyncData = {
+export type SigningProfileGraphicalRepresentationsUpdateSigningProfileGraphicalRepresentationData = {
     body?: SigningProfileGraphicalRepresentationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3557,7 +3730,7 @@ export type UpdateSigningProfileGraphicalRepresentationAsyncData = {
     url: '/api/v2/TrustService/SigningProfileGraphicalRepresentations/{id}';
 };
 
-export type UpdateSigningProfileGraphicalRepresentationAsyncErrors = {
+export type SigningProfileGraphicalRepresentationsUpdateSigningProfileGraphicalRepresentationErrors = {
     /**
      * Forbidden
      */
@@ -3568,16 +3741,16 @@ export type UpdateSigningProfileGraphicalRepresentationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateSigningProfileGraphicalRepresentationAsyncError = UpdateSigningProfileGraphicalRepresentationAsyncErrors[keyof UpdateSigningProfileGraphicalRepresentationAsyncErrors];
+export type SigningProfileGraphicalRepresentationsUpdateSigningProfileGraphicalRepresentationError = SigningProfileGraphicalRepresentationsUpdateSigningProfileGraphicalRepresentationErrors[keyof SigningProfileGraphicalRepresentationsUpdateSigningProfileGraphicalRepresentationErrors];
 
-export type UpdateSigningProfileGraphicalRepresentationAsyncResponses = {
+export type SigningProfileGraphicalRepresentationsUpdateSigningProfileGraphicalRepresentationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningProfilesAsyncData = {
+export type SigningProfilesGetSigningProfilesData = {
     body?: SigningProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3590,25 +3763,25 @@ export type GetSigningProfilesAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles';
 };
 
-export type GetSigningProfilesAsyncErrors = {
+export type SigningProfilesGetSigningProfilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningProfilesAsyncError = GetSigningProfilesAsyncErrors[keyof GetSigningProfilesAsyncErrors];
+export type SigningProfilesGetSigningProfilesError = SigningProfilesGetSigningProfilesErrors[keyof SigningProfilesGetSigningProfilesErrors];
 
-export type GetSigningProfilesAsyncResponses = {
+export type SigningProfilesGetSigningProfilesResponses = {
     /**
      * OK
      */
     200: SigningProfileDtoListEnvelopeReadable;
 };
 
-export type GetSigningProfilesAsyncResponse = GetSigningProfilesAsyncResponses[keyof GetSigningProfilesAsyncResponses];
+export type SigningProfilesGetSigningProfilesResponse = SigningProfilesGetSigningProfilesResponses[keyof SigningProfilesGetSigningProfilesResponses];
 
-export type CreateSigningProfileAsyncData = {
+export type SigningProfilesCreateSigningProfileData = {
     body?: SigningProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3621,7 +3794,7 @@ export type CreateSigningProfileAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles';
 };
 
-export type CreateSigningProfileAsyncErrors = {
+export type SigningProfilesCreateSigningProfileErrors = {
     /**
      * Bad Request
      */
@@ -3632,16 +3805,16 @@ export type CreateSigningProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSigningProfileAsyncError = CreateSigningProfileAsyncErrors[keyof CreateSigningProfileAsyncErrors];
+export type SigningProfilesCreateSigningProfileError = SigningProfilesCreateSigningProfileErrors[keyof SigningProfilesCreateSigningProfileErrors];
 
-export type CreateSigningProfileAsyncResponses = {
+export type SigningProfilesCreateSigningProfileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningProfilesCountAsyncData = {
+export type SigningProfilesGetSigningProfilesCountData = {
     body?: SigningProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3654,25 +3827,25 @@ export type GetSigningProfilesCountAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles/Count';
 };
 
-export type GetSigningProfilesCountAsyncErrors = {
+export type SigningProfilesGetSigningProfilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningProfilesCountAsyncError = GetSigningProfilesCountAsyncErrors[keyof GetSigningProfilesCountAsyncErrors];
+export type SigningProfilesGetSigningProfilesCountError = SigningProfilesGetSigningProfilesCountErrors[keyof SigningProfilesGetSigningProfilesCountErrors];
 
-export type GetSigningProfilesCountAsyncResponses = {
+export type SigningProfilesGetSigningProfilesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSigningProfilesCountAsyncResponse = GetSigningProfilesCountAsyncResponses[keyof GetSigningProfilesCountAsyncResponses];
+export type SigningProfilesGetSigningProfilesCountResponse = SigningProfilesGetSigningProfilesCountResponses[keyof SigningProfilesGetSigningProfilesCountResponses];
 
-export type DeleteSigningProfileAsyncData = {
+export type SigningProfilesDeleteSigningProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3687,7 +3860,7 @@ export type DeleteSigningProfileAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles/{id}';
 };
 
-export type DeleteSigningProfileAsyncErrors = {
+export type SigningProfilesDeleteSigningProfileErrors = {
     /**
      * Forbidden
      */
@@ -3698,16 +3871,16 @@ export type DeleteSigningProfileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteSigningProfileAsyncError = DeleteSigningProfileAsyncErrors[keyof DeleteSigningProfileAsyncErrors];
+export type SigningProfilesDeleteSigningProfileError = SigningProfilesDeleteSigningProfileErrors[keyof SigningProfilesDeleteSigningProfileErrors];
 
-export type DeleteSigningProfileAsyncResponses = {
+export type SigningProfilesDeleteSigningProfileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningProfileByIdAsyncData = {
+export type SigningProfilesGetSigningProfileByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3722,7 +3895,7 @@ export type GetSigningProfileByIdAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles/{id}';
 };
 
-export type GetSigningProfileByIdAsyncErrors = {
+export type SigningProfilesGetSigningProfileByIdErrors = {
     /**
      * Forbidden
      */
@@ -3733,18 +3906,18 @@ export type GetSigningProfileByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSigningProfileByIdAsyncError = GetSigningProfileByIdAsyncErrors[keyof GetSigningProfileByIdAsyncErrors];
+export type SigningProfilesGetSigningProfileByIdError = SigningProfilesGetSigningProfileByIdErrors[keyof SigningProfilesGetSigningProfileByIdErrors];
 
-export type GetSigningProfileByIdAsyncResponses = {
+export type SigningProfilesGetSigningProfileByIdResponses = {
     /**
      * OK
      */
     200: SigningProfileDtoReadable;
 };
 
-export type GetSigningProfileByIdAsyncResponse = GetSigningProfileByIdAsyncResponses[keyof GetSigningProfileByIdAsyncResponses];
+export type SigningProfilesGetSigningProfileByIdResponse = SigningProfilesGetSigningProfileByIdResponses[keyof SigningProfilesGetSigningProfileByIdResponses];
 
-export type PatchSigningProfileAsyncData = {
+export type SigningProfilesPatchSigningProfileData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3759,7 +3932,7 @@ export type PatchSigningProfileAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles/{id}';
 };
 
-export type PatchSigningProfileAsyncErrors = {
+export type SigningProfilesPatchSigningProfileErrors = {
     /**
      * Unauthorized
      */
@@ -3770,18 +3943,18 @@ export type PatchSigningProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSigningProfileAsyncError = PatchSigningProfileAsyncErrors[keyof PatchSigningProfileAsyncErrors];
+export type SigningProfilesPatchSigningProfileError = SigningProfilesPatchSigningProfileErrors[keyof SigningProfilesPatchSigningProfileErrors];
 
-export type PatchSigningProfileAsyncResponses = {
+export type SigningProfilesPatchSigningProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSigningProfileAsyncResponse = PatchSigningProfileAsyncResponses[keyof PatchSigningProfileAsyncResponses];
+export type SigningProfilesPatchSigningProfileResponse = SigningProfilesPatchSigningProfileResponses[keyof SigningProfilesPatchSigningProfileResponses];
 
-export type UpdateSigningProfileAsyncData = {
+export type SigningProfilesUpdateSigningProfileData = {
     body?: SigningProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3796,7 +3969,7 @@ export type UpdateSigningProfileAsyncData = {
     url: '/api/v2/TrustService/SigningProfiles/{id}';
 };
 
-export type UpdateSigningProfileAsyncErrors = {
+export type SigningProfilesUpdateSigningProfileErrors = {
     /**
      * Forbidden
      */
@@ -3807,16 +3980,94 @@ export type UpdateSigningProfileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateSigningProfileAsyncError = UpdateSigningProfileAsyncErrors[keyof UpdateSigningProfileAsyncErrors];
+export type SigningProfilesUpdateSigningProfileError = SigningProfilesUpdateSigningProfileErrors[keyof SigningProfilesUpdateSigningProfileErrors];
 
-export type UpdateSigningProfileAsyncResponses = {
+export type SigningProfilesUpdateSigningProfileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSigningRequestsAsyncData = {
+export type SigningProfilesGetSigningProfileExecutionBindingData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningProfiles/{id}/execution-binding';
+};
+
+export type SigningProfilesGetSigningProfileExecutionBindingErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SigningProfilesGetSigningProfileExecutionBindingError = SigningProfilesGetSigningProfileExecutionBindingErrors[keyof SigningProfilesGetSigningProfileExecutionBindingErrors];
+
+export type SigningProfilesGetSigningProfileExecutionBindingResponses = {
+    /**
+     * OK
+     */
+    200: SigningProfileExecutionBindingDtoEnvelopeReadable;
+};
+
+export type SigningProfilesGetSigningProfileExecutionBindingResponse = SigningProfilesGetSigningProfileExecutionBindingResponses[keyof SigningProfilesGetSigningProfileExecutionBindingResponses];
+
+export type SigningProfilesSetSigningProfileExecutionBindingData = {
+    body?: SetSigningProfileExecutionBindingRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningProfiles/{id}/execution-binding';
+};
+
+export type SigningProfilesSetSigningProfileExecutionBindingErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type SigningProfilesSetSigningProfileExecutionBindingError = SigningProfilesSetSigningProfileExecutionBindingErrors[keyof SigningProfilesSetSigningProfileExecutionBindingErrors];
+
+export type SigningProfilesSetSigningProfileExecutionBindingResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SigningProfilesSetSigningProfileExecutionBindingResponse = SigningProfilesSetSigningProfileExecutionBindingResponses[keyof SigningProfilesSetSigningProfileExecutionBindingResponses];
+
+export type SigningRequestsGetSigningRequestsData = {
     body?: SigningRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3829,25 +4080,25 @@ export type GetSigningRequestsAsyncData = {
     url: '/api/v2/TrustService/SigningRequests';
 };
 
-export type GetSigningRequestsAsyncErrors = {
+export type SigningRequestsGetSigningRequestsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningRequestsAsyncError = GetSigningRequestsAsyncErrors[keyof GetSigningRequestsAsyncErrors];
+export type SigningRequestsGetSigningRequestsError = SigningRequestsGetSigningRequestsErrors[keyof SigningRequestsGetSigningRequestsErrors];
 
-export type GetSigningRequestsAsyncResponses = {
+export type SigningRequestsGetSigningRequestsResponses = {
     /**
      * OK
      */
     200: SigningRequestDtoListEnvelopeReadable;
 };
 
-export type GetSigningRequestsAsyncResponse = GetSigningRequestsAsyncResponses[keyof GetSigningRequestsAsyncResponses];
+export type SigningRequestsGetSigningRequestsResponse = SigningRequestsGetSigningRequestsResponses[keyof SigningRequestsGetSigningRequestsResponses];
 
-export type GetSigningRequestsCountAsyncData = {
+export type SigningRequestsGetSigningRequestsCountData = {
     body?: SigningRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3860,25 +4111,25 @@ export type GetSigningRequestsCountAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/Count';
 };
 
-export type GetSigningRequestsCountAsyncErrors = {
+export type SigningRequestsGetSigningRequestsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSigningRequestsCountAsyncError = GetSigningRequestsCountAsyncErrors[keyof GetSigningRequestsCountAsyncErrors];
+export type SigningRequestsGetSigningRequestsCountError = SigningRequestsGetSigningRequestsCountErrors[keyof SigningRequestsGetSigningRequestsCountErrors];
 
-export type GetSigningRequestsCountAsyncResponses = {
+export type SigningRequestsGetSigningRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSigningRequestsCountAsyncResponse = GetSigningRequestsCountAsyncResponses[keyof GetSigningRequestsCountAsyncResponses];
+export type SigningRequestsGetSigningRequestsCountResponse = SigningRequestsGetSigningRequestsCountResponses[keyof SigningRequestsGetSigningRequestsCountResponses];
 
-export type GetSigningRequestByIdAsyncData = {
+export type SigningRequestsGetSigningRequestByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3893,25 +4144,25 @@ export type GetSigningRequestByIdAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}';
 };
 
-export type GetSigningRequestByIdAsyncErrors = {
+export type SigningRequestsGetSigningRequestByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSigningRequestByIdAsyncError = GetSigningRequestByIdAsyncErrors[keyof GetSigningRequestByIdAsyncErrors];
+export type SigningRequestsGetSigningRequestByIdError = SigningRequestsGetSigningRequestByIdErrors[keyof SigningRequestsGetSigningRequestByIdErrors];
 
-export type GetSigningRequestByIdAsyncResponses = {
+export type SigningRequestsGetSigningRequestByIdResponses = {
     /**
      * OK
      */
     200: SigningRequestDto;
 };
 
-export type GetSigningRequestByIdAsyncResponse = GetSigningRequestByIdAsyncResponses[keyof GetSigningRequestByIdAsyncResponses];
+export type SigningRequestsGetSigningRequestByIdResponse = SigningRequestsGetSigningRequestByIdResponses[keyof SigningRequestsGetSigningRequestByIdResponses];
 
-export type GetSigningRequestParticipantsAsyncData = {
+export type SigningRequestsGetSigningRequestParticipantsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3926,16 +4177,40 @@ export type GetSigningRequestParticipantsAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}/Participants';
 };
 
-export type GetSigningRequestParticipantsAsyncResponses = {
+export type SigningRequestsGetSigningRequestParticipantsResponses = {
     /**
      * OK
      */
     200: SigningParticipantDtoListEnvelopeReadable;
 };
 
-export type GetSigningRequestParticipantsAsyncResponse = GetSigningRequestParticipantsAsyncResponses[keyof GetSigningRequestParticipantsAsyncResponses];
+export type SigningRequestsGetSigningRequestParticipantsResponse = SigningRequestsGetSigningRequestParticipantsResponses[keyof SigningRequestsGetSigningRequestParticipantsResponses];
 
-export type CreateFromDocumentAsyncData = {
+export type SigningRequestsAddParticipantData = {
+    body?: CreateSigningParticipantDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningRequests/{id}/Participants';
+};
+
+export type SigningRequestsAddParticipantResponses = {
+    /**
+     * OK
+     */
+    200: SigningParticipantDto;
+};
+
+export type SigningRequestsAddParticipantResponse = SigningRequestsAddParticipantResponses[keyof SigningRequestsAddParticipantResponses];
+
+export type SigningRequestsCreateFromDocumentData = {
     body?: CreateSigningRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -3950,25 +4225,25 @@ export type CreateFromDocumentAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/from-document/{signedDocumentId}';
 };
 
-export type CreateFromDocumentAsyncErrors = {
+export type SigningRequestsCreateFromDocumentErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateFromDocumentAsyncError = CreateFromDocumentAsyncErrors[keyof CreateFromDocumentAsyncErrors];
+export type SigningRequestsCreateFromDocumentError = SigningRequestsCreateFromDocumentErrors[keyof SigningRequestsCreateFromDocumentErrors];
 
-export type CreateFromDocumentAsyncResponses = {
+export type SigningRequestsCreateFromDocumentResponses = {
     /**
      * OK
      */
     200: SigningRequestDto;
 };
 
-export type CreateFromDocumentAsyncResponse = CreateFromDocumentAsyncResponses[keyof CreateFromDocumentAsyncResponses];
+export type SigningRequestsCreateFromDocumentResponse = SigningRequestsCreateFromDocumentResponses[keyof SigningRequestsCreateFromDocumentResponses];
 
-export type PrepareAndCreateAsyncData = {
+export type SigningRequestsPrepareAndCreateData = {
     body?: {
         file?: Blob | File;
         title?: string;
@@ -3991,7 +4266,7 @@ export type PrepareAndCreateAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/prepare-and-create';
 };
 
-export type PrepareAndCreateAsyncErrors = {
+export type SigningRequestsPrepareAndCreateErrors = {
     /**
      * Bad Request
      */
@@ -4006,42 +4281,18 @@ export type PrepareAndCreateAsyncErrors = {
     409: ErrorEnvelopeReadable;
 };
 
-export type PrepareAndCreateAsyncError = PrepareAndCreateAsyncErrors[keyof PrepareAndCreateAsyncErrors];
+export type SigningRequestsPrepareAndCreateError = SigningRequestsPrepareAndCreateErrors[keyof SigningRequestsPrepareAndCreateErrors];
 
-export type PrepareAndCreateAsyncResponses = {
+export type SigningRequestsPrepareAndCreateResponses = {
     /**
      * OK
      */
     200: SigningRequestDto;
 };
 
-export type PrepareAndCreateAsyncResponse = PrepareAndCreateAsyncResponses[keyof PrepareAndCreateAsyncResponses];
+export type SigningRequestsPrepareAndCreateResponse = SigningRequestsPrepareAndCreateResponses[keyof SigningRequestsPrepareAndCreateResponses];
 
-export type AddParticipantAsyncData = {
-    body?: CreateSigningParticipantDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        id: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/TrustService/SigningRequests/{id}/participants';
-};
-
-export type AddParticipantAsyncResponses = {
-    /**
-     * OK
-     */
-    200: SigningParticipantDto;
-};
-
-export type AddParticipantAsyncResponse = AddParticipantAsyncResponses[keyof AddParticipantAsyncResponses];
-
-export type SendAsyncData = {
+export type SigningRequestsSendData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4056,14 +4307,14 @@ export type SendAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}/send';
 };
 
-export type SendAsyncResponses = {
+export type SigningRequestsSendResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type VoidAsyncData = {
+export type SigningRequestsVoidData = {
     body?: VoidSigningRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -4078,14 +4329,14 @@ export type VoidAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}/void';
 };
 
-export type VoidAsyncResponses = {
+export type SigningRequestsVoidResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type ExpireAsyncData = {
+export type SigningRequestsExpireData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4100,14 +4351,14 @@ export type ExpireAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}/expire';
 };
 
-export type ExpireAsyncResponses = {
+export type SigningRequestsExpireResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type FinalizeAsyncData = {
+export type SigningRequestsFinalizeData = {
     body?: FinalizeSigningRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -4122,23 +4373,23 @@ export type FinalizeAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}/finalize';
 };
 
-export type FinalizeAsyncErrors = {
+export type SigningRequestsFinalizeErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type FinalizeAsyncError = FinalizeAsyncErrors[keyof FinalizeAsyncErrors];
+export type SigningRequestsFinalizeError = SigningRequestsFinalizeErrors[keyof SigningRequestsFinalizeErrors];
 
-export type FinalizeAsyncResponses = {
+export type SigningRequestsFinalizeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type ExecuteProviderAsyncData = {
+export type SigningRequestsExecuteProviderData = {
     body?: ExecuteSigningRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -4153,21 +4404,60 @@ export type ExecuteProviderAsyncData = {
     url: '/api/v2/TrustService/SigningRequests/{id}/execute-provider';
 };
 
-export type ExecuteProviderAsyncErrors = {
+export type SigningRequestsExecuteProviderErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type ExecuteProviderAsyncError = ExecuteProviderAsyncErrors[keyof ExecuteProviderAsyncErrors];
+export type SigningRequestsExecuteProviderError = SigningRequestsExecuteProviderErrors[keyof SigningRequestsExecuteProviderErrors];
 
-export type ExecuteProviderAsyncResponses = {
+export type SigningRequestsExecuteProviderResponses = {
     /**
      * OK
      */
     200: unknown;
 };
+
+export type TrustManifestsComposePlatformTrustManifestData = {
+    body?: PlatformTrustManifestComposeDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/TrustManifests/Platform';
+};
+
+export type TrustManifestsComposePlatformTrustManifestErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TrustManifestsComposePlatformTrustManifestError = TrustManifestsComposePlatformTrustManifestErrors[keyof TrustManifestsComposePlatformTrustManifestErrors];
+
+export type TrustManifestsComposePlatformTrustManifestResponses = {
+    /**
+     * OK
+     */
+    200: PlatformTrustManifestDtoEnvelopeReadable;
+};
+
+export type TrustManifestsComposePlatformTrustManifestResponse = TrustManifestsComposePlatformTrustManifestResponses[keyof TrustManifestsComposePlatformTrustManifestResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

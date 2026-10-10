@@ -24,6 +24,61 @@ export type CurrencyIdWritable = {
     country?: string | null;
 };
 
+export type DocumentRepriceItem = {
+    documentType?: string | null;
+    documentId?: string | null;
+    tenantId?: string | null;
+    status?: string | null;
+    currencyId?: string | null;
+    oldTotal?: number;
+    newTotal?: number | null;
+    oldRatesAsOfUtc?: string | null;
+    oldRate?: number | null;
+    newRate?: number | null;
+    skippedReason?: string | null;
+};
+
+export type DocumentRepriceReportReadable = {
+    applied?: boolean;
+    since?: string;
+    currentRatesAsOfUtc?: string | null;
+    documents?: Array<DocumentRepriceItem> | null;
+    readonly invoices?: number;
+    readonly quotes?: number;
+};
+
+export type DocumentRepriceReportWritable = {
+    applied?: boolean;
+    since?: string;
+    currentRatesAsOfUtc?: string | null;
+    documents?: Array<DocumentRepriceItem> | null;
+};
+
+export type DocumentRepriceReportEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: DocumentRepriceReportReadable;
+};
+
+export type DocumentRepriceReportEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: DocumentRepriceReportWritable;
+};
+
 export type ErrorEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -84,11 +139,67 @@ export type ExchangeRateEnvelopeWritable = {
     result?: ExchangeRateWritable;
 };
 
-export type ForexRatesDto = {
+export type ForexRateChange = {
+    currency?: string | null;
+    old?: number | null;
+    new?: number | null;
+};
+
+export type ForexRatePoint = {
+    date?: string;
+    rate?: number;
+};
+
+export type ForexRateSeries = {
+    currencyId?: string | null;
+    base?: string | null;
+    points?: Array<ForexRatePoint> | null;
+};
+
+export type ForexRateSeriesEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ForexRateSeries;
+};
+
+export type ForexRateSeriesEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ForexRateSeries;
+};
+
+export type ForexRatesDtoReadable = {
     success?: boolean;
     date?: string | null;
     base?: string | null;
     timestamp?: number;
+    readonly ratesAsOfUtc?: string | null;
+    isStale?: boolean;
+    requestTimestamp?: string;
+    rates?: {
+        [key: string]: number;
+    } | null;
+};
+
+export type ForexRatesDtoWritable = {
+    success?: boolean;
+    date?: string | null;
+    base?: string | null;
+    timestamp?: number;
+    isStale?: boolean;
     requestTimestamp?: string;
     rates?: {
         [key: string]: number;
@@ -106,7 +217,7 @@ export type ForexRatesDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: ForexRatesDto;
+    result?: ForexRatesDtoReadable;
 };
 
 export type ForexRatesDtoEnvelopeWritable = {
@@ -117,7 +228,64 @@ export type ForexRatesDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: ForexRatesDto;
+    result?: ForexRatesDtoWritable;
+};
+
+export type ForexSetRepairDay = {
+    date?: string;
+    action?: 'Create' | 'Replace' | 'Unchanged' | 'NoSnapshot';
+    snapshotRevision?: string | null;
+    snapshotCommittedAtUtc?: string | null;
+    oldRatesAsOfUtc?: string | null;
+    ratesAsOfUtc?: string | null;
+    majors?: Array<ForexRateChange> | null;
+    note?: string | null;
+    storedRows?: number;
+};
+
+export type ForexSetRepairReportReadable = {
+    applied?: boolean;
+    from?: string;
+    to?: string;
+    canonicalTime?: string | null;
+    days?: Array<ForexSetRepairDay> | null;
+    readonly created?: number;
+    readonly replaced?: number;
+    readonly unchanged?: number;
+    readonly withoutSnapshot?: number;
+};
+
+export type ForexSetRepairReportWritable = {
+    applied?: boolean;
+    from?: string;
+    to?: string;
+    canonicalTime?: string | null;
+    days?: Array<ForexSetRepairDay> | null;
+};
+
+export type ForexSetRepairReportEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ForexSetRepairReportReadable;
+};
+
+export type ForexSetRepairReportEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ForexSetRepairReportWritable;
 };
 
 export type ForgotPasswordRequest = {
@@ -200,6 +368,17 @@ export type RegisterRequest = {
     password: string | null;
 };
 
+export type RepairForeignExchangeSetsCommand = {
+    from?: string;
+    to?: string;
+    apply?: boolean;
+};
+
+export type RepriceUnissuedDocumentsCommand = {
+    since?: string;
+    apply?: boolean;
+};
+
 export type ResendConfirmationEmailRequest = {
     email: string | null;
 };
@@ -226,18 +405,19 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type ExchangeAmountAsyncData = {
-    body?: never;
-    path?: never;
-    query: {
-        amount: number;
-        sourceCurrencyId: string;
-        targetCurrencyId: string;
+export type DocumentsRepriceUnissuedDocumentsData = {
+    body?: RepriceUnissuedDocumentsCommand;
+    headers?: {
+        'x-api-version'?: string;
     };
-    url: '/api/v2/ForexService/Exchange/Latest';
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/ForexService/Documents/Reprice';
 };
 
-export type ExchangeAmountAsyncErrors = {
+export type DocumentsRepriceUnissuedDocumentsErrors = {
     /**
      * Unauthorized
      */
@@ -248,18 +428,51 @@ export type ExchangeAmountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ExchangeAmountAsyncError = ExchangeAmountAsyncErrors[keyof ExchangeAmountAsyncErrors];
+export type DocumentsRepriceUnissuedDocumentsError = DocumentsRepriceUnissuedDocumentsErrors[keyof DocumentsRepriceUnissuedDocumentsErrors];
 
-export type ExchangeAmountAsyncResponses = {
+export type DocumentsRepriceUnissuedDocumentsResponses = {
+    /**
+     * OK
+     */
+    200: DocumentRepriceReportEnvelopeReadable;
+};
+
+export type DocumentsRepriceUnissuedDocumentsResponse = DocumentsRepriceUnissuedDocumentsResponses[keyof DocumentsRepriceUnissuedDocumentsResponses];
+
+export type ExchangeExchangeAmountData = {
+    body?: never;
+    path?: never;
+    query: {
+        amount: number;
+        sourceCurrencyId: string;
+        targetCurrencyId: string;
+    };
+    url: '/api/v2/ForexService/Exchange/Latest';
+};
+
+export type ExchangeExchangeAmountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ExchangeExchangeAmountError = ExchangeExchangeAmountErrors[keyof ExchangeExchangeAmountErrors];
+
+export type ExchangeExchangeAmountResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type ExchangeAmountAsyncResponse = ExchangeAmountAsyncResponses[keyof ExchangeAmountAsyncResponses];
+export type ExchangeExchangeAmountResponse = ExchangeExchangeAmountResponses[keyof ExchangeExchangeAmountResponses];
 
-export type ExchangeAmountHistoricalAsyncData = {
+export type ExchangeExchangeAmountHistoricalData = {
     body?: never;
     path?: never;
     query: {
@@ -271,7 +484,7 @@ export type ExchangeAmountHistoricalAsyncData = {
     url: '/api/v2/ForexService/Exchange/History';
 };
 
-export type ExchangeAmountHistoricalAsyncErrors = {
+export type ExchangeExchangeAmountHistoricalErrors = {
     /**
      * Unauthorized
      */
@@ -282,18 +495,18 @@ export type ExchangeAmountHistoricalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ExchangeAmountHistoricalAsyncError = ExchangeAmountHistoricalAsyncErrors[keyof ExchangeAmountHistoricalAsyncErrors];
+export type ExchangeExchangeAmountHistoricalError = ExchangeExchangeAmountHistoricalErrors[keyof ExchangeExchangeAmountHistoricalErrors];
 
-export type ExchangeAmountHistoricalAsyncResponses = {
+export type ExchangeExchangeAmountHistoricalResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type ExchangeAmountHistoricalAsyncResponse = ExchangeAmountHistoricalAsyncResponses[keyof ExchangeAmountHistoricalAsyncResponses];
+export type ExchangeExchangeAmountHistoricalResponse = ExchangeExchangeAmountHistoricalResponses[keyof ExchangeExchangeAmountHistoricalResponses];
 
-export type ExchangeAmountV3AsyncData = {
+export type ExchangeVExchangeAmountV3Data = {
     body?: never;
     path?: never;
     query: {
@@ -304,7 +517,7 @@ export type ExchangeAmountV3AsyncData = {
     url: '/api/v3/ForexService/Exchange/Latest';
 };
 
-export type ExchangeAmountV3AsyncErrors = {
+export type ExchangeVExchangeAmountV3Errors = {
     /**
      * Unauthorized
      */
@@ -315,18 +528,18 @@ export type ExchangeAmountV3AsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ExchangeAmountV3AsyncError = ExchangeAmountV3AsyncErrors[keyof ExchangeAmountV3AsyncErrors];
+export type ExchangeVExchangeAmountV3Error = ExchangeVExchangeAmountV3Errors[keyof ExchangeVExchangeAmountV3Errors];
 
-export type ExchangeAmountV3AsyncResponses = {
+export type ExchangeVExchangeAmountV3Responses = {
     /**
      * OK
      */
     200: ExchangeRateEnvelopeReadable;
 };
 
-export type ExchangeAmountV3AsyncResponse = ExchangeAmountV3AsyncResponses[keyof ExchangeAmountV3AsyncResponses];
+export type ExchangeVExchangeAmountV3Response = ExchangeVExchangeAmountV3Responses[keyof ExchangeVExchangeAmountV3Responses];
 
-export type ExchangeAmountHistoricalV3AsyncData = {
+export type ExchangeVExchangeAmountHistoricalV3Data = {
     body?: never;
     path?: never;
     query: {
@@ -338,7 +551,7 @@ export type ExchangeAmountHistoricalV3AsyncData = {
     url: '/api/v3/ForexService/Exchange/History';
 };
 
-export type ExchangeAmountHistoricalV3AsyncErrors = {
+export type ExchangeVExchangeAmountHistoricalV3Errors = {
     /**
      * Unauthorized
      */
@@ -349,83 +562,83 @@ export type ExchangeAmountHistoricalV3AsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ExchangeAmountHistoricalV3AsyncError = ExchangeAmountHistoricalV3AsyncErrors[keyof ExchangeAmountHistoricalV3AsyncErrors];
+export type ExchangeVExchangeAmountHistoricalV3Error = ExchangeVExchangeAmountHistoricalV3Errors[keyof ExchangeVExchangeAmountHistoricalV3Errors];
 
-export type ExchangeAmountHistoricalV3AsyncResponses = {
+export type ExchangeVExchangeAmountHistoricalV3Responses = {
     /**
      * OK
      */
     200: ExchangeRateEnvelopeReadable;
 };
 
-export type ExchangeAmountHistoricalV3AsyncResponse = ExchangeAmountHistoricalV3AsyncResponses[keyof ExchangeAmountHistoricalV3AsyncResponses];
+export type ExchangeVExchangeAmountHistoricalV3Response = ExchangeVExchangeAmountHistoricalV3Responses[keyof ExchangeVExchangeAmountHistoricalV3Responses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -435,32 +648,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -471,81 +684,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -556,25 +769,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -585,25 +798,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -614,18 +827,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -635,14 +848,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -651,14 +864,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -667,28 +880,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLatestCurrencyRatesModelAsyncData = {
+export type RatesGetLatestCurrencyRatesModelData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -700,7 +913,7 @@ export type GetLatestCurrencyRatesModelAsyncData = {
     url: '/api/v2/ForexService/Rates/Latest';
 };
 
-export type GetLatestCurrencyRatesModelAsyncErrors = {
+export type RatesGetLatestCurrencyRatesModelErrors = {
     /**
      * Unauthorized
      */
@@ -711,18 +924,18 @@ export type GetLatestCurrencyRatesModelAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLatestCurrencyRatesModelAsyncError = GetLatestCurrencyRatesModelAsyncErrors[keyof GetLatestCurrencyRatesModelAsyncErrors];
+export type RatesGetLatestCurrencyRatesModelError = RatesGetLatestCurrencyRatesModelErrors[keyof RatesGetLatestCurrencyRatesModelErrors];
 
-export type GetLatestCurrencyRatesModelAsyncResponses = {
+export type RatesGetLatestCurrencyRatesModelResponses = {
     /**
      * OK
      */
     200: ForexRatesDtoEnvelopeReadable;
 };
 
-export type GetLatestCurrencyRatesModelAsyncResponse = GetLatestCurrencyRatesModelAsyncResponses[keyof GetLatestCurrencyRatesModelAsyncResponses];
+export type RatesGetLatestCurrencyRatesModelResponse = RatesGetLatestCurrencyRatesModelResponses[keyof RatesGetLatestCurrencyRatesModelResponses];
 
-export type GetLatestCurrencyRateAsyncData = {
+export type RatesGetLatestCurrencyRateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -736,7 +949,7 @@ export type GetLatestCurrencyRateAsyncData = {
     url: '/api/v2/ForexService/Rates/Latest/{currencyId}';
 };
 
-export type GetLatestCurrencyRateAsyncErrors = {
+export type RatesGetLatestCurrencyRateErrors = {
     /**
      * Unauthorized
      */
@@ -747,18 +960,18 @@ export type GetLatestCurrencyRateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLatestCurrencyRateAsyncError = GetLatestCurrencyRateAsyncErrors[keyof GetLatestCurrencyRateAsyncErrors];
+export type RatesGetLatestCurrencyRateError = RatesGetLatestCurrencyRateErrors[keyof RatesGetLatestCurrencyRateErrors];
 
-export type GetLatestCurrencyRateAsyncResponses = {
+export type RatesGetLatestCurrencyRateResponses = {
     /**
      * OK
      */
     200: ExchangeRateEnvelopeReadable;
 };
 
-export type GetLatestCurrencyRateAsyncResponse = GetLatestCurrencyRateAsyncResponses[keyof GetLatestCurrencyRateAsyncResponses];
+export type RatesGetLatestCurrencyRateResponse = RatesGetLatestCurrencyRateResponses[keyof RatesGetLatestCurrencyRateResponses];
 
-export type GetHistoricalCurrencyRatesAsyncData = {
+export type RatesGetHistoricalCurrencyRatesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -771,7 +984,7 @@ export type GetHistoricalCurrencyRatesAsyncData = {
     url: '/api/v2/ForexService/Rates/History';
 };
 
-export type GetHistoricalCurrencyRatesAsyncErrors = {
+export type RatesGetHistoricalCurrencyRatesErrors = {
     /**
      * Unauthorized
      */
@@ -782,18 +995,18 @@ export type GetHistoricalCurrencyRatesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetHistoricalCurrencyRatesAsyncError = GetHistoricalCurrencyRatesAsyncErrors[keyof GetHistoricalCurrencyRatesAsyncErrors];
+export type RatesGetHistoricalCurrencyRatesError = RatesGetHistoricalCurrencyRatesErrors[keyof RatesGetHistoricalCurrencyRatesErrors];
 
-export type GetHistoricalCurrencyRatesAsyncResponses = {
+export type RatesGetHistoricalCurrencyRatesResponses = {
     /**
      * OK
      */
     200: ForexRatesDtoEnvelopeReadable;
 };
 
-export type GetHistoricalCurrencyRatesAsyncResponse = GetHistoricalCurrencyRatesAsyncResponses[keyof GetHistoricalCurrencyRatesAsyncResponses];
+export type RatesGetHistoricalCurrencyRatesResponse = RatesGetHistoricalCurrencyRatesResponses[keyof RatesGetHistoricalCurrencyRatesResponses];
 
-export type GetHistoricalCurrencyRateAsyncData = {
+export type RatesGetHistoricalCurrencyRateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -808,7 +1021,7 @@ export type GetHistoricalCurrencyRateAsyncData = {
     url: '/api/v2/ForexService/Rates/History/{currencyId}';
 };
 
-export type GetHistoricalCurrencyRateAsyncErrors = {
+export type RatesGetHistoricalCurrencyRateErrors = {
     /**
      * Unauthorized
      */
@@ -819,16 +1032,84 @@ export type GetHistoricalCurrencyRateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetHistoricalCurrencyRateAsyncError = GetHistoricalCurrencyRateAsyncErrors[keyof GetHistoricalCurrencyRateAsyncErrors];
+export type RatesGetHistoricalCurrencyRateError = RatesGetHistoricalCurrencyRateErrors[keyof RatesGetHistoricalCurrencyRateErrors];
 
-export type GetHistoricalCurrencyRateAsyncResponses = {
+export type RatesGetHistoricalCurrencyRateResponses = {
     /**
      * OK
      */
     200: ExchangeRateEnvelopeReadable;
 };
 
-export type GetHistoricalCurrencyRateAsyncResponse = GetHistoricalCurrencyRateAsyncResponses[keyof GetHistoricalCurrencyRateAsyncResponses];
+export type RatesGetHistoricalCurrencyRateResponse = RatesGetHistoricalCurrencyRateResponses[keyof RatesGetHistoricalCurrencyRateResponses];
+
+export type RatesGetForexRateSeriesData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        currencyId: string;
+    };
+    query?: {
+        from?: string;
+        to?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ForexService/Rates/History/{currencyId}/Series';
+};
+
+export type RatesGetForexRateSeriesErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type RatesGetForexRateSeriesError = RatesGetForexRateSeriesErrors[keyof RatesGetForexRateSeriesErrors];
+
+export type RatesGetForexRateSeriesResponses = {
+    /**
+     * OK
+     */
+    200: ForexRateSeriesEnvelopeReadable;
+};
+
+export type RatesGetForexRateSeriesResponse = RatesGetForexRateSeriesResponses[keyof RatesGetForexRateSeriesResponses];
+
+export type SetsRepairForeignExchangeSetsData = {
+    body?: RepairForeignExchangeSetsCommand;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/ForexService/Sets/Repair';
+};
+
+export type SetsRepairForeignExchangeSetsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type SetsRepairForeignExchangeSetsError = SetsRepairForeignExchangeSetsErrors[keyof SetsRepairForeignExchangeSetsErrors];
+
+export type SetsRepairForeignExchangeSetsResponses = {
+    /**
+     * OK
+     */
+    200: ForexSetRepairReportEnvelopeReadable;
+};
+
+export type SetsRepairForeignExchangeSetsResponse = SetsRepairForeignExchangeSetsResponses[keyof SetsRepairForeignExchangeSetsResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

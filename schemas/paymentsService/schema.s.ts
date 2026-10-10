@@ -6,409 +6,182 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/PaymentsService/PaymentMethods": {
     /**
      * Retrieves all payment methods
      * @description Gets all payment methods for the current tenant with OData support.
      */
-    get: operations["GetPaymentMethodsAsync"];
+    get: operations["PaymentMethods_GetPaymentMethods"];
     /**
      * Creates a new payment method
      * @description Creates a new payment method for the current tenant.
      */
-    post: operations["CreatePaymentMethodAsync"];
+    post: operations["PaymentMethods_CreatePaymentMethod"];
   };
   "/api/v2/PaymentsService/PaymentMethods/Count": {
     /**
      * Counts payment methods
      * @description Gets the count of payment methods for the current tenant.
      */
-    get: operations["GetPaymentMethodsCountAsync"];
+    get: operations["PaymentMethods_GetPaymentMethodsCount"];
   };
   "/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}": {
     /**
      * Gets a payment method by ID
      * @description Retrieves the details of a payment method using its unique ID.
      */
-    get: operations["GetPaymentMethodDetailsAsync"];
+    get: operations["PaymentMethods_GetPaymentMethodDetails"];
     /**
      * Updates a payment method
      * @description Updates the specified payment method.
      */
-    put: operations["UpdatePaymentMethodAsync"];
+    put: operations["PaymentMethods_UpdatePaymentMethod"];
     /**
      * Deletes a payment method
      * @description Deletes the specified payment method.
      */
-    delete: operations["DeletePaymentMethodAsync"];
+    delete: operations["PaymentMethods_DeletePaymentMethod"];
     /**
      * Patch a payment method
      * @description Patch a payment method
      */
-    patch: operations["PatchPaymentMethodAsync"];
+    patch: operations["PaymentMethods_PatchPaymentMethod"];
   };
   "/api/v2/PaymentsService/PaymentModes": {
     /**
      * Retrieves all payment modes
      * @description Gets all payment modes for the current tenant with OData support.
      */
-    get: operations["GetPaymentModesAsync"];
+    get: operations["PaymentModes_GetPaymentModes"];
     /**
      * Creates a new payment mode
      * @description Creates a new payment mode for the current tenant.
      */
-    post: operations["CreatePaymentModeAsync"];
+    post: operations["PaymentModes_CreatePaymentMode"];
   };
   "/api/v2/PaymentsService/PaymentModes/Count": {
     /**
      * Counts payment modes
      * @description Gets the count of payment modes for the current tenant.
      */
-    get: operations["GetPaymentModesCountAsync"];
+    get: operations["PaymentModes_GetPaymentModesCount"];
   };
   "/api/v2/PaymentsService/PaymentModes/{paymentModeId}": {
     /**
      * Gets a payment mode by ID
      * @description Retrieves the details of a payment mode using its unique ID.
      */
-    get: operations["GetPaymentModeDetailsAsync"];
+    get: operations["PaymentModes_GetPaymentModeDetails"];
     /**
      * Updates a payment mode
      * @description Updates the specified payment mode.
      */
-    put: operations["UpdatePaymentModeAsync"];
+    put: operations["PaymentModes_UpdatePaymentMode"];
     /**
      * Deletes a payment mode
      * @description Deletes the specified payment mode.
      */
-    delete: operations["DeletePaymentModeAsync"];
+    delete: operations["PaymentModes_DeletePaymentMode"];
     /**
      * Patch a payment mode
      * @description Patch a payment mode
      */
-    patch: operations["PatchPaymentModeAsync"];
+    patch: operations["PaymentModes_PatchPaymentMode"];
   };
   "/api/v2/PaymentsService/PaymentProviderRegistrations": {
     /**
      * Lists the tenant's provider registrations
      * @description Gets all provider registrations for the current tenant with OData support (no secret is ever returned).
      */
-    get: operations["GetAsync"];
+    get: operations["PaymentProviderRegistrations_Get"];
     /**
      * Provisions a provider webhook registration
-     * @description Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL.
+     * @description Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL. It does NOT carry a credential mode or credential-set reference: provisioning establishes the RAIL, and the authority the rail transacts under is server-owned here (the secret goes to the tenant's own options store, which the created registration references by a server-held key). Selecting or re-homing that authority afterwards is POST {registrationId}/Credential. Sending a credentialMode field here has no effect.
      */
-    post: operations["CreateAsync"];
+    post: operations["PaymentProviderRegistrations_Create"];
   };
   "/api/v2/PaymentsService/PaymentProviderRegistrations/Count": {
     /**
      * Counts the tenant's provider registrations
      * @description Gets the count of provider registrations for the current tenant (OData sibling of the list).
      */
-    get: operations["GetCountAsync"];
+    get: operations["PaymentProviderRegistrations_GetCount"];
   };
   "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/RotateKey": {
     /**
      * Rotates a registration's webhook key
      * @description Mints a fresh webhook key (invalidating the previous one) and reveals it once, plus its composed URL.
      */
-    post: operations["RotateKeyAsync"];
+    post: operations["PaymentProviderRegistrations_RotateKey"];
+  };
+  "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}": {
+    /**
+     * Updates an owned provider registration
+     * @description Updates the CONTENT half of a tenant-owned registration: enabled capabilities and the provider-side account id. It does NOT carry the declared payment environment, and it does NOT carry the credential mode or credential-set reference. Both of those are AUTHORITY rather than content — the world decides whether a rail may move real money, the credential decides which authority it transacts under — so each moves through its own narrow control-plane sub-resource: POST {registrationId}/Environment and POST {registrationId}/Credential. Sending an environment or credential field here has no effect. Never accepts a secret; the registration only ever references its credential.
+     */
+    put: operations["PaymentProviderRegistrations_Update"];
+  };
+  "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/Environment": {
+    /**
+     * Declares the world a provider registration transacts in
+     * @description Declares this registration's payment environment (Test or Live) — the coordinate that decides whether the rail may ever move real money. A NARROW declaration, not a replace: the body is the single 'environment' field and the registration is addressed by the route, so nothing else can be overwritten or blanked on the way past. Unknown is refused by name (it means authority has not been established, never a way to switch a rail off — use Disable for that), '*' to Unknown is refused, and a Live declaration is refused unless the resolved connector is certified for Live. The change is recorded as durable audit evidence attributed to the AUTHENTICATED caller; no actor field is read from the request.
+     */
+    post: operations["PaymentProviderRegistrations_DeclareEnvironment"];
+  };
+  "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/Credential": {
+    /**
+     * Sets the credential authority a provider registration transacts under
+     * @description Sets this registration's credential mode and, optionally, its credential-set REFERENCE — the coordinate that decides which authority the rail transacts under. A NARROW declaration, not a replace: the registration is addressed by the route and the body carries only the credential fields, so nothing else can be overwritten or blanked on the way past, and an omitted reference leaves the existing coordinate exactly where it was. The tenant surface may configure tenant-managed (BYO) credentials only. This is the ONLY path to the coordinate: it was removed from the generic update because that update is projected to the Workflow and AI surfaces, and those may use an already-authorized route but may never select, blank, replace or re-home its credential authority. Never accepts a secret — only a non-secret reference.
+     */
+    post: operations["PaymentProviderRegistrations_SetCredential"];
   };
   "/api/v2/PaymentsService/Payments/{paymentId}/Details": {
     /**
@@ -416,82 +189,121 @@ export interface paths {
      * @deprecated
      * @description Retrieves a payment using the deprecated /Details route. Use GET {paymentId} instead.
      */
-    get: operations["GetPaymentAsync"];
+    get: operations["Payments_GetPayment"];
   };
   "/api/v2/PaymentsService/Payments/{paymentId}": {
     /**
      * Gets a payment by ID
      * @description Retrieves the details of a payment using its unique identifier.
      */
-    get: operations["GetPaymentAsyncV2"];
+    get: operations["Payments_GetPaymentAsyncV2"];
     /**
      * Updates a payment
      * @description Updates the specified payment.
      */
-    put: operations["UpdatePaymentAsync"];
+    put: operations["Payments_UpdatePayment"];
     /**
      * Deletes a payment
      * @description Deletes the specified payment.
      */
-    delete: operations["DeletePaymentAsync"];
+    delete: operations["Payments_DeletePayment"];
     /**
      * Patch a payment
      * @description Patch a payment
      */
-    patch: operations["PatchPaymentAsync"];
+    patch: operations["Payments_PatchPayment"];
   };
   "/api/v2/PaymentsService/Payments": {
     /**
      * Retrieves all payments
      * @description Gets all payments for the current tenant with OData support.
      */
-    get: operations["GetPaymentsAsync"];
+    get: operations["Payments_GetPayments"];
     /**
      * Creates a new payment
      * @description Creates a new payment for the current tenant.
      */
-    post: operations["CreatePaymentAsync"];
+    post: operations["Payments_CreatePayment"];
   };
   "/api/v2/PaymentsService/PaymentTerms": {
     /**
      * Retrieves all payment terms
      * @description Gets all payment terms for the current tenant with OData support.
      */
-    get: operations["GetPaymentTermsAsync"];
+    get: operations["PaymentTerms_GetPaymentTerms"];
     /**
      * Creates a new payment term
      * @description Creates a new payment term for the current tenant.
      */
-    post: operations["CreatePaymentTermAsync"];
+    post: operations["PaymentTerms_CreatePaymentTerm"];
   };
   "/api/v2/PaymentsService/PaymentTerms/Count": {
     /**
      * Counts payment terms
      * @description Gets the count of payment terms for the current tenant.
      */
-    get: operations["GetPaymentTermsCountAsync"];
+    get: operations["PaymentTerms_GetPaymentTermsCount"];
   };
   "/api/v2/PaymentsService/PaymentTerms/{paymentTermId}": {
     /**
      * Gets a payment term by ID
      * @description Retrieves the details of a payment term using its unique ID.
      */
-    get: operations["GetPaymentTermDetailsAsync"];
+    get: operations["PaymentTerms_GetPaymentTermDetails"];
     /**
      * Updates a payment term
      * @description Updates the specified payment term.
      */
-    put: operations["UpdatePaymentTermAsync"];
+    put: operations["PaymentTerms_UpdatePaymentTerm"];
     /**
      * Deletes a payment term
      * @description Deletes the specified payment term.
      */
-    delete: operations["DeletePaymentTermAsync"];
+    delete: operations["PaymentTerms_DeletePaymentTerm"];
     /**
      * Patch a payment term
      * @description Patch a payment term
      */
-    patch: operations["PatchPaymentTermAsync"];
+    patch: operations["PaymentTerms_PatchPaymentTerm"];
+  };
+  "/api/v2/PaymentsService/ProviderOperations/AwaitingOutcome": {
+    /**
+     * Lists provider instructions whose outcome is not established
+     * @description The tenant's outcome review queue: every provider instruction for which no provider-authenticated evidence settles whether money moved. It is deliberately inclusive. An instruction still sitting at Prepared is NOT proof that nothing egressed, and one ABS locally stopped pursuing (Discontinued) is not an outcome either: both are still Unknown, both still hold the economic occurrence, and both appear here. Each row carries whether the rail can be asked what became of it, and the plain sentence explaining what happens if nobody acts. Where the answer is that the rail cannot be asked, no automatic process will resolve the row: an operator must establish the outcome against the provider's own record. OData filter / search / order / paging apply to the persisted columns; the two reconciliation fields are derived from connector code after the read and are not filterable.
+     */
+    get: operations["ProviderOperations_GetAwaitingOutcome"];
+  };
+  "/api/v2/PaymentsService/ProviderOperations/AwaitingOutcome/Count": {
+    /**
+     * Counts provider instructions whose outcome is not established
+     * @description The OData sibling of the outcome review queue, so an operator surface can show how much is open without paging the list. Honours the same filter and search; paging never alters a total.
+     */
+    get: operations["ProviderOperations_GetAwaitingOutcomeCount"];
+  };
+  "/api/v2/PaymentsService/ProviderOperations/{providerOperationId}/ReconcileOutcome": {
+    /**
+     * Asks the rail what became of one instruction
+     * @description Establishes what actually happened to ONE provider instruction, and records the answer as durable provider-authenticated evidence. Gated on payments_manage; the operation is re-checked against the acting tenant before any rail is contacted, and a missing instruction and another tenant's instruction answer identically so the route cannot be used to learn which ids exist elsewhere.
+     *
+     * It is a POST because establishing the fact APPENDS evidence and may release the economic-occurrence claim; it changes no business intent and sends no new money instruction.
+     *
+     * Read the Availability field, not just the Certainty. Unknown + Available means the rail was asked and has not settled it, so asking again is worth something. Unknown + Unavailable means this rail cannot automatically establish the outcome at all: no scheduled process will resolve it, the occurrence stays claimed, and a person must reconcile it against the provider's own record. Today only Stripe collections are mechanically reconcilable; MercadoPago, ePayco and PayU are not, and no rail certifies reconciliation for a cancellation, which is exactly where ambiguous outcomes live.
+     */
+    post: operations["ProviderOperations_ReconcileOutcome"];
+  };
+  "/api/v2/PaymentsService/PublicPaymentLinks": {
+    /**
+     * Issues a public payment link for one of the tenant's obligations
+     * @description Mints an anonymous access grant (PublicPaymentLink) for one of the acting tenant's own obligations and reveals the one-time plaintext bearer token plus its ready-to-share relative url (/Payments/{token}). The token is stored only as a hash at rest and is surfaced exactly once; the issuing tenant is taken from the authenticated principal and the obligation must belong to it. Requires Payments.Manage.
+     */
+    post: operations["PublicPaymentLinks_Issue"];
+  };
+  "/api/v2/PaymentsService/PublicPaymentReferences": {
+    /**
+     * Issues the public payment reference for one of the tenant's obligations
+     * @description Mints (or returns) the opaque, high-entropy, server-minted public payment reference for one of the acting tenant's own obligations, in both its canonical and its printable grouped form. The value is safe to print on a PDF, an email or paper: it is separate from the obligation's internal id and from the document number, is unique by a database constraint, and is revocable/rotatable. Issuance is idempotent so a reprint keeps the same reference. The issuing tenant is taken from the authenticated principal and the obligation must belong to it. Requires Payments.Manage.
+     */
+    post: operations["PublicPaymentReferences_Issue"];
   };
 }
 
@@ -510,8 +322,12 @@ export interface components {
       providerCode?: string | null;
       externalAccountId?: string | null;
       webhookSigningSecret?: string | null;
-      /** @enum {string} */
-      credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference";
+      /** @enum {string|null} */
+      environment?: "Unknown" | "Test" | "Live" | null;
+    };
+    DeclarePaymentProviderEnvironmentRequest: {
+      /** @enum {string|null} */
+      environment?: "Unknown" | "Test" | "Live" | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -580,6 +396,46 @@ export interface components {
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
+    };
+    IssuePaymentLinkCreateDto: {
+      /** @enum {string} */
+      obligationType?: "Invoice";
+      /** Format: uuid */
+      obligationId?: string;
+      /** Format: date-time */
+      expiresAt?: string | null;
+    };
+    IssuePublicPaymentReferenceCreateDto: {
+      /** @enum {string} */
+      obligationType?: "Invoice";
+      /** Format: uuid */
+      obligationId?: string;
+    };
+    IssuedPaymentLinkDto: {
+      id?: string | null;
+      /** @enum {string} */
+      obligationType?: "Invoice";
+      obligationId?: string | null;
+      tenantId?: string | null;
+      token?: string | null;
+      relativeUrl?: string | null;
+      /** Format: date-time */
+      expiresAt?: string | null;
+    };
+    IssuedPaymentLinkDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["IssuedPaymentLinkDto"];
     };
     LoginRequest: {
       email: string | null;
@@ -911,6 +767,8 @@ export interface components {
       hasCredential?: boolean;
       /** @enum {string} */
       credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference";
+      /** @enum {string} */
+      environment?: "Unknown" | "Test" | "Live";
       externalAccountId?: string | null;
       /** @enum {string} */
       enabledCapabilities?: "None" | "Collection" | "Authorization" | "Capture" | "Refund" | "Void" | "SplitPayment" | "Transfer" | "Payout" | "RecipientOnboarding" | "BalanceInquiry";
@@ -944,6 +802,11 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentProviderRegistrationDto"][] | null;
+    };
+    PaymentProviderRegistrationUpdateDto: {
+      /** @enum {string} */
+      enabledCapabilities?: "None" | "Collection" | "Authorization" | "Capture" | "Refund" | "Void" | "SplitPayment" | "Transfer" | "Payout" | "RecipientOnboarding" | "BalanceInquiry";
+      externalAccountId?: string | null;
     };
     PaymentTermCreateDto: {
       /** Format: uuid */
@@ -1113,6 +976,89 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
     };
+    ProviderOperationOutcomeReconciliation: {
+      providerOperationId?: string | null;
+      /** @enum {string|null} */
+      operationKind?: "Collection" | "Refund" | "Payout" | "FxQuote" | "Tokenization" | "VirtualAccountIssuance" | "Void" | null;
+      providerCode?: string | null;
+      /** @enum {string} */
+      certainty?: "Unknown" | "KnownNoEffect" | "KnownSucceeded" | "KnownFailed";
+      /** @enum {string} */
+      availability?: "Unknown" | "Unavailable" | "Available" | "AlreadyEstablished";
+      disposition?: string | null;
+      requiresReconciliation?: boolean;
+      requiresOperatorResolution?: boolean;
+    };
+    ProviderOperationOutcomeReconciliationEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ProviderOperationOutcomeReconciliation"];
+    };
+    ProviderOperationOutcomeReviewDto: {
+      id?: string | null;
+      tenantId?: string | null;
+      paymentAttemptId?: string | null;
+      providerCode?: string | null;
+      /** @enum {string} */
+      operationKind?: "Collection" | "Refund" | "Payout" | "FxQuote" | "Tokenization" | "VirtualAccountIssuance" | "Void";
+      /** @enum {string} */
+      environment?: "Unknown" | "Test" | "Live";
+      /** @enum {string} */
+      state?: "Prepared" | "Dispatched" | "Observed" | "Settled" | "Failed" | "Discontinued";
+      /** @enum {string|null} */
+      canonicalStatus?: "Pending" | "RequiresAction" | "Authorized" | "Succeeded" | "Failed" | "Cancelled" | null;
+      /** Format: double */
+      requestedAmount?: number;
+      requestedCurrencyId?: string | null;
+      providerResourceId?: string | null;
+      subjectType?: string | null;
+      subjectId?: string | null;
+      /** Format: date-time */
+      createdAtUtc?: string;
+      /** Format: date-time */
+      lastModifiedUtc?: string | null;
+      /** @enum {string} */
+      outcomeReconciliation?: "Unknown" | "Unavailable" | "Available" | "AlreadyEstablished";
+      reconciliationDisposition?: string | null;
+    };
+    ProviderOperationOutcomeReviewDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    ProviderOperationOutcomeReviewDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ProviderOperationOutcomeReviewDto"][] | null;
+    };
     ProviderWebhookRegistrationCreatedDto: {
       id?: string | null;
       providerCode?: string | null;
@@ -1136,6 +1082,34 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ProviderWebhookRegistrationCreatedDto"];
     };
+    PublicPaymentReferenceDto: {
+      id?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      obligationType?: "Invoice";
+      obligationId?: string | null;
+      reference?: string | null;
+      displayReference?: string | null;
+      /** @enum {string} */
+      state?: "Unminted" | "Active" | "Revoked" | "Rotated";
+      /** Format: date-time */
+      mintedAt?: string | null;
+    };
+    PublicPaymentReferenceDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PublicPaymentReferenceDto"];
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1150,6 +1124,10 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    SetPaymentProviderRegistrationCredentialRequest: {
+      /** @enum {string|null} */
+      credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference" | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -1180,7 +1158,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1195,11 +1252,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Retrieves all payment methods
    * @description Gets all payment methods for the current tenant with OData support.
    */
-  GetPaymentMethodsAsync: {
+  PaymentMethods_GetPaymentMethods: {
     parameters: {
       query: {
         tenantId: string;
@@ -1243,7 +1485,7 @@ export interface operations {
    * Creates a new payment method
    * @description Creates a new payment method for the current tenant.
    */
-  CreatePaymentMethodAsync: {
+  PaymentMethods_CreatePaymentMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1287,7 +1529,7 @@ export interface operations {
    * Counts payment methods
    * @description Gets the count of payment methods for the current tenant.
    */
-  GetPaymentMethodsCountAsync: {
+  PaymentMethods_GetPaymentMethodsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1331,7 +1573,7 @@ export interface operations {
    * Gets a payment method by ID
    * @description Retrieves the details of a payment method using its unique ID.
    */
-  GetPaymentMethodDetailsAsync: {
+  PaymentMethods_GetPaymentMethodDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -1372,7 +1614,7 @@ export interface operations {
    * Updates a payment method
    * @description Updates the specified payment method.
    */
-  UpdatePaymentMethodAsync: {
+  PaymentMethods_UpdatePaymentMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1419,7 +1661,7 @@ export interface operations {
    * Deletes a payment method
    * @description Deletes the specified payment method.
    */
-  DeletePaymentMethodAsync: {
+  PaymentMethods_DeletePaymentMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1460,7 +1702,7 @@ export interface operations {
    * Patch a payment method
    * @description Patch a payment method
    */
-  PatchPaymentMethodAsync: {
+  PaymentMethods_PatchPaymentMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -1507,7 +1749,7 @@ export interface operations {
    * Retrieves all payment modes
    * @description Gets all payment modes for the current tenant with OData support.
    */
-  GetPaymentModesAsync: {
+  PaymentModes_GetPaymentModes: {
     parameters: {
       query: {
         tenantId: string;
@@ -1551,7 +1793,7 @@ export interface operations {
    * Creates a new payment mode
    * @description Creates a new payment mode for the current tenant.
    */
-  CreatePaymentModeAsync: {
+  PaymentModes_CreatePaymentMode: {
     parameters: {
       query: {
         tenantId: string;
@@ -1595,7 +1837,7 @@ export interface operations {
    * Counts payment modes
    * @description Gets the count of payment modes for the current tenant.
    */
-  GetPaymentModesCountAsync: {
+  PaymentModes_GetPaymentModesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1639,7 +1881,7 @@ export interface operations {
    * Gets a payment mode by ID
    * @description Retrieves the details of a payment mode using its unique ID.
    */
-  GetPaymentModeDetailsAsync: {
+  PaymentModes_GetPaymentModeDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -1680,7 +1922,7 @@ export interface operations {
    * Updates a payment mode
    * @description Updates the specified payment mode.
    */
-  UpdatePaymentModeAsync: {
+  PaymentModes_UpdatePaymentMode: {
     parameters: {
       query: {
         tenantId: string;
@@ -1727,7 +1969,7 @@ export interface operations {
    * Deletes a payment mode
    * @description Deletes the specified payment mode.
    */
-  DeletePaymentModeAsync: {
+  PaymentModes_DeletePaymentMode: {
     parameters: {
       query: {
         tenantId: string;
@@ -1768,7 +2010,7 @@ export interface operations {
    * Patch a payment mode
    * @description Patch a payment mode
    */
-  PatchPaymentModeAsync: {
+  PaymentModes_PatchPaymentMode: {
     parameters: {
       query: {
         tenantId: string;
@@ -1815,7 +2057,7 @@ export interface operations {
    * Lists the tenant's provider registrations
    * @description Gets all provider registrations for the current tenant with OData support (no secret is ever returned).
    */
-  GetAsync: {
+  PaymentProviderRegistrations_Get: {
     parameters: {
       query: {
         tenantId: string;
@@ -1853,9 +2095,9 @@ export interface operations {
   };
   /**
    * Provisions a provider webhook registration
-   * @description Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL.
+   * @description Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL. It does NOT carry a credential mode or credential-set reference: provisioning establishes the RAIL, and the authority the rail transacts under is server-owned here (the secret goes to the tenant's own options store, which the created registration references by a server-held key). Selecting or re-homing that authority afterwards is POST {registrationId}/Credential. Sending a credentialMode field here has no effect.
    */
-  CreateAsync: {
+  PaymentProviderRegistrations_Create: {
     parameters: {
       query: {
         tenantId: string;
@@ -1902,7 +2144,7 @@ export interface operations {
    * Counts the tenant's provider registrations
    * @description Gets the count of provider registrations for the current tenant (OData sibling of the list).
    */
-  GetCountAsync: {
+  PaymentProviderRegistrations_GetCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1942,7 +2184,7 @@ export interface operations {
    * Rotates a registration's webhook key
    * @description Mints a fresh webhook key (invalidating the previous one) and reveals it once, plus its composed URL.
    */
-  RotateKeyAsync: {
+  PaymentProviderRegistrations_RotateKey: {
     parameters: {
       query: {
         tenantId: string;
@@ -1983,11 +2225,168 @@ export interface operations {
     };
   };
   /**
+   * Updates an owned provider registration
+   * @description Updates the CONTENT half of a tenant-owned registration: enabled capabilities and the provider-side account id. It does NOT carry the declared payment environment, and it does NOT carry the credential mode or credential-set reference. Both of those are AUTHORITY rather than content — the world decides whether a rail may move real money, the credential decides which authority it transacts under — so each moves through its own narrow control-plane sub-resource: POST {registrationId}/Environment and POST {registrationId}/Credential. Sending an environment or credential field here has no effect. Never accepts a secret; the registration only ever references its credential.
+   */
+  PaymentProviderRegistrations_Update: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        registrationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentProviderRegistrationUpdateDto"];
+        "application/xml": components["schemas"]["PaymentProviderRegistrationUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Declares the world a provider registration transacts in
+   * @description Declares this registration's payment environment (Test or Live) — the coordinate that decides whether the rail may ever move real money. A NARROW declaration, not a replace: the body is the single 'environment' field and the registration is addressed by the route, so nothing else can be overwritten or blanked on the way past. Unknown is refused by name (it means authority has not been established, never a way to switch a rail off — use Disable for that), '*' to Unknown is refused, and a Live declaration is refused unless the resolved connector is certified for Live. The change is recorded as durable audit evidence attributed to the AUTHENTICATED caller; no actor field is read from the request.
+   */
+  PaymentProviderRegistrations_DeclareEnvironment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        registrationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DeclarePaymentProviderEnvironmentRequest"];
+        "application/xml": components["schemas"]["DeclarePaymentProviderEnvironmentRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sets the credential authority a provider registration transacts under
+   * @description Sets this registration's credential mode and, optionally, its credential-set REFERENCE — the coordinate that decides which authority the rail transacts under. A NARROW declaration, not a replace: the registration is addressed by the route and the body carries only the credential fields, so nothing else can be overwritten or blanked on the way past, and an omitted reference leaves the existing coordinate exactly where it was. The tenant surface may configure tenant-managed (BYO) credentials only. This is the ONLY path to the coordinate: it was removed from the generic update because that update is projected to the Workflow and AI surfaces, and those may use an already-authorized route but may never select, blank, replace or re-home its credential authority. Never accepts a secret — only a non-secret reference.
+   */
+  PaymentProviderRegistrations_SetCredential: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        registrationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SetPaymentProviderRegistrationCredentialRequest"];
+        "application/xml": components["schemas"]["SetPaymentProviderRegistrationCredentialRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets a payment by ID (deprecated)
    * @deprecated
    * @description Retrieves a payment using the deprecated /Details route. Use GET {paymentId} instead.
    */
-  GetPaymentAsync: {
+  Payments_GetPayment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2024,7 +2423,7 @@ export interface operations {
    * Gets a payment by ID
    * @description Retrieves the details of a payment using its unique identifier.
    */
-  GetPaymentAsyncV2: {
+  Payments_GetPaymentAsyncV2: {
     parameters: {
       query: {
         tenantId: string;
@@ -2061,7 +2460,7 @@ export interface operations {
    * Updates a payment
    * @description Updates the specified payment.
    */
-  UpdatePaymentAsync: {
+  Payments_UpdatePayment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2111,7 +2510,7 @@ export interface operations {
    * Deletes a payment
    * @description Deletes the specified payment.
    */
-  DeletePaymentAsync: {
+  Payments_DeletePayment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2155,7 +2554,7 @@ export interface operations {
    * Patch a payment
    * @description Patch a payment
    */
-  PatchPaymentAsync: {
+  Payments_PatchPayment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2198,7 +2597,7 @@ export interface operations {
    * Retrieves all payments
    * @description Gets all payments for the current tenant with OData support.
    */
-  GetPaymentsAsync: {
+  Payments_GetPayments: {
     parameters: {
       query: {
         tenantId: string;
@@ -2245,7 +2644,7 @@ export interface operations {
    * Creates a new payment
    * @description Creates a new payment for the current tenant.
    */
-  CreatePaymentAsync: {
+  Payments_CreatePayment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2292,7 +2691,7 @@ export interface operations {
    * Retrieves all payment terms
    * @description Gets all payment terms for the current tenant with OData support.
    */
-  GetPaymentTermsAsync: {
+  PaymentTerms_GetPaymentTerms: {
     parameters: {
       query: {
         tenantId: string;
@@ -2336,7 +2735,7 @@ export interface operations {
    * Creates a new payment term
    * @description Creates a new payment term for the current tenant.
    */
-  CreatePaymentTermAsync: {
+  PaymentTerms_CreatePaymentTerm: {
     parameters: {
       query: {
         tenantId: string;
@@ -2380,7 +2779,7 @@ export interface operations {
    * Counts payment terms
    * @description Gets the count of payment terms for the current tenant.
    */
-  GetPaymentTermsCountAsync: {
+  PaymentTerms_GetPaymentTermsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2424,7 +2823,7 @@ export interface operations {
    * Gets a payment term by ID
    * @description Retrieves the details of a payment term using its unique ID.
    */
-  GetPaymentTermDetailsAsync: {
+  PaymentTerms_GetPaymentTermDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -2465,7 +2864,7 @@ export interface operations {
    * Updates a payment term
    * @description Updates the specified payment term.
    */
-  UpdatePaymentTermAsync: {
+  PaymentTerms_UpdatePaymentTerm: {
     parameters: {
       query: {
         tenantId: string;
@@ -2512,7 +2911,7 @@ export interface operations {
    * Deletes a payment term
    * @description Deletes the specified payment term.
    */
-  DeletePaymentTermAsync: {
+  PaymentTerms_DeletePaymentTerm: {
     parameters: {
       query: {
         tenantId: string;
@@ -2553,7 +2952,7 @@ export interface operations {
    * Patch a payment term
    * @description Patch a payment term
    */
-  PatchPaymentTermAsync: {
+  PaymentTerms_PatchPaymentTerm: {
     parameters: {
       query: {
         tenantId: string;
@@ -2589,6 +2988,242 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Lists provider instructions whose outcome is not established
+   * @description The tenant's outcome review queue: every provider instruction for which no provider-authenticated evidence settles whether money moved. It is deliberately inclusive. An instruction still sitting at Prepared is NOT proof that nothing egressed, and one ABS locally stopped pursuing (Discontinued) is not an outcome either: both are still Unknown, both still hold the economic occurrence, and both appear here. Each row carries whether the rail can be asked what became of it, and the plain sentence explaining what happens if nobody acts. Where the answer is that the rail cannot be asked, no automatic process will resolve the row: an operator must establish the outcome against the provider's own record. OData filter / search / order / paging apply to the persisted columns; the two reconciliation fields are derived from connector code after the read and are not filterable.
+   */
+  ProviderOperations_GetAwaitingOutcome: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProviderOperationOutcomeReviewDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProviderOperationOutcomeReviewDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProviderOperationOutcomeReviewDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProviderOperationOutcomeReviewDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts provider instructions whose outcome is not established
+   * @description The OData sibling of the outcome review queue, so an operator surface can show how much is open without paging the list. Honours the same filter and search; paging never alters a total.
+   */
+  ProviderOperations_GetAwaitingOutcomeCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProviderOperationOutcomeReviewDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProviderOperationOutcomeReviewDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Asks the rail what became of one instruction
+   * @description Establishes what actually happened to ONE provider instruction, and records the answer as durable provider-authenticated evidence. Gated on payments_manage; the operation is re-checked against the acting tenant before any rail is contacted, and a missing instruction and another tenant's instruction answer identically so the route cannot be used to learn which ids exist elsewhere.
+   *
+   * It is a POST because establishing the fact APPENDS evidence and may release the economic-occurrence claim; it changes no business intent and sends no new money instruction.
+   *
+   * Read the Availability field, not just the Certainty. Unknown + Available means the rail was asked and has not settled it, so asking again is worth something. Unknown + Unavailable means this rail cannot automatically establish the outcome at all: no scheduled process will resolve it, the occurrence stays claimed, and a person must reconcile it against the provider's own record. Today only Stripe collections are mechanically reconcilable; MercadoPago, ePayco and PayU are not, and no rail certifies reconciliation for a cancellation, which is exactly where ambiguous outcomes live.
+   */
+  ProviderOperations_ReconcileOutcome: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        providerOperationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProviderOperationOutcomeReconciliationEnvelope"];
+          "application/xml": components["schemas"]["ProviderOperationOutcomeReconciliationEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issues a public payment link for one of the tenant's obligations
+   * @description Mints an anonymous access grant (PublicPaymentLink) for one of the acting tenant's own obligations and reveals the one-time plaintext bearer token plus its ready-to-share relative url (/Payments/{token}). The token is stored only as a hash at rest and is surfaced exactly once; the issuing tenant is taken from the authenticated principal and the obligation must belong to it. Requires Payments.Manage.
+   */
+  PublicPaymentLinks_Issue: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["IssuePaymentLinkCreateDto"];
+        "application/xml": components["schemas"]["IssuePaymentLinkCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["IssuedPaymentLinkDtoEnvelope"];
+          "application/xml": components["schemas"]["IssuedPaymentLinkDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issues the public payment reference for one of the tenant's obligations
+   * @description Mints (or returns) the opaque, high-entropy, server-minted public payment reference for one of the acting tenant's own obligations, in both its canonical and its printable grouped form. The value is safe to print on a PDF, an email or paper: it is separate from the obligation's internal id and from the document number, is unique by a database constraint, and is revocable/rotatable. Issuance is idempotent so a reprint keeps the same reference. The issuing tenant is taken from the authenticated principal and the obligation must belong to it. Requires Payments.Manage.
+   */
+  PublicPaymentReferences_Issue: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["IssuePublicPaymentReferenceCreateDto"];
+        "application/xml": components["schemas"]["IssuePublicPaymentReferenceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PublicPaymentReferenceDtoEnvelope"];
+          "application/xml": components["schemas"]["PublicPaymentReferenceDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

@@ -6,479 +6,231 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/SalesService/LoyaltyPrograms/Count": {
     /**
      * Get loyalty programs count
      * @description Returns the total count of loyalty programs for the specified tenant with OData filter support.
      */
-    get: operations["CountLoyaltyProgramsAsync"];
+    get: operations["LoyaltyPrograms_CountLoyaltyPrograms"];
   };
   "/api/v2/SalesService/LoyaltyPrograms": {
     /**
      * Get loyalty programs
      * @description Retrieves a list of loyalty programs for the specified tenant with OData query support.
      */
-    get: operations["GetLoyaltyProgramsAsync"];
+    get: operations["LoyaltyPrograms_GetLoyaltyPrograms"];
     /**
      * Create a loyalty program
      * @description Creates a new loyalty program for the specified tenant.
      */
-    post: operations["CreateLoyaltyProgramAsync"];
+    post: operations["LoyaltyPrograms_CreateLoyaltyProgram"];
   };
   "/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}": {
     /**
      * Get loyalty program by ID
      * @description Retrieves a single loyalty program by its unique identifier.
      */
-    get: operations["GetLoyaltyProgramAsync"];
+    get: operations["LoyaltyPrograms_GetLoyaltyProgram"];
     /**
      * Update a loyalty program
      * @description Updates an existing loyalty program by its unique identifier.
      */
-    put: operations["UpdateLoyaltyProgramAsync"];
+    put: operations["LoyaltyPrograms_UpdateLoyaltyProgram"];
     /**
      * Delete a loyalty program
      * @description Deletes an existing loyalty program by its unique identifier.
      */
-    delete: operations["DeleteLoyaltyProgramAsync"];
+    delete: operations["LoyaltyPrograms_DeleteLoyaltyProgram"];
     /**
      * Patch a loyalty program
      * @description Partially updates an existing loyalty program using a JSON Patch document.
      */
-    patch: operations["PatchLoyaltyProgramAsync"];
+    patch: operations["LoyaltyPrograms_PatchLoyaltyProgram"];
   };
   "/api/v2/SalesService/Margins/{marginId}/Details": {
     /**
      * Get margin details by ID
      * @description Retrieves the details of a specific sales margin by its ID.
      */
-    get: operations["GetQuoteAsync"];
+    get: operations["Margins_GetQuote"];
   };
   "/api/v2/SalesService/PointOfSales/Count": {
     /**
      * Get point of sales count
      * @description Returns the total count of point of sales for the specified tenant with OData filter support.
      */
-    get: operations["CountPointOfSalesAsync"];
+    get: operations["PointOfSales_CountPointOfSales"];
   };
   "/api/v2/SalesService/PointOfSales": {
     /**
      * Get point of sales
      * @description Retrieves a list of point of sales for the specified tenant with OData query support.
      */
-    get: operations["GetPointOfSalesAsync"];
+    get: operations["PointOfSales_GetPointOfSales"];
     /**
      * Create a point of sale
      * @description Creates a new point of sale for the specified tenant.
      */
-    post: operations["CreatePointOfSaleAsync"];
+    post: operations["PointOfSales_CreatePointOfSale"];
   };
   "/api/v2/SalesService/PointOfSales/{pointOfSaleId}": {
     /**
      * Get point of sale by ID
      * @description Retrieves a single point of sale by its unique identifier.
      */
-    get: operations["GetPointOfSaleAsync"];
+    get: operations["PointOfSales_GetPointOfSale"];
     /**
      * Update a point of sale
      * @description Updates an existing point of sale by its unique identifier.
      */
-    put: operations["UpdatePointOfSaleAsync"];
+    put: operations["PointOfSales_UpdatePointOfSale"];
     /**
      * Delete a point of sale
      * @description Deletes an existing point of sale by its unique identifier.
      */
-    delete: operations["DeletePointOfSaleAsync"];
+    delete: operations["PointOfSales_DeletePointOfSale"];
     /**
      * Patch a point of sale
      * @description Partially updates an existing point of sale using a JSON Patch document.
      */
-    patch: operations["PatchPointOfSaleAsync"];
+    patch: operations["PointOfSales_PatchPointOfSale"];
   };
   "/api/v2/SalesService/SalesLiteratures/Count": {
     /**
      * Get sales literatures count
      * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
      */
-    get: operations["CountSalesLiteraturesAsync"];
+    get: operations["SalesLiteratures_CountSalesLiteratures"];
   };
   "/api/v2/SalesService/SalesLiteratures": {
     /**
      * Get sales literatures
      * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
      */
-    get: operations["GetSalesLiteraturesAsync"];
+    get: operations["SalesLiteratures_GetSalesLiteratures"];
     /**
      * Create a sales literature
      * @description Creates a new sales literature for the specified tenant.
      */
-    post: operations["CreateSalesLiteratureAsync"];
+    post: operations["SalesLiteratures_CreateSalesLiterature"];
   };
   "/api/v2/SalesService/SalesLiteratures/Extended": {
     /**
      * Get extended sales literatures
      * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
      */
-    get: operations["GetExtendedSalesLiteraturesAsync"];
+    get: operations["SalesLiteratures_GetExtendedSalesLiteratures"];
   };
   "/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}": {
     /**
      * Get sales literature by ID
      * @description Retrieves a single sales literature by its unique identifier.
      */
-    get: operations["GetSalesLiteratureAsync"];
+    get: operations["SalesLiteratures_GetSalesLiterature"];
     /**
      * Update a sales literature
      * @description Updates an existing sales literature by its unique identifier.
      */
-    put: operations["UpdateSalesLiteratureAsync"];
+    put: operations["SalesLiteratures_UpdateSalesLiterature"];
     /**
      * Delete a sales literature
      * @description Deletes an existing sales literature by its unique identifier.
      */
-    delete: operations["DeleteSalesLiteratureAsync"];
+    delete: operations["SalesLiteratures_DeleteSalesLiterature"];
     /**
      * Patch a sales literature
      * @description Partially updates an existing sales literature using a JSON Patch document.
      */
-    patch: operations["PatchSalesLiteratureAsync"];
+    patch: operations["SalesLiteratures_PatchSalesLiterature"];
   };
   "/api/v2/SalesService/Stores/Count": {
     /**
      * Get stores count
      * @description Returns the total count of stores for the specified tenant with OData filter support.
      */
-    get: operations["CountStoresAsync"];
+    get: operations["Stores_CountStores"];
   };
   "/api/v2/SalesService/Stores": {
     /**
      * Get stores
      * @description Retrieves a list of stores for the specified tenant with OData query support.
      */
-    get: operations["GetStoresAsync"];
+    get: operations["Stores_GetStores"];
     /**
      * Create a store
      * @description Creates a new store for the specified tenant.
      */
-    post: operations["CreateStoreAsync"];
+    post: operations["Stores_CreateStore"];
   };
   "/api/v2/SalesService/Stores/{storeId}": {
     /**
      * Get store by ID
      * @description Retrieves a single store by its unique identifier.
      */
-    get: operations["GetStoreAsync"];
+    get: operations["Stores_GetStore"];
     /**
      * Update a store
      * @description Updates an existing store by its unique identifier.
      */
-    put: operations["UpdateStoreAsync"];
+    put: operations["Stores_UpdateStore"];
     /**
      * Delete a store
      * @description Deletes an existing store by its unique identifier.
      */
-    delete: operations["DeleteStoreAsync"];
+    delete: operations["Stores_DeleteStore"];
     /**
      * Patch a store
      * @description Partially updates an existing store using a JSON Patch document.
      */
-    patch: operations["PatchStoreAsync"];
+    patch: operations["Stores_PatchStore"];
   };
 }
 
@@ -1002,7 +754,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1017,11 +848,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get loyalty programs count
    * @description Returns the total count of loyalty programs for the specified tenant with OData filter support.
    */
-  CountLoyaltyProgramsAsync: {
+  LoyaltyPrograms_CountLoyaltyPrograms: {
     parameters: {
       query: {
         tenantId: string;
@@ -1054,7 +1070,7 @@ export interface operations {
    * Get loyalty programs
    * @description Retrieves a list of loyalty programs for the specified tenant with OData query support.
    */
-  GetLoyaltyProgramsAsync: {
+  LoyaltyPrograms_GetLoyaltyPrograms: {
     parameters: {
       query: {
         tenantId: string;
@@ -1087,7 +1103,7 @@ export interface operations {
    * Create a loyalty program
    * @description Creates a new loyalty program for the specified tenant.
    */
-  CreateLoyaltyProgramAsync: {
+  LoyaltyPrograms_CreateLoyaltyProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -1120,7 +1136,7 @@ export interface operations {
    * Get loyalty program by ID
    * @description Retrieves a single loyalty program by its unique identifier.
    */
-  GetLoyaltyProgramAsync: {
+  LoyaltyPrograms_GetLoyaltyProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -1150,7 +1166,7 @@ export interface operations {
    * Update a loyalty program
    * @description Updates an existing loyalty program by its unique identifier.
    */
-  UpdateLoyaltyProgramAsync: {
+  LoyaltyPrograms_UpdateLoyaltyProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -1186,7 +1202,7 @@ export interface operations {
    * Delete a loyalty program
    * @description Deletes an existing loyalty program by its unique identifier.
    */
-  DeleteLoyaltyProgramAsync: {
+  LoyaltyPrograms_DeleteLoyaltyProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -1216,7 +1232,7 @@ export interface operations {
    * Patch a loyalty program
    * @description Partially updates an existing loyalty program using a JSON Patch document.
    */
-  PatchLoyaltyProgramAsync: {
+  LoyaltyPrograms_PatchLoyaltyProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -1252,7 +1268,7 @@ export interface operations {
    * Get margin details by ID
    * @description Retrieves the details of a specific sales margin by its ID.
    */
-  GetQuoteAsync: {
+  Margins_GetQuote: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1275,7 +1291,7 @@ export interface operations {
    * Get point of sales count
    * @description Returns the total count of point of sales for the specified tenant with OData filter support.
    */
-  CountPointOfSalesAsync: {
+  PointOfSales_CountPointOfSales: {
     parameters: {
       query: {
         tenantId: string;
@@ -1308,7 +1324,7 @@ export interface operations {
    * Get point of sales
    * @description Retrieves a list of point of sales for the specified tenant with OData query support.
    */
-  GetPointOfSalesAsync: {
+  PointOfSales_GetPointOfSales: {
     parameters: {
       query: {
         tenantId: string;
@@ -1341,7 +1357,7 @@ export interface operations {
    * Create a point of sale
    * @description Creates a new point of sale for the specified tenant.
    */
-  CreatePointOfSaleAsync: {
+  PointOfSales_CreatePointOfSale: {
     parameters: {
       query: {
         tenantId: string;
@@ -1374,7 +1390,7 @@ export interface operations {
    * Get point of sale by ID
    * @description Retrieves a single point of sale by its unique identifier.
    */
-  GetPointOfSaleAsync: {
+  PointOfSales_GetPointOfSale: {
     parameters: {
       query: {
         tenantId: string;
@@ -1404,7 +1420,7 @@ export interface operations {
    * Update a point of sale
    * @description Updates an existing point of sale by its unique identifier.
    */
-  UpdatePointOfSaleAsync: {
+  PointOfSales_UpdatePointOfSale: {
     parameters: {
       query: {
         tenantId: string;
@@ -1440,7 +1456,7 @@ export interface operations {
    * Delete a point of sale
    * @description Deletes an existing point of sale by its unique identifier.
    */
-  DeletePointOfSaleAsync: {
+  PointOfSales_DeletePointOfSale: {
     parameters: {
       query: {
         tenantId: string;
@@ -1470,7 +1486,7 @@ export interface operations {
    * Patch a point of sale
    * @description Partially updates an existing point of sale using a JSON Patch document.
    */
-  PatchPointOfSaleAsync: {
+  PointOfSales_PatchPointOfSale: {
     parameters: {
       query: {
         tenantId: string;
@@ -1506,7 +1522,7 @@ export interface operations {
    * Get sales literatures count
    * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
    */
-  CountSalesLiteraturesAsync: {
+  SalesLiteratures_CountSalesLiteratures: {
     parameters: {
       query: {
         tenantId: string;
@@ -1539,7 +1555,7 @@ export interface operations {
    * Get sales literatures
    * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
    */
-  GetSalesLiteraturesAsync: {
+  SalesLiteratures_GetSalesLiteratures: {
     parameters: {
       query: {
         tenantId: string;
@@ -1572,7 +1588,7 @@ export interface operations {
    * Create a sales literature
    * @description Creates a new sales literature for the specified tenant.
    */
-  CreateSalesLiteratureAsync: {
+  SalesLiteratures_CreateSalesLiterature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1605,7 +1621,7 @@ export interface operations {
    * Get extended sales literatures
    * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
    */
-  GetExtendedSalesLiteraturesAsync: {
+  SalesLiteratures_GetExtendedSalesLiteratures: {
     parameters: {
       query: {
         tenantId: string;
@@ -1638,7 +1654,7 @@ export interface operations {
    * Get sales literature by ID
    * @description Retrieves a single sales literature by its unique identifier.
    */
-  GetSalesLiteratureAsync: {
+  SalesLiteratures_GetSalesLiterature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1668,7 +1684,7 @@ export interface operations {
    * Update a sales literature
    * @description Updates an existing sales literature by its unique identifier.
    */
-  UpdateSalesLiteratureAsync: {
+  SalesLiteratures_UpdateSalesLiterature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1704,7 +1720,7 @@ export interface operations {
    * Delete a sales literature
    * @description Deletes an existing sales literature by its unique identifier.
    */
-  DeleteSalesLiteratureAsync: {
+  SalesLiteratures_DeleteSalesLiterature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1734,7 +1750,7 @@ export interface operations {
    * Patch a sales literature
    * @description Partially updates an existing sales literature using a JSON Patch document.
    */
-  PatchSalesLiteratureAsync: {
+  SalesLiteratures_PatchSalesLiterature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1770,7 +1786,7 @@ export interface operations {
    * Get stores count
    * @description Returns the total count of stores for the specified tenant with OData filter support.
    */
-  CountStoresAsync: {
+  Stores_CountStores: {
     parameters: {
       query: {
         tenantId: string;
@@ -1803,7 +1819,7 @@ export interface operations {
    * Get stores
    * @description Retrieves a list of stores for the specified tenant with OData query support.
    */
-  GetStoresAsync: {
+  Stores_GetStores: {
     parameters: {
       query: {
         tenantId: string;
@@ -1836,7 +1852,7 @@ export interface operations {
    * Create a store
    * @description Creates a new store for the specified tenant.
    */
-  CreateStoreAsync: {
+  Stores_CreateStore: {
     parameters: {
       query: {
         tenantId: string;
@@ -1869,7 +1885,7 @@ export interface operations {
    * Get store by ID
    * @description Retrieves a single store by its unique identifier.
    */
-  GetStoreAsync: {
+  Stores_GetStore: {
     parameters: {
       query: {
         tenantId: string;
@@ -1899,7 +1915,7 @@ export interface operations {
    * Update a store
    * @description Updates an existing store by its unique identifier.
    */
-  UpdateStoreAsync: {
+  Stores_UpdateStore: {
     parameters: {
       query: {
         tenantId: string;
@@ -1935,7 +1951,7 @@ export interface operations {
    * Delete a store
    * @description Deletes an existing store by its unique identifier.
    */
-  DeleteStoreAsync: {
+  Stores_DeleteStore: {
     parameters: {
       query: {
         tenantId: string;
@@ -1965,7 +1981,7 @@ export interface operations {
    * Patch a store
    * @description Partially updates an existing store using a JSON Patch document.
    */
-  PatchStoreAsync: {
+  Stores_PatchStore: {
     parameters: {
       query: {
         tenantId: string;

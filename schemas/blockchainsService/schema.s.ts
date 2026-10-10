@@ -10,402 +10,154 @@ export interface paths {
      * Get all blockchains
      * @description Retrieves all blockchains for the specified tenant.
      */
-    get: operations["GetBlockchainsAsync"];
+    get: operations["Blockchains_GetBlockchains"];
     /**
      * Create a new blockchain
      * @description Creates a new blockchain for the specified tenant.
      */
-    post: operations["CreateBlockchainAsync"];
+    post: operations["Blockchains_CreateBlockchain"];
   };
   "/api/v2/BlockchainsService/Blockchains/Count": {
     /**
      * Get blockchains count
      * @description Returns the count of blockchains for the specified tenant.
      */
-    get: operations["GetBlockchainsCountAsync"];
+    get: operations["Blockchains_GetBlockchainsCount"];
   };
   "/api/v2/BlockchainsService/Blockchains/{id}": {
     /**
      * Get blockchain by ID
      * @description Retrieves a specific blockchain by its identifier.
      */
-    get: operations["GetBlockchainByIdAsync"];
+    get: operations["Blockchains_GetBlockchainById"];
     /**
      * Update a blockchain
      * @description Updates an existing blockchain for the specified tenant.
      */
-    put: operations["UpdateBlockchainAsync"];
+    put: operations["Blockchains_UpdateBlockchain"];
     /**
      * Delete a blockchain
      * @description Deletes a blockchain for the specified tenant.
      */
-    delete: operations["DeleteBlockchainAsync"];
+    delete: operations["Blockchains_DeleteBlockchain"];
     /**
      * Patch a blockchain
      * @description Patch a blockchain
      */
-    patch: operations["PatchBlockchainAsync"];
+    patch: operations["Blockchains_PatchBlockchain"];
   };
   "/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks": {
     /** Get blocks for a blockchain */
-    get: operations["GetBlockchainBlocksAsync"];
+    get: operations["Blockchains_GetBlockchainBlocks"];
     /** Add a block to a blockchain */
-    post: operations["CreateBlockchainBlockAsync"];
+    post: operations["Blockchains_CreateBlockchainBlock"];
   };
   "/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/Count": {
     /** Get block count for a blockchain */
-    get: operations["GetBlockchainBlocksCountAsync"];
+    get: operations["Blockchains_GetBlockchainBlocksCount"];
   };
   "/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/{blockId}": {
     /** Get a specific block */
-    get: operations["GetBlockchainBlockByIdAsync"];
+    get: operations["Blockchains_GetBlockchainBlockById"];
     /** Update a blockchain block */
-    put: operations["UpdateBlockchainBlockAsync"];
+    put: operations["Blockchains_UpdateBlockchainBlock"];
     /** Delete a blockchain block */
-    delete: operations["DeleteBlockchainBlockAsync"];
+    delete: operations["Blockchains_DeleteBlockchainBlock"];
     /**
      * Patch a blockchain block
      * @description Patch a blockchain block
      */
-    patch: operations["PatchBlockchainBlockAsync"];
+    patch: operations["Blockchains_PatchBlockchainBlock"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/BlockchainsService/NonFungibleTokens": {
     /**
      * Get all non-fungible tokens
      * @description Retrieves all NFTs for the specified tenant.
      */
-    get: operations["GetNonFungibleTokensAsync"];
+    get: operations["NonFungibleTokens_GetNonFungibleTokens"];
     /**
      * Create a new NFT
      * @description Creates a new non-fungible token for the specified tenant.
      */
-    post: operations["CreateNonFungibleTokenAsync"];
+    post: operations["NonFungibleTokens_CreateNonFungibleToken"];
   };
   "/api/v2/BlockchainsService/NonFungibleTokens/Count": {
     /**
      * Get NFTs count
      * @description Returns the count of NFTs for the specified tenant.
      */
-    get: operations["GetNonFungibleTokensCountAsync"];
+    get: operations["NonFungibleTokens_GetNonFungibleTokensCount"];
   };
   "/api/v2/BlockchainsService/NonFungibleTokens/{id}": {
     /**
      * Get NFT by ID
      * @description Retrieves a specific non-fungible token by its identifier.
      */
-    get: operations["GetNonFungibleTokenByIdAsync"];
+    get: operations["NonFungibleTokens_GetNonFungibleTokenById"];
     /**
      * Update an NFT
      * @description Updates an existing non-fungible token for the specified tenant.
      */
-    put: operations["UpdateNonFungibleTokenAsync"];
+    put: operations["NonFungibleTokens_UpdateNonFungibleToken"];
     /**
      * Delete an NFT
      * @description Deletes a non-fungible token for the specified tenant.
      */
-    delete: operations["DeleteNonFungibleTokenAsync"];
+    delete: operations["NonFungibleTokens_DeleteNonFungibleToken"];
     /**
      * Patch a non-fungible token
      * @description Patch a non-fungible token
      */
-    patch: operations["PatchNonFungibleTokenAsync"];
+    patch: operations["NonFungibleTokens_PatchNonFungibleToken"];
   };
 }
 
@@ -743,7 +495,7 @@ export interface operations {
    * Get all blockchains
    * @description Retrieves all blockchains for the specified tenant.
    */
-  GetBlockchainsAsync: {
+  Blockchains_GetBlockchains: {
     parameters: {
       query: {
         tenantId: string;
@@ -780,7 +532,7 @@ export interface operations {
    * Create a new blockchain
    * @description Creates a new blockchain for the specified tenant.
    */
-  CreateBlockchainAsync: {
+  Blockchains_CreateBlockchain: {
     parameters: {
       query: {
         tenantId: string;
@@ -821,7 +573,7 @@ export interface operations {
    * Get blockchains count
    * @description Returns the count of blockchains for the specified tenant.
    */
-  GetBlockchainsCountAsync: {
+  Blockchains_GetBlockchainsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -858,7 +610,7 @@ export interface operations {
    * Get blockchain by ID
    * @description Retrieves a specific blockchain by its identifier.
    */
-  GetBlockchainByIdAsync: {
+  Blockchains_GetBlockchainById: {
     parameters: {
       query: {
         tenantId: string;
@@ -899,7 +651,7 @@ export interface operations {
    * Update a blockchain
    * @description Updates an existing blockchain for the specified tenant.
    */
-  UpdateBlockchainAsync: {
+  Blockchains_UpdateBlockchain: {
     parameters: {
       query: {
         tenantId: string;
@@ -943,7 +695,7 @@ export interface operations {
    * Delete a blockchain
    * @description Deletes a blockchain for the specified tenant.
    */
-  DeleteBlockchainAsync: {
+  Blockchains_DeleteBlockchain: {
     parameters: {
       query: {
         tenantId: string;
@@ -981,7 +733,7 @@ export interface operations {
    * Patch a blockchain
    * @description Patch a blockchain
    */
-  PatchBlockchainAsync: {
+  Blockchains_PatchBlockchain: {
     parameters: {
       query: {
         tenantId: string;
@@ -1025,7 +777,7 @@ export interface operations {
     };
   };
   /** Get blocks for a blockchain */
-  GetBlockchainBlocksAsync: {
+  Blockchains_GetBlockchainBlocks: {
     parameters: {
       query: {
         tenantId: string;
@@ -1055,7 +807,7 @@ export interface operations {
     };
   };
   /** Add a block to a blockchain */
-  CreateBlockchainBlockAsync: {
+  Blockchains_CreateBlockchainBlock: {
     parameters: {
       query: {
         tenantId: string;
@@ -1082,7 +834,7 @@ export interface operations {
     };
   };
   /** Get block count for a blockchain */
-  GetBlockchainBlocksCountAsync: {
+  Blockchains_GetBlockchainBlocksCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1112,7 +864,7 @@ export interface operations {
     };
   };
   /** Get a specific block */
-  GetBlockchainBlockByIdAsync: {
+  Blockchains_GetBlockchainBlockById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1137,7 +889,7 @@ export interface operations {
     };
   };
   /** Update a blockchain block */
-  UpdateBlockchainBlockAsync: {
+  Blockchains_UpdateBlockchainBlock: {
     parameters: {
       query: {
         tenantId: string;
@@ -1165,7 +917,7 @@ export interface operations {
     };
   };
   /** Delete a blockchain block */
-  DeleteBlockchainBlockAsync: {
+  Blockchains_DeleteBlockchainBlock: {
     parameters: {
       query: {
         tenantId: string;
@@ -1190,7 +942,7 @@ export interface operations {
    * Patch a blockchain block
    * @description Patch a blockchain block
    */
-  PatchBlockchainBlockAsync: {
+  Blockchains_PatchBlockchainBlock: {
     parameters: {
       query: {
         tenantId: string;
@@ -1234,7 +986,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1249,11 +1080,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all non-fungible tokens
    * @description Retrieves all NFTs for the specified tenant.
    */
-  GetNonFungibleTokensAsync: {
+  NonFungibleTokens_GetNonFungibleTokens: {
     parameters: {
       query: {
         tenantId: string;
@@ -1290,7 +1306,7 @@ export interface operations {
    * Create a new NFT
    * @description Creates a new non-fungible token for the specified tenant.
    */
-  CreateNonFungibleTokenAsync: {
+  NonFungibleTokens_CreateNonFungibleToken: {
     parameters: {
       query: {
         tenantId: string;
@@ -1331,7 +1347,7 @@ export interface operations {
    * Get NFTs count
    * @description Returns the count of NFTs for the specified tenant.
    */
-  GetNonFungibleTokensCountAsync: {
+  NonFungibleTokens_GetNonFungibleTokensCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1368,7 +1384,7 @@ export interface operations {
    * Get NFT by ID
    * @description Retrieves a specific non-fungible token by its identifier.
    */
-  GetNonFungibleTokenByIdAsync: {
+  NonFungibleTokens_GetNonFungibleTokenById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1409,7 +1425,7 @@ export interface operations {
    * Update an NFT
    * @description Updates an existing non-fungible token for the specified tenant.
    */
-  UpdateNonFungibleTokenAsync: {
+  NonFungibleTokens_UpdateNonFungibleToken: {
     parameters: {
       query: {
         tenantId: string;
@@ -1453,7 +1469,7 @@ export interface operations {
    * Delete an NFT
    * @description Deletes a non-fungible token for the specified tenant.
    */
-  DeleteNonFungibleTokenAsync: {
+  NonFungibleTokens_DeleteNonFungibleToken: {
     parameters: {
       query: {
         tenantId: string;
@@ -1491,7 +1507,7 @@ export interface operations {
    * Patch a non-fungible token
    * @description Patch a non-fungible token
    */
-  PatchNonFungibleTokenAsync: {
+  NonFungibleTokens_PatchNonFungibleToken: {
     parameters: {
       query: {
         tenantId: string;

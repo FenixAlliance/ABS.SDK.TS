@@ -1033,7 +1033,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetDiscountListsData = {
+export type DiscountListsGetDiscountListsData = {
     body?: DiscountListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1042,7 +1042,7 @@ export type GetDiscountListsData = {
     url: '/api/v2/PricingService/DiscountLists';
 };
 
-export type GetDiscountListsErrors = {
+export type DiscountListsGetDiscountListsErrors = {
     /**
      * Bad Request
      */
@@ -1057,18 +1057,18 @@ export type GetDiscountListsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDiscountListsError = GetDiscountListsErrors[keyof GetDiscountListsErrors];
+export type DiscountListsGetDiscountListsError = DiscountListsGetDiscountListsErrors[keyof DiscountListsGetDiscountListsErrors];
 
-export type GetDiscountListsResponses = {
+export type DiscountListsGetDiscountListsResponses = {
     /**
      * OK
      */
     200: DiscountListDtoListEnvelopeReadable;
 };
 
-export type GetDiscountListsResponse = GetDiscountListsResponses[keyof GetDiscountListsResponses];
+export type DiscountListsGetDiscountListsResponse = DiscountListsGetDiscountListsResponses[keyof DiscountListsGetDiscountListsResponses];
 
-export type CreateDiscountListData = {
+export type DiscountListsCreateDiscountListData = {
     body?: DiscountListCreateDto;
     path?: never;
     query: {
@@ -1077,7 +1077,7 @@ export type CreateDiscountListData = {
     url: '/api/v2/PricingService/DiscountLists';
 };
 
-export type CreateDiscountListErrors = {
+export type DiscountListsCreateDiscountListErrors = {
     /**
      * Bad Request
      */
@@ -1092,18 +1092,18 @@ export type CreateDiscountListErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateDiscountListError = CreateDiscountListErrors[keyof CreateDiscountListErrors];
+export type DiscountListsCreateDiscountListError = DiscountListsCreateDiscountListErrors[keyof DiscountListsCreateDiscountListErrors];
 
-export type CreateDiscountListResponses = {
+export type DiscountListsCreateDiscountListResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateDiscountListResponse = CreateDiscountListResponses[keyof CreateDiscountListResponses];
+export type DiscountListsCreateDiscountListResponse = DiscountListsCreateDiscountListResponses[keyof DiscountListsCreateDiscountListResponses];
 
-export type GetDiscountListsCountData = {
+export type DiscountListsGetDiscountListsCountData = {
     body?: DiscountListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1112,7 +1112,7 @@ export type GetDiscountListsCountData = {
     url: '/api/v2/PricingService/DiscountLists/Count';
 };
 
-export type GetDiscountListsCountErrors = {
+export type DiscountListsGetDiscountListsCountErrors = {
     /**
      * Bad Request
      */
@@ -1127,18 +1127,18 @@ export type GetDiscountListsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDiscountListsCountError = GetDiscountListsCountErrors[keyof GetDiscountListsCountErrors];
+export type DiscountListsGetDiscountListsCountError = DiscountListsGetDiscountListsCountErrors[keyof DiscountListsGetDiscountListsCountErrors];
 
-export type GetDiscountListsCountResponses = {
+export type DiscountListsGetDiscountListsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDiscountListsCountResponse = GetDiscountListsCountResponses[keyof GetDiscountListsCountResponses];
+export type DiscountListsGetDiscountListsCountResponse = DiscountListsGetDiscountListsCountResponses[keyof DiscountListsGetDiscountListsCountResponses];
 
-export type DeleteDiscountListData = {
+export type DiscountListsDeleteDiscountListData = {
     body?: never;
     path: {
         discountListId: string;
@@ -1149,7 +1149,7 @@ export type DeleteDiscountListData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}';
 };
 
-export type DeleteDiscountListErrors = {
+export type DiscountListsDeleteDiscountListErrors = {
     /**
      * Bad Request
      */
@@ -1164,18 +1164,18 @@ export type DeleteDiscountListErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteDiscountListError = DeleteDiscountListErrors[keyof DeleteDiscountListErrors];
+export type DiscountListsDeleteDiscountListError = DiscountListsDeleteDiscountListErrors[keyof DiscountListsDeleteDiscountListErrors];
 
-export type DeleteDiscountListResponses = {
+export type DiscountListsDeleteDiscountListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteDiscountListResponse = DeleteDiscountListResponses[keyof DeleteDiscountListResponses];
+export type DiscountListsDeleteDiscountListResponse = DiscountListsDeleteDiscountListResponses[keyof DiscountListsDeleteDiscountListResponses];
 
-export type GetDiscountListData = {
+export type DiscountListsGetDiscountListData = {
     body?: never;
     path: {
         discountListId: string;
@@ -1186,7 +1186,7 @@ export type GetDiscountListData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}';
 };
 
-export type GetDiscountListErrors = {
+export type DiscountListsGetDiscountListErrors = {
     /**
      * Bad Request
      */
@@ -1201,18 +1201,18 @@ export type GetDiscountListErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDiscountListError = GetDiscountListErrors[keyof GetDiscountListErrors];
+export type DiscountListsGetDiscountListError = DiscountListsGetDiscountListErrors[keyof DiscountListsGetDiscountListErrors];
 
-export type GetDiscountListResponses = {
+export type DiscountListsGetDiscountListResponses = {
     /**
      * OK
      */
     200: DiscountListDtoEnvelopeReadable;
 };
 
-export type GetDiscountListResponse = GetDiscountListResponses[keyof GetDiscountListResponses];
+export type DiscountListsGetDiscountListResponse = DiscountListsGetDiscountListResponses[keyof DiscountListsGetDiscountListResponses];
 
-export type PatchDiscountListData = {
+export type DiscountListsPatchDiscountListData = {
     body?: Array<PatchOperation>;
     path: {
         discountListId: string;
@@ -1223,7 +1223,7 @@ export type PatchDiscountListData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}';
 };
 
-export type PatchDiscountListErrors = {
+export type DiscountListsPatchDiscountListErrors = {
     /**
      * Bad Request
      */
@@ -1238,18 +1238,18 @@ export type PatchDiscountListErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchDiscountListError = PatchDiscountListErrors[keyof PatchDiscountListErrors];
+export type DiscountListsPatchDiscountListError = DiscountListsPatchDiscountListErrors[keyof DiscountListsPatchDiscountListErrors];
 
-export type PatchDiscountListResponses = {
+export type DiscountListsPatchDiscountListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchDiscountListResponse = PatchDiscountListResponses[keyof PatchDiscountListResponses];
+export type DiscountListsPatchDiscountListResponse = DiscountListsPatchDiscountListResponses[keyof DiscountListsPatchDiscountListResponses];
 
-export type UpdateDiscountListData = {
+export type DiscountListsUpdateDiscountListData = {
     body?: DiscountListUpdateDto;
     path: {
         discountListId: string;
@@ -1260,7 +1260,7 @@ export type UpdateDiscountListData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}';
 };
 
-export type UpdateDiscountListErrors = {
+export type DiscountListsUpdateDiscountListErrors = {
     /**
      * Bad Request
      */
@@ -1275,18 +1275,18 @@ export type UpdateDiscountListErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateDiscountListError = UpdateDiscountListErrors[keyof UpdateDiscountListErrors];
+export type DiscountListsUpdateDiscountListError = DiscountListsUpdateDiscountListErrors[keyof DiscountListsUpdateDiscountListErrors];
 
-export type UpdateDiscountListResponses = {
+export type DiscountListsUpdateDiscountListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateDiscountListResponse = UpdateDiscountListResponses[keyof UpdateDiscountListResponses];
+export type DiscountListsUpdateDiscountListResponse = DiscountListsUpdateDiscountListResponses[keyof DiscountListsUpdateDiscountListResponses];
 
-export type GetDiscountListEntriesData = {
+export type DiscountListsGetDiscountListEntriesData = {
     body?: DiscountDtoCollectionQueryParametersWritable;
     path: {
         discountListId: string;
@@ -1297,7 +1297,7 @@ export type GetDiscountListEntriesData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts';
 };
 
-export type GetDiscountListEntriesErrors = {
+export type DiscountListsGetDiscountListEntriesErrors = {
     /**
      * Bad Request
      */
@@ -1312,18 +1312,18 @@ export type GetDiscountListEntriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDiscountListEntriesError = GetDiscountListEntriesErrors[keyof GetDiscountListEntriesErrors];
+export type DiscountListsGetDiscountListEntriesError = DiscountListsGetDiscountListEntriesErrors[keyof DiscountListsGetDiscountListEntriesErrors];
 
-export type GetDiscountListEntriesResponses = {
+export type DiscountListsGetDiscountListEntriesResponses = {
     /**
      * OK
      */
     200: DiscountDtoListEnvelopeReadable;
 };
 
-export type GetDiscountListEntriesResponse = GetDiscountListEntriesResponses[keyof GetDiscountListEntriesResponses];
+export type DiscountListsGetDiscountListEntriesResponse = DiscountListsGetDiscountListEntriesResponses[keyof DiscountListsGetDiscountListEntriesResponses];
 
-export type CreateDiscountListEntryData = {
+export type DiscountListsCreateDiscountListEntryData = {
     body?: DiscountCreateDto;
     path: {
         discountListId: string;
@@ -1334,7 +1334,7 @@ export type CreateDiscountListEntryData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts';
 };
 
-export type CreateDiscountListEntryErrors = {
+export type DiscountListsCreateDiscountListEntryErrors = {
     /**
      * Bad Request
      */
@@ -1349,18 +1349,18 @@ export type CreateDiscountListEntryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateDiscountListEntryError = CreateDiscountListEntryErrors[keyof CreateDiscountListEntryErrors];
+export type DiscountListsCreateDiscountListEntryError = DiscountListsCreateDiscountListEntryErrors[keyof DiscountListsCreateDiscountListEntryErrors];
 
-export type CreateDiscountListEntryResponses = {
+export type DiscountListsCreateDiscountListEntryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateDiscountListEntryResponse = CreateDiscountListEntryResponses[keyof CreateDiscountListEntryResponses];
+export type DiscountListsCreateDiscountListEntryResponse = DiscountListsCreateDiscountListEntryResponses[keyof DiscountListsCreateDiscountListEntryResponses];
 
-export type GetDiscountListEntriesCountData = {
+export type DiscountListsGetDiscountListEntriesCountData = {
     body?: DiscountDtoCollectionQueryParametersWritable;
     path: {
         discountListId: string;
@@ -1371,7 +1371,7 @@ export type GetDiscountListEntriesCountData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/Count';
 };
 
-export type GetDiscountListEntriesCountErrors = {
+export type DiscountListsGetDiscountListEntriesCountErrors = {
     /**
      * Bad Request
      */
@@ -1386,18 +1386,18 @@ export type GetDiscountListEntriesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDiscountListEntriesCountError = GetDiscountListEntriesCountErrors[keyof GetDiscountListEntriesCountErrors];
+export type DiscountListsGetDiscountListEntriesCountError = DiscountListsGetDiscountListEntriesCountErrors[keyof DiscountListsGetDiscountListEntriesCountErrors];
 
-export type GetDiscountListEntriesCountResponses = {
+export type DiscountListsGetDiscountListEntriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDiscountListEntriesCountResponse = GetDiscountListEntriesCountResponses[keyof GetDiscountListEntriesCountResponses];
+export type DiscountListsGetDiscountListEntriesCountResponse = DiscountListsGetDiscountListEntriesCountResponses[keyof DiscountListsGetDiscountListEntriesCountResponses];
 
-export type DeleteDiscountListEntryData = {
+export type DiscountListsDeleteDiscountListEntryData = {
     body?: never;
     path: {
         discountListId: string;
@@ -1409,7 +1409,7 @@ export type DeleteDiscountListEntryData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}';
 };
 
-export type DeleteDiscountListEntryErrors = {
+export type DiscountListsDeleteDiscountListEntryErrors = {
     /**
      * Bad Request
      */
@@ -1424,18 +1424,18 @@ export type DeleteDiscountListEntryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteDiscountListEntryError = DeleteDiscountListEntryErrors[keyof DeleteDiscountListEntryErrors];
+export type DiscountListsDeleteDiscountListEntryError = DiscountListsDeleteDiscountListEntryErrors[keyof DiscountListsDeleteDiscountListEntryErrors];
 
-export type DeleteDiscountListEntryResponses = {
+export type DiscountListsDeleteDiscountListEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteDiscountListEntryResponse = DeleteDiscountListEntryResponses[keyof DeleteDiscountListEntryResponses];
+export type DiscountListsDeleteDiscountListEntryResponse = DiscountListsDeleteDiscountListEntryResponses[keyof DiscountListsDeleteDiscountListEntryResponses];
 
-export type GetDiscountListEntryData = {
+export type DiscountListsGetDiscountListEntryData = {
     body?: never;
     path: {
         discountListId: string;
@@ -1447,7 +1447,7 @@ export type GetDiscountListEntryData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}';
 };
 
-export type GetDiscountListEntryErrors = {
+export type DiscountListsGetDiscountListEntryErrors = {
     /**
      * Bad Request
      */
@@ -1462,18 +1462,18 @@ export type GetDiscountListEntryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDiscountListEntryError = GetDiscountListEntryErrors[keyof GetDiscountListEntryErrors];
+export type DiscountListsGetDiscountListEntryError = DiscountListsGetDiscountListEntryErrors[keyof DiscountListsGetDiscountListEntryErrors];
 
-export type GetDiscountListEntryResponses = {
+export type DiscountListsGetDiscountListEntryResponses = {
     /**
      * OK
      */
     200: DiscountDtoEnvelopeReadable;
 };
 
-export type GetDiscountListEntryResponse = GetDiscountListEntryResponses[keyof GetDiscountListEntryResponses];
+export type DiscountListsGetDiscountListEntryResponse = DiscountListsGetDiscountListEntryResponses[keyof DiscountListsGetDiscountListEntryResponses];
 
-export type PatchDiscountListEntryData = {
+export type DiscountListsPatchDiscountListEntryData = {
     body?: Array<PatchOperation>;
     path: {
         discountListId: string;
@@ -1485,7 +1485,7 @@ export type PatchDiscountListEntryData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}';
 };
 
-export type PatchDiscountListEntryErrors = {
+export type DiscountListsPatchDiscountListEntryErrors = {
     /**
      * Bad Request
      */
@@ -1500,18 +1500,18 @@ export type PatchDiscountListEntryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchDiscountListEntryError = PatchDiscountListEntryErrors[keyof PatchDiscountListEntryErrors];
+export type DiscountListsPatchDiscountListEntryError = DiscountListsPatchDiscountListEntryErrors[keyof DiscountListsPatchDiscountListEntryErrors];
 
-export type PatchDiscountListEntryResponses = {
+export type DiscountListsPatchDiscountListEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchDiscountListEntryResponse = PatchDiscountListEntryResponses[keyof PatchDiscountListEntryResponses];
+export type DiscountListsPatchDiscountListEntryResponse = DiscountListsPatchDiscountListEntryResponses[keyof DiscountListsPatchDiscountListEntryResponses];
 
-export type UpdateDiscountListEntryData = {
+export type DiscountListsUpdateDiscountListEntryData = {
     body?: DiscountUpdateDto;
     path: {
         discountListId: string;
@@ -1523,7 +1523,7 @@ export type UpdateDiscountListEntryData = {
     url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}';
 };
 
-export type UpdateDiscountListEntryErrors = {
+export type DiscountListsUpdateDiscountListEntryErrors = {
     /**
      * Bad Request
      */
@@ -1538,83 +1538,83 @@ export type UpdateDiscountListEntryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateDiscountListEntryError = UpdateDiscountListEntryErrors[keyof UpdateDiscountListEntryErrors];
+export type DiscountListsUpdateDiscountListEntryError = DiscountListsUpdateDiscountListEntryErrors[keyof DiscountListsUpdateDiscountListEntryErrors];
 
-export type UpdateDiscountListEntryResponses = {
+export type DiscountListsUpdateDiscountListEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateDiscountListEntryResponse = UpdateDiscountListEntryResponses[keyof UpdateDiscountListEntryResponses];
+export type DiscountListsUpdateDiscountListEntryResponse = DiscountListsUpdateDiscountListEntryResponses[keyof DiscountListsUpdateDiscountListEntryResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1624,32 +1624,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1660,81 +1660,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1745,25 +1745,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1774,25 +1774,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1803,18 +1803,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1824,14 +1824,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1840,14 +1840,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1856,28 +1856,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetPriceListsAsyncData = {
+export type PriceListsGetPriceListsData = {
     body?: PriceListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1886,25 +1886,25 @@ export type GetPriceListsAsyncData = {
     url: '/api/v2/PricingService/PriceLists';
 };
 
-export type GetPriceListsAsyncErrors = {
+export type PriceListsGetPriceListsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceListsAsyncError = GetPriceListsAsyncErrors[keyof GetPriceListsAsyncErrors];
+export type PriceListsGetPriceListsError = PriceListsGetPriceListsErrors[keyof PriceListsGetPriceListsErrors];
 
-export type GetPriceListsAsyncResponses = {
+export type PriceListsGetPriceListsResponses = {
     /**
      * OK
      */
     200: PriceListDtoListEnvelopeReadable;
 };
 
-export type GetPriceListsAsyncResponse = GetPriceListsAsyncResponses[keyof GetPriceListsAsyncResponses];
+export type PriceListsGetPriceListsResponse = PriceListsGetPriceListsResponses[keyof PriceListsGetPriceListsResponses];
 
-export type CreatePriceListAsyncData = {
+export type PriceListsCreatePriceListData = {
     body?: PriceListCreateDto;
     path?: never;
     query: {
@@ -1913,25 +1913,25 @@ export type CreatePriceListAsyncData = {
     url: '/api/v2/PricingService/PriceLists';
 };
 
-export type CreatePriceListAsyncErrors = {
+export type PriceListsCreatePriceListErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreatePriceListAsyncError = CreatePriceListAsyncErrors[keyof CreatePriceListAsyncErrors];
+export type PriceListsCreatePriceListError = PriceListsCreatePriceListErrors[keyof PriceListsCreatePriceListErrors];
 
-export type CreatePriceListAsyncResponses = {
+export type PriceListsCreatePriceListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreatePriceListAsyncResponse = CreatePriceListAsyncResponses[keyof CreatePriceListAsyncResponses];
+export type PriceListsCreatePriceListResponse = PriceListsCreatePriceListResponses[keyof PriceListsCreatePriceListResponses];
 
-export type GetPriceListsCountAsyncData = {
+export type PriceListsGetPriceListsCountData = {
     body?: PriceListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1940,25 +1940,25 @@ export type GetPriceListsCountAsyncData = {
     url: '/api/v2/PricingService/PriceLists/Count';
 };
 
-export type GetPriceListsCountAsyncErrors = {
+export type PriceListsGetPriceListsCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceListsCountAsyncError = GetPriceListsCountAsyncErrors[keyof GetPriceListsCountAsyncErrors];
+export type PriceListsGetPriceListsCountError = PriceListsGetPriceListsCountErrors[keyof PriceListsGetPriceListsCountErrors];
 
-export type GetPriceListsCountAsyncResponses = {
+export type PriceListsGetPriceListsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPriceListsCountAsyncResponse = GetPriceListsCountAsyncResponses[keyof GetPriceListsCountAsyncResponses];
+export type PriceListsGetPriceListsCountResponse = PriceListsGetPriceListsCountResponses[keyof PriceListsGetPriceListsCountResponses];
 
-export type DeletePriceListAsyncData = {
+export type PriceListsDeletePriceListData = {
     body?: never;
     path: {
         priceListId: string;
@@ -1969,25 +1969,25 @@ export type DeletePriceListAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}';
 };
 
-export type DeletePriceListAsyncErrors = {
+export type PriceListsDeletePriceListErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeletePriceListAsyncError = DeletePriceListAsyncErrors[keyof DeletePriceListAsyncErrors];
+export type PriceListsDeletePriceListError = PriceListsDeletePriceListErrors[keyof PriceListsDeletePriceListErrors];
 
-export type DeletePriceListAsyncResponses = {
+export type PriceListsDeletePriceListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePriceListAsyncResponse = DeletePriceListAsyncResponses[keyof DeletePriceListAsyncResponses];
+export type PriceListsDeletePriceListResponse = PriceListsDeletePriceListResponses[keyof PriceListsDeletePriceListResponses];
 
-export type GetPriceListAsyncData = {
+export type PriceListsGetPriceListData = {
     body?: never;
     path: {
         priceListId: string;
@@ -1998,25 +1998,25 @@ export type GetPriceListAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}';
 };
 
-export type GetPriceListAsyncErrors = {
+export type PriceListsGetPriceListErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceListAsyncError = GetPriceListAsyncErrors[keyof GetPriceListAsyncErrors];
+export type PriceListsGetPriceListError = PriceListsGetPriceListErrors[keyof PriceListsGetPriceListErrors];
 
-export type GetPriceListAsyncResponses = {
+export type PriceListsGetPriceListResponses = {
     /**
      * OK
      */
     200: PriceListDtoEnvelopeReadable;
 };
 
-export type GetPriceListAsyncResponse = GetPriceListAsyncResponses[keyof GetPriceListAsyncResponses];
+export type PriceListsGetPriceListResponse = PriceListsGetPriceListResponses[keyof PriceListsGetPriceListResponses];
 
-export type PatchPriceListAsyncData = {
+export type PriceListsPatchPriceListData = {
     body?: Array<PatchOperation>;
     path: {
         priceListId: string;
@@ -2027,25 +2027,25 @@ export type PatchPriceListAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}';
 };
 
-export type PatchPriceListAsyncErrors = {
+export type PriceListsPatchPriceListErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchPriceListAsyncError = PatchPriceListAsyncErrors[keyof PatchPriceListAsyncErrors];
+export type PriceListsPatchPriceListError = PriceListsPatchPriceListErrors[keyof PriceListsPatchPriceListErrors];
 
-export type PatchPriceListAsyncResponses = {
+export type PriceListsPatchPriceListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPriceListAsyncResponse = PatchPriceListAsyncResponses[keyof PatchPriceListAsyncResponses];
+export type PriceListsPatchPriceListResponse = PriceListsPatchPriceListResponses[keyof PriceListsPatchPriceListResponses];
 
-export type UpdatePriceListAsyncData = {
+export type PriceListsUpdatePriceListData = {
     body?: PriceListUpdateDto;
     path: {
         priceListId: string;
@@ -2056,25 +2056,25 @@ export type UpdatePriceListAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}';
 };
 
-export type UpdatePriceListAsyncErrors = {
+export type PriceListsUpdatePriceListErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdatePriceListAsyncError = UpdatePriceListAsyncErrors[keyof UpdatePriceListAsyncErrors];
+export type PriceListsUpdatePriceListError = PriceListsUpdatePriceListErrors[keyof PriceListsUpdatePriceListErrors];
 
-export type UpdatePriceListAsyncResponses = {
+export type PriceListsUpdatePriceListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePriceListAsyncResponse = UpdatePriceListAsyncResponses[keyof UpdatePriceListAsyncResponses];
+export type PriceListsUpdatePriceListResponse = PriceListsUpdatePriceListResponses[keyof PriceListsUpdatePriceListResponses];
 
-export type GetPriceListPricesAsyncData = {
+export type PriceListsGetPriceListPricesData = {
     body?: ItemPriceDtoCollectionQueryParametersWritable;
     path: {
         priceListId: string;
@@ -2086,25 +2086,25 @@ export type GetPriceListPricesAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices';
 };
 
-export type GetPriceListPricesAsyncErrors = {
+export type PriceListsGetPriceListPricesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceListPricesAsyncError = GetPriceListPricesAsyncErrors[keyof GetPriceListPricesAsyncErrors];
+export type PriceListsGetPriceListPricesError = PriceListsGetPriceListPricesErrors[keyof PriceListsGetPriceListPricesErrors];
 
-export type GetPriceListPricesAsyncResponses = {
+export type PriceListsGetPriceListPricesResponses = {
     /**
      * OK
      */
     200: ItemPriceDtoListEnvelopeReadable;
 };
 
-export type GetPriceListPricesAsyncResponse = GetPriceListPricesAsyncResponses[keyof GetPriceListPricesAsyncResponses];
+export type PriceListsGetPriceListPricesResponse = PriceListsGetPriceListPricesResponses[keyof PriceListsGetPriceListPricesResponses];
 
-export type CreatePriceListPricesAsyncData = {
+export type PriceListsCreatePriceListPricesData = {
     body?: ItemPriceCreateDto;
     path: {
         priceListId: string;
@@ -2115,25 +2115,25 @@ export type CreatePriceListPricesAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices';
 };
 
-export type CreatePriceListPricesAsyncErrors = {
+export type PriceListsCreatePriceListPricesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreatePriceListPricesAsyncError = CreatePriceListPricesAsyncErrors[keyof CreatePriceListPricesAsyncErrors];
+export type PriceListsCreatePriceListPricesError = PriceListsCreatePriceListPricesErrors[keyof PriceListsCreatePriceListPricesErrors];
 
-export type CreatePriceListPricesAsyncResponses = {
+export type PriceListsCreatePriceListPricesResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreatePriceListPricesAsyncResponse = CreatePriceListPricesAsyncResponses[keyof CreatePriceListPricesAsyncResponses];
+export type PriceListsCreatePriceListPricesResponse = PriceListsCreatePriceListPricesResponses[keyof PriceListsCreatePriceListPricesResponses];
 
-export type GetPriceListPricesCountAsyncData = {
+export type PriceListsGetPriceListPricesCountData = {
     body?: ItemPriceDtoCollectionQueryParametersWritable;
     path: {
         priceListId: string;
@@ -2144,25 +2144,25 @@ export type GetPriceListPricesCountAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/Count';
 };
 
-export type GetPriceListPricesCountAsyncErrors = {
+export type PriceListsGetPriceListPricesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceListPricesCountAsyncError = GetPriceListPricesCountAsyncErrors[keyof GetPriceListPricesCountAsyncErrors];
+export type PriceListsGetPriceListPricesCountError = PriceListsGetPriceListPricesCountErrors[keyof PriceListsGetPriceListPricesCountErrors];
 
-export type GetPriceListPricesCountAsyncResponses = {
+export type PriceListsGetPriceListPricesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPriceListPricesCountAsyncResponse = GetPriceListPricesCountAsyncResponses[keyof GetPriceListPricesCountAsyncResponses];
+export type PriceListsGetPriceListPricesCountResponse = PriceListsGetPriceListPricesCountResponses[keyof PriceListsGetPriceListPricesCountResponses];
 
-export type DeletePriceListPriceAsyncData = {
+export type PriceListsDeletePriceListPriceData = {
     body?: never;
     path: {
         priceListId: string;
@@ -2174,25 +2174,25 @@ export type DeletePriceListPriceAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}';
 };
 
-export type DeletePriceListPriceAsyncErrors = {
+export type PriceListsDeletePriceListPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeletePriceListPriceAsyncError = DeletePriceListPriceAsyncErrors[keyof DeletePriceListPriceAsyncErrors];
+export type PriceListsDeletePriceListPriceError = PriceListsDeletePriceListPriceErrors[keyof PriceListsDeletePriceListPriceErrors];
 
-export type DeletePriceListPriceAsyncResponses = {
+export type PriceListsDeletePriceListPriceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePriceListPriceAsyncResponse = DeletePriceListPriceAsyncResponses[keyof DeletePriceListPriceAsyncResponses];
+export type PriceListsDeletePriceListPriceResponse = PriceListsDeletePriceListPriceResponses[keyof PriceListsDeletePriceListPriceResponses];
 
-export type GetPriceListPriceAsyncData = {
+export type PriceListsGetPriceListPriceData = {
     body?: never;
     path: {
         priceListId: string;
@@ -2204,25 +2204,25 @@ export type GetPriceListPriceAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}';
 };
 
-export type GetPriceListPriceAsyncErrors = {
+export type PriceListsGetPriceListPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceListPriceAsyncError = GetPriceListPriceAsyncErrors[keyof GetPriceListPriceAsyncErrors];
+export type PriceListsGetPriceListPriceError = PriceListsGetPriceListPriceErrors[keyof PriceListsGetPriceListPriceErrors];
 
-export type GetPriceListPriceAsyncResponses = {
+export type PriceListsGetPriceListPriceResponses = {
     /**
      * OK
      */
     200: ItemPriceDtoEnvelopeReadable;
 };
 
-export type GetPriceListPriceAsyncResponse = GetPriceListPriceAsyncResponses[keyof GetPriceListPriceAsyncResponses];
+export type PriceListsGetPriceListPriceResponse = PriceListsGetPriceListPriceResponses[keyof PriceListsGetPriceListPriceResponses];
 
-export type PatchPriceListPriceAsyncData = {
+export type PriceListsPatchPriceListPriceData = {
     body?: Array<PatchOperation>;
     path: {
         priceListId: string;
@@ -2234,25 +2234,25 @@ export type PatchPriceListPriceAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}';
 };
 
-export type PatchPriceListPriceAsyncErrors = {
+export type PriceListsPatchPriceListPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchPriceListPriceAsyncError = PatchPriceListPriceAsyncErrors[keyof PatchPriceListPriceAsyncErrors];
+export type PriceListsPatchPriceListPriceError = PriceListsPatchPriceListPriceErrors[keyof PriceListsPatchPriceListPriceErrors];
 
-export type PatchPriceListPriceAsyncResponses = {
+export type PriceListsPatchPriceListPriceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPriceListPriceAsyncResponse = PatchPriceListPriceAsyncResponses[keyof PatchPriceListPriceAsyncResponses];
+export type PriceListsPatchPriceListPriceResponse = PriceListsPatchPriceListPriceResponses[keyof PriceListsPatchPriceListPriceResponses];
 
-export type UpdatePriceListPriceAsyncData = {
+export type PriceListsUpdatePriceListPriceData = {
     body?: ItemPriceUpdateDto;
     path: {
         priceListId: string;
@@ -2264,25 +2264,25 @@ export type UpdatePriceListPriceAsyncData = {
     url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}';
 };
 
-export type UpdatePriceListPriceAsyncErrors = {
+export type PriceListsUpdatePriceListPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdatePriceListPriceAsyncError = UpdatePriceListPriceAsyncErrors[keyof UpdatePriceListPriceAsyncErrors];
+export type PriceListsUpdatePriceListPriceError = PriceListsUpdatePriceListPriceErrors[keyof PriceListsUpdatePriceListPriceErrors];
 
-export type UpdatePriceListPriceAsyncResponses = {
+export type PriceListsUpdatePriceListPriceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePriceListPriceAsyncResponse = UpdatePriceListPriceAsyncResponses[keyof UpdatePriceListPriceAsyncResponses];
+export type PriceListsUpdatePriceListPriceResponse = PriceListsUpdatePriceListPriceResponses[keyof PriceListsUpdatePriceListPriceResponses];
 
-export type GetPriceData = {
+export type PricesGetPriceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2300,25 +2300,25 @@ export type GetPriceData = {
     url: '/api/v2/PricingService/Prices/{itemId}/Price';
 };
 
-export type GetPriceErrors = {
+export type PricesGetPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPriceError = GetPriceErrors[keyof GetPriceErrors];
+export type PricesGetPriceError = PricesGetPriceErrors[keyof PricesGetPriceErrors];
 
-export type GetPriceResponses = {
+export type PricesGetPriceResponses = {
     /**
      * OK
      */
     200: ItemPriceCalculationEnvelopeReadable;
 };
 
-export type GetPriceResponse = GetPriceResponses[keyof GetPriceResponses];
+export type PricesGetPriceResponse = PricesGetPriceResponses[keyof PricesGetPriceResponses];
 
-export type GetFinalPriceData = {
+export type PricesGetFinalPriceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2333,25 +2333,25 @@ export type GetFinalPriceData = {
     url: '/api/v2/PricingService/Prices/{itemId}/FinalPrice';
 };
 
-export type GetFinalPriceErrors = {
+export type PricesGetFinalPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetFinalPriceError = GetFinalPriceErrors[keyof GetFinalPriceErrors];
+export type PricesGetFinalPriceError = PricesGetFinalPriceErrors[keyof PricesGetFinalPriceErrors];
 
-export type GetFinalPriceResponses = {
+export type PricesGetFinalPriceResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetFinalPriceResponse = GetFinalPriceResponses[keyof GetFinalPriceResponses];
+export type PricesGetFinalPriceResponse = PricesGetFinalPriceResponses[keyof PricesGetFinalPriceResponses];
 
-export type GetTotalTaxesInUsdData = {
+export type PricesGetTotalTaxesInUsdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2366,25 +2366,25 @@ export type GetTotalTaxesInUsdData = {
     url: '/api/v2/PricingService/Prices/{itemId}/TotalTaxes';
 };
 
-export type GetTotalTaxesInUsdErrors = {
+export type PricesGetTotalTaxesInUsdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetTotalTaxesInUsdError = GetTotalTaxesInUsdErrors[keyof GetTotalTaxesInUsdErrors];
+export type PricesGetTotalTaxesInUsdError = PricesGetTotalTaxesInUsdErrors[keyof PricesGetTotalTaxesInUsdErrors];
 
-export type GetTotalTaxesInUsdResponses = {
+export type PricesGetTotalTaxesInUsdResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetTotalTaxesInUsdResponse = GetTotalTaxesInUsdResponses[keyof GetTotalTaxesInUsdResponses];
+export type PricesGetTotalTaxesInUsdResponse = PricesGetTotalTaxesInUsdResponses[keyof PricesGetTotalTaxesInUsdResponses];
 
-export type GetTotalSavingsInUsdData = {
+export type PricesGetTotalSavingsInUsdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2399,25 +2399,25 @@ export type GetTotalSavingsInUsdData = {
     url: '/api/v2/PricingService/Prices/{itemId}/TotalSavings';
 };
 
-export type GetTotalSavingsInUsdErrors = {
+export type PricesGetTotalSavingsInUsdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetTotalSavingsInUsdError = GetTotalSavingsInUsdErrors[keyof GetTotalSavingsInUsdErrors];
+export type PricesGetTotalSavingsInUsdError = PricesGetTotalSavingsInUsdErrors[keyof PricesGetTotalSavingsInUsdErrors];
 
-export type GetTotalSavingsInUsdResponses = {
+export type PricesGetTotalSavingsInUsdResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetTotalSavingsInUsdResponse = GetTotalSavingsInUsdResponses[keyof GetTotalSavingsInUsdResponses];
+export type PricesGetTotalSavingsInUsdResponse = PricesGetTotalSavingsInUsdResponses[keyof PricesGetTotalSavingsInUsdResponses];
 
-export type GetPricingRulesData = {
+export type PricingRulesGetPricingRulesData = {
     body?: PricingRuleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2430,7 +2430,7 @@ export type GetPricingRulesData = {
     url: '/api/v2/PricingService/PricingRules';
 };
 
-export type GetPricingRulesErrors = {
+export type PricingRulesGetPricingRulesErrors = {
     /**
      * Unauthorized
      */
@@ -2441,18 +2441,18 @@ export type GetPricingRulesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPricingRulesError = GetPricingRulesErrors[keyof GetPricingRulesErrors];
+export type PricingRulesGetPricingRulesError = PricingRulesGetPricingRulesErrors[keyof PricingRulesGetPricingRulesErrors];
 
-export type GetPricingRulesResponses = {
+export type PricingRulesGetPricingRulesResponses = {
     /**
      * OK
      */
     200: PricingRuleDtoListEnvelopeReadable;
 };
 
-export type GetPricingRulesResponse = GetPricingRulesResponses[keyof GetPricingRulesResponses];
+export type PricingRulesGetPricingRulesResponse = PricingRulesGetPricingRulesResponses[keyof PricingRulesGetPricingRulesResponses];
 
-export type CreatePricingRuleData = {
+export type PricingRulesCreatePricingRuleData = {
     body?: PricingRuleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2465,7 +2465,7 @@ export type CreatePricingRuleData = {
     url: '/api/v2/PricingService/PricingRules';
 };
 
-export type CreatePricingRuleErrors = {
+export type PricingRulesCreatePricingRuleErrors = {
     /**
      * Unauthorized
      */
@@ -2476,18 +2476,18 @@ export type CreatePricingRuleErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePricingRuleError = CreatePricingRuleErrors[keyof CreatePricingRuleErrors];
+export type PricingRulesCreatePricingRuleError = PricingRulesCreatePricingRuleErrors[keyof PricingRulesCreatePricingRuleErrors];
 
-export type CreatePricingRuleResponses = {
+export type PricingRulesCreatePricingRuleResponses = {
     /**
      * Created
      */
     201: PricingRuleDtoEnvelopeReadable;
 };
 
-export type CreatePricingRuleResponse = CreatePricingRuleResponses[keyof CreatePricingRuleResponses];
+export type PricingRulesCreatePricingRuleResponse = PricingRulesCreatePricingRuleResponses[keyof PricingRulesCreatePricingRuleResponses];
 
-export type DeletePricingRuleData = {
+export type PricingRulesDeletePricingRuleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2502,7 +2502,7 @@ export type DeletePricingRuleData = {
     url: '/api/v2/PricingService/PricingRules/{pricingRuleId}';
 };
 
-export type DeletePricingRuleErrors = {
+export type PricingRulesDeletePricingRuleErrors = {
     /**
      * Unauthorized
      */
@@ -2513,16 +2513,16 @@ export type DeletePricingRuleErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePricingRuleError = DeletePricingRuleErrors[keyof DeletePricingRuleErrors];
+export type PricingRulesDeletePricingRuleError = PricingRulesDeletePricingRuleErrors[keyof PricingRulesDeletePricingRuleErrors];
 
-export type DeletePricingRuleResponses = {
+export type PricingRulesDeletePricingRuleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetPricingRuleByIdData = {
+export type PricingRulesGetPricingRuleByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2537,7 +2537,7 @@ export type GetPricingRuleByIdData = {
     url: '/api/v2/PricingService/PricingRules/{pricingRuleId}';
 };
 
-export type GetPricingRuleByIdErrors = {
+export type PricingRulesGetPricingRuleByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2548,18 +2548,18 @@ export type GetPricingRuleByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPricingRuleByIdError = GetPricingRuleByIdErrors[keyof GetPricingRuleByIdErrors];
+export type PricingRulesGetPricingRuleByIdError = PricingRulesGetPricingRuleByIdErrors[keyof PricingRulesGetPricingRuleByIdErrors];
 
-export type GetPricingRuleByIdResponses = {
+export type PricingRulesGetPricingRuleByIdResponses = {
     /**
      * OK
      */
     200: PricingRuleDtoEnvelopeReadable;
 };
 
-export type GetPricingRuleByIdResponse = GetPricingRuleByIdResponses[keyof GetPricingRuleByIdResponses];
+export type PricingRulesGetPricingRuleByIdResponse = PricingRulesGetPricingRuleByIdResponses[keyof PricingRulesGetPricingRuleByIdResponses];
 
-export type PatchPricingRuleData = {
+export type PricingRulesPatchPricingRuleData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2574,7 +2574,7 @@ export type PatchPricingRuleData = {
     url: '/api/v2/PricingService/PricingRules/{pricingRuleId}';
 };
 
-export type PatchPricingRuleErrors = {
+export type PricingRulesPatchPricingRuleErrors = {
     /**
      * Unauthorized
      */
@@ -2585,16 +2585,16 @@ export type PatchPricingRuleErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPricingRuleError = PatchPricingRuleErrors[keyof PatchPricingRuleErrors];
+export type PricingRulesPatchPricingRuleError = PricingRulesPatchPricingRuleErrors[keyof PricingRulesPatchPricingRuleErrors];
 
-export type PatchPricingRuleResponses = {
+export type PricingRulesPatchPricingRuleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetPricingRulesCountAsyncData = {
+export type PricingRulesGetPricingRulesCountData = {
     body?: PricingRuleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2607,25 +2607,25 @@ export type GetPricingRulesCountAsyncData = {
     url: '/api/v2/PricingService/PricingRules/Count';
 };
 
-export type GetPricingRulesCountAsyncErrors = {
+export type PricingRulesGetPricingRulesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPricingRulesCountAsyncError = GetPricingRulesCountAsyncErrors[keyof GetPricingRulesCountAsyncErrors];
+export type PricingRulesGetPricingRulesCountError = PricingRulesGetPricingRulesCountErrors[keyof PricingRulesGetPricingRulesCountErrors];
 
-export type GetPricingRulesCountAsyncResponses = {
+export type PricingRulesGetPricingRulesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPricingRulesCountAsyncResponse = GetPricingRulesCountAsyncResponses[keyof GetPricingRulesCountAsyncResponses];
+export type PricingRulesGetPricingRulesCountResponse = PricingRulesGetPricingRulesCountResponses[keyof PricingRulesGetPricingRulesCountResponses];
 
-export type UpdatePricingRuleData = {
+export type PricingRulesUpdatePricingRuleData = {
     body?: PricingRuleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2639,7 +2639,7 @@ export type UpdatePricingRuleData = {
     url: '/api/v2/PricingService/PricingRules/Update';
 };
 
-export type UpdatePricingRuleErrors = {
+export type PricingRulesUpdatePricingRuleErrors = {
     /**
      * Unauthorized
      */
@@ -2650,16 +2650,16 @@ export type UpdatePricingRuleErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePricingRuleError = UpdatePricingRuleErrors[keyof UpdatePricingRuleErrors];
+export type PricingRulesUpdatePricingRuleError = PricingRulesUpdatePricingRuleErrors[keyof PricingRulesUpdatePricingRuleErrors];
 
-export type UpdatePricingRuleResponses = {
+export type PricingRulesUpdatePricingRuleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetRoundingPoliciesAsyncData = {
+export type RoundingPoliciesGetRoundingPoliciesData = {
     body?: RoundingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2672,7 +2672,7 @@ export type GetRoundingPoliciesAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies';
 };
 
-export type GetRoundingPoliciesAsyncErrors = {
+export type RoundingPoliciesGetRoundingPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -2683,18 +2683,18 @@ export type GetRoundingPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRoundingPoliciesAsyncError = GetRoundingPoliciesAsyncErrors[keyof GetRoundingPoliciesAsyncErrors];
+export type RoundingPoliciesGetRoundingPoliciesError = RoundingPoliciesGetRoundingPoliciesErrors[keyof RoundingPoliciesGetRoundingPoliciesErrors];
 
-export type GetRoundingPoliciesAsyncResponses = {
+export type RoundingPoliciesGetRoundingPoliciesResponses = {
     /**
      * OK
      */
     200: RoundingPolicyDtoListEnvelopeReadable;
 };
 
-export type GetRoundingPoliciesAsyncResponse = GetRoundingPoliciesAsyncResponses[keyof GetRoundingPoliciesAsyncResponses];
+export type RoundingPoliciesGetRoundingPoliciesResponse = RoundingPoliciesGetRoundingPoliciesResponses[keyof RoundingPoliciesGetRoundingPoliciesResponses];
 
-export type CreateRoundingPolicyAsyncData = {
+export type RoundingPoliciesCreateRoundingPolicyData = {
     body: RoundingPolicyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2707,7 +2707,7 @@ export type CreateRoundingPolicyAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies';
 };
 
-export type CreateRoundingPolicyAsyncErrors = {
+export type RoundingPoliciesCreateRoundingPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -2718,18 +2718,18 @@ export type CreateRoundingPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateRoundingPolicyAsyncError = CreateRoundingPolicyAsyncErrors[keyof CreateRoundingPolicyAsyncErrors];
+export type RoundingPoliciesCreateRoundingPolicyError = RoundingPoliciesCreateRoundingPolicyErrors[keyof RoundingPoliciesCreateRoundingPolicyErrors];
 
-export type CreateRoundingPolicyAsyncResponses = {
+export type RoundingPoliciesCreateRoundingPolicyResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateRoundingPolicyAsyncResponse = CreateRoundingPolicyAsyncResponses[keyof CreateRoundingPolicyAsyncResponses];
+export type RoundingPoliciesCreateRoundingPolicyResponse = RoundingPoliciesCreateRoundingPolicyResponses[keyof RoundingPoliciesCreateRoundingPolicyResponses];
 
-export type GetRoundingPoliciesCountAsyncData = {
+export type RoundingPoliciesGetRoundingPoliciesCountData = {
     body?: RoundingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2742,7 +2742,7 @@ export type GetRoundingPoliciesCountAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies/Count';
 };
 
-export type GetRoundingPoliciesCountAsyncErrors = {
+export type RoundingPoliciesGetRoundingPoliciesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2753,18 +2753,18 @@ export type GetRoundingPoliciesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRoundingPoliciesCountAsyncError = GetRoundingPoliciesCountAsyncErrors[keyof GetRoundingPoliciesCountAsyncErrors];
+export type RoundingPoliciesGetRoundingPoliciesCountError = RoundingPoliciesGetRoundingPoliciesCountErrors[keyof RoundingPoliciesGetRoundingPoliciesCountErrors];
 
-export type GetRoundingPoliciesCountAsyncResponses = {
+export type RoundingPoliciesGetRoundingPoliciesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetRoundingPoliciesCountAsyncResponse = GetRoundingPoliciesCountAsyncResponses[keyof GetRoundingPoliciesCountAsyncResponses];
+export type RoundingPoliciesGetRoundingPoliciesCountResponse = RoundingPoliciesGetRoundingPoliciesCountResponses[keyof RoundingPoliciesGetRoundingPoliciesCountResponses];
 
-export type DeleteRoundingPolicyAsyncData = {
+export type RoundingPoliciesDeleteRoundingPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2779,7 +2779,7 @@ export type DeleteRoundingPolicyAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
 };
 
-export type DeleteRoundingPolicyAsyncErrors = {
+export type RoundingPoliciesDeleteRoundingPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -2790,18 +2790,18 @@ export type DeleteRoundingPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteRoundingPolicyAsyncError = DeleteRoundingPolicyAsyncErrors[keyof DeleteRoundingPolicyAsyncErrors];
+export type RoundingPoliciesDeleteRoundingPolicyError = RoundingPoliciesDeleteRoundingPolicyErrors[keyof RoundingPoliciesDeleteRoundingPolicyErrors];
 
-export type DeleteRoundingPolicyAsyncResponses = {
+export type RoundingPoliciesDeleteRoundingPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteRoundingPolicyAsyncResponse = DeleteRoundingPolicyAsyncResponses[keyof DeleteRoundingPolicyAsyncResponses];
+export type RoundingPoliciesDeleteRoundingPolicyResponse = RoundingPoliciesDeleteRoundingPolicyResponses[keyof RoundingPoliciesDeleteRoundingPolicyResponses];
 
-export type GetRoundingPolicyByIdAsyncData = {
+export type RoundingPoliciesGetRoundingPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2816,7 +2816,7 @@ export type GetRoundingPolicyByIdAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
 };
 
-export type GetRoundingPolicyByIdAsyncErrors = {
+export type RoundingPoliciesGetRoundingPolicyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2827,18 +2827,18 @@ export type GetRoundingPolicyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRoundingPolicyByIdAsyncError = GetRoundingPolicyByIdAsyncErrors[keyof GetRoundingPolicyByIdAsyncErrors];
+export type RoundingPoliciesGetRoundingPolicyByIdError = RoundingPoliciesGetRoundingPolicyByIdErrors[keyof RoundingPoliciesGetRoundingPolicyByIdErrors];
 
-export type GetRoundingPolicyByIdAsyncResponses = {
+export type RoundingPoliciesGetRoundingPolicyByIdResponses = {
     /**
      * OK
      */
     200: RoundingPolicyDtoEnvelopeReadable;
 };
 
-export type GetRoundingPolicyByIdAsyncResponse = GetRoundingPolicyByIdAsyncResponses[keyof GetRoundingPolicyByIdAsyncResponses];
+export type RoundingPoliciesGetRoundingPolicyByIdResponse = RoundingPoliciesGetRoundingPolicyByIdResponses[keyof RoundingPoliciesGetRoundingPolicyByIdResponses];
 
-export type PatchRoundingPolicyAsyncData = {
+export type RoundingPoliciesPatchRoundingPolicyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2853,7 +2853,7 @@ export type PatchRoundingPolicyAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
 };
 
-export type PatchRoundingPolicyAsyncErrors = {
+export type RoundingPoliciesPatchRoundingPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -2864,18 +2864,18 @@ export type PatchRoundingPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchRoundingPolicyAsyncError = PatchRoundingPolicyAsyncErrors[keyof PatchRoundingPolicyAsyncErrors];
+export type RoundingPoliciesPatchRoundingPolicyError = RoundingPoliciesPatchRoundingPolicyErrors[keyof RoundingPoliciesPatchRoundingPolicyErrors];
 
-export type PatchRoundingPolicyAsyncResponses = {
+export type RoundingPoliciesPatchRoundingPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchRoundingPolicyAsyncResponse = PatchRoundingPolicyAsyncResponses[keyof PatchRoundingPolicyAsyncResponses];
+export type RoundingPoliciesPatchRoundingPolicyResponse = RoundingPoliciesPatchRoundingPolicyResponses[keyof RoundingPoliciesPatchRoundingPolicyResponses];
 
-export type UpdateRoundingPolicyAsyncData = {
+export type RoundingPoliciesUpdateRoundingPolicyData = {
     body: RoundingPolicyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2890,7 +2890,7 @@ export type UpdateRoundingPolicyAsyncData = {
     url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
 };
 
-export type UpdateRoundingPolicyAsyncErrors = {
+export type RoundingPoliciesUpdateRoundingPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -2901,16 +2901,16 @@ export type UpdateRoundingPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateRoundingPolicyAsyncError = UpdateRoundingPolicyAsyncErrors[keyof UpdateRoundingPolicyAsyncErrors];
+export type RoundingPoliciesUpdateRoundingPolicyError = RoundingPoliciesUpdateRoundingPolicyErrors[keyof RoundingPoliciesUpdateRoundingPolicyErrors];
 
-export type UpdateRoundingPolicyAsyncResponses = {
+export type RoundingPoliciesUpdateRoundingPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateRoundingPolicyAsyncResponse = UpdateRoundingPolicyAsyncResponses[keyof UpdateRoundingPolicyAsyncResponses];
+export type RoundingPoliciesUpdateRoundingPolicyResponse = RoundingPoliciesUpdateRoundingPolicyResponses[keyof RoundingPoliciesUpdateRoundingPolicyResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

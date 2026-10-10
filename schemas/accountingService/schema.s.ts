@@ -10,2687 +10,2439 @@ export interface paths {
      * Gets the current tenant account groups
      * @description Get the currently acting tenant account groups.
      */
-    get: operations["GetAccountGroups"];
+    get: operations["AccountGroups_GetAccountGroups"];
     /**
      * Creates a new account group
      * @description Creates a new account group.
      */
-    post: operations["CreateAccountGroup"];
+    post: operations["AccountGroups_CreateAccountGroup"];
   };
   "/api/v2/AccountingService/AccountGroups/Count": {
     /**
      * Gets the current tenant accounts count
      * @description Get the currently acting tenant accounts count.
      */
-    get: operations["GetAccountGroupsCountAsync"];
+    get: operations["AccountGroups_GetAccountGroupsCount"];
   };
   "/api/v2/AccountingService/AccountGroups/{accountGroupId}": {
     /**
      * Gets the current tenant account group
      * @description Get the currently acting tenant account group.
      */
-    get: operations["GetAccountGroup"];
+    get: operations["AccountGroups_GetAccountGroup"];
     /**
      * Updates an existing account group
      * @description Updates an existing account group.
      */
-    put: operations["UpdateAccountGroup"];
+    put: operations["AccountGroups_UpdateAccountGroup"];
     /**
      * Deletes an existing account group
      * @description Deletes an existing account group.
      */
-    delete: operations["DeleteAccountGroup"];
+    delete: operations["AccountGroups_DeleteAccountGroup"];
     /**
      * Patch an account group
      * @description Partially updates an account group.
      */
-    patch: operations["PatchAccountGroupAsync"];
+    patch: operations["AccountGroups_PatchAccountGroup"];
   };
   "/api/v2/AccountingService/AccountingPeriods": {
     /**
      * Get all accounting periods for a tenant
      * @description Retrieves all accounting periods for the specified tenant using OData query options.
      */
-    get: operations["GetAccountingPeriods"];
+    get: operations["AccountingPeriods_GetAccountingPeriods"];
     /**
      * Creates a new accounting period
      * @description Creates a new accounting period.
      */
-    post: operations["CreateAccountingPeriod"];
+    post: operations["AccountingPeriods_CreateAccountingPeriod"];
   };
   "/api/v2/AccountingService/AccountingPeriods/Count": {
     /**
      * Gets the current tenant accounting periods count
      * @description Get the currently acting tenant accounting periods count.
      */
-    get: operations["GetAccountingPeriodsCountAsync"];
+    get: operations["AccountingPeriods_GetAccountingPeriodsCount"];
   };
   "/api/v2/AccountingService/AccountingPeriods/{accountingPeriodId}": {
     /**
      * Gets the current tenant accounting period
      * @description Get the currently acting tenant accounting period.
      */
-    get: operations["GetAccountingPeriod"];
+    get: operations["AccountingPeriods_GetAccountingPeriod"];
     /**
      * Updates an existing accounting period
      * @description Updates an existing accounting period.
      */
-    put: operations["UpdateAccountingPeriod"];
+    put: operations["AccountingPeriods_UpdateAccountingPeriod"];
     /**
      * Deletes an existing accounting period
      * @description Deletes an existing accounting period.
      */
-    delete: operations["DeleteAccountingPeriod"];
+    delete: operations["AccountingPeriods_DeleteAccountingPeriod"];
     /**
      * Patch an accounting period
      * @description Partially updates an accounting period.
      */
-    patch: operations["PatchAccountingPeriodAsync"];
+    patch: operations["AccountingPeriods_PatchAccountingPeriod"];
   };
   "/api/v2/AccountingService/Summary/Incomes/Sum": {
     /**
      * Sum tenant incomes
      * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
      */
-    get: operations["GetIncomesSumAsync"];
+    get: operations["AccountingSummary_GetIncomesSum"];
   };
   "/api/v2/AccountingService/Summary/Expenses/Sum": {
     /**
      * Sum tenant expenses
      * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
      */
-    get: operations["GetExpensesSumAsync"];
+    get: operations["AccountingSummary_GetExpensesSum"];
   };
   "/api/v2/AccountingService/Summary/Debits/Sum": {
     /**
      * Sum tenant accounting-entry debits
      * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
      */
-    get: operations["GetDebitsSumAsync"];
+    get: operations["AccountingSummary_GetDebitsSum"];
   };
   "/api/v2/AccountingService/Summary/Credits/Sum": {
     /**
      * Sum tenant accounting-entry credits
      * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
      */
-    get: operations["GetCreditsSumAsync"];
+    get: operations["AccountingSummary_GetCreditsSum"];
   };
   "/api/v2/AccountingService/Accounts": {
     /**
      * Creates a new account
      * @description Creates a new account.
      */
-    get: operations["GetAccountsAsync"];
+    get: operations["Accounts_GetAccounts"];
     /**
      * Get root accounts
      * @description Get root accounts.
      */
-    post: operations["CreateAccountAsync"];
+    post: operations["Accounts_CreateAccount"];
   };
   "/api/v2/AccountingService/Accounts/Count": {
     /**
      * Get the number of accounts
      * @description Get the number of accounts.
      */
-    get: operations["GetAccountsCountAsync"];
+    get: operations["Accounts_GetAccountsCount"];
   };
   "/api/v2/AccountingService/Accounts/Root": {
     /**
      * Get root accounts
      * @description Get root accounts.
      */
-    get: operations["GetRootAccountsAsync"];
+    get: operations["Accounts_GetRootAccounts"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}": {
     /**
      * Get account details
      * @description Get account details.
      */
-    get: operations["GetAccountDetailsAsync"];
+    get: operations["Accounts_GetAccountDetails"];
     /**
      * Update an account
      * @description Update an account.
      */
-    put: operations["UpdateAccountAsync"];
+    put: operations["Accounts_UpdateAccount"];
     /**
      * Delete an account
      * @description Delete an account.
      */
-    delete: operations["DeleteAccountAsync"];
+    delete: operations["Accounts_DeleteAccount"];
     /**
      * Patch an account
      * @description Patch an account.
      */
-    patch: operations["PatchAccountAsync"];
+    patch: operations["Accounts_PatchAccount"];
   };
   "/api/v2/AccountingService/Accounts/Root/Balance": {
     /**
      * Balance root account
      * @description Balance root account.
      */
-    post: operations["BalanceRootAccountAsync"];
+    post: operations["Accounts_BalanceRootAccount"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Balance": {
     /**
      * Balance account
      * @description Balance account.
      */
-    post: operations["BalanceAccountAsync"];
+    post: operations["Accounts_BalanceAccount"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Children": {
     /**
      * Get child accounts
      * @description Get child accounts.
      */
-    get: operations["GetChildAccountsAsync"];
+    get: operations["Accounts_GetChildAccounts"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Entries": {
     /**
      * Get account entries
      * @description Get account entries.
      */
-    get: operations["GetAccountEntriesAsync"];
+    get: operations["Accounts_GetAccountEntries"];
     /**
      * Create account entry
      * @description Create account entry.
      */
-    post: operations["CreateAccountEntryAsync"];
+    post: operations["Accounts_CreateAccountEntry"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Entries/Debit": {
     /**
      * Get debit account entries
      * @description Get debit account entries.
      */
-    get: operations["GetDebitAccountEntriesAsync"];
+    get: operations["Accounts_GetDebitAccountEntries"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Entries/Credit": {
     /**
      * Get credit account entries
      * @description Get credit account entries.
      */
-    get: operations["GetCreditAccountEntriesAsync"];
+    get: operations["Accounts_GetCreditAccountEntries"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Entries/{entryId}": {
     /**
      * Get account entry
      * @description Get account entry.
      */
-    get: operations["GetAccountEntryAsync"];
+    get: operations["Accounts_GetAccountEntry"];
     /**
      * Update account entry
      * @description Update account entry.
      */
-    put: operations["UpdateAccountEntryAsync"];
+    put: operations["Accounts_UpdateAccountEntry"];
     /**
      * Delete account entry
      * @description Delete account entry.
      */
-    delete: operations["DeleteAccountEntryAsync"];
+    delete: operations["Accounts_DeleteAccountEntry"];
     /**
      * Patch account entry
      * @description Patch account entry.
      */
-    patch: operations["PatchAccountEntryAsync"];
+    patch: operations["Accounts_PatchAccountEntry"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Debits": {
     /**
      * Get account debits
      * @description Get account debits.
      */
-    get: operations["GetAccountDebitsAsync"];
+    get: operations["Accounts_GetAccountDebits"];
     /**
      * Create account debit
      * @description Create account debit.
      */
-    post: operations["CreateAccountDebitAsync"];
+    post: operations["Accounts_CreateAccountDebit"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Debits/Count": {
     /**
      * Get account debits count
      * @description Get account debits count.
      */
-    get: operations["GetAccountDebitsCountAsync"];
+    get: operations["Accounts_GetAccountDebitsCount"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Credits": {
     /**
      * Get account credits
      * @description Get account credits.
      */
-    get: operations["GetAccountCreditsAsync"];
+    get: operations["Accounts_GetAccountCredits"];
     /**
      * Create account credit
      * @description Create account credit.
      */
-    post: operations["CreateAccountCreditAsync"];
+    post: operations["Accounts_CreateAccountCredit"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Credits/Count": {
     /**
      * Get account credits count
      * @description Get account credits count.
      */
-    get: operations["GetAccountCreditsCountAsync"];
+    get: operations["Accounts_GetAccountCreditsCount"];
   };
   "/api/v2/AccountingService/Accounts/Aggregate/Balance": {
     /**
      * Aggregate accounts balance
      * @description Returns the sum of all account balances matching OData filters, normalized to the target currency using stored USD values.
      */
-    get: operations["AggregateAccountsBalanceAsync"];
+    get: operations["Accounts_AggregateAccountsBalance"];
   };
   "/api/v2/AccountingService/Accounts/Aggregate": {
     /**
      * Get account aggregate
      * @description Get account aggregate.
      */
-    post: operations["GetAccountAggregateAsync"];
+    post: operations["Accounts_GetAccountAggregate"];
   };
   "/api/v2/AccountingService/Accounts/Types": {
     /**
      * Get account types
      * @description Get account types.
      */
-    get: operations["GetAccountTypesAsync"];
+    get: operations["Accounts_GetAccountTypes"];
     /**
      * Create account type
      * @description Create account type.
      */
-    post: operations["CreateAccountTypeAsync"];
+    post: operations["Accounts_CreateAccountType"];
   };
   "/api/v2/AccountingService/Accounts/Types/Count": {
     /**
      * Get account types count
      * @description Get account types count.
      */
-    get: operations["GetAccountTypesCountAsync"];
+    get: operations["Accounts_GetAccountTypesCount"];
   };
   "/api/v2/AccountingService/Accounts/Types/{accountTypeId}": {
     /**
      * Get account type by ID
      * @description Get account type by ID.
      */
-    get: operations["GetAccountTypeByIdAsync"];
+    get: operations["Accounts_GetAccountTypeById"];
     /**
      * Update account type
      * @description Update account type.
      */
-    put: operations["UpdateAccountTypeAsync"];
+    put: operations["Accounts_UpdateAccountType"];
     /**
      * Delete account type
      * @description Delete account type.
      */
-    delete: operations["DeleteAccountTypeAsync"];
+    delete: operations["Accounts_DeleteAccountType"];
     /**
      * Patch account type
      * @description Patch account type.
      */
-    patch: operations["PatchAccountTypeAsync"];
+    patch: operations["Accounts_PatchAccountType"];
   };
   "/api/v2/AccountingService/Accounts/Relations": {
     /**
      * Get account relations
      * @description Get account relations.
      */
-    get: operations["GetAccountRelationsAsync"];
+    get: operations["Accounts_GetAccountRelations"];
     /**
      * Create account relation
      * @description Create account relation.
      */
-    post: operations["CreateAccountRelationAsync"];
+    post: operations["Accounts_CreateAccountRelation"];
   };
   "/api/v2/AccountingService/Accounts/Relations/Count": {
     /**
      * Get account relations count
      * @description Get account relations count.
      */
-    get: operations["GetAccountRelationsCountAsync"];
+    get: operations["Accounts_GetAccountRelationsCount"];
   };
   "/api/v2/AccountingService/Accounts/Relations/{accountRelationId}": {
     /**
      * Update account relation
      * @description Update account relation.
      */
-    put: operations["UpdateAccountRelationAsync"];
+    put: operations["Accounts_UpdateAccountRelation"];
     /**
      * Delete account relation
      * @description Delete account relation.
      */
-    delete: operations["DeleteAccountRelationAsync"];
+    delete: operations["Accounts_DeleteAccountRelation"];
     /**
      * Patch account relation
      * @description Patch account relation.
      */
-    patch: operations["PatchAccountRelationAsync"];
+    patch: operations["Accounts_PatchAccountRelation"];
   };
   "/api/v2/AccountingService/Accounts/ChartsOfAccounts": {
     /**
      * Get charts of accounts
      * @description Get available charts of accounts.
      */
-    get: operations["GetChartsOfAccountsAsync"];
+    get: operations["Accounts_GetChartsOfAccounts"];
   };
   "/api/v2/AccountingService/Accounts/ChartsOfAccounts/Seed": {
     /**
      * Seed chart of accounts
      * @description Seed a chart of accounts from a file URL.
      */
-    post: operations["SeedChartOfAccountsAsync"];
+    post: operations["Accounts_SeedChartOfAccounts"];
   };
   "/api/v2/AccountingService/Banking": {
     /**
      * Gets the current tenant banks
      * @description Get the currently acting tenant banks.
      */
-    get: operations["GetBanks"];
+    get: operations["Banking_GetBanks"];
     /**
      * Creates a new bank
      * @description Create a new bank.
      */
-    post: operations["CreateBank"];
+    post: operations["Banking_CreateBank"];
   };
   "/api/v2/AccountingService/Banking/Count": {
     /**
      * Gets the current tenant banks count
      * @description Get the currently acting tenant banks count.
      */
-    get: operations["GetBanksCount"];
+    get: operations["Banking_GetBanksCount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}": {
     /**
      * Gets the current tenant bank
      * @description Get the currently acting tenant bank.
      */
-    get: operations["GetBank"];
+    get: operations["Banking_GetBank"];
     /**
      * Updates a bank
      * @description Update a bank.
      */
-    put: operations["UpdateBank"];
+    put: operations["Banking_UpdateBank"];
     /**
      * Deletes a bank
      * @description Delete a bank.
      */
-    delete: operations["DeleteBank"];
+    delete: operations["Banking_DeleteBank"];
     /**
      * Patches a bank
      * @description Partially update a bank using JSON Patch.
      */
-    patch: operations["PatchBank"];
+    patch: operations["Banking_PatchBank"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Accounts": {
     /**
      * Gets the current tenant bank accounts
      * @description Get the currently acting tenant bank accounts.
      */
-    get: operations["GetBankAccounts"];
+    get: operations["Banking_GetBankAccounts"];
     /**
      * Creates a new bank account
      * @description Create a new bank account.
      */
-    post: operations["CreateBankAccount"];
+    post: operations["Banking_CreateBankAccount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Accounts/Count": {
     /**
      * Gets the current tenant bank accounts count
      * @description Get the currently acting tenant bank accounts count.
      */
-    get: operations["GetBankAccountsCount"];
+    get: operations["Banking_GetBankAccountsCount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Accounts/{accountId}": {
     /**
      * Gets the current tenant bank account
      * @description Get the currently acting tenant bank account.
      */
-    get: operations["GetBankAccount"];
+    get: operations["Banking_GetBankAccount"];
     /**
      * Updates a bank account
      * @description Update a bank account.
      */
-    put: operations["UpdateBankAccount"];
+    put: operations["Banking_UpdateBankAccount"];
     /**
      * Deletes a bank account
      * @description Delete a bank account.
      */
-    delete: operations["DeleteBankAccount"];
+    delete: operations["Banking_DeleteBankAccount"];
     /**
      * Patches a bank account
      * @description Partially update a bank account using JSON Patch.
      */
-    patch: operations["PatchBankAccount"];
+    patch: operations["Banking_PatchBankAccount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Guarantees": {
     /**
      * Gets the current tenant bank guarantees
      * @description Get the currently acting tenant bank guarantees.
      */
-    get: operations["GetBankGuarantees"];
+    get: operations["Banking_GetBankGuarantees"];
     /**
      * Creates a new bank guarantee
      * @description Create a new bank guarantee.
      */
-    post: operations["CreateBankGuarantee"];
+    post: operations["Banking_CreateBankGuarantee"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Guarantees/Count": {
     /**
      * Gets the current tenant bank guarantees count
      * @description Get the currently acting tenant bank guarantees count.
      */
-    get: operations["GetBankGuaranteesCount"];
+    get: operations["Banking_GetBankGuaranteesCount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Guarantees/{guaranteeId}": {
     /**
      * Gets the current tenant bank guarantee
      * @description Get the currently acting tenant bank guarantee.
      */
-    get: operations["GetBankGuarantee"];
+    get: operations["Banking_GetBankGuarantee"];
     /**
      * Updates a bank guarantee
      * @description Update a bank guarantee.
      */
-    put: operations["UpdateBankGuarantee"];
+    put: operations["Banking_UpdateBankGuarantee"];
     /**
      * Deletes a bank guarantee
      * @description Delete a bank guarantee.
      */
-    delete: operations["DeleteBankGuarantee"];
+    delete: operations["Banking_DeleteBankGuarantee"];
     /**
      * Patches a bank guarantee
      * @description Partially update a bank guarantee using JSON Patch.
      */
-    patch: operations["PatchBankGuarantee"];
+    patch: operations["Banking_PatchBankGuarantee"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Transactions": {
     /**
      * Gets the current tenant bank transactions
      * @description Get the currently acting tenant bank transactions.
      */
-    get: operations["GetBankTransactions"];
+    get: operations["Banking_GetBankTransactions"];
     /**
      * Creates a new bank transaction
      * @description Create a new bank transaction.
      */
-    post: operations["CreateBankTransaction"];
+    post: operations["Banking_CreateBankTransaction"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Transactions/Count": {
     /**
      * Gets the current tenant bank transactions count
      * @description Get the currently acting tenant bank transactions count.
      */
-    get: operations["GetBankTransactionsCount"];
+    get: operations["Banking_GetBankTransactionsCount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Transactions/{transactionId}": {
     /**
      * Gets the current tenant bank transaction
      * @description Get the currently acting tenant bank transaction.
      */
-    get: operations["GetBankTransaction"];
+    get: operations["Banking_GetBankTransaction"];
     /**
      * Updates a bank transaction
      * @description Update a bank transaction.
      */
-    put: operations["UpdateBankTransaction"];
+    put: operations["Banking_UpdateBankTransaction"];
     /**
      * Deletes a bank transaction
      * @description Delete a bank transaction.
      */
-    delete: operations["DeleteBankTransaction"];
+    delete: operations["Banking_DeleteBankTransaction"];
     /**
      * Patches a bank transaction
      * @description Partially update a bank transaction using JSON Patch.
      */
-    patch: operations["PatchBankTransaction"];
+    patch: operations["Banking_PatchBankTransaction"];
   };
   "/api/v2/AccountingService/BankProfiles": {
     /**
      * Get all bank profiles for a tenant
      * @description Retrieves all bank profiles for the specified tenant using OData query options.
      */
-    get: operations["GetBankProfiles"];
+    get: operations["BankProfiles_GetBankProfiles"];
   };
   "/api/v2/AccountingService/BankProfiles/Count": {
     /**
      * Get bank profiles count
      * @description Returns the count of bank profiles for the specified tenant.
      */
-    get: operations["GetBankProfilesCount"];
+    get: operations["BankProfiles_GetBankProfilesCount"];
   };
   "/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes": {
     /**
      * Get taxes for a billable line.
      * @description Retrieves the taxes applied to the specified billable line.
      */
-    get: operations["GetBillableLineTaxes"];
+    get: operations["BillableLineTaxes_GetBillableLineTaxes"];
     /**
      * Create a new tax for a billable line.
      * @description Creates a new tax entry for the specified billable line.
      */
-    post: operations["CreateBillableLineTax"];
+    post: operations["BillableLineTaxes_CreateBillableLineTax"];
   };
   "/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/Count": {
     /**
      * Get the count of taxes for a billable line.
      * @description Retrieves the total count of taxes applied to the specified billable line.
      */
-    get: operations["GetBillableLineTaxesCount"];
+    get: operations["BillableLineTaxes_GetBillableLineTaxesCount"];
   };
   "/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/{taxId}": {
     /**
      * Update a tax for a billable line.
      * @description Updates the specified tax entry for the billable line.
      */
-    put: operations["UpdateBillableLineTax"];
+    put: operations["BillableLineTaxes_UpdateBillableLineTax"];
     /**
      * Delete a tax from a billable line.
      * @description Deletes the specified tax entry from the billable line.
      */
-    delete: operations["DeleteBillableLineTax"];
+    delete: operations["BillableLineTaxes_DeleteBillableLineTax"];
     /**
      * Patch a billable line tax
      * @description Partially updates a billable line tax.
      */
-    patch: operations["PatchBillableLineTaxAsync"];
+    patch: operations["BillableLineTaxes_PatchBillableLineTax"];
   };
   "/api/v2/AccountingService/BillingProfiles/{billingProfileId}": {
     /**
      * Gets a billing profile by id
      * @description Retrieves a specific billing profile using its unique identifier.
      */
-    get: operations["GetBillingProfileByIdAsync"];
+    get: operations["BillingProfiles_GetBillingProfileById"];
     /**
      * Updates an existing billing profile
      * @description Modifies an existing billing profile using the provided data.
      */
-    put: operations["UpdateBillingProfileAsync"];
+    put: operations["BillingProfiles_UpdateBillingProfile"];
     /**
      * Deletes a billing profile
      * @description Removes a billing profile from the system using its unique identifier.
      */
-    delete: operations["DeleteBillingProfileAsync"];
+    delete: operations["BillingProfiles_DeleteBillingProfile"];
     /**
      * Patch a billing profile
      * @description Partially updates a billing profile.
      */
-    patch: operations["PatchBillingProfileAsync"];
+    patch: operations["BillingProfiles_PatchBillingProfile"];
   };
   "/api/v2/AccountingService/BillingProfiles": {
     /**
      * Gets all billing profiles
      * @description Fetches all billing profiles for a tenant with support for OData queries.
      */
-    get: operations["GetBillingProfilesAsync"];
+    get: operations["BillingProfiles_GetBillingProfiles"];
     /**
      * Creates a new billing profile
      * @description Adds a new billing profile record for the specified tenant.
      */
-    post: operations["CreateBillingProfileAsync"];
+    post: operations["BillingProfiles_CreateBillingProfile"];
   };
   "/api/v2/AccountingService/BillingProfiles/Count": {
     /**
      * Gets the count of billing profiles
      * @description Returns the number of billing profiles for a tenant, supporting OData filtering.
      */
-    get: operations["GetBillingProfilesCountAsync"];
+    get: operations["BillingProfiles_GetBillingProfilesCount"];
   };
   "/api/v2/AccountingService/Budgets/{budgetId}": {
     /**
      * Gets a budget by id
      * @description Get a budget by id
      */
-    get: operations["GetBudgetDetailsAsync"];
+    get: operations["Budgets_GetBudgetDetails"];
     /**
      * Updates a budget
      * @description Update a budget
      */
-    put: operations["UpdateBudgetAsync"];
+    put: operations["Budgets_UpdateBudget"];
     /**
      * Deletes a budget
      * @description Delete a budget
      */
-    delete: operations["DeleteBudgetAsync"];
+    delete: operations["Budgets_DeleteBudget"];
     /**
      * Patches a budget
      * @description Partially update a budget using JSON Patch.
      */
-    patch: operations["PatchBudgetAsync"];
+    patch: operations["Budgets_PatchBudget"];
   };
   "/api/v2/AccountingService/Budgets": {
     /**
      * Gets all budgets
      * @description Get all budgets
      */
-    get: operations["GetBudgetsAsync"];
+    get: operations["Budgets_GetBudgets"];
     /**
      * Creates a budget
      * @description Create a budget
      */
-    post: operations["CreateBudgetAsync"];
+    post: operations["Budgets_CreateBudget"];
   };
   "/api/v2/AccountingService/Budgets/Count": {
     /**
      * Get the count of budgets
      * @description Get the count of budgets.
      */
-    get: operations["GetBudgetsCountAsync"];
+    get: operations["Budgets_GetBudgetsCount"];
   };
   "/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries": {
     /**
      * Gets all budget account entries
      * @description Get all budget account entries
      */
-    get: operations["GetBudgetAccountEntriesCollectionAsync"];
+    get: operations["Budgets_GetBudgetAccountEntriesCollection"];
     /**
      * Creates a budget account entry
      * @description Create a budget account entry
      */
-    post: operations["CreateBudgetAccountEntryAsync"];
+    post: operations["Budgets_CreateBudgetAccountEntry"];
   };
   "/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries/{entryId}": {
     /**
      * Gets a budget account entry by id
      * @description Get a budget account entry by id
      */
-    get: operations["GetBudgetAccountEntryAsync"];
+    get: operations["Budgets_GetBudgetAccountEntry"];
     /**
      * Updates a budget account entry
      * @description Update a budget account entry
      */
-    put: operations["UpdateBudgetAccountEntryAsync"];
+    put: operations["Budgets_UpdateBudgetAccountEntry"];
     /**
      * Deletes a budget account entry
      * @description Delete a budget account entry
      */
-    delete: operations["DeleteBudgetAccountEntryAsync"];
+    delete: operations["Budgets_DeleteBudgetAccountEntry"];
     /**
      * Patches a budget account entry
      * @description Partially update a budget account entry using JSON Patch.
      */
-    patch: operations["PatchBudgetAccountEntryAsync"];
+    patch: operations["Budgets_PatchBudgetAccountEntry"];
   };
   "/api/v2/AccountingService/Commissions/Commissions": {
     /**
      * Get all commissions for a tenant
      * @description Retrieves all commissions for the specified tenant using OData query options.
      */
-    get: operations["GetCommissionsAsync"];
+    get: operations["Commissions_GetCommissions"];
     /**
      * Create a commission
      * @description Creates a new commission.
      */
-    post: operations["CreateCommissionAsync"];
+    post: operations["Commissions_CreateCommission"];
   };
   "/api/v2/AccountingService/Commissions/Commissions/Count": {
     /**
      * Get the count of commissions for a tenant
      * @description Retrieves the count of commissions for the specified tenant using OData query options.
      */
-    get: operations["GetCommissionsCountAsync"];
+    get: operations["Commissions_GetCommissionsCount"];
   };
   "/api/v2/AccountingService/Commissions/Commissions/{commissionId}": {
     /**
      * Get a commission by id
      * @description Retrieves a commission by its identifier.
      */
-    get: operations["GetCommissionAsync"];
+    get: operations["Commissions_GetCommission"];
     /**
      * Update a commission
      * @description Updates an existing commission.
      */
-    put: operations["UpdateCommissionAsync"];
+    put: operations["Commissions_UpdateCommission"];
     /**
      * Delete a commission
      * @description Deletes a commission.
      */
-    delete: operations["DeleteCommissionAsync"];
+    delete: operations["Commissions_DeleteCommission"];
     /**
      * Patch a commission
      * @description Partially updates an existing commission.
      */
-    patch: operations["PatchCommissionAsync"];
+    patch: operations["Commissions_PatchCommission"];
   };
   "/api/v2/AccountingService/Commissions/PaymentCommissions": {
     /**
      * Get all payment commissions for a tenant
      * @description Retrieves all payment commissions for the specified tenant using OData query options.
      */
-    get: operations["GetPaymentCommissionsAsync"];
+    get: operations["Commissions_GetPaymentCommissions"];
     /**
      * Create a payment commission
      * @description Creates a new payment commission.
      */
-    post: operations["CreatePaymentCommissionAsync"];
+    post: operations["Commissions_CreatePaymentCommission"];
   };
   "/api/v2/AccountingService/Commissions/PaymentCommissions/Count": {
     /**
      * Get the count of payment commissions for a tenant
      * @description Retrieves the count of payment commissions for the specified tenant using OData query options.
      */
-    get: operations["GetPaymentCommissionsCountAsync"];
+    get: operations["Commissions_GetPaymentCommissionsCount"];
   };
   "/api/v2/AccountingService/Commissions/PaymentCommissions/{paymentCommissionId}": {
     /**
      * Get a payment commission by id
      * @description Retrieves a payment commission by its identifier.
      */
-    get: operations["GetPaymentCommissionAsync"];
+    get: operations["Commissions_GetPaymentCommission"];
     /**
      * Update a payment commission
      * @description Updates an existing payment commission.
      */
-    put: operations["UpdatePaymentCommissionAsync"];
+    put: operations["Commissions_UpdatePaymentCommission"];
     /**
      * Delete a payment commission
      * @description Deletes a payment commission.
      */
-    delete: operations["DeletePaymentCommissionAsync"];
+    delete: operations["Commissions_DeletePaymentCommission"];
     /**
      * Patch a payment commission
      * @description Partially updates an existing payment commission.
      */
-    patch: operations["PatchPaymentCommissionAsync"];
+    patch: operations["Commissions_PatchPaymentCommission"];
   };
   "/api/v2/AccountingService/CostCentres": {
     /**
      * Get all cost centres for a tenant
      * @description Retrieves all cost centres for the specified tenant using OData query options.
      */
-    get: operations["GetCostCentres"];
+    get: operations["CostCentres_GetCostCentres"];
     /**
      * Create a cost centre
      * @description Creates a new cost centre.
      */
-    post: operations["CreateCostCentre"];
+    post: operations["CostCentres_CreateCostCentre"];
   };
   "/api/v2/AccountingService/CostCentres/Count": {
     /**
      * Get the count of cost centres for a tenant
      * @description Retrieves the count of cost centres for the specified tenant using OData query options.
      */
-    get: operations["GetCostCentresCount"];
+    get: operations["CostCentres_GetCostCentresCount"];
   };
   "/api/v2/AccountingService/CostCentres/{costCentreId}": {
     /**
      * Get a cost centre by id
      * @description Retrieves a cost centre by its identifier.
      */
-    get: operations["GetCostCentre"];
+    get: operations["CostCentres_GetCostCentre"];
     /**
      * Update a cost centre
      * @description Updates an existing cost centre.
      */
-    put: operations["UpdateCostCentre"];
+    put: operations["CostCentres_UpdateCostCentre"];
     /**
      * Delete a cost centre
      * @description Deletes a cost centre.
      */
-    delete: operations["DeleteCostCentre"];
+    delete: operations["CostCentres_DeleteCostCentre"];
     /**
      * Patch a cost centre
      * @description Partially updates an existing cost centre.
      */
-    patch: operations["PatchCostCentre"];
+    patch: operations["CostCentres_PatchCostCentre"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreGroups": {
     /**
      * Get all cost centre groups for a tenant
      * @description Retrieves all cost centre groups for the specified tenant using OData query options.
      */
-    get: operations["GetCostCentreGroups"];
+    get: operations["CostCentres_GetCostCentreGroups"];
     /**
      * Create a cost centre group
      * @description Creates a new cost centre group.
      */
-    post: operations["CreateCostCentreGroup"];
+    post: operations["CostCentres_CreateCostCentreGroup"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreGroups/Count": {
     /**
      * Get the count of cost centre groups for a tenant
      * @description Retrieves the count of cost centre groups for the specified tenant using OData query options.
      */
-    get: operations["GetCostCentreGroupsCount"];
+    get: operations["CostCentres_GetCostCentreGroupsCount"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreGroups/{groupId}": {
     /**
      * Get a cost centre group by id
      * @description Retrieves a cost centre group by its identifier.
      */
-    get: operations["GetCostCentreGroup"];
+    get: operations["CostCentres_GetCostCentreGroup"];
     /**
      * Update a cost centre group
      * @description Updates an existing cost centre group.
      */
-    put: operations["UpdateCostCentreGroup"];
+    put: operations["CostCentres_UpdateCostCentreGroup"];
     /**
      * Delete a cost centre group
      * @description Deletes a cost centre group.
      */
-    delete: operations["DeleteCostCentreGroup"];
+    delete: operations["CostCentres_DeleteCostCentreGroup"];
     /**
      * Patch a cost centre group
      * @description Partially updates an existing cost centre group.
      */
-    patch: operations["PatchCostCentreGroup"];
+    patch: operations["CostCentres_PatchCostCentreGroup"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreBudgets": {
     /**
      * Get all cost centre budgets for a tenant
      * @description Retrieves all cost centre budgets for the specified tenant using OData query options.
      */
-    get: operations["GetCostCentreBudgets"];
+    get: operations["CostCentres_GetCostCentreBudgets"];
     /**
      * Create a cost centre budget
      * @description Creates a new cost centre budget.
      */
-    post: operations["CreateCostCentreBudget"];
+    post: operations["CostCentres_CreateCostCentreBudget"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreBudgets/{budgetId}": {
     /**
      * Get a cost centre budget by id
      * @description Retrieves a cost centre budget by its identifier.
      */
-    get: operations["GetCostCentreBudget"];
+    get: operations["CostCentres_GetCostCentreBudget"];
     /**
      * Update a cost centre budget
      * @description Updates an existing cost centre budget.
      */
-    put: operations["UpdateCostCentreBudget"];
+    put: operations["CostCentres_UpdateCostCentreBudget"];
     /**
      * Delete a cost centre budget
      * @description Deletes a cost centre budget.
      */
-    delete: operations["DeleteCostCentreBudget"];
+    delete: operations["CostCentres_DeleteCostCentreBudget"];
     /**
      * Patch a cost centre budget
      * @description Partially updates an existing cost centre budget.
      */
-    patch: operations["PatchCostCentreBudget"];
+    patch: operations["CostCentres_PatchCostCentreBudget"];
   };
   "/api/v2/AccountingService/ExpenseClaims": {
     /**
      * Get all expense claims for a tenant
      * @description Retrieves all expense claims for the specified tenant using OData query options.
      */
-    get: operations["GetExpenseClaims"];
+    get: operations["ExpenseClaims_GetExpenseClaims"];
     /**
      * Create an expense claim
      * @description Creates a new expense claim.
      */
-    post: operations["CreateExpenseClaim"];
+    post: operations["ExpenseClaims_CreateExpenseClaim"];
   };
   "/api/v2/AccountingService/ExpenseClaims/Count": {
     /**
      * Get the count of expense claims for a tenant
      * @description Retrieves the count of expense claims for the specified tenant using OData query options.
      */
-    get: operations["GetExpenseClaimsCount"];
+    get: operations["ExpenseClaims_GetExpenseClaimsCount"];
   };
   "/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}": {
     /**
      * Get an expense claim by id
      * @description Retrieves an expense claim by its identifier.
      */
-    get: operations["GetExpenseClaim"];
+    get: operations["ExpenseClaims_GetExpenseClaim"];
     /**
      * Update an expense claim
      * @description Updates an existing expense claim.
      */
-    put: operations["UpdateExpenseClaim"];
+    put: operations["ExpenseClaims_UpdateExpenseClaim"];
     /**
      * Delete an expense claim
      * @description Deletes an expense claim.
      */
-    delete: operations["DeleteExpenseClaim"];
+    delete: operations["ExpenseClaims_DeleteExpenseClaim"];
     /**
      * Patch an expense claim
      * @description Partially updates an existing expense claim.
      */
-    patch: operations["PatchExpenseClaim"];
+    patch: operations["ExpenseClaims_PatchExpenseClaim"];
   };
   "/api/v2/AccountingService/ExpenseTypes": {
     /**
      * Get all expense types for a tenant
      * @description Retrieves all expense types for the specified tenant using OData query options.
      */
-    get: operations["GetExpenseTypes"];
+    get: operations["ExpenseTypes_GetExpenseTypes"];
     /**
      * Create an expense type
      * @description Creates a new expense type.
      */
-    post: operations["CreateExpenseType"];
+    post: operations["ExpenseTypes_CreateExpenseType"];
   };
   "/api/v2/AccountingService/ExpenseTypes/Count": {
     /**
      * Get the count of expense types for a tenant
      * @description Retrieves the count of expense types for the specified tenant using OData query options.
      */
-    get: operations["GetExpenseTypesCount"];
+    get: operations["ExpenseTypes_GetExpenseTypesCount"];
   };
   "/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}": {
     /**
      * Get an expense type by id
      * @description Retrieves an expense type by its identifier.
      */
-    get: operations["GetExpenseType"];
+    get: operations["ExpenseTypes_GetExpenseType"];
     /**
      * Update an expense type
      * @description Updates an existing expense type.
      */
-    put: operations["UpdateExpenseType"];
+    put: operations["ExpenseTypes_UpdateExpenseType"];
     /**
      * Delete an expense type
      * @description Deletes an expense type.
      */
-    delete: operations["DeleteExpenseType"];
+    delete: operations["ExpenseTypes_DeleteExpenseType"];
     /**
      * Patch an expense type
      * @description Partially updates an existing expense type.
      */
-    patch: operations["PatchExpenseType"];
+    patch: operations["ExpenseTypes_PatchExpenseType"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/AccountingService/FinancialBooks": {
     /**
      * Get all financial books for a tenant
      * @description Retrieves all financial books for the specified tenant using OData query options.
      */
-    get: operations["GetFinancialBooksAsync"];
+    get: operations["FinancialBooks_GetFinancialBooks"];
     /**
      * Creates a new financial book
      * @description Creates a new financial book.
      */
-    post: operations["CreateFinancialBookAsync"];
+    post: operations["FinancialBooks_CreateFinancialBook"];
   };
   "/api/v2/AccountingService/FinancialBooks/Count": {
     /**
      * Get the count of financial books
      * @description Get the count of financial books.
      */
-    get: operations["GetFinancialBooksCountAsync"];
+    get: operations["FinancialBooks_GetFinancialBooksCount"];
   };
   "/api/v2/AccountingService/FinancialBooks/{financialBookId}": {
     /**
      * Gets the details of a specific financial book
      * @description Gets the details of a specific financial book.
      */
-    get: operations["GetFinancialBookDetailsAsync"];
+    get: operations["FinancialBooks_GetFinancialBookDetails"];
     /**
      * Updates an existing financial book
      * @description Updates an existing financial book.
      */
-    put: operations["UpdateFinancialBookAsync"];
+    put: operations["FinancialBooks_UpdateFinancialBook"];
     /**
      * Deletes an existing financial book
      * @description Deletes an existing financial book.
      */
-    delete: operations["DeleteFinancialBookAsync"];
+    delete: operations["FinancialBooks_DeleteFinancialBook"];
     /**
      * Patch a financial book
      * @description Partially updates a financial book.
      */
-    patch: operations["PatchFinancialBookAsync"];
+    patch: operations["FinancialBooks_PatchFinancialBook"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities": {
     /**
      * Get fiscal authorities
      * @description Retrieves all fiscal authorities for the specified tenant using OData query options.
      */
-    get: operations["GetFiscalAuthorities"];
+    get: operations["FiscalAuthorities_GetFiscalAuthorities"];
     /**
      * Create a fiscal authority
      * @description Creates a new fiscal authority for the specified tenant.
      */
-    post: operations["CreateFiscalAuthority"];
+    post: operations["FiscalAuthorities_CreateFiscalAuthority"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/Count": {
     /**
      * Get fiscal authorities count
      * @description Returns the total count of fiscal authorities for the specified tenant.
      */
-    get: operations["GetFiscalAuthoritiesCount"];
+    get: operations["FiscalAuthorities_GetFiscalAuthoritiesCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}": {
     /**
      * Get fiscal authority by ID
      * @description Retrieves a specific fiscal authority by its unique identifier.
      */
-    get: operations["GetFiscalAuthority"];
+    get: operations["FiscalAuthorities_GetFiscalAuthority"];
     /**
      * Update a fiscal authority
      * @description Updates an existing fiscal authority identified by its unique identifier.
      */
-    put: operations["UpdateFiscalAuthority"];
+    put: operations["FiscalAuthorities_UpdateFiscalAuthority"];
     /**
      * Delete a fiscal authority
      * @description Deletes a fiscal authority identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalAuthority"];
+    delete: operations["FiscalAuthorities_DeleteFiscalAuthority"];
     /**
      * Patch a fiscal authority
      * @description Partially updates a fiscal authority.
      */
-    patch: operations["PatchFiscalAuthorityAsync"];
+    patch: operations["FiscalAuthorities_PatchFiscalAuthority"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalYears": {
     /**
      * Get fiscal years for an authority
      * @description Retrieves all fiscal years associated with the specified fiscal authority.
      */
-    get: operations["GetFiscalYears"];
+    get: operations["FiscalAuthorityYears_GetFiscalYears"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/Count": {
     /**
      * Get fiscal years count for an authority
      * @description Returns the total count of fiscal years for the specified fiscal authority.
      */
-    get: operations["GetFiscalYearsCount"];
+    get: operations["FiscalAuthorityYears_GetFiscalYearsCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/{fiscalYearId}": {
     /**
      * Get fiscal year by ID for an authority
      * @description Retrieves a specific fiscal year by its unique identifier within a fiscal authority.
      */
-    get: operations["GetFiscalYear"];
+    get: operations["FiscalAuthorityYears_GetFiscalYear"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalYears": {
     /**
      * Create a fiscal year
      * @description Creates a new fiscal year associated with a fiscal authority.
      */
-    post: operations["CreateFiscalYear"];
+    post: operations["FiscalAuthorityYears_CreateFiscalYear"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalYears/{fiscalYearId}": {
     /**
      * Update a fiscal year
      * @description Updates an existing fiscal year identified by its unique identifier.
      */
-    put: operations["UpdateFiscalYear"];
+    put: operations["FiscalAuthorityYears_UpdateFiscalYear"];
     /**
      * Delete a fiscal year
      * @description Deletes a fiscal year identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalYear"];
+    delete: operations["FiscalAuthorityYears_DeleteFiscalYear"];
     /**
      * Patch a fiscal authority year
      * @description Partially updates a fiscal authority year.
      */
-    patch: operations["PatchFiscalAuthorityYearAsync"];
+    patch: operations["FiscalAuthorityYears_PatchFiscalAuthorityYear"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/EnumerationRanges": {
     /**
      * Get invoice enumeration ranges for an authority
      * @description Retrieves all invoice enumeration ranges for the specified fiscal authority.
      */
-    get: operations["GetInvoiceEnumerationRanges"];
+    get: operations["FiscalEnumerationRanges_GetInvoiceEnumerationRanges"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/EnumerationRanges/Count": {
     /**
      * Get invoice enumeration ranges count
      * @description Returns the total count of invoice enumeration ranges for the specified fiscal authority.
      */
-    get: operations["GetInvoiceEnumerationRangesCount"];
+    get: operations["FiscalEnumerationRanges_GetInvoiceEnumerationRangesCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/EnumerationRanges/{enumerationRangeId}": {
     /**
      * Get invoice enumeration range by ID
      * @description Retrieves a specific invoice enumeration range by its unique identifier.
      */
-    get: operations["GetInvoiceEnumerationRange"];
+    get: operations["FiscalEnumerationRanges_GetInvoiceEnumerationRange"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges": {
     /**
      * Create an invoice enumeration range
      * @description Creates a new invoice enumeration range for a fiscal authority.
      */
-    post: operations["CreateInvoiceEnumerationRange"];
+    post: operations["FiscalEnumerationRanges_CreateInvoiceEnumerationRange"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges/{enumerationRangeId}": {
     /**
      * Update an invoice enumeration range
      * @description Updates an existing invoice enumeration range identified by its unique identifier.
      */
-    put: operations["UpdateInvoiceEnumerationRange"];
+    put: operations["FiscalEnumerationRanges_UpdateInvoiceEnumerationRange"];
     /**
      * Delete an invoice enumeration range
      * @description Deletes an invoice enumeration range identified by its unique identifier.
      */
-    delete: operations["DeleteInvoiceEnumerationRange"];
+    delete: operations["FiscalEnumerationRanges_DeleteInvoiceEnumerationRange"];
     /**
      * Patch an invoice enumeration range
      * @description Partially updates an invoice enumeration range.
      */
-    patch: operations["PatchFiscalEnumerationRangeAsync"];
+    patch: operations["FiscalEnumerationRanges_PatchFiscalEnumerationRange"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/IdentificationTypes": {
     /**
      * Get fiscal identification types for an authority
      * @description Retrieves all fiscal identification types for the specified fiscal authority.
      */
-    get: operations["GetFiscalIdentificationTypes"];
+    get: operations["FiscalIdentificationTypes_GetFiscalIdentificationTypes"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/IdentificationTypes/Count": {
     /**
      * Get fiscal identification types count
      * @description Returns the total count of fiscal identification types for the specified fiscal authority.
      */
-    get: operations["GetFiscalIdentificationTypesCount"];
+    get: operations["FiscalIdentificationTypes_GetFiscalIdentificationTypesCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/IdentificationTypes/{identificationTypeId}": {
     /**
      * Get fiscal identification type by ID
      * @description Retrieves a specific fiscal identification type by its unique identifier.
      */
-    get: operations["GetFiscalIdentificationType"];
+    get: operations["FiscalIdentificationTypes_GetFiscalIdentificationType"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes": {
     /**
      * Create a fiscal identification type
      * @description Creates a new fiscal identification type for a fiscal authority.
      */
-    post: operations["CreateFiscalIdentificationType"];
+    post: operations["FiscalIdentificationTypes_CreateFiscalIdentificationType"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes/{identificationTypeId}": {
     /**
      * Update a fiscal identification type
      * @description Updates an existing fiscal identification type identified by its unique identifier.
      */
-    put: operations["UpdateFiscalIdentificationType"];
+    put: operations["FiscalIdentificationTypes_UpdateFiscalIdentificationType"];
     /**
      * Delete a fiscal identification type
      * @description Deletes a fiscal identification type identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalIdentificationType"];
+    delete: operations["FiscalIdentificationTypes_DeleteFiscalIdentificationType"];
     /**
      * Patch a fiscal identification type
      * @description Partially updates a fiscal identification type.
      */
-    patch: operations["PatchFiscalIdentificationTypeAsync"];
+    patch: operations["FiscalIdentificationTypes_PatchFiscalIdentificationType"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods": {
     /**
      * Get fiscal periods for a fiscal year
      * @description Retrieves all fiscal periods for the specified fiscal year within a fiscal authority.
      */
-    get: operations["GetFiscalPeriods"];
+    get: operations["FiscalPeriods_GetFiscalPeriods"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods/Count": {
     /**
      * Get fiscal periods count
      * @description Returns the total count of fiscal periods for the specified fiscal year.
      */
-    get: operations["GetFiscalPeriodsCount"];
+    get: operations["FiscalPeriods_GetFiscalPeriodsCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods/{fiscalPeriodId}": {
     /**
      * Get fiscal period by ID
      * @description Retrieves a specific fiscal period by its unique identifier within a fiscal year.
      */
-    get: operations["GetFiscalPeriod"];
+    get: operations["FiscalPeriods_GetFiscalPeriod"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods": {
     /**
      * Create a fiscal period
      * @description Creates a new fiscal period associated with a fiscal year.
      */
-    post: operations["CreateFiscalPeriod"];
+    post: operations["FiscalPeriods_CreateFiscalPeriod"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}": {
     /**
      * Update a fiscal period
      * @description Updates an existing fiscal period identified by its unique identifier.
      */
-    put: operations["UpdateFiscalPeriod"];
+    put: operations["FiscalPeriods_UpdateFiscalPeriod"];
     /**
      * Delete a fiscal period
      * @description Deletes a fiscal period identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalPeriod"];
+    delete: operations["FiscalPeriods_DeleteFiscalPeriod"];
     /**
      * Patch a fiscal period
      * @description Partially updates a fiscal period.
      */
-    patch: operations["PatchFiscalPeriodAsync"];
+    patch: operations["FiscalPeriods_PatchFiscalPeriod"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Open": {
     /**
      * Open a fiscal period
      * @description Opens a closed fiscal period so journal entries can post into it. Rejects reopening a locked or an already-open period.
      */
-    post: operations["OpenFiscalPeriod"];
+    post: operations["FiscalPeriods_OpenFiscalPeriod"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Close": {
     /**
      * Close a fiscal period
      * @description Closes a fiscal period so no further journal entries can post into it. Rejects closing a locked (hard-sealed) period.
      */
-    post: operations["CloseFiscalPeriod"];
+    post: operations["FiscalPeriods_CloseFiscalPeriod"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalRegimes": {
     /**
      * Get fiscal regimes for an authority
      * @description Retrieves all fiscal regimes for the specified fiscal authority.
      */
-    get: operations["GetFiscalRegimes"];
+    get: operations["FiscalRegimes_GetFiscalRegimes"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalRegimes/Count": {
     /**
      * Get fiscal regimes count
      * @description Returns the total count of fiscal regimes for the specified fiscal authority.
      */
-    get: operations["GetFiscalRegimesCount"];
+    get: operations["FiscalRegimes_GetFiscalRegimesCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalRegimes/{regimeId}": {
     /**
      * Get fiscal regime by ID
      * @description Retrieves a specific fiscal regime by its unique identifier.
      */
-    get: operations["GetFiscalRegime"];
+    get: operations["FiscalRegimes_GetFiscalRegime"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes": {
     /**
      * Create a fiscal regime
      * @description Creates a new fiscal regime for a fiscal authority.
      */
-    post: operations["CreateFiscalRegime"];
+    post: operations["FiscalRegimes_CreateFiscalRegime"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes/{regimeId}": {
     /**
      * Update a fiscal regime
      * @description Updates an existing fiscal regime identified by its unique identifier.
      */
-    put: operations["UpdateFiscalRegime"];
+    put: operations["FiscalRegimes_UpdateFiscalRegime"];
     /**
      * Delete a fiscal regime
      * @description Deletes a fiscal regime identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalRegime"];
+    delete: operations["FiscalRegimes_DeleteFiscalRegime"];
     /**
      * Patch a fiscal regime
      * @description Partially updates a fiscal regime.
      */
-    patch: operations["PatchFiscalRegimeAsync"];
+    patch: operations["FiscalRegimes_PatchFiscalRegime"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalResponsibilities": {
     /**
      * Get fiscal responsibilities for an authority
      * @description Retrieves all fiscal responsibilities for the specified fiscal authority.
      */
-    get: operations["GetFiscalResponsibilities"];
+    get: operations["FiscalResponsibilities_GetFiscalResponsibilities"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/Count": {
     /**
      * Get fiscal responsibilities count
      * @description Returns the total count of fiscal responsibilities for the specified fiscal authority.
      */
-    get: operations["GetFiscalResponsibilitiesCount"];
+    get: operations["FiscalResponsibilities_GetFiscalResponsibilitiesCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}": {
     /**
      * Get fiscal responsibility by ID
      * @description Retrieves a specific fiscal responsibility by its unique identifier.
      */
-    get: operations["GetFiscalResponsibility"];
+    get: operations["FiscalResponsibilities_GetFiscalResponsibility"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities": {
     /**
      * Create a fiscal responsibility
      * @description Creates a new fiscal responsibility for a fiscal authority.
      */
-    post: operations["CreateFiscalResponsibility"];
+    post: operations["FiscalResponsibilities_CreateFiscalResponsibility"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities/{fiscalResponsibilityId}": {
     /**
      * Update a fiscal responsibility
      * @description Updates an existing fiscal responsibility identified by its unique identifier.
      */
-    put: operations["UpdateFiscalResponsibility"];
+    put: operations["FiscalResponsibilities_UpdateFiscalResponsibility"];
     /**
      * Delete a fiscal responsibility
      * @description Deletes a fiscal responsibility identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalResponsibility"];
+    delete: operations["FiscalResponsibilities_DeleteFiscalResponsibility"];
     /**
      * Patch a fiscal responsibility
      * @description Partially updates a fiscal responsibility.
      */
-    patch: operations["PatchFiscalResponsibilityAsync"];
+    patch: operations["FiscalResponsibilities_PatchFiscalResponsibility"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords": {
     /**
      * Get fiscal responsibility records
      * @description Retrieves all fiscal responsibility records for the specified fiscal responsibility.
      */
-    get: operations["GetFiscalResponsibilityRecords"];
+    get: operations["FiscalResponsibilityRecords_GetFiscalResponsibilityRecords"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords/Count": {
     /**
      * Get fiscal responsibility records count
      * @description Returns the total count of fiscal responsibility records for the specified fiscal responsibility.
      */
-    get: operations["GetFiscalResponsibilityRecordsCount"];
+    get: operations["FiscalResponsibilityRecords_GetFiscalResponsibilityRecordsCount"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}": {
     /**
      * Get fiscal responsibility record by ID
      * @description Retrieves a specific fiscal responsibility record by its unique identifier.
      */
-    get: operations["GetFiscalResponsibilityRecord"];
+    get: operations["FiscalResponsibilityRecords_GetFiscalResponsibilityRecord"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords": {
     /**
      * Create a fiscal responsibility record
      * @description Creates a new fiscal responsibility record for a fiscal responsibility.
      */
-    post: operations["CreateFiscalResponsibilityRecord"];
+    post: operations["FiscalResponsibilityRecords_CreateFiscalResponsibilityRecord"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}": {
     /**
      * Update a fiscal responsibility record
      * @description Updates an existing fiscal responsibility record identified by its unique identifier.
      */
-    put: operations["UpdateFiscalResponsibilityRecord"];
+    put: operations["FiscalResponsibilityRecords_UpdateFiscalResponsibilityRecord"];
     /**
      * Delete a fiscal responsibility record
      * @description Deletes a fiscal responsibility record identified by its unique identifier.
      */
-    delete: operations["DeleteFiscalResponsibilityRecord"];
+    delete: operations["FiscalResponsibilityRecords_DeleteFiscalResponsibilityRecord"];
     /**
      * Patch a fiscal responsibility record
      * @description Partially updates a fiscal responsibility record.
      */
-    patch: operations["PatchFiscalResponsibilityRecordAsync"];
+    patch: operations["FiscalResponsibilityRecords_PatchFiscalResponsibilityRecord"];
   };
   "/api/v2/AccountingService/FiscalYears": {
     /**
      * Get all fiscal years
      * @description Retrieves a list of fiscal years for the specified tenant.
      */
-    get: operations["GetFiscalYearsAsync"];
+    get: operations["FiscalYears_GetFiscalYears"];
     /**
      * Create fiscal year
      * @description Creates a new fiscal year entry for a tenant.
      */
-    post: operations["CreateFiscalYearAsync"];
+    post: operations["FiscalYears_CreateFiscalYear"];
   };
   "/api/v2/AccountingService/FiscalYears/Count": {
     /**
      * Count fiscal years
      * @description Returns the number of fiscal years for a tenant.
      */
-    get: operations["GetFiscalYearsCountAsync"];
+    get: operations["FiscalYears_GetFiscalYearsCount"];
   };
   "/api/v2/AccountingService/FiscalYears/{fiscalYearId}": {
     /**
      * Get fiscal year by ID
      * @description Gets details for a specific fiscal year.
      */
-    get: operations["GetFiscalYearDetailsAsync"];
+    get: operations["FiscalYears_GetFiscalYearDetails"];
     /**
      * Update fiscal year
      * @description Updates an existing fiscal year identified by its ID.
      */
-    put: operations["UpdateFiscalYearAsync"];
+    put: operations["FiscalYears_UpdateFiscalYear"];
     /**
      * Delete fiscal year
      * @description Deletes a fiscal year identified by its ID.
      */
-    delete: operations["DeleteFiscalYearAsync"];
+    delete: operations["FiscalYears_DeleteFiscalYear"];
     /**
      * Patch a fiscal year
      * @description Partially updates a fiscal year.
      */
-    patch: operations["PatchFiscalYearAsync"];
+    patch: operations["FiscalYears_PatchFiscalYear"];
   };
   "/api/v2/AccountingService/Grants": {
     /**
      * Get all grants
      * @description Retrieves a list of grants associated with the tenant.
      */
-    get: operations["GetGrantsAsync"];
+    get: operations["Grants_GetGrants"];
     /**
      * Create grant
      * @description Creates a new grant entry.
      */
-    post: operations["CreateGrantAsync"];
+    post: operations["Grants_CreateGrant"];
   };
   "/api/v2/AccountingService/Grants/Count": {
     /**
      * Count grants
      * @description Returns the number of grants for the tenant.
      */
-    get: operations["GetGrantsCountAsync"];
+    get: operations["Grants_GetGrantsCount"];
   };
   "/api/v2/AccountingService/Grants/{grantId}": {
     /**
      * Get grant by ID
      * @description Gets detailed information for a specific grant.
      */
-    get: operations["GetGrantDetailsAsync"];
+    get: operations["Grants_GetGrantDetails"];
     /**
      * Update grant
      * @description Updates an existing grant identified by its ID.
      */
-    put: operations["UpdateGrantAsync"];
+    put: operations["Grants_UpdateGrant"];
     /**
      * Delete grant
      * @description Deletes a grant identified by its ID.
      */
-    delete: operations["DeleteGrantAsync"];
+    delete: operations["Grants_DeleteGrant"];
     /**
      * Patch a grant
      * @description Partially updates a grant.
      */
-    patch: operations["PatchGrantAsync"];
+    patch: operations["Grants_PatchGrant"];
   };
   "/api/v2/AccountingService/InvoiceEnumerationRanges": {
     /**
      * Get all invoice enumeration ranges
      * @description Retrieves all invoice enumeration ranges for the specified tenant.
      */
-    get: operations["GetInvoiceEnumerationRangesAsync"];
+    get: operations["InvoiceEnumerationRanges_GetInvoiceEnumerationRanges"];
     /**
      * Create a new invoice enumeration range
      * @description Creates a new invoice enumeration range for the tenant.
      */
-    post: operations["CreateInvoiceEnumerationRangeAsync"];
+    post: operations["InvoiceEnumerationRanges_CreateInvoiceEnumerationRange"];
   };
   "/api/v2/AccountingService/InvoiceEnumerationRanges/{rangeId}": {
     /**
      * Get invoice enumeration range by ID
      * @description Retrieves the details of a specific invoice enumeration range.
      */
-    get: operations["GetInvoiceEnumerationRangeDetailsAsync"];
+    get: operations["InvoiceEnumerationRanges_GetInvoiceEnumerationRangeDetails"];
     /**
      * Update an invoice enumeration range
      * @description Updates an existing invoice enumeration range with the provided data.
      */
-    put: operations["UpdateInvoiceEnumerationRangeAsync"];
+    put: operations["InvoiceEnumerationRanges_UpdateInvoiceEnumerationRange"];
     /**
      * Delete an invoice enumeration range
      * @description Deletes an invoice enumeration range by its identifier.
      */
-    delete: operations["DeleteInvoiceEnumerationRangeAsync"];
+    delete: operations["InvoiceEnumerationRanges_DeleteInvoiceEnumerationRange"];
     /**
      * Patch an invoice enumeration range
      * @description Partially updates an invoice enumeration range.
      */
-    patch: operations["PatchInvoiceEnumerationRangeAsync"];
+    patch: operations["InvoiceEnumerationRanges_PatchInvoiceEnumerationRange"];
   };
   "/api/v2/AccountingService/Journals": {
     /**
      * Get all journals
      * @description Retrieves all journals for the specified tenant.
      */
-    get: operations["GetJournalsAsync"];
+    get: operations["Journals_GetJournals"];
     /**
      * Create journal
      * @description Creates a new journal for the tenant.
      */
-    post: operations["CreateJournalAsync"];
+    post: operations["Journals_CreateJournal"];
   };
   "/api/v2/AccountingService/Journals/Count": {
     /**
      * Count journals
      * @description Returns the count of journals for the tenant.
      */
-    get: operations["CountJournalsAsync"];
+    get: operations["Journals_CountJournals"];
   };
   "/api/v2/AccountingService/Journals/{journalId}": {
     /**
      * Get journal by ID
      * @description Retrieves the details of a journal.
      */
-    get: operations["GetJournalDetailsAsync"];
+    get: operations["Journals_GetJournalDetails"];
     /**
      * Update journal
      * @description Updates an existing journal.
      */
-    put: operations["UpdateJournalAsync"];
+    put: operations["Journals_UpdateJournal"];
     /**
      * Delete journal
      * @description Deletes a journal by ID.
      */
-    delete: operations["DeleteJournalAsync"];
+    delete: operations["Journals_DeleteJournal"];
     /**
      * Patch a journal
      * @description Partially updates a journal.
      */
-    patch: operations["PatchJournalAsync"];
+    patch: operations["Journals_PatchJournal"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/AssignToBook": {
     /**
      * Bind a journal to a financial book
      * @description Establishes the one-way Journal↔FinancialBook binding (finish-line #5): binds an unbound journal to the supplied book and sets its book-scoped code, enforcing (Tenant, Book, Code) uniqueness. Binding an unbound journal or re-affirming the same book succeeds; a duplicate code in the book is rejected (400), and re-homing an already-bound journal to a DIFFERENT book is rejected by the aggregate. Requires the journals_update permission.
      */
-    post: operations["AssignJournalToBookAsync"];
+    post: operations["Journals_AssignJournalToBook"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries": {
     /**
      * Get journal entries
      * @description Gets entries for the specified journal.
      */
-    get: operations["GetJournalEntriesAsync"];
+    get: operations["Journals_GetJournalEntries"];
     /**
      * Create journal entry
      * @description Creates a new journal entry for a given journal.
      */
-    post: operations["CreateJournalEntryAsync"];
+    post: operations["Journals_CreateJournalEntry"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/Count": {
     /**
      * Count journal entries
      * @description Returns the number of entries in the specified journal.
      */
-    get: operations["GetJournalEntriesCountAsync"];
+    get: operations["Journals_GetJournalEntriesCount"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}": {
     /**
      * Get journal entry by ID
      * @description Retrieves a single journal entry WITH its hydrated posting lines — each line's account, direction, description and currency facets (transaction / functional / account / USD).
      */
-    get: operations["GetJournalEntryDetailsAsync"];
+    get: operations["Journals_GetJournalEntryDetails"];
     /**
      * Update journal entry
      * @description Updates a specific journal entry.
      */
-    put: operations["UpdateJournalEntryAsync"];
+    put: operations["Journals_UpdateJournalEntry"];
     /**
      * Delete journal entry
      * @description Deletes a specific journal entry.
      */
-    delete: operations["DeleteJournalEntryAsync"];
+    delete: operations["Journals_DeleteJournalEntry"];
     /**
      * Patch a journal entry
      * @description Partially updates a journal entry.
      */
-    patch: operations["PatchJournalEntryAsync"];
+    patch: operations["Journals_PatchJournalEntry"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits": {
     /**
      * Aggregate journal entry debits
      * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
      */
-    get: operations["AggregateJournalEntryDebitsAsync"];
+    get: operations["Journals_AggregateJournalEntryDebits"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits": {
     /**
      * Aggregate journal entry credits
      * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
      */
-    get: operations["AggregateJournalEntryCreditsAsync"];
+    get: operations["Journals_AggregateJournalEntryCredits"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Post": {
     /**
      * Post a draft journal entry
      * @description Posts a DRAFT journal entry into its own open fiscal period. Enforces the balanced-entry invariant and the open-period gate, then seals the entry (immutable — correct via reversal, never edit/delete). An unbalanced draft or a closed period is rejected. Requires the journals_post permission.
      */
-    post: operations["PostJournalEntryAsync"];
+    post: operations["Journals_PostJournalEntry"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Reverse": {
     /**
      * Reverse a posted journal entry
      * @description Reverses a POSTED journal entry by writing a balanced compensating counter-entry into the supplied open fiscal period and marking the original Reversed — one atomic operation (append-only audit trail). Requires the journals_reverse permission.
      */
-    post: operations["ReverseJournalEntryAsync"];
+    post: operations["Journals_ReverseJournalEntry"];
   };
   "/api/v2/AccountingService/JournalTypes/{journalTypeId}": {
     /**
      * Retrieves a journal type by ID
      * @description Fetches the journal type matching the specified ID.
      */
-    get: operations["GetJournalTypeDetailsAsync"];
+    get: operations["JournalTypes_GetJournalTypeDetails"];
     /**
      * Updates an existing journal type
      * @description Modifies the details of a specific journal type.
      */
-    put: operations["UpdateJournalTypeAsync"];
+    put: operations["JournalTypes_UpdateJournalType"];
     /**
      * Deletes a journal type
      * @description Removes a journal type from the tenant's configuration.
      */
-    delete: operations["DeleteJournalTypeAsync"];
+    delete: operations["JournalTypes_DeleteJournalType"];
     /**
      * Patch a journal type
      * @description Partially updates a journal type.
      */
-    patch: operations["PatchJournalTypeAsync"];
+    patch: operations["JournalTypes_PatchJournalType"];
   };
   "/api/v2/AccountingService/JournalTypes": {
     /**
      * Retrieves all journal types
      * @description Fetches all journal types for the current tenant with OData support.
      */
-    get: operations["GetJournalTypesAsync"];
+    get: operations["JournalTypes_GetJournalTypes"];
     /**
      * Creates a new journal type
      * @description Adds a new journal type to the tenant's catalog.
      */
-    post: operations["CreateJournalTypeAsync"];
+    post: operations["JournalTypes_CreateJournalType"];
   };
   "/api/v2/AccountingService/JournalTypes/Count": {
     /**
      * Counts journal types
      * @description Returns the total number of journal types available for the tenant.
      */
-    get: operations["GetJournalTypesCountAsync"];
+    get: operations["JournalTypes_GetJournalTypesCount"];
   };
   "/api/v2/AccountingService/Ledgers": {
     /**
      * Retrieves all ledgers
      * @description Gets all ledgers for the current tenant with OData support.
      */
-    get: operations["GetLedgersAsync"];
+    get: operations["Ledgers_GetLedgers"];
     /**
      * Creates a new ledger
      * @description Creates a new ledger for the current tenant.
      */
-    post: operations["CreateLedgerAsync"];
+    post: operations["Ledgers_CreateLedger"];
   };
   "/api/v2/AccountingService/Ledgers/Count": {
     /**
      * Counts ledgers
      * @description Gets the count of ledgers for the current tenant.
      */
-    get: operations["GetLedgersCountAsync"];
+    get: operations["Ledgers_GetLedgersCount"];
   };
   "/api/v2/AccountingService/Ledgers/{ledgerId}": {
     /**
      * Gets a ledger by ID
      * @description Retrieves the details of a ledger using its unique ID.
      */
-    get: operations["GetLedgerDetailsAsync"];
+    get: operations["Ledgers_GetLedgerDetails"];
     /**
      * Updates a ledger
      * @description Updates the specified ledger.
      */
-    put: operations["UpdateLedgerAsync"];
+    put: operations["Ledgers_UpdateLedger"];
     /**
      * Deletes a ledger
      * @description Deletes the specified ledger.
      */
-    delete: operations["DeleteLedgerAsync"];
+    delete: operations["Ledgers_DeleteLedger"];
     /**
      * Patches a ledger
      * @description Patches the specified ledger.
      */
-    patch: operations["PatchLedgerAsync"];
+    patch: operations["Ledgers_PatchLedger"];
   };
   "/api/v2/AccountingService/LedgerTypes": {
     /**
      * Retrieves all ledger types
      * @description Gets all ledger types for the current tenant with OData support.
      */
-    get: operations["GetLedgerTypesAsync"];
+    get: operations["LedgerTypes_GetLedgerTypes"];
     /**
      * Creates a new ledger type
      * @description Creates a new ledger type for the current tenant.
      */
-    post: operations["CreateLedgerTypeAsync"];
+    post: operations["LedgerTypes_CreateLedgerType"];
   };
   "/api/v2/AccountingService/LedgerTypes/Count": {
     /**
      * Counts ledger types
      * @description Gets the count of ledger types for the current tenant.
      */
-    get: operations["GetLedgerTypesCountAsync"];
+    get: operations["LedgerTypes_GetLedgerTypesCount"];
   };
   "/api/v2/AccountingService/LedgerTypes/{ledgerTypeId}": {
     /**
      * Gets a ledger type by ID
      * @description Retrieves the details of a ledger type using its unique ID.
      */
-    get: operations["GetLedgerTypeDetailsAsync"];
+    get: operations["LedgerTypes_GetLedgerTypeDetails"];
     /**
      * Updates a ledger type
      * @description Updates the specified ledger type.
      */
-    put: operations["UpdateLedgerTypeAsync"];
+    put: operations["LedgerTypes_UpdateLedgerType"];
     /**
      * Deletes a ledger type
      * @description Deletes the specified ledger type.
      */
-    delete: operations["DeleteLedgerTypeAsync"];
+    delete: operations["LedgerTypes_DeleteLedgerType"];
     /**
      * Patches a ledger type
      * @description Partially updates the specified ledger type using a JSON Patch document.
      */
-    patch: operations["PatchLedgerTypeAsync"];
+    patch: operations["LedgerTypes_PatchLedgerType"];
   };
   "/api/v2/AccountingService/Loans/{loanId}": {
     /**
      * Gets a loan by ID
      * @description Retrieves the details of a loan using its unique ID.
      */
-    get: operations["GetLoanDetailsAsync"];
+    get: operations["Loans_GetLoanDetails"];
     /**
      * Updates a loan
      * @description Updates the specified loan.
      */
-    put: operations["UpdateLoanAsync"];
+    put: operations["Loans_UpdateLoan"];
     /**
      * Deletes a loan
      * @description Deletes the specified loan.
      */
-    delete: operations["DeleteLoanAsync"];
+    delete: operations["Loans_DeleteLoan"];
     /**
      * Patches a loan
      * @description Partially updates the specified loan using a JSON Patch document.
      */
-    patch: operations["PatchLoanAsync"];
+    patch: operations["Loans_PatchLoan"];
   };
   "/api/v2/AccountingService/Loans": {
     /**
      * Gets all loans
      * @description Retrieves all loans for the current tenant with OData support.
      */
-    get: operations["GetLoansAsync"];
+    get: operations["Loans_GetLoans"];
     /**
      * Creates a new loan
      * @description Creates a new loan for the current tenant.
      */
-    post: operations["CreateLoanAsync"];
+    post: operations["Loans_CreateLoan"];
   };
   "/api/v2/AccountingService/Loans/Count": {
     /**
      * Counts loans
      * @description Gets the count of loans for the current tenant.
      */
-    get: operations["GetLoansCountAsync"];
+    get: operations["Loans_GetLoansCount"];
   };
   "/api/v2/AccountingService/Loans/Applications": {
     /**
      * Gets all loan applications
      * @description Retrieves all loan applications for the current tenant.
      */
-    get: operations["GetLoanApplicationsAsync"];
+    get: operations["Loans_GetLoanApplications"];
     /**
      * Creates a loan application
      * @description Creates a new loan application.
      */
-    post: operations["CreateLoanApplicationAsync"];
+    post: operations["Loans_CreateLoanApplication"];
   };
   "/api/v2/AccountingService/Loans/Applications/Count": {
     /**
      * Counts loan applications
      * @description Gets the count of loan applications for the current tenant.
      */
-    get: operations["GetLoanApplicationsCountAsync"];
+    get: operations["Loans_GetLoanApplicationsCount"];
   };
   "/api/v2/AccountingService/Loans/Applications/{applicationId}": {
     /**
      * Gets a loan application by ID
      * @description Retrieves the details of a loan application.
      */
-    get: operations["GetLoanApplicationDetailsAsync"];
+    get: operations["Loans_GetLoanApplicationDetails"];
     /**
      * Updates a loan application
      * @description Updates the specified loan application.
      */
-    put: operations["UpdateLoanApplicationAsync"];
+    put: operations["Loans_UpdateLoanApplication"];
     /**
      * Deletes a loan application
      * @description Deletes the specified loan application.
      */
-    delete: operations["DeleteLoanApplicationAsync"];
+    delete: operations["Loans_DeleteLoanApplication"];
     /**
      * Patches a loan application
      * @description Partially updates the specified loan application using a JSON Patch document.
      */
-    patch: operations["PatchLoanApplicationAsync"];
+    patch: operations["Loans_PatchLoanApplication"];
   };
   "/api/v2/AccountingService/Loans/Types": {
     /**
      * Gets all loan types
      * @description Retrieves all loan types for the current tenant with OData support.
      */
-    get: operations["GetLoanTypesAsync"];
+    get: operations["Loans_GetLoanTypes"];
     /**
      * Creates a loan type
      * @description Creates a new loan type for the current tenant.
      */
-    post: operations["CreateLoanTypeAsync"];
+    post: operations["Loans_CreateLoanType"];
   };
   "/api/v2/AccountingService/Loans/Types/Count": {
     /**
      * Counts loan types
      * @description Gets the count of loan types for the current tenant.
      */
-    get: operations["GetLoanTypesCountAsync"];
+    get: operations["Loans_GetLoanTypesCount"];
   };
   "/api/v2/AccountingService/Loans/Types/{loanTypeId}": {
     /**
      * Gets a loan type by ID
      * @description Retrieves the details of a loan type using its unique ID.
      */
-    get: operations["GetLoanTypeByIdAsync"];
+    get: operations["Loans_GetLoanTypeById"];
     /**
      * Updates a loan type
      * @description Updates the specified loan type.
      */
-    put: operations["UpdateLoanTypeAsync"];
+    put: operations["Loans_UpdateLoanType"];
     /**
      * Deletes a loan type
      * @description Deletes the specified loan type.
      */
-    delete: operations["DeleteLoanTypeAsync"];
+    delete: operations["Loans_DeleteLoanType"];
     /**
      * Patches a loan type
      * @description Partially updates the specified loan type using a JSON Patch document.
      */
-    patch: operations["PatchLoanTypeAsync"];
+    patch: operations["Loans_PatchLoanType"];
   };
   "/api/v2/AccountingService/PostingExecutions": {
     /**
      * List posting executions
      * @description Lists the tenant's posting-inbox executions (the durable evidence of every posting intent). Use OData to scope to a state — e.g. $filter=Status eq 'Rejected' for rejected intents, or Status eq 'PendingMapping'/'PendingPeriod'/'PendingRate' for the retryable pending set — and to page/order. Requires journals_read.
      */
-    get: operations["GetPostingExecutionsAsync"];
+    get: operations["PostingExecutions_GetPostingExecutions"];
   };
   "/api/v2/AccountingService/PostingExecutions/Count": {
     /**
      * Count posting executions
      * @description Returns the count of the tenant's posting-inbox executions under the same OData shaping as the list read (e.g. $filter=Status eq 'Rejected' to count rejected intents). Requires journals_read.
      */
-    get: operations["CountPostingExecutionsAsync"];
+    get: operations["PostingExecutions_CountPostingExecutions"];
   };
   "/api/v2/AccountingService/Receipts": {
     /**
      * Retrieves tenant receipts
      * @description Fetches all receipts for a given tenant with OData support.
      */
-    get: operations["GetReceiptsAsync"];
+    get: operations["Receipts_GetReceipts"];
     /**
      * Creates a new receipt
      * @description Adds a new receipt record under the specified tenant.
      */
-    post: operations["CreateReceiptAsync"];
+    post: operations["Receipts_CreateReceipt"];
   };
   "/api/v2/AccountingService/Receipts/Count": {
     /**
      * Gets count of tenant receipts
      * @description Returns total number of receipts for the tenant with OData filter support.
      */
-    get: operations["GetReceiptsCountAsync"];
+    get: operations["Receipts_GetReceiptsCount"];
   };
   "/api/v2/AccountingService/Receipts/{receiptId}": {
     /**
      * Gets details of a receipt
      * @description Retrieves a specific receipt by its ID for the given tenant.
      */
-    get: operations["GetReceiptDetailsAsync"];
+    get: operations["Receipts_GetReceiptDetails"];
     /**
      * Updates a receipt
      * @description Modifies the data of an existing receipt for the given tenant.
      */
-    put: operations["UpdateReceiptAsync"];
+    put: operations["Receipts_UpdateReceipt"];
     /**
      * Deletes a receipt
      * @description Removes an existing receipt from the tenant’s records.
      */
-    delete: operations["DeleteReceiptAsync"];
+    delete: operations["Receipts_DeleteReceipt"];
     /**
      * Patches a receipt
      * @description Partially updates the specified receipt using a JSON Patch document.
      */
-    patch: operations["PatchReceiptAsync"];
+    patch: operations["Receipts_PatchReceipt"];
   };
   "/api/v2/AccountingService/Reports/TrialBalance": {
     /**
      * Trial balance for a fiscal period
      * @description Returns the per-account posted debit/credit totals for the given fiscal period (optionally scoped to a single financial book), plus grand totals and the Σdebits == Σcredits balanced flag. Amounts are normalized to the target currency (default USD) from the stored USD reporting amounts.
      */
-    get: operations["GetTrialBalanceAsync"];
+    get: operations["Reports_GetTrialBalance"];
   };
   "/api/v2/AccountingService/Shares/Classes": {
     /**
      * Gets the current tenant share classes
      * @description Get the currently acting tenant share classes.
      */
-    get: operations["GetShareClasses"];
+    get: operations["Shares_GetShareClasses"];
     /**
      * Creates a new share class
      * @description Creates a new share class.
      */
-    post: operations["CreateShareClass"];
+    post: operations["Shares_CreateShareClass"];
   };
   "/api/v2/AccountingService/Shares/Classes/Count": {
     /**
      * Gets the current tenant share classes count
      * @description Get the currently acting tenant share classes count.
      */
-    get: operations["GetShareClassesCount"];
+    get: operations["Shares_GetShareClassesCount"];
   };
   "/api/v2/AccountingService/Shares/Classes/{shareClassId}": {
     /**
      * Gets a share class by id
      * @description Get a specific share class by its identifier.
      */
-    get: operations["GetShareClass"];
+    get: operations["Shares_GetShareClass"];
     /**
      * Updates an existing share class
      * @description Updates an existing share class.
      */
-    put: operations["UpdateShareClass"];
+    put: operations["Shares_UpdateShareClass"];
     /**
      * Deletes an existing share class
      * @description Deletes an existing share class.
      */
-    delete: operations["DeleteShareClass"];
+    delete: operations["Shares_DeleteShareClass"];
     /**
      * Patches a share class
      * @description Partially updates a share class using a JSON Patch document.
      */
-    patch: operations["PatchShareClass"];
+    patch: operations["Shares_PatchShareClass"];
   };
   "/api/v2/AccountingService/Shares/Issuances": {
     /**
      * Gets the current tenant share issuances
      * @description Get the currently acting tenant share issuances.
      */
-    get: operations["GetShareIssuances"];
+    get: operations["Shares_GetShareIssuances"];
     /**
      * Creates a new share issuance
      * @description Creates a new share issuance.
      */
-    post: operations["CreateShareIssuance"];
+    post: operations["Shares_CreateShareIssuance"];
   };
   "/api/v2/AccountingService/Shares/Issuances/Count": {
     /**
      * Gets the current tenant share issuances count
      * @description Get the currently acting tenant share issuances count.
      */
-    get: operations["GetShareIssuancesCount"];
+    get: operations["Shares_GetShareIssuancesCount"];
   };
   "/api/v2/AccountingService/Shares/Issuances/Sum": {
     /**
      * Sum tenant share issuance quantities
      * @description Returns SUM(ShareIssuance.Quantity) for the tenant, filtered by the supplied OData date range.
      */
-    get: operations["GetShareIssuancesSum"];
+    get: operations["Shares_GetShareIssuancesSum"];
   };
   "/api/v2/AccountingService/Shares/Issuances/{issuanceId}": {
     /**
      * Gets a share issuance by id
      * @description Get a specific share issuance by its identifier.
      */
-    get: operations["GetShareIssuance"];
+    get: operations["Shares_GetShareIssuance"];
     /**
      * Updates an existing share issuance
      * @description Updates an existing share issuance.
      */
-    put: operations["UpdateShareIssuance"];
+    put: operations["Shares_UpdateShareIssuance"];
     /**
      * Deletes an existing share issuance
      * @description Deletes an existing share issuance.
      */
-    delete: operations["DeleteShareIssuance"];
+    delete: operations["Shares_DeleteShareIssuance"];
     /**
      * Patches a share issuance
      * @description Partially updates a share issuance using a JSON Patch document.
      */
-    patch: operations["PatchShareIssuance"];
+    patch: operations["Shares_PatchShareIssuance"];
   };
   "/api/v2/AccountingService/Shares/Transfers": {
     /**
      * Gets the current tenant share transfers
      * @description Get the currently acting tenant share transfers.
      */
-    get: operations["GetShareTransfers"];
+    get: operations["Shares_GetShareTransfers"];
     /**
      * Creates a new share transfer
      * @description Creates a new share transfer.
      */
-    post: operations["CreateShareTransfer"];
+    post: operations["Shares_CreateShareTransfer"];
   };
   "/api/v2/AccountingService/Shares/Transfers/Count": {
     /**
      * Gets the current tenant share transfers count
      * @description Get the currently acting tenant share transfers count.
      */
-    get: operations["GetShareTransfersCount"];
+    get: operations["Shares_GetShareTransfersCount"];
   };
   "/api/v2/AccountingService/Shares/Transfers/{transferId}": {
     /**
      * Gets a share transfer by id
      * @description Get a specific share transfer by its identifier.
      */
-    get: operations["GetShareTransfer"];
+    get: operations["Shares_GetShareTransfer"];
     /**
      * Updates an existing share transfer
      * @description Updates an existing share transfer.
      */
-    put: operations["UpdateShareTransfer"];
+    put: operations["Shares_UpdateShareTransfer"];
     /**
      * Deletes an existing share transfer
      * @description Deletes an existing share transfer.
      */
-    delete: operations["DeleteShareTransfer"];
+    delete: operations["Shares_DeleteShareTransfer"];
     /**
      * Patches a share transfer
      * @description Partially updates a share transfer using a JSON Patch document.
      */
-    patch: operations["PatchShareTransfer"];
+    patch: operations["Shares_PatchShareTransfer"];
   };
   "/api/v2/AccountingService/Shares/TransferReasons": {
     /**
      * Gets the current tenant share transfer reasons
      * @description Get the currently acting tenant share transfer reasons.
      */
-    get: operations["GetShareTransferReasons"];
+    get: operations["Shares_GetShareTransferReasons"];
     /**
      * Creates a new share transfer reason
      * @description Creates a new share transfer reason.
      */
-    post: operations["CreateShareTransferReason"];
+    post: operations["Shares_CreateShareTransferReason"];
   };
   "/api/v2/AccountingService/Shares/TransferReasons/Count": {
     /**
      * Gets the current tenant share transfer reasons count
      * @description Get the currently acting tenant share transfer reasons count.
      */
-    get: operations["GetShareTransferReasonsCount"];
+    get: operations["Shares_GetShareTransferReasonsCount"];
   };
   "/api/v2/AccountingService/Shares/TransferReasons/{reasonId}": {
     /**
      * Gets a share transfer reason by id
      * @description Get a specific share transfer reason by its identifier.
      */
-    get: operations["GetShareTransferReason"];
+    get: operations["Shares_GetShareTransferReason"];
     /**
      * Updates an existing share transfer reason
      * @description Updates an existing share transfer reason.
      */
-    put: operations["UpdateShareTransferReason"];
+    put: operations["Shares_UpdateShareTransferReason"];
     /**
      * Deletes an existing share transfer reason
      * @description Deletes an existing share transfer reason.
      */
-    delete: operations["DeleteShareTransferReason"];
+    delete: operations["Shares_DeleteShareTransferReason"];
     /**
      * Patches a share transfer reason
      * @description Partially updates a share transfer reason using a JSON Patch document.
      */
-    patch: operations["PatchShareTransferReason"];
+    patch: operations["Shares_PatchShareTransferReason"];
   };
   "/api/v2/AccountingService/TaxClasses": {
     /**
      * Get all tax classes for a tenant
      * @description Retrieves all tax classes for the specified tenant using OData query options.
      */
-    get: operations["GetTaxClasses"];
+    get: operations["TaxClasses_GetTaxClasses"];
     /**
      * Create a tax class
      * @description Creates a new tax class for the specified tenant.
      */
-    post: operations["CreateTaxClass"];
+    post: operations["TaxClasses_CreateTaxClass"];
   };
   "/api/v2/AccountingService/TaxClasses/Count": {
     /**
      * Get tax classes count
      * @description Returns the count of tax classes for the specified tenant.
      */
-    get: operations["GetTaxClassesCount"];
+    get: operations["TaxClasses_GetTaxClassesCount"];
   };
   "/api/v2/AccountingService/TaxClasses/{id}": {
     /**
      * Get tax class by ID
      * @description Retrieves a specific tax class by its unique identifier.
      */
-    get: operations["GetTaxClass"];
+    get: operations["TaxClasses_GetTaxClass"];
     /**
      * Update a tax class
      * @description Updates an existing tax class identified by its unique identifier.
      */
-    put: operations["UpdateTaxClass"];
+    put: operations["TaxClasses_UpdateTaxClass"];
     /**
      * Delete a tax class
      * @description Deletes a tax class identified by its unique identifier.
      */
-    delete: operations["DeleteTaxClass"];
+    delete: operations["TaxClasses_DeleteTaxClass"];
     /**
      * Patch a tax class
      * @description Partially updates an existing tax class identified by its unique identifier.
      */
-    patch: operations["PatchTaxClass"];
+    patch: operations["TaxClasses_PatchTaxClass"];
   };
   "/api/v2/AccountingService/TaxPolicies": {
     /**
      * Get all tax policies for a tenant
      * @description Retrieves all tax policies for the specified tenant using OData query options.
      */
-    get: operations["GetTaxPolicies"];
+    get: operations["TaxPolicies_GetTaxPolicies"];
     /**
      * Create a tax policy
      * @description Creates a new tax policy for the specified tenant.
      */
-    post: operations["CreateTaxPolicy"];
+    post: operations["TaxPolicies_CreateTaxPolicy"];
   };
   "/api/v2/AccountingService/TaxPolicies/Count": {
     /**
      * Get tax policies count
      * @description Returns the count of tax policies for the specified tenant.
      */
-    get: operations["GetTaxPoliciesCount"];
+    get: operations["TaxPolicies_GetTaxPoliciesCount"];
   };
   "/api/v2/AccountingService/TaxPolicies/ByAuthority/{authorityId}": {
     /**
      * Get tax policies by fiscal authority
      * @description Retrieves all tax policies associated with the specified fiscal authority.
      */
-    get: operations["GetTaxPoliciesByAuthority"];
+    get: operations["TaxPolicies_GetTaxPoliciesByAuthority"];
   };
   "/api/v2/AccountingService/TaxPolicies/{id}": {
     /**
      * Get tax policy by ID
      * @description Retrieves a specific tax policy by its unique identifier.
      */
-    get: operations["GetTaxPolicy"];
+    get: operations["TaxPolicies_GetTaxPolicy"];
     /**
      * Update a tax policy
      * @description Updates an existing tax policy identified by its unique identifier.
      */
-    put: operations["UpdateTaxPolicy"];
+    put: operations["TaxPolicies_UpdateTaxPolicy"];
     /**
      * Delete a tax policy
      * @description Deletes a tax policy identified by its unique identifier.
      */
-    delete: operations["DeleteTaxPolicy"];
+    delete: operations["TaxPolicies_DeleteTaxPolicy"];
     /**
      * Patch a tax policy
      * @description Partially updates an existing tax policy identified by its unique identifier.
      */
-    patch: operations["PatchTaxPolicy"];
+    patch: operations["TaxPolicies_PatchTaxPolicy"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords": {
     /**
      * Get item tax policy records
      * @description Retrieves all item tax policy records for the specified tax policy.
      */
-    get: operations["GetItemTaxPolicyRecords"];
+    get: operations["TaxPolicies_GetItemTaxPolicyRecords"];
     /**
      * Create an item tax policy record
      * @description Creates a new item tax policy record for the specified tax policy.
      */
-    post: operations["CreateItemTaxPolicyRecord"];
+    post: operations["TaxPolicies_CreateItemTaxPolicyRecord"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords/{itemTaxPolicyRecordId}": {
     /**
      * Get item tax policy record by ID
      * @description Retrieves a specific item tax policy record by its unique identifier.
      */
-    get: operations["GetItemTaxPolicyRecord"];
+    get: operations["TaxPolicies_GetItemTaxPolicyRecord"];
     /**
      * Update an item tax policy record
      * @description Updates an existing item tax policy record identified by its unique identifier.
      */
-    put: operations["UpdateItemTaxPolicyRecord"];
+    put: operations["TaxPolicies_UpdateItemTaxPolicyRecord"];
     /**
      * Delete an item tax policy record
      * @description Deletes an item tax policy record identified by its unique identifier.
      */
-    delete: operations["DeleteItemTaxPolicyRecord"];
+    delete: operations["TaxPolicies_DeleteItemTaxPolicyRecord"];
     /**
      * Patch an item tax policy record
      * @description Partially updates an existing item tax policy record identified by its unique identifier.
      */
-    patch: operations["PatchItemTaxPolicyRecord"];
+    patch: operations["TaxPolicies_PatchItemTaxPolicyRecord"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords": {
     /**
      * Get applied tax policy records
      * @description Retrieves all applied tax policy records for the specified tax policy.
      */
-    get: operations["GetAppliedTaxPolicyRecords"];
+    get: operations["TaxPolicies_GetAppliedTaxPolicyRecords"];
     /**
      * Create an applied tax policy record
      * @description Creates a new applied tax policy record for the specified tax policy.
      */
-    post: operations["CreateAppliedTaxPolicyRecord"];
+    post: operations["TaxPolicies_CreateAppliedTaxPolicyRecord"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/Count": {
     /**
      * Get applied tax policy records count
      * @description Returns the total count of applied tax policy records for the specified tax policy.
      */
-    get: operations["GetAppliedTaxPolicyRecordsCount"];
+    get: operations["TaxPolicies_GetAppliedTaxPolicyRecordsCount"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/{appliedTaxPolicyRecordId}": {
     /**
      * Get applied tax policy record by ID
      * @description Retrieves a specific applied tax policy record by its unique identifier.
      */
-    get: operations["GetAppliedTaxPolicyRecord"];
+    get: operations["TaxPolicies_GetAppliedTaxPolicyRecord"];
     /**
      * Update an applied tax policy record
      * @description Updates an existing applied tax policy record identified by its unique identifier.
      */
-    put: operations["UpdateAppliedTaxPolicyRecord"];
+    put: operations["TaxPolicies_UpdateAppliedTaxPolicyRecord"];
     /**
      * Delete an applied tax policy record
      * @description Deletes an applied tax policy record identified by its unique identifier.
      */
-    delete: operations["DeleteAppliedTaxPolicyRecord"];
+    delete: operations["TaxPolicies_DeleteAppliedTaxPolicyRecord"];
     /**
      * Patch an applied tax policy record
      * @description Partially updates an existing applied tax policy record identified by its unique identifier.
      */
-    patch: operations["PatchAppliedTaxPolicyRecord"];
+    patch: operations["TaxPolicies_PatchAppliedTaxPolicyRecord"];
   };
   "/api/v2/AccountingService/TaxRates": {
     /**
      * Get all tax rates for a tenant
      * @description Retrieves all tax rates for the specified tenant using OData query options.
      */
-    get: operations["GetTaxRates"];
+    get: operations["TaxRates_GetTaxRates"];
     /**
      * Create a tax rate
      * @description Creates a new tax rate for the specified tenant.
      */
-    post: operations["CreateTaxRate"];
+    post: operations["TaxRates_CreateTaxRate"];
   };
   "/api/v2/AccountingService/TaxRates/Count": {
     /**
      * Get tax rates count
      * @description Returns the count of tax rates for the specified tenant.
      */
-    get: operations["GetTaxRatesCount"];
+    get: operations["TaxRates_GetTaxRatesCount"];
   };
   "/api/v2/AccountingService/TaxRates/{id}": {
     /**
      * Get tax rate by ID
      * @description Retrieves a specific tax rate by its unique identifier.
      */
-    get: operations["GetTaxRate"];
+    get: operations["TaxRates_GetTaxRate"];
     /**
      * Update a tax rate
      * @description Updates an existing tax rate identified by its unique identifier.
      */
-    put: operations["UpdateTaxRate"];
+    put: operations["TaxRates_UpdateTaxRate"];
     /**
      * Delete a tax rate
      * @description Deletes a tax rate identified by its unique identifier.
      */
-    delete: operations["DeleteTaxRate"];
+    delete: operations["TaxRates_DeleteTaxRate"];
     /**
      * Patch a tax rate
      * @description Partially updates an existing tax rate identified by its unique identifier.
      */
-    patch: operations["PatchTaxRate"];
+    patch: operations["TaxRates_PatchTaxRate"];
   };
   "/api/v2/AccountingService/Transactions": {
     /**
      * Get all transactions for a tenant
      * @description Retrieves all transactions for the specified tenant using OData query options.
      */
-    get: operations["GetTransactions"];
+    get: operations["Transactions_GetTransactions"];
     /**
      * Create a transaction
      * @description Creates a new transaction for the specified tenant.
      */
-    post: operations["CreateTransaction"];
+    post: operations["Transactions_CreateTransaction"];
   };
   "/api/v2/AccountingService/Transactions/Count": {
     /**
      * Get transactions count
      * @description Returns total number of transactions for the tenant with OData filter support.
      */
-    get: operations["GetTransactionsCount"];
+    get: operations["Transactions_GetTransactionsCount"];
   };
   "/api/v2/AccountingService/Transactions/{transactionId}": {
     /**
      * Get transaction by ID
      * @description Retrieves a specific transaction by its unique identifier.
      */
-    get: operations["GetTransaction"];
+    get: operations["Transactions_GetTransaction"];
     /**
      * Update a transaction
      * @description Updates an existing transaction with the provided data.
      */
-    put: operations["UpdateTransaction"];
+    put: operations["Transactions_UpdateTransaction"];
     /**
      * Delete a transaction
      * @description Deletes a transaction by its unique identifier.
      */
-    delete: operations["DeleteTransaction"];
+    delete: operations["Transactions_DeleteTransaction"];
     /**
      * Patch a transaction
      * @description Partially updates an existing transaction identified by its unique identifier.
      */
-    patch: operations["PatchTransaction"];
+    patch: operations["Transactions_PatchTransaction"];
   };
   "/api/v2/AccountingService/Transactions/Categories": {
     /**
      * Get all transaction categories
      * @description Retrieves all transaction categories for the specified tenant.
      */
-    get: operations["GetTransactionCategories"];
+    get: operations["Transactions_GetTransactionCategories"];
     /**
      * Create a transaction category
      * @description Creates a new transaction category for the specified tenant.
      */
-    post: operations["CreateTransactionCategory"];
+    post: operations["Transactions_CreateTransactionCategory"];
   };
   "/api/v2/AccountingService/Transactions/Categories/Count": {
     /**
      * Get transaction categories count
      * @description Returns total number of transaction categories for the tenant.
      */
-    get: operations["GetTransactionCategoriesCount"];
+    get: operations["Transactions_GetTransactionCategoriesCount"];
   };
   "/api/v2/AccountingService/Transactions/Categories/{categoryId}": {
     /**
      * Get transaction category by ID
      * @description Retrieves a specific transaction category by its unique identifier.
      */
-    get: operations["GetTransactionCategory"];
+    get: operations["Transactions_GetTransactionCategory"];
     /**
      * Update a transaction category
      * @description Updates an existing transaction category with the provided data.
      */
-    put: operations["UpdateTransactionCategory"];
+    put: operations["Transactions_UpdateTransactionCategory"];
     /**
      * Delete a transaction category
      * @description Deletes a transaction category by its unique identifier.
      */
-    delete: operations["DeleteTransactionCategory"];
+    delete: operations["Transactions_DeleteTransactionCategory"];
     /**
      * Patch a transaction category
      * @description Partially updates an existing transaction category identified by its unique identifier.
      */
-    patch: operations["PatchTransactionCategory"];
+    patch: operations["Transactions_PatchTransactionCategory"];
   };
 }
 
@@ -2899,7 +2651,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       accountId?: string | null;
-      type?: string | null;
     };
     AccountRelationDto: {
       id?: string | null;
@@ -2940,7 +2691,6 @@ export interface components {
     };
     AccountRelationUpdateDto: {
       accountId?: string | null;
-      type?: string | null;
     };
     AccountTypeCreateDto: {
       /** Format: uuid */
@@ -3035,7 +2785,7 @@ export interface components {
       direction: "Debit" | "Credit";
       /** Format: double */
       transactionAmount?: number;
-      transactionCurrencyId: string;
+      transactionCurrencyId?: string | null;
       description: string;
     };
     AccountingEntryDto: {
@@ -4316,9 +4066,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     CostCentreBudgetCreateDto: {
       /** Format: uuid */
@@ -5680,6 +5433,17 @@ export interface components {
       idempotencyKey?: string | null;
       reversalOfJournalEntryId?: string | null;
       postedBy?: string | null;
+      executionPrincipalId?: string | null;
+      /** @enum {string|null} */
+      executionPrincipalKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      executionPrincipalEnrollmentId?: string | null;
+      /** @enum {string|null} */
+      runAs?: "Invoker" | "Application" | "System" | "Service" | null;
+      applicationId?: string | null;
+      onBehalfOfPrincipalId?: string | null;
+      /** @enum {string|null} */
+      onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      hasDualAxisIdentity?: boolean;
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -7401,7 +7165,7 @@ export interface operations {
    * Gets the current tenant account groups
    * @description Get the currently acting tenant account groups.
    */
-  GetAccountGroups: {
+  AccountGroups_GetAccountGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -7445,7 +7209,7 @@ export interface operations {
    * Creates a new account group
    * @description Creates a new account group.
    */
-  CreateAccountGroup: {
+  AccountGroups_CreateAccountGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -7496,7 +7260,7 @@ export interface operations {
    * Gets the current tenant accounts count
    * @description Get the currently acting tenant accounts count.
    */
-  GetAccountGroupsCountAsync: {
+  AccountGroups_GetAccountGroupsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7540,7 +7304,7 @@ export interface operations {
    * Gets the current tenant account group
    * @description Get the currently acting tenant account group.
    */
-  GetAccountGroup: {
+  AccountGroups_GetAccountGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -7588,7 +7352,7 @@ export interface operations {
    * Updates an existing account group
    * @description Updates an existing account group.
    */
-  UpdateAccountGroup: {
+  AccountGroups_UpdateAccountGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -7649,7 +7413,7 @@ export interface operations {
    * Deletes an existing account group
    * @description Deletes an existing account group.
    */
-  DeleteAccountGroup: {
+  AccountGroups_DeleteAccountGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -7690,7 +7454,7 @@ export interface operations {
    * Patch an account group
    * @description Partially updates an account group.
    */
-  PatchAccountGroupAsync: {
+  AccountGroups_PatchAccountGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -7737,7 +7501,7 @@ export interface operations {
    * Get all accounting periods for a tenant
    * @description Retrieves all accounting periods for the specified tenant using OData query options.
    */
-  GetAccountingPeriods: {
+  AccountingPeriods_GetAccountingPeriods: {
     parameters: {
       query: {
         tenantId: string;
@@ -7781,7 +7545,7 @@ export interface operations {
    * Creates a new accounting period
    * @description Creates a new accounting period.
    */
-  CreateAccountingPeriod: {
+  AccountingPeriods_CreateAccountingPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -7832,7 +7596,7 @@ export interface operations {
    * Gets the current tenant accounting periods count
    * @description Get the currently acting tenant accounting periods count.
    */
-  GetAccountingPeriodsCountAsync: {
+  AccountingPeriods_GetAccountingPeriodsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7876,7 +7640,7 @@ export interface operations {
    * Gets the current tenant accounting period
    * @description Get the currently acting tenant accounting period.
    */
-  GetAccountingPeriod: {
+  AccountingPeriods_GetAccountingPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -7924,7 +7688,7 @@ export interface operations {
    * Updates an existing accounting period
    * @description Updates an existing accounting period.
    */
-  UpdateAccountingPeriod: {
+  AccountingPeriods_UpdateAccountingPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -7978,7 +7742,7 @@ export interface operations {
    * Deletes an existing accounting period
    * @description Deletes an existing accounting period.
    */
-  DeleteAccountingPeriod: {
+  AccountingPeriods_DeleteAccountingPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -8019,7 +7783,7 @@ export interface operations {
    * Patch an accounting period
    * @description Partially updates an accounting period.
    */
-  PatchAccountingPeriodAsync: {
+  AccountingPeriods_PatchAccountingPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -8066,7 +7830,7 @@ export interface operations {
    * Sum tenant incomes
    * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
    */
-  GetIncomesSumAsync: {
+  AccountingSummary_GetIncomesSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -8110,7 +7874,7 @@ export interface operations {
    * Sum tenant expenses
    * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
    */
-  GetExpensesSumAsync: {
+  AccountingSummary_GetExpensesSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -8154,7 +7918,7 @@ export interface operations {
    * Sum tenant accounting-entry debits
    * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
    */
-  GetDebitsSumAsync: {
+  AccountingSummary_GetDebitsSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -8198,7 +7962,7 @@ export interface operations {
    * Sum tenant accounting-entry credits
    * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
    */
-  GetCreditsSumAsync: {
+  AccountingSummary_GetCreditsSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -8242,7 +8006,7 @@ export interface operations {
    * Creates a new account
    * @description Creates a new account.
    */
-  GetAccountsAsync: {
+  Accounts_GetAccounts: {
     parameters: {
       query: {
         tenantId: string;
@@ -8286,7 +8050,7 @@ export interface operations {
    * Get root accounts
    * @description Get root accounts.
    */
-  CreateAccountAsync: {
+  Accounts_CreateAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8330,7 +8094,7 @@ export interface operations {
    * Get the number of accounts
    * @description Get the number of accounts.
    */
-  GetAccountsCountAsync: {
+  Accounts_GetAccountsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8374,7 +8138,7 @@ export interface operations {
    * Get root accounts
    * @description Get root accounts.
    */
-  GetRootAccountsAsync: {
+  Accounts_GetRootAccounts: {
     parameters: {
       query: {
         tenantId: string;
@@ -8418,7 +8182,7 @@ export interface operations {
    * Get account details
    * @description Get account details.
    */
-  GetAccountDetailsAsync: {
+  Accounts_GetAccountDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -8459,7 +8223,7 @@ export interface operations {
    * Update an account
    * @description Update an account.
    */
-  UpdateAccountAsync: {
+  Accounts_UpdateAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8506,7 +8270,7 @@ export interface operations {
    * Delete an account
    * @description Delete an account.
    */
-  DeleteAccountAsync: {
+  Accounts_DeleteAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8547,7 +8311,7 @@ export interface operations {
    * Patch an account
    * @description Patch an account.
    */
-  PatchAccountAsync: {
+  Accounts_PatchAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8594,7 +8358,7 @@ export interface operations {
    * Balance root account
    * @description Balance root account.
    */
-  BalanceRootAccountAsync: {
+  Accounts_BalanceRootAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8632,7 +8396,7 @@ export interface operations {
    * Balance account
    * @description Balance account.
    */
-  BalanceAccountAsync: {
+  Accounts_BalanceAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8673,7 +8437,7 @@ export interface operations {
    * Get child accounts
    * @description Get child accounts.
    */
-  GetChildAccountsAsync: {
+  Accounts_GetChildAccounts: {
     parameters: {
       query: {
         tenantId: string;
@@ -8714,7 +8478,7 @@ export interface operations {
    * Get account entries
    * @description Get account entries.
    */
-  GetAccountEntriesAsync: {
+  Accounts_GetAccountEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -8761,7 +8525,7 @@ export interface operations {
    * Create account entry
    * @description Create account entry.
    */
-  CreateAccountEntryAsync: {
+  Accounts_CreateAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -8815,7 +8579,7 @@ export interface operations {
    * Get debit account entries
    * @description Get debit account entries.
    */
-  GetDebitAccountEntriesAsync: {
+  Accounts_GetDebitAccountEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -8862,7 +8626,7 @@ export interface operations {
    * Get credit account entries
    * @description Get credit account entries.
    */
-  GetCreditAccountEntriesAsync: {
+  Accounts_GetCreditAccountEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -8909,7 +8673,7 @@ export interface operations {
    * Get account entry
    * @description Get account entry.
    */
-  GetAccountEntryAsync: {
+  Accounts_GetAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -8951,7 +8715,7 @@ export interface operations {
    * Update account entry
    * @description Update account entry.
    */
-  UpdateAccountEntryAsync: {
+  Accounts_UpdateAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -9006,7 +8770,7 @@ export interface operations {
    * Delete account entry
    * @description Delete account entry.
    */
-  DeleteAccountEntryAsync: {
+  Accounts_DeleteAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -9055,7 +8819,7 @@ export interface operations {
    * Patch account entry
    * @description Patch account entry.
    */
-  PatchAccountEntryAsync: {
+  Accounts_PatchAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -9103,7 +8867,7 @@ export interface operations {
    * Get account debits
    * @description Get account debits.
    */
-  GetAccountDebitsAsync: {
+  Accounts_GetAccountDebits: {
     parameters: {
       query: {
         tenantId: string;
@@ -9150,7 +8914,7 @@ export interface operations {
    * Create account debit
    * @description Create account debit.
    */
-  CreateAccountDebitAsync: {
+  Accounts_CreateAccountDebit: {
     parameters: {
       query: {
         tenantId: string;
@@ -9197,7 +8961,7 @@ export interface operations {
    * Get account debits count
    * @description Get account debits count.
    */
-  GetAccountDebitsCountAsync: {
+  Accounts_GetAccountDebitsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9244,7 +9008,7 @@ export interface operations {
    * Get account credits
    * @description Get account credits.
    */
-  GetAccountCreditsAsync: {
+  Accounts_GetAccountCredits: {
     parameters: {
       query: {
         tenantId: string;
@@ -9291,7 +9055,7 @@ export interface operations {
    * Create account credit
    * @description Create account credit.
    */
-  CreateAccountCreditAsync: {
+  Accounts_CreateAccountCredit: {
     parameters: {
       query: {
         tenantId: string;
@@ -9338,7 +9102,7 @@ export interface operations {
    * Get account credits count
    * @description Get account credits count.
    */
-  GetAccountCreditsCountAsync: {
+  Accounts_GetAccountCreditsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9385,7 +9149,7 @@ export interface operations {
    * Aggregate accounts balance
    * @description Returns the sum of all account balances matching OData filters, normalized to the target currency using stored USD values.
    */
-  AggregateAccountsBalanceAsync: {
+  Accounts_AggregateAccountsBalance: {
     parameters: {
       query: {
         tenantId: string;
@@ -9430,7 +9194,7 @@ export interface operations {
    * Get account aggregate
    * @description Get account aggregate.
    */
-  GetAccountAggregateAsync: {
+  Accounts_GetAccountAggregate: {
     parameters: {
       query: {
         tenantId: string;
@@ -9475,7 +9239,7 @@ export interface operations {
    * Get account types
    * @description Get account types.
    */
-  GetAccountTypesAsync: {
+  Accounts_GetAccountTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -9519,7 +9283,7 @@ export interface operations {
    * Create account type
    * @description Create account type.
    */
-  CreateAccountTypeAsync: {
+  Accounts_CreateAccountType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9563,7 +9327,7 @@ export interface operations {
    * Get account types count
    * @description Get account types count.
    */
-  GetAccountTypesCountAsync: {
+  Accounts_GetAccountTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9607,7 +9371,7 @@ export interface operations {
    * Get account type by ID
    * @description Get account type by ID.
    */
-  GetAccountTypeByIdAsync: {
+  Accounts_GetAccountTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9648,7 +9412,7 @@ export interface operations {
    * Update account type
    * @description Update account type.
    */
-  UpdateAccountTypeAsync: {
+  Accounts_UpdateAccountType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9695,7 +9459,7 @@ export interface operations {
    * Delete account type
    * @description Delete account type.
    */
-  DeleteAccountTypeAsync: {
+  Accounts_DeleteAccountType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9736,7 +9500,7 @@ export interface operations {
    * Patch account type
    * @description Patch account type.
    */
-  PatchAccountTypeAsync: {
+  Accounts_PatchAccountType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9783,7 +9547,7 @@ export interface operations {
    * Get account relations
    * @description Get account relations.
    */
-  GetAccountRelationsAsync: {
+  Accounts_GetAccountRelations: {
     parameters: {
       query: {
         tenantId: string;
@@ -9828,7 +9592,7 @@ export interface operations {
    * Create account relation
    * @description Create account relation.
    */
-  CreateAccountRelationAsync: {
+  Accounts_CreateAccountRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -9873,7 +9637,7 @@ export interface operations {
    * Get account relations count
    * @description Get account relations count.
    */
-  GetAccountRelationsCountAsync: {
+  Accounts_GetAccountRelationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9918,7 +9682,7 @@ export interface operations {
    * Update account relation
    * @description Update account relation.
    */
-  UpdateAccountRelationAsync: {
+  Accounts_UpdateAccountRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -9966,7 +9730,7 @@ export interface operations {
    * Delete account relation
    * @description Delete account relation.
    */
-  DeleteAccountRelationAsync: {
+  Accounts_DeleteAccountRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -10008,7 +9772,7 @@ export interface operations {
    * Patch account relation
    * @description Patch account relation.
    */
-  PatchAccountRelationAsync: {
+  Accounts_PatchAccountRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -10056,7 +9820,7 @@ export interface operations {
    * Get charts of accounts
    * @description Get available charts of accounts.
    */
-  GetChartsOfAccountsAsync: {
+  Accounts_GetChartsOfAccounts: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10093,7 +9857,7 @@ export interface operations {
    * Seed chart of accounts
    * @description Seed a chart of accounts from a file URL.
    */
-  SeedChartOfAccountsAsync: {
+  Accounts_SeedChartOfAccounts: {
     parameters: {
       query: {
         tenantId: string;
@@ -10137,7 +9901,7 @@ export interface operations {
    * Gets the current tenant banks
    * @description Get the currently acting tenant banks.
    */
-  GetBanks: {
+  Banking_GetBanks: {
     parameters: {
       query: {
         tenantId: string;
@@ -10181,7 +9945,7 @@ export interface operations {
    * Creates a new bank
    * @description Create a new bank.
    */
-  CreateBank: {
+  Banking_CreateBank: {
     parameters: {
       query: {
         tenantId: string;
@@ -10232,7 +9996,7 @@ export interface operations {
    * Gets the current tenant banks count
    * @description Get the currently acting tenant banks count.
    */
-  GetBanksCount: {
+  Banking_GetBanksCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10276,7 +10040,7 @@ export interface operations {
    * Gets the current tenant bank
    * @description Get the currently acting tenant bank.
    */
-  GetBank: {
+  Banking_GetBank: {
     parameters: {
       query: {
         tenantId: string;
@@ -10324,7 +10088,7 @@ export interface operations {
    * Updates a bank
    * @description Update a bank.
    */
-  UpdateBank: {
+  Banking_UpdateBank: {
     parameters: {
       query: {
         tenantId: string;
@@ -10385,7 +10149,7 @@ export interface operations {
    * Deletes a bank
    * @description Delete a bank.
    */
-  DeleteBank: {
+  Banking_DeleteBank: {
     parameters: {
       query: {
         tenantId: string;
@@ -10426,7 +10190,7 @@ export interface operations {
    * Patches a bank
    * @description Partially update a bank using JSON Patch.
    */
-  PatchBank: {
+  Banking_PatchBank: {
     parameters: {
       query: {
         tenantId: string;
@@ -10487,7 +10251,7 @@ export interface operations {
    * Gets the current tenant bank accounts
    * @description Get the currently acting tenant bank accounts.
    */
-  GetBankAccounts: {
+  Banking_GetBankAccounts: {
     parameters: {
       query: {
         tenantId: string;
@@ -10534,7 +10298,7 @@ export interface operations {
    * Creates a new bank account
    * @description Create a new bank account.
    */
-  CreateBankAccount: {
+  Banking_CreateBankAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10588,7 +10352,7 @@ export interface operations {
    * Gets the current tenant bank accounts count
    * @description Get the currently acting tenant bank accounts count.
    */
-  GetBankAccountsCount: {
+  Banking_GetBankAccountsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10635,7 +10399,7 @@ export interface operations {
    * Gets the current tenant bank account
    * @description Get the currently acting tenant bank account.
    */
-  GetBankAccount: {
+  Banking_GetBankAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10684,7 +10448,7 @@ export interface operations {
    * Updates a bank account
    * @description Update a bank account.
    */
-  UpdateBankAccount: {
+  Banking_UpdateBankAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10739,7 +10503,7 @@ export interface operations {
    * Deletes a bank account
    * @description Delete a bank account.
    */
-  DeleteBankAccount: {
+  Banking_DeleteBankAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10781,7 +10545,7 @@ export interface operations {
    * Patches a bank account
    * @description Partially update a bank account using JSON Patch.
    */
-  PatchBankAccount: {
+  Banking_PatchBankAccount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10843,7 +10607,7 @@ export interface operations {
    * Gets the current tenant bank guarantees
    * @description Get the currently acting tenant bank guarantees.
    */
-  GetBankGuarantees: {
+  Banking_GetBankGuarantees: {
     parameters: {
       query: {
         tenantId: string;
@@ -10890,7 +10654,7 @@ export interface operations {
    * Creates a new bank guarantee
    * @description Create a new bank guarantee.
    */
-  CreateBankGuarantee: {
+  Banking_CreateBankGuarantee: {
     parameters: {
       query: {
         tenantId: string;
@@ -10944,7 +10708,7 @@ export interface operations {
    * Gets the current tenant bank guarantees count
    * @description Get the currently acting tenant bank guarantees count.
    */
-  GetBankGuaranteesCount: {
+  Banking_GetBankGuaranteesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10991,7 +10755,7 @@ export interface operations {
    * Gets the current tenant bank guarantee
    * @description Get the currently acting tenant bank guarantee.
    */
-  GetBankGuarantee: {
+  Banking_GetBankGuarantee: {
     parameters: {
       query: {
         tenantId: string;
@@ -11040,7 +10804,7 @@ export interface operations {
    * Updates a bank guarantee
    * @description Update a bank guarantee.
    */
-  UpdateBankGuarantee: {
+  Banking_UpdateBankGuarantee: {
     parameters: {
       query: {
         tenantId: string;
@@ -11095,7 +10859,7 @@ export interface operations {
    * Deletes a bank guarantee
    * @description Delete a bank guarantee.
    */
-  DeleteBankGuarantee: {
+  Banking_DeleteBankGuarantee: {
     parameters: {
       query: {
         tenantId: string;
@@ -11137,7 +10901,7 @@ export interface operations {
    * Patches a bank guarantee
    * @description Partially update a bank guarantee using JSON Patch.
    */
-  PatchBankGuarantee: {
+  Banking_PatchBankGuarantee: {
     parameters: {
       query: {
         tenantId: string;
@@ -11199,7 +10963,7 @@ export interface operations {
    * Gets the current tenant bank transactions
    * @description Get the currently acting tenant bank transactions.
    */
-  GetBankTransactions: {
+  Banking_GetBankTransactions: {
     parameters: {
       query: {
         tenantId: string;
@@ -11246,7 +11010,7 @@ export interface operations {
    * Creates a new bank transaction
    * @description Create a new bank transaction.
    */
-  CreateBankTransaction: {
+  Banking_CreateBankTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -11300,7 +11064,7 @@ export interface operations {
    * Gets the current tenant bank transactions count
    * @description Get the currently acting tenant bank transactions count.
    */
-  GetBankTransactionsCount: {
+  Banking_GetBankTransactionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11347,7 +11111,7 @@ export interface operations {
    * Gets the current tenant bank transaction
    * @description Get the currently acting tenant bank transaction.
    */
-  GetBankTransaction: {
+  Banking_GetBankTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -11396,7 +11160,7 @@ export interface operations {
    * Updates a bank transaction
    * @description Update a bank transaction.
    */
-  UpdateBankTransaction: {
+  Banking_UpdateBankTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -11451,7 +11215,7 @@ export interface operations {
    * Deletes a bank transaction
    * @description Delete a bank transaction.
    */
-  DeleteBankTransaction: {
+  Banking_DeleteBankTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -11493,7 +11257,7 @@ export interface operations {
    * Patches a bank transaction
    * @description Partially update a bank transaction using JSON Patch.
    */
-  PatchBankTransaction: {
+  Banking_PatchBankTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -11555,7 +11319,7 @@ export interface operations {
    * Get all bank profiles for a tenant
    * @description Retrieves all bank profiles for the specified tenant using OData query options.
    */
-  GetBankProfiles: {
+  BankProfiles_GetBankProfiles: {
     parameters: {
       query: {
         tenantId: string;
@@ -11599,7 +11363,7 @@ export interface operations {
    * Get bank profiles count
    * @description Returns the count of bank profiles for the specified tenant.
    */
-  GetBankProfilesCount: {
+  BankProfiles_GetBankProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11643,7 +11407,7 @@ export interface operations {
    * Get taxes for a billable line.
    * @description Retrieves the taxes applied to the specified billable line.
    */
-  GetBillableLineTaxes: {
+  BillableLineTaxes_GetBillableLineTaxes: {
     parameters: {
       query: {
         tenantId: string;
@@ -11676,7 +11440,7 @@ export interface operations {
    * Create a new tax for a billable line.
    * @description Creates a new tax entry for the specified billable line.
    */
-  CreateBillableLineTax: {
+  BillableLineTaxes_CreateBillableLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -11709,7 +11473,7 @@ export interface operations {
    * Get the count of taxes for a billable line.
    * @description Retrieves the total count of taxes applied to the specified billable line.
    */
-  GetBillableLineTaxesCount: {
+  BillableLineTaxes_GetBillableLineTaxesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11742,7 +11506,7 @@ export interface operations {
    * Update a tax for a billable line.
    * @description Updates the specified tax entry for the billable line.
    */
-  UpdateBillableLineTax: {
+  BillableLineTaxes_UpdateBillableLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -11776,7 +11540,7 @@ export interface operations {
    * Delete a tax from a billable line.
    * @description Deletes the specified tax entry from the billable line.
    */
-  DeleteBillableLineTax: {
+  BillableLineTaxes_DeleteBillableLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -11804,7 +11568,7 @@ export interface operations {
    * Patch a billable line tax
    * @description Partially updates a billable line tax.
    */
-  PatchBillableLineTaxAsync: {
+  BillableLineTaxes_PatchBillableLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -11852,7 +11616,7 @@ export interface operations {
    * Gets a billing profile by id
    * @description Retrieves a specific billing profile using its unique identifier.
    */
-  GetBillingProfileByIdAsync: {
+  BillingProfiles_GetBillingProfileById: {
     parameters: {
       query: {
         tenantId: string;
@@ -11879,7 +11643,7 @@ export interface operations {
    * Updates an existing billing profile
    * @description Modifies an existing billing profile using the provided data.
    */
-  UpdateBillingProfileAsync: {
+  BillingProfiles_UpdateBillingProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -11912,7 +11676,7 @@ export interface operations {
    * Deletes a billing profile
    * @description Removes a billing profile from the system using its unique identifier.
    */
-  DeleteBillingProfileAsync: {
+  BillingProfiles_DeleteBillingProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -11939,7 +11703,7 @@ export interface operations {
    * Patch a billing profile
    * @description Partially updates a billing profile.
    */
-  PatchBillingProfileAsync: {
+  BillingProfiles_PatchBillingProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -11986,7 +11750,7 @@ export interface operations {
    * Gets all billing profiles
    * @description Fetches all billing profiles for a tenant with support for OData queries.
    */
-  GetBillingProfilesAsync: {
+  BillingProfiles_GetBillingProfiles: {
     parameters: {
       query: {
         tenantId: string;
@@ -12016,7 +11780,7 @@ export interface operations {
    * Creates a new billing profile
    * @description Adds a new billing profile record for the specified tenant.
    */
-  CreateBillingProfileAsync: {
+  BillingProfiles_CreateBillingProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -12046,7 +11810,7 @@ export interface operations {
    * Gets the count of billing profiles
    * @description Returns the number of billing profiles for a tenant, supporting OData filtering.
    */
-  GetBillingProfilesCountAsync: {
+  BillingProfiles_GetBillingProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12076,7 +11840,7 @@ export interface operations {
    * Gets a budget by id
    * @description Get a budget by id
    */
-  GetBudgetDetailsAsync: {
+  Budgets_GetBudgetDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -12117,7 +11881,7 @@ export interface operations {
    * Updates a budget
    * @description Update a budget
    */
-  UpdateBudgetAsync: {
+  Budgets_UpdateBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -12164,7 +11928,7 @@ export interface operations {
    * Deletes a budget
    * @description Delete a budget
    */
-  DeleteBudgetAsync: {
+  Budgets_DeleteBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -12205,7 +11969,7 @@ export interface operations {
    * Patches a budget
    * @description Partially update a budget using JSON Patch.
    */
-  PatchBudgetAsync: {
+  Budgets_PatchBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -12259,7 +12023,7 @@ export interface operations {
    * Gets all budgets
    * @description Get all budgets
    */
-  GetBudgetsAsync: {
+  Budgets_GetBudgets: {
     parameters: {
       query: {
         tenantId: string;
@@ -12303,7 +12067,7 @@ export interface operations {
    * Creates a budget
    * @description Create a budget
    */
-  CreateBudgetAsync: {
+  Budgets_CreateBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -12347,7 +12111,7 @@ export interface operations {
    * Get the count of budgets
    * @description Get the count of budgets.
    */
-  GetBudgetsCountAsync: {
+  Budgets_GetBudgetsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12391,7 +12155,7 @@ export interface operations {
    * Gets all budget account entries
    * @description Get all budget account entries
    */
-  GetBudgetAccountEntriesCollectionAsync: {
+  Budgets_GetBudgetAccountEntriesCollection: {
     parameters: {
       query: {
         tenantId: string;
@@ -12438,7 +12202,7 @@ export interface operations {
    * Creates a budget account entry
    * @description Create a budget account entry
    */
-  CreateBudgetAccountEntryAsync: {
+  Budgets_CreateBudgetAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -12485,7 +12249,7 @@ export interface operations {
    * Gets a budget account entry by id
    * @description Get a budget account entry by id
    */
-  GetBudgetAccountEntryAsync: {
+  Budgets_GetBudgetAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -12527,7 +12291,7 @@ export interface operations {
    * Updates a budget account entry
    * @description Update a budget account entry
    */
-  UpdateBudgetAccountEntryAsync: {
+  Budgets_UpdateBudgetAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -12575,7 +12339,7 @@ export interface operations {
    * Deletes a budget account entry
    * @description Delete a budget account entry
    */
-  DeleteBudgetAccountEntryAsync: {
+  Budgets_DeleteBudgetAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -12617,7 +12381,7 @@ export interface operations {
    * Patches a budget account entry
    * @description Partially update a budget account entry using JSON Patch.
    */
-  PatchBudgetAccountEntryAsync: {
+  Budgets_PatchBudgetAccountEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -12672,7 +12436,7 @@ export interface operations {
    * Get all commissions for a tenant
    * @description Retrieves all commissions for the specified tenant using OData query options.
    */
-  GetCommissionsAsync: {
+  Commissions_GetCommissions: {
     parameters: {
       query: {
         tenantId: string;
@@ -12716,7 +12480,7 @@ export interface operations {
    * Create a commission
    * @description Creates a new commission.
    */
-  CreateCommissionAsync: {
+  Commissions_CreateCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -12760,7 +12524,7 @@ export interface operations {
    * Get the count of commissions for a tenant
    * @description Retrieves the count of commissions for the specified tenant using OData query options.
    */
-  GetCommissionsCountAsync: {
+  Commissions_GetCommissionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12804,7 +12568,7 @@ export interface operations {
    * Get a commission by id
    * @description Retrieves a commission by its identifier.
    */
-  GetCommissionAsync: {
+  Commissions_GetCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -12845,7 +12609,7 @@ export interface operations {
    * Update a commission
    * @description Updates an existing commission.
    */
-  UpdateCommissionAsync: {
+  Commissions_UpdateCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -12892,7 +12656,7 @@ export interface operations {
    * Delete a commission
    * @description Deletes a commission.
    */
-  DeleteCommissionAsync: {
+  Commissions_DeleteCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -12933,7 +12697,7 @@ export interface operations {
    * Patch a commission
    * @description Partially updates an existing commission.
    */
-  PatchCommissionAsync: {
+  Commissions_PatchCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -12980,7 +12744,7 @@ export interface operations {
    * Get all payment commissions for a tenant
    * @description Retrieves all payment commissions for the specified tenant using OData query options.
    */
-  GetPaymentCommissionsAsync: {
+  Commissions_GetPaymentCommissions: {
     parameters: {
       query: {
         tenantId: string;
@@ -13024,7 +12788,7 @@ export interface operations {
    * Create a payment commission
    * @description Creates a new payment commission.
    */
-  CreatePaymentCommissionAsync: {
+  Commissions_CreatePaymentCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -13068,7 +12832,7 @@ export interface operations {
    * Get the count of payment commissions for a tenant
    * @description Retrieves the count of payment commissions for the specified tenant using OData query options.
    */
-  GetPaymentCommissionsCountAsync: {
+  Commissions_GetPaymentCommissionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -13112,7 +12876,7 @@ export interface operations {
    * Get a payment commission by id
    * @description Retrieves a payment commission by its identifier.
    */
-  GetPaymentCommissionAsync: {
+  Commissions_GetPaymentCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -13153,7 +12917,7 @@ export interface operations {
    * Update a payment commission
    * @description Updates an existing payment commission.
    */
-  UpdatePaymentCommissionAsync: {
+  Commissions_UpdatePaymentCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -13200,7 +12964,7 @@ export interface operations {
    * Delete a payment commission
    * @description Deletes a payment commission.
    */
-  DeletePaymentCommissionAsync: {
+  Commissions_DeletePaymentCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -13241,7 +13005,7 @@ export interface operations {
    * Patch a payment commission
    * @description Partially updates an existing payment commission.
    */
-  PatchPaymentCommissionAsync: {
+  Commissions_PatchPaymentCommission: {
     parameters: {
       query: {
         tenantId: string;
@@ -13288,7 +13052,7 @@ export interface operations {
    * Get all cost centres for a tenant
    * @description Retrieves all cost centres for the specified tenant using OData query options.
    */
-  GetCostCentres: {
+  CostCentres_GetCostCentres: {
     parameters: {
       query: {
         tenantId: string;
@@ -13332,7 +13096,7 @@ export interface operations {
    * Create a cost centre
    * @description Creates a new cost centre.
    */
-  CreateCostCentre: {
+  CostCentres_CreateCostCentre: {
     parameters: {
       query: {
         tenantId: string;
@@ -13376,7 +13140,7 @@ export interface operations {
    * Get the count of cost centres for a tenant
    * @description Retrieves the count of cost centres for the specified tenant using OData query options.
    */
-  GetCostCentresCount: {
+  CostCentres_GetCostCentresCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -13420,7 +13184,7 @@ export interface operations {
    * Get a cost centre by id
    * @description Retrieves a cost centre by its identifier.
    */
-  GetCostCentre: {
+  CostCentres_GetCostCentre: {
     parameters: {
       query: {
         tenantId: string;
@@ -13461,7 +13225,7 @@ export interface operations {
    * Update a cost centre
    * @description Updates an existing cost centre.
    */
-  UpdateCostCentre: {
+  CostCentres_UpdateCostCentre: {
     parameters: {
       query: {
         tenantId: string;
@@ -13508,7 +13272,7 @@ export interface operations {
    * Delete a cost centre
    * @description Deletes a cost centre.
    */
-  DeleteCostCentre: {
+  CostCentres_DeleteCostCentre: {
     parameters: {
       query: {
         tenantId: string;
@@ -13549,7 +13313,7 @@ export interface operations {
    * Patch a cost centre
    * @description Partially updates an existing cost centre.
    */
-  PatchCostCentre: {
+  CostCentres_PatchCostCentre: {
     parameters: {
       query: {
         tenantId: string;
@@ -13596,7 +13360,7 @@ export interface operations {
    * Get all cost centre groups for a tenant
    * @description Retrieves all cost centre groups for the specified tenant using OData query options.
    */
-  GetCostCentreGroups: {
+  CostCentres_GetCostCentreGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -13640,7 +13404,7 @@ export interface operations {
    * Create a cost centre group
    * @description Creates a new cost centre group.
    */
-  CreateCostCentreGroup: {
+  CostCentres_CreateCostCentreGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -13684,7 +13448,7 @@ export interface operations {
    * Get the count of cost centre groups for a tenant
    * @description Retrieves the count of cost centre groups for the specified tenant using OData query options.
    */
-  GetCostCentreGroupsCount: {
+  CostCentres_GetCostCentreGroupsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -13728,7 +13492,7 @@ export interface operations {
    * Get a cost centre group by id
    * @description Retrieves a cost centre group by its identifier.
    */
-  GetCostCentreGroup: {
+  CostCentres_GetCostCentreGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -13769,7 +13533,7 @@ export interface operations {
    * Update a cost centre group
    * @description Updates an existing cost centre group.
    */
-  UpdateCostCentreGroup: {
+  CostCentres_UpdateCostCentreGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -13816,7 +13580,7 @@ export interface operations {
    * Delete a cost centre group
    * @description Deletes a cost centre group.
    */
-  DeleteCostCentreGroup: {
+  CostCentres_DeleteCostCentreGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -13857,7 +13621,7 @@ export interface operations {
    * Patch a cost centre group
    * @description Partially updates an existing cost centre group.
    */
-  PatchCostCentreGroup: {
+  CostCentres_PatchCostCentreGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -13904,7 +13668,7 @@ export interface operations {
    * Get all cost centre budgets for a tenant
    * @description Retrieves all cost centre budgets for the specified tenant using OData query options.
    */
-  GetCostCentreBudgets: {
+  CostCentres_GetCostCentreBudgets: {
     parameters: {
       query: {
         tenantId: string;
@@ -13948,7 +13712,7 @@ export interface operations {
    * Create a cost centre budget
    * @description Creates a new cost centre budget.
    */
-  CreateCostCentreBudget: {
+  CostCentres_CreateCostCentreBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -13992,7 +13756,7 @@ export interface operations {
    * Get a cost centre budget by id
    * @description Retrieves a cost centre budget by its identifier.
    */
-  GetCostCentreBudget: {
+  CostCentres_GetCostCentreBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -14033,7 +13797,7 @@ export interface operations {
    * Update a cost centre budget
    * @description Updates an existing cost centre budget.
    */
-  UpdateCostCentreBudget: {
+  CostCentres_UpdateCostCentreBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -14080,7 +13844,7 @@ export interface operations {
    * Delete a cost centre budget
    * @description Deletes a cost centre budget.
    */
-  DeleteCostCentreBudget: {
+  CostCentres_DeleteCostCentreBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -14121,7 +13885,7 @@ export interface operations {
    * Patch a cost centre budget
    * @description Partially updates an existing cost centre budget.
    */
-  PatchCostCentreBudget: {
+  CostCentres_PatchCostCentreBudget: {
     parameters: {
       query: {
         tenantId: string;
@@ -14168,7 +13932,7 @@ export interface operations {
    * Get all expense claims for a tenant
    * @description Retrieves all expense claims for the specified tenant using OData query options.
    */
-  GetExpenseClaims: {
+  ExpenseClaims_GetExpenseClaims: {
     parameters: {
       query: {
         tenantId: string;
@@ -14212,7 +13976,7 @@ export interface operations {
    * Create an expense claim
    * @description Creates a new expense claim.
    */
-  CreateExpenseClaim: {
+  ExpenseClaims_CreateExpenseClaim: {
     parameters: {
       query: {
         tenantId: string;
@@ -14256,7 +14020,7 @@ export interface operations {
    * Get the count of expense claims for a tenant
    * @description Retrieves the count of expense claims for the specified tenant using OData query options.
    */
-  GetExpenseClaimsCount: {
+  ExpenseClaims_GetExpenseClaimsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -14300,7 +14064,7 @@ export interface operations {
    * Get an expense claim by id
    * @description Retrieves an expense claim by its identifier.
    */
-  GetExpenseClaim: {
+  ExpenseClaims_GetExpenseClaim: {
     parameters: {
       query: {
         tenantId: string;
@@ -14341,7 +14105,7 @@ export interface operations {
    * Update an expense claim
    * @description Updates an existing expense claim.
    */
-  UpdateExpenseClaim: {
+  ExpenseClaims_UpdateExpenseClaim: {
     parameters: {
       query: {
         tenantId: string;
@@ -14388,7 +14152,7 @@ export interface operations {
    * Delete an expense claim
    * @description Deletes an expense claim.
    */
-  DeleteExpenseClaim: {
+  ExpenseClaims_DeleteExpenseClaim: {
     parameters: {
       query: {
         tenantId: string;
@@ -14429,7 +14193,7 @@ export interface operations {
    * Patch an expense claim
    * @description Partially updates an existing expense claim.
    */
-  PatchExpenseClaim: {
+  ExpenseClaims_PatchExpenseClaim: {
     parameters: {
       query: {
         tenantId: string;
@@ -14476,7 +14240,7 @@ export interface operations {
    * Get all expense types for a tenant
    * @description Retrieves all expense types for the specified tenant using OData query options.
    */
-  GetExpenseTypes: {
+  ExpenseTypes_GetExpenseTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -14520,7 +14284,7 @@ export interface operations {
    * Create an expense type
    * @description Creates a new expense type.
    */
-  CreateExpenseType: {
+  ExpenseTypes_CreateExpenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -14564,7 +14328,7 @@ export interface operations {
    * Get the count of expense types for a tenant
    * @description Retrieves the count of expense types for the specified tenant using OData query options.
    */
-  GetExpenseTypesCount: {
+  ExpenseTypes_GetExpenseTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -14608,7 +14372,7 @@ export interface operations {
    * Get an expense type by id
    * @description Retrieves an expense type by its identifier.
    */
-  GetExpenseType: {
+  ExpenseTypes_GetExpenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -14649,7 +14413,7 @@ export interface operations {
    * Update an expense type
    * @description Updates an existing expense type.
    */
-  UpdateExpenseType: {
+  ExpenseTypes_UpdateExpenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -14696,7 +14460,7 @@ export interface operations {
    * Delete an expense type
    * @description Deletes an expense type.
    */
-  DeleteExpenseType: {
+  ExpenseTypes_DeleteExpenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -14737,7 +14501,7 @@ export interface operations {
    * Patch an expense type
    * @description Partially updates an existing expense type.
    */
-  PatchExpenseType: {
+  ExpenseTypes_PatchExpenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -14780,7 +14544,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -14795,11 +14638,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all financial books for a tenant
    * @description Retrieves all financial books for the specified tenant using OData query options.
    */
-  GetFinancialBooksAsync: {
+  FinancialBooks_GetFinancialBooks: {
     parameters: {
       query: {
         tenantId: string;
@@ -14850,7 +14878,7 @@ export interface operations {
    * Creates a new financial book
    * @description Creates a new financial book.
    */
-  CreateFinancialBookAsync: {
+  FinancialBooks_CreateFinancialBook: {
     parameters: {
       query: {
         tenantId: string;
@@ -14901,7 +14929,7 @@ export interface operations {
    * Get the count of financial books
    * @description Get the count of financial books.
    */
-  GetFinancialBooksCountAsync: {
+  FinancialBooks_GetFinancialBooksCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -14952,7 +14980,7 @@ export interface operations {
    * Gets the details of a specific financial book
    * @description Gets the details of a specific financial book.
    */
-  GetFinancialBookDetailsAsync: {
+  FinancialBooks_GetFinancialBookDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -15000,7 +15028,7 @@ export interface operations {
    * Updates an existing financial book
    * @description Updates an existing financial book.
    */
-  UpdateFinancialBookAsync: {
+  FinancialBooks_UpdateFinancialBook: {
     parameters: {
       query: {
         tenantId: string;
@@ -15054,7 +15082,7 @@ export interface operations {
    * Deletes an existing financial book
    * @description Deletes an existing financial book.
    */
-  DeleteFinancialBookAsync: {
+  FinancialBooks_DeleteFinancialBook: {
     parameters: {
       query: {
         tenantId: string;
@@ -15102,7 +15130,7 @@ export interface operations {
    * Patch a financial book
    * @description Partially updates a financial book.
    */
-  PatchFinancialBookAsync: {
+  FinancialBooks_PatchFinancialBook: {
     parameters: {
       query: {
         tenantId: string;
@@ -15149,7 +15177,7 @@ export interface operations {
    * Get fiscal authorities
    * @description Retrieves all fiscal authorities for the specified tenant using OData query options.
    */
-  GetFiscalAuthorities: {
+  FiscalAuthorities_GetFiscalAuthorities: {
     parameters: {
       query: {
         tenantId: string;
@@ -15193,7 +15221,7 @@ export interface operations {
    * Create a fiscal authority
    * @description Creates a new fiscal authority for the specified tenant.
    */
-  CreateFiscalAuthority: {
+  FiscalAuthorities_CreateFiscalAuthority: {
     parameters: {
       query: {
         tenantId: string;
@@ -15237,7 +15265,7 @@ export interface operations {
    * Get fiscal authorities count
    * @description Returns the total count of fiscal authorities for the specified tenant.
    */
-  GetFiscalAuthoritiesCount: {
+  FiscalAuthorities_GetFiscalAuthoritiesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -15281,7 +15309,7 @@ export interface operations {
    * Get fiscal authority by ID
    * @description Retrieves a specific fiscal authority by its unique identifier.
    */
-  GetFiscalAuthority: {
+  FiscalAuthorities_GetFiscalAuthority: {
     parameters: {
       query: {
         tenantId: string;
@@ -15322,7 +15350,7 @@ export interface operations {
    * Update a fiscal authority
    * @description Updates an existing fiscal authority identified by its unique identifier.
    */
-  UpdateFiscalAuthority: {
+  FiscalAuthorities_UpdateFiscalAuthority: {
     parameters: {
       query: {
         tenantId: string;
@@ -15369,7 +15397,7 @@ export interface operations {
    * Delete a fiscal authority
    * @description Deletes a fiscal authority identified by its unique identifier.
    */
-  DeleteFiscalAuthority: {
+  FiscalAuthorities_DeleteFiscalAuthority: {
     parameters: {
       query: {
         tenantId: string;
@@ -15410,7 +15438,7 @@ export interface operations {
    * Patch a fiscal authority
    * @description Partially updates a fiscal authority.
    */
-  PatchFiscalAuthorityAsync: {
+  FiscalAuthorities_PatchFiscalAuthority: {
     parameters: {
       query: {
         tenantId: string;
@@ -15457,7 +15485,7 @@ export interface operations {
    * Get fiscal years for an authority
    * @description Retrieves all fiscal years associated with the specified fiscal authority.
    */
-  GetFiscalYears: {
+  FiscalAuthorityYears_GetFiscalYears: {
     parameters: {
       query: {
         tenantId: string;
@@ -15505,7 +15533,7 @@ export interface operations {
    * Get fiscal years count for an authority
    * @description Returns the total count of fiscal years for the specified fiscal authority.
    */
-  GetFiscalYearsCount: {
+  FiscalAuthorityYears_GetFiscalYearsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -15552,7 +15580,7 @@ export interface operations {
    * Get fiscal year by ID for an authority
    * @description Retrieves a specific fiscal year by its unique identifier within a fiscal authority.
    */
-  GetFiscalYear: {
+  FiscalAuthorityYears_GetFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -15594,7 +15622,7 @@ export interface operations {
    * Create a fiscal year
    * @description Creates a new fiscal year associated with a fiscal authority.
    */
-  CreateFiscalYear: {
+  FiscalAuthorityYears_CreateFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -15638,7 +15666,7 @@ export interface operations {
    * Update a fiscal year
    * @description Updates an existing fiscal year identified by its unique identifier.
    */
-  UpdateFiscalYear: {
+  FiscalAuthorityYears_UpdateFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -15685,7 +15713,7 @@ export interface operations {
    * Delete a fiscal year
    * @description Deletes a fiscal year identified by its unique identifier.
    */
-  DeleteFiscalYear: {
+  FiscalAuthorityYears_DeleteFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -15726,7 +15754,7 @@ export interface operations {
    * Patch a fiscal authority year
    * @description Partially updates a fiscal authority year.
    */
-  PatchFiscalAuthorityYearAsync: {
+  FiscalAuthorityYears_PatchFiscalAuthorityYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -15773,7 +15801,7 @@ export interface operations {
    * Get invoice enumeration ranges for an authority
    * @description Retrieves all invoice enumeration ranges for the specified fiscal authority.
    */
-  GetInvoiceEnumerationRanges: {
+  FiscalEnumerationRanges_GetInvoiceEnumerationRanges: {
     parameters: {
       query: {
         tenantId: string;
@@ -15821,7 +15849,7 @@ export interface operations {
    * Get invoice enumeration ranges count
    * @description Returns the total count of invoice enumeration ranges for the specified fiscal authority.
    */
-  GetInvoiceEnumerationRangesCount: {
+  FiscalEnumerationRanges_GetInvoiceEnumerationRangesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -15868,7 +15896,7 @@ export interface operations {
    * Get invoice enumeration range by ID
    * @description Retrieves a specific invoice enumeration range by its unique identifier.
    */
-  GetInvoiceEnumerationRange: {
+  FiscalEnumerationRanges_GetInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -15910,7 +15938,7 @@ export interface operations {
    * Create an invoice enumeration range
    * @description Creates a new invoice enumeration range for a fiscal authority.
    */
-  CreateInvoiceEnumerationRange: {
+  FiscalEnumerationRanges_CreateInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -15954,7 +15982,7 @@ export interface operations {
    * Update an invoice enumeration range
    * @description Updates an existing invoice enumeration range identified by its unique identifier.
    */
-  UpdateInvoiceEnumerationRange: {
+  FiscalEnumerationRanges_UpdateInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -16001,7 +16029,7 @@ export interface operations {
    * Delete an invoice enumeration range
    * @description Deletes an invoice enumeration range identified by its unique identifier.
    */
-  DeleteInvoiceEnumerationRange: {
+  FiscalEnumerationRanges_DeleteInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -16042,7 +16070,7 @@ export interface operations {
    * Patch an invoice enumeration range
    * @description Partially updates an invoice enumeration range.
    */
-  PatchFiscalEnumerationRangeAsync: {
+  FiscalEnumerationRanges_PatchFiscalEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -16089,7 +16117,7 @@ export interface operations {
    * Get fiscal identification types for an authority
    * @description Retrieves all fiscal identification types for the specified fiscal authority.
    */
-  GetFiscalIdentificationTypes: {
+  FiscalIdentificationTypes_GetFiscalIdentificationTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -16136,7 +16164,7 @@ export interface operations {
    * Get fiscal identification types count
    * @description Returns the total count of fiscal identification types for the specified fiscal authority.
    */
-  GetFiscalIdentificationTypesCount: {
+  FiscalIdentificationTypes_GetFiscalIdentificationTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -16183,7 +16211,7 @@ export interface operations {
    * Get fiscal identification type by ID
    * @description Retrieves a specific fiscal identification type by its unique identifier.
    */
-  GetFiscalIdentificationType: {
+  FiscalIdentificationTypes_GetFiscalIdentificationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -16225,7 +16253,7 @@ export interface operations {
    * Create a fiscal identification type
    * @description Creates a new fiscal identification type for a fiscal authority.
    */
-  CreateFiscalIdentificationType: {
+  FiscalIdentificationTypes_CreateFiscalIdentificationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -16269,7 +16297,7 @@ export interface operations {
    * Update a fiscal identification type
    * @description Updates an existing fiscal identification type identified by its unique identifier.
    */
-  UpdateFiscalIdentificationType: {
+  FiscalIdentificationTypes_UpdateFiscalIdentificationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -16316,7 +16344,7 @@ export interface operations {
    * Delete a fiscal identification type
    * @description Deletes a fiscal identification type identified by its unique identifier.
    */
-  DeleteFiscalIdentificationType: {
+  FiscalIdentificationTypes_DeleteFiscalIdentificationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -16357,7 +16385,7 @@ export interface operations {
    * Patch a fiscal identification type
    * @description Partially updates a fiscal identification type.
    */
-  PatchFiscalIdentificationTypeAsync: {
+  FiscalIdentificationTypes_PatchFiscalIdentificationType: {
     parameters: {
       query: {
         tenantId: string;
@@ -16404,7 +16432,7 @@ export interface operations {
    * Get fiscal periods for a fiscal year
    * @description Retrieves all fiscal periods for the specified fiscal year within a fiscal authority.
    */
-  GetFiscalPeriods: {
+  FiscalPeriods_GetFiscalPeriods: {
     parameters: {
       query: {
         tenantId: string;
@@ -16453,7 +16481,7 @@ export interface operations {
    * Get fiscal periods count
    * @description Returns the total count of fiscal periods for the specified fiscal year.
    */
-  GetFiscalPeriodsCount: {
+  FiscalPeriods_GetFiscalPeriodsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -16501,7 +16529,7 @@ export interface operations {
    * Get fiscal period by ID
    * @description Retrieves a specific fiscal period by its unique identifier within a fiscal year.
    */
-  GetFiscalPeriod: {
+  FiscalPeriods_GetFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16544,7 +16572,7 @@ export interface operations {
    * Create a fiscal period
    * @description Creates a new fiscal period associated with a fiscal year.
    */
-  CreateFiscalPeriod: {
+  FiscalPeriods_CreateFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16588,7 +16616,7 @@ export interface operations {
    * Update a fiscal period
    * @description Updates an existing fiscal period identified by its unique identifier.
    */
-  UpdateFiscalPeriod: {
+  FiscalPeriods_UpdateFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16635,7 +16663,7 @@ export interface operations {
    * Delete a fiscal period
    * @description Deletes a fiscal period identified by its unique identifier.
    */
-  DeleteFiscalPeriod: {
+  FiscalPeriods_DeleteFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16676,7 +16704,7 @@ export interface operations {
    * Patch a fiscal period
    * @description Partially updates a fiscal period.
    */
-  PatchFiscalPeriodAsync: {
+  FiscalPeriods_PatchFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16723,7 +16751,7 @@ export interface operations {
    * Open a fiscal period
    * @description Opens a closed fiscal period so journal entries can post into it. Rejects reopening a locked or an already-open period.
    */
-  OpenFiscalPeriod: {
+  FiscalPeriods_OpenFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16771,7 +16799,7 @@ export interface operations {
    * Close a fiscal period
    * @description Closes a fiscal period so no further journal entries can post into it. Rejects closing a locked (hard-sealed) period.
    */
-  CloseFiscalPeriod: {
+  FiscalPeriods_CloseFiscalPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -16819,7 +16847,7 @@ export interface operations {
    * Get fiscal regimes for an authority
    * @description Retrieves all fiscal regimes for the specified fiscal authority.
    */
-  GetFiscalRegimes: {
+  FiscalRegimes_GetFiscalRegimes: {
     parameters: {
       query: {
         tenantId: string;
@@ -16867,7 +16895,7 @@ export interface operations {
    * Get fiscal regimes count
    * @description Returns the total count of fiscal regimes for the specified fiscal authority.
    */
-  GetFiscalRegimesCount: {
+  FiscalRegimes_GetFiscalRegimesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -16914,7 +16942,7 @@ export interface operations {
    * Get fiscal regime by ID
    * @description Retrieves a specific fiscal regime by its unique identifier.
    */
-  GetFiscalRegime: {
+  FiscalRegimes_GetFiscalRegime: {
     parameters: {
       query: {
         tenantId: string;
@@ -16956,7 +16984,7 @@ export interface operations {
    * Create a fiscal regime
    * @description Creates a new fiscal regime for a fiscal authority.
    */
-  CreateFiscalRegime: {
+  FiscalRegimes_CreateFiscalRegime: {
     parameters: {
       query: {
         tenantId: string;
@@ -17000,7 +17028,7 @@ export interface operations {
    * Update a fiscal regime
    * @description Updates an existing fiscal regime identified by its unique identifier.
    */
-  UpdateFiscalRegime: {
+  FiscalRegimes_UpdateFiscalRegime: {
     parameters: {
       query: {
         tenantId: string;
@@ -17047,7 +17075,7 @@ export interface operations {
    * Delete a fiscal regime
    * @description Deletes a fiscal regime identified by its unique identifier.
    */
-  DeleteFiscalRegime: {
+  FiscalRegimes_DeleteFiscalRegime: {
     parameters: {
       query: {
         tenantId: string;
@@ -17088,7 +17116,7 @@ export interface operations {
    * Patch a fiscal regime
    * @description Partially updates a fiscal regime.
    */
-  PatchFiscalRegimeAsync: {
+  FiscalRegimes_PatchFiscalRegime: {
     parameters: {
       query: {
         tenantId: string;
@@ -17135,7 +17163,7 @@ export interface operations {
    * Get fiscal responsibilities for an authority
    * @description Retrieves all fiscal responsibilities for the specified fiscal authority.
    */
-  GetFiscalResponsibilities: {
+  FiscalResponsibilities_GetFiscalResponsibilities: {
     parameters: {
       query: {
         tenantId: string;
@@ -17183,7 +17211,7 @@ export interface operations {
    * Get fiscal responsibilities count
    * @description Returns the total count of fiscal responsibilities for the specified fiscal authority.
    */
-  GetFiscalResponsibilitiesCount: {
+  FiscalResponsibilities_GetFiscalResponsibilitiesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -17230,7 +17258,7 @@ export interface operations {
    * Get fiscal responsibility by ID
    * @description Retrieves a specific fiscal responsibility by its unique identifier.
    */
-  GetFiscalResponsibility: {
+  FiscalResponsibilities_GetFiscalResponsibility: {
     parameters: {
       query: {
         tenantId: string;
@@ -17272,7 +17300,7 @@ export interface operations {
    * Create a fiscal responsibility
    * @description Creates a new fiscal responsibility for a fiscal authority.
    */
-  CreateFiscalResponsibility: {
+  FiscalResponsibilities_CreateFiscalResponsibility: {
     parameters: {
       query: {
         tenantId: string;
@@ -17316,7 +17344,7 @@ export interface operations {
    * Update a fiscal responsibility
    * @description Updates an existing fiscal responsibility identified by its unique identifier.
    */
-  UpdateFiscalResponsibility: {
+  FiscalResponsibilities_UpdateFiscalResponsibility: {
     parameters: {
       query: {
         tenantId: string;
@@ -17363,7 +17391,7 @@ export interface operations {
    * Delete a fiscal responsibility
    * @description Deletes a fiscal responsibility identified by its unique identifier.
    */
-  DeleteFiscalResponsibility: {
+  FiscalResponsibilities_DeleteFiscalResponsibility: {
     parameters: {
       query: {
         tenantId: string;
@@ -17404,7 +17432,7 @@ export interface operations {
    * Patch a fiscal responsibility
    * @description Partially updates a fiscal responsibility.
    */
-  PatchFiscalResponsibilityAsync: {
+  FiscalResponsibilities_PatchFiscalResponsibility: {
     parameters: {
       query: {
         tenantId: string;
@@ -17451,7 +17479,7 @@ export interface operations {
    * Get fiscal responsibility records
    * @description Retrieves all fiscal responsibility records for the specified fiscal responsibility.
    */
-  GetFiscalResponsibilityRecords: {
+  FiscalResponsibilityRecords_GetFiscalResponsibilityRecords: {
     parameters: {
       query: {
         tenantId: string;
@@ -17499,7 +17527,7 @@ export interface operations {
    * Get fiscal responsibility records count
    * @description Returns the total count of fiscal responsibility records for the specified fiscal responsibility.
    */
-  GetFiscalResponsibilityRecordsCount: {
+  FiscalResponsibilityRecords_GetFiscalResponsibilityRecordsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -17547,7 +17575,7 @@ export interface operations {
    * Get fiscal responsibility record by ID
    * @description Retrieves a specific fiscal responsibility record by its unique identifier.
    */
-  GetFiscalResponsibilityRecord: {
+  FiscalResponsibilityRecords_GetFiscalResponsibilityRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -17590,7 +17618,7 @@ export interface operations {
    * Create a fiscal responsibility record
    * @description Creates a new fiscal responsibility record for a fiscal responsibility.
    */
-  CreateFiscalResponsibilityRecord: {
+  FiscalResponsibilityRecords_CreateFiscalResponsibilityRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -17634,7 +17662,7 @@ export interface operations {
    * Update a fiscal responsibility record
    * @description Updates an existing fiscal responsibility record identified by its unique identifier.
    */
-  UpdateFiscalResponsibilityRecord: {
+  FiscalResponsibilityRecords_UpdateFiscalResponsibilityRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -17681,7 +17709,7 @@ export interface operations {
    * Delete a fiscal responsibility record
    * @description Deletes a fiscal responsibility record identified by its unique identifier.
    */
-  DeleteFiscalResponsibilityRecord: {
+  FiscalResponsibilityRecords_DeleteFiscalResponsibilityRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -17722,7 +17750,7 @@ export interface operations {
    * Patch a fiscal responsibility record
    * @description Partially updates a fiscal responsibility record.
    */
-  PatchFiscalResponsibilityRecordAsync: {
+  FiscalResponsibilityRecords_PatchFiscalResponsibilityRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -17769,7 +17797,7 @@ export interface operations {
    * Get all fiscal years
    * @description Retrieves a list of fiscal years for the specified tenant.
    */
-  GetFiscalYearsAsync: {
+  FiscalYears_GetFiscalYears: {
     parameters: {
       query: {
         tenantId: string;
@@ -17799,7 +17827,7 @@ export interface operations {
    * Create fiscal year
    * @description Creates a new fiscal year entry for a tenant.
    */
-  CreateFiscalYearAsync: {
+  FiscalYears_CreateFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -17829,7 +17857,7 @@ export interface operations {
    * Count fiscal years
    * @description Returns the number of fiscal years for a tenant.
    */
-  GetFiscalYearsCountAsync: {
+  FiscalYears_GetFiscalYearsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -17859,7 +17887,7 @@ export interface operations {
    * Get fiscal year by ID
    * @description Gets details for a specific fiscal year.
    */
-  GetFiscalYearDetailsAsync: {
+  FiscalYears_GetFiscalYearDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -17886,7 +17914,7 @@ export interface operations {
    * Update fiscal year
    * @description Updates an existing fiscal year identified by its ID.
    */
-  UpdateFiscalYearAsync: {
+  FiscalYears_UpdateFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -17919,7 +17947,7 @@ export interface operations {
    * Delete fiscal year
    * @description Deletes a fiscal year identified by its ID.
    */
-  DeleteFiscalYearAsync: {
+  FiscalYears_DeleteFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -17946,7 +17974,7 @@ export interface operations {
    * Patch a fiscal year
    * @description Partially updates a fiscal year.
    */
-  PatchFiscalYearAsync: {
+  FiscalYears_PatchFiscalYear: {
     parameters: {
       query: {
         tenantId: string;
@@ -17993,7 +18021,7 @@ export interface operations {
    * Get all grants
    * @description Retrieves a list of grants associated with the tenant.
    */
-  GetGrantsAsync: {
+  Grants_GetGrants: {
     parameters: {
       query: {
         tenantId: string;
@@ -18023,7 +18051,7 @@ export interface operations {
    * Create grant
    * @description Creates a new grant entry.
    */
-  CreateGrantAsync: {
+  Grants_CreateGrant: {
     parameters: {
       query: {
         tenantId: string;
@@ -18053,7 +18081,7 @@ export interface operations {
    * Count grants
    * @description Returns the number of grants for the tenant.
    */
-  GetGrantsCountAsync: {
+  Grants_GetGrantsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -18083,7 +18111,7 @@ export interface operations {
    * Get grant by ID
    * @description Gets detailed information for a specific grant.
    */
-  GetGrantDetailsAsync: {
+  Grants_GetGrantDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -18110,7 +18138,7 @@ export interface operations {
    * Update grant
    * @description Updates an existing grant identified by its ID.
    */
-  UpdateGrantAsync: {
+  Grants_UpdateGrant: {
     parameters: {
       query: {
         tenantId: string;
@@ -18143,7 +18171,7 @@ export interface operations {
    * Delete grant
    * @description Deletes a grant identified by its ID.
    */
-  DeleteGrantAsync: {
+  Grants_DeleteGrant: {
     parameters: {
       query: {
         tenantId: string;
@@ -18170,7 +18198,7 @@ export interface operations {
    * Patch a grant
    * @description Partially updates a grant.
    */
-  PatchGrantAsync: {
+  Grants_PatchGrant: {
     parameters: {
       query: {
         tenantId: string;
@@ -18217,7 +18245,7 @@ export interface operations {
    * Get all invoice enumeration ranges
    * @description Retrieves all invoice enumeration ranges for the specified tenant.
    */
-  GetInvoiceEnumerationRangesAsync: {
+  InvoiceEnumerationRanges_GetInvoiceEnumerationRanges: {
     parameters: {
       query: {
         tenantId: string;
@@ -18268,7 +18296,7 @@ export interface operations {
    * Create a new invoice enumeration range
    * @description Creates a new invoice enumeration range for the tenant.
    */
-  CreateInvoiceEnumerationRangeAsync: {
+  InvoiceEnumerationRanges_CreateInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -18319,7 +18347,7 @@ export interface operations {
    * Get invoice enumeration range by ID
    * @description Retrieves the details of a specific invoice enumeration range.
    */
-  GetInvoiceEnumerationRangeDetailsAsync: {
+  InvoiceEnumerationRanges_GetInvoiceEnumerationRangeDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -18367,7 +18395,7 @@ export interface operations {
    * Update an invoice enumeration range
    * @description Updates an existing invoice enumeration range with the provided data.
    */
-  UpdateInvoiceEnumerationRangeAsync: {
+  InvoiceEnumerationRanges_UpdateInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -18421,7 +18449,7 @@ export interface operations {
    * Delete an invoice enumeration range
    * @description Deletes an invoice enumeration range by its identifier.
    */
-  DeleteInvoiceEnumerationRangeAsync: {
+  InvoiceEnumerationRanges_DeleteInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -18469,7 +18497,7 @@ export interface operations {
    * Patch an invoice enumeration range
    * @description Partially updates an invoice enumeration range.
    */
-  PatchInvoiceEnumerationRangeAsync: {
+  InvoiceEnumerationRanges_PatchInvoiceEnumerationRange: {
     parameters: {
       query: {
         tenantId: string;
@@ -18516,7 +18544,7 @@ export interface operations {
    * Get all journals
    * @description Retrieves all journals for the specified tenant.
    */
-  GetJournalsAsync: {
+  Journals_GetJournals: {
     parameters: {
       query: {
         tenantId: string;
@@ -18560,7 +18588,7 @@ export interface operations {
    * Create journal
    * @description Creates a new journal for the tenant.
    */
-  CreateJournalAsync: {
+  Journals_CreateJournal: {
     parameters: {
       query: {
         tenantId: string;
@@ -18604,7 +18632,7 @@ export interface operations {
    * Count journals
    * @description Returns the count of journals for the tenant.
    */
-  CountJournalsAsync: {
+  Journals_CountJournals: {
     parameters: {
       query: {
         tenantId: string;
@@ -18648,7 +18676,7 @@ export interface operations {
    * Get journal by ID
    * @description Retrieves the details of a journal.
    */
-  GetJournalDetailsAsync: {
+  Journals_GetJournalDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -18689,7 +18717,7 @@ export interface operations {
    * Update journal
    * @description Updates an existing journal.
    */
-  UpdateJournalAsync: {
+  Journals_UpdateJournal: {
     parameters: {
       query: {
         tenantId: string;
@@ -18736,7 +18764,7 @@ export interface operations {
    * Delete journal
    * @description Deletes a journal by ID.
    */
-  DeleteJournalAsync: {
+  Journals_DeleteJournal: {
     parameters: {
       query: {
         tenantId: string;
@@ -18777,7 +18805,7 @@ export interface operations {
    * Patch a journal
    * @description Partially updates a journal.
    */
-  PatchJournalAsync: {
+  Journals_PatchJournal: {
     parameters: {
       query: {
         tenantId: string;
@@ -18824,7 +18852,7 @@ export interface operations {
    * Bind a journal to a financial book
    * @description Establishes the one-way Journal↔FinancialBook binding (finish-line #5): binds an unbound journal to the supplied book and sets its book-scoped code, enforcing (Tenant, Book, Code) uniqueness. Binding an unbound journal or re-affirming the same book succeeds; a duplicate code in the book is rejected (400), and re-homing an already-bound journal to a DIFFERENT book is rejected by the aggregate. Requires the journals_update permission.
    */
-  AssignJournalToBookAsync: {
+  Journals_AssignJournalToBook: {
     parameters: {
       query: {
         tenantId: string;
@@ -18878,7 +18906,7 @@ export interface operations {
    * Get journal entries
    * @description Gets entries for the specified journal.
    */
-  GetJournalEntriesAsync: {
+  Journals_GetJournalEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -18925,7 +18953,7 @@ export interface operations {
    * Create journal entry
    * @description Creates a new journal entry for a given journal.
    */
-  CreateJournalEntryAsync: {
+  Journals_CreateJournalEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -18972,7 +19000,7 @@ export interface operations {
    * Count journal entries
    * @description Returns the number of entries in the specified journal.
    */
-  GetJournalEntriesCountAsync: {
+  Journals_GetJournalEntriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -19019,7 +19047,7 @@ export interface operations {
    * Get journal entry by ID
    * @description Retrieves a single journal entry WITH its hydrated posting lines — each line's account, direction, description and currency facets (transaction / functional / account / USD).
    */
-  GetJournalEntryDetailsAsync: {
+  Journals_GetJournalEntryDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -19061,7 +19089,7 @@ export interface operations {
    * Update journal entry
    * @description Updates a specific journal entry.
    */
-  UpdateJournalEntryAsync: {
+  Journals_UpdateJournalEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -19109,7 +19137,7 @@ export interface operations {
    * Delete journal entry
    * @description Deletes a specific journal entry.
    */
-  DeleteJournalEntryAsync: {
+  Journals_DeleteJournalEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -19151,7 +19179,7 @@ export interface operations {
    * Patch a journal entry
    * @description Partially updates a journal entry.
    */
-  PatchJournalEntryAsync: {
+  Journals_PatchJournalEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -19199,7 +19227,7 @@ export interface operations {
    * Aggregate journal entry debits
    * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
    */
-  AggregateJournalEntryDebitsAsync: {
+  Journals_AggregateJournalEntryDebits: {
     parameters: {
       query: {
         tenantId: string;
@@ -19247,7 +19275,7 @@ export interface operations {
    * Aggregate journal entry credits
    * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
    */
-  AggregateJournalEntryCreditsAsync: {
+  Journals_AggregateJournalEntryCredits: {
     parameters: {
       query: {
         tenantId: string;
@@ -19295,7 +19323,7 @@ export interface operations {
    * Post a draft journal entry
    * @description Posts a DRAFT journal entry into its own open fiscal period. Enforces the balanced-entry invariant and the open-period gate, then seals the entry (immutable — correct via reversal, never edit/delete). An unbalanced draft or a closed period is rejected. Requires the journals_post permission.
    */
-  PostJournalEntryAsync: {
+  Journals_PostJournalEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -19344,7 +19372,7 @@ export interface operations {
    * Reverse a posted journal entry
    * @description Reverses a POSTED journal entry by writing a balanced compensating counter-entry into the supplied open fiscal period and marking the original Reversed — one atomic operation (append-only audit trail). Requires the journals_reverse permission.
    */
-  ReverseJournalEntryAsync: {
+  Journals_ReverseJournalEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -19406,7 +19434,7 @@ export interface operations {
    * Retrieves a journal type by ID
    * @description Fetches the journal type matching the specified ID.
    */
-  GetJournalTypeDetailsAsync: {
+  JournalTypes_GetJournalTypeDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -19433,7 +19461,7 @@ export interface operations {
    * Updates an existing journal type
    * @description Modifies the details of a specific journal type.
    */
-  UpdateJournalTypeAsync: {
+  JournalTypes_UpdateJournalType: {
     parameters: {
       query: {
         tenantId: string;
@@ -19466,7 +19494,7 @@ export interface operations {
    * Deletes a journal type
    * @description Removes a journal type from the tenant's configuration.
    */
-  DeleteJournalTypeAsync: {
+  JournalTypes_DeleteJournalType: {
     parameters: {
       query: {
         tenantId: string;
@@ -19493,7 +19521,7 @@ export interface operations {
    * Patch a journal type
    * @description Partially updates a journal type.
    */
-  PatchJournalTypeAsync: {
+  JournalTypes_PatchJournalType: {
     parameters: {
       query: {
         tenantId: string;
@@ -19540,7 +19568,7 @@ export interface operations {
    * Retrieves all journal types
    * @description Fetches all journal types for the current tenant with OData support.
    */
-  GetJournalTypesAsync: {
+  JournalTypes_GetJournalTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -19570,7 +19598,7 @@ export interface operations {
    * Creates a new journal type
    * @description Adds a new journal type to the tenant's catalog.
    */
-  CreateJournalTypeAsync: {
+  JournalTypes_CreateJournalType: {
     parameters: {
       query: {
         tenantId: string;
@@ -19600,7 +19628,7 @@ export interface operations {
    * Counts journal types
    * @description Returns the total number of journal types available for the tenant.
    */
-  GetJournalTypesCountAsync: {
+  JournalTypes_GetJournalTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -19630,7 +19658,7 @@ export interface operations {
    * Retrieves all ledgers
    * @description Gets all ledgers for the current tenant with OData support.
    */
-  GetLedgersAsync: {
+  Ledgers_GetLedgers: {
     parameters: {
       query: {
         tenantId: string;
@@ -19674,7 +19702,7 @@ export interface operations {
    * Creates a new ledger
    * @description Creates a new ledger for the current tenant.
    */
-  CreateLedgerAsync: {
+  Ledgers_CreateLedger: {
     parameters: {
       query: {
         tenantId: string;
@@ -19718,7 +19746,7 @@ export interface operations {
    * Counts ledgers
    * @description Gets the count of ledgers for the current tenant.
    */
-  GetLedgersCountAsync: {
+  Ledgers_GetLedgersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -19762,7 +19790,7 @@ export interface operations {
    * Gets a ledger by ID
    * @description Retrieves the details of a ledger using its unique ID.
    */
-  GetLedgerDetailsAsync: {
+  Ledgers_GetLedgerDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -19803,7 +19831,7 @@ export interface operations {
    * Updates a ledger
    * @description Updates the specified ledger.
    */
-  UpdateLedgerAsync: {
+  Ledgers_UpdateLedger: {
     parameters: {
       query: {
         tenantId: string;
@@ -19850,7 +19878,7 @@ export interface operations {
    * Deletes a ledger
    * @description Deletes the specified ledger.
    */
-  DeleteLedgerAsync: {
+  Ledgers_DeleteLedger: {
     parameters: {
       query: {
         tenantId: string;
@@ -19891,7 +19919,7 @@ export interface operations {
    * Patches a ledger
    * @description Patches the specified ledger.
    */
-  PatchLedgerAsync: {
+  Ledgers_PatchLedger: {
     parameters: {
       query: {
         tenantId: string;
@@ -19938,7 +19966,7 @@ export interface operations {
    * Retrieves all ledger types
    * @description Gets all ledger types for the current tenant with OData support.
    */
-  GetLedgerTypesAsync: {
+  LedgerTypes_GetLedgerTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -19982,7 +20010,7 @@ export interface operations {
    * Creates a new ledger type
    * @description Creates a new ledger type for the current tenant.
    */
-  CreateLedgerTypeAsync: {
+  LedgerTypes_CreateLedgerType: {
     parameters: {
       query: {
         tenantId: string;
@@ -20026,7 +20054,7 @@ export interface operations {
    * Counts ledger types
    * @description Gets the count of ledger types for the current tenant.
    */
-  GetLedgerTypesCountAsync: {
+  LedgerTypes_GetLedgerTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -20070,7 +20098,7 @@ export interface operations {
    * Gets a ledger type by ID
    * @description Retrieves the details of a ledger type using its unique ID.
    */
-  GetLedgerTypeDetailsAsync: {
+  LedgerTypes_GetLedgerTypeDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -20111,7 +20139,7 @@ export interface operations {
    * Updates a ledger type
    * @description Updates the specified ledger type.
    */
-  UpdateLedgerTypeAsync: {
+  LedgerTypes_UpdateLedgerType: {
     parameters: {
       query: {
         tenantId: string;
@@ -20158,7 +20186,7 @@ export interface operations {
    * Deletes a ledger type
    * @description Deletes the specified ledger type.
    */
-  DeleteLedgerTypeAsync: {
+  LedgerTypes_DeleteLedgerType: {
     parameters: {
       query: {
         tenantId: string;
@@ -20199,7 +20227,7 @@ export interface operations {
    * Patches a ledger type
    * @description Partially updates the specified ledger type using a JSON Patch document.
    */
-  PatchLedgerTypeAsync: {
+  LedgerTypes_PatchLedgerType: {
     parameters: {
       query: {
         tenantId: string;
@@ -20246,7 +20274,7 @@ export interface operations {
    * Gets a loan by ID
    * @description Retrieves the details of a loan using its unique ID.
    */
-  GetLoanDetailsAsync: {
+  Loans_GetLoanDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -20287,7 +20315,7 @@ export interface operations {
    * Updates a loan
    * @description Updates the specified loan.
    */
-  UpdateLoanAsync: {
+  Loans_UpdateLoan: {
     parameters: {
       query: {
         tenantId: string;
@@ -20334,7 +20362,7 @@ export interface operations {
    * Deletes a loan
    * @description Deletes the specified loan.
    */
-  DeleteLoanAsync: {
+  Loans_DeleteLoan: {
     parameters: {
       query: {
         tenantId: string;
@@ -20375,7 +20403,7 @@ export interface operations {
    * Patches a loan
    * @description Partially updates the specified loan using a JSON Patch document.
    */
-  PatchLoanAsync: {
+  Loans_PatchLoan: {
     parameters: {
       query: {
         tenantId: string;
@@ -20422,7 +20450,7 @@ export interface operations {
    * Gets all loans
    * @description Retrieves all loans for the current tenant with OData support.
    */
-  GetLoansAsync: {
+  Loans_GetLoans: {
     parameters: {
       query: {
         tenantId: string;
@@ -20466,7 +20494,7 @@ export interface operations {
    * Creates a new loan
    * @description Creates a new loan for the current tenant.
    */
-  CreateLoanAsync: {
+  Loans_CreateLoan: {
     parameters: {
       query: {
         tenantId: string;
@@ -20510,7 +20538,7 @@ export interface operations {
    * Counts loans
    * @description Gets the count of loans for the current tenant.
    */
-  GetLoansCountAsync: {
+  Loans_GetLoansCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -20554,7 +20582,7 @@ export interface operations {
    * Gets all loan applications
    * @description Retrieves all loan applications for the current tenant.
    */
-  GetLoanApplicationsAsync: {
+  Loans_GetLoanApplications: {
     parameters: {
       query: {
         tenantId: string;
@@ -20598,7 +20626,7 @@ export interface operations {
    * Creates a loan application
    * @description Creates a new loan application.
    */
-  CreateLoanApplicationAsync: {
+  Loans_CreateLoanApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -20642,7 +20670,7 @@ export interface operations {
    * Counts loan applications
    * @description Gets the count of loan applications for the current tenant.
    */
-  GetLoanApplicationsCountAsync: {
+  Loans_GetLoanApplicationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -20686,7 +20714,7 @@ export interface operations {
    * Gets a loan application by ID
    * @description Retrieves the details of a loan application.
    */
-  GetLoanApplicationDetailsAsync: {
+  Loans_GetLoanApplicationDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -20727,7 +20755,7 @@ export interface operations {
    * Updates a loan application
    * @description Updates the specified loan application.
    */
-  UpdateLoanApplicationAsync: {
+  Loans_UpdateLoanApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -20774,7 +20802,7 @@ export interface operations {
    * Deletes a loan application
    * @description Deletes the specified loan application.
    */
-  DeleteLoanApplicationAsync: {
+  Loans_DeleteLoanApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -20815,7 +20843,7 @@ export interface operations {
    * Patches a loan application
    * @description Partially updates the specified loan application using a JSON Patch document.
    */
-  PatchLoanApplicationAsync: {
+  Loans_PatchLoanApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -20862,7 +20890,7 @@ export interface operations {
    * Gets all loan types
    * @description Retrieves all loan types for the current tenant with OData support.
    */
-  GetLoanTypesAsync: {
+  Loans_GetLoanTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -20906,7 +20934,7 @@ export interface operations {
    * Creates a loan type
    * @description Creates a new loan type for the current tenant.
    */
-  CreateLoanTypeAsync: {
+  Loans_CreateLoanType: {
     parameters: {
       query: {
         tenantId: string;
@@ -20950,7 +20978,7 @@ export interface operations {
    * Counts loan types
    * @description Gets the count of loan types for the current tenant.
    */
-  GetLoanTypesCountAsync: {
+  Loans_GetLoanTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -20994,7 +21022,7 @@ export interface operations {
    * Gets a loan type by ID
    * @description Retrieves the details of a loan type using its unique ID.
    */
-  GetLoanTypeByIdAsync: {
+  Loans_GetLoanTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -21035,7 +21063,7 @@ export interface operations {
    * Updates a loan type
    * @description Updates the specified loan type.
    */
-  UpdateLoanTypeAsync: {
+  Loans_UpdateLoanType: {
     parameters: {
       query: {
         tenantId: string;
@@ -21082,7 +21110,7 @@ export interface operations {
    * Deletes a loan type
    * @description Deletes the specified loan type.
    */
-  DeleteLoanTypeAsync: {
+  Loans_DeleteLoanType: {
     parameters: {
       query: {
         tenantId: string;
@@ -21123,7 +21151,7 @@ export interface operations {
    * Patches a loan type
    * @description Partially updates the specified loan type using a JSON Patch document.
    */
-  PatchLoanTypeAsync: {
+  Loans_PatchLoanType: {
     parameters: {
       query: {
         tenantId: string;
@@ -21170,7 +21198,7 @@ export interface operations {
    * List posting executions
    * @description Lists the tenant's posting-inbox executions (the durable evidence of every posting intent). Use OData to scope to a state — e.g. $filter=Status eq 'Rejected' for rejected intents, or Status eq 'PendingMapping'/'PendingPeriod'/'PendingRate' for the retryable pending set — and to page/order. Requires journals_read.
    */
-  GetPostingExecutionsAsync: {
+  PostingExecutions_GetPostingExecutions: {
     parameters: {
       query: {
         tenantId: string;
@@ -21214,7 +21242,7 @@ export interface operations {
    * Count posting executions
    * @description Returns the count of the tenant's posting-inbox executions under the same OData shaping as the list read (e.g. $filter=Status eq 'Rejected' to count rejected intents). Requires journals_read.
    */
-  CountPostingExecutionsAsync: {
+  PostingExecutions_CountPostingExecutions: {
     parameters: {
       query: {
         tenantId: string;
@@ -21258,7 +21286,7 @@ export interface operations {
    * Retrieves tenant receipts
    * @description Fetches all receipts for a given tenant with OData support.
    */
-  GetReceiptsAsync: {
+  Receipts_GetReceipts: {
     parameters: {
       query: {
         tenantId: string;
@@ -21284,7 +21312,7 @@ export interface operations {
    * Creates a new receipt
    * @description Adds a new receipt record under the specified tenant.
    */
-  CreateReceiptAsync: {
+  Receipts_CreateReceipt: {
     parameters: {
       query: {
         tenantId: string;
@@ -21310,7 +21338,7 @@ export interface operations {
    * Gets count of tenant receipts
    * @description Returns total number of receipts for the tenant with OData filter support.
    */
-  GetReceiptsCountAsync: {
+  Receipts_GetReceiptsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -21336,7 +21364,7 @@ export interface operations {
    * Gets details of a receipt
    * @description Retrieves a specific receipt by its ID for the given tenant.
    */
-  GetReceiptDetailsAsync: {
+  Receipts_GetReceiptDetails: {
     parameters: {
       query: {
         tenantId: string;
@@ -21359,7 +21387,7 @@ export interface operations {
    * Updates a receipt
    * @description Modifies the data of an existing receipt for the given tenant.
    */
-  UpdateReceiptAsync: {
+  Receipts_UpdateReceipt: {
     parameters: {
       query: {
         tenantId: string;
@@ -21388,7 +21416,7 @@ export interface operations {
    * Deletes a receipt
    * @description Removes an existing receipt from the tenant’s records.
    */
-  DeleteReceiptAsync: {
+  Receipts_DeleteReceipt: {
     parameters: {
       query: {
         tenantId: string;
@@ -21411,7 +21439,7 @@ export interface operations {
    * Patches a receipt
    * @description Partially updates the specified receipt using a JSON Patch document.
    */
-  PatchReceiptAsync: {
+  Receipts_PatchReceipt: {
     parameters: {
       query: {
         tenantId: string;
@@ -21454,7 +21482,7 @@ export interface operations {
    * Trial balance for a fiscal period
    * @description Returns the per-account posted debit/credit totals for the given fiscal period (optionally scoped to a single financial book), plus grand totals and the Σdebits == Σcredits balanced flag. Amounts are normalized to the target currency (default USD) from the stored USD reporting amounts.
    */
-  GetTrialBalanceAsync: {
+  Reports_GetTrialBalance: {
     parameters: {
       query: {
         tenantId: string;
@@ -21495,7 +21523,7 @@ export interface operations {
    * Gets the current tenant share classes
    * @description Get the currently acting tenant share classes.
    */
-  GetShareClasses: {
+  Shares_GetShareClasses: {
     parameters: {
       query: {
         tenantId: string;
@@ -21539,7 +21567,7 @@ export interface operations {
    * Creates a new share class
    * @description Creates a new share class.
    */
-  CreateShareClass: {
+  Shares_CreateShareClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -21590,7 +21618,7 @@ export interface operations {
    * Gets the current tenant share classes count
    * @description Get the currently acting tenant share classes count.
    */
-  GetShareClassesCount: {
+  Shares_GetShareClassesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -21634,7 +21662,7 @@ export interface operations {
    * Gets a share class by id
    * @description Get a specific share class by its identifier.
    */
-  GetShareClass: {
+  Shares_GetShareClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -21682,7 +21710,7 @@ export interface operations {
    * Updates an existing share class
    * @description Updates an existing share class.
    */
-  UpdateShareClass: {
+  Shares_UpdateShareClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -21743,7 +21771,7 @@ export interface operations {
    * Deletes an existing share class
    * @description Deletes an existing share class.
    */
-  DeleteShareClass: {
+  Shares_DeleteShareClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -21784,7 +21812,7 @@ export interface operations {
    * Patches a share class
    * @description Partially updates a share class using a JSON Patch document.
    */
-  PatchShareClass: {
+  Shares_PatchShareClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -21831,7 +21859,7 @@ export interface operations {
    * Gets the current tenant share issuances
    * @description Get the currently acting tenant share issuances.
    */
-  GetShareIssuances: {
+  Shares_GetShareIssuances: {
     parameters: {
       query: {
         tenantId: string;
@@ -21875,7 +21903,7 @@ export interface operations {
    * Creates a new share issuance
    * @description Creates a new share issuance.
    */
-  CreateShareIssuance: {
+  Shares_CreateShareIssuance: {
     parameters: {
       query: {
         tenantId: string;
@@ -21926,7 +21954,7 @@ export interface operations {
    * Gets the current tenant share issuances count
    * @description Get the currently acting tenant share issuances count.
    */
-  GetShareIssuancesCount: {
+  Shares_GetShareIssuancesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -21970,7 +21998,7 @@ export interface operations {
    * Sum tenant share issuance quantities
    * @description Returns SUM(ShareIssuance.Quantity) for the tenant, filtered by the supplied OData date range.
    */
-  GetShareIssuancesSum: {
+  Shares_GetShareIssuancesSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -22014,7 +22042,7 @@ export interface operations {
    * Gets a share issuance by id
    * @description Get a specific share issuance by its identifier.
    */
-  GetShareIssuance: {
+  Shares_GetShareIssuance: {
     parameters: {
       query: {
         tenantId: string;
@@ -22062,7 +22090,7 @@ export interface operations {
    * Updates an existing share issuance
    * @description Updates an existing share issuance.
    */
-  UpdateShareIssuance: {
+  Shares_UpdateShareIssuance: {
     parameters: {
       query: {
         tenantId: string;
@@ -22123,7 +22151,7 @@ export interface operations {
    * Deletes an existing share issuance
    * @description Deletes an existing share issuance.
    */
-  DeleteShareIssuance: {
+  Shares_DeleteShareIssuance: {
     parameters: {
       query: {
         tenantId: string;
@@ -22164,7 +22192,7 @@ export interface operations {
    * Patches a share issuance
    * @description Partially updates a share issuance using a JSON Patch document.
    */
-  PatchShareIssuance: {
+  Shares_PatchShareIssuance: {
     parameters: {
       query: {
         tenantId: string;
@@ -22211,7 +22239,7 @@ export interface operations {
    * Gets the current tenant share transfers
    * @description Get the currently acting tenant share transfers.
    */
-  GetShareTransfers: {
+  Shares_GetShareTransfers: {
     parameters: {
       query: {
         tenantId: string;
@@ -22255,7 +22283,7 @@ export interface operations {
    * Creates a new share transfer
    * @description Creates a new share transfer.
    */
-  CreateShareTransfer: {
+  Shares_CreateShareTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -22306,7 +22334,7 @@ export interface operations {
    * Gets the current tenant share transfers count
    * @description Get the currently acting tenant share transfers count.
    */
-  GetShareTransfersCount: {
+  Shares_GetShareTransfersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -22350,7 +22378,7 @@ export interface operations {
    * Gets a share transfer by id
    * @description Get a specific share transfer by its identifier.
    */
-  GetShareTransfer: {
+  Shares_GetShareTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -22398,7 +22426,7 @@ export interface operations {
    * Updates an existing share transfer
    * @description Updates an existing share transfer.
    */
-  UpdateShareTransfer: {
+  Shares_UpdateShareTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -22459,7 +22487,7 @@ export interface operations {
    * Deletes an existing share transfer
    * @description Deletes an existing share transfer.
    */
-  DeleteShareTransfer: {
+  Shares_DeleteShareTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -22500,7 +22528,7 @@ export interface operations {
    * Patches a share transfer
    * @description Partially updates a share transfer using a JSON Patch document.
    */
-  PatchShareTransfer: {
+  Shares_PatchShareTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -22547,7 +22575,7 @@ export interface operations {
    * Gets the current tenant share transfer reasons
    * @description Get the currently acting tenant share transfer reasons.
    */
-  GetShareTransferReasons: {
+  Shares_GetShareTransferReasons: {
     parameters: {
       query: {
         tenantId: string;
@@ -22591,7 +22619,7 @@ export interface operations {
    * Creates a new share transfer reason
    * @description Creates a new share transfer reason.
    */
-  CreateShareTransferReason: {
+  Shares_CreateShareTransferReason: {
     parameters: {
       query: {
         tenantId: string;
@@ -22642,7 +22670,7 @@ export interface operations {
    * Gets the current tenant share transfer reasons count
    * @description Get the currently acting tenant share transfer reasons count.
    */
-  GetShareTransferReasonsCount: {
+  Shares_GetShareTransferReasonsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -22686,7 +22714,7 @@ export interface operations {
    * Gets a share transfer reason by id
    * @description Get a specific share transfer reason by its identifier.
    */
-  GetShareTransferReason: {
+  Shares_GetShareTransferReason: {
     parameters: {
       query: {
         tenantId: string;
@@ -22734,7 +22762,7 @@ export interface operations {
    * Updates an existing share transfer reason
    * @description Updates an existing share transfer reason.
    */
-  UpdateShareTransferReason: {
+  Shares_UpdateShareTransferReason: {
     parameters: {
       query: {
         tenantId: string;
@@ -22795,7 +22823,7 @@ export interface operations {
    * Deletes an existing share transfer reason
    * @description Deletes an existing share transfer reason.
    */
-  DeleteShareTransferReason: {
+  Shares_DeleteShareTransferReason: {
     parameters: {
       query: {
         tenantId: string;
@@ -22836,7 +22864,7 @@ export interface operations {
    * Patches a share transfer reason
    * @description Partially updates a share transfer reason using a JSON Patch document.
    */
-  PatchShareTransferReason: {
+  Shares_PatchShareTransferReason: {
     parameters: {
       query: {
         tenantId: string;
@@ -22883,7 +22911,7 @@ export interface operations {
    * Get all tax classes for a tenant
    * @description Retrieves all tax classes for the specified tenant using OData query options.
    */
-  GetTaxClasses: {
+  TaxClasses_GetTaxClasses: {
     parameters: {
       query: {
         tenantId: string;
@@ -22927,7 +22955,7 @@ export interface operations {
    * Create a tax class
    * @description Creates a new tax class for the specified tenant.
    */
-  CreateTaxClass: {
+  TaxClasses_CreateTaxClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -22971,7 +22999,7 @@ export interface operations {
    * Get tax classes count
    * @description Returns the count of tax classes for the specified tenant.
    */
-  GetTaxClassesCount: {
+  TaxClasses_GetTaxClassesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -23015,7 +23043,7 @@ export interface operations {
    * Get tax class by ID
    * @description Retrieves a specific tax class by its unique identifier.
    */
-  GetTaxClass: {
+  TaxClasses_GetTaxClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -23056,7 +23084,7 @@ export interface operations {
    * Update a tax class
    * @description Updates an existing tax class identified by its unique identifier.
    */
-  UpdateTaxClass: {
+  TaxClasses_UpdateTaxClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -23103,7 +23131,7 @@ export interface operations {
    * Delete a tax class
    * @description Deletes a tax class identified by its unique identifier.
    */
-  DeleteTaxClass: {
+  TaxClasses_DeleteTaxClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -23144,7 +23172,7 @@ export interface operations {
    * Patch a tax class
    * @description Partially updates an existing tax class identified by its unique identifier.
    */
-  PatchTaxClass: {
+  TaxClasses_PatchTaxClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -23191,7 +23219,7 @@ export interface operations {
    * Get all tax policies for a tenant
    * @description Retrieves all tax policies for the specified tenant using OData query options.
    */
-  GetTaxPolicies: {
+  TaxPolicies_GetTaxPolicies: {
     parameters: {
       query: {
         tenantId: string;
@@ -23235,7 +23263,7 @@ export interface operations {
    * Create a tax policy
    * @description Creates a new tax policy for the specified tenant.
    */
-  CreateTaxPolicy: {
+  TaxPolicies_CreateTaxPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -23279,7 +23307,7 @@ export interface operations {
    * Get tax policies count
    * @description Returns the count of tax policies for the specified tenant.
    */
-  GetTaxPoliciesCount: {
+  TaxPolicies_GetTaxPoliciesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -23323,7 +23351,7 @@ export interface operations {
    * Get tax policies by fiscal authority
    * @description Retrieves all tax policies associated with the specified fiscal authority.
    */
-  GetTaxPoliciesByAuthority: {
+  TaxPolicies_GetTaxPoliciesByAuthority: {
     parameters: {
       query: {
         tenantId: string;
@@ -23370,7 +23398,7 @@ export interface operations {
    * Get tax policy by ID
    * @description Retrieves a specific tax policy by its unique identifier.
    */
-  GetTaxPolicy: {
+  TaxPolicies_GetTaxPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -23411,7 +23439,7 @@ export interface operations {
    * Update a tax policy
    * @description Updates an existing tax policy identified by its unique identifier.
    */
-  UpdateTaxPolicy: {
+  TaxPolicies_UpdateTaxPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -23458,7 +23486,7 @@ export interface operations {
    * Delete a tax policy
    * @description Deletes a tax policy identified by its unique identifier.
    */
-  DeleteTaxPolicy: {
+  TaxPolicies_DeleteTaxPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -23499,7 +23527,7 @@ export interface operations {
    * Patch a tax policy
    * @description Partially updates an existing tax policy identified by its unique identifier.
    */
-  PatchTaxPolicy: {
+  TaxPolicies_PatchTaxPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -23546,7 +23574,7 @@ export interface operations {
    * Get item tax policy records
    * @description Retrieves all item tax policy records for the specified tax policy.
    */
-  GetItemTaxPolicyRecords: {
+  TaxPolicies_GetItemTaxPolicyRecords: {
     parameters: {
       query: {
         tenantId: string;
@@ -23593,7 +23621,7 @@ export interface operations {
    * Create an item tax policy record
    * @description Creates a new item tax policy record for the specified tax policy.
    */
-  CreateItemTaxPolicyRecord: {
+  TaxPolicies_CreateItemTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -23640,7 +23668,7 @@ export interface operations {
    * Get item tax policy record by ID
    * @description Retrieves a specific item tax policy record by its unique identifier.
    */
-  GetItemTaxPolicyRecord: {
+  TaxPolicies_GetItemTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -23682,7 +23710,7 @@ export interface operations {
    * Update an item tax policy record
    * @description Updates an existing item tax policy record identified by its unique identifier.
    */
-  UpdateItemTaxPolicyRecord: {
+  TaxPolicies_UpdateItemTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -23730,7 +23758,7 @@ export interface operations {
    * Delete an item tax policy record
    * @description Deletes an item tax policy record identified by its unique identifier.
    */
-  DeleteItemTaxPolicyRecord: {
+  TaxPolicies_DeleteItemTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -23772,7 +23800,7 @@ export interface operations {
    * Patch an item tax policy record
    * @description Partially updates an existing item tax policy record identified by its unique identifier.
    */
-  PatchItemTaxPolicyRecord: {
+  TaxPolicies_PatchItemTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -23820,7 +23848,7 @@ export interface operations {
    * Get applied tax policy records
    * @description Retrieves all applied tax policy records for the specified tax policy.
    */
-  GetAppliedTaxPolicyRecords: {
+  TaxPolicies_GetAppliedTaxPolicyRecords: {
     parameters: {
       query: {
         tenantId: string;
@@ -23867,7 +23895,7 @@ export interface operations {
    * Create an applied tax policy record
    * @description Creates a new applied tax policy record for the specified tax policy.
    */
-  CreateAppliedTaxPolicyRecord: {
+  TaxPolicies_CreateAppliedTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -23914,7 +23942,7 @@ export interface operations {
    * Get applied tax policy records count
    * @description Returns the total count of applied tax policy records for the specified tax policy.
    */
-  GetAppliedTaxPolicyRecordsCount: {
+  TaxPolicies_GetAppliedTaxPolicyRecordsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -23961,7 +23989,7 @@ export interface operations {
    * Get applied tax policy record by ID
    * @description Retrieves a specific applied tax policy record by its unique identifier.
    */
-  GetAppliedTaxPolicyRecord: {
+  TaxPolicies_GetAppliedTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -24003,7 +24031,7 @@ export interface operations {
    * Update an applied tax policy record
    * @description Updates an existing applied tax policy record identified by its unique identifier.
    */
-  UpdateAppliedTaxPolicyRecord: {
+  TaxPolicies_UpdateAppliedTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -24051,7 +24079,7 @@ export interface operations {
    * Delete an applied tax policy record
    * @description Deletes an applied tax policy record identified by its unique identifier.
    */
-  DeleteAppliedTaxPolicyRecord: {
+  TaxPolicies_DeleteAppliedTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -24093,7 +24121,7 @@ export interface operations {
    * Patch an applied tax policy record
    * @description Partially updates an existing applied tax policy record identified by its unique identifier.
    */
-  PatchAppliedTaxPolicyRecord: {
+  TaxPolicies_PatchAppliedTaxPolicyRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -24141,7 +24169,7 @@ export interface operations {
    * Get all tax rates for a tenant
    * @description Retrieves all tax rates for the specified tenant using OData query options.
    */
-  GetTaxRates: {
+  TaxRates_GetTaxRates: {
     parameters: {
       query: {
         tenantId: string;
@@ -24185,7 +24213,7 @@ export interface operations {
    * Create a tax rate
    * @description Creates a new tax rate for the specified tenant.
    */
-  CreateTaxRate: {
+  TaxRates_CreateTaxRate: {
     parameters: {
       query: {
         tenantId: string;
@@ -24229,7 +24257,7 @@ export interface operations {
    * Get tax rates count
    * @description Returns the count of tax rates for the specified tenant.
    */
-  GetTaxRatesCount: {
+  TaxRates_GetTaxRatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -24273,7 +24301,7 @@ export interface operations {
    * Get tax rate by ID
    * @description Retrieves a specific tax rate by its unique identifier.
    */
-  GetTaxRate: {
+  TaxRates_GetTaxRate: {
     parameters: {
       query: {
         tenantId: string;
@@ -24314,7 +24342,7 @@ export interface operations {
    * Update a tax rate
    * @description Updates an existing tax rate identified by its unique identifier.
    */
-  UpdateTaxRate: {
+  TaxRates_UpdateTaxRate: {
     parameters: {
       query: {
         tenantId: string;
@@ -24361,7 +24389,7 @@ export interface operations {
    * Delete a tax rate
    * @description Deletes a tax rate identified by its unique identifier.
    */
-  DeleteTaxRate: {
+  TaxRates_DeleteTaxRate: {
     parameters: {
       query: {
         tenantId: string;
@@ -24402,7 +24430,7 @@ export interface operations {
    * Patch a tax rate
    * @description Partially updates an existing tax rate identified by its unique identifier.
    */
-  PatchTaxRate: {
+  TaxRates_PatchTaxRate: {
     parameters: {
       query: {
         tenantId: string;
@@ -24449,7 +24477,7 @@ export interface operations {
    * Get all transactions for a tenant
    * @description Retrieves all transactions for the specified tenant using OData query options.
    */
-  GetTransactions: {
+  Transactions_GetTransactions: {
     parameters: {
       query: {
         tenantId: string;
@@ -24493,7 +24521,7 @@ export interface operations {
    * Create a transaction
    * @description Creates a new transaction for the specified tenant.
    */
-  CreateTransaction: {
+  Transactions_CreateTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -24544,7 +24572,7 @@ export interface operations {
    * Get transactions count
    * @description Returns total number of transactions for the tenant with OData filter support.
    */
-  GetTransactionsCount: {
+  Transactions_GetTransactionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -24588,7 +24616,7 @@ export interface operations {
    * Get transaction by ID
    * @description Retrieves a specific transaction by its unique identifier.
    */
-  GetTransaction: {
+  Transactions_GetTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -24636,7 +24664,7 @@ export interface operations {
    * Update a transaction
    * @description Updates an existing transaction with the provided data.
    */
-  UpdateTransaction: {
+  Transactions_UpdateTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -24690,7 +24718,7 @@ export interface operations {
    * Delete a transaction
    * @description Deletes a transaction by its unique identifier.
    */
-  DeleteTransaction: {
+  Transactions_DeleteTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -24738,7 +24766,7 @@ export interface operations {
    * Patch a transaction
    * @description Partially updates an existing transaction identified by its unique identifier.
    */
-  PatchTransaction: {
+  Transactions_PatchTransaction: {
     parameters: {
       query: {
         tenantId: string;
@@ -24785,7 +24813,7 @@ export interface operations {
    * Get all transaction categories
    * @description Retrieves all transaction categories for the specified tenant.
    */
-  GetTransactionCategories: {
+  Transactions_GetTransactionCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -24829,7 +24857,7 @@ export interface operations {
    * Create a transaction category
    * @description Creates a new transaction category for the specified tenant.
    */
-  CreateTransactionCategory: {
+  Transactions_CreateTransactionCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -24880,7 +24908,7 @@ export interface operations {
    * Get transaction categories count
    * @description Returns total number of transaction categories for the tenant.
    */
-  GetTransactionCategoriesCount: {
+  Transactions_GetTransactionCategoriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -24924,7 +24952,7 @@ export interface operations {
    * Get transaction category by ID
    * @description Retrieves a specific transaction category by its unique identifier.
    */
-  GetTransactionCategory: {
+  Transactions_GetTransactionCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -24972,7 +25000,7 @@ export interface operations {
    * Update a transaction category
    * @description Updates an existing transaction category with the provided data.
    */
-  UpdateTransactionCategory: {
+  Transactions_UpdateTransactionCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -25026,7 +25054,7 @@ export interface operations {
    * Delete a transaction category
    * @description Deletes a transaction category by its unique identifier.
    */
-  DeleteTransactionCategory: {
+  Transactions_DeleteTransactionCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -25074,7 +25102,7 @@ export interface operations {
    * Patch a transaction category
    * @description Partially updates an existing transaction category identified by its unique identifier.
    */
-  PatchTransactionCategory: {
+  Transactions_PatchTransactionCategory: {
     parameters: {
       query: {
         tenantId: string;

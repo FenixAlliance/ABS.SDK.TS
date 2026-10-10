@@ -10,1095 +10,875 @@ export interface paths {
      * Get blog authors
      * @description Retrieves all blog authors, optionally filtered by tenant.
      */
-    get: operations["GetBlogAuthorsAsync"];
+    get: operations["BlogPostAuthors_GetBlogAuthors"];
   };
   "/api/v2/ContentService/BlogPostAuthors/{authorId}": {
     /**
      * Get blog author by ID
      * @description Retrieves a specific blog author by their identifier.
      */
-    get: operations["GetBlogAuthorByIdAsync"];
+    get: operations["BlogPostAuthors_GetBlogAuthorById"];
   };
   "/api/v2/ContentService/BlogPostAuthors/{authorId}/BlogPosts": {
     /**
      * Get blog posts by author
      * @description Retrieves all blog posts written by a specific author.
      */
-    get: operations["GetBlogPostsByAuthorAsync"];
+    get: operations["BlogPostAuthors_GetBlogPostsByAuthor"];
   };
   "/api/v2/ContentService/BlogPostAuthors/{authorId}/BlogPosts/Count": {
     /**
      * Count blog posts by author
      * @description Returns the count of blog posts written by a specific author.
      */
-    get: operations["CountBlogPostsByAuthorAsync"];
+    get: operations["BlogPostAuthors_CountBlogPostsByAuthor"];
   };
   "/api/v2/ContentService/BlogPostCategories/Count": {
     /**
      * Count blog post categories
      * @description Counts all blog post categories for the specified tenant.
      */
-    get: operations["CountBlogPostCategoriesAsync"];
+    get: operations["BlogPostCategories_CountBlogPostCategories"];
   };
   "/api/v2/ContentService/BlogPostCategories": {
     /**
      * Get blog post categories
      * @description Retrieves all blog post categories for the specified tenant.
      */
-    get: operations["GetBlogPostCategoriesAsync"];
+    get: operations["BlogPostCategories_GetBlogPostCategories"];
     /**
      * Create a blog post category
      * @description Creates a new blog post category for the specified tenant.
      */
-    post: operations["CreateBlogPostCategoryAsync"];
+    post: operations["BlogPostCategories_CreateBlogPostCategory"];
   };
   "/api/v2/ContentService/BlogPostCategories/{blogPostCategoryId}": {
     /**
      * Get blog post category by ID
      * @description Retrieves a specific blog post category by its ID.
      */
-    get: operations["GetBlogPostCategoryByIdAsync"];
+    get: operations["BlogPostCategories_GetBlogPostCategoryById"];
     /**
      * Update a blog post category
      * @description Updates an existing blog post category for the specified tenant.
      */
-    put: operations["UpdateBlogPostCategoryAsync"];
+    put: operations["BlogPostCategories_UpdateBlogPostCategory"];
     /**
      * Delete a blog post category
      * @description Deletes a blog post category for the specified tenant.
      */
-    delete: operations["DeleteBlogPostCategoryAsync"];
+    delete: operations["BlogPostCategories_DeleteBlogPostCategory"];
     /**
      * Patch a blog post category
      * @description Partially updates an existing blog post category for the specified tenant.
      */
-    patch: operations["PatchBlogPostCategoryAsync"];
+    patch: operations["BlogPostCategories_PatchBlogPostCategory"];
   };
   "/api/v2/ContentService/BlogPosts": {
     /**
      * Retrieve a list of blog posts
      * @description Retrieves all blog posts, optionally filtered by tenant using OData query options.
      */
-    get: operations["GetBlogPostsAsync"];
+    get: operations["BlogPosts_GetBlogPosts"];
     /**
      * Create a new blog post
      * @description Creates a new blog post for the specified tenant.
      */
-    post: operations["CreateBlogPostAsync"];
+    post: operations["BlogPosts_CreateBlogPost"];
   };
   "/api/v2/ContentService/BlogPosts/Count": {
     /**
      * Get the count of blog posts
      * @description Returns the total count of blog posts, optionally filtered by tenant using OData query options.
      */
-    get: operations["GetBlogPostsCountAsync"];
+    get: operations["BlogPosts_GetBlogPostsCount"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}": {
     /**
      * Get a blog post by ID
      * @description Retrieves a single blog post by its unique identifier.
      */
-    get: operations["GetBlogPostByIdAsync"];
+    get: operations["BlogPosts_GetBlogPostById"];
     /**
      * Update a blog post
      * @description Updates an existing blog post for the specified tenant.
      */
-    put: operations["UpdateBlogPostAsync"];
+    put: operations["BlogPosts_UpdateBlogPost"];
     /**
      * Delete a blog post
      * @description Deletes a blog post for the specified tenant.
      */
-    delete: operations["DeleteBlogPostAsync"];
+    delete: operations["BlogPosts_DeleteBlogPost"];
     /**
      * Patch a blog post
      * @description Partially updates an existing blog post for the specified tenant.
      */
-    patch: operations["PatchBlogPostAsync"];
+    patch: operations["BlogPosts_PatchBlogPost"];
+  };
+  "/api/v2/ContentService/BlogPosts/Public": {
+    /**
+     * Get public blog posts
+     * @description Retrieves a portal's publicly-visible (published) blog posts. Anonymous.
+     */
+    get: operations["BlogPosts_GetPublicBlogPosts"];
+  };
+  "/api/v2/ContentService/BlogPosts/Public/Count": {
+    /**
+     * Count public blog posts
+     * @description Counts a portal's publicly-visible (published) blog posts. Anonymous.
+     */
+    get: operations["BlogPosts_CountPublicBlogPosts"];
+  };
+  "/api/v2/ContentService/BlogPosts/Public/{blogPostId}": {
+    /**
+     * Get public blog post by ID
+     * @description Retrieves a portal's publicly-visible blog post by its identifier. An unpublished or out-of-portal post is not found. Anonymous.
+     */
+    get: operations["BlogPosts_GetPublicBlogPostById"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Tags": {
     /**
      * Get tags for a blog post
      * @description Retrieves all tags related to a specific blog post.
      */
-    get: operations["GetTagsForBlogPostAsync"];
+    get: operations["BlogPosts_GetTagsForBlogPost"];
     /**
      * Create a tag for a blog post
      * @description Creates a new tag and relates it to a specific blog post.
      */
-    post: operations["CreateTagForBlogPostAsync"];
+    post: operations["BlogPosts_CreateTagForBlogPost"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Tags/{tagId}": {
     /**
      * Relate an existing tag to a blog post
      * @description Creates a relationship between an existing tag and a blog post.
      */
-    post: operations["RelateTagToBlogPostAsync"];
+    post: operations["BlogPosts_RelateTagToBlogPost"];
     /**
      * Remove a tag from a blog post
      * @description Removes the relationship between a tag and a blog post.
      */
-    delete: operations["UnrelateTagFromBlogPostAsync"];
+    delete: operations["BlogPosts_UnrelateTagFromBlogPost"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Categories": {
     /**
      * Get categories for a blog post
      * @description Retrieves all categories related to a specific blog post.
      */
-    get: operations["GetCategoriesForBlogPostAsync"];
+    get: operations["BlogPosts_GetCategoriesForBlogPost"];
     /**
      * Create a category for a blog post
      * @description Creates a new category and relates it to a specific blog post.
      */
-    post: operations["CreateCategoryForBlogPostAsync"];
+    post: operations["BlogPosts_CreateCategoryForBlogPost"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Categories/{categoryId}": {
     /**
      * Relate an existing category to a blog post
      * @description Creates a relationship between an existing category and a blog post.
      */
-    post: operations["RelateCategoryToBlogPostAsync"];
+    post: operations["BlogPosts_RelateCategoryToBlogPost"];
     /**
      * Remove a category from a blog post
      * @description Removes the relationship between a category and a blog post.
      */
-    delete: operations["UnrelateCategoryFromBlogPostAsync"];
+    delete: operations["BlogPosts_UnrelateCategoryFromBlogPost"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments": {
     /**
      * Get comments for a blog post
      * @description Retrieves all comments for a specific blog post.
      */
-    get: operations["GetCommentsForBlogPostAsync"];
+    get: operations["BlogPosts_GetCommentsForBlogPost"];
     /**
      * Create a comment for a blog post
      * @description Creates a new comment on a specific blog post.
      */
-    post: operations["CreateCommentForBlogPostAsync"];
+    post: operations["BlogPosts_CreateCommentForBlogPost"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}/Replies": {
     /**
      * Get replies for a comment
      * @description Retrieves all replies for a specific blog post comment.
      */
-    get: operations["GetRepliesForCommentAsync"];
+    get: operations["BlogPosts_GetRepliesForComment"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}/Reply": {
     /**
      * Reply to a blog post comment
      * @description Creates a reply to an existing comment on a blog post.
      */
-    post: operations["ReplyToCommentAsync"];
+    post: operations["BlogPosts_ReplyToComment"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}": {
     /**
      * Delete a blog post comment
      * @description Deletes a comment from a specific blog post.
      */
-    delete: operations["DeleteCommentFromBlogPostAsync"];
+    delete: operations["BlogPosts_DeleteCommentFromBlogPost"];
   };
   "/api/v2/ContentService/BlogPostTags": {
     /**
      * Get blog post tags
      * @description Retrieves all blog post tags for the specified tenant.
      */
-    get: operations["GetBlogPostTagsAsync"];
+    get: operations["BlogPostTags_GetBlogPostTags"];
     /**
      * Create a blog post tag
      * @description Creates a new blog post tag for the specified tenant.
      */
-    post: operations["CreateBlogPostTagAsync"];
+    post: operations["BlogPostTags_CreateBlogPostTag"];
   };
   "/api/v2/ContentService/BlogPostTags/Count": {
     /**
      * Count blog post tags
      * @description Counts all blog post tags for the specified tenant.
      */
-    get: operations["CountBlogPostTagsAsync"];
+    get: operations["BlogPostTags_CountBlogPostTags"];
   };
   "/api/v2/ContentService/BlogPostTags/{blogPostTagId}": {
     /**
      * Get blog post tag by ID
      * @description Retrieves a specific blog post tag by its ID.
      */
-    get: operations["GetBlogPostTagByIdAsync"];
+    get: operations["BlogPostTags_GetBlogPostTagById"];
     /**
      * Update a blog post tag
      * @description Updates an existing blog post tag for the specified tenant.
      */
-    put: operations["UpdateBlogPostTagAsync"];
+    put: operations["BlogPostTags_UpdateBlogPostTag"];
     /**
      * Delete a blog post tag
      * @description Deletes a blog post tag for the specified tenant.
      */
-    delete: operations["DeleteBlogPostTagAsync"];
+    delete: operations["BlogPostTags_DeleteBlogPostTag"];
     /**
      * Patch a blog post tag
      * @description Partially updates an existing blog post tag for the specified tenant.
      */
-    patch: operations["PatchBlogPostTagAsync"];
+    patch: operations["BlogPostTags_PatchBlogPostTag"];
   };
   "/api/v2/ContentService/BusinessDomains": {
     /**
      * Get business domains
      * @description Retrieves business domains for the specified tenant.
      */
-    get: operations["GetBusinessDomainsAsync"];
+    get: operations["BusinessDomains_GetBusinessDomains"];
     /**
      * Register a business domain
      * @description Registers a new (unverified) business domain for the tenant and issues a DNS TXT verification token.
      */
-    post: operations["CreateBusinessDomainAsync"];
+    post: operations["BusinessDomains_CreateBusinessDomain"];
   };
   "/api/v2/ContentService/BusinessDomains/Count": {
     /**
      * Get business domains count
      * @description Retrieves the count of business domains for the specified tenant.
      */
-    get: operations["GetBusinessDomainsCountAsync"];
+    get: operations["BusinessDomains_GetBusinessDomainsCount"];
   };
   "/api/v2/ContentService/BusinessDomains/{businessDomainId}": {
     /**
      * Get business domain by ID
      * @description Retrieves a specific business domain.
      */
-    get: operations["GetBusinessDomainByIdAsync"];
+    get: operations["BusinessDomains_GetBusinessDomainById"];
     /**
      * Update a business domain
      * @description Updates a business domain. Changing the host re-issues the verification token and clears verification.
      */
-    put: operations["UpdateBusinessDomainAsync"];
+    put: operations["BusinessDomains_UpdateBusinessDomain"];
     /**
      * Delete a business domain
      * @description Removes a business domain from the tenant.
      */
-    delete: operations["DeleteBusinessDomainAsync"];
+    delete: operations["BusinessDomains_DeleteBusinessDomain"];
   };
   "/api/v2/ContentService/BusinessDomains/{businessDomainId}/Verify": {
     /**
      * Verify a business domain
      * @description Checks the domain's DNS TXT records for the verification token and marks the domain verified.
      */
-    post: operations["VerifyBusinessDomainAsync"];
+    post: operations["BusinessDomains_VerifyBusinessDomain"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/ContentService/LocalizationStrings": {
     /**
      * Get localization strings
      * @description Retrieves all localization strings for the specified tenant.
      */
-    get: operations["GetLocalizationStringsAsync"];
+    get: operations["LocalizationStrings_GetLocalizationStrings"];
     /**
      * Create a localization string
      * @description Creates a new localization string for the specified tenant.
      */
-    post: operations["CreateLocalizationStringAsync"];
+    post: operations["LocalizationStrings_CreateLocalizationString"];
   };
   "/api/v2/ContentService/LocalizationStrings/Count": {
     /**
      * Count localization strings
      * @description Counts all localization strings for the specified tenant.
      */
-    get: operations["CountLocalizationStringsAsync"];
+    get: operations["LocalizationStrings_CountLocalizationStrings"];
   };
   "/api/v2/ContentService/LocalizationStrings/{localizationStringId}": {
     /**
      * Get localization string by ID
      * @description Retrieves a specific localization string by its identifier.
      */
-    get: operations["GetLocalizationStringByIdAsync"];
+    get: operations["LocalizationStrings_GetLocalizationStringById"];
     /**
      * Update a localization string
      * @description Updates an existing localization string for the specified tenant.
      */
-    put: operations["UpdateLocalizationStringAsync"];
+    put: operations["LocalizationStrings_UpdateLocalizationString"];
     /**
      * Delete a localization string
      * @description Deletes a localization string for the specified tenant.
      */
-    delete: operations["DeleteLocalizationStringAsync"];
+    delete: operations["LocalizationStrings_DeleteLocalizationString"];
   };
   "/api/v2/ContentService/MenuContexts": {
     /**
      * Get menu contexts
      * @description Retrieves all menu contexts for the specified tenant.
      */
-    get: operations["GetMenuContextsAsync"];
+    get: operations["MenuContexts_GetMenuContexts"];
     /**
      * Create a menu context
      * @description Creates a new menu context for the specified tenant.
      */
-    post: operations["CreateMenuContextAsync"];
+    post: operations["MenuContexts_CreateMenuContext"];
   };
   "/api/v2/ContentService/MenuContexts/Count": {
     /**
      * Count menu contexts
      * @description Counts all menu contexts for the specified tenant.
      */
-    get: operations["CountMenuContextsAsync"];
+    get: operations["MenuContexts_CountMenuContexts"];
   };
   "/api/v2/ContentService/MenuContexts/{menuContextId}": {
     /**
      * Get menu context by ID
      * @description Retrieves a specific menu context by its identifier.
      */
-    get: operations["GetMenuContextByIdAsync"];
+    get: operations["MenuContexts_GetMenuContextById"];
     /**
      * Update a menu context
      * @description Updates an existing menu context for the specified tenant.
      */
-    put: operations["UpdateMenuContextAsync"];
+    put: operations["MenuContexts_UpdateMenuContext"];
     /**
      * Delete a menu context
      * @description Deletes a menu context for the specified tenant.
      */
-    delete: operations["DeleteMenuContextAsync"];
+    delete: operations["MenuContexts_DeleteMenuContext"];
   };
   "/api/v2/ContentService/Portals": {
     /**
      * Get portals
      * @description Retrieves all portals for the specified tenant.
      */
-    get: operations["GetPortalsAsync"];
+    get: operations["Portals_GetPortals"];
     /**
      * Create a new web portal
      * @description Create a new web portal
      */
-    post: operations["CreateWebPortalAsync"];
+    post: operations["Portals_CreateWebPortal"];
   };
   "/api/v2/ContentService/Portals/Count": {
     /**
      * Count portals
      * @description Counts all portals for the specified tenant.
      */
-    get: operations["CountPortalsAsync"];
+    get: operations["Portals_CountPortals"];
   };
   "/api/v2/ContentService/Portals/Root": {
     /**
      * Get the root portal
      * @description Get the root portal of the this server instance
      */
-    get: operations["GetRootWebPortalAsync"];
+    get: operations["Portals_GetRootWebPortal"];
   };
   "/api/v2/ContentService/Portals/Current": {
     /**
      * Get the current portal
      * @description Get the current portal of the this server instance
      */
-    get: operations["GetCurrentWebPortalAsync"];
+    get: operations["Portals_GetCurrentWebPortal"];
   };
   "/api/v2/ContentService/Portals/Initialize": {
     /**
      * Initialize the current portal
      * @description Initialize the current portal for the current user.
      */
-    post: operations["InitializeCurrentWebPortalAsync"];
+    post: operations["Portals_InitializeCurrentWebPortal"];
   };
   "/api/v2/ContentService/Portals/Current/Options": {
     /**
      * Get the current portal's options
-     * @description Get the current portal's options for the current user.
+     * @description Get the current portal's public (presentational) options. Integration, email and store settings are never returned here.
      */
-    get: operations["GetCurrentWebPortalOptionsAsync"];
+    get: operations["Portals_GetCurrentWebPortalOptions"];
   };
   "/api/v2/ContentService/Portals/Search": {
     /**
      * Search for a portal by its domain
      * @description Search for a portal by its domain
      */
-    get: operations["SearchWebPortalAsync"];
+    get: operations["Portals_SearchWebPortal"];
   };
   "/api/v2/ContentService/Portals/{portalId}": {
     /**
      * Get a web portal by its ID
      * @description Get a web portal by its ID
      */
-    get: operations["GetWebPortalByIdAsync"];
+    get: operations["Portals_GetWebPortalById"];
     /**
      * Update an existing web portal
      * @description Update an existing web portal
      */
-    put: operations["UpdateWebPortalAsync"];
+    put: operations["Portals_UpdateWebPortal"];
     /**
      * Delete a web portal
      * @description Delete a web portal
      */
-    delete: operations["DeleteWebPortalAsync"];
+    delete: operations["Portals_DeleteWebPortal"];
     /**
      * Partially update a web portal
      * @description Partially update a web portal
      */
-    patch: operations["PatchWebPortalAsync"];
+    patch: operations["Portals_PatchWebPortal"];
   };
   "/api/v2/ContentService/Portals/{portalId}/Settings": {
     /**
-     * Get a web portal's settings by its ID
-     * @description Get a web portal's settings by its ID
+     * Get a web portal's public settings by its ID
+     * @description Get a web portal's public settings by its ID. Credentials and integration secrets are never returned here; the portal's owner reads the full settings from {portalId}/Settings/Full.
      */
-    get: operations["GetWebPortalSettingsAsync"];
+    get: operations["Portals_GetWebPortalSettings"];
     /**
      * Update a web portal's settings
      * @description Update a web portal's settings (Options) by its ID
      */
-    put: operations["UpdateWebPortalSettingsAsync"];
+    put: operations["Portals_UpdateWebPortalSettings"];
+  };
+  "/api/v2/ContentService/Portals/{portalId}/Settings/Full": {
+    /**
+     * Get a web portal's full settings
+     * @description Get the full settings of a portal the tenant owns, for editing. Requires portals_update.
+     */
+    get: operations["Portals_GetWebPortalFullSettings"];
   };
   "/api/v2/ContentService/Portals/{portalId}/Options": {
     /**
-     * Get a web portal's options by its ID
-     * @description Get a web portal's options by its ID
+     * Get a web portal's public options by its ID
+     * @description Get a web portal's public (presentational) options by its ID. Integration, email and store settings are never returned here.
      */
-    get: operations["GetWebPortalOptionsAsync"];
+    get: operations["Portals_GetWebPortalOptions"];
   };
   "/api/v2/ContentService/Portals/{portalId}/DomainBindings": {
     /**
      * Get a web portal's bound domains
      * @description Get the BusinessDomains bound to a web portal
      */
-    get: operations["GetWebPortalDomainBindingsAsync"];
+    get: operations["Portals_GetWebPortalDomainBindings"];
   };
   "/api/v2/ContentService/Portals/{portalId}/DomainBindings/{businessDomainId}": {
     /**
      * Bind a domain to a web portal
      * @description Bind a verified BusinessDomain to a web portal
      */
-    post: operations["BindWebPortalDomainAsync"];
+    post: operations["Portals_BindWebPortalDomain"];
     /**
      * Unbind a domain from a web portal
      * @description Unbind a BusinessDomain from a web portal
      */
-    delete: operations["UnbindWebPortalDomainAsync"];
+    delete: operations["Portals_UnbindWebPortalDomain"];
   };
-  "/api/v2/ContentService/Themes/Update": {
+  "/api/v2/ContentService/Themes/BaseWebContent": {
     /**
-     * Update base web content themes
-     * @description Triggers an update of the base web content themes.
+     * Update the base theme web content
+     * @description Reinstalls the instance's base theme from the pinned, SHA-256-verified package. Root-tenant instance administrators only.
      */
-    get: operations["UpdateThemesAsync"];
+    post: operations["Themes_UpdateBaseWebContent"];
   };
   "/api/v2/ContentService/WebComponents": {
     /**
      * Get web components
      * @description Retrieves all web components for the specified tenant.
      */
-    get: operations["GetWebComponentsAsync"];
+    get: operations["WebComponents_GetWebComponents"];
     /**
      * Create a web component
      * @description Creates a new web component for the specified tenant.
      */
-    post: operations["CreateWebComponentAsync"];
+    post: operations["WebComponents_CreateWebComponent"];
   };
   "/api/v2/ContentService/WebComponents/Count": {
     /**
      * Count web components
      * @description Counts all web components for the specified tenant.
      */
-    get: operations["CountWebComponentsAsync"];
+    get: operations["WebComponents_CountWebComponents"];
   };
   "/api/v2/ContentService/WebComponents/{webComponentId}": {
     /**
      * Get web component by ID
      * @description Retrieves a specific web component by its identifier.
      */
-    get: operations["GetWebComponentByIdAsync"];
+    get: operations["WebComponents_GetWebComponentById"];
     /**
      * Update a web component
      * @description Updates an existing web component for the specified tenant.
      */
-    put: operations["UpdateWebComponentAsync"];
+    put: operations["WebComponents_UpdateWebComponent"];
     /**
      * Delete a web component
      * @description Deletes a web component for the specified tenant.
      */
-    delete: operations["DeleteWebComponentAsync"];
+    delete: operations["WebComponents_DeleteWebComponent"];
   };
   "/api/v2/ContentService/WebContents/Count": {
     /**
      * Count web contents
      * @description Counts all web contents for the specified tenant.
      */
-    get: operations["CountWebContentsAsync"];
+    get: operations["WebContents_CountWebContents"];
   };
   "/api/v2/ContentService/WebContents": {
     /**
      * Get web contents
      * @description Retrieves all web contents for the specified tenant.
      */
-    get: operations["GetWebContentsAsync"];
+    get: operations["WebContents_GetWebContents"];
     /**
      * Create a web content
      * @description Creates a new web content for the specified tenant.
      */
-    post: operations["CreateWebContentAsync"];
+    post: operations["WebContents_CreateWebContent"];
   };
   "/api/v2/ContentService/WebContents/{webContentId}": {
     /**
      * Get web content by ID
      * @description Retrieves a specific web content by its ID.
      */
-    get: operations["GetWebContentByIdAsync"];
+    get: operations["WebContents_GetWebContentById"];
     /**
      * Update a web content
      * @description Updates an existing web content for the specified tenant.
      */
-    put: operations["UpdateWebContentAsync"];
+    put: operations["WebContents_UpdateWebContent"];
     /**
      * Delete a web content
      * @description Deletes a web content for the specified tenant.
      */
-    delete: operations["DeleteWebContentAsync"];
+    delete: operations["WebContents_DeleteWebContent"];
     /**
      * Patch a web content
      * @description Partially updates an existing web content for the specified tenant.
      */
-    patch: operations["PatchWebContentAsync"];
+    patch: operations["WebContents_PatchWebContent"];
   };
   "/api/v2/ContentService/WebPageCategories": {
     /**
      * Get web page categories
      * @description Retrieves all web page categories for the specified tenant.
      */
-    get: operations["GetWebPageCategoriesAsync"];
+    get: operations["WebPageCategories_GetWebPageCategories"];
     /**
      * Create a web page category
      * @description Creates a new web page category for the specified tenant.
      */
-    post: operations["CreateWebPageCategoryAsync"];
+    post: operations["WebPageCategories_CreateWebPageCategory"];
   };
   "/api/v2/ContentService/WebPageCategories/Count": {
     /**
      * Count web page categories
      * @description Counts all web page categories for the specified tenant.
      */
-    get: operations["CountWebPageCategoriesAsync"];
+    get: operations["WebPageCategories_CountWebPageCategories"];
   };
   "/api/v2/ContentService/WebPageCategories/{webPageCategoryId}": {
     /**
      * Get web page category by ID
      * @description Retrieves a specific web page category by its ID.
      */
-    get: operations["GetWebPageCategoryByIdAsync"];
+    get: operations["WebPageCategories_GetWebPageCategoryById"];
     /**
      * Update a web page category
      * @description Updates an existing web page category for the specified tenant.
      */
-    put: operations["UpdateWebPageCategoryAsync"];
+    put: operations["WebPageCategories_UpdateWebPageCategory"];
     /**
      * Delete a web page category
      * @description Deletes a web page category for the specified tenant.
      */
-    delete: operations["DeleteWebPageCategoryAsync"];
+    delete: operations["WebPageCategories_DeleteWebPageCategory"];
     /**
      * Patch a web page category
      * @description Partially updates an existing web page category for the specified tenant.
      */
-    patch: operations["PatchWebPageCategoryAsync"];
+    patch: operations["WebPageCategories_PatchWebPageCategory"];
   };
   "/api/v2/ContentService/WebPages/Count": {
     /**
      * Count web pages
      * @description Counts all web pages for the specified tenant.
      */
-    get: operations["CountWebPagesAsync"];
+    get: operations["WebPages_CountWebPages"];
   };
   "/api/v2/ContentService/WebPages": {
     /**
      * Get web pages
      * @description Retrieves all web pages for the specified tenant.
      */
-    get: operations["GetWebPagesAsync"];
+    get: operations["WebPages_GetWebPages"];
     /**
      * Create a web page
      * @description Creates a new web page for the specified tenant.
      */
-    post: operations["CreateWebPageAsync"];
+    post: operations["WebPages_CreateWebPage"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}": {
     /**
      * Get web page by ID
      * @description Retrieves a specific web page by its identifier.
      */
-    get: operations["GetWebPageByIdAsync"];
+    get: operations["WebPages_GetWebPageById"];
     /**
      * Update a web page
      * @description Updates an existing web page for the specified tenant.
      */
-    put: operations["UpdateWebPageAsync"];
+    put: operations["WebPages_UpdateWebPage"];
     /**
      * Delete a web page
      * @description Deletes a web page for the specified tenant.
      */
-    delete: operations["DeleteWebPageAsync"];
+    delete: operations["WebPages_DeleteWebPage"];
     /**
      * Patch a web page
      * @description Partially updates an existing web page for the specified tenant.
      */
-    patch: operations["PatchWebPageAsync"];
+    patch: operations["WebPages_PatchWebPage"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Tags": {
     /**
      * Get tags by web page
      * @description Retrieves all tags related to a specific web page.
      */
-    get: operations["GetTagsByWebPageAsync"];
+    get: operations["WebPages_GetTagsByWebPage"];
     /**
      * Create a web page tag relation
      * @description Creates a new tag and relates it to a web page.
      */
-    post: operations["CreateWebPageTagRelationAsync"];
+    post: operations["WebPages_CreateWebPageTagRelation"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Tags/{tagId}": {
     /**
      * Relate web page to tag
      * @description Relates an existing tag to a web page.
      */
-    post: operations["RelateWebPageToTagAsync"];
+    post: operations["WebPages_RelateWebPageToTag"];
     /**
      * Unrelate web page from tag
      * @description Removes the relationship between a web page and a tag.
      */
-    delete: operations["UnrelateWebPageTagAsync"];
+    delete: operations["WebPages_UnrelateWebPageTag"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Categories": {
     /**
      * Get categories by web page
      * @description Retrieves all categories related to a specific web page.
      */
-    get: operations["GetCategoriesByWebPageAsync"];
+    get: operations["WebPages_GetCategoriesByWebPage"];
     /**
      * Create a web page category relation
      * @description Creates a new category and relates it to a web page.
      */
-    post: operations["CreateWebPageCategoryRelationAsync"];
+    post: operations["WebPages_CreateWebPageCategoryRelation"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Categories/{categoryId}": {
     /**
      * Relate web page to category
      * @description Relates an existing category to a web page.
      */
-    post: operations["RelateWebPageToCategoryAsync"];
+    post: operations["WebPages_RelateWebPageToCategory"];
     /**
      * Unrelate web page from category
      * @description Removes the relationship between a web page and a category.
      */
-    delete: operations["UnrelateWebPageCategoryAsync"];
+    delete: operations["WebPages_UnrelateWebPageCategory"];
   };
   "/api/v2/ContentService/WebPageTags": {
     /**
      * Get web page tags
      * @description Retrieves all web page tags for the specified tenant.
      */
-    get: operations["GetWebPageTagsAsync"];
+    get: operations["WebPageTags_GetWebPageTags"];
     /**
      * Create a web page tag
      * @description Creates a new web page tag for the specified tenant.
      */
-    post: operations["CreateWebPageTagAsync"];
+    post: operations["WebPageTags_CreateWebPageTag"];
   };
   "/api/v2/ContentService/WebPageTags/Count": {
     /**
      * Count web page tags
      * @description Counts all web page tags for the specified tenant.
      */
-    get: operations["CountWebPageTagsAsync"];
+    get: operations["WebPageTags_CountWebPageTags"];
   };
   "/api/v2/ContentService/WebPageTags/{webPageTagId}": {
     /**
      * Get web page tag by ID
      * @description Retrieves a specific web page tag by its ID.
      */
-    get: operations["GetWebPageTagByIdAsync"];
+    get: operations["WebPageTags_GetWebPageTagById"];
     /**
      * Update a web page tag
      * @description Updates an existing web page tag for the specified tenant.
      */
-    put: operations["UpdateWebPageTagAsync"];
+    put: operations["WebPageTags_UpdateWebPageTag"];
     /**
      * Delete a web page tag
      * @description Deletes a web page tag for the specified tenant.
      */
-    delete: operations["DeleteWebPageTagAsync"];
+    delete: operations["WebPageTags_DeleteWebPageTag"];
     /**
      * Patch a web page tag
      * @description Partially updates an existing web page tag for the specified tenant.
      */
-    patch: operations["PatchWebPageTagAsync"];
+    patch: operations["WebPageTags_PatchWebPageTag"];
   };
   "/api/v2/ContentService/WebsiteThemes": {
     /**
      * Get all website themes
      * @description Retrieves all website themes for the specified tenant.
      */
-    get: operations["GetWebsiteThemesAsync"];
+    get: operations["WebsiteThemes_GetWebsiteThemes"];
     /**
      * Create a new website theme
      * @description Creates a new website theme for the specified tenant.
      */
-    post: operations["CreateWebsiteThemeAsync"];
+    post: operations["WebsiteThemes_CreateWebsiteTheme"];
   };
   "/api/v2/ContentService/WebsiteThemes/Count": {
     /**
      * Get website themes count
      * @description Returns the count of website themes for the specified tenant.
      */
-    get: operations["GetWebsiteThemesCountAsync"];
+    get: operations["WebsiteThemes_GetWebsiteThemesCount"];
   };
   "/api/v2/ContentService/WebsiteThemes/{id}": {
     /**
      * Get website theme by ID
      * @description Retrieves a specific website theme by its identifier.
      */
-    get: operations["GetWebsiteThemeByIdAsync"];
+    get: operations["WebsiteThemes_GetWebsiteThemeById"];
     /**
      * Update a website theme
      * @description Updates an existing website theme for the specified tenant.
      */
-    put: operations["UpdateWebsiteThemeAsync"];
+    put: operations["WebsiteThemes_UpdateWebsiteTheme"];
     /**
      * Delete a website theme
      * @description Deletes a website theme for the specified tenant.
      */
-    delete: operations["DeleteWebsiteThemeAsync"];
+    delete: operations["WebsiteThemes_DeleteWebsiteTheme"];
     /**
      * Patch a website theme
      * @description Partially updates an existing website theme for the specified tenant.
      */
-    patch: operations["PatchWebsiteThemeAsync"];
+    patch: operations["WebsiteThemes_PatchWebsiteTheme"];
   };
   "/api/v2/ContentService/WebTemplates": {
     /**
      * Get web templates
      * @description Retrieves all web templates for the specified tenant.
      */
-    get: operations["GetWebTemplatesAsync"];
+    get: operations["WebTemplates_GetWebTemplates"];
     /**
      * Create a web template
      * @description Creates a new web template for the specified tenant.
      */
-    post: operations["CreateWebTemplateAsync"];
+    post: operations["WebTemplates_CreateWebTemplate"];
   };
   "/api/v2/ContentService/WebTemplates/Count": {
     /**
      * Count web templates
      * @description Counts all web templates for the specified tenant.
      */
-    get: operations["CountWebTemplatesAsync"];
+    get: operations["WebTemplates_CountWebTemplates"];
   };
   "/api/v2/ContentService/WebTemplates/{webTemplateId}": {
     /**
      * Get web template by ID
      * @description Retrieves a specific web template by its identifier.
      */
-    get: operations["GetWebTemplateByIdAsync"];
+    get: operations["WebTemplates_GetWebTemplateById"];
     /**
      * Update a web template
      * @description Updates an existing web template for the specified tenant.
      */
-    put: operations["UpdateWebTemplateAsync"];
+    put: operations["WebTemplates_UpdateWebTemplate"];
     /**
      * Delete a web template
      * @description Deletes a web template for the specified tenant.
      */
-    delete: operations["DeleteWebTemplateAsync"];
+    delete: operations["WebTemplates_DeleteWebTemplate"];
     /**
      * Patch a web template
      * @description Partially updates an existing web template for the specified tenant.
      */
-    patch: operations["PatchWebTemplateAsync"];
+    patch: operations["WebTemplates_PatchWebTemplate"];
   };
 }
 
@@ -1157,6 +937,9 @@ export interface components {
       /** @enum {string} */
       principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
       provenance?: components["schemas"]["ExecutionProvenance"];
+      executionPrincipalId?: components["schemas"]["UserId"];
+      executionPrincipalEnrollmentId?: components["schemas"]["EnrollmentId"];
+      executionPrincipalScopes?: string[] | null;
     };
     AzureAppInsightIntegrationOptions: {
       enable?: boolean;
@@ -1206,6 +989,10 @@ export interface components {
       backgroundColorForPage?: string | null;
       mainContentColor?: string | null;
       mainContentImageURL?: string | null;
+    };
+    BaseThemePackageOptions: {
+      url?: string | null;
+      sha256?: string | null;
     };
     BlogAuthorDto: {
       id?: string | null;
@@ -1929,9 +1716,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     /** Format: uuid */
     ContactId: string;
@@ -2162,6 +1952,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       tenantId?: string | null;
+      tenantName?: string | null;
       revoked?: boolean;
       redeemed?: boolean;
       /** Format: date-time */
@@ -2289,6 +2080,7 @@ export interface components {
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
       settings?: components["schemas"]["UserSettingsDto"];
+      twoFactorEnabled?: boolean;
     };
     FacebookIntegrationOptions: {
       enable?: boolean;
@@ -2341,12 +2133,23 @@ export interface components {
       widgetsTypography?: components["schemas"]["Typography"];
       copyrightTypography?: components["schemas"]["Typography"];
     };
+    ForexIntegrationOptions: {
+      enable?: boolean;
+      exchangeRateHostApiKey?: string | null;
+      /** Format: int32 */
+      staleAfterHours?: number;
+      /** @enum {string} */
+      stalenessMode?: "Off" | "Flag" | "Block";
+    };
     ForexRatesDto: {
       success?: boolean;
       date?: string | null;
       base?: string | null;
       /** Format: int64 */
       timestamp?: number;
+      /** Format: date-time */
+      ratesAsOfUtc?: string | null;
+      isStale?: boolean;
       /** Format: date-time */
       requestTimestamp?: string;
       rates?: {
@@ -2508,6 +2311,7 @@ export interface components {
       microsoft?: components["schemas"]["MicrosoftIntegrationsOptions"];
       fenixAlliance?: components["schemas"]["FenixAllianceIntegrationsOptions"];
       openExchangeRates?: components["schemas"]["OpenExchangeRatesIntegrationsOptions"];
+      forex?: components["schemas"]["ForexIntegrationOptions"];
     };
     InventoryOptions: {
       enableStockManagement?: boolean;
@@ -2906,21 +2710,6 @@ export interface components {
       integrations?: components["schemas"]["IntegrationsOptions"];
       emails?: components["schemas"]["EmailsOptions"];
     };
-    PortalOptionsEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      /** Format: int32 */
-      httpStatus?: number | null;
-      errorCode?: string | null;
-      validationDetails?: ({
-        [key: string]: string[] | null;
-      }) | null;
-      activityId?: string | null;
-      result?: components["schemas"]["PortalOptions"];
-    };
     PortalSettings: {
       enable?: boolean;
       portalID?: string | null;
@@ -2938,6 +2727,7 @@ export interface components {
       /** Format: int64 */
       authTokenExpiration?: number;
       options?: components["schemas"]["PortalOptions"];
+      baseThemePackage?: components["schemas"]["BaseThemePackageOptions"];
     };
     PortalSettingsEnvelope: {
       isSuccess?: boolean;
@@ -2962,6 +2752,148 @@ export interface components {
       cookiesNoticeMessage?: string | null;
     };
     ProductOptions: Record<string, never>;
+    PublicBlogAuthorDto: {
+      publicName?: string | null;
+      jobTitle?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+    };
+    PublicBlogPostDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      slug?: string | null;
+      summary?: string | null;
+      description?: string | null;
+      htmlContent?: string | null;
+      featuredImageUrl?: string | null;
+      highlightImage?: string | null;
+      /** Format: date-time */
+      releaseDateTime?: string;
+      seoTitle?: string | null;
+      metaDescription?: string | null;
+      canonicalUrl?: string | null;
+      blogPostCategoryId?: string | null;
+      author?: components["schemas"]["PublicBlogAuthorDto"];
+    };
+    PublicBlogPostDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    PublicBlogPostDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PublicBlogPostDto"];
+    };
+    PublicBlogPostDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PublicBlogPostDto"][] | null;
+    };
+    PublicPortalOptions: {
+      title?: string | null;
+      description?: string | null;
+      /** @enum {string} */
+      portalUiEngine?: "Angular" | "React" | "Razor";
+      seo?: components["schemas"]["SeoOptions"];
+      theming?: components["schemas"]["ThemingOptions"];
+      branding?: components["schemas"]["BrandingOptions"];
+      social?: components["schemas"]["SocialMediaOptions"];
+      privacy?: components["schemas"]["PrivacyOptions"];
+      blog?: components["schemas"]["BlogOptions"];
+      forums?: components["schemas"]["ForumOptions"];
+      footer?: components["schemas"]["FooterOptions"];
+      background?: components["schemas"]["BackgroundOptions"];
+      breadcrumbs?: components["schemas"]["BreadcrumbsOptions"];
+      color?: components["schemas"]["ColorOptions"];
+      header?: components["schemas"]["HeaderOptions"];
+      titleBar?: components["schemas"]["TitleBarOptions"];
+      typography?: components["schemas"]["TypographyOptions"];
+      socialMedia?: components["schemas"]["SocialMediaOptions"];
+      slidingBar?: components["schemas"]["SlidingBarOptions"];
+      slideshow?: components["schemas"]["SlideshowOptions"];
+      slider?: components["schemas"]["SliderOptions"];
+      sidebar?: components["schemas"]["SidebarOptions"];
+      search?: components["schemas"]["SearchOptions"];
+      responsive?: components["schemas"]["ResponsiveOptions"];
+      portfolio?: components["schemas"]["PortfolioOptions"];
+      pagination?: components["schemas"]["PaginationOptions"];
+      menu?: components["schemas"]["MenuOptions"];
+      grid?: components["schemas"]["GridOptions"];
+      mansory?: components["schemas"]["MansoryOptions"];
+      lightbox?: components["schemas"]["LightboxOptions"];
+      layout?: components["schemas"]["LayoutOptions"];
+    };
+    PublicPortalOptionsEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PublicPortalOptions"];
+    };
+    PublicPortalSettings: {
+      portalID?: string | null;
+      homePageID?: string | null;
+      blogPageID?: string | null;
+      storePageID?: string | null;
+      baseEndpoint?: string | null;
+      storeRoutePrefix?: string | null;
+      publicKey?: string | null;
+      options?: components["schemas"]["PublicPortalOptions"];
+    };
+    PublicPortalSettingsEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PublicPortalSettings"];
+    };
     RecommendationOptions: {
       /** Format: double */
       viewWeight?: number;
@@ -3437,6 +3369,7 @@ export interface components {
       mainNetEtherBalance?: number;
       ethereumAddress?: string | null;
       ethereumPublicKey?: string | null;
+      /** @deprecated */
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
@@ -3447,6 +3380,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name: string;
+      webPortalId?: string | null;
       title?: string | null;
       description?: string | null;
       code?: string | null;
@@ -4379,7 +4313,7 @@ export interface operations {
    * Get blog authors
    * @description Retrieves all blog authors, optionally filtered by tenant.
    */
-  GetBlogAuthorsAsync: {
+  BlogPostAuthors_GetBlogAuthors: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4416,7 +4350,7 @@ export interface operations {
    * Get blog author by ID
    * @description Retrieves a specific blog author by their identifier.
    */
-  GetBlogAuthorByIdAsync: {
+  BlogPostAuthors_GetBlogAuthorById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4449,7 +4383,7 @@ export interface operations {
    * Get blog posts by author
    * @description Retrieves all blog posts written by a specific author.
    */
-  GetBlogPostsByAuthorAsync: {
+  BlogPostAuthors_GetBlogPostsByAuthor: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4488,7 +4422,7 @@ export interface operations {
    * Count blog posts by author
    * @description Returns the count of blog posts written by a specific author.
    */
-  CountBlogPostsByAuthorAsync: {
+  BlogPostAuthors_CountBlogPostsByAuthor: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4527,7 +4461,7 @@ export interface operations {
    * Count blog post categories
    * @description Counts all blog post categories for the specified tenant.
    */
-  CountBlogPostCategoriesAsync: {
+  BlogPostCategories_CountBlogPostCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -4571,7 +4505,7 @@ export interface operations {
    * Get blog post categories
    * @description Retrieves all blog post categories for the specified tenant.
    */
-  GetBlogPostCategoriesAsync: {
+  BlogPostCategories_GetBlogPostCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -4615,7 +4549,7 @@ export interface operations {
    * Create a blog post category
    * @description Creates a new blog post category for the specified tenant.
    */
-  CreateBlogPostCategoryAsync: {
+  BlogPostCategories_CreateBlogPostCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -4659,7 +4593,7 @@ export interface operations {
    * Get blog post category by ID
    * @description Retrieves a specific blog post category by its ID.
    */
-  GetBlogPostCategoryByIdAsync: {
+  BlogPostCategories_GetBlogPostCategoryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4700,7 +4634,7 @@ export interface operations {
    * Update a blog post category
    * @description Updates an existing blog post category for the specified tenant.
    */
-  UpdateBlogPostCategoryAsync: {
+  BlogPostCategories_UpdateBlogPostCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -4747,7 +4681,7 @@ export interface operations {
    * Delete a blog post category
    * @description Deletes a blog post category for the specified tenant.
    */
-  DeleteBlogPostCategoryAsync: {
+  BlogPostCategories_DeleteBlogPostCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -4788,7 +4722,7 @@ export interface operations {
    * Patch a blog post category
    * @description Partially updates an existing blog post category for the specified tenant.
    */
-  PatchBlogPostCategoryAsync: {
+  BlogPostCategories_PatchBlogPostCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -4835,7 +4769,7 @@ export interface operations {
    * Retrieve a list of blog posts
    * @description Retrieves all blog posts, optionally filtered by tenant using OData query options.
    */
-  GetBlogPostsAsync: {
+  BlogPosts_GetBlogPosts: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4875,7 +4809,7 @@ export interface operations {
    * Create a new blog post
    * @description Creates a new blog post for the specified tenant.
    */
-  CreateBlogPostAsync: {
+  BlogPosts_CreateBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -4915,7 +4849,7 @@ export interface operations {
    * Get the count of blog posts
    * @description Returns the total count of blog posts, optionally filtered by tenant using OData query options.
    */
-  GetBlogPostsCountAsync: {
+  BlogPosts_GetBlogPostsCount: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4955,8 +4889,11 @@ export interface operations {
    * Get a blog post by ID
    * @description Retrieves a single blog post by its unique identifier.
    */
-  GetBlogPostByIdAsync: {
+  BlogPosts_GetBlogPostById: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         blogPostId: string;
       };
@@ -4983,13 +4920,20 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
     };
   };
   /**
    * Update a blog post
    * @description Updates an existing blog post for the specified tenant.
    */
-  UpdateBlogPostAsync: {
+  BlogPosts_UpdateBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5032,7 +4976,7 @@ export interface operations {
    * Delete a blog post
    * @description Deletes a blog post for the specified tenant.
    */
-  DeleteBlogPostAsync: {
+  BlogPosts_DeleteBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5069,7 +5013,7 @@ export interface operations {
    * Patch a blog post
    * @description Partially updates an existing blog post for the specified tenant.
    */
-  PatchBlogPostAsync: {
+  BlogPosts_PatchBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5109,10 +5053,113 @@ export interface operations {
     };
   };
   /**
+   * Get public blog posts
+   * @description Retrieves a portal's publicly-visible (published) blog posts. Anonymous.
+   */
+  BlogPosts_GetPublicBlogPosts: {
+    parameters: {
+      query: {
+        portalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PublicBlogPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PublicBlogPostDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PublicBlogPostDtoListEnvelope"];
+          "application/xml": components["schemas"]["PublicBlogPostDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count public blog posts
+   * @description Counts a portal's publicly-visible (published) blog posts. Anonymous.
+   */
+  BlogPosts_CountPublicBlogPosts: {
+    parameters: {
+      query: {
+        portalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PublicBlogPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PublicBlogPostDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get public blog post by ID
+   * @description Retrieves a portal's publicly-visible blog post by its identifier. An unpublished or out-of-portal post is not found. Anonymous.
+   */
+  BlogPosts_GetPublicBlogPostById: {
+    parameters: {
+      query: {
+        portalId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PublicBlogPostDtoEnvelope"];
+          "application/xml": components["schemas"]["PublicBlogPostDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get tags for a blog post
    * @description Retrieves all tags related to a specific blog post.
    */
-  GetTagsForBlogPostAsync: {
+  BlogPosts_GetTagsForBlogPost: {
     parameters: {
       path: {
         blogPostId: string;
@@ -5152,7 +5199,7 @@ export interface operations {
    * Create a tag for a blog post
    * @description Creates a new tag and relates it to a specific blog post.
    */
-  CreateTagForBlogPostAsync: {
+  BlogPosts_CreateTagForBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5195,7 +5242,7 @@ export interface operations {
    * Relate an existing tag to a blog post
    * @description Creates a relationship between an existing tag and a blog post.
    */
-  RelateTagToBlogPostAsync: {
+  BlogPosts_RelateTagToBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5233,7 +5280,7 @@ export interface operations {
    * Remove a tag from a blog post
    * @description Removes the relationship between a tag and a blog post.
    */
-  UnrelateTagFromBlogPostAsync: {
+  BlogPosts_UnrelateTagFromBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5271,7 +5318,7 @@ export interface operations {
    * Get categories for a blog post
    * @description Retrieves all categories related to a specific blog post.
    */
-  GetCategoriesForBlogPostAsync: {
+  BlogPosts_GetCategoriesForBlogPost: {
     parameters: {
       path: {
         blogPostId: string;
@@ -5311,7 +5358,7 @@ export interface operations {
    * Create a category for a blog post
    * @description Creates a new category and relates it to a specific blog post.
    */
-  CreateCategoryForBlogPostAsync: {
+  BlogPosts_CreateCategoryForBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5354,7 +5401,7 @@ export interface operations {
    * Relate an existing category to a blog post
    * @description Creates a relationship between an existing category and a blog post.
    */
-  RelateCategoryToBlogPostAsync: {
+  BlogPosts_RelateCategoryToBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5392,7 +5439,7 @@ export interface operations {
    * Remove a category from a blog post
    * @description Removes the relationship between a category and a blog post.
    */
-  UnrelateCategoryFromBlogPostAsync: {
+  BlogPosts_UnrelateCategoryFromBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5430,7 +5477,7 @@ export interface operations {
    * Get comments for a blog post
    * @description Retrieves all comments for a specific blog post.
    */
-  GetCommentsForBlogPostAsync: {
+  BlogPosts_GetCommentsForBlogPost: {
     parameters: {
       path: {
         blogPostId: string;
@@ -5470,7 +5517,7 @@ export interface operations {
    * Create a comment for a blog post
    * @description Creates a new comment on a specific blog post.
    */
-  CreateCommentForBlogPostAsync: {
+  BlogPosts_CreateCommentForBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5513,7 +5560,7 @@ export interface operations {
    * Get replies for a comment
    * @description Retrieves all replies for a specific blog post comment.
    */
-  GetRepliesForCommentAsync: {
+  BlogPosts_GetRepliesForComment: {
     parameters: {
       path: {
         commentId: string;
@@ -5554,7 +5601,7 @@ export interface operations {
    * Reply to a blog post comment
    * @description Creates a reply to an existing comment on a blog post.
    */
-  ReplyToCommentAsync: {
+  BlogPosts_ReplyToComment: {
     parameters: {
       query: {
         tenantId: string;
@@ -5598,7 +5645,7 @@ export interface operations {
    * Delete a blog post comment
    * @description Deletes a comment from a specific blog post.
    */
-  DeleteCommentFromBlogPostAsync: {
+  BlogPosts_DeleteCommentFromBlogPost: {
     parameters: {
       query: {
         tenantId: string;
@@ -5636,7 +5683,7 @@ export interface operations {
    * Get blog post tags
    * @description Retrieves all blog post tags for the specified tenant.
    */
-  GetBlogPostTagsAsync: {
+  BlogPostTags_GetBlogPostTags: {
     parameters: {
       query: {
         tenantId: string;
@@ -5680,7 +5727,7 @@ export interface operations {
    * Create a blog post tag
    * @description Creates a new blog post tag for the specified tenant.
    */
-  CreateBlogPostTagAsync: {
+  BlogPostTags_CreateBlogPostTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -5724,7 +5771,7 @@ export interface operations {
    * Count blog post tags
    * @description Counts all blog post tags for the specified tenant.
    */
-  CountBlogPostTagsAsync: {
+  BlogPostTags_CountBlogPostTags: {
     parameters: {
       query: {
         tenantId: string;
@@ -5768,7 +5815,7 @@ export interface operations {
    * Get blog post tag by ID
    * @description Retrieves a specific blog post tag by its ID.
    */
-  GetBlogPostTagByIdAsync: {
+  BlogPostTags_GetBlogPostTagById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5809,7 +5856,7 @@ export interface operations {
    * Update a blog post tag
    * @description Updates an existing blog post tag for the specified tenant.
    */
-  UpdateBlogPostTagAsync: {
+  BlogPostTags_UpdateBlogPostTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -5856,7 +5903,7 @@ export interface operations {
    * Delete a blog post tag
    * @description Deletes a blog post tag for the specified tenant.
    */
-  DeleteBlogPostTagAsync: {
+  BlogPostTags_DeleteBlogPostTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -5897,7 +5944,7 @@ export interface operations {
    * Patch a blog post tag
    * @description Partially updates an existing blog post tag for the specified tenant.
    */
-  PatchBlogPostTagAsync: {
+  BlogPostTags_PatchBlogPostTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -5944,7 +5991,7 @@ export interface operations {
    * Get business domains
    * @description Retrieves business domains for the specified tenant.
    */
-  GetBusinessDomainsAsync: {
+  BusinessDomains_GetBusinessDomains: {
     parameters: {
       query: {
         tenantId: string;
@@ -5988,7 +6035,7 @@ export interface operations {
    * Register a business domain
    * @description Registers a new (unverified) business domain for the tenant and issues a DNS TXT verification token.
    */
-  CreateBusinessDomainAsync: {
+  BusinessDomains_CreateBusinessDomain: {
     parameters: {
       query: {
         tenantId: string;
@@ -6039,7 +6086,7 @@ export interface operations {
    * Get business domains count
    * @description Retrieves the count of business domains for the specified tenant.
    */
-  GetBusinessDomainsCountAsync: {
+  BusinessDomains_GetBusinessDomainsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6083,7 +6130,7 @@ export interface operations {
    * Get business domain by ID
    * @description Retrieves a specific business domain.
    */
-  GetBusinessDomainByIdAsync: {
+  BusinessDomains_GetBusinessDomainById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6124,7 +6171,7 @@ export interface operations {
    * Update a business domain
    * @description Updates a business domain. Changing the host re-issues the verification token and clears verification.
    */
-  UpdateBusinessDomainAsync: {
+  BusinessDomains_UpdateBusinessDomain: {
     parameters: {
       query: {
         tenantId: string;
@@ -6171,7 +6218,7 @@ export interface operations {
    * Delete a business domain
    * @description Removes a business domain from the tenant.
    */
-  DeleteBusinessDomainAsync: {
+  BusinessDomains_DeleteBusinessDomain: {
     parameters: {
       query: {
         tenantId: string;
@@ -6212,7 +6259,7 @@ export interface operations {
    * Verify a business domain
    * @description Checks the domain's DNS TXT records for the verification token and marks the domain verified.
    */
-  VerifyBusinessDomainAsync: {
+  BusinessDomains_VerifyBusinessDomain: {
     parameters: {
       query: {
         tenantId: string;
@@ -6256,7 +6303,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -6271,11 +6397,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get localization strings
    * @description Retrieves all localization strings for the specified tenant.
    */
-  GetLocalizationStringsAsync: {
+  LocalizationStrings_GetLocalizationStrings: {
     parameters: {
       query: {
         tenantId: string;
@@ -6319,7 +6630,7 @@ export interface operations {
    * Create a localization string
    * @description Creates a new localization string for the specified tenant.
    */
-  CreateLocalizationStringAsync: {
+  LocalizationStrings_CreateLocalizationString: {
     parameters: {
       query: {
         tenantId: string;
@@ -6363,7 +6674,7 @@ export interface operations {
    * Count localization strings
    * @description Counts all localization strings for the specified tenant.
    */
-  CountLocalizationStringsAsync: {
+  LocalizationStrings_CountLocalizationStrings: {
     parameters: {
       query: {
         tenantId: string;
@@ -6407,7 +6718,7 @@ export interface operations {
    * Get localization string by ID
    * @description Retrieves a specific localization string by its identifier.
    */
-  GetLocalizationStringByIdAsync: {
+  LocalizationStrings_GetLocalizationStringById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6448,7 +6759,7 @@ export interface operations {
    * Update a localization string
    * @description Updates an existing localization string for the specified tenant.
    */
-  UpdateLocalizationStringAsync: {
+  LocalizationStrings_UpdateLocalizationString: {
     parameters: {
       query: {
         tenantId: string;
@@ -6495,7 +6806,7 @@ export interface operations {
    * Delete a localization string
    * @description Deletes a localization string for the specified tenant.
    */
-  DeleteLocalizationStringAsync: {
+  LocalizationStrings_DeleteLocalizationString: {
     parameters: {
       query: {
         tenantId: string;
@@ -6536,7 +6847,7 @@ export interface operations {
    * Get menu contexts
    * @description Retrieves all menu contexts for the specified tenant.
    */
-  GetMenuContextsAsync: {
+  MenuContexts_GetMenuContexts: {
     parameters: {
       query: {
         tenantId: string;
@@ -6580,7 +6891,7 @@ export interface operations {
    * Create a menu context
    * @description Creates a new menu context for the specified tenant.
    */
-  CreateMenuContextAsync: {
+  MenuContexts_CreateMenuContext: {
     parameters: {
       query: {
         tenantId: string;
@@ -6624,7 +6935,7 @@ export interface operations {
    * Count menu contexts
    * @description Counts all menu contexts for the specified tenant.
    */
-  CountMenuContextsAsync: {
+  MenuContexts_CountMenuContexts: {
     parameters: {
       query: {
         tenantId: string;
@@ -6668,7 +6979,7 @@ export interface operations {
    * Get menu context by ID
    * @description Retrieves a specific menu context by its identifier.
    */
-  GetMenuContextByIdAsync: {
+  MenuContexts_GetMenuContextById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6709,7 +7020,7 @@ export interface operations {
    * Update a menu context
    * @description Updates an existing menu context for the specified tenant.
    */
-  UpdateMenuContextAsync: {
+  MenuContexts_UpdateMenuContext: {
     parameters: {
       query: {
         tenantId: string;
@@ -6756,7 +7067,7 @@ export interface operations {
    * Delete a menu context
    * @description Deletes a menu context for the specified tenant.
    */
-  DeleteMenuContextAsync: {
+  MenuContexts_DeleteMenuContext: {
     parameters: {
       query: {
         tenantId: string;
@@ -6797,7 +7108,7 @@ export interface operations {
    * Get portals
    * @description Retrieves all portals for the specified tenant.
    */
-  GetPortalsAsync: {
+  Portals_GetPortals: {
     parameters: {
       query: {
         tenantId: string;
@@ -6841,7 +7152,7 @@ export interface operations {
    * Create a new web portal
    * @description Create a new web portal
    */
-  CreateWebPortalAsync: {
+  Portals_CreateWebPortal: {
     parameters: {
       query: {
         tenantId: string;
@@ -6885,7 +7196,7 @@ export interface operations {
    * Count portals
    * @description Counts all portals for the specified tenant.
    */
-  CountPortalsAsync: {
+  Portals_CountPortals: {
     parameters: {
       query: {
         tenantId: string;
@@ -6929,7 +7240,7 @@ export interface operations {
    * Get the root portal
    * @description Get the root portal of the this server instance
    */
-  GetRootWebPortalAsync: {
+  Portals_GetRootWebPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6966,7 +7277,7 @@ export interface operations {
    * Get the current portal
    * @description Get the current portal of the this server instance
    */
-  GetCurrentWebPortalAsync: {
+  Portals_GetCurrentWebPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7003,7 +7314,7 @@ export interface operations {
    * Initialize the current portal
    * @description Initialize the current portal for the current user.
    */
-  InitializeCurrentWebPortalAsync: {
+  Portals_InitializeCurrentWebPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7038,9 +7349,9 @@ export interface operations {
   };
   /**
    * Get the current portal's options
-   * @description Get the current portal's options for the current user.
+   * @description Get the current portal's public (presentational) options. Integration, email and store settings are never returned here.
    */
-  GetCurrentWebPortalOptionsAsync: {
+  Portals_GetCurrentWebPortalOptions: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7053,8 +7364,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["PortalOptionsEnvelope"];
-          "application/xml": components["schemas"]["PortalOptionsEnvelope"];
+          "application/json": components["schemas"]["PublicPortalOptionsEnvelope"];
+          "application/xml": components["schemas"]["PublicPortalOptionsEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -7077,7 +7388,7 @@ export interface operations {
    * Search for a portal by its domain
    * @description Search for a portal by its domain
    */
-  SearchWebPortalAsync: {
+  Portals_SearchWebPortal: {
     parameters: {
       query: {
         domain: string;
@@ -7115,9 +7426,10 @@ export interface operations {
    * Get a web portal by its ID
    * @description Get a web portal by its ID
    */
-  GetWebPortalByIdAsync: {
+  Portals_GetWebPortalById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7155,7 +7467,7 @@ export interface operations {
    * Update an existing web portal
    * @description Update an existing web portal
    */
-  UpdateWebPortalAsync: {
+  Portals_UpdateWebPortal: {
     parameters: {
       query: {
         tenantId: string;
@@ -7202,7 +7514,7 @@ export interface operations {
    * Delete a web portal
    * @description Delete a web portal
    */
-  DeleteWebPortalAsync: {
+  Portals_DeleteWebPortal: {
     parameters: {
       query: {
         tenantId: string;
@@ -7243,7 +7555,7 @@ export interface operations {
    * Partially update a web portal
    * @description Partially update a web portal
    */
-  PatchWebPortalAsync: {
+  Portals_PatchWebPortal: {
     parameters: {
       query: {
         tenantId: string;
@@ -7287,10 +7599,10 @@ export interface operations {
     };
   };
   /**
-   * Get a web portal's settings by its ID
-   * @description Get a web portal's settings by its ID
+   * Get a web portal's public settings by its ID
+   * @description Get a web portal's public settings by its ID. Credentials and integration secrets are never returned here; the portal's owner reads the full settings from {portalId}/Settings/Full.
    */
-  GetWebPortalSettingsAsync: {
+  Portals_GetWebPortalSettings: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7306,8 +7618,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["PortalSettingsEnvelope"];
-          "application/xml": components["schemas"]["PortalSettingsEnvelope"];
+          "application/json": components["schemas"]["PublicPortalSettingsEnvelope"];
+          "application/xml": components["schemas"]["PublicPortalSettingsEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -7324,13 +7636,20 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
     };
   };
   /**
    * Update a web portal's settings
    * @description Update a web portal's settings (Options) by its ID
    */
-  UpdateWebPortalSettingsAsync: {
+  Portals_UpdateWebPortalSettings: {
     parameters: {
       query: {
         tenantId: string;
@@ -7374,12 +7693,13 @@ export interface operations {
     };
   };
   /**
-   * Get a web portal's options by its ID
-   * @description Get a web portal's options by its ID
+   * Get a web portal's full settings
+   * @description Get the full settings of a portal the tenant owns, for editing. Requires portals_update.
    */
-  GetWebPortalOptionsAsync: {
+  Portals_GetWebPortalFullSettings: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -7393,8 +7713,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["PortalOptionsEnvelope"];
-          "application/xml": components["schemas"]["PortalOptionsEnvelope"];
+          "application/json": components["schemas"]["PortalSettingsEnvelope"];
+          "application/xml": components["schemas"]["PortalSettingsEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -7411,13 +7731,67 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a web portal's public options by its ID
+   * @description Get a web portal's public (presentational) options by its ID. Integration, email and store settings are never returned here.
+   */
+  Portals_GetWebPortalOptions: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PublicPortalOptionsEnvelope"];
+          "application/xml": components["schemas"]["PublicPortalOptionsEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
     };
   };
   /**
    * Get a web portal's bound domains
    * @description Get the BusinessDomains bound to a web portal
    */
-  GetWebPortalDomainBindingsAsync: {
+  Portals_GetWebPortalDomainBindings: {
     parameters: {
       query: {
         tenantId: string;
@@ -7458,7 +7832,7 @@ export interface operations {
    * Bind a domain to a web portal
    * @description Bind a verified BusinessDomain to a web portal
    */
-  BindWebPortalDomainAsync: {
+  Portals_BindWebPortalDomain: {
     parameters: {
       query: {
         tenantId: string;
@@ -7500,7 +7874,7 @@ export interface operations {
    * Unbind a domain from a web portal
    * @description Unbind a BusinessDomain from a web portal
    */
-  UnbindWebPortalDomainAsync: {
+  Portals_UnbindWebPortalDomain: {
     parameters: {
       query: {
         tenantId: string;
@@ -7539,10 +7913,10 @@ export interface operations {
     };
   };
   /**
-   * Update base web content themes
-   * @description Triggers an update of the base web content themes.
+   * Update the base theme web content
+   * @description Reinstalls the instance's base theme from the pinned, SHA-256-verified package. Root-tenant instance administrators only.
    */
-  UpdateThemesAsync: {
+  Themes_UpdateBaseWebContent: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7552,6 +7926,20 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
       /** @description Unauthorized */
       401: {
         content: {
@@ -7572,7 +7960,7 @@ export interface operations {
    * Get web components
    * @description Retrieves all web components for the specified tenant.
    */
-  GetWebComponentsAsync: {
+  WebComponents_GetWebComponents: {
     parameters: {
       query: {
         tenantId: string;
@@ -7616,7 +8004,7 @@ export interface operations {
    * Create a web component
    * @description Creates a new web component for the specified tenant.
    */
-  CreateWebComponentAsync: {
+  WebComponents_CreateWebComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -7660,7 +8048,7 @@ export interface operations {
    * Count web components
    * @description Counts all web components for the specified tenant.
    */
-  CountWebComponentsAsync: {
+  WebComponents_CountWebComponents: {
     parameters: {
       query: {
         tenantId: string;
@@ -7704,7 +8092,7 @@ export interface operations {
    * Get web component by ID
    * @description Retrieves a specific web component by its identifier.
    */
-  GetWebComponentByIdAsync: {
+  WebComponents_GetWebComponentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7745,7 +8133,7 @@ export interface operations {
    * Update a web component
    * @description Updates an existing web component for the specified tenant.
    */
-  UpdateWebComponentAsync: {
+  WebComponents_UpdateWebComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -7792,7 +8180,7 @@ export interface operations {
    * Delete a web component
    * @description Deletes a web component for the specified tenant.
    */
-  DeleteWebComponentAsync: {
+  WebComponents_DeleteWebComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -7833,7 +8221,7 @@ export interface operations {
    * Count web contents
    * @description Counts all web contents for the specified tenant.
    */
-  CountWebContentsAsync: {
+  WebContents_CountWebContents: {
     parameters: {
       query: {
         tenantId: string;
@@ -7877,7 +8265,7 @@ export interface operations {
    * Get web contents
    * @description Retrieves all web contents for the specified tenant.
    */
-  GetWebContentsAsync: {
+  WebContents_GetWebContents: {
     parameters: {
       query: {
         tenantId: string;
@@ -7921,7 +8309,7 @@ export interface operations {
    * Create a web content
    * @description Creates a new web content for the specified tenant.
    */
-  CreateWebContentAsync: {
+  WebContents_CreateWebContent: {
     parameters: {
       query: {
         tenantId: string;
@@ -7965,7 +8353,7 @@ export interface operations {
    * Get web content by ID
    * @description Retrieves a specific web content by its ID.
    */
-  GetWebContentByIdAsync: {
+  WebContents_GetWebContentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8006,7 +8394,7 @@ export interface operations {
    * Update a web content
    * @description Updates an existing web content for the specified tenant.
    */
-  UpdateWebContentAsync: {
+  WebContents_UpdateWebContent: {
     parameters: {
       query: {
         tenantId: string;
@@ -8053,7 +8441,7 @@ export interface operations {
    * Delete a web content
    * @description Deletes a web content for the specified tenant.
    */
-  DeleteWebContentAsync: {
+  WebContents_DeleteWebContent: {
     parameters: {
       query: {
         tenantId: string;
@@ -8094,7 +8482,7 @@ export interface operations {
    * Patch a web content
    * @description Partially updates an existing web content for the specified tenant.
    */
-  PatchWebContentAsync: {
+  WebContents_PatchWebContent: {
     parameters: {
       query: {
         tenantId: string;
@@ -8141,7 +8529,7 @@ export interface operations {
    * Get web page categories
    * @description Retrieves all web page categories for the specified tenant.
    */
-  GetWebPageCategoriesAsync: {
+  WebPageCategories_GetWebPageCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -8185,7 +8573,7 @@ export interface operations {
    * Create a web page category
    * @description Creates a new web page category for the specified tenant.
    */
-  CreateWebPageCategoryAsync: {
+  WebPageCategories_CreateWebPageCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -8229,7 +8617,7 @@ export interface operations {
    * Count web page categories
    * @description Counts all web page categories for the specified tenant.
    */
-  CountWebPageCategoriesAsync: {
+  WebPageCategories_CountWebPageCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -8273,7 +8661,7 @@ export interface operations {
    * Get web page category by ID
    * @description Retrieves a specific web page category by its ID.
    */
-  GetWebPageCategoryByIdAsync: {
+  WebPageCategories_GetWebPageCategoryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8314,7 +8702,7 @@ export interface operations {
    * Update a web page category
    * @description Updates an existing web page category for the specified tenant.
    */
-  UpdateWebPageCategoryAsync: {
+  WebPageCategories_UpdateWebPageCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -8361,7 +8749,7 @@ export interface operations {
    * Delete a web page category
    * @description Deletes a web page category for the specified tenant.
    */
-  DeleteWebPageCategoryAsync: {
+  WebPageCategories_DeleteWebPageCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -8402,7 +8790,7 @@ export interface operations {
    * Patch a web page category
    * @description Partially updates an existing web page category for the specified tenant.
    */
-  PatchWebPageCategoryAsync: {
+  WebPageCategories_PatchWebPageCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -8449,7 +8837,7 @@ export interface operations {
    * Count web pages
    * @description Counts all web pages for the specified tenant.
    */
-  CountWebPagesAsync: {
+  WebPages_CountWebPages: {
     parameters: {
       query: {
         tenantId: string;
@@ -8486,7 +8874,7 @@ export interface operations {
    * Get web pages
    * @description Retrieves all web pages for the specified tenant.
    */
-  GetWebPagesAsync: {
+  WebPages_GetWebPages: {
     parameters: {
       query: {
         tenantId: string;
@@ -8523,7 +8911,7 @@ export interface operations {
    * Create a web page
    * @description Creates a new web page for the specified tenant.
    */
-  CreateWebPageAsync: {
+  WebPages_CreateWebPage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8557,7 +8945,7 @@ export interface operations {
    * Get web page by ID
    * @description Retrieves a specific web page by its identifier.
    */
-  GetWebPageByIdAsync: {
+  WebPages_GetWebPageById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8591,7 +8979,7 @@ export interface operations {
    * Update a web page
    * @description Updates an existing web page for the specified tenant.
    */
-  UpdateWebPageAsync: {
+  WebPages_UpdateWebPage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8628,7 +9016,7 @@ export interface operations {
    * Delete a web page
    * @description Deletes a web page for the specified tenant.
    */
-  DeleteWebPageAsync: {
+  WebPages_DeleteWebPage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8659,7 +9047,7 @@ export interface operations {
    * Patch a web page
    * @description Partially updates an existing web page for the specified tenant.
    */
-  PatchWebPageAsync: {
+  WebPages_PatchWebPage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8696,7 +9084,7 @@ export interface operations {
    * Get tags by web page
    * @description Retrieves all tags related to a specific web page.
    */
-  GetTagsByWebPageAsync: {
+  WebPages_GetTagsByWebPage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8735,7 +9123,7 @@ export interface operations {
    * Create a web page tag relation
    * @description Creates a new tag and relates it to a web page.
    */
-  CreateWebPageTagRelationAsync: {
+  WebPages_CreateWebPageTagRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -8772,7 +9160,7 @@ export interface operations {
    * Relate web page to tag
    * @description Relates an existing tag to a web page.
    */
-  RelateWebPageToTagAsync: {
+  WebPages_RelateWebPageToTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -8804,7 +9192,7 @@ export interface operations {
    * Unrelate web page from tag
    * @description Removes the relationship between a web page and a tag.
    */
-  UnrelateWebPageTagAsync: {
+  WebPages_UnrelateWebPageTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -8836,7 +9224,7 @@ export interface operations {
    * Get categories by web page
    * @description Retrieves all categories related to a specific web page.
    */
-  GetCategoriesByWebPageAsync: {
+  WebPages_GetCategoriesByWebPage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8875,7 +9263,7 @@ export interface operations {
    * Create a web page category relation
    * @description Creates a new category and relates it to a web page.
    */
-  CreateWebPageCategoryRelationAsync: {
+  WebPages_CreateWebPageCategoryRelation: {
     parameters: {
       query: {
         tenantId: string;
@@ -8912,7 +9300,7 @@ export interface operations {
    * Relate web page to category
    * @description Relates an existing category to a web page.
    */
-  RelateWebPageToCategoryAsync: {
+  WebPages_RelateWebPageToCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -8944,7 +9332,7 @@ export interface operations {
    * Unrelate web page from category
    * @description Removes the relationship between a web page and a category.
    */
-  UnrelateWebPageCategoryAsync: {
+  WebPages_UnrelateWebPageCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -8976,7 +9364,7 @@ export interface operations {
    * Get web page tags
    * @description Retrieves all web page tags for the specified tenant.
    */
-  GetWebPageTagsAsync: {
+  WebPageTags_GetWebPageTags: {
     parameters: {
       query: {
         tenantId: string;
@@ -9020,7 +9408,7 @@ export interface operations {
    * Create a web page tag
    * @description Creates a new web page tag for the specified tenant.
    */
-  CreateWebPageTagAsync: {
+  WebPageTags_CreateWebPageTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -9064,7 +9452,7 @@ export interface operations {
    * Count web page tags
    * @description Counts all web page tags for the specified tenant.
    */
-  CountWebPageTagsAsync: {
+  WebPageTags_CountWebPageTags: {
     parameters: {
       query: {
         tenantId: string;
@@ -9108,7 +9496,7 @@ export interface operations {
    * Get web page tag by ID
    * @description Retrieves a specific web page tag by its ID.
    */
-  GetWebPageTagByIdAsync: {
+  WebPageTags_GetWebPageTagById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9149,7 +9537,7 @@ export interface operations {
    * Update a web page tag
    * @description Updates an existing web page tag for the specified tenant.
    */
-  UpdateWebPageTagAsync: {
+  WebPageTags_UpdateWebPageTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -9196,7 +9584,7 @@ export interface operations {
    * Delete a web page tag
    * @description Deletes a web page tag for the specified tenant.
    */
-  DeleteWebPageTagAsync: {
+  WebPageTags_DeleteWebPageTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -9237,7 +9625,7 @@ export interface operations {
    * Patch a web page tag
    * @description Partially updates an existing web page tag for the specified tenant.
    */
-  PatchWebPageTagAsync: {
+  WebPageTags_PatchWebPageTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -9284,7 +9672,7 @@ export interface operations {
    * Get all website themes
    * @description Retrieves all website themes for the specified tenant.
    */
-  GetWebsiteThemesAsync: {
+  WebsiteThemes_GetWebsiteThemes: {
     parameters: {
       query: {
         tenantId: string;
@@ -9321,7 +9709,7 @@ export interface operations {
    * Create a new website theme
    * @description Creates a new website theme for the specified tenant.
    */
-  CreateWebsiteThemeAsync: {
+  WebsiteThemes_CreateWebsiteTheme: {
     parameters: {
       query: {
         tenantId: string;
@@ -9362,7 +9750,7 @@ export interface operations {
    * Get website themes count
    * @description Returns the count of website themes for the specified tenant.
    */
-  GetWebsiteThemesCountAsync: {
+  WebsiteThemes_GetWebsiteThemesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9399,7 +9787,7 @@ export interface operations {
    * Get website theme by ID
    * @description Retrieves a specific website theme by its identifier.
    */
-  GetWebsiteThemeByIdAsync: {
+  WebsiteThemes_GetWebsiteThemeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9440,7 +9828,7 @@ export interface operations {
    * Update a website theme
    * @description Updates an existing website theme for the specified tenant.
    */
-  UpdateWebsiteThemeAsync: {
+  WebsiteThemes_UpdateWebsiteTheme: {
     parameters: {
       query: {
         tenantId: string;
@@ -9484,7 +9872,7 @@ export interface operations {
    * Delete a website theme
    * @description Deletes a website theme for the specified tenant.
    */
-  DeleteWebsiteThemeAsync: {
+  WebsiteThemes_DeleteWebsiteTheme: {
     parameters: {
       query: {
         tenantId: string;
@@ -9522,7 +9910,7 @@ export interface operations {
    * Patch a website theme
    * @description Partially updates an existing website theme for the specified tenant.
    */
-  PatchWebsiteThemeAsync: {
+  WebsiteThemes_PatchWebsiteTheme: {
     parameters: {
       query: {
         tenantId: string;
@@ -9566,7 +9954,7 @@ export interface operations {
    * Get web templates
    * @description Retrieves all web templates for the specified tenant.
    */
-  GetWebTemplatesAsync: {
+  WebTemplates_GetWebTemplates: {
     parameters: {
       query: {
         tenantId: string;
@@ -9610,7 +9998,7 @@ export interface operations {
    * Create a web template
    * @description Creates a new web template for the specified tenant.
    */
-  CreateWebTemplateAsync: {
+  WebTemplates_CreateWebTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -9651,7 +10039,7 @@ export interface operations {
    * Count web templates
    * @description Counts all web templates for the specified tenant.
    */
-  CountWebTemplatesAsync: {
+  WebTemplates_CountWebTemplates: {
     parameters: {
       query: {
         tenantId: string;
@@ -9695,7 +10083,7 @@ export interface operations {
    * Get web template by ID
    * @description Retrieves a specific web template by its identifier.
    */
-  GetWebTemplateByIdAsync: {
+  WebTemplates_GetWebTemplateById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9736,7 +10124,7 @@ export interface operations {
    * Update a web template
    * @description Updates an existing web template for the specified tenant.
    */
-  UpdateWebTemplateAsync: {
+  WebTemplates_UpdateWebTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -9780,7 +10168,7 @@ export interface operations {
    * Delete a web template
    * @description Deletes a web template for the specified tenant.
    */
-  DeleteWebTemplateAsync: {
+  WebTemplates_DeleteWebTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -9818,7 +10206,7 @@ export interface operations {
    * Patch a web template
    * @description Partially updates an existing web template for the specified tenant.
    */
-  PatchWebTemplateAsync: {
+  WebTemplates_PatchWebTemplate: {
     parameters: {
       query: {
         tenantId: string;

@@ -6,561 +6,313 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/ServicesService/ServiceCases": {
     /**
      * Get all service cases
      * @description Retrieves all service cases for the specified tenant.
      */
-    get: operations["GetServiceCasesAsync"];
+    get: operations["ServiceCases_GetServiceCases"];
     /**
      * Create a service case
      * @description Creates a new service case for the specified tenant.
      */
-    post: operations["CreateServiceCaseAsync"];
+    post: operations["ServiceCases_CreateServiceCase"];
   };
   "/api/v2/ServicesService/ServiceCases/Count": {
     /**
      * Get service cases count
      * @description Returns the count of service cases for the specified tenant.
      */
-    get: operations["GetServiceCasesCountAsync"];
+    get: operations["ServiceCases_GetServiceCasesCount"];
   };
   "/api/v2/ServicesService/ServiceCases/{serviceCaseId}": {
     /**
      * Get a service case by ID
      * @description Retrieves a service case by its identifier.
      */
-    get: operations["GetServiceCaseByIdAsync"];
+    get: operations["ServiceCases_GetServiceCaseById"];
     /**
      * Update a service case
      * @description Updates an existing service case.
      */
-    put: operations["UpdateServiceCaseAsync"];
+    put: operations["ServiceCases_UpdateServiceCase"];
     /**
      * Delete a service case
      * @description Deletes a service case by its identifier.
      */
-    delete: operations["DeleteServiceCaseAsync"];
+    delete: operations["ServiceCases_DeleteServiceCase"];
     /**
      * Patch a service case
      * @description Partially updates an existing service case using a JSON Patch document.
      */
-    patch: operations["PatchServiceCaseAsync"];
+    patch: operations["ServiceCases_PatchServiceCase"];
   };
   "/api/v2/ServicesService/ServiceCaseTypes": {
     /**
      * Get all service case types
      * @description Retrieves all service case types for the specified tenant.
      */
-    get: operations["GetServiceCaseTypesAsync"];
+    get: operations["ServiceCaseTypes_GetServiceCaseTypes"];
     /**
      * Create a service case type
      * @description Creates a new service case type for the specified tenant.
      */
-    post: operations["CreateServiceCaseTypeAsync"];
+    post: operations["ServiceCaseTypes_CreateServiceCaseType"];
   };
   "/api/v2/ServicesService/ServiceCaseTypes/Count": {
     /**
      * Get service case types count
      * @description Returns the count of service case types for the specified tenant.
      */
-    get: operations["GetServiceCaseTypesCountAsync"];
+    get: operations["ServiceCaseTypes_GetServiceCaseTypesCount"];
   };
   "/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}": {
     /**
      * Get a service case type by ID
      * @description Retrieves a service case type by its identifier.
      */
-    get: operations["GetServiceCaseTypeByIdAsync"];
+    get: operations["ServiceCaseTypes_GetServiceCaseTypeById"];
     /**
      * Update a service case type
      * @description Updates an existing service case type.
      */
-    put: operations["UpdateServiceCaseTypeAsync"];
+    put: operations["ServiceCaseTypes_UpdateServiceCaseType"];
     /**
      * Delete a service case type
      * @description Deletes a service case type by its identifier.
      */
-    delete: operations["DeleteServiceCaseTypeAsync"];
+    delete: operations["ServiceCaseTypes_DeleteServiceCaseType"];
     /**
      * Patch a service case type
      * @description Partially updates an existing service case type using a JSON Patch document.
      */
-    patch: operations["PatchServiceCaseTypeAsync"];
+    patch: operations["ServiceCaseTypes_PatchServiceCaseType"];
   };
   "/api/v2/ServicesService/ServiceLevelAgreements": {
     /**
      * Get all service level agreements
      * @description Retrieves all service level agreements for the specified tenant.
      */
-    get: operations["GetServiceLevelAgreementsAsync"];
+    get: operations["ServiceLevelAgreements_GetServiceLevelAgreements"];
     /**
      * Create a service level agreement
      * @description Creates a new service level agreement for the specified tenant.
      */
-    post: operations["CreateServiceLevelAgreementAsync"];
+    post: operations["ServiceLevelAgreements_CreateServiceLevelAgreement"];
   };
   "/api/v2/ServicesService/ServiceLevelAgreements/Count": {
     /**
      * Get service level agreements count
      * @description Returns the count of service level agreements for the specified tenant.
      */
-    get: operations["GetServiceLevelAgreementsCountAsync"];
+    get: operations["ServiceLevelAgreements_GetServiceLevelAgreementsCount"];
   };
   "/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}": {
     /**
      * Get a service level agreement by ID
      * @description Retrieves a service level agreement by its identifier.
      */
-    get: operations["GetServiceLevelAgreementByIdAsync"];
+    get: operations["ServiceLevelAgreements_GetServiceLevelAgreementById"];
     /**
      * Update a service level agreement
      * @description Updates an existing service level agreement.
      */
-    put: operations["UpdateServiceLevelAgreementAsync"];
+    put: operations["ServiceLevelAgreements_UpdateServiceLevelAgreement"];
     /**
      * Delete a service level agreement
      * @description Deletes a service level agreement by its identifier.
      */
-    delete: operations["DeleteServiceLevelAgreementAsync"];
+    delete: operations["ServiceLevelAgreements_DeleteServiceLevelAgreement"];
     /**
      * Patch a service level agreement
      * @description Partially updates an existing service level agreement using a JSON Patch document.
      */
-    patch: operations["PatchServiceLevelAgreementAsync"];
+    patch: operations["ServiceLevelAgreements_PatchServiceLevelAgreement"];
   };
   "/api/v2/ServicesService/ServiceLevels": {
     /**
      * Get all service levels
      * @description Retrieves all service levels for the specified tenant.
      */
-    get: operations["GetAllServiceLevelsAsync"];
+    get: operations["ServiceLevels_GetAllServiceLevels"];
   };
   "/api/v2/ServicesService/ServiceLevels/Count": {
     /**
      * Get all service levels count
      * @description Returns the count of all service levels for the specified tenant.
      */
-    get: operations["CountAllServiceLevelsAsync"];
+    get: operations["ServiceLevels_CountAllServiceLevels"];
   };
   "/api/v2/ServicesService/Services/{serviceId}/ServiceLevels": {
     /**
      * Get all service levels
      * @description Retrieves all service levels for the specified service.
      */
-    get: operations["GetServiceLevelsAsync"];
+    get: operations["ServiceLevels_GetServiceLevels"];
     /**
      * Create a service level
      * @description Creates a new service level for the specified service.
      */
-    post: operations["CreateServiceLevelAsync"];
+    post: operations["ServiceLevels_CreateServiceLevel"];
   };
   "/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/Count": {
     /**
      * Get service levels count
      * @description Returns the count of service levels for the specified service.
      */
-    get: operations["GetServiceLevelsCountAsync"];
+    get: operations["ServiceLevels_GetServiceLevelsCount"];
   };
   "/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}": {
     /**
      * Get a service level by ID
      * @description Retrieves a service level by its identifier.
      */
-    get: operations["GetServiceLevelByIdAsync"];
+    get: operations["ServiceLevels_GetServiceLevelById"];
     /**
      * Update a service level
      * @description Updates an existing service level.
      */
-    put: operations["UpdateServiceLevelAsync"];
+    put: operations["ServiceLevels_UpdateServiceLevel"];
     /**
      * Delete a service level
      * @description Deletes a service level by its identifier.
      */
-    delete: operations["DeleteServiceLevelAsync"];
+    delete: operations["ServiceLevels_DeleteServiceLevel"];
     /**
      * Patch a service level
      * @description Partially updates an existing service level using a JSON Patch document.
      */
-    patch: operations["PatchServiceLevelAsync"];
+    patch: operations["ServiceLevels_PatchServiceLevel"];
   };
   "/api/v2/ServicesService/ServiceQueues": {
     /**
      * Get all service queues
      * @description Retrieves all service queues for the specified tenant.
      */
-    get: operations["GetServiceQueuesAsync"];
+    get: operations["ServiceQueues_GetServiceQueues"];
     /**
      * Create a service queue
      * @description Creates a new service queue for the specified tenant.
      */
-    post: operations["CreateServiceQueueAsync"];
+    post: operations["ServiceQueues_CreateServiceQueue"];
   };
   "/api/v2/ServicesService/ServiceQueues/Count": {
     /**
      * Get service queues count
      * @description Returns the count of service queues for the specified tenant.
      */
-    get: operations["GetServiceQueuesCountAsync"];
+    get: operations["ServiceQueues_GetServiceQueuesCount"];
   };
   "/api/v2/ServicesService/ServiceQueues/{serviceQueueId}": {
     /**
      * Get a service queue by ID
      * @description Retrieves a service queue by its identifier.
      */
-    get: operations["GetServiceQueueByIdAsync"];
+    get: operations["ServiceQueues_GetServiceQueueById"];
     /**
      * Update a service queue
      * @description Updates an existing service queue.
      */
-    put: operations["UpdateServiceQueueAsync"];
+    put: operations["ServiceQueues_UpdateServiceQueue"];
     /**
      * Delete a service queue
      * @description Deletes a service queue by its identifier.
      */
-    delete: operations["DeleteServiceQueueAsync"];
+    delete: operations["ServiceQueues_DeleteServiceQueue"];
     /**
      * Patch a service queue
      * @description Partially updates an existing service queue using a JSON Patch document.
      */
-    patch: operations["PatchServiceQueueAsync"];
+    patch: operations["ServiceQueues_PatchServiceQueue"];
   };
   "/api/v2/ServicesService/Services": {
     /**
      * Get all services
      * @description Retrieves all services for the specified tenant.
      */
-    get: operations["GetServicesAsync"];
+    get: operations["Services_GetServices"];
     /**
      * Create a service
      * @description Creates a new service for the specified tenant.
      */
-    post: operations["CreateServiceAsync"];
+    post: operations["Services_CreateService"];
   };
   "/api/v2/ServicesService/Services/Count": {
     /**
      * Get services count
      * @description Returns the count of services for the specified tenant.
      */
-    get: operations["GetServicesCountAsync"];
+    get: operations["Services_GetServicesCount"];
   };
   "/api/v2/ServicesService/Services/{serviceId}": {
     /**
      * Get a service by ID
      * @description Retrieves a service by its identifier.
      */
-    get: operations["GetServiceByIdAsync"];
+    get: operations["Services_GetServiceById"];
     /**
      * Update a service
      * @description Updates an existing service.
      */
-    put: operations["UpdateServiceAsync"];
+    put: operations["Services_UpdateService"];
     /**
      * Delete a service
      * @description Deletes a service by its identifier.
      */
-    delete: operations["DeleteServiceAsync"];
+    delete: operations["Services_DeleteService"];
     /**
      * Patch a service
      * @description Partially updates an existing service using a JSON Patch document.
      */
-    patch: operations["PatchServiceAsync"];
+    patch: operations["Services_PatchService"];
   };
 }
 
@@ -2351,7 +2103,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2366,11 +2197,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all service cases
    * @description Retrieves all service cases for the specified tenant.
    */
-  GetServiceCasesAsync: {
+  ServiceCases_GetServiceCases: {
     parameters: {
       query: {
         tenantId: string;
@@ -2414,7 +2430,7 @@ export interface operations {
    * Create a service case
    * @description Creates a new service case for the specified tenant.
    */
-  CreateServiceCaseAsync: {
+  ServiceCases_CreateServiceCase: {
     parameters: {
       query: {
         tenantId: string;
@@ -2458,7 +2474,7 @@ export interface operations {
    * Get service cases count
    * @description Returns the count of service cases for the specified tenant.
    */
-  GetServiceCasesCountAsync: {
+  ServiceCases_GetServiceCasesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2502,7 +2518,7 @@ export interface operations {
    * Get a service case by ID
    * @description Retrieves a service case by its identifier.
    */
-  GetServiceCaseByIdAsync: {
+  ServiceCases_GetServiceCaseById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2543,7 +2559,7 @@ export interface operations {
    * Update a service case
    * @description Updates an existing service case.
    */
-  UpdateServiceCaseAsync: {
+  ServiceCases_UpdateServiceCase: {
     parameters: {
       query: {
         tenantId: string;
@@ -2590,7 +2606,7 @@ export interface operations {
    * Delete a service case
    * @description Deletes a service case by its identifier.
    */
-  DeleteServiceCaseAsync: {
+  ServiceCases_DeleteServiceCase: {
     parameters: {
       query: {
         tenantId: string;
@@ -2631,7 +2647,7 @@ export interface operations {
    * Patch a service case
    * @description Partially updates an existing service case using a JSON Patch document.
    */
-  PatchServiceCaseAsync: {
+  ServiceCases_PatchServiceCase: {
     parameters: {
       query: {
         tenantId: string;
@@ -2678,7 +2694,7 @@ export interface operations {
    * Get all service case types
    * @description Retrieves all service case types for the specified tenant.
    */
-  GetServiceCaseTypesAsync: {
+  ServiceCaseTypes_GetServiceCaseTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -2722,7 +2738,7 @@ export interface operations {
    * Create a service case type
    * @description Creates a new service case type for the specified tenant.
    */
-  CreateServiceCaseTypeAsync: {
+  ServiceCaseTypes_CreateServiceCaseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2766,7 +2782,7 @@ export interface operations {
    * Get service case types count
    * @description Returns the count of service case types for the specified tenant.
    */
-  GetServiceCaseTypesCountAsync: {
+  ServiceCaseTypes_GetServiceCaseTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2810,7 +2826,7 @@ export interface operations {
    * Get a service case type by ID
    * @description Retrieves a service case type by its identifier.
    */
-  GetServiceCaseTypeByIdAsync: {
+  ServiceCaseTypes_GetServiceCaseTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2851,7 +2867,7 @@ export interface operations {
    * Update a service case type
    * @description Updates an existing service case type.
    */
-  UpdateServiceCaseTypeAsync: {
+  ServiceCaseTypes_UpdateServiceCaseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2898,7 +2914,7 @@ export interface operations {
    * Delete a service case type
    * @description Deletes a service case type by its identifier.
    */
-  DeleteServiceCaseTypeAsync: {
+  ServiceCaseTypes_DeleteServiceCaseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2939,7 +2955,7 @@ export interface operations {
    * Patch a service case type
    * @description Partially updates an existing service case type using a JSON Patch document.
    */
-  PatchServiceCaseTypeAsync: {
+  ServiceCaseTypes_PatchServiceCaseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2986,7 +3002,7 @@ export interface operations {
    * Get all service level agreements
    * @description Retrieves all service level agreements for the specified tenant.
    */
-  GetServiceLevelAgreementsAsync: {
+  ServiceLevelAgreements_GetServiceLevelAgreements: {
     parameters: {
       query: {
         tenantId: string;
@@ -3030,7 +3046,7 @@ export interface operations {
    * Create a service level agreement
    * @description Creates a new service level agreement for the specified tenant.
    */
-  CreateServiceLevelAgreementAsync: {
+  ServiceLevelAgreements_CreateServiceLevelAgreement: {
     parameters: {
       query: {
         tenantId: string;
@@ -3074,7 +3090,7 @@ export interface operations {
    * Get service level agreements count
    * @description Returns the count of service level agreements for the specified tenant.
    */
-  GetServiceLevelAgreementsCountAsync: {
+  ServiceLevelAgreements_GetServiceLevelAgreementsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3118,7 +3134,7 @@ export interface operations {
    * Get a service level agreement by ID
    * @description Retrieves a service level agreement by its identifier.
    */
-  GetServiceLevelAgreementByIdAsync: {
+  ServiceLevelAgreements_GetServiceLevelAgreementById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3159,7 +3175,7 @@ export interface operations {
    * Update a service level agreement
    * @description Updates an existing service level agreement.
    */
-  UpdateServiceLevelAgreementAsync: {
+  ServiceLevelAgreements_UpdateServiceLevelAgreement: {
     parameters: {
       query: {
         tenantId: string;
@@ -3206,7 +3222,7 @@ export interface operations {
    * Delete a service level agreement
    * @description Deletes a service level agreement by its identifier.
    */
-  DeleteServiceLevelAgreementAsync: {
+  ServiceLevelAgreements_DeleteServiceLevelAgreement: {
     parameters: {
       query: {
         tenantId: string;
@@ -3247,7 +3263,7 @@ export interface operations {
    * Patch a service level agreement
    * @description Partially updates an existing service level agreement using a JSON Patch document.
    */
-  PatchServiceLevelAgreementAsync: {
+  ServiceLevelAgreements_PatchServiceLevelAgreement: {
     parameters: {
       query: {
         tenantId: string;
@@ -3294,7 +3310,7 @@ export interface operations {
    * Get all service levels
    * @description Retrieves all service levels for the specified tenant.
    */
-  GetAllServiceLevelsAsync: {
+  ServiceLevels_GetAllServiceLevels: {
     parameters: {
       query: {
         tenantId: string;
@@ -3338,7 +3354,7 @@ export interface operations {
    * Get all service levels count
    * @description Returns the count of all service levels for the specified tenant.
    */
-  CountAllServiceLevelsAsync: {
+  ServiceLevels_CountAllServiceLevels: {
     parameters: {
       query: {
         tenantId: string;
@@ -3382,7 +3398,7 @@ export interface operations {
    * Get all service levels
    * @description Retrieves all service levels for the specified service.
    */
-  GetServiceLevelsAsync: {
+  ServiceLevels_GetServiceLevels: {
     parameters: {
       query: {
         tenantId: string;
@@ -3429,7 +3445,7 @@ export interface operations {
    * Create a service level
    * @description Creates a new service level for the specified service.
    */
-  CreateServiceLevelAsync: {
+  ServiceLevels_CreateServiceLevel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3476,7 +3492,7 @@ export interface operations {
    * Get service levels count
    * @description Returns the count of service levels for the specified service.
    */
-  GetServiceLevelsCountAsync: {
+  ServiceLevels_GetServiceLevelsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3523,7 +3539,7 @@ export interface operations {
    * Get a service level by ID
    * @description Retrieves a service level by its identifier.
    */
-  GetServiceLevelByIdAsync: {
+  ServiceLevels_GetServiceLevelById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3565,7 +3581,7 @@ export interface operations {
    * Update a service level
    * @description Updates an existing service level.
    */
-  UpdateServiceLevelAsync: {
+  ServiceLevels_UpdateServiceLevel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3613,7 +3629,7 @@ export interface operations {
    * Delete a service level
    * @description Deletes a service level by its identifier.
    */
-  DeleteServiceLevelAsync: {
+  ServiceLevels_DeleteServiceLevel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3655,7 +3671,7 @@ export interface operations {
    * Patch a service level
    * @description Partially updates an existing service level using a JSON Patch document.
    */
-  PatchServiceLevelAsync: {
+  ServiceLevels_PatchServiceLevel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3703,7 +3719,7 @@ export interface operations {
    * Get all service queues
    * @description Retrieves all service queues for the specified tenant.
    */
-  GetServiceQueuesAsync: {
+  ServiceQueues_GetServiceQueues: {
     parameters: {
       query: {
         tenantId: string;
@@ -3747,7 +3763,7 @@ export interface operations {
    * Create a service queue
    * @description Creates a new service queue for the specified tenant.
    */
-  CreateServiceQueueAsync: {
+  ServiceQueues_CreateServiceQueue: {
     parameters: {
       query: {
         tenantId: string;
@@ -3791,7 +3807,7 @@ export interface operations {
    * Get service queues count
    * @description Returns the count of service queues for the specified tenant.
    */
-  GetServiceQueuesCountAsync: {
+  ServiceQueues_GetServiceQueuesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3835,7 +3851,7 @@ export interface operations {
    * Get a service queue by ID
    * @description Retrieves a service queue by its identifier.
    */
-  GetServiceQueueByIdAsync: {
+  ServiceQueues_GetServiceQueueById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3876,7 +3892,7 @@ export interface operations {
    * Update a service queue
    * @description Updates an existing service queue.
    */
-  UpdateServiceQueueAsync: {
+  ServiceQueues_UpdateServiceQueue: {
     parameters: {
       query: {
         tenantId: string;
@@ -3923,7 +3939,7 @@ export interface operations {
    * Delete a service queue
    * @description Deletes a service queue by its identifier.
    */
-  DeleteServiceQueueAsync: {
+  ServiceQueues_DeleteServiceQueue: {
     parameters: {
       query: {
         tenantId: string;
@@ -3964,7 +3980,7 @@ export interface operations {
    * Patch a service queue
    * @description Partially updates an existing service queue using a JSON Patch document.
    */
-  PatchServiceQueueAsync: {
+  ServiceQueues_PatchServiceQueue: {
     parameters: {
       query: {
         tenantId: string;
@@ -4011,7 +4027,7 @@ export interface operations {
    * Get all services
    * @description Retrieves all services for the specified tenant.
    */
-  GetServicesAsync: {
+  Services_GetServices: {
     parameters: {
       query: {
         tenantId: string;
@@ -4055,7 +4071,7 @@ export interface operations {
    * Create a service
    * @description Creates a new service for the specified tenant.
    */
-  CreateServiceAsync: {
+  Services_CreateService: {
     parameters: {
       query: {
         tenantId: string;
@@ -4099,7 +4115,7 @@ export interface operations {
    * Get services count
    * @description Returns the count of services for the specified tenant.
    */
-  GetServicesCountAsync: {
+  Services_GetServicesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4143,7 +4159,7 @@ export interface operations {
    * Get a service by ID
    * @description Retrieves a service by its identifier.
    */
-  GetServiceByIdAsync: {
+  Services_GetServiceById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4184,7 +4200,7 @@ export interface operations {
    * Update a service
    * @description Updates an existing service.
    */
-  UpdateServiceAsync: {
+  Services_UpdateService: {
     parameters: {
       query: {
         tenantId: string;
@@ -4231,7 +4247,7 @@ export interface operations {
    * Delete a service
    * @description Deletes a service by its identifier.
    */
-  DeleteServiceAsync: {
+  Services_DeleteService: {
     parameters: {
       query: {
         tenantId: string;
@@ -4272,7 +4288,7 @@ export interface operations {
    * Patch a service
    * @description Partially updates an existing service using a JSON Patch document.
    */
-  PatchServiceAsync: {
+  Services_PatchService: {
     parameters: {
       query: {
         tenantId: string;

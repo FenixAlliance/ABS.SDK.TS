@@ -13,6 +13,132 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type CommercialSubscriptionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    subscriptionPlanId?: string | null;
+    lifecycleState?: 'Pending' | 'Active' | 'Suspended' | 'Ended';
+    quantity?: number;
+    activeCommercialTermsVersion?: number | null;
+    receiverBusinessId?: string | null;
+    organizationId?: string | null;
+    individualId?: string | null;
+    accountHolderId?: string | null;
+    startDateTime?: string;
+    endDateTime?: string;
+    nextInvoiceDateTime?: string;
+};
+
+export type CommercialSubscriptionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CommercialSubscriptionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type CommercialSubscriptionDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<CommercialSubscriptionDto> | null;
+};
+
+export type CommercialSubscriptionDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<CommercialSubscriptionDto> | null;
+};
+
+export type CommercialSubscriptionEstablishedDto = {
+    subscriptionId?: string | null;
+};
+
+export type CommercialSubscriptionEstablishedDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CommercialSubscriptionEstablishedDto;
+};
+
+export type CommercialSubscriptionEstablishedDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CommercialSubscriptionEstablishedDto;
+};
+
+export type CommercialSubscriptionPayableObligationDto = {
+    subscriptionId?: string | null;
+    status?: 'Payable' | 'PendingMaterialization' | 'Satisfied' | 'NoOpenObligation';
+    obligationType?: 'Invoice';
+    obligationReference?: string | null;
+    periodSequenceNumber?: number | null;
+};
+
+export type CommercialSubscriptionPayableObligationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CommercialSubscriptionPayableObligationDto;
+};
+
+export type CommercialSubscriptionPayableObligationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CommercialSubscriptionPayableObligationDto;
+};
+
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -84,6 +210,17 @@ export type ErrorEnvelopeWritable = {
     } | null;
 };
 
+export type EstablishCommercialSubscriptionRequest = {
+    subscriptionPlanId: string;
+    billToMode: 'Unknown' | 'BusinessToConsumer' | 'BusinessToBusiness' | 'TenantToTenant';
+    billToReference: string;
+    periodStartUtc: string;
+    periodEndUtc: string;
+    timezoneId?: string | null;
+    quantity?: number;
+    idempotencyKey?: string | null;
+};
+
 export type ForgotPasswordRequest = {
     email: string | null;
 };
@@ -150,6 +287,61 @@ export type PatchOperation = {
     path?: string | null;
     from?: string | null;
     value?: unknown;
+};
+
+export type PlatformPlanPriceDto = {
+    offeringKey?: string | null;
+    billingCycle?: 'Monthly' | 'Annual';
+    planSku?: string | null;
+    name?: string | null;
+    periodDays?: number;
+    amount?: number | null;
+    currencyId?: string | null;
+    pricedFromAmount?: number | null;
+    pricedFromCurrencyId?: string | null;
+    converted?: boolean;
+    forexRatesAsOfUtc?: string | null;
+    unavailable?: string | null;
+};
+
+export type PlatformPricingDto = {
+    currencyId?: string | null;
+    plans?: Array<PlatformPlanPriceDto> | null;
+};
+
+export type PlatformPricingDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PlatformPricingDto;
+};
+
+export type PlatformPricingDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PlatformPricingDto;
+};
+
+export type PurchaseOfferingRequest = {
+    offeringKey: string;
+    billingCycle?: 'Monthly' | 'Annual';
+    periodStartUtc?: string;
+    periodEndUtc?: string;
+    timezoneId?: string | null;
+    quantity?: number;
+    idempotencyKey?: string | null;
 };
 
 export type RefreshRequest = {
@@ -853,72 +1045,273 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type CommercialSubscriptionsGetCommercialSubscriptionsData = {
+    body?: CommercialSubscriptionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/CommercialSubscriptions';
+};
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsError = CommercialSubscriptionsGetCommercialSubscriptionsErrors[keyof CommercialSubscriptionsGetCommercialSubscriptionsErrors];
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsResponses = {
+    /**
+     * OK
+     */
+    200: CommercialSubscriptionDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsResponse = CommercialSubscriptionsGetCommercialSubscriptionsResponses[keyof CommercialSubscriptionsGetCommercialSubscriptionsResponses];
+
+export type CommercialSubscriptionsEstablishCommercialSubscriptionData = {
+    body?: EstablishCommercialSubscriptionRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/CommercialSubscriptions';
+};
+
+export type CommercialSubscriptionsEstablishCommercialSubscriptionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsEstablishCommercialSubscriptionError = CommercialSubscriptionsEstablishCommercialSubscriptionErrors[keyof CommercialSubscriptionsEstablishCommercialSubscriptionErrors];
+
+export type CommercialSubscriptionsEstablishCommercialSubscriptionResponses = {
+    /**
+     * OK
+     */
+    200: CommercialSubscriptionEstablishedDtoEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsEstablishCommercialSubscriptionResponse = CommercialSubscriptionsEstablishCommercialSubscriptionResponses[keyof CommercialSubscriptionsEstablishCommercialSubscriptionResponses];
+
+export type CommercialSubscriptionsPurchaseOfferingData = {
+    body?: PurchaseOfferingRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/CommercialSubscriptions/Purchase';
+};
+
+export type CommercialSubscriptionsPurchaseOfferingErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsPurchaseOfferingError = CommercialSubscriptionsPurchaseOfferingErrors[keyof CommercialSubscriptionsPurchaseOfferingErrors];
+
+export type CommercialSubscriptionsPurchaseOfferingResponses = {
+    /**
+     * OK
+     */
+    200: CommercialSubscriptionEstablishedDtoEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsPurchaseOfferingResponse = CommercialSubscriptionsPurchaseOfferingResponses[keyof CommercialSubscriptionsPurchaseOfferingResponses];
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsCountData = {
+    body?: CommercialSubscriptionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/CommercialSubscriptions/Count';
+};
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsCountError = CommercialSubscriptionsGetCommercialSubscriptionsCountErrors[keyof CommercialSubscriptionsGetCommercialSubscriptionsCountErrors];
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CommercialSubscriptionsGetCommercialSubscriptionsCountResponse = CommercialSubscriptionsGetCommercialSubscriptionsCountResponses[keyof CommercialSubscriptionsGetCommercialSubscriptionsCountResponses];
+
+export type CommercialSubscriptionsGetSubscriptionPayableObligationData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        subscriptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/CommercialSubscriptions/{subscriptionId}/PayableObligation';
+};
+
+export type CommercialSubscriptionsGetSubscriptionPayableObligationErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsGetSubscriptionPayableObligationError = CommercialSubscriptionsGetSubscriptionPayableObligationErrors[keyof CommercialSubscriptionsGetSubscriptionPayableObligationErrors];
+
+export type CommercialSubscriptionsGetSubscriptionPayableObligationResponses = {
+    /**
+     * OK
+     */
+    200: CommercialSubscriptionPayableObligationDtoEnvelopeReadable;
+};
+
+export type CommercialSubscriptionsGetSubscriptionPayableObligationResponse = CommercialSubscriptionsGetSubscriptionPayableObligationResponses[keyof CommercialSubscriptionsGetSubscriptionPayableObligationResponses];
+
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -928,32 +1321,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -964,81 +1357,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1049,25 +1442,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1078,25 +1471,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1107,18 +1500,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1128,14 +1521,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1144,14 +1537,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1160,28 +1553,63 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSubscriptionPlansAsyncData = {
+export type PlatformPricingGetPlatformPricingData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        currencyId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/PlatformPricing';
+};
+
+export type PlatformPricingGetPlatformPricingErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PlatformPricingGetPlatformPricingError = PlatformPricingGetPlatformPricingErrors[keyof PlatformPricingGetPlatformPricingErrors];
+
+export type PlatformPricingGetPlatformPricingResponses = {
+    /**
+     * OK
+     */
+    200: PlatformPricingDtoEnvelopeReadable;
+};
+
+export type PlatformPricingGetPlatformPricingResponse = PlatformPricingGetPlatformPricingResponses[keyof PlatformPricingGetPlatformPricingResponses];
+
+export type SubscriptionPlansGetSubscriptionPlansData = {
     body?: SubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1194,7 +1622,7 @@ export type GetSubscriptionPlansAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans';
 };
 
-export type GetSubscriptionPlansAsyncErrors = {
+export type SubscriptionPlansGetSubscriptionPlansErrors = {
     /**
      * Unauthorized
      */
@@ -1205,18 +1633,18 @@ export type GetSubscriptionPlansAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSubscriptionPlansAsyncError = GetSubscriptionPlansAsyncErrors[keyof GetSubscriptionPlansAsyncErrors];
+export type SubscriptionPlansGetSubscriptionPlansError = SubscriptionPlansGetSubscriptionPlansErrors[keyof SubscriptionPlansGetSubscriptionPlansErrors];
 
-export type GetSubscriptionPlansAsyncResponses = {
+export type SubscriptionPlansGetSubscriptionPlansResponses = {
     /**
      * OK
      */
     200: SubscriptionPlanDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetSubscriptionPlansAsyncResponse = GetSubscriptionPlansAsyncResponses[keyof GetSubscriptionPlansAsyncResponses];
+export type SubscriptionPlansGetSubscriptionPlansResponse = SubscriptionPlansGetSubscriptionPlansResponses[keyof SubscriptionPlansGetSubscriptionPlansResponses];
 
-export type CreateSubscriptionPlanAsyncData = {
+export type SubscriptionPlansCreateSubscriptionPlanData = {
     body?: SubscriptionPlanCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1229,7 +1657,7 @@ export type CreateSubscriptionPlanAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans';
 };
 
-export type CreateSubscriptionPlanAsyncErrors = {
+export type SubscriptionPlansCreateSubscriptionPlanErrors = {
     /**
      * Unauthorized
      */
@@ -1240,18 +1668,18 @@ export type CreateSubscriptionPlanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSubscriptionPlanAsyncError = CreateSubscriptionPlanAsyncErrors[keyof CreateSubscriptionPlanAsyncErrors];
+export type SubscriptionPlansCreateSubscriptionPlanError = SubscriptionPlansCreateSubscriptionPlanErrors[keyof SubscriptionPlansCreateSubscriptionPlanErrors];
 
-export type CreateSubscriptionPlanAsyncResponses = {
+export type SubscriptionPlansCreateSubscriptionPlanResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateSubscriptionPlanAsyncResponse = CreateSubscriptionPlanAsyncResponses[keyof CreateSubscriptionPlanAsyncResponses];
+export type SubscriptionPlansCreateSubscriptionPlanResponse = SubscriptionPlansCreateSubscriptionPlanResponses[keyof SubscriptionPlansCreateSubscriptionPlanResponses];
 
-export type GetSubscriptionPlansCountAsyncData = {
+export type SubscriptionPlansGetSubscriptionPlansCountData = {
     body?: SubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1264,7 +1692,7 @@ export type GetSubscriptionPlansCountAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans/Count';
 };
 
-export type GetSubscriptionPlansCountAsyncErrors = {
+export type SubscriptionPlansGetSubscriptionPlansCountErrors = {
     /**
      * Unauthorized
      */
@@ -1275,18 +1703,18 @@ export type GetSubscriptionPlansCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSubscriptionPlansCountAsyncError = GetSubscriptionPlansCountAsyncErrors[keyof GetSubscriptionPlansCountAsyncErrors];
+export type SubscriptionPlansGetSubscriptionPlansCountError = SubscriptionPlansGetSubscriptionPlansCountErrors[keyof SubscriptionPlansGetSubscriptionPlansCountErrors];
 
-export type GetSubscriptionPlansCountAsyncResponses = {
+export type SubscriptionPlansGetSubscriptionPlansCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSubscriptionPlansCountAsyncResponse = GetSubscriptionPlansCountAsyncResponses[keyof GetSubscriptionPlansCountAsyncResponses];
+export type SubscriptionPlansGetSubscriptionPlansCountResponse = SubscriptionPlansGetSubscriptionPlansCountResponses[keyof SubscriptionPlansGetSubscriptionPlansCountResponses];
 
-export type DeleteSubscriptionPlanAsyncData = {
+export type SubscriptionPlansDeleteSubscriptionPlanData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1301,7 +1729,7 @@ export type DeleteSubscriptionPlanAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans/{planId}';
 };
 
-export type DeleteSubscriptionPlanAsyncErrors = {
+export type SubscriptionPlansDeleteSubscriptionPlanErrors = {
     /**
      * Unauthorized
      */
@@ -1312,18 +1740,18 @@ export type DeleteSubscriptionPlanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSubscriptionPlanAsyncError = DeleteSubscriptionPlanAsyncErrors[keyof DeleteSubscriptionPlanAsyncErrors];
+export type SubscriptionPlansDeleteSubscriptionPlanError = SubscriptionPlansDeleteSubscriptionPlanErrors[keyof SubscriptionPlansDeleteSubscriptionPlanErrors];
 
-export type DeleteSubscriptionPlanAsyncResponses = {
+export type SubscriptionPlansDeleteSubscriptionPlanResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteSubscriptionPlanAsyncResponse = DeleteSubscriptionPlanAsyncResponses[keyof DeleteSubscriptionPlanAsyncResponses];
+export type SubscriptionPlansDeleteSubscriptionPlanResponse = SubscriptionPlansDeleteSubscriptionPlanResponses[keyof SubscriptionPlansDeleteSubscriptionPlanResponses];
 
-export type GetSubscriptionPlanByIdAsyncData = {
+export type SubscriptionPlansGetSubscriptionPlanByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1338,7 +1766,7 @@ export type GetSubscriptionPlanByIdAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans/{planId}';
 };
 
-export type GetSubscriptionPlanByIdAsyncErrors = {
+export type SubscriptionPlansGetSubscriptionPlanByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1349,18 +1777,18 @@ export type GetSubscriptionPlanByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSubscriptionPlanByIdAsyncError = GetSubscriptionPlanByIdAsyncErrors[keyof GetSubscriptionPlanByIdAsyncErrors];
+export type SubscriptionPlansGetSubscriptionPlanByIdError = SubscriptionPlansGetSubscriptionPlanByIdErrors[keyof SubscriptionPlansGetSubscriptionPlanByIdErrors];
 
-export type GetSubscriptionPlanByIdAsyncResponses = {
+export type SubscriptionPlansGetSubscriptionPlanByIdResponses = {
     /**
      * OK
      */
     200: SubscriptionPlanDtoEnvelopeReadable;
 };
 
-export type GetSubscriptionPlanByIdAsyncResponse = GetSubscriptionPlanByIdAsyncResponses[keyof GetSubscriptionPlanByIdAsyncResponses];
+export type SubscriptionPlansGetSubscriptionPlanByIdResponse = SubscriptionPlansGetSubscriptionPlanByIdResponses[keyof SubscriptionPlansGetSubscriptionPlanByIdResponses];
 
-export type PatchSubscriptionPlanAsyncData = {
+export type SubscriptionPlansPatchSubscriptionPlanData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1375,7 +1803,7 @@ export type PatchSubscriptionPlanAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans/{planId}';
 };
 
-export type PatchSubscriptionPlanAsyncErrors = {
+export type SubscriptionPlansPatchSubscriptionPlanErrors = {
     /**
      * Unauthorized
      */
@@ -1386,18 +1814,18 @@ export type PatchSubscriptionPlanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSubscriptionPlanAsyncError = PatchSubscriptionPlanAsyncErrors[keyof PatchSubscriptionPlanAsyncErrors];
+export type SubscriptionPlansPatchSubscriptionPlanError = SubscriptionPlansPatchSubscriptionPlanErrors[keyof SubscriptionPlansPatchSubscriptionPlanErrors];
 
-export type PatchSubscriptionPlanAsyncResponses = {
+export type SubscriptionPlansPatchSubscriptionPlanResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSubscriptionPlanAsyncResponse = PatchSubscriptionPlanAsyncResponses[keyof PatchSubscriptionPlanAsyncResponses];
+export type SubscriptionPlansPatchSubscriptionPlanResponse = SubscriptionPlansPatchSubscriptionPlanResponses[keyof SubscriptionPlansPatchSubscriptionPlanResponses];
 
-export type UpdateSubscriptionPlanAsyncData = {
+export type SubscriptionPlansUpdateSubscriptionPlanData = {
     body?: SubscriptionPlanUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1412,7 +1840,7 @@ export type UpdateSubscriptionPlanAsyncData = {
     url: '/api/v2/SubscriptionsService/SubscriptionPlans/{planId}';
 };
 
-export type UpdateSubscriptionPlanAsyncErrors = {
+export type SubscriptionPlansUpdateSubscriptionPlanErrors = {
     /**
      * Unauthorized
      */
@@ -1423,18 +1851,18 @@ export type UpdateSubscriptionPlanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSubscriptionPlanAsyncError = UpdateSubscriptionPlanAsyncErrors[keyof UpdateSubscriptionPlanAsyncErrors];
+export type SubscriptionPlansUpdateSubscriptionPlanError = SubscriptionPlansUpdateSubscriptionPlanErrors[keyof SubscriptionPlansUpdateSubscriptionPlanErrors];
 
-export type UpdateSubscriptionPlanAsyncResponses = {
+export type SubscriptionPlansUpdateSubscriptionPlanResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateSubscriptionPlanAsyncResponse = UpdateSubscriptionPlanAsyncResponses[keyof UpdateSubscriptionPlanAsyncResponses];
+export type SubscriptionPlansUpdateSubscriptionPlanResponse = SubscriptionPlansUpdateSubscriptionPlanResponses[keyof SubscriptionPlansUpdateSubscriptionPlanResponses];
 
-export type GetSubscriptionsAsyncData = {
+export type SubscriptionsGetSubscriptionsData = {
     body?: SubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1447,7 +1875,7 @@ export type GetSubscriptionsAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions';
 };
 
-export type GetSubscriptionsAsyncErrors = {
+export type SubscriptionsGetSubscriptionsErrors = {
     /**
      * Unauthorized
      */
@@ -1458,18 +1886,18 @@ export type GetSubscriptionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSubscriptionsAsyncError = GetSubscriptionsAsyncErrors[keyof GetSubscriptionsAsyncErrors];
+export type SubscriptionsGetSubscriptionsError = SubscriptionsGetSubscriptionsErrors[keyof SubscriptionsGetSubscriptionsErrors];
 
-export type GetSubscriptionsAsyncResponses = {
+export type SubscriptionsGetSubscriptionsResponses = {
     /**
      * OK
      */
     200: SubscriptionDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetSubscriptionsAsyncResponse = GetSubscriptionsAsyncResponses[keyof GetSubscriptionsAsyncResponses];
+export type SubscriptionsGetSubscriptionsResponse = SubscriptionsGetSubscriptionsResponses[keyof SubscriptionsGetSubscriptionsResponses];
 
-export type CreateSubscriptionAsyncData = {
+export type SubscriptionsCreateSubscriptionData = {
     body?: SubscriptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1482,7 +1910,7 @@ export type CreateSubscriptionAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions';
 };
 
-export type CreateSubscriptionAsyncErrors = {
+export type SubscriptionsCreateSubscriptionErrors = {
     /**
      * Unauthorized
      */
@@ -1493,18 +1921,18 @@ export type CreateSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSubscriptionAsyncError = CreateSubscriptionAsyncErrors[keyof CreateSubscriptionAsyncErrors];
+export type SubscriptionsCreateSubscriptionError = SubscriptionsCreateSubscriptionErrors[keyof SubscriptionsCreateSubscriptionErrors];
 
-export type CreateSubscriptionAsyncResponses = {
+export type SubscriptionsCreateSubscriptionResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateSubscriptionAsyncResponse = CreateSubscriptionAsyncResponses[keyof CreateSubscriptionAsyncResponses];
+export type SubscriptionsCreateSubscriptionResponse = SubscriptionsCreateSubscriptionResponses[keyof SubscriptionsCreateSubscriptionResponses];
 
-export type GetSubscriptionsCountAsyncData = {
+export type SubscriptionsGetSubscriptionsCountData = {
     body?: SubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1517,7 +1945,7 @@ export type GetSubscriptionsCountAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions/Count';
 };
 
-export type GetSubscriptionsCountAsyncErrors = {
+export type SubscriptionsGetSubscriptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1528,18 +1956,18 @@ export type GetSubscriptionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSubscriptionsCountAsyncError = GetSubscriptionsCountAsyncErrors[keyof GetSubscriptionsCountAsyncErrors];
+export type SubscriptionsGetSubscriptionsCountError = SubscriptionsGetSubscriptionsCountErrors[keyof SubscriptionsGetSubscriptionsCountErrors];
 
-export type GetSubscriptionsCountAsyncResponses = {
+export type SubscriptionsGetSubscriptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSubscriptionsCountAsyncResponse = GetSubscriptionsCountAsyncResponses[keyof GetSubscriptionsCountAsyncResponses];
+export type SubscriptionsGetSubscriptionsCountResponse = SubscriptionsGetSubscriptionsCountResponses[keyof SubscriptionsGetSubscriptionsCountResponses];
 
-export type DeleteSubscriptionAsyncData = {
+export type SubscriptionsDeleteSubscriptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1554,7 +1982,7 @@ export type DeleteSubscriptionAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}';
 };
 
-export type DeleteSubscriptionAsyncErrors = {
+export type SubscriptionsDeleteSubscriptionErrors = {
     /**
      * Unauthorized
      */
@@ -1565,18 +1993,18 @@ export type DeleteSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSubscriptionAsyncError = DeleteSubscriptionAsyncErrors[keyof DeleteSubscriptionAsyncErrors];
+export type SubscriptionsDeleteSubscriptionError = SubscriptionsDeleteSubscriptionErrors[keyof SubscriptionsDeleteSubscriptionErrors];
 
-export type DeleteSubscriptionAsyncResponses = {
+export type SubscriptionsDeleteSubscriptionResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteSubscriptionAsyncResponse = DeleteSubscriptionAsyncResponses[keyof DeleteSubscriptionAsyncResponses];
+export type SubscriptionsDeleteSubscriptionResponse = SubscriptionsDeleteSubscriptionResponses[keyof SubscriptionsDeleteSubscriptionResponses];
 
-export type GetSubscriptionByIdAsyncData = {
+export type SubscriptionsGetSubscriptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1591,7 +2019,7 @@ export type GetSubscriptionByIdAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}';
 };
 
-export type GetSubscriptionByIdAsyncErrors = {
+export type SubscriptionsGetSubscriptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1602,18 +2030,18 @@ export type GetSubscriptionByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSubscriptionByIdAsyncError = GetSubscriptionByIdAsyncErrors[keyof GetSubscriptionByIdAsyncErrors];
+export type SubscriptionsGetSubscriptionByIdError = SubscriptionsGetSubscriptionByIdErrors[keyof SubscriptionsGetSubscriptionByIdErrors];
 
-export type GetSubscriptionByIdAsyncResponses = {
+export type SubscriptionsGetSubscriptionByIdResponses = {
     /**
      * OK
      */
     200: SubscriptionDtoEnvelopeReadable;
 };
 
-export type GetSubscriptionByIdAsyncResponse = GetSubscriptionByIdAsyncResponses[keyof GetSubscriptionByIdAsyncResponses];
+export type SubscriptionsGetSubscriptionByIdResponse = SubscriptionsGetSubscriptionByIdResponses[keyof SubscriptionsGetSubscriptionByIdResponses];
 
-export type PatchSubscriptionAsyncData = {
+export type SubscriptionsPatchSubscriptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1628,7 +2056,7 @@ export type PatchSubscriptionAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}';
 };
 
-export type PatchSubscriptionAsyncErrors = {
+export type SubscriptionsPatchSubscriptionErrors = {
     /**
      * Unauthorized
      */
@@ -1639,18 +2067,18 @@ export type PatchSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSubscriptionAsyncError = PatchSubscriptionAsyncErrors[keyof PatchSubscriptionAsyncErrors];
+export type SubscriptionsPatchSubscriptionError = SubscriptionsPatchSubscriptionErrors[keyof SubscriptionsPatchSubscriptionErrors];
 
-export type PatchSubscriptionAsyncResponses = {
+export type SubscriptionsPatchSubscriptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSubscriptionAsyncResponse = PatchSubscriptionAsyncResponses[keyof PatchSubscriptionAsyncResponses];
+export type SubscriptionsPatchSubscriptionResponse = SubscriptionsPatchSubscriptionResponses[keyof SubscriptionsPatchSubscriptionResponses];
 
-export type UpdateSubscriptionAsyncData = {
+export type SubscriptionsUpdateSubscriptionData = {
     body?: SubscriptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1665,7 +2093,7 @@ export type UpdateSubscriptionAsyncData = {
     url: '/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}';
 };
 
-export type UpdateSubscriptionAsyncErrors = {
+export type SubscriptionsUpdateSubscriptionErrors = {
     /**
      * Unauthorized
      */
@@ -1676,16 +2104,16 @@ export type UpdateSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSubscriptionAsyncError = UpdateSubscriptionAsyncErrors[keyof UpdateSubscriptionAsyncErrors];
+export type SubscriptionsUpdateSubscriptionError = SubscriptionsUpdateSubscriptionErrors[keyof SubscriptionsUpdateSubscriptionErrors];
 
-export type UpdateSubscriptionAsyncResponses = {
+export type SubscriptionsUpdateSubscriptionResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateSubscriptionAsyncResponse = UpdateSubscriptionAsyncResponses[keyof UpdateSubscriptionAsyncResponses];
+export type SubscriptionsUpdateSubscriptionResponse = SubscriptionsUpdateSubscriptionResponses[keyof SubscriptionsUpdateSubscriptionResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

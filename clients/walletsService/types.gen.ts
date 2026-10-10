@@ -184,8 +184,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -245,8 +250,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type EmptyEnvelopeReadable = {
@@ -293,6 +303,37 @@ export type ErrorEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
+};
+
+export type EthereumBalanceDto = {
+    address?: string | null;
+    balanceInEther?: number;
+    testNet?: boolean;
+};
+
+export type EthereumBalanceDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: EthereumBalanceDto;
+};
+
+export type EthereumBalanceDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: EthereumBalanceDto;
 };
 
 export type ExtendedOrderDtoReadable = {
@@ -1789,6 +1830,9 @@ export type WalletDto = {
     mainNetEtherBalance?: number;
     ethereumAddress?: string | null;
     ethereumPublicKey?: string | null;
+    /**
+     * @deprecated
+     */
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
 };
@@ -1946,72 +1990,72 @@ export type WalletWithdrawRequestDtoListEnvelopeWritable = {
     result?: Array<WalletWithdrawRequestDto> | null;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2021,32 +2065,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2057,81 +2101,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2142,25 +2186,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2171,25 +2215,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2200,18 +2244,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2221,14 +2265,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2237,14 +2281,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2253,28 +2297,74 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWalletDetailsAsyncData = {
+export type MeGetMyEthereumBalanceData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Me/Ethereum/Balance';
+};
+
+export type MeGetMyEthereumBalanceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Bad Gateway
+     */
+    502: ErrorEnvelopeReadable;
+    /**
+     * Service Unavailable
+     */
+    503: ErrorEnvelopeReadable;
+};
+
+export type MeGetMyEthereumBalanceError = MeGetMyEthereumBalanceErrors[keyof MeGetMyEthereumBalanceErrors];
+
+export type MeGetMyEthereumBalanceResponses = {
+    /**
+     * OK
+     */
+    200: EthereumBalanceDtoEnvelopeReadable;
+};
+
+export type MeGetMyEthereumBalanceResponse = MeGetMyEthereumBalanceResponses[keyof MeGetMyEthereumBalanceResponses];
+
+export type WalletsGetWalletDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2288,7 +2378,7 @@ export type GetWalletDetailsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}';
 };
 
-export type GetWalletDetailsAsyncErrors = {
+export type WalletsGetWalletDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -2299,18 +2389,18 @@ export type GetWalletDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletDetailsAsyncError = GetWalletDetailsAsyncErrors[keyof GetWalletDetailsAsyncErrors];
+export type WalletsGetWalletDetailsError = WalletsGetWalletDetailsErrors[keyof WalletsGetWalletDetailsErrors];
 
-export type GetWalletDetailsAsyncResponses = {
+export type WalletsGetWalletDetailsResponses = {
     /**
      * OK
      */
     200: WalletDtoEnvelopeReadable;
 };
 
-export type GetWalletDetailsAsyncResponse = GetWalletDetailsAsyncResponses[keyof GetWalletDetailsAsyncResponses];
+export type WalletsGetWalletDetailsResponse = WalletsGetWalletDetailsResponses[keyof WalletsGetWalletDetailsResponses];
 
-export type GetWalletOrdersAsyncData = {
+export type WalletsGetWalletOrdersData = {
     body?: OrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2324,7 +2414,7 @@ export type GetWalletOrdersAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Orders';
 };
 
-export type GetWalletOrdersAsyncErrors = {
+export type WalletsGetWalletOrdersErrors = {
     /**
      * Unauthorized
      */
@@ -2335,18 +2425,18 @@ export type GetWalletOrdersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletOrdersAsyncError = GetWalletOrdersAsyncErrors[keyof GetWalletOrdersAsyncErrors];
+export type WalletsGetWalletOrdersError = WalletsGetWalletOrdersErrors[keyof WalletsGetWalletOrdersErrors];
 
-export type GetWalletOrdersAsyncResponses = {
+export type WalletsGetWalletOrdersResponses = {
     /**
      * OK
      */
     200: OrderDtoListEnvelopeReadable;
 };
 
-export type GetWalletOrdersAsyncResponse = GetWalletOrdersAsyncResponses[keyof GetWalletOrdersAsyncResponses];
+export type WalletsGetWalletOrdersResponse = WalletsGetWalletOrdersResponses[keyof WalletsGetWalletOrdersResponses];
 
-export type GetWalletExtendedOrdersAsyncData = {
+export type WalletsGetWalletExtendedOrdersData = {
     body?: ExtendedOrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2360,7 +2450,7 @@ export type GetWalletExtendedOrdersAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Orders/Extended';
 };
 
-export type GetWalletExtendedOrdersAsyncErrors = {
+export type WalletsGetWalletExtendedOrdersErrors = {
     /**
      * Unauthorized
      */
@@ -2371,18 +2461,18 @@ export type GetWalletExtendedOrdersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletExtendedOrdersAsyncError = GetWalletExtendedOrdersAsyncErrors[keyof GetWalletExtendedOrdersAsyncErrors];
+export type WalletsGetWalletExtendedOrdersError = WalletsGetWalletExtendedOrdersErrors[keyof WalletsGetWalletExtendedOrdersErrors];
 
-export type GetWalletExtendedOrdersAsyncResponses = {
+export type WalletsGetWalletExtendedOrdersResponses = {
     /**
      * OK
      */
     200: ExtendedOrderDtoListEnvelopeReadable;
 };
 
-export type GetWalletExtendedOrdersAsyncResponse = GetWalletExtendedOrdersAsyncResponses[keyof GetWalletExtendedOrdersAsyncResponses];
+export type WalletsGetWalletExtendedOrdersResponse = WalletsGetWalletExtendedOrdersResponses[keyof WalletsGetWalletExtendedOrdersResponses];
 
-export type GetWalletOrdersCountAsyncData = {
+export type WalletsGetWalletOrdersCountData = {
     body?: OrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2396,7 +2486,7 @@ export type GetWalletOrdersCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Orders/Count';
 };
 
-export type GetWalletOrdersCountAsyncErrors = {
+export type WalletsGetWalletOrdersCountErrors = {
     /**
      * Unauthorized
      */
@@ -2407,18 +2497,18 @@ export type GetWalletOrdersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletOrdersCountAsyncError = GetWalletOrdersCountAsyncErrors[keyof GetWalletOrdersCountAsyncErrors];
+export type WalletsGetWalletOrdersCountError = WalletsGetWalletOrdersCountErrors[keyof WalletsGetWalletOrdersCountErrors];
 
-export type GetWalletOrdersCountAsyncResponses = {
+export type WalletsGetWalletOrdersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletOrdersCountAsyncResponse = GetWalletOrdersCountAsyncResponses[keyof GetWalletOrdersCountAsyncResponses];
+export type WalletsGetWalletOrdersCountResponse = WalletsGetWalletOrdersCountResponses[keyof WalletsGetWalletOrdersCountResponses];
 
-export type GetWalletInvoicesAsyncData = {
+export type WalletsGetWalletInvoicesData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2432,7 +2522,7 @@ export type GetWalletInvoicesAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Invoices';
 };
 
-export type GetWalletInvoicesAsyncErrors = {
+export type WalletsGetWalletInvoicesErrors = {
     /**
      * Unauthorized
      */
@@ -2443,18 +2533,18 @@ export type GetWalletInvoicesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletInvoicesAsyncError = GetWalletInvoicesAsyncErrors[keyof GetWalletInvoicesAsyncErrors];
+export type WalletsGetWalletInvoicesError = WalletsGetWalletInvoicesErrors[keyof WalletsGetWalletInvoicesErrors];
 
-export type GetWalletInvoicesAsyncResponses = {
+export type WalletsGetWalletInvoicesResponses = {
     /**
      * OK
      */
     200: InvoiceDtoListEnvelopeReadable;
 };
 
-export type GetWalletInvoicesAsyncResponse = GetWalletInvoicesAsyncResponses[keyof GetWalletInvoicesAsyncResponses];
+export type WalletsGetWalletInvoicesResponse = WalletsGetWalletInvoicesResponses[keyof WalletsGetWalletInvoicesResponses];
 
-export type GetWalletInvoicesCountAsyncData = {
+export type WalletsGetWalletInvoicesCountData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2468,7 +2558,7 @@ export type GetWalletInvoicesCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Invoices/Count';
 };
 
-export type GetWalletInvoicesCountAsyncErrors = {
+export type WalletsGetWalletInvoicesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2479,18 +2569,18 @@ export type GetWalletInvoicesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletInvoicesCountAsyncError = GetWalletInvoicesCountAsyncErrors[keyof GetWalletInvoicesCountAsyncErrors];
+export type WalletsGetWalletInvoicesCountError = WalletsGetWalletInvoicesCountErrors[keyof WalletsGetWalletInvoicesCountErrors];
 
-export type GetWalletInvoicesCountAsyncResponses = {
+export type WalletsGetWalletInvoicesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletInvoicesCountAsyncResponse = GetWalletInvoicesCountAsyncResponses[keyof GetWalletInvoicesCountAsyncResponses];
+export type WalletsGetWalletInvoicesCountResponse = WalletsGetWalletInvoicesCountResponses[keyof WalletsGetWalletInvoicesCountResponses];
 
-export type GetWalletPaymentsAsyncData = {
+export type WalletsGetWalletPaymentsData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2504,7 +2594,7 @@ export type GetWalletPaymentsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments';
 };
 
-export type GetWalletPaymentsAsyncErrors = {
+export type WalletsGetWalletPaymentsErrors = {
     /**
      * Unauthorized
      */
@@ -2515,18 +2605,18 @@ export type GetWalletPaymentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletPaymentsAsyncError = GetWalletPaymentsAsyncErrors[keyof GetWalletPaymentsAsyncErrors];
+export type WalletsGetWalletPaymentsError = WalletsGetWalletPaymentsErrors[keyof WalletsGetWalletPaymentsErrors];
 
-export type GetWalletPaymentsAsyncResponses = {
+export type WalletsGetWalletPaymentsResponses = {
     /**
      * OK
      */
     200: PaymentDtoListEnvelopeReadable;
 };
 
-export type GetWalletPaymentsAsyncResponse = GetWalletPaymentsAsyncResponses[keyof GetWalletPaymentsAsyncResponses];
+export type WalletsGetWalletPaymentsResponse = WalletsGetWalletPaymentsResponses[keyof WalletsGetWalletPaymentsResponses];
 
-export type CreateWalletPaymentAsyncData = {
+export type WalletsCreateWalletPaymentData = {
     body?: PaymentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2540,7 +2630,7 @@ export type CreateWalletPaymentAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments';
 };
 
-export type CreateWalletPaymentAsyncErrors = {
+export type WalletsCreateWalletPaymentErrors = {
     /**
      * Unauthorized
      */
@@ -2551,18 +2641,18 @@ export type CreateWalletPaymentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWalletPaymentAsyncError = CreateWalletPaymentAsyncErrors[keyof CreateWalletPaymentAsyncErrors];
+export type WalletsCreateWalletPaymentError = WalletsCreateWalletPaymentErrors[keyof WalletsCreateWalletPaymentErrors];
 
-export type CreateWalletPaymentAsyncResponses = {
+export type WalletsCreateWalletPaymentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWalletPaymentAsyncResponse = CreateWalletPaymentAsyncResponses[keyof CreateWalletPaymentAsyncResponses];
+export type WalletsCreateWalletPaymentResponse = WalletsCreateWalletPaymentResponses[keyof WalletsCreateWalletPaymentResponses];
 
-export type GetWalletPaymentsCountAsyncData = {
+export type WalletsGetWalletPaymentsCountData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2576,7 +2666,7 @@ export type GetWalletPaymentsCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments/Count';
 };
 
-export type GetWalletPaymentsCountAsyncErrors = {
+export type WalletsGetWalletPaymentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2587,18 +2677,18 @@ export type GetWalletPaymentsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletPaymentsCountAsyncError = GetWalletPaymentsCountAsyncErrors[keyof GetWalletPaymentsCountAsyncErrors];
+export type WalletsGetWalletPaymentsCountError = WalletsGetWalletPaymentsCountErrors[keyof WalletsGetWalletPaymentsCountErrors];
 
-export type GetWalletPaymentsCountAsyncResponses = {
+export type WalletsGetWalletPaymentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletPaymentsCountAsyncResponse = GetWalletPaymentsCountAsyncResponses[keyof GetWalletPaymentsCountAsyncResponses];
+export type WalletsGetWalletPaymentsCountResponse = WalletsGetWalletPaymentsCountResponses[keyof WalletsGetWalletPaymentsCountResponses];
 
-export type GetLocationsForWalletAsyncData = {
+export type WalletsGetLocationsForWalletData = {
     body?: LocationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2607,12 +2697,13 @@ export type GetLocationsForWalletAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
 };
 
-export type GetLocationsForWalletAsyncErrors = {
+export type WalletsGetLocationsForWalletErrors = {
     /**
      * Unauthorized
      */
@@ -2623,18 +2714,18 @@ export type GetLocationsForWalletAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocationsForWalletAsyncError = GetLocationsForWalletAsyncErrors[keyof GetLocationsForWalletAsyncErrors];
+export type WalletsGetLocationsForWalletError = WalletsGetLocationsForWalletErrors[keyof WalletsGetLocationsForWalletErrors];
 
-export type GetLocationsForWalletAsyncResponses = {
+export type WalletsGetLocationsForWalletResponses = {
     /**
      * OK
      */
     200: LocationDtoListEnvelopeReadable;
 };
 
-export type GetLocationsForWalletAsyncResponse = GetLocationsForWalletAsyncResponses[keyof GetLocationsForWalletAsyncResponses];
+export type WalletsGetLocationsForWalletResponse = WalletsGetLocationsForWalletResponses[keyof WalletsGetLocationsForWalletResponses];
 
-export type CreateLocationForWalletAsyncData = {
+export type WalletsCreateLocationForWalletData = {
     body?: LocationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2643,12 +2734,13 @@ export type CreateLocationForWalletAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
 };
 
-export type CreateLocationForWalletAsyncErrors = {
+export type WalletsCreateLocationForWalletErrors = {
     /**
      * Unauthorized
      */
@@ -2659,18 +2751,18 @@ export type CreateLocationForWalletAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLocationForWalletAsyncError = CreateLocationForWalletAsyncErrors[keyof CreateLocationForWalletAsyncErrors];
+export type WalletsCreateLocationForWalletError = WalletsCreateLocationForWalletErrors[keyof WalletsCreateLocationForWalletErrors];
 
-export type CreateLocationForWalletAsyncResponses = {
+export type WalletsCreateLocationForWalletResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLocationForWalletAsyncResponse = CreateLocationForWalletAsyncResponses[keyof CreateLocationForWalletAsyncResponses];
+export type WalletsCreateLocationForWalletResponse = WalletsCreateLocationForWalletResponses[keyof WalletsCreateLocationForWalletResponses];
 
-export type GetLocationsForWalletCountAsyncData = {
+export type WalletsGetLocationsForWalletCountData = {
     body?: LocationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2679,12 +2771,13 @@ export type GetLocationsForWalletCountAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/Count';
 };
 
-export type GetLocationsForWalletCountAsyncErrors = {
+export type WalletsGetLocationsForWalletCountErrors = {
     /**
      * Unauthorized
      */
@@ -2695,18 +2788,18 @@ export type GetLocationsForWalletCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocationsForWalletCountAsyncError = GetLocationsForWalletCountAsyncErrors[keyof GetLocationsForWalletCountAsyncErrors];
+export type WalletsGetLocationsForWalletCountError = WalletsGetLocationsForWalletCountErrors[keyof WalletsGetLocationsForWalletCountErrors];
 
-export type GetLocationsForWalletCountAsyncResponses = {
+export type WalletsGetLocationsForWalletCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLocationsForWalletCountAsyncResponse = GetLocationsForWalletCountAsyncResponses[keyof GetLocationsForWalletCountAsyncResponses];
+export type WalletsGetLocationsForWalletCountResponse = WalletsGetLocationsForWalletCountResponses[keyof WalletsGetLocationsForWalletCountResponses];
 
-export type DeleteLocationForWalletAsyncData = {
+export type WalletsDeleteLocationForWalletData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2716,12 +2809,13 @@ export type DeleteLocationForWalletAsyncData = {
         locationId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
 };
 
-export type DeleteLocationForWalletAsyncErrors = {
+export type WalletsDeleteLocationForWalletErrors = {
     /**
      * Unauthorized
      */
@@ -2732,18 +2826,18 @@ export type DeleteLocationForWalletAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLocationForWalletAsyncError = DeleteLocationForWalletAsyncErrors[keyof DeleteLocationForWalletAsyncErrors];
+export type WalletsDeleteLocationForWalletError = WalletsDeleteLocationForWalletErrors[keyof WalletsDeleteLocationForWalletErrors];
 
-export type DeleteLocationForWalletAsyncResponses = {
+export type WalletsDeleteLocationForWalletResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteLocationForWalletAsyncResponse = DeleteLocationForWalletAsyncResponses[keyof DeleteLocationForWalletAsyncResponses];
+export type WalletsDeleteLocationForWalletResponse = WalletsDeleteLocationForWalletResponses[keyof WalletsDeleteLocationForWalletResponses];
 
-export type GetLocationForWalletAsyncData = {
+export type WalletsGetLocationForWalletData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2753,12 +2847,13 @@ export type GetLocationForWalletAsyncData = {
         locationId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
 };
 
-export type GetLocationForWalletAsyncErrors = {
+export type WalletsGetLocationForWalletErrors = {
     /**
      * Unauthorized
      */
@@ -2769,18 +2864,18 @@ export type GetLocationForWalletAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocationForWalletAsyncError = GetLocationForWalletAsyncErrors[keyof GetLocationForWalletAsyncErrors];
+export type WalletsGetLocationForWalletError = WalletsGetLocationForWalletErrors[keyof WalletsGetLocationForWalletErrors];
 
-export type GetLocationForWalletAsyncResponses = {
+export type WalletsGetLocationForWalletResponses = {
     /**
      * OK
      */
     200: LocationDtoEnvelopeReadable;
 };
 
-export type GetLocationForWalletAsyncResponse = GetLocationForWalletAsyncResponses[keyof GetLocationForWalletAsyncResponses];
+export type WalletsGetLocationForWalletResponse = WalletsGetLocationForWalletResponses[keyof WalletsGetLocationForWalletResponses];
 
-export type UpdateLocationForWalletAsyncData = {
+export type WalletsUpdateLocationForWalletData = {
     body?: LocationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2790,12 +2885,13 @@ export type UpdateLocationForWalletAsyncData = {
         locationId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
 };
 
-export type UpdateLocationForWalletAsyncErrors = {
+export type WalletsUpdateLocationForWalletErrors = {
     /**
      * Unauthorized
      */
@@ -2806,18 +2902,18 @@ export type UpdateLocationForWalletAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLocationForWalletAsyncError = UpdateLocationForWalletAsyncErrors[keyof UpdateLocationForWalletAsyncErrors];
+export type WalletsUpdateLocationForWalletError = WalletsUpdateLocationForWalletErrors[keyof WalletsUpdateLocationForWalletErrors];
 
-export type UpdateLocationForWalletAsyncResponses = {
+export type WalletsUpdateLocationForWalletResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLocationForWalletAsyncResponse = UpdateLocationForWalletAsyncResponses[keyof UpdateLocationForWalletAsyncResponses];
+export type WalletsUpdateLocationForWalletResponse = WalletsUpdateLocationForWalletResponses[keyof WalletsUpdateLocationForWalletResponses];
 
-export type GetIncomingWalletInvoicesAsyncData = {
+export type WalletsGetIncomingWalletInvoicesData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2831,7 +2927,7 @@ export type GetIncomingWalletInvoicesAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Invoices/Incoming';
 };
 
-export type GetIncomingWalletInvoicesAsyncErrors = {
+export type WalletsGetIncomingWalletInvoicesErrors = {
     /**
      * Unauthorized
      */
@@ -2842,18 +2938,18 @@ export type GetIncomingWalletInvoicesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIncomingWalletInvoicesAsyncError = GetIncomingWalletInvoicesAsyncErrors[keyof GetIncomingWalletInvoicesAsyncErrors];
+export type WalletsGetIncomingWalletInvoicesError = WalletsGetIncomingWalletInvoicesErrors[keyof WalletsGetIncomingWalletInvoicesErrors];
 
-export type GetIncomingWalletInvoicesAsyncResponses = {
+export type WalletsGetIncomingWalletInvoicesResponses = {
     /**
      * OK
      */
     200: InvoiceDtoListEnvelopeReadable;
 };
 
-export type GetIncomingWalletInvoicesAsyncResponse = GetIncomingWalletInvoicesAsyncResponses[keyof GetIncomingWalletInvoicesAsyncResponses];
+export type WalletsGetIncomingWalletInvoicesResponse = WalletsGetIncomingWalletInvoicesResponses[keyof WalletsGetIncomingWalletInvoicesResponses];
 
-export type GetIncomingWalletInvoicesCountAsyncData = {
+export type WalletsGetIncomingWalletInvoicesCountData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2867,7 +2963,7 @@ export type GetIncomingWalletInvoicesCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Invoices/Incoming/Count';
 };
 
-export type GetIncomingWalletInvoicesCountAsyncErrors = {
+export type WalletsGetIncomingWalletInvoicesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2878,18 +2974,18 @@ export type GetIncomingWalletInvoicesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIncomingWalletInvoicesCountAsyncError = GetIncomingWalletInvoicesCountAsyncErrors[keyof GetIncomingWalletInvoicesCountAsyncErrors];
+export type WalletsGetIncomingWalletInvoicesCountError = WalletsGetIncomingWalletInvoicesCountErrors[keyof WalletsGetIncomingWalletInvoicesCountErrors];
 
-export type GetIncomingWalletInvoicesCountAsyncResponses = {
+export type WalletsGetIncomingWalletInvoicesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetIncomingWalletInvoicesCountAsyncResponse = GetIncomingWalletInvoicesCountAsyncResponses[keyof GetIncomingWalletInvoicesCountAsyncResponses];
+export type WalletsGetIncomingWalletInvoicesCountResponse = WalletsGetIncomingWalletInvoicesCountResponses[keyof WalletsGetIncomingWalletInvoicesCountResponses];
 
-export type GetOutgoingWalletInvoicesAsyncData = {
+export type WalletsGetOutgoingWalletInvoicesData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2903,7 +2999,7 @@ export type GetOutgoingWalletInvoicesAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Invoices/Outgoing';
 };
 
-export type GetOutgoingWalletInvoicesAsyncErrors = {
+export type WalletsGetOutgoingWalletInvoicesErrors = {
     /**
      * Unauthorized
      */
@@ -2914,18 +3010,18 @@ export type GetOutgoingWalletInvoicesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutgoingWalletInvoicesAsyncError = GetOutgoingWalletInvoicesAsyncErrors[keyof GetOutgoingWalletInvoicesAsyncErrors];
+export type WalletsGetOutgoingWalletInvoicesError = WalletsGetOutgoingWalletInvoicesErrors[keyof WalletsGetOutgoingWalletInvoicesErrors];
 
-export type GetOutgoingWalletInvoicesAsyncResponses = {
+export type WalletsGetOutgoingWalletInvoicesResponses = {
     /**
      * OK
      */
     200: InvoiceDtoListEnvelopeReadable;
 };
 
-export type GetOutgoingWalletInvoicesAsyncResponse = GetOutgoingWalletInvoicesAsyncResponses[keyof GetOutgoingWalletInvoicesAsyncResponses];
+export type WalletsGetOutgoingWalletInvoicesResponse = WalletsGetOutgoingWalletInvoicesResponses[keyof WalletsGetOutgoingWalletInvoicesResponses];
 
-export type GetOutgoingWalletInvoicesCountAsyncData = {
+export type WalletsGetOutgoingWalletInvoicesCountData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2939,7 +3035,7 @@ export type GetOutgoingWalletInvoicesCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Invoices/Outgoing/Count';
 };
 
-export type GetOutgoingWalletInvoicesCountAsyncErrors = {
+export type WalletsGetOutgoingWalletInvoicesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2950,18 +3046,18 @@ export type GetOutgoingWalletInvoicesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutgoingWalletInvoicesCountAsyncError = GetOutgoingWalletInvoicesCountAsyncErrors[keyof GetOutgoingWalletInvoicesCountAsyncErrors];
+export type WalletsGetOutgoingWalletInvoicesCountError = WalletsGetOutgoingWalletInvoicesCountErrors[keyof WalletsGetOutgoingWalletInvoicesCountErrors];
 
-export type GetOutgoingWalletInvoicesCountAsyncResponses = {
+export type WalletsGetOutgoingWalletInvoicesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOutgoingWalletInvoicesCountAsyncResponse = GetOutgoingWalletInvoicesCountAsyncResponses[keyof GetOutgoingWalletInvoicesCountAsyncResponses];
+export type WalletsGetOutgoingWalletInvoicesCountResponse = WalletsGetOutgoingWalletInvoicesCountResponses[keyof WalletsGetOutgoingWalletInvoicesCountResponses];
 
-export type GetIncomingPaymentsAsyncData = {
+export type WalletsGetIncomingPaymentsData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2975,7 +3071,7 @@ export type GetIncomingPaymentsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments/Incoming';
 };
 
-export type GetIncomingPaymentsAsyncErrors = {
+export type WalletsGetIncomingPaymentsErrors = {
     /**
      * Unauthorized
      */
@@ -2986,18 +3082,18 @@ export type GetIncomingPaymentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIncomingPaymentsAsyncError = GetIncomingPaymentsAsyncErrors[keyof GetIncomingPaymentsAsyncErrors];
+export type WalletsGetIncomingPaymentsError = WalletsGetIncomingPaymentsErrors[keyof WalletsGetIncomingPaymentsErrors];
 
-export type GetIncomingPaymentsAsyncResponses = {
+export type WalletsGetIncomingPaymentsResponses = {
     /**
      * OK
      */
     200: PaymentDtoListEnvelopeReadable;
 };
 
-export type GetIncomingPaymentsAsyncResponse = GetIncomingPaymentsAsyncResponses[keyof GetIncomingPaymentsAsyncResponses];
+export type WalletsGetIncomingPaymentsResponse = WalletsGetIncomingPaymentsResponses[keyof WalletsGetIncomingPaymentsResponses];
 
-export type GetIncomingPaymentsCountAsyncData = {
+export type WalletsGetIncomingPaymentsCountData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3011,7 +3107,7 @@ export type GetIncomingPaymentsCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments/Incoming/Count';
 };
 
-export type GetIncomingPaymentsCountAsyncErrors = {
+export type WalletsGetIncomingPaymentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3022,18 +3118,18 @@ export type GetIncomingPaymentsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIncomingPaymentsCountAsyncError = GetIncomingPaymentsCountAsyncErrors[keyof GetIncomingPaymentsCountAsyncErrors];
+export type WalletsGetIncomingPaymentsCountError = WalletsGetIncomingPaymentsCountErrors[keyof WalletsGetIncomingPaymentsCountErrors];
 
-export type GetIncomingPaymentsCountAsyncResponses = {
+export type WalletsGetIncomingPaymentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetIncomingPaymentsCountAsyncResponse = GetIncomingPaymentsCountAsyncResponses[keyof GetIncomingPaymentsCountAsyncResponses];
+export type WalletsGetIncomingPaymentsCountResponse = WalletsGetIncomingPaymentsCountResponses[keyof WalletsGetIncomingPaymentsCountResponses];
 
-export type GetOutgoingPaymentsAsyncData = {
+export type WalletsGetOutgoingPaymentsData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3047,7 +3143,7 @@ export type GetOutgoingPaymentsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments/Outgoing';
 };
 
-export type GetOutgoingPaymentsAsyncErrors = {
+export type WalletsGetOutgoingPaymentsErrors = {
     /**
      * Unauthorized
      */
@@ -3058,18 +3154,18 @@ export type GetOutgoingPaymentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutgoingPaymentsAsyncError = GetOutgoingPaymentsAsyncErrors[keyof GetOutgoingPaymentsAsyncErrors];
+export type WalletsGetOutgoingPaymentsError = WalletsGetOutgoingPaymentsErrors[keyof WalletsGetOutgoingPaymentsErrors];
 
-export type GetOutgoingPaymentsAsyncResponses = {
+export type WalletsGetOutgoingPaymentsResponses = {
     /**
      * OK
      */
     200: PaymentDtoListEnvelopeReadable;
 };
 
-export type GetOutgoingPaymentsAsyncResponse = GetOutgoingPaymentsAsyncResponses[keyof GetOutgoingPaymentsAsyncResponses];
+export type WalletsGetOutgoingPaymentsResponse = WalletsGetOutgoingPaymentsResponses[keyof WalletsGetOutgoingPaymentsResponses];
 
-export type GetOutgoingPaymentsCountAsyncData = {
+export type WalletsGetOutgoingPaymentsCountData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3083,7 +3179,7 @@ export type GetOutgoingPaymentsCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Payments/Outgoing/Count';
 };
 
-export type GetOutgoingPaymentsCountAsyncErrors = {
+export type WalletsGetOutgoingPaymentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3094,18 +3190,18 @@ export type GetOutgoingPaymentsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutgoingPaymentsCountAsyncError = GetOutgoingPaymentsCountAsyncErrors[keyof GetOutgoingPaymentsCountAsyncErrors];
+export type WalletsGetOutgoingPaymentsCountError = WalletsGetOutgoingPaymentsCountErrors[keyof WalletsGetOutgoingPaymentsCountErrors];
 
-export type GetOutgoingPaymentsCountAsyncResponses = {
+export type WalletsGetOutgoingPaymentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOutgoingPaymentsCountAsyncResponse = GetOutgoingPaymentsCountAsyncResponses[keyof GetOutgoingPaymentsCountAsyncResponses];
+export type WalletsGetOutgoingPaymentsCountResponse = WalletsGetOutgoingPaymentsCountResponses[keyof WalletsGetOutgoingPaymentsCountResponses];
 
-export type GetWalletQuotesAsyncData = {
+export type WalletsGetWalletQuotesData = {
     body?: QuoteDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3119,7 +3215,7 @@ export type GetWalletQuotesAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Quotes';
 };
 
-export type GetWalletQuotesAsyncErrors = {
+export type WalletsGetWalletQuotesErrors = {
     /**
      * Unauthorized
      */
@@ -3130,18 +3226,18 @@ export type GetWalletQuotesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletQuotesAsyncError = GetWalletQuotesAsyncErrors[keyof GetWalletQuotesAsyncErrors];
+export type WalletsGetWalletQuotesError = WalletsGetWalletQuotesErrors[keyof WalletsGetWalletQuotesErrors];
 
-export type GetWalletQuotesAsyncResponses = {
+export type WalletsGetWalletQuotesResponses = {
     /**
      * OK
      */
     200: QuoteDtoListEnvelopeReadable;
 };
 
-export type GetWalletQuotesAsyncResponse = GetWalletQuotesAsyncResponses[keyof GetWalletQuotesAsyncResponses];
+export type WalletsGetWalletQuotesResponse = WalletsGetWalletQuotesResponses[keyof WalletsGetWalletQuotesResponses];
 
-export type GetWalletQuotesCountAsyncData = {
+export type WalletsGetWalletQuotesCountData = {
     body?: QuoteDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3155,7 +3251,7 @@ export type GetWalletQuotesCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Quotes/Count';
 };
 
-export type GetWalletQuotesCountAsyncErrors = {
+export type WalletsGetWalletQuotesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3166,18 +3262,18 @@ export type GetWalletQuotesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletQuotesCountAsyncError = GetWalletQuotesCountAsyncErrors[keyof GetWalletQuotesCountAsyncErrors];
+export type WalletsGetWalletQuotesCountError = WalletsGetWalletQuotesCountErrors[keyof WalletsGetWalletQuotesCountErrors];
 
-export type GetWalletQuotesCountAsyncResponses = {
+export type WalletsGetWalletQuotesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletQuotesCountAsyncResponse = GetWalletQuotesCountAsyncResponses[keyof GetWalletQuotesCountAsyncResponses];
+export type WalletsGetWalletQuotesCountResponse = WalletsGetWalletQuotesCountResponses[keyof WalletsGetWalletQuotesCountResponses];
 
-export type GetWalletBankAccountsAsyncData = {
+export type WalletsGetWalletBankAccountsData = {
     body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3186,12 +3282,13 @@ export type GetWalletBankAccountsAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts';
 };
 
-export type GetWalletBankAccountsAsyncErrors = {
+export type WalletsGetWalletBankAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -3202,18 +3299,18 @@ export type GetWalletBankAccountsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletBankAccountsAsyncError = GetWalletBankAccountsAsyncErrors[keyof GetWalletBankAccountsAsyncErrors];
+export type WalletsGetWalletBankAccountsError = WalletsGetWalletBankAccountsErrors[keyof WalletsGetWalletBankAccountsErrors];
 
-export type GetWalletBankAccountsAsyncResponses = {
+export type WalletsGetWalletBankAccountsResponses = {
     /**
      * OK
      */
     200: BankAccountDtoListEnvelopeReadable;
 };
 
-export type GetWalletBankAccountsAsyncResponse = GetWalletBankAccountsAsyncResponses[keyof GetWalletBankAccountsAsyncResponses];
+export type WalletsGetWalletBankAccountsResponse = WalletsGetWalletBankAccountsResponses[keyof WalletsGetWalletBankAccountsResponses];
 
-export type CreateWalletBankAccountAsyncData = {
+export type WalletsCreateWalletBankAccountData = {
     body?: BankAccountCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3222,12 +3319,13 @@ export type CreateWalletBankAccountAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts';
 };
 
-export type CreateWalletBankAccountAsyncErrors = {
+export type WalletsCreateWalletBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -3238,18 +3336,18 @@ export type CreateWalletBankAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWalletBankAccountAsyncError = CreateWalletBankAccountAsyncErrors[keyof CreateWalletBankAccountAsyncErrors];
+export type WalletsCreateWalletBankAccountError = WalletsCreateWalletBankAccountErrors[keyof WalletsCreateWalletBankAccountErrors];
 
-export type CreateWalletBankAccountAsyncResponses = {
+export type WalletsCreateWalletBankAccountResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWalletBankAccountAsyncResponse = CreateWalletBankAccountAsyncResponses[keyof CreateWalletBankAccountAsyncResponses];
+export type WalletsCreateWalletBankAccountResponse = WalletsCreateWalletBankAccountResponses[keyof WalletsCreateWalletBankAccountResponses];
 
-export type GetWalletBankAccountsCountAsyncData = {
+export type WalletsGetWalletBankAccountsCountData = {
     body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3258,12 +3356,13 @@ export type GetWalletBankAccountsCountAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/Count';
 };
 
-export type GetWalletBankAccountsCountAsyncErrors = {
+export type WalletsGetWalletBankAccountsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3274,18 +3373,18 @@ export type GetWalletBankAccountsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletBankAccountsCountAsyncError = GetWalletBankAccountsCountAsyncErrors[keyof GetWalletBankAccountsCountAsyncErrors];
+export type WalletsGetWalletBankAccountsCountError = WalletsGetWalletBankAccountsCountErrors[keyof WalletsGetWalletBankAccountsCountErrors];
 
-export type GetWalletBankAccountsCountAsyncResponses = {
+export type WalletsGetWalletBankAccountsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletBankAccountsCountAsyncResponse = GetWalletBankAccountsCountAsyncResponses[keyof GetWalletBankAccountsCountAsyncResponses];
+export type WalletsGetWalletBankAccountsCountResponse = WalletsGetWalletBankAccountsCountResponses[keyof WalletsGetWalletBankAccountsCountResponses];
 
-export type DeleteWalletBankAccountAsyncData = {
+export type WalletsDeleteWalletBankAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3295,12 +3394,13 @@ export type DeleteWalletBankAccountAsyncData = {
         bankAccountId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
 };
 
-export type DeleteWalletBankAccountAsyncErrors = {
+export type WalletsDeleteWalletBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -3311,18 +3411,18 @@ export type DeleteWalletBankAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWalletBankAccountAsyncError = DeleteWalletBankAccountAsyncErrors[keyof DeleteWalletBankAccountAsyncErrors];
+export type WalletsDeleteWalletBankAccountError = WalletsDeleteWalletBankAccountErrors[keyof WalletsDeleteWalletBankAccountErrors];
 
-export type DeleteWalletBankAccountAsyncResponses = {
+export type WalletsDeleteWalletBankAccountResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteWalletBankAccountAsyncResponse = DeleteWalletBankAccountAsyncResponses[keyof DeleteWalletBankAccountAsyncResponses];
+export type WalletsDeleteWalletBankAccountResponse = WalletsDeleteWalletBankAccountResponses[keyof WalletsDeleteWalletBankAccountResponses];
 
-export type GetWalletBankAccountAsyncData = {
+export type WalletsGetWalletBankAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3332,12 +3432,13 @@ export type GetWalletBankAccountAsyncData = {
         bankAccountId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
 };
 
-export type GetWalletBankAccountAsyncErrors = {
+export type WalletsGetWalletBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -3348,18 +3449,18 @@ export type GetWalletBankAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletBankAccountAsyncError = GetWalletBankAccountAsyncErrors[keyof GetWalletBankAccountAsyncErrors];
+export type WalletsGetWalletBankAccountError = WalletsGetWalletBankAccountErrors[keyof WalletsGetWalletBankAccountErrors];
 
-export type GetWalletBankAccountAsyncResponses = {
+export type WalletsGetWalletBankAccountResponses = {
     /**
      * OK
      */
     200: BankAccountDtoEnvelopeReadable;
 };
 
-export type GetWalletBankAccountAsyncResponse = GetWalletBankAccountAsyncResponses[keyof GetWalletBankAccountAsyncResponses];
+export type WalletsGetWalletBankAccountResponse = WalletsGetWalletBankAccountResponses[keyof WalletsGetWalletBankAccountResponses];
 
-export type PatchWalletBankAccountAsyncData = {
+export type WalletsPatchWalletBankAccountData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3369,12 +3470,13 @@ export type PatchWalletBankAccountAsyncData = {
         bankAccountId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
 };
 
-export type PatchWalletBankAccountAsyncErrors = {
+export type WalletsPatchWalletBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -3385,18 +3487,18 @@ export type PatchWalletBankAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWalletBankAccountAsyncError = PatchWalletBankAccountAsyncErrors[keyof PatchWalletBankAccountAsyncErrors];
+export type WalletsPatchWalletBankAccountError = WalletsPatchWalletBankAccountErrors[keyof WalletsPatchWalletBankAccountErrors];
 
-export type PatchWalletBankAccountAsyncResponses = {
+export type WalletsPatchWalletBankAccountResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWalletBankAccountAsyncResponse = PatchWalletBankAccountAsyncResponses[keyof PatchWalletBankAccountAsyncResponses];
+export type WalletsPatchWalletBankAccountResponse = WalletsPatchWalletBankAccountResponses[keyof WalletsPatchWalletBankAccountResponses];
 
-export type UpdateWalletBankAccountAsyncData = {
+export type WalletsUpdateWalletBankAccountData = {
     body?: BankAccountUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3406,12 +3508,13 @@ export type UpdateWalletBankAccountAsyncData = {
         bankAccountId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
 };
 
-export type UpdateWalletBankAccountAsyncErrors = {
+export type WalletsUpdateWalletBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -3422,18 +3525,18 @@ export type UpdateWalletBankAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWalletBankAccountAsyncError = UpdateWalletBankAccountAsyncErrors[keyof UpdateWalletBankAccountAsyncErrors];
+export type WalletsUpdateWalletBankAccountError = WalletsUpdateWalletBankAccountErrors[keyof WalletsUpdateWalletBankAccountErrors];
 
-export type UpdateWalletBankAccountAsyncResponses = {
+export type WalletsUpdateWalletBankAccountResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWalletBankAccountAsyncResponse = UpdateWalletBankAccountAsyncResponses[keyof UpdateWalletBankAccountAsyncResponses];
+export type WalletsUpdateWalletBankAccountResponse = WalletsUpdateWalletBankAccountResponses[keyof WalletsUpdateWalletBankAccountResponses];
 
-export type GetWalletWithdrawsAsyncData = {
+export type WalletsGetWalletWithdrawsData = {
     body?: WalletWithdrawDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3447,7 +3550,7 @@ export type GetWalletWithdrawsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Withdraws';
 };
 
-export type GetWalletWithdrawsAsyncErrors = {
+export type WalletsGetWalletWithdrawsErrors = {
     /**
      * Unauthorized
      */
@@ -3458,18 +3561,18 @@ export type GetWalletWithdrawsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletWithdrawsAsyncError = GetWalletWithdrawsAsyncErrors[keyof GetWalletWithdrawsAsyncErrors];
+export type WalletsGetWalletWithdrawsError = WalletsGetWalletWithdrawsErrors[keyof WalletsGetWalletWithdrawsErrors];
 
-export type GetWalletWithdrawsAsyncResponses = {
+export type WalletsGetWalletWithdrawsResponses = {
     /**
      * OK
      */
     200: WalletWithdrawDtoListEnvelopeReadable;
 };
 
-export type GetWalletWithdrawsAsyncResponse = GetWalletWithdrawsAsyncResponses[keyof GetWalletWithdrawsAsyncResponses];
+export type WalletsGetWalletWithdrawsResponse = WalletsGetWalletWithdrawsResponses[keyof WalletsGetWalletWithdrawsResponses];
 
-export type CreateWalletWithdrawRequestAsyncData = {
+export type WalletsCreateWalletWithdrawRequestData = {
     body?: WalletWithdrawRequestCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3483,7 +3586,7 @@ export type CreateWalletWithdrawRequestAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Withdraws';
 };
 
-export type CreateWalletWithdrawRequestAsyncErrors = {
+export type WalletsCreateWalletWithdrawRequestErrors = {
     /**
      * Unauthorized
      */
@@ -3494,18 +3597,18 @@ export type CreateWalletWithdrawRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWalletWithdrawRequestAsyncError = CreateWalletWithdrawRequestAsyncErrors[keyof CreateWalletWithdrawRequestAsyncErrors];
+export type WalletsCreateWalletWithdrawRequestError = WalletsCreateWalletWithdrawRequestErrors[keyof WalletsCreateWalletWithdrawRequestErrors];
 
-export type CreateWalletWithdrawRequestAsyncResponses = {
+export type WalletsCreateWalletWithdrawRequestResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWalletWithdrawRequestAsyncResponse = CreateWalletWithdrawRequestAsyncResponses[keyof CreateWalletWithdrawRequestAsyncResponses];
+export type WalletsCreateWalletWithdrawRequestResponse = WalletsCreateWalletWithdrawRequestResponses[keyof WalletsCreateWalletWithdrawRequestResponses];
 
-export type GetWalletWithdrawsCountAsyncData = {
+export type WalletsGetWalletWithdrawsCountData = {
     body?: WalletWithdrawDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3519,7 +3622,7 @@ export type GetWalletWithdrawsCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Withdraws/Count';
 };
 
-export type GetWalletWithdrawsCountAsyncErrors = {
+export type WalletsGetWalletWithdrawsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3530,18 +3633,18 @@ export type GetWalletWithdrawsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletWithdrawsCountAsyncError = GetWalletWithdrawsCountAsyncErrors[keyof GetWalletWithdrawsCountAsyncErrors];
+export type WalletsGetWalletWithdrawsCountError = WalletsGetWalletWithdrawsCountErrors[keyof WalletsGetWalletWithdrawsCountErrors];
 
-export type GetWalletWithdrawsCountAsyncResponses = {
+export type WalletsGetWalletWithdrawsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletWithdrawsCountAsyncResponse = GetWalletWithdrawsCountAsyncResponses[keyof GetWalletWithdrawsCountAsyncResponses];
+export type WalletsGetWalletWithdrawsCountResponse = WalletsGetWalletWithdrawsCountResponses[keyof WalletsGetWalletWithdrawsCountResponses];
 
-export type GetWalletWithdrawRequestsAsyncData = {
+export type WalletsGetWalletWithdrawRequestsData = {
     body?: WalletWithdrawRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3555,7 +3658,7 @@ export type GetWalletWithdrawRequestsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests';
 };
 
-export type GetWalletWithdrawRequestsAsyncErrors = {
+export type WalletsGetWalletWithdrawRequestsErrors = {
     /**
      * Unauthorized
      */
@@ -3566,18 +3669,18 @@ export type GetWalletWithdrawRequestsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletWithdrawRequestsAsyncError = GetWalletWithdrawRequestsAsyncErrors[keyof GetWalletWithdrawRequestsAsyncErrors];
+export type WalletsGetWalletWithdrawRequestsError = WalletsGetWalletWithdrawRequestsErrors[keyof WalletsGetWalletWithdrawRequestsErrors];
 
-export type GetWalletWithdrawRequestsAsyncResponses = {
+export type WalletsGetWalletWithdrawRequestsResponses = {
     /**
      * OK
      */
     200: WalletWithdrawRequestDtoListEnvelopeReadable;
 };
 
-export type GetWalletWithdrawRequestsAsyncResponse = GetWalletWithdrawRequestsAsyncResponses[keyof GetWalletWithdrawRequestsAsyncResponses];
+export type WalletsGetWalletWithdrawRequestsResponse = WalletsGetWalletWithdrawRequestsResponses[keyof WalletsGetWalletWithdrawRequestsResponses];
 
-export type GetWalletWithdrawRequestsCountAsyncData = {
+export type WalletsGetWalletWithdrawRequestsCountData = {
     body?: WalletWithdrawRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3591,7 +3694,7 @@ export type GetWalletWithdrawRequestsCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests/Count';
 };
 
-export type GetWalletWithdrawRequestsCountAsyncErrors = {
+export type WalletsGetWalletWithdrawRequestsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3602,18 +3705,18 @@ export type GetWalletWithdrawRequestsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletWithdrawRequestsCountAsyncError = GetWalletWithdrawRequestsCountAsyncErrors[keyof GetWalletWithdrawRequestsCountAsyncErrors];
+export type WalletsGetWalletWithdrawRequestsCountError = WalletsGetWalletWithdrawRequestsCountErrors[keyof WalletsGetWalletWithdrawRequestsCountErrors];
 
-export type GetWalletWithdrawRequestsCountAsyncResponses = {
+export type WalletsGetWalletWithdrawRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletWithdrawRequestsCountAsyncResponse = GetWalletWithdrawRequestsCountAsyncResponses[keyof GetWalletWithdrawRequestsCountAsyncResponses];
+export type WalletsGetWalletWithdrawRequestsCountResponse = WalletsGetWalletWithdrawRequestsCountResponses[keyof WalletsGetWalletWithdrawRequestsCountResponses];
 
-export type GetWalletChargebacksAsyncData = {
+export type WalletsGetWalletChargebacksData = {
     body?: PaymentChargebackDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3627,7 +3730,7 @@ export type GetWalletChargebacksAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Chargebacks';
 };
 
-export type GetWalletChargebacksAsyncErrors = {
+export type WalletsGetWalletChargebacksErrors = {
     /**
      * Unauthorized
      */
@@ -3638,18 +3741,18 @@ export type GetWalletChargebacksAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletChargebacksAsyncError = GetWalletChargebacksAsyncErrors[keyof GetWalletChargebacksAsyncErrors];
+export type WalletsGetWalletChargebacksError = WalletsGetWalletChargebacksErrors[keyof WalletsGetWalletChargebacksErrors];
 
-export type GetWalletChargebacksAsyncResponses = {
+export type WalletsGetWalletChargebacksResponses = {
     /**
      * OK
      */
     200: PaymentChargebackDtoListEnvelopeReadable;
 };
 
-export type GetWalletChargebacksAsyncResponse = GetWalletChargebacksAsyncResponses[keyof GetWalletChargebacksAsyncResponses];
+export type WalletsGetWalletChargebacksResponse = WalletsGetWalletChargebacksResponses[keyof WalletsGetWalletChargebacksResponses];
 
-export type GetWalletChargebacksCountAsyncData = {
+export type WalletsGetWalletChargebacksCountData = {
     body?: PaymentChargebackDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3663,7 +3766,7 @@ export type GetWalletChargebacksCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Chargebacks/Count';
 };
 
-export type GetWalletChargebacksCountAsyncErrors = {
+export type WalletsGetWalletChargebacksCountErrors = {
     /**
      * Unauthorized
      */
@@ -3674,18 +3777,18 @@ export type GetWalletChargebacksCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletChargebacksCountAsyncError = GetWalletChargebacksCountAsyncErrors[keyof GetWalletChargebacksCountAsyncErrors];
+export type WalletsGetWalletChargebacksCountError = WalletsGetWalletChargebacksCountErrors[keyof WalletsGetWalletChargebacksCountErrors];
 
-export type GetWalletChargebacksCountAsyncResponses = {
+export type WalletsGetWalletChargebacksCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletChargebacksCountAsyncResponse = GetWalletChargebacksCountAsyncResponses[keyof GetWalletChargebacksCountAsyncResponses];
+export type WalletsGetWalletChargebacksCountResponse = WalletsGetWalletChargebacksCountResponses[keyof WalletsGetWalletChargebacksCountResponses];
 
-export type GetWalletRefundsAsyncData = {
+export type WalletsGetWalletRefundsData = {
     body?: PaymentRefundDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3699,7 +3802,7 @@ export type GetWalletRefundsAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Refunds';
 };
 
-export type GetWalletRefundsAsyncErrors = {
+export type WalletsGetWalletRefundsErrors = {
     /**
      * Unauthorized
      */
@@ -3710,18 +3813,18 @@ export type GetWalletRefundsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletRefundsAsyncError = GetWalletRefundsAsyncErrors[keyof GetWalletRefundsAsyncErrors];
+export type WalletsGetWalletRefundsError = WalletsGetWalletRefundsErrors[keyof WalletsGetWalletRefundsErrors];
 
-export type GetWalletRefundsAsyncResponses = {
+export type WalletsGetWalletRefundsResponses = {
     /**
      * OK
      */
     200: PaymentRefundDtoListEnvelopeReadable;
 };
 
-export type GetWalletRefundsAsyncResponse = GetWalletRefundsAsyncResponses[keyof GetWalletRefundsAsyncResponses];
+export type WalletsGetWalletRefundsResponse = WalletsGetWalletRefundsResponses[keyof WalletsGetWalletRefundsResponses];
 
-export type GetWalletRefundsCountAsyncData = {
+export type WalletsGetWalletRefundsCountData = {
     body?: PaymentRefundDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3735,7 +3838,7 @@ export type GetWalletRefundsCountAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Refunds/Count';
 };
 
-export type GetWalletRefundsCountAsyncErrors = {
+export type WalletsGetWalletRefundsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3746,18 +3849,18 @@ export type GetWalletRefundsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletRefundsCountAsyncError = GetWalletRefundsCountAsyncErrors[keyof GetWalletRefundsCountAsyncErrors];
+export type WalletsGetWalletRefundsCountError = WalletsGetWalletRefundsCountErrors[keyof WalletsGetWalletRefundsCountErrors];
 
-export type GetWalletRefundsCountAsyncResponses = {
+export type WalletsGetWalletRefundsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletRefundsCountAsyncResponse = GetWalletRefundsCountAsyncResponses[keyof GetWalletRefundsCountAsyncResponses];
+export type WalletsGetWalletRefundsCountResponse = WalletsGetWalletRefundsCountResponses[keyof WalletsGetWalletRefundsCountResponses];
 
-export type GetWalletTokensAsyncData = {
+export type WalletsGetWalletTokensData = {
     body?: PaymentTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3766,12 +3869,13 @@ export type GetWalletTokensAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens';
 };
 
-export type GetWalletTokensAsyncErrors = {
+export type WalletsGetWalletTokensErrors = {
     /**
      * Unauthorized
      */
@@ -3782,18 +3886,18 @@ export type GetWalletTokensAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletTokensAsyncError = GetWalletTokensAsyncErrors[keyof GetWalletTokensAsyncErrors];
+export type WalletsGetWalletTokensError = WalletsGetWalletTokensErrors[keyof WalletsGetWalletTokensErrors];
 
-export type GetWalletTokensAsyncResponses = {
+export type WalletsGetWalletTokensResponses = {
     /**
      * OK
      */
     200: PaymentTokenDtoListEnvelopeReadable;
 };
 
-export type GetWalletTokensAsyncResponse = GetWalletTokensAsyncResponses[keyof GetWalletTokensAsyncResponses];
+export type WalletsGetWalletTokensResponse = WalletsGetWalletTokensResponses[keyof WalletsGetWalletTokensResponses];
 
-export type CreateWalletTokenAsyncData = {
+export type WalletsCreateWalletTokenData = {
     body?: PaymentTokenCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3802,12 +3906,13 @@ export type CreateWalletTokenAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens';
 };
 
-export type CreateWalletTokenAsyncErrors = {
+export type WalletsCreateWalletTokenErrors = {
     /**
      * Unauthorized
      */
@@ -3818,18 +3923,18 @@ export type CreateWalletTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWalletTokenAsyncError = CreateWalletTokenAsyncErrors[keyof CreateWalletTokenAsyncErrors];
+export type WalletsCreateWalletTokenError = WalletsCreateWalletTokenErrors[keyof WalletsCreateWalletTokenErrors];
 
-export type CreateWalletTokenAsyncResponses = {
+export type WalletsCreateWalletTokenResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWalletTokenAsyncResponse = CreateWalletTokenAsyncResponses[keyof CreateWalletTokenAsyncResponses];
+export type WalletsCreateWalletTokenResponse = WalletsCreateWalletTokenResponses[keyof WalletsCreateWalletTokenResponses];
 
-export type GetWalletTokensCountAsyncData = {
+export type WalletsGetWalletTokensCountData = {
     body?: PaymentTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3838,12 +3943,13 @@ export type GetWalletTokensCountAsyncData = {
         walletId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/Count';
 };
 
-export type GetWalletTokensCountAsyncErrors = {
+export type WalletsGetWalletTokensCountErrors = {
     /**
      * Unauthorized
      */
@@ -3854,18 +3960,18 @@ export type GetWalletTokensCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletTokensCountAsyncError = GetWalletTokensCountAsyncErrors[keyof GetWalletTokensCountAsyncErrors];
+export type WalletsGetWalletTokensCountError = WalletsGetWalletTokensCountErrors[keyof WalletsGetWalletTokensCountErrors];
 
-export type GetWalletTokensCountAsyncResponses = {
+export type WalletsGetWalletTokensCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletTokensCountAsyncResponse = GetWalletTokensCountAsyncResponses[keyof GetWalletTokensCountAsyncResponses];
+export type WalletsGetWalletTokensCountResponse = WalletsGetWalletTokensCountResponses[keyof WalletsGetWalletTokensCountResponses];
 
-export type DeleteWalletTokenAsyncData = {
+export type WalletsDeleteWalletTokenData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3875,12 +3981,13 @@ export type DeleteWalletTokenAsyncData = {
         tokenId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
 };
 
-export type DeleteWalletTokenAsyncErrors = {
+export type WalletsDeleteWalletTokenErrors = {
     /**
      * Unauthorized
      */
@@ -3891,18 +3998,18 @@ export type DeleteWalletTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWalletTokenAsyncError = DeleteWalletTokenAsyncErrors[keyof DeleteWalletTokenAsyncErrors];
+export type WalletsDeleteWalletTokenError = WalletsDeleteWalletTokenErrors[keyof WalletsDeleteWalletTokenErrors];
 
-export type DeleteWalletTokenAsyncResponses = {
+export type WalletsDeleteWalletTokenResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteWalletTokenAsyncResponse = DeleteWalletTokenAsyncResponses[keyof DeleteWalletTokenAsyncResponses];
+export type WalletsDeleteWalletTokenResponse = WalletsDeleteWalletTokenResponses[keyof WalletsDeleteWalletTokenResponses];
 
-export type GetWalletTokenAsyncData = {
+export type WalletsGetWalletTokenData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3912,12 +4019,13 @@ export type GetWalletTokenAsyncData = {
         tokenId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
 };
 
-export type GetWalletTokenAsyncErrors = {
+export type WalletsGetWalletTokenErrors = {
     /**
      * Unauthorized
      */
@@ -3928,18 +4036,18 @@ export type GetWalletTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletTokenAsyncError = GetWalletTokenAsyncErrors[keyof GetWalletTokenAsyncErrors];
+export type WalletsGetWalletTokenError = WalletsGetWalletTokenErrors[keyof WalletsGetWalletTokenErrors];
 
-export type GetWalletTokenAsyncResponses = {
+export type WalletsGetWalletTokenResponses = {
     /**
      * OK
      */
     200: PaymentTokenDtoEnvelopeReadable;
 };
 
-export type GetWalletTokenAsyncResponse = GetWalletTokenAsyncResponses[keyof GetWalletTokenAsyncResponses];
+export type WalletsGetWalletTokenResponse = WalletsGetWalletTokenResponses[keyof WalletsGetWalletTokenResponses];
 
-export type PatchWalletTokenAsyncData = {
+export type WalletsPatchWalletTokenData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3949,12 +4057,13 @@ export type PatchWalletTokenAsyncData = {
         tokenId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
 };
 
-export type PatchWalletTokenAsyncErrors = {
+export type WalletsPatchWalletTokenErrors = {
     /**
      * Unauthorized
      */
@@ -3965,18 +4074,18 @@ export type PatchWalletTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWalletTokenAsyncError = PatchWalletTokenAsyncErrors[keyof PatchWalletTokenAsyncErrors];
+export type WalletsPatchWalletTokenError = WalletsPatchWalletTokenErrors[keyof WalletsPatchWalletTokenErrors];
 
-export type PatchWalletTokenAsyncResponses = {
+export type WalletsPatchWalletTokenResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWalletTokenAsyncResponse = PatchWalletTokenAsyncResponses[keyof PatchWalletTokenAsyncResponses];
+export type WalletsPatchWalletTokenResponse = WalletsPatchWalletTokenResponses[keyof WalletsPatchWalletTokenResponses];
 
-export type UpdateWalletTokenAsyncData = {
+export type WalletsUpdateWalletTokenData = {
     body?: PaymentTokenUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3986,12 +4095,13 @@ export type UpdateWalletTokenAsyncData = {
         tokenId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
 };
 
-export type UpdateWalletTokenAsyncErrors = {
+export type WalletsUpdateWalletTokenErrors = {
     /**
      * Unauthorized
      */
@@ -4002,16 +4112,16 @@ export type UpdateWalletTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWalletTokenAsyncError = UpdateWalletTokenAsyncErrors[keyof UpdateWalletTokenAsyncErrors];
+export type WalletsUpdateWalletTokenError = WalletsUpdateWalletTokenErrors[keyof WalletsUpdateWalletTokenErrors];
 
-export type UpdateWalletTokenAsyncResponses = {
+export type WalletsUpdateWalletTokenResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWalletTokenAsyncResponse = UpdateWalletTokenAsyncResponses[keyof UpdateWalletTokenAsyncResponses];
+export type WalletsUpdateWalletTokenResponse = WalletsUpdateWalletTokenResponses[keyof WalletsUpdateWalletTokenResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

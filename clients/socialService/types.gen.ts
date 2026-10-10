@@ -55,6 +55,11 @@ export type ConversationDto = {
     lastMessage?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
+    counterpartySocialProfileId?: string | null;
+    counterpartyName?: string | null;
+    counterpartyAvatarUrl?: string | null;
+    counterpartyType?: 'User' | 'Tenant' | 'Contact';
+    unreadCount?: number;
 };
 
 export type ConversationDtoCollectionQueryParametersReadable = {
@@ -128,6 +133,18 @@ export type ConversationDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<ConversationDto> | null;
+};
+
+export type CreateNotificationDto = {
+    id?: string;
+    timestamp?: string;
+    read?: boolean;
+    message?: string | null;
+    socialProfileId?: string | null;
+    icon?: string | null;
+    imageUrl?: string | null;
+    redirectUrl?: string | null;
+    categoryKey?: string | null;
 };
 
 export type CurriculumCreateDto = {
@@ -605,6 +622,8 @@ export type NotificationDto = {
     socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
+    tenantId?: string | null;
+    categoryKey?: string | null;
 };
 
 export type NotificationDtoCollectionQueryParametersReadable = {
@@ -678,6 +697,36 @@ export type NotificationDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<NotificationDto> | null;
+};
+
+export type NotificationIssuanceReceiptDto = {
+    reachIntentId?: string | null;
+    notificationId?: string | null;
+};
+
+export type NotificationIssuanceReceiptDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: NotificationIssuanceReceiptDto;
+};
+
+export type NotificationIssuanceReceiptDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: NotificationIssuanceReceiptDto;
 };
 
 export type PatchOperation = {
@@ -791,7 +840,6 @@ export type SkillCreateDto = {
     timestamp?: string;
     name: string;
     url?: string | null;
-    type?: string | null;
     iconUrl?: string | null;
     description?: string | null;
     skillType?: 'Skill' | 'Certification';
@@ -886,7 +934,6 @@ export type SkillDtoListEnvelopeWritable = {
 export type SkillUpdateDto = {
     name?: string | null;
     url?: string | null;
-    type?: string | null;
     iconUrl?: string | null;
     description?: string | null;
     skillType?: 'Skill' | 'Certification';
@@ -1952,7 +1999,13 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetCurriculumExperiencesAsyncData = {
+export type UpdateNotificationDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    read?: boolean;
+};
+
+export type CurriculumExperiencesGetCurriculumExperiencesData = {
     body?: CurriculumExperienceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1968,7 +2021,7 @@ export type GetCurriculumExperiencesAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences';
 };
 
-export type GetCurriculumExperiencesAsyncErrors = {
+export type CurriculumExperiencesGetCurriculumExperiencesErrors = {
     /**
      * Unauthorized
      */
@@ -1979,18 +2032,18 @@ export type GetCurriculumExperiencesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurriculumExperiencesAsyncError = GetCurriculumExperiencesAsyncErrors[keyof GetCurriculumExperiencesAsyncErrors];
+export type CurriculumExperiencesGetCurriculumExperiencesError = CurriculumExperiencesGetCurriculumExperiencesErrors[keyof CurriculumExperiencesGetCurriculumExperiencesErrors];
 
-export type GetCurriculumExperiencesAsyncResponses = {
+export type CurriculumExperiencesGetCurriculumExperiencesResponses = {
     /**
      * OK
      */
     200: CurriculumExperienceDtoListEnvelopeReadable;
 };
 
-export type GetCurriculumExperiencesAsyncResponse = GetCurriculumExperiencesAsyncResponses[keyof GetCurriculumExperiencesAsyncResponses];
+export type CurriculumExperiencesGetCurriculumExperiencesResponse = CurriculumExperiencesGetCurriculumExperiencesResponses[keyof CurriculumExperiencesGetCurriculumExperiencesResponses];
 
-export type CreateCurriculumExperienceAsyncData = {
+export type CurriculumExperiencesCreateCurriculumExperienceData = {
     body?: CurriculumExperienceCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2006,7 +2059,7 @@ export type CreateCurriculumExperienceAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences';
 };
 
-export type CreateCurriculumExperienceAsyncErrors = {
+export type CurriculumExperiencesCreateCurriculumExperienceErrors = {
     /**
      * Bad Request
      */
@@ -2021,18 +2074,18 @@ export type CreateCurriculumExperienceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCurriculumExperienceAsyncError = CreateCurriculumExperienceAsyncErrors[keyof CreateCurriculumExperienceAsyncErrors];
+export type CurriculumExperiencesCreateCurriculumExperienceError = CurriculumExperiencesCreateCurriculumExperienceErrors[keyof CurriculumExperiencesCreateCurriculumExperienceErrors];
 
-export type CreateCurriculumExperienceAsyncResponses = {
+export type CurriculumExperiencesCreateCurriculumExperienceResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCurriculumExperienceAsyncResponse = CreateCurriculumExperienceAsyncResponses[keyof CreateCurriculumExperienceAsyncResponses];
+export type CurriculumExperiencesCreateCurriculumExperienceResponse = CurriculumExperiencesCreateCurriculumExperienceResponses[keyof CurriculumExperiencesCreateCurriculumExperienceResponses];
 
-export type GetCurriculumExperiencesCountAsyncData = {
+export type CurriculumExperiencesGetCurriculumExperiencesCountData = {
     body?: CurriculumExperienceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2048,7 +2101,7 @@ export type GetCurriculumExperiencesCountAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/Count';
 };
 
-export type GetCurriculumExperiencesCountAsyncErrors = {
+export type CurriculumExperiencesGetCurriculumExperiencesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2059,18 +2112,18 @@ export type GetCurriculumExperiencesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurriculumExperiencesCountAsyncError = GetCurriculumExperiencesCountAsyncErrors[keyof GetCurriculumExperiencesCountAsyncErrors];
+export type CurriculumExperiencesGetCurriculumExperiencesCountError = CurriculumExperiencesGetCurriculumExperiencesCountErrors[keyof CurriculumExperiencesGetCurriculumExperiencesCountErrors];
 
-export type GetCurriculumExperiencesCountAsyncResponses = {
+export type CurriculumExperiencesGetCurriculumExperiencesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCurriculumExperiencesCountAsyncResponse = GetCurriculumExperiencesCountAsyncResponses[keyof GetCurriculumExperiencesCountAsyncResponses];
+export type CurriculumExperiencesGetCurriculumExperiencesCountResponse = CurriculumExperiencesGetCurriculumExperiencesCountResponses[keyof CurriculumExperiencesGetCurriculumExperiencesCountResponses];
 
-export type DeleteCurriculumExperienceAsyncData = {
+export type CurriculumExperiencesDeleteCurriculumExperienceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2087,7 +2140,7 @@ export type DeleteCurriculumExperienceAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
 };
 
-export type DeleteCurriculumExperienceAsyncErrors = {
+export type CurriculumExperiencesDeleteCurriculumExperienceErrors = {
     /**
      * Bad Request
      */
@@ -2102,18 +2155,18 @@ export type DeleteCurriculumExperienceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCurriculumExperienceAsyncError = DeleteCurriculumExperienceAsyncErrors[keyof DeleteCurriculumExperienceAsyncErrors];
+export type CurriculumExperiencesDeleteCurriculumExperienceError = CurriculumExperiencesDeleteCurriculumExperienceErrors[keyof CurriculumExperiencesDeleteCurriculumExperienceErrors];
 
-export type DeleteCurriculumExperienceAsyncResponses = {
+export type CurriculumExperiencesDeleteCurriculumExperienceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCurriculumExperienceAsyncResponse = DeleteCurriculumExperienceAsyncResponses[keyof DeleteCurriculumExperienceAsyncResponses];
+export type CurriculumExperiencesDeleteCurriculumExperienceResponse = CurriculumExperiencesDeleteCurriculumExperienceResponses[keyof CurriculumExperiencesDeleteCurriculumExperienceResponses];
 
-export type GetCurriculumExperienceAsyncData = {
+export type CurriculumExperiencesGetCurriculumExperienceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2130,7 +2183,7 @@ export type GetCurriculumExperienceAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
 };
 
-export type GetCurriculumExperienceAsyncErrors = {
+export type CurriculumExperiencesGetCurriculumExperienceErrors = {
     /**
      * Unauthorized
      */
@@ -2141,18 +2194,18 @@ export type GetCurriculumExperienceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurriculumExperienceAsyncError = GetCurriculumExperienceAsyncErrors[keyof GetCurriculumExperienceAsyncErrors];
+export type CurriculumExperiencesGetCurriculumExperienceError = CurriculumExperiencesGetCurriculumExperienceErrors[keyof CurriculumExperiencesGetCurriculumExperienceErrors];
 
-export type GetCurriculumExperienceAsyncResponses = {
+export type CurriculumExperiencesGetCurriculumExperienceResponses = {
     /**
      * OK
      */
     200: CurriculumExperienceDtoEnvelopeReadable;
 };
 
-export type GetCurriculumExperienceAsyncResponse = GetCurriculumExperienceAsyncResponses[keyof GetCurriculumExperienceAsyncResponses];
+export type CurriculumExperiencesGetCurriculumExperienceResponse = CurriculumExperiencesGetCurriculumExperienceResponses[keyof CurriculumExperiencesGetCurriculumExperienceResponses];
 
-export type PatchCurriculumExperienceAsyncData = {
+export type CurriculumExperiencesPatchCurriculumExperienceData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2169,7 +2222,7 @@ export type PatchCurriculumExperienceAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
 };
 
-export type PatchCurriculumExperienceAsyncErrors = {
+export type CurriculumExperiencesPatchCurriculumExperienceErrors = {
     /**
      * Bad Request
      */
@@ -2184,18 +2237,18 @@ export type PatchCurriculumExperienceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCurriculumExperienceAsyncError = PatchCurriculumExperienceAsyncErrors[keyof PatchCurriculumExperienceAsyncErrors];
+export type CurriculumExperiencesPatchCurriculumExperienceError = CurriculumExperiencesPatchCurriculumExperienceErrors[keyof CurriculumExperiencesPatchCurriculumExperienceErrors];
 
-export type PatchCurriculumExperienceAsyncResponses = {
+export type CurriculumExperiencesPatchCurriculumExperienceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCurriculumExperienceAsyncResponse = PatchCurriculumExperienceAsyncResponses[keyof PatchCurriculumExperienceAsyncResponses];
+export type CurriculumExperiencesPatchCurriculumExperienceResponse = CurriculumExperiencesPatchCurriculumExperienceResponses[keyof CurriculumExperiencesPatchCurriculumExperienceResponses];
 
-export type UpdateCurriculumExperienceAsyncData = {
+export type CurriculumExperiencesUpdateCurriculumExperienceData = {
     body?: CurriculumExperienceUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2212,7 +2265,7 @@ export type UpdateCurriculumExperienceAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
 };
 
-export type UpdateCurriculumExperienceAsyncErrors = {
+export type CurriculumExperiencesUpdateCurriculumExperienceErrors = {
     /**
      * Bad Request
      */
@@ -2227,18 +2280,18 @@ export type UpdateCurriculumExperienceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCurriculumExperienceAsyncError = UpdateCurriculumExperienceAsyncErrors[keyof UpdateCurriculumExperienceAsyncErrors];
+export type CurriculumExperiencesUpdateCurriculumExperienceError = CurriculumExperiencesUpdateCurriculumExperienceErrors[keyof CurriculumExperiencesUpdateCurriculumExperienceErrors];
 
-export type UpdateCurriculumExperienceAsyncResponses = {
+export type CurriculumExperiencesUpdateCurriculumExperienceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCurriculumExperienceAsyncResponse = UpdateCurriculumExperienceAsyncResponses[keyof UpdateCurriculumExperienceAsyncResponses];
+export type CurriculumExperiencesUpdateCurriculumExperienceResponse = CurriculumExperiencesUpdateCurriculumExperienceResponses[keyof CurriculumExperiencesUpdateCurriculumExperienceResponses];
 
-export type GetCurriculumsAsyncData = {
+export type CurriculumsGetCurriculumsData = {
     body?: CurriculumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2252,7 +2305,7 @@ export type GetCurriculumsAsyncData = {
     url: '/api/v2/SocialService/Curriculums';
 };
 
-export type GetCurriculumsAsyncErrors = {
+export type CurriculumsGetCurriculumsErrors = {
     /**
      * Unauthorized
      */
@@ -2263,18 +2316,18 @@ export type GetCurriculumsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurriculumsAsyncError = GetCurriculumsAsyncErrors[keyof GetCurriculumsAsyncErrors];
+export type CurriculumsGetCurriculumsError = CurriculumsGetCurriculumsErrors[keyof CurriculumsGetCurriculumsErrors];
 
-export type GetCurriculumsAsyncResponses = {
+export type CurriculumsGetCurriculumsResponses = {
     /**
      * OK
      */
     200: CurriculumDtoListEnvelopeReadable;
 };
 
-export type GetCurriculumsAsyncResponse = GetCurriculumsAsyncResponses[keyof GetCurriculumsAsyncResponses];
+export type CurriculumsGetCurriculumsResponse = CurriculumsGetCurriculumsResponses[keyof CurriculumsGetCurriculumsResponses];
 
-export type CreateCurriculumAsyncData = {
+export type CurriculumsCreateCurriculumData = {
     body?: CurriculumCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2288,7 +2341,7 @@ export type CreateCurriculumAsyncData = {
     url: '/api/v2/SocialService/Curriculums';
 };
 
-export type CreateCurriculumAsyncErrors = {
+export type CurriculumsCreateCurriculumErrors = {
     /**
      * Bad Request
      */
@@ -2303,18 +2356,18 @@ export type CreateCurriculumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCurriculumAsyncError = CreateCurriculumAsyncErrors[keyof CreateCurriculumAsyncErrors];
+export type CurriculumsCreateCurriculumError = CurriculumsCreateCurriculumErrors[keyof CurriculumsCreateCurriculumErrors];
 
-export type CreateCurriculumAsyncResponses = {
+export type CurriculumsCreateCurriculumResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCurriculumAsyncResponse = CreateCurriculumAsyncResponses[keyof CreateCurriculumAsyncResponses];
+export type CurriculumsCreateCurriculumResponse = CurriculumsCreateCurriculumResponses[keyof CurriculumsCreateCurriculumResponses];
 
-export type GetCurriculumsCountAsyncData = {
+export type CurriculumsGetCurriculumsCountData = {
     body?: CurriculumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2328,7 +2381,7 @@ export type GetCurriculumsCountAsyncData = {
     url: '/api/v2/SocialService/Curriculums/Count';
 };
 
-export type GetCurriculumsCountAsyncErrors = {
+export type CurriculumsGetCurriculumsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2339,18 +2392,18 @@ export type GetCurriculumsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurriculumsCountAsyncError = GetCurriculumsCountAsyncErrors[keyof GetCurriculumsCountAsyncErrors];
+export type CurriculumsGetCurriculumsCountError = CurriculumsGetCurriculumsCountErrors[keyof CurriculumsGetCurriculumsCountErrors];
 
-export type GetCurriculumsCountAsyncResponses = {
+export type CurriculumsGetCurriculumsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCurriculumsCountAsyncResponse = GetCurriculumsCountAsyncResponses[keyof GetCurriculumsCountAsyncResponses];
+export type CurriculumsGetCurriculumsCountResponse = CurriculumsGetCurriculumsCountResponses[keyof CurriculumsGetCurriculumsCountResponses];
 
-export type DeleteCurriculumAsyncData = {
+export type CurriculumsDeleteCurriculumData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2366,7 +2419,7 @@ export type DeleteCurriculumAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}';
 };
 
-export type DeleteCurriculumAsyncErrors = {
+export type CurriculumsDeleteCurriculumErrors = {
     /**
      * Bad Request
      */
@@ -2381,18 +2434,18 @@ export type DeleteCurriculumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCurriculumAsyncError = DeleteCurriculumAsyncErrors[keyof DeleteCurriculumAsyncErrors];
+export type CurriculumsDeleteCurriculumError = CurriculumsDeleteCurriculumErrors[keyof CurriculumsDeleteCurriculumErrors];
 
-export type DeleteCurriculumAsyncResponses = {
+export type CurriculumsDeleteCurriculumResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCurriculumAsyncResponse = DeleteCurriculumAsyncResponses[keyof DeleteCurriculumAsyncResponses];
+export type CurriculumsDeleteCurriculumResponse = CurriculumsDeleteCurriculumResponses[keyof CurriculumsDeleteCurriculumResponses];
 
-export type GetCurriculumAsyncData = {
+export type CurriculumsGetCurriculumData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2408,7 +2461,7 @@ export type GetCurriculumAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}';
 };
 
-export type GetCurriculumAsyncErrors = {
+export type CurriculumsGetCurriculumErrors = {
     /**
      * Unauthorized
      */
@@ -2419,18 +2472,18 @@ export type GetCurriculumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurriculumAsyncError = GetCurriculumAsyncErrors[keyof GetCurriculumAsyncErrors];
+export type CurriculumsGetCurriculumError = CurriculumsGetCurriculumErrors[keyof CurriculumsGetCurriculumErrors];
 
-export type GetCurriculumAsyncResponses = {
+export type CurriculumsGetCurriculumResponses = {
     /**
      * OK
      */
     200: CurriculumDtoEnvelopeReadable;
 };
 
-export type GetCurriculumAsyncResponse = GetCurriculumAsyncResponses[keyof GetCurriculumAsyncResponses];
+export type CurriculumsGetCurriculumResponse = CurriculumsGetCurriculumResponses[keyof CurriculumsGetCurriculumResponses];
 
-export type PatchCurriculumAsyncData = {
+export type CurriculumsPatchCurriculumData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2446,7 +2499,7 @@ export type PatchCurriculumAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}';
 };
 
-export type PatchCurriculumAsyncErrors = {
+export type CurriculumsPatchCurriculumErrors = {
     /**
      * Bad Request
      */
@@ -2461,18 +2514,18 @@ export type PatchCurriculumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCurriculumAsyncError = PatchCurriculumAsyncErrors[keyof PatchCurriculumAsyncErrors];
+export type CurriculumsPatchCurriculumError = CurriculumsPatchCurriculumErrors[keyof CurriculumsPatchCurriculumErrors];
 
-export type PatchCurriculumAsyncResponses = {
+export type CurriculumsPatchCurriculumResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCurriculumAsyncResponse = PatchCurriculumAsyncResponses[keyof PatchCurriculumAsyncResponses];
+export type CurriculumsPatchCurriculumResponse = CurriculumsPatchCurriculumResponses[keyof CurriculumsPatchCurriculumResponses];
 
-export type UpdateCurriculumAsyncData = {
+export type CurriculumsUpdateCurriculumData = {
     body?: CurriculumUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2488,7 +2541,7 @@ export type UpdateCurriculumAsyncData = {
     url: '/api/v2/SocialService/Curriculums/{curriculumId}';
 };
 
-export type UpdateCurriculumAsyncErrors = {
+export type CurriculumsUpdateCurriculumErrors = {
     /**
      * Bad Request
      */
@@ -2503,83 +2556,83 @@ export type UpdateCurriculumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCurriculumAsyncError = UpdateCurriculumAsyncErrors[keyof UpdateCurriculumAsyncErrors];
+export type CurriculumsUpdateCurriculumError = CurriculumsUpdateCurriculumErrors[keyof CurriculumsUpdateCurriculumErrors];
 
-export type UpdateCurriculumAsyncResponses = {
+export type CurriculumsUpdateCurriculumResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCurriculumAsyncResponse = UpdateCurriculumAsyncResponses[keyof UpdateCurriculumAsyncResponses];
+export type CurriculumsUpdateCurriculumResponse = CurriculumsUpdateCurriculumResponses[keyof CurriculumsUpdateCurriculumResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2589,32 +2642,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2625,81 +2678,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2710,25 +2763,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2739,25 +2792,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2768,18 +2821,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2789,14 +2842,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2805,14 +2858,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2821,28 +2874,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSkillsAsyncData = {
+export type SkillsGetSkillsData = {
     body?: SkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2855,7 +2908,7 @@ export type GetSkillsAsyncData = {
     url: '/api/v2/SocialService/Skills';
 };
 
-export type GetSkillsAsyncErrors = {
+export type SkillsGetSkillsErrors = {
     /**
      * Unauthorized
      */
@@ -2866,18 +2919,18 @@ export type GetSkillsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSkillsAsyncError = GetSkillsAsyncErrors[keyof GetSkillsAsyncErrors];
+export type SkillsGetSkillsError = SkillsGetSkillsErrors[keyof SkillsGetSkillsErrors];
 
-export type GetSkillsAsyncResponses = {
+export type SkillsGetSkillsResponses = {
     /**
      * OK
      */
     200: SkillDtoListEnvelopeReadable;
 };
 
-export type GetSkillsAsyncResponse = GetSkillsAsyncResponses[keyof GetSkillsAsyncResponses];
+export type SkillsGetSkillsResponse = SkillsGetSkillsResponses[keyof SkillsGetSkillsResponses];
 
-export type CreateSkillAsyncData = {
+export type SkillsCreateSkillData = {
     body?: SkillCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2890,7 +2943,7 @@ export type CreateSkillAsyncData = {
     url: '/api/v2/SocialService/Skills';
 };
 
-export type CreateSkillAsyncErrors = {
+export type SkillsCreateSkillErrors = {
     /**
      * Bad Request
      */
@@ -2905,18 +2958,18 @@ export type CreateSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSkillAsyncError = CreateSkillAsyncErrors[keyof CreateSkillAsyncErrors];
+export type SkillsCreateSkillError = SkillsCreateSkillErrors[keyof SkillsCreateSkillErrors];
 
-export type CreateSkillAsyncResponses = {
+export type SkillsCreateSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSkillAsyncResponse = CreateSkillAsyncResponses[keyof CreateSkillAsyncResponses];
+export type SkillsCreateSkillResponse = SkillsCreateSkillResponses[keyof SkillsCreateSkillResponses];
 
-export type GetSkillsCountAsyncData = {
+export type SkillsGetSkillsCountData = {
     body?: SkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2929,7 +2982,7 @@ export type GetSkillsCountAsyncData = {
     url: '/api/v2/SocialService/Skills/Count';
 };
 
-export type GetSkillsCountAsyncErrors = {
+export type SkillsGetSkillsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2940,18 +2993,18 @@ export type GetSkillsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSkillsCountAsyncError = GetSkillsCountAsyncErrors[keyof GetSkillsCountAsyncErrors];
+export type SkillsGetSkillsCountError = SkillsGetSkillsCountErrors[keyof SkillsGetSkillsCountErrors];
 
-export type GetSkillsCountAsyncResponses = {
+export type SkillsGetSkillsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSkillsCountAsyncResponse = GetSkillsCountAsyncResponses[keyof GetSkillsCountAsyncResponses];
+export type SkillsGetSkillsCountResponse = SkillsGetSkillsCountResponses[keyof SkillsGetSkillsCountResponses];
 
-export type DeleteSkillAsyncData = {
+export type SkillsDeleteSkillData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2966,7 +3019,7 @@ export type DeleteSkillAsyncData = {
     url: '/api/v2/SocialService/Skills/{skillId}';
 };
 
-export type DeleteSkillAsyncErrors = {
+export type SkillsDeleteSkillErrors = {
     /**
      * Bad Request
      */
@@ -2981,18 +3034,18 @@ export type DeleteSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSkillAsyncError = DeleteSkillAsyncErrors[keyof DeleteSkillAsyncErrors];
+export type SkillsDeleteSkillError = SkillsDeleteSkillErrors[keyof SkillsDeleteSkillErrors];
 
-export type DeleteSkillAsyncResponses = {
+export type SkillsDeleteSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSkillAsyncResponse = DeleteSkillAsyncResponses[keyof DeleteSkillAsyncResponses];
+export type SkillsDeleteSkillResponse = SkillsDeleteSkillResponses[keyof SkillsDeleteSkillResponses];
 
-export type GetSkillByIdAsyncData = {
+export type SkillsGetSkillByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3007,7 +3060,7 @@ export type GetSkillByIdAsyncData = {
     url: '/api/v2/SocialService/Skills/{skillId}';
 };
 
-export type GetSkillByIdAsyncErrors = {
+export type SkillsGetSkillByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3018,18 +3071,18 @@ export type GetSkillByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSkillByIdAsyncError = GetSkillByIdAsyncErrors[keyof GetSkillByIdAsyncErrors];
+export type SkillsGetSkillByIdError = SkillsGetSkillByIdErrors[keyof SkillsGetSkillByIdErrors];
 
-export type GetSkillByIdAsyncResponses = {
+export type SkillsGetSkillByIdResponses = {
     /**
      * OK
      */
     200: SkillDtoEnvelopeReadable;
 };
 
-export type GetSkillByIdAsyncResponse = GetSkillByIdAsyncResponses[keyof GetSkillByIdAsyncResponses];
+export type SkillsGetSkillByIdResponse = SkillsGetSkillByIdResponses[keyof SkillsGetSkillByIdResponses];
 
-export type PatchSkillAsyncData = {
+export type SkillsPatchSkillData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3044,7 +3097,7 @@ export type PatchSkillAsyncData = {
     url: '/api/v2/SocialService/Skills/{skillId}';
 };
 
-export type PatchSkillAsyncErrors = {
+export type SkillsPatchSkillErrors = {
     /**
      * Bad Request
      */
@@ -3059,18 +3112,18 @@ export type PatchSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSkillAsyncError = PatchSkillAsyncErrors[keyof PatchSkillAsyncErrors];
+export type SkillsPatchSkillError = SkillsPatchSkillErrors[keyof SkillsPatchSkillErrors];
 
-export type PatchSkillAsyncResponses = {
+export type SkillsPatchSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSkillAsyncResponse = PatchSkillAsyncResponses[keyof PatchSkillAsyncResponses];
+export type SkillsPatchSkillResponse = SkillsPatchSkillResponses[keyof SkillsPatchSkillResponses];
 
-export type UpdateSkillAsyncData = {
+export type SkillsUpdateSkillData = {
     body?: SkillUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3085,7 +3138,7 @@ export type UpdateSkillAsyncData = {
     url: '/api/v2/SocialService/Skills/{skillId}';
 };
 
-export type UpdateSkillAsyncErrors = {
+export type SkillsUpdateSkillErrors = {
     /**
      * Bad Request
      */
@@ -3100,18 +3153,18 @@ export type UpdateSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSkillAsyncError = UpdateSkillAsyncErrors[keyof UpdateSkillAsyncErrors];
+export type SkillsUpdateSkillError = SkillsUpdateSkillErrors[keyof SkillsUpdateSkillErrors];
 
-export type UpdateSkillAsyncResponses = {
+export type SkillsUpdateSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSkillAsyncResponse = UpdateSkillAsyncResponses[keyof UpdateSkillAsyncResponses];
+export type SkillsUpdateSkillResponse = SkillsUpdateSkillResponses[keyof SkillsUpdateSkillResponses];
 
-export type GetFeedNotificationsData = {
+export type SocialFeedsGetFeedNotificationsData = {
     body?: SocialFeedDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3124,7 +3177,7 @@ export type GetFeedNotificationsData = {
     url: '/api/v2/SocialService/SocialFeeds';
 };
 
-export type GetFeedNotificationsErrors = {
+export type SocialFeedsGetFeedNotificationsErrors = {
     /**
      * Unauthorized
      */
@@ -3135,18 +3188,18 @@ export type GetFeedNotificationsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFeedNotificationsError = GetFeedNotificationsErrors[keyof GetFeedNotificationsErrors];
+export type SocialFeedsGetFeedNotificationsError = SocialFeedsGetFeedNotificationsErrors[keyof SocialFeedsGetFeedNotificationsErrors];
 
-export type GetFeedNotificationsResponses = {
+export type SocialFeedsGetFeedNotificationsResponses = {
     /**
      * OK
      */
     200: SocialFeedDtoListEnvelopeReadable;
 };
 
-export type GetFeedNotificationsResponse = GetFeedNotificationsResponses[keyof GetFeedNotificationsResponses];
+export type SocialFeedsGetFeedNotificationsResponse = SocialFeedsGetFeedNotificationsResponses[keyof SocialFeedsGetFeedNotificationsResponses];
 
-export type GetNotificationsCountAsyncData = {
+export type SocialFeedsGetNotificationsCountData = {
     body?: SocialFeedDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3159,7 +3212,7 @@ export type GetNotificationsCountAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/Count';
 };
 
-export type GetNotificationsCountAsyncErrors = {
+export type SocialFeedsGetNotificationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3170,18 +3223,18 @@ export type GetNotificationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNotificationsCountAsyncError = GetNotificationsCountAsyncErrors[keyof GetNotificationsCountAsyncErrors];
+export type SocialFeedsGetNotificationsCountError = SocialFeedsGetNotificationsCountErrors[keyof SocialFeedsGetNotificationsCountErrors];
 
-export type GetNotificationsCountAsyncResponses = {
+export type SocialFeedsGetNotificationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetNotificationsCountAsyncResponse = GetNotificationsCountAsyncResponses[keyof GetNotificationsCountAsyncResponses];
+export type SocialFeedsGetNotificationsCountResponse = SocialFeedsGetNotificationsCountResponses[keyof SocialFeedsGetNotificationsCountResponses];
 
-export type GetNotificationAsyncData = {
+export type SocialFeedsGetNotificationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3196,7 +3249,7 @@ export type GetNotificationAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}';
 };
 
-export type GetNotificationAsyncErrors = {
+export type SocialFeedsGetNotificationErrors = {
     /**
      * Unauthorized
      */
@@ -3207,18 +3260,18 @@ export type GetNotificationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNotificationAsyncError = GetNotificationAsyncErrors[keyof GetNotificationAsyncErrors];
+export type SocialFeedsGetNotificationError = SocialFeedsGetNotificationErrors[keyof SocialFeedsGetNotificationErrors];
 
-export type GetNotificationAsyncResponses = {
+export type SocialFeedsGetNotificationResponses = {
     /**
      * OK
      */
     200: SocialFeedDtoEnvelopeReadable;
 };
 
-export type GetNotificationAsyncResponse = GetNotificationAsyncResponses[keyof GetNotificationAsyncResponses];
+export type SocialFeedsGetNotificationResponse = SocialFeedsGetNotificationResponses[keyof SocialFeedsGetNotificationResponses];
 
-export type GetFeedPostsAsyncData = {
+export type SocialFeedsGetFeedPostsData = {
     body?: SocialFeedPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3233,7 +3286,7 @@ export type GetFeedPostsAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts';
 };
 
-export type GetFeedPostsAsyncErrors = {
+export type SocialFeedsGetFeedPostsErrors = {
     /**
      * Unauthorized
      */
@@ -3244,18 +3297,18 @@ export type GetFeedPostsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFeedPostsAsyncError = GetFeedPostsAsyncErrors[keyof GetFeedPostsAsyncErrors];
+export type SocialFeedsGetFeedPostsError = SocialFeedsGetFeedPostsErrors[keyof SocialFeedsGetFeedPostsErrors];
 
-export type GetFeedPostsAsyncResponses = {
+export type SocialFeedsGetFeedPostsResponses = {
     /**
      * OK
      */
     200: SocialFeedPostDtoListEnvelopeReadable;
 };
 
-export type GetFeedPostsAsyncResponse = GetFeedPostsAsyncResponses[keyof GetFeedPostsAsyncResponses];
+export type SocialFeedsGetFeedPostsResponse = SocialFeedsGetFeedPostsResponses[keyof SocialFeedsGetFeedPostsResponses];
 
-export type CreateFeedPostAsyncData = {
+export type SocialFeedsCreateFeedPostData = {
     body?: SocialFeedPostCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3270,7 +3323,7 @@ export type CreateFeedPostAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts';
 };
 
-export type CreateFeedPostAsyncErrors = {
+export type SocialFeedsCreateFeedPostErrors = {
     /**
      * Unauthorized
      */
@@ -3281,18 +3334,18 @@ export type CreateFeedPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFeedPostAsyncError = CreateFeedPostAsyncErrors[keyof CreateFeedPostAsyncErrors];
+export type SocialFeedsCreateFeedPostError = SocialFeedsCreateFeedPostErrors[keyof SocialFeedsCreateFeedPostErrors];
 
-export type CreateFeedPostAsyncResponses = {
+export type SocialFeedsCreateFeedPostResponses = {
     /**
      * OK
      */
     200: StringEnvelopeReadable;
 };
 
-export type CreateFeedPostAsyncResponse = CreateFeedPostAsyncResponses[keyof CreateFeedPostAsyncResponses];
+export type SocialFeedsCreateFeedPostResponse = SocialFeedsCreateFeedPostResponses[keyof SocialFeedsCreateFeedPostResponses];
 
-export type GetFeedPostsCountAsyncData = {
+export type SocialFeedsGetFeedPostsCountData = {
     body?: SocialFeedPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3307,7 +3360,7 @@ export type GetFeedPostsCountAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/Count';
 };
 
-export type GetFeedPostsCountAsyncErrors = {
+export type SocialFeedsGetFeedPostsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3318,18 +3371,18 @@ export type GetFeedPostsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFeedPostsCountAsyncError = GetFeedPostsCountAsyncErrors[keyof GetFeedPostsCountAsyncErrors];
+export type SocialFeedsGetFeedPostsCountError = SocialFeedsGetFeedPostsCountErrors[keyof SocialFeedsGetFeedPostsCountErrors];
 
-export type GetFeedPostsCountAsyncResponses = {
+export type SocialFeedsGetFeedPostsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFeedPostsCountAsyncResponse = GetFeedPostsCountAsyncResponses[keyof GetFeedPostsCountAsyncResponses];
+export type SocialFeedsGetFeedPostsCountResponse = SocialFeedsGetFeedPostsCountResponses[keyof SocialFeedsGetFeedPostsCountResponses];
 
-export type DeleteFeedPostAsyncData = {
+export type SocialFeedsDeleteFeedPostData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3345,7 +3398,7 @@ export type DeleteFeedPostAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}';
 };
 
-export type DeleteFeedPostAsyncErrors = {
+export type SocialFeedsDeleteFeedPostErrors = {
     /**
      * Unauthorized
      */
@@ -3356,18 +3409,18 @@ export type DeleteFeedPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFeedPostAsyncError = DeleteFeedPostAsyncErrors[keyof DeleteFeedPostAsyncErrors];
+export type SocialFeedsDeleteFeedPostError = SocialFeedsDeleteFeedPostErrors[keyof SocialFeedsDeleteFeedPostErrors];
 
-export type DeleteFeedPostAsyncResponses = {
+export type SocialFeedsDeleteFeedPostResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFeedPostAsyncResponse = DeleteFeedPostAsyncResponses[keyof DeleteFeedPostAsyncResponses];
+export type SocialFeedsDeleteFeedPostResponse = SocialFeedsDeleteFeedPostResponses[keyof SocialFeedsDeleteFeedPostResponses];
 
-export type GetFeedPostAsyncData = {
+export type SocialFeedsGetFeedPostData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3383,7 +3436,7 @@ export type GetFeedPostAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}';
 };
 
-export type GetFeedPostAsyncErrors = {
+export type SocialFeedsGetFeedPostErrors = {
     /**
      * Unauthorized
      */
@@ -3394,18 +3447,18 @@ export type GetFeedPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFeedPostAsyncError = GetFeedPostAsyncErrors[keyof GetFeedPostAsyncErrors];
+export type SocialFeedsGetFeedPostError = SocialFeedsGetFeedPostErrors[keyof SocialFeedsGetFeedPostErrors];
 
-export type GetFeedPostAsyncResponses = {
+export type SocialFeedsGetFeedPostResponses = {
     /**
      * OK
      */
     200: SocialFeedPostDtoEnvelopeReadable;
 };
 
-export type GetFeedPostAsyncResponse = GetFeedPostAsyncResponses[keyof GetFeedPostAsyncResponses];
+export type SocialFeedsGetFeedPostResponse = SocialFeedsGetFeedPostResponses[keyof SocialFeedsGetFeedPostResponses];
 
-export type PatchFeedPostAsyncData = {
+export type SocialFeedsPatchFeedPostData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3421,7 +3474,7 @@ export type PatchFeedPostAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}';
 };
 
-export type PatchFeedPostAsyncErrors = {
+export type SocialFeedsPatchFeedPostErrors = {
     /**
      * Unauthorized
      */
@@ -3432,18 +3485,18 @@ export type PatchFeedPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFeedPostAsyncError = PatchFeedPostAsyncErrors[keyof PatchFeedPostAsyncErrors];
+export type SocialFeedsPatchFeedPostError = SocialFeedsPatchFeedPostErrors[keyof SocialFeedsPatchFeedPostErrors];
 
-export type PatchFeedPostAsyncResponses = {
+export type SocialFeedsPatchFeedPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFeedPostAsyncResponse = PatchFeedPostAsyncResponses[keyof PatchFeedPostAsyncResponses];
+export type SocialFeedsPatchFeedPostResponse = SocialFeedsPatchFeedPostResponses[keyof SocialFeedsPatchFeedPostResponses];
 
-export type UpdateFeedPostAsyncData = {
+export type SocialFeedsUpdateFeedPostData = {
     body?: SocialFeedPostUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3459,7 +3512,7 @@ export type UpdateFeedPostAsyncData = {
     url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}';
 };
 
-export type UpdateFeedPostAsyncErrors = {
+export type SocialFeedsUpdateFeedPostErrors = {
     /**
      * Unauthorized
      */
@@ -3470,18 +3523,18 @@ export type UpdateFeedPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFeedPostAsyncError = UpdateFeedPostAsyncErrors[keyof UpdateFeedPostAsyncErrors];
+export type SocialFeedsUpdateFeedPostError = SocialFeedsUpdateFeedPostErrors[keyof SocialFeedsUpdateFeedPostErrors];
 
-export type UpdateFeedPostAsyncResponses = {
+export type SocialFeedsUpdateFeedPostResponses = {
     /**
      * OK
      */
     200: SocialFeedPostDtoEnvelopeReadable;
 };
 
-export type UpdateFeedPostAsyncResponse = UpdateFeedPostAsyncResponses[keyof UpdateFeedPostAsyncResponses];
+export type SocialFeedsUpdateFeedPostResponse = SocialFeedsUpdateFeedPostResponses[keyof SocialFeedsUpdateFeedPostResponses];
 
-export type GetSocialGroupsAsyncData = {
+export type SocialGroupsGetSocialGroupsData = {
     body?: SocialGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3494,7 +3547,7 @@ export type GetSocialGroupsAsyncData = {
     url: '/api/v2/SocialService/SocialGroups';
 };
 
-export type GetSocialGroupsAsyncErrors = {
+export type SocialGroupsGetSocialGroupsErrors = {
     /**
      * Unauthorized
      */
@@ -3505,18 +3558,18 @@ export type GetSocialGroupsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialGroupsAsyncError = GetSocialGroupsAsyncErrors[keyof GetSocialGroupsAsyncErrors];
+export type SocialGroupsGetSocialGroupsError = SocialGroupsGetSocialGroupsErrors[keyof SocialGroupsGetSocialGroupsErrors];
 
-export type GetSocialGroupsAsyncResponses = {
+export type SocialGroupsGetSocialGroupsResponses = {
     /**
      * OK
      */
     200: SocialGroupDtoListEnvelopeReadable;
 };
 
-export type GetSocialGroupsAsyncResponse = GetSocialGroupsAsyncResponses[keyof GetSocialGroupsAsyncResponses];
+export type SocialGroupsGetSocialGroupsResponse = SocialGroupsGetSocialGroupsResponses[keyof SocialGroupsGetSocialGroupsResponses];
 
-export type CreateSocialGroupAsyncData = {
+export type SocialGroupsCreateSocialGroupData = {
     body?: SocialGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3530,7 +3583,7 @@ export type CreateSocialGroupAsyncData = {
     url: '/api/v2/SocialService/SocialGroups';
 };
 
-export type CreateSocialGroupAsyncErrors = {
+export type SocialGroupsCreateSocialGroupErrors = {
     /**
      * Unauthorized
      */
@@ -3541,18 +3594,18 @@ export type CreateSocialGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialGroupAsyncError = CreateSocialGroupAsyncErrors[keyof CreateSocialGroupAsyncErrors];
+export type SocialGroupsCreateSocialGroupError = SocialGroupsCreateSocialGroupErrors[keyof SocialGroupsCreateSocialGroupErrors];
 
-export type CreateSocialGroupAsyncResponses = {
+export type SocialGroupsCreateSocialGroupResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSocialGroupAsyncResponse = CreateSocialGroupAsyncResponses[keyof CreateSocialGroupAsyncResponses];
+export type SocialGroupsCreateSocialGroupResponse = SocialGroupsCreateSocialGroupResponses[keyof SocialGroupsCreateSocialGroupResponses];
 
-export type CountSocialGroupsAsyncData = {
+export type SocialGroupsCountSocialGroupsData = {
     body?: SocialGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3565,7 +3618,7 @@ export type CountSocialGroupsAsyncData = {
     url: '/api/v2/SocialService/SocialGroups/Count';
 };
 
-export type CountSocialGroupsAsyncErrors = {
+export type SocialGroupsCountSocialGroupsErrors = {
     /**
      * Unauthorized
      */
@@ -3576,18 +3629,18 @@ export type CountSocialGroupsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountSocialGroupsAsyncError = CountSocialGroupsAsyncErrors[keyof CountSocialGroupsAsyncErrors];
+export type SocialGroupsCountSocialGroupsError = SocialGroupsCountSocialGroupsErrors[keyof SocialGroupsCountSocialGroupsErrors];
 
-export type CountSocialGroupsAsyncResponses = {
+export type SocialGroupsCountSocialGroupsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountSocialGroupsAsyncResponse = CountSocialGroupsAsyncResponses[keyof CountSocialGroupsAsyncResponses];
+export type SocialGroupsCountSocialGroupsResponse = SocialGroupsCountSocialGroupsResponses[keyof SocialGroupsCountSocialGroupsResponses];
 
-export type DeleteSocialGroupAsyncData = {
+export type SocialGroupsDeleteSocialGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3603,7 +3656,7 @@ export type DeleteSocialGroupAsyncData = {
     url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
 };
 
-export type DeleteSocialGroupAsyncErrors = {
+export type SocialGroupsDeleteSocialGroupErrors = {
     /**
      * Unauthorized
      */
@@ -3614,18 +3667,18 @@ export type DeleteSocialGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialGroupAsyncError = DeleteSocialGroupAsyncErrors[keyof DeleteSocialGroupAsyncErrors];
+export type SocialGroupsDeleteSocialGroupError = SocialGroupsDeleteSocialGroupErrors[keyof SocialGroupsDeleteSocialGroupErrors];
 
-export type DeleteSocialGroupAsyncResponses = {
+export type SocialGroupsDeleteSocialGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialGroupAsyncResponse = DeleteSocialGroupAsyncResponses[keyof DeleteSocialGroupAsyncResponses];
+export type SocialGroupsDeleteSocialGroupResponse = SocialGroupsDeleteSocialGroupResponses[keyof SocialGroupsDeleteSocialGroupResponses];
 
-export type GetSocialGroupByIdAsyncData = {
+export type SocialGroupsGetSocialGroupByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3640,7 +3693,7 @@ export type GetSocialGroupByIdAsyncData = {
     url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
 };
 
-export type GetSocialGroupByIdAsyncErrors = {
+export type SocialGroupsGetSocialGroupByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3651,18 +3704,18 @@ export type GetSocialGroupByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialGroupByIdAsyncError = GetSocialGroupByIdAsyncErrors[keyof GetSocialGroupByIdAsyncErrors];
+export type SocialGroupsGetSocialGroupByIdError = SocialGroupsGetSocialGroupByIdErrors[keyof SocialGroupsGetSocialGroupByIdErrors];
 
-export type GetSocialGroupByIdAsyncResponses = {
+export type SocialGroupsGetSocialGroupByIdResponses = {
     /**
      * OK
      */
     200: SocialGroupDtoEnvelopeReadable;
 };
 
-export type GetSocialGroupByIdAsyncResponse = GetSocialGroupByIdAsyncResponses[keyof GetSocialGroupByIdAsyncResponses];
+export type SocialGroupsGetSocialGroupByIdResponse = SocialGroupsGetSocialGroupByIdResponses[keyof SocialGroupsGetSocialGroupByIdResponses];
 
-export type PatchSocialGroupAsyncData = {
+export type SocialGroupsPatchSocialGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3678,7 +3731,7 @@ export type PatchSocialGroupAsyncData = {
     url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
 };
 
-export type PatchSocialGroupAsyncErrors = {
+export type SocialGroupsPatchSocialGroupErrors = {
     /**
      * Unauthorized
      */
@@ -3689,18 +3742,18 @@ export type PatchSocialGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSocialGroupAsyncError = PatchSocialGroupAsyncErrors[keyof PatchSocialGroupAsyncErrors];
+export type SocialGroupsPatchSocialGroupError = SocialGroupsPatchSocialGroupErrors[keyof SocialGroupsPatchSocialGroupErrors];
 
-export type PatchSocialGroupAsyncResponses = {
+export type SocialGroupsPatchSocialGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSocialGroupAsyncResponse = PatchSocialGroupAsyncResponses[keyof PatchSocialGroupAsyncResponses];
+export type SocialGroupsPatchSocialGroupResponse = SocialGroupsPatchSocialGroupResponses[keyof SocialGroupsPatchSocialGroupResponses];
 
-export type UpdateSocialGroupAsyncData = {
+export type SocialGroupsUpdateSocialGroupData = {
     body?: SocialGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3716,7 +3769,7 @@ export type UpdateSocialGroupAsyncData = {
     url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
 };
 
-export type UpdateSocialGroupAsyncErrors = {
+export type SocialGroupsUpdateSocialGroupErrors = {
     /**
      * Unauthorized
      */
@@ -3727,18 +3780,18 @@ export type UpdateSocialGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialGroupAsyncError = UpdateSocialGroupAsyncErrors[keyof UpdateSocialGroupAsyncErrors];
+export type SocialGroupsUpdateSocialGroupError = SocialGroupsUpdateSocialGroupErrors[keyof SocialGroupsUpdateSocialGroupErrors];
 
-export type UpdateSocialGroupAsyncResponses = {
+export type SocialGroupsUpdateSocialGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSocialGroupAsyncResponse = UpdateSocialGroupAsyncResponses[keyof UpdateSocialGroupAsyncResponses];
+export type SocialGroupsUpdateSocialGroupResponse = SocialGroupsUpdateSocialGroupResponses[keyof SocialGroupsUpdateSocialGroupResponses];
 
-export type GetSocialPostsAsyncData = {
+export type SocialPostsGetSocialPostsData = {
     body?: SocialPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3751,7 +3804,7 @@ export type GetSocialPostsAsyncData = {
     url: '/api/v2/SocialService/SocialPosts';
 };
 
-export type GetSocialPostsAsyncErrors = {
+export type SocialPostsGetSocialPostsErrors = {
     /**
      * Unauthorized
      */
@@ -3762,18 +3815,18 @@ export type GetSocialPostsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostsAsyncError = GetSocialPostsAsyncErrors[keyof GetSocialPostsAsyncErrors];
+export type SocialPostsGetSocialPostsError = SocialPostsGetSocialPostsErrors[keyof SocialPostsGetSocialPostsErrors];
 
-export type GetSocialPostsAsyncResponses = {
+export type SocialPostsGetSocialPostsResponses = {
     /**
      * OK
      */
     200: SocialPostDtoListEnvelopeReadable;
 };
 
-export type GetSocialPostsAsyncResponse = GetSocialPostsAsyncResponses[keyof GetSocialPostsAsyncResponses];
+export type SocialPostsGetSocialPostsResponse = SocialPostsGetSocialPostsResponses[keyof SocialPostsGetSocialPostsResponses];
 
-export type CreateSocialPostAsyncData = {
+export type SocialPostsCreateSocialPostData = {
     body?: SocialPostCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3786,7 +3839,7 @@ export type CreateSocialPostAsyncData = {
     url: '/api/v2/SocialService/SocialPosts';
 };
 
-export type CreateSocialPostAsyncErrors = {
+export type SocialPostsCreateSocialPostErrors = {
     /**
      * Unauthorized
      */
@@ -3797,18 +3850,18 @@ export type CreateSocialPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialPostAsyncError = CreateSocialPostAsyncErrors[keyof CreateSocialPostAsyncErrors];
+export type SocialPostsCreateSocialPostError = SocialPostsCreateSocialPostErrors[keyof SocialPostsCreateSocialPostErrors];
 
-export type CreateSocialPostAsyncResponses = {
+export type SocialPostsCreateSocialPostResponses = {
     /**
      * Created
      */
     201: SocialPostDtoEnvelopeReadable;
 };
 
-export type CreateSocialPostAsyncResponse = CreateSocialPostAsyncResponses[keyof CreateSocialPostAsyncResponses];
+export type SocialPostsCreateSocialPostResponse = SocialPostsCreateSocialPostResponses[keyof SocialPostsCreateSocialPostResponses];
 
-export type GetSocialPostsCountAsyncData = {
+export type SocialPostsGetSocialPostsCountData = {
     body?: SocialPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3821,7 +3874,7 @@ export type GetSocialPostsCountAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/Count';
 };
 
-export type GetSocialPostsCountAsyncErrors = {
+export type SocialPostsGetSocialPostsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3832,18 +3885,18 @@ export type GetSocialPostsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostsCountAsyncError = GetSocialPostsCountAsyncErrors[keyof GetSocialPostsCountAsyncErrors];
+export type SocialPostsGetSocialPostsCountError = SocialPostsGetSocialPostsCountErrors[keyof SocialPostsGetSocialPostsCountErrors];
 
-export type GetSocialPostsCountAsyncResponses = {
+export type SocialPostsGetSocialPostsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialPostsCountAsyncResponse = GetSocialPostsCountAsyncResponses[keyof GetSocialPostsCountAsyncResponses];
+export type SocialPostsGetSocialPostsCountResponse = SocialPostsGetSocialPostsCountResponses[keyof SocialPostsGetSocialPostsCountResponses];
 
-export type DeleteSocialPostAsyncData = {
+export type SocialPostsDeleteSocialPostData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3858,7 +3911,7 @@ export type DeleteSocialPostAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}';
 };
 
-export type DeleteSocialPostAsyncErrors = {
+export type SocialPostsDeleteSocialPostErrors = {
     /**
      * Unauthorized
      */
@@ -3869,18 +3922,18 @@ export type DeleteSocialPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialPostAsyncError = DeleteSocialPostAsyncErrors[keyof DeleteSocialPostAsyncErrors];
+export type SocialPostsDeleteSocialPostError = SocialPostsDeleteSocialPostErrors[keyof SocialPostsDeleteSocialPostErrors];
 
-export type DeleteSocialPostAsyncResponses = {
+export type SocialPostsDeleteSocialPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialPostAsyncResponse = DeleteSocialPostAsyncResponses[keyof DeleteSocialPostAsyncResponses];
+export type SocialPostsDeleteSocialPostResponse = SocialPostsDeleteSocialPostResponses[keyof SocialPostsDeleteSocialPostResponses];
 
-export type GetSocialPostAsyncData = {
+export type SocialPostsGetSocialPostData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3895,7 +3948,7 @@ export type GetSocialPostAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}';
 };
 
-export type GetSocialPostAsyncErrors = {
+export type SocialPostsGetSocialPostErrors = {
     /**
      * Unauthorized
      */
@@ -3906,18 +3959,18 @@ export type GetSocialPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostAsyncError = GetSocialPostAsyncErrors[keyof GetSocialPostAsyncErrors];
+export type SocialPostsGetSocialPostError = SocialPostsGetSocialPostErrors[keyof SocialPostsGetSocialPostErrors];
 
-export type GetSocialPostAsyncResponses = {
+export type SocialPostsGetSocialPostResponses = {
     /**
      * OK
      */
     200: SocialPostDtoEnvelopeReadable;
 };
 
-export type GetSocialPostAsyncResponse = GetSocialPostAsyncResponses[keyof GetSocialPostAsyncResponses];
+export type SocialPostsGetSocialPostResponse = SocialPostsGetSocialPostResponses[keyof SocialPostsGetSocialPostResponses];
 
-export type PatchSocialPostAsyncData = {
+export type SocialPostsPatchSocialPostData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3932,7 +3985,7 @@ export type PatchSocialPostAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}';
 };
 
-export type PatchSocialPostAsyncErrors = {
+export type SocialPostsPatchSocialPostErrors = {
     /**
      * Unauthorized
      */
@@ -3943,18 +3996,18 @@ export type PatchSocialPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSocialPostAsyncError = PatchSocialPostAsyncErrors[keyof PatchSocialPostAsyncErrors];
+export type SocialPostsPatchSocialPostError = SocialPostsPatchSocialPostErrors[keyof SocialPostsPatchSocialPostErrors];
 
-export type PatchSocialPostAsyncResponses = {
+export type SocialPostsPatchSocialPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSocialPostAsyncResponse = PatchSocialPostAsyncResponses[keyof PatchSocialPostAsyncResponses];
+export type SocialPostsPatchSocialPostResponse = SocialPostsPatchSocialPostResponses[keyof SocialPostsPatchSocialPostResponses];
 
-export type UpdateSocialPostAsyncData = {
+export type SocialPostsUpdateSocialPostData = {
     body?: SocialPostUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3969,7 +4022,7 @@ export type UpdateSocialPostAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}';
 };
 
-export type UpdateSocialPostAsyncErrors = {
+export type SocialPostsUpdateSocialPostErrors = {
     /**
      * Unauthorized
      */
@@ -3980,18 +4033,18 @@ export type UpdateSocialPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialPostAsyncError = UpdateSocialPostAsyncErrors[keyof UpdateSocialPostAsyncErrors];
+export type SocialPostsUpdateSocialPostError = SocialPostsUpdateSocialPostErrors[keyof SocialPostsUpdateSocialPostErrors];
 
-export type UpdateSocialPostAsyncResponses = {
+export type SocialPostsUpdateSocialPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSocialPostAsyncResponse = UpdateSocialPostAsyncResponses[keyof UpdateSocialPostAsyncResponses];
+export type SocialPostsUpdateSocialPostResponse = SocialPostsUpdateSocialPostResponses[keyof SocialPostsUpdateSocialPostResponses];
 
-export type GetSocialPostAttachmentsAsyncData = {
+export type SocialPostsGetSocialPostAttachmentsData = {
     body?: SocialPostAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4005,7 +4058,7 @@ export type GetSocialPostAttachmentsAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments';
 };
 
-export type GetSocialPostAttachmentsAsyncErrors = {
+export type SocialPostsGetSocialPostAttachmentsErrors = {
     /**
      * Unauthorized
      */
@@ -4016,18 +4069,18 @@ export type GetSocialPostAttachmentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostAttachmentsAsyncError = GetSocialPostAttachmentsAsyncErrors[keyof GetSocialPostAttachmentsAsyncErrors];
+export type SocialPostsGetSocialPostAttachmentsError = SocialPostsGetSocialPostAttachmentsErrors[keyof SocialPostsGetSocialPostAttachmentsErrors];
 
-export type GetSocialPostAttachmentsAsyncResponses = {
+export type SocialPostsGetSocialPostAttachmentsResponses = {
     /**
      * OK
      */
     200: SocialPostAttachmentDtoListEnvelopeReadable;
 };
 
-export type GetSocialPostAttachmentsAsyncResponse = GetSocialPostAttachmentsAsyncResponses[keyof GetSocialPostAttachmentsAsyncResponses];
+export type SocialPostsGetSocialPostAttachmentsResponse = SocialPostsGetSocialPostAttachmentsResponses[keyof SocialPostsGetSocialPostAttachmentsResponses];
 
-export type CreateSocialPostAttachmentAsyncData = {
+export type SocialPostsCreateSocialPostAttachmentData = {
     body?: SocialPostAttachmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4042,7 +4095,7 @@ export type CreateSocialPostAttachmentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments';
 };
 
-export type CreateSocialPostAttachmentAsyncErrors = {
+export type SocialPostsCreateSocialPostAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4053,18 +4106,18 @@ export type CreateSocialPostAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialPostAttachmentAsyncError = CreateSocialPostAttachmentAsyncErrors[keyof CreateSocialPostAttachmentAsyncErrors];
+export type SocialPostsCreateSocialPostAttachmentError = SocialPostsCreateSocialPostAttachmentErrors[keyof SocialPostsCreateSocialPostAttachmentErrors];
 
-export type CreateSocialPostAttachmentAsyncResponses = {
+export type SocialPostsCreateSocialPostAttachmentResponses = {
     /**
      * Created
      */
     201: SocialPostAttachmentDtoEnvelopeReadable;
 };
 
-export type CreateSocialPostAttachmentAsyncResponse = CreateSocialPostAttachmentAsyncResponses[keyof CreateSocialPostAttachmentAsyncResponses];
+export type SocialPostsCreateSocialPostAttachmentResponse = SocialPostsCreateSocialPostAttachmentResponses[keyof SocialPostsCreateSocialPostAttachmentResponses];
 
-export type GetSocialPostAttachmentsCountAsyncData = {
+export type SocialPostsGetSocialPostAttachmentsCountData = {
     body?: SocialPostAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4078,7 +4131,7 @@ export type GetSocialPostAttachmentsCountAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Count';
 };
 
-export type GetSocialPostAttachmentsCountAsyncErrors = {
+export type SocialPostsGetSocialPostAttachmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4089,18 +4142,18 @@ export type GetSocialPostAttachmentsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostAttachmentsCountAsyncError = GetSocialPostAttachmentsCountAsyncErrors[keyof GetSocialPostAttachmentsCountAsyncErrors];
+export type SocialPostsGetSocialPostAttachmentsCountError = SocialPostsGetSocialPostAttachmentsCountErrors[keyof SocialPostsGetSocialPostAttachmentsCountErrors];
 
-export type GetSocialPostAttachmentsCountAsyncResponses = {
+export type SocialPostsGetSocialPostAttachmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialPostAttachmentsCountAsyncResponse = GetSocialPostAttachmentsCountAsyncResponses[keyof GetSocialPostAttachmentsCountAsyncResponses];
+export type SocialPostsGetSocialPostAttachmentsCountResponse = SocialPostsGetSocialPostAttachmentsCountResponses[keyof SocialPostsGetSocialPostAttachmentsCountResponses];
 
-export type DeleteSocialPostAttachmentAsyncData = {
+export type SocialPostsDeleteSocialPostAttachmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4116,7 +4169,7 @@ export type DeleteSocialPostAttachmentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/{attachmentId}';
 };
 
-export type DeleteSocialPostAttachmentAsyncErrors = {
+export type SocialPostsDeleteSocialPostAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4127,18 +4180,18 @@ export type DeleteSocialPostAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialPostAttachmentAsyncError = DeleteSocialPostAttachmentAsyncErrors[keyof DeleteSocialPostAttachmentAsyncErrors];
+export type SocialPostsDeleteSocialPostAttachmentError = SocialPostsDeleteSocialPostAttachmentErrors[keyof SocialPostsDeleteSocialPostAttachmentErrors];
 
-export type DeleteSocialPostAttachmentAsyncResponses = {
+export type SocialPostsDeleteSocialPostAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialPostAttachmentAsyncResponse = DeleteSocialPostAttachmentAsyncResponses[keyof DeleteSocialPostAttachmentAsyncResponses];
+export type SocialPostsDeleteSocialPostAttachmentResponse = SocialPostsDeleteSocialPostAttachmentResponses[keyof SocialPostsDeleteSocialPostAttachmentResponses];
 
-export type GetSocialPostAttachmentAsyncData = {
+export type SocialPostsGetSocialPostAttachmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4153,7 +4206,7 @@ export type GetSocialPostAttachmentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/{attachmentId}';
 };
 
-export type GetSocialPostAttachmentAsyncErrors = {
+export type SocialPostsGetSocialPostAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4164,18 +4217,18 @@ export type GetSocialPostAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostAttachmentAsyncError = GetSocialPostAttachmentAsyncErrors[keyof GetSocialPostAttachmentAsyncErrors];
+export type SocialPostsGetSocialPostAttachmentError = SocialPostsGetSocialPostAttachmentErrors[keyof SocialPostsGetSocialPostAttachmentErrors];
 
-export type GetSocialPostAttachmentAsyncResponses = {
+export type SocialPostsGetSocialPostAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetSocialPostAttachmentAsyncResponse = GetSocialPostAttachmentAsyncResponses[keyof GetSocialPostAttachmentAsyncResponses];
+export type SocialPostsGetSocialPostAttachmentResponse = SocialPostsGetSocialPostAttachmentResponses[keyof SocialPostsGetSocialPostAttachmentResponses];
 
-export type UpdateSocialPostAttachmentAsyncData = {
+export type SocialPostsUpdateSocialPostAttachmentData = {
     body?: SocialPostAttachmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4191,7 +4244,7 @@ export type UpdateSocialPostAttachmentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/{attachmentId}';
 };
 
-export type UpdateSocialPostAttachmentAsyncErrors = {
+export type SocialPostsUpdateSocialPostAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4202,18 +4255,18 @@ export type UpdateSocialPostAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialPostAttachmentAsyncError = UpdateSocialPostAttachmentAsyncErrors[keyof UpdateSocialPostAttachmentAsyncErrors];
+export type SocialPostsUpdateSocialPostAttachmentError = SocialPostsUpdateSocialPostAttachmentErrors[keyof SocialPostsUpdateSocialPostAttachmentErrors];
 
-export type UpdateSocialPostAttachmentAsyncResponses = {
+export type SocialPostsUpdateSocialPostAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSocialPostAttachmentAsyncResponse = UpdateSocialPostAttachmentAsyncResponses[keyof UpdateSocialPostAttachmentAsyncResponses];
+export type SocialPostsUpdateSocialPostAttachmentResponse = SocialPostsUpdateSocialPostAttachmentResponses[keyof SocialPostsUpdateSocialPostAttachmentResponses];
 
-export type UploadSocialPostImageAttachmentAsyncData = {
+export type SocialPostsUploadSocialPostImageAttachmentData = {
     body?: {
         file?: Blob | File;
     };
@@ -4230,7 +4283,7 @@ export type UploadSocialPostImageAttachmentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Image';
 };
 
-export type UploadSocialPostImageAttachmentAsyncErrors = {
+export type SocialPostsUploadSocialPostImageAttachmentErrors = {
     /**
      * Bad Request
      */
@@ -4245,18 +4298,18 @@ export type UploadSocialPostImageAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UploadSocialPostImageAttachmentAsyncError = UploadSocialPostImageAttachmentAsyncErrors[keyof UploadSocialPostImageAttachmentAsyncErrors];
+export type SocialPostsUploadSocialPostImageAttachmentError = SocialPostsUploadSocialPostImageAttachmentErrors[keyof SocialPostsUploadSocialPostImageAttachmentErrors];
 
-export type UploadSocialPostImageAttachmentAsyncResponses = {
+export type SocialPostsUploadSocialPostImageAttachmentResponses = {
     /**
      * OK
      */
     200: SocialPostAttachmentDtoEnvelopeReadable;
 };
 
-export type UploadSocialPostImageAttachmentAsyncResponse = UploadSocialPostImageAttachmentAsyncResponses[keyof UploadSocialPostImageAttachmentAsyncResponses];
+export type SocialPostsUploadSocialPostImageAttachmentResponse = SocialPostsUploadSocialPostImageAttachmentResponses[keyof SocialPostsUploadSocialPostImageAttachmentResponses];
 
-export type GetSocialPostReactionsAsyncData = {
+export type SocialPostsGetSocialPostReactionsData = {
     body?: SocialPostReactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4271,7 +4324,7 @@ export type GetSocialPostReactionsAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions';
 };
 
-export type GetSocialPostReactionsAsyncErrors = {
+export type SocialPostsGetSocialPostReactionsErrors = {
     /**
      * Unauthorized
      */
@@ -4282,18 +4335,18 @@ export type GetSocialPostReactionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostReactionsAsyncError = GetSocialPostReactionsAsyncErrors[keyof GetSocialPostReactionsAsyncErrors];
+export type SocialPostsGetSocialPostReactionsError = SocialPostsGetSocialPostReactionsErrors[keyof SocialPostsGetSocialPostReactionsErrors];
 
-export type GetSocialPostReactionsAsyncResponses = {
+export type SocialPostsGetSocialPostReactionsResponses = {
     /**
      * OK
      */
     200: SocialReactionDtoListEnvelopeReadable;
 };
 
-export type GetSocialPostReactionsAsyncResponse = GetSocialPostReactionsAsyncResponses[keyof GetSocialPostReactionsAsyncResponses];
+export type SocialPostsGetSocialPostReactionsResponse = SocialPostsGetSocialPostReactionsResponses[keyof SocialPostsGetSocialPostReactionsResponses];
 
-export type CreateSocialPostReactionAsyncData = {
+export type SocialPostsCreateSocialPostReactionData = {
     body?: SocialReactionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4308,7 +4361,7 @@ export type CreateSocialPostReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions';
 };
 
-export type CreateSocialPostReactionAsyncErrors = {
+export type SocialPostsCreateSocialPostReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4319,18 +4372,18 @@ export type CreateSocialPostReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialPostReactionAsyncError = CreateSocialPostReactionAsyncErrors[keyof CreateSocialPostReactionAsyncErrors];
+export type SocialPostsCreateSocialPostReactionError = SocialPostsCreateSocialPostReactionErrors[keyof SocialPostsCreateSocialPostReactionErrors];
 
-export type CreateSocialPostReactionAsyncResponses = {
+export type SocialPostsCreateSocialPostReactionResponses = {
     /**
      * OK
      */
     200: SocialPostReactionDtoEnvelopeReadable;
 };
 
-export type CreateSocialPostReactionAsyncResponse = CreateSocialPostReactionAsyncResponses[keyof CreateSocialPostReactionAsyncResponses];
+export type SocialPostsCreateSocialPostReactionResponse = SocialPostsCreateSocialPostReactionResponses[keyof SocialPostsCreateSocialPostReactionResponses];
 
-export type GetSocialPostReactionsCountAsyncData = {
+export type SocialPostsGetSocialPostReactionsCountData = {
     body?: SocialPostReactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4345,7 +4398,7 @@ export type GetSocialPostReactionsCountAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/Count';
 };
 
-export type GetSocialPostReactionsCountAsyncErrors = {
+export type SocialPostsGetSocialPostReactionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4356,18 +4409,18 @@ export type GetSocialPostReactionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostReactionsCountAsyncError = GetSocialPostReactionsCountAsyncErrors[keyof GetSocialPostReactionsCountAsyncErrors];
+export type SocialPostsGetSocialPostReactionsCountError = SocialPostsGetSocialPostReactionsCountErrors[keyof SocialPostsGetSocialPostReactionsCountErrors];
 
-export type GetSocialPostReactionsCountAsyncResponses = {
+export type SocialPostsGetSocialPostReactionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialPostReactionsCountAsyncResponse = GetSocialPostReactionsCountAsyncResponses[keyof GetSocialPostReactionsCountAsyncResponses];
+export type SocialPostsGetSocialPostReactionsCountResponse = SocialPostsGetSocialPostReactionsCountResponses[keyof SocialPostsGetSocialPostReactionsCountResponses];
 
-export type DeleteSocialPostReactionAsyncData = {
+export type SocialPostsDeleteSocialPostReactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4383,7 +4436,7 @@ export type DeleteSocialPostReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/{reactionId}';
 };
 
-export type DeleteSocialPostReactionAsyncErrors = {
+export type SocialPostsDeleteSocialPostReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4394,18 +4447,18 @@ export type DeleteSocialPostReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialPostReactionAsyncError = DeleteSocialPostReactionAsyncErrors[keyof DeleteSocialPostReactionAsyncErrors];
+export type SocialPostsDeleteSocialPostReactionError = SocialPostsDeleteSocialPostReactionErrors[keyof SocialPostsDeleteSocialPostReactionErrors];
 
-export type DeleteSocialPostReactionAsyncResponses = {
+export type SocialPostsDeleteSocialPostReactionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialPostReactionAsyncResponse = DeleteSocialPostReactionAsyncResponses[keyof DeleteSocialPostReactionAsyncResponses];
+export type SocialPostsDeleteSocialPostReactionResponse = SocialPostsDeleteSocialPostReactionResponses[keyof SocialPostsDeleteSocialPostReactionResponses];
 
-export type GetSocialPostReactionAsyncData = {
+export type SocialPostsGetSocialPostReactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4420,7 +4473,7 @@ export type GetSocialPostReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/{reactionId}';
 };
 
-export type GetSocialPostReactionAsyncErrors = {
+export type SocialPostsGetSocialPostReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4431,18 +4484,18 @@ export type GetSocialPostReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostReactionAsyncError = GetSocialPostReactionAsyncErrors[keyof GetSocialPostReactionAsyncErrors];
+export type SocialPostsGetSocialPostReactionError = SocialPostsGetSocialPostReactionErrors[keyof SocialPostsGetSocialPostReactionErrors];
 
-export type GetSocialPostReactionAsyncResponses = {
+export type SocialPostsGetSocialPostReactionResponses = {
     /**
      * OK
      */
     200: SocialReactionDtoEnvelopeReadable;
 };
 
-export type GetSocialPostReactionAsyncResponse = GetSocialPostReactionAsyncResponses[keyof GetSocialPostReactionAsyncResponses];
+export type SocialPostsGetSocialPostReactionResponse = SocialPostsGetSocialPostReactionResponses[keyof SocialPostsGetSocialPostReactionResponses];
 
-export type UpdateSocialPostReactionAsyncData = {
+export type SocialPostsUpdateSocialPostReactionData = {
     body?: SocialReactionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4458,7 +4511,7 @@ export type UpdateSocialPostReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/{reactionId}';
 };
 
-export type UpdateSocialPostReactionAsyncErrors = {
+export type SocialPostsUpdateSocialPostReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4469,18 +4522,18 @@ export type UpdateSocialPostReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialPostReactionAsyncError = UpdateSocialPostReactionAsyncErrors[keyof UpdateSocialPostReactionAsyncErrors];
+export type SocialPostsUpdateSocialPostReactionError = SocialPostsUpdateSocialPostReactionErrors[keyof SocialPostsUpdateSocialPostReactionErrors];
 
-export type UpdateSocialPostReactionAsyncResponses = {
+export type SocialPostsUpdateSocialPostReactionResponses = {
     /**
      * OK
      */
     200: SocialPostReactionDtoEnvelopeReadable;
 };
 
-export type UpdateSocialPostReactionAsyncResponse = UpdateSocialPostReactionAsyncResponses[keyof UpdateSocialPostReactionAsyncResponses];
+export type SocialPostsUpdateSocialPostReactionResponse = SocialPostsUpdateSocialPostReactionResponses[keyof SocialPostsUpdateSocialPostReactionResponses];
 
-export type GetSocialPostCommentsAsyncData = {
+export type SocialPostsGetSocialPostCommentsData = {
     body?: SocialPostCommentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4496,7 +4549,7 @@ export type GetSocialPostCommentsAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments';
 };
 
-export type GetSocialPostCommentsAsyncErrors = {
+export type SocialPostsGetSocialPostCommentsErrors = {
     /**
      * Unauthorized
      */
@@ -4507,18 +4560,18 @@ export type GetSocialPostCommentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostCommentsAsyncError = GetSocialPostCommentsAsyncErrors[keyof GetSocialPostCommentsAsyncErrors];
+export type SocialPostsGetSocialPostCommentsError = SocialPostsGetSocialPostCommentsErrors[keyof SocialPostsGetSocialPostCommentsErrors];
 
-export type GetSocialPostCommentsAsyncResponses = {
+export type SocialPostsGetSocialPostCommentsResponses = {
     /**
      * OK
      */
     200: SocialPostCommentDtoListEnvelopeReadable;
 };
 
-export type GetSocialPostCommentsAsyncResponse = GetSocialPostCommentsAsyncResponses[keyof GetSocialPostCommentsAsyncResponses];
+export type SocialPostsGetSocialPostCommentsResponse = SocialPostsGetSocialPostCommentsResponses[keyof SocialPostsGetSocialPostCommentsResponses];
 
-export type CreateSocialPostCommentAsyncData = {
+export type SocialPostsCreateSocialPostCommentData = {
     body?: SocialPostCommentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4533,7 +4586,7 @@ export type CreateSocialPostCommentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments';
 };
 
-export type CreateSocialPostCommentAsyncErrors = {
+export type SocialPostsCreateSocialPostCommentErrors = {
     /**
      * Unauthorized
      */
@@ -4544,18 +4597,18 @@ export type CreateSocialPostCommentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialPostCommentAsyncError = CreateSocialPostCommentAsyncErrors[keyof CreateSocialPostCommentAsyncErrors];
+export type SocialPostsCreateSocialPostCommentError = SocialPostsCreateSocialPostCommentErrors[keyof SocialPostsCreateSocialPostCommentErrors];
 
-export type CreateSocialPostCommentAsyncResponses = {
+export type SocialPostsCreateSocialPostCommentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSocialPostCommentAsyncResponse = CreateSocialPostCommentAsyncResponses[keyof CreateSocialPostCommentAsyncResponses];
+export type SocialPostsCreateSocialPostCommentResponse = SocialPostsCreateSocialPostCommentResponses[keyof SocialPostsCreateSocialPostCommentResponses];
 
-export type GetSocialPostCommentsCountAsyncData = {
+export type SocialPostsGetSocialPostCommentsCountData = {
     body?: SocialPostCommentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4571,7 +4624,7 @@ export type GetSocialPostCommentsCountAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/Count';
 };
 
-export type GetSocialPostCommentsCountAsyncErrors = {
+export type SocialPostsGetSocialPostCommentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4582,18 +4635,18 @@ export type GetSocialPostCommentsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostCommentsCountAsyncError = GetSocialPostCommentsCountAsyncErrors[keyof GetSocialPostCommentsCountAsyncErrors];
+export type SocialPostsGetSocialPostCommentsCountError = SocialPostsGetSocialPostCommentsCountErrors[keyof SocialPostsGetSocialPostCommentsCountErrors];
 
-export type GetSocialPostCommentsCountAsyncResponses = {
+export type SocialPostsGetSocialPostCommentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialPostCommentsCountAsyncResponse = GetSocialPostCommentsCountAsyncResponses[keyof GetSocialPostCommentsCountAsyncResponses];
+export type SocialPostsGetSocialPostCommentsCountResponse = SocialPostsGetSocialPostCommentsCountResponses[keyof SocialPostsGetSocialPostCommentsCountResponses];
 
-export type DeleteSocialPostCommentAsyncData = {
+export type SocialPostsDeleteSocialPostCommentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4609,7 +4662,7 @@ export type DeleteSocialPostCommentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}';
 };
 
-export type DeleteSocialPostCommentAsyncErrors = {
+export type SocialPostsDeleteSocialPostCommentErrors = {
     /**
      * Unauthorized
      */
@@ -4620,18 +4673,18 @@ export type DeleteSocialPostCommentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialPostCommentAsyncError = DeleteSocialPostCommentAsyncErrors[keyof DeleteSocialPostCommentAsyncErrors];
+export type SocialPostsDeleteSocialPostCommentError = SocialPostsDeleteSocialPostCommentErrors[keyof SocialPostsDeleteSocialPostCommentErrors];
 
-export type DeleteSocialPostCommentAsyncResponses = {
+export type SocialPostsDeleteSocialPostCommentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialPostCommentAsyncResponse = DeleteSocialPostCommentAsyncResponses[keyof DeleteSocialPostCommentAsyncResponses];
+export type SocialPostsDeleteSocialPostCommentResponse = SocialPostsDeleteSocialPostCommentResponses[keyof SocialPostsDeleteSocialPostCommentResponses];
 
-export type GetSocialPostCommentAsyncData = {
+export type SocialPostsGetSocialPostCommentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4647,7 +4700,7 @@ export type GetSocialPostCommentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}';
 };
 
-export type GetSocialPostCommentAsyncErrors = {
+export type SocialPostsGetSocialPostCommentErrors = {
     /**
      * Unauthorized
      */
@@ -4658,18 +4711,18 @@ export type GetSocialPostCommentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostCommentAsyncError = GetSocialPostCommentAsyncErrors[keyof GetSocialPostCommentAsyncErrors];
+export type SocialPostsGetSocialPostCommentError = SocialPostsGetSocialPostCommentErrors[keyof SocialPostsGetSocialPostCommentErrors];
 
-export type GetSocialPostCommentAsyncResponses = {
+export type SocialPostsGetSocialPostCommentResponses = {
     /**
      * OK
      */
     200: SocialPostCommentDtoEnvelopeReadable;
 };
 
-export type GetSocialPostCommentAsyncResponse = GetSocialPostCommentAsyncResponses[keyof GetSocialPostCommentAsyncResponses];
+export type SocialPostsGetSocialPostCommentResponse = SocialPostsGetSocialPostCommentResponses[keyof SocialPostsGetSocialPostCommentResponses];
 
-export type UpdateSocialPostCommentAsyncData = {
+export type SocialPostsUpdateSocialPostCommentData = {
     body?: SocialPostCommentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4685,7 +4738,7 @@ export type UpdateSocialPostCommentAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}';
 };
 
-export type UpdateSocialPostCommentAsyncErrors = {
+export type SocialPostsUpdateSocialPostCommentErrors = {
     /**
      * Unauthorized
      */
@@ -4696,18 +4749,18 @@ export type UpdateSocialPostCommentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialPostCommentAsyncError = UpdateSocialPostCommentAsyncErrors[keyof UpdateSocialPostCommentAsyncErrors];
+export type SocialPostsUpdateSocialPostCommentError = SocialPostsUpdateSocialPostCommentErrors[keyof SocialPostsUpdateSocialPostCommentErrors];
 
-export type UpdateSocialPostCommentAsyncResponses = {
+export type SocialPostsUpdateSocialPostCommentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSocialPostCommentAsyncResponse = UpdateSocialPostCommentAsyncResponses[keyof UpdateSocialPostCommentAsyncResponses];
+export type SocialPostsUpdateSocialPostCommentResponse = SocialPostsUpdateSocialPostCommentResponses[keyof SocialPostsUpdateSocialPostCommentResponses];
 
-export type GetSocialCommentReactionsAsyncData = {
+export type SocialPostsGetSocialCommentReactionsData = {
     body?: SocialCommentReactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4723,7 +4776,7 @@ export type GetSocialCommentReactionsAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions';
 };
 
-export type GetSocialCommentReactionsAsyncErrors = {
+export type SocialPostsGetSocialCommentReactionsErrors = {
     /**
      * Unauthorized
      */
@@ -4734,18 +4787,18 @@ export type GetSocialCommentReactionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialCommentReactionsAsyncError = GetSocialCommentReactionsAsyncErrors[keyof GetSocialCommentReactionsAsyncErrors];
+export type SocialPostsGetSocialCommentReactionsError = SocialPostsGetSocialCommentReactionsErrors[keyof SocialPostsGetSocialCommentReactionsErrors];
 
-export type GetSocialCommentReactionsAsyncResponses = {
+export type SocialPostsGetSocialCommentReactionsResponses = {
     /**
      * OK
      */
     200: SocialCommentReactionDtoListEnvelopeReadable;
 };
 
-export type GetSocialCommentReactionsAsyncResponse = GetSocialCommentReactionsAsyncResponses[keyof GetSocialCommentReactionsAsyncResponses];
+export type SocialPostsGetSocialCommentReactionsResponse = SocialPostsGetSocialCommentReactionsResponses[keyof SocialPostsGetSocialCommentReactionsResponses];
 
-export type CreateSocialCommentReactionAsyncData = {
+export type SocialPostsCreateSocialCommentReactionData = {
     body?: SocialReactionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4761,7 +4814,7 @@ export type CreateSocialCommentReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions';
 };
 
-export type CreateSocialCommentReactionAsyncErrors = {
+export type SocialPostsCreateSocialCommentReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4772,18 +4825,18 @@ export type CreateSocialCommentReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialCommentReactionAsyncError = CreateSocialCommentReactionAsyncErrors[keyof CreateSocialCommentReactionAsyncErrors];
+export type SocialPostsCreateSocialCommentReactionError = SocialPostsCreateSocialCommentReactionErrors[keyof SocialPostsCreateSocialCommentReactionErrors];
 
-export type CreateSocialCommentReactionAsyncResponses = {
+export type SocialPostsCreateSocialCommentReactionResponses = {
     /**
      * OK
      */
     200: SocialCommentReactionDtoEnvelopeReadable;
 };
 
-export type CreateSocialCommentReactionAsyncResponse = CreateSocialCommentReactionAsyncResponses[keyof CreateSocialCommentReactionAsyncResponses];
+export type SocialPostsCreateSocialCommentReactionResponse = SocialPostsCreateSocialCommentReactionResponses[keyof SocialPostsCreateSocialCommentReactionResponses];
 
-export type GetSocialCommentReactionsCountAsyncData = {
+export type SocialPostsGetSocialCommentReactionsCountData = {
     body?: SocialCommentReactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4799,7 +4852,7 @@ export type GetSocialCommentReactionsCountAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/Count';
 };
 
-export type GetSocialCommentReactionsCountAsyncErrors = {
+export type SocialPostsGetSocialCommentReactionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4810,18 +4863,18 @@ export type GetSocialCommentReactionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialCommentReactionsCountAsyncError = GetSocialCommentReactionsCountAsyncErrors[keyof GetSocialCommentReactionsCountAsyncErrors];
+export type SocialPostsGetSocialCommentReactionsCountError = SocialPostsGetSocialCommentReactionsCountErrors[keyof SocialPostsGetSocialCommentReactionsCountErrors];
 
-export type GetSocialCommentReactionsCountAsyncResponses = {
+export type SocialPostsGetSocialCommentReactionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialCommentReactionsCountAsyncResponse = GetSocialCommentReactionsCountAsyncResponses[keyof GetSocialCommentReactionsCountAsyncResponses];
+export type SocialPostsGetSocialCommentReactionsCountResponse = SocialPostsGetSocialCommentReactionsCountResponses[keyof SocialPostsGetSocialCommentReactionsCountResponses];
 
-export type DeleteSocialCommentReactionAsyncData = {
+export type SocialPostsDeleteSocialCommentReactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4838,7 +4891,7 @@ export type DeleteSocialCommentReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}';
 };
 
-export type DeleteSocialCommentReactionAsyncErrors = {
+export type SocialPostsDeleteSocialCommentReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4849,18 +4902,18 @@ export type DeleteSocialCommentReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialCommentReactionAsyncError = DeleteSocialCommentReactionAsyncErrors[keyof DeleteSocialCommentReactionAsyncErrors];
+export type SocialPostsDeleteSocialCommentReactionError = SocialPostsDeleteSocialCommentReactionErrors[keyof SocialPostsDeleteSocialCommentReactionErrors];
 
-export type DeleteSocialCommentReactionAsyncResponses = {
+export type SocialPostsDeleteSocialCommentReactionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialCommentReactionAsyncResponse = DeleteSocialCommentReactionAsyncResponses[keyof DeleteSocialCommentReactionAsyncResponses];
+export type SocialPostsDeleteSocialCommentReactionResponse = SocialPostsDeleteSocialCommentReactionResponses[keyof SocialPostsDeleteSocialCommentReactionResponses];
 
-export type GetSocialCommentReactionAsyncData = {
+export type SocialPostsGetSocialCommentReactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4876,7 +4929,7 @@ export type GetSocialCommentReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}';
 };
 
-export type GetSocialCommentReactionAsyncErrors = {
+export type SocialPostsGetSocialCommentReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4887,18 +4940,18 @@ export type GetSocialCommentReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialCommentReactionAsyncError = GetSocialCommentReactionAsyncErrors[keyof GetSocialCommentReactionAsyncErrors];
+export type SocialPostsGetSocialCommentReactionError = SocialPostsGetSocialCommentReactionErrors[keyof SocialPostsGetSocialCommentReactionErrors];
 
-export type GetSocialCommentReactionAsyncResponses = {
+export type SocialPostsGetSocialCommentReactionResponses = {
     /**
      * OK
      */
     200: SocialCommentReactionDtoEnvelopeReadable;
 };
 
-export type GetSocialCommentReactionAsyncResponse = GetSocialCommentReactionAsyncResponses[keyof GetSocialCommentReactionAsyncResponses];
+export type SocialPostsGetSocialCommentReactionResponse = SocialPostsGetSocialCommentReactionResponses[keyof SocialPostsGetSocialCommentReactionResponses];
 
-export type UpdateSocialCommentReactionAsyncData = {
+export type SocialPostsUpdateSocialCommentReactionData = {
     body?: SocialReactionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4915,7 +4968,7 @@ export type UpdateSocialCommentReactionAsyncData = {
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}';
 };
 
-export type UpdateSocialCommentReactionAsyncErrors = {
+export type SocialPostsUpdateSocialCommentReactionErrors = {
     /**
      * Unauthorized
      */
@@ -4926,18 +4979,18 @@ export type UpdateSocialCommentReactionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialCommentReactionAsyncError = UpdateSocialCommentReactionAsyncErrors[keyof UpdateSocialCommentReactionAsyncErrors];
+export type SocialPostsUpdateSocialCommentReactionError = SocialPostsUpdateSocialCommentReactionErrors[keyof SocialPostsUpdateSocialCommentReactionErrors];
 
-export type UpdateSocialCommentReactionAsyncResponses = {
+export type SocialPostsUpdateSocialCommentReactionResponses = {
     /**
      * OK
      */
     200: SocialCommentReactionDtoEnvelopeReadable;
 };
 
-export type UpdateSocialCommentReactionAsyncResponse = UpdateSocialCommentReactionAsyncResponses[keyof UpdateSocialCommentReactionAsyncResponses];
+export type SocialPostsUpdateSocialCommentReactionResponse = SocialPostsUpdateSocialCommentReactionResponses[keyof SocialPostsUpdateSocialCommentReactionResponses];
 
-export type GetSocialProfilesAsyncData = {
+export type SocialProfilesGetSocialProfilesData = {
     body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4949,7 +5002,7 @@ export type GetSocialProfilesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles';
 };
 
-export type GetSocialProfilesAsyncErrors = {
+export type SocialProfilesGetSocialProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -4960,18 +5013,18 @@ export type GetSocialProfilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialProfilesAsyncError = GetSocialProfilesAsyncErrors[keyof GetSocialProfilesAsyncErrors];
+export type SocialProfilesGetSocialProfilesError = SocialProfilesGetSocialProfilesErrors[keyof SocialProfilesGetSocialProfilesErrors];
 
-export type GetSocialProfilesAsyncResponses = {
+export type SocialProfilesGetSocialProfilesResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoListEnvelopeReadable;
 };
 
-export type GetSocialProfilesAsyncResponse = GetSocialProfilesAsyncResponses[keyof GetSocialProfilesAsyncResponses];
+export type SocialProfilesGetSocialProfilesResponse = SocialProfilesGetSocialProfilesResponses[keyof SocialProfilesGetSocialProfilesResponses];
 
-export type CountSocialProfilesAsyncData = {
+export type SocialProfilesCountSocialProfilesData = {
     body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4983,7 +5036,7 @@ export type CountSocialProfilesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/Count';
 };
 
-export type CountSocialProfilesAsyncErrors = {
+export type SocialProfilesCountSocialProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -4994,18 +5047,18 @@ export type CountSocialProfilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountSocialProfilesAsyncError = CountSocialProfilesAsyncErrors[keyof CountSocialProfilesAsyncErrors];
+export type SocialProfilesCountSocialProfilesError = SocialProfilesCountSocialProfilesErrors[keyof SocialProfilesCountSocialProfilesErrors];
 
-export type CountSocialProfilesAsyncResponses = {
+export type SocialProfilesCountSocialProfilesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountSocialProfilesAsyncResponse = CountSocialProfilesAsyncResponses[keyof CountSocialProfilesAsyncResponses];
+export type SocialProfilesCountSocialProfilesResponse = SocialProfilesCountSocialProfilesResponses[keyof SocialProfilesCountSocialProfilesResponses];
 
-export type GetSocialProfileAsyncData = {
+export type SocialProfilesGetSocialProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5019,7 +5072,7 @@ export type GetSocialProfileAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}';
 };
 
-export type GetSocialProfileAsyncErrors = {
+export type SocialProfilesGetSocialProfileErrors = {
     /**
      * Unauthorized
      */
@@ -5030,18 +5083,18 @@ export type GetSocialProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialProfileAsyncError = GetSocialProfileAsyncErrors[keyof GetSocialProfileAsyncErrors];
+export type SocialProfilesGetSocialProfileError = SocialProfilesGetSocialProfileErrors[keyof SocialProfilesGetSocialProfileErrors];
 
-export type GetSocialProfileAsyncResponses = {
+export type SocialProfilesGetSocialProfileResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoEnvelopeReadable;
 };
 
-export type GetSocialProfileAsyncResponse = GetSocialProfileAsyncResponses[keyof GetSocialProfileAsyncResponses];
+export type SocialProfilesGetSocialProfileResponse = SocialProfilesGetSocialProfileResponses[keyof SocialProfilesGetSocialProfileResponses];
 
-export type GetFollowersAsyncData = {
+export type SocialProfilesGetFollowersData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5055,7 +5108,7 @@ export type GetFollowersAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers';
 };
 
-export type GetFollowersAsyncErrors = {
+export type SocialProfilesGetFollowersErrors = {
     /**
      * Unauthorized
      */
@@ -5066,18 +5119,18 @@ export type GetFollowersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFollowersAsyncError = GetFollowersAsyncErrors[keyof GetFollowersAsyncErrors];
+export type SocialProfilesGetFollowersError = SocialProfilesGetFollowersErrors[keyof SocialProfilesGetFollowersErrors];
 
-export type GetFollowersAsyncResponses = {
+export type SocialProfilesGetFollowersResponses = {
     /**
      * OK
      */
     200: FollowRecordDtoListEnvelopeReadable;
 };
 
-export type GetFollowersAsyncResponse = GetFollowersAsyncResponses[keyof GetFollowersAsyncResponses];
+export type SocialProfilesGetFollowersResponse = SocialProfilesGetFollowersResponses[keyof SocialProfilesGetFollowersResponses];
 
-export type CountFollowersAsyncData = {
+export type SocialProfilesCountFollowersData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5091,7 +5144,7 @@ export type CountFollowersAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Count';
 };
 
-export type CountFollowersAsyncErrors = {
+export type SocialProfilesCountFollowersErrors = {
     /**
      * Unauthorized
      */
@@ -5102,18 +5155,58 @@ export type CountFollowersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountFollowersAsyncError = CountFollowersAsyncErrors[keyof CountFollowersAsyncErrors];
+export type SocialProfilesCountFollowersError = SocialProfilesCountFollowersErrors[keyof SocialProfilesCountFollowersErrors];
 
-export type CountFollowersAsyncResponses = {
+export type SocialProfilesCountFollowersResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountFollowersAsyncResponse = CountFollowersAsyncResponses[keyof CountFollowersAsyncResponses];
+export type SocialProfilesCountFollowersResponse = SocialProfilesCountFollowersResponses[keyof SocialProfilesCountFollowersResponses];
 
-export type GetFollowerProfilesAsyncData = {
+export type SocialProfilesCountGroupEnrollmentsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/GroupEnrollments/Count';
+};
+
+export type SocialProfilesCountGroupEnrollmentsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SocialProfilesCountGroupEnrollmentsError = SocialProfilesCountGroupEnrollmentsErrors[keyof SocialProfilesCountGroupEnrollmentsErrors];
+
+export type SocialProfilesCountGroupEnrollmentsResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type SocialProfilesCountGroupEnrollmentsResponse = SocialProfilesCountGroupEnrollmentsResponses[keyof SocialProfilesCountGroupEnrollmentsResponses];
+
+export type SocialProfilesGetFollowerProfilesData = {
     body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5127,7 +5220,7 @@ export type GetFollowerProfilesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Profiles';
 };
 
-export type GetFollowerProfilesAsyncErrors = {
+export type SocialProfilesGetFollowerProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -5138,18 +5231,18 @@ export type GetFollowerProfilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFollowerProfilesAsyncError = GetFollowerProfilesAsyncErrors[keyof GetFollowerProfilesAsyncErrors];
+export type SocialProfilesGetFollowerProfilesError = SocialProfilesGetFollowerProfilesErrors[keyof SocialProfilesGetFollowerProfilesErrors];
 
-export type GetFollowerProfilesAsyncResponses = {
+export type SocialProfilesGetFollowerProfilesResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoListEnvelopeReadable;
 };
 
-export type GetFollowerProfilesAsyncResponse = GetFollowerProfilesAsyncResponses[keyof GetFollowerProfilesAsyncResponses];
+export type SocialProfilesGetFollowerProfilesResponse = SocialProfilesGetFollowerProfilesResponses[keyof SocialProfilesGetFollowerProfilesResponses];
 
-export type CountFollowerProfilesAsyncData = {
+export type SocialProfilesCountFollowerProfilesData = {
     body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5163,7 +5256,7 @@ export type CountFollowerProfilesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Profiles/Count';
 };
 
-export type CountFollowerProfilesAsyncErrors = {
+export type SocialProfilesCountFollowerProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -5174,18 +5267,18 @@ export type CountFollowerProfilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountFollowerProfilesAsyncError = CountFollowerProfilesAsyncErrors[keyof CountFollowerProfilesAsyncErrors];
+export type SocialProfilesCountFollowerProfilesError = SocialProfilesCountFollowerProfilesErrors[keyof SocialProfilesCountFollowerProfilesErrors];
 
-export type CountFollowerProfilesAsyncResponses = {
+export type SocialProfilesCountFollowerProfilesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountFollowerProfilesAsyncResponse = CountFollowerProfilesAsyncResponses[keyof CountFollowerProfilesAsyncResponses];
+export type SocialProfilesCountFollowerProfilesResponse = SocialProfilesCountFollowerProfilesResponses[keyof SocialProfilesCountFollowerProfilesResponses];
 
-export type GetFollowsAsyncData = {
+export type SocialProfilesGetFollowsData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5199,7 +5292,7 @@ export type GetFollowsAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows';
 };
 
-export type GetFollowsAsyncErrors = {
+export type SocialProfilesGetFollowsErrors = {
     /**
      * Unauthorized
      */
@@ -5210,18 +5303,18 @@ export type GetFollowsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFollowsAsyncError = GetFollowsAsyncErrors[keyof GetFollowsAsyncErrors];
+export type SocialProfilesGetFollowsError = SocialProfilesGetFollowsErrors[keyof SocialProfilesGetFollowsErrors];
 
-export type GetFollowsAsyncResponses = {
+export type SocialProfilesGetFollowsResponses = {
     /**
      * OK
      */
     200: FollowRecordDtoListEnvelopeReadable;
 };
 
-export type GetFollowsAsyncResponse = GetFollowsAsyncResponses[keyof GetFollowsAsyncResponses];
+export type SocialProfilesGetFollowsResponse = SocialProfilesGetFollowsResponses[keyof SocialProfilesGetFollowsResponses];
 
-export type CountFollowsAsyncData = {
+export type SocialProfilesCountFollowsData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5235,7 +5328,7 @@ export type CountFollowsAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Count';
 };
 
-export type CountFollowsAsyncErrors = {
+export type SocialProfilesCountFollowsErrors = {
     /**
      * Unauthorized
      */
@@ -5246,18 +5339,18 @@ export type CountFollowsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountFollowsAsyncError = CountFollowsAsyncErrors[keyof CountFollowsAsyncErrors];
+export type SocialProfilesCountFollowsError = SocialProfilesCountFollowsErrors[keyof SocialProfilesCountFollowsErrors];
 
-export type CountFollowsAsyncResponses = {
+export type SocialProfilesCountFollowsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountFollowsAsyncResponse = CountFollowsAsyncResponses[keyof CountFollowsAsyncResponses];
+export type SocialProfilesCountFollowsResponse = SocialProfilesCountFollowsResponses[keyof SocialProfilesCountFollowsResponses];
 
-export type GetFollowedProfilesAsyncData = {
+export type SocialProfilesGetFollowedProfilesData = {
     body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5271,7 +5364,7 @@ export type GetFollowedProfilesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Profiles';
 };
 
-export type GetFollowedProfilesAsyncErrors = {
+export type SocialProfilesGetFollowedProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -5282,18 +5375,18 @@ export type GetFollowedProfilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFollowedProfilesAsyncError = GetFollowedProfilesAsyncErrors[keyof GetFollowedProfilesAsyncErrors];
+export type SocialProfilesGetFollowedProfilesError = SocialProfilesGetFollowedProfilesErrors[keyof SocialProfilesGetFollowedProfilesErrors];
 
-export type GetFollowedProfilesAsyncResponses = {
+export type SocialProfilesGetFollowedProfilesResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoListEnvelopeReadable;
 };
 
-export type GetFollowedProfilesAsyncResponse = GetFollowedProfilesAsyncResponses[keyof GetFollowedProfilesAsyncResponses];
+export type SocialProfilesGetFollowedProfilesResponse = SocialProfilesGetFollowedProfilesResponses[keyof SocialProfilesGetFollowedProfilesResponses];
 
-export type CountFollowedProfilesAsyncData = {
+export type SocialProfilesCountFollowedProfilesData = {
     body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5307,7 +5400,7 @@ export type CountFollowedProfilesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Profiles/Count';
 };
 
-export type CountFollowedProfilesAsyncErrors = {
+export type SocialProfilesCountFollowedProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -5318,18 +5411,18 @@ export type CountFollowedProfilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountFollowedProfilesAsyncError = CountFollowedProfilesAsyncErrors[keyof CountFollowedProfilesAsyncErrors];
+export type SocialProfilesCountFollowedProfilesError = SocialProfilesCountFollowedProfilesErrors[keyof SocialProfilesCountFollowedProfilesErrors];
 
-export type CountFollowedProfilesAsyncResponses = {
+export type SocialProfilesCountFollowedProfilesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountFollowedProfilesAsyncResponse = CountFollowedProfilesAsyncResponses[keyof CountFollowedProfilesAsyncResponses];
+export type SocialProfilesCountFollowedProfilesResponse = SocialProfilesCountFollowedProfilesResponses[keyof SocialProfilesCountFollowedProfilesResponses];
 
-export type UnfollowAsyncData = {
+export type SocialProfilesUnfollowData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5344,7 +5437,7 @@ export type UnfollowAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/{followedSocialProfileId}';
 };
 
-export type UnfollowAsyncErrors = {
+export type SocialProfilesUnfollowErrors = {
     /**
      * Unauthorized
      */
@@ -5355,18 +5448,18 @@ export type UnfollowAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UnfollowAsyncError = UnfollowAsyncErrors[keyof UnfollowAsyncErrors];
+export type SocialProfilesUnfollowError = SocialProfilesUnfollowErrors[keyof SocialProfilesUnfollowErrors];
 
-export type UnfollowAsyncResponses = {
+export type SocialProfilesUnfollowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UnfollowAsyncResponse = UnfollowAsyncResponses[keyof UnfollowAsyncResponses];
+export type SocialProfilesUnfollowResponse = SocialProfilesUnfollowResponses[keyof SocialProfilesUnfollowResponses];
 
-export type FollowExistsAsyncData = {
+export type SocialProfilesFollowExistsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5381,7 +5474,7 @@ export type FollowExistsAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/{followedSocialProfileId}';
 };
 
-export type FollowExistsAsyncErrors = {
+export type SocialProfilesFollowExistsErrors = {
     /**
      * Unauthorized
      */
@@ -5392,18 +5485,18 @@ export type FollowExistsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type FollowExistsAsyncError = FollowExistsAsyncErrors[keyof FollowExistsAsyncErrors];
+export type SocialProfilesFollowExistsError = SocialProfilesFollowExistsErrors[keyof SocialProfilesFollowExistsErrors];
 
-export type FollowExistsAsyncResponses = {
+export type SocialProfilesFollowExistsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type FollowExistsAsyncResponse = FollowExistsAsyncResponses[keyof FollowExistsAsyncResponses];
+export type SocialProfilesFollowExistsResponse = SocialProfilesFollowExistsResponses[keyof SocialProfilesFollowExistsResponses];
 
-export type FollowAsyncData = {
+export type SocialProfilesFollowData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5418,7 +5511,7 @@ export type FollowAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/{followedSocialProfileId}';
 };
 
-export type FollowAsyncErrors = {
+export type SocialProfilesFollowErrors = {
     /**
      * Unauthorized
      */
@@ -5429,18 +5522,18 @@ export type FollowAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type FollowAsyncError = FollowAsyncErrors[keyof FollowAsyncErrors];
+export type SocialProfilesFollowError = SocialProfilesFollowErrors[keyof SocialProfilesFollowErrors];
 
-export type FollowAsyncResponses = {
+export type SocialProfilesFollowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type FollowAsyncResponse = FollowAsyncResponses[keyof FollowAsyncResponses];
+export type SocialProfilesFollowResponse = SocialProfilesFollowResponses[keyof SocialProfilesFollowResponses];
 
-export type GetNotificationsAsyncData = {
+export type SocialProfilesGetNotificationsData = {
     body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5449,12 +5542,14 @@ export type GetNotificationsAsyncData = {
         socialProfileId: string;
     };
     query?: {
+        tenantId?: string;
+        archived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications';
 };
 
-export type GetNotificationsAsyncErrors = {
+export type SocialProfilesGetNotificationsErrors = {
     /**
      * Unauthorized
      */
@@ -5465,32 +5560,33 @@ export type GetNotificationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNotificationsAsyncError = GetNotificationsAsyncErrors[keyof GetNotificationsAsyncErrors];
+export type SocialProfilesGetNotificationsError = SocialProfilesGetNotificationsErrors[keyof SocialProfilesGetNotificationsErrors];
 
-export type GetNotificationsAsyncResponses = {
+export type SocialProfilesGetNotificationsResponses = {
     /**
      * OK
      */
     200: NotificationDtoListEnvelopeReadable;
 };
 
-export type GetNotificationsAsyncResponse = GetNotificationsAsyncResponses[keyof GetNotificationsAsyncResponses];
+export type SocialProfilesGetNotificationsResponse = SocialProfilesGetNotificationsResponses[keyof SocialProfilesGetNotificationsResponses];
 
-export type CountNotificationsAsyncData = {
-    body?: NotificationDtoCollectionQueryParametersWritable;
+export type SocialProfilesCreateNotificationData = {
+    body?: CreateNotificationDto;
     headers?: {
         'x-api-version'?: string;
     };
     path: {
         socialProfileId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
-    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/Count';
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications';
 };
 
-export type CountNotificationsAsyncErrors = {
+export type SocialProfilesCreateNotificationErrors = {
     /**
      * Unauthorized
      */
@@ -5501,18 +5597,56 @@ export type CountNotificationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountNotificationsAsyncError = CountNotificationsAsyncErrors[keyof CountNotificationsAsyncErrors];
+export type SocialProfilesCreateNotificationError = SocialProfilesCreateNotificationErrors[keyof SocialProfilesCreateNotificationErrors];
 
-export type CountNotificationsAsyncResponses = {
+export type SocialProfilesCreateNotificationResponses = {
+    /**
+     * OK
+     */
+    200: NotificationIssuanceReceiptDtoEnvelopeReadable;
+};
+
+export type SocialProfilesCreateNotificationResponse = SocialProfilesCreateNotificationResponses[keyof SocialProfilesCreateNotificationResponses];
+
+export type SocialProfilesCountNotificationsData = {
+    body?: NotificationDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+    };
+    query?: {
+        tenantId?: string;
+        archived?: boolean;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/Count';
+};
+
+export type SocialProfilesCountNotificationsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type SocialProfilesCountNotificationsError = SocialProfilesCountNotificationsErrors[keyof SocialProfilesCountNotificationsErrors];
+
+export type SocialProfilesCountNotificationsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountNotificationsAsyncResponse = CountNotificationsAsyncResponses[keyof CountNotificationsAsyncResponses];
+export type SocialProfilesCountNotificationsResponse = SocialProfilesCountNotificationsResponses[keyof SocialProfilesCountNotificationsResponses];
 
-export type GetNotificationByIdAsyncData = {
+export type SocialProfilesGetNotificationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5527,7 +5661,7 @@ export type GetNotificationByIdAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}';
 };
 
-export type GetNotificationByIdAsyncErrors = {
+export type SocialProfilesGetNotificationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5538,18 +5672,140 @@ export type GetNotificationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNotificationByIdAsyncError = GetNotificationByIdAsyncErrors[keyof GetNotificationByIdAsyncErrors];
+export type SocialProfilesGetNotificationByIdError = SocialProfilesGetNotificationByIdErrors[keyof SocialProfilesGetNotificationByIdErrors];
 
-export type GetNotificationByIdAsyncResponses = {
+export type SocialProfilesGetNotificationByIdResponses = {
     /**
      * OK
      */
     200: NotificationDtoEnvelopeReadable;
 };
 
-export type GetNotificationByIdAsyncResponse = GetNotificationByIdAsyncResponses[keyof GetNotificationByIdAsyncResponses];
+export type SocialProfilesGetNotificationByIdResponse = SocialProfilesGetNotificationByIdResponses[keyof SocialProfilesGetNotificationByIdResponses];
 
-export type GetConversationsAsyncData = {
+export type SocialProfilesMarkNotificationReadData = {
+    body?: UpdateNotificationDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+        notificationId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}';
+};
+
+export type SocialProfilesMarkNotificationReadErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type SocialProfilesMarkNotificationReadError = SocialProfilesMarkNotificationReadErrors[keyof SocialProfilesMarkNotificationReadErrors];
+
+export type SocialProfilesMarkNotificationReadResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SocialProfilesMarkNotificationReadResponse = SocialProfilesMarkNotificationReadResponses[keyof SocialProfilesMarkNotificationReadResponses];
+
+export type SocialProfilesArchiveNotificationData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+        notificationId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}/Archive';
+};
+
+export type SocialProfilesArchiveNotificationErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SocialProfilesArchiveNotificationError = SocialProfilesArchiveNotificationErrors[keyof SocialProfilesArchiveNotificationErrors];
+
+export type SocialProfilesArchiveNotificationResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SocialProfilesArchiveNotificationResponse = SocialProfilesArchiveNotificationResponses[keyof SocialProfilesArchiveNotificationResponses];
+
+export type SocialProfilesUnarchiveNotificationData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+        notificationId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}/Unarchive';
+};
+
+export type SocialProfilesUnarchiveNotificationErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SocialProfilesUnarchiveNotificationError = SocialProfilesUnarchiveNotificationErrors[keyof SocialProfilesUnarchiveNotificationErrors];
+
+export type SocialProfilesUnarchiveNotificationResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SocialProfilesUnarchiveNotificationResponse = SocialProfilesUnarchiveNotificationResponses[keyof SocialProfilesUnarchiveNotificationResponses];
+
+export type SocialProfilesGetConversationsData = {
     body?: ConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5563,7 +5819,7 @@ export type GetConversationsAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations';
 };
 
-export type GetConversationsAsyncErrors = {
+export type SocialProfilesGetConversationsErrors = {
     /**
      * Unauthorized
      */
@@ -5574,18 +5830,18 @@ export type GetConversationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetConversationsAsyncError = GetConversationsAsyncErrors[keyof GetConversationsAsyncErrors];
+export type SocialProfilesGetConversationsError = SocialProfilesGetConversationsErrors[keyof SocialProfilesGetConversationsErrors];
 
-export type GetConversationsAsyncResponses = {
+export type SocialProfilesGetConversationsResponses = {
     /**
      * OK
      */
     200: ConversationDtoListEnvelopeReadable;
 };
 
-export type GetConversationsAsyncResponse = GetConversationsAsyncResponses[keyof GetConversationsAsyncResponses];
+export type SocialProfilesGetConversationsResponse = SocialProfilesGetConversationsResponses[keyof SocialProfilesGetConversationsResponses];
 
-export type CreateConversationAsyncData = {
+export type SocialProfilesCreateConversationData = {
     body?: ConversationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5599,7 +5855,7 @@ export type CreateConversationAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations';
 };
 
-export type CreateConversationAsyncErrors = {
+export type SocialProfilesCreateConversationErrors = {
     /**
      * Unauthorized
      */
@@ -5610,18 +5866,18 @@ export type CreateConversationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateConversationAsyncError = CreateConversationAsyncErrors[keyof CreateConversationAsyncErrors];
+export type SocialProfilesCreateConversationError = SocialProfilesCreateConversationErrors[keyof SocialProfilesCreateConversationErrors];
 
-export type CreateConversationAsyncResponses = {
+export type SocialProfilesCreateConversationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateConversationAsyncResponse = CreateConversationAsyncResponses[keyof CreateConversationAsyncResponses];
+export type SocialProfilesCreateConversationResponse = SocialProfilesCreateConversationResponses[keyof SocialProfilesCreateConversationResponses];
 
-export type CountConversationsAsyncData = {
+export type SocialProfilesCountConversationsData = {
     body?: ConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5635,7 +5891,7 @@ export type CountConversationsAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations/Count';
 };
 
-export type CountConversationsAsyncErrors = {
+export type SocialProfilesCountConversationsErrors = {
     /**
      * Unauthorized
      */
@@ -5646,18 +5902,18 @@ export type CountConversationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountConversationsAsyncError = CountConversationsAsyncErrors[keyof CountConversationsAsyncErrors];
+export type SocialProfilesCountConversationsError = SocialProfilesCountConversationsErrors[keyof SocialProfilesCountConversationsErrors];
 
-export type CountConversationsAsyncResponses = {
+export type SocialProfilesCountConversationsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountConversationsAsyncResponse = CountConversationsAsyncResponses[keyof CountConversationsAsyncResponses];
+export type SocialProfilesCountConversationsResponse = SocialProfilesCountConversationsResponses[keyof SocialProfilesCountConversationsResponses];
 
-export type GetOrCreateDirectConversationAsyncData = {
+export type SocialProfilesGetOrCreateDirectConversationData = {
     body?: string;
     headers?: {
         'x-api-version'?: string;
@@ -5671,7 +5927,7 @@ export type GetOrCreateDirectConversationAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations/Direct';
 };
 
-export type GetOrCreateDirectConversationAsyncErrors = {
+export type SocialProfilesGetOrCreateDirectConversationErrors = {
     /**
      * Unauthorized
      */
@@ -5682,18 +5938,18 @@ export type GetOrCreateDirectConversationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOrCreateDirectConversationAsyncError = GetOrCreateDirectConversationAsyncErrors[keyof GetOrCreateDirectConversationAsyncErrors];
+export type SocialProfilesGetOrCreateDirectConversationError = SocialProfilesGetOrCreateDirectConversationErrors[keyof SocialProfilesGetOrCreateDirectConversationErrors];
 
-export type GetOrCreateDirectConversationAsyncResponses = {
+export type SocialProfilesGetOrCreateDirectConversationResponses = {
     /**
      * OK
      */
     200: ConversationDtoEnvelopeReadable;
 };
 
-export type GetOrCreateDirectConversationAsyncResponse = GetOrCreateDirectConversationAsyncResponses[keyof GetOrCreateDirectConversationAsyncResponses];
+export type SocialProfilesGetOrCreateDirectConversationResponse = SocialProfilesGetOrCreateDirectConversationResponses[keyof SocialProfilesGetOrCreateDirectConversationResponses];
 
-export type GetMessagesAsyncData = {
+export type SocialProfilesGetMessagesData = {
     body?: PrivateMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5708,7 +5964,7 @@ export type GetMessagesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages';
 };
 
-export type GetMessagesAsyncErrors = {
+export type SocialProfilesGetMessagesErrors = {
     /**
      * Unauthorized
      */
@@ -5719,18 +5975,18 @@ export type GetMessagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMessagesAsyncError = GetMessagesAsyncErrors[keyof GetMessagesAsyncErrors];
+export type SocialProfilesGetMessagesError = SocialProfilesGetMessagesErrors[keyof SocialProfilesGetMessagesErrors];
 
-export type GetMessagesAsyncResponses = {
+export type SocialProfilesGetMessagesResponses = {
     /**
      * OK
      */
     200: PrivateMessageDtoListEnvelopeReadable;
 };
 
-export type GetMessagesAsyncResponse = GetMessagesAsyncResponses[keyof GetMessagesAsyncResponses];
+export type SocialProfilesGetMessagesResponse = SocialProfilesGetMessagesResponses[keyof SocialProfilesGetMessagesResponses];
 
-export type CreateMessageAsyncData = {
+export type SocialProfilesCreateMessageData = {
     body?: PrivateMessageCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5745,7 +6001,7 @@ export type CreateMessageAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages';
 };
 
-export type CreateMessageAsyncErrors = {
+export type SocialProfilesCreateMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5756,18 +6012,18 @@ export type CreateMessageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateMessageAsyncError = CreateMessageAsyncErrors[keyof CreateMessageAsyncErrors];
+export type SocialProfilesCreateMessageError = SocialProfilesCreateMessageErrors[keyof SocialProfilesCreateMessageErrors];
 
-export type CreateMessageAsyncResponses = {
+export type SocialProfilesCreateMessageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateMessageAsyncResponse = CreateMessageAsyncResponses[keyof CreateMessageAsyncResponses];
+export type SocialProfilesCreateMessageResponse = SocialProfilesCreateMessageResponses[keyof SocialProfilesCreateMessageResponses];
 
-export type CountMessagesAsyncData = {
+export type SocialProfilesCountMessagesData = {
     body?: PrivateMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5782,7 +6038,7 @@ export type CountMessagesAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/Count';
 };
 
-export type CountMessagesAsyncErrors = {
+export type SocialProfilesCountMessagesErrors = {
     /**
      * Unauthorized
      */
@@ -5793,18 +6049,18 @@ export type CountMessagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountMessagesAsyncError = CountMessagesAsyncErrors[keyof CountMessagesAsyncErrors];
+export type SocialProfilesCountMessagesError = SocialProfilesCountMessagesErrors[keyof SocialProfilesCountMessagesErrors];
 
-export type CountMessagesAsyncResponses = {
+export type SocialProfilesCountMessagesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountMessagesAsyncResponse = CountMessagesAsyncResponses[keyof CountMessagesAsyncResponses];
+export type SocialProfilesCountMessagesResponse = SocialProfilesCountMessagesResponses[keyof SocialProfilesCountMessagesResponses];
 
-export type DeleteMessageAsyncData = {
+export type SocialProfilesDeleteMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5820,7 +6076,7 @@ export type DeleteMessageAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/{messageId}';
 };
 
-export type DeleteMessageAsyncErrors = {
+export type SocialProfilesDeleteMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5831,18 +6087,18 @@ export type DeleteMessageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteMessageAsyncError = DeleteMessageAsyncErrors[keyof DeleteMessageAsyncErrors];
+export type SocialProfilesDeleteMessageError = SocialProfilesDeleteMessageErrors[keyof SocialProfilesDeleteMessageErrors];
 
-export type DeleteMessageAsyncResponses = {
+export type SocialProfilesDeleteMessageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMessageAsyncResponse = DeleteMessageAsyncResponses[keyof DeleteMessageAsyncResponses];
+export type SocialProfilesDeleteMessageResponse = SocialProfilesDeleteMessageResponses[keyof SocialProfilesDeleteMessageResponses];
 
-export type UpdateMessageAsyncData = {
+export type SocialProfilesUpdateMessageData = {
     body?: PrivateMessageUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5858,7 +6114,7 @@ export type UpdateMessageAsyncData = {
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/{messageId}';
 };
 
-export type UpdateMessageAsyncErrors = {
+export type SocialProfilesUpdateMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5869,16 +6125,58 @@ export type UpdateMessageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateMessageAsyncError = UpdateMessageAsyncErrors[keyof UpdateMessageAsyncErrors];
+export type SocialProfilesUpdateMessageError = SocialProfilesUpdateMessageErrors[keyof SocialProfilesUpdateMessageErrors];
 
-export type UpdateMessageAsyncResponses = {
+export type SocialProfilesUpdateMessageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMessageAsyncResponse = UpdateMessageAsyncResponses[keyof UpdateMessageAsyncResponses];
+export type SocialProfilesUpdateMessageResponse = SocialProfilesUpdateMessageResponses[keyof SocialProfilesUpdateMessageResponses];
+
+export type SocialProfilesMarkConversationReadData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        conversationId: string;
+    };
+    query: {
+        socialProfileId: string;
+        upToMessageId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/Read';
+};
+
+export type SocialProfilesMarkConversationReadErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SocialProfilesMarkConversationReadError = SocialProfilesMarkConversationReadErrors[keyof SocialProfilesMarkConversationReadErrors];
+
+export type SocialProfilesMarkConversationReadResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SocialProfilesMarkConversationReadResponse = SocialProfilesMarkConversationReadResponses[keyof SocialProfilesMarkConversationReadResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

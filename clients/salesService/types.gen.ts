@@ -732,72 +732,72 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -807,32 +807,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -843,81 +843,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -928,25 +928,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -957,25 +957,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -986,18 +986,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1007,14 +1007,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1023,14 +1023,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1039,28 +1039,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountLoyaltyProgramsAsyncData = {
+export type LoyaltyProgramsCountLoyaltyProgramsData = {
     body?: LoyaltyProgramDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1069,25 +1069,25 @@ export type CountLoyaltyProgramsAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms/Count';
 };
 
-export type CountLoyaltyProgramsAsyncErrors = {
+export type LoyaltyProgramsCountLoyaltyProgramsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CountLoyaltyProgramsAsyncError = CountLoyaltyProgramsAsyncErrors[keyof CountLoyaltyProgramsAsyncErrors];
+export type LoyaltyProgramsCountLoyaltyProgramsError = LoyaltyProgramsCountLoyaltyProgramsErrors[keyof LoyaltyProgramsCountLoyaltyProgramsErrors];
 
-export type CountLoyaltyProgramsAsyncResponses = {
+export type LoyaltyProgramsCountLoyaltyProgramsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountLoyaltyProgramsAsyncResponse = CountLoyaltyProgramsAsyncResponses[keyof CountLoyaltyProgramsAsyncResponses];
+export type LoyaltyProgramsCountLoyaltyProgramsResponse = LoyaltyProgramsCountLoyaltyProgramsResponses[keyof LoyaltyProgramsCountLoyaltyProgramsResponses];
 
-export type GetLoyaltyProgramsAsyncData = {
+export type LoyaltyProgramsGetLoyaltyProgramsData = {
     body?: LoyaltyProgramDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1096,25 +1096,25 @@ export type GetLoyaltyProgramsAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms';
 };
 
-export type GetLoyaltyProgramsAsyncErrors = {
+export type LoyaltyProgramsGetLoyaltyProgramsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLoyaltyProgramsAsyncError = GetLoyaltyProgramsAsyncErrors[keyof GetLoyaltyProgramsAsyncErrors];
+export type LoyaltyProgramsGetLoyaltyProgramsError = LoyaltyProgramsGetLoyaltyProgramsErrors[keyof LoyaltyProgramsGetLoyaltyProgramsErrors];
 
-export type GetLoyaltyProgramsAsyncResponses = {
+export type LoyaltyProgramsGetLoyaltyProgramsResponses = {
     /**
      * OK
      */
     200: LoyaltyProgramDtoListEnvelopeReadable;
 };
 
-export type GetLoyaltyProgramsAsyncResponse = GetLoyaltyProgramsAsyncResponses[keyof GetLoyaltyProgramsAsyncResponses];
+export type LoyaltyProgramsGetLoyaltyProgramsResponse = LoyaltyProgramsGetLoyaltyProgramsResponses[keyof LoyaltyProgramsGetLoyaltyProgramsResponses];
 
-export type CreateLoyaltyProgramAsyncData = {
+export type LoyaltyProgramsCreateLoyaltyProgramData = {
     body?: LoyaltyProgramCreateDto;
     path?: never;
     query: {
@@ -1123,25 +1123,25 @@ export type CreateLoyaltyProgramAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms';
 };
 
-export type CreateLoyaltyProgramAsyncErrors = {
+export type LoyaltyProgramsCreateLoyaltyProgramErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateLoyaltyProgramAsyncError = CreateLoyaltyProgramAsyncErrors[keyof CreateLoyaltyProgramAsyncErrors];
+export type LoyaltyProgramsCreateLoyaltyProgramError = LoyaltyProgramsCreateLoyaltyProgramErrors[keyof LoyaltyProgramsCreateLoyaltyProgramErrors];
 
-export type CreateLoyaltyProgramAsyncResponses = {
+export type LoyaltyProgramsCreateLoyaltyProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateLoyaltyProgramAsyncResponse = CreateLoyaltyProgramAsyncResponses[keyof CreateLoyaltyProgramAsyncResponses];
+export type LoyaltyProgramsCreateLoyaltyProgramResponse = LoyaltyProgramsCreateLoyaltyProgramResponses[keyof LoyaltyProgramsCreateLoyaltyProgramResponses];
 
-export type DeleteLoyaltyProgramAsyncData = {
+export type LoyaltyProgramsDeleteLoyaltyProgramData = {
     body?: never;
     path: {
         loyaltyProgramId: string;
@@ -1152,25 +1152,25 @@ export type DeleteLoyaltyProgramAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
 };
 
-export type DeleteLoyaltyProgramAsyncErrors = {
+export type LoyaltyProgramsDeleteLoyaltyProgramErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteLoyaltyProgramAsyncError = DeleteLoyaltyProgramAsyncErrors[keyof DeleteLoyaltyProgramAsyncErrors];
+export type LoyaltyProgramsDeleteLoyaltyProgramError = LoyaltyProgramsDeleteLoyaltyProgramErrors[keyof LoyaltyProgramsDeleteLoyaltyProgramErrors];
 
-export type DeleteLoyaltyProgramAsyncResponses = {
+export type LoyaltyProgramsDeleteLoyaltyProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLoyaltyProgramAsyncResponse = DeleteLoyaltyProgramAsyncResponses[keyof DeleteLoyaltyProgramAsyncResponses];
+export type LoyaltyProgramsDeleteLoyaltyProgramResponse = LoyaltyProgramsDeleteLoyaltyProgramResponses[keyof LoyaltyProgramsDeleteLoyaltyProgramResponses];
 
-export type GetLoyaltyProgramAsyncData = {
+export type LoyaltyProgramsGetLoyaltyProgramData = {
     body?: never;
     path: {
         loyaltyProgramId: string;
@@ -1181,25 +1181,25 @@ export type GetLoyaltyProgramAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
 };
 
-export type GetLoyaltyProgramAsyncErrors = {
+export type LoyaltyProgramsGetLoyaltyProgramErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLoyaltyProgramAsyncError = GetLoyaltyProgramAsyncErrors[keyof GetLoyaltyProgramAsyncErrors];
+export type LoyaltyProgramsGetLoyaltyProgramError = LoyaltyProgramsGetLoyaltyProgramErrors[keyof LoyaltyProgramsGetLoyaltyProgramErrors];
 
-export type GetLoyaltyProgramAsyncResponses = {
+export type LoyaltyProgramsGetLoyaltyProgramResponses = {
     /**
      * OK
      */
     200: LoyaltyProgramDtoEnvelopeReadable;
 };
 
-export type GetLoyaltyProgramAsyncResponse = GetLoyaltyProgramAsyncResponses[keyof GetLoyaltyProgramAsyncResponses];
+export type LoyaltyProgramsGetLoyaltyProgramResponse = LoyaltyProgramsGetLoyaltyProgramResponses[keyof LoyaltyProgramsGetLoyaltyProgramResponses];
 
-export type PatchLoyaltyProgramAsyncData = {
+export type LoyaltyProgramsPatchLoyaltyProgramData = {
     body?: Array<PatchOperation>;
     path: {
         loyaltyProgramId: string;
@@ -1210,25 +1210,25 @@ export type PatchLoyaltyProgramAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
 };
 
-export type PatchLoyaltyProgramAsyncErrors = {
+export type LoyaltyProgramsPatchLoyaltyProgramErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchLoyaltyProgramAsyncError = PatchLoyaltyProgramAsyncErrors[keyof PatchLoyaltyProgramAsyncErrors];
+export type LoyaltyProgramsPatchLoyaltyProgramError = LoyaltyProgramsPatchLoyaltyProgramErrors[keyof LoyaltyProgramsPatchLoyaltyProgramErrors];
 
-export type PatchLoyaltyProgramAsyncResponses = {
+export type LoyaltyProgramsPatchLoyaltyProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLoyaltyProgramAsyncResponse = PatchLoyaltyProgramAsyncResponses[keyof PatchLoyaltyProgramAsyncResponses];
+export type LoyaltyProgramsPatchLoyaltyProgramResponse = LoyaltyProgramsPatchLoyaltyProgramResponses[keyof LoyaltyProgramsPatchLoyaltyProgramResponses];
 
-export type UpdateLoyaltyProgramAsyncData = {
+export type LoyaltyProgramsUpdateLoyaltyProgramData = {
     body?: LoyaltyProgramUpdateDto;
     path: {
         loyaltyProgramId: string;
@@ -1239,25 +1239,25 @@ export type UpdateLoyaltyProgramAsyncData = {
     url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
 };
 
-export type UpdateLoyaltyProgramAsyncErrors = {
+export type LoyaltyProgramsUpdateLoyaltyProgramErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateLoyaltyProgramAsyncError = UpdateLoyaltyProgramAsyncErrors[keyof UpdateLoyaltyProgramAsyncErrors];
+export type LoyaltyProgramsUpdateLoyaltyProgramError = LoyaltyProgramsUpdateLoyaltyProgramErrors[keyof LoyaltyProgramsUpdateLoyaltyProgramErrors];
 
-export type UpdateLoyaltyProgramAsyncResponses = {
+export type LoyaltyProgramsUpdateLoyaltyProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLoyaltyProgramAsyncResponse = UpdateLoyaltyProgramAsyncResponses[keyof UpdateLoyaltyProgramAsyncResponses];
+export type LoyaltyProgramsUpdateLoyaltyProgramResponse = LoyaltyProgramsUpdateLoyaltyProgramResponses[keyof LoyaltyProgramsUpdateLoyaltyProgramResponses];
 
-export type GetQuoteAsyncData = {
+export type MarginsGetQuoteData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1271,14 +1271,14 @@ export type GetQuoteAsyncData = {
     url: '/api/v2/SalesService/Margins/{marginId}/Details';
 };
 
-export type GetQuoteAsyncResponses = {
+export type MarginsGetQuoteResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountPointOfSalesAsyncData = {
+export type PointOfSalesCountPointOfSalesData = {
     body?: PointOfSaleDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1287,25 +1287,25 @@ export type CountPointOfSalesAsyncData = {
     url: '/api/v2/SalesService/PointOfSales/Count';
 };
 
-export type CountPointOfSalesAsyncErrors = {
+export type PointOfSalesCountPointOfSalesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CountPointOfSalesAsyncError = CountPointOfSalesAsyncErrors[keyof CountPointOfSalesAsyncErrors];
+export type PointOfSalesCountPointOfSalesError = PointOfSalesCountPointOfSalesErrors[keyof PointOfSalesCountPointOfSalesErrors];
 
-export type CountPointOfSalesAsyncResponses = {
+export type PointOfSalesCountPointOfSalesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountPointOfSalesAsyncResponse = CountPointOfSalesAsyncResponses[keyof CountPointOfSalesAsyncResponses];
+export type PointOfSalesCountPointOfSalesResponse = PointOfSalesCountPointOfSalesResponses[keyof PointOfSalesCountPointOfSalesResponses];
 
-export type GetPointOfSalesAsyncData = {
+export type PointOfSalesGetPointOfSalesData = {
     body?: PointOfSaleDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1314,25 +1314,25 @@ export type GetPointOfSalesAsyncData = {
     url: '/api/v2/SalesService/PointOfSales';
 };
 
-export type GetPointOfSalesAsyncErrors = {
+export type PointOfSalesGetPointOfSalesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPointOfSalesAsyncError = GetPointOfSalesAsyncErrors[keyof GetPointOfSalesAsyncErrors];
+export type PointOfSalesGetPointOfSalesError = PointOfSalesGetPointOfSalesErrors[keyof PointOfSalesGetPointOfSalesErrors];
 
-export type GetPointOfSalesAsyncResponses = {
+export type PointOfSalesGetPointOfSalesResponses = {
     /**
      * OK
      */
     200: PointOfSaleDtoListEnvelopeReadable;
 };
 
-export type GetPointOfSalesAsyncResponse = GetPointOfSalesAsyncResponses[keyof GetPointOfSalesAsyncResponses];
+export type PointOfSalesGetPointOfSalesResponse = PointOfSalesGetPointOfSalesResponses[keyof PointOfSalesGetPointOfSalesResponses];
 
-export type CreatePointOfSaleAsyncData = {
+export type PointOfSalesCreatePointOfSaleData = {
     body?: PointOfSaleCreateDto;
     path?: never;
     query: {
@@ -1341,25 +1341,25 @@ export type CreatePointOfSaleAsyncData = {
     url: '/api/v2/SalesService/PointOfSales';
 };
 
-export type CreatePointOfSaleAsyncErrors = {
+export type PointOfSalesCreatePointOfSaleErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreatePointOfSaleAsyncError = CreatePointOfSaleAsyncErrors[keyof CreatePointOfSaleAsyncErrors];
+export type PointOfSalesCreatePointOfSaleError = PointOfSalesCreatePointOfSaleErrors[keyof PointOfSalesCreatePointOfSaleErrors];
 
-export type CreatePointOfSaleAsyncResponses = {
+export type PointOfSalesCreatePointOfSaleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreatePointOfSaleAsyncResponse = CreatePointOfSaleAsyncResponses[keyof CreatePointOfSaleAsyncResponses];
+export type PointOfSalesCreatePointOfSaleResponse = PointOfSalesCreatePointOfSaleResponses[keyof PointOfSalesCreatePointOfSaleResponses];
 
-export type DeletePointOfSaleAsyncData = {
+export type PointOfSalesDeletePointOfSaleData = {
     body?: never;
     path: {
         pointOfSaleId: string;
@@ -1370,25 +1370,25 @@ export type DeletePointOfSaleAsyncData = {
     url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
 };
 
-export type DeletePointOfSaleAsyncErrors = {
+export type PointOfSalesDeletePointOfSaleErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeletePointOfSaleAsyncError = DeletePointOfSaleAsyncErrors[keyof DeletePointOfSaleAsyncErrors];
+export type PointOfSalesDeletePointOfSaleError = PointOfSalesDeletePointOfSaleErrors[keyof PointOfSalesDeletePointOfSaleErrors];
 
-export type DeletePointOfSaleAsyncResponses = {
+export type PointOfSalesDeletePointOfSaleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePointOfSaleAsyncResponse = DeletePointOfSaleAsyncResponses[keyof DeletePointOfSaleAsyncResponses];
+export type PointOfSalesDeletePointOfSaleResponse = PointOfSalesDeletePointOfSaleResponses[keyof PointOfSalesDeletePointOfSaleResponses];
 
-export type GetPointOfSaleAsyncData = {
+export type PointOfSalesGetPointOfSaleData = {
     body?: never;
     path: {
         pointOfSaleId: string;
@@ -1399,25 +1399,25 @@ export type GetPointOfSaleAsyncData = {
     url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
 };
 
-export type GetPointOfSaleAsyncErrors = {
+export type PointOfSalesGetPointOfSaleErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetPointOfSaleAsyncError = GetPointOfSaleAsyncErrors[keyof GetPointOfSaleAsyncErrors];
+export type PointOfSalesGetPointOfSaleError = PointOfSalesGetPointOfSaleErrors[keyof PointOfSalesGetPointOfSaleErrors];
 
-export type GetPointOfSaleAsyncResponses = {
+export type PointOfSalesGetPointOfSaleResponses = {
     /**
      * OK
      */
     200: PointOfSaleDtoEnvelopeReadable;
 };
 
-export type GetPointOfSaleAsyncResponse = GetPointOfSaleAsyncResponses[keyof GetPointOfSaleAsyncResponses];
+export type PointOfSalesGetPointOfSaleResponse = PointOfSalesGetPointOfSaleResponses[keyof PointOfSalesGetPointOfSaleResponses];
 
-export type PatchPointOfSaleAsyncData = {
+export type PointOfSalesPatchPointOfSaleData = {
     body?: Array<PatchOperation>;
     path: {
         pointOfSaleId: string;
@@ -1428,25 +1428,25 @@ export type PatchPointOfSaleAsyncData = {
     url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
 };
 
-export type PatchPointOfSaleAsyncErrors = {
+export type PointOfSalesPatchPointOfSaleErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchPointOfSaleAsyncError = PatchPointOfSaleAsyncErrors[keyof PatchPointOfSaleAsyncErrors];
+export type PointOfSalesPatchPointOfSaleError = PointOfSalesPatchPointOfSaleErrors[keyof PointOfSalesPatchPointOfSaleErrors];
 
-export type PatchPointOfSaleAsyncResponses = {
+export type PointOfSalesPatchPointOfSaleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPointOfSaleAsyncResponse = PatchPointOfSaleAsyncResponses[keyof PatchPointOfSaleAsyncResponses];
+export type PointOfSalesPatchPointOfSaleResponse = PointOfSalesPatchPointOfSaleResponses[keyof PointOfSalesPatchPointOfSaleResponses];
 
-export type UpdatePointOfSaleAsyncData = {
+export type PointOfSalesUpdatePointOfSaleData = {
     body?: PointOfSaleUpdateDto;
     path: {
         pointOfSaleId: string;
@@ -1457,25 +1457,25 @@ export type UpdatePointOfSaleAsyncData = {
     url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
 };
 
-export type UpdatePointOfSaleAsyncErrors = {
+export type PointOfSalesUpdatePointOfSaleErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdatePointOfSaleAsyncError = UpdatePointOfSaleAsyncErrors[keyof UpdatePointOfSaleAsyncErrors];
+export type PointOfSalesUpdatePointOfSaleError = PointOfSalesUpdatePointOfSaleErrors[keyof PointOfSalesUpdatePointOfSaleErrors];
 
-export type UpdatePointOfSaleAsyncResponses = {
+export type PointOfSalesUpdatePointOfSaleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePointOfSaleAsyncResponse = UpdatePointOfSaleAsyncResponses[keyof UpdatePointOfSaleAsyncResponses];
+export type PointOfSalesUpdatePointOfSaleResponse = PointOfSalesUpdatePointOfSaleResponses[keyof PointOfSalesUpdatePointOfSaleResponses];
 
-export type CountSalesLiteraturesAsyncData = {
+export type SalesLiteraturesCountSalesLiteraturesData = {
     body?: SalesLiteratureDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1484,25 +1484,25 @@ export type CountSalesLiteraturesAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures/Count';
 };
 
-export type CountSalesLiteraturesAsyncErrors = {
+export type SalesLiteraturesCountSalesLiteraturesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CountSalesLiteraturesAsyncError = CountSalesLiteraturesAsyncErrors[keyof CountSalesLiteraturesAsyncErrors];
+export type SalesLiteraturesCountSalesLiteraturesError = SalesLiteraturesCountSalesLiteraturesErrors[keyof SalesLiteraturesCountSalesLiteraturesErrors];
 
-export type CountSalesLiteraturesAsyncResponses = {
+export type SalesLiteraturesCountSalesLiteraturesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountSalesLiteraturesAsyncResponse = CountSalesLiteraturesAsyncResponses[keyof CountSalesLiteraturesAsyncResponses];
+export type SalesLiteraturesCountSalesLiteraturesResponse = SalesLiteraturesCountSalesLiteraturesResponses[keyof SalesLiteraturesCountSalesLiteraturesResponses];
 
-export type GetSalesLiteraturesAsyncData = {
+export type SalesLiteraturesGetSalesLiteraturesData = {
     body?: SalesLiteratureDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1511,25 +1511,25 @@ export type GetSalesLiteraturesAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures';
 };
 
-export type GetSalesLiteraturesAsyncErrors = {
+export type SalesLiteraturesGetSalesLiteraturesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSalesLiteraturesAsyncError = GetSalesLiteraturesAsyncErrors[keyof GetSalesLiteraturesAsyncErrors];
+export type SalesLiteraturesGetSalesLiteraturesError = SalesLiteraturesGetSalesLiteraturesErrors[keyof SalesLiteraturesGetSalesLiteraturesErrors];
 
-export type GetSalesLiteraturesAsyncResponses = {
+export type SalesLiteraturesGetSalesLiteraturesResponses = {
     /**
      * OK
      */
     200: SalesLiteratureDtoListEnvelopeReadable;
 };
 
-export type GetSalesLiteraturesAsyncResponse = GetSalesLiteraturesAsyncResponses[keyof GetSalesLiteraturesAsyncResponses];
+export type SalesLiteraturesGetSalesLiteraturesResponse = SalesLiteraturesGetSalesLiteraturesResponses[keyof SalesLiteraturesGetSalesLiteraturesResponses];
 
-export type CreateSalesLiteratureAsyncData = {
+export type SalesLiteraturesCreateSalesLiteratureData = {
     body?: SalesLiteratureCreateDto;
     path?: never;
     query: {
@@ -1538,25 +1538,25 @@ export type CreateSalesLiteratureAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures';
 };
 
-export type CreateSalesLiteratureAsyncErrors = {
+export type SalesLiteraturesCreateSalesLiteratureErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateSalesLiteratureAsyncError = CreateSalesLiteratureAsyncErrors[keyof CreateSalesLiteratureAsyncErrors];
+export type SalesLiteraturesCreateSalesLiteratureError = SalesLiteraturesCreateSalesLiteratureErrors[keyof SalesLiteraturesCreateSalesLiteratureErrors];
 
-export type CreateSalesLiteratureAsyncResponses = {
+export type SalesLiteraturesCreateSalesLiteratureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSalesLiteratureAsyncResponse = CreateSalesLiteratureAsyncResponses[keyof CreateSalesLiteratureAsyncResponses];
+export type SalesLiteraturesCreateSalesLiteratureResponse = SalesLiteraturesCreateSalesLiteratureResponses[keyof SalesLiteraturesCreateSalesLiteratureResponses];
 
-export type GetExtendedSalesLiteraturesAsyncData = {
+export type SalesLiteraturesGetExtendedSalesLiteraturesData = {
     body?: ExtendedSalesLiteratureDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1565,25 +1565,25 @@ export type GetExtendedSalesLiteraturesAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures/Extended';
 };
 
-export type GetExtendedSalesLiteraturesAsyncErrors = {
+export type SalesLiteraturesGetExtendedSalesLiteraturesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedSalesLiteraturesAsyncError = GetExtendedSalesLiteraturesAsyncErrors[keyof GetExtendedSalesLiteraturesAsyncErrors];
+export type SalesLiteraturesGetExtendedSalesLiteraturesError = SalesLiteraturesGetExtendedSalesLiteraturesErrors[keyof SalesLiteraturesGetExtendedSalesLiteraturesErrors];
 
-export type GetExtendedSalesLiteraturesAsyncResponses = {
+export type SalesLiteraturesGetExtendedSalesLiteraturesResponses = {
     /**
      * OK
      */
     200: ExtendedSalesLiteratureDtoListEnvelopeReadable;
 };
 
-export type GetExtendedSalesLiteraturesAsyncResponse = GetExtendedSalesLiteraturesAsyncResponses[keyof GetExtendedSalesLiteraturesAsyncResponses];
+export type SalesLiteraturesGetExtendedSalesLiteraturesResponse = SalesLiteraturesGetExtendedSalesLiteraturesResponses[keyof SalesLiteraturesGetExtendedSalesLiteraturesResponses];
 
-export type DeleteSalesLiteratureAsyncData = {
+export type SalesLiteraturesDeleteSalesLiteratureData = {
     body?: never;
     path: {
         salesLiteratureId: string;
@@ -1594,25 +1594,25 @@ export type DeleteSalesLiteratureAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
 };
 
-export type DeleteSalesLiteratureAsyncErrors = {
+export type SalesLiteraturesDeleteSalesLiteratureErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteSalesLiteratureAsyncError = DeleteSalesLiteratureAsyncErrors[keyof DeleteSalesLiteratureAsyncErrors];
+export type SalesLiteraturesDeleteSalesLiteratureError = SalesLiteraturesDeleteSalesLiteratureErrors[keyof SalesLiteraturesDeleteSalesLiteratureErrors];
 
-export type DeleteSalesLiteratureAsyncResponses = {
+export type SalesLiteraturesDeleteSalesLiteratureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSalesLiteratureAsyncResponse = DeleteSalesLiteratureAsyncResponses[keyof DeleteSalesLiteratureAsyncResponses];
+export type SalesLiteraturesDeleteSalesLiteratureResponse = SalesLiteraturesDeleteSalesLiteratureResponses[keyof SalesLiteraturesDeleteSalesLiteratureResponses];
 
-export type GetSalesLiteratureAsyncData = {
+export type SalesLiteraturesGetSalesLiteratureData = {
     body?: never;
     path: {
         salesLiteratureId: string;
@@ -1623,25 +1623,25 @@ export type GetSalesLiteratureAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
 };
 
-export type GetSalesLiteratureAsyncErrors = {
+export type SalesLiteraturesGetSalesLiteratureErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetSalesLiteratureAsyncError = GetSalesLiteratureAsyncErrors[keyof GetSalesLiteratureAsyncErrors];
+export type SalesLiteraturesGetSalesLiteratureError = SalesLiteraturesGetSalesLiteratureErrors[keyof SalesLiteraturesGetSalesLiteratureErrors];
 
-export type GetSalesLiteratureAsyncResponses = {
+export type SalesLiteraturesGetSalesLiteratureResponses = {
     /**
      * OK
      */
     200: SalesLiteratureDtoEnvelopeReadable;
 };
 
-export type GetSalesLiteratureAsyncResponse = GetSalesLiteratureAsyncResponses[keyof GetSalesLiteratureAsyncResponses];
+export type SalesLiteraturesGetSalesLiteratureResponse = SalesLiteraturesGetSalesLiteratureResponses[keyof SalesLiteraturesGetSalesLiteratureResponses];
 
-export type PatchSalesLiteratureAsyncData = {
+export type SalesLiteraturesPatchSalesLiteratureData = {
     body?: Array<PatchOperation>;
     path: {
         salesLiteratureId: string;
@@ -1652,25 +1652,25 @@ export type PatchSalesLiteratureAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
 };
 
-export type PatchSalesLiteratureAsyncErrors = {
+export type SalesLiteraturesPatchSalesLiteratureErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchSalesLiteratureAsyncError = PatchSalesLiteratureAsyncErrors[keyof PatchSalesLiteratureAsyncErrors];
+export type SalesLiteraturesPatchSalesLiteratureError = SalesLiteraturesPatchSalesLiteratureErrors[keyof SalesLiteraturesPatchSalesLiteratureErrors];
 
-export type PatchSalesLiteratureAsyncResponses = {
+export type SalesLiteraturesPatchSalesLiteratureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSalesLiteratureAsyncResponse = PatchSalesLiteratureAsyncResponses[keyof PatchSalesLiteratureAsyncResponses];
+export type SalesLiteraturesPatchSalesLiteratureResponse = SalesLiteraturesPatchSalesLiteratureResponses[keyof SalesLiteraturesPatchSalesLiteratureResponses];
 
-export type UpdateSalesLiteratureAsyncData = {
+export type SalesLiteraturesUpdateSalesLiteratureData = {
     body?: SalesLiteratureUpdateDto;
     path: {
         salesLiteratureId: string;
@@ -1681,25 +1681,25 @@ export type UpdateSalesLiteratureAsyncData = {
     url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
 };
 
-export type UpdateSalesLiteratureAsyncErrors = {
+export type SalesLiteraturesUpdateSalesLiteratureErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateSalesLiteratureAsyncError = UpdateSalesLiteratureAsyncErrors[keyof UpdateSalesLiteratureAsyncErrors];
+export type SalesLiteraturesUpdateSalesLiteratureError = SalesLiteraturesUpdateSalesLiteratureErrors[keyof SalesLiteraturesUpdateSalesLiteratureErrors];
 
-export type UpdateSalesLiteratureAsyncResponses = {
+export type SalesLiteraturesUpdateSalesLiteratureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSalesLiteratureAsyncResponse = UpdateSalesLiteratureAsyncResponses[keyof UpdateSalesLiteratureAsyncResponses];
+export type SalesLiteraturesUpdateSalesLiteratureResponse = SalesLiteraturesUpdateSalesLiteratureResponses[keyof SalesLiteraturesUpdateSalesLiteratureResponses];
 
-export type CountStoresAsyncData = {
+export type StoresCountStoresData = {
     body?: StoreDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1708,25 +1708,25 @@ export type CountStoresAsyncData = {
     url: '/api/v2/SalesService/Stores/Count';
 };
 
-export type CountStoresAsyncErrors = {
+export type StoresCountStoresErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CountStoresAsyncError = CountStoresAsyncErrors[keyof CountStoresAsyncErrors];
+export type StoresCountStoresError = StoresCountStoresErrors[keyof StoresCountStoresErrors];
 
-export type CountStoresAsyncResponses = {
+export type StoresCountStoresResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountStoresAsyncResponse = CountStoresAsyncResponses[keyof CountStoresAsyncResponses];
+export type StoresCountStoresResponse = StoresCountStoresResponses[keyof StoresCountStoresResponses];
 
-export type GetStoresAsyncData = {
+export type StoresGetStoresData = {
     body?: StoreDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1735,25 +1735,25 @@ export type GetStoresAsyncData = {
     url: '/api/v2/SalesService/Stores';
 };
 
-export type GetStoresAsyncErrors = {
+export type StoresGetStoresErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetStoresAsyncError = GetStoresAsyncErrors[keyof GetStoresAsyncErrors];
+export type StoresGetStoresError = StoresGetStoresErrors[keyof StoresGetStoresErrors];
 
-export type GetStoresAsyncResponses = {
+export type StoresGetStoresResponses = {
     /**
      * OK
      */
     200: StoreDtoListEnvelopeReadable;
 };
 
-export type GetStoresAsyncResponse = GetStoresAsyncResponses[keyof GetStoresAsyncResponses];
+export type StoresGetStoresResponse = StoresGetStoresResponses[keyof StoresGetStoresResponses];
 
-export type CreateStoreAsyncData = {
+export type StoresCreateStoreData = {
     body?: StoreCreateDto;
     path?: never;
     query: {
@@ -1762,25 +1762,25 @@ export type CreateStoreAsyncData = {
     url: '/api/v2/SalesService/Stores';
 };
 
-export type CreateStoreAsyncErrors = {
+export type StoresCreateStoreErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateStoreAsyncError = CreateStoreAsyncErrors[keyof CreateStoreAsyncErrors];
+export type StoresCreateStoreError = StoresCreateStoreErrors[keyof StoresCreateStoreErrors];
 
-export type CreateStoreAsyncResponses = {
+export type StoresCreateStoreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateStoreAsyncResponse = CreateStoreAsyncResponses[keyof CreateStoreAsyncResponses];
+export type StoresCreateStoreResponse = StoresCreateStoreResponses[keyof StoresCreateStoreResponses];
 
-export type DeleteStoreAsyncData = {
+export type StoresDeleteStoreData = {
     body?: never;
     path: {
         storeId: string;
@@ -1791,25 +1791,25 @@ export type DeleteStoreAsyncData = {
     url: '/api/v2/SalesService/Stores/{storeId}';
 };
 
-export type DeleteStoreAsyncErrors = {
+export type StoresDeleteStoreErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteStoreAsyncError = DeleteStoreAsyncErrors[keyof DeleteStoreAsyncErrors];
+export type StoresDeleteStoreError = StoresDeleteStoreErrors[keyof StoresDeleteStoreErrors];
 
-export type DeleteStoreAsyncResponses = {
+export type StoresDeleteStoreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteStoreAsyncResponse = DeleteStoreAsyncResponses[keyof DeleteStoreAsyncResponses];
+export type StoresDeleteStoreResponse = StoresDeleteStoreResponses[keyof StoresDeleteStoreResponses];
 
-export type GetStoreAsyncData = {
+export type StoresGetStoreData = {
     body?: never;
     path: {
         storeId: string;
@@ -1820,25 +1820,25 @@ export type GetStoreAsyncData = {
     url: '/api/v2/SalesService/Stores/{storeId}';
 };
 
-export type GetStoreAsyncErrors = {
+export type StoresGetStoreErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetStoreAsyncError = GetStoreAsyncErrors[keyof GetStoreAsyncErrors];
+export type StoresGetStoreError = StoresGetStoreErrors[keyof StoresGetStoreErrors];
 
-export type GetStoreAsyncResponses = {
+export type StoresGetStoreResponses = {
     /**
      * OK
      */
     200: StoreDtoEnvelopeReadable;
 };
 
-export type GetStoreAsyncResponse = GetStoreAsyncResponses[keyof GetStoreAsyncResponses];
+export type StoresGetStoreResponse = StoresGetStoreResponses[keyof StoresGetStoreResponses];
 
-export type PatchStoreAsyncData = {
+export type StoresPatchStoreData = {
     body?: Array<PatchOperation>;
     path: {
         storeId: string;
@@ -1849,25 +1849,25 @@ export type PatchStoreAsyncData = {
     url: '/api/v2/SalesService/Stores/{storeId}';
 };
 
-export type PatchStoreAsyncErrors = {
+export type StoresPatchStoreErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchStoreAsyncError = PatchStoreAsyncErrors[keyof PatchStoreAsyncErrors];
+export type StoresPatchStoreError = StoresPatchStoreErrors[keyof StoresPatchStoreErrors];
 
-export type PatchStoreAsyncResponses = {
+export type StoresPatchStoreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchStoreAsyncResponse = PatchStoreAsyncResponses[keyof PatchStoreAsyncResponses];
+export type StoresPatchStoreResponse = StoresPatchStoreResponses[keyof StoresPatchStoreResponses];
 
-export type UpdateStoreAsyncData = {
+export type StoresUpdateStoreData = {
     body?: StoreUpdateDto;
     path: {
         storeId: string;
@@ -1878,23 +1878,23 @@ export type UpdateStoreAsyncData = {
     url: '/api/v2/SalesService/Stores/{storeId}';
 };
 
-export type UpdateStoreAsyncErrors = {
+export type StoresUpdateStoreErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateStoreAsyncError = UpdateStoreAsyncErrors[keyof UpdateStoreAsyncErrors];
+export type StoresUpdateStoreError = StoresUpdateStoreErrors[keyof StoresUpdateStoreErrors];
 
-export type UpdateStoreAsyncResponses = {
+export type StoresUpdateStoreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateStoreAsyncResponse = UpdateStoreAsyncResponses[keyof UpdateStoreAsyncResponses];
+export type StoresUpdateStoreResponse = StoresUpdateStoreResponses[keyof StoresUpdateStoreResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

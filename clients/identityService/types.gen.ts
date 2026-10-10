@@ -27,6 +27,9 @@ export type AuthResult = {
     runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
     principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
     provenance?: ExecutionProvenance;
+    executionPrincipalId?: UserId;
+    executionPrincipalEnrollmentId?: EnrollmentId;
+    executionPrincipalScopes?: Array<string> | null;
 };
 
 export type AuthResultEnvelopeReadable = {
@@ -390,7 +393,7 @@ export type UserCreateDtoEnvelopeWritable = {
 
 export type UserId = string;
 
-export type GetApplicationData = {
+export type ApplicationsGetApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -404,14 +407,14 @@ export type GetApplicationData = {
     url: '/api/v2/Applications/{appId}';
 };
 
-export type GetApplicationResponses = {
+export type ApplicationsGetApplicationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetRequiredPermissionsData = {
+export type ApplicationsGetRequiredPermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -425,14 +428,14 @@ export type GetRequiredPermissionsData = {
     url: '/api/v2/Applications/{appId}/RequiredPermissions';
 };
 
-export type GetRequiredPermissionsResponses = {
+export type ApplicationsGetRequiredPermissionsResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetGrantedTenantPermissionsData = {
+export type ApplicationsGetGrantedTenantPermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -447,14 +450,14 @@ export type GetGrantedTenantPermissionsData = {
     url: '/api/v2/Applications/{appId}/GrantedPermissions';
 };
 
-export type GetGrantedTenantPermissionsResponses = {
+export type ApplicationsGetGrantedTenantPermissionsResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetGrantedTenantRolesData = {
+export type ApplicationsGetGrantedTenantRolesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -469,14 +472,14 @@ export type GetGrantedTenantRolesData = {
     url: '/api/v2/Applications/{appId}/GrantedRoles';
 };
 
-export type GetGrantedTenantRolesResponses = {
+export type ApplicationsGetGrantedTenantRolesResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetGrantedEnrollmentPermissionsData = {
+export type ApplicationsGetGrantedEnrollmentPermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -492,14 +495,14 @@ export type GetGrantedEnrollmentPermissionsData = {
     url: '/api/v2/Applications/{appId}/GrantedRoles/{securityRoleId}/GrantedPermissions';
 };
 
-export type GetGrantedEnrollmentPermissionsResponses = {
+export type ApplicationsGetGrantedEnrollmentPermissionsResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type IsAuthenticatedData = {
+export type CheckerIsAuthenticatedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -511,81 +514,81 @@ export type IsAuthenticatedData = {
     url: '/api/v2/Auth/Checker/IsAuthenticated';
 };
 
-export type IsAuthenticatedResponses = {
+export type CheckerIsAuthenticatedResponses = {
     /**
      * OK
      */
     200: boolean;
 };
 
-export type IsAuthenticatedResponse = IsAuthenticatedResponses[keyof IsAuthenticatedResponses];
+export type CheckerIsAuthenticatedResponse = CheckerIsAuthenticatedResponses[keyof CheckerIsAuthenticatedResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -595,32 +598,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -631,81 +634,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -716,25 +719,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -745,25 +748,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -774,18 +777,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -795,14 +798,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -811,14 +814,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -827,28 +830,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetData = {
+export type OAuthGetData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -861,7 +864,7 @@ export type GetData = {
     url: '/api/v2/OAuth/WhoAmI';
 };
 
-export type GetErrors = {
+export type OAuthGetErrors = {
     /**
      * Unauthorized
      */
@@ -872,18 +875,18 @@ export type GetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetError = GetErrors[keyof GetErrors];
+export type OAuthGetError = OAuthGetErrors[keyof OAuthGetErrors];
 
-export type GetResponses = {
+export type OAuthGetResponses = {
     /**
      * OK
      */
     200: AuthResultEnvelopeReadable;
 };
 
-export type GetResponse = GetResponses[keyof GetResponses];
+export type OAuthGetResponse = OAuthGetResponses[keyof OAuthGetResponses];
 
-export type TokenData = {
+export type OAuthTokenData = {
     body?: OAuthTokenRequest;
     headers?: {
         'x-api-version'?: string;
@@ -895,7 +898,7 @@ export type TokenData = {
     url: '/api/v2/OAuth/Token';
 };
 
-export type TokenErrors = {
+export type OAuthTokenErrors = {
     /**
      * Unauthorized
      */
@@ -906,18 +909,18 @@ export type TokenErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type TokenError = TokenErrors[keyof TokenErrors];
+export type OAuthTokenError = OAuthTokenErrors[keyof OAuthTokenErrors];
 
-export type TokenResponses = {
+export type OAuthTokenResponses = {
     /**
      * OK
      */
     200: JsonWebTokenEnvelopeReadable;
 };
 
-export type TokenResponse = TokenResponses[keyof TokenResponses];
+export type OAuthTokenResponse = OAuthTokenResponses[keyof OAuthTokenResponses];
 
-export type GetPermissionsData = {
+export type OAuthGetPermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -931,7 +934,7 @@ export type GetPermissionsData = {
     url: '/api/v2/OAuth/Permissions';
 };
 
-export type GetPermissionsErrors = {
+export type OAuthGetPermissionsErrors = {
     /**
      * Unauthorized
      */
@@ -942,18 +945,18 @@ export type GetPermissionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPermissionsError = GetPermissionsErrors[keyof GetPermissionsErrors];
+export type OAuthGetPermissionsError = OAuthGetPermissionsErrors[keyof OAuthGetPermissionsErrors];
 
-export type GetPermissionsResponses = {
+export type OAuthGetPermissionsResponses = {
     /**
      * OK
      */
     200: StringListEnvelopeReadable;
 };
 
-export type GetPermissionsResponse = GetPermissionsResponses[keyof GetPermissionsResponses];
+export type OAuthGetPermissionsResponse = OAuthGetPermissionsResponses[keyof OAuthGetPermissionsResponses];
 
-export type CheckPasswordSignInAsyncData = {
+export type OAuthCheckPasswordSignInData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -965,7 +968,7 @@ export type CheckPasswordSignInAsyncData = {
     url: '/api/v2/OAuth/SignIn';
 };
 
-export type CheckPasswordSignInAsyncErrors = {
+export type OAuthCheckPasswordSignInErrors = {
     /**
      * Bad Request
      */
@@ -976,18 +979,18 @@ export type CheckPasswordSignInAsyncErrors = {
     401: ErrorEnvelopeReadable;
 };
 
-export type CheckPasswordSignInAsyncError = CheckPasswordSignInAsyncErrors[keyof CheckPasswordSignInAsyncErrors];
+export type OAuthCheckPasswordSignInError = OAuthCheckPasswordSignInErrors[keyof OAuthCheckPasswordSignInErrors];
 
-export type CheckPasswordSignInAsyncResponses = {
+export type OAuthCheckPasswordSignInResponses = {
     /**
      * OK
      */
     200: UserCreateDtoEnvelopeReadable;
 };
 
-export type CheckPasswordSignInAsyncResponse = CheckPasswordSignInAsyncResponses[keyof CheckPasswordSignInAsyncResponses];
+export type OAuthCheckPasswordSignInResponse = OAuthCheckPasswordSignInResponses[keyof OAuthCheckPasswordSignInResponses];
 
-export type PasswordSignInAsyncData = {
+export type OAuthPasswordSignInData = {
     body?: SigninModel;
     headers?: {
         'x-api-version'?: string;
@@ -999,7 +1002,7 @@ export type PasswordSignInAsyncData = {
     url: '/api/v2/OAuth/SignIn';
 };
 
-export type PasswordSignInAsyncErrors = {
+export type OAuthPasswordSignInErrors = {
     /**
      * Bad Request
      */
@@ -1010,18 +1013,18 @@ export type PasswordSignInAsyncErrors = {
     401: ErrorEnvelopeReadable;
 };
 
-export type PasswordSignInAsyncError = PasswordSignInAsyncErrors[keyof PasswordSignInAsyncErrors];
+export type OAuthPasswordSignInError = OAuthPasswordSignInErrors[keyof OAuthPasswordSignInErrors];
 
-export type PasswordSignInAsyncResponses = {
+export type OAuthPasswordSignInResponses = {
     /**
      * OK
      */
     200: JsonWebTokenEnvelopeReadable;
 };
 
-export type PasswordSignInAsyncResponse = PasswordSignInAsyncResponses[keyof PasswordSignInAsyncResponses];
+export type OAuthPasswordSignInResponse = OAuthPasswordSignInResponses[keyof OAuthPasswordSignInResponses];
 
-export type GetJwKsData = {
+export type OAuthGetJwKsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1035,16 +1038,16 @@ export type GetJwKsData = {
     url: '/api/v2/OAuth/{applicationId}/Keys';
 };
 
-export type GetJwKsResponses = {
+export type OAuthGetJwKsResponses = {
     /**
      * OK
      */
     200: JsonWebKeySetEnvelopeReadable;
 };
 
-export type GetJwKsResponse = GetJwKsResponses[keyof GetJwKsResponses];
+export type OAuthGetJwKsResponse = OAuthGetJwKsResponses[keyof OAuthGetJwKsResponses];
 
-export type GetOpenIdConfigurationData = {
+export type OAuthGetOpenIdConfigurationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1059,16 +1062,16 @@ export type GetOpenIdConfigurationData = {
     url: '/api/v2/OAuth/{tenantId}/{applicationId}/.Well-Known/OpenId-Configuration';
 };
 
-export type GetOpenIdConfigurationResponses = {
+export type OAuthGetOpenIdConfigurationResponses = {
     /**
      * OK
      */
     200: OpenIdConfigurationEnvelopeReadable;
 };
 
-export type GetOpenIdConfigurationResponse = GetOpenIdConfigurationResponses[keyof GetOpenIdConfigurationResponses];
+export type OAuthGetOpenIdConfigurationResponse = OAuthGetOpenIdConfigurationResponses[keyof OAuthGetOpenIdConfigurationResponses];
 
-export type GetMessageData = {
+export type ResourceGetMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1080,14 +1083,14 @@ export type GetMessageData = {
     url: '/api/v2/IdentityService/Resource/message';
 };
 
-export type GetMessageResponses = {
+export type ResourceGetMessageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetConnectUserinfoData = {
+export type UserInfoGetConnectUserinfoData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1099,14 +1102,14 @@ export type GetConnectUserinfoData = {
     url: '/connect/userinfo';
 };
 
-export type GetConnectUserinfoResponses = {
+export type UserInfoGetConnectUserinfoResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostConnectUserinfoData = {
+export type UserInfoPostConnectUserinfoData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1118,7 +1121,7 @@ export type PostConnectUserinfoData = {
     url: '/connect/userinfo';
 };
 
-export type PostConnectUserinfoResponses = {
+export type UserInfoPostConnectUserinfoResponses = {
     /**
      * OK
      */

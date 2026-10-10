@@ -471,72 +471,72 @@ export type WorkstationUpdateDto = {
     locationId?: string | null;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -546,32 +546,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -582,81 +582,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -667,25 +667,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -696,25 +696,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -725,18 +725,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -746,14 +746,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -762,14 +762,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -778,28 +778,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProductionPlansAsyncData = {
+export type ProductionPlansGetProductionPlansData = {
     body?: ProductionPlanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -812,25 +812,25 @@ export type GetProductionPlansAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans';
 };
 
-export type GetProductionPlansAsyncErrors = {
+export type ProductionPlansGetProductionPlansErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProductionPlansAsyncError = GetProductionPlansAsyncErrors[keyof GetProductionPlansAsyncErrors];
+export type ProductionPlansGetProductionPlansError = ProductionPlansGetProductionPlansErrors[keyof ProductionPlansGetProductionPlansErrors];
 
-export type GetProductionPlansAsyncResponses = {
+export type ProductionPlansGetProductionPlansResponses = {
     /**
      * OK
      */
     200: ProductionPlanDtoListEnvelopeReadable;
 };
 
-export type GetProductionPlansAsyncResponse = GetProductionPlansAsyncResponses[keyof GetProductionPlansAsyncResponses];
+export type ProductionPlansGetProductionPlansResponse = ProductionPlansGetProductionPlansResponses[keyof ProductionPlansGetProductionPlansResponses];
 
-export type CreateProductionPlanAsyncData = {
+export type ProductionPlansCreateProductionPlanData = {
     body?: ProductionPlanCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -843,7 +843,7 @@ export type CreateProductionPlanAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans';
 };
 
-export type CreateProductionPlanAsyncErrors = {
+export type ProductionPlansCreateProductionPlanErrors = {
     /**
      * Bad Request
      */
@@ -854,16 +854,16 @@ export type CreateProductionPlanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateProductionPlanAsyncError = CreateProductionPlanAsyncErrors[keyof CreateProductionPlanAsyncErrors];
+export type ProductionPlansCreateProductionPlanError = ProductionPlansCreateProductionPlanErrors[keyof ProductionPlansCreateProductionPlanErrors];
 
-export type CreateProductionPlanAsyncResponses = {
+export type ProductionPlansCreateProductionPlanResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProductionPlansCountAsyncData = {
+export type ProductionPlansGetProductionPlansCountData = {
     body?: ProductionPlanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -876,25 +876,25 @@ export type GetProductionPlansCountAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans/Count';
 };
 
-export type GetProductionPlansCountAsyncErrors = {
+export type ProductionPlansGetProductionPlansCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProductionPlansCountAsyncError = GetProductionPlansCountAsyncErrors[keyof GetProductionPlansCountAsyncErrors];
+export type ProductionPlansGetProductionPlansCountError = ProductionPlansGetProductionPlansCountErrors[keyof ProductionPlansGetProductionPlansCountErrors];
 
-export type GetProductionPlansCountAsyncResponses = {
+export type ProductionPlansGetProductionPlansCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProductionPlansCountAsyncResponse = GetProductionPlansCountAsyncResponses[keyof GetProductionPlansCountAsyncResponses];
+export type ProductionPlansGetProductionPlansCountResponse = ProductionPlansGetProductionPlansCountResponses[keyof ProductionPlansGetProductionPlansCountResponses];
 
-export type DeleteProductionPlanAsyncData = {
+export type ProductionPlansDeleteProductionPlanData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -909,7 +909,7 @@ export type DeleteProductionPlanAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans/{id}';
 };
 
-export type DeleteProductionPlanAsyncErrors = {
+export type ProductionPlansDeleteProductionPlanErrors = {
     /**
      * Forbidden
      */
@@ -920,16 +920,16 @@ export type DeleteProductionPlanAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteProductionPlanAsyncError = DeleteProductionPlanAsyncErrors[keyof DeleteProductionPlanAsyncErrors];
+export type ProductionPlansDeleteProductionPlanError = ProductionPlansDeleteProductionPlanErrors[keyof ProductionPlansDeleteProductionPlanErrors];
 
-export type DeleteProductionPlanAsyncResponses = {
+export type ProductionPlansDeleteProductionPlanResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProductionPlanByIdAsyncData = {
+export type ProductionPlansGetProductionPlanByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -944,7 +944,7 @@ export type GetProductionPlanByIdAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans/{id}';
 };
 
-export type GetProductionPlanByIdAsyncErrors = {
+export type ProductionPlansGetProductionPlanByIdErrors = {
     /**
      * Forbidden
      */
@@ -955,18 +955,18 @@ export type GetProductionPlanByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetProductionPlanByIdAsyncError = GetProductionPlanByIdAsyncErrors[keyof GetProductionPlanByIdAsyncErrors];
+export type ProductionPlansGetProductionPlanByIdError = ProductionPlansGetProductionPlanByIdErrors[keyof ProductionPlansGetProductionPlanByIdErrors];
 
-export type GetProductionPlanByIdAsyncResponses = {
+export type ProductionPlansGetProductionPlanByIdResponses = {
     /**
      * OK
      */
     200: ProductionPlanDto;
 };
 
-export type GetProductionPlanByIdAsyncResponse = GetProductionPlanByIdAsyncResponses[keyof GetProductionPlanByIdAsyncResponses];
+export type ProductionPlansGetProductionPlanByIdResponse = ProductionPlansGetProductionPlanByIdResponses[keyof ProductionPlansGetProductionPlanByIdResponses];
 
-export type PatchProductionPlanAsyncData = {
+export type ProductionPlansPatchProductionPlanData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -981,7 +981,7 @@ export type PatchProductionPlanAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans/{id}';
 };
 
-export type PatchProductionPlanAsyncErrors = {
+export type ProductionPlansPatchProductionPlanErrors = {
     /**
      * Unauthorized
      */
@@ -992,18 +992,18 @@ export type PatchProductionPlanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchProductionPlanAsyncError = PatchProductionPlanAsyncErrors[keyof PatchProductionPlanAsyncErrors];
+export type ProductionPlansPatchProductionPlanError = ProductionPlansPatchProductionPlanErrors[keyof ProductionPlansPatchProductionPlanErrors];
 
-export type PatchProductionPlanAsyncResponses = {
+export type ProductionPlansPatchProductionPlanResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchProductionPlanAsyncResponse = PatchProductionPlanAsyncResponses[keyof PatchProductionPlanAsyncResponses];
+export type ProductionPlansPatchProductionPlanResponse = ProductionPlansPatchProductionPlanResponses[keyof ProductionPlansPatchProductionPlanResponses];
 
-export type UpdateProductionPlanAsyncData = {
+export type ProductionPlansUpdateProductionPlanData = {
     body?: ProductionPlanUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1018,7 +1018,7 @@ export type UpdateProductionPlanAsyncData = {
     url: '/api/v2/ManufacturingService/ProductionPlans/{id}';
 };
 
-export type UpdateProductionPlanAsyncErrors = {
+export type ProductionPlansUpdateProductionPlanErrors = {
     /**
      * Forbidden
      */
@@ -1029,16 +1029,16 @@ export type UpdateProductionPlanAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateProductionPlanAsyncError = UpdateProductionPlanAsyncErrors[keyof UpdateProductionPlanAsyncErrors];
+export type ProductionPlansUpdateProductionPlanError = ProductionPlansUpdateProductionPlanErrors[keyof ProductionPlansUpdateProductionPlanErrors];
 
-export type UpdateProductionPlanAsyncResponses = {
+export type ProductionPlansUpdateProductionPlanResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkOrdersAsyncData = {
+export type WorkOrdersGetWorkOrdersData = {
     body?: WorkOrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1051,25 +1051,25 @@ export type GetWorkOrdersAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders';
 };
 
-export type GetWorkOrdersAsyncErrors = {
+export type WorkOrdersGetWorkOrdersErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWorkOrdersAsyncError = GetWorkOrdersAsyncErrors[keyof GetWorkOrdersAsyncErrors];
+export type WorkOrdersGetWorkOrdersError = WorkOrdersGetWorkOrdersErrors[keyof WorkOrdersGetWorkOrdersErrors];
 
-export type GetWorkOrdersAsyncResponses = {
+export type WorkOrdersGetWorkOrdersResponses = {
     /**
      * OK
      */
     200: WorkOrderDtoListEnvelopeReadable;
 };
 
-export type GetWorkOrdersAsyncResponse = GetWorkOrdersAsyncResponses[keyof GetWorkOrdersAsyncResponses];
+export type WorkOrdersGetWorkOrdersResponse = WorkOrdersGetWorkOrdersResponses[keyof WorkOrdersGetWorkOrdersResponses];
 
-export type CreateWorkOrderAsyncData = {
+export type WorkOrdersCreateWorkOrderData = {
     body?: WorkOrderCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1082,7 +1082,7 @@ export type CreateWorkOrderAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders';
 };
 
-export type CreateWorkOrderAsyncErrors = {
+export type WorkOrdersCreateWorkOrderErrors = {
     /**
      * Bad Request
      */
@@ -1093,16 +1093,16 @@ export type CreateWorkOrderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWorkOrderAsyncError = CreateWorkOrderAsyncErrors[keyof CreateWorkOrderAsyncErrors];
+export type WorkOrdersCreateWorkOrderError = WorkOrdersCreateWorkOrderErrors[keyof WorkOrdersCreateWorkOrderErrors];
 
-export type CreateWorkOrderAsyncResponses = {
+export type WorkOrdersCreateWorkOrderResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkOrdersCountAsyncData = {
+export type WorkOrdersGetWorkOrdersCountData = {
     body?: WorkOrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1115,25 +1115,25 @@ export type GetWorkOrdersCountAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders/Count';
 };
 
-export type GetWorkOrdersCountAsyncErrors = {
+export type WorkOrdersGetWorkOrdersCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWorkOrdersCountAsyncError = GetWorkOrdersCountAsyncErrors[keyof GetWorkOrdersCountAsyncErrors];
+export type WorkOrdersGetWorkOrdersCountError = WorkOrdersGetWorkOrdersCountErrors[keyof WorkOrdersGetWorkOrdersCountErrors];
 
-export type GetWorkOrdersCountAsyncResponses = {
+export type WorkOrdersGetWorkOrdersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWorkOrdersCountAsyncResponse = GetWorkOrdersCountAsyncResponses[keyof GetWorkOrdersCountAsyncResponses];
+export type WorkOrdersGetWorkOrdersCountResponse = WorkOrdersGetWorkOrdersCountResponses[keyof WorkOrdersGetWorkOrdersCountResponses];
 
-export type DeleteWorkOrderAsyncData = {
+export type WorkOrdersDeleteWorkOrderData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1148,7 +1148,7 @@ export type DeleteWorkOrderAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders/{id}';
 };
 
-export type DeleteWorkOrderAsyncErrors = {
+export type WorkOrdersDeleteWorkOrderErrors = {
     /**
      * Forbidden
      */
@@ -1159,16 +1159,16 @@ export type DeleteWorkOrderAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteWorkOrderAsyncError = DeleteWorkOrderAsyncErrors[keyof DeleteWorkOrderAsyncErrors];
+export type WorkOrdersDeleteWorkOrderError = WorkOrdersDeleteWorkOrderErrors[keyof WorkOrdersDeleteWorkOrderErrors];
 
-export type DeleteWorkOrderAsyncResponses = {
+export type WorkOrdersDeleteWorkOrderResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkOrderByIdAsyncData = {
+export type WorkOrdersGetWorkOrderByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1183,7 +1183,7 @@ export type GetWorkOrderByIdAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders/{id}';
 };
 
-export type GetWorkOrderByIdAsyncErrors = {
+export type WorkOrdersGetWorkOrderByIdErrors = {
     /**
      * Forbidden
      */
@@ -1194,18 +1194,18 @@ export type GetWorkOrderByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetWorkOrderByIdAsyncError = GetWorkOrderByIdAsyncErrors[keyof GetWorkOrderByIdAsyncErrors];
+export type WorkOrdersGetWorkOrderByIdError = WorkOrdersGetWorkOrderByIdErrors[keyof WorkOrdersGetWorkOrderByIdErrors];
 
-export type GetWorkOrderByIdAsyncResponses = {
+export type WorkOrdersGetWorkOrderByIdResponses = {
     /**
      * OK
      */
     200: WorkOrderDto;
 };
 
-export type GetWorkOrderByIdAsyncResponse = GetWorkOrderByIdAsyncResponses[keyof GetWorkOrderByIdAsyncResponses];
+export type WorkOrdersGetWorkOrderByIdResponse = WorkOrdersGetWorkOrderByIdResponses[keyof WorkOrdersGetWorkOrderByIdResponses];
 
-export type PatchWorkOrderAsyncData = {
+export type WorkOrdersPatchWorkOrderData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1220,7 +1220,7 @@ export type PatchWorkOrderAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders/{id}';
 };
 
-export type PatchWorkOrderAsyncErrors = {
+export type WorkOrdersPatchWorkOrderErrors = {
     /**
      * Unauthorized
      */
@@ -1231,18 +1231,18 @@ export type PatchWorkOrderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWorkOrderAsyncError = PatchWorkOrderAsyncErrors[keyof PatchWorkOrderAsyncErrors];
+export type WorkOrdersPatchWorkOrderError = WorkOrdersPatchWorkOrderErrors[keyof WorkOrdersPatchWorkOrderErrors];
 
-export type PatchWorkOrderAsyncResponses = {
+export type WorkOrdersPatchWorkOrderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWorkOrderAsyncResponse = PatchWorkOrderAsyncResponses[keyof PatchWorkOrderAsyncResponses];
+export type WorkOrdersPatchWorkOrderResponse = WorkOrdersPatchWorkOrderResponses[keyof WorkOrdersPatchWorkOrderResponses];
 
-export type UpdateWorkOrderAsyncData = {
+export type WorkOrdersUpdateWorkOrderData = {
     body?: WorkOrderUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1257,7 +1257,7 @@ export type UpdateWorkOrderAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrders/{id}';
 };
 
-export type UpdateWorkOrderAsyncErrors = {
+export type WorkOrdersUpdateWorkOrderErrors = {
     /**
      * Forbidden
      */
@@ -1268,16 +1268,16 @@ export type UpdateWorkOrderAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateWorkOrderAsyncError = UpdateWorkOrderAsyncErrors[keyof UpdateWorkOrderAsyncErrors];
+export type WorkOrdersUpdateWorkOrderError = WorkOrdersUpdateWorkOrderErrors[keyof WorkOrdersUpdateWorkOrderErrors];
 
-export type UpdateWorkOrderAsyncResponses = {
+export type WorkOrdersUpdateWorkOrderResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkOrderTypesAsyncData = {
+export type WorkOrderTypesGetWorkOrderTypesData = {
     body?: WorkOrderTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1290,25 +1290,25 @@ export type GetWorkOrderTypesAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes';
 };
 
-export type GetWorkOrderTypesAsyncErrors = {
+export type WorkOrderTypesGetWorkOrderTypesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWorkOrderTypesAsyncError = GetWorkOrderTypesAsyncErrors[keyof GetWorkOrderTypesAsyncErrors];
+export type WorkOrderTypesGetWorkOrderTypesError = WorkOrderTypesGetWorkOrderTypesErrors[keyof WorkOrderTypesGetWorkOrderTypesErrors];
 
-export type GetWorkOrderTypesAsyncResponses = {
+export type WorkOrderTypesGetWorkOrderTypesResponses = {
     /**
      * OK
      */
     200: WorkOrderTypeDtoListEnvelopeReadable;
 };
 
-export type GetWorkOrderTypesAsyncResponse = GetWorkOrderTypesAsyncResponses[keyof GetWorkOrderTypesAsyncResponses];
+export type WorkOrderTypesGetWorkOrderTypesResponse = WorkOrderTypesGetWorkOrderTypesResponses[keyof WorkOrderTypesGetWorkOrderTypesResponses];
 
-export type CreateWorkOrderTypeAsyncData = {
+export type WorkOrderTypesCreateWorkOrderTypeData = {
     body?: WorkOrderTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1321,7 +1321,7 @@ export type CreateWorkOrderTypeAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes';
 };
 
-export type CreateWorkOrderTypeAsyncErrors = {
+export type WorkOrderTypesCreateWorkOrderTypeErrors = {
     /**
      * Bad Request
      */
@@ -1332,16 +1332,16 @@ export type CreateWorkOrderTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWorkOrderTypeAsyncError = CreateWorkOrderTypeAsyncErrors[keyof CreateWorkOrderTypeAsyncErrors];
+export type WorkOrderTypesCreateWorkOrderTypeError = WorkOrderTypesCreateWorkOrderTypeErrors[keyof WorkOrderTypesCreateWorkOrderTypeErrors];
 
-export type CreateWorkOrderTypeAsyncResponses = {
+export type WorkOrderTypesCreateWorkOrderTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkOrderTypesCountAsyncData = {
+export type WorkOrderTypesGetWorkOrderTypesCountData = {
     body?: WorkOrderTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1354,25 +1354,25 @@ export type GetWorkOrderTypesCountAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes/Count';
 };
 
-export type GetWorkOrderTypesCountAsyncErrors = {
+export type WorkOrderTypesGetWorkOrderTypesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWorkOrderTypesCountAsyncError = GetWorkOrderTypesCountAsyncErrors[keyof GetWorkOrderTypesCountAsyncErrors];
+export type WorkOrderTypesGetWorkOrderTypesCountError = WorkOrderTypesGetWorkOrderTypesCountErrors[keyof WorkOrderTypesGetWorkOrderTypesCountErrors];
 
-export type GetWorkOrderTypesCountAsyncResponses = {
+export type WorkOrderTypesGetWorkOrderTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWorkOrderTypesCountAsyncResponse = GetWorkOrderTypesCountAsyncResponses[keyof GetWorkOrderTypesCountAsyncResponses];
+export type WorkOrderTypesGetWorkOrderTypesCountResponse = WorkOrderTypesGetWorkOrderTypesCountResponses[keyof WorkOrderTypesGetWorkOrderTypesCountResponses];
 
-export type DeleteWorkOrderTypeAsyncData = {
+export type WorkOrderTypesDeleteWorkOrderTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1387,7 +1387,7 @@ export type DeleteWorkOrderTypeAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes/{id}';
 };
 
-export type DeleteWorkOrderTypeAsyncErrors = {
+export type WorkOrderTypesDeleteWorkOrderTypeErrors = {
     /**
      * Forbidden
      */
@@ -1398,16 +1398,16 @@ export type DeleteWorkOrderTypeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteWorkOrderTypeAsyncError = DeleteWorkOrderTypeAsyncErrors[keyof DeleteWorkOrderTypeAsyncErrors];
+export type WorkOrderTypesDeleteWorkOrderTypeError = WorkOrderTypesDeleteWorkOrderTypeErrors[keyof WorkOrderTypesDeleteWorkOrderTypeErrors];
 
-export type DeleteWorkOrderTypeAsyncResponses = {
+export type WorkOrderTypesDeleteWorkOrderTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkOrderTypeByIdAsyncData = {
+export type WorkOrderTypesGetWorkOrderTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1422,7 +1422,7 @@ export type GetWorkOrderTypeByIdAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes/{id}';
 };
 
-export type GetWorkOrderTypeByIdAsyncErrors = {
+export type WorkOrderTypesGetWorkOrderTypeByIdErrors = {
     /**
      * Forbidden
      */
@@ -1433,18 +1433,18 @@ export type GetWorkOrderTypeByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetWorkOrderTypeByIdAsyncError = GetWorkOrderTypeByIdAsyncErrors[keyof GetWorkOrderTypeByIdAsyncErrors];
+export type WorkOrderTypesGetWorkOrderTypeByIdError = WorkOrderTypesGetWorkOrderTypeByIdErrors[keyof WorkOrderTypesGetWorkOrderTypeByIdErrors];
 
-export type GetWorkOrderTypeByIdAsyncResponses = {
+export type WorkOrderTypesGetWorkOrderTypeByIdResponses = {
     /**
      * OK
      */
     200: WorkOrderTypeDto;
 };
 
-export type GetWorkOrderTypeByIdAsyncResponse = GetWorkOrderTypeByIdAsyncResponses[keyof GetWorkOrderTypeByIdAsyncResponses];
+export type WorkOrderTypesGetWorkOrderTypeByIdResponse = WorkOrderTypesGetWorkOrderTypeByIdResponses[keyof WorkOrderTypesGetWorkOrderTypeByIdResponses];
 
-export type PatchWorkOrderTypeAsyncData = {
+export type WorkOrderTypesPatchWorkOrderTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1459,7 +1459,7 @@ export type PatchWorkOrderTypeAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes/{id}';
 };
 
-export type PatchWorkOrderTypeAsyncErrors = {
+export type WorkOrderTypesPatchWorkOrderTypeErrors = {
     /**
      * Unauthorized
      */
@@ -1470,18 +1470,18 @@ export type PatchWorkOrderTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWorkOrderTypeAsyncError = PatchWorkOrderTypeAsyncErrors[keyof PatchWorkOrderTypeAsyncErrors];
+export type WorkOrderTypesPatchWorkOrderTypeError = WorkOrderTypesPatchWorkOrderTypeErrors[keyof WorkOrderTypesPatchWorkOrderTypeErrors];
 
-export type PatchWorkOrderTypeAsyncResponses = {
+export type WorkOrderTypesPatchWorkOrderTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWorkOrderTypeAsyncResponse = PatchWorkOrderTypeAsyncResponses[keyof PatchWorkOrderTypeAsyncResponses];
+export type WorkOrderTypesPatchWorkOrderTypeResponse = WorkOrderTypesPatchWorkOrderTypeResponses[keyof WorkOrderTypesPatchWorkOrderTypeResponses];
 
-export type UpdateWorkOrderTypeAsyncData = {
+export type WorkOrderTypesUpdateWorkOrderTypeData = {
     body?: WorkOrderTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1496,7 +1496,7 @@ export type UpdateWorkOrderTypeAsyncData = {
     url: '/api/v2/ManufacturingService/WorkOrderTypes/{id}';
 };
 
-export type UpdateWorkOrderTypeAsyncErrors = {
+export type WorkOrderTypesUpdateWorkOrderTypeErrors = {
     /**
      * Forbidden
      */
@@ -1507,16 +1507,16 @@ export type UpdateWorkOrderTypeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateWorkOrderTypeAsyncError = UpdateWorkOrderTypeAsyncErrors[keyof UpdateWorkOrderTypeAsyncErrors];
+export type WorkOrderTypesUpdateWorkOrderTypeError = WorkOrderTypesUpdateWorkOrderTypeErrors[keyof WorkOrderTypesUpdateWorkOrderTypeErrors];
 
-export type UpdateWorkOrderTypeAsyncResponses = {
+export type WorkOrderTypesUpdateWorkOrderTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkstationsAsyncData = {
+export type WorkstationsGetWorkstationsData = {
     body?: WorkstationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1529,25 +1529,25 @@ export type GetWorkstationsAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations';
 };
 
-export type GetWorkstationsAsyncErrors = {
+export type WorkstationsGetWorkstationsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWorkstationsAsyncError = GetWorkstationsAsyncErrors[keyof GetWorkstationsAsyncErrors];
+export type WorkstationsGetWorkstationsError = WorkstationsGetWorkstationsErrors[keyof WorkstationsGetWorkstationsErrors];
 
-export type GetWorkstationsAsyncResponses = {
+export type WorkstationsGetWorkstationsResponses = {
     /**
      * OK
      */
     200: WorkstationDtoListEnvelopeReadable;
 };
 
-export type GetWorkstationsAsyncResponse = GetWorkstationsAsyncResponses[keyof GetWorkstationsAsyncResponses];
+export type WorkstationsGetWorkstationsResponse = WorkstationsGetWorkstationsResponses[keyof WorkstationsGetWorkstationsResponses];
 
-export type CreateWorkstationAsyncData = {
+export type WorkstationsCreateWorkstationData = {
     body?: WorkstationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1560,7 +1560,7 @@ export type CreateWorkstationAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations';
 };
 
-export type CreateWorkstationAsyncErrors = {
+export type WorkstationsCreateWorkstationErrors = {
     /**
      * Bad Request
      */
@@ -1571,16 +1571,16 @@ export type CreateWorkstationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWorkstationAsyncError = CreateWorkstationAsyncErrors[keyof CreateWorkstationAsyncErrors];
+export type WorkstationsCreateWorkstationError = WorkstationsCreateWorkstationErrors[keyof WorkstationsCreateWorkstationErrors];
 
-export type CreateWorkstationAsyncResponses = {
+export type WorkstationsCreateWorkstationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkstationsCountAsyncData = {
+export type WorkstationsGetWorkstationsCountData = {
     body?: WorkstationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1593,25 +1593,25 @@ export type GetWorkstationsCountAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations/Count';
 };
 
-export type GetWorkstationsCountAsyncErrors = {
+export type WorkstationsGetWorkstationsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWorkstationsCountAsyncError = GetWorkstationsCountAsyncErrors[keyof GetWorkstationsCountAsyncErrors];
+export type WorkstationsGetWorkstationsCountError = WorkstationsGetWorkstationsCountErrors[keyof WorkstationsGetWorkstationsCountErrors];
 
-export type GetWorkstationsCountAsyncResponses = {
+export type WorkstationsGetWorkstationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWorkstationsCountAsyncResponse = GetWorkstationsCountAsyncResponses[keyof GetWorkstationsCountAsyncResponses];
+export type WorkstationsGetWorkstationsCountResponse = WorkstationsGetWorkstationsCountResponses[keyof WorkstationsGetWorkstationsCountResponses];
 
-export type DeleteWorkstationAsyncData = {
+export type WorkstationsDeleteWorkstationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1626,7 +1626,7 @@ export type DeleteWorkstationAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations/{id}';
 };
 
-export type DeleteWorkstationAsyncErrors = {
+export type WorkstationsDeleteWorkstationErrors = {
     /**
      * Forbidden
      */
@@ -1637,16 +1637,16 @@ export type DeleteWorkstationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteWorkstationAsyncError = DeleteWorkstationAsyncErrors[keyof DeleteWorkstationAsyncErrors];
+export type WorkstationsDeleteWorkstationError = WorkstationsDeleteWorkstationErrors[keyof WorkstationsDeleteWorkstationErrors];
 
-export type DeleteWorkstationAsyncResponses = {
+export type WorkstationsDeleteWorkstationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWorkstationByIdAsyncData = {
+export type WorkstationsGetWorkstationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1661,7 +1661,7 @@ export type GetWorkstationByIdAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations/{id}';
 };
 
-export type GetWorkstationByIdAsyncErrors = {
+export type WorkstationsGetWorkstationByIdErrors = {
     /**
      * Forbidden
      */
@@ -1672,18 +1672,18 @@ export type GetWorkstationByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetWorkstationByIdAsyncError = GetWorkstationByIdAsyncErrors[keyof GetWorkstationByIdAsyncErrors];
+export type WorkstationsGetWorkstationByIdError = WorkstationsGetWorkstationByIdErrors[keyof WorkstationsGetWorkstationByIdErrors];
 
-export type GetWorkstationByIdAsyncResponses = {
+export type WorkstationsGetWorkstationByIdResponses = {
     /**
      * OK
      */
     200: WorkstationDto;
 };
 
-export type GetWorkstationByIdAsyncResponse = GetWorkstationByIdAsyncResponses[keyof GetWorkstationByIdAsyncResponses];
+export type WorkstationsGetWorkstationByIdResponse = WorkstationsGetWorkstationByIdResponses[keyof WorkstationsGetWorkstationByIdResponses];
 
-export type PatchWorkstationAsyncData = {
+export type WorkstationsPatchWorkstationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1698,7 +1698,7 @@ export type PatchWorkstationAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations/{id}';
 };
 
-export type PatchWorkstationAsyncErrors = {
+export type WorkstationsPatchWorkstationErrors = {
     /**
      * Unauthorized
      */
@@ -1709,18 +1709,18 @@ export type PatchWorkstationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWorkstationAsyncError = PatchWorkstationAsyncErrors[keyof PatchWorkstationAsyncErrors];
+export type WorkstationsPatchWorkstationError = WorkstationsPatchWorkstationErrors[keyof WorkstationsPatchWorkstationErrors];
 
-export type PatchWorkstationAsyncResponses = {
+export type WorkstationsPatchWorkstationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWorkstationAsyncResponse = PatchWorkstationAsyncResponses[keyof PatchWorkstationAsyncResponses];
+export type WorkstationsPatchWorkstationResponse = WorkstationsPatchWorkstationResponses[keyof WorkstationsPatchWorkstationResponses];
 
-export type UpdateWorkstationAsyncData = {
+export type WorkstationsUpdateWorkstationData = {
     body?: WorkstationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1735,7 +1735,7 @@ export type UpdateWorkstationAsyncData = {
     url: '/api/v2/ManufacturingService/Workstations/{id}';
 };
 
-export type UpdateWorkstationAsyncErrors = {
+export type WorkstationsUpdateWorkstationErrors = {
     /**
      * Forbidden
      */
@@ -1746,9 +1746,9 @@ export type UpdateWorkstationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateWorkstationAsyncError = UpdateWorkstationAsyncErrors[keyof UpdateWorkstationAsyncErrors];
+export type WorkstationsUpdateWorkstationError = WorkstationsUpdateWorkstationErrors[keyof WorkstationsUpdateWorkstationErrors];
 
-export type UpdateWorkstationAsyncResponses = {
+export type WorkstationsUpdateWorkstationResponses = {
     /**
      * OK
      */

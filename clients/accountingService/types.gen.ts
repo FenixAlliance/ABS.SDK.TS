@@ -291,7 +291,6 @@ export type AccountRelationCreateDto = {
     id?: string;
     timestamp?: string;
     accountId?: string | null;
-    type?: string | null;
 };
 
 export type AccountRelationDto = {
@@ -353,7 +352,6 @@ export type AccountRelationDtoListEnvelopeWritable = {
 
 export type AccountRelationUpdateDto = {
     accountId?: string | null;
-    type?: string | null;
 };
 
 export type AccountTypeCreateDto = {
@@ -474,7 +472,7 @@ export type AccountingEntryCreateDto = {
     accountId: string;
     direction: 'Debit' | 'Credit';
     transactionAmount?: number;
-    transactionCurrencyId: string;
+    transactionCurrencyId?: string | null;
     description: string;
 };
 
@@ -2179,8 +2177,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -2240,8 +2243,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type CostCentreBudgetCreateDto = {
@@ -4130,6 +4138,14 @@ export type JournalEntryDtoReadable = {
     idempotencyKey?: string | null;
     reversalOfJournalEntryId?: string | null;
     postedBy?: string | null;
+    executionPrincipalId?: string | null;
+    executionPrincipalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    executionPrincipalEnrollmentId?: string | null;
+    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    applicationId?: string | null;
+    onBehalfOfPrincipalId?: string | null;
+    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    readonly hasDualAxisIdentity?: boolean;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     debitInUsd?: number;
@@ -4164,6 +4180,13 @@ export type JournalEntryDtoWritable = {
     idempotencyKey?: string | null;
     reversalOfJournalEntryId?: string | null;
     postedBy?: string | null;
+    executionPrincipalId?: string | null;
+    executionPrincipalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    executionPrincipalEnrollmentId?: string | null;
+    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    applicationId?: string | null;
+    onBehalfOfPrincipalId?: string | null;
+    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     debitInUsd?: number;
@@ -6340,7 +6363,7 @@ export type UpdateLedgerDto = {
     ledgerTypeId?: string | null;
 };
 
-export type GetAccountGroupsData = {
+export type AccountGroupsGetAccountGroupsData = {
     body?: AccountGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6353,7 +6376,7 @@ export type GetAccountGroupsData = {
     url: '/api/v2/AccountingService/AccountGroups';
 };
 
-export type GetAccountGroupsErrors = {
+export type AccountGroupsGetAccountGroupsErrors = {
     /**
      * Unauthorized
      */
@@ -6364,18 +6387,18 @@ export type GetAccountGroupsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountGroupsError = GetAccountGroupsErrors[keyof GetAccountGroupsErrors];
+export type AccountGroupsGetAccountGroupsError = AccountGroupsGetAccountGroupsErrors[keyof AccountGroupsGetAccountGroupsErrors];
 
-export type GetAccountGroupsResponses = {
+export type AccountGroupsGetAccountGroupsResponses = {
     /**
      * OK
      */
     200: AccountGroupDtoListEnvelopeReadable;
 };
 
-export type GetAccountGroupsResponse = GetAccountGroupsResponses[keyof GetAccountGroupsResponses];
+export type AccountGroupsGetAccountGroupsResponse = AccountGroupsGetAccountGroupsResponses[keyof AccountGroupsGetAccountGroupsResponses];
 
-export type CreateAccountGroupData = {
+export type AccountGroupsCreateAccountGroupData = {
     body?: AccountGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6388,7 +6411,7 @@ export type CreateAccountGroupData = {
     url: '/api/v2/AccountingService/AccountGroups';
 };
 
-export type CreateAccountGroupErrors = {
+export type AccountGroupsCreateAccountGroupErrors = {
     /**
      * Bad Request
      */
@@ -6403,18 +6426,18 @@ export type CreateAccountGroupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountGroupError = CreateAccountGroupErrors[keyof CreateAccountGroupErrors];
+export type AccountGroupsCreateAccountGroupError = AccountGroupsCreateAccountGroupErrors[keyof AccountGroupsCreateAccountGroupErrors];
 
-export type CreateAccountGroupResponses = {
+export type AccountGroupsCreateAccountGroupResponses = {
     /**
      * Created
      */
     201: AccountGroupDtoEnvelopeReadable;
 };
 
-export type CreateAccountGroupResponse = CreateAccountGroupResponses[keyof CreateAccountGroupResponses];
+export type AccountGroupsCreateAccountGroupResponse = AccountGroupsCreateAccountGroupResponses[keyof AccountGroupsCreateAccountGroupResponses];
 
-export type GetAccountGroupsCountAsyncData = {
+export type AccountGroupsGetAccountGroupsCountData = {
     body?: AccountGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6427,7 +6450,7 @@ export type GetAccountGroupsCountAsyncData = {
     url: '/api/v2/AccountingService/AccountGroups/Count';
 };
 
-export type GetAccountGroupsCountAsyncErrors = {
+export type AccountGroupsGetAccountGroupsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6438,18 +6461,18 @@ export type GetAccountGroupsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountGroupsCountAsyncError = GetAccountGroupsCountAsyncErrors[keyof GetAccountGroupsCountAsyncErrors];
+export type AccountGroupsGetAccountGroupsCountError = AccountGroupsGetAccountGroupsCountErrors[keyof AccountGroupsGetAccountGroupsCountErrors];
 
-export type GetAccountGroupsCountAsyncResponses = {
+export type AccountGroupsGetAccountGroupsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountGroupsCountAsyncResponse = GetAccountGroupsCountAsyncResponses[keyof GetAccountGroupsCountAsyncResponses];
+export type AccountGroupsGetAccountGroupsCountResponse = AccountGroupsGetAccountGroupsCountResponses[keyof AccountGroupsGetAccountGroupsCountResponses];
 
-export type DeleteAccountGroupData = {
+export type AccountGroupsDeleteAccountGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6464,7 +6487,7 @@ export type DeleteAccountGroupData = {
     url: '/api/v2/AccountingService/AccountGroups/{accountGroupId}';
 };
 
-export type DeleteAccountGroupErrors = {
+export type AccountGroupsDeleteAccountGroupErrors = {
     /**
      * Unauthorized
      */
@@ -6479,9 +6502,9 @@ export type DeleteAccountGroupErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountGroupError = DeleteAccountGroupErrors[keyof DeleteAccountGroupErrors];
+export type AccountGroupsDeleteAccountGroupError = AccountGroupsDeleteAccountGroupErrors[keyof AccountGroupsDeleteAccountGroupErrors];
 
-export type GetAccountGroupData = {
+export type AccountGroupsGetAccountGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6496,7 +6519,7 @@ export type GetAccountGroupData = {
     url: '/api/v2/AccountingService/AccountGroups/{accountGroupId}';
 };
 
-export type GetAccountGroupErrors = {
+export type AccountGroupsGetAccountGroupErrors = {
     /**
      * Unauthorized
      */
@@ -6511,18 +6534,18 @@ export type GetAccountGroupErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetAccountGroupError = GetAccountGroupErrors[keyof GetAccountGroupErrors];
+export type AccountGroupsGetAccountGroupError = AccountGroupsGetAccountGroupErrors[keyof AccountGroupsGetAccountGroupErrors];
 
-export type GetAccountGroupResponses = {
+export type AccountGroupsGetAccountGroupResponses = {
     /**
      * OK
      */
     200: AccountGroupDtoEnvelopeReadable;
 };
 
-export type GetAccountGroupResponse = GetAccountGroupResponses[keyof GetAccountGroupResponses];
+export type AccountGroupsGetAccountGroupResponse = AccountGroupsGetAccountGroupResponses[keyof AccountGroupsGetAccountGroupResponses];
 
-export type PatchAccountGroupAsyncData = {
+export type AccountGroupsPatchAccountGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6537,7 +6560,7 @@ export type PatchAccountGroupAsyncData = {
     url: '/api/v2/AccountingService/AccountGroups/{accountGroupId}';
 };
 
-export type PatchAccountGroupAsyncErrors = {
+export type AccountGroupsPatchAccountGroupErrors = {
     /**
      * Unauthorized
      */
@@ -6548,18 +6571,18 @@ export type PatchAccountGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountGroupAsyncError = PatchAccountGroupAsyncErrors[keyof PatchAccountGroupAsyncErrors];
+export type AccountGroupsPatchAccountGroupError = AccountGroupsPatchAccountGroupErrors[keyof AccountGroupsPatchAccountGroupErrors];
 
-export type PatchAccountGroupAsyncResponses = {
+export type AccountGroupsPatchAccountGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountGroupAsyncResponse = PatchAccountGroupAsyncResponses[keyof PatchAccountGroupAsyncResponses];
+export type AccountGroupsPatchAccountGroupResponse = AccountGroupsPatchAccountGroupResponses[keyof AccountGroupsPatchAccountGroupResponses];
 
-export type UpdateAccountGroupData = {
+export type AccountGroupsUpdateAccountGroupData = {
     body?: AccountGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6574,7 +6597,7 @@ export type UpdateAccountGroupData = {
     url: '/api/v2/AccountingService/AccountGroups/{accountGroupId}';
 };
 
-export type UpdateAccountGroupErrors = {
+export type AccountGroupsUpdateAccountGroupErrors = {
     /**
      * Bad Request
      */
@@ -6593,18 +6616,18 @@ export type UpdateAccountGroupErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountGroupError = UpdateAccountGroupErrors[keyof UpdateAccountGroupErrors];
+export type AccountGroupsUpdateAccountGroupError = AccountGroupsUpdateAccountGroupErrors[keyof AccountGroupsUpdateAccountGroupErrors];
 
-export type UpdateAccountGroupResponses = {
+export type AccountGroupsUpdateAccountGroupResponses = {
     /**
      * OK
      */
     200: AccountGroupDtoEnvelopeReadable;
 };
 
-export type UpdateAccountGroupResponse = UpdateAccountGroupResponses[keyof UpdateAccountGroupResponses];
+export type AccountGroupsUpdateAccountGroupResponse = AccountGroupsUpdateAccountGroupResponses[keyof AccountGroupsUpdateAccountGroupResponses];
 
-export type GetAccountingPeriodsData = {
+export type AccountingPeriodsGetAccountingPeriodsData = {
     body?: AccountingPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6617,7 +6640,7 @@ export type GetAccountingPeriodsData = {
     url: '/api/v2/AccountingService/AccountingPeriods';
 };
 
-export type GetAccountingPeriodsErrors = {
+export type AccountingPeriodsGetAccountingPeriodsErrors = {
     /**
      * Unauthorized
      */
@@ -6628,18 +6651,18 @@ export type GetAccountingPeriodsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountingPeriodsError = GetAccountingPeriodsErrors[keyof GetAccountingPeriodsErrors];
+export type AccountingPeriodsGetAccountingPeriodsError = AccountingPeriodsGetAccountingPeriodsErrors[keyof AccountingPeriodsGetAccountingPeriodsErrors];
 
-export type GetAccountingPeriodsResponses = {
+export type AccountingPeriodsGetAccountingPeriodsResponses = {
     /**
      * OK
      */
     200: AccountingPeriodDtoListEnvelopeReadable;
 };
 
-export type GetAccountingPeriodsResponse = GetAccountingPeriodsResponses[keyof GetAccountingPeriodsResponses];
+export type AccountingPeriodsGetAccountingPeriodsResponse = AccountingPeriodsGetAccountingPeriodsResponses[keyof AccountingPeriodsGetAccountingPeriodsResponses];
 
-export type CreateAccountingPeriodData = {
+export type AccountingPeriodsCreateAccountingPeriodData = {
     body?: AccountingPeriodCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6652,7 +6675,7 @@ export type CreateAccountingPeriodData = {
     url: '/api/v2/AccountingService/AccountingPeriods';
 };
 
-export type CreateAccountingPeriodErrors = {
+export type AccountingPeriodsCreateAccountingPeriodErrors = {
     /**
      * Bad Request
      */
@@ -6667,18 +6690,18 @@ export type CreateAccountingPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountingPeriodError = CreateAccountingPeriodErrors[keyof CreateAccountingPeriodErrors];
+export type AccountingPeriodsCreateAccountingPeriodError = AccountingPeriodsCreateAccountingPeriodErrors[keyof AccountingPeriodsCreateAccountingPeriodErrors];
 
-export type CreateAccountingPeriodResponses = {
+export type AccountingPeriodsCreateAccountingPeriodResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAccountingPeriodResponse = CreateAccountingPeriodResponses[keyof CreateAccountingPeriodResponses];
+export type AccountingPeriodsCreateAccountingPeriodResponse = AccountingPeriodsCreateAccountingPeriodResponses[keyof AccountingPeriodsCreateAccountingPeriodResponses];
 
-export type GetAccountingPeriodsCountAsyncData = {
+export type AccountingPeriodsGetAccountingPeriodsCountData = {
     body?: AccountingPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6691,7 +6714,7 @@ export type GetAccountingPeriodsCountAsyncData = {
     url: '/api/v2/AccountingService/AccountingPeriods/Count';
 };
 
-export type GetAccountingPeriodsCountAsyncErrors = {
+export type AccountingPeriodsGetAccountingPeriodsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6702,18 +6725,18 @@ export type GetAccountingPeriodsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountingPeriodsCountAsyncError = GetAccountingPeriodsCountAsyncErrors[keyof GetAccountingPeriodsCountAsyncErrors];
+export type AccountingPeriodsGetAccountingPeriodsCountError = AccountingPeriodsGetAccountingPeriodsCountErrors[keyof AccountingPeriodsGetAccountingPeriodsCountErrors];
 
-export type GetAccountingPeriodsCountAsyncResponses = {
+export type AccountingPeriodsGetAccountingPeriodsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountingPeriodsCountAsyncResponse = GetAccountingPeriodsCountAsyncResponses[keyof GetAccountingPeriodsCountAsyncResponses];
+export type AccountingPeriodsGetAccountingPeriodsCountResponse = AccountingPeriodsGetAccountingPeriodsCountResponses[keyof AccountingPeriodsGetAccountingPeriodsCountResponses];
 
-export type DeleteAccountingPeriodData = {
+export type AccountingPeriodsDeleteAccountingPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6728,7 +6751,7 @@ export type DeleteAccountingPeriodData = {
     url: '/api/v2/AccountingService/AccountingPeriods/{accountingPeriodId}';
 };
 
-export type DeleteAccountingPeriodErrors = {
+export type AccountingPeriodsDeleteAccountingPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -6739,18 +6762,18 @@ export type DeleteAccountingPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountingPeriodError = DeleteAccountingPeriodErrors[keyof DeleteAccountingPeriodErrors];
+export type AccountingPeriodsDeleteAccountingPeriodError = AccountingPeriodsDeleteAccountingPeriodErrors[keyof AccountingPeriodsDeleteAccountingPeriodErrors];
 
-export type DeleteAccountingPeriodResponses = {
+export type AccountingPeriodsDeleteAccountingPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAccountingPeriodResponse = DeleteAccountingPeriodResponses[keyof DeleteAccountingPeriodResponses];
+export type AccountingPeriodsDeleteAccountingPeriodResponse = AccountingPeriodsDeleteAccountingPeriodResponses[keyof AccountingPeriodsDeleteAccountingPeriodResponses];
 
-export type GetAccountingPeriodData = {
+export type AccountingPeriodsGetAccountingPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6765,7 +6788,7 @@ export type GetAccountingPeriodData = {
     url: '/api/v2/AccountingService/AccountingPeriods/{accountingPeriodId}';
 };
 
-export type GetAccountingPeriodErrors = {
+export type AccountingPeriodsGetAccountingPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -6780,18 +6803,18 @@ export type GetAccountingPeriodErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetAccountingPeriodError = GetAccountingPeriodErrors[keyof GetAccountingPeriodErrors];
+export type AccountingPeriodsGetAccountingPeriodError = AccountingPeriodsGetAccountingPeriodErrors[keyof AccountingPeriodsGetAccountingPeriodErrors];
 
-export type GetAccountingPeriodResponses = {
+export type AccountingPeriodsGetAccountingPeriodResponses = {
     /**
      * OK
      */
     200: AccountingPeriodDtoEnvelopeReadable;
 };
 
-export type GetAccountingPeriodResponse = GetAccountingPeriodResponses[keyof GetAccountingPeriodResponses];
+export type AccountingPeriodsGetAccountingPeriodResponse = AccountingPeriodsGetAccountingPeriodResponses[keyof AccountingPeriodsGetAccountingPeriodResponses];
 
-export type PatchAccountingPeriodAsyncData = {
+export type AccountingPeriodsPatchAccountingPeriodData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6806,7 +6829,7 @@ export type PatchAccountingPeriodAsyncData = {
     url: '/api/v2/AccountingService/AccountingPeriods/{accountingPeriodId}';
 };
 
-export type PatchAccountingPeriodAsyncErrors = {
+export type AccountingPeriodsPatchAccountingPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -6817,18 +6840,18 @@ export type PatchAccountingPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountingPeriodAsyncError = PatchAccountingPeriodAsyncErrors[keyof PatchAccountingPeriodAsyncErrors];
+export type AccountingPeriodsPatchAccountingPeriodError = AccountingPeriodsPatchAccountingPeriodErrors[keyof AccountingPeriodsPatchAccountingPeriodErrors];
 
-export type PatchAccountingPeriodAsyncResponses = {
+export type AccountingPeriodsPatchAccountingPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountingPeriodAsyncResponse = PatchAccountingPeriodAsyncResponses[keyof PatchAccountingPeriodAsyncResponses];
+export type AccountingPeriodsPatchAccountingPeriodResponse = AccountingPeriodsPatchAccountingPeriodResponses[keyof AccountingPeriodsPatchAccountingPeriodResponses];
 
-export type UpdateAccountingPeriodData = {
+export type AccountingPeriodsUpdateAccountingPeriodData = {
     body?: AccountingPeriodUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6843,7 +6866,7 @@ export type UpdateAccountingPeriodData = {
     url: '/api/v2/AccountingService/AccountingPeriods/{accountingPeriodId}';
 };
 
-export type UpdateAccountingPeriodErrors = {
+export type AccountingPeriodsUpdateAccountingPeriodErrors = {
     /**
      * Bad Request
      */
@@ -6858,18 +6881,18 @@ export type UpdateAccountingPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountingPeriodError = UpdateAccountingPeriodErrors[keyof UpdateAccountingPeriodErrors];
+export type AccountingPeriodsUpdateAccountingPeriodError = AccountingPeriodsUpdateAccountingPeriodErrors[keyof AccountingPeriodsUpdateAccountingPeriodErrors];
 
-export type UpdateAccountingPeriodResponses = {
+export type AccountingPeriodsUpdateAccountingPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAccountingPeriodResponse = UpdateAccountingPeriodResponses[keyof UpdateAccountingPeriodResponses];
+export type AccountingPeriodsUpdateAccountingPeriodResponse = AccountingPeriodsUpdateAccountingPeriodResponses[keyof AccountingPeriodsUpdateAccountingPeriodResponses];
 
-export type GetIncomesSumAsyncData = {
+export type AccountingSummaryGetIncomesSumData = {
     body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6882,7 +6905,7 @@ export type GetIncomesSumAsyncData = {
     url: '/api/v2/AccountingService/Summary/Incomes/Sum';
 };
 
-export type GetIncomesSumAsyncErrors = {
+export type AccountingSummaryGetIncomesSumErrors = {
     /**
      * Unauthorized
      */
@@ -6893,18 +6916,18 @@ export type GetIncomesSumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIncomesSumAsyncError = GetIncomesSumAsyncErrors[keyof GetIncomesSumAsyncErrors];
+export type AccountingSummaryGetIncomesSumError = AccountingSummaryGetIncomesSumErrors[keyof AccountingSummaryGetIncomesSumErrors];
 
-export type GetIncomesSumAsyncResponses = {
+export type AccountingSummaryGetIncomesSumResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetIncomesSumAsyncResponse = GetIncomesSumAsyncResponses[keyof GetIncomesSumAsyncResponses];
+export type AccountingSummaryGetIncomesSumResponse = AccountingSummaryGetIncomesSumResponses[keyof AccountingSummaryGetIncomesSumResponses];
 
-export type GetExpensesSumAsyncData = {
+export type AccountingSummaryGetExpensesSumData = {
     body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6917,7 +6940,7 @@ export type GetExpensesSumAsyncData = {
     url: '/api/v2/AccountingService/Summary/Expenses/Sum';
 };
 
-export type GetExpensesSumAsyncErrors = {
+export type AccountingSummaryGetExpensesSumErrors = {
     /**
      * Unauthorized
      */
@@ -6928,18 +6951,18 @@ export type GetExpensesSumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpensesSumAsyncError = GetExpensesSumAsyncErrors[keyof GetExpensesSumAsyncErrors];
+export type AccountingSummaryGetExpensesSumError = AccountingSummaryGetExpensesSumErrors[keyof AccountingSummaryGetExpensesSumErrors];
 
-export type GetExpensesSumAsyncResponses = {
+export type AccountingSummaryGetExpensesSumResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type GetExpensesSumAsyncResponse = GetExpensesSumAsyncResponses[keyof GetExpensesSumAsyncResponses];
+export type AccountingSummaryGetExpensesSumResponse = AccountingSummaryGetExpensesSumResponses[keyof AccountingSummaryGetExpensesSumResponses];
 
-export type GetDebitsSumAsyncData = {
+export type AccountingSummaryGetDebitsSumData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6952,7 +6975,7 @@ export type GetDebitsSumAsyncData = {
     url: '/api/v2/AccountingService/Summary/Debits/Sum';
 };
 
-export type GetDebitsSumAsyncErrors = {
+export type AccountingSummaryGetDebitsSumErrors = {
     /**
      * Unauthorized
      */
@@ -6963,18 +6986,18 @@ export type GetDebitsSumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDebitsSumAsyncError = GetDebitsSumAsyncErrors[keyof GetDebitsSumAsyncErrors];
+export type AccountingSummaryGetDebitsSumError = AccountingSummaryGetDebitsSumErrors[keyof AccountingSummaryGetDebitsSumErrors];
 
-export type GetDebitsSumAsyncResponses = {
+export type AccountingSummaryGetDebitsSumResponses = {
     /**
      * OK
      */
     200: DecimalEnvelopeReadable;
 };
 
-export type GetDebitsSumAsyncResponse = GetDebitsSumAsyncResponses[keyof GetDebitsSumAsyncResponses];
+export type AccountingSummaryGetDebitsSumResponse = AccountingSummaryGetDebitsSumResponses[keyof AccountingSummaryGetDebitsSumResponses];
 
-export type GetCreditsSumAsyncData = {
+export type AccountingSummaryGetCreditsSumData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6987,7 +7010,7 @@ export type GetCreditsSumAsyncData = {
     url: '/api/v2/AccountingService/Summary/Credits/Sum';
 };
 
-export type GetCreditsSumAsyncErrors = {
+export type AccountingSummaryGetCreditsSumErrors = {
     /**
      * Unauthorized
      */
@@ -6998,18 +7021,18 @@ export type GetCreditsSumAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCreditsSumAsyncError = GetCreditsSumAsyncErrors[keyof GetCreditsSumAsyncErrors];
+export type AccountingSummaryGetCreditsSumError = AccountingSummaryGetCreditsSumErrors[keyof AccountingSummaryGetCreditsSumErrors];
 
-export type GetCreditsSumAsyncResponses = {
+export type AccountingSummaryGetCreditsSumResponses = {
     /**
      * OK
      */
     200: DecimalEnvelopeReadable;
 };
 
-export type GetCreditsSumAsyncResponse = GetCreditsSumAsyncResponses[keyof GetCreditsSumAsyncResponses];
+export type AccountingSummaryGetCreditsSumResponse = AccountingSummaryGetCreditsSumResponses[keyof AccountingSummaryGetCreditsSumResponses];
 
-export type GetAccountsAsyncData = {
+export type AccountsGetAccountsData = {
     body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7022,7 +7045,7 @@ export type GetAccountsAsyncData = {
     url: '/api/v2/AccountingService/Accounts';
 };
 
-export type GetAccountsAsyncErrors = {
+export type AccountsGetAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -7033,18 +7056,18 @@ export type GetAccountsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountsAsyncError = GetAccountsAsyncErrors[keyof GetAccountsAsyncErrors];
+export type AccountsGetAccountsError = AccountsGetAccountsErrors[keyof AccountsGetAccountsErrors];
 
-export type GetAccountsAsyncResponses = {
+export type AccountsGetAccountsResponses = {
     /**
      * OK
      */
     200: AccountDtoListEnvelopeReadable;
 };
 
-export type GetAccountsAsyncResponse = GetAccountsAsyncResponses[keyof GetAccountsAsyncResponses];
+export type AccountsGetAccountsResponse = AccountsGetAccountsResponses[keyof AccountsGetAccountsResponses];
 
-export type CreateAccountAsyncData = {
+export type AccountsCreateAccountData = {
     body?: AccountCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7057,7 +7080,7 @@ export type CreateAccountAsyncData = {
     url: '/api/v2/AccountingService/Accounts';
 };
 
-export type CreateAccountAsyncErrors = {
+export type AccountsCreateAccountErrors = {
     /**
      * Unauthorized
      */
@@ -7068,18 +7091,18 @@ export type CreateAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountAsyncError = CreateAccountAsyncErrors[keyof CreateAccountAsyncErrors];
+export type AccountsCreateAccountError = AccountsCreateAccountErrors[keyof AccountsCreateAccountErrors];
 
-export type CreateAccountAsyncResponses = {
+export type AccountsCreateAccountResponses = {
     /**
      * OK
      */
     200: AccountDtoListEnvelopeReadable;
 };
 
-export type CreateAccountAsyncResponse = CreateAccountAsyncResponses[keyof CreateAccountAsyncResponses];
+export type AccountsCreateAccountResponse = AccountsCreateAccountResponses[keyof AccountsCreateAccountResponses];
 
-export type GetAccountsCountAsyncData = {
+export type AccountsGetAccountsCountData = {
     body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7092,7 +7115,7 @@ export type GetAccountsCountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Count';
 };
 
-export type GetAccountsCountAsyncErrors = {
+export type AccountsGetAccountsCountErrors = {
     /**
      * Unauthorized
      */
@@ -7103,18 +7126,18 @@ export type GetAccountsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountsCountAsyncError = GetAccountsCountAsyncErrors[keyof GetAccountsCountAsyncErrors];
+export type AccountsGetAccountsCountError = AccountsGetAccountsCountErrors[keyof AccountsGetAccountsCountErrors];
 
-export type GetAccountsCountAsyncResponses = {
+export type AccountsGetAccountsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountsCountAsyncResponse = GetAccountsCountAsyncResponses[keyof GetAccountsCountAsyncResponses];
+export type AccountsGetAccountsCountResponse = AccountsGetAccountsCountResponses[keyof AccountsGetAccountsCountResponses];
 
-export type GetRootAccountsAsyncData = {
+export type AccountsGetRootAccountsData = {
     body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7127,7 +7150,7 @@ export type GetRootAccountsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Root';
 };
 
-export type GetRootAccountsAsyncErrors = {
+export type AccountsGetRootAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -7138,18 +7161,18 @@ export type GetRootAccountsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRootAccountsAsyncError = GetRootAccountsAsyncErrors[keyof GetRootAccountsAsyncErrors];
+export type AccountsGetRootAccountsError = AccountsGetRootAccountsErrors[keyof AccountsGetRootAccountsErrors];
 
-export type GetRootAccountsAsyncResponses = {
+export type AccountsGetRootAccountsResponses = {
     /**
      * OK
      */
     200: AccountDtoListEnvelopeReadable;
 };
 
-export type GetRootAccountsAsyncResponse = GetRootAccountsAsyncResponses[keyof GetRootAccountsAsyncResponses];
+export type AccountsGetRootAccountsResponse = AccountsGetRootAccountsResponses[keyof AccountsGetRootAccountsResponses];
 
-export type DeleteAccountAsyncData = {
+export type AccountsDeleteAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7164,7 +7187,7 @@ export type DeleteAccountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}';
 };
 
-export type DeleteAccountAsyncErrors = {
+export type AccountsDeleteAccountErrors = {
     /**
      * Unauthorized
      */
@@ -7175,18 +7198,18 @@ export type DeleteAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountAsyncError = DeleteAccountAsyncErrors[keyof DeleteAccountAsyncErrors];
+export type AccountsDeleteAccountError = AccountsDeleteAccountErrors[keyof AccountsDeleteAccountErrors];
 
-export type DeleteAccountAsyncResponses = {
+export type AccountsDeleteAccountResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAccountAsyncResponse = DeleteAccountAsyncResponses[keyof DeleteAccountAsyncResponses];
+export type AccountsDeleteAccountResponse = AccountsDeleteAccountResponses[keyof AccountsDeleteAccountResponses];
 
-export type GetAccountDetailsAsyncData = {
+export type AccountsGetAccountDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7201,7 +7224,7 @@ export type GetAccountDetailsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}';
 };
 
-export type GetAccountDetailsAsyncErrors = {
+export type AccountsGetAccountDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -7212,18 +7235,18 @@ export type GetAccountDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountDetailsAsyncError = GetAccountDetailsAsyncErrors[keyof GetAccountDetailsAsyncErrors];
+export type AccountsGetAccountDetailsError = AccountsGetAccountDetailsErrors[keyof AccountsGetAccountDetailsErrors];
 
-export type GetAccountDetailsAsyncResponses = {
+export type AccountsGetAccountDetailsResponses = {
     /**
      * OK
      */
     200: AccountDtoEnvelopeReadable;
 };
 
-export type GetAccountDetailsAsyncResponse = GetAccountDetailsAsyncResponses[keyof GetAccountDetailsAsyncResponses];
+export type AccountsGetAccountDetailsResponse = AccountsGetAccountDetailsResponses[keyof AccountsGetAccountDetailsResponses];
 
-export type PatchAccountAsyncData = {
+export type AccountsPatchAccountData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7238,7 +7261,7 @@ export type PatchAccountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}';
 };
 
-export type PatchAccountAsyncErrors = {
+export type AccountsPatchAccountErrors = {
     /**
      * Unauthorized
      */
@@ -7249,18 +7272,18 @@ export type PatchAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountAsyncError = PatchAccountAsyncErrors[keyof PatchAccountAsyncErrors];
+export type AccountsPatchAccountError = AccountsPatchAccountErrors[keyof AccountsPatchAccountErrors];
 
-export type PatchAccountAsyncResponses = {
+export type AccountsPatchAccountResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountAsyncResponse = PatchAccountAsyncResponses[keyof PatchAccountAsyncResponses];
+export type AccountsPatchAccountResponse = AccountsPatchAccountResponses[keyof AccountsPatchAccountResponses];
 
-export type UpdateAccountAsyncData = {
+export type AccountsUpdateAccountData = {
     body?: AccountUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7275,7 +7298,7 @@ export type UpdateAccountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}';
 };
 
-export type UpdateAccountAsyncErrors = {
+export type AccountsUpdateAccountErrors = {
     /**
      * Unauthorized
      */
@@ -7286,18 +7309,18 @@ export type UpdateAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountAsyncError = UpdateAccountAsyncErrors[keyof UpdateAccountAsyncErrors];
+export type AccountsUpdateAccountError = AccountsUpdateAccountErrors[keyof AccountsUpdateAccountErrors];
 
-export type UpdateAccountAsyncResponses = {
+export type AccountsUpdateAccountResponses = {
     /**
      * OK
      */
     200: AccountDtoEnvelopeReadable;
 };
 
-export type UpdateAccountAsyncResponse = UpdateAccountAsyncResponses[keyof UpdateAccountAsyncResponses];
+export type AccountsUpdateAccountResponse = AccountsUpdateAccountResponses[keyof AccountsUpdateAccountResponses];
 
-export type BalanceRootAccountAsyncData = {
+export type AccountsBalanceRootAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7310,7 +7333,7 @@ export type BalanceRootAccountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Root/Balance';
 };
 
-export type BalanceRootAccountAsyncErrors = {
+export type AccountsBalanceRootAccountErrors = {
     /**
      * Unauthorized
      */
@@ -7321,18 +7344,18 @@ export type BalanceRootAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type BalanceRootAccountAsyncError = BalanceRootAccountAsyncErrors[keyof BalanceRootAccountAsyncErrors];
+export type AccountsBalanceRootAccountError = AccountsBalanceRootAccountErrors[keyof AccountsBalanceRootAccountErrors];
 
-export type BalanceRootAccountAsyncResponses = {
+export type AccountsBalanceRootAccountResponses = {
     /**
      * OK
      */
     200: AccountDtoListEnvelopeReadable;
 };
 
-export type BalanceRootAccountAsyncResponse = BalanceRootAccountAsyncResponses[keyof BalanceRootAccountAsyncResponses];
+export type AccountsBalanceRootAccountResponse = AccountsBalanceRootAccountResponses[keyof AccountsBalanceRootAccountResponses];
 
-export type BalanceAccountAsyncData = {
+export type AccountsBalanceAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7347,7 +7370,7 @@ export type BalanceAccountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Balance';
 };
 
-export type BalanceAccountAsyncErrors = {
+export type AccountsBalanceAccountErrors = {
     /**
      * Unauthorized
      */
@@ -7358,18 +7381,18 @@ export type BalanceAccountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type BalanceAccountAsyncError = BalanceAccountAsyncErrors[keyof BalanceAccountAsyncErrors];
+export type AccountsBalanceAccountError = AccountsBalanceAccountErrors[keyof AccountsBalanceAccountErrors];
 
-export type BalanceAccountAsyncResponses = {
+export type AccountsBalanceAccountResponses = {
     /**
      * OK
      */
     200: AccountDtoEnvelopeReadable;
 };
 
-export type BalanceAccountAsyncResponse = BalanceAccountAsyncResponses[keyof BalanceAccountAsyncResponses];
+export type AccountsBalanceAccountResponse = AccountsBalanceAccountResponses[keyof AccountsBalanceAccountResponses];
 
-export type GetChildAccountsAsyncData = {
+export type AccountsGetChildAccountsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7384,7 +7407,7 @@ export type GetChildAccountsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Children';
 };
 
-export type GetChildAccountsAsyncErrors = {
+export type AccountsGetChildAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -7395,18 +7418,18 @@ export type GetChildAccountsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetChildAccountsAsyncError = GetChildAccountsAsyncErrors[keyof GetChildAccountsAsyncErrors];
+export type AccountsGetChildAccountsError = AccountsGetChildAccountsErrors[keyof AccountsGetChildAccountsErrors];
 
-export type GetChildAccountsAsyncResponses = {
+export type AccountsGetChildAccountsResponses = {
     /**
      * OK
      */
     200: AccountDtoListEnvelopeReadable;
 };
 
-export type GetChildAccountsAsyncResponse = GetChildAccountsAsyncResponses[keyof GetChildAccountsAsyncResponses];
+export type AccountsGetChildAccountsResponse = AccountsGetChildAccountsResponses[keyof AccountsGetChildAccountsResponses];
 
-export type GetAccountEntriesAsyncData = {
+export type AccountsGetAccountEntriesData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7421,7 +7444,7 @@ export type GetAccountEntriesAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries';
 };
 
-export type GetAccountEntriesAsyncErrors = {
+export type AccountsGetAccountEntriesErrors = {
     /**
      * Unauthorized
      */
@@ -7432,18 +7455,18 @@ export type GetAccountEntriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountEntriesAsyncError = GetAccountEntriesAsyncErrors[keyof GetAccountEntriesAsyncErrors];
+export type AccountsGetAccountEntriesError = AccountsGetAccountEntriesErrors[keyof AccountsGetAccountEntriesErrors];
 
-export type GetAccountEntriesAsyncResponses = {
+export type AccountsGetAccountEntriesResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type GetAccountEntriesAsyncResponse = GetAccountEntriesAsyncResponses[keyof GetAccountEntriesAsyncResponses];
+export type AccountsGetAccountEntriesResponse = AccountsGetAccountEntriesResponses[keyof AccountsGetAccountEntriesResponses];
 
-export type CreateAccountEntryAsyncData = {
+export type AccountsCreateAccountEntryData = {
     body?: AccountingEntryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7458,7 +7481,7 @@ export type CreateAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries';
 };
 
-export type CreateAccountEntryAsyncErrors = {
+export type AccountsCreateAccountEntryErrors = {
     /**
      * Bad Request
      */
@@ -7473,18 +7496,18 @@ export type CreateAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountEntryAsyncError = CreateAccountEntryAsyncErrors[keyof CreateAccountEntryAsyncErrors];
+export type AccountsCreateAccountEntryError = AccountsCreateAccountEntryErrors[keyof AccountsCreateAccountEntryErrors];
 
-export type CreateAccountEntryAsyncResponses = {
+export type AccountsCreateAccountEntryResponses = {
     /**
      * Created
      */
     201: AccountingEntryDtoEnvelopeReadable;
 };
 
-export type CreateAccountEntryAsyncResponse = CreateAccountEntryAsyncResponses[keyof CreateAccountEntryAsyncResponses];
+export type AccountsCreateAccountEntryResponse = AccountsCreateAccountEntryResponses[keyof AccountsCreateAccountEntryResponses];
 
-export type GetDebitAccountEntriesAsyncData = {
+export type AccountsGetDebitAccountEntriesData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7499,7 +7522,7 @@ export type GetDebitAccountEntriesAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/Debit';
 };
 
-export type GetDebitAccountEntriesAsyncErrors = {
+export type AccountsGetDebitAccountEntriesErrors = {
     /**
      * Unauthorized
      */
@@ -7510,18 +7533,18 @@ export type GetDebitAccountEntriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDebitAccountEntriesAsyncError = GetDebitAccountEntriesAsyncErrors[keyof GetDebitAccountEntriesAsyncErrors];
+export type AccountsGetDebitAccountEntriesError = AccountsGetDebitAccountEntriesErrors[keyof AccountsGetDebitAccountEntriesErrors];
 
-export type GetDebitAccountEntriesAsyncResponses = {
+export type AccountsGetDebitAccountEntriesResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type GetDebitAccountEntriesAsyncResponse = GetDebitAccountEntriesAsyncResponses[keyof GetDebitAccountEntriesAsyncResponses];
+export type AccountsGetDebitAccountEntriesResponse = AccountsGetDebitAccountEntriesResponses[keyof AccountsGetDebitAccountEntriesResponses];
 
-export type GetCreditAccountEntriesAsyncData = {
+export type AccountsGetCreditAccountEntriesData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7536,7 +7559,7 @@ export type GetCreditAccountEntriesAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/Credit';
 };
 
-export type GetCreditAccountEntriesAsyncErrors = {
+export type AccountsGetCreditAccountEntriesErrors = {
     /**
      * Unauthorized
      */
@@ -7547,18 +7570,18 @@ export type GetCreditAccountEntriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCreditAccountEntriesAsyncError = GetCreditAccountEntriesAsyncErrors[keyof GetCreditAccountEntriesAsyncErrors];
+export type AccountsGetCreditAccountEntriesError = AccountsGetCreditAccountEntriesErrors[keyof AccountsGetCreditAccountEntriesErrors];
 
-export type GetCreditAccountEntriesAsyncResponses = {
+export type AccountsGetCreditAccountEntriesResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type GetCreditAccountEntriesAsyncResponse = GetCreditAccountEntriesAsyncResponses[keyof GetCreditAccountEntriesAsyncResponses];
+export type AccountsGetCreditAccountEntriesResponse = AccountsGetCreditAccountEntriesResponses[keyof AccountsGetCreditAccountEntriesResponses];
 
-export type DeleteAccountEntryAsyncData = {
+export type AccountsDeleteAccountEntryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7574,7 +7597,7 @@ export type DeleteAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/{entryId}';
 };
 
-export type DeleteAccountEntryAsyncErrors = {
+export type AccountsDeleteAccountEntryErrors = {
     /**
      * Bad Request
      */
@@ -7589,18 +7612,18 @@ export type DeleteAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountEntryAsyncError = DeleteAccountEntryAsyncErrors[keyof DeleteAccountEntryAsyncErrors];
+export type AccountsDeleteAccountEntryError = AccountsDeleteAccountEntryErrors[keyof AccountsDeleteAccountEntryErrors];
 
-export type DeleteAccountEntryAsyncResponses = {
+export type AccountsDeleteAccountEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAccountEntryAsyncResponse = DeleteAccountEntryAsyncResponses[keyof DeleteAccountEntryAsyncResponses];
+export type AccountsDeleteAccountEntryResponse = AccountsDeleteAccountEntryResponses[keyof AccountsDeleteAccountEntryResponses];
 
-export type GetAccountEntryAsyncData = {
+export type AccountsGetAccountEntryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7616,7 +7639,7 @@ export type GetAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/{entryId}';
 };
 
-export type GetAccountEntryAsyncErrors = {
+export type AccountsGetAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -7627,18 +7650,18 @@ export type GetAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountEntryAsyncError = GetAccountEntryAsyncErrors[keyof GetAccountEntryAsyncErrors];
+export type AccountsGetAccountEntryError = AccountsGetAccountEntryErrors[keyof AccountsGetAccountEntryErrors];
 
-export type GetAccountEntryAsyncResponses = {
+export type AccountsGetAccountEntryResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoEnvelopeReadable;
 };
 
-export type GetAccountEntryAsyncResponse = GetAccountEntryAsyncResponses[keyof GetAccountEntryAsyncResponses];
+export type AccountsGetAccountEntryResponse = AccountsGetAccountEntryResponses[keyof AccountsGetAccountEntryResponses];
 
-export type PatchAccountEntryAsyncData = {
+export type AccountsPatchAccountEntryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7654,7 +7677,7 @@ export type PatchAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/{entryId}';
 };
 
-export type PatchAccountEntryAsyncErrors = {
+export type AccountsPatchAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -7665,18 +7688,18 @@ export type PatchAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountEntryAsyncError = PatchAccountEntryAsyncErrors[keyof PatchAccountEntryAsyncErrors];
+export type AccountsPatchAccountEntryError = AccountsPatchAccountEntryErrors[keyof AccountsPatchAccountEntryErrors];
 
-export type PatchAccountEntryAsyncResponses = {
+export type AccountsPatchAccountEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountEntryAsyncResponse = PatchAccountEntryAsyncResponses[keyof PatchAccountEntryAsyncResponses];
+export type AccountsPatchAccountEntryResponse = AccountsPatchAccountEntryResponses[keyof AccountsPatchAccountEntryResponses];
 
-export type UpdateAccountEntryAsyncData = {
+export type AccountsUpdateAccountEntryData = {
     body?: AccountingEntryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7692,7 +7715,7 @@ export type UpdateAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/{entryId}';
 };
 
-export type UpdateAccountEntryAsyncErrors = {
+export type AccountsUpdateAccountEntryErrors = {
     /**
      * Bad Request
      */
@@ -7707,18 +7730,18 @@ export type UpdateAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountEntryAsyncError = UpdateAccountEntryAsyncErrors[keyof UpdateAccountEntryAsyncErrors];
+export type AccountsUpdateAccountEntryError = AccountsUpdateAccountEntryErrors[keyof AccountsUpdateAccountEntryErrors];
 
-export type UpdateAccountEntryAsyncResponses = {
+export type AccountsUpdateAccountEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAccountEntryAsyncResponse = UpdateAccountEntryAsyncResponses[keyof UpdateAccountEntryAsyncResponses];
+export type AccountsUpdateAccountEntryResponse = AccountsUpdateAccountEntryResponses[keyof AccountsUpdateAccountEntryResponses];
 
-export type GetAccountDebitsAsyncData = {
+export type AccountsGetAccountDebitsData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7733,7 +7756,7 @@ export type GetAccountDebitsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Debits';
 };
 
-export type GetAccountDebitsAsyncErrors = {
+export type AccountsGetAccountDebitsErrors = {
     /**
      * Unauthorized
      */
@@ -7744,18 +7767,18 @@ export type GetAccountDebitsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountDebitsAsyncError = GetAccountDebitsAsyncErrors[keyof GetAccountDebitsAsyncErrors];
+export type AccountsGetAccountDebitsError = AccountsGetAccountDebitsErrors[keyof AccountsGetAccountDebitsErrors];
 
-export type GetAccountDebitsAsyncResponses = {
+export type AccountsGetAccountDebitsResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type GetAccountDebitsAsyncResponse = GetAccountDebitsAsyncResponses[keyof GetAccountDebitsAsyncResponses];
+export type AccountsGetAccountDebitsResponse = AccountsGetAccountDebitsResponses[keyof AccountsGetAccountDebitsResponses];
 
-export type CreateAccountDebitAsyncData = {
+export type AccountsCreateAccountDebitData = {
     body?: AccountingEntryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7770,7 +7793,7 @@ export type CreateAccountDebitAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Debits';
 };
 
-export type CreateAccountDebitAsyncErrors = {
+export type AccountsCreateAccountDebitErrors = {
     /**
      * Unauthorized
      */
@@ -7781,18 +7804,18 @@ export type CreateAccountDebitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountDebitAsyncError = CreateAccountDebitAsyncErrors[keyof CreateAccountDebitAsyncErrors];
+export type AccountsCreateAccountDebitError = AccountsCreateAccountDebitErrors[keyof AccountsCreateAccountDebitErrors];
 
-export type CreateAccountDebitAsyncResponses = {
+export type AccountsCreateAccountDebitResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type CreateAccountDebitAsyncResponse = CreateAccountDebitAsyncResponses[keyof CreateAccountDebitAsyncResponses];
+export type AccountsCreateAccountDebitResponse = AccountsCreateAccountDebitResponses[keyof AccountsCreateAccountDebitResponses];
 
-export type GetAccountDebitsCountAsyncData = {
+export type AccountsGetAccountDebitsCountData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7807,7 +7830,7 @@ export type GetAccountDebitsCountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Debits/Count';
 };
 
-export type GetAccountDebitsCountAsyncErrors = {
+export type AccountsGetAccountDebitsCountErrors = {
     /**
      * Unauthorized
      */
@@ -7818,18 +7841,18 @@ export type GetAccountDebitsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountDebitsCountAsyncError = GetAccountDebitsCountAsyncErrors[keyof GetAccountDebitsCountAsyncErrors];
+export type AccountsGetAccountDebitsCountError = AccountsGetAccountDebitsCountErrors[keyof AccountsGetAccountDebitsCountErrors];
 
-export type GetAccountDebitsCountAsyncResponses = {
+export type AccountsGetAccountDebitsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountDebitsCountAsyncResponse = GetAccountDebitsCountAsyncResponses[keyof GetAccountDebitsCountAsyncResponses];
+export type AccountsGetAccountDebitsCountResponse = AccountsGetAccountDebitsCountResponses[keyof AccountsGetAccountDebitsCountResponses];
 
-export type GetAccountCreditsAsyncData = {
+export type AccountsGetAccountCreditsData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7844,7 +7867,7 @@ export type GetAccountCreditsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Credits';
 };
 
-export type GetAccountCreditsAsyncErrors = {
+export type AccountsGetAccountCreditsErrors = {
     /**
      * Unauthorized
      */
@@ -7855,18 +7878,18 @@ export type GetAccountCreditsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountCreditsAsyncError = GetAccountCreditsAsyncErrors[keyof GetAccountCreditsAsyncErrors];
+export type AccountsGetAccountCreditsError = AccountsGetAccountCreditsErrors[keyof AccountsGetAccountCreditsErrors];
 
-export type GetAccountCreditsAsyncResponses = {
+export type AccountsGetAccountCreditsResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type GetAccountCreditsAsyncResponse = GetAccountCreditsAsyncResponses[keyof GetAccountCreditsAsyncResponses];
+export type AccountsGetAccountCreditsResponse = AccountsGetAccountCreditsResponses[keyof AccountsGetAccountCreditsResponses];
 
-export type CreateAccountCreditAsyncData = {
+export type AccountsCreateAccountCreditData = {
     body?: AccountingEntryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7881,7 +7904,7 @@ export type CreateAccountCreditAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Credits';
 };
 
-export type CreateAccountCreditAsyncErrors = {
+export type AccountsCreateAccountCreditErrors = {
     /**
      * Unauthorized
      */
@@ -7892,18 +7915,18 @@ export type CreateAccountCreditAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountCreditAsyncError = CreateAccountCreditAsyncErrors[keyof CreateAccountCreditAsyncErrors];
+export type AccountsCreateAccountCreditError = AccountsCreateAccountCreditErrors[keyof AccountsCreateAccountCreditErrors];
 
-export type CreateAccountCreditAsyncResponses = {
+export type AccountsCreateAccountCreditResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type CreateAccountCreditAsyncResponse = CreateAccountCreditAsyncResponses[keyof CreateAccountCreditAsyncResponses];
+export type AccountsCreateAccountCreditResponse = AccountsCreateAccountCreditResponses[keyof AccountsCreateAccountCreditResponses];
 
-export type GetAccountCreditsCountAsyncData = {
+export type AccountsGetAccountCreditsCountData = {
     body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7918,7 +7941,7 @@ export type GetAccountCreditsCountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/{accountId}/Credits/Count';
 };
 
-export type GetAccountCreditsCountAsyncErrors = {
+export type AccountsGetAccountCreditsCountErrors = {
     /**
      * Unauthorized
      */
@@ -7929,18 +7952,18 @@ export type GetAccountCreditsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountCreditsCountAsyncError = GetAccountCreditsCountAsyncErrors[keyof GetAccountCreditsCountAsyncErrors];
+export type AccountsGetAccountCreditsCountError = AccountsGetAccountCreditsCountErrors[keyof AccountsGetAccountCreditsCountErrors];
 
-export type GetAccountCreditsCountAsyncResponses = {
+export type AccountsGetAccountCreditsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountCreditsCountAsyncResponse = GetAccountCreditsCountAsyncResponses[keyof GetAccountCreditsCountAsyncResponses];
+export type AccountsGetAccountCreditsCountResponse = AccountsGetAccountCreditsCountResponses[keyof AccountsGetAccountCreditsCountResponses];
 
-export type AggregateAccountsBalanceAsyncData = {
+export type AccountsAggregateAccountsBalanceData = {
     body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7954,7 +7977,7 @@ export type AggregateAccountsBalanceAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Aggregate/Balance';
 };
 
-export type AggregateAccountsBalanceAsyncErrors = {
+export type AccountsAggregateAccountsBalanceErrors = {
     /**
      * Unauthorized
      */
@@ -7965,18 +7988,18 @@ export type AggregateAccountsBalanceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AggregateAccountsBalanceAsyncError = AggregateAccountsBalanceAsyncErrors[keyof AggregateAccountsBalanceAsyncErrors];
+export type AccountsAggregateAccountsBalanceError = AccountsAggregateAccountsBalanceErrors[keyof AccountsAggregateAccountsBalanceErrors];
 
-export type AggregateAccountsBalanceAsyncResponses = {
+export type AccountsAggregateAccountsBalanceResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateAccountsBalanceAsyncResponse = AggregateAccountsBalanceAsyncResponses[keyof AggregateAccountsBalanceAsyncResponses];
+export type AccountsAggregateAccountsBalanceResponse = AccountsAggregateAccountsBalanceResponses[keyof AccountsAggregateAccountsBalanceResponses];
 
-export type GetAccountAggregateAsyncData = {
+export type AccountsGetAccountAggregateData = {
     body?: Array<AccountDtoWritable>;
     headers?: {
         'x-api-version'?: string;
@@ -7990,7 +8013,7 @@ export type GetAccountAggregateAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Aggregate';
 };
 
-export type GetAccountAggregateAsyncErrors = {
+export type AccountsGetAccountAggregateErrors = {
     /**
      * Unauthorized
      */
@@ -8001,18 +8024,18 @@ export type GetAccountAggregateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountAggregateAsyncError = GetAccountAggregateAsyncErrors[keyof GetAccountAggregateAsyncErrors];
+export type AccountsGetAccountAggregateError = AccountsGetAccountAggregateErrors[keyof AccountsGetAccountAggregateErrors];
 
-export type GetAccountAggregateAsyncResponses = {
+export type AccountsGetAccountAggregateResponses = {
     /**
      * OK
      */
     200: AccountingEntryDtoListEnvelopeReadable;
 };
 
-export type GetAccountAggregateAsyncResponse = GetAccountAggregateAsyncResponses[keyof GetAccountAggregateAsyncResponses];
+export type AccountsGetAccountAggregateResponse = AccountsGetAccountAggregateResponses[keyof AccountsGetAccountAggregateResponses];
 
-export type GetAccountTypesAsyncData = {
+export type AccountsGetAccountTypesData = {
     body?: AccountTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8025,7 +8048,7 @@ export type GetAccountTypesAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types';
 };
 
-export type GetAccountTypesAsyncErrors = {
+export type AccountsGetAccountTypesErrors = {
     /**
      * Unauthorized
      */
@@ -8036,18 +8059,18 @@ export type GetAccountTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountTypesAsyncError = GetAccountTypesAsyncErrors[keyof GetAccountTypesAsyncErrors];
+export type AccountsGetAccountTypesError = AccountsGetAccountTypesErrors[keyof AccountsGetAccountTypesErrors];
 
-export type GetAccountTypesAsyncResponses = {
+export type AccountsGetAccountTypesResponses = {
     /**
      * OK
      */
     200: AccountTypeDtoListEnvelopeReadable;
 };
 
-export type GetAccountTypesAsyncResponse = GetAccountTypesAsyncResponses[keyof GetAccountTypesAsyncResponses];
+export type AccountsGetAccountTypesResponse = AccountsGetAccountTypesResponses[keyof AccountsGetAccountTypesResponses];
 
-export type CreateAccountTypeAsyncData = {
+export type AccountsCreateAccountTypeData = {
     body?: AccountTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8060,7 +8083,7 @@ export type CreateAccountTypeAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types';
 };
 
-export type CreateAccountTypeAsyncErrors = {
+export type AccountsCreateAccountTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8071,18 +8094,18 @@ export type CreateAccountTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountTypeAsyncError = CreateAccountTypeAsyncErrors[keyof CreateAccountTypeAsyncErrors];
+export type AccountsCreateAccountTypeError = AccountsCreateAccountTypeErrors[keyof AccountsCreateAccountTypeErrors];
 
-export type CreateAccountTypeAsyncResponses = {
+export type AccountsCreateAccountTypeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAccountTypeAsyncResponse = CreateAccountTypeAsyncResponses[keyof CreateAccountTypeAsyncResponses];
+export type AccountsCreateAccountTypeResponse = AccountsCreateAccountTypeResponses[keyof AccountsCreateAccountTypeResponses];
 
-export type GetAccountTypesCountAsyncData = {
+export type AccountsGetAccountTypesCountData = {
     body?: AccountTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8095,7 +8118,7 @@ export type GetAccountTypesCountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types/Count';
 };
 
-export type GetAccountTypesCountAsyncErrors = {
+export type AccountsGetAccountTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -8106,18 +8129,18 @@ export type GetAccountTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountTypesCountAsyncError = GetAccountTypesCountAsyncErrors[keyof GetAccountTypesCountAsyncErrors];
+export type AccountsGetAccountTypesCountError = AccountsGetAccountTypesCountErrors[keyof AccountsGetAccountTypesCountErrors];
 
-export type GetAccountTypesCountAsyncResponses = {
+export type AccountsGetAccountTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountTypesCountAsyncResponse = GetAccountTypesCountAsyncResponses[keyof GetAccountTypesCountAsyncResponses];
+export type AccountsGetAccountTypesCountResponse = AccountsGetAccountTypesCountResponses[keyof AccountsGetAccountTypesCountResponses];
 
-export type DeleteAccountTypeAsyncData = {
+export type AccountsDeleteAccountTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8132,7 +8155,7 @@ export type DeleteAccountTypeAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types/{accountTypeId}';
 };
 
-export type DeleteAccountTypeAsyncErrors = {
+export type AccountsDeleteAccountTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8143,18 +8166,18 @@ export type DeleteAccountTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountTypeAsyncError = DeleteAccountTypeAsyncErrors[keyof DeleteAccountTypeAsyncErrors];
+export type AccountsDeleteAccountTypeError = AccountsDeleteAccountTypeErrors[keyof AccountsDeleteAccountTypeErrors];
 
-export type DeleteAccountTypeAsyncResponses = {
+export type AccountsDeleteAccountTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAccountTypeAsyncResponse = DeleteAccountTypeAsyncResponses[keyof DeleteAccountTypeAsyncResponses];
+export type AccountsDeleteAccountTypeResponse = AccountsDeleteAccountTypeResponses[keyof AccountsDeleteAccountTypeResponses];
 
-export type GetAccountTypeByIdAsyncData = {
+export type AccountsGetAccountTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8169,7 +8192,7 @@ export type GetAccountTypeByIdAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types/{accountTypeId}';
 };
 
-export type GetAccountTypeByIdAsyncErrors = {
+export type AccountsGetAccountTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8180,18 +8203,18 @@ export type GetAccountTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountTypeByIdAsyncError = GetAccountTypeByIdAsyncErrors[keyof GetAccountTypeByIdAsyncErrors];
+export type AccountsGetAccountTypeByIdError = AccountsGetAccountTypeByIdErrors[keyof AccountsGetAccountTypeByIdErrors];
 
-export type GetAccountTypeByIdAsyncResponses = {
+export type AccountsGetAccountTypeByIdResponses = {
     /**
      * OK
      */
     200: AccountTypeDtoEnvelopeReadable;
 };
 
-export type GetAccountTypeByIdAsyncResponse = GetAccountTypeByIdAsyncResponses[keyof GetAccountTypeByIdAsyncResponses];
+export type AccountsGetAccountTypeByIdResponse = AccountsGetAccountTypeByIdResponses[keyof AccountsGetAccountTypeByIdResponses];
 
-export type PatchAccountTypeAsyncData = {
+export type AccountsPatchAccountTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8206,7 +8229,7 @@ export type PatchAccountTypeAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types/{accountTypeId}';
 };
 
-export type PatchAccountTypeAsyncErrors = {
+export type AccountsPatchAccountTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8217,18 +8240,18 @@ export type PatchAccountTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountTypeAsyncError = PatchAccountTypeAsyncErrors[keyof PatchAccountTypeAsyncErrors];
+export type AccountsPatchAccountTypeError = AccountsPatchAccountTypeErrors[keyof AccountsPatchAccountTypeErrors];
 
-export type PatchAccountTypeAsyncResponses = {
+export type AccountsPatchAccountTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountTypeAsyncResponse = PatchAccountTypeAsyncResponses[keyof PatchAccountTypeAsyncResponses];
+export type AccountsPatchAccountTypeResponse = AccountsPatchAccountTypeResponses[keyof AccountsPatchAccountTypeResponses];
 
-export type UpdateAccountTypeAsyncData = {
+export type AccountsUpdateAccountTypeData = {
     body?: AccountTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8243,7 +8266,7 @@ export type UpdateAccountTypeAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Types/{accountTypeId}';
 };
 
-export type UpdateAccountTypeAsyncErrors = {
+export type AccountsUpdateAccountTypeErrors = {
     /**
      * Unauthorized
      */
@@ -8254,18 +8277,18 @@ export type UpdateAccountTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountTypeAsyncError = UpdateAccountTypeAsyncErrors[keyof UpdateAccountTypeAsyncErrors];
+export type AccountsUpdateAccountTypeError = AccountsUpdateAccountTypeErrors[keyof AccountsUpdateAccountTypeErrors];
 
-export type UpdateAccountTypeAsyncResponses = {
+export type AccountsUpdateAccountTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAccountTypeAsyncResponse = UpdateAccountTypeAsyncResponses[keyof UpdateAccountTypeAsyncResponses];
+export type AccountsUpdateAccountTypeResponse = AccountsUpdateAccountTypeResponses[keyof AccountsUpdateAccountTypeResponses];
 
-export type GetAccountRelationsAsyncData = {
+export type AccountsGetAccountRelationsData = {
     body?: AccountRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8279,7 +8302,7 @@ export type GetAccountRelationsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Relations';
 };
 
-export type GetAccountRelationsAsyncErrors = {
+export type AccountsGetAccountRelationsErrors = {
     /**
      * Unauthorized
      */
@@ -8290,18 +8313,18 @@ export type GetAccountRelationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountRelationsAsyncError = GetAccountRelationsAsyncErrors[keyof GetAccountRelationsAsyncErrors];
+export type AccountsGetAccountRelationsError = AccountsGetAccountRelationsErrors[keyof AccountsGetAccountRelationsErrors];
 
-export type GetAccountRelationsAsyncResponses = {
+export type AccountsGetAccountRelationsResponses = {
     /**
      * OK
      */
     200: AccountRelationDtoListEnvelopeReadable;
 };
 
-export type GetAccountRelationsAsyncResponse = GetAccountRelationsAsyncResponses[keyof GetAccountRelationsAsyncResponses];
+export type AccountsGetAccountRelationsResponse = AccountsGetAccountRelationsResponses[keyof AccountsGetAccountRelationsResponses];
 
-export type CreateAccountRelationAsyncData = {
+export type AccountsCreateAccountRelationData = {
     body?: AccountRelationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8315,7 +8338,7 @@ export type CreateAccountRelationAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Relations';
 };
 
-export type CreateAccountRelationAsyncErrors = {
+export type AccountsCreateAccountRelationErrors = {
     /**
      * Unauthorized
      */
@@ -8326,18 +8349,18 @@ export type CreateAccountRelationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountRelationAsyncError = CreateAccountRelationAsyncErrors[keyof CreateAccountRelationAsyncErrors];
+export type AccountsCreateAccountRelationError = AccountsCreateAccountRelationErrors[keyof AccountsCreateAccountRelationErrors];
 
-export type CreateAccountRelationAsyncResponses = {
+export type AccountsCreateAccountRelationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAccountRelationAsyncResponse = CreateAccountRelationAsyncResponses[keyof CreateAccountRelationAsyncResponses];
+export type AccountsCreateAccountRelationResponse = AccountsCreateAccountRelationResponses[keyof AccountsCreateAccountRelationResponses];
 
-export type GetAccountRelationsCountAsyncData = {
+export type AccountsGetAccountRelationsCountData = {
     body?: AccountRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8351,7 +8374,7 @@ export type GetAccountRelationsCountAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Relations/Count';
 };
 
-export type GetAccountRelationsCountAsyncErrors = {
+export type AccountsGetAccountRelationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8362,18 +8385,18 @@ export type GetAccountRelationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAccountRelationsCountAsyncError = GetAccountRelationsCountAsyncErrors[keyof GetAccountRelationsCountAsyncErrors];
+export type AccountsGetAccountRelationsCountError = AccountsGetAccountRelationsCountErrors[keyof AccountsGetAccountRelationsCountErrors];
 
-export type GetAccountRelationsCountAsyncResponses = {
+export type AccountsGetAccountRelationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAccountRelationsCountAsyncResponse = GetAccountRelationsCountAsyncResponses[keyof GetAccountRelationsCountAsyncResponses];
+export type AccountsGetAccountRelationsCountResponse = AccountsGetAccountRelationsCountResponses[keyof AccountsGetAccountRelationsCountResponses];
 
-export type DeleteAccountRelationAsyncData = {
+export type AccountsDeleteAccountRelationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8389,7 +8412,7 @@ export type DeleteAccountRelationAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Relations/{accountRelationId}';
 };
 
-export type DeleteAccountRelationAsyncErrors = {
+export type AccountsDeleteAccountRelationErrors = {
     /**
      * Unauthorized
      */
@@ -8400,18 +8423,18 @@ export type DeleteAccountRelationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountRelationAsyncError = DeleteAccountRelationAsyncErrors[keyof DeleteAccountRelationAsyncErrors];
+export type AccountsDeleteAccountRelationError = AccountsDeleteAccountRelationErrors[keyof AccountsDeleteAccountRelationErrors];
 
-export type DeleteAccountRelationAsyncResponses = {
+export type AccountsDeleteAccountRelationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAccountRelationAsyncResponse = DeleteAccountRelationAsyncResponses[keyof DeleteAccountRelationAsyncResponses];
+export type AccountsDeleteAccountRelationResponse = AccountsDeleteAccountRelationResponses[keyof AccountsDeleteAccountRelationResponses];
 
-export type PatchAccountRelationAsyncData = {
+export type AccountsPatchAccountRelationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8427,7 +8450,7 @@ export type PatchAccountRelationAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Relations/{accountRelationId}';
 };
 
-export type PatchAccountRelationAsyncErrors = {
+export type AccountsPatchAccountRelationErrors = {
     /**
      * Unauthorized
      */
@@ -8438,18 +8461,18 @@ export type PatchAccountRelationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountRelationAsyncError = PatchAccountRelationAsyncErrors[keyof PatchAccountRelationAsyncErrors];
+export type AccountsPatchAccountRelationError = AccountsPatchAccountRelationErrors[keyof AccountsPatchAccountRelationErrors];
 
-export type PatchAccountRelationAsyncResponses = {
+export type AccountsPatchAccountRelationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountRelationAsyncResponse = PatchAccountRelationAsyncResponses[keyof PatchAccountRelationAsyncResponses];
+export type AccountsPatchAccountRelationResponse = AccountsPatchAccountRelationResponses[keyof AccountsPatchAccountRelationResponses];
 
-export type UpdateAccountRelationAsyncData = {
+export type AccountsUpdateAccountRelationData = {
     body?: AccountRelationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8465,7 +8488,7 @@ export type UpdateAccountRelationAsyncData = {
     url: '/api/v2/AccountingService/Accounts/Relations/{accountRelationId}';
 };
 
-export type UpdateAccountRelationAsyncErrors = {
+export type AccountsUpdateAccountRelationErrors = {
     /**
      * Unauthorized
      */
@@ -8476,18 +8499,18 @@ export type UpdateAccountRelationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountRelationAsyncError = UpdateAccountRelationAsyncErrors[keyof UpdateAccountRelationAsyncErrors];
+export type AccountsUpdateAccountRelationError = AccountsUpdateAccountRelationErrors[keyof AccountsUpdateAccountRelationErrors];
 
-export type UpdateAccountRelationAsyncResponses = {
+export type AccountsUpdateAccountRelationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAccountRelationAsyncResponse = UpdateAccountRelationAsyncResponses[keyof UpdateAccountRelationAsyncResponses];
+export type AccountsUpdateAccountRelationResponse = AccountsUpdateAccountRelationResponses[keyof AccountsUpdateAccountRelationResponses];
 
-export type GetChartsOfAccountsAsyncData = {
+export type AccountsGetChartsOfAccountsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8499,7 +8522,7 @@ export type GetChartsOfAccountsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/ChartsOfAccounts';
 };
 
-export type GetChartsOfAccountsAsyncErrors = {
+export type AccountsGetChartsOfAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -8510,18 +8533,18 @@ export type GetChartsOfAccountsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetChartsOfAccountsAsyncError = GetChartsOfAccountsAsyncErrors[keyof GetChartsOfAccountsAsyncErrors];
+export type AccountsGetChartsOfAccountsError = AccountsGetChartsOfAccountsErrors[keyof AccountsGetChartsOfAccountsErrors];
 
-export type GetChartsOfAccountsAsyncResponses = {
+export type AccountsGetChartsOfAccountsResponses = {
     /**
      * OK
      */
     200: ChartOfAccountsListEnvelopeReadable;
 };
 
-export type GetChartsOfAccountsAsyncResponse = GetChartsOfAccountsAsyncResponses[keyof GetChartsOfAccountsAsyncResponses];
+export type AccountsGetChartsOfAccountsResponse = AccountsGetChartsOfAccountsResponses[keyof AccountsGetChartsOfAccountsResponses];
 
-export type SeedChartOfAccountsAsyncData = {
+export type AccountsSeedChartOfAccountsData = {
     body?: SeedChartOfAccountsRequest;
     headers?: {
         'x-api-version'?: string;
@@ -8534,7 +8557,7 @@ export type SeedChartOfAccountsAsyncData = {
     url: '/api/v2/AccountingService/Accounts/ChartsOfAccounts/Seed';
 };
 
-export type SeedChartOfAccountsAsyncErrors = {
+export type AccountsSeedChartOfAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -8545,18 +8568,18 @@ export type SeedChartOfAccountsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SeedChartOfAccountsAsyncError = SeedChartOfAccountsAsyncErrors[keyof SeedChartOfAccountsAsyncErrors];
+export type AccountsSeedChartOfAccountsError = AccountsSeedChartOfAccountsErrors[keyof AccountsSeedChartOfAccountsErrors];
 
-export type SeedChartOfAccountsAsyncResponses = {
+export type AccountsSeedChartOfAccountsResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SeedChartOfAccountsAsyncResponse = SeedChartOfAccountsAsyncResponses[keyof SeedChartOfAccountsAsyncResponses];
+export type AccountsSeedChartOfAccountsResponse = AccountsSeedChartOfAccountsResponses[keyof AccountsSeedChartOfAccountsResponses];
 
-export type GetBanksData = {
+export type BankingGetBanksData = {
     body?: BankDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8569,7 +8592,7 @@ export type GetBanksData = {
     url: '/api/v2/AccountingService/Banking';
 };
 
-export type GetBanksErrors = {
+export type BankingGetBanksErrors = {
     /**
      * Unauthorized
      */
@@ -8580,18 +8603,18 @@ export type GetBanksErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBanksError = GetBanksErrors[keyof GetBanksErrors];
+export type BankingGetBanksError = BankingGetBanksErrors[keyof BankingGetBanksErrors];
 
-export type GetBanksResponses = {
+export type BankingGetBanksResponses = {
     /**
      * OK
      */
     200: BankDtoListEnvelopeReadable;
 };
 
-export type GetBanksResponse = GetBanksResponses[keyof GetBanksResponses];
+export type BankingGetBanksResponse = BankingGetBanksResponses[keyof BankingGetBanksResponses];
 
-export type CreateBankData = {
+export type BankingCreateBankData = {
     body?: BankCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8604,7 +8627,7 @@ export type CreateBankData = {
     url: '/api/v2/AccountingService/Banking';
 };
 
-export type CreateBankErrors = {
+export type BankingCreateBankErrors = {
     /**
      * Bad Request
      */
@@ -8619,18 +8642,18 @@ export type CreateBankErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBankError = CreateBankErrors[keyof CreateBankErrors];
+export type BankingCreateBankError = BankingCreateBankErrors[keyof BankingCreateBankErrors];
 
-export type CreateBankResponses = {
+export type BankingCreateBankResponses = {
     /**
      * Created
      */
     201: BankDtoEnvelopeReadable;
 };
 
-export type CreateBankResponse = CreateBankResponses[keyof CreateBankResponses];
+export type BankingCreateBankResponse = BankingCreateBankResponses[keyof BankingCreateBankResponses];
 
-export type GetBanksCountData = {
+export type BankingGetBanksCountData = {
     body?: BankDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8643,7 +8666,7 @@ export type GetBanksCountData = {
     url: '/api/v2/AccountingService/Banking/Count';
 };
 
-export type GetBanksCountErrors = {
+export type BankingGetBanksCountErrors = {
     /**
      * Unauthorized
      */
@@ -8654,18 +8677,18 @@ export type GetBanksCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBanksCountError = GetBanksCountErrors[keyof GetBanksCountErrors];
+export type BankingGetBanksCountError = BankingGetBanksCountErrors[keyof BankingGetBanksCountErrors];
 
-export type GetBanksCountResponses = {
+export type BankingGetBanksCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBanksCountResponse = GetBanksCountResponses[keyof GetBanksCountResponses];
+export type BankingGetBanksCountResponse = BankingGetBanksCountResponses[keyof BankingGetBanksCountResponses];
 
-export type DeleteBankData = {
+export type BankingDeleteBankData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8680,7 +8703,7 @@ export type DeleteBankData = {
     url: '/api/v2/AccountingService/Banking/{bankId}';
 };
 
-export type DeleteBankErrors = {
+export type BankingDeleteBankErrors = {
     /**
      * Unauthorized
      */
@@ -8695,9 +8718,9 @@ export type DeleteBankErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBankError = DeleteBankErrors[keyof DeleteBankErrors];
+export type BankingDeleteBankError = BankingDeleteBankErrors[keyof BankingDeleteBankErrors];
 
-export type GetBankData = {
+export type BankingGetBankData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8712,7 +8735,7 @@ export type GetBankData = {
     url: '/api/v2/AccountingService/Banking/{bankId}';
 };
 
-export type GetBankErrors = {
+export type BankingGetBankErrors = {
     /**
      * Unauthorized
      */
@@ -8727,18 +8750,18 @@ export type GetBankErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBankError = GetBankErrors[keyof GetBankErrors];
+export type BankingGetBankError = BankingGetBankErrors[keyof BankingGetBankErrors];
 
-export type GetBankResponses = {
+export type BankingGetBankResponses = {
     /**
      * OK
      */
     200: BankDtoEnvelopeReadable;
 };
 
-export type GetBankResponse = GetBankResponses[keyof GetBankResponses];
+export type BankingGetBankResponse = BankingGetBankResponses[keyof BankingGetBankResponses];
 
-export type PatchBankData = {
+export type BankingPatchBankData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8753,7 +8776,7 @@ export type PatchBankData = {
     url: '/api/v2/AccountingService/Banking/{bankId}';
 };
 
-export type PatchBankErrors = {
+export type BankingPatchBankErrors = {
     /**
      * Bad Request
      */
@@ -8772,18 +8795,18 @@ export type PatchBankErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchBankError = PatchBankErrors[keyof PatchBankErrors];
+export type BankingPatchBankError = BankingPatchBankErrors[keyof BankingPatchBankErrors];
 
-export type PatchBankResponses = {
+export type BankingPatchBankResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBankResponse = PatchBankResponses[keyof PatchBankResponses];
+export type BankingPatchBankResponse = BankingPatchBankResponses[keyof BankingPatchBankResponses];
 
-export type UpdateBankData = {
+export type BankingUpdateBankData = {
     body?: BankUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8798,7 +8821,7 @@ export type UpdateBankData = {
     url: '/api/v2/AccountingService/Banking/{bankId}';
 };
 
-export type UpdateBankErrors = {
+export type BankingUpdateBankErrors = {
     /**
      * Bad Request
      */
@@ -8817,18 +8840,18 @@ export type UpdateBankErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateBankError = UpdateBankErrors[keyof UpdateBankErrors];
+export type BankingUpdateBankError = BankingUpdateBankErrors[keyof BankingUpdateBankErrors];
 
-export type UpdateBankResponses = {
+export type BankingUpdateBankResponses = {
     /**
      * OK
      */
     200: BankDtoEnvelopeReadable;
 };
 
-export type UpdateBankResponse = UpdateBankResponses[keyof UpdateBankResponses];
+export type BankingUpdateBankResponse = BankingUpdateBankResponses[keyof BankingUpdateBankResponses];
 
-export type GetBankAccountsData = {
+export type BankingGetBankAccountsData = {
     body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8843,7 +8866,7 @@ export type GetBankAccountsData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts';
 };
 
-export type GetBankAccountsErrors = {
+export type BankingGetBankAccountsErrors = {
     /**
      * Unauthorized
      */
@@ -8854,18 +8877,18 @@ export type GetBankAccountsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankAccountsError = GetBankAccountsErrors[keyof GetBankAccountsErrors];
+export type BankingGetBankAccountsError = BankingGetBankAccountsErrors[keyof BankingGetBankAccountsErrors];
 
-export type GetBankAccountsResponses = {
+export type BankingGetBankAccountsResponses = {
     /**
      * OK
      */
     200: BankAccountDtoListEnvelopeReadable;
 };
 
-export type GetBankAccountsResponse = GetBankAccountsResponses[keyof GetBankAccountsResponses];
+export type BankingGetBankAccountsResponse = BankingGetBankAccountsResponses[keyof BankingGetBankAccountsResponses];
 
-export type CreateBankAccountData = {
+export type BankingCreateBankAccountData = {
     body?: BankAccountCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8880,7 +8903,7 @@ export type CreateBankAccountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts';
 };
 
-export type CreateBankAccountErrors = {
+export type BankingCreateBankAccountErrors = {
     /**
      * Bad Request
      */
@@ -8895,18 +8918,18 @@ export type CreateBankAccountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBankAccountError = CreateBankAccountErrors[keyof CreateBankAccountErrors];
+export type BankingCreateBankAccountError = BankingCreateBankAccountErrors[keyof BankingCreateBankAccountErrors];
 
-export type CreateBankAccountResponses = {
+export type BankingCreateBankAccountResponses = {
     /**
      * Created
      */
     201: BankAccountDtoEnvelopeReadable;
 };
 
-export type CreateBankAccountResponse = CreateBankAccountResponses[keyof CreateBankAccountResponses];
+export type BankingCreateBankAccountResponse = BankingCreateBankAccountResponses[keyof BankingCreateBankAccountResponses];
 
-export type GetBankAccountsCountData = {
+export type BankingGetBankAccountsCountData = {
     body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8921,7 +8944,7 @@ export type GetBankAccountsCountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts/Count';
 };
 
-export type GetBankAccountsCountErrors = {
+export type BankingGetBankAccountsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8932,18 +8955,18 @@ export type GetBankAccountsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankAccountsCountError = GetBankAccountsCountErrors[keyof GetBankAccountsCountErrors];
+export type BankingGetBankAccountsCountError = BankingGetBankAccountsCountErrors[keyof BankingGetBankAccountsCountErrors];
 
-export type GetBankAccountsCountResponses = {
+export type BankingGetBankAccountsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBankAccountsCountResponse = GetBankAccountsCountResponses[keyof GetBankAccountsCountResponses];
+export type BankingGetBankAccountsCountResponse = BankingGetBankAccountsCountResponses[keyof BankingGetBankAccountsCountResponses];
 
-export type DeleteBankAccountData = {
+export type BankingDeleteBankAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8959,7 +8982,7 @@ export type DeleteBankAccountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts/{accountId}';
 };
 
-export type DeleteBankAccountErrors = {
+export type BankingDeleteBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -8974,9 +8997,9 @@ export type DeleteBankAccountErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBankAccountError = DeleteBankAccountErrors[keyof DeleteBankAccountErrors];
+export type BankingDeleteBankAccountError = BankingDeleteBankAccountErrors[keyof BankingDeleteBankAccountErrors];
 
-export type GetBankAccountData = {
+export type BankingGetBankAccountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8992,7 +9015,7 @@ export type GetBankAccountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts/{accountId}';
 };
 
-export type GetBankAccountErrors = {
+export type BankingGetBankAccountErrors = {
     /**
      * Unauthorized
      */
@@ -9007,18 +9030,18 @@ export type GetBankAccountErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBankAccountError = GetBankAccountErrors[keyof GetBankAccountErrors];
+export type BankingGetBankAccountError = BankingGetBankAccountErrors[keyof BankingGetBankAccountErrors];
 
-export type GetBankAccountResponses = {
+export type BankingGetBankAccountResponses = {
     /**
      * OK
      */
     200: BankAccountDtoEnvelopeReadable;
 };
 
-export type GetBankAccountResponse = GetBankAccountResponses[keyof GetBankAccountResponses];
+export type BankingGetBankAccountResponse = BankingGetBankAccountResponses[keyof BankingGetBankAccountResponses];
 
-export type PatchBankAccountData = {
+export type BankingPatchBankAccountData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9034,7 +9057,7 @@ export type PatchBankAccountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts/{accountId}';
 };
 
-export type PatchBankAccountErrors = {
+export type BankingPatchBankAccountErrors = {
     /**
      * Bad Request
      */
@@ -9053,18 +9076,18 @@ export type PatchBankAccountErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchBankAccountError = PatchBankAccountErrors[keyof PatchBankAccountErrors];
+export type BankingPatchBankAccountError = BankingPatchBankAccountErrors[keyof BankingPatchBankAccountErrors];
 
-export type PatchBankAccountResponses = {
+export type BankingPatchBankAccountResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBankAccountResponse = PatchBankAccountResponses[keyof PatchBankAccountResponses];
+export type BankingPatchBankAccountResponse = BankingPatchBankAccountResponses[keyof BankingPatchBankAccountResponses];
 
-export type UpdateBankAccountData = {
+export type BankingUpdateBankAccountData = {
     body?: BankAccountUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9080,7 +9103,7 @@ export type UpdateBankAccountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Accounts/{accountId}';
 };
 
-export type UpdateBankAccountErrors = {
+export type BankingUpdateBankAccountErrors = {
     /**
      * Bad Request
      */
@@ -9095,18 +9118,18 @@ export type UpdateBankAccountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBankAccountError = UpdateBankAccountErrors[keyof UpdateBankAccountErrors];
+export type BankingUpdateBankAccountError = BankingUpdateBankAccountErrors[keyof BankingUpdateBankAccountErrors];
 
-export type UpdateBankAccountResponses = {
+export type BankingUpdateBankAccountResponses = {
     /**
      * OK
      */
     200: BankAccountDtoEnvelopeReadable;
 };
 
-export type UpdateBankAccountResponse = UpdateBankAccountResponses[keyof UpdateBankAccountResponses];
+export type BankingUpdateBankAccountResponse = BankingUpdateBankAccountResponses[keyof BankingUpdateBankAccountResponses];
 
-export type GetBankGuaranteesData = {
+export type BankingGetBankGuaranteesData = {
     body?: BankGuaranteeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9121,7 +9144,7 @@ export type GetBankGuaranteesData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees';
 };
 
-export type GetBankGuaranteesErrors = {
+export type BankingGetBankGuaranteesErrors = {
     /**
      * Unauthorized
      */
@@ -9132,18 +9155,18 @@ export type GetBankGuaranteesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankGuaranteesError = GetBankGuaranteesErrors[keyof GetBankGuaranteesErrors];
+export type BankingGetBankGuaranteesError = BankingGetBankGuaranteesErrors[keyof BankingGetBankGuaranteesErrors];
 
-export type GetBankGuaranteesResponses = {
+export type BankingGetBankGuaranteesResponses = {
     /**
      * OK
      */
     200: BankGuaranteeDtoListEnvelopeReadable;
 };
 
-export type GetBankGuaranteesResponse = GetBankGuaranteesResponses[keyof GetBankGuaranteesResponses];
+export type BankingGetBankGuaranteesResponse = BankingGetBankGuaranteesResponses[keyof BankingGetBankGuaranteesResponses];
 
-export type CreateBankGuaranteeData = {
+export type BankingCreateBankGuaranteeData = {
     body?: BankGuaranteeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9158,7 +9181,7 @@ export type CreateBankGuaranteeData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees';
 };
 
-export type CreateBankGuaranteeErrors = {
+export type BankingCreateBankGuaranteeErrors = {
     /**
      * Bad Request
      */
@@ -9173,18 +9196,18 @@ export type CreateBankGuaranteeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBankGuaranteeError = CreateBankGuaranteeErrors[keyof CreateBankGuaranteeErrors];
+export type BankingCreateBankGuaranteeError = BankingCreateBankGuaranteeErrors[keyof BankingCreateBankGuaranteeErrors];
 
-export type CreateBankGuaranteeResponses = {
+export type BankingCreateBankGuaranteeResponses = {
     /**
      * Created
      */
     201: BankGuaranteeDtoEnvelopeReadable;
 };
 
-export type CreateBankGuaranteeResponse = CreateBankGuaranteeResponses[keyof CreateBankGuaranteeResponses];
+export type BankingCreateBankGuaranteeResponse = BankingCreateBankGuaranteeResponses[keyof BankingCreateBankGuaranteeResponses];
 
-export type GetBankGuaranteesCountData = {
+export type BankingGetBankGuaranteesCountData = {
     body?: BankGuaranteeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9199,7 +9222,7 @@ export type GetBankGuaranteesCountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees/Count';
 };
 
-export type GetBankGuaranteesCountErrors = {
+export type BankingGetBankGuaranteesCountErrors = {
     /**
      * Unauthorized
      */
@@ -9210,18 +9233,18 @@ export type GetBankGuaranteesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankGuaranteesCountError = GetBankGuaranteesCountErrors[keyof GetBankGuaranteesCountErrors];
+export type BankingGetBankGuaranteesCountError = BankingGetBankGuaranteesCountErrors[keyof BankingGetBankGuaranteesCountErrors];
 
-export type GetBankGuaranteesCountResponses = {
+export type BankingGetBankGuaranteesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBankGuaranteesCountResponse = GetBankGuaranteesCountResponses[keyof GetBankGuaranteesCountResponses];
+export type BankingGetBankGuaranteesCountResponse = BankingGetBankGuaranteesCountResponses[keyof BankingGetBankGuaranteesCountResponses];
 
-export type DeleteBankGuaranteeData = {
+export type BankingDeleteBankGuaranteeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9237,7 +9260,7 @@ export type DeleteBankGuaranteeData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees/{guaranteeId}';
 };
 
-export type DeleteBankGuaranteeErrors = {
+export type BankingDeleteBankGuaranteeErrors = {
     /**
      * Unauthorized
      */
@@ -9252,9 +9275,9 @@ export type DeleteBankGuaranteeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBankGuaranteeError = DeleteBankGuaranteeErrors[keyof DeleteBankGuaranteeErrors];
+export type BankingDeleteBankGuaranteeError = BankingDeleteBankGuaranteeErrors[keyof BankingDeleteBankGuaranteeErrors];
 
-export type GetBankGuaranteeData = {
+export type BankingGetBankGuaranteeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9270,7 +9293,7 @@ export type GetBankGuaranteeData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees/{guaranteeId}';
 };
 
-export type GetBankGuaranteeErrors = {
+export type BankingGetBankGuaranteeErrors = {
     /**
      * Unauthorized
      */
@@ -9285,18 +9308,18 @@ export type GetBankGuaranteeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBankGuaranteeError = GetBankGuaranteeErrors[keyof GetBankGuaranteeErrors];
+export type BankingGetBankGuaranteeError = BankingGetBankGuaranteeErrors[keyof BankingGetBankGuaranteeErrors];
 
-export type GetBankGuaranteeResponses = {
+export type BankingGetBankGuaranteeResponses = {
     /**
      * OK
      */
     200: BankGuaranteeDtoEnvelopeReadable;
 };
 
-export type GetBankGuaranteeResponse = GetBankGuaranteeResponses[keyof GetBankGuaranteeResponses];
+export type BankingGetBankGuaranteeResponse = BankingGetBankGuaranteeResponses[keyof BankingGetBankGuaranteeResponses];
 
-export type PatchBankGuaranteeData = {
+export type BankingPatchBankGuaranteeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9312,7 +9335,7 @@ export type PatchBankGuaranteeData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees/{guaranteeId}';
 };
 
-export type PatchBankGuaranteeErrors = {
+export type BankingPatchBankGuaranteeErrors = {
     /**
      * Bad Request
      */
@@ -9331,18 +9354,18 @@ export type PatchBankGuaranteeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchBankGuaranteeError = PatchBankGuaranteeErrors[keyof PatchBankGuaranteeErrors];
+export type BankingPatchBankGuaranteeError = BankingPatchBankGuaranteeErrors[keyof BankingPatchBankGuaranteeErrors];
 
-export type PatchBankGuaranteeResponses = {
+export type BankingPatchBankGuaranteeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBankGuaranteeResponse = PatchBankGuaranteeResponses[keyof PatchBankGuaranteeResponses];
+export type BankingPatchBankGuaranteeResponse = BankingPatchBankGuaranteeResponses[keyof BankingPatchBankGuaranteeResponses];
 
-export type UpdateBankGuaranteeData = {
+export type BankingUpdateBankGuaranteeData = {
     body?: BankGuaranteeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9358,7 +9381,7 @@ export type UpdateBankGuaranteeData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees/{guaranteeId}';
 };
 
-export type UpdateBankGuaranteeErrors = {
+export type BankingUpdateBankGuaranteeErrors = {
     /**
      * Bad Request
      */
@@ -9373,18 +9396,18 @@ export type UpdateBankGuaranteeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBankGuaranteeError = UpdateBankGuaranteeErrors[keyof UpdateBankGuaranteeErrors];
+export type BankingUpdateBankGuaranteeError = BankingUpdateBankGuaranteeErrors[keyof BankingUpdateBankGuaranteeErrors];
 
-export type UpdateBankGuaranteeResponses = {
+export type BankingUpdateBankGuaranteeResponses = {
     /**
      * OK
      */
     200: BankGuaranteeDtoEnvelopeReadable;
 };
 
-export type UpdateBankGuaranteeResponse = UpdateBankGuaranteeResponses[keyof UpdateBankGuaranteeResponses];
+export type BankingUpdateBankGuaranteeResponse = BankingUpdateBankGuaranteeResponses[keyof BankingUpdateBankGuaranteeResponses];
 
-export type GetBankTransactionsData = {
+export type BankingGetBankTransactionsData = {
     body?: BankTransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9399,7 +9422,7 @@ export type GetBankTransactionsData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions';
 };
 
-export type GetBankTransactionsErrors = {
+export type BankingGetBankTransactionsErrors = {
     /**
      * Unauthorized
      */
@@ -9410,18 +9433,18 @@ export type GetBankTransactionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankTransactionsError = GetBankTransactionsErrors[keyof GetBankTransactionsErrors];
+export type BankingGetBankTransactionsError = BankingGetBankTransactionsErrors[keyof BankingGetBankTransactionsErrors];
 
-export type GetBankTransactionsResponses = {
+export type BankingGetBankTransactionsResponses = {
     /**
      * OK
      */
     200: BankTransactionDtoListEnvelopeReadable;
 };
 
-export type GetBankTransactionsResponse = GetBankTransactionsResponses[keyof GetBankTransactionsResponses];
+export type BankingGetBankTransactionsResponse = BankingGetBankTransactionsResponses[keyof BankingGetBankTransactionsResponses];
 
-export type CreateBankTransactionData = {
+export type BankingCreateBankTransactionData = {
     body?: BankTransactionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9436,7 +9459,7 @@ export type CreateBankTransactionData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions';
 };
 
-export type CreateBankTransactionErrors = {
+export type BankingCreateBankTransactionErrors = {
     /**
      * Bad Request
      */
@@ -9451,18 +9474,18 @@ export type CreateBankTransactionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBankTransactionError = CreateBankTransactionErrors[keyof CreateBankTransactionErrors];
+export type BankingCreateBankTransactionError = BankingCreateBankTransactionErrors[keyof BankingCreateBankTransactionErrors];
 
-export type CreateBankTransactionResponses = {
+export type BankingCreateBankTransactionResponses = {
     /**
      * Created
      */
     201: BankTransactionDtoEnvelopeReadable;
 };
 
-export type CreateBankTransactionResponse = CreateBankTransactionResponses[keyof CreateBankTransactionResponses];
+export type BankingCreateBankTransactionResponse = BankingCreateBankTransactionResponses[keyof BankingCreateBankTransactionResponses];
 
-export type GetBankTransactionsCountData = {
+export type BankingGetBankTransactionsCountData = {
     body?: BankTransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9477,7 +9500,7 @@ export type GetBankTransactionsCountData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions/Count';
 };
 
-export type GetBankTransactionsCountErrors = {
+export type BankingGetBankTransactionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -9488,18 +9511,18 @@ export type GetBankTransactionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankTransactionsCountError = GetBankTransactionsCountErrors[keyof GetBankTransactionsCountErrors];
+export type BankingGetBankTransactionsCountError = BankingGetBankTransactionsCountErrors[keyof BankingGetBankTransactionsCountErrors];
 
-export type GetBankTransactionsCountResponses = {
+export type BankingGetBankTransactionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBankTransactionsCountResponse = GetBankTransactionsCountResponses[keyof GetBankTransactionsCountResponses];
+export type BankingGetBankTransactionsCountResponse = BankingGetBankTransactionsCountResponses[keyof BankingGetBankTransactionsCountResponses];
 
-export type DeleteBankTransactionData = {
+export type BankingDeleteBankTransactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9515,7 +9538,7 @@ export type DeleteBankTransactionData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions/{transactionId}';
 };
 
-export type DeleteBankTransactionErrors = {
+export type BankingDeleteBankTransactionErrors = {
     /**
      * Unauthorized
      */
@@ -9530,9 +9553,9 @@ export type DeleteBankTransactionErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBankTransactionError = DeleteBankTransactionErrors[keyof DeleteBankTransactionErrors];
+export type BankingDeleteBankTransactionError = BankingDeleteBankTransactionErrors[keyof BankingDeleteBankTransactionErrors];
 
-export type GetBankTransactionData = {
+export type BankingGetBankTransactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9548,7 +9571,7 @@ export type GetBankTransactionData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions/{transactionId}';
 };
 
-export type GetBankTransactionErrors = {
+export type BankingGetBankTransactionErrors = {
     /**
      * Unauthorized
      */
@@ -9563,18 +9586,18 @@ export type GetBankTransactionErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBankTransactionError = GetBankTransactionErrors[keyof GetBankTransactionErrors];
+export type BankingGetBankTransactionError = BankingGetBankTransactionErrors[keyof BankingGetBankTransactionErrors];
 
-export type GetBankTransactionResponses = {
+export type BankingGetBankTransactionResponses = {
     /**
      * OK
      */
     200: BankTransactionDtoEnvelopeReadable;
 };
 
-export type GetBankTransactionResponse = GetBankTransactionResponses[keyof GetBankTransactionResponses];
+export type BankingGetBankTransactionResponse = BankingGetBankTransactionResponses[keyof BankingGetBankTransactionResponses];
 
-export type PatchBankTransactionData = {
+export type BankingPatchBankTransactionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9590,7 +9613,7 @@ export type PatchBankTransactionData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions/{transactionId}';
 };
 
-export type PatchBankTransactionErrors = {
+export type BankingPatchBankTransactionErrors = {
     /**
      * Bad Request
      */
@@ -9609,18 +9632,18 @@ export type PatchBankTransactionErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchBankTransactionError = PatchBankTransactionErrors[keyof PatchBankTransactionErrors];
+export type BankingPatchBankTransactionError = BankingPatchBankTransactionErrors[keyof BankingPatchBankTransactionErrors];
 
-export type PatchBankTransactionResponses = {
+export type BankingPatchBankTransactionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBankTransactionResponse = PatchBankTransactionResponses[keyof PatchBankTransactionResponses];
+export type BankingPatchBankTransactionResponse = BankingPatchBankTransactionResponses[keyof BankingPatchBankTransactionResponses];
 
-export type UpdateBankTransactionData = {
+export type BankingUpdateBankTransactionData = {
     body?: BankTransactionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9636,7 +9659,7 @@ export type UpdateBankTransactionData = {
     url: '/api/v2/AccountingService/Banking/{bankId}/Transactions/{transactionId}';
 };
 
-export type UpdateBankTransactionErrors = {
+export type BankingUpdateBankTransactionErrors = {
     /**
      * Bad Request
      */
@@ -9651,18 +9674,18 @@ export type UpdateBankTransactionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBankTransactionError = UpdateBankTransactionErrors[keyof UpdateBankTransactionErrors];
+export type BankingUpdateBankTransactionError = BankingUpdateBankTransactionErrors[keyof BankingUpdateBankTransactionErrors];
 
-export type UpdateBankTransactionResponses = {
+export type BankingUpdateBankTransactionResponses = {
     /**
      * OK
      */
     200: BankTransactionDtoEnvelopeReadable;
 };
 
-export type UpdateBankTransactionResponse = UpdateBankTransactionResponses[keyof UpdateBankTransactionResponses];
+export type BankingUpdateBankTransactionResponse = BankingUpdateBankTransactionResponses[keyof BankingUpdateBankTransactionResponses];
 
-export type GetBankProfilesData = {
+export type BankProfilesGetBankProfilesData = {
     body?: BankProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9675,7 +9698,7 @@ export type GetBankProfilesData = {
     url: '/api/v2/AccountingService/BankProfiles';
 };
 
-export type GetBankProfilesErrors = {
+export type BankProfilesGetBankProfilesErrors = {
     /**
      * Unauthorized
      */
@@ -9686,18 +9709,18 @@ export type GetBankProfilesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankProfilesError = GetBankProfilesErrors[keyof GetBankProfilesErrors];
+export type BankProfilesGetBankProfilesError = BankProfilesGetBankProfilesErrors[keyof BankProfilesGetBankProfilesErrors];
 
-export type GetBankProfilesResponses = {
+export type BankProfilesGetBankProfilesResponses = {
     /**
      * OK
      */
     200: BankProfileDtoListEnvelopeReadable;
 };
 
-export type GetBankProfilesResponse = GetBankProfilesResponses[keyof GetBankProfilesResponses];
+export type BankProfilesGetBankProfilesResponse = BankProfilesGetBankProfilesResponses[keyof BankProfilesGetBankProfilesResponses];
 
-export type GetBankProfilesCountData = {
+export type BankProfilesGetBankProfilesCountData = {
     body?: BankProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9710,7 +9733,7 @@ export type GetBankProfilesCountData = {
     url: '/api/v2/AccountingService/BankProfiles/Count';
 };
 
-export type GetBankProfilesCountErrors = {
+export type BankProfilesGetBankProfilesCountErrors = {
     /**
      * Unauthorized
      */
@@ -9721,18 +9744,18 @@ export type GetBankProfilesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBankProfilesCountError = GetBankProfilesCountErrors[keyof GetBankProfilesCountErrors];
+export type BankProfilesGetBankProfilesCountError = BankProfilesGetBankProfilesCountErrors[keyof BankProfilesGetBankProfilesCountErrors];
 
-export type GetBankProfilesCountResponses = {
+export type BankProfilesGetBankProfilesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBankProfilesCountResponse = GetBankProfilesCountResponses[keyof GetBankProfilesCountResponses];
+export type BankProfilesGetBankProfilesCountResponse = BankProfilesGetBankProfilesCountResponses[keyof BankProfilesGetBankProfilesCountResponses];
 
-export type GetBillableLineTaxesData = {
+export type BillableLineTaxesGetBillableLineTaxesData = {
     body?: AppliedItemTaxRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9747,16 +9770,16 @@ export type GetBillableLineTaxesData = {
     url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes';
 };
 
-export type GetBillableLineTaxesResponses = {
+export type BillableLineTaxesGetBillableLineTaxesResponses = {
     /**
      * OK
      */
     200: AppliedItemTaxRecordDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetBillableLineTaxesResponse = GetBillableLineTaxesResponses[keyof GetBillableLineTaxesResponses];
+export type BillableLineTaxesGetBillableLineTaxesResponse = BillableLineTaxesGetBillableLineTaxesResponses[keyof BillableLineTaxesGetBillableLineTaxesResponses];
 
-export type CreateBillableLineTaxData = {
+export type BillableLineTaxesCreateBillableLineTaxData = {
     body?: AppliedItemTaxRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9771,16 +9794,16 @@ export type CreateBillableLineTaxData = {
     url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes';
 };
 
-export type CreateBillableLineTaxResponses = {
+export type BillableLineTaxesCreateBillableLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateBillableLineTaxResponse = CreateBillableLineTaxResponses[keyof CreateBillableLineTaxResponses];
+export type BillableLineTaxesCreateBillableLineTaxResponse = BillableLineTaxesCreateBillableLineTaxResponses[keyof BillableLineTaxesCreateBillableLineTaxResponses];
 
-export type GetBillableLineTaxesCountData = {
+export type BillableLineTaxesGetBillableLineTaxesCountData = {
     body?: AppliedItemTaxRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9795,16 +9818,16 @@ export type GetBillableLineTaxesCountData = {
     url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/Count';
 };
 
-export type GetBillableLineTaxesCountResponses = {
+export type BillableLineTaxesGetBillableLineTaxesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBillableLineTaxesCountResponse = GetBillableLineTaxesCountResponses[keyof GetBillableLineTaxesCountResponses];
+export type BillableLineTaxesGetBillableLineTaxesCountResponse = BillableLineTaxesGetBillableLineTaxesCountResponses[keyof BillableLineTaxesGetBillableLineTaxesCountResponses];
 
-export type DeleteBillableLineTaxData = {
+export type BillableLineTaxesDeleteBillableLineTaxData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9820,16 +9843,16 @@ export type DeleteBillableLineTaxData = {
     url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/{taxId}';
 };
 
-export type DeleteBillableLineTaxResponses = {
+export type BillableLineTaxesDeleteBillableLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBillableLineTaxResponse = DeleteBillableLineTaxResponses[keyof DeleteBillableLineTaxResponses];
+export type BillableLineTaxesDeleteBillableLineTaxResponse = BillableLineTaxesDeleteBillableLineTaxResponses[keyof BillableLineTaxesDeleteBillableLineTaxResponses];
 
-export type PatchBillableLineTaxAsyncData = {
+export type BillableLineTaxesPatchBillableLineTaxData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9845,7 +9868,7 @@ export type PatchBillableLineTaxAsyncData = {
     url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/{taxId}';
 };
 
-export type PatchBillableLineTaxAsyncErrors = {
+export type BillableLineTaxesPatchBillableLineTaxErrors = {
     /**
      * Unauthorized
      */
@@ -9856,18 +9879,18 @@ export type PatchBillableLineTaxAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBillableLineTaxAsyncError = PatchBillableLineTaxAsyncErrors[keyof PatchBillableLineTaxAsyncErrors];
+export type BillableLineTaxesPatchBillableLineTaxError = BillableLineTaxesPatchBillableLineTaxErrors[keyof BillableLineTaxesPatchBillableLineTaxErrors];
 
-export type PatchBillableLineTaxAsyncResponses = {
+export type BillableLineTaxesPatchBillableLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBillableLineTaxAsyncResponse = PatchBillableLineTaxAsyncResponses[keyof PatchBillableLineTaxAsyncResponses];
+export type BillableLineTaxesPatchBillableLineTaxResponse = BillableLineTaxesPatchBillableLineTaxResponses[keyof BillableLineTaxesPatchBillableLineTaxResponses];
 
-export type UpdateBillableLineTaxData = {
+export type BillableLineTaxesUpdateBillableLineTaxData = {
     body?: AppliedItemTaxRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9883,16 +9906,16 @@ export type UpdateBillableLineTaxData = {
     url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/{taxId}';
 };
 
-export type UpdateBillableLineTaxResponses = {
+export type BillableLineTaxesUpdateBillableLineTaxResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBillableLineTaxResponse = UpdateBillableLineTaxResponses[keyof UpdateBillableLineTaxResponses];
+export type BillableLineTaxesUpdateBillableLineTaxResponse = BillableLineTaxesUpdateBillableLineTaxResponses[keyof BillableLineTaxesUpdateBillableLineTaxResponses];
 
-export type DeleteBillingProfileAsyncData = {
+export type BillingProfilesDeleteBillingProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9907,16 +9930,16 @@ export type DeleteBillingProfileAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles/{billingProfileId}';
 };
 
-export type DeleteBillingProfileAsyncResponses = {
+export type BillingProfilesDeleteBillingProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBillingProfileAsyncResponse = DeleteBillingProfileAsyncResponses[keyof DeleteBillingProfileAsyncResponses];
+export type BillingProfilesDeleteBillingProfileResponse = BillingProfilesDeleteBillingProfileResponses[keyof BillingProfilesDeleteBillingProfileResponses];
 
-export type GetBillingProfileByIdAsyncData = {
+export type BillingProfilesGetBillingProfileByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9931,16 +9954,16 @@ export type GetBillingProfileByIdAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles/{billingProfileId}';
 };
 
-export type GetBillingProfileByIdAsyncResponses = {
+export type BillingProfilesGetBillingProfileByIdResponses = {
     /**
      * OK
      */
     200: BillingProfileDtoEnvelopeReadable;
 };
 
-export type GetBillingProfileByIdAsyncResponse = GetBillingProfileByIdAsyncResponses[keyof GetBillingProfileByIdAsyncResponses];
+export type BillingProfilesGetBillingProfileByIdResponse = BillingProfilesGetBillingProfileByIdResponses[keyof BillingProfilesGetBillingProfileByIdResponses];
 
-export type PatchBillingProfileAsyncData = {
+export type BillingProfilesPatchBillingProfileData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9955,7 +9978,7 @@ export type PatchBillingProfileAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles/{billingProfileId}';
 };
 
-export type PatchBillingProfileAsyncErrors = {
+export type BillingProfilesPatchBillingProfileErrors = {
     /**
      * Unauthorized
      */
@@ -9966,18 +9989,18 @@ export type PatchBillingProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBillingProfileAsyncError = PatchBillingProfileAsyncErrors[keyof PatchBillingProfileAsyncErrors];
+export type BillingProfilesPatchBillingProfileError = BillingProfilesPatchBillingProfileErrors[keyof BillingProfilesPatchBillingProfileErrors];
 
-export type PatchBillingProfileAsyncResponses = {
+export type BillingProfilesPatchBillingProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBillingProfileAsyncResponse = PatchBillingProfileAsyncResponses[keyof PatchBillingProfileAsyncResponses];
+export type BillingProfilesPatchBillingProfileResponse = BillingProfilesPatchBillingProfileResponses[keyof BillingProfilesPatchBillingProfileResponses];
 
-export type UpdateBillingProfileAsyncData = {
+export type BillingProfilesUpdateBillingProfileData = {
     body: BillingProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9992,16 +10015,16 @@ export type UpdateBillingProfileAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles/{billingProfileId}';
 };
 
-export type UpdateBillingProfileAsyncResponses = {
+export type BillingProfilesUpdateBillingProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBillingProfileAsyncResponse = UpdateBillingProfileAsyncResponses[keyof UpdateBillingProfileAsyncResponses];
+export type BillingProfilesUpdateBillingProfileResponse = BillingProfilesUpdateBillingProfileResponses[keyof BillingProfilesUpdateBillingProfileResponses];
 
-export type GetBillingProfilesAsyncData = {
+export type BillingProfilesGetBillingProfilesData = {
     body?: BillingProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10014,16 +10037,16 @@ export type GetBillingProfilesAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles';
 };
 
-export type GetBillingProfilesAsyncResponses = {
+export type BillingProfilesGetBillingProfilesResponses = {
     /**
      * OK
      */
     200: BillingProfileDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetBillingProfilesAsyncResponse = GetBillingProfilesAsyncResponses[keyof GetBillingProfilesAsyncResponses];
+export type BillingProfilesGetBillingProfilesResponse = BillingProfilesGetBillingProfilesResponses[keyof BillingProfilesGetBillingProfilesResponses];
 
-export type CreateBillingProfileAsyncData = {
+export type BillingProfilesCreateBillingProfileData = {
     body: BillingProfileCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10036,16 +10059,16 @@ export type CreateBillingProfileAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles';
 };
 
-export type CreateBillingProfileAsyncResponses = {
+export type BillingProfilesCreateBillingProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateBillingProfileAsyncResponse = CreateBillingProfileAsyncResponses[keyof CreateBillingProfileAsyncResponses];
+export type BillingProfilesCreateBillingProfileResponse = BillingProfilesCreateBillingProfileResponses[keyof BillingProfilesCreateBillingProfileResponses];
 
-export type GetBillingProfilesCountAsyncData = {
+export type BillingProfilesGetBillingProfilesCountData = {
     body?: BillingProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10058,16 +10081,16 @@ export type GetBillingProfilesCountAsyncData = {
     url: '/api/v2/AccountingService/BillingProfiles/Count';
 };
 
-export type GetBillingProfilesCountAsyncResponses = {
+export type BillingProfilesGetBillingProfilesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBillingProfilesCountAsyncResponse = GetBillingProfilesCountAsyncResponses[keyof GetBillingProfilesCountAsyncResponses];
+export type BillingProfilesGetBillingProfilesCountResponse = BillingProfilesGetBillingProfilesCountResponses[keyof BillingProfilesGetBillingProfilesCountResponses];
 
-export type DeleteBudgetAsyncData = {
+export type BudgetsDeleteBudgetData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10082,7 +10105,7 @@ export type DeleteBudgetAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}';
 };
 
-export type DeleteBudgetAsyncErrors = {
+export type BudgetsDeleteBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -10093,18 +10116,18 @@ export type DeleteBudgetAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBudgetAsyncError = DeleteBudgetAsyncErrors[keyof DeleteBudgetAsyncErrors];
+export type BudgetsDeleteBudgetError = BudgetsDeleteBudgetErrors[keyof BudgetsDeleteBudgetErrors];
 
-export type DeleteBudgetAsyncResponses = {
+export type BudgetsDeleteBudgetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBudgetAsyncResponse = DeleteBudgetAsyncResponses[keyof DeleteBudgetAsyncResponses];
+export type BudgetsDeleteBudgetResponse = BudgetsDeleteBudgetResponses[keyof BudgetsDeleteBudgetResponses];
 
-export type GetBudgetDetailsAsyncData = {
+export type BudgetsGetBudgetDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10119,7 +10142,7 @@ export type GetBudgetDetailsAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}';
 };
 
-export type GetBudgetDetailsAsyncErrors = {
+export type BudgetsGetBudgetDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -10130,18 +10153,18 @@ export type GetBudgetDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBudgetDetailsAsyncError = GetBudgetDetailsAsyncErrors[keyof GetBudgetDetailsAsyncErrors];
+export type BudgetsGetBudgetDetailsError = BudgetsGetBudgetDetailsErrors[keyof BudgetsGetBudgetDetailsErrors];
 
-export type GetBudgetDetailsAsyncResponses = {
+export type BudgetsGetBudgetDetailsResponses = {
     /**
      * OK
      */
     200: BudgetDtoEnvelopeReadable;
 };
 
-export type GetBudgetDetailsAsyncResponse = GetBudgetDetailsAsyncResponses[keyof GetBudgetDetailsAsyncResponses];
+export type BudgetsGetBudgetDetailsResponse = BudgetsGetBudgetDetailsResponses[keyof BudgetsGetBudgetDetailsResponses];
 
-export type PatchBudgetAsyncData = {
+export type BudgetsPatchBudgetData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10156,7 +10179,7 @@ export type PatchBudgetAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}';
 };
 
-export type PatchBudgetAsyncErrors = {
+export type BudgetsPatchBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -10171,18 +10194,18 @@ export type PatchBudgetAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchBudgetAsyncError = PatchBudgetAsyncErrors[keyof PatchBudgetAsyncErrors];
+export type BudgetsPatchBudgetError = BudgetsPatchBudgetErrors[keyof BudgetsPatchBudgetErrors];
 
-export type PatchBudgetAsyncResponses = {
+export type BudgetsPatchBudgetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBudgetAsyncResponse = PatchBudgetAsyncResponses[keyof PatchBudgetAsyncResponses];
+export type BudgetsPatchBudgetResponse = BudgetsPatchBudgetResponses[keyof BudgetsPatchBudgetResponses];
 
-export type UpdateBudgetAsyncData = {
+export type BudgetsUpdateBudgetData = {
     body: BudgetUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10197,7 +10220,7 @@ export type UpdateBudgetAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}';
 };
 
-export type UpdateBudgetAsyncErrors = {
+export type BudgetsUpdateBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -10208,18 +10231,18 @@ export type UpdateBudgetAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBudgetAsyncError = UpdateBudgetAsyncErrors[keyof UpdateBudgetAsyncErrors];
+export type BudgetsUpdateBudgetError = BudgetsUpdateBudgetErrors[keyof BudgetsUpdateBudgetErrors];
 
-export type UpdateBudgetAsyncResponses = {
+export type BudgetsUpdateBudgetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBudgetAsyncResponse = UpdateBudgetAsyncResponses[keyof UpdateBudgetAsyncResponses];
+export type BudgetsUpdateBudgetResponse = BudgetsUpdateBudgetResponses[keyof BudgetsUpdateBudgetResponses];
 
-export type GetBudgetsAsyncData = {
+export type BudgetsGetBudgetsData = {
     body?: BudgetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10232,7 +10255,7 @@ export type GetBudgetsAsyncData = {
     url: '/api/v2/AccountingService/Budgets';
 };
 
-export type GetBudgetsAsyncErrors = {
+export type BudgetsGetBudgetsErrors = {
     /**
      * Unauthorized
      */
@@ -10243,18 +10266,18 @@ export type GetBudgetsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBudgetsAsyncError = GetBudgetsAsyncErrors[keyof GetBudgetsAsyncErrors];
+export type BudgetsGetBudgetsError = BudgetsGetBudgetsErrors[keyof BudgetsGetBudgetsErrors];
 
-export type GetBudgetsAsyncResponses = {
+export type BudgetsGetBudgetsResponses = {
     /**
      * OK
      */
     200: BudgetDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetBudgetsAsyncResponse = GetBudgetsAsyncResponses[keyof GetBudgetsAsyncResponses];
+export type BudgetsGetBudgetsResponse = BudgetsGetBudgetsResponses[keyof BudgetsGetBudgetsResponses];
 
-export type CreateBudgetAsyncData = {
+export type BudgetsCreateBudgetData = {
     body: BudgetCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10267,7 +10290,7 @@ export type CreateBudgetAsyncData = {
     url: '/api/v2/AccountingService/Budgets';
 };
 
-export type CreateBudgetAsyncErrors = {
+export type BudgetsCreateBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -10278,18 +10301,18 @@ export type CreateBudgetAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBudgetAsyncError = CreateBudgetAsyncErrors[keyof CreateBudgetAsyncErrors];
+export type BudgetsCreateBudgetError = BudgetsCreateBudgetErrors[keyof BudgetsCreateBudgetErrors];
 
-export type CreateBudgetAsyncResponses = {
+export type BudgetsCreateBudgetResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBudgetAsyncResponse = CreateBudgetAsyncResponses[keyof CreateBudgetAsyncResponses];
+export type BudgetsCreateBudgetResponse = BudgetsCreateBudgetResponses[keyof BudgetsCreateBudgetResponses];
 
-export type GetBudgetsCountAsyncData = {
+export type BudgetsGetBudgetsCountData = {
     body?: BudgetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10302,7 +10325,7 @@ export type GetBudgetsCountAsyncData = {
     url: '/api/v2/AccountingService/Budgets/Count';
 };
 
-export type GetBudgetsCountAsyncErrors = {
+export type BudgetsGetBudgetsCountErrors = {
     /**
      * Unauthorized
      */
@@ -10313,18 +10336,18 @@ export type GetBudgetsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBudgetsCountAsyncError = GetBudgetsCountAsyncErrors[keyof GetBudgetsCountAsyncErrors];
+export type BudgetsGetBudgetsCountError = BudgetsGetBudgetsCountErrors[keyof BudgetsGetBudgetsCountErrors];
 
-export type GetBudgetsCountAsyncResponses = {
+export type BudgetsGetBudgetsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBudgetsCountAsyncResponse = GetBudgetsCountAsyncResponses[keyof GetBudgetsCountAsyncResponses];
+export type BudgetsGetBudgetsCountResponse = BudgetsGetBudgetsCountResponses[keyof BudgetsGetBudgetsCountResponses];
 
-export type GetBudgetAccountEntriesCollectionAsyncData = {
+export type BudgetsGetBudgetAccountEntriesCollectionData = {
     body?: BudgetAccountEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10339,7 +10362,7 @@ export type GetBudgetAccountEntriesCollectionAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries';
 };
 
-export type GetBudgetAccountEntriesCollectionAsyncErrors = {
+export type BudgetsGetBudgetAccountEntriesCollectionErrors = {
     /**
      * Unauthorized
      */
@@ -10350,18 +10373,18 @@ export type GetBudgetAccountEntriesCollectionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBudgetAccountEntriesCollectionAsyncError = GetBudgetAccountEntriesCollectionAsyncErrors[keyof GetBudgetAccountEntriesCollectionAsyncErrors];
+export type BudgetsGetBudgetAccountEntriesCollectionError = BudgetsGetBudgetAccountEntriesCollectionErrors[keyof BudgetsGetBudgetAccountEntriesCollectionErrors];
 
-export type GetBudgetAccountEntriesCollectionAsyncResponses = {
+export type BudgetsGetBudgetAccountEntriesCollectionResponses = {
     /**
      * OK
      */
     200: BudgetAccountEntryDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetBudgetAccountEntriesCollectionAsyncResponse = GetBudgetAccountEntriesCollectionAsyncResponses[keyof GetBudgetAccountEntriesCollectionAsyncResponses];
+export type BudgetsGetBudgetAccountEntriesCollectionResponse = BudgetsGetBudgetAccountEntriesCollectionResponses[keyof BudgetsGetBudgetAccountEntriesCollectionResponses];
 
-export type CreateBudgetAccountEntryAsyncData = {
+export type BudgetsCreateBudgetAccountEntryData = {
     body: BudgetAccountEntryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10376,7 +10399,7 @@ export type CreateBudgetAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries';
 };
 
-export type CreateBudgetAccountEntryAsyncErrors = {
+export type BudgetsCreateBudgetAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -10387,18 +10410,18 @@ export type CreateBudgetAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBudgetAccountEntryAsyncError = CreateBudgetAccountEntryAsyncErrors[keyof CreateBudgetAccountEntryAsyncErrors];
+export type BudgetsCreateBudgetAccountEntryError = BudgetsCreateBudgetAccountEntryErrors[keyof BudgetsCreateBudgetAccountEntryErrors];
 
-export type CreateBudgetAccountEntryAsyncResponses = {
+export type BudgetsCreateBudgetAccountEntryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBudgetAccountEntryAsyncResponse = CreateBudgetAccountEntryAsyncResponses[keyof CreateBudgetAccountEntryAsyncResponses];
+export type BudgetsCreateBudgetAccountEntryResponse = BudgetsCreateBudgetAccountEntryResponses[keyof BudgetsCreateBudgetAccountEntryResponses];
 
-export type DeleteBudgetAccountEntryAsyncData = {
+export type BudgetsDeleteBudgetAccountEntryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10414,7 +10437,7 @@ export type DeleteBudgetAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries/{entryId}';
 };
 
-export type DeleteBudgetAccountEntryAsyncErrors = {
+export type BudgetsDeleteBudgetAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -10425,18 +10448,18 @@ export type DeleteBudgetAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBudgetAccountEntryAsyncError = DeleteBudgetAccountEntryAsyncErrors[keyof DeleteBudgetAccountEntryAsyncErrors];
+export type BudgetsDeleteBudgetAccountEntryError = BudgetsDeleteBudgetAccountEntryErrors[keyof BudgetsDeleteBudgetAccountEntryErrors];
 
-export type DeleteBudgetAccountEntryAsyncResponses = {
+export type BudgetsDeleteBudgetAccountEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBudgetAccountEntryAsyncResponse = DeleteBudgetAccountEntryAsyncResponses[keyof DeleteBudgetAccountEntryAsyncResponses];
+export type BudgetsDeleteBudgetAccountEntryResponse = BudgetsDeleteBudgetAccountEntryResponses[keyof BudgetsDeleteBudgetAccountEntryResponses];
 
-export type GetBudgetAccountEntryAsyncData = {
+export type BudgetsGetBudgetAccountEntryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10452,7 +10475,7 @@ export type GetBudgetAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries/{entryId}';
 };
 
-export type GetBudgetAccountEntryAsyncErrors = {
+export type BudgetsGetBudgetAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -10463,18 +10486,18 @@ export type GetBudgetAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBudgetAccountEntryAsyncError = GetBudgetAccountEntryAsyncErrors[keyof GetBudgetAccountEntryAsyncErrors];
+export type BudgetsGetBudgetAccountEntryError = BudgetsGetBudgetAccountEntryErrors[keyof BudgetsGetBudgetAccountEntryErrors];
 
-export type GetBudgetAccountEntryAsyncResponses = {
+export type BudgetsGetBudgetAccountEntryResponses = {
     /**
      * OK
      */
     200: BudgetAccountEntryDtoEnvelopeReadable;
 };
 
-export type GetBudgetAccountEntryAsyncResponse = GetBudgetAccountEntryAsyncResponses[keyof GetBudgetAccountEntryAsyncResponses];
+export type BudgetsGetBudgetAccountEntryResponse = BudgetsGetBudgetAccountEntryResponses[keyof BudgetsGetBudgetAccountEntryResponses];
 
-export type PatchBudgetAccountEntryAsyncData = {
+export type BudgetsPatchBudgetAccountEntryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10490,7 +10513,7 @@ export type PatchBudgetAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries/{entryId}';
 };
 
-export type PatchBudgetAccountEntryAsyncErrors = {
+export type BudgetsPatchBudgetAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -10505,18 +10528,18 @@ export type PatchBudgetAccountEntryAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchBudgetAccountEntryAsyncError = PatchBudgetAccountEntryAsyncErrors[keyof PatchBudgetAccountEntryAsyncErrors];
+export type BudgetsPatchBudgetAccountEntryError = BudgetsPatchBudgetAccountEntryErrors[keyof BudgetsPatchBudgetAccountEntryErrors];
 
-export type PatchBudgetAccountEntryAsyncResponses = {
+export type BudgetsPatchBudgetAccountEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBudgetAccountEntryAsyncResponse = PatchBudgetAccountEntryAsyncResponses[keyof PatchBudgetAccountEntryAsyncResponses];
+export type BudgetsPatchBudgetAccountEntryResponse = BudgetsPatchBudgetAccountEntryResponses[keyof BudgetsPatchBudgetAccountEntryResponses];
 
-export type UpdateBudgetAccountEntryAsyncData = {
+export type BudgetsUpdateBudgetAccountEntryData = {
     body: BudgetAccountEntryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10532,7 +10555,7 @@ export type UpdateBudgetAccountEntryAsyncData = {
     url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries/{entryId}';
 };
 
-export type UpdateBudgetAccountEntryAsyncErrors = {
+export type BudgetsUpdateBudgetAccountEntryErrors = {
     /**
      * Unauthorized
      */
@@ -10543,18 +10566,18 @@ export type UpdateBudgetAccountEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBudgetAccountEntryAsyncError = UpdateBudgetAccountEntryAsyncErrors[keyof UpdateBudgetAccountEntryAsyncErrors];
+export type BudgetsUpdateBudgetAccountEntryError = BudgetsUpdateBudgetAccountEntryErrors[keyof BudgetsUpdateBudgetAccountEntryErrors];
 
-export type UpdateBudgetAccountEntryAsyncResponses = {
+export type BudgetsUpdateBudgetAccountEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBudgetAccountEntryAsyncResponse = UpdateBudgetAccountEntryAsyncResponses[keyof UpdateBudgetAccountEntryAsyncResponses];
+export type BudgetsUpdateBudgetAccountEntryResponse = BudgetsUpdateBudgetAccountEntryResponses[keyof BudgetsUpdateBudgetAccountEntryResponses];
 
-export type GetCommissionsAsyncData = {
+export type CommissionsGetCommissionsData = {
     body?: CommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10567,7 +10590,7 @@ export type GetCommissionsAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions';
 };
 
-export type GetCommissionsAsyncErrors = {
+export type CommissionsGetCommissionsErrors = {
     /**
      * Unauthorized
      */
@@ -10578,18 +10601,18 @@ export type GetCommissionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCommissionsAsyncError = GetCommissionsAsyncErrors[keyof GetCommissionsAsyncErrors];
+export type CommissionsGetCommissionsError = CommissionsGetCommissionsErrors[keyof CommissionsGetCommissionsErrors];
 
-export type GetCommissionsAsyncResponses = {
+export type CommissionsGetCommissionsResponses = {
     /**
      * OK
      */
     200: CommissionDtoListEnvelopeReadable;
 };
 
-export type GetCommissionsAsyncResponse = GetCommissionsAsyncResponses[keyof GetCommissionsAsyncResponses];
+export type CommissionsGetCommissionsResponse = CommissionsGetCommissionsResponses[keyof CommissionsGetCommissionsResponses];
 
-export type CreateCommissionAsyncData = {
+export type CommissionsCreateCommissionData = {
     body: CommissionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10602,7 +10625,7 @@ export type CreateCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions';
 };
 
-export type CreateCommissionAsyncErrors = {
+export type CommissionsCreateCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10613,18 +10636,18 @@ export type CreateCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCommissionAsyncError = CreateCommissionAsyncErrors[keyof CreateCommissionAsyncErrors];
+export type CommissionsCreateCommissionError = CommissionsCreateCommissionErrors[keyof CommissionsCreateCommissionErrors];
 
-export type CreateCommissionAsyncResponses = {
+export type CommissionsCreateCommissionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCommissionAsyncResponse = CreateCommissionAsyncResponses[keyof CreateCommissionAsyncResponses];
+export type CommissionsCreateCommissionResponse = CommissionsCreateCommissionResponses[keyof CommissionsCreateCommissionResponses];
 
-export type GetCommissionsCountAsyncData = {
+export type CommissionsGetCommissionsCountData = {
     body?: CommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10637,7 +10660,7 @@ export type GetCommissionsCountAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions/Count';
 };
 
-export type GetCommissionsCountAsyncErrors = {
+export type CommissionsGetCommissionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -10648,18 +10671,18 @@ export type GetCommissionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCommissionsCountAsyncError = GetCommissionsCountAsyncErrors[keyof GetCommissionsCountAsyncErrors];
+export type CommissionsGetCommissionsCountError = CommissionsGetCommissionsCountErrors[keyof CommissionsGetCommissionsCountErrors];
 
-export type GetCommissionsCountAsyncResponses = {
+export type CommissionsGetCommissionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCommissionsCountAsyncResponse = GetCommissionsCountAsyncResponses[keyof GetCommissionsCountAsyncResponses];
+export type CommissionsGetCommissionsCountResponse = CommissionsGetCommissionsCountResponses[keyof CommissionsGetCommissionsCountResponses];
 
-export type DeleteCommissionAsyncData = {
+export type CommissionsDeleteCommissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10674,7 +10697,7 @@ export type DeleteCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions/{commissionId}';
 };
 
-export type DeleteCommissionAsyncErrors = {
+export type CommissionsDeleteCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10685,18 +10708,18 @@ export type DeleteCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCommissionAsyncError = DeleteCommissionAsyncErrors[keyof DeleteCommissionAsyncErrors];
+export type CommissionsDeleteCommissionError = CommissionsDeleteCommissionErrors[keyof CommissionsDeleteCommissionErrors];
 
-export type DeleteCommissionAsyncResponses = {
+export type CommissionsDeleteCommissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCommissionAsyncResponse = DeleteCommissionAsyncResponses[keyof DeleteCommissionAsyncResponses];
+export type CommissionsDeleteCommissionResponse = CommissionsDeleteCommissionResponses[keyof CommissionsDeleteCommissionResponses];
 
-export type GetCommissionAsyncData = {
+export type CommissionsGetCommissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10711,7 +10734,7 @@ export type GetCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions/{commissionId}';
 };
 
-export type GetCommissionAsyncErrors = {
+export type CommissionsGetCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10722,18 +10745,18 @@ export type GetCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCommissionAsyncError = GetCommissionAsyncErrors[keyof GetCommissionAsyncErrors];
+export type CommissionsGetCommissionError = CommissionsGetCommissionErrors[keyof CommissionsGetCommissionErrors];
 
-export type GetCommissionAsyncResponses = {
+export type CommissionsGetCommissionResponses = {
     /**
      * OK
      */
     200: CommissionDtoEnvelopeReadable;
 };
 
-export type GetCommissionAsyncResponse = GetCommissionAsyncResponses[keyof GetCommissionAsyncResponses];
+export type CommissionsGetCommissionResponse = CommissionsGetCommissionResponses[keyof CommissionsGetCommissionResponses];
 
-export type PatchCommissionAsyncData = {
+export type CommissionsPatchCommissionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10748,7 +10771,7 @@ export type PatchCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions/{commissionId}';
 };
 
-export type PatchCommissionAsyncErrors = {
+export type CommissionsPatchCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10759,18 +10782,18 @@ export type PatchCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCommissionAsyncError = PatchCommissionAsyncErrors[keyof PatchCommissionAsyncErrors];
+export type CommissionsPatchCommissionError = CommissionsPatchCommissionErrors[keyof CommissionsPatchCommissionErrors];
 
-export type PatchCommissionAsyncResponses = {
+export type CommissionsPatchCommissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCommissionAsyncResponse = PatchCommissionAsyncResponses[keyof PatchCommissionAsyncResponses];
+export type CommissionsPatchCommissionResponse = CommissionsPatchCommissionResponses[keyof CommissionsPatchCommissionResponses];
 
-export type UpdateCommissionAsyncData = {
+export type CommissionsUpdateCommissionData = {
     body: CommissionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10785,7 +10808,7 @@ export type UpdateCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/Commissions/{commissionId}';
 };
 
-export type UpdateCommissionAsyncErrors = {
+export type CommissionsUpdateCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10796,18 +10819,18 @@ export type UpdateCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCommissionAsyncError = UpdateCommissionAsyncErrors[keyof UpdateCommissionAsyncErrors];
+export type CommissionsUpdateCommissionError = CommissionsUpdateCommissionErrors[keyof CommissionsUpdateCommissionErrors];
 
-export type UpdateCommissionAsyncResponses = {
+export type CommissionsUpdateCommissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCommissionAsyncResponse = UpdateCommissionAsyncResponses[keyof UpdateCommissionAsyncResponses];
+export type CommissionsUpdateCommissionResponse = CommissionsUpdateCommissionResponses[keyof CommissionsUpdateCommissionResponses];
 
-export type GetPaymentCommissionsAsyncData = {
+export type CommissionsGetPaymentCommissionsData = {
     body?: PaymentCommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10820,7 +10843,7 @@ export type GetPaymentCommissionsAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions';
 };
 
-export type GetPaymentCommissionsAsyncErrors = {
+export type CommissionsGetPaymentCommissionsErrors = {
     /**
      * Unauthorized
      */
@@ -10831,18 +10854,18 @@ export type GetPaymentCommissionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentCommissionsAsyncError = GetPaymentCommissionsAsyncErrors[keyof GetPaymentCommissionsAsyncErrors];
+export type CommissionsGetPaymentCommissionsError = CommissionsGetPaymentCommissionsErrors[keyof CommissionsGetPaymentCommissionsErrors];
 
-export type GetPaymentCommissionsAsyncResponses = {
+export type CommissionsGetPaymentCommissionsResponses = {
     /**
      * OK
      */
     200: PaymentCommissionDtoListEnvelopeReadable;
 };
 
-export type GetPaymentCommissionsAsyncResponse = GetPaymentCommissionsAsyncResponses[keyof GetPaymentCommissionsAsyncResponses];
+export type CommissionsGetPaymentCommissionsResponse = CommissionsGetPaymentCommissionsResponses[keyof CommissionsGetPaymentCommissionsResponses];
 
-export type CreatePaymentCommissionAsyncData = {
+export type CommissionsCreatePaymentCommissionData = {
     body: PaymentCommissionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10855,7 +10878,7 @@ export type CreatePaymentCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions';
 };
 
-export type CreatePaymentCommissionAsyncErrors = {
+export type CommissionsCreatePaymentCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10866,18 +10889,18 @@ export type CreatePaymentCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePaymentCommissionAsyncError = CreatePaymentCommissionAsyncErrors[keyof CreatePaymentCommissionAsyncErrors];
+export type CommissionsCreatePaymentCommissionError = CommissionsCreatePaymentCommissionErrors[keyof CommissionsCreatePaymentCommissionErrors];
 
-export type CreatePaymentCommissionAsyncResponses = {
+export type CommissionsCreatePaymentCommissionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreatePaymentCommissionAsyncResponse = CreatePaymentCommissionAsyncResponses[keyof CreatePaymentCommissionAsyncResponses];
+export type CommissionsCreatePaymentCommissionResponse = CommissionsCreatePaymentCommissionResponses[keyof CommissionsCreatePaymentCommissionResponses];
 
-export type GetPaymentCommissionsCountAsyncData = {
+export type CommissionsGetPaymentCommissionsCountData = {
     body?: PaymentCommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10890,7 +10913,7 @@ export type GetPaymentCommissionsCountAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions/Count';
 };
 
-export type GetPaymentCommissionsCountAsyncErrors = {
+export type CommissionsGetPaymentCommissionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -10901,18 +10924,18 @@ export type GetPaymentCommissionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentCommissionsCountAsyncError = GetPaymentCommissionsCountAsyncErrors[keyof GetPaymentCommissionsCountAsyncErrors];
+export type CommissionsGetPaymentCommissionsCountError = CommissionsGetPaymentCommissionsCountErrors[keyof CommissionsGetPaymentCommissionsCountErrors];
 
-export type GetPaymentCommissionsCountAsyncResponses = {
+export type CommissionsGetPaymentCommissionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPaymentCommissionsCountAsyncResponse = GetPaymentCommissionsCountAsyncResponses[keyof GetPaymentCommissionsCountAsyncResponses];
+export type CommissionsGetPaymentCommissionsCountResponse = CommissionsGetPaymentCommissionsCountResponses[keyof CommissionsGetPaymentCommissionsCountResponses];
 
-export type DeletePaymentCommissionAsyncData = {
+export type CommissionsDeletePaymentCommissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10927,7 +10950,7 @@ export type DeletePaymentCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions/{paymentCommissionId}';
 };
 
-export type DeletePaymentCommissionAsyncErrors = {
+export type CommissionsDeletePaymentCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10938,18 +10961,18 @@ export type DeletePaymentCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePaymentCommissionAsyncError = DeletePaymentCommissionAsyncErrors[keyof DeletePaymentCommissionAsyncErrors];
+export type CommissionsDeletePaymentCommissionError = CommissionsDeletePaymentCommissionErrors[keyof CommissionsDeletePaymentCommissionErrors];
 
-export type DeletePaymentCommissionAsyncResponses = {
+export type CommissionsDeletePaymentCommissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePaymentCommissionAsyncResponse = DeletePaymentCommissionAsyncResponses[keyof DeletePaymentCommissionAsyncResponses];
+export type CommissionsDeletePaymentCommissionResponse = CommissionsDeletePaymentCommissionResponses[keyof CommissionsDeletePaymentCommissionResponses];
 
-export type GetPaymentCommissionAsyncData = {
+export type CommissionsGetPaymentCommissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10964,7 +10987,7 @@ export type GetPaymentCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions/{paymentCommissionId}';
 };
 
-export type GetPaymentCommissionAsyncErrors = {
+export type CommissionsGetPaymentCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -10975,18 +10998,18 @@ export type GetPaymentCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentCommissionAsyncError = GetPaymentCommissionAsyncErrors[keyof GetPaymentCommissionAsyncErrors];
+export type CommissionsGetPaymentCommissionError = CommissionsGetPaymentCommissionErrors[keyof CommissionsGetPaymentCommissionErrors];
 
-export type GetPaymentCommissionAsyncResponses = {
+export type CommissionsGetPaymentCommissionResponses = {
     /**
      * OK
      */
     200: PaymentCommissionDtoEnvelopeReadable;
 };
 
-export type GetPaymentCommissionAsyncResponse = GetPaymentCommissionAsyncResponses[keyof GetPaymentCommissionAsyncResponses];
+export type CommissionsGetPaymentCommissionResponse = CommissionsGetPaymentCommissionResponses[keyof CommissionsGetPaymentCommissionResponses];
 
-export type PatchPaymentCommissionAsyncData = {
+export type CommissionsPatchPaymentCommissionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -11001,7 +11024,7 @@ export type PatchPaymentCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions/{paymentCommissionId}';
 };
 
-export type PatchPaymentCommissionAsyncErrors = {
+export type CommissionsPatchPaymentCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -11012,18 +11035,18 @@ export type PatchPaymentCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPaymentCommissionAsyncError = PatchPaymentCommissionAsyncErrors[keyof PatchPaymentCommissionAsyncErrors];
+export type CommissionsPatchPaymentCommissionError = CommissionsPatchPaymentCommissionErrors[keyof CommissionsPatchPaymentCommissionErrors];
 
-export type PatchPaymentCommissionAsyncResponses = {
+export type CommissionsPatchPaymentCommissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPaymentCommissionAsyncResponse = PatchPaymentCommissionAsyncResponses[keyof PatchPaymentCommissionAsyncResponses];
+export type CommissionsPatchPaymentCommissionResponse = CommissionsPatchPaymentCommissionResponses[keyof CommissionsPatchPaymentCommissionResponses];
 
-export type UpdatePaymentCommissionAsyncData = {
+export type CommissionsUpdatePaymentCommissionData = {
     body: PaymentCommissionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11038,7 +11061,7 @@ export type UpdatePaymentCommissionAsyncData = {
     url: '/api/v2/AccountingService/Commissions/PaymentCommissions/{paymentCommissionId}';
 };
 
-export type UpdatePaymentCommissionAsyncErrors = {
+export type CommissionsUpdatePaymentCommissionErrors = {
     /**
      * Unauthorized
      */
@@ -11049,18 +11072,18 @@ export type UpdatePaymentCommissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePaymentCommissionAsyncError = UpdatePaymentCommissionAsyncErrors[keyof UpdatePaymentCommissionAsyncErrors];
+export type CommissionsUpdatePaymentCommissionError = CommissionsUpdatePaymentCommissionErrors[keyof CommissionsUpdatePaymentCommissionErrors];
 
-export type UpdatePaymentCommissionAsyncResponses = {
+export type CommissionsUpdatePaymentCommissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePaymentCommissionAsyncResponse = UpdatePaymentCommissionAsyncResponses[keyof UpdatePaymentCommissionAsyncResponses];
+export type CommissionsUpdatePaymentCommissionResponse = CommissionsUpdatePaymentCommissionResponses[keyof CommissionsUpdatePaymentCommissionResponses];
 
-export type GetCostCentresData = {
+export type CostCentresGetCostCentresData = {
     body?: CostCentreDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11073,7 +11096,7 @@ export type GetCostCentresData = {
     url: '/api/v2/AccountingService/CostCentres';
 };
 
-export type GetCostCentresErrors = {
+export type CostCentresGetCostCentresErrors = {
     /**
      * Unauthorized
      */
@@ -11084,18 +11107,18 @@ export type GetCostCentresErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentresError = GetCostCentresErrors[keyof GetCostCentresErrors];
+export type CostCentresGetCostCentresError = CostCentresGetCostCentresErrors[keyof CostCentresGetCostCentresErrors];
 
-export type GetCostCentresResponses = {
+export type CostCentresGetCostCentresResponses = {
     /**
      * OK
      */
     200: CostCentreDtoListEnvelopeReadable;
 };
 
-export type GetCostCentresResponse = GetCostCentresResponses[keyof GetCostCentresResponses];
+export type CostCentresGetCostCentresResponse = CostCentresGetCostCentresResponses[keyof CostCentresGetCostCentresResponses];
 
-export type CreateCostCentreData = {
+export type CostCentresCreateCostCentreData = {
     body: CostCentreCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11108,7 +11131,7 @@ export type CreateCostCentreData = {
     url: '/api/v2/AccountingService/CostCentres';
 };
 
-export type CreateCostCentreErrors = {
+export type CostCentresCreateCostCentreErrors = {
     /**
      * Unauthorized
      */
@@ -11119,18 +11142,18 @@ export type CreateCostCentreErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCostCentreError = CreateCostCentreErrors[keyof CreateCostCentreErrors];
+export type CostCentresCreateCostCentreError = CostCentresCreateCostCentreErrors[keyof CostCentresCreateCostCentreErrors];
 
-export type CreateCostCentreResponses = {
+export type CostCentresCreateCostCentreResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCostCentreResponse = CreateCostCentreResponses[keyof CreateCostCentreResponses];
+export type CostCentresCreateCostCentreResponse = CostCentresCreateCostCentreResponses[keyof CostCentresCreateCostCentreResponses];
 
-export type GetCostCentresCountData = {
+export type CostCentresGetCostCentresCountData = {
     body?: CostCentreDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11143,7 +11166,7 @@ export type GetCostCentresCountData = {
     url: '/api/v2/AccountingService/CostCentres/Count';
 };
 
-export type GetCostCentresCountErrors = {
+export type CostCentresGetCostCentresCountErrors = {
     /**
      * Unauthorized
      */
@@ -11154,18 +11177,18 @@ export type GetCostCentresCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentresCountError = GetCostCentresCountErrors[keyof GetCostCentresCountErrors];
+export type CostCentresGetCostCentresCountError = CostCentresGetCostCentresCountErrors[keyof CostCentresGetCostCentresCountErrors];
 
-export type GetCostCentresCountResponses = {
+export type CostCentresGetCostCentresCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCostCentresCountResponse = GetCostCentresCountResponses[keyof GetCostCentresCountResponses];
+export type CostCentresGetCostCentresCountResponse = CostCentresGetCostCentresCountResponses[keyof CostCentresGetCostCentresCountResponses];
 
-export type DeleteCostCentreData = {
+export type CostCentresDeleteCostCentreData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11180,7 +11203,7 @@ export type DeleteCostCentreData = {
     url: '/api/v2/AccountingService/CostCentres/{costCentreId}';
 };
 
-export type DeleteCostCentreErrors = {
+export type CostCentresDeleteCostCentreErrors = {
     /**
      * Unauthorized
      */
@@ -11191,18 +11214,18 @@ export type DeleteCostCentreErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCostCentreError = DeleteCostCentreErrors[keyof DeleteCostCentreErrors];
+export type CostCentresDeleteCostCentreError = CostCentresDeleteCostCentreErrors[keyof CostCentresDeleteCostCentreErrors];
 
-export type DeleteCostCentreResponses = {
+export type CostCentresDeleteCostCentreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCostCentreResponse = DeleteCostCentreResponses[keyof DeleteCostCentreResponses];
+export type CostCentresDeleteCostCentreResponse = CostCentresDeleteCostCentreResponses[keyof CostCentresDeleteCostCentreResponses];
 
-export type GetCostCentreData = {
+export type CostCentresGetCostCentreData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11217,7 +11240,7 @@ export type GetCostCentreData = {
     url: '/api/v2/AccountingService/CostCentres/{costCentreId}';
 };
 
-export type GetCostCentreErrors = {
+export type CostCentresGetCostCentreErrors = {
     /**
      * Unauthorized
      */
@@ -11228,18 +11251,18 @@ export type GetCostCentreErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentreError = GetCostCentreErrors[keyof GetCostCentreErrors];
+export type CostCentresGetCostCentreError = CostCentresGetCostCentreErrors[keyof CostCentresGetCostCentreErrors];
 
-export type GetCostCentreResponses = {
+export type CostCentresGetCostCentreResponses = {
     /**
      * OK
      */
     200: CostCentreDtoEnvelopeReadable;
 };
 
-export type GetCostCentreResponse = GetCostCentreResponses[keyof GetCostCentreResponses];
+export type CostCentresGetCostCentreResponse = CostCentresGetCostCentreResponses[keyof CostCentresGetCostCentreResponses];
 
-export type PatchCostCentreData = {
+export type CostCentresPatchCostCentreData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -11254,7 +11277,7 @@ export type PatchCostCentreData = {
     url: '/api/v2/AccountingService/CostCentres/{costCentreId}';
 };
 
-export type PatchCostCentreErrors = {
+export type CostCentresPatchCostCentreErrors = {
     /**
      * Unauthorized
      */
@@ -11265,18 +11288,18 @@ export type PatchCostCentreErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCostCentreError = PatchCostCentreErrors[keyof PatchCostCentreErrors];
+export type CostCentresPatchCostCentreError = CostCentresPatchCostCentreErrors[keyof CostCentresPatchCostCentreErrors];
 
-export type PatchCostCentreResponses = {
+export type CostCentresPatchCostCentreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCostCentreResponse = PatchCostCentreResponses[keyof PatchCostCentreResponses];
+export type CostCentresPatchCostCentreResponse = CostCentresPatchCostCentreResponses[keyof CostCentresPatchCostCentreResponses];
 
-export type UpdateCostCentreData = {
+export type CostCentresUpdateCostCentreData = {
     body: CostCentreUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11291,7 +11314,7 @@ export type UpdateCostCentreData = {
     url: '/api/v2/AccountingService/CostCentres/{costCentreId}';
 };
 
-export type UpdateCostCentreErrors = {
+export type CostCentresUpdateCostCentreErrors = {
     /**
      * Unauthorized
      */
@@ -11302,18 +11325,18 @@ export type UpdateCostCentreErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCostCentreError = UpdateCostCentreErrors[keyof UpdateCostCentreErrors];
+export type CostCentresUpdateCostCentreError = CostCentresUpdateCostCentreErrors[keyof CostCentresUpdateCostCentreErrors];
 
-export type UpdateCostCentreResponses = {
+export type CostCentresUpdateCostCentreResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCostCentreResponse = UpdateCostCentreResponses[keyof UpdateCostCentreResponses];
+export type CostCentresUpdateCostCentreResponse = CostCentresUpdateCostCentreResponses[keyof CostCentresUpdateCostCentreResponses];
 
-export type GetCostCentreGroupsData = {
+export type CostCentresGetCostCentreGroupsData = {
     body?: CostCentreGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11326,7 +11349,7 @@ export type GetCostCentreGroupsData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups';
 };
 
-export type GetCostCentreGroupsErrors = {
+export type CostCentresGetCostCentreGroupsErrors = {
     /**
      * Unauthorized
      */
@@ -11337,18 +11360,18 @@ export type GetCostCentreGroupsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentreGroupsError = GetCostCentreGroupsErrors[keyof GetCostCentreGroupsErrors];
+export type CostCentresGetCostCentreGroupsError = CostCentresGetCostCentreGroupsErrors[keyof CostCentresGetCostCentreGroupsErrors];
 
-export type GetCostCentreGroupsResponses = {
+export type CostCentresGetCostCentreGroupsResponses = {
     /**
      * OK
      */
     200: CostCentreGroupDtoListEnvelopeReadable;
 };
 
-export type GetCostCentreGroupsResponse = GetCostCentreGroupsResponses[keyof GetCostCentreGroupsResponses];
+export type CostCentresGetCostCentreGroupsResponse = CostCentresGetCostCentreGroupsResponses[keyof CostCentresGetCostCentreGroupsResponses];
 
-export type CreateCostCentreGroupData = {
+export type CostCentresCreateCostCentreGroupData = {
     body: CostCentreGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11361,7 +11384,7 @@ export type CreateCostCentreGroupData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups';
 };
 
-export type CreateCostCentreGroupErrors = {
+export type CostCentresCreateCostCentreGroupErrors = {
     /**
      * Unauthorized
      */
@@ -11372,18 +11395,18 @@ export type CreateCostCentreGroupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCostCentreGroupError = CreateCostCentreGroupErrors[keyof CreateCostCentreGroupErrors];
+export type CostCentresCreateCostCentreGroupError = CostCentresCreateCostCentreGroupErrors[keyof CostCentresCreateCostCentreGroupErrors];
 
-export type CreateCostCentreGroupResponses = {
+export type CostCentresCreateCostCentreGroupResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCostCentreGroupResponse = CreateCostCentreGroupResponses[keyof CreateCostCentreGroupResponses];
+export type CostCentresCreateCostCentreGroupResponse = CostCentresCreateCostCentreGroupResponses[keyof CostCentresCreateCostCentreGroupResponses];
 
-export type GetCostCentreGroupsCountData = {
+export type CostCentresGetCostCentreGroupsCountData = {
     body?: CostCentreGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11396,7 +11419,7 @@ export type GetCostCentreGroupsCountData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups/Count';
 };
 
-export type GetCostCentreGroupsCountErrors = {
+export type CostCentresGetCostCentreGroupsCountErrors = {
     /**
      * Unauthorized
      */
@@ -11407,18 +11430,18 @@ export type GetCostCentreGroupsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentreGroupsCountError = GetCostCentreGroupsCountErrors[keyof GetCostCentreGroupsCountErrors];
+export type CostCentresGetCostCentreGroupsCountError = CostCentresGetCostCentreGroupsCountErrors[keyof CostCentresGetCostCentreGroupsCountErrors];
 
-export type GetCostCentreGroupsCountResponses = {
+export type CostCentresGetCostCentreGroupsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCostCentreGroupsCountResponse = GetCostCentreGroupsCountResponses[keyof GetCostCentreGroupsCountResponses];
+export type CostCentresGetCostCentreGroupsCountResponse = CostCentresGetCostCentreGroupsCountResponses[keyof CostCentresGetCostCentreGroupsCountResponses];
 
-export type DeleteCostCentreGroupData = {
+export type CostCentresDeleteCostCentreGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11433,7 +11456,7 @@ export type DeleteCostCentreGroupData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups/{groupId}';
 };
 
-export type DeleteCostCentreGroupErrors = {
+export type CostCentresDeleteCostCentreGroupErrors = {
     /**
      * Unauthorized
      */
@@ -11444,18 +11467,18 @@ export type DeleteCostCentreGroupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCostCentreGroupError = DeleteCostCentreGroupErrors[keyof DeleteCostCentreGroupErrors];
+export type CostCentresDeleteCostCentreGroupError = CostCentresDeleteCostCentreGroupErrors[keyof CostCentresDeleteCostCentreGroupErrors];
 
-export type DeleteCostCentreGroupResponses = {
+export type CostCentresDeleteCostCentreGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCostCentreGroupResponse = DeleteCostCentreGroupResponses[keyof DeleteCostCentreGroupResponses];
+export type CostCentresDeleteCostCentreGroupResponse = CostCentresDeleteCostCentreGroupResponses[keyof CostCentresDeleteCostCentreGroupResponses];
 
-export type GetCostCentreGroupData = {
+export type CostCentresGetCostCentreGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11470,7 +11493,7 @@ export type GetCostCentreGroupData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups/{groupId}';
 };
 
-export type GetCostCentreGroupErrors = {
+export type CostCentresGetCostCentreGroupErrors = {
     /**
      * Unauthorized
      */
@@ -11481,18 +11504,18 @@ export type GetCostCentreGroupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentreGroupError = GetCostCentreGroupErrors[keyof GetCostCentreGroupErrors];
+export type CostCentresGetCostCentreGroupError = CostCentresGetCostCentreGroupErrors[keyof CostCentresGetCostCentreGroupErrors];
 
-export type GetCostCentreGroupResponses = {
+export type CostCentresGetCostCentreGroupResponses = {
     /**
      * OK
      */
     200: CostCentreGroupDtoEnvelopeReadable;
 };
 
-export type GetCostCentreGroupResponse = GetCostCentreGroupResponses[keyof GetCostCentreGroupResponses];
+export type CostCentresGetCostCentreGroupResponse = CostCentresGetCostCentreGroupResponses[keyof CostCentresGetCostCentreGroupResponses];
 
-export type PatchCostCentreGroupData = {
+export type CostCentresPatchCostCentreGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -11507,7 +11530,7 @@ export type PatchCostCentreGroupData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups/{groupId}';
 };
 
-export type PatchCostCentreGroupErrors = {
+export type CostCentresPatchCostCentreGroupErrors = {
     /**
      * Unauthorized
      */
@@ -11518,18 +11541,18 @@ export type PatchCostCentreGroupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCostCentreGroupError = PatchCostCentreGroupErrors[keyof PatchCostCentreGroupErrors];
+export type CostCentresPatchCostCentreGroupError = CostCentresPatchCostCentreGroupErrors[keyof CostCentresPatchCostCentreGroupErrors];
 
-export type PatchCostCentreGroupResponses = {
+export type CostCentresPatchCostCentreGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCostCentreGroupResponse = PatchCostCentreGroupResponses[keyof PatchCostCentreGroupResponses];
+export type CostCentresPatchCostCentreGroupResponse = CostCentresPatchCostCentreGroupResponses[keyof CostCentresPatchCostCentreGroupResponses];
 
-export type UpdateCostCentreGroupData = {
+export type CostCentresUpdateCostCentreGroupData = {
     body: CostCentreGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11544,7 +11567,7 @@ export type UpdateCostCentreGroupData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreGroups/{groupId}';
 };
 
-export type UpdateCostCentreGroupErrors = {
+export type CostCentresUpdateCostCentreGroupErrors = {
     /**
      * Unauthorized
      */
@@ -11555,18 +11578,18 @@ export type UpdateCostCentreGroupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCostCentreGroupError = UpdateCostCentreGroupErrors[keyof UpdateCostCentreGroupErrors];
+export type CostCentresUpdateCostCentreGroupError = CostCentresUpdateCostCentreGroupErrors[keyof CostCentresUpdateCostCentreGroupErrors];
 
-export type UpdateCostCentreGroupResponses = {
+export type CostCentresUpdateCostCentreGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCostCentreGroupResponse = UpdateCostCentreGroupResponses[keyof UpdateCostCentreGroupResponses];
+export type CostCentresUpdateCostCentreGroupResponse = CostCentresUpdateCostCentreGroupResponses[keyof CostCentresUpdateCostCentreGroupResponses];
 
-export type GetCostCentreBudgetsData = {
+export type CostCentresGetCostCentreBudgetsData = {
     body?: CostCentreBudgetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11579,7 +11602,7 @@ export type GetCostCentreBudgetsData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets';
 };
 
-export type GetCostCentreBudgetsErrors = {
+export type CostCentresGetCostCentreBudgetsErrors = {
     /**
      * Unauthorized
      */
@@ -11590,18 +11613,18 @@ export type GetCostCentreBudgetsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentreBudgetsError = GetCostCentreBudgetsErrors[keyof GetCostCentreBudgetsErrors];
+export type CostCentresGetCostCentreBudgetsError = CostCentresGetCostCentreBudgetsErrors[keyof CostCentresGetCostCentreBudgetsErrors];
 
-export type GetCostCentreBudgetsResponses = {
+export type CostCentresGetCostCentreBudgetsResponses = {
     /**
      * OK
      */
     200: CostCentreBudgetDtoListEnvelopeReadable;
 };
 
-export type GetCostCentreBudgetsResponse = GetCostCentreBudgetsResponses[keyof GetCostCentreBudgetsResponses];
+export type CostCentresGetCostCentreBudgetsResponse = CostCentresGetCostCentreBudgetsResponses[keyof CostCentresGetCostCentreBudgetsResponses];
 
-export type CreateCostCentreBudgetData = {
+export type CostCentresCreateCostCentreBudgetData = {
     body: CostCentreBudgetCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11614,7 +11637,7 @@ export type CreateCostCentreBudgetData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets';
 };
 
-export type CreateCostCentreBudgetErrors = {
+export type CostCentresCreateCostCentreBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -11625,18 +11648,18 @@ export type CreateCostCentreBudgetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCostCentreBudgetError = CreateCostCentreBudgetErrors[keyof CreateCostCentreBudgetErrors];
+export type CostCentresCreateCostCentreBudgetError = CostCentresCreateCostCentreBudgetErrors[keyof CostCentresCreateCostCentreBudgetErrors];
 
-export type CreateCostCentreBudgetResponses = {
+export type CostCentresCreateCostCentreBudgetResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCostCentreBudgetResponse = CreateCostCentreBudgetResponses[keyof CreateCostCentreBudgetResponses];
+export type CostCentresCreateCostCentreBudgetResponse = CostCentresCreateCostCentreBudgetResponses[keyof CostCentresCreateCostCentreBudgetResponses];
 
-export type DeleteCostCentreBudgetData = {
+export type CostCentresDeleteCostCentreBudgetData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11651,7 +11674,7 @@ export type DeleteCostCentreBudgetData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets/{budgetId}';
 };
 
-export type DeleteCostCentreBudgetErrors = {
+export type CostCentresDeleteCostCentreBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -11662,18 +11685,18 @@ export type DeleteCostCentreBudgetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCostCentreBudgetError = DeleteCostCentreBudgetErrors[keyof DeleteCostCentreBudgetErrors];
+export type CostCentresDeleteCostCentreBudgetError = CostCentresDeleteCostCentreBudgetErrors[keyof CostCentresDeleteCostCentreBudgetErrors];
 
-export type DeleteCostCentreBudgetResponses = {
+export type CostCentresDeleteCostCentreBudgetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCostCentreBudgetResponse = DeleteCostCentreBudgetResponses[keyof DeleteCostCentreBudgetResponses];
+export type CostCentresDeleteCostCentreBudgetResponse = CostCentresDeleteCostCentreBudgetResponses[keyof CostCentresDeleteCostCentreBudgetResponses];
 
-export type GetCostCentreBudgetData = {
+export type CostCentresGetCostCentreBudgetData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11688,7 +11711,7 @@ export type GetCostCentreBudgetData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets/{budgetId}';
 };
 
-export type GetCostCentreBudgetErrors = {
+export type CostCentresGetCostCentreBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -11699,18 +11722,18 @@ export type GetCostCentreBudgetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCostCentreBudgetError = GetCostCentreBudgetErrors[keyof GetCostCentreBudgetErrors];
+export type CostCentresGetCostCentreBudgetError = CostCentresGetCostCentreBudgetErrors[keyof CostCentresGetCostCentreBudgetErrors];
 
-export type GetCostCentreBudgetResponses = {
+export type CostCentresGetCostCentreBudgetResponses = {
     /**
      * OK
      */
     200: CostCentreBudgetDtoEnvelopeReadable;
 };
 
-export type GetCostCentreBudgetResponse = GetCostCentreBudgetResponses[keyof GetCostCentreBudgetResponses];
+export type CostCentresGetCostCentreBudgetResponse = CostCentresGetCostCentreBudgetResponses[keyof CostCentresGetCostCentreBudgetResponses];
 
-export type PatchCostCentreBudgetData = {
+export type CostCentresPatchCostCentreBudgetData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -11725,7 +11748,7 @@ export type PatchCostCentreBudgetData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets/{budgetId}';
 };
 
-export type PatchCostCentreBudgetErrors = {
+export type CostCentresPatchCostCentreBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -11736,18 +11759,18 @@ export type PatchCostCentreBudgetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCostCentreBudgetError = PatchCostCentreBudgetErrors[keyof PatchCostCentreBudgetErrors];
+export type CostCentresPatchCostCentreBudgetError = CostCentresPatchCostCentreBudgetErrors[keyof CostCentresPatchCostCentreBudgetErrors];
 
-export type PatchCostCentreBudgetResponses = {
+export type CostCentresPatchCostCentreBudgetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCostCentreBudgetResponse = PatchCostCentreBudgetResponses[keyof PatchCostCentreBudgetResponses];
+export type CostCentresPatchCostCentreBudgetResponse = CostCentresPatchCostCentreBudgetResponses[keyof CostCentresPatchCostCentreBudgetResponses];
 
-export type UpdateCostCentreBudgetData = {
+export type CostCentresUpdateCostCentreBudgetData = {
     body: CostCentreBudgetUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11762,7 +11785,7 @@ export type UpdateCostCentreBudgetData = {
     url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets/{budgetId}';
 };
 
-export type UpdateCostCentreBudgetErrors = {
+export type CostCentresUpdateCostCentreBudgetErrors = {
     /**
      * Unauthorized
      */
@@ -11773,18 +11796,18 @@ export type UpdateCostCentreBudgetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCostCentreBudgetError = UpdateCostCentreBudgetErrors[keyof UpdateCostCentreBudgetErrors];
+export type CostCentresUpdateCostCentreBudgetError = CostCentresUpdateCostCentreBudgetErrors[keyof CostCentresUpdateCostCentreBudgetErrors];
 
-export type UpdateCostCentreBudgetResponses = {
+export type CostCentresUpdateCostCentreBudgetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCostCentreBudgetResponse = UpdateCostCentreBudgetResponses[keyof UpdateCostCentreBudgetResponses];
+export type CostCentresUpdateCostCentreBudgetResponse = CostCentresUpdateCostCentreBudgetResponses[keyof CostCentresUpdateCostCentreBudgetResponses];
 
-export type GetExpenseClaimsData = {
+export type ExpenseClaimsGetExpenseClaimsData = {
     body?: ExpenseClaimDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11797,7 +11820,7 @@ export type GetExpenseClaimsData = {
     url: '/api/v2/AccountingService/ExpenseClaims';
 };
 
-export type GetExpenseClaimsErrors = {
+export type ExpenseClaimsGetExpenseClaimsErrors = {
     /**
      * Unauthorized
      */
@@ -11808,18 +11831,18 @@ export type GetExpenseClaimsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpenseClaimsError = GetExpenseClaimsErrors[keyof GetExpenseClaimsErrors];
+export type ExpenseClaimsGetExpenseClaimsError = ExpenseClaimsGetExpenseClaimsErrors[keyof ExpenseClaimsGetExpenseClaimsErrors];
 
-export type GetExpenseClaimsResponses = {
+export type ExpenseClaimsGetExpenseClaimsResponses = {
     /**
      * OK
      */
     200: ExpenseClaimDtoListEnvelopeReadable;
 };
 
-export type GetExpenseClaimsResponse = GetExpenseClaimsResponses[keyof GetExpenseClaimsResponses];
+export type ExpenseClaimsGetExpenseClaimsResponse = ExpenseClaimsGetExpenseClaimsResponses[keyof ExpenseClaimsGetExpenseClaimsResponses];
 
-export type CreateExpenseClaimData = {
+export type ExpenseClaimsCreateExpenseClaimData = {
     body: ExpenseClaimCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11832,7 +11855,7 @@ export type CreateExpenseClaimData = {
     url: '/api/v2/AccountingService/ExpenseClaims';
 };
 
-export type CreateExpenseClaimErrors = {
+export type ExpenseClaimsCreateExpenseClaimErrors = {
     /**
      * Unauthorized
      */
@@ -11843,18 +11866,18 @@ export type CreateExpenseClaimErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateExpenseClaimError = CreateExpenseClaimErrors[keyof CreateExpenseClaimErrors];
+export type ExpenseClaimsCreateExpenseClaimError = ExpenseClaimsCreateExpenseClaimErrors[keyof ExpenseClaimsCreateExpenseClaimErrors];
 
-export type CreateExpenseClaimResponses = {
+export type ExpenseClaimsCreateExpenseClaimResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateExpenseClaimResponse = CreateExpenseClaimResponses[keyof CreateExpenseClaimResponses];
+export type ExpenseClaimsCreateExpenseClaimResponse = ExpenseClaimsCreateExpenseClaimResponses[keyof ExpenseClaimsCreateExpenseClaimResponses];
 
-export type GetExpenseClaimsCountData = {
+export type ExpenseClaimsGetExpenseClaimsCountData = {
     body?: ExpenseClaimDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11867,7 +11890,7 @@ export type GetExpenseClaimsCountData = {
     url: '/api/v2/AccountingService/ExpenseClaims/Count';
 };
 
-export type GetExpenseClaimsCountErrors = {
+export type ExpenseClaimsGetExpenseClaimsCountErrors = {
     /**
      * Unauthorized
      */
@@ -11878,18 +11901,18 @@ export type GetExpenseClaimsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpenseClaimsCountError = GetExpenseClaimsCountErrors[keyof GetExpenseClaimsCountErrors];
+export type ExpenseClaimsGetExpenseClaimsCountError = ExpenseClaimsGetExpenseClaimsCountErrors[keyof ExpenseClaimsGetExpenseClaimsCountErrors];
 
-export type GetExpenseClaimsCountResponses = {
+export type ExpenseClaimsGetExpenseClaimsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetExpenseClaimsCountResponse = GetExpenseClaimsCountResponses[keyof GetExpenseClaimsCountResponses];
+export type ExpenseClaimsGetExpenseClaimsCountResponse = ExpenseClaimsGetExpenseClaimsCountResponses[keyof ExpenseClaimsGetExpenseClaimsCountResponses];
 
-export type DeleteExpenseClaimData = {
+export type ExpenseClaimsDeleteExpenseClaimData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11904,7 +11927,7 @@ export type DeleteExpenseClaimData = {
     url: '/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}';
 };
 
-export type DeleteExpenseClaimErrors = {
+export type ExpenseClaimsDeleteExpenseClaimErrors = {
     /**
      * Unauthorized
      */
@@ -11915,18 +11938,18 @@ export type DeleteExpenseClaimErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteExpenseClaimError = DeleteExpenseClaimErrors[keyof DeleteExpenseClaimErrors];
+export type ExpenseClaimsDeleteExpenseClaimError = ExpenseClaimsDeleteExpenseClaimErrors[keyof ExpenseClaimsDeleteExpenseClaimErrors];
 
-export type DeleteExpenseClaimResponses = {
+export type ExpenseClaimsDeleteExpenseClaimResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteExpenseClaimResponse = DeleteExpenseClaimResponses[keyof DeleteExpenseClaimResponses];
+export type ExpenseClaimsDeleteExpenseClaimResponse = ExpenseClaimsDeleteExpenseClaimResponses[keyof ExpenseClaimsDeleteExpenseClaimResponses];
 
-export type GetExpenseClaimData = {
+export type ExpenseClaimsGetExpenseClaimData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11941,7 +11964,7 @@ export type GetExpenseClaimData = {
     url: '/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}';
 };
 
-export type GetExpenseClaimErrors = {
+export type ExpenseClaimsGetExpenseClaimErrors = {
     /**
      * Unauthorized
      */
@@ -11952,18 +11975,18 @@ export type GetExpenseClaimErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpenseClaimError = GetExpenseClaimErrors[keyof GetExpenseClaimErrors];
+export type ExpenseClaimsGetExpenseClaimError = ExpenseClaimsGetExpenseClaimErrors[keyof ExpenseClaimsGetExpenseClaimErrors];
 
-export type GetExpenseClaimResponses = {
+export type ExpenseClaimsGetExpenseClaimResponses = {
     /**
      * OK
      */
     200: ExpenseClaimDtoEnvelopeReadable;
 };
 
-export type GetExpenseClaimResponse = GetExpenseClaimResponses[keyof GetExpenseClaimResponses];
+export type ExpenseClaimsGetExpenseClaimResponse = ExpenseClaimsGetExpenseClaimResponses[keyof ExpenseClaimsGetExpenseClaimResponses];
 
-export type PatchExpenseClaimData = {
+export type ExpenseClaimsPatchExpenseClaimData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -11978,7 +12001,7 @@ export type PatchExpenseClaimData = {
     url: '/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}';
 };
 
-export type PatchExpenseClaimErrors = {
+export type ExpenseClaimsPatchExpenseClaimErrors = {
     /**
      * Unauthorized
      */
@@ -11989,18 +12012,18 @@ export type PatchExpenseClaimErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchExpenseClaimError = PatchExpenseClaimErrors[keyof PatchExpenseClaimErrors];
+export type ExpenseClaimsPatchExpenseClaimError = ExpenseClaimsPatchExpenseClaimErrors[keyof ExpenseClaimsPatchExpenseClaimErrors];
 
-export type PatchExpenseClaimResponses = {
+export type ExpenseClaimsPatchExpenseClaimResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchExpenseClaimResponse = PatchExpenseClaimResponses[keyof PatchExpenseClaimResponses];
+export type ExpenseClaimsPatchExpenseClaimResponse = ExpenseClaimsPatchExpenseClaimResponses[keyof ExpenseClaimsPatchExpenseClaimResponses];
 
-export type UpdateExpenseClaimData = {
+export type ExpenseClaimsUpdateExpenseClaimData = {
     body: ExpenseClaimUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -12015,7 +12038,7 @@ export type UpdateExpenseClaimData = {
     url: '/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}';
 };
 
-export type UpdateExpenseClaimErrors = {
+export type ExpenseClaimsUpdateExpenseClaimErrors = {
     /**
      * Unauthorized
      */
@@ -12026,18 +12049,18 @@ export type UpdateExpenseClaimErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateExpenseClaimError = UpdateExpenseClaimErrors[keyof UpdateExpenseClaimErrors];
+export type ExpenseClaimsUpdateExpenseClaimError = ExpenseClaimsUpdateExpenseClaimErrors[keyof ExpenseClaimsUpdateExpenseClaimErrors];
 
-export type UpdateExpenseClaimResponses = {
+export type ExpenseClaimsUpdateExpenseClaimResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateExpenseClaimResponse = UpdateExpenseClaimResponses[keyof UpdateExpenseClaimResponses];
+export type ExpenseClaimsUpdateExpenseClaimResponse = ExpenseClaimsUpdateExpenseClaimResponses[keyof ExpenseClaimsUpdateExpenseClaimResponses];
 
-export type GetExpenseTypesData = {
+export type ExpenseTypesGetExpenseTypesData = {
     body?: ExpenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -12050,7 +12073,7 @@ export type GetExpenseTypesData = {
     url: '/api/v2/AccountingService/ExpenseTypes';
 };
 
-export type GetExpenseTypesErrors = {
+export type ExpenseTypesGetExpenseTypesErrors = {
     /**
      * Unauthorized
      */
@@ -12061,18 +12084,18 @@ export type GetExpenseTypesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpenseTypesError = GetExpenseTypesErrors[keyof GetExpenseTypesErrors];
+export type ExpenseTypesGetExpenseTypesError = ExpenseTypesGetExpenseTypesErrors[keyof ExpenseTypesGetExpenseTypesErrors];
 
-export type GetExpenseTypesResponses = {
+export type ExpenseTypesGetExpenseTypesResponses = {
     /**
      * OK
      */
     200: ExpenseTypeDtoListEnvelopeReadable;
 };
 
-export type GetExpenseTypesResponse = GetExpenseTypesResponses[keyof GetExpenseTypesResponses];
+export type ExpenseTypesGetExpenseTypesResponse = ExpenseTypesGetExpenseTypesResponses[keyof ExpenseTypesGetExpenseTypesResponses];
 
-export type CreateExpenseTypeData = {
+export type ExpenseTypesCreateExpenseTypeData = {
     body: ExpenseTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -12085,7 +12108,7 @@ export type CreateExpenseTypeData = {
     url: '/api/v2/AccountingService/ExpenseTypes';
 };
 
-export type CreateExpenseTypeErrors = {
+export type ExpenseTypesCreateExpenseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -12096,18 +12119,18 @@ export type CreateExpenseTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateExpenseTypeError = CreateExpenseTypeErrors[keyof CreateExpenseTypeErrors];
+export type ExpenseTypesCreateExpenseTypeError = ExpenseTypesCreateExpenseTypeErrors[keyof ExpenseTypesCreateExpenseTypeErrors];
 
-export type CreateExpenseTypeResponses = {
+export type ExpenseTypesCreateExpenseTypeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateExpenseTypeResponse = CreateExpenseTypeResponses[keyof CreateExpenseTypeResponses];
+export type ExpenseTypesCreateExpenseTypeResponse = ExpenseTypesCreateExpenseTypeResponses[keyof ExpenseTypesCreateExpenseTypeResponses];
 
-export type GetExpenseTypesCountData = {
+export type ExpenseTypesGetExpenseTypesCountData = {
     body?: ExpenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -12120,7 +12143,7 @@ export type GetExpenseTypesCountData = {
     url: '/api/v2/AccountingService/ExpenseTypes/Count';
 };
 
-export type GetExpenseTypesCountErrors = {
+export type ExpenseTypesGetExpenseTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -12131,18 +12154,18 @@ export type GetExpenseTypesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpenseTypesCountError = GetExpenseTypesCountErrors[keyof GetExpenseTypesCountErrors];
+export type ExpenseTypesGetExpenseTypesCountError = ExpenseTypesGetExpenseTypesCountErrors[keyof ExpenseTypesGetExpenseTypesCountErrors];
 
-export type GetExpenseTypesCountResponses = {
+export type ExpenseTypesGetExpenseTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetExpenseTypesCountResponse = GetExpenseTypesCountResponses[keyof GetExpenseTypesCountResponses];
+export type ExpenseTypesGetExpenseTypesCountResponse = ExpenseTypesGetExpenseTypesCountResponses[keyof ExpenseTypesGetExpenseTypesCountResponses];
 
-export type DeleteExpenseTypeData = {
+export type ExpenseTypesDeleteExpenseTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -12157,7 +12180,7 @@ export type DeleteExpenseTypeData = {
     url: '/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}';
 };
 
-export type DeleteExpenseTypeErrors = {
+export type ExpenseTypesDeleteExpenseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -12168,18 +12191,18 @@ export type DeleteExpenseTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteExpenseTypeError = DeleteExpenseTypeErrors[keyof DeleteExpenseTypeErrors];
+export type ExpenseTypesDeleteExpenseTypeError = ExpenseTypesDeleteExpenseTypeErrors[keyof ExpenseTypesDeleteExpenseTypeErrors];
 
-export type DeleteExpenseTypeResponses = {
+export type ExpenseTypesDeleteExpenseTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteExpenseTypeResponse = DeleteExpenseTypeResponses[keyof DeleteExpenseTypeResponses];
+export type ExpenseTypesDeleteExpenseTypeResponse = ExpenseTypesDeleteExpenseTypeResponses[keyof ExpenseTypesDeleteExpenseTypeResponses];
 
-export type GetExpenseTypeData = {
+export type ExpenseTypesGetExpenseTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -12194,7 +12217,7 @@ export type GetExpenseTypeData = {
     url: '/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}';
 };
 
-export type GetExpenseTypeErrors = {
+export type ExpenseTypesGetExpenseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -12205,18 +12228,18 @@ export type GetExpenseTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExpenseTypeError = GetExpenseTypeErrors[keyof GetExpenseTypeErrors];
+export type ExpenseTypesGetExpenseTypeError = ExpenseTypesGetExpenseTypeErrors[keyof ExpenseTypesGetExpenseTypeErrors];
 
-export type GetExpenseTypeResponses = {
+export type ExpenseTypesGetExpenseTypeResponses = {
     /**
      * OK
      */
     200: ExpenseTypeDtoEnvelopeReadable;
 };
 
-export type GetExpenseTypeResponse = GetExpenseTypeResponses[keyof GetExpenseTypeResponses];
+export type ExpenseTypesGetExpenseTypeResponse = ExpenseTypesGetExpenseTypeResponses[keyof ExpenseTypesGetExpenseTypeResponses];
 
-export type PatchExpenseTypeData = {
+export type ExpenseTypesPatchExpenseTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -12231,7 +12254,7 @@ export type PatchExpenseTypeData = {
     url: '/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}';
 };
 
-export type PatchExpenseTypeErrors = {
+export type ExpenseTypesPatchExpenseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -12242,18 +12265,18 @@ export type PatchExpenseTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchExpenseTypeError = PatchExpenseTypeErrors[keyof PatchExpenseTypeErrors];
+export type ExpenseTypesPatchExpenseTypeError = ExpenseTypesPatchExpenseTypeErrors[keyof ExpenseTypesPatchExpenseTypeErrors];
 
-export type PatchExpenseTypeResponses = {
+export type ExpenseTypesPatchExpenseTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchExpenseTypeResponse = PatchExpenseTypeResponses[keyof PatchExpenseTypeResponses];
+export type ExpenseTypesPatchExpenseTypeResponse = ExpenseTypesPatchExpenseTypeResponses[keyof ExpenseTypesPatchExpenseTypeResponses];
 
-export type UpdateExpenseTypeData = {
+export type ExpenseTypesUpdateExpenseTypeData = {
     body: ExpenseTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -12268,7 +12291,7 @@ export type UpdateExpenseTypeData = {
     url: '/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}';
 };
 
-export type UpdateExpenseTypeErrors = {
+export type ExpenseTypesUpdateExpenseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -12279,83 +12302,83 @@ export type UpdateExpenseTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateExpenseTypeError = UpdateExpenseTypeErrors[keyof UpdateExpenseTypeErrors];
+export type ExpenseTypesUpdateExpenseTypeError = ExpenseTypesUpdateExpenseTypeErrors[keyof ExpenseTypesUpdateExpenseTypeErrors];
 
-export type UpdateExpenseTypeResponses = {
+export type ExpenseTypesUpdateExpenseTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateExpenseTypeResponse = UpdateExpenseTypeResponses[keyof UpdateExpenseTypeResponses];
+export type ExpenseTypesUpdateExpenseTypeResponse = ExpenseTypesUpdateExpenseTypeResponses[keyof ExpenseTypesUpdateExpenseTypeResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -12365,32 +12388,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -12401,81 +12424,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -12486,25 +12509,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -12515,25 +12538,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -12544,18 +12567,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -12565,14 +12588,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -12581,14 +12604,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -12597,28 +12620,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetFinancialBooksAsyncData = {
+export type FinancialBooksGetFinancialBooksData = {
     body?: FinancialBookDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -12631,7 +12654,7 @@ export type GetFinancialBooksAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks';
 };
 
-export type GetFinancialBooksAsyncErrors = {
+export type FinancialBooksGetFinancialBooksErrors = {
     /**
      * Bad Request
      */
@@ -12646,18 +12669,18 @@ export type GetFinancialBooksAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFinancialBooksAsyncError = GetFinancialBooksAsyncErrors[keyof GetFinancialBooksAsyncErrors];
+export type FinancialBooksGetFinancialBooksError = FinancialBooksGetFinancialBooksErrors[keyof FinancialBooksGetFinancialBooksErrors];
 
-export type GetFinancialBooksAsyncResponses = {
+export type FinancialBooksGetFinancialBooksResponses = {
     /**
      * OK
      */
     200: FinancialBookDtoListEnvelopeReadable;
 };
 
-export type GetFinancialBooksAsyncResponse = GetFinancialBooksAsyncResponses[keyof GetFinancialBooksAsyncResponses];
+export type FinancialBooksGetFinancialBooksResponse = FinancialBooksGetFinancialBooksResponses[keyof FinancialBooksGetFinancialBooksResponses];
 
-export type CreateFinancialBookAsyncData = {
+export type FinancialBooksCreateFinancialBookData = {
     body: FinancialBookCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -12670,7 +12693,7 @@ export type CreateFinancialBookAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks';
 };
 
-export type CreateFinancialBookAsyncErrors = {
+export type FinancialBooksCreateFinancialBookErrors = {
     /**
      * Bad Request
      */
@@ -12685,18 +12708,18 @@ export type CreateFinancialBookAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFinancialBookAsyncError = CreateFinancialBookAsyncErrors[keyof CreateFinancialBookAsyncErrors];
+export type FinancialBooksCreateFinancialBookError = FinancialBooksCreateFinancialBookErrors[keyof FinancialBooksCreateFinancialBookErrors];
 
-export type CreateFinancialBookAsyncResponses = {
+export type FinancialBooksCreateFinancialBookResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFinancialBookAsyncResponse = CreateFinancialBookAsyncResponses[keyof CreateFinancialBookAsyncResponses];
+export type FinancialBooksCreateFinancialBookResponse = FinancialBooksCreateFinancialBookResponses[keyof FinancialBooksCreateFinancialBookResponses];
 
-export type GetFinancialBooksCountAsyncData = {
+export type FinancialBooksGetFinancialBooksCountData = {
     body?: FinancialBookDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -12709,7 +12732,7 @@ export type GetFinancialBooksCountAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks/Count';
 };
 
-export type GetFinancialBooksCountAsyncErrors = {
+export type FinancialBooksGetFinancialBooksCountErrors = {
     /**
      * Bad Request
      */
@@ -12724,18 +12747,18 @@ export type GetFinancialBooksCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFinancialBooksCountAsyncError = GetFinancialBooksCountAsyncErrors[keyof GetFinancialBooksCountAsyncErrors];
+export type FinancialBooksGetFinancialBooksCountError = FinancialBooksGetFinancialBooksCountErrors[keyof FinancialBooksGetFinancialBooksCountErrors];
 
-export type GetFinancialBooksCountAsyncResponses = {
+export type FinancialBooksGetFinancialBooksCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFinancialBooksCountAsyncResponse = GetFinancialBooksCountAsyncResponses[keyof GetFinancialBooksCountAsyncResponses];
+export type FinancialBooksGetFinancialBooksCountResponse = FinancialBooksGetFinancialBooksCountResponses[keyof FinancialBooksGetFinancialBooksCountResponses];
 
-export type DeleteFinancialBookAsyncData = {
+export type FinancialBooksDeleteFinancialBookData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -12750,7 +12773,7 @@ export type DeleteFinancialBookAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks/{financialBookId}';
 };
 
-export type DeleteFinancialBookAsyncErrors = {
+export type FinancialBooksDeleteFinancialBookErrors = {
     /**
      * Bad Request
      */
@@ -12765,18 +12788,18 @@ export type DeleteFinancialBookAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFinancialBookAsyncError = DeleteFinancialBookAsyncErrors[keyof DeleteFinancialBookAsyncErrors];
+export type FinancialBooksDeleteFinancialBookError = FinancialBooksDeleteFinancialBookErrors[keyof FinancialBooksDeleteFinancialBookErrors];
 
-export type DeleteFinancialBookAsyncResponses = {
+export type FinancialBooksDeleteFinancialBookResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteFinancialBookAsyncResponse = DeleteFinancialBookAsyncResponses[keyof DeleteFinancialBookAsyncResponses];
+export type FinancialBooksDeleteFinancialBookResponse = FinancialBooksDeleteFinancialBookResponses[keyof FinancialBooksDeleteFinancialBookResponses];
 
-export type GetFinancialBookDetailsAsyncData = {
+export type FinancialBooksGetFinancialBookDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -12791,7 +12814,7 @@ export type GetFinancialBookDetailsAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks/{financialBookId}';
 };
 
-export type GetFinancialBookDetailsAsyncErrors = {
+export type FinancialBooksGetFinancialBookDetailsErrors = {
     /**
      * Bad Request
      */
@@ -12806,18 +12829,18 @@ export type GetFinancialBookDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFinancialBookDetailsAsyncError = GetFinancialBookDetailsAsyncErrors[keyof GetFinancialBookDetailsAsyncErrors];
+export type FinancialBooksGetFinancialBookDetailsError = FinancialBooksGetFinancialBookDetailsErrors[keyof FinancialBooksGetFinancialBookDetailsErrors];
 
-export type GetFinancialBookDetailsAsyncResponses = {
+export type FinancialBooksGetFinancialBookDetailsResponses = {
     /**
      * OK
      */
     200: FinancialBookDtoEnvelopeReadable;
 };
 
-export type GetFinancialBookDetailsAsyncResponse = GetFinancialBookDetailsAsyncResponses[keyof GetFinancialBookDetailsAsyncResponses];
+export type FinancialBooksGetFinancialBookDetailsResponse = FinancialBooksGetFinancialBookDetailsResponses[keyof FinancialBooksGetFinancialBookDetailsResponses];
 
-export type PatchFinancialBookAsyncData = {
+export type FinancialBooksPatchFinancialBookData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -12832,7 +12855,7 @@ export type PatchFinancialBookAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks/{financialBookId}';
 };
 
-export type PatchFinancialBookAsyncErrors = {
+export type FinancialBooksPatchFinancialBookErrors = {
     /**
      * Unauthorized
      */
@@ -12843,18 +12866,18 @@ export type PatchFinancialBookAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFinancialBookAsyncError = PatchFinancialBookAsyncErrors[keyof PatchFinancialBookAsyncErrors];
+export type FinancialBooksPatchFinancialBookError = FinancialBooksPatchFinancialBookErrors[keyof FinancialBooksPatchFinancialBookErrors];
 
-export type PatchFinancialBookAsyncResponses = {
+export type FinancialBooksPatchFinancialBookResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFinancialBookAsyncResponse = PatchFinancialBookAsyncResponses[keyof PatchFinancialBookAsyncResponses];
+export type FinancialBooksPatchFinancialBookResponse = FinancialBooksPatchFinancialBookResponses[keyof FinancialBooksPatchFinancialBookResponses];
 
-export type UpdateFinancialBookAsyncData = {
+export type FinancialBooksUpdateFinancialBookData = {
     body: FinancialBookUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -12869,7 +12892,7 @@ export type UpdateFinancialBookAsyncData = {
     url: '/api/v2/AccountingService/FinancialBooks/{financialBookId}';
 };
 
-export type UpdateFinancialBookAsyncErrors = {
+export type FinancialBooksUpdateFinancialBookErrors = {
     /**
      * Bad Request
      */
@@ -12884,18 +12907,18 @@ export type UpdateFinancialBookAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFinancialBookAsyncError = UpdateFinancialBookAsyncErrors[keyof UpdateFinancialBookAsyncErrors];
+export type FinancialBooksUpdateFinancialBookError = FinancialBooksUpdateFinancialBookErrors[keyof FinancialBooksUpdateFinancialBookErrors];
 
-export type UpdateFinancialBookAsyncResponses = {
+export type FinancialBooksUpdateFinancialBookResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFinancialBookAsyncResponse = UpdateFinancialBookAsyncResponses[keyof UpdateFinancialBookAsyncResponses];
+export type FinancialBooksUpdateFinancialBookResponse = FinancialBooksUpdateFinancialBookResponses[keyof FinancialBooksUpdateFinancialBookResponses];
 
-export type GetFiscalAuthoritiesData = {
+export type FiscalAuthoritiesGetFiscalAuthoritiesData = {
     body?: FiscalAuthorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -12908,7 +12931,7 @@ export type GetFiscalAuthoritiesData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities';
 };
 
-export type GetFiscalAuthoritiesErrors = {
+export type FiscalAuthoritiesGetFiscalAuthoritiesErrors = {
     /**
      * Unauthorized
      */
@@ -12919,18 +12942,18 @@ export type GetFiscalAuthoritiesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalAuthoritiesError = GetFiscalAuthoritiesErrors[keyof GetFiscalAuthoritiesErrors];
+export type FiscalAuthoritiesGetFiscalAuthoritiesError = FiscalAuthoritiesGetFiscalAuthoritiesErrors[keyof FiscalAuthoritiesGetFiscalAuthoritiesErrors];
 
-export type GetFiscalAuthoritiesResponses = {
+export type FiscalAuthoritiesGetFiscalAuthoritiesResponses = {
     /**
      * OK
      */
     200: FiscalAuthorityDtoListEnvelopeReadable;
 };
 
-export type GetFiscalAuthoritiesResponse = GetFiscalAuthoritiesResponses[keyof GetFiscalAuthoritiesResponses];
+export type FiscalAuthoritiesGetFiscalAuthoritiesResponse = FiscalAuthoritiesGetFiscalAuthoritiesResponses[keyof FiscalAuthoritiesGetFiscalAuthoritiesResponses];
 
-export type CreateFiscalAuthorityData = {
+export type FiscalAuthoritiesCreateFiscalAuthorityData = {
     body?: FiscalAuthorityCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -12943,7 +12966,7 @@ export type CreateFiscalAuthorityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities';
 };
 
-export type CreateFiscalAuthorityErrors = {
+export type FiscalAuthoritiesCreateFiscalAuthorityErrors = {
     /**
      * Unauthorized
      */
@@ -12954,18 +12977,18 @@ export type CreateFiscalAuthorityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalAuthorityError = CreateFiscalAuthorityErrors[keyof CreateFiscalAuthorityErrors];
+export type FiscalAuthoritiesCreateFiscalAuthorityError = FiscalAuthoritiesCreateFiscalAuthorityErrors[keyof FiscalAuthoritiesCreateFiscalAuthorityErrors];
 
-export type CreateFiscalAuthorityResponses = {
+export type FiscalAuthoritiesCreateFiscalAuthorityResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalAuthorityResponse = CreateFiscalAuthorityResponses[keyof CreateFiscalAuthorityResponses];
+export type FiscalAuthoritiesCreateFiscalAuthorityResponse = FiscalAuthoritiesCreateFiscalAuthorityResponses[keyof FiscalAuthoritiesCreateFiscalAuthorityResponses];
 
-export type GetFiscalAuthoritiesCountData = {
+export type FiscalAuthoritiesGetFiscalAuthoritiesCountData = {
     body?: FiscalAuthorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -12978,7 +13001,7 @@ export type GetFiscalAuthoritiesCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/Count';
 };
 
-export type GetFiscalAuthoritiesCountErrors = {
+export type FiscalAuthoritiesGetFiscalAuthoritiesCountErrors = {
     /**
      * Unauthorized
      */
@@ -12989,18 +13012,18 @@ export type GetFiscalAuthoritiesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalAuthoritiesCountError = GetFiscalAuthoritiesCountErrors[keyof GetFiscalAuthoritiesCountErrors];
+export type FiscalAuthoritiesGetFiscalAuthoritiesCountError = FiscalAuthoritiesGetFiscalAuthoritiesCountErrors[keyof FiscalAuthoritiesGetFiscalAuthoritiesCountErrors];
 
-export type GetFiscalAuthoritiesCountResponses = {
+export type FiscalAuthoritiesGetFiscalAuthoritiesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalAuthoritiesCountResponse = GetFiscalAuthoritiesCountResponses[keyof GetFiscalAuthoritiesCountResponses];
+export type FiscalAuthoritiesGetFiscalAuthoritiesCountResponse = FiscalAuthoritiesGetFiscalAuthoritiesCountResponses[keyof FiscalAuthoritiesGetFiscalAuthoritiesCountResponses];
 
-export type DeleteFiscalAuthorityData = {
+export type FiscalAuthoritiesDeleteFiscalAuthorityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13015,7 +13038,7 @@ export type DeleteFiscalAuthorityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}';
 };
 
-export type DeleteFiscalAuthorityErrors = {
+export type FiscalAuthoritiesDeleteFiscalAuthorityErrors = {
     /**
      * Unauthorized
      */
@@ -13026,18 +13049,18 @@ export type DeleteFiscalAuthorityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalAuthorityError = DeleteFiscalAuthorityErrors[keyof DeleteFiscalAuthorityErrors];
+export type FiscalAuthoritiesDeleteFiscalAuthorityError = FiscalAuthoritiesDeleteFiscalAuthorityErrors[keyof FiscalAuthoritiesDeleteFiscalAuthorityErrors];
 
-export type DeleteFiscalAuthorityResponses = {
+export type FiscalAuthoritiesDeleteFiscalAuthorityResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalAuthorityResponse = DeleteFiscalAuthorityResponses[keyof DeleteFiscalAuthorityResponses];
+export type FiscalAuthoritiesDeleteFiscalAuthorityResponse = FiscalAuthoritiesDeleteFiscalAuthorityResponses[keyof FiscalAuthoritiesDeleteFiscalAuthorityResponses];
 
-export type GetFiscalAuthorityData = {
+export type FiscalAuthoritiesGetFiscalAuthorityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13052,7 +13075,7 @@ export type GetFiscalAuthorityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}';
 };
 
-export type GetFiscalAuthorityErrors = {
+export type FiscalAuthoritiesGetFiscalAuthorityErrors = {
     /**
      * Unauthorized
      */
@@ -13063,18 +13086,18 @@ export type GetFiscalAuthorityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalAuthorityError = GetFiscalAuthorityErrors[keyof GetFiscalAuthorityErrors];
+export type FiscalAuthoritiesGetFiscalAuthorityError = FiscalAuthoritiesGetFiscalAuthorityErrors[keyof FiscalAuthoritiesGetFiscalAuthorityErrors];
 
-export type GetFiscalAuthorityResponses = {
+export type FiscalAuthoritiesGetFiscalAuthorityResponses = {
     /**
      * OK
      */
     200: FiscalAuthorityDtoEnvelopeReadable;
 };
 
-export type GetFiscalAuthorityResponse = GetFiscalAuthorityResponses[keyof GetFiscalAuthorityResponses];
+export type FiscalAuthoritiesGetFiscalAuthorityResponse = FiscalAuthoritiesGetFiscalAuthorityResponses[keyof FiscalAuthoritiesGetFiscalAuthorityResponses];
 
-export type PatchFiscalAuthorityAsyncData = {
+export type FiscalAuthoritiesPatchFiscalAuthorityData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -13089,7 +13112,7 @@ export type PatchFiscalAuthorityAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}';
 };
 
-export type PatchFiscalAuthorityAsyncErrors = {
+export type FiscalAuthoritiesPatchFiscalAuthorityErrors = {
     /**
      * Unauthorized
      */
@@ -13100,18 +13123,18 @@ export type PatchFiscalAuthorityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalAuthorityAsyncError = PatchFiscalAuthorityAsyncErrors[keyof PatchFiscalAuthorityAsyncErrors];
+export type FiscalAuthoritiesPatchFiscalAuthorityError = FiscalAuthoritiesPatchFiscalAuthorityErrors[keyof FiscalAuthoritiesPatchFiscalAuthorityErrors];
 
-export type PatchFiscalAuthorityAsyncResponses = {
+export type FiscalAuthoritiesPatchFiscalAuthorityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalAuthorityAsyncResponse = PatchFiscalAuthorityAsyncResponses[keyof PatchFiscalAuthorityAsyncResponses];
+export type FiscalAuthoritiesPatchFiscalAuthorityResponse = FiscalAuthoritiesPatchFiscalAuthorityResponses[keyof FiscalAuthoritiesPatchFiscalAuthorityResponses];
 
-export type UpdateFiscalAuthorityData = {
+export type FiscalAuthoritiesUpdateFiscalAuthorityData = {
     body?: FiscalAuthorityUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13126,7 +13149,7 @@ export type UpdateFiscalAuthorityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}';
 };
 
-export type UpdateFiscalAuthorityErrors = {
+export type FiscalAuthoritiesUpdateFiscalAuthorityErrors = {
     /**
      * Unauthorized
      */
@@ -13137,18 +13160,18 @@ export type UpdateFiscalAuthorityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalAuthorityError = UpdateFiscalAuthorityErrors[keyof UpdateFiscalAuthorityErrors];
+export type FiscalAuthoritiesUpdateFiscalAuthorityError = FiscalAuthoritiesUpdateFiscalAuthorityErrors[keyof FiscalAuthoritiesUpdateFiscalAuthorityErrors];
 
-export type UpdateFiscalAuthorityResponses = {
+export type FiscalAuthoritiesUpdateFiscalAuthorityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalAuthorityResponse = UpdateFiscalAuthorityResponses[keyof UpdateFiscalAuthorityResponses];
+export type FiscalAuthoritiesUpdateFiscalAuthorityResponse = FiscalAuthoritiesUpdateFiscalAuthorityResponses[keyof FiscalAuthoritiesUpdateFiscalAuthorityResponses];
 
-export type GetFiscalYearsData = {
+export type FiscalAuthorityYearsGetFiscalYearsData = {
     body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13164,7 +13187,7 @@ export type GetFiscalYearsData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalYears';
 };
 
-export type GetFiscalYearsErrors = {
+export type FiscalAuthorityYearsGetFiscalYearsErrors = {
     /**
      * Unauthorized
      */
@@ -13175,18 +13198,18 @@ export type GetFiscalYearsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalYearsError = GetFiscalYearsErrors[keyof GetFiscalYearsErrors];
+export type FiscalAuthorityYearsGetFiscalYearsError = FiscalAuthorityYearsGetFiscalYearsErrors[keyof FiscalAuthorityYearsGetFiscalYearsErrors];
 
-export type GetFiscalYearsResponses = {
+export type FiscalAuthorityYearsGetFiscalYearsResponses = {
     /**
      * OK
      */
     200: FiscalYearDtoListEnvelopeReadable;
 };
 
-export type GetFiscalYearsResponse = GetFiscalYearsResponses[keyof GetFiscalYearsResponses];
+export type FiscalAuthorityYearsGetFiscalYearsResponse = FiscalAuthorityYearsGetFiscalYearsResponses[keyof FiscalAuthorityYearsGetFiscalYearsResponses];
 
-export type GetFiscalYearsCountData = {
+export type FiscalAuthorityYearsGetFiscalYearsCountData = {
     body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13201,7 +13224,7 @@ export type GetFiscalYearsCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/Count';
 };
 
-export type GetFiscalYearsCountErrors = {
+export type FiscalAuthorityYearsGetFiscalYearsCountErrors = {
     /**
      * Unauthorized
      */
@@ -13212,18 +13235,18 @@ export type GetFiscalYearsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalYearsCountError = GetFiscalYearsCountErrors[keyof GetFiscalYearsCountErrors];
+export type FiscalAuthorityYearsGetFiscalYearsCountError = FiscalAuthorityYearsGetFiscalYearsCountErrors[keyof FiscalAuthorityYearsGetFiscalYearsCountErrors];
 
-export type GetFiscalYearsCountResponses = {
+export type FiscalAuthorityYearsGetFiscalYearsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalYearsCountResponse = GetFiscalYearsCountResponses[keyof GetFiscalYearsCountResponses];
+export type FiscalAuthorityYearsGetFiscalYearsCountResponse = FiscalAuthorityYearsGetFiscalYearsCountResponses[keyof FiscalAuthorityYearsGetFiscalYearsCountResponses];
 
-export type GetFiscalYearData = {
+export type FiscalAuthorityYearsGetFiscalYearData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13239,7 +13262,7 @@ export type GetFiscalYearData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/{fiscalYearId}';
 };
 
-export type GetFiscalYearErrors = {
+export type FiscalAuthorityYearsGetFiscalYearErrors = {
     /**
      * Unauthorized
      */
@@ -13250,18 +13273,18 @@ export type GetFiscalYearErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalYearError = GetFiscalYearErrors[keyof GetFiscalYearErrors];
+export type FiscalAuthorityYearsGetFiscalYearError = FiscalAuthorityYearsGetFiscalYearErrors[keyof FiscalAuthorityYearsGetFiscalYearErrors];
 
-export type GetFiscalYearResponses = {
+export type FiscalAuthorityYearsGetFiscalYearResponses = {
     /**
      * OK
      */
     200: FiscalYearDtoEnvelopeReadable;
 };
 
-export type GetFiscalYearResponse = GetFiscalYearResponses[keyof GetFiscalYearResponses];
+export type FiscalAuthorityYearsGetFiscalYearResponse = FiscalAuthorityYearsGetFiscalYearResponses[keyof FiscalAuthorityYearsGetFiscalYearResponses];
 
-export type CreateFiscalYearData = {
+export type FiscalAuthorityYearsCreateFiscalYearData = {
     body?: FiscalYearCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13274,7 +13297,7 @@ export type CreateFiscalYearData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalYears';
 };
 
-export type CreateFiscalYearErrors = {
+export type FiscalAuthorityYearsCreateFiscalYearErrors = {
     /**
      * Unauthorized
      */
@@ -13285,18 +13308,18 @@ export type CreateFiscalYearErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalYearError = CreateFiscalYearErrors[keyof CreateFiscalYearErrors];
+export type FiscalAuthorityYearsCreateFiscalYearError = FiscalAuthorityYearsCreateFiscalYearErrors[keyof FiscalAuthorityYearsCreateFiscalYearErrors];
 
-export type CreateFiscalYearResponses = {
+export type FiscalAuthorityYearsCreateFiscalYearResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalYearResponse = CreateFiscalYearResponses[keyof CreateFiscalYearResponses];
+export type FiscalAuthorityYearsCreateFiscalYearResponse = FiscalAuthorityYearsCreateFiscalYearResponses[keyof FiscalAuthorityYearsCreateFiscalYearResponses];
 
-export type DeleteFiscalYearData = {
+export type FiscalAuthorityYearsDeleteFiscalYearData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13311,7 +13334,7 @@ export type DeleteFiscalYearData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalYears/{fiscalYearId}';
 };
 
-export type DeleteFiscalYearErrors = {
+export type FiscalAuthorityYearsDeleteFiscalYearErrors = {
     /**
      * Unauthorized
      */
@@ -13322,18 +13345,18 @@ export type DeleteFiscalYearErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalYearError = DeleteFiscalYearErrors[keyof DeleteFiscalYearErrors];
+export type FiscalAuthorityYearsDeleteFiscalYearError = FiscalAuthorityYearsDeleteFiscalYearErrors[keyof FiscalAuthorityYearsDeleteFiscalYearErrors];
 
-export type DeleteFiscalYearResponses = {
+export type FiscalAuthorityYearsDeleteFiscalYearResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalYearResponse = DeleteFiscalYearResponses[keyof DeleteFiscalYearResponses];
+export type FiscalAuthorityYearsDeleteFiscalYearResponse = FiscalAuthorityYearsDeleteFiscalYearResponses[keyof FiscalAuthorityYearsDeleteFiscalYearResponses];
 
-export type PatchFiscalAuthorityYearAsyncData = {
+export type FiscalAuthorityYearsPatchFiscalAuthorityYearData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -13348,7 +13371,7 @@ export type PatchFiscalAuthorityYearAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalYears/{fiscalYearId}';
 };
 
-export type PatchFiscalAuthorityYearAsyncErrors = {
+export type FiscalAuthorityYearsPatchFiscalAuthorityYearErrors = {
     /**
      * Unauthorized
      */
@@ -13359,18 +13382,18 @@ export type PatchFiscalAuthorityYearAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalAuthorityYearAsyncError = PatchFiscalAuthorityYearAsyncErrors[keyof PatchFiscalAuthorityYearAsyncErrors];
+export type FiscalAuthorityYearsPatchFiscalAuthorityYearError = FiscalAuthorityYearsPatchFiscalAuthorityYearErrors[keyof FiscalAuthorityYearsPatchFiscalAuthorityYearErrors];
 
-export type PatchFiscalAuthorityYearAsyncResponses = {
+export type FiscalAuthorityYearsPatchFiscalAuthorityYearResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalAuthorityYearAsyncResponse = PatchFiscalAuthorityYearAsyncResponses[keyof PatchFiscalAuthorityYearAsyncResponses];
+export type FiscalAuthorityYearsPatchFiscalAuthorityYearResponse = FiscalAuthorityYearsPatchFiscalAuthorityYearResponses[keyof FiscalAuthorityYearsPatchFiscalAuthorityYearResponses];
 
-export type UpdateFiscalYearData = {
+export type FiscalAuthorityYearsUpdateFiscalYearData = {
     body?: FiscalYearUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13385,7 +13408,7 @@ export type UpdateFiscalYearData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalYears/{fiscalYearId}';
 };
 
-export type UpdateFiscalYearErrors = {
+export type FiscalAuthorityYearsUpdateFiscalYearErrors = {
     /**
      * Unauthorized
      */
@@ -13396,18 +13419,18 @@ export type UpdateFiscalYearErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalYearError = UpdateFiscalYearErrors[keyof UpdateFiscalYearErrors];
+export type FiscalAuthorityYearsUpdateFiscalYearError = FiscalAuthorityYearsUpdateFiscalYearErrors[keyof FiscalAuthorityYearsUpdateFiscalYearErrors];
 
-export type UpdateFiscalYearResponses = {
+export type FiscalAuthorityYearsUpdateFiscalYearResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalYearResponse = UpdateFiscalYearResponses[keyof UpdateFiscalYearResponses];
+export type FiscalAuthorityYearsUpdateFiscalYearResponse = FiscalAuthorityYearsUpdateFiscalYearResponses[keyof FiscalAuthorityYearsUpdateFiscalYearResponses];
 
-export type GetInvoiceEnumerationRangesData = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesData = {
     body?: InvoiceEnumerationRangeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13423,7 +13446,7 @@ export type GetInvoiceEnumerationRangesData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/EnumerationRanges';
 };
 
-export type GetInvoiceEnumerationRangesErrors = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesErrors = {
     /**
      * Unauthorized
      */
@@ -13434,18 +13457,18 @@ export type GetInvoiceEnumerationRangesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangesError = GetInvoiceEnumerationRangesErrors[keyof GetInvoiceEnumerationRangesErrors];
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesError = FiscalEnumerationRangesGetInvoiceEnumerationRangesErrors[keyof FiscalEnumerationRangesGetInvoiceEnumerationRangesErrors];
 
-export type GetInvoiceEnumerationRangesResponses = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesResponses = {
     /**
      * OK
      */
     200: InvoiceEnumerationRangeDtoListEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangesResponse = GetInvoiceEnumerationRangesResponses[keyof GetInvoiceEnumerationRangesResponses];
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesResponse = FiscalEnumerationRangesGetInvoiceEnumerationRangesResponses[keyof FiscalEnumerationRangesGetInvoiceEnumerationRangesResponses];
 
-export type GetInvoiceEnumerationRangesCountData = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesCountData = {
     body?: InvoiceEnumerationRangeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13460,7 +13483,7 @@ export type GetInvoiceEnumerationRangesCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/EnumerationRanges/Count';
 };
 
-export type GetInvoiceEnumerationRangesCountErrors = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesCountErrors = {
     /**
      * Unauthorized
      */
@@ -13471,18 +13494,18 @@ export type GetInvoiceEnumerationRangesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangesCountError = GetInvoiceEnumerationRangesCountErrors[keyof GetInvoiceEnumerationRangesCountErrors];
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesCountError = FiscalEnumerationRangesGetInvoiceEnumerationRangesCountErrors[keyof FiscalEnumerationRangesGetInvoiceEnumerationRangesCountErrors];
 
-export type GetInvoiceEnumerationRangesCountResponses = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangesCountResponse = GetInvoiceEnumerationRangesCountResponses[keyof GetInvoiceEnumerationRangesCountResponses];
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangesCountResponse = FiscalEnumerationRangesGetInvoiceEnumerationRangesCountResponses[keyof FiscalEnumerationRangesGetInvoiceEnumerationRangesCountResponses];
 
-export type GetInvoiceEnumerationRangeData = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13498,7 +13521,7 @@ export type GetInvoiceEnumerationRangeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/EnumerationRanges/{enumerationRangeId}';
 };
 
-export type GetInvoiceEnumerationRangeErrors = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangeErrors = {
     /**
      * Unauthorized
      */
@@ -13509,18 +13532,18 @@ export type GetInvoiceEnumerationRangeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangeError = GetInvoiceEnumerationRangeErrors[keyof GetInvoiceEnumerationRangeErrors];
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangeError = FiscalEnumerationRangesGetInvoiceEnumerationRangeErrors[keyof FiscalEnumerationRangesGetInvoiceEnumerationRangeErrors];
 
-export type GetInvoiceEnumerationRangeResponses = {
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangeResponses = {
     /**
      * OK
      */
     200: InvoiceEnumerationRangeDtoEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangeResponse = GetInvoiceEnumerationRangeResponses[keyof GetInvoiceEnumerationRangeResponses];
+export type FiscalEnumerationRangesGetInvoiceEnumerationRangeResponse = FiscalEnumerationRangesGetInvoiceEnumerationRangeResponses[keyof FiscalEnumerationRangesGetInvoiceEnumerationRangeResponses];
 
-export type CreateInvoiceEnumerationRangeData = {
+export type FiscalEnumerationRangesCreateInvoiceEnumerationRangeData = {
     body?: InvoiceEnumerationRangeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13533,7 +13556,7 @@ export type CreateInvoiceEnumerationRangeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges';
 };
 
-export type CreateInvoiceEnumerationRangeErrors = {
+export type FiscalEnumerationRangesCreateInvoiceEnumerationRangeErrors = {
     /**
      * Unauthorized
      */
@@ -13544,18 +13567,18 @@ export type CreateInvoiceEnumerationRangeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateInvoiceEnumerationRangeError = CreateInvoiceEnumerationRangeErrors[keyof CreateInvoiceEnumerationRangeErrors];
+export type FiscalEnumerationRangesCreateInvoiceEnumerationRangeError = FiscalEnumerationRangesCreateInvoiceEnumerationRangeErrors[keyof FiscalEnumerationRangesCreateInvoiceEnumerationRangeErrors];
 
-export type CreateInvoiceEnumerationRangeResponses = {
+export type FiscalEnumerationRangesCreateInvoiceEnumerationRangeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateInvoiceEnumerationRangeResponse = CreateInvoiceEnumerationRangeResponses[keyof CreateInvoiceEnumerationRangeResponses];
+export type FiscalEnumerationRangesCreateInvoiceEnumerationRangeResponse = FiscalEnumerationRangesCreateInvoiceEnumerationRangeResponses[keyof FiscalEnumerationRangesCreateInvoiceEnumerationRangeResponses];
 
-export type DeleteInvoiceEnumerationRangeData = {
+export type FiscalEnumerationRangesDeleteInvoiceEnumerationRangeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13570,7 +13593,7 @@ export type DeleteInvoiceEnumerationRangeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges/{enumerationRangeId}';
 };
 
-export type DeleteInvoiceEnumerationRangeErrors = {
+export type FiscalEnumerationRangesDeleteInvoiceEnumerationRangeErrors = {
     /**
      * Unauthorized
      */
@@ -13581,18 +13604,18 @@ export type DeleteInvoiceEnumerationRangeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteInvoiceEnumerationRangeError = DeleteInvoiceEnumerationRangeErrors[keyof DeleteInvoiceEnumerationRangeErrors];
+export type FiscalEnumerationRangesDeleteInvoiceEnumerationRangeError = FiscalEnumerationRangesDeleteInvoiceEnumerationRangeErrors[keyof FiscalEnumerationRangesDeleteInvoiceEnumerationRangeErrors];
 
-export type DeleteInvoiceEnumerationRangeResponses = {
+export type FiscalEnumerationRangesDeleteInvoiceEnumerationRangeResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceEnumerationRangeResponse = DeleteInvoiceEnumerationRangeResponses[keyof DeleteInvoiceEnumerationRangeResponses];
+export type FiscalEnumerationRangesDeleteInvoiceEnumerationRangeResponse = FiscalEnumerationRangesDeleteInvoiceEnumerationRangeResponses[keyof FiscalEnumerationRangesDeleteInvoiceEnumerationRangeResponses];
 
-export type PatchFiscalEnumerationRangeAsyncData = {
+export type FiscalEnumerationRangesPatchFiscalEnumerationRangeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -13607,7 +13630,7 @@ export type PatchFiscalEnumerationRangeAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges/{enumerationRangeId}';
 };
 
-export type PatchFiscalEnumerationRangeAsyncErrors = {
+export type FiscalEnumerationRangesPatchFiscalEnumerationRangeErrors = {
     /**
      * Unauthorized
      */
@@ -13618,18 +13641,18 @@ export type PatchFiscalEnumerationRangeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalEnumerationRangeAsyncError = PatchFiscalEnumerationRangeAsyncErrors[keyof PatchFiscalEnumerationRangeAsyncErrors];
+export type FiscalEnumerationRangesPatchFiscalEnumerationRangeError = FiscalEnumerationRangesPatchFiscalEnumerationRangeErrors[keyof FiscalEnumerationRangesPatchFiscalEnumerationRangeErrors];
 
-export type PatchFiscalEnumerationRangeAsyncResponses = {
+export type FiscalEnumerationRangesPatchFiscalEnumerationRangeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalEnumerationRangeAsyncResponse = PatchFiscalEnumerationRangeAsyncResponses[keyof PatchFiscalEnumerationRangeAsyncResponses];
+export type FiscalEnumerationRangesPatchFiscalEnumerationRangeResponse = FiscalEnumerationRangesPatchFiscalEnumerationRangeResponses[keyof FiscalEnumerationRangesPatchFiscalEnumerationRangeResponses];
 
-export type UpdateInvoiceEnumerationRangeData = {
+export type FiscalEnumerationRangesUpdateInvoiceEnumerationRangeData = {
     body?: InvoiceEnumerationRangeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13644,7 +13667,7 @@ export type UpdateInvoiceEnumerationRangeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges/{enumerationRangeId}';
 };
 
-export type UpdateInvoiceEnumerationRangeErrors = {
+export type FiscalEnumerationRangesUpdateInvoiceEnumerationRangeErrors = {
     /**
      * Unauthorized
      */
@@ -13655,18 +13678,18 @@ export type UpdateInvoiceEnumerationRangeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateInvoiceEnumerationRangeError = UpdateInvoiceEnumerationRangeErrors[keyof UpdateInvoiceEnumerationRangeErrors];
+export type FiscalEnumerationRangesUpdateInvoiceEnumerationRangeError = FiscalEnumerationRangesUpdateInvoiceEnumerationRangeErrors[keyof FiscalEnumerationRangesUpdateInvoiceEnumerationRangeErrors];
 
-export type UpdateInvoiceEnumerationRangeResponses = {
+export type FiscalEnumerationRangesUpdateInvoiceEnumerationRangeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInvoiceEnumerationRangeResponse = UpdateInvoiceEnumerationRangeResponses[keyof UpdateInvoiceEnumerationRangeResponses];
+export type FiscalEnumerationRangesUpdateInvoiceEnumerationRangeResponse = FiscalEnumerationRangesUpdateInvoiceEnumerationRangeResponses[keyof FiscalEnumerationRangesUpdateInvoiceEnumerationRangeResponses];
 
-export type GetFiscalIdentificationTypesData = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesData = {
     body?: FiscalIdentificationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13681,7 +13704,7 @@ export type GetFiscalIdentificationTypesData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/IdentificationTypes';
 };
 
-export type GetFiscalIdentificationTypesErrors = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesErrors = {
     /**
      * Unauthorized
      */
@@ -13692,18 +13715,18 @@ export type GetFiscalIdentificationTypesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalIdentificationTypesError = GetFiscalIdentificationTypesErrors[keyof GetFiscalIdentificationTypesErrors];
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesError = FiscalIdentificationTypesGetFiscalIdentificationTypesErrors[keyof FiscalIdentificationTypesGetFiscalIdentificationTypesErrors];
 
-export type GetFiscalIdentificationTypesResponses = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesResponses = {
     /**
      * OK
      */
     200: FiscalIdentificationTypeDtoListEnvelopeReadable;
 };
 
-export type GetFiscalIdentificationTypesResponse = GetFiscalIdentificationTypesResponses[keyof GetFiscalIdentificationTypesResponses];
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesResponse = FiscalIdentificationTypesGetFiscalIdentificationTypesResponses[keyof FiscalIdentificationTypesGetFiscalIdentificationTypesResponses];
 
-export type GetFiscalIdentificationTypesCountData = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesCountData = {
     body?: FiscalIdentificationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13718,7 +13741,7 @@ export type GetFiscalIdentificationTypesCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/IdentificationTypes/Count';
 };
 
-export type GetFiscalIdentificationTypesCountErrors = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -13729,18 +13752,18 @@ export type GetFiscalIdentificationTypesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalIdentificationTypesCountError = GetFiscalIdentificationTypesCountErrors[keyof GetFiscalIdentificationTypesCountErrors];
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesCountError = FiscalIdentificationTypesGetFiscalIdentificationTypesCountErrors[keyof FiscalIdentificationTypesGetFiscalIdentificationTypesCountErrors];
 
-export type GetFiscalIdentificationTypesCountResponses = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalIdentificationTypesCountResponse = GetFiscalIdentificationTypesCountResponses[keyof GetFiscalIdentificationTypesCountResponses];
+export type FiscalIdentificationTypesGetFiscalIdentificationTypesCountResponse = FiscalIdentificationTypesGetFiscalIdentificationTypesCountResponses[keyof FiscalIdentificationTypesGetFiscalIdentificationTypesCountResponses];
 
-export type GetFiscalIdentificationTypeData = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13756,7 +13779,7 @@ export type GetFiscalIdentificationTypeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/IdentificationTypes/{identificationTypeId}';
 };
 
-export type GetFiscalIdentificationTypeErrors = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypeErrors = {
     /**
      * Unauthorized
      */
@@ -13767,18 +13790,18 @@ export type GetFiscalIdentificationTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalIdentificationTypeError = GetFiscalIdentificationTypeErrors[keyof GetFiscalIdentificationTypeErrors];
+export type FiscalIdentificationTypesGetFiscalIdentificationTypeError = FiscalIdentificationTypesGetFiscalIdentificationTypeErrors[keyof FiscalIdentificationTypesGetFiscalIdentificationTypeErrors];
 
-export type GetFiscalIdentificationTypeResponses = {
+export type FiscalIdentificationTypesGetFiscalIdentificationTypeResponses = {
     /**
      * OK
      */
     200: FiscalIdentificationTypeDtoEnvelopeReadable;
 };
 
-export type GetFiscalIdentificationTypeResponse = GetFiscalIdentificationTypeResponses[keyof GetFiscalIdentificationTypeResponses];
+export type FiscalIdentificationTypesGetFiscalIdentificationTypeResponse = FiscalIdentificationTypesGetFiscalIdentificationTypeResponses[keyof FiscalIdentificationTypesGetFiscalIdentificationTypeResponses];
 
-export type CreateFiscalIdentificationTypeData = {
+export type FiscalIdentificationTypesCreateFiscalIdentificationTypeData = {
     body?: FiscalIdentificationTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13791,7 +13814,7 @@ export type CreateFiscalIdentificationTypeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes';
 };
 
-export type CreateFiscalIdentificationTypeErrors = {
+export type FiscalIdentificationTypesCreateFiscalIdentificationTypeErrors = {
     /**
      * Unauthorized
      */
@@ -13802,18 +13825,18 @@ export type CreateFiscalIdentificationTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalIdentificationTypeError = CreateFiscalIdentificationTypeErrors[keyof CreateFiscalIdentificationTypeErrors];
+export type FiscalIdentificationTypesCreateFiscalIdentificationTypeError = FiscalIdentificationTypesCreateFiscalIdentificationTypeErrors[keyof FiscalIdentificationTypesCreateFiscalIdentificationTypeErrors];
 
-export type CreateFiscalIdentificationTypeResponses = {
+export type FiscalIdentificationTypesCreateFiscalIdentificationTypeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalIdentificationTypeResponse = CreateFiscalIdentificationTypeResponses[keyof CreateFiscalIdentificationTypeResponses];
+export type FiscalIdentificationTypesCreateFiscalIdentificationTypeResponse = FiscalIdentificationTypesCreateFiscalIdentificationTypeResponses[keyof FiscalIdentificationTypesCreateFiscalIdentificationTypeResponses];
 
-export type DeleteFiscalIdentificationTypeData = {
+export type FiscalIdentificationTypesDeleteFiscalIdentificationTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -13828,7 +13851,7 @@ export type DeleteFiscalIdentificationTypeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes/{identificationTypeId}';
 };
 
-export type DeleteFiscalIdentificationTypeErrors = {
+export type FiscalIdentificationTypesDeleteFiscalIdentificationTypeErrors = {
     /**
      * Unauthorized
      */
@@ -13839,18 +13862,18 @@ export type DeleteFiscalIdentificationTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalIdentificationTypeError = DeleteFiscalIdentificationTypeErrors[keyof DeleteFiscalIdentificationTypeErrors];
+export type FiscalIdentificationTypesDeleteFiscalIdentificationTypeError = FiscalIdentificationTypesDeleteFiscalIdentificationTypeErrors[keyof FiscalIdentificationTypesDeleteFiscalIdentificationTypeErrors];
 
-export type DeleteFiscalIdentificationTypeResponses = {
+export type FiscalIdentificationTypesDeleteFiscalIdentificationTypeResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalIdentificationTypeResponse = DeleteFiscalIdentificationTypeResponses[keyof DeleteFiscalIdentificationTypeResponses];
+export type FiscalIdentificationTypesDeleteFiscalIdentificationTypeResponse = FiscalIdentificationTypesDeleteFiscalIdentificationTypeResponses[keyof FiscalIdentificationTypesDeleteFiscalIdentificationTypeResponses];
 
-export type PatchFiscalIdentificationTypeAsyncData = {
+export type FiscalIdentificationTypesPatchFiscalIdentificationTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -13865,7 +13888,7 @@ export type PatchFiscalIdentificationTypeAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes/{identificationTypeId}';
 };
 
-export type PatchFiscalIdentificationTypeAsyncErrors = {
+export type FiscalIdentificationTypesPatchFiscalIdentificationTypeErrors = {
     /**
      * Unauthorized
      */
@@ -13876,18 +13899,18 @@ export type PatchFiscalIdentificationTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalIdentificationTypeAsyncError = PatchFiscalIdentificationTypeAsyncErrors[keyof PatchFiscalIdentificationTypeAsyncErrors];
+export type FiscalIdentificationTypesPatchFiscalIdentificationTypeError = FiscalIdentificationTypesPatchFiscalIdentificationTypeErrors[keyof FiscalIdentificationTypesPatchFiscalIdentificationTypeErrors];
 
-export type PatchFiscalIdentificationTypeAsyncResponses = {
+export type FiscalIdentificationTypesPatchFiscalIdentificationTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalIdentificationTypeAsyncResponse = PatchFiscalIdentificationTypeAsyncResponses[keyof PatchFiscalIdentificationTypeAsyncResponses];
+export type FiscalIdentificationTypesPatchFiscalIdentificationTypeResponse = FiscalIdentificationTypesPatchFiscalIdentificationTypeResponses[keyof FiscalIdentificationTypesPatchFiscalIdentificationTypeResponses];
 
-export type UpdateFiscalIdentificationTypeData = {
+export type FiscalIdentificationTypesUpdateFiscalIdentificationTypeData = {
     body?: FiscalIdentificationTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -13902,7 +13925,7 @@ export type UpdateFiscalIdentificationTypeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes/{identificationTypeId}';
 };
 
-export type UpdateFiscalIdentificationTypeErrors = {
+export type FiscalIdentificationTypesUpdateFiscalIdentificationTypeErrors = {
     /**
      * Unauthorized
      */
@@ -13913,18 +13936,18 @@ export type UpdateFiscalIdentificationTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalIdentificationTypeError = UpdateFiscalIdentificationTypeErrors[keyof UpdateFiscalIdentificationTypeErrors];
+export type FiscalIdentificationTypesUpdateFiscalIdentificationTypeError = FiscalIdentificationTypesUpdateFiscalIdentificationTypeErrors[keyof FiscalIdentificationTypesUpdateFiscalIdentificationTypeErrors];
 
-export type UpdateFiscalIdentificationTypeResponses = {
+export type FiscalIdentificationTypesUpdateFiscalIdentificationTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalIdentificationTypeResponse = UpdateFiscalIdentificationTypeResponses[keyof UpdateFiscalIdentificationTypeResponses];
+export type FiscalIdentificationTypesUpdateFiscalIdentificationTypeResponse = FiscalIdentificationTypesUpdateFiscalIdentificationTypeResponses[keyof FiscalIdentificationTypesUpdateFiscalIdentificationTypeResponses];
 
-export type GetFiscalPeriodsData = {
+export type FiscalPeriodsGetFiscalPeriodsData = {
     body?: FiscalPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13941,7 +13964,7 @@ export type GetFiscalPeriodsData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods';
 };
 
-export type GetFiscalPeriodsErrors = {
+export type FiscalPeriodsGetFiscalPeriodsErrors = {
     /**
      * Unauthorized
      */
@@ -13952,18 +13975,18 @@ export type GetFiscalPeriodsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalPeriodsError = GetFiscalPeriodsErrors[keyof GetFiscalPeriodsErrors];
+export type FiscalPeriodsGetFiscalPeriodsError = FiscalPeriodsGetFiscalPeriodsErrors[keyof FiscalPeriodsGetFiscalPeriodsErrors];
 
-export type GetFiscalPeriodsResponses = {
+export type FiscalPeriodsGetFiscalPeriodsResponses = {
     /**
      * OK
      */
     200: FiscalPeriodDtoListEnvelopeReadable;
 };
 
-export type GetFiscalPeriodsResponse = GetFiscalPeriodsResponses[keyof GetFiscalPeriodsResponses];
+export type FiscalPeriodsGetFiscalPeriodsResponse = FiscalPeriodsGetFiscalPeriodsResponses[keyof FiscalPeriodsGetFiscalPeriodsResponses];
 
-export type GetFiscalPeriodsCountData = {
+export type FiscalPeriodsGetFiscalPeriodsCountData = {
     body?: FiscalPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -13979,7 +14002,7 @@ export type GetFiscalPeriodsCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods/Count';
 };
 
-export type GetFiscalPeriodsCountErrors = {
+export type FiscalPeriodsGetFiscalPeriodsCountErrors = {
     /**
      * Unauthorized
      */
@@ -13990,18 +14013,18 @@ export type GetFiscalPeriodsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalPeriodsCountError = GetFiscalPeriodsCountErrors[keyof GetFiscalPeriodsCountErrors];
+export type FiscalPeriodsGetFiscalPeriodsCountError = FiscalPeriodsGetFiscalPeriodsCountErrors[keyof FiscalPeriodsGetFiscalPeriodsCountErrors];
 
-export type GetFiscalPeriodsCountResponses = {
+export type FiscalPeriodsGetFiscalPeriodsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalPeriodsCountResponse = GetFiscalPeriodsCountResponses[keyof GetFiscalPeriodsCountResponses];
+export type FiscalPeriodsGetFiscalPeriodsCountResponse = FiscalPeriodsGetFiscalPeriodsCountResponses[keyof FiscalPeriodsGetFiscalPeriodsCountResponses];
 
-export type GetFiscalPeriodData = {
+export type FiscalPeriodsGetFiscalPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14018,7 +14041,7 @@ export type GetFiscalPeriodData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods/{fiscalPeriodId}';
 };
 
-export type GetFiscalPeriodErrors = {
+export type FiscalPeriodsGetFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14029,18 +14052,18 @@ export type GetFiscalPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalPeriodError = GetFiscalPeriodErrors[keyof GetFiscalPeriodErrors];
+export type FiscalPeriodsGetFiscalPeriodError = FiscalPeriodsGetFiscalPeriodErrors[keyof FiscalPeriodsGetFiscalPeriodErrors];
 
-export type GetFiscalPeriodResponses = {
+export type FiscalPeriodsGetFiscalPeriodResponses = {
     /**
      * OK
      */
     200: FiscalPeriodDtoEnvelopeReadable;
 };
 
-export type GetFiscalPeriodResponse = GetFiscalPeriodResponses[keyof GetFiscalPeriodResponses];
+export type FiscalPeriodsGetFiscalPeriodResponse = FiscalPeriodsGetFiscalPeriodResponses[keyof FiscalPeriodsGetFiscalPeriodResponses];
 
-export type CreateFiscalPeriodData = {
+export type FiscalPeriodsCreateFiscalPeriodData = {
     body?: FiscalPeriodCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14053,7 +14076,7 @@ export type CreateFiscalPeriodData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods';
 };
 
-export type CreateFiscalPeriodErrors = {
+export type FiscalPeriodsCreateFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14064,18 +14087,18 @@ export type CreateFiscalPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalPeriodError = CreateFiscalPeriodErrors[keyof CreateFiscalPeriodErrors];
+export type FiscalPeriodsCreateFiscalPeriodError = FiscalPeriodsCreateFiscalPeriodErrors[keyof FiscalPeriodsCreateFiscalPeriodErrors];
 
-export type CreateFiscalPeriodResponses = {
+export type FiscalPeriodsCreateFiscalPeriodResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalPeriodResponse = CreateFiscalPeriodResponses[keyof CreateFiscalPeriodResponses];
+export type FiscalPeriodsCreateFiscalPeriodResponse = FiscalPeriodsCreateFiscalPeriodResponses[keyof FiscalPeriodsCreateFiscalPeriodResponses];
 
-export type DeleteFiscalPeriodData = {
+export type FiscalPeriodsDeleteFiscalPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14090,7 +14113,7 @@ export type DeleteFiscalPeriodData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}';
 };
 
-export type DeleteFiscalPeriodErrors = {
+export type FiscalPeriodsDeleteFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14101,18 +14124,18 @@ export type DeleteFiscalPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalPeriodError = DeleteFiscalPeriodErrors[keyof DeleteFiscalPeriodErrors];
+export type FiscalPeriodsDeleteFiscalPeriodError = FiscalPeriodsDeleteFiscalPeriodErrors[keyof FiscalPeriodsDeleteFiscalPeriodErrors];
 
-export type DeleteFiscalPeriodResponses = {
+export type FiscalPeriodsDeleteFiscalPeriodResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalPeriodResponse = DeleteFiscalPeriodResponses[keyof DeleteFiscalPeriodResponses];
+export type FiscalPeriodsDeleteFiscalPeriodResponse = FiscalPeriodsDeleteFiscalPeriodResponses[keyof FiscalPeriodsDeleteFiscalPeriodResponses];
 
-export type PatchFiscalPeriodAsyncData = {
+export type FiscalPeriodsPatchFiscalPeriodData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -14127,7 +14150,7 @@ export type PatchFiscalPeriodAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}';
 };
 
-export type PatchFiscalPeriodAsyncErrors = {
+export type FiscalPeriodsPatchFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14138,18 +14161,18 @@ export type PatchFiscalPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalPeriodAsyncError = PatchFiscalPeriodAsyncErrors[keyof PatchFiscalPeriodAsyncErrors];
+export type FiscalPeriodsPatchFiscalPeriodError = FiscalPeriodsPatchFiscalPeriodErrors[keyof FiscalPeriodsPatchFiscalPeriodErrors];
 
-export type PatchFiscalPeriodAsyncResponses = {
+export type FiscalPeriodsPatchFiscalPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalPeriodAsyncResponse = PatchFiscalPeriodAsyncResponses[keyof PatchFiscalPeriodAsyncResponses];
+export type FiscalPeriodsPatchFiscalPeriodResponse = FiscalPeriodsPatchFiscalPeriodResponses[keyof FiscalPeriodsPatchFiscalPeriodResponses];
 
-export type UpdateFiscalPeriodData = {
+export type FiscalPeriodsUpdateFiscalPeriodData = {
     body?: FiscalPeriodUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14164,7 +14187,7 @@ export type UpdateFiscalPeriodData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}';
 };
 
-export type UpdateFiscalPeriodErrors = {
+export type FiscalPeriodsUpdateFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14175,18 +14198,18 @@ export type UpdateFiscalPeriodErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalPeriodError = UpdateFiscalPeriodErrors[keyof UpdateFiscalPeriodErrors];
+export type FiscalPeriodsUpdateFiscalPeriodError = FiscalPeriodsUpdateFiscalPeriodErrors[keyof FiscalPeriodsUpdateFiscalPeriodErrors];
 
-export type UpdateFiscalPeriodResponses = {
+export type FiscalPeriodsUpdateFiscalPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalPeriodResponse = UpdateFiscalPeriodResponses[keyof UpdateFiscalPeriodResponses];
+export type FiscalPeriodsUpdateFiscalPeriodResponse = FiscalPeriodsUpdateFiscalPeriodResponses[keyof FiscalPeriodsUpdateFiscalPeriodResponses];
 
-export type OpenFiscalPeriodData = {
+export type FiscalPeriodsOpenFiscalPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14201,7 +14224,7 @@ export type OpenFiscalPeriodData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Open';
 };
 
-export type OpenFiscalPeriodErrors = {
+export type FiscalPeriodsOpenFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14216,18 +14239,18 @@ export type OpenFiscalPeriodErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type OpenFiscalPeriodError = OpenFiscalPeriodErrors[keyof OpenFiscalPeriodErrors];
+export type FiscalPeriodsOpenFiscalPeriodError = FiscalPeriodsOpenFiscalPeriodErrors[keyof FiscalPeriodsOpenFiscalPeriodErrors];
 
-export type OpenFiscalPeriodResponses = {
+export type FiscalPeriodsOpenFiscalPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type OpenFiscalPeriodResponse = OpenFiscalPeriodResponses[keyof OpenFiscalPeriodResponses];
+export type FiscalPeriodsOpenFiscalPeriodResponse = FiscalPeriodsOpenFiscalPeriodResponses[keyof FiscalPeriodsOpenFiscalPeriodResponses];
 
-export type CloseFiscalPeriodData = {
+export type FiscalPeriodsCloseFiscalPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14242,7 +14265,7 @@ export type CloseFiscalPeriodData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Close';
 };
 
-export type CloseFiscalPeriodErrors = {
+export type FiscalPeriodsCloseFiscalPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -14257,18 +14280,18 @@ export type CloseFiscalPeriodErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type CloseFiscalPeriodError = CloseFiscalPeriodErrors[keyof CloseFiscalPeriodErrors];
+export type FiscalPeriodsCloseFiscalPeriodError = FiscalPeriodsCloseFiscalPeriodErrors[keyof FiscalPeriodsCloseFiscalPeriodErrors];
 
-export type CloseFiscalPeriodResponses = {
+export type FiscalPeriodsCloseFiscalPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CloseFiscalPeriodResponse = CloseFiscalPeriodResponses[keyof CloseFiscalPeriodResponses];
+export type FiscalPeriodsCloseFiscalPeriodResponse = FiscalPeriodsCloseFiscalPeriodResponses[keyof FiscalPeriodsCloseFiscalPeriodResponses];
 
-export type GetFiscalRegimesData = {
+export type FiscalRegimesGetFiscalRegimesData = {
     body?: FiscalRegimeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -14284,7 +14307,7 @@ export type GetFiscalRegimesData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalRegimes';
 };
 
-export type GetFiscalRegimesErrors = {
+export type FiscalRegimesGetFiscalRegimesErrors = {
     /**
      * Unauthorized
      */
@@ -14295,18 +14318,18 @@ export type GetFiscalRegimesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalRegimesError = GetFiscalRegimesErrors[keyof GetFiscalRegimesErrors];
+export type FiscalRegimesGetFiscalRegimesError = FiscalRegimesGetFiscalRegimesErrors[keyof FiscalRegimesGetFiscalRegimesErrors];
 
-export type GetFiscalRegimesResponses = {
+export type FiscalRegimesGetFiscalRegimesResponses = {
     /**
      * OK
      */
     200: FiscalRegimeDtoListEnvelopeReadable;
 };
 
-export type GetFiscalRegimesResponse = GetFiscalRegimesResponses[keyof GetFiscalRegimesResponses];
+export type FiscalRegimesGetFiscalRegimesResponse = FiscalRegimesGetFiscalRegimesResponses[keyof FiscalRegimesGetFiscalRegimesResponses];
 
-export type GetFiscalRegimesCountData = {
+export type FiscalRegimesGetFiscalRegimesCountData = {
     body?: FiscalRegimeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -14321,7 +14344,7 @@ export type GetFiscalRegimesCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalRegimes/Count';
 };
 
-export type GetFiscalRegimesCountErrors = {
+export type FiscalRegimesGetFiscalRegimesCountErrors = {
     /**
      * Unauthorized
      */
@@ -14332,18 +14355,18 @@ export type GetFiscalRegimesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalRegimesCountError = GetFiscalRegimesCountErrors[keyof GetFiscalRegimesCountErrors];
+export type FiscalRegimesGetFiscalRegimesCountError = FiscalRegimesGetFiscalRegimesCountErrors[keyof FiscalRegimesGetFiscalRegimesCountErrors];
 
-export type GetFiscalRegimesCountResponses = {
+export type FiscalRegimesGetFiscalRegimesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalRegimesCountResponse = GetFiscalRegimesCountResponses[keyof GetFiscalRegimesCountResponses];
+export type FiscalRegimesGetFiscalRegimesCountResponse = FiscalRegimesGetFiscalRegimesCountResponses[keyof FiscalRegimesGetFiscalRegimesCountResponses];
 
-export type GetFiscalRegimeData = {
+export type FiscalRegimesGetFiscalRegimeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14359,7 +14382,7 @@ export type GetFiscalRegimeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalRegimes/{regimeId}';
 };
 
-export type GetFiscalRegimeErrors = {
+export type FiscalRegimesGetFiscalRegimeErrors = {
     /**
      * Unauthorized
      */
@@ -14370,18 +14393,18 @@ export type GetFiscalRegimeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalRegimeError = GetFiscalRegimeErrors[keyof GetFiscalRegimeErrors];
+export type FiscalRegimesGetFiscalRegimeError = FiscalRegimesGetFiscalRegimeErrors[keyof FiscalRegimesGetFiscalRegimeErrors];
 
-export type GetFiscalRegimeResponses = {
+export type FiscalRegimesGetFiscalRegimeResponses = {
     /**
      * OK
      */
     200: FiscalRegimeDtoEnvelopeReadable;
 };
 
-export type GetFiscalRegimeResponse = GetFiscalRegimeResponses[keyof GetFiscalRegimeResponses];
+export type FiscalRegimesGetFiscalRegimeResponse = FiscalRegimesGetFiscalRegimeResponses[keyof FiscalRegimesGetFiscalRegimeResponses];
 
-export type CreateFiscalRegimeData = {
+export type FiscalRegimesCreateFiscalRegimeData = {
     body?: FiscalRegimeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14394,7 +14417,7 @@ export type CreateFiscalRegimeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes';
 };
 
-export type CreateFiscalRegimeErrors = {
+export type FiscalRegimesCreateFiscalRegimeErrors = {
     /**
      * Unauthorized
      */
@@ -14405,18 +14428,18 @@ export type CreateFiscalRegimeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalRegimeError = CreateFiscalRegimeErrors[keyof CreateFiscalRegimeErrors];
+export type FiscalRegimesCreateFiscalRegimeError = FiscalRegimesCreateFiscalRegimeErrors[keyof FiscalRegimesCreateFiscalRegimeErrors];
 
-export type CreateFiscalRegimeResponses = {
+export type FiscalRegimesCreateFiscalRegimeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalRegimeResponse = CreateFiscalRegimeResponses[keyof CreateFiscalRegimeResponses];
+export type FiscalRegimesCreateFiscalRegimeResponse = FiscalRegimesCreateFiscalRegimeResponses[keyof FiscalRegimesCreateFiscalRegimeResponses];
 
-export type DeleteFiscalRegimeData = {
+export type FiscalRegimesDeleteFiscalRegimeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14431,7 +14454,7 @@ export type DeleteFiscalRegimeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes/{regimeId}';
 };
 
-export type DeleteFiscalRegimeErrors = {
+export type FiscalRegimesDeleteFiscalRegimeErrors = {
     /**
      * Unauthorized
      */
@@ -14442,18 +14465,18 @@ export type DeleteFiscalRegimeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalRegimeError = DeleteFiscalRegimeErrors[keyof DeleteFiscalRegimeErrors];
+export type FiscalRegimesDeleteFiscalRegimeError = FiscalRegimesDeleteFiscalRegimeErrors[keyof FiscalRegimesDeleteFiscalRegimeErrors];
 
-export type DeleteFiscalRegimeResponses = {
+export type FiscalRegimesDeleteFiscalRegimeResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalRegimeResponse = DeleteFiscalRegimeResponses[keyof DeleteFiscalRegimeResponses];
+export type FiscalRegimesDeleteFiscalRegimeResponse = FiscalRegimesDeleteFiscalRegimeResponses[keyof FiscalRegimesDeleteFiscalRegimeResponses];
 
-export type PatchFiscalRegimeAsyncData = {
+export type FiscalRegimesPatchFiscalRegimeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -14468,7 +14491,7 @@ export type PatchFiscalRegimeAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes/{regimeId}';
 };
 
-export type PatchFiscalRegimeAsyncErrors = {
+export type FiscalRegimesPatchFiscalRegimeErrors = {
     /**
      * Unauthorized
      */
@@ -14479,18 +14502,18 @@ export type PatchFiscalRegimeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalRegimeAsyncError = PatchFiscalRegimeAsyncErrors[keyof PatchFiscalRegimeAsyncErrors];
+export type FiscalRegimesPatchFiscalRegimeError = FiscalRegimesPatchFiscalRegimeErrors[keyof FiscalRegimesPatchFiscalRegimeErrors];
 
-export type PatchFiscalRegimeAsyncResponses = {
+export type FiscalRegimesPatchFiscalRegimeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalRegimeAsyncResponse = PatchFiscalRegimeAsyncResponses[keyof PatchFiscalRegimeAsyncResponses];
+export type FiscalRegimesPatchFiscalRegimeResponse = FiscalRegimesPatchFiscalRegimeResponses[keyof FiscalRegimesPatchFiscalRegimeResponses];
 
-export type UpdateFiscalRegimeData = {
+export type FiscalRegimesUpdateFiscalRegimeData = {
     body?: FiscalRegimeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14505,7 +14528,7 @@ export type UpdateFiscalRegimeData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes/{regimeId}';
 };
 
-export type UpdateFiscalRegimeErrors = {
+export type FiscalRegimesUpdateFiscalRegimeErrors = {
     /**
      * Unauthorized
      */
@@ -14516,18 +14539,18 @@ export type UpdateFiscalRegimeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalRegimeError = UpdateFiscalRegimeErrors[keyof UpdateFiscalRegimeErrors];
+export type FiscalRegimesUpdateFiscalRegimeError = FiscalRegimesUpdateFiscalRegimeErrors[keyof FiscalRegimesUpdateFiscalRegimeErrors];
 
-export type UpdateFiscalRegimeResponses = {
+export type FiscalRegimesUpdateFiscalRegimeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalRegimeResponse = UpdateFiscalRegimeResponses[keyof UpdateFiscalRegimeResponses];
+export type FiscalRegimesUpdateFiscalRegimeResponse = FiscalRegimesUpdateFiscalRegimeResponses[keyof FiscalRegimesUpdateFiscalRegimeResponses];
 
-export type GetFiscalResponsibilitiesData = {
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesData = {
     body?: FiscalResponsibilityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -14543,7 +14566,7 @@ export type GetFiscalResponsibilitiesData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalResponsibilities';
 };
 
-export type GetFiscalResponsibilitiesErrors = {
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesErrors = {
     /**
      * Unauthorized
      */
@@ -14554,18 +14577,18 @@ export type GetFiscalResponsibilitiesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilitiesError = GetFiscalResponsibilitiesErrors[keyof GetFiscalResponsibilitiesErrors];
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesError = FiscalResponsibilitiesGetFiscalResponsibilitiesErrors[keyof FiscalResponsibilitiesGetFiscalResponsibilitiesErrors];
 
-export type GetFiscalResponsibilitiesResponses = {
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesResponses = {
     /**
      * OK
      */
     200: FiscalResponsibilityDtoListEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilitiesResponse = GetFiscalResponsibilitiesResponses[keyof GetFiscalResponsibilitiesResponses];
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesResponse = FiscalResponsibilitiesGetFiscalResponsibilitiesResponses[keyof FiscalResponsibilitiesGetFiscalResponsibilitiesResponses];
 
-export type GetFiscalResponsibilitiesCountData = {
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesCountData = {
     body?: FiscalResponsibilityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -14580,7 +14603,7 @@ export type GetFiscalResponsibilitiesCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/Count';
 };
 
-export type GetFiscalResponsibilitiesCountErrors = {
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesCountErrors = {
     /**
      * Unauthorized
      */
@@ -14591,18 +14614,18 @@ export type GetFiscalResponsibilitiesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilitiesCountError = GetFiscalResponsibilitiesCountErrors[keyof GetFiscalResponsibilitiesCountErrors];
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesCountError = FiscalResponsibilitiesGetFiscalResponsibilitiesCountErrors[keyof FiscalResponsibilitiesGetFiscalResponsibilitiesCountErrors];
 
-export type GetFiscalResponsibilitiesCountResponses = {
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalResponsibilitiesCountResponse = GetFiscalResponsibilitiesCountResponses[keyof GetFiscalResponsibilitiesCountResponses];
+export type FiscalResponsibilitiesGetFiscalResponsibilitiesCountResponse = FiscalResponsibilitiesGetFiscalResponsibilitiesCountResponses[keyof FiscalResponsibilitiesGetFiscalResponsibilitiesCountResponses];
 
-export type GetFiscalResponsibilityData = {
+export type FiscalResponsibilitiesGetFiscalResponsibilityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14618,7 +14641,7 @@ export type GetFiscalResponsibilityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}';
 };
 
-export type GetFiscalResponsibilityErrors = {
+export type FiscalResponsibilitiesGetFiscalResponsibilityErrors = {
     /**
      * Unauthorized
      */
@@ -14629,18 +14652,18 @@ export type GetFiscalResponsibilityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityError = GetFiscalResponsibilityErrors[keyof GetFiscalResponsibilityErrors];
+export type FiscalResponsibilitiesGetFiscalResponsibilityError = FiscalResponsibilitiesGetFiscalResponsibilityErrors[keyof FiscalResponsibilitiesGetFiscalResponsibilityErrors];
 
-export type GetFiscalResponsibilityResponses = {
+export type FiscalResponsibilitiesGetFiscalResponsibilityResponses = {
     /**
      * OK
      */
     200: FiscalResponsibilityDtoEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityResponse = GetFiscalResponsibilityResponses[keyof GetFiscalResponsibilityResponses];
+export type FiscalResponsibilitiesGetFiscalResponsibilityResponse = FiscalResponsibilitiesGetFiscalResponsibilityResponses[keyof FiscalResponsibilitiesGetFiscalResponsibilityResponses];
 
-export type CreateFiscalResponsibilityData = {
+export type FiscalResponsibilitiesCreateFiscalResponsibilityData = {
     body?: FiscalResponsibilityCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14653,7 +14676,7 @@ export type CreateFiscalResponsibilityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities';
 };
 
-export type CreateFiscalResponsibilityErrors = {
+export type FiscalResponsibilitiesCreateFiscalResponsibilityErrors = {
     /**
      * Unauthorized
      */
@@ -14664,18 +14687,18 @@ export type CreateFiscalResponsibilityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalResponsibilityError = CreateFiscalResponsibilityErrors[keyof CreateFiscalResponsibilityErrors];
+export type FiscalResponsibilitiesCreateFiscalResponsibilityError = FiscalResponsibilitiesCreateFiscalResponsibilityErrors[keyof FiscalResponsibilitiesCreateFiscalResponsibilityErrors];
 
-export type CreateFiscalResponsibilityResponses = {
+export type FiscalResponsibilitiesCreateFiscalResponsibilityResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalResponsibilityResponse = CreateFiscalResponsibilityResponses[keyof CreateFiscalResponsibilityResponses];
+export type FiscalResponsibilitiesCreateFiscalResponsibilityResponse = FiscalResponsibilitiesCreateFiscalResponsibilityResponses[keyof FiscalResponsibilitiesCreateFiscalResponsibilityResponses];
 
-export type DeleteFiscalResponsibilityData = {
+export type FiscalResponsibilitiesDeleteFiscalResponsibilityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14690,7 +14713,7 @@ export type DeleteFiscalResponsibilityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities/{fiscalResponsibilityId}';
 };
 
-export type DeleteFiscalResponsibilityErrors = {
+export type FiscalResponsibilitiesDeleteFiscalResponsibilityErrors = {
     /**
      * Unauthorized
      */
@@ -14701,18 +14724,18 @@ export type DeleteFiscalResponsibilityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalResponsibilityError = DeleteFiscalResponsibilityErrors[keyof DeleteFiscalResponsibilityErrors];
+export type FiscalResponsibilitiesDeleteFiscalResponsibilityError = FiscalResponsibilitiesDeleteFiscalResponsibilityErrors[keyof FiscalResponsibilitiesDeleteFiscalResponsibilityErrors];
 
-export type DeleteFiscalResponsibilityResponses = {
+export type FiscalResponsibilitiesDeleteFiscalResponsibilityResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalResponsibilityResponse = DeleteFiscalResponsibilityResponses[keyof DeleteFiscalResponsibilityResponses];
+export type FiscalResponsibilitiesDeleteFiscalResponsibilityResponse = FiscalResponsibilitiesDeleteFiscalResponsibilityResponses[keyof FiscalResponsibilitiesDeleteFiscalResponsibilityResponses];
 
-export type PatchFiscalResponsibilityAsyncData = {
+export type FiscalResponsibilitiesPatchFiscalResponsibilityData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -14727,7 +14750,7 @@ export type PatchFiscalResponsibilityAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities/{fiscalResponsibilityId}';
 };
 
-export type PatchFiscalResponsibilityAsyncErrors = {
+export type FiscalResponsibilitiesPatchFiscalResponsibilityErrors = {
     /**
      * Unauthorized
      */
@@ -14738,18 +14761,18 @@ export type PatchFiscalResponsibilityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalResponsibilityAsyncError = PatchFiscalResponsibilityAsyncErrors[keyof PatchFiscalResponsibilityAsyncErrors];
+export type FiscalResponsibilitiesPatchFiscalResponsibilityError = FiscalResponsibilitiesPatchFiscalResponsibilityErrors[keyof FiscalResponsibilitiesPatchFiscalResponsibilityErrors];
 
-export type PatchFiscalResponsibilityAsyncResponses = {
+export type FiscalResponsibilitiesPatchFiscalResponsibilityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalResponsibilityAsyncResponse = PatchFiscalResponsibilityAsyncResponses[keyof PatchFiscalResponsibilityAsyncResponses];
+export type FiscalResponsibilitiesPatchFiscalResponsibilityResponse = FiscalResponsibilitiesPatchFiscalResponsibilityResponses[keyof FiscalResponsibilitiesPatchFiscalResponsibilityResponses];
 
-export type UpdateFiscalResponsibilityData = {
+export type FiscalResponsibilitiesUpdateFiscalResponsibilityData = {
     body?: FiscalResponsibilityUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14764,7 +14787,7 @@ export type UpdateFiscalResponsibilityData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities/{fiscalResponsibilityId}';
 };
 
-export type UpdateFiscalResponsibilityErrors = {
+export type FiscalResponsibilitiesUpdateFiscalResponsibilityErrors = {
     /**
      * Unauthorized
      */
@@ -14775,18 +14798,18 @@ export type UpdateFiscalResponsibilityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalResponsibilityError = UpdateFiscalResponsibilityErrors[keyof UpdateFiscalResponsibilityErrors];
+export type FiscalResponsibilitiesUpdateFiscalResponsibilityError = FiscalResponsibilitiesUpdateFiscalResponsibilityErrors[keyof FiscalResponsibilitiesUpdateFiscalResponsibilityErrors];
 
-export type UpdateFiscalResponsibilityResponses = {
+export type FiscalResponsibilitiesUpdateFiscalResponsibilityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalResponsibilityResponse = UpdateFiscalResponsibilityResponses[keyof UpdateFiscalResponsibilityResponses];
+export type FiscalResponsibilitiesUpdateFiscalResponsibilityResponse = FiscalResponsibilitiesUpdateFiscalResponsibilityResponses[keyof FiscalResponsibilitiesUpdateFiscalResponsibilityResponses];
 
-export type GetFiscalResponsibilityRecordsData = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsData = {
     body?: FiscalResponsibilityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -14802,7 +14825,7 @@ export type GetFiscalResponsibilityRecordsData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords';
 };
 
-export type GetFiscalResponsibilityRecordsErrors = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -14813,18 +14836,18 @@ export type GetFiscalResponsibilityRecordsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityRecordsError = GetFiscalResponsibilityRecordsErrors[keyof GetFiscalResponsibilityRecordsErrors];
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsError = FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsErrors[keyof FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsErrors];
 
-export type GetFiscalResponsibilityRecordsResponses = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsResponses = {
     /**
      * OK
      */
     200: FiscalResponsibilityRecordDtoListEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityRecordsResponse = GetFiscalResponsibilityRecordsResponses[keyof GetFiscalResponsibilityRecordsResponses];
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsResponse = FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsResponses[keyof FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsResponses];
 
-export type GetFiscalResponsibilityRecordsCountData = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountData = {
     body?: FiscalResponsibilityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -14840,7 +14863,7 @@ export type GetFiscalResponsibilityRecordsCountData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords/Count';
 };
 
-export type GetFiscalResponsibilityRecordsCountErrors = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountErrors = {
     /**
      * Unauthorized
      */
@@ -14851,18 +14874,18 @@ export type GetFiscalResponsibilityRecordsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityRecordsCountError = GetFiscalResponsibilityRecordsCountErrors[keyof GetFiscalResponsibilityRecordsCountErrors];
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountError = FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountErrors[keyof FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountErrors];
 
-export type GetFiscalResponsibilityRecordsCountResponses = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityRecordsCountResponse = GetFiscalResponsibilityRecordsCountResponses[keyof GetFiscalResponsibilityRecordsCountResponses];
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountResponse = FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountResponses[keyof FiscalResponsibilityRecordsGetFiscalResponsibilityRecordsCountResponses];
 
-export type GetFiscalResponsibilityRecordData = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14879,7 +14902,7 @@ export type GetFiscalResponsibilityRecordData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}';
 };
 
-export type GetFiscalResponsibilityRecordErrors = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordErrors = {
     /**
      * Unauthorized
      */
@@ -14890,18 +14913,18 @@ export type GetFiscalResponsibilityRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityRecordError = GetFiscalResponsibilityRecordErrors[keyof GetFiscalResponsibilityRecordErrors];
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordError = FiscalResponsibilityRecordsGetFiscalResponsibilityRecordErrors[keyof FiscalResponsibilityRecordsGetFiscalResponsibilityRecordErrors];
 
-export type GetFiscalResponsibilityRecordResponses = {
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordResponses = {
     /**
      * OK
      */
     200: FiscalResponsibilityRecordDtoEnvelopeReadable;
 };
 
-export type GetFiscalResponsibilityRecordResponse = GetFiscalResponsibilityRecordResponses[keyof GetFiscalResponsibilityRecordResponses];
+export type FiscalResponsibilityRecordsGetFiscalResponsibilityRecordResponse = FiscalResponsibilityRecordsGetFiscalResponsibilityRecordResponses[keyof FiscalResponsibilityRecordsGetFiscalResponsibilityRecordResponses];
 
-export type CreateFiscalResponsibilityRecordData = {
+export type FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordData = {
     body?: FiscalResponsibilityRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -14914,7 +14937,7 @@ export type CreateFiscalResponsibilityRecordData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords';
 };
 
-export type CreateFiscalResponsibilityRecordErrors = {
+export type FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordErrors = {
     /**
      * Unauthorized
      */
@@ -14925,18 +14948,18 @@ export type CreateFiscalResponsibilityRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFiscalResponsibilityRecordError = CreateFiscalResponsibilityRecordErrors[keyof CreateFiscalResponsibilityRecordErrors];
+export type FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordError = FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordErrors[keyof FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordErrors];
 
-export type CreateFiscalResponsibilityRecordResponses = {
+export type FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalResponsibilityRecordResponse = CreateFiscalResponsibilityRecordResponses[keyof CreateFiscalResponsibilityRecordResponses];
+export type FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordResponse = FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordResponses[keyof FiscalResponsibilityRecordsCreateFiscalResponsibilityRecordResponses];
 
-export type DeleteFiscalResponsibilityRecordData = {
+export type FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -14951,7 +14974,7 @@ export type DeleteFiscalResponsibilityRecordData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}';
 };
 
-export type DeleteFiscalResponsibilityRecordErrors = {
+export type FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordErrors = {
     /**
      * Unauthorized
      */
@@ -14962,18 +14985,18 @@ export type DeleteFiscalResponsibilityRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteFiscalResponsibilityRecordError = DeleteFiscalResponsibilityRecordErrors[keyof DeleteFiscalResponsibilityRecordErrors];
+export type FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordError = FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordErrors[keyof FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordErrors];
 
-export type DeleteFiscalResponsibilityRecordResponses = {
+export type FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalResponsibilityRecordResponse = DeleteFiscalResponsibilityRecordResponses[keyof DeleteFiscalResponsibilityRecordResponses];
+export type FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordResponse = FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordResponses[keyof FiscalResponsibilityRecordsDeleteFiscalResponsibilityRecordResponses];
 
-export type PatchFiscalResponsibilityRecordAsyncData = {
+export type FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -14988,7 +15011,7 @@ export type PatchFiscalResponsibilityRecordAsyncData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}';
 };
 
-export type PatchFiscalResponsibilityRecordAsyncErrors = {
+export type FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordErrors = {
     /**
      * Unauthorized
      */
@@ -14999,18 +15022,18 @@ export type PatchFiscalResponsibilityRecordAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalResponsibilityRecordAsyncError = PatchFiscalResponsibilityRecordAsyncErrors[keyof PatchFiscalResponsibilityRecordAsyncErrors];
+export type FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordError = FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordErrors[keyof FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordErrors];
 
-export type PatchFiscalResponsibilityRecordAsyncResponses = {
+export type FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalResponsibilityRecordAsyncResponse = PatchFiscalResponsibilityRecordAsyncResponses[keyof PatchFiscalResponsibilityRecordAsyncResponses];
+export type FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordResponse = FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordResponses[keyof FiscalResponsibilityRecordsPatchFiscalResponsibilityRecordResponses];
 
-export type UpdateFiscalResponsibilityRecordData = {
+export type FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordData = {
     body?: FiscalResponsibilityRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15025,7 +15048,7 @@ export type UpdateFiscalResponsibilityRecordData = {
     url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}';
 };
 
-export type UpdateFiscalResponsibilityRecordErrors = {
+export type FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordErrors = {
     /**
      * Unauthorized
      */
@@ -15036,18 +15059,18 @@ export type UpdateFiscalResponsibilityRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateFiscalResponsibilityRecordError = UpdateFiscalResponsibilityRecordErrors[keyof UpdateFiscalResponsibilityRecordErrors];
+export type FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordError = FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordErrors[keyof FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordErrors];
 
-export type UpdateFiscalResponsibilityRecordResponses = {
+export type FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalResponsibilityRecordResponse = UpdateFiscalResponsibilityRecordResponses[keyof UpdateFiscalResponsibilityRecordResponses];
+export type FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordResponse = FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordResponses[keyof FiscalResponsibilityRecordsUpdateFiscalResponsibilityRecordResponses];
 
-export type GetFiscalYearsAsyncData = {
+export type FiscalYearsGetFiscalYearsData = {
     body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15060,16 +15083,16 @@ export type GetFiscalYearsAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears';
 };
 
-export type GetFiscalYearsAsyncResponses = {
+export type FiscalYearsGetFiscalYearsResponses = {
     /**
      * OK
      */
     200: FiscalYearDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetFiscalYearsAsyncResponse = GetFiscalYearsAsyncResponses[keyof GetFiscalYearsAsyncResponses];
+export type FiscalYearsGetFiscalYearsResponse = FiscalYearsGetFiscalYearsResponses[keyof FiscalYearsGetFiscalYearsResponses];
 
-export type CreateFiscalYearAsyncData = {
+export type FiscalYearsCreateFiscalYearData = {
     body?: FiscalYearCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15082,16 +15105,16 @@ export type CreateFiscalYearAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears';
 };
 
-export type CreateFiscalYearAsyncResponses = {
+export type FiscalYearsCreateFiscalYearResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateFiscalYearAsyncResponse = CreateFiscalYearAsyncResponses[keyof CreateFiscalYearAsyncResponses];
+export type FiscalYearsCreateFiscalYearResponse = FiscalYearsCreateFiscalYearResponses[keyof FiscalYearsCreateFiscalYearResponses];
 
-export type GetFiscalYearsCountAsyncData = {
+export type FiscalYearsGetFiscalYearsCountData = {
     body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15104,16 +15127,16 @@ export type GetFiscalYearsCountAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears/Count';
 };
 
-export type GetFiscalYearsCountAsyncResponses = {
+export type FiscalYearsGetFiscalYearsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetFiscalYearsCountAsyncResponse = GetFiscalYearsCountAsyncResponses[keyof GetFiscalYearsCountAsyncResponses];
+export type FiscalYearsGetFiscalYearsCountResponse = FiscalYearsGetFiscalYearsCountResponses[keyof FiscalYearsGetFiscalYearsCountResponses];
 
-export type DeleteFiscalYearAsyncData = {
+export type FiscalYearsDeleteFiscalYearData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15128,16 +15151,16 @@ export type DeleteFiscalYearAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears/{fiscalYearId}';
 };
 
-export type DeleteFiscalYearAsyncResponses = {
+export type FiscalYearsDeleteFiscalYearResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteFiscalYearAsyncResponse = DeleteFiscalYearAsyncResponses[keyof DeleteFiscalYearAsyncResponses];
+export type FiscalYearsDeleteFiscalYearResponse = FiscalYearsDeleteFiscalYearResponses[keyof FiscalYearsDeleteFiscalYearResponses];
 
-export type GetFiscalYearDetailsAsyncData = {
+export type FiscalYearsGetFiscalYearDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15152,16 +15175,16 @@ export type GetFiscalYearDetailsAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears/{fiscalYearId}';
 };
 
-export type GetFiscalYearDetailsAsyncResponses = {
+export type FiscalYearsGetFiscalYearDetailsResponses = {
     /**
      * OK
      */
     200: FiscalYearDtoEnvelopeReadable;
 };
 
-export type GetFiscalYearDetailsAsyncResponse = GetFiscalYearDetailsAsyncResponses[keyof GetFiscalYearDetailsAsyncResponses];
+export type FiscalYearsGetFiscalYearDetailsResponse = FiscalYearsGetFiscalYearDetailsResponses[keyof FiscalYearsGetFiscalYearDetailsResponses];
 
-export type PatchFiscalYearAsyncData = {
+export type FiscalYearsPatchFiscalYearData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -15176,7 +15199,7 @@ export type PatchFiscalYearAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears/{fiscalYearId}';
 };
 
-export type PatchFiscalYearAsyncErrors = {
+export type FiscalYearsPatchFiscalYearErrors = {
     /**
      * Unauthorized
      */
@@ -15187,18 +15210,18 @@ export type PatchFiscalYearAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchFiscalYearAsyncError = PatchFiscalYearAsyncErrors[keyof PatchFiscalYearAsyncErrors];
+export type FiscalYearsPatchFiscalYearError = FiscalYearsPatchFiscalYearErrors[keyof FiscalYearsPatchFiscalYearErrors];
 
-export type PatchFiscalYearAsyncResponses = {
+export type FiscalYearsPatchFiscalYearResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchFiscalYearAsyncResponse = PatchFiscalYearAsyncResponses[keyof PatchFiscalYearAsyncResponses];
+export type FiscalYearsPatchFiscalYearResponse = FiscalYearsPatchFiscalYearResponses[keyof FiscalYearsPatchFiscalYearResponses];
 
-export type UpdateFiscalYearAsyncData = {
+export type FiscalYearsUpdateFiscalYearData = {
     body?: FiscalYearUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15213,16 +15236,16 @@ export type UpdateFiscalYearAsyncData = {
     url: '/api/v2/AccountingService/FiscalYears/{fiscalYearId}';
 };
 
-export type UpdateFiscalYearAsyncResponses = {
+export type FiscalYearsUpdateFiscalYearResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFiscalYearAsyncResponse = UpdateFiscalYearAsyncResponses[keyof UpdateFiscalYearAsyncResponses];
+export type FiscalYearsUpdateFiscalYearResponse = FiscalYearsUpdateFiscalYearResponses[keyof FiscalYearsUpdateFiscalYearResponses];
 
-export type GetGrantsAsyncData = {
+export type GrantsGetGrantsData = {
     body?: GrantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15235,16 +15258,16 @@ export type GetGrantsAsyncData = {
     url: '/api/v2/AccountingService/Grants';
 };
 
-export type GetGrantsAsyncResponses = {
+export type GrantsGetGrantsResponses = {
     /**
      * OK
      */
     200: GrantDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetGrantsAsyncResponse = GetGrantsAsyncResponses[keyof GetGrantsAsyncResponses];
+export type GrantsGetGrantsResponse = GrantsGetGrantsResponses[keyof GrantsGetGrantsResponses];
 
-export type CreateGrantAsyncData = {
+export type GrantsCreateGrantData = {
     body?: GrantCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15257,16 +15280,16 @@ export type CreateGrantAsyncData = {
     url: '/api/v2/AccountingService/Grants';
 };
 
-export type CreateGrantAsyncResponses = {
+export type GrantsCreateGrantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateGrantAsyncResponse = CreateGrantAsyncResponses[keyof CreateGrantAsyncResponses];
+export type GrantsCreateGrantResponse = GrantsCreateGrantResponses[keyof GrantsCreateGrantResponses];
 
-export type GetGrantsCountAsyncData = {
+export type GrantsGetGrantsCountData = {
     body?: GrantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15279,16 +15302,16 @@ export type GetGrantsCountAsyncData = {
     url: '/api/v2/AccountingService/Grants/Count';
 };
 
-export type GetGrantsCountAsyncResponses = {
+export type GrantsGetGrantsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetGrantsCountAsyncResponse = GetGrantsCountAsyncResponses[keyof GetGrantsCountAsyncResponses];
+export type GrantsGetGrantsCountResponse = GrantsGetGrantsCountResponses[keyof GrantsGetGrantsCountResponses];
 
-export type DeleteGrantAsyncData = {
+export type GrantsDeleteGrantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15303,16 +15326,16 @@ export type DeleteGrantAsyncData = {
     url: '/api/v2/AccountingService/Grants/{grantId}';
 };
 
-export type DeleteGrantAsyncResponses = {
+export type GrantsDeleteGrantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteGrantAsyncResponse = DeleteGrantAsyncResponses[keyof DeleteGrantAsyncResponses];
+export type GrantsDeleteGrantResponse = GrantsDeleteGrantResponses[keyof GrantsDeleteGrantResponses];
 
-export type GetGrantDetailsAsyncData = {
+export type GrantsGetGrantDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15327,16 +15350,16 @@ export type GetGrantDetailsAsyncData = {
     url: '/api/v2/AccountingService/Grants/{grantId}';
 };
 
-export type GetGrantDetailsAsyncResponses = {
+export type GrantsGetGrantDetailsResponses = {
     /**
      * OK
      */
     200: GrantDtoEnvelopeReadable;
 };
 
-export type GetGrantDetailsAsyncResponse = GetGrantDetailsAsyncResponses[keyof GetGrantDetailsAsyncResponses];
+export type GrantsGetGrantDetailsResponse = GrantsGetGrantDetailsResponses[keyof GrantsGetGrantDetailsResponses];
 
-export type PatchGrantAsyncData = {
+export type GrantsPatchGrantData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -15351,7 +15374,7 @@ export type PatchGrantAsyncData = {
     url: '/api/v2/AccountingService/Grants/{grantId}';
 };
 
-export type PatchGrantAsyncErrors = {
+export type GrantsPatchGrantErrors = {
     /**
      * Unauthorized
      */
@@ -15362,18 +15385,18 @@ export type PatchGrantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchGrantAsyncError = PatchGrantAsyncErrors[keyof PatchGrantAsyncErrors];
+export type GrantsPatchGrantError = GrantsPatchGrantErrors[keyof GrantsPatchGrantErrors];
 
-export type PatchGrantAsyncResponses = {
+export type GrantsPatchGrantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchGrantAsyncResponse = PatchGrantAsyncResponses[keyof PatchGrantAsyncResponses];
+export type GrantsPatchGrantResponse = GrantsPatchGrantResponses[keyof GrantsPatchGrantResponses];
 
-export type UpdateGrantAsyncData = {
+export type GrantsUpdateGrantData = {
     body?: GrantUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15388,16 +15411,16 @@ export type UpdateGrantAsyncData = {
     url: '/api/v2/AccountingService/Grants/{grantId}';
 };
 
-export type UpdateGrantAsyncResponses = {
+export type GrantsUpdateGrantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateGrantAsyncResponse = UpdateGrantAsyncResponses[keyof UpdateGrantAsyncResponses];
+export type GrantsUpdateGrantResponse = GrantsUpdateGrantResponses[keyof GrantsUpdateGrantResponses];
 
-export type GetInvoiceEnumerationRangesAsyncData = {
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangesData = {
     body?: InvoiceEnumerationRangeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15410,7 +15433,7 @@ export type GetInvoiceEnumerationRangesAsyncData = {
     url: '/api/v2/AccountingService/InvoiceEnumerationRanges';
 };
 
-export type GetInvoiceEnumerationRangesAsyncErrors = {
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangesErrors = {
     /**
      * Bad Request
      */
@@ -15425,18 +15448,18 @@ export type GetInvoiceEnumerationRangesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangesAsyncError = GetInvoiceEnumerationRangesAsyncErrors[keyof GetInvoiceEnumerationRangesAsyncErrors];
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangesError = InvoiceEnumerationRangesGetInvoiceEnumerationRangesErrors[keyof InvoiceEnumerationRangesGetInvoiceEnumerationRangesErrors];
 
-export type GetInvoiceEnumerationRangesAsyncResponses = {
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangesResponses = {
     /**
      * OK
      */
     200: InvoiceEnumerationRangeDtoListEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangesAsyncResponse = GetInvoiceEnumerationRangesAsyncResponses[keyof GetInvoiceEnumerationRangesAsyncResponses];
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangesResponse = InvoiceEnumerationRangesGetInvoiceEnumerationRangesResponses[keyof InvoiceEnumerationRangesGetInvoiceEnumerationRangesResponses];
 
-export type CreateInvoiceEnumerationRangeAsyncData = {
+export type InvoiceEnumerationRangesCreateInvoiceEnumerationRangeData = {
     body?: InvoiceEnumerationRangeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15449,7 +15472,7 @@ export type CreateInvoiceEnumerationRangeAsyncData = {
     url: '/api/v2/AccountingService/InvoiceEnumerationRanges';
 };
 
-export type CreateInvoiceEnumerationRangeAsyncErrors = {
+export type InvoiceEnumerationRangesCreateInvoiceEnumerationRangeErrors = {
     /**
      * Bad Request
      */
@@ -15464,18 +15487,18 @@ export type CreateInvoiceEnumerationRangeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateInvoiceEnumerationRangeAsyncError = CreateInvoiceEnumerationRangeAsyncErrors[keyof CreateInvoiceEnumerationRangeAsyncErrors];
+export type InvoiceEnumerationRangesCreateInvoiceEnumerationRangeError = InvoiceEnumerationRangesCreateInvoiceEnumerationRangeErrors[keyof InvoiceEnumerationRangesCreateInvoiceEnumerationRangeErrors];
 
-export type CreateInvoiceEnumerationRangeAsyncResponses = {
+export type InvoiceEnumerationRangesCreateInvoiceEnumerationRangeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateInvoiceEnumerationRangeAsyncResponse = CreateInvoiceEnumerationRangeAsyncResponses[keyof CreateInvoiceEnumerationRangeAsyncResponses];
+export type InvoiceEnumerationRangesCreateInvoiceEnumerationRangeResponse = InvoiceEnumerationRangesCreateInvoiceEnumerationRangeResponses[keyof InvoiceEnumerationRangesCreateInvoiceEnumerationRangeResponses];
 
-export type DeleteInvoiceEnumerationRangeAsyncData = {
+export type InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15490,7 +15513,7 @@ export type DeleteInvoiceEnumerationRangeAsyncData = {
     url: '/api/v2/AccountingService/InvoiceEnumerationRanges/{rangeId}';
 };
 
-export type DeleteInvoiceEnumerationRangeAsyncErrors = {
+export type InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeErrors = {
     /**
      * Bad Request
      */
@@ -15505,18 +15528,18 @@ export type DeleteInvoiceEnumerationRangeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteInvoiceEnumerationRangeAsyncError = DeleteInvoiceEnumerationRangeAsyncErrors[keyof DeleteInvoiceEnumerationRangeAsyncErrors];
+export type InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeError = InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeErrors[keyof InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeErrors];
 
-export type DeleteInvoiceEnumerationRangeAsyncResponses = {
+export type InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInvoiceEnumerationRangeAsyncResponse = DeleteInvoiceEnumerationRangeAsyncResponses[keyof DeleteInvoiceEnumerationRangeAsyncResponses];
+export type InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeResponse = InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeResponses[keyof InvoiceEnumerationRangesDeleteInvoiceEnumerationRangeResponses];
 
-export type GetInvoiceEnumerationRangeDetailsAsyncData = {
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15531,7 +15554,7 @@ export type GetInvoiceEnumerationRangeDetailsAsyncData = {
     url: '/api/v2/AccountingService/InvoiceEnumerationRanges/{rangeId}';
 };
 
-export type GetInvoiceEnumerationRangeDetailsAsyncErrors = {
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsErrors = {
     /**
      * Bad Request
      */
@@ -15546,18 +15569,18 @@ export type GetInvoiceEnumerationRangeDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangeDetailsAsyncError = GetInvoiceEnumerationRangeDetailsAsyncErrors[keyof GetInvoiceEnumerationRangeDetailsAsyncErrors];
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsError = InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsErrors[keyof InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsErrors];
 
-export type GetInvoiceEnumerationRangeDetailsAsyncResponses = {
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsResponses = {
     /**
      * OK
      */
     200: InvoiceEnumerationRangeDtoEnvelopeReadable;
 };
 
-export type GetInvoiceEnumerationRangeDetailsAsyncResponse = GetInvoiceEnumerationRangeDetailsAsyncResponses[keyof GetInvoiceEnumerationRangeDetailsAsyncResponses];
+export type InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsResponse = InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsResponses[keyof InvoiceEnumerationRangesGetInvoiceEnumerationRangeDetailsResponses];
 
-export type PatchInvoiceEnumerationRangeAsyncData = {
+export type InvoiceEnumerationRangesPatchInvoiceEnumerationRangeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -15572,7 +15595,7 @@ export type PatchInvoiceEnumerationRangeAsyncData = {
     url: '/api/v2/AccountingService/InvoiceEnumerationRanges/{rangeId}';
 };
 
-export type PatchInvoiceEnumerationRangeAsyncErrors = {
+export type InvoiceEnumerationRangesPatchInvoiceEnumerationRangeErrors = {
     /**
      * Unauthorized
      */
@@ -15583,18 +15606,18 @@ export type PatchInvoiceEnumerationRangeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchInvoiceEnumerationRangeAsyncError = PatchInvoiceEnumerationRangeAsyncErrors[keyof PatchInvoiceEnumerationRangeAsyncErrors];
+export type InvoiceEnumerationRangesPatchInvoiceEnumerationRangeError = InvoiceEnumerationRangesPatchInvoiceEnumerationRangeErrors[keyof InvoiceEnumerationRangesPatchInvoiceEnumerationRangeErrors];
 
-export type PatchInvoiceEnumerationRangeAsyncResponses = {
+export type InvoiceEnumerationRangesPatchInvoiceEnumerationRangeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInvoiceEnumerationRangeAsyncResponse = PatchInvoiceEnumerationRangeAsyncResponses[keyof PatchInvoiceEnumerationRangeAsyncResponses];
+export type InvoiceEnumerationRangesPatchInvoiceEnumerationRangeResponse = InvoiceEnumerationRangesPatchInvoiceEnumerationRangeResponses[keyof InvoiceEnumerationRangesPatchInvoiceEnumerationRangeResponses];
 
-export type UpdateInvoiceEnumerationRangeAsyncData = {
+export type InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeData = {
     body?: InvoiceEnumerationRangeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15609,7 +15632,7 @@ export type UpdateInvoiceEnumerationRangeAsyncData = {
     url: '/api/v2/AccountingService/InvoiceEnumerationRanges/{rangeId}';
 };
 
-export type UpdateInvoiceEnumerationRangeAsyncErrors = {
+export type InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeErrors = {
     /**
      * Bad Request
      */
@@ -15624,18 +15647,18 @@ export type UpdateInvoiceEnumerationRangeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateInvoiceEnumerationRangeAsyncError = UpdateInvoiceEnumerationRangeAsyncErrors[keyof UpdateInvoiceEnumerationRangeAsyncErrors];
+export type InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeError = InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeErrors[keyof InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeErrors];
 
-export type UpdateInvoiceEnumerationRangeAsyncResponses = {
+export type InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInvoiceEnumerationRangeAsyncResponse = UpdateInvoiceEnumerationRangeAsyncResponses[keyof UpdateInvoiceEnumerationRangeAsyncResponses];
+export type InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeResponse = InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeResponses[keyof InvoiceEnumerationRangesUpdateInvoiceEnumerationRangeResponses];
 
-export type GetJournalsAsyncData = {
+export type JournalsGetJournalsData = {
     body?: JournalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15648,7 +15671,7 @@ export type GetJournalsAsyncData = {
     url: '/api/v2/AccountingService/Journals';
 };
 
-export type GetJournalsAsyncErrors = {
+export type JournalsGetJournalsErrors = {
     /**
      * Unauthorized
      */
@@ -15659,18 +15682,18 @@ export type GetJournalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJournalsAsyncError = GetJournalsAsyncErrors[keyof GetJournalsAsyncErrors];
+export type JournalsGetJournalsError = JournalsGetJournalsErrors[keyof JournalsGetJournalsErrors];
 
-export type GetJournalsAsyncResponses = {
+export type JournalsGetJournalsResponses = {
     /**
      * OK
      */
     200: JournalDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetJournalsAsyncResponse = GetJournalsAsyncResponses[keyof GetJournalsAsyncResponses];
+export type JournalsGetJournalsResponse = JournalsGetJournalsResponses[keyof JournalsGetJournalsResponses];
 
-export type CreateJournalAsyncData = {
+export type JournalsCreateJournalData = {
     body?: JournalCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15683,7 +15706,7 @@ export type CreateJournalAsyncData = {
     url: '/api/v2/AccountingService/Journals';
 };
 
-export type CreateJournalAsyncErrors = {
+export type JournalsCreateJournalErrors = {
     /**
      * Unauthorized
      */
@@ -15694,18 +15717,18 @@ export type CreateJournalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJournalAsyncError = CreateJournalAsyncErrors[keyof CreateJournalAsyncErrors];
+export type JournalsCreateJournalError = JournalsCreateJournalErrors[keyof JournalsCreateJournalErrors];
 
-export type CreateJournalAsyncResponses = {
+export type JournalsCreateJournalResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateJournalAsyncResponse = CreateJournalAsyncResponses[keyof CreateJournalAsyncResponses];
+export type JournalsCreateJournalResponse = JournalsCreateJournalResponses[keyof JournalsCreateJournalResponses];
 
-export type CountJournalsAsyncData = {
+export type JournalsCountJournalsData = {
     body?: JournalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15718,7 +15741,7 @@ export type CountJournalsAsyncData = {
     url: '/api/v2/AccountingService/Journals/Count';
 };
 
-export type CountJournalsAsyncErrors = {
+export type JournalsCountJournalsErrors = {
     /**
      * Unauthorized
      */
@@ -15729,18 +15752,18 @@ export type CountJournalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountJournalsAsyncError = CountJournalsAsyncErrors[keyof CountJournalsAsyncErrors];
+export type JournalsCountJournalsError = JournalsCountJournalsErrors[keyof JournalsCountJournalsErrors];
 
-export type CountJournalsAsyncResponses = {
+export type JournalsCountJournalsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountJournalsAsyncResponse = CountJournalsAsyncResponses[keyof CountJournalsAsyncResponses];
+export type JournalsCountJournalsResponse = JournalsCountJournalsResponses[keyof JournalsCountJournalsResponses];
 
-export type DeleteJournalAsyncData = {
+export type JournalsDeleteJournalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15755,7 +15778,7 @@ export type DeleteJournalAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}';
 };
 
-export type DeleteJournalAsyncErrors = {
+export type JournalsDeleteJournalErrors = {
     /**
      * Unauthorized
      */
@@ -15766,18 +15789,18 @@ export type DeleteJournalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJournalAsyncError = DeleteJournalAsyncErrors[keyof DeleteJournalAsyncErrors];
+export type JournalsDeleteJournalError = JournalsDeleteJournalErrors[keyof JournalsDeleteJournalErrors];
 
-export type DeleteJournalAsyncResponses = {
+export type JournalsDeleteJournalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJournalAsyncResponse = DeleteJournalAsyncResponses[keyof DeleteJournalAsyncResponses];
+export type JournalsDeleteJournalResponse = JournalsDeleteJournalResponses[keyof JournalsDeleteJournalResponses];
 
-export type GetJournalDetailsAsyncData = {
+export type JournalsGetJournalDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -15792,7 +15815,7 @@ export type GetJournalDetailsAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}';
 };
 
-export type GetJournalDetailsAsyncErrors = {
+export type JournalsGetJournalDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -15803,18 +15826,18 @@ export type GetJournalDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJournalDetailsAsyncError = GetJournalDetailsAsyncErrors[keyof GetJournalDetailsAsyncErrors];
+export type JournalsGetJournalDetailsError = JournalsGetJournalDetailsErrors[keyof JournalsGetJournalDetailsErrors];
 
-export type GetJournalDetailsAsyncResponses = {
+export type JournalsGetJournalDetailsResponses = {
     /**
      * OK
      */
     200: JournalDtoEnvelopeReadable;
 };
 
-export type GetJournalDetailsAsyncResponse = GetJournalDetailsAsyncResponses[keyof GetJournalDetailsAsyncResponses];
+export type JournalsGetJournalDetailsResponse = JournalsGetJournalDetailsResponses[keyof JournalsGetJournalDetailsResponses];
 
-export type PatchJournalAsyncData = {
+export type JournalsPatchJournalData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -15829,7 +15852,7 @@ export type PatchJournalAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}';
 };
 
-export type PatchJournalAsyncErrors = {
+export type JournalsPatchJournalErrors = {
     /**
      * Unauthorized
      */
@@ -15840,18 +15863,18 @@ export type PatchJournalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJournalAsyncError = PatchJournalAsyncErrors[keyof PatchJournalAsyncErrors];
+export type JournalsPatchJournalError = JournalsPatchJournalErrors[keyof JournalsPatchJournalErrors];
 
-export type PatchJournalAsyncResponses = {
+export type JournalsPatchJournalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJournalAsyncResponse = PatchJournalAsyncResponses[keyof PatchJournalAsyncResponses];
+export type JournalsPatchJournalResponse = JournalsPatchJournalResponses[keyof JournalsPatchJournalResponses];
 
-export type UpdateJournalAsyncData = {
+export type JournalsUpdateJournalData = {
     body?: JournalUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15866,7 +15889,7 @@ export type UpdateJournalAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}';
 };
 
-export type UpdateJournalAsyncErrors = {
+export type JournalsUpdateJournalErrors = {
     /**
      * Unauthorized
      */
@@ -15877,18 +15900,18 @@ export type UpdateJournalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJournalAsyncError = UpdateJournalAsyncErrors[keyof UpdateJournalAsyncErrors];
+export type JournalsUpdateJournalError = JournalsUpdateJournalErrors[keyof JournalsUpdateJournalErrors];
 
-export type UpdateJournalAsyncResponses = {
+export type JournalsUpdateJournalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJournalAsyncResponse = UpdateJournalAsyncResponses[keyof UpdateJournalAsyncResponses];
+export type JournalsUpdateJournalResponse = JournalsUpdateJournalResponses[keyof JournalsUpdateJournalResponses];
 
-export type AssignJournalToBookAsyncData = {
+export type JournalsAssignJournalToBookData = {
     body?: AssignJournalToBookRequest;
     headers?: {
         'x-api-version'?: string;
@@ -15903,7 +15926,7 @@ export type AssignJournalToBookAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/AssignToBook';
 };
 
-export type AssignJournalToBookAsyncErrors = {
+export type JournalsAssignJournalToBookErrors = {
     /**
      * Bad Request
      */
@@ -15918,18 +15941,18 @@ export type AssignJournalToBookAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignJournalToBookAsyncError = AssignJournalToBookAsyncErrors[keyof AssignJournalToBookAsyncErrors];
+export type JournalsAssignJournalToBookError = JournalsAssignJournalToBookErrors[keyof JournalsAssignJournalToBookErrors];
 
-export type AssignJournalToBookAsyncResponses = {
+export type JournalsAssignJournalToBookResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AssignJournalToBookAsyncResponse = AssignJournalToBookAsyncResponses[keyof AssignJournalToBookAsyncResponses];
+export type JournalsAssignJournalToBookResponse = JournalsAssignJournalToBookResponses[keyof JournalsAssignJournalToBookResponses];
 
-export type GetJournalEntriesAsyncData = {
+export type JournalsGetJournalEntriesData = {
     body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -15944,7 +15967,7 @@ export type GetJournalEntriesAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries';
 };
 
-export type GetJournalEntriesAsyncErrors = {
+export type JournalsGetJournalEntriesErrors = {
     /**
      * Unauthorized
      */
@@ -15955,18 +15978,18 @@ export type GetJournalEntriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJournalEntriesAsyncError = GetJournalEntriesAsyncErrors[keyof GetJournalEntriesAsyncErrors];
+export type JournalsGetJournalEntriesError = JournalsGetJournalEntriesErrors[keyof JournalsGetJournalEntriesErrors];
 
-export type GetJournalEntriesAsyncResponses = {
+export type JournalsGetJournalEntriesResponses = {
     /**
      * OK
      */
     200: JournalEntryDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetJournalEntriesAsyncResponse = GetJournalEntriesAsyncResponses[keyof GetJournalEntriesAsyncResponses];
+export type JournalsGetJournalEntriesResponse = JournalsGetJournalEntriesResponses[keyof JournalsGetJournalEntriesResponses];
 
-export type CreateJournalEntryAsyncData = {
+export type JournalsCreateJournalEntryData = {
     body?: JournalEntryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -15981,7 +16004,7 @@ export type CreateJournalEntryAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries';
 };
 
-export type CreateJournalEntryAsyncErrors = {
+export type JournalsCreateJournalEntryErrors = {
     /**
      * Unauthorized
      */
@@ -15992,18 +16015,18 @@ export type CreateJournalEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJournalEntryAsyncError = CreateJournalEntryAsyncErrors[keyof CreateJournalEntryAsyncErrors];
+export type JournalsCreateJournalEntryError = JournalsCreateJournalEntryErrors[keyof JournalsCreateJournalEntryErrors];
 
-export type CreateJournalEntryAsyncResponses = {
+export type JournalsCreateJournalEntryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateJournalEntryAsyncResponse = CreateJournalEntryAsyncResponses[keyof CreateJournalEntryAsyncResponses];
+export type JournalsCreateJournalEntryResponse = JournalsCreateJournalEntryResponses[keyof JournalsCreateJournalEntryResponses];
 
-export type GetJournalEntriesCountAsyncData = {
+export type JournalsGetJournalEntriesCountData = {
     body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16018,7 +16041,7 @@ export type GetJournalEntriesCountAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Count';
 };
 
-export type GetJournalEntriesCountAsyncErrors = {
+export type JournalsGetJournalEntriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -16029,18 +16052,18 @@ export type GetJournalEntriesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJournalEntriesCountAsyncError = GetJournalEntriesCountAsyncErrors[keyof GetJournalEntriesCountAsyncErrors];
+export type JournalsGetJournalEntriesCountError = JournalsGetJournalEntriesCountErrors[keyof JournalsGetJournalEntriesCountErrors];
 
-export type GetJournalEntriesCountAsyncResponses = {
+export type JournalsGetJournalEntriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJournalEntriesCountAsyncResponse = GetJournalEntriesCountAsyncResponses[keyof GetJournalEntriesCountAsyncResponses];
+export type JournalsGetJournalEntriesCountResponse = JournalsGetJournalEntriesCountResponses[keyof JournalsGetJournalEntriesCountResponses];
 
-export type DeleteJournalEntryAsyncData = {
+export type JournalsDeleteJournalEntryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16056,7 +16079,7 @@ export type DeleteJournalEntryAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}';
 };
 
-export type DeleteJournalEntryAsyncErrors = {
+export type JournalsDeleteJournalEntryErrors = {
     /**
      * Unauthorized
      */
@@ -16067,18 +16090,18 @@ export type DeleteJournalEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJournalEntryAsyncError = DeleteJournalEntryAsyncErrors[keyof DeleteJournalEntryAsyncErrors];
+export type JournalsDeleteJournalEntryError = JournalsDeleteJournalEntryErrors[keyof JournalsDeleteJournalEntryErrors];
 
-export type DeleteJournalEntryAsyncResponses = {
+export type JournalsDeleteJournalEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJournalEntryAsyncResponse = DeleteJournalEntryAsyncResponses[keyof DeleteJournalEntryAsyncResponses];
+export type JournalsDeleteJournalEntryResponse = JournalsDeleteJournalEntryResponses[keyof JournalsDeleteJournalEntryResponses];
 
-export type GetJournalEntryDetailsAsyncData = {
+export type JournalsGetJournalEntryDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16094,7 +16117,7 @@ export type GetJournalEntryDetailsAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}';
 };
 
-export type GetJournalEntryDetailsAsyncErrors = {
+export type JournalsGetJournalEntryDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -16105,18 +16128,18 @@ export type GetJournalEntryDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJournalEntryDetailsAsyncError = GetJournalEntryDetailsAsyncErrors[keyof GetJournalEntryDetailsAsyncErrors];
+export type JournalsGetJournalEntryDetailsError = JournalsGetJournalEntryDetailsErrors[keyof JournalsGetJournalEntryDetailsErrors];
 
-export type GetJournalEntryDetailsAsyncResponses = {
+export type JournalsGetJournalEntryDetailsResponses = {
     /**
      * OK
      */
     200: JournalEntryDtoEnvelopeReadable;
 };
 
-export type GetJournalEntryDetailsAsyncResponse = GetJournalEntryDetailsAsyncResponses[keyof GetJournalEntryDetailsAsyncResponses];
+export type JournalsGetJournalEntryDetailsResponse = JournalsGetJournalEntryDetailsResponses[keyof JournalsGetJournalEntryDetailsResponses];
 
-export type PatchJournalEntryAsyncData = {
+export type JournalsPatchJournalEntryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -16132,7 +16155,7 @@ export type PatchJournalEntryAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}';
 };
 
-export type PatchJournalEntryAsyncErrors = {
+export type JournalsPatchJournalEntryErrors = {
     /**
      * Unauthorized
      */
@@ -16143,18 +16166,18 @@ export type PatchJournalEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJournalEntryAsyncError = PatchJournalEntryAsyncErrors[keyof PatchJournalEntryAsyncErrors];
+export type JournalsPatchJournalEntryError = JournalsPatchJournalEntryErrors[keyof JournalsPatchJournalEntryErrors];
 
-export type PatchJournalEntryAsyncResponses = {
+export type JournalsPatchJournalEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJournalEntryAsyncResponse = PatchJournalEntryAsyncResponses[keyof PatchJournalEntryAsyncResponses];
+export type JournalsPatchJournalEntryResponse = JournalsPatchJournalEntryResponses[keyof JournalsPatchJournalEntryResponses];
 
-export type UpdateJournalEntryAsyncData = {
+export type JournalsUpdateJournalEntryData = {
     body?: JournalEntryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -16170,7 +16193,7 @@ export type UpdateJournalEntryAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}';
 };
 
-export type UpdateJournalEntryAsyncErrors = {
+export type JournalsUpdateJournalEntryErrors = {
     /**
      * Unauthorized
      */
@@ -16181,18 +16204,18 @@ export type UpdateJournalEntryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJournalEntryAsyncError = UpdateJournalEntryAsyncErrors[keyof UpdateJournalEntryAsyncErrors];
+export type JournalsUpdateJournalEntryError = JournalsUpdateJournalEntryErrors[keyof JournalsUpdateJournalEntryErrors];
 
-export type UpdateJournalEntryAsyncResponses = {
+export type JournalsUpdateJournalEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJournalEntryAsyncResponse = UpdateJournalEntryAsyncResponses[keyof UpdateJournalEntryAsyncResponses];
+export type JournalsUpdateJournalEntryResponse = JournalsUpdateJournalEntryResponses[keyof JournalsUpdateJournalEntryResponses];
 
-export type AggregateJournalEntryDebitsAsyncData = {
+export type JournalsAggregateJournalEntryDebitsData = {
     body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16208,7 +16231,7 @@ export type AggregateJournalEntryDebitsAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits';
 };
 
-export type AggregateJournalEntryDebitsAsyncErrors = {
+export type JournalsAggregateJournalEntryDebitsErrors = {
     /**
      * Unauthorized
      */
@@ -16219,18 +16242,18 @@ export type AggregateJournalEntryDebitsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AggregateJournalEntryDebitsAsyncError = AggregateJournalEntryDebitsAsyncErrors[keyof AggregateJournalEntryDebitsAsyncErrors];
+export type JournalsAggregateJournalEntryDebitsError = JournalsAggregateJournalEntryDebitsErrors[keyof JournalsAggregateJournalEntryDebitsErrors];
 
-export type AggregateJournalEntryDebitsAsyncResponses = {
+export type JournalsAggregateJournalEntryDebitsResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateJournalEntryDebitsAsyncResponse = AggregateJournalEntryDebitsAsyncResponses[keyof AggregateJournalEntryDebitsAsyncResponses];
+export type JournalsAggregateJournalEntryDebitsResponse = JournalsAggregateJournalEntryDebitsResponses[keyof JournalsAggregateJournalEntryDebitsResponses];
 
-export type AggregateJournalEntryCreditsAsyncData = {
+export type JournalsAggregateJournalEntryCreditsData = {
     body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16246,7 +16269,7 @@ export type AggregateJournalEntryCreditsAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits';
 };
 
-export type AggregateJournalEntryCreditsAsyncErrors = {
+export type JournalsAggregateJournalEntryCreditsErrors = {
     /**
      * Unauthorized
      */
@@ -16257,18 +16280,18 @@ export type AggregateJournalEntryCreditsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AggregateJournalEntryCreditsAsyncError = AggregateJournalEntryCreditsAsyncErrors[keyof AggregateJournalEntryCreditsAsyncErrors];
+export type JournalsAggregateJournalEntryCreditsError = JournalsAggregateJournalEntryCreditsErrors[keyof JournalsAggregateJournalEntryCreditsErrors];
 
-export type AggregateJournalEntryCreditsAsyncResponses = {
+export type JournalsAggregateJournalEntryCreditsResponses = {
     /**
      * OK
      */
     200: MoneyEnvelopeReadable;
 };
 
-export type AggregateJournalEntryCreditsAsyncResponse = AggregateJournalEntryCreditsAsyncResponses[keyof AggregateJournalEntryCreditsAsyncResponses];
+export type JournalsAggregateJournalEntryCreditsResponse = JournalsAggregateJournalEntryCreditsResponses[keyof JournalsAggregateJournalEntryCreditsResponses];
 
-export type PostJournalEntryAsyncData = {
+export type JournalsPostJournalEntryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16284,7 +16307,7 @@ export type PostJournalEntryAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Post';
 };
 
-export type PostJournalEntryAsyncErrors = {
+export type JournalsPostJournalEntryErrors = {
     /**
      * Unauthorized
      */
@@ -16299,18 +16322,18 @@ export type PostJournalEntryAsyncErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type PostJournalEntryAsyncError = PostJournalEntryAsyncErrors[keyof PostJournalEntryAsyncErrors];
+export type JournalsPostJournalEntryError = JournalsPostJournalEntryErrors[keyof JournalsPostJournalEntryErrors];
 
-export type PostJournalEntryAsyncResponses = {
+export type JournalsPostJournalEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PostJournalEntryAsyncResponse = PostJournalEntryAsyncResponses[keyof PostJournalEntryAsyncResponses];
+export type JournalsPostJournalEntryResponse = JournalsPostJournalEntryResponses[keyof JournalsPostJournalEntryResponses];
 
-export type ReverseJournalEntryAsyncData = {
+export type JournalsReverseJournalEntryData = {
     body?: ReverseJournalEntryRequest;
     headers?: {
         'x-api-version'?: string;
@@ -16326,7 +16349,7 @@ export type ReverseJournalEntryAsyncData = {
     url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Reverse';
 };
 
-export type ReverseJournalEntryAsyncErrors = {
+export type JournalsReverseJournalEntryErrors = {
     /**
      * Bad Request
      */
@@ -16345,18 +16368,18 @@ export type ReverseJournalEntryAsyncErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ReverseJournalEntryAsyncError = ReverseJournalEntryAsyncErrors[keyof ReverseJournalEntryAsyncErrors];
+export type JournalsReverseJournalEntryError = JournalsReverseJournalEntryErrors[keyof JournalsReverseJournalEntryErrors];
 
-export type ReverseJournalEntryAsyncResponses = {
+export type JournalsReverseJournalEntryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type ReverseJournalEntryAsyncResponse = ReverseJournalEntryAsyncResponses[keyof ReverseJournalEntryAsyncResponses];
+export type JournalsReverseJournalEntryResponse = JournalsReverseJournalEntryResponses[keyof JournalsReverseJournalEntryResponses];
 
-export type DeleteJournalTypeAsyncData = {
+export type JournalTypesDeleteJournalTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16371,16 +16394,16 @@ export type DeleteJournalTypeAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes/{journalTypeId}';
 };
 
-export type DeleteJournalTypeAsyncResponses = {
+export type JournalTypesDeleteJournalTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJournalTypeAsyncResponse = DeleteJournalTypeAsyncResponses[keyof DeleteJournalTypeAsyncResponses];
+export type JournalTypesDeleteJournalTypeResponse = JournalTypesDeleteJournalTypeResponses[keyof JournalTypesDeleteJournalTypeResponses];
 
-export type GetJournalTypeDetailsAsyncData = {
+export type JournalTypesGetJournalTypeDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16395,16 +16418,16 @@ export type GetJournalTypeDetailsAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes/{journalTypeId}';
 };
 
-export type GetJournalTypeDetailsAsyncResponses = {
+export type JournalTypesGetJournalTypeDetailsResponses = {
     /**
      * OK
      */
     200: JournalTypeDtoEnvelopeReadable;
 };
 
-export type GetJournalTypeDetailsAsyncResponse = GetJournalTypeDetailsAsyncResponses[keyof GetJournalTypeDetailsAsyncResponses];
+export type JournalTypesGetJournalTypeDetailsResponse = JournalTypesGetJournalTypeDetailsResponses[keyof JournalTypesGetJournalTypeDetailsResponses];
 
-export type PatchJournalTypeAsyncData = {
+export type JournalTypesPatchJournalTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -16419,7 +16442,7 @@ export type PatchJournalTypeAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes/{journalTypeId}';
 };
 
-export type PatchJournalTypeAsyncErrors = {
+export type JournalTypesPatchJournalTypeErrors = {
     /**
      * Unauthorized
      */
@@ -16430,18 +16453,18 @@ export type PatchJournalTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJournalTypeAsyncError = PatchJournalTypeAsyncErrors[keyof PatchJournalTypeAsyncErrors];
+export type JournalTypesPatchJournalTypeError = JournalTypesPatchJournalTypeErrors[keyof JournalTypesPatchJournalTypeErrors];
 
-export type PatchJournalTypeAsyncResponses = {
+export type JournalTypesPatchJournalTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJournalTypeAsyncResponse = PatchJournalTypeAsyncResponses[keyof PatchJournalTypeAsyncResponses];
+export type JournalTypesPatchJournalTypeResponse = JournalTypesPatchJournalTypeResponses[keyof JournalTypesPatchJournalTypeResponses];
 
-export type UpdateJournalTypeAsyncData = {
+export type JournalTypesUpdateJournalTypeData = {
     body?: JournalTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -16456,16 +16479,16 @@ export type UpdateJournalTypeAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes/{journalTypeId}';
 };
 
-export type UpdateJournalTypeAsyncResponses = {
+export type JournalTypesUpdateJournalTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJournalTypeAsyncResponse = UpdateJournalTypeAsyncResponses[keyof UpdateJournalTypeAsyncResponses];
+export type JournalTypesUpdateJournalTypeResponse = JournalTypesUpdateJournalTypeResponses[keyof JournalTypesUpdateJournalTypeResponses];
 
-export type GetJournalTypesAsyncData = {
+export type JournalTypesGetJournalTypesData = {
     body?: JournalTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16478,16 +16501,16 @@ export type GetJournalTypesAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes';
 };
 
-export type GetJournalTypesAsyncResponses = {
+export type JournalTypesGetJournalTypesResponses = {
     /**
      * OK
      */
     200: JournalTypeDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetJournalTypesAsyncResponse = GetJournalTypesAsyncResponses[keyof GetJournalTypesAsyncResponses];
+export type JournalTypesGetJournalTypesResponse = JournalTypesGetJournalTypesResponses[keyof JournalTypesGetJournalTypesResponses];
 
-export type CreateJournalTypeAsyncData = {
+export type JournalTypesCreateJournalTypeData = {
     body?: JournalTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -16500,16 +16523,16 @@ export type CreateJournalTypeAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes';
 };
 
-export type CreateJournalTypeAsyncResponses = {
+export type JournalTypesCreateJournalTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJournalTypeAsyncResponse = CreateJournalTypeAsyncResponses[keyof CreateJournalTypeAsyncResponses];
+export type JournalTypesCreateJournalTypeResponse = JournalTypesCreateJournalTypeResponses[keyof JournalTypesCreateJournalTypeResponses];
 
-export type GetJournalTypesCountAsyncData = {
+export type JournalTypesGetJournalTypesCountData = {
     body?: JournalTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16522,16 +16545,16 @@ export type GetJournalTypesCountAsyncData = {
     url: '/api/v2/AccountingService/JournalTypes/Count';
 };
 
-export type GetJournalTypesCountAsyncResponses = {
+export type JournalTypesGetJournalTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJournalTypesCountAsyncResponse = GetJournalTypesCountAsyncResponses[keyof GetJournalTypesCountAsyncResponses];
+export type JournalTypesGetJournalTypesCountResponse = JournalTypesGetJournalTypesCountResponses[keyof JournalTypesGetJournalTypesCountResponses];
 
-export type GetLedgersAsyncData = {
+export type LedgersGetLedgersData = {
     body?: LedgerDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16544,7 +16567,7 @@ export type GetLedgersAsyncData = {
     url: '/api/v2/AccountingService/Ledgers';
 };
 
-export type GetLedgersAsyncErrors = {
+export type LedgersGetLedgersErrors = {
     /**
      * Unauthorized
      */
@@ -16555,18 +16578,18 @@ export type GetLedgersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLedgersAsyncError = GetLedgersAsyncErrors[keyof GetLedgersAsyncErrors];
+export type LedgersGetLedgersError = LedgersGetLedgersErrors[keyof LedgersGetLedgersErrors];
 
-export type GetLedgersAsyncResponses = {
+export type LedgersGetLedgersResponses = {
     /**
      * OK
      */
     200: LedgerDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetLedgersAsyncResponse = GetLedgersAsyncResponses[keyof GetLedgersAsyncResponses];
+export type LedgersGetLedgersResponse = LedgersGetLedgersResponses[keyof LedgersGetLedgersResponses];
 
-export type CreateLedgerAsyncData = {
+export type LedgersCreateLedgerData = {
     body?: CreateLedgerDto;
     headers?: {
         'x-api-version'?: string;
@@ -16579,7 +16602,7 @@ export type CreateLedgerAsyncData = {
     url: '/api/v2/AccountingService/Ledgers';
 };
 
-export type CreateLedgerAsyncErrors = {
+export type LedgersCreateLedgerErrors = {
     /**
      * Unauthorized
      */
@@ -16590,18 +16613,18 @@ export type CreateLedgerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLedgerAsyncError = CreateLedgerAsyncErrors[keyof CreateLedgerAsyncErrors];
+export type LedgersCreateLedgerError = LedgersCreateLedgerErrors[keyof LedgersCreateLedgerErrors];
 
-export type CreateLedgerAsyncResponses = {
+export type LedgersCreateLedgerResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLedgerAsyncResponse = CreateLedgerAsyncResponses[keyof CreateLedgerAsyncResponses];
+export type LedgersCreateLedgerResponse = LedgersCreateLedgerResponses[keyof LedgersCreateLedgerResponses];
 
-export type GetLedgersCountAsyncData = {
+export type LedgersGetLedgersCountData = {
     body?: LedgerDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16614,7 +16637,7 @@ export type GetLedgersCountAsyncData = {
     url: '/api/v2/AccountingService/Ledgers/Count';
 };
 
-export type GetLedgersCountAsyncErrors = {
+export type LedgersGetLedgersCountErrors = {
     /**
      * Unauthorized
      */
@@ -16625,18 +16648,18 @@ export type GetLedgersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLedgersCountAsyncError = GetLedgersCountAsyncErrors[keyof GetLedgersCountAsyncErrors];
+export type LedgersGetLedgersCountError = LedgersGetLedgersCountErrors[keyof LedgersGetLedgersCountErrors];
 
-export type GetLedgersCountAsyncResponses = {
+export type LedgersGetLedgersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLedgersCountAsyncResponse = GetLedgersCountAsyncResponses[keyof GetLedgersCountAsyncResponses];
+export type LedgersGetLedgersCountResponse = LedgersGetLedgersCountResponses[keyof LedgersGetLedgersCountResponses];
 
-export type DeleteLedgerAsyncData = {
+export type LedgersDeleteLedgerData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16651,7 +16674,7 @@ export type DeleteLedgerAsyncData = {
     url: '/api/v2/AccountingService/Ledgers/{ledgerId}';
 };
 
-export type DeleteLedgerAsyncErrors = {
+export type LedgersDeleteLedgerErrors = {
     /**
      * Unauthorized
      */
@@ -16662,18 +16685,18 @@ export type DeleteLedgerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLedgerAsyncError = DeleteLedgerAsyncErrors[keyof DeleteLedgerAsyncErrors];
+export type LedgersDeleteLedgerError = LedgersDeleteLedgerErrors[keyof LedgersDeleteLedgerErrors];
 
-export type DeleteLedgerAsyncResponses = {
+export type LedgersDeleteLedgerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLedgerAsyncResponse = DeleteLedgerAsyncResponses[keyof DeleteLedgerAsyncResponses];
+export type LedgersDeleteLedgerResponse = LedgersDeleteLedgerResponses[keyof LedgersDeleteLedgerResponses];
 
-export type GetLedgerDetailsAsyncData = {
+export type LedgersGetLedgerDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16688,7 +16711,7 @@ export type GetLedgerDetailsAsyncData = {
     url: '/api/v2/AccountingService/Ledgers/{ledgerId}';
 };
 
-export type GetLedgerDetailsAsyncErrors = {
+export type LedgersGetLedgerDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -16699,18 +16722,18 @@ export type GetLedgerDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLedgerDetailsAsyncError = GetLedgerDetailsAsyncErrors[keyof GetLedgerDetailsAsyncErrors];
+export type LedgersGetLedgerDetailsError = LedgersGetLedgerDetailsErrors[keyof LedgersGetLedgerDetailsErrors];
 
-export type GetLedgerDetailsAsyncResponses = {
+export type LedgersGetLedgerDetailsResponses = {
     /**
      * OK
      */
     200: LedgerDtoEnvelopeReadable;
 };
 
-export type GetLedgerDetailsAsyncResponse = GetLedgerDetailsAsyncResponses[keyof GetLedgerDetailsAsyncResponses];
+export type LedgersGetLedgerDetailsResponse = LedgersGetLedgerDetailsResponses[keyof LedgersGetLedgerDetailsResponses];
 
-export type PatchLedgerAsyncData = {
+export type LedgersPatchLedgerData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -16725,7 +16748,7 @@ export type PatchLedgerAsyncData = {
     url: '/api/v2/AccountingService/Ledgers/{ledgerId}';
 };
 
-export type PatchLedgerAsyncErrors = {
+export type LedgersPatchLedgerErrors = {
     /**
      * Unauthorized
      */
@@ -16736,18 +16759,18 @@ export type PatchLedgerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLedgerAsyncError = PatchLedgerAsyncErrors[keyof PatchLedgerAsyncErrors];
+export type LedgersPatchLedgerError = LedgersPatchLedgerErrors[keyof LedgersPatchLedgerErrors];
 
-export type PatchLedgerAsyncResponses = {
+export type LedgersPatchLedgerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLedgerAsyncResponse = PatchLedgerAsyncResponses[keyof PatchLedgerAsyncResponses];
+export type LedgersPatchLedgerResponse = LedgersPatchLedgerResponses[keyof LedgersPatchLedgerResponses];
 
-export type UpdateLedgerAsyncData = {
+export type LedgersUpdateLedgerData = {
     body?: UpdateLedgerDto;
     headers?: {
         'x-api-version'?: string;
@@ -16762,7 +16785,7 @@ export type UpdateLedgerAsyncData = {
     url: '/api/v2/AccountingService/Ledgers/{ledgerId}';
 };
 
-export type UpdateLedgerAsyncErrors = {
+export type LedgersUpdateLedgerErrors = {
     /**
      * Unauthorized
      */
@@ -16773,18 +16796,18 @@ export type UpdateLedgerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLedgerAsyncError = UpdateLedgerAsyncErrors[keyof UpdateLedgerAsyncErrors];
+export type LedgersUpdateLedgerError = LedgersUpdateLedgerErrors[keyof LedgersUpdateLedgerErrors];
 
-export type UpdateLedgerAsyncResponses = {
+export type LedgersUpdateLedgerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLedgerAsyncResponse = UpdateLedgerAsyncResponses[keyof UpdateLedgerAsyncResponses];
+export type LedgersUpdateLedgerResponse = LedgersUpdateLedgerResponses[keyof LedgersUpdateLedgerResponses];
 
-export type GetLedgerTypesAsyncData = {
+export type LedgerTypesGetLedgerTypesData = {
     body?: LedgerTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16797,7 +16820,7 @@ export type GetLedgerTypesAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes';
 };
 
-export type GetLedgerTypesAsyncErrors = {
+export type LedgerTypesGetLedgerTypesErrors = {
     /**
      * Unauthorized
      */
@@ -16808,18 +16831,18 @@ export type GetLedgerTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLedgerTypesAsyncError = GetLedgerTypesAsyncErrors[keyof GetLedgerTypesAsyncErrors];
+export type LedgerTypesGetLedgerTypesError = LedgerTypesGetLedgerTypesErrors[keyof LedgerTypesGetLedgerTypesErrors];
 
-export type GetLedgerTypesAsyncResponses = {
+export type LedgerTypesGetLedgerTypesResponses = {
     /**
      * OK
      */
     200: LedgerTypeDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetLedgerTypesAsyncResponse = GetLedgerTypesAsyncResponses[keyof GetLedgerTypesAsyncResponses];
+export type LedgerTypesGetLedgerTypesResponse = LedgerTypesGetLedgerTypesResponses[keyof LedgerTypesGetLedgerTypesResponses];
 
-export type CreateLedgerTypeAsyncData = {
+export type LedgerTypesCreateLedgerTypeData = {
     body?: LedgerTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -16832,7 +16855,7 @@ export type CreateLedgerTypeAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes';
 };
 
-export type CreateLedgerTypeAsyncErrors = {
+export type LedgerTypesCreateLedgerTypeErrors = {
     /**
      * Unauthorized
      */
@@ -16843,18 +16866,18 @@ export type CreateLedgerTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLedgerTypeAsyncError = CreateLedgerTypeAsyncErrors[keyof CreateLedgerTypeAsyncErrors];
+export type LedgerTypesCreateLedgerTypeError = LedgerTypesCreateLedgerTypeErrors[keyof LedgerTypesCreateLedgerTypeErrors];
 
-export type CreateLedgerTypeAsyncResponses = {
+export type LedgerTypesCreateLedgerTypeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLedgerTypeAsyncResponse = CreateLedgerTypeAsyncResponses[keyof CreateLedgerTypeAsyncResponses];
+export type LedgerTypesCreateLedgerTypeResponse = LedgerTypesCreateLedgerTypeResponses[keyof LedgerTypesCreateLedgerTypeResponses];
 
-export type GetLedgerTypesCountAsyncData = {
+export type LedgerTypesGetLedgerTypesCountData = {
     body?: LedgerTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -16867,7 +16890,7 @@ export type GetLedgerTypesCountAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes/Count';
 };
 
-export type GetLedgerTypesCountAsyncErrors = {
+export type LedgerTypesGetLedgerTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -16878,18 +16901,18 @@ export type GetLedgerTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLedgerTypesCountAsyncError = GetLedgerTypesCountAsyncErrors[keyof GetLedgerTypesCountAsyncErrors];
+export type LedgerTypesGetLedgerTypesCountError = LedgerTypesGetLedgerTypesCountErrors[keyof LedgerTypesGetLedgerTypesCountErrors];
 
-export type GetLedgerTypesCountAsyncResponses = {
+export type LedgerTypesGetLedgerTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLedgerTypesCountAsyncResponse = GetLedgerTypesCountAsyncResponses[keyof GetLedgerTypesCountAsyncResponses];
+export type LedgerTypesGetLedgerTypesCountResponse = LedgerTypesGetLedgerTypesCountResponses[keyof LedgerTypesGetLedgerTypesCountResponses];
 
-export type DeleteLedgerTypeAsyncData = {
+export type LedgerTypesDeleteLedgerTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16904,7 +16927,7 @@ export type DeleteLedgerTypeAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes/{ledgerTypeId}';
 };
 
-export type DeleteLedgerTypeAsyncErrors = {
+export type LedgerTypesDeleteLedgerTypeErrors = {
     /**
      * Unauthorized
      */
@@ -16915,18 +16938,18 @@ export type DeleteLedgerTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLedgerTypeAsyncError = DeleteLedgerTypeAsyncErrors[keyof DeleteLedgerTypeAsyncErrors];
+export type LedgerTypesDeleteLedgerTypeError = LedgerTypesDeleteLedgerTypeErrors[keyof LedgerTypesDeleteLedgerTypeErrors];
 
-export type DeleteLedgerTypeAsyncResponses = {
+export type LedgerTypesDeleteLedgerTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLedgerTypeAsyncResponse = DeleteLedgerTypeAsyncResponses[keyof DeleteLedgerTypeAsyncResponses];
+export type LedgerTypesDeleteLedgerTypeResponse = LedgerTypesDeleteLedgerTypeResponses[keyof LedgerTypesDeleteLedgerTypeResponses];
 
-export type GetLedgerTypeDetailsAsyncData = {
+export type LedgerTypesGetLedgerTypeDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -16941,7 +16964,7 @@ export type GetLedgerTypeDetailsAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes/{ledgerTypeId}';
 };
 
-export type GetLedgerTypeDetailsAsyncErrors = {
+export type LedgerTypesGetLedgerTypeDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -16952,18 +16975,18 @@ export type GetLedgerTypeDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLedgerTypeDetailsAsyncError = GetLedgerTypeDetailsAsyncErrors[keyof GetLedgerTypeDetailsAsyncErrors];
+export type LedgerTypesGetLedgerTypeDetailsError = LedgerTypesGetLedgerTypeDetailsErrors[keyof LedgerTypesGetLedgerTypeDetailsErrors];
 
-export type GetLedgerTypeDetailsAsyncResponses = {
+export type LedgerTypesGetLedgerTypeDetailsResponses = {
     /**
      * OK
      */
     200: LedgerTypeDtoEnvelopeReadable;
 };
 
-export type GetLedgerTypeDetailsAsyncResponse = GetLedgerTypeDetailsAsyncResponses[keyof GetLedgerTypeDetailsAsyncResponses];
+export type LedgerTypesGetLedgerTypeDetailsResponse = LedgerTypesGetLedgerTypeDetailsResponses[keyof LedgerTypesGetLedgerTypeDetailsResponses];
 
-export type PatchLedgerTypeAsyncData = {
+export type LedgerTypesPatchLedgerTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -16978,7 +17001,7 @@ export type PatchLedgerTypeAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes/{ledgerTypeId}';
 };
 
-export type PatchLedgerTypeAsyncErrors = {
+export type LedgerTypesPatchLedgerTypeErrors = {
     /**
      * Unauthorized
      */
@@ -16989,18 +17012,18 @@ export type PatchLedgerTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLedgerTypeAsyncError = PatchLedgerTypeAsyncErrors[keyof PatchLedgerTypeAsyncErrors];
+export type LedgerTypesPatchLedgerTypeError = LedgerTypesPatchLedgerTypeErrors[keyof LedgerTypesPatchLedgerTypeErrors];
 
-export type PatchLedgerTypeAsyncResponses = {
+export type LedgerTypesPatchLedgerTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLedgerTypeAsyncResponse = PatchLedgerTypeAsyncResponses[keyof PatchLedgerTypeAsyncResponses];
+export type LedgerTypesPatchLedgerTypeResponse = LedgerTypesPatchLedgerTypeResponses[keyof LedgerTypesPatchLedgerTypeResponses];
 
-export type UpdateLedgerTypeAsyncData = {
+export type LedgerTypesUpdateLedgerTypeData = {
     body?: LedgerTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17015,7 +17038,7 @@ export type UpdateLedgerTypeAsyncData = {
     url: '/api/v2/AccountingService/LedgerTypes/{ledgerTypeId}';
 };
 
-export type UpdateLedgerTypeAsyncErrors = {
+export type LedgerTypesUpdateLedgerTypeErrors = {
     /**
      * Unauthorized
      */
@@ -17026,18 +17049,18 @@ export type UpdateLedgerTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLedgerTypeAsyncError = UpdateLedgerTypeAsyncErrors[keyof UpdateLedgerTypeAsyncErrors];
+export type LedgerTypesUpdateLedgerTypeError = LedgerTypesUpdateLedgerTypeErrors[keyof LedgerTypesUpdateLedgerTypeErrors];
 
-export type UpdateLedgerTypeAsyncResponses = {
+export type LedgerTypesUpdateLedgerTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLedgerTypeAsyncResponse = UpdateLedgerTypeAsyncResponses[keyof UpdateLedgerTypeAsyncResponses];
+export type LedgerTypesUpdateLedgerTypeResponse = LedgerTypesUpdateLedgerTypeResponses[keyof LedgerTypesUpdateLedgerTypeResponses];
 
-export type DeleteLoanAsyncData = {
+export type LoansDeleteLoanData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -17052,7 +17075,7 @@ export type DeleteLoanAsyncData = {
     url: '/api/v2/AccountingService/Loans/{loanId}';
 };
 
-export type DeleteLoanAsyncErrors = {
+export type LoansDeleteLoanErrors = {
     /**
      * Unauthorized
      */
@@ -17063,18 +17086,18 @@ export type DeleteLoanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLoanAsyncError = DeleteLoanAsyncErrors[keyof DeleteLoanAsyncErrors];
+export type LoansDeleteLoanError = LoansDeleteLoanErrors[keyof LoansDeleteLoanErrors];
 
-export type DeleteLoanAsyncResponses = {
+export type LoansDeleteLoanResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLoanAsyncResponse = DeleteLoanAsyncResponses[keyof DeleteLoanAsyncResponses];
+export type LoansDeleteLoanResponse = LoansDeleteLoanResponses[keyof LoansDeleteLoanResponses];
 
-export type GetLoanDetailsAsyncData = {
+export type LoansGetLoanDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -17089,7 +17112,7 @@ export type GetLoanDetailsAsyncData = {
     url: '/api/v2/AccountingService/Loans/{loanId}';
 };
 
-export type GetLoanDetailsAsyncErrors = {
+export type LoansGetLoanDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -17100,18 +17123,18 @@ export type GetLoanDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanDetailsAsyncError = GetLoanDetailsAsyncErrors[keyof GetLoanDetailsAsyncErrors];
+export type LoansGetLoanDetailsError = LoansGetLoanDetailsErrors[keyof LoansGetLoanDetailsErrors];
 
-export type GetLoanDetailsAsyncResponses = {
+export type LoansGetLoanDetailsResponses = {
     /**
      * OK
      */
     200: LoanDtoEnvelopeReadable;
 };
 
-export type GetLoanDetailsAsyncResponse = GetLoanDetailsAsyncResponses[keyof GetLoanDetailsAsyncResponses];
+export type LoansGetLoanDetailsResponse = LoansGetLoanDetailsResponses[keyof LoansGetLoanDetailsResponses];
 
-export type PatchLoanAsyncData = {
+export type LoansPatchLoanData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -17126,7 +17149,7 @@ export type PatchLoanAsyncData = {
     url: '/api/v2/AccountingService/Loans/{loanId}';
 };
 
-export type PatchLoanAsyncErrors = {
+export type LoansPatchLoanErrors = {
     /**
      * Unauthorized
      */
@@ -17137,18 +17160,18 @@ export type PatchLoanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLoanAsyncError = PatchLoanAsyncErrors[keyof PatchLoanAsyncErrors];
+export type LoansPatchLoanError = LoansPatchLoanErrors[keyof LoansPatchLoanErrors];
 
-export type PatchLoanAsyncResponses = {
+export type LoansPatchLoanResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLoanAsyncResponse = PatchLoanAsyncResponses[keyof PatchLoanAsyncResponses];
+export type LoansPatchLoanResponse = LoansPatchLoanResponses[keyof LoansPatchLoanResponses];
 
-export type UpdateLoanAsyncData = {
+export type LoansUpdateLoanData = {
     body: LoanUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17163,7 +17186,7 @@ export type UpdateLoanAsyncData = {
     url: '/api/v2/AccountingService/Loans/{loanId}';
 };
 
-export type UpdateLoanAsyncErrors = {
+export type LoansUpdateLoanErrors = {
     /**
      * Unauthorized
      */
@@ -17174,18 +17197,18 @@ export type UpdateLoanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLoanAsyncError = UpdateLoanAsyncErrors[keyof UpdateLoanAsyncErrors];
+export type LoansUpdateLoanError = LoansUpdateLoanErrors[keyof LoansUpdateLoanErrors];
 
-export type UpdateLoanAsyncResponses = {
+export type LoansUpdateLoanResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLoanAsyncResponse = UpdateLoanAsyncResponses[keyof UpdateLoanAsyncResponses];
+export type LoansUpdateLoanResponse = LoansUpdateLoanResponses[keyof LoansUpdateLoanResponses];
 
-export type GetLoansAsyncData = {
+export type LoansGetLoansData = {
     body?: LoanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17198,7 +17221,7 @@ export type GetLoansAsyncData = {
     url: '/api/v2/AccountingService/Loans';
 };
 
-export type GetLoansAsyncErrors = {
+export type LoansGetLoansErrors = {
     /**
      * Unauthorized
      */
@@ -17209,18 +17232,18 @@ export type GetLoansAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoansAsyncError = GetLoansAsyncErrors[keyof GetLoansAsyncErrors];
+export type LoansGetLoansError = LoansGetLoansErrors[keyof LoansGetLoansErrors];
 
-export type GetLoansAsyncResponses = {
+export type LoansGetLoansResponses = {
     /**
      * OK
      */
     200: LoanDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetLoansAsyncResponse = GetLoansAsyncResponses[keyof GetLoansAsyncResponses];
+export type LoansGetLoansResponse = LoansGetLoansResponses[keyof LoansGetLoansResponses];
 
-export type CreateLoanAsyncData = {
+export type LoansCreateLoanData = {
     body: LoanCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17233,7 +17256,7 @@ export type CreateLoanAsyncData = {
     url: '/api/v2/AccountingService/Loans';
 };
 
-export type CreateLoanAsyncErrors = {
+export type LoansCreateLoanErrors = {
     /**
      * Unauthorized
      */
@@ -17244,18 +17267,18 @@ export type CreateLoanAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLoanAsyncError = CreateLoanAsyncErrors[keyof CreateLoanAsyncErrors];
+export type LoansCreateLoanError = LoansCreateLoanErrors[keyof LoansCreateLoanErrors];
 
-export type CreateLoanAsyncResponses = {
+export type LoansCreateLoanResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLoanAsyncResponse = CreateLoanAsyncResponses[keyof CreateLoanAsyncResponses];
+export type LoansCreateLoanResponse = LoansCreateLoanResponses[keyof LoansCreateLoanResponses];
 
-export type GetLoansCountAsyncData = {
+export type LoansGetLoansCountData = {
     body?: LoanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17268,7 +17291,7 @@ export type GetLoansCountAsyncData = {
     url: '/api/v2/AccountingService/Loans/Count';
 };
 
-export type GetLoansCountAsyncErrors = {
+export type LoansGetLoansCountErrors = {
     /**
      * Unauthorized
      */
@@ -17279,18 +17302,18 @@ export type GetLoansCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoansCountAsyncError = GetLoansCountAsyncErrors[keyof GetLoansCountAsyncErrors];
+export type LoansGetLoansCountError = LoansGetLoansCountErrors[keyof LoansGetLoansCountErrors];
 
-export type GetLoansCountAsyncResponses = {
+export type LoansGetLoansCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLoansCountAsyncResponse = GetLoansCountAsyncResponses[keyof GetLoansCountAsyncResponses];
+export type LoansGetLoansCountResponse = LoansGetLoansCountResponses[keyof LoansGetLoansCountResponses];
 
-export type GetLoanApplicationsAsyncData = {
+export type LoansGetLoanApplicationsData = {
     body?: LoanApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17303,7 +17326,7 @@ export type GetLoanApplicationsAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications';
 };
 
-export type GetLoanApplicationsAsyncErrors = {
+export type LoansGetLoanApplicationsErrors = {
     /**
      * Unauthorized
      */
@@ -17314,18 +17337,18 @@ export type GetLoanApplicationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanApplicationsAsyncError = GetLoanApplicationsAsyncErrors[keyof GetLoanApplicationsAsyncErrors];
+export type LoansGetLoanApplicationsError = LoansGetLoanApplicationsErrors[keyof LoansGetLoanApplicationsErrors];
 
-export type GetLoanApplicationsAsyncResponses = {
+export type LoansGetLoanApplicationsResponses = {
     /**
      * OK
      */
     200: LoanApplicationDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetLoanApplicationsAsyncResponse = GetLoanApplicationsAsyncResponses[keyof GetLoanApplicationsAsyncResponses];
+export type LoansGetLoanApplicationsResponse = LoansGetLoanApplicationsResponses[keyof LoansGetLoanApplicationsResponses];
 
-export type CreateLoanApplicationAsyncData = {
+export type LoansCreateLoanApplicationData = {
     body: LoanApplicationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17338,7 +17361,7 @@ export type CreateLoanApplicationAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications';
 };
 
-export type CreateLoanApplicationAsyncErrors = {
+export type LoansCreateLoanApplicationErrors = {
     /**
      * Unauthorized
      */
@@ -17349,18 +17372,18 @@ export type CreateLoanApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLoanApplicationAsyncError = CreateLoanApplicationAsyncErrors[keyof CreateLoanApplicationAsyncErrors];
+export type LoansCreateLoanApplicationError = LoansCreateLoanApplicationErrors[keyof LoansCreateLoanApplicationErrors];
 
-export type CreateLoanApplicationAsyncResponses = {
+export type LoansCreateLoanApplicationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLoanApplicationAsyncResponse = CreateLoanApplicationAsyncResponses[keyof CreateLoanApplicationAsyncResponses];
+export type LoansCreateLoanApplicationResponse = LoansCreateLoanApplicationResponses[keyof LoansCreateLoanApplicationResponses];
 
-export type GetLoanApplicationsCountAsyncData = {
+export type LoansGetLoanApplicationsCountData = {
     body?: LoanApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17373,7 +17396,7 @@ export type GetLoanApplicationsCountAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications/Count';
 };
 
-export type GetLoanApplicationsCountAsyncErrors = {
+export type LoansGetLoanApplicationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -17384,18 +17407,18 @@ export type GetLoanApplicationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanApplicationsCountAsyncError = GetLoanApplicationsCountAsyncErrors[keyof GetLoanApplicationsCountAsyncErrors];
+export type LoansGetLoanApplicationsCountError = LoansGetLoanApplicationsCountErrors[keyof LoansGetLoanApplicationsCountErrors];
 
-export type GetLoanApplicationsCountAsyncResponses = {
+export type LoansGetLoanApplicationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLoanApplicationsCountAsyncResponse = GetLoanApplicationsCountAsyncResponses[keyof GetLoanApplicationsCountAsyncResponses];
+export type LoansGetLoanApplicationsCountResponse = LoansGetLoanApplicationsCountResponses[keyof LoansGetLoanApplicationsCountResponses];
 
-export type DeleteLoanApplicationAsyncData = {
+export type LoansDeleteLoanApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -17410,7 +17433,7 @@ export type DeleteLoanApplicationAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications/{applicationId}';
 };
 
-export type DeleteLoanApplicationAsyncErrors = {
+export type LoansDeleteLoanApplicationErrors = {
     /**
      * Unauthorized
      */
@@ -17421,18 +17444,18 @@ export type DeleteLoanApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLoanApplicationAsyncError = DeleteLoanApplicationAsyncErrors[keyof DeleteLoanApplicationAsyncErrors];
+export type LoansDeleteLoanApplicationError = LoansDeleteLoanApplicationErrors[keyof LoansDeleteLoanApplicationErrors];
 
-export type DeleteLoanApplicationAsyncResponses = {
+export type LoansDeleteLoanApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLoanApplicationAsyncResponse = DeleteLoanApplicationAsyncResponses[keyof DeleteLoanApplicationAsyncResponses];
+export type LoansDeleteLoanApplicationResponse = LoansDeleteLoanApplicationResponses[keyof LoansDeleteLoanApplicationResponses];
 
-export type GetLoanApplicationDetailsAsyncData = {
+export type LoansGetLoanApplicationDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -17447,7 +17470,7 @@ export type GetLoanApplicationDetailsAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications/{applicationId}';
 };
 
-export type GetLoanApplicationDetailsAsyncErrors = {
+export type LoansGetLoanApplicationDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -17458,18 +17481,18 @@ export type GetLoanApplicationDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanApplicationDetailsAsyncError = GetLoanApplicationDetailsAsyncErrors[keyof GetLoanApplicationDetailsAsyncErrors];
+export type LoansGetLoanApplicationDetailsError = LoansGetLoanApplicationDetailsErrors[keyof LoansGetLoanApplicationDetailsErrors];
 
-export type GetLoanApplicationDetailsAsyncResponses = {
+export type LoansGetLoanApplicationDetailsResponses = {
     /**
      * OK
      */
     200: LoanApplicationDtoEnvelopeReadable;
 };
 
-export type GetLoanApplicationDetailsAsyncResponse = GetLoanApplicationDetailsAsyncResponses[keyof GetLoanApplicationDetailsAsyncResponses];
+export type LoansGetLoanApplicationDetailsResponse = LoansGetLoanApplicationDetailsResponses[keyof LoansGetLoanApplicationDetailsResponses];
 
-export type PatchLoanApplicationAsyncData = {
+export type LoansPatchLoanApplicationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -17484,7 +17507,7 @@ export type PatchLoanApplicationAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications/{applicationId}';
 };
 
-export type PatchLoanApplicationAsyncErrors = {
+export type LoansPatchLoanApplicationErrors = {
     /**
      * Unauthorized
      */
@@ -17495,18 +17518,18 @@ export type PatchLoanApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLoanApplicationAsyncError = PatchLoanApplicationAsyncErrors[keyof PatchLoanApplicationAsyncErrors];
+export type LoansPatchLoanApplicationError = LoansPatchLoanApplicationErrors[keyof LoansPatchLoanApplicationErrors];
 
-export type PatchLoanApplicationAsyncResponses = {
+export type LoansPatchLoanApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLoanApplicationAsyncResponse = PatchLoanApplicationAsyncResponses[keyof PatchLoanApplicationAsyncResponses];
+export type LoansPatchLoanApplicationResponse = LoansPatchLoanApplicationResponses[keyof LoansPatchLoanApplicationResponses];
 
-export type UpdateLoanApplicationAsyncData = {
+export type LoansUpdateLoanApplicationData = {
     body: LoanApplicationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17521,7 +17544,7 @@ export type UpdateLoanApplicationAsyncData = {
     url: '/api/v2/AccountingService/Loans/Applications/{applicationId}';
 };
 
-export type UpdateLoanApplicationAsyncErrors = {
+export type LoansUpdateLoanApplicationErrors = {
     /**
      * Unauthorized
      */
@@ -17532,18 +17555,18 @@ export type UpdateLoanApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLoanApplicationAsyncError = UpdateLoanApplicationAsyncErrors[keyof UpdateLoanApplicationAsyncErrors];
+export type LoansUpdateLoanApplicationError = LoansUpdateLoanApplicationErrors[keyof LoansUpdateLoanApplicationErrors];
 
-export type UpdateLoanApplicationAsyncResponses = {
+export type LoansUpdateLoanApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLoanApplicationAsyncResponse = UpdateLoanApplicationAsyncResponses[keyof UpdateLoanApplicationAsyncResponses];
+export type LoansUpdateLoanApplicationResponse = LoansUpdateLoanApplicationResponses[keyof LoansUpdateLoanApplicationResponses];
 
-export type GetLoanTypesAsyncData = {
+export type LoansGetLoanTypesData = {
     body?: LoanTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17556,7 +17579,7 @@ export type GetLoanTypesAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types';
 };
 
-export type GetLoanTypesAsyncErrors = {
+export type LoansGetLoanTypesErrors = {
     /**
      * Unauthorized
      */
@@ -17567,18 +17590,18 @@ export type GetLoanTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanTypesAsyncError = GetLoanTypesAsyncErrors[keyof GetLoanTypesAsyncErrors];
+export type LoansGetLoanTypesError = LoansGetLoanTypesErrors[keyof LoansGetLoanTypesErrors];
 
-export type GetLoanTypesAsyncResponses = {
+export type LoansGetLoanTypesResponses = {
     /**
      * OK
      */
     200: LoanTypeDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetLoanTypesAsyncResponse = GetLoanTypesAsyncResponses[keyof GetLoanTypesAsyncResponses];
+export type LoansGetLoanTypesResponse = LoansGetLoanTypesResponses[keyof LoansGetLoanTypesResponses];
 
-export type CreateLoanTypeAsyncData = {
+export type LoansCreateLoanTypeData = {
     body: LoanTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17591,7 +17614,7 @@ export type CreateLoanTypeAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types';
 };
 
-export type CreateLoanTypeAsyncErrors = {
+export type LoansCreateLoanTypeErrors = {
     /**
      * Unauthorized
      */
@@ -17602,18 +17625,18 @@ export type CreateLoanTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLoanTypeAsyncError = CreateLoanTypeAsyncErrors[keyof CreateLoanTypeAsyncErrors];
+export type LoansCreateLoanTypeError = LoansCreateLoanTypeErrors[keyof LoansCreateLoanTypeErrors];
 
-export type CreateLoanTypeAsyncResponses = {
+export type LoansCreateLoanTypeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLoanTypeAsyncResponse = CreateLoanTypeAsyncResponses[keyof CreateLoanTypeAsyncResponses];
+export type LoansCreateLoanTypeResponse = LoansCreateLoanTypeResponses[keyof LoansCreateLoanTypeResponses];
 
-export type GetLoanTypesCountAsyncData = {
+export type LoansGetLoanTypesCountData = {
     body?: LoanTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17626,7 +17649,7 @@ export type GetLoanTypesCountAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types/Count';
 };
 
-export type GetLoanTypesCountAsyncErrors = {
+export type LoansGetLoanTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -17637,18 +17660,18 @@ export type GetLoanTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanTypesCountAsyncError = GetLoanTypesCountAsyncErrors[keyof GetLoanTypesCountAsyncErrors];
+export type LoansGetLoanTypesCountError = LoansGetLoanTypesCountErrors[keyof LoansGetLoanTypesCountErrors];
 
-export type GetLoanTypesCountAsyncResponses = {
+export type LoansGetLoanTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLoanTypesCountAsyncResponse = GetLoanTypesCountAsyncResponses[keyof GetLoanTypesCountAsyncResponses];
+export type LoansGetLoanTypesCountResponse = LoansGetLoanTypesCountResponses[keyof LoansGetLoanTypesCountResponses];
 
-export type DeleteLoanTypeAsyncData = {
+export type LoansDeleteLoanTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -17663,7 +17686,7 @@ export type DeleteLoanTypeAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types/{loanTypeId}';
 };
 
-export type DeleteLoanTypeAsyncErrors = {
+export type LoansDeleteLoanTypeErrors = {
     /**
      * Unauthorized
      */
@@ -17674,18 +17697,18 @@ export type DeleteLoanTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLoanTypeAsyncError = DeleteLoanTypeAsyncErrors[keyof DeleteLoanTypeAsyncErrors];
+export type LoansDeleteLoanTypeError = LoansDeleteLoanTypeErrors[keyof LoansDeleteLoanTypeErrors];
 
-export type DeleteLoanTypeAsyncResponses = {
+export type LoansDeleteLoanTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLoanTypeAsyncResponse = DeleteLoanTypeAsyncResponses[keyof DeleteLoanTypeAsyncResponses];
+export type LoansDeleteLoanTypeResponse = LoansDeleteLoanTypeResponses[keyof LoansDeleteLoanTypeResponses];
 
-export type GetLoanTypeByIdAsyncData = {
+export type LoansGetLoanTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -17700,7 +17723,7 @@ export type GetLoanTypeByIdAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types/{loanTypeId}';
 };
 
-export type GetLoanTypeByIdAsyncErrors = {
+export type LoansGetLoanTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -17711,18 +17734,18 @@ export type GetLoanTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLoanTypeByIdAsyncError = GetLoanTypeByIdAsyncErrors[keyof GetLoanTypeByIdAsyncErrors];
+export type LoansGetLoanTypeByIdError = LoansGetLoanTypeByIdErrors[keyof LoansGetLoanTypeByIdErrors];
 
-export type GetLoanTypeByIdAsyncResponses = {
+export type LoansGetLoanTypeByIdResponses = {
     /**
      * OK
      */
     200: LoanTypeDtoEnvelopeReadable;
 };
 
-export type GetLoanTypeByIdAsyncResponse = GetLoanTypeByIdAsyncResponses[keyof GetLoanTypeByIdAsyncResponses];
+export type LoansGetLoanTypeByIdResponse = LoansGetLoanTypeByIdResponses[keyof LoansGetLoanTypeByIdResponses];
 
-export type PatchLoanTypeAsyncData = {
+export type LoansPatchLoanTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -17737,7 +17760,7 @@ export type PatchLoanTypeAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types/{loanTypeId}';
 };
 
-export type PatchLoanTypeAsyncErrors = {
+export type LoansPatchLoanTypeErrors = {
     /**
      * Unauthorized
      */
@@ -17748,18 +17771,18 @@ export type PatchLoanTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLoanTypeAsyncError = PatchLoanTypeAsyncErrors[keyof PatchLoanTypeAsyncErrors];
+export type LoansPatchLoanTypeError = LoansPatchLoanTypeErrors[keyof LoansPatchLoanTypeErrors];
 
-export type PatchLoanTypeAsyncResponses = {
+export type LoansPatchLoanTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLoanTypeAsyncResponse = PatchLoanTypeAsyncResponses[keyof PatchLoanTypeAsyncResponses];
+export type LoansPatchLoanTypeResponse = LoansPatchLoanTypeResponses[keyof LoansPatchLoanTypeResponses];
 
-export type UpdateLoanTypeAsyncData = {
+export type LoansUpdateLoanTypeData = {
     body: LoanTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -17774,7 +17797,7 @@ export type UpdateLoanTypeAsyncData = {
     url: '/api/v2/AccountingService/Loans/Types/{loanTypeId}';
 };
 
-export type UpdateLoanTypeAsyncErrors = {
+export type LoansUpdateLoanTypeErrors = {
     /**
      * Unauthorized
      */
@@ -17785,18 +17808,18 @@ export type UpdateLoanTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLoanTypeAsyncError = UpdateLoanTypeAsyncErrors[keyof UpdateLoanTypeAsyncErrors];
+export type LoansUpdateLoanTypeError = LoansUpdateLoanTypeErrors[keyof LoansUpdateLoanTypeErrors];
 
-export type UpdateLoanTypeAsyncResponses = {
+export type LoansUpdateLoanTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLoanTypeAsyncResponse = UpdateLoanTypeAsyncResponses[keyof UpdateLoanTypeAsyncResponses];
+export type LoansUpdateLoanTypeResponse = LoansUpdateLoanTypeResponses[keyof LoansUpdateLoanTypeResponses];
 
-export type GetPostingExecutionsAsyncData = {
+export type PostingExecutionsGetPostingExecutionsData = {
     body?: PostingExecutionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17809,7 +17832,7 @@ export type GetPostingExecutionsAsyncData = {
     url: '/api/v2/AccountingService/PostingExecutions';
 };
 
-export type GetPostingExecutionsAsyncErrors = {
+export type PostingExecutionsGetPostingExecutionsErrors = {
     /**
      * Unauthorized
      */
@@ -17820,18 +17843,18 @@ export type GetPostingExecutionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPostingExecutionsAsyncError = GetPostingExecutionsAsyncErrors[keyof GetPostingExecutionsAsyncErrors];
+export type PostingExecutionsGetPostingExecutionsError = PostingExecutionsGetPostingExecutionsErrors[keyof PostingExecutionsGetPostingExecutionsErrors];
 
-export type GetPostingExecutionsAsyncResponses = {
+export type PostingExecutionsGetPostingExecutionsResponses = {
     /**
      * OK
      */
     200: PostingExecutionDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetPostingExecutionsAsyncResponse = GetPostingExecutionsAsyncResponses[keyof GetPostingExecutionsAsyncResponses];
+export type PostingExecutionsGetPostingExecutionsResponse = PostingExecutionsGetPostingExecutionsResponses[keyof PostingExecutionsGetPostingExecutionsResponses];
 
-export type CountPostingExecutionsAsyncData = {
+export type PostingExecutionsCountPostingExecutionsData = {
     body?: PostingExecutionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -17844,7 +17867,7 @@ export type CountPostingExecutionsAsyncData = {
     url: '/api/v2/AccountingService/PostingExecutions/Count';
 };
 
-export type CountPostingExecutionsAsyncErrors = {
+export type PostingExecutionsCountPostingExecutionsErrors = {
     /**
      * Unauthorized
      */
@@ -17855,18 +17878,18 @@ export type CountPostingExecutionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountPostingExecutionsAsyncError = CountPostingExecutionsAsyncErrors[keyof CountPostingExecutionsAsyncErrors];
+export type PostingExecutionsCountPostingExecutionsError = PostingExecutionsCountPostingExecutionsErrors[keyof PostingExecutionsCountPostingExecutionsErrors];
 
-export type CountPostingExecutionsAsyncResponses = {
+export type PostingExecutionsCountPostingExecutionsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountPostingExecutionsAsyncResponse = CountPostingExecutionsAsyncResponses[keyof CountPostingExecutionsAsyncResponses];
+export type PostingExecutionsCountPostingExecutionsResponse = PostingExecutionsCountPostingExecutionsResponses[keyof PostingExecutionsCountPostingExecutionsResponses];
 
-export type GetReceiptsAsyncData = {
+export type ReceiptsGetReceiptsData = {
     body?: ReceiptDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -17875,16 +17898,16 @@ export type GetReceiptsAsyncData = {
     url: '/api/v2/AccountingService/Receipts';
 };
 
-export type GetReceiptsAsyncResponses = {
+export type ReceiptsGetReceiptsResponses = {
     /**
      * OK
      */
     200: ReceiptDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetReceiptsAsyncResponse = GetReceiptsAsyncResponses[keyof GetReceiptsAsyncResponses];
+export type ReceiptsGetReceiptsResponse = ReceiptsGetReceiptsResponses[keyof ReceiptsGetReceiptsResponses];
 
-export type CreateReceiptAsyncData = {
+export type ReceiptsCreateReceiptData = {
     body: ReceiptCreateDto;
     path?: never;
     query: {
@@ -17893,16 +17916,16 @@ export type CreateReceiptAsyncData = {
     url: '/api/v2/AccountingService/Receipts';
 };
 
-export type CreateReceiptAsyncResponses = {
+export type ReceiptsCreateReceiptResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateReceiptAsyncResponse = CreateReceiptAsyncResponses[keyof CreateReceiptAsyncResponses];
+export type ReceiptsCreateReceiptResponse = ReceiptsCreateReceiptResponses[keyof ReceiptsCreateReceiptResponses];
 
-export type GetReceiptsCountAsyncData = {
+export type ReceiptsGetReceiptsCountData = {
     body?: ReceiptDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -17911,16 +17934,16 @@ export type GetReceiptsCountAsyncData = {
     url: '/api/v2/AccountingService/Receipts/Count';
 };
 
-export type GetReceiptsCountAsyncResponses = {
+export type ReceiptsGetReceiptsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetReceiptsCountAsyncResponse = GetReceiptsCountAsyncResponses[keyof GetReceiptsCountAsyncResponses];
+export type ReceiptsGetReceiptsCountResponse = ReceiptsGetReceiptsCountResponses[keyof ReceiptsGetReceiptsCountResponses];
 
-export type DeleteReceiptAsyncData = {
+export type ReceiptsDeleteReceiptData = {
     body?: never;
     path: {
         receiptId: string;
@@ -17931,16 +17954,16 @@ export type DeleteReceiptAsyncData = {
     url: '/api/v2/AccountingService/Receipts/{receiptId}';
 };
 
-export type DeleteReceiptAsyncResponses = {
+export type ReceiptsDeleteReceiptResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteReceiptAsyncResponse = DeleteReceiptAsyncResponses[keyof DeleteReceiptAsyncResponses];
+export type ReceiptsDeleteReceiptResponse = ReceiptsDeleteReceiptResponses[keyof ReceiptsDeleteReceiptResponses];
 
-export type GetReceiptDetailsAsyncData = {
+export type ReceiptsGetReceiptDetailsData = {
     body?: never;
     path: {
         receiptId: string;
@@ -17951,16 +17974,16 @@ export type GetReceiptDetailsAsyncData = {
     url: '/api/v2/AccountingService/Receipts/{receiptId}';
 };
 
-export type GetReceiptDetailsAsyncResponses = {
+export type ReceiptsGetReceiptDetailsResponses = {
     /**
      * OK
      */
     200: ReceiptDtoEnvelopeReadable;
 };
 
-export type GetReceiptDetailsAsyncResponse = GetReceiptDetailsAsyncResponses[keyof GetReceiptDetailsAsyncResponses];
+export type ReceiptsGetReceiptDetailsResponse = ReceiptsGetReceiptDetailsResponses[keyof ReceiptsGetReceiptDetailsResponses];
 
-export type PatchReceiptAsyncData = {
+export type ReceiptsPatchReceiptData = {
     body?: Array<PatchOperation>;
     path: {
         receiptId: string;
@@ -17971,7 +17994,7 @@ export type PatchReceiptAsyncData = {
     url: '/api/v2/AccountingService/Receipts/{receiptId}';
 };
 
-export type PatchReceiptAsyncErrors = {
+export type ReceiptsPatchReceiptErrors = {
     /**
      * Unauthorized
      */
@@ -17982,18 +18005,18 @@ export type PatchReceiptAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchReceiptAsyncError = PatchReceiptAsyncErrors[keyof PatchReceiptAsyncErrors];
+export type ReceiptsPatchReceiptError = ReceiptsPatchReceiptErrors[keyof ReceiptsPatchReceiptErrors];
 
-export type PatchReceiptAsyncResponses = {
+export type ReceiptsPatchReceiptResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchReceiptAsyncResponse = PatchReceiptAsyncResponses[keyof PatchReceiptAsyncResponses];
+export type ReceiptsPatchReceiptResponse = ReceiptsPatchReceiptResponses[keyof ReceiptsPatchReceiptResponses];
 
-export type UpdateReceiptAsyncData = {
+export type ReceiptsUpdateReceiptData = {
     body: ReceiptUpdateDto;
     path: {
         receiptId: string;
@@ -18004,16 +18027,16 @@ export type UpdateReceiptAsyncData = {
     url: '/api/v2/AccountingService/Receipts/{receiptId}';
 };
 
-export type UpdateReceiptAsyncResponses = {
+export type ReceiptsUpdateReceiptResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateReceiptAsyncResponse = UpdateReceiptAsyncResponses[keyof UpdateReceiptAsyncResponses];
+export type ReceiptsUpdateReceiptResponse = ReceiptsUpdateReceiptResponses[keyof ReceiptsUpdateReceiptResponses];
 
-export type GetTrialBalanceAsyncData = {
+export type ReportsGetTrialBalanceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18029,7 +18052,7 @@ export type GetTrialBalanceAsyncData = {
     url: '/api/v2/AccountingService/Reports/TrialBalance';
 };
 
-export type GetTrialBalanceAsyncErrors = {
+export type ReportsGetTrialBalanceErrors = {
     /**
      * Unauthorized
      */
@@ -18040,18 +18063,18 @@ export type GetTrialBalanceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrialBalanceAsyncError = GetTrialBalanceAsyncErrors[keyof GetTrialBalanceAsyncErrors];
+export type ReportsGetTrialBalanceError = ReportsGetTrialBalanceErrors[keyof ReportsGetTrialBalanceErrors];
 
-export type GetTrialBalanceAsyncResponses = {
+export type ReportsGetTrialBalanceResponses = {
     /**
      * OK
      */
     200: TrialBalanceDtoEnvelopeReadable;
 };
 
-export type GetTrialBalanceAsyncResponse = GetTrialBalanceAsyncResponses[keyof GetTrialBalanceAsyncResponses];
+export type ReportsGetTrialBalanceResponse = ReportsGetTrialBalanceResponses[keyof ReportsGetTrialBalanceResponses];
 
-export type GetShareClassesData = {
+export type SharesGetShareClassesData = {
     body?: ShareClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18064,7 +18087,7 @@ export type GetShareClassesData = {
     url: '/api/v2/AccountingService/Shares/Classes';
 };
 
-export type GetShareClassesErrors = {
+export type SharesGetShareClassesErrors = {
     /**
      * Unauthorized
      */
@@ -18075,18 +18098,18 @@ export type GetShareClassesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareClassesError = GetShareClassesErrors[keyof GetShareClassesErrors];
+export type SharesGetShareClassesError = SharesGetShareClassesErrors[keyof SharesGetShareClassesErrors];
 
-export type GetShareClassesResponses = {
+export type SharesGetShareClassesResponses = {
     /**
      * OK
      */
     200: ShareClassDtoListEnvelopeReadable;
 };
 
-export type GetShareClassesResponse = GetShareClassesResponses[keyof GetShareClassesResponses];
+export type SharesGetShareClassesResponse = SharesGetShareClassesResponses[keyof SharesGetShareClassesResponses];
 
-export type CreateShareClassData = {
+export type SharesCreateShareClassData = {
     body?: ShareClassCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18099,7 +18122,7 @@ export type CreateShareClassData = {
     url: '/api/v2/AccountingService/Shares/Classes';
 };
 
-export type CreateShareClassErrors = {
+export type SharesCreateShareClassErrors = {
     /**
      * Bad Request
      */
@@ -18114,18 +18137,18 @@ export type CreateShareClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateShareClassError = CreateShareClassErrors[keyof CreateShareClassErrors];
+export type SharesCreateShareClassError = SharesCreateShareClassErrors[keyof SharesCreateShareClassErrors];
 
-export type CreateShareClassResponses = {
+export type SharesCreateShareClassResponses = {
     /**
      * Created
      */
     201: ShareClassDtoEnvelopeReadable;
 };
 
-export type CreateShareClassResponse = CreateShareClassResponses[keyof CreateShareClassResponses];
+export type SharesCreateShareClassResponse = SharesCreateShareClassResponses[keyof SharesCreateShareClassResponses];
 
-export type GetShareClassesCountData = {
+export type SharesGetShareClassesCountData = {
     body?: ShareClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18138,7 +18161,7 @@ export type GetShareClassesCountData = {
     url: '/api/v2/AccountingService/Shares/Classes/Count';
 };
 
-export type GetShareClassesCountErrors = {
+export type SharesGetShareClassesCountErrors = {
     /**
      * Unauthorized
      */
@@ -18149,18 +18172,18 @@ export type GetShareClassesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareClassesCountError = GetShareClassesCountErrors[keyof GetShareClassesCountErrors];
+export type SharesGetShareClassesCountError = SharesGetShareClassesCountErrors[keyof SharesGetShareClassesCountErrors];
 
-export type GetShareClassesCountResponses = {
+export type SharesGetShareClassesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShareClassesCountResponse = GetShareClassesCountResponses[keyof GetShareClassesCountResponses];
+export type SharesGetShareClassesCountResponse = SharesGetShareClassesCountResponses[keyof SharesGetShareClassesCountResponses];
 
-export type DeleteShareClassData = {
+export type SharesDeleteShareClassData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18175,7 +18198,7 @@ export type DeleteShareClassData = {
     url: '/api/v2/AccountingService/Shares/Classes/{shareClassId}';
 };
 
-export type DeleteShareClassErrors = {
+export type SharesDeleteShareClassErrors = {
     /**
      * Unauthorized
      */
@@ -18190,9 +18213,9 @@ export type DeleteShareClassErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShareClassError = DeleteShareClassErrors[keyof DeleteShareClassErrors];
+export type SharesDeleteShareClassError = SharesDeleteShareClassErrors[keyof SharesDeleteShareClassErrors];
 
-export type GetShareClassData = {
+export type SharesGetShareClassData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18207,7 +18230,7 @@ export type GetShareClassData = {
     url: '/api/v2/AccountingService/Shares/Classes/{shareClassId}';
 };
 
-export type GetShareClassErrors = {
+export type SharesGetShareClassErrors = {
     /**
      * Unauthorized
      */
@@ -18222,18 +18245,18 @@ export type GetShareClassErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShareClassError = GetShareClassErrors[keyof GetShareClassErrors];
+export type SharesGetShareClassError = SharesGetShareClassErrors[keyof SharesGetShareClassErrors];
 
-export type GetShareClassResponses = {
+export type SharesGetShareClassResponses = {
     /**
      * OK
      */
     200: ShareClassDtoEnvelopeReadable;
 };
 
-export type GetShareClassResponse = GetShareClassResponses[keyof GetShareClassResponses];
+export type SharesGetShareClassResponse = SharesGetShareClassResponses[keyof SharesGetShareClassResponses];
 
-export type PatchShareClassData = {
+export type SharesPatchShareClassData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -18248,7 +18271,7 @@ export type PatchShareClassData = {
     url: '/api/v2/AccountingService/Shares/Classes/{shareClassId}';
 };
 
-export type PatchShareClassErrors = {
+export type SharesPatchShareClassErrors = {
     /**
      * Unauthorized
      */
@@ -18259,18 +18282,18 @@ export type PatchShareClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShareClassError = PatchShareClassErrors[keyof PatchShareClassErrors];
+export type SharesPatchShareClassError = SharesPatchShareClassErrors[keyof SharesPatchShareClassErrors];
 
-export type PatchShareClassResponses = {
+export type SharesPatchShareClassResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShareClassResponse = PatchShareClassResponses[keyof PatchShareClassResponses];
+export type SharesPatchShareClassResponse = SharesPatchShareClassResponses[keyof SharesPatchShareClassResponses];
 
-export type UpdateShareClassData = {
+export type SharesUpdateShareClassData = {
     body?: ShareClassUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18285,7 +18308,7 @@ export type UpdateShareClassData = {
     url: '/api/v2/AccountingService/Shares/Classes/{shareClassId}';
 };
 
-export type UpdateShareClassErrors = {
+export type SharesUpdateShareClassErrors = {
     /**
      * Bad Request
      */
@@ -18304,18 +18327,18 @@ export type UpdateShareClassErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateShareClassError = UpdateShareClassErrors[keyof UpdateShareClassErrors];
+export type SharesUpdateShareClassError = SharesUpdateShareClassErrors[keyof SharesUpdateShareClassErrors];
 
-export type UpdateShareClassResponses = {
+export type SharesUpdateShareClassResponses = {
     /**
      * OK
      */
     200: ShareClassDtoEnvelopeReadable;
 };
 
-export type UpdateShareClassResponse = UpdateShareClassResponses[keyof UpdateShareClassResponses];
+export type SharesUpdateShareClassResponse = SharesUpdateShareClassResponses[keyof SharesUpdateShareClassResponses];
 
-export type GetShareIssuancesData = {
+export type SharesGetShareIssuancesData = {
     body?: ShareIssuanceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18328,7 +18351,7 @@ export type GetShareIssuancesData = {
     url: '/api/v2/AccountingService/Shares/Issuances';
 };
 
-export type GetShareIssuancesErrors = {
+export type SharesGetShareIssuancesErrors = {
     /**
      * Unauthorized
      */
@@ -18339,18 +18362,18 @@ export type GetShareIssuancesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareIssuancesError = GetShareIssuancesErrors[keyof GetShareIssuancesErrors];
+export type SharesGetShareIssuancesError = SharesGetShareIssuancesErrors[keyof SharesGetShareIssuancesErrors];
 
-export type GetShareIssuancesResponses = {
+export type SharesGetShareIssuancesResponses = {
     /**
      * OK
      */
     200: ShareIssuanceDtoListEnvelopeReadable;
 };
 
-export type GetShareIssuancesResponse = GetShareIssuancesResponses[keyof GetShareIssuancesResponses];
+export type SharesGetShareIssuancesResponse = SharesGetShareIssuancesResponses[keyof SharesGetShareIssuancesResponses];
 
-export type CreateShareIssuanceData = {
+export type SharesCreateShareIssuanceData = {
     body?: ShareIssuanceCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18363,7 +18386,7 @@ export type CreateShareIssuanceData = {
     url: '/api/v2/AccountingService/Shares/Issuances';
 };
 
-export type CreateShareIssuanceErrors = {
+export type SharesCreateShareIssuanceErrors = {
     /**
      * Bad Request
      */
@@ -18378,18 +18401,18 @@ export type CreateShareIssuanceErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateShareIssuanceError = CreateShareIssuanceErrors[keyof CreateShareIssuanceErrors];
+export type SharesCreateShareIssuanceError = SharesCreateShareIssuanceErrors[keyof SharesCreateShareIssuanceErrors];
 
-export type CreateShareIssuanceResponses = {
+export type SharesCreateShareIssuanceResponses = {
     /**
      * Created
      */
     201: ShareIssuanceDtoEnvelopeReadable;
 };
 
-export type CreateShareIssuanceResponse = CreateShareIssuanceResponses[keyof CreateShareIssuanceResponses];
+export type SharesCreateShareIssuanceResponse = SharesCreateShareIssuanceResponses[keyof SharesCreateShareIssuanceResponses];
 
-export type GetShareIssuancesCountData = {
+export type SharesGetShareIssuancesCountData = {
     body?: ShareIssuanceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18402,7 +18425,7 @@ export type GetShareIssuancesCountData = {
     url: '/api/v2/AccountingService/Shares/Issuances/Count';
 };
 
-export type GetShareIssuancesCountErrors = {
+export type SharesGetShareIssuancesCountErrors = {
     /**
      * Unauthorized
      */
@@ -18413,18 +18436,18 @@ export type GetShareIssuancesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareIssuancesCountError = GetShareIssuancesCountErrors[keyof GetShareIssuancesCountErrors];
+export type SharesGetShareIssuancesCountError = SharesGetShareIssuancesCountErrors[keyof SharesGetShareIssuancesCountErrors];
 
-export type GetShareIssuancesCountResponses = {
+export type SharesGetShareIssuancesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShareIssuancesCountResponse = GetShareIssuancesCountResponses[keyof GetShareIssuancesCountResponses];
+export type SharesGetShareIssuancesCountResponse = SharesGetShareIssuancesCountResponses[keyof SharesGetShareIssuancesCountResponses];
 
-export type GetShareIssuancesSumData = {
+export type SharesGetShareIssuancesSumData = {
     body?: ShareIssuanceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18437,7 +18460,7 @@ export type GetShareIssuancesSumData = {
     url: '/api/v2/AccountingService/Shares/Issuances/Sum';
 };
 
-export type GetShareIssuancesSumErrors = {
+export type SharesGetShareIssuancesSumErrors = {
     /**
      * Unauthorized
      */
@@ -18448,18 +18471,18 @@ export type GetShareIssuancesSumErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareIssuancesSumError = GetShareIssuancesSumErrors[keyof GetShareIssuancesSumErrors];
+export type SharesGetShareIssuancesSumError = SharesGetShareIssuancesSumErrors[keyof SharesGetShareIssuancesSumErrors];
 
-export type GetShareIssuancesSumResponses = {
+export type SharesGetShareIssuancesSumResponses = {
     /**
      * OK
      */
     200: DecimalEnvelopeReadable;
 };
 
-export type GetShareIssuancesSumResponse = GetShareIssuancesSumResponses[keyof GetShareIssuancesSumResponses];
+export type SharesGetShareIssuancesSumResponse = SharesGetShareIssuancesSumResponses[keyof SharesGetShareIssuancesSumResponses];
 
-export type DeleteShareIssuanceData = {
+export type SharesDeleteShareIssuanceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18474,7 +18497,7 @@ export type DeleteShareIssuanceData = {
     url: '/api/v2/AccountingService/Shares/Issuances/{issuanceId}';
 };
 
-export type DeleteShareIssuanceErrors = {
+export type SharesDeleteShareIssuanceErrors = {
     /**
      * Unauthorized
      */
@@ -18489,9 +18512,9 @@ export type DeleteShareIssuanceErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShareIssuanceError = DeleteShareIssuanceErrors[keyof DeleteShareIssuanceErrors];
+export type SharesDeleteShareIssuanceError = SharesDeleteShareIssuanceErrors[keyof SharesDeleteShareIssuanceErrors];
 
-export type GetShareIssuanceData = {
+export type SharesGetShareIssuanceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18506,7 +18529,7 @@ export type GetShareIssuanceData = {
     url: '/api/v2/AccountingService/Shares/Issuances/{issuanceId}';
 };
 
-export type GetShareIssuanceErrors = {
+export type SharesGetShareIssuanceErrors = {
     /**
      * Unauthorized
      */
@@ -18521,18 +18544,18 @@ export type GetShareIssuanceErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShareIssuanceError = GetShareIssuanceErrors[keyof GetShareIssuanceErrors];
+export type SharesGetShareIssuanceError = SharesGetShareIssuanceErrors[keyof SharesGetShareIssuanceErrors];
 
-export type GetShareIssuanceResponses = {
+export type SharesGetShareIssuanceResponses = {
     /**
      * OK
      */
     200: ShareIssuanceDtoEnvelopeReadable;
 };
 
-export type GetShareIssuanceResponse = GetShareIssuanceResponses[keyof GetShareIssuanceResponses];
+export type SharesGetShareIssuanceResponse = SharesGetShareIssuanceResponses[keyof SharesGetShareIssuanceResponses];
 
-export type PatchShareIssuanceData = {
+export type SharesPatchShareIssuanceData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -18547,7 +18570,7 @@ export type PatchShareIssuanceData = {
     url: '/api/v2/AccountingService/Shares/Issuances/{issuanceId}';
 };
 
-export type PatchShareIssuanceErrors = {
+export type SharesPatchShareIssuanceErrors = {
     /**
      * Unauthorized
      */
@@ -18558,18 +18581,18 @@ export type PatchShareIssuanceErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShareIssuanceError = PatchShareIssuanceErrors[keyof PatchShareIssuanceErrors];
+export type SharesPatchShareIssuanceError = SharesPatchShareIssuanceErrors[keyof SharesPatchShareIssuanceErrors];
 
-export type PatchShareIssuanceResponses = {
+export type SharesPatchShareIssuanceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShareIssuanceResponse = PatchShareIssuanceResponses[keyof PatchShareIssuanceResponses];
+export type SharesPatchShareIssuanceResponse = SharesPatchShareIssuanceResponses[keyof SharesPatchShareIssuanceResponses];
 
-export type UpdateShareIssuanceData = {
+export type SharesUpdateShareIssuanceData = {
     body?: ShareIssuanceUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18584,7 +18607,7 @@ export type UpdateShareIssuanceData = {
     url: '/api/v2/AccountingService/Shares/Issuances/{issuanceId}';
 };
 
-export type UpdateShareIssuanceErrors = {
+export type SharesUpdateShareIssuanceErrors = {
     /**
      * Bad Request
      */
@@ -18603,18 +18626,18 @@ export type UpdateShareIssuanceErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateShareIssuanceError = UpdateShareIssuanceErrors[keyof UpdateShareIssuanceErrors];
+export type SharesUpdateShareIssuanceError = SharesUpdateShareIssuanceErrors[keyof SharesUpdateShareIssuanceErrors];
 
-export type UpdateShareIssuanceResponses = {
+export type SharesUpdateShareIssuanceResponses = {
     /**
      * OK
      */
     200: ShareIssuanceDtoEnvelopeReadable;
 };
 
-export type UpdateShareIssuanceResponse = UpdateShareIssuanceResponses[keyof UpdateShareIssuanceResponses];
+export type SharesUpdateShareIssuanceResponse = SharesUpdateShareIssuanceResponses[keyof SharesUpdateShareIssuanceResponses];
 
-export type GetShareTransfersData = {
+export type SharesGetShareTransfersData = {
     body?: ShareTransferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18627,7 +18650,7 @@ export type GetShareTransfersData = {
     url: '/api/v2/AccountingService/Shares/Transfers';
 };
 
-export type GetShareTransfersErrors = {
+export type SharesGetShareTransfersErrors = {
     /**
      * Unauthorized
      */
@@ -18638,18 +18661,18 @@ export type GetShareTransfersErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareTransfersError = GetShareTransfersErrors[keyof GetShareTransfersErrors];
+export type SharesGetShareTransfersError = SharesGetShareTransfersErrors[keyof SharesGetShareTransfersErrors];
 
-export type GetShareTransfersResponses = {
+export type SharesGetShareTransfersResponses = {
     /**
      * OK
      */
     200: ShareTransferDtoListEnvelopeReadable;
 };
 
-export type GetShareTransfersResponse = GetShareTransfersResponses[keyof GetShareTransfersResponses];
+export type SharesGetShareTransfersResponse = SharesGetShareTransfersResponses[keyof SharesGetShareTransfersResponses];
 
-export type CreateShareTransferData = {
+export type SharesCreateShareTransferData = {
     body?: ShareTransferCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18662,7 +18685,7 @@ export type CreateShareTransferData = {
     url: '/api/v2/AccountingService/Shares/Transfers';
 };
 
-export type CreateShareTransferErrors = {
+export type SharesCreateShareTransferErrors = {
     /**
      * Bad Request
      */
@@ -18677,18 +18700,18 @@ export type CreateShareTransferErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateShareTransferError = CreateShareTransferErrors[keyof CreateShareTransferErrors];
+export type SharesCreateShareTransferError = SharesCreateShareTransferErrors[keyof SharesCreateShareTransferErrors];
 
-export type CreateShareTransferResponses = {
+export type SharesCreateShareTransferResponses = {
     /**
      * Created
      */
     201: ShareTransferDtoEnvelopeReadable;
 };
 
-export type CreateShareTransferResponse = CreateShareTransferResponses[keyof CreateShareTransferResponses];
+export type SharesCreateShareTransferResponse = SharesCreateShareTransferResponses[keyof SharesCreateShareTransferResponses];
 
-export type GetShareTransfersCountData = {
+export type SharesGetShareTransfersCountData = {
     body?: ShareTransferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18701,7 +18724,7 @@ export type GetShareTransfersCountData = {
     url: '/api/v2/AccountingService/Shares/Transfers/Count';
 };
 
-export type GetShareTransfersCountErrors = {
+export type SharesGetShareTransfersCountErrors = {
     /**
      * Unauthorized
      */
@@ -18712,18 +18735,18 @@ export type GetShareTransfersCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareTransfersCountError = GetShareTransfersCountErrors[keyof GetShareTransfersCountErrors];
+export type SharesGetShareTransfersCountError = SharesGetShareTransfersCountErrors[keyof SharesGetShareTransfersCountErrors];
 
-export type GetShareTransfersCountResponses = {
+export type SharesGetShareTransfersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShareTransfersCountResponse = GetShareTransfersCountResponses[keyof GetShareTransfersCountResponses];
+export type SharesGetShareTransfersCountResponse = SharesGetShareTransfersCountResponses[keyof SharesGetShareTransfersCountResponses];
 
-export type DeleteShareTransferData = {
+export type SharesDeleteShareTransferData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18738,7 +18761,7 @@ export type DeleteShareTransferData = {
     url: '/api/v2/AccountingService/Shares/Transfers/{transferId}';
 };
 
-export type DeleteShareTransferErrors = {
+export type SharesDeleteShareTransferErrors = {
     /**
      * Unauthorized
      */
@@ -18753,9 +18776,9 @@ export type DeleteShareTransferErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShareTransferError = DeleteShareTransferErrors[keyof DeleteShareTransferErrors];
+export type SharesDeleteShareTransferError = SharesDeleteShareTransferErrors[keyof SharesDeleteShareTransferErrors];
 
-export type GetShareTransferData = {
+export type SharesGetShareTransferData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -18770,7 +18793,7 @@ export type GetShareTransferData = {
     url: '/api/v2/AccountingService/Shares/Transfers/{transferId}';
 };
 
-export type GetShareTransferErrors = {
+export type SharesGetShareTransferErrors = {
     /**
      * Unauthorized
      */
@@ -18785,18 +18808,18 @@ export type GetShareTransferErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShareTransferError = GetShareTransferErrors[keyof GetShareTransferErrors];
+export type SharesGetShareTransferError = SharesGetShareTransferErrors[keyof SharesGetShareTransferErrors];
 
-export type GetShareTransferResponses = {
+export type SharesGetShareTransferResponses = {
     /**
      * OK
      */
     200: ShareTransferDtoEnvelopeReadable;
 };
 
-export type GetShareTransferResponse = GetShareTransferResponses[keyof GetShareTransferResponses];
+export type SharesGetShareTransferResponse = SharesGetShareTransferResponses[keyof SharesGetShareTransferResponses];
 
-export type PatchShareTransferData = {
+export type SharesPatchShareTransferData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -18811,7 +18834,7 @@ export type PatchShareTransferData = {
     url: '/api/v2/AccountingService/Shares/Transfers/{transferId}';
 };
 
-export type PatchShareTransferErrors = {
+export type SharesPatchShareTransferErrors = {
     /**
      * Unauthorized
      */
@@ -18822,18 +18845,18 @@ export type PatchShareTransferErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShareTransferError = PatchShareTransferErrors[keyof PatchShareTransferErrors];
+export type SharesPatchShareTransferError = SharesPatchShareTransferErrors[keyof SharesPatchShareTransferErrors];
 
-export type PatchShareTransferResponses = {
+export type SharesPatchShareTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShareTransferResponse = PatchShareTransferResponses[keyof PatchShareTransferResponses];
+export type SharesPatchShareTransferResponse = SharesPatchShareTransferResponses[keyof SharesPatchShareTransferResponses];
 
-export type UpdateShareTransferData = {
+export type SharesUpdateShareTransferData = {
     body?: ShareTransferUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18848,7 +18871,7 @@ export type UpdateShareTransferData = {
     url: '/api/v2/AccountingService/Shares/Transfers/{transferId}';
 };
 
-export type UpdateShareTransferErrors = {
+export type SharesUpdateShareTransferErrors = {
     /**
      * Bad Request
      */
@@ -18867,18 +18890,18 @@ export type UpdateShareTransferErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateShareTransferError = UpdateShareTransferErrors[keyof UpdateShareTransferErrors];
+export type SharesUpdateShareTransferError = SharesUpdateShareTransferErrors[keyof SharesUpdateShareTransferErrors];
 
-export type UpdateShareTransferResponses = {
+export type SharesUpdateShareTransferResponses = {
     /**
      * OK
      */
     200: ShareTransferDtoEnvelopeReadable;
 };
 
-export type UpdateShareTransferResponse = UpdateShareTransferResponses[keyof UpdateShareTransferResponses];
+export type SharesUpdateShareTransferResponse = SharesUpdateShareTransferResponses[keyof SharesUpdateShareTransferResponses];
 
-export type GetShareTransferReasonsData = {
+export type SharesGetShareTransferReasonsData = {
     body?: ShareTransferReasonDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18891,7 +18914,7 @@ export type GetShareTransferReasonsData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons';
 };
 
-export type GetShareTransferReasonsErrors = {
+export type SharesGetShareTransferReasonsErrors = {
     /**
      * Unauthorized
      */
@@ -18902,18 +18925,18 @@ export type GetShareTransferReasonsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareTransferReasonsError = GetShareTransferReasonsErrors[keyof GetShareTransferReasonsErrors];
+export type SharesGetShareTransferReasonsError = SharesGetShareTransferReasonsErrors[keyof SharesGetShareTransferReasonsErrors];
 
-export type GetShareTransferReasonsResponses = {
+export type SharesGetShareTransferReasonsResponses = {
     /**
      * OK
      */
     200: ShareTransferReasonDtoListEnvelopeReadable;
 };
 
-export type GetShareTransferReasonsResponse = GetShareTransferReasonsResponses[keyof GetShareTransferReasonsResponses];
+export type SharesGetShareTransferReasonsResponse = SharesGetShareTransferReasonsResponses[keyof SharesGetShareTransferReasonsResponses];
 
-export type CreateShareTransferReasonData = {
+export type SharesCreateShareTransferReasonData = {
     body?: ShareTransferReasonCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -18926,7 +18949,7 @@ export type CreateShareTransferReasonData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons';
 };
 
-export type CreateShareTransferReasonErrors = {
+export type SharesCreateShareTransferReasonErrors = {
     /**
      * Bad Request
      */
@@ -18941,18 +18964,18 @@ export type CreateShareTransferReasonErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateShareTransferReasonError = CreateShareTransferReasonErrors[keyof CreateShareTransferReasonErrors];
+export type SharesCreateShareTransferReasonError = SharesCreateShareTransferReasonErrors[keyof SharesCreateShareTransferReasonErrors];
 
-export type CreateShareTransferReasonResponses = {
+export type SharesCreateShareTransferReasonResponses = {
     /**
      * Created
      */
     201: ShareTransferReasonDtoEnvelopeReadable;
 };
 
-export type CreateShareTransferReasonResponse = CreateShareTransferReasonResponses[keyof CreateShareTransferReasonResponses];
+export type SharesCreateShareTransferReasonResponse = SharesCreateShareTransferReasonResponses[keyof SharesCreateShareTransferReasonResponses];
 
-export type GetShareTransferReasonsCountData = {
+export type SharesGetShareTransferReasonsCountData = {
     body?: ShareTransferReasonDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -18965,7 +18988,7 @@ export type GetShareTransferReasonsCountData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons/Count';
 };
 
-export type GetShareTransferReasonsCountErrors = {
+export type SharesGetShareTransferReasonsCountErrors = {
     /**
      * Unauthorized
      */
@@ -18976,18 +18999,18 @@ export type GetShareTransferReasonsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShareTransferReasonsCountError = GetShareTransferReasonsCountErrors[keyof GetShareTransferReasonsCountErrors];
+export type SharesGetShareTransferReasonsCountError = SharesGetShareTransferReasonsCountErrors[keyof SharesGetShareTransferReasonsCountErrors];
 
-export type GetShareTransferReasonsCountResponses = {
+export type SharesGetShareTransferReasonsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShareTransferReasonsCountResponse = GetShareTransferReasonsCountResponses[keyof GetShareTransferReasonsCountResponses];
+export type SharesGetShareTransferReasonsCountResponse = SharesGetShareTransferReasonsCountResponses[keyof SharesGetShareTransferReasonsCountResponses];
 
-export type DeleteShareTransferReasonData = {
+export type SharesDeleteShareTransferReasonData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19002,7 +19025,7 @@ export type DeleteShareTransferReasonData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons/{reasonId}';
 };
 
-export type DeleteShareTransferReasonErrors = {
+export type SharesDeleteShareTransferReasonErrors = {
     /**
      * Unauthorized
      */
@@ -19017,9 +19040,9 @@ export type DeleteShareTransferReasonErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShareTransferReasonError = DeleteShareTransferReasonErrors[keyof DeleteShareTransferReasonErrors];
+export type SharesDeleteShareTransferReasonError = SharesDeleteShareTransferReasonErrors[keyof SharesDeleteShareTransferReasonErrors];
 
-export type GetShareTransferReasonData = {
+export type SharesGetShareTransferReasonData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19034,7 +19057,7 @@ export type GetShareTransferReasonData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons/{reasonId}';
 };
 
-export type GetShareTransferReasonErrors = {
+export type SharesGetShareTransferReasonErrors = {
     /**
      * Unauthorized
      */
@@ -19049,18 +19072,18 @@ export type GetShareTransferReasonErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShareTransferReasonError = GetShareTransferReasonErrors[keyof GetShareTransferReasonErrors];
+export type SharesGetShareTransferReasonError = SharesGetShareTransferReasonErrors[keyof SharesGetShareTransferReasonErrors];
 
-export type GetShareTransferReasonResponses = {
+export type SharesGetShareTransferReasonResponses = {
     /**
      * OK
      */
     200: ShareTransferReasonDtoEnvelopeReadable;
 };
 
-export type GetShareTransferReasonResponse = GetShareTransferReasonResponses[keyof GetShareTransferReasonResponses];
+export type SharesGetShareTransferReasonResponse = SharesGetShareTransferReasonResponses[keyof SharesGetShareTransferReasonResponses];
 
-export type PatchShareTransferReasonData = {
+export type SharesPatchShareTransferReasonData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -19075,7 +19098,7 @@ export type PatchShareTransferReasonData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons/{reasonId}';
 };
 
-export type PatchShareTransferReasonErrors = {
+export type SharesPatchShareTransferReasonErrors = {
     /**
      * Unauthorized
      */
@@ -19086,18 +19109,18 @@ export type PatchShareTransferReasonErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShareTransferReasonError = PatchShareTransferReasonErrors[keyof PatchShareTransferReasonErrors];
+export type SharesPatchShareTransferReasonError = SharesPatchShareTransferReasonErrors[keyof SharesPatchShareTransferReasonErrors];
 
-export type PatchShareTransferReasonResponses = {
+export type SharesPatchShareTransferReasonResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShareTransferReasonResponse = PatchShareTransferReasonResponses[keyof PatchShareTransferReasonResponses];
+export type SharesPatchShareTransferReasonResponse = SharesPatchShareTransferReasonResponses[keyof SharesPatchShareTransferReasonResponses];
 
-export type UpdateShareTransferReasonData = {
+export type SharesUpdateShareTransferReasonData = {
     body?: ShareTransferReasonUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19112,7 +19135,7 @@ export type UpdateShareTransferReasonData = {
     url: '/api/v2/AccountingService/Shares/TransferReasons/{reasonId}';
 };
 
-export type UpdateShareTransferReasonErrors = {
+export type SharesUpdateShareTransferReasonErrors = {
     /**
      * Bad Request
      */
@@ -19131,18 +19154,18 @@ export type UpdateShareTransferReasonErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateShareTransferReasonError = UpdateShareTransferReasonErrors[keyof UpdateShareTransferReasonErrors];
+export type SharesUpdateShareTransferReasonError = SharesUpdateShareTransferReasonErrors[keyof SharesUpdateShareTransferReasonErrors];
 
-export type UpdateShareTransferReasonResponses = {
+export type SharesUpdateShareTransferReasonResponses = {
     /**
      * OK
      */
     200: ShareTransferReasonDtoEnvelopeReadable;
 };
 
-export type UpdateShareTransferReasonResponse = UpdateShareTransferReasonResponses[keyof UpdateShareTransferReasonResponses];
+export type SharesUpdateShareTransferReasonResponse = SharesUpdateShareTransferReasonResponses[keyof SharesUpdateShareTransferReasonResponses];
 
-export type GetTaxClassesData = {
+export type TaxClassesGetTaxClassesData = {
     body?: TaxClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19155,7 +19178,7 @@ export type GetTaxClassesData = {
     url: '/api/v2/AccountingService/TaxClasses';
 };
 
-export type GetTaxClassesErrors = {
+export type TaxClassesGetTaxClassesErrors = {
     /**
      * Unauthorized
      */
@@ -19166,18 +19189,18 @@ export type GetTaxClassesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxClassesError = GetTaxClassesErrors[keyof GetTaxClassesErrors];
+export type TaxClassesGetTaxClassesError = TaxClassesGetTaxClassesErrors[keyof TaxClassesGetTaxClassesErrors];
 
-export type GetTaxClassesResponses = {
+export type TaxClassesGetTaxClassesResponses = {
     /**
      * OK
      */
     200: TaxClassDtoListEnvelopeReadable;
 };
 
-export type GetTaxClassesResponse = GetTaxClassesResponses[keyof GetTaxClassesResponses];
+export type TaxClassesGetTaxClassesResponse = TaxClassesGetTaxClassesResponses[keyof TaxClassesGetTaxClassesResponses];
 
-export type CreateTaxClassData = {
+export type TaxClassesCreateTaxClassData = {
     body?: TaxClassCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19190,7 +19213,7 @@ export type CreateTaxClassData = {
     url: '/api/v2/AccountingService/TaxClasses';
 };
 
-export type CreateTaxClassErrors = {
+export type TaxClassesCreateTaxClassErrors = {
     /**
      * Unauthorized
      */
@@ -19201,18 +19224,18 @@ export type CreateTaxClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTaxClassError = CreateTaxClassErrors[keyof CreateTaxClassErrors];
+export type TaxClassesCreateTaxClassError = TaxClassesCreateTaxClassErrors[keyof TaxClassesCreateTaxClassErrors];
 
-export type CreateTaxClassResponses = {
+export type TaxClassesCreateTaxClassResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTaxClassResponse = CreateTaxClassResponses[keyof CreateTaxClassResponses];
+export type TaxClassesCreateTaxClassResponse = TaxClassesCreateTaxClassResponses[keyof TaxClassesCreateTaxClassResponses];
 
-export type GetTaxClassesCountData = {
+export type TaxClassesGetTaxClassesCountData = {
     body?: TaxClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19225,7 +19248,7 @@ export type GetTaxClassesCountData = {
     url: '/api/v2/AccountingService/TaxClasses/Count';
 };
 
-export type GetTaxClassesCountErrors = {
+export type TaxClassesGetTaxClassesCountErrors = {
     /**
      * Unauthorized
      */
@@ -19236,18 +19259,18 @@ export type GetTaxClassesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxClassesCountError = GetTaxClassesCountErrors[keyof GetTaxClassesCountErrors];
+export type TaxClassesGetTaxClassesCountError = TaxClassesGetTaxClassesCountErrors[keyof TaxClassesGetTaxClassesCountErrors];
 
-export type GetTaxClassesCountResponses = {
+export type TaxClassesGetTaxClassesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTaxClassesCountResponse = GetTaxClassesCountResponses[keyof GetTaxClassesCountResponses];
+export type TaxClassesGetTaxClassesCountResponse = TaxClassesGetTaxClassesCountResponses[keyof TaxClassesGetTaxClassesCountResponses];
 
-export type DeleteTaxClassData = {
+export type TaxClassesDeleteTaxClassData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19262,7 +19285,7 @@ export type DeleteTaxClassData = {
     url: '/api/v2/AccountingService/TaxClasses/{id}';
 };
 
-export type DeleteTaxClassErrors = {
+export type TaxClassesDeleteTaxClassErrors = {
     /**
      * Unauthorized
      */
@@ -19273,18 +19296,18 @@ export type DeleteTaxClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTaxClassError = DeleteTaxClassErrors[keyof DeleteTaxClassErrors];
+export type TaxClassesDeleteTaxClassError = TaxClassesDeleteTaxClassErrors[keyof TaxClassesDeleteTaxClassErrors];
 
-export type DeleteTaxClassResponses = {
+export type TaxClassesDeleteTaxClassResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTaxClassResponse = DeleteTaxClassResponses[keyof DeleteTaxClassResponses];
+export type TaxClassesDeleteTaxClassResponse = TaxClassesDeleteTaxClassResponses[keyof TaxClassesDeleteTaxClassResponses];
 
-export type GetTaxClassData = {
+export type TaxClassesGetTaxClassData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19299,7 +19322,7 @@ export type GetTaxClassData = {
     url: '/api/v2/AccountingService/TaxClasses/{id}';
 };
 
-export type GetTaxClassErrors = {
+export type TaxClassesGetTaxClassErrors = {
     /**
      * Unauthorized
      */
@@ -19310,18 +19333,18 @@ export type GetTaxClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxClassError = GetTaxClassErrors[keyof GetTaxClassErrors];
+export type TaxClassesGetTaxClassError = TaxClassesGetTaxClassErrors[keyof TaxClassesGetTaxClassErrors];
 
-export type GetTaxClassResponses = {
+export type TaxClassesGetTaxClassResponses = {
     /**
      * OK
      */
     200: TaxClassDtoEnvelopeReadable;
 };
 
-export type GetTaxClassResponse = GetTaxClassResponses[keyof GetTaxClassResponses];
+export type TaxClassesGetTaxClassResponse = TaxClassesGetTaxClassResponses[keyof TaxClassesGetTaxClassResponses];
 
-export type PatchTaxClassData = {
+export type TaxClassesPatchTaxClassData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -19336,7 +19359,7 @@ export type PatchTaxClassData = {
     url: '/api/v2/AccountingService/TaxClasses/{id}';
 };
 
-export type PatchTaxClassErrors = {
+export type TaxClassesPatchTaxClassErrors = {
     /**
      * Unauthorized
      */
@@ -19347,18 +19370,18 @@ export type PatchTaxClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTaxClassError = PatchTaxClassErrors[keyof PatchTaxClassErrors];
+export type TaxClassesPatchTaxClassError = TaxClassesPatchTaxClassErrors[keyof TaxClassesPatchTaxClassErrors];
 
-export type PatchTaxClassResponses = {
+export type TaxClassesPatchTaxClassResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchTaxClassResponse = PatchTaxClassResponses[keyof PatchTaxClassResponses];
+export type TaxClassesPatchTaxClassResponse = TaxClassesPatchTaxClassResponses[keyof TaxClassesPatchTaxClassResponses];
 
-export type UpdateTaxClassData = {
+export type TaxClassesUpdateTaxClassData = {
     body?: TaxClassUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19373,7 +19396,7 @@ export type UpdateTaxClassData = {
     url: '/api/v2/AccountingService/TaxClasses/{id}';
 };
 
-export type UpdateTaxClassErrors = {
+export type TaxClassesUpdateTaxClassErrors = {
     /**
      * Unauthorized
      */
@@ -19384,18 +19407,18 @@ export type UpdateTaxClassErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTaxClassError = UpdateTaxClassErrors[keyof UpdateTaxClassErrors];
+export type TaxClassesUpdateTaxClassError = TaxClassesUpdateTaxClassErrors[keyof TaxClassesUpdateTaxClassErrors];
 
-export type UpdateTaxClassResponses = {
+export type TaxClassesUpdateTaxClassResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type UpdateTaxClassResponse = UpdateTaxClassResponses[keyof UpdateTaxClassResponses];
+export type TaxClassesUpdateTaxClassResponse = TaxClassesUpdateTaxClassResponses[keyof TaxClassesUpdateTaxClassResponses];
 
-export type GetTaxPoliciesData = {
+export type TaxPoliciesGetTaxPoliciesData = {
     body?: TaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19408,7 +19431,7 @@ export type GetTaxPoliciesData = {
     url: '/api/v2/AccountingService/TaxPolicies';
 };
 
-export type GetTaxPoliciesErrors = {
+export type TaxPoliciesGetTaxPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -19419,18 +19442,18 @@ export type GetTaxPoliciesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxPoliciesError = GetTaxPoliciesErrors[keyof GetTaxPoliciesErrors];
+export type TaxPoliciesGetTaxPoliciesError = TaxPoliciesGetTaxPoliciesErrors[keyof TaxPoliciesGetTaxPoliciesErrors];
 
-export type GetTaxPoliciesResponses = {
+export type TaxPoliciesGetTaxPoliciesResponses = {
     /**
      * OK
      */
     200: TaxPolicyDtoListEnvelopeReadable;
 };
 
-export type GetTaxPoliciesResponse = GetTaxPoliciesResponses[keyof GetTaxPoliciesResponses];
+export type TaxPoliciesGetTaxPoliciesResponse = TaxPoliciesGetTaxPoliciesResponses[keyof TaxPoliciesGetTaxPoliciesResponses];
 
-export type CreateTaxPolicyData = {
+export type TaxPoliciesCreateTaxPolicyData = {
     body?: TaxPolicyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19443,7 +19466,7 @@ export type CreateTaxPolicyData = {
     url: '/api/v2/AccountingService/TaxPolicies';
 };
 
-export type CreateTaxPolicyErrors = {
+export type TaxPoliciesCreateTaxPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -19454,18 +19477,18 @@ export type CreateTaxPolicyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTaxPolicyError = CreateTaxPolicyErrors[keyof CreateTaxPolicyErrors];
+export type TaxPoliciesCreateTaxPolicyError = TaxPoliciesCreateTaxPolicyErrors[keyof TaxPoliciesCreateTaxPolicyErrors];
 
-export type CreateTaxPolicyResponses = {
+export type TaxPoliciesCreateTaxPolicyResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTaxPolicyResponse = CreateTaxPolicyResponses[keyof CreateTaxPolicyResponses];
+export type TaxPoliciesCreateTaxPolicyResponse = TaxPoliciesCreateTaxPolicyResponses[keyof TaxPoliciesCreateTaxPolicyResponses];
 
-export type GetTaxPoliciesCountData = {
+export type TaxPoliciesGetTaxPoliciesCountData = {
     body?: TaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19478,7 +19501,7 @@ export type GetTaxPoliciesCountData = {
     url: '/api/v2/AccountingService/TaxPolicies/Count';
 };
 
-export type GetTaxPoliciesCountErrors = {
+export type TaxPoliciesGetTaxPoliciesCountErrors = {
     /**
      * Unauthorized
      */
@@ -19489,18 +19512,18 @@ export type GetTaxPoliciesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxPoliciesCountError = GetTaxPoliciesCountErrors[keyof GetTaxPoliciesCountErrors];
+export type TaxPoliciesGetTaxPoliciesCountError = TaxPoliciesGetTaxPoliciesCountErrors[keyof TaxPoliciesGetTaxPoliciesCountErrors];
 
-export type GetTaxPoliciesCountResponses = {
+export type TaxPoliciesGetTaxPoliciesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTaxPoliciesCountResponse = GetTaxPoliciesCountResponses[keyof GetTaxPoliciesCountResponses];
+export type TaxPoliciesGetTaxPoliciesCountResponse = TaxPoliciesGetTaxPoliciesCountResponses[keyof TaxPoliciesGetTaxPoliciesCountResponses];
 
-export type GetTaxPoliciesByAuthorityData = {
+export type TaxPoliciesGetTaxPoliciesByAuthorityData = {
     body?: TaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19515,7 +19538,7 @@ export type GetTaxPoliciesByAuthorityData = {
     url: '/api/v2/AccountingService/TaxPolicies/ByAuthority/{authorityId}';
 };
 
-export type GetTaxPoliciesByAuthorityErrors = {
+export type TaxPoliciesGetTaxPoliciesByAuthorityErrors = {
     /**
      * Unauthorized
      */
@@ -19526,18 +19549,18 @@ export type GetTaxPoliciesByAuthorityErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxPoliciesByAuthorityError = GetTaxPoliciesByAuthorityErrors[keyof GetTaxPoliciesByAuthorityErrors];
+export type TaxPoliciesGetTaxPoliciesByAuthorityError = TaxPoliciesGetTaxPoliciesByAuthorityErrors[keyof TaxPoliciesGetTaxPoliciesByAuthorityErrors];
 
-export type GetTaxPoliciesByAuthorityResponses = {
+export type TaxPoliciesGetTaxPoliciesByAuthorityResponses = {
     /**
      * OK
      */
     200: TaxPolicyDtoListEnvelopeReadable;
 };
 
-export type GetTaxPoliciesByAuthorityResponse = GetTaxPoliciesByAuthorityResponses[keyof GetTaxPoliciesByAuthorityResponses];
+export type TaxPoliciesGetTaxPoliciesByAuthorityResponse = TaxPoliciesGetTaxPoliciesByAuthorityResponses[keyof TaxPoliciesGetTaxPoliciesByAuthorityResponses];
 
-export type DeleteTaxPolicyData = {
+export type TaxPoliciesDeleteTaxPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19552,7 +19575,7 @@ export type DeleteTaxPolicyData = {
     url: '/api/v2/AccountingService/TaxPolicies/{id}';
 };
 
-export type DeleteTaxPolicyErrors = {
+export type TaxPoliciesDeleteTaxPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -19563,18 +19586,18 @@ export type DeleteTaxPolicyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTaxPolicyError = DeleteTaxPolicyErrors[keyof DeleteTaxPolicyErrors];
+export type TaxPoliciesDeleteTaxPolicyError = TaxPoliciesDeleteTaxPolicyErrors[keyof TaxPoliciesDeleteTaxPolicyErrors];
 
-export type DeleteTaxPolicyResponses = {
+export type TaxPoliciesDeleteTaxPolicyResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteTaxPolicyResponse = DeleteTaxPolicyResponses[keyof DeleteTaxPolicyResponses];
+export type TaxPoliciesDeleteTaxPolicyResponse = TaxPoliciesDeleteTaxPolicyResponses[keyof TaxPoliciesDeleteTaxPolicyResponses];
 
-export type GetTaxPolicyData = {
+export type TaxPoliciesGetTaxPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19589,7 +19612,7 @@ export type GetTaxPolicyData = {
     url: '/api/v2/AccountingService/TaxPolicies/{id}';
 };
 
-export type GetTaxPolicyErrors = {
+export type TaxPoliciesGetTaxPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -19600,18 +19623,18 @@ export type GetTaxPolicyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxPolicyError = GetTaxPolicyErrors[keyof GetTaxPolicyErrors];
+export type TaxPoliciesGetTaxPolicyError = TaxPoliciesGetTaxPolicyErrors[keyof TaxPoliciesGetTaxPolicyErrors];
 
-export type GetTaxPolicyResponses = {
+export type TaxPoliciesGetTaxPolicyResponses = {
     /**
      * OK
      */
     200: TaxPolicyDtoEnvelopeReadable;
 };
 
-export type GetTaxPolicyResponse = GetTaxPolicyResponses[keyof GetTaxPolicyResponses];
+export type TaxPoliciesGetTaxPolicyResponse = TaxPoliciesGetTaxPolicyResponses[keyof TaxPoliciesGetTaxPolicyResponses];
 
-export type PatchTaxPolicyData = {
+export type TaxPoliciesPatchTaxPolicyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -19626,7 +19649,7 @@ export type PatchTaxPolicyData = {
     url: '/api/v2/AccountingService/TaxPolicies/{id}';
 };
 
-export type PatchTaxPolicyErrors = {
+export type TaxPoliciesPatchTaxPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -19637,18 +19660,18 @@ export type PatchTaxPolicyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTaxPolicyError = PatchTaxPolicyErrors[keyof PatchTaxPolicyErrors];
+export type TaxPoliciesPatchTaxPolicyError = TaxPoliciesPatchTaxPolicyErrors[keyof TaxPoliciesPatchTaxPolicyErrors];
 
-export type PatchTaxPolicyResponses = {
+export type TaxPoliciesPatchTaxPolicyResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchTaxPolicyResponse = PatchTaxPolicyResponses[keyof PatchTaxPolicyResponses];
+export type TaxPoliciesPatchTaxPolicyResponse = TaxPoliciesPatchTaxPolicyResponses[keyof TaxPoliciesPatchTaxPolicyResponses];
 
-export type UpdateTaxPolicyData = {
+export type TaxPoliciesUpdateTaxPolicyData = {
     body?: TaxPolicyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19663,7 +19686,7 @@ export type UpdateTaxPolicyData = {
     url: '/api/v2/AccountingService/TaxPolicies/{id}';
 };
 
-export type UpdateTaxPolicyErrors = {
+export type TaxPoliciesUpdateTaxPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -19674,18 +19697,18 @@ export type UpdateTaxPolicyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTaxPolicyError = UpdateTaxPolicyErrors[keyof UpdateTaxPolicyErrors];
+export type TaxPoliciesUpdateTaxPolicyError = TaxPoliciesUpdateTaxPolicyErrors[keyof TaxPoliciesUpdateTaxPolicyErrors];
 
-export type UpdateTaxPolicyResponses = {
+export type TaxPoliciesUpdateTaxPolicyResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type UpdateTaxPolicyResponse = UpdateTaxPolicyResponses[keyof UpdateTaxPolicyResponses];
+export type TaxPoliciesUpdateTaxPolicyResponse = TaxPoliciesUpdateTaxPolicyResponses[keyof TaxPoliciesUpdateTaxPolicyResponses];
 
-export type GetItemTaxPolicyRecordsData = {
+export type TaxPoliciesGetItemTaxPolicyRecordsData = {
     body?: ItemTaxPolicyRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19700,7 +19723,7 @@ export type GetItemTaxPolicyRecordsData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords';
 };
 
-export type GetItemTaxPolicyRecordsErrors = {
+export type TaxPoliciesGetItemTaxPolicyRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -19711,18 +19734,18 @@ export type GetItemTaxPolicyRecordsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTaxPolicyRecordsError = GetItemTaxPolicyRecordsErrors[keyof GetItemTaxPolicyRecordsErrors];
+export type TaxPoliciesGetItemTaxPolicyRecordsError = TaxPoliciesGetItemTaxPolicyRecordsErrors[keyof TaxPoliciesGetItemTaxPolicyRecordsErrors];
 
-export type GetItemTaxPolicyRecordsResponses = {
+export type TaxPoliciesGetItemTaxPolicyRecordsResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyRecordDtoListEnvelopeReadable;
 };
 
-export type GetItemTaxPolicyRecordsResponse = GetItemTaxPolicyRecordsResponses[keyof GetItemTaxPolicyRecordsResponses];
+export type TaxPoliciesGetItemTaxPolicyRecordsResponse = TaxPoliciesGetItemTaxPolicyRecordsResponses[keyof TaxPoliciesGetItemTaxPolicyRecordsResponses];
 
-export type CreateItemTaxPolicyRecordData = {
+export type TaxPoliciesCreateItemTaxPolicyRecordData = {
     body?: ItemTaxPolicyRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19737,7 +19760,7 @@ export type CreateItemTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords';
 };
 
-export type CreateItemTaxPolicyRecordErrors = {
+export type TaxPoliciesCreateItemTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -19748,18 +19771,18 @@ export type CreateItemTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateItemTaxPolicyRecordError = CreateItemTaxPolicyRecordErrors[keyof CreateItemTaxPolicyRecordErrors];
+export type TaxPoliciesCreateItemTaxPolicyRecordError = TaxPoliciesCreateItemTaxPolicyRecordErrors[keyof TaxPoliciesCreateItemTaxPolicyRecordErrors];
 
-export type CreateItemTaxPolicyRecordResponses = {
+export type TaxPoliciesCreateItemTaxPolicyRecordResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateItemTaxPolicyRecordResponse = CreateItemTaxPolicyRecordResponses[keyof CreateItemTaxPolicyRecordResponses];
+export type TaxPoliciesCreateItemTaxPolicyRecordResponse = TaxPoliciesCreateItemTaxPolicyRecordResponses[keyof TaxPoliciesCreateItemTaxPolicyRecordResponses];
 
-export type DeleteItemTaxPolicyRecordData = {
+export type TaxPoliciesDeleteItemTaxPolicyRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19775,7 +19798,7 @@ export type DeleteItemTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords/{itemTaxPolicyRecordId}';
 };
 
-export type DeleteItemTaxPolicyRecordErrors = {
+export type TaxPoliciesDeleteItemTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -19786,18 +19809,18 @@ export type DeleteItemTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemTaxPolicyRecordError = DeleteItemTaxPolicyRecordErrors[keyof DeleteItemTaxPolicyRecordErrors];
+export type TaxPoliciesDeleteItemTaxPolicyRecordError = TaxPoliciesDeleteItemTaxPolicyRecordErrors[keyof TaxPoliciesDeleteItemTaxPolicyRecordErrors];
 
-export type DeleteItemTaxPolicyRecordResponses = {
+export type TaxPoliciesDeleteItemTaxPolicyRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteItemTaxPolicyRecordResponse = DeleteItemTaxPolicyRecordResponses[keyof DeleteItemTaxPolicyRecordResponses];
+export type TaxPoliciesDeleteItemTaxPolicyRecordResponse = TaxPoliciesDeleteItemTaxPolicyRecordResponses[keyof TaxPoliciesDeleteItemTaxPolicyRecordResponses];
 
-export type GetItemTaxPolicyRecordData = {
+export type TaxPoliciesGetItemTaxPolicyRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -19813,7 +19836,7 @@ export type GetItemTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords/{itemTaxPolicyRecordId}';
 };
 
-export type GetItemTaxPolicyRecordErrors = {
+export type TaxPoliciesGetItemTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -19824,18 +19847,18 @@ export type GetItemTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemTaxPolicyRecordError = GetItemTaxPolicyRecordErrors[keyof GetItemTaxPolicyRecordErrors];
+export type TaxPoliciesGetItemTaxPolicyRecordError = TaxPoliciesGetItemTaxPolicyRecordErrors[keyof TaxPoliciesGetItemTaxPolicyRecordErrors];
 
-export type GetItemTaxPolicyRecordResponses = {
+export type TaxPoliciesGetItemTaxPolicyRecordResponses = {
     /**
      * OK
      */
     200: ItemTaxPolicyRecordDtoEnvelopeReadable;
 };
 
-export type GetItemTaxPolicyRecordResponse = GetItemTaxPolicyRecordResponses[keyof GetItemTaxPolicyRecordResponses];
+export type TaxPoliciesGetItemTaxPolicyRecordResponse = TaxPoliciesGetItemTaxPolicyRecordResponses[keyof TaxPoliciesGetItemTaxPolicyRecordResponses];
 
-export type PatchItemTaxPolicyRecordData = {
+export type TaxPoliciesPatchItemTaxPolicyRecordData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -19851,7 +19874,7 @@ export type PatchItemTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords/{itemTaxPolicyRecordId}';
 };
 
-export type PatchItemTaxPolicyRecordErrors = {
+export type TaxPoliciesPatchItemTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -19862,18 +19885,18 @@ export type PatchItemTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemTaxPolicyRecordError = PatchItemTaxPolicyRecordErrors[keyof PatchItemTaxPolicyRecordErrors];
+export type TaxPoliciesPatchItemTaxPolicyRecordError = TaxPoliciesPatchItemTaxPolicyRecordErrors[keyof TaxPoliciesPatchItemTaxPolicyRecordErrors];
 
-export type PatchItemTaxPolicyRecordResponses = {
+export type TaxPoliciesPatchItemTaxPolicyRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchItemTaxPolicyRecordResponse = PatchItemTaxPolicyRecordResponses[keyof PatchItemTaxPolicyRecordResponses];
+export type TaxPoliciesPatchItemTaxPolicyRecordResponse = TaxPoliciesPatchItemTaxPolicyRecordResponses[keyof TaxPoliciesPatchItemTaxPolicyRecordResponses];
 
-export type UpdateItemTaxPolicyRecordData = {
+export type TaxPoliciesUpdateItemTaxPolicyRecordData = {
     body?: ItemTaxPolicyRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19889,7 +19912,7 @@ export type UpdateItemTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords/{itemTaxPolicyRecordId}';
 };
 
-export type UpdateItemTaxPolicyRecordErrors = {
+export type TaxPoliciesUpdateItemTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -19900,18 +19923,18 @@ export type UpdateItemTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemTaxPolicyRecordError = UpdateItemTaxPolicyRecordErrors[keyof UpdateItemTaxPolicyRecordErrors];
+export type TaxPoliciesUpdateItemTaxPolicyRecordError = TaxPoliciesUpdateItemTaxPolicyRecordErrors[keyof TaxPoliciesUpdateItemTaxPolicyRecordErrors];
 
-export type UpdateItemTaxPolicyRecordResponses = {
+export type TaxPoliciesUpdateItemTaxPolicyRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type UpdateItemTaxPolicyRecordResponse = UpdateItemTaxPolicyRecordResponses[keyof UpdateItemTaxPolicyRecordResponses];
+export type TaxPoliciesUpdateItemTaxPolicyRecordResponse = TaxPoliciesUpdateItemTaxPolicyRecordResponses[keyof TaxPoliciesUpdateItemTaxPolicyRecordResponses];
 
-export type GetAppliedTaxPolicyRecordsData = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordsData = {
     body?: AppliedTaxPolicyRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -19926,7 +19949,7 @@ export type GetAppliedTaxPolicyRecordsData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords';
 };
 
-export type GetAppliedTaxPolicyRecordsErrors = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -19937,18 +19960,18 @@ export type GetAppliedTaxPolicyRecordsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppliedTaxPolicyRecordsError = GetAppliedTaxPolicyRecordsErrors[keyof GetAppliedTaxPolicyRecordsErrors];
+export type TaxPoliciesGetAppliedTaxPolicyRecordsError = TaxPoliciesGetAppliedTaxPolicyRecordsErrors[keyof TaxPoliciesGetAppliedTaxPolicyRecordsErrors];
 
-export type GetAppliedTaxPolicyRecordsResponses = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordsResponses = {
     /**
      * OK
      */
     200: AppliedTaxPolicyRecordDtoListEnvelopeReadable;
 };
 
-export type GetAppliedTaxPolicyRecordsResponse = GetAppliedTaxPolicyRecordsResponses[keyof GetAppliedTaxPolicyRecordsResponses];
+export type TaxPoliciesGetAppliedTaxPolicyRecordsResponse = TaxPoliciesGetAppliedTaxPolicyRecordsResponses[keyof TaxPoliciesGetAppliedTaxPolicyRecordsResponses];
 
-export type CreateAppliedTaxPolicyRecordData = {
+export type TaxPoliciesCreateAppliedTaxPolicyRecordData = {
     body?: AppliedTaxPolicyRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -19963,7 +19986,7 @@ export type CreateAppliedTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords';
 };
 
-export type CreateAppliedTaxPolicyRecordErrors = {
+export type TaxPoliciesCreateAppliedTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -19974,18 +19997,18 @@ export type CreateAppliedTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAppliedTaxPolicyRecordError = CreateAppliedTaxPolicyRecordErrors[keyof CreateAppliedTaxPolicyRecordErrors];
+export type TaxPoliciesCreateAppliedTaxPolicyRecordError = TaxPoliciesCreateAppliedTaxPolicyRecordErrors[keyof TaxPoliciesCreateAppliedTaxPolicyRecordErrors];
 
-export type CreateAppliedTaxPolicyRecordResponses = {
+export type TaxPoliciesCreateAppliedTaxPolicyRecordResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAppliedTaxPolicyRecordResponse = CreateAppliedTaxPolicyRecordResponses[keyof CreateAppliedTaxPolicyRecordResponses];
+export type TaxPoliciesCreateAppliedTaxPolicyRecordResponse = TaxPoliciesCreateAppliedTaxPolicyRecordResponses[keyof TaxPoliciesCreateAppliedTaxPolicyRecordResponses];
 
-export type GetAppliedTaxPolicyRecordsCountData = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordsCountData = {
     body?: AppliedTaxPolicyRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20000,7 +20023,7 @@ export type GetAppliedTaxPolicyRecordsCountData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/Count';
 };
 
-export type GetAppliedTaxPolicyRecordsCountErrors = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordsCountErrors = {
     /**
      * Unauthorized
      */
@@ -20011,18 +20034,18 @@ export type GetAppliedTaxPolicyRecordsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppliedTaxPolicyRecordsCountError = GetAppliedTaxPolicyRecordsCountErrors[keyof GetAppliedTaxPolicyRecordsCountErrors];
+export type TaxPoliciesGetAppliedTaxPolicyRecordsCountError = TaxPoliciesGetAppliedTaxPolicyRecordsCountErrors[keyof TaxPoliciesGetAppliedTaxPolicyRecordsCountErrors];
 
-export type GetAppliedTaxPolicyRecordsCountResponses = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAppliedTaxPolicyRecordsCountResponse = GetAppliedTaxPolicyRecordsCountResponses[keyof GetAppliedTaxPolicyRecordsCountResponses];
+export type TaxPoliciesGetAppliedTaxPolicyRecordsCountResponse = TaxPoliciesGetAppliedTaxPolicyRecordsCountResponses[keyof TaxPoliciesGetAppliedTaxPolicyRecordsCountResponses];
 
-export type DeleteAppliedTaxPolicyRecordData = {
+export type TaxPoliciesDeleteAppliedTaxPolicyRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20038,7 +20061,7 @@ export type DeleteAppliedTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/{appliedTaxPolicyRecordId}';
 };
 
-export type DeleteAppliedTaxPolicyRecordErrors = {
+export type TaxPoliciesDeleteAppliedTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -20049,18 +20072,18 @@ export type DeleteAppliedTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAppliedTaxPolicyRecordError = DeleteAppliedTaxPolicyRecordErrors[keyof DeleteAppliedTaxPolicyRecordErrors];
+export type TaxPoliciesDeleteAppliedTaxPolicyRecordError = TaxPoliciesDeleteAppliedTaxPolicyRecordErrors[keyof TaxPoliciesDeleteAppliedTaxPolicyRecordErrors];
 
-export type DeleteAppliedTaxPolicyRecordResponses = {
+export type TaxPoliciesDeleteAppliedTaxPolicyRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteAppliedTaxPolicyRecordResponse = DeleteAppliedTaxPolicyRecordResponses[keyof DeleteAppliedTaxPolicyRecordResponses];
+export type TaxPoliciesDeleteAppliedTaxPolicyRecordResponse = TaxPoliciesDeleteAppliedTaxPolicyRecordResponses[keyof TaxPoliciesDeleteAppliedTaxPolicyRecordResponses];
 
-export type GetAppliedTaxPolicyRecordData = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20076,7 +20099,7 @@ export type GetAppliedTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/{appliedTaxPolicyRecordId}';
 };
 
-export type GetAppliedTaxPolicyRecordErrors = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -20087,18 +20110,18 @@ export type GetAppliedTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppliedTaxPolicyRecordError = GetAppliedTaxPolicyRecordErrors[keyof GetAppliedTaxPolicyRecordErrors];
+export type TaxPoliciesGetAppliedTaxPolicyRecordError = TaxPoliciesGetAppliedTaxPolicyRecordErrors[keyof TaxPoliciesGetAppliedTaxPolicyRecordErrors];
 
-export type GetAppliedTaxPolicyRecordResponses = {
+export type TaxPoliciesGetAppliedTaxPolicyRecordResponses = {
     /**
      * OK
      */
     200: AppliedTaxPolicyRecordDtoEnvelopeReadable;
 };
 
-export type GetAppliedTaxPolicyRecordResponse = GetAppliedTaxPolicyRecordResponses[keyof GetAppliedTaxPolicyRecordResponses];
+export type TaxPoliciesGetAppliedTaxPolicyRecordResponse = TaxPoliciesGetAppliedTaxPolicyRecordResponses[keyof TaxPoliciesGetAppliedTaxPolicyRecordResponses];
 
-export type PatchAppliedTaxPolicyRecordData = {
+export type TaxPoliciesPatchAppliedTaxPolicyRecordData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -20114,7 +20137,7 @@ export type PatchAppliedTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/{appliedTaxPolicyRecordId}';
 };
 
-export type PatchAppliedTaxPolicyRecordErrors = {
+export type TaxPoliciesPatchAppliedTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -20125,18 +20148,18 @@ export type PatchAppliedTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAppliedTaxPolicyRecordError = PatchAppliedTaxPolicyRecordErrors[keyof PatchAppliedTaxPolicyRecordErrors];
+export type TaxPoliciesPatchAppliedTaxPolicyRecordError = TaxPoliciesPatchAppliedTaxPolicyRecordErrors[keyof TaxPoliciesPatchAppliedTaxPolicyRecordErrors];
 
-export type PatchAppliedTaxPolicyRecordResponses = {
+export type TaxPoliciesPatchAppliedTaxPolicyRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchAppliedTaxPolicyRecordResponse = PatchAppliedTaxPolicyRecordResponses[keyof PatchAppliedTaxPolicyRecordResponses];
+export type TaxPoliciesPatchAppliedTaxPolicyRecordResponse = TaxPoliciesPatchAppliedTaxPolicyRecordResponses[keyof TaxPoliciesPatchAppliedTaxPolicyRecordResponses];
 
-export type UpdateAppliedTaxPolicyRecordData = {
+export type TaxPoliciesUpdateAppliedTaxPolicyRecordData = {
     body?: AppliedTaxPolicyRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20152,7 +20175,7 @@ export type UpdateAppliedTaxPolicyRecordData = {
     url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/{appliedTaxPolicyRecordId}';
 };
 
-export type UpdateAppliedTaxPolicyRecordErrors = {
+export type TaxPoliciesUpdateAppliedTaxPolicyRecordErrors = {
     /**
      * Unauthorized
      */
@@ -20163,18 +20186,18 @@ export type UpdateAppliedTaxPolicyRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAppliedTaxPolicyRecordError = UpdateAppliedTaxPolicyRecordErrors[keyof UpdateAppliedTaxPolicyRecordErrors];
+export type TaxPoliciesUpdateAppliedTaxPolicyRecordError = TaxPoliciesUpdateAppliedTaxPolicyRecordErrors[keyof TaxPoliciesUpdateAppliedTaxPolicyRecordErrors];
 
-export type UpdateAppliedTaxPolicyRecordResponses = {
+export type TaxPoliciesUpdateAppliedTaxPolicyRecordResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type UpdateAppliedTaxPolicyRecordResponse = UpdateAppliedTaxPolicyRecordResponses[keyof UpdateAppliedTaxPolicyRecordResponses];
+export type TaxPoliciesUpdateAppliedTaxPolicyRecordResponse = TaxPoliciesUpdateAppliedTaxPolicyRecordResponses[keyof TaxPoliciesUpdateAppliedTaxPolicyRecordResponses];
 
-export type GetTaxRatesData = {
+export type TaxRatesGetTaxRatesData = {
     body?: TaxRateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20187,7 +20210,7 @@ export type GetTaxRatesData = {
     url: '/api/v2/AccountingService/TaxRates';
 };
 
-export type GetTaxRatesErrors = {
+export type TaxRatesGetTaxRatesErrors = {
     /**
      * Unauthorized
      */
@@ -20198,18 +20221,18 @@ export type GetTaxRatesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxRatesError = GetTaxRatesErrors[keyof GetTaxRatesErrors];
+export type TaxRatesGetTaxRatesError = TaxRatesGetTaxRatesErrors[keyof TaxRatesGetTaxRatesErrors];
 
-export type GetTaxRatesResponses = {
+export type TaxRatesGetTaxRatesResponses = {
     /**
      * OK
      */
     200: TaxRateDtoListEnvelopeReadable;
 };
 
-export type GetTaxRatesResponse = GetTaxRatesResponses[keyof GetTaxRatesResponses];
+export type TaxRatesGetTaxRatesResponse = TaxRatesGetTaxRatesResponses[keyof TaxRatesGetTaxRatesResponses];
 
-export type CreateTaxRateData = {
+export type TaxRatesCreateTaxRateData = {
     body?: TaxRateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20222,7 +20245,7 @@ export type CreateTaxRateData = {
     url: '/api/v2/AccountingService/TaxRates';
 };
 
-export type CreateTaxRateErrors = {
+export type TaxRatesCreateTaxRateErrors = {
     /**
      * Unauthorized
      */
@@ -20233,18 +20256,18 @@ export type CreateTaxRateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTaxRateError = CreateTaxRateErrors[keyof CreateTaxRateErrors];
+export type TaxRatesCreateTaxRateError = TaxRatesCreateTaxRateErrors[keyof TaxRatesCreateTaxRateErrors];
 
-export type CreateTaxRateResponses = {
+export type TaxRatesCreateTaxRateResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTaxRateResponse = CreateTaxRateResponses[keyof CreateTaxRateResponses];
+export type TaxRatesCreateTaxRateResponse = TaxRatesCreateTaxRateResponses[keyof TaxRatesCreateTaxRateResponses];
 
-export type GetTaxRatesCountData = {
+export type TaxRatesGetTaxRatesCountData = {
     body?: TaxRateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20257,7 +20280,7 @@ export type GetTaxRatesCountData = {
     url: '/api/v2/AccountingService/TaxRates/Count';
 };
 
-export type GetTaxRatesCountErrors = {
+export type TaxRatesGetTaxRatesCountErrors = {
     /**
      * Unauthorized
      */
@@ -20268,18 +20291,18 @@ export type GetTaxRatesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxRatesCountError = GetTaxRatesCountErrors[keyof GetTaxRatesCountErrors];
+export type TaxRatesGetTaxRatesCountError = TaxRatesGetTaxRatesCountErrors[keyof TaxRatesGetTaxRatesCountErrors];
 
-export type GetTaxRatesCountResponses = {
+export type TaxRatesGetTaxRatesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTaxRatesCountResponse = GetTaxRatesCountResponses[keyof GetTaxRatesCountResponses];
+export type TaxRatesGetTaxRatesCountResponse = TaxRatesGetTaxRatesCountResponses[keyof TaxRatesGetTaxRatesCountResponses];
 
-export type DeleteTaxRateData = {
+export type TaxRatesDeleteTaxRateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20294,7 +20317,7 @@ export type DeleteTaxRateData = {
     url: '/api/v2/AccountingService/TaxRates/{id}';
 };
 
-export type DeleteTaxRateErrors = {
+export type TaxRatesDeleteTaxRateErrors = {
     /**
      * Unauthorized
      */
@@ -20305,18 +20328,18 @@ export type DeleteTaxRateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTaxRateError = DeleteTaxRateErrors[keyof DeleteTaxRateErrors];
+export type TaxRatesDeleteTaxRateError = TaxRatesDeleteTaxRateErrors[keyof TaxRatesDeleteTaxRateErrors];
 
-export type DeleteTaxRateResponses = {
+export type TaxRatesDeleteTaxRateResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteTaxRateResponse = DeleteTaxRateResponses[keyof DeleteTaxRateResponses];
+export type TaxRatesDeleteTaxRateResponse = TaxRatesDeleteTaxRateResponses[keyof TaxRatesDeleteTaxRateResponses];
 
-export type GetTaxRateData = {
+export type TaxRatesGetTaxRateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20331,7 +20354,7 @@ export type GetTaxRateData = {
     url: '/api/v2/AccountingService/TaxRates/{id}';
 };
 
-export type GetTaxRateErrors = {
+export type TaxRatesGetTaxRateErrors = {
     /**
      * Unauthorized
      */
@@ -20342,18 +20365,18 @@ export type GetTaxRateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaxRateError = GetTaxRateErrors[keyof GetTaxRateErrors];
+export type TaxRatesGetTaxRateError = TaxRatesGetTaxRateErrors[keyof TaxRatesGetTaxRateErrors];
 
-export type GetTaxRateResponses = {
+export type TaxRatesGetTaxRateResponses = {
     /**
      * OK
      */
     200: TaxRateDtoEnvelopeReadable;
 };
 
-export type GetTaxRateResponse = GetTaxRateResponses[keyof GetTaxRateResponses];
+export type TaxRatesGetTaxRateResponse = TaxRatesGetTaxRateResponses[keyof TaxRatesGetTaxRateResponses];
 
-export type PatchTaxRateData = {
+export type TaxRatesPatchTaxRateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -20368,7 +20391,7 @@ export type PatchTaxRateData = {
     url: '/api/v2/AccountingService/TaxRates/{id}';
 };
 
-export type PatchTaxRateErrors = {
+export type TaxRatesPatchTaxRateErrors = {
     /**
      * Unauthorized
      */
@@ -20379,18 +20402,18 @@ export type PatchTaxRateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTaxRateError = PatchTaxRateErrors[keyof PatchTaxRateErrors];
+export type TaxRatesPatchTaxRateError = TaxRatesPatchTaxRateErrors[keyof TaxRatesPatchTaxRateErrors];
 
-export type PatchTaxRateResponses = {
+export type TaxRatesPatchTaxRateResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchTaxRateResponse = PatchTaxRateResponses[keyof PatchTaxRateResponses];
+export type TaxRatesPatchTaxRateResponse = TaxRatesPatchTaxRateResponses[keyof TaxRatesPatchTaxRateResponses];
 
-export type UpdateTaxRateData = {
+export type TaxRatesUpdateTaxRateData = {
     body?: TaxRateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20405,7 +20428,7 @@ export type UpdateTaxRateData = {
     url: '/api/v2/AccountingService/TaxRates/{id}';
 };
 
-export type UpdateTaxRateErrors = {
+export type TaxRatesUpdateTaxRateErrors = {
     /**
      * Unauthorized
      */
@@ -20416,18 +20439,18 @@ export type UpdateTaxRateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTaxRateError = UpdateTaxRateErrors[keyof UpdateTaxRateErrors];
+export type TaxRatesUpdateTaxRateError = TaxRatesUpdateTaxRateErrors[keyof TaxRatesUpdateTaxRateErrors];
 
-export type UpdateTaxRateResponses = {
+export type TaxRatesUpdateTaxRateResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type UpdateTaxRateResponse = UpdateTaxRateResponses[keyof UpdateTaxRateResponses];
+export type TaxRatesUpdateTaxRateResponse = TaxRatesUpdateTaxRateResponses[keyof TaxRatesUpdateTaxRateResponses];
 
-export type GetTransactionsData = {
+export type TransactionsGetTransactionsData = {
     body?: TransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20440,7 +20463,7 @@ export type GetTransactionsData = {
     url: '/api/v2/AccountingService/Transactions';
 };
 
-export type GetTransactionsErrors = {
+export type TransactionsGetTransactionsErrors = {
     /**
      * Unauthorized
      */
@@ -20451,18 +20474,18 @@ export type GetTransactionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTransactionsError = GetTransactionsErrors[keyof GetTransactionsErrors];
+export type TransactionsGetTransactionsError = TransactionsGetTransactionsErrors[keyof TransactionsGetTransactionsErrors];
 
-export type GetTransactionsResponses = {
+export type TransactionsGetTransactionsResponses = {
     /**
      * OK
      */
     200: TransactionDtoListEnvelopeReadable;
 };
 
-export type GetTransactionsResponse = GetTransactionsResponses[keyof GetTransactionsResponses];
+export type TransactionsGetTransactionsResponse = TransactionsGetTransactionsResponses[keyof TransactionsGetTransactionsResponses];
 
-export type CreateTransactionData = {
+export type TransactionsCreateTransactionData = {
     body?: TransactionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20475,7 +20498,7 @@ export type CreateTransactionData = {
     url: '/api/v2/AccountingService/Transactions';
 };
 
-export type CreateTransactionErrors = {
+export type TransactionsCreateTransactionErrors = {
     /**
      * Bad Request
      */
@@ -20490,18 +20513,18 @@ export type CreateTransactionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTransactionError = CreateTransactionErrors[keyof CreateTransactionErrors];
+export type TransactionsCreateTransactionError = TransactionsCreateTransactionErrors[keyof TransactionsCreateTransactionErrors];
 
-export type CreateTransactionResponses = {
+export type TransactionsCreateTransactionResponses = {
     /**
      * Created
      */
     201: TransactionDtoEnvelopeReadable;
 };
 
-export type CreateTransactionResponse = CreateTransactionResponses[keyof CreateTransactionResponses];
+export type TransactionsCreateTransactionResponse = TransactionsCreateTransactionResponses[keyof TransactionsCreateTransactionResponses];
 
-export type GetTransactionsCountData = {
+export type TransactionsGetTransactionsCountData = {
     body?: TransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20514,7 +20537,7 @@ export type GetTransactionsCountData = {
     url: '/api/v2/AccountingService/Transactions/Count';
 };
 
-export type GetTransactionsCountErrors = {
+export type TransactionsGetTransactionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -20525,18 +20548,18 @@ export type GetTransactionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTransactionsCountError = GetTransactionsCountErrors[keyof GetTransactionsCountErrors];
+export type TransactionsGetTransactionsCountError = TransactionsGetTransactionsCountErrors[keyof TransactionsGetTransactionsCountErrors];
 
-export type GetTransactionsCountResponses = {
+export type TransactionsGetTransactionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTransactionsCountResponse = GetTransactionsCountResponses[keyof GetTransactionsCountResponses];
+export type TransactionsGetTransactionsCountResponse = TransactionsGetTransactionsCountResponses[keyof TransactionsGetTransactionsCountResponses];
 
-export type DeleteTransactionData = {
+export type TransactionsDeleteTransactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20551,7 +20574,7 @@ export type DeleteTransactionData = {
     url: '/api/v2/AccountingService/Transactions/{transactionId}';
 };
 
-export type DeleteTransactionErrors = {
+export type TransactionsDeleteTransactionErrors = {
     /**
      * Unauthorized
      */
@@ -20566,18 +20589,18 @@ export type DeleteTransactionErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteTransactionError = DeleteTransactionErrors[keyof DeleteTransactionErrors];
+export type TransactionsDeleteTransactionError = TransactionsDeleteTransactionErrors[keyof TransactionsDeleteTransactionErrors];
 
-export type DeleteTransactionResponses = {
+export type TransactionsDeleteTransactionResponses = {
     /**
      * No Content
      */
     204: TransactionDtoEnvelopeReadable;
 };
 
-export type DeleteTransactionResponse = DeleteTransactionResponses[keyof DeleteTransactionResponses];
+export type TransactionsDeleteTransactionResponse = TransactionsDeleteTransactionResponses[keyof TransactionsDeleteTransactionResponses];
 
-export type GetTransactionData = {
+export type TransactionsGetTransactionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20592,7 +20615,7 @@ export type GetTransactionData = {
     url: '/api/v2/AccountingService/Transactions/{transactionId}';
 };
 
-export type GetTransactionErrors = {
+export type TransactionsGetTransactionErrors = {
     /**
      * Unauthorized
      */
@@ -20607,18 +20630,18 @@ export type GetTransactionErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetTransactionError = GetTransactionErrors[keyof GetTransactionErrors];
+export type TransactionsGetTransactionError = TransactionsGetTransactionErrors[keyof TransactionsGetTransactionErrors];
 
-export type GetTransactionResponses = {
+export type TransactionsGetTransactionResponses = {
     /**
      * OK
      */
     200: TransactionDtoEnvelopeReadable;
 };
 
-export type GetTransactionResponse = GetTransactionResponses[keyof GetTransactionResponses];
+export type TransactionsGetTransactionResponse = TransactionsGetTransactionResponses[keyof TransactionsGetTransactionResponses];
 
-export type PatchTransactionData = {
+export type TransactionsPatchTransactionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -20633,7 +20656,7 @@ export type PatchTransactionData = {
     url: '/api/v2/AccountingService/Transactions/{transactionId}';
 };
 
-export type PatchTransactionErrors = {
+export type TransactionsPatchTransactionErrors = {
     /**
      * Unauthorized
      */
@@ -20644,18 +20667,18 @@ export type PatchTransactionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTransactionError = PatchTransactionErrors[keyof PatchTransactionErrors];
+export type TransactionsPatchTransactionError = TransactionsPatchTransactionErrors[keyof TransactionsPatchTransactionErrors];
 
-export type PatchTransactionResponses = {
+export type TransactionsPatchTransactionResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchTransactionResponse = PatchTransactionResponses[keyof PatchTransactionResponses];
+export type TransactionsPatchTransactionResponse = TransactionsPatchTransactionResponses[keyof TransactionsPatchTransactionResponses];
 
-export type UpdateTransactionData = {
+export type TransactionsUpdateTransactionData = {
     body?: TransactionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20670,7 +20693,7 @@ export type UpdateTransactionData = {
     url: '/api/v2/AccountingService/Transactions/{transactionId}';
 };
 
-export type UpdateTransactionErrors = {
+export type TransactionsUpdateTransactionErrors = {
     /**
      * Bad Request
      */
@@ -20685,18 +20708,18 @@ export type UpdateTransactionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTransactionError = UpdateTransactionErrors[keyof UpdateTransactionErrors];
+export type TransactionsUpdateTransactionError = TransactionsUpdateTransactionErrors[keyof TransactionsUpdateTransactionErrors];
 
-export type UpdateTransactionResponses = {
+export type TransactionsUpdateTransactionResponses = {
     /**
      * OK
      */
     200: TransactionDtoEnvelopeReadable;
 };
 
-export type UpdateTransactionResponse = UpdateTransactionResponses[keyof UpdateTransactionResponses];
+export type TransactionsUpdateTransactionResponse = TransactionsUpdateTransactionResponses[keyof TransactionsUpdateTransactionResponses];
 
-export type GetTransactionCategoriesData = {
+export type TransactionsGetTransactionCategoriesData = {
     body?: TransactionCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20709,7 +20732,7 @@ export type GetTransactionCategoriesData = {
     url: '/api/v2/AccountingService/Transactions/Categories';
 };
 
-export type GetTransactionCategoriesErrors = {
+export type TransactionsGetTransactionCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -20720,18 +20743,18 @@ export type GetTransactionCategoriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTransactionCategoriesError = GetTransactionCategoriesErrors[keyof GetTransactionCategoriesErrors];
+export type TransactionsGetTransactionCategoriesError = TransactionsGetTransactionCategoriesErrors[keyof TransactionsGetTransactionCategoriesErrors];
 
-export type GetTransactionCategoriesResponses = {
+export type TransactionsGetTransactionCategoriesResponses = {
     /**
      * OK
      */
     200: TransactionCategoryDtoListEnvelopeReadable;
 };
 
-export type GetTransactionCategoriesResponse = GetTransactionCategoriesResponses[keyof GetTransactionCategoriesResponses];
+export type TransactionsGetTransactionCategoriesResponse = TransactionsGetTransactionCategoriesResponses[keyof TransactionsGetTransactionCategoriesResponses];
 
-export type CreateTransactionCategoryData = {
+export type TransactionsCreateTransactionCategoryData = {
     body?: TransactionCategoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20744,7 +20767,7 @@ export type CreateTransactionCategoryData = {
     url: '/api/v2/AccountingService/Transactions/Categories';
 };
 
-export type CreateTransactionCategoryErrors = {
+export type TransactionsCreateTransactionCategoryErrors = {
     /**
      * Bad Request
      */
@@ -20759,18 +20782,18 @@ export type CreateTransactionCategoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTransactionCategoryError = CreateTransactionCategoryErrors[keyof CreateTransactionCategoryErrors];
+export type TransactionsCreateTransactionCategoryError = TransactionsCreateTransactionCategoryErrors[keyof TransactionsCreateTransactionCategoryErrors];
 
-export type CreateTransactionCategoryResponses = {
+export type TransactionsCreateTransactionCategoryResponses = {
     /**
      * Created
      */
     201: TransactionCategoryDtoEnvelopeReadable;
 };
 
-export type CreateTransactionCategoryResponse = CreateTransactionCategoryResponses[keyof CreateTransactionCategoryResponses];
+export type TransactionsCreateTransactionCategoryResponse = TransactionsCreateTransactionCategoryResponses[keyof TransactionsCreateTransactionCategoryResponses];
 
-export type GetTransactionCategoriesCountData = {
+export type TransactionsGetTransactionCategoriesCountData = {
     body?: TransactionCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -20783,7 +20806,7 @@ export type GetTransactionCategoriesCountData = {
     url: '/api/v2/AccountingService/Transactions/Categories/Count';
 };
 
-export type GetTransactionCategoriesCountErrors = {
+export type TransactionsGetTransactionCategoriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -20794,18 +20817,18 @@ export type GetTransactionCategoriesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTransactionCategoriesCountError = GetTransactionCategoriesCountErrors[keyof GetTransactionCategoriesCountErrors];
+export type TransactionsGetTransactionCategoriesCountError = TransactionsGetTransactionCategoriesCountErrors[keyof TransactionsGetTransactionCategoriesCountErrors];
 
-export type GetTransactionCategoriesCountResponses = {
+export type TransactionsGetTransactionCategoriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTransactionCategoriesCountResponse = GetTransactionCategoriesCountResponses[keyof GetTransactionCategoriesCountResponses];
+export type TransactionsGetTransactionCategoriesCountResponse = TransactionsGetTransactionCategoriesCountResponses[keyof TransactionsGetTransactionCategoriesCountResponses];
 
-export type DeleteTransactionCategoryData = {
+export type TransactionsDeleteTransactionCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20820,7 +20843,7 @@ export type DeleteTransactionCategoryData = {
     url: '/api/v2/AccountingService/Transactions/Categories/{categoryId}';
 };
 
-export type DeleteTransactionCategoryErrors = {
+export type TransactionsDeleteTransactionCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -20835,18 +20858,18 @@ export type DeleteTransactionCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteTransactionCategoryError = DeleteTransactionCategoryErrors[keyof DeleteTransactionCategoryErrors];
+export type TransactionsDeleteTransactionCategoryError = TransactionsDeleteTransactionCategoryErrors[keyof TransactionsDeleteTransactionCategoryErrors];
 
-export type DeleteTransactionCategoryResponses = {
+export type TransactionsDeleteTransactionCategoryResponses = {
     /**
      * No Content
      */
     204: TransactionCategoryDtoEnvelopeReadable;
 };
 
-export type DeleteTransactionCategoryResponse = DeleteTransactionCategoryResponses[keyof DeleteTransactionCategoryResponses];
+export type TransactionsDeleteTransactionCategoryResponse = TransactionsDeleteTransactionCategoryResponses[keyof TransactionsDeleteTransactionCategoryResponses];
 
-export type GetTransactionCategoryData = {
+export type TransactionsGetTransactionCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -20861,7 +20884,7 @@ export type GetTransactionCategoryData = {
     url: '/api/v2/AccountingService/Transactions/Categories/{categoryId}';
 };
 
-export type GetTransactionCategoryErrors = {
+export type TransactionsGetTransactionCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -20876,18 +20899,18 @@ export type GetTransactionCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetTransactionCategoryError = GetTransactionCategoryErrors[keyof GetTransactionCategoryErrors];
+export type TransactionsGetTransactionCategoryError = TransactionsGetTransactionCategoryErrors[keyof TransactionsGetTransactionCategoryErrors];
 
-export type GetTransactionCategoryResponses = {
+export type TransactionsGetTransactionCategoryResponses = {
     /**
      * OK
      */
     200: TransactionCategoryDtoEnvelopeReadable;
 };
 
-export type GetTransactionCategoryResponse = GetTransactionCategoryResponses[keyof GetTransactionCategoryResponses];
+export type TransactionsGetTransactionCategoryResponse = TransactionsGetTransactionCategoryResponses[keyof TransactionsGetTransactionCategoryResponses];
 
-export type PatchTransactionCategoryData = {
+export type TransactionsPatchTransactionCategoryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -20902,7 +20925,7 @@ export type PatchTransactionCategoryData = {
     url: '/api/v2/AccountingService/Transactions/Categories/{categoryId}';
 };
 
-export type PatchTransactionCategoryErrors = {
+export type TransactionsPatchTransactionCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -20913,18 +20936,18 @@ export type PatchTransactionCategoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTransactionCategoryError = PatchTransactionCategoryErrors[keyof PatchTransactionCategoryErrors];
+export type TransactionsPatchTransactionCategoryError = TransactionsPatchTransactionCategoryErrors[keyof TransactionsPatchTransactionCategoryErrors];
 
-export type PatchTransactionCategoryResponses = {
+export type TransactionsPatchTransactionCategoryResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type PatchTransactionCategoryResponse = PatchTransactionCategoryResponses[keyof PatchTransactionCategoryResponses];
+export type TransactionsPatchTransactionCategoryResponse = TransactionsPatchTransactionCategoryResponses[keyof TransactionsPatchTransactionCategoryResponses];
 
-export type UpdateTransactionCategoryData = {
+export type TransactionsUpdateTransactionCategoryData = {
     body?: TransactionCategoryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -20939,7 +20962,7 @@ export type UpdateTransactionCategoryData = {
     url: '/api/v2/AccountingService/Transactions/Categories/{categoryId}';
 };
 
-export type UpdateTransactionCategoryErrors = {
+export type TransactionsUpdateTransactionCategoryErrors = {
     /**
      * Bad Request
      */
@@ -20954,16 +20977,16 @@ export type UpdateTransactionCategoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTransactionCategoryError = UpdateTransactionCategoryErrors[keyof UpdateTransactionCategoryErrors];
+export type TransactionsUpdateTransactionCategoryError = TransactionsUpdateTransactionCategoryErrors[keyof TransactionsUpdateTransactionCategoryErrors];
 
-export type UpdateTransactionCategoryResponses = {
+export type TransactionsUpdateTransactionCategoryResponses = {
     /**
      * OK
      */
     200: TransactionCategoryDtoEnvelopeReadable;
 };
 
-export type UpdateTransactionCategoryResponse = UpdateTransactionCategoryResponses[keyof UpdateTransactionCategoryResponses];
+export type TransactionsUpdateTransactionCategoryResponse = TransactionsUpdateTransactionCategoryResponses[keyof TransactionsUpdateTransactionCategoryResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

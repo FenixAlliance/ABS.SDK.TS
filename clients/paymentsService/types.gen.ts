@@ -17,7 +17,11 @@ export type CreateProviderWebhookRegistrationRequest = {
     providerCode?: string | null;
     externalAccountId?: string | null;
     webhookSigningSecret?: string | null;
-    credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+    environment?: 'Unknown' | 'Test' | 'Live';
+};
+
+export type DeclarePaymentProviderEnvironmentRequest = {
+    environment?: 'Unknown' | 'Test' | 'Live';
 };
 
 export type EmptyEnvelopeReadable = {
@@ -118,6 +122,52 @@ export type Int32EnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: number;
+};
+
+export type IssuePaymentLinkCreateDto = {
+    obligationType?: 'Invoice';
+    obligationId?: string;
+    expiresAt?: string | null;
+};
+
+export type IssuePublicPaymentReferenceCreateDto = {
+    obligationType?: 'Invoice';
+    obligationId?: string;
+};
+
+export type IssuedPaymentLinkDto = {
+    id?: string | null;
+    obligationType?: 'Invoice';
+    obligationId?: string | null;
+    tenantId?: string | null;
+    token?: string | null;
+    relativeUrl?: string | null;
+    expiresAt?: string | null;
+};
+
+export type IssuedPaymentLinkDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: IssuedPaymentLinkDto;
+};
+
+export type IssuedPaymentLinkDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: IssuedPaymentLinkDto;
 };
 
 export type LoginRequest = {
@@ -508,6 +558,7 @@ export type PaymentProviderRegistrationDto = {
     credentialSetReference?: string | null;
     hasCredential?: boolean;
     credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+    environment?: 'Unknown' | 'Test' | 'Live';
     externalAccountId?: string | null;
     enabledCapabilities?: 'None' | 'Collection' | 'Authorization' | 'Capture' | 'Refund' | 'Void' | 'SplitPayment' | 'Transfer' | 'Payout' | 'RecipientOnboarding' | 'BalanceInquiry';
     status?: 'Draft' | 'Active' | 'Disabled' | 'Suspended';
@@ -559,6 +610,11 @@ export type PaymentProviderRegistrationDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<PaymentProviderRegistrationDto> | null;
+};
+
+export type PaymentProviderRegistrationUpdateDto = {
+    enabledCapabilities?: 'None' | 'Collection' | 'Authorization' | 'Capture' | 'Refund' | 'Void' | 'SplitPayment' | 'Transfer' | 'Payout' | 'RecipientOnboarding' | 'BalanceInquiry';
+    externalAccountId?: string | null;
 };
 
 export type PaymentTermCreateDto = {
@@ -735,6 +791,119 @@ export type PaymentUpdateDto = {
     receiverWalletAccountId?: string | null;
 };
 
+export type ProviderOperationOutcomeReconciliationReadable = {
+    providerOperationId?: string | null;
+    operationKind?: 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
+    providerCode?: string | null;
+    certainty?: 'Unknown' | 'KnownNoEffect' | 'KnownSucceeded' | 'KnownFailed';
+    availability?: 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+    disposition?: string | null;
+    readonly requiresReconciliation?: boolean;
+    readonly requiresOperatorResolution?: boolean;
+};
+
+export type ProviderOperationOutcomeReconciliationWritable = {
+    providerOperationId?: string | null;
+    operationKind?: 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
+    providerCode?: string | null;
+    certainty?: 'Unknown' | 'KnownNoEffect' | 'KnownSucceeded' | 'KnownFailed';
+    availability?: 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+    disposition?: string | null;
+};
+
+export type ProviderOperationOutcomeReconciliationEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ProviderOperationOutcomeReconciliationReadable;
+};
+
+export type ProviderOperationOutcomeReconciliationEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ProviderOperationOutcomeReconciliationWritable;
+};
+
+export type ProviderOperationOutcomeReviewDto = {
+    id?: string | null;
+    tenantId?: string | null;
+    paymentAttemptId?: string | null;
+    providerCode?: string | null;
+    operationKind?: 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
+    environment?: 'Unknown' | 'Test' | 'Live';
+    state?: 'Prepared' | 'Dispatched' | 'Observed' | 'Settled' | 'Failed' | 'Discontinued';
+    canonicalStatus?: 'Pending' | 'RequiresAction' | 'Authorized' | 'Succeeded' | 'Failed' | 'Cancelled';
+    requestedAmount?: number;
+    requestedCurrencyId?: string | null;
+    providerResourceId?: string | null;
+    subjectType?: string | null;
+    subjectId?: string | null;
+    createdAtUtc?: string;
+    lastModifiedUtc?: string | null;
+    outcomeReconciliation?: 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+    reconciliationDisposition?: string | null;
+};
+
+export type ProviderOperationOutcomeReviewDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProviderOperationOutcomeReviewDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type ProviderOperationOutcomeReviewDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<ProviderOperationOutcomeReviewDto> | null;
+};
+
+export type ProviderOperationOutcomeReviewDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<ProviderOperationOutcomeReviewDto> | null;
+};
+
 export type ProviderWebhookRegistrationCreatedDto = {
     id?: string | null;
     providerCode?: string | null;
@@ -768,6 +937,42 @@ export type ProviderWebhookRegistrationCreatedDtoEnvelopeWritable = {
     result?: ProviderWebhookRegistrationCreatedDto;
 };
 
+export type PublicPaymentReferenceDto = {
+    id?: string | null;
+    tenantId?: string | null;
+    obligationType?: 'Invoice';
+    obligationId?: string | null;
+    reference?: string | null;
+    displayReference?: string | null;
+    state?: 'Unminted' | 'Active' | 'Revoked' | 'Rotated';
+    mintedAt?: string | null;
+};
+
+export type PublicPaymentReferenceDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PublicPaymentReferenceDto;
+};
+
+export type PublicPaymentReferenceDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PublicPaymentReferenceDto;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -787,6 +992,10 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SetPaymentProviderRegistrationCredentialRequest = {
+    credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+};
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -803,72 +1012,72 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -878,32 +1087,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -914,81 +1123,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -999,25 +1208,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1028,25 +1237,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1057,18 +1266,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1078,14 +1287,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1094,14 +1303,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1110,28 +1319,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetPaymentMethodsAsyncData = {
+export type PaymentMethodsGetPaymentMethodsData = {
     body?: PaymentMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1144,7 +1353,7 @@ export type GetPaymentMethodsAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods';
 };
 
-export type GetPaymentMethodsAsyncErrors = {
+export type PaymentMethodsGetPaymentMethodsErrors = {
     /**
      * Unauthorized
      */
@@ -1155,18 +1364,18 @@ export type GetPaymentMethodsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentMethodsAsyncError = GetPaymentMethodsAsyncErrors[keyof GetPaymentMethodsAsyncErrors];
+export type PaymentMethodsGetPaymentMethodsError = PaymentMethodsGetPaymentMethodsErrors[keyof PaymentMethodsGetPaymentMethodsErrors];
 
-export type GetPaymentMethodsAsyncResponses = {
+export type PaymentMethodsGetPaymentMethodsResponses = {
     /**
      * OK
      */
     200: PaymentMethodDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetPaymentMethodsAsyncResponse = GetPaymentMethodsAsyncResponses[keyof GetPaymentMethodsAsyncResponses];
+export type PaymentMethodsGetPaymentMethodsResponse = PaymentMethodsGetPaymentMethodsResponses[keyof PaymentMethodsGetPaymentMethodsResponses];
 
-export type CreatePaymentMethodAsyncData = {
+export type PaymentMethodsCreatePaymentMethodData = {
     body?: PaymentMethodCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1179,7 +1388,7 @@ export type CreatePaymentMethodAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods';
 };
 
-export type CreatePaymentMethodAsyncErrors = {
+export type PaymentMethodsCreatePaymentMethodErrors = {
     /**
      * Unauthorized
      */
@@ -1190,18 +1399,18 @@ export type CreatePaymentMethodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePaymentMethodAsyncError = CreatePaymentMethodAsyncErrors[keyof CreatePaymentMethodAsyncErrors];
+export type PaymentMethodsCreatePaymentMethodError = PaymentMethodsCreatePaymentMethodErrors[keyof PaymentMethodsCreatePaymentMethodErrors];
 
-export type CreatePaymentMethodAsyncResponses = {
+export type PaymentMethodsCreatePaymentMethodResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreatePaymentMethodAsyncResponse = CreatePaymentMethodAsyncResponses[keyof CreatePaymentMethodAsyncResponses];
+export type PaymentMethodsCreatePaymentMethodResponse = PaymentMethodsCreatePaymentMethodResponses[keyof PaymentMethodsCreatePaymentMethodResponses];
 
-export type GetPaymentMethodsCountAsyncData = {
+export type PaymentMethodsGetPaymentMethodsCountData = {
     body?: PaymentMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1214,7 +1423,7 @@ export type GetPaymentMethodsCountAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods/Count';
 };
 
-export type GetPaymentMethodsCountAsyncErrors = {
+export type PaymentMethodsGetPaymentMethodsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1225,18 +1434,18 @@ export type GetPaymentMethodsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentMethodsCountAsyncError = GetPaymentMethodsCountAsyncErrors[keyof GetPaymentMethodsCountAsyncErrors];
+export type PaymentMethodsGetPaymentMethodsCountError = PaymentMethodsGetPaymentMethodsCountErrors[keyof PaymentMethodsGetPaymentMethodsCountErrors];
 
-export type GetPaymentMethodsCountAsyncResponses = {
+export type PaymentMethodsGetPaymentMethodsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPaymentMethodsCountAsyncResponse = GetPaymentMethodsCountAsyncResponses[keyof GetPaymentMethodsCountAsyncResponses];
+export type PaymentMethodsGetPaymentMethodsCountResponse = PaymentMethodsGetPaymentMethodsCountResponses[keyof PaymentMethodsGetPaymentMethodsCountResponses];
 
-export type DeletePaymentMethodAsyncData = {
+export type PaymentMethodsDeletePaymentMethodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1251,7 +1460,7 @@ export type DeletePaymentMethodAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}';
 };
 
-export type DeletePaymentMethodAsyncErrors = {
+export type PaymentMethodsDeletePaymentMethodErrors = {
     /**
      * Unauthorized
      */
@@ -1262,18 +1471,18 @@ export type DeletePaymentMethodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePaymentMethodAsyncError = DeletePaymentMethodAsyncErrors[keyof DeletePaymentMethodAsyncErrors];
+export type PaymentMethodsDeletePaymentMethodError = PaymentMethodsDeletePaymentMethodErrors[keyof PaymentMethodsDeletePaymentMethodErrors];
 
-export type DeletePaymentMethodAsyncResponses = {
+export type PaymentMethodsDeletePaymentMethodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePaymentMethodAsyncResponse = DeletePaymentMethodAsyncResponses[keyof DeletePaymentMethodAsyncResponses];
+export type PaymentMethodsDeletePaymentMethodResponse = PaymentMethodsDeletePaymentMethodResponses[keyof PaymentMethodsDeletePaymentMethodResponses];
 
-export type GetPaymentMethodDetailsAsyncData = {
+export type PaymentMethodsGetPaymentMethodDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1288,7 +1497,7 @@ export type GetPaymentMethodDetailsAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}';
 };
 
-export type GetPaymentMethodDetailsAsyncErrors = {
+export type PaymentMethodsGetPaymentMethodDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -1299,18 +1508,18 @@ export type GetPaymentMethodDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentMethodDetailsAsyncError = GetPaymentMethodDetailsAsyncErrors[keyof GetPaymentMethodDetailsAsyncErrors];
+export type PaymentMethodsGetPaymentMethodDetailsError = PaymentMethodsGetPaymentMethodDetailsErrors[keyof PaymentMethodsGetPaymentMethodDetailsErrors];
 
-export type GetPaymentMethodDetailsAsyncResponses = {
+export type PaymentMethodsGetPaymentMethodDetailsResponses = {
     /**
      * OK
      */
     200: PaymentMethodDtoEnvelopeReadable;
 };
 
-export type GetPaymentMethodDetailsAsyncResponse = GetPaymentMethodDetailsAsyncResponses[keyof GetPaymentMethodDetailsAsyncResponses];
+export type PaymentMethodsGetPaymentMethodDetailsResponse = PaymentMethodsGetPaymentMethodDetailsResponses[keyof PaymentMethodsGetPaymentMethodDetailsResponses];
 
-export type PatchPaymentMethodAsyncData = {
+export type PaymentMethodsPatchPaymentMethodData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1325,7 +1534,7 @@ export type PatchPaymentMethodAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}';
 };
 
-export type PatchPaymentMethodAsyncErrors = {
+export type PaymentMethodsPatchPaymentMethodErrors = {
     /**
      * Unauthorized
      */
@@ -1336,18 +1545,18 @@ export type PatchPaymentMethodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPaymentMethodAsyncError = PatchPaymentMethodAsyncErrors[keyof PatchPaymentMethodAsyncErrors];
+export type PaymentMethodsPatchPaymentMethodError = PaymentMethodsPatchPaymentMethodErrors[keyof PaymentMethodsPatchPaymentMethodErrors];
 
-export type PatchPaymentMethodAsyncResponses = {
+export type PaymentMethodsPatchPaymentMethodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPaymentMethodAsyncResponse = PatchPaymentMethodAsyncResponses[keyof PatchPaymentMethodAsyncResponses];
+export type PaymentMethodsPatchPaymentMethodResponse = PaymentMethodsPatchPaymentMethodResponses[keyof PaymentMethodsPatchPaymentMethodResponses];
 
-export type UpdatePaymentMethodAsyncData = {
+export type PaymentMethodsUpdatePaymentMethodData = {
     body?: PaymentMethodUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1362,7 +1571,7 @@ export type UpdatePaymentMethodAsyncData = {
     url: '/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}';
 };
 
-export type UpdatePaymentMethodAsyncErrors = {
+export type PaymentMethodsUpdatePaymentMethodErrors = {
     /**
      * Unauthorized
      */
@@ -1373,18 +1582,18 @@ export type UpdatePaymentMethodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePaymentMethodAsyncError = UpdatePaymentMethodAsyncErrors[keyof UpdatePaymentMethodAsyncErrors];
+export type PaymentMethodsUpdatePaymentMethodError = PaymentMethodsUpdatePaymentMethodErrors[keyof PaymentMethodsUpdatePaymentMethodErrors];
 
-export type UpdatePaymentMethodAsyncResponses = {
+export type PaymentMethodsUpdatePaymentMethodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePaymentMethodAsyncResponse = UpdatePaymentMethodAsyncResponses[keyof UpdatePaymentMethodAsyncResponses];
+export type PaymentMethodsUpdatePaymentMethodResponse = PaymentMethodsUpdatePaymentMethodResponses[keyof PaymentMethodsUpdatePaymentMethodResponses];
 
-export type GetPaymentModesAsyncData = {
+export type PaymentModesGetPaymentModesData = {
     body?: PaymentModeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1397,7 +1606,7 @@ export type GetPaymentModesAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes';
 };
 
-export type GetPaymentModesAsyncErrors = {
+export type PaymentModesGetPaymentModesErrors = {
     /**
      * Unauthorized
      */
@@ -1408,18 +1617,18 @@ export type GetPaymentModesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentModesAsyncError = GetPaymentModesAsyncErrors[keyof GetPaymentModesAsyncErrors];
+export type PaymentModesGetPaymentModesError = PaymentModesGetPaymentModesErrors[keyof PaymentModesGetPaymentModesErrors];
 
-export type GetPaymentModesAsyncResponses = {
+export type PaymentModesGetPaymentModesResponses = {
     /**
      * OK
      */
     200: PaymentModeDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetPaymentModesAsyncResponse = GetPaymentModesAsyncResponses[keyof GetPaymentModesAsyncResponses];
+export type PaymentModesGetPaymentModesResponse = PaymentModesGetPaymentModesResponses[keyof PaymentModesGetPaymentModesResponses];
 
-export type CreatePaymentModeAsyncData = {
+export type PaymentModesCreatePaymentModeData = {
     body?: PaymentModeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1432,7 +1641,7 @@ export type CreatePaymentModeAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes';
 };
 
-export type CreatePaymentModeAsyncErrors = {
+export type PaymentModesCreatePaymentModeErrors = {
     /**
      * Unauthorized
      */
@@ -1443,18 +1652,18 @@ export type CreatePaymentModeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePaymentModeAsyncError = CreatePaymentModeAsyncErrors[keyof CreatePaymentModeAsyncErrors];
+export type PaymentModesCreatePaymentModeError = PaymentModesCreatePaymentModeErrors[keyof PaymentModesCreatePaymentModeErrors];
 
-export type CreatePaymentModeAsyncResponses = {
+export type PaymentModesCreatePaymentModeResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreatePaymentModeAsyncResponse = CreatePaymentModeAsyncResponses[keyof CreatePaymentModeAsyncResponses];
+export type PaymentModesCreatePaymentModeResponse = PaymentModesCreatePaymentModeResponses[keyof PaymentModesCreatePaymentModeResponses];
 
-export type GetPaymentModesCountAsyncData = {
+export type PaymentModesGetPaymentModesCountData = {
     body?: PaymentModeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1467,7 +1676,7 @@ export type GetPaymentModesCountAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes/Count';
 };
 
-export type GetPaymentModesCountAsyncErrors = {
+export type PaymentModesGetPaymentModesCountErrors = {
     /**
      * Unauthorized
      */
@@ -1478,18 +1687,18 @@ export type GetPaymentModesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentModesCountAsyncError = GetPaymentModesCountAsyncErrors[keyof GetPaymentModesCountAsyncErrors];
+export type PaymentModesGetPaymentModesCountError = PaymentModesGetPaymentModesCountErrors[keyof PaymentModesGetPaymentModesCountErrors];
 
-export type GetPaymentModesCountAsyncResponses = {
+export type PaymentModesGetPaymentModesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPaymentModesCountAsyncResponse = GetPaymentModesCountAsyncResponses[keyof GetPaymentModesCountAsyncResponses];
+export type PaymentModesGetPaymentModesCountResponse = PaymentModesGetPaymentModesCountResponses[keyof PaymentModesGetPaymentModesCountResponses];
 
-export type DeletePaymentModeAsyncData = {
+export type PaymentModesDeletePaymentModeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1504,7 +1713,7 @@ export type DeletePaymentModeAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes/{paymentModeId}';
 };
 
-export type DeletePaymentModeAsyncErrors = {
+export type PaymentModesDeletePaymentModeErrors = {
     /**
      * Unauthorized
      */
@@ -1515,18 +1724,18 @@ export type DeletePaymentModeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePaymentModeAsyncError = DeletePaymentModeAsyncErrors[keyof DeletePaymentModeAsyncErrors];
+export type PaymentModesDeletePaymentModeError = PaymentModesDeletePaymentModeErrors[keyof PaymentModesDeletePaymentModeErrors];
 
-export type DeletePaymentModeAsyncResponses = {
+export type PaymentModesDeletePaymentModeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePaymentModeAsyncResponse = DeletePaymentModeAsyncResponses[keyof DeletePaymentModeAsyncResponses];
+export type PaymentModesDeletePaymentModeResponse = PaymentModesDeletePaymentModeResponses[keyof PaymentModesDeletePaymentModeResponses];
 
-export type GetPaymentModeDetailsAsyncData = {
+export type PaymentModesGetPaymentModeDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1541,7 +1750,7 @@ export type GetPaymentModeDetailsAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes/{paymentModeId}';
 };
 
-export type GetPaymentModeDetailsAsyncErrors = {
+export type PaymentModesGetPaymentModeDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -1552,18 +1761,18 @@ export type GetPaymentModeDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentModeDetailsAsyncError = GetPaymentModeDetailsAsyncErrors[keyof GetPaymentModeDetailsAsyncErrors];
+export type PaymentModesGetPaymentModeDetailsError = PaymentModesGetPaymentModeDetailsErrors[keyof PaymentModesGetPaymentModeDetailsErrors];
 
-export type GetPaymentModeDetailsAsyncResponses = {
+export type PaymentModesGetPaymentModeDetailsResponses = {
     /**
      * OK
      */
     200: PaymentModeDtoEnvelopeReadable;
 };
 
-export type GetPaymentModeDetailsAsyncResponse = GetPaymentModeDetailsAsyncResponses[keyof GetPaymentModeDetailsAsyncResponses];
+export type PaymentModesGetPaymentModeDetailsResponse = PaymentModesGetPaymentModeDetailsResponses[keyof PaymentModesGetPaymentModeDetailsResponses];
 
-export type PatchPaymentModeAsyncData = {
+export type PaymentModesPatchPaymentModeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1578,7 +1787,7 @@ export type PatchPaymentModeAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes/{paymentModeId}';
 };
 
-export type PatchPaymentModeAsyncErrors = {
+export type PaymentModesPatchPaymentModeErrors = {
     /**
      * Unauthorized
      */
@@ -1589,18 +1798,18 @@ export type PatchPaymentModeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPaymentModeAsyncError = PatchPaymentModeAsyncErrors[keyof PatchPaymentModeAsyncErrors];
+export type PaymentModesPatchPaymentModeError = PaymentModesPatchPaymentModeErrors[keyof PaymentModesPatchPaymentModeErrors];
 
-export type PatchPaymentModeAsyncResponses = {
+export type PaymentModesPatchPaymentModeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPaymentModeAsyncResponse = PatchPaymentModeAsyncResponses[keyof PatchPaymentModeAsyncResponses];
+export type PaymentModesPatchPaymentModeResponse = PaymentModesPatchPaymentModeResponses[keyof PaymentModesPatchPaymentModeResponses];
 
-export type UpdatePaymentModeAsyncData = {
+export type PaymentModesUpdatePaymentModeData = {
     body?: PaymentModeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1615,7 +1824,7 @@ export type UpdatePaymentModeAsyncData = {
     url: '/api/v2/PaymentsService/PaymentModes/{paymentModeId}';
 };
 
-export type UpdatePaymentModeAsyncErrors = {
+export type PaymentModesUpdatePaymentModeErrors = {
     /**
      * Unauthorized
      */
@@ -1626,18 +1835,18 @@ export type UpdatePaymentModeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePaymentModeAsyncError = UpdatePaymentModeAsyncErrors[keyof UpdatePaymentModeAsyncErrors];
+export type PaymentModesUpdatePaymentModeError = PaymentModesUpdatePaymentModeErrors[keyof PaymentModesUpdatePaymentModeErrors];
 
-export type UpdatePaymentModeAsyncResponses = {
+export type PaymentModesUpdatePaymentModeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePaymentModeAsyncResponse = UpdatePaymentModeAsyncResponses[keyof UpdatePaymentModeAsyncResponses];
+export type PaymentModesUpdatePaymentModeResponse = PaymentModesUpdatePaymentModeResponses[keyof PaymentModesUpdatePaymentModeResponses];
 
-export type GetAsyncData = {
+export type PaymentProviderRegistrationsGetData = {
     body?: PaymentProviderRegistrationDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1646,7 +1855,7 @@ export type GetAsyncData = {
     url: '/api/v2/PaymentsService/PaymentProviderRegistrations';
 };
 
-export type GetAsyncErrors = {
+export type PaymentProviderRegistrationsGetErrors = {
     /**
      * Unauthorized
      */
@@ -1657,18 +1866,18 @@ export type GetAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAsyncError = GetAsyncErrors[keyof GetAsyncErrors];
+export type PaymentProviderRegistrationsGetError = PaymentProviderRegistrationsGetErrors[keyof PaymentProviderRegistrationsGetErrors];
 
-export type GetAsyncResponses = {
+export type PaymentProviderRegistrationsGetResponses = {
     /**
      * OK
      */
     200: PaymentProviderRegistrationDtoListEnvelopeReadable;
 };
 
-export type GetAsyncResponse = GetAsyncResponses[keyof GetAsyncResponses];
+export type PaymentProviderRegistrationsGetResponse = PaymentProviderRegistrationsGetResponses[keyof PaymentProviderRegistrationsGetResponses];
 
-export type CreateAsyncData = {
+export type PaymentProviderRegistrationsCreateData = {
     body?: CreateProviderWebhookRegistrationRequest;
     path?: never;
     query: {
@@ -1677,7 +1886,7 @@ export type CreateAsyncData = {
     url: '/api/v2/PaymentsService/PaymentProviderRegistrations';
 };
 
-export type CreateAsyncErrors = {
+export type PaymentProviderRegistrationsCreateErrors = {
     /**
      * Bad Request
      */
@@ -1692,18 +1901,18 @@ export type CreateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAsyncError = CreateAsyncErrors[keyof CreateAsyncErrors];
+export type PaymentProviderRegistrationsCreateError = PaymentProviderRegistrationsCreateErrors[keyof PaymentProviderRegistrationsCreateErrors];
 
-export type CreateAsyncResponses = {
+export type PaymentProviderRegistrationsCreateResponses = {
     /**
      * OK
      */
     200: ProviderWebhookRegistrationCreatedDtoEnvelopeReadable;
 };
 
-export type CreateAsyncResponse = CreateAsyncResponses[keyof CreateAsyncResponses];
+export type PaymentProviderRegistrationsCreateResponse = PaymentProviderRegistrationsCreateResponses[keyof PaymentProviderRegistrationsCreateResponses];
 
-export type GetCountAsyncData = {
+export type PaymentProviderRegistrationsGetCountData = {
     body?: PaymentProviderRegistrationDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1712,7 +1921,7 @@ export type GetCountAsyncData = {
     url: '/api/v2/PaymentsService/PaymentProviderRegistrations/Count';
 };
 
-export type GetCountAsyncErrors = {
+export type PaymentProviderRegistrationsGetCountErrors = {
     /**
      * Unauthorized
      */
@@ -1723,18 +1932,18 @@ export type GetCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCountAsyncError = GetCountAsyncErrors[keyof GetCountAsyncErrors];
+export type PaymentProviderRegistrationsGetCountError = PaymentProviderRegistrationsGetCountErrors[keyof PaymentProviderRegistrationsGetCountErrors];
 
-export type GetCountAsyncResponses = {
+export type PaymentProviderRegistrationsGetCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetCountAsyncResponse = GetCountAsyncResponses[keyof GetCountAsyncResponses];
+export type PaymentProviderRegistrationsGetCountResponse = PaymentProviderRegistrationsGetCountResponses[keyof PaymentProviderRegistrationsGetCountResponses];
 
-export type RotateKeyAsyncData = {
+export type PaymentProviderRegistrationsRotateKeyData = {
     body?: never;
     path: {
         registrationId: string;
@@ -1745,7 +1954,7 @@ export type RotateKeyAsyncData = {
     url: '/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/RotateKey';
 };
 
-export type RotateKeyAsyncErrors = {
+export type PaymentProviderRegistrationsRotateKeyErrors = {
     /**
      * Bad Request
      */
@@ -1760,18 +1969,133 @@ export type RotateKeyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RotateKeyAsyncError = RotateKeyAsyncErrors[keyof RotateKeyAsyncErrors];
+export type PaymentProviderRegistrationsRotateKeyError = PaymentProviderRegistrationsRotateKeyErrors[keyof PaymentProviderRegistrationsRotateKeyErrors];
 
-export type RotateKeyAsyncResponses = {
+export type PaymentProviderRegistrationsRotateKeyResponses = {
     /**
      * OK
      */
     200: ProviderWebhookRegistrationCreatedDtoEnvelopeReadable;
 };
 
-export type RotateKeyAsyncResponse = RotateKeyAsyncResponses[keyof RotateKeyAsyncResponses];
+export type PaymentProviderRegistrationsRotateKeyResponse = PaymentProviderRegistrationsRotateKeyResponses[keyof PaymentProviderRegistrationsRotateKeyResponses];
 
-export type GetPaymentAsyncData = {
+export type PaymentProviderRegistrationsUpdateData = {
+    body?: PaymentProviderRegistrationUpdateDto;
+    path: {
+        registrationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}';
+};
+
+export type PaymentProviderRegistrationsUpdateErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PaymentProviderRegistrationsUpdateError = PaymentProviderRegistrationsUpdateErrors[keyof PaymentProviderRegistrationsUpdateErrors];
+
+export type PaymentProviderRegistrationsUpdateResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PaymentProviderRegistrationsUpdateResponse = PaymentProviderRegistrationsUpdateResponses[keyof PaymentProviderRegistrationsUpdateResponses];
+
+export type PaymentProviderRegistrationsDeclareEnvironmentData = {
+    body?: DeclarePaymentProviderEnvironmentRequest;
+    path: {
+        registrationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/Environment';
+};
+
+export type PaymentProviderRegistrationsDeclareEnvironmentErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PaymentProviderRegistrationsDeclareEnvironmentError = PaymentProviderRegistrationsDeclareEnvironmentErrors[keyof PaymentProviderRegistrationsDeclareEnvironmentErrors];
+
+export type PaymentProviderRegistrationsDeclareEnvironmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PaymentProviderRegistrationsDeclareEnvironmentResponse = PaymentProviderRegistrationsDeclareEnvironmentResponses[keyof PaymentProviderRegistrationsDeclareEnvironmentResponses];
+
+export type PaymentProviderRegistrationsSetCredentialData = {
+    body?: SetPaymentProviderRegistrationCredentialRequest;
+    path: {
+        registrationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/Credential';
+};
+
+export type PaymentProviderRegistrationsSetCredentialErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PaymentProviderRegistrationsSetCredentialError = PaymentProviderRegistrationsSetCredentialErrors[keyof PaymentProviderRegistrationsSetCredentialErrors];
+
+export type PaymentProviderRegistrationsSetCredentialResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PaymentProviderRegistrationsSetCredentialResponse = PaymentProviderRegistrationsSetCredentialResponses[keyof PaymentProviderRegistrationsSetCredentialResponses];
+
+export type PaymentsGetPaymentData = {
     body?: never;
     path: {
         paymentId: string;
@@ -1782,7 +2106,7 @@ export type GetPaymentAsyncData = {
     url: '/api/v2/PaymentsService/Payments/{paymentId}/Details';
 };
 
-export type GetPaymentAsyncErrors = {
+export type PaymentsGetPaymentErrors = {
     /**
      * Unauthorized
      */
@@ -1793,18 +2117,18 @@ export type GetPaymentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentAsyncError = GetPaymentAsyncErrors[keyof GetPaymentAsyncErrors];
+export type PaymentsGetPaymentError = PaymentsGetPaymentErrors[keyof PaymentsGetPaymentErrors];
 
-export type GetPaymentAsyncResponses = {
+export type PaymentsGetPaymentResponses = {
     /**
      * OK
      */
     200: PaymentDtoListEnvelopeReadable;
 };
 
-export type GetPaymentAsyncResponse = GetPaymentAsyncResponses[keyof GetPaymentAsyncResponses];
+export type PaymentsGetPaymentResponse = PaymentsGetPaymentResponses[keyof PaymentsGetPaymentResponses];
 
-export type DeletePaymentAsyncData = {
+export type PaymentsDeletePaymentData = {
     body?: never;
     path: {
         paymentId: string;
@@ -1815,7 +2139,7 @@ export type DeletePaymentAsyncData = {
     url: '/api/v2/PaymentsService/Payments/{paymentId}';
 };
 
-export type DeletePaymentAsyncErrors = {
+export type PaymentsDeletePaymentErrors = {
     /**
      * Bad Request
      */
@@ -1830,18 +2154,18 @@ export type DeletePaymentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePaymentAsyncError = DeletePaymentAsyncErrors[keyof DeletePaymentAsyncErrors];
+export type PaymentsDeletePaymentError = PaymentsDeletePaymentErrors[keyof PaymentsDeletePaymentErrors];
 
-export type DeletePaymentAsyncResponses = {
+export type PaymentsDeletePaymentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePaymentAsyncResponse = DeletePaymentAsyncResponses[keyof DeletePaymentAsyncResponses];
+export type PaymentsDeletePaymentResponse = PaymentsDeletePaymentResponses[keyof PaymentsDeletePaymentResponses];
 
-export type GetPaymentAsyncV2Data = {
+export type PaymentsGetPaymentAsyncV2Data = {
     body?: never;
     path: {
         paymentId: string;
@@ -1852,7 +2176,7 @@ export type GetPaymentAsyncV2Data = {
     url: '/api/v2/PaymentsService/Payments/{paymentId}';
 };
 
-export type GetPaymentAsyncV2Errors = {
+export type PaymentsGetPaymentAsyncV2Errors = {
     /**
      * Unauthorized
      */
@@ -1863,18 +2187,18 @@ export type GetPaymentAsyncV2Errors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentAsyncV2Error = GetPaymentAsyncV2Errors[keyof GetPaymentAsyncV2Errors];
+export type PaymentsGetPaymentAsyncV2Error = PaymentsGetPaymentAsyncV2Errors[keyof PaymentsGetPaymentAsyncV2Errors];
 
-export type GetPaymentAsyncV2Responses = {
+export type PaymentsGetPaymentAsyncV2Responses = {
     /**
      * OK
      */
     200: PaymentDtoListEnvelopeReadable;
 };
 
-export type GetPaymentAsyncV2Response = GetPaymentAsyncV2Responses[keyof GetPaymentAsyncV2Responses];
+export type PaymentsGetPaymentAsyncV2Response = PaymentsGetPaymentAsyncV2Responses[keyof PaymentsGetPaymentAsyncV2Responses];
 
-export type PatchPaymentAsyncData = {
+export type PaymentsPatchPaymentData = {
     body?: Array<PatchOperation>;
     path: {
         paymentId: string;
@@ -1885,7 +2209,7 @@ export type PatchPaymentAsyncData = {
     url: '/api/v2/PaymentsService/Payments/{paymentId}';
 };
 
-export type PatchPaymentAsyncErrors = {
+export type PaymentsPatchPaymentErrors = {
     /**
      * Unauthorized
      */
@@ -1896,18 +2220,18 @@ export type PatchPaymentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPaymentAsyncError = PatchPaymentAsyncErrors[keyof PatchPaymentAsyncErrors];
+export type PaymentsPatchPaymentError = PaymentsPatchPaymentErrors[keyof PaymentsPatchPaymentErrors];
 
-export type PatchPaymentAsyncResponses = {
+export type PaymentsPatchPaymentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPaymentAsyncResponse = PatchPaymentAsyncResponses[keyof PatchPaymentAsyncResponses];
+export type PaymentsPatchPaymentResponse = PaymentsPatchPaymentResponses[keyof PaymentsPatchPaymentResponses];
 
-export type UpdatePaymentAsyncData = {
+export type PaymentsUpdatePaymentData = {
     body?: PaymentUpdateDto;
     path: {
         paymentId: string;
@@ -1918,7 +2242,7 @@ export type UpdatePaymentAsyncData = {
     url: '/api/v2/PaymentsService/Payments/{paymentId}';
 };
 
-export type UpdatePaymentAsyncErrors = {
+export type PaymentsUpdatePaymentErrors = {
     /**
      * Bad Request
      */
@@ -1933,18 +2257,18 @@ export type UpdatePaymentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePaymentAsyncError = UpdatePaymentAsyncErrors[keyof UpdatePaymentAsyncErrors];
+export type PaymentsUpdatePaymentError = PaymentsUpdatePaymentErrors[keyof PaymentsUpdatePaymentErrors];
 
-export type UpdatePaymentAsyncResponses = {
+export type PaymentsUpdatePaymentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePaymentAsyncResponse = UpdatePaymentAsyncResponses[keyof UpdatePaymentAsyncResponses];
+export type PaymentsUpdatePaymentResponse = PaymentsUpdatePaymentResponses[keyof PaymentsUpdatePaymentResponses];
 
-export type GetPaymentsAsyncData = {
+export type PaymentsGetPaymentsData = {
     body?: PaymentDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1953,7 +2277,7 @@ export type GetPaymentsAsyncData = {
     url: '/api/v2/PaymentsService/Payments';
 };
 
-export type GetPaymentsAsyncErrors = {
+export type PaymentsGetPaymentsErrors = {
     /**
      * Bad Request
      */
@@ -1968,18 +2292,18 @@ export type GetPaymentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentsAsyncError = GetPaymentsAsyncErrors[keyof GetPaymentsAsyncErrors];
+export type PaymentsGetPaymentsError = PaymentsGetPaymentsErrors[keyof PaymentsGetPaymentsErrors];
 
-export type GetPaymentsAsyncResponses = {
+export type PaymentsGetPaymentsResponses = {
     /**
      * OK
      */
     200: PaymentDtoListEnvelopeReadable;
 };
 
-export type GetPaymentsAsyncResponse = GetPaymentsAsyncResponses[keyof GetPaymentsAsyncResponses];
+export type PaymentsGetPaymentsResponse = PaymentsGetPaymentsResponses[keyof PaymentsGetPaymentsResponses];
 
-export type CreatePaymentAsyncData = {
+export type PaymentsCreatePaymentData = {
     body?: PaymentCreateDto;
     path?: never;
     query: {
@@ -1988,7 +2312,7 @@ export type CreatePaymentAsyncData = {
     url: '/api/v2/PaymentsService/Payments';
 };
 
-export type CreatePaymentAsyncErrors = {
+export type PaymentsCreatePaymentErrors = {
     /**
      * Bad Request
      */
@@ -2003,18 +2327,18 @@ export type CreatePaymentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePaymentAsyncError = CreatePaymentAsyncErrors[keyof CreatePaymentAsyncErrors];
+export type PaymentsCreatePaymentError = PaymentsCreatePaymentErrors[keyof PaymentsCreatePaymentErrors];
 
-export type CreatePaymentAsyncResponses = {
+export type PaymentsCreatePaymentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreatePaymentAsyncResponse = CreatePaymentAsyncResponses[keyof CreatePaymentAsyncResponses];
+export type PaymentsCreatePaymentResponse = PaymentsCreatePaymentResponses[keyof PaymentsCreatePaymentResponses];
 
-export type GetPaymentTermsAsyncData = {
+export type PaymentTermsGetPaymentTermsData = {
     body?: PaymentTermDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2027,7 +2351,7 @@ export type GetPaymentTermsAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms';
 };
 
-export type GetPaymentTermsAsyncErrors = {
+export type PaymentTermsGetPaymentTermsErrors = {
     /**
      * Unauthorized
      */
@@ -2038,18 +2362,18 @@ export type GetPaymentTermsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentTermsAsyncError = GetPaymentTermsAsyncErrors[keyof GetPaymentTermsAsyncErrors];
+export type PaymentTermsGetPaymentTermsError = PaymentTermsGetPaymentTermsErrors[keyof PaymentTermsGetPaymentTermsErrors];
 
-export type GetPaymentTermsAsyncResponses = {
+export type PaymentTermsGetPaymentTermsResponses = {
     /**
      * OK
      */
     200: PaymentTermDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetPaymentTermsAsyncResponse = GetPaymentTermsAsyncResponses[keyof GetPaymentTermsAsyncResponses];
+export type PaymentTermsGetPaymentTermsResponse = PaymentTermsGetPaymentTermsResponses[keyof PaymentTermsGetPaymentTermsResponses];
 
-export type CreatePaymentTermAsyncData = {
+export type PaymentTermsCreatePaymentTermData = {
     body?: PaymentTermCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2062,7 +2386,7 @@ export type CreatePaymentTermAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms';
 };
 
-export type CreatePaymentTermAsyncErrors = {
+export type PaymentTermsCreatePaymentTermErrors = {
     /**
      * Unauthorized
      */
@@ -2073,18 +2397,18 @@ export type CreatePaymentTermAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePaymentTermAsyncError = CreatePaymentTermAsyncErrors[keyof CreatePaymentTermAsyncErrors];
+export type PaymentTermsCreatePaymentTermError = PaymentTermsCreatePaymentTermErrors[keyof PaymentTermsCreatePaymentTermErrors];
 
-export type CreatePaymentTermAsyncResponses = {
+export type PaymentTermsCreatePaymentTermResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreatePaymentTermAsyncResponse = CreatePaymentTermAsyncResponses[keyof CreatePaymentTermAsyncResponses];
+export type PaymentTermsCreatePaymentTermResponse = PaymentTermsCreatePaymentTermResponses[keyof PaymentTermsCreatePaymentTermResponses];
 
-export type GetPaymentTermsCountAsyncData = {
+export type PaymentTermsGetPaymentTermsCountData = {
     body?: PaymentTermDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2097,7 +2421,7 @@ export type GetPaymentTermsCountAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms/Count';
 };
 
-export type GetPaymentTermsCountAsyncErrors = {
+export type PaymentTermsGetPaymentTermsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2108,18 +2432,18 @@ export type GetPaymentTermsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentTermsCountAsyncError = GetPaymentTermsCountAsyncErrors[keyof GetPaymentTermsCountAsyncErrors];
+export type PaymentTermsGetPaymentTermsCountError = PaymentTermsGetPaymentTermsCountErrors[keyof PaymentTermsGetPaymentTermsCountErrors];
 
-export type GetPaymentTermsCountAsyncResponses = {
+export type PaymentTermsGetPaymentTermsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPaymentTermsCountAsyncResponse = GetPaymentTermsCountAsyncResponses[keyof GetPaymentTermsCountAsyncResponses];
+export type PaymentTermsGetPaymentTermsCountResponse = PaymentTermsGetPaymentTermsCountResponses[keyof PaymentTermsGetPaymentTermsCountResponses];
 
-export type DeletePaymentTermAsyncData = {
+export type PaymentTermsDeletePaymentTermData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2134,7 +2458,7 @@ export type DeletePaymentTermAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms/{paymentTermId}';
 };
 
-export type DeletePaymentTermAsyncErrors = {
+export type PaymentTermsDeletePaymentTermErrors = {
     /**
      * Unauthorized
      */
@@ -2145,18 +2469,18 @@ export type DeletePaymentTermAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePaymentTermAsyncError = DeletePaymentTermAsyncErrors[keyof DeletePaymentTermAsyncErrors];
+export type PaymentTermsDeletePaymentTermError = PaymentTermsDeletePaymentTermErrors[keyof PaymentTermsDeletePaymentTermErrors];
 
-export type DeletePaymentTermAsyncResponses = {
+export type PaymentTermsDeletePaymentTermResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePaymentTermAsyncResponse = DeletePaymentTermAsyncResponses[keyof DeletePaymentTermAsyncResponses];
+export type PaymentTermsDeletePaymentTermResponse = PaymentTermsDeletePaymentTermResponses[keyof PaymentTermsDeletePaymentTermResponses];
 
-export type GetPaymentTermDetailsAsyncData = {
+export type PaymentTermsGetPaymentTermDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2171,7 +2495,7 @@ export type GetPaymentTermDetailsAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms/{paymentTermId}';
 };
 
-export type GetPaymentTermDetailsAsyncErrors = {
+export type PaymentTermsGetPaymentTermDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -2182,18 +2506,18 @@ export type GetPaymentTermDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPaymentTermDetailsAsyncError = GetPaymentTermDetailsAsyncErrors[keyof GetPaymentTermDetailsAsyncErrors];
+export type PaymentTermsGetPaymentTermDetailsError = PaymentTermsGetPaymentTermDetailsErrors[keyof PaymentTermsGetPaymentTermDetailsErrors];
 
-export type GetPaymentTermDetailsAsyncResponses = {
+export type PaymentTermsGetPaymentTermDetailsResponses = {
     /**
      * OK
      */
     200: PaymentTermDtoEnvelopeReadable;
 };
 
-export type GetPaymentTermDetailsAsyncResponse = GetPaymentTermDetailsAsyncResponses[keyof GetPaymentTermDetailsAsyncResponses];
+export type PaymentTermsGetPaymentTermDetailsResponse = PaymentTermsGetPaymentTermDetailsResponses[keyof PaymentTermsGetPaymentTermDetailsResponses];
 
-export type PatchPaymentTermAsyncData = {
+export type PaymentTermsPatchPaymentTermData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2208,7 +2532,7 @@ export type PatchPaymentTermAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms/{paymentTermId}';
 };
 
-export type PatchPaymentTermAsyncErrors = {
+export type PaymentTermsPatchPaymentTermErrors = {
     /**
      * Unauthorized
      */
@@ -2219,18 +2543,18 @@ export type PatchPaymentTermAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPaymentTermAsyncError = PatchPaymentTermAsyncErrors[keyof PatchPaymentTermAsyncErrors];
+export type PaymentTermsPatchPaymentTermError = PaymentTermsPatchPaymentTermErrors[keyof PaymentTermsPatchPaymentTermErrors];
 
-export type PatchPaymentTermAsyncResponses = {
+export type PaymentTermsPatchPaymentTermResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPaymentTermAsyncResponse = PatchPaymentTermAsyncResponses[keyof PatchPaymentTermAsyncResponses];
+export type PaymentTermsPatchPaymentTermResponse = PaymentTermsPatchPaymentTermResponses[keyof PaymentTermsPatchPaymentTermResponses];
 
-export type UpdatePaymentTermAsyncData = {
+export type PaymentTermsUpdatePaymentTermData = {
     body?: PaymentTermUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2245,7 +2569,7 @@ export type UpdatePaymentTermAsyncData = {
     url: '/api/v2/PaymentsService/PaymentTerms/{paymentTermId}';
 };
 
-export type UpdatePaymentTermAsyncErrors = {
+export type PaymentTermsUpdatePaymentTermErrors = {
     /**
      * Unauthorized
      */
@@ -2256,16 +2580,193 @@ export type UpdatePaymentTermAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePaymentTermAsyncError = UpdatePaymentTermAsyncErrors[keyof UpdatePaymentTermAsyncErrors];
+export type PaymentTermsUpdatePaymentTermError = PaymentTermsUpdatePaymentTermErrors[keyof PaymentTermsUpdatePaymentTermErrors];
 
-export type UpdatePaymentTermAsyncResponses = {
+export type PaymentTermsUpdatePaymentTermResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePaymentTermAsyncResponse = UpdatePaymentTermAsyncResponses[keyof UpdatePaymentTermAsyncResponses];
+export type PaymentTermsUpdatePaymentTermResponse = PaymentTermsUpdatePaymentTermResponses[keyof PaymentTermsUpdatePaymentTermResponses];
+
+export type ProviderOperationsGetAwaitingOutcomeData = {
+    body?: ProviderOperationOutcomeReviewDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/ProviderOperations/AwaitingOutcome';
+};
+
+export type ProviderOperationsGetAwaitingOutcomeErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ProviderOperationsGetAwaitingOutcomeError = ProviderOperationsGetAwaitingOutcomeErrors[keyof ProviderOperationsGetAwaitingOutcomeErrors];
+
+export type ProviderOperationsGetAwaitingOutcomeResponses = {
+    /**
+     * OK
+     */
+    200: ProviderOperationOutcomeReviewDtoListEnvelopeReadable;
+};
+
+export type ProviderOperationsGetAwaitingOutcomeResponse = ProviderOperationsGetAwaitingOutcomeResponses[keyof ProviderOperationsGetAwaitingOutcomeResponses];
+
+export type ProviderOperationsGetAwaitingOutcomeCountData = {
+    body?: ProviderOperationOutcomeReviewDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/ProviderOperations/AwaitingOutcome/Count';
+};
+
+export type ProviderOperationsGetAwaitingOutcomeCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ProviderOperationsGetAwaitingOutcomeCountError = ProviderOperationsGetAwaitingOutcomeCountErrors[keyof ProviderOperationsGetAwaitingOutcomeCountErrors];
+
+export type ProviderOperationsGetAwaitingOutcomeCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type ProviderOperationsGetAwaitingOutcomeCountResponse = ProviderOperationsGetAwaitingOutcomeCountResponses[keyof ProviderOperationsGetAwaitingOutcomeCountResponses];
+
+export type ProviderOperationsReconcileOutcomeData = {
+    body?: never;
+    path: {
+        providerOperationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/ProviderOperations/{providerOperationId}/ReconcileOutcome';
+};
+
+export type ProviderOperationsReconcileOutcomeErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ProviderOperationsReconcileOutcomeError = ProviderOperationsReconcileOutcomeErrors[keyof ProviderOperationsReconcileOutcomeErrors];
+
+export type ProviderOperationsReconcileOutcomeResponses = {
+    /**
+     * OK
+     */
+    200: ProviderOperationOutcomeReconciliationEnvelopeReadable;
+};
+
+export type ProviderOperationsReconcileOutcomeResponse = ProviderOperationsReconcileOutcomeResponses[keyof ProviderOperationsReconcileOutcomeResponses];
+
+export type PublicPaymentLinksIssueData = {
+    body?: IssuePaymentLinkCreateDto;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PublicPaymentLinks';
+};
+
+export type PublicPaymentLinksIssueErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PublicPaymentLinksIssueError = PublicPaymentLinksIssueErrors[keyof PublicPaymentLinksIssueErrors];
+
+export type PublicPaymentLinksIssueResponses = {
+    /**
+     * OK
+     */
+    200: IssuedPaymentLinkDtoEnvelopeReadable;
+};
+
+export type PublicPaymentLinksIssueResponse = PublicPaymentLinksIssueResponses[keyof PublicPaymentLinksIssueResponses];
+
+export type PublicPaymentReferencesIssueData = {
+    body?: IssuePublicPaymentReferenceCreateDto;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PublicPaymentReferences';
+};
+
+export type PublicPaymentReferencesIssueErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PublicPaymentReferencesIssueError = PublicPaymentReferencesIssueErrors[keyof PublicPaymentReferencesIssueErrors];
+
+export type PublicPaymentReferencesIssueResponses = {
+    /**
+     * OK
+     */
+    200: PublicPaymentReferenceDtoEnvelopeReadable;
+};
+
+export type PublicPaymentReferencesIssueResponse = PublicPaymentReferencesIssueResponses[keyof PublicPaymentReferencesIssueResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

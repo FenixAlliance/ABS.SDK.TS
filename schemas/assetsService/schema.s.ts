@@ -10,666 +10,418 @@ export interface paths {
      * Gets all asset categories for the current tenant
      * @description Retrieves all asset categories for the authenticated tenant.
      */
-    get: operations["GetAssetCategories"];
+    get: operations["AssetCategories_GetAssetCategories"];
     /**
      * Creates a new asset category
      * @description Creates a new asset category for the authenticated tenant.
      */
-    post: operations["CreateAssetCategory"];
+    post: operations["AssetCategories_CreateAssetCategory"];
   };
   "/api/v2/AssetsService/AssetCategories/{categoryId}": {
     /**
      * Gets a specific asset category
      * @description Retrieves a specific asset category by ID.
      */
-    get: operations["GetAssetCategory"];
+    get: operations["AssetCategories_GetAssetCategory"];
     /**
      * Updates an existing asset category
      * @description Updates an existing asset category for the authenticated tenant.
      */
-    put: operations["UpdateAssetCategory"];
+    put: operations["AssetCategories_UpdateAssetCategory"];
     /**
      * Deletes an asset category
      * @description Deletes an asset category for the authenticated tenant.
      */
-    delete: operations["DeleteAssetCategory"];
+    delete: operations["AssetCategories_DeleteAssetCategory"];
     /**
      * Partially updates an existing asset category
      * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
      */
-    patch: operations["PatchAssetCategory"];
+    patch: operations["AssetCategories_PatchAssetCategory"];
   };
   "/api/v2/AssetsService/AssetCategories/count": {
     /**
      * Gets the count of asset categories
      * @description Returns the total number of asset categories for the authenticated tenant.
      */
-    get: operations["GetAssetCategoriesCount"];
+    get: operations["AssetCategories_GetAssetCategoriesCount"];
   };
   "/api/v2/AssetsService/Assets": {
     /**
      * Gets all assets for the current tenant
      * @description Retrieves all assets for the authenticated tenant with optional filtering.
      */
-    get: operations["GetAssets"];
+    get: operations["Assets_GetAssets"];
     /**
      * Creates a new asset
      * @description Creates a new asset for the authenticated tenant.
      */
-    post: operations["CreateAsset"];
+    post: operations["Assets_CreateAsset"];
   };
   "/api/v2/AssetsService/Assets/count": {
     /**
      * Gets the count of assets
      * @description Returns the total number of assets for the authenticated tenant.
      */
-    get: operations["GetAssetsCount"];
+    get: operations["Assets_GetAssetsCount"];
   };
   "/api/v2/AssetsService/Assets/{assetId}": {
     /**
      * Gets a specific asset by ID
      * @description Retrieves a specific asset for the authenticated tenant.
      */
-    get: operations["GetAsset"];
+    get: operations["Assets_GetAsset"];
     /**
      * Updates an existing asset
      * @description Updates an existing asset for the authenticated tenant.
      */
-    put: operations["UpdateAsset"];
+    put: operations["Assets_UpdateAsset"];
     /**
      * Deletes an existing asset
      * @description Deletes an existing asset for the authenticated tenant.
      */
-    delete: operations["DeleteAsset"];
+    delete: operations["Assets_DeleteAsset"];
     /**
      * Partially updates an existing asset
      * @description Applies a JSON Patch document to an existing asset for the authenticated tenant.
      */
-    patch: operations["PatchAsset"];
+    patch: operations["Assets_PatchAsset"];
   };
   "/api/v2/AssetsService/Assets/Categories": {
     /**
      * Gets all asset categories
      * @description Retrieves all asset categories for the authenticated tenant.
      */
-    get: operations["GetAssetAssetCategories"];
+    get: operations["Assets_GetAssetAssetCategories"];
     /**
      * Creates a new asset category
      * @description Creates a new asset category for the authenticated tenant.
      */
-    post: operations["CreateAssetAssetCategory"];
+    post: operations["Assets_CreateAssetAssetCategory"];
   };
   "/api/v2/AssetsService/Assets/Categories/count": {
     /**
      * Gets the count of asset categories
      * @description Returns the total number of asset categories for the authenticated tenant.
      */
-    get: operations["GetAssetAssetCategoriesCount"];
+    get: operations["Assets_GetAssetAssetCategoriesCount"];
   };
   "/api/v2/AssetsService/Assets/Categories/{categoryId}": {
     /**
      * Gets a specific asset category
      * @description Retrieves a specific asset category for the authenticated tenant.
      */
-    get: operations["GetAssetAssetCategory"];
+    get: operations["Assets_GetAssetAssetCategory"];
     /**
      * Updates an existing asset category
      * @description Updates an existing asset category for the authenticated tenant.
      */
-    put: operations["UpdateAssetAssetCategory"];
+    put: operations["Assets_UpdateAssetAssetCategory"];
     /**
      * Deletes an existing asset category
      * @description Deletes an existing asset category for the authenticated tenant.
      */
-    delete: operations["DeleteAssetAssetCategory"];
+    delete: operations["Assets_DeleteAssetAssetCategory"];
     /**
      * Partially updates an existing asset category
      * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
      */
-    patch: operations["PatchAssetAssetCategory"];
+    patch: operations["Assets_PatchAssetAssetCategory"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Repairs": {
     /**
      * Gets repairs for a specific asset
      * @description Retrieves all repair records for the specified asset.
      */
-    get: operations["GetAssetRepairs"];
+    get: operations["Assets_GetAssetRepairs"];
     /**
      * Creates a new repair for an asset
      * @description Creates a new repair record for the specified asset.
      */
-    post: operations["CreateAssetRepair"];
+    post: operations["Assets_CreateAssetRepair"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Repairs/Count": {
     /**
      * Gets count of repairs for a specific asset
      * @description Returns the total number of repair records for the specified asset.
      */
-    get: operations["GetAssetRepairsCount"];
+    get: operations["Assets_GetAssetRepairsCount"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Repairs/{repairId}": {
     /**
      * Gets a specific repair for an asset
      * @description Retrieves a specific repair record by ID for the specified asset.
      */
-    get: operations["GetAssetRepair"];
+    get: operations["Assets_GetAssetRepair"];
     /**
      * Updates a repair for an asset
      * @description Updates an existing repair record for the specified asset.
      */
-    put: operations["UpdateAssetRepair"];
+    put: operations["Assets_UpdateAssetRepair"];
     /**
      * Deletes a repair for an asset
      * @description Deletes a repair record for the specified asset.
      */
-    delete: operations["DeleteAssetRepair"];
+    delete: operations["Assets_DeleteAssetRepair"];
     /**
      * Partially updates a repair for an asset
      * @description Applies a JSON Patch document to an existing repair record for the specified asset.
      */
-    patch: operations["PatchAssetRepair"];
+    patch: operations["Assets_PatchAssetRepair"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/ValueAmends": {
     /**
      * Gets value amendments for a specific asset
      * @description Retrieves all value amendment records for the specified asset.
      */
-    get: operations["GetAssetValueAmends"];
+    get: operations["Assets_GetAssetValueAmends"];
     /**
      * Creates a new value amendment for an asset
      * @description Creates a new value amendment record for the specified asset.
      */
-    post: operations["CreateAssetValueAmend"];
+    post: operations["Assets_CreateAssetValueAmend"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/ValueAmends/Count": {
     /**
      * Gets count of value amendments for a specific asset
      * @description Returns the total number of value amendment records for the specified asset.
      */
-    get: operations["GetAssetValueAmendsCount"];
+    get: operations["Assets_GetAssetValueAmendsCount"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/ValueAmends/{amendId}": {
     /**
      * Gets a specific value amendment for an asset
      * @description Retrieves a specific value amendment record by ID for the specified asset.
      */
-    get: operations["GetAssetValueAmend"];
+    get: operations["Assets_GetAssetValueAmend"];
     /**
      * Updates a value amendment for an asset
      * @description Updates an existing value amendment record for the specified asset.
      */
-    put: operations["UpdateAssetValueAmend"];
+    put: operations["Assets_UpdateAssetValueAmend"];
     /**
      * Deletes a value amendment for an asset
      * @description Deletes a value amendment record for the specified asset.
      */
-    delete: operations["DeleteAssetValueAmend"];
+    delete: operations["Assets_DeleteAssetValueAmend"];
     /**
      * Partially updates a value amendment for an asset
      * @description Applies a JSON Patch document to an existing value amendment record for the specified asset.
      */
-    patch: operations["PatchAssetValueAmend"];
+    patch: operations["Assets_PatchAssetValueAmend"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords": {
     /**
      * Gets depreciation records for a specific asset
      * @description Retrieves all depreciation records for the specified asset.
      */
-    get: operations["GetAssetDepreciationRecords"];
+    get: operations["Assets_GetAssetDepreciationRecords"];
     /**
      * Creates a new depreciation record for an asset
      * @description Creates a new depreciation record for the specified asset.
      */
-    post: operations["CreateAssetDepreciationRecord"];
+    post: operations["Assets_CreateAssetDepreciationRecord"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/Count": {
     /**
      * Gets count of depreciation records for a specific asset
      * @description Returns the total number of depreciation records for the specified asset.
      */
-    get: operations["GetAssetDepreciationRecordsCount"];
+    get: operations["Assets_GetAssetDepreciationRecordsCount"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/{recordId}": {
     /**
      * Gets a specific depreciation record for an asset
      * @description Retrieves a specific depreciation record by ID for the specified asset.
      */
-    get: operations["GetAssetDepreciationRecord"];
+    get: operations["Assets_GetAssetDepreciationRecord"];
     /**
      * Updates a depreciation record for an asset
      * @description Updates an existing depreciation record for the specified asset.
      */
-    put: operations["UpdateAssetDepreciationRecord"];
+    put: operations["Assets_UpdateAssetDepreciationRecord"];
     /**
      * Deletes a depreciation record for an asset
      * @description Deletes a depreciation record for the specified asset.
      */
-    delete: operations["DeleteAssetDepreciationRecord"];
+    delete: operations["Assets_DeleteAssetDepreciationRecord"];
     /**
      * Partially updates a depreciation record for an asset
      * @description Applies a JSON Patch document to an existing depreciation record for the specified asset.
      */
-    patch: operations["PatchAssetDepreciationRecord"];
+    patch: operations["Assets_PatchAssetDepreciationRecord"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Transfers": {
     /**
      * Gets transfers for a specific asset
      * @description Retrieves all transfer records for the specified asset.
      */
-    get: operations["GetAssetTransfers"];
+    get: operations["Assets_GetAssetTransfers"];
     /**
      * Creates a new transfer for an asset
      * @description Creates a new transfer record for the specified asset.
      */
-    post: operations["CreateAssetTransfer"];
+    post: operations["Assets_CreateAssetTransfer"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Transfers/Count": {
     /**
      * Gets count of transfers for a specific asset
      * @description Returns the total number of transfer records for the specified asset.
      */
-    get: operations["GetAssetTransfersCount"];
+    get: operations["Assets_GetAssetTransfersCount"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Transfers/{transferId}": {
     /**
      * Gets a specific transfer for an asset
      * @description Retrieves a specific transfer record by ID for the specified asset.
      */
-    get: operations["GetAssetTransfer"];
+    get: operations["Assets_GetAssetTransfer"];
     /**
      * Updates a transfer for an asset
      * @description Updates an existing transfer record for the specified asset.
      */
-    put: operations["UpdateAssetTransfer"];
+    put: operations["Assets_UpdateAssetTransfer"];
     /**
      * Deletes a transfer for an asset
      * @description Deletes a transfer record for the specified asset.
      */
-    delete: operations["DeleteAssetTransfer"];
+    delete: operations["Assets_DeleteAssetTransfer"];
     /**
      * Partially updates a transfer for an asset
      * @description Applies a JSON Patch document to an existing transfer record for the specified asset.
      */
-    patch: operations["PatchAssetTransfer"];
+    patch: operations["Assets_PatchAssetTransfer"];
   };
   "/api/v2/AssetsService/AssetTransfers": {
     /**
      * Gets a list of asset transfers
      * @description Retrieves all asset transfers for the authenticated tenant.
      */
-    get: operations["GetAssetTransfersAsync"];
+    get: operations["AssetTransfers_GetAssetTransfers"];
     /**
      * Creates a new asset transfer
      * @description Creates a new asset transfer for the authenticated tenant.
      */
-    post: operations["CreateAssetTransferAsync"];
+    post: operations["AssetTransfers_CreateAssetTransfer"];
   };
   "/api/v2/AssetsService/AssetTransfers/Count": {
     /**
      * Gets the count of asset transfers
      * @description Returns the total number of asset transfers for the authenticated tenant.
      */
-    get: operations["GetAssetTransfersCountAsync"];
+    get: operations["AssetTransfers_GetAssetTransfersCount"];
   };
   "/api/v2/AssetsService/AssetTransfers/{transferId}": {
     /**
      * Gets a single asset transfer by ID
      * @description Retrieves a specific asset transfer by its ID for the authenticated tenant.
      */
-    get: operations["GetAssetTransferAsync"];
+    get: operations["AssetTransfers_GetAssetTransfer"];
     /**
      * Updates an existing asset transfer
      * @description Updates an existing asset transfer for the authenticated tenant.
      */
-    put: operations["UpdateAssetTransferAsync"];
+    put: operations["AssetTransfers_UpdateAssetTransfer"];
     /**
      * Deletes an asset transfer
      * @description Deletes an asset transfer for the authenticated tenant.
      */
-    delete: operations["DeleteAssetTransferAsync"];
+    delete: operations["AssetTransfers_DeleteAssetTransfer"];
     /**
      * Partially updates an existing asset transfer
      * @description Applies a JSON Patch document to an existing asset transfer for the authenticated tenant.
      */
-    patch: operations["PatchAssetTransferAsync"];
+    patch: operations["AssetTransfers_PatchAssetTransfer"];
   };
   "/api/v2/AssetsService/AssetTypes": {
     /**
      * Gets all asset types for the current tenant
      * @description Retrieves all asset types for the authenticated tenant.
      */
-    get: operations["GetAssetTypes"];
+    get: operations["AssetTypes_GetAssetTypes"];
     /**
      * Creates a new asset type
      * @description Creates a new asset type for the authenticated tenant.
      */
-    post: operations["CreateAssetType"];
+    post: operations["AssetTypes_CreateAssetType"];
   };
   "/api/v2/AssetsService/AssetTypes/{typeId}": {
     /**
      * Gets a specific asset type
      * @description Retrieves a specific asset type by ID.
      */
-    get: operations["GetAssetType"];
+    get: operations["AssetTypes_GetAssetType"];
     /**
      * Updates an existing asset type
      * @description Updates an existing asset type for the authenticated tenant.
      */
-    put: operations["UpdateAssetType"];
+    put: operations["AssetTypes_UpdateAssetType"];
     /**
      * Deletes an asset type
      * @description Deletes an asset type for the authenticated tenant.
      */
-    delete: operations["DeleteAssetType"];
+    delete: operations["AssetTypes_DeleteAssetType"];
     /**
      * Partially updates an existing asset type
      * @description Applies a JSON Patch document to an existing asset type for the authenticated tenant.
      */
-    patch: operations["PatchAssetType"];
+    patch: operations["AssetTypes_PatchAssetType"];
   };
   "/api/v2/AssetsService/AssetTypes/count": {
     /**
      * Gets the count of asset types
      * @description Returns the total number of asset types for the authenticated tenant.
      */
-    get: operations["GetAssetTypesCount"];
+    get: operations["AssetTypes_GetAssetTypesCount"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
 }
 
@@ -1483,7 +1235,7 @@ export interface operations {
    * Gets all asset categories for the current tenant
    * @description Retrieves all asset categories for the authenticated tenant.
    */
-  GetAssetCategories: {
+  AssetCategories_GetAssetCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -1523,7 +1275,7 @@ export interface operations {
    * Creates a new asset category
    * @description Creates a new asset category for the authenticated tenant.
    */
-  CreateAssetCategory: {
+  AssetCategories_CreateAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -1570,7 +1322,7 @@ export interface operations {
    * Gets a specific asset category
    * @description Retrieves a specific asset category by ID.
    */
-  GetAssetCategory: {
+  AssetCategories_GetAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -1614,7 +1366,7 @@ export interface operations {
    * Updates an existing asset category
    * @description Updates an existing asset category for the authenticated tenant.
    */
-  UpdateAssetCategory: {
+  AssetCategories_UpdateAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -1671,7 +1423,7 @@ export interface operations {
    * Deletes an asset category
    * @description Deletes an asset category for the authenticated tenant.
    */
-  DeleteAssetCategory: {
+  AssetCategories_DeleteAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -1712,7 +1464,7 @@ export interface operations {
    * Partially updates an existing asset category
    * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
    */
-  PatchAssetCategory: {
+  AssetCategories_PatchAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -1769,7 +1521,7 @@ export interface operations {
    * Gets the count of asset categories
    * @description Returns the total number of asset categories for the authenticated tenant.
    */
-  GetAssetCategoriesCount: {
+  AssetCategories_GetAssetCategoriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1809,7 +1561,7 @@ export interface operations {
    * Gets all assets for the current tenant
    * @description Retrieves all assets for the authenticated tenant with optional filtering.
    */
-  GetAssets: {
+  Assets_GetAssets: {
     parameters: {
       query: {
         tenantId: string;
@@ -1849,7 +1601,7 @@ export interface operations {
    * Creates a new asset
    * @description Creates a new asset for the authenticated tenant.
    */
-  CreateAsset: {
+  Assets_CreateAsset: {
     parameters: {
       query: {
         tenantId: string;
@@ -1896,7 +1648,7 @@ export interface operations {
    * Gets the count of assets
    * @description Returns the total number of assets for the authenticated tenant.
    */
-  GetAssetsCount: {
+  Assets_GetAssetsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1936,7 +1688,7 @@ export interface operations {
    * Gets a specific asset by ID
    * @description Retrieves a specific asset for the authenticated tenant.
    */
-  GetAsset: {
+  Assets_GetAsset: {
     parameters: {
       query: {
         tenantId: string;
@@ -1980,7 +1732,7 @@ export interface operations {
    * Updates an existing asset
    * @description Updates an existing asset for the authenticated tenant.
    */
-  UpdateAsset: {
+  Assets_UpdateAsset: {
     parameters: {
       query: {
         tenantId: string;
@@ -2037,7 +1789,7 @@ export interface operations {
    * Deletes an existing asset
    * @description Deletes an existing asset for the authenticated tenant.
    */
-  DeleteAsset: {
+  Assets_DeleteAsset: {
     parameters: {
       query: {
         tenantId: string;
@@ -2078,7 +1830,7 @@ export interface operations {
    * Partially updates an existing asset
    * @description Applies a JSON Patch document to an existing asset for the authenticated tenant.
    */
-  PatchAsset: {
+  Assets_PatchAsset: {
     parameters: {
       query: {
         tenantId: string;
@@ -2135,7 +1887,7 @@ export interface operations {
    * Gets all asset categories
    * @description Retrieves all asset categories for the authenticated tenant.
    */
-  GetAssetAssetCategories: {
+  Assets_GetAssetAssetCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -2175,7 +1927,7 @@ export interface operations {
    * Creates a new asset category
    * @description Creates a new asset category for the authenticated tenant.
    */
-  CreateAssetAssetCategory: {
+  Assets_CreateAssetAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2222,7 +1974,7 @@ export interface operations {
    * Gets the count of asset categories
    * @description Returns the total number of asset categories for the authenticated tenant.
    */
-  GetAssetAssetCategoriesCount: {
+  Assets_GetAssetAssetCategoriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2262,7 +2014,7 @@ export interface operations {
    * Gets a specific asset category
    * @description Retrieves a specific asset category for the authenticated tenant.
    */
-  GetAssetAssetCategory: {
+  Assets_GetAssetAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2306,7 +2058,7 @@ export interface operations {
    * Updates an existing asset category
    * @description Updates an existing asset category for the authenticated tenant.
    */
-  UpdateAssetAssetCategory: {
+  Assets_UpdateAssetAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2363,7 +2115,7 @@ export interface operations {
    * Deletes an existing asset category
    * @description Deletes an existing asset category for the authenticated tenant.
    */
-  DeleteAssetAssetCategory: {
+  Assets_DeleteAssetAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2404,7 +2156,7 @@ export interface operations {
    * Partially updates an existing asset category
    * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
    */
-  PatchAssetAssetCategory: {
+  Assets_PatchAssetAssetCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -2461,7 +2213,7 @@ export interface operations {
    * Gets repairs for a specific asset
    * @description Retrieves all repair records for the specified asset.
    */
-  GetAssetRepairs: {
+  Assets_GetAssetRepairs: {
     parameters: {
       query: {
         tenantId: string;
@@ -2504,7 +2256,7 @@ export interface operations {
    * Creates a new repair for an asset
    * @description Creates a new repair record for the specified asset.
    */
-  CreateAssetRepair: {
+  Assets_CreateAssetRepair: {
     parameters: {
       query: {
         tenantId: string;
@@ -2547,7 +2299,7 @@ export interface operations {
    * Gets count of repairs for a specific asset
    * @description Returns the total number of repair records for the specified asset.
    */
-  GetAssetRepairsCount: {
+  Assets_GetAssetRepairsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2590,7 +2342,7 @@ export interface operations {
    * Gets a specific repair for an asset
    * @description Retrieves a specific repair record by ID for the specified asset.
    */
-  GetAssetRepair: {
+  Assets_GetAssetRepair: {
     parameters: {
       query: {
         tenantId: string;
@@ -2628,7 +2380,7 @@ export interface operations {
    * Updates a repair for an asset
    * @description Updates an existing repair record for the specified asset.
    */
-  UpdateAssetRepair: {
+  Assets_UpdateAssetRepair: {
     parameters: {
       query: {
         tenantId: string;
@@ -2672,7 +2424,7 @@ export interface operations {
    * Deletes a repair for an asset
    * @description Deletes a repair record for the specified asset.
    */
-  DeleteAssetRepair: {
+  Assets_DeleteAssetRepair: {
     parameters: {
       query: {
         tenantId: string;
@@ -2710,7 +2462,7 @@ export interface operations {
    * Partially updates a repair for an asset
    * @description Applies a JSON Patch document to an existing repair record for the specified asset.
    */
-  PatchAssetRepair: {
+  Assets_PatchAssetRepair: {
     parameters: {
       query: {
         tenantId: string;
@@ -2768,7 +2520,7 @@ export interface operations {
    * Gets value amendments for a specific asset
    * @description Retrieves all value amendment records for the specified asset.
    */
-  GetAssetValueAmends: {
+  Assets_GetAssetValueAmends: {
     parameters: {
       query: {
         tenantId: string;
@@ -2811,7 +2563,7 @@ export interface operations {
    * Creates a new value amendment for an asset
    * @description Creates a new value amendment record for the specified asset.
    */
-  CreateAssetValueAmend: {
+  Assets_CreateAssetValueAmend: {
     parameters: {
       query: {
         tenantId: string;
@@ -2854,7 +2606,7 @@ export interface operations {
    * Gets count of value amendments for a specific asset
    * @description Returns the total number of value amendment records for the specified asset.
    */
-  GetAssetValueAmendsCount: {
+  Assets_GetAssetValueAmendsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2897,7 +2649,7 @@ export interface operations {
    * Gets a specific value amendment for an asset
    * @description Retrieves a specific value amendment record by ID for the specified asset.
    */
-  GetAssetValueAmend: {
+  Assets_GetAssetValueAmend: {
     parameters: {
       query: {
         tenantId: string;
@@ -2935,7 +2687,7 @@ export interface operations {
    * Updates a value amendment for an asset
    * @description Updates an existing value amendment record for the specified asset.
    */
-  UpdateAssetValueAmend: {
+  Assets_UpdateAssetValueAmend: {
     parameters: {
       query: {
         tenantId: string;
@@ -2979,7 +2731,7 @@ export interface operations {
    * Deletes a value amendment for an asset
    * @description Deletes a value amendment record for the specified asset.
    */
-  DeleteAssetValueAmend: {
+  Assets_DeleteAssetValueAmend: {
     parameters: {
       query: {
         tenantId: string;
@@ -3017,7 +2769,7 @@ export interface operations {
    * Partially updates a value amendment for an asset
    * @description Applies a JSON Patch document to an existing value amendment record for the specified asset.
    */
-  PatchAssetValueAmend: {
+  Assets_PatchAssetValueAmend: {
     parameters: {
       query: {
         tenantId: string;
@@ -3075,7 +2827,7 @@ export interface operations {
    * Gets depreciation records for a specific asset
    * @description Retrieves all depreciation records for the specified asset.
    */
-  GetAssetDepreciationRecords: {
+  Assets_GetAssetDepreciationRecords: {
     parameters: {
       query: {
         tenantId: string;
@@ -3118,7 +2870,7 @@ export interface operations {
    * Creates a new depreciation record for an asset
    * @description Creates a new depreciation record for the specified asset.
    */
-  CreateAssetDepreciationRecord: {
+  Assets_CreateAssetDepreciationRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -3161,7 +2913,7 @@ export interface operations {
    * Gets count of depreciation records for a specific asset
    * @description Returns the total number of depreciation records for the specified asset.
    */
-  GetAssetDepreciationRecordsCount: {
+  Assets_GetAssetDepreciationRecordsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3204,7 +2956,7 @@ export interface operations {
    * Gets a specific depreciation record for an asset
    * @description Retrieves a specific depreciation record by ID for the specified asset.
    */
-  GetAssetDepreciationRecord: {
+  Assets_GetAssetDepreciationRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -3242,7 +2994,7 @@ export interface operations {
    * Updates a depreciation record for an asset
    * @description Updates an existing depreciation record for the specified asset.
    */
-  UpdateAssetDepreciationRecord: {
+  Assets_UpdateAssetDepreciationRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -3286,7 +3038,7 @@ export interface operations {
    * Deletes a depreciation record for an asset
    * @description Deletes a depreciation record for the specified asset.
    */
-  DeleteAssetDepreciationRecord: {
+  Assets_DeleteAssetDepreciationRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -3324,7 +3076,7 @@ export interface operations {
    * Partially updates a depreciation record for an asset
    * @description Applies a JSON Patch document to an existing depreciation record for the specified asset.
    */
-  PatchAssetDepreciationRecord: {
+  Assets_PatchAssetDepreciationRecord: {
     parameters: {
       query: {
         tenantId: string;
@@ -3382,7 +3134,7 @@ export interface operations {
    * Gets transfers for a specific asset
    * @description Retrieves all transfer records for the specified asset.
    */
-  GetAssetTransfers: {
+  Assets_GetAssetTransfers: {
     parameters: {
       query: {
         tenantId: string;
@@ -3425,7 +3177,7 @@ export interface operations {
    * Creates a new transfer for an asset
    * @description Creates a new transfer record for the specified asset.
    */
-  CreateAssetTransfer: {
+  Assets_CreateAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3468,7 +3220,7 @@ export interface operations {
    * Gets count of transfers for a specific asset
    * @description Returns the total number of transfer records for the specified asset.
    */
-  GetAssetTransfersCount: {
+  Assets_GetAssetTransfersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3511,7 +3263,7 @@ export interface operations {
    * Gets a specific transfer for an asset
    * @description Retrieves a specific transfer record by ID for the specified asset.
    */
-  GetAssetTransfer: {
+  Assets_GetAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3549,7 +3301,7 @@ export interface operations {
    * Updates a transfer for an asset
    * @description Updates an existing transfer record for the specified asset.
    */
-  UpdateAssetTransfer: {
+  Assets_UpdateAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3593,7 +3345,7 @@ export interface operations {
    * Deletes a transfer for an asset
    * @description Deletes a transfer record for the specified asset.
    */
-  DeleteAssetTransfer: {
+  Assets_DeleteAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3631,7 +3383,7 @@ export interface operations {
    * Partially updates a transfer for an asset
    * @description Applies a JSON Patch document to an existing transfer record for the specified asset.
    */
-  PatchAssetTransfer: {
+  Assets_PatchAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3689,7 +3441,7 @@ export interface operations {
    * Gets a list of asset transfers
    * @description Retrieves all asset transfers for the authenticated tenant.
    */
-  GetAssetTransfersAsync: {
+  AssetTransfers_GetAssetTransfers: {
     parameters: {
       query: {
         tenantId: string;
@@ -3729,7 +3481,7 @@ export interface operations {
    * Creates a new asset transfer
    * @description Creates a new asset transfer for the authenticated tenant.
    */
-  CreateAssetTransferAsync: {
+  AssetTransfers_CreateAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3769,7 +3521,7 @@ export interface operations {
    * Gets the count of asset transfers
    * @description Returns the total number of asset transfers for the authenticated tenant.
    */
-  GetAssetTransfersCountAsync: {
+  AssetTransfers_GetAssetTransfersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3809,7 +3561,7 @@ export interface operations {
    * Gets a single asset transfer by ID
    * @description Retrieves a specific asset transfer by its ID for the authenticated tenant.
    */
-  GetAssetTransferAsync: {
+  AssetTransfers_GetAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3846,7 +3598,7 @@ export interface operations {
    * Updates an existing asset transfer
    * @description Updates an existing asset transfer for the authenticated tenant.
    */
-  UpdateAssetTransferAsync: {
+  AssetTransfers_UpdateAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3889,7 +3641,7 @@ export interface operations {
    * Deletes an asset transfer
    * @description Deletes an asset transfer for the authenticated tenant.
    */
-  DeleteAssetTransferAsync: {
+  AssetTransfers_DeleteAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3926,7 +3678,7 @@ export interface operations {
    * Partially updates an existing asset transfer
    * @description Applies a JSON Patch document to an existing asset transfer for the authenticated tenant.
    */
-  PatchAssetTransferAsync: {
+  AssetTransfers_PatchAssetTransfer: {
     parameters: {
       query: {
         tenantId: string;
@@ -3983,7 +3735,7 @@ export interface operations {
    * Gets all asset types for the current tenant
    * @description Retrieves all asset types for the authenticated tenant.
    */
-  GetAssetTypes: {
+  AssetTypes_GetAssetTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -4023,7 +3775,7 @@ export interface operations {
    * Creates a new asset type
    * @description Creates a new asset type for the authenticated tenant.
    */
-  CreateAssetType: {
+  AssetTypes_CreateAssetType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4070,7 +3822,7 @@ export interface operations {
    * Gets a specific asset type
    * @description Retrieves a specific asset type by ID.
    */
-  GetAssetType: {
+  AssetTypes_GetAssetType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4114,7 +3866,7 @@ export interface operations {
    * Updates an existing asset type
    * @description Updates an existing asset type for the authenticated tenant.
    */
-  UpdateAssetType: {
+  AssetTypes_UpdateAssetType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4171,7 +3923,7 @@ export interface operations {
    * Deletes an asset type
    * @description Deletes an asset type for the authenticated tenant.
    */
-  DeleteAssetType: {
+  AssetTypes_DeleteAssetType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4212,7 +3964,7 @@ export interface operations {
    * Partially updates an existing asset type
    * @description Applies a JSON Patch document to an existing asset type for the authenticated tenant.
    */
-  PatchAssetType: {
+  AssetTypes_PatchAssetType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4269,7 +4021,7 @@ export interface operations {
    * Gets the count of asset types
    * @description Returns the total number of asset types for the authenticated tenant.
    */
-  GetAssetTypesCount: {
+  AssetTypes_GetAssetTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4305,7 +4057,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -4313,6 +4144,191 @@ export interface operations {
         changedEmail?: string;
       };
     };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
     responses: {
       /** @description OK */
       200: {

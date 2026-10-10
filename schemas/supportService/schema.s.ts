@@ -6,818 +6,570 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/SupportService/InquiryRequests": {
     /** Retrieve inquiry requests */
-    get: operations["GetInquiryRequestsAsync"];
+    get: operations["InquiryRequests_GetInquiryRequests"];
     /** Create an inquiry request */
-    post: operations["CreateInquiryRequestAsync"];
+    post: operations["InquiryRequests_CreateInquiryRequest"];
   };
   "/api/v2/SupportService/InquiryRequests/Count": {
     /** Get inquiry requests count */
-    get: operations["GetInquiryRequestsCountAsync"];
+    get: operations["InquiryRequests_GetInquiryRequestsCount"];
   };
   "/api/v2/SupportService/InquiryRequests/{inquiryRequestId}": {
     /** Retrieve an inquiry request by ID */
-    get: operations["GetInquiryRequestAsync"];
+    get: operations["InquiryRequests_GetInquiryRequest"];
     /** Update an inquiry request */
-    put: operations["UpdateInquiryRequestAsync"];
+    put: operations["InquiryRequests_UpdateInquiryRequest"];
     /** Delete an inquiry request */
-    delete: operations["DeleteInquiryRequestAsync"];
+    delete: operations["InquiryRequests_DeleteInquiryRequest"];
     /**
      * Patch an inquiry request
      * @description Partially updates an existing inquiry request by its unique identifier.
      */
-    patch: operations["PatchInquiryRequestAsync"];
+    patch: operations["InquiryRequests_PatchInquiryRequest"];
   };
   "/api/v2/SupportService/KnowledgeArticles": {
     /** Retrieve knowledge articles */
-    get: operations["GetKnowledgeArticlesAsync"];
+    get: operations["KnowledgeArticles_GetKnowledgeArticles"];
     /** Create a knowledge article */
-    post: operations["CreateKnowledgeArticleAsync"];
+    post: operations["KnowledgeArticles_CreateKnowledgeArticle"];
   };
   "/api/v2/SupportService/KnowledgeArticles/Count": {
     /** Get knowledge articles count */
-    get: operations["GetKnowledgeArticlesCountAsync"];
+    get: operations["KnowledgeArticles_GetKnowledgeArticlesCount"];
   };
   "/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}": {
     /** Retrieve a knowledge article by ID */
-    get: operations["GetKnowledgeArticleAsync"];
+    get: operations["KnowledgeArticles_GetKnowledgeArticle"];
     /** Update a knowledge article */
-    put: operations["UpdateKnowledgeArticleAsync"];
+    put: operations["KnowledgeArticles_UpdateKnowledgeArticle"];
     /** Delete a knowledge article */
-    delete: operations["DeleteKnowledgeArticleAsync"];
+    delete: operations["KnowledgeArticles_DeleteKnowledgeArticle"];
     /**
      * Patch a knowledge article
      * @description Partially updates an existing knowledge article by its unique identifier.
      */
-    patch: operations["PatchKnowledgeArticleAsync"];
+    patch: operations["KnowledgeArticles_PatchKnowledgeArticle"];
   };
   "/api/v2/SupportService/MaintenanceVisits": {
     /** Retrieve maintenance visits */
-    get: operations["GetMaintenanceVisitsAsync"];
+    get: operations["MaintenanceVisits_GetMaintenanceVisits"];
     /** Create a maintenance visit */
-    post: operations["CreateMaintenanceVisitAsync"];
+    post: operations["MaintenanceVisits_CreateMaintenanceVisit"];
   };
   "/api/v2/SupportService/MaintenanceVisits/Count": {
     /** Get maintenance visits count */
-    get: operations["GetMaintenanceVisitsCountAsync"];
+    get: operations["MaintenanceVisits_GetMaintenanceVisitsCount"];
   };
   "/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}": {
     /** Retrieve a maintenance visit by ID */
-    get: operations["GetMaintenanceVisitAsync"];
+    get: operations["MaintenanceVisits_GetMaintenanceVisit"];
     /** Update a maintenance visit */
-    put: operations["UpdateMaintenanceVisitAsync"];
+    put: operations["MaintenanceVisits_UpdateMaintenanceVisit"];
     /** Delete a maintenance visit */
-    delete: operations["DeleteMaintenanceVisitAsync"];
+    delete: operations["MaintenanceVisits_DeleteMaintenanceVisit"];
     /**
      * Patch a maintenance visit
      * @description Partially updates an existing maintenance visit by its unique identifier.
      */
-    patch: operations["PatchMaintenanceVisitAsync"];
+    patch: operations["MaintenanceVisits_PatchMaintenanceVisit"];
   };
   "/api/v2/SupportService/RefundPolicies": {
     /** Retrieve a list of refund policies */
-    get: operations["GetRefundPoliciesAsync"];
+    get: operations["RefundPolicies_GetRefundPolicies"];
     /** Create a new refund policy */
-    post: operations["CreateRefundPolicyAsync"];
+    post: operations["RefundPolicies_CreateRefundPolicy"];
   };
   "/api/v2/SupportService/RefundPolicies/Count": {
     /** Get the count of refund policies */
-    get: operations["GetRefundPoliciesCountAsync"];
+    get: operations["RefundPolicies_GetRefundPoliciesCount"];
   };
   "/api/v2/SupportService/RefundPolicies/{refundPolicyId}": {
     /** Retrieve a refund policy by ID */
-    get: operations["GetRefundPolicyAsync"];
+    get: operations["RefundPolicies_GetRefundPolicy"];
     /** Update a refund policy */
-    put: operations["UpdateRefundPolicyAsync"];
+    put: operations["RefundPolicies_UpdateRefundPolicy"];
     /** Delete a refund policy */
-    delete: operations["DeleteRefundPolicyAsync"];
+    delete: operations["RefundPolicies_DeleteRefundPolicy"];
     /**
      * Patch a refund policy
      * @description Partially updates an existing refund policy by its unique identifier.
      */
-    patch: operations["PatchRefundPolicyAsync"];
+    patch: operations["RefundPolicies_PatchRefundPolicy"];
   };
   "/api/v2/SupportService/RefundRequests": {
     /** Retrieve refund requests */
-    get: operations["GetRefundRequestsAsync"];
+    get: operations["RefundRequests_GetRefundRequests"];
     /** Create a refund request */
-    post: operations["CreateRefundRequestAsync"];
+    post: operations["RefundRequests_CreateRefundRequest"];
   };
   "/api/v2/SupportService/RefundRequests/Count": {
     /** Get refund requests count */
-    get: operations["GetRefundRequestsCountAsync"];
+    get: operations["RefundRequests_GetRefundRequestsCount"];
   };
   "/api/v2/SupportService/RefundRequests/{refundRequestId}": {
     /** Retrieve a refund request by ID */
-    get: operations["GetRefundRequestAsync"];
+    get: operations["RefundRequests_GetRefundRequest"];
     /** Update a refund request */
-    put: operations["UpdateRefundRequestAsync"];
+    put: operations["RefundRequests_UpdateRefundRequest"];
     /** Delete a refund request */
-    delete: operations["DeleteRefundRequestAsync"];
+    delete: operations["RefundRequests_DeleteRefundRequest"];
     /**
      * Patch a refund request
      * @description Partially updates an existing refund request by its unique identifier.
      */
-    patch: operations["PatchRefundRequestAsync"];
+    patch: operations["RefundRequests_PatchRefundRequest"];
   };
   "/api/v2/SupportService/ReturnPolicies": {
     /** Retrieve a list of return policies */
-    get: operations["GetReturnPoliciesAsync"];
+    get: operations["ReturnPolicies_GetReturnPolicies"];
     /** Create a new return policy */
-    post: operations["CreateReturnPolicyAsync"];
+    post: operations["ReturnPolicies_CreateReturnPolicy"];
   };
   "/api/v2/SupportService/ReturnPolicies/Count": {
     /** Get the count of return policies */
-    get: operations["GetReturnPoliciesCountAsync"];
+    get: operations["ReturnPolicies_GetReturnPoliciesCount"];
   };
   "/api/v2/SupportService/ReturnPolicies/{returnPolicyId}": {
     /** Retrieve a return policy by ID */
-    get: operations["GetReturnPolicyAsync"];
+    get: operations["ReturnPolicies_GetReturnPolicy"];
     /** Update a return policy */
-    put: operations["UpdateReturnPolicyAsync"];
+    put: operations["ReturnPolicies_UpdateReturnPolicy"];
     /** Delete a return policy */
-    delete: operations["DeleteReturnPolicyAsync"];
+    delete: operations["ReturnPolicies_DeleteReturnPolicy"];
     /**
      * Patch a return policy
      * @description Partially updates an existing return policy by its unique identifier.
      */
-    patch: operations["PatchReturnPolicyAsync"];
+    patch: operations["ReturnPolicies_PatchReturnPolicy"];
   };
   "/api/v2/SupportService/ReturnRequests": {
     /** Retrieve return requests */
-    get: operations["GetReturnRequestsAsync"];
+    get: operations["ReturnRequests_GetReturnRequests"];
     /** Create a return request */
-    post: operations["CreateReturnRequestAsync"];
+    post: operations["ReturnRequests_CreateReturnRequest"];
   };
   "/api/v2/SupportService/ReturnRequests/Count": {
     /** Get return requests count */
-    get: operations["GetReturnRequestsCountAsync"];
+    get: operations["ReturnRequests_GetReturnRequestsCount"];
   };
   "/api/v2/SupportService/ReturnRequests/{returnRequestId}": {
     /** Retrieve a return request by ID */
-    get: operations["GetReturnRequestAsync"];
+    get: operations["ReturnRequests_GetReturnRequest"];
     /** Update a return request */
-    put: operations["UpdateReturnRequestAsync"];
+    put: operations["ReturnRequests_UpdateReturnRequest"];
     /** Delete a return request */
-    delete: operations["DeleteReturnRequestAsync"];
+    delete: operations["ReturnRequests_DeleteReturnRequest"];
     /**
      * Patch a return request
      * @description Partially updates an existing return request by its unique identifier.
      */
-    patch: operations["PatchReturnRequestAsync"];
+    patch: operations["ReturnRequests_PatchReturnRequest"];
   };
   "/api/v2/SupportService/SupportEntitlements": {
     /**
      * Retrieve a list of support entitlements
      * @description Retrieves a list of support entitlements for the specified tenant with OData query support.
      */
-    get: operations["GetSupportEntitlementsAsync"];
+    get: operations["SupportEntitlements_GetSupportEntitlements"];
     /**
      * Create a new support entitlement
      * @description Creates a new support entitlement for the specified tenant.
      */
-    post: operations["CreateSupportEntitlementAsync"];
+    post: operations["SupportEntitlements_CreateSupportEntitlement"];
   };
   "/api/v2/SupportService/SupportEntitlements/Count": {
     /**
      * Get the count of support entitlements
      * @description Returns the total count of support entitlements for the specified tenant with OData query support.
      */
-    get: operations["GetSupportEntitlementsCountAsync"];
+    get: operations["SupportEntitlements_GetSupportEntitlementsCount"];
   };
   "/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}": {
     /**
      * Retrieve a support entitlement by ID
      * @description Retrieves a single support entitlement by its unique identifier.
      */
-    get: operations["GetSupportEntitlementAsync"];
+    get: operations["SupportEntitlements_GetSupportEntitlement"];
     /**
      * Update a support entitlement
      * @description Updates an existing support entitlement by its unique identifier.
      */
-    put: operations["UpdateSupportEntitlementAsync"];
+    put: operations["SupportEntitlements_UpdateSupportEntitlement"];
     /**
      * Delete a support entitlement
      * @description Deletes a support entitlement by its unique identifier.
      */
-    delete: operations["DeleteSupportEntitlementAsync"];
+    delete: operations["SupportEntitlements_DeleteSupportEntitlement"];
     /**
      * Patch a support entitlement
      * @description Partially updates an existing support entitlement by its unique identifier.
      */
-    patch: operations["PatchSupportEntitlementAsync"];
+    patch: operations["SupportEntitlements_PatchSupportEntitlement"];
   };
   "/api/v2/SupportService/SupportRequestAttachments": {
     /**
      * Retrieve a list of support request attachments
      * @description Retrieves a list of support request attachments for the specified tenant with OData query support.
      */
-    get: operations["GetSupportRequestAttachmentsAsync"];
+    get: operations["SupportRequestAttachments_GetSupportRequestAttachments"];
     /**
      * Create a new support request attachment
      * @description Creates a new support request attachment for the specified tenant.
      */
-    post: operations["CreateSupportRequestAttachmentAsync"];
+    post: operations["SupportRequestAttachments_CreateSupportRequestAttachment"];
   };
   "/api/v2/SupportService/SupportRequestAttachments/Count": {
     /**
      * Get the count of support request attachments
      * @description Returns the total count of support request attachments for the specified tenant with OData query support.
      */
-    get: operations["GetSupportRequestAttachmentsCountAsync"];
+    get: operations["SupportRequestAttachments_GetSupportRequestAttachmentsCount"];
   };
   "/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}": {
     /**
      * Retrieve a support request attachment by ID
      * @description Retrieves a single support request attachment by its unique identifier.
      */
-    get: operations["GetSupportRequestAttachmentAsync"];
+    get: operations["SupportRequestAttachments_GetSupportRequestAttachment"];
     /**
      * Update a support request attachment
      * @description Updates an existing support request attachment by its unique identifier.
      */
-    put: operations["UpdateSupportRequestAttachmentAsync"];
+    put: operations["SupportRequestAttachments_UpdateSupportRequestAttachment"];
     /**
      * Delete a support request attachment
      * @description Deletes a support request attachment by its unique identifier.
      */
-    delete: operations["DeleteSupportRequestAttachmentAsync"];
+    delete: operations["SupportRequestAttachments_DeleteSupportRequestAttachment"];
     /**
      * Patch a support request attachment
      * @description Partially updates an existing support request attachment by its unique identifier.
      */
-    patch: operations["PatchSupportRequestAttachmentAsync"];
+    patch: operations["SupportRequestAttachments_PatchSupportRequestAttachment"];
   };
   "/api/v2/SupportService/SupportRequests": {
     /**
      * Retrieve a list of support requests
      * @description Retrieves a list of support requests for the specified tenant with OData query support.
      */
-    get: operations["GetSupportRequestsAsync"];
+    get: operations["SupportRequests_GetSupportRequests"];
     /**
      * Create a new support request
      * @description Creates a new support request for the specified tenant.
      */
-    post: operations["CreateSupportRequestAsync"];
+    post: operations["SupportRequests_CreateSupportRequest"];
   };
   "/api/v2/SupportService/SupportRequests/Count": {
     /**
      * Get the count of support requests
      * @description Returns the total count of support requests for the specified tenant with OData query support.
      */
-    get: operations["GetSupportRequestsCountAsync"];
+    get: operations["SupportRequests_GetSupportRequestsCount"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}": {
     /**
      * Retrieve a support request by ID
      * @description Retrieves a single support request by its unique identifier.
      */
-    get: operations["GetSupportRequestAsync"];
+    get: operations["SupportRequests_GetSupportRequest"];
     /**
      * Update a support request
      * @description Updates an existing support request by its unique identifier.
      */
-    put: operations["UpdateSupportRequestAsync"];
+    put: operations["SupportRequests_UpdateSupportRequest"];
     /**
      * Delete a support request
      * @description Deletes a support request by its unique identifier.
      */
-    delete: operations["DeleteSupportRequestAsync"];
+    delete: operations["SupportRequests_DeleteSupportRequest"];
     /**
      * Patch a support request
      * @description Partially updates an existing support request by its unique identifier.
      */
-    patch: operations["PatchSupportRequestAsync"];
+    patch: operations["SupportRequests_PatchSupportRequest"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Tickets": {
     /**
      * Retrieve tickets for a support request
      * @description Retrieves the list of support tickets associated with a specific support request.
      */
-    get: operations["GetSupportRequestTicketsAsync"];
+    get: operations["SupportRequests_GetSupportRequestTickets"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments": {
     /**
      * Retrieve attachments for a support request
      * @description Retrieves the list of attachments associated with a specific support request.
      */
-    get: operations["GetSupportRequestAttachmentsByRequest"];
+    get: operations["SupportRequests_GetSupportRequestAttachmentsByRequest"];
     /**
      * Add an attachment to a support request
      * @description Creates a new attachment and associates it with the specified support request.
      */
-    post: operations["RelateSupportRequestToAttachmentAsync"];
+    post: operations["SupportRequests_RelateSupportRequestToAttachment"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments/Count": {
     /**
      * Get the count of attachments for a support request
      * @description Returns the total count of attachments for a specific support request.
      */
-    get: operations["GetSupportRequestAttachmentsCountByRequest"];
+    get: operations["SupportRequests_GetSupportRequestAttachmentsCountByRequest"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments/{attachmentId}": {
     /**
      * Retrieve a specific attachment for a support request
      * @description Retrieves a single attachment by its ID for a specific support request.
      */
-    get: operations["GetSupportRequestAttachmentByRequest"];
+    get: operations["SupportRequests_GetSupportRequestAttachmentByRequest"];
   };
   "/api/v2/SupportService/SupportTicketPriorities": {
     /**
      * Retrieve a list of support ticket priorities
      * @description Retrieves a list of support ticket priorities for the specified tenant with OData query support.
      */
-    get: operations["GetSupportTicketPrioritiesAsync"];
+    get: operations["SupportTicketPriorities_GetSupportTicketPriorities"];
     /**
      * Create a new support ticket priority
      * @description Creates a new support ticket priority for the specified tenant.
      */
-    post: operations["CreateSupportTicketPriorityAsync"];
+    post: operations["SupportTicketPriorities_CreateSupportTicketPriority"];
   };
   "/api/v2/SupportService/SupportTicketPriorities/Count": {
     /**
      * Get the count of support ticket priorities
      * @description Returns the total count of support ticket priorities for the specified tenant with OData query support.
      */
-    get: operations["GetSupportTicketPrioritiesCountAsync"];
+    get: operations["SupportTicketPriorities_GetSupportTicketPrioritiesCount"];
   };
   "/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}": {
     /**
      * Retrieve a support ticket priority by ID
      * @description Retrieves a single support ticket priority by its unique identifier.
      */
-    get: operations["GetSupportTicketPriorityAsync"];
+    get: operations["SupportTicketPriorities_GetSupportTicketPriority"];
     /**
      * Update a support ticket priority
      * @description Updates an existing support ticket priority by its unique identifier.
      */
-    put: operations["UpdateSupportTicketPriorityAsync"];
+    put: operations["SupportTicketPriorities_UpdateSupportTicketPriority"];
     /**
      * Delete a support ticket priority
      * @description Deletes a support ticket priority by its unique identifier.
      */
-    delete: operations["DeleteSupportTicketPriorityAsync"];
+    delete: operations["SupportTicketPriorities_DeleteSupportTicketPriority"];
     /**
      * Patch a support ticket priority
      * @description Partially updates an existing support ticket priority by its unique identifier.
      */
-    patch: operations["PatchSupportTicketPriorityAsync"];
+    patch: operations["SupportTicketPriorities_PatchSupportTicketPriority"];
   };
   "/api/v2/SupportService/SupportTickets": {
     /**
      * Retrieve a list of support tickets
      * @description Retrieves a list of support tickets for the specified tenant with OData query support.
      */
-    get: operations["GetSupportTicketsAsync"];
+    get: operations["SupportTickets_GetSupportTickets"];
     /**
      * Create a new support ticket
      * @description Creates a new support ticket for the specified tenant.
      */
-    post: operations["CreateSupportTicketAsync"];
+    post: operations["SupportTickets_CreateSupportTicket"];
   };
   "/api/v2/SupportService/SupportTickets/Count": {
     /**
      * Get the count of support tickets
      * @description Returns the total count of support tickets for the specified tenant with OData query support.
      */
-    get: operations["GetSupportTicketsCountAsync"];
+    get: operations["SupportTickets_GetSupportTicketsCount"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}": {
     /**
      * Retrieve a support ticket by ID
      * @description Retrieves a single support ticket by its unique identifier.
      */
-    get: operations["GetSupportTicketAsync"];
+    get: operations["SupportTickets_GetSupportTicket"];
     /**
      * Update a support ticket
      * @description Updates an existing support ticket by its unique identifier.
      */
-    put: operations["UpdateSupportTicketAsync"];
+    put: operations["SupportTickets_UpdateSupportTicket"];
     /**
      * Delete a support ticket
      * @description Deletes a support ticket by its unique identifier.
      */
-    delete: operations["DeleteSupportTicketAsync"];
+    delete: operations["SupportTickets_DeleteSupportTicket"];
     /**
      * Patch a support ticket
      * @description Partially updates an existing support ticket by its unique identifier.
      */
-    patch: operations["PatchSupportTicketAsync"];
+    patch: operations["SupportTickets_PatchSupportTicket"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations": {
     /**
      * Retrieve conversations for a support ticket
      * @description Retrieves the list of conversations associated with a specific support ticket.
      */
-    get: operations["GetSupportTicketConversationsAsync"];
+    get: operations["SupportTickets_GetSupportTicketConversations"];
     /**
      * Create a conversation for a support ticket
      * @description Creates a new conversation and associates it with the specified support ticket.
      */
-    post: operations["RelateSupportTicketToConversationAsync"];
+    post: operations["SupportTickets_RelateSupportTicketToConversation"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}": {
     /**
      * Retrieve a specific conversation for a support ticket
      * @description Retrieves a single conversation by its ID for a specific support ticket.
      */
-    get: operations["GetSupportTicketConversationAsync"];
+    get: operations["SupportTickets_GetSupportTicketConversation"];
     /**
      * Delete a conversation from a support ticket
      * @description Deletes a specific conversation from a support ticket.
      */
-    delete: operations["DeleteSupportTicketConversationAsync"];
+    delete: operations["SupportTickets_DeleteSupportTicketConversation"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}/Messages": {
     /**
      * Retrieve messages for a support ticket conversation
      * @description Retrieves the list of messages within a specific conversation of a support ticket.
      */
-    get: operations["GetSupportTicketConversationMessagesAsync"];
+    get: operations["SupportTickets_GetSupportTicketConversationMessages"];
   };
   "/api/v2/SupportService/SupportTicketTypes": {
     /**
      * Retrieve a list of support ticket types
      * @description Retrieves a list of support ticket types for the specified tenant with OData query support.
      */
-    get: operations["GetSupportTicketTypesAsync"];
+    get: operations["SupportTicketTypes_GetSupportTicketTypes"];
     /**
      * Create a new support ticket type
      * @description Creates a new support ticket type for the specified tenant.
      */
-    post: operations["CreateSupportTicketTypeAsync"];
+    post: operations["SupportTicketTypes_CreateSupportTicketType"];
   };
   "/api/v2/SupportService/SupportTicketTypes/Count": {
     /**
      * Get the count of support ticket types
      * @description Returns the total count of support ticket types for the specified tenant with OData query support.
      */
-    get: operations["GetSupportTicketTypesCountAsync"];
+    get: operations["SupportTicketTypes_GetSupportTicketTypesCount"];
   };
   "/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}": {
     /**
      * Retrieve a support ticket type by ID
      * @description Retrieves a single support ticket type by its unique identifier.
      */
-    get: operations["GetSupportTicketTypeAsync"];
+    get: operations["SupportTicketTypes_GetSupportTicketType"];
     /**
      * Update a support ticket type
      * @description Updates an existing support ticket type by its unique identifier.
      */
-    put: operations["UpdateSupportTicketTypeAsync"];
+    put: operations["SupportTicketTypes_UpdateSupportTicketType"];
     /**
      * Delete a support ticket type
      * @description Deletes a support ticket type by its unique identifier.
      */
-    delete: operations["DeleteSupportTicketTypeAsync"];
+    delete: operations["SupportTicketTypes_DeleteSupportTicketType"];
     /**
      * Patch a support ticket type
      * @description Partially updates an existing support ticket type by its unique identifier.
      */
-    patch: operations["PatchSupportTicketTypeAsync"];
+    patch: operations["SupportTicketTypes_PatchSupportTicketType"];
   };
   "/api/v2/SupportService/WarrantyPolicies": {
     /** Retrieve a list of warranty policies */
-    get: operations["GetWarrantyPoliciesAsync"];
+    get: operations["WarrantyPolicies_GetWarrantyPolicies"];
     /** Create a new warranty policy */
-    post: operations["CreateWarrantyPolicyAsync"];
+    post: operations["WarrantyPolicies_CreateWarrantyPolicy"];
   };
   "/api/v2/SupportService/WarrantyPolicies/Count": {
     /** Get the count of warranty policies */
-    get: operations["GetWarrantyPoliciesCountAsync"];
+    get: operations["WarrantyPolicies_GetWarrantyPoliciesCount"];
   };
   "/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}": {
     /** Retrieve a warranty policy by ID */
-    get: operations["GetWarrantyPolicyAsync"];
+    get: operations["WarrantyPolicies_GetWarrantyPolicy"];
     /** Update a warranty policy */
-    put: operations["UpdateWarrantyPolicyAsync"];
+    put: operations["WarrantyPolicies_UpdateWarrantyPolicy"];
     /** Delete a warranty policy */
-    delete: operations["DeleteWarrantyPolicyAsync"];
+    delete: operations["WarrantyPolicies_DeleteWarrantyPolicy"];
     /**
      * Patch a warranty policy
      * @description Partially updates an existing warranty policy by its unique identifier.
      */
-    patch: operations["PatchWarrantyPolicyAsync"];
+    patch: operations["WarrantyPolicies_PatchWarrantyPolicy"];
   };
   "/api/v2/SupportService/WarrantyRequests": {
     /** Retrieve warranty requests */
-    get: operations["GetWarrantyRequestsAsync"];
+    get: operations["WarrantyRequests_GetWarrantyRequests"];
     /** Create a warranty request */
-    post: operations["CreateWarrantyRequestAsync"];
+    post: operations["WarrantyRequests_CreateWarrantyRequest"];
   };
   "/api/v2/SupportService/WarrantyRequests/Count": {
     /** Get warranty requests count */
-    get: operations["GetWarrantyRequestsCountAsync"];
+    get: operations["WarrantyRequests_GetWarrantyRequestsCount"];
   };
   "/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}": {
     /** Retrieve a warranty request by ID */
-    get: operations["GetWarrantyRequestAsync"];
+    get: operations["WarrantyRequests_GetWarrantyRequest"];
     /** Update a warranty request */
-    put: operations["UpdateWarrantyRequestAsync"];
+    put: operations["WarrantyRequests_UpdateWarrantyRequest"];
     /** Delete a warranty request */
-    delete: operations["DeleteWarrantyRequestAsync"];
+    delete: operations["WarrantyRequests_DeleteWarrantyRequest"];
     /**
      * Patch a warranty request
      * @description Partially updates an existing warranty request by its unique identifier.
      */
-    patch: operations["PatchWarrantyRequestAsync"];
+    patch: operations["WarrantyRequests_PatchWarrantyRequest"];
   };
 }
 
@@ -2619,7 +2371,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2634,8 +2465,193 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /** Retrieve inquiry requests */
-  GetInquiryRequestsAsync: {
+  InquiryRequests_GetInquiryRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -2662,7 +2678,7 @@ export interface operations {
     };
   };
   /** Create an inquiry request */
-  CreateInquiryRequestAsync: {
+  InquiryRequests_CreateInquiryRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -2689,7 +2705,7 @@ export interface operations {
     };
   };
   /** Get inquiry requests count */
-  GetInquiryRequestsCountAsync: {
+  InquiryRequests_GetInquiryRequestsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2716,7 +2732,7 @@ export interface operations {
     };
   };
   /** Retrieve an inquiry request by ID */
-  GetInquiryRequestAsync: {
+  InquiryRequests_GetInquiryRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -2740,7 +2756,7 @@ export interface operations {
     };
   };
   /** Update an inquiry request */
-  UpdateInquiryRequestAsync: {
+  InquiryRequests_UpdateInquiryRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -2770,7 +2786,7 @@ export interface operations {
     };
   };
   /** Delete an inquiry request */
-  DeleteInquiryRequestAsync: {
+  InquiryRequests_DeleteInquiryRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -2797,7 +2813,7 @@ export interface operations {
    * Patch an inquiry request
    * @description Partially updates an existing inquiry request by its unique identifier.
    */
-  PatchInquiryRequestAsync: {
+  InquiryRequests_PatchInquiryRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -2841,7 +2857,7 @@ export interface operations {
     };
   };
   /** Retrieve knowledge articles */
-  GetKnowledgeArticlesAsync: {
+  KnowledgeArticles_GetKnowledgeArticles: {
     parameters: {
       query: {
         tenantId: string;
@@ -2868,7 +2884,7 @@ export interface operations {
     };
   };
   /** Create a knowledge article */
-  CreateKnowledgeArticleAsync: {
+  KnowledgeArticles_CreateKnowledgeArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -2895,7 +2911,7 @@ export interface operations {
     };
   };
   /** Get knowledge articles count */
-  GetKnowledgeArticlesCountAsync: {
+  KnowledgeArticles_GetKnowledgeArticlesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2922,7 +2938,7 @@ export interface operations {
     };
   };
   /** Retrieve a knowledge article by ID */
-  GetKnowledgeArticleAsync: {
+  KnowledgeArticles_GetKnowledgeArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -2946,7 +2962,7 @@ export interface operations {
     };
   };
   /** Update a knowledge article */
-  UpdateKnowledgeArticleAsync: {
+  KnowledgeArticles_UpdateKnowledgeArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -2976,7 +2992,7 @@ export interface operations {
     };
   };
   /** Delete a knowledge article */
-  DeleteKnowledgeArticleAsync: {
+  KnowledgeArticles_DeleteKnowledgeArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -3003,7 +3019,7 @@ export interface operations {
    * Patch a knowledge article
    * @description Partially updates an existing knowledge article by its unique identifier.
    */
-  PatchKnowledgeArticleAsync: {
+  KnowledgeArticles_PatchKnowledgeArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -3047,7 +3063,7 @@ export interface operations {
     };
   };
   /** Retrieve maintenance visits */
-  GetMaintenanceVisitsAsync: {
+  MaintenanceVisits_GetMaintenanceVisits: {
     parameters: {
       query: {
         tenantId: string;
@@ -3074,7 +3090,7 @@ export interface operations {
     };
   };
   /** Create a maintenance visit */
-  CreateMaintenanceVisitAsync: {
+  MaintenanceVisits_CreateMaintenanceVisit: {
     parameters: {
       query: {
         tenantId: string;
@@ -3101,7 +3117,7 @@ export interface operations {
     };
   };
   /** Get maintenance visits count */
-  GetMaintenanceVisitsCountAsync: {
+  MaintenanceVisits_GetMaintenanceVisitsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3128,7 +3144,7 @@ export interface operations {
     };
   };
   /** Retrieve a maintenance visit by ID */
-  GetMaintenanceVisitAsync: {
+  MaintenanceVisits_GetMaintenanceVisit: {
     parameters: {
       query: {
         tenantId: string;
@@ -3152,7 +3168,7 @@ export interface operations {
     };
   };
   /** Update a maintenance visit */
-  UpdateMaintenanceVisitAsync: {
+  MaintenanceVisits_UpdateMaintenanceVisit: {
     parameters: {
       query: {
         tenantId: string;
@@ -3182,7 +3198,7 @@ export interface operations {
     };
   };
   /** Delete a maintenance visit */
-  DeleteMaintenanceVisitAsync: {
+  MaintenanceVisits_DeleteMaintenanceVisit: {
     parameters: {
       query: {
         tenantId: string;
@@ -3209,7 +3225,7 @@ export interface operations {
    * Patch a maintenance visit
    * @description Partially updates an existing maintenance visit by its unique identifier.
    */
-  PatchMaintenanceVisitAsync: {
+  MaintenanceVisits_PatchMaintenanceVisit: {
     parameters: {
       query: {
         tenantId: string;
@@ -3253,7 +3269,7 @@ export interface operations {
     };
   };
   /** Retrieve a list of refund policies */
-  GetRefundPoliciesAsync: {
+  RefundPolicies_GetRefundPolicies: {
     parameters: {
       query: {
         tenantId: string;
@@ -3294,7 +3310,7 @@ export interface operations {
     };
   };
   /** Create a new refund policy */
-  CreateRefundPolicyAsync: {
+  RefundPolicies_CreateRefundPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3335,7 +3351,7 @@ export interface operations {
     };
   };
   /** Get the count of refund policies */
-  GetRefundPoliciesCountAsync: {
+  RefundPolicies_GetRefundPoliciesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3376,7 +3392,7 @@ export interface operations {
     };
   };
   /** Retrieve a refund policy by ID */
-  GetRefundPolicyAsync: {
+  RefundPolicies_GetRefundPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3414,7 +3430,7 @@ export interface operations {
     };
   };
   /** Update a refund policy */
-  UpdateRefundPolicyAsync: {
+  RefundPolicies_UpdateRefundPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3458,7 +3474,7 @@ export interface operations {
     };
   };
   /** Delete a refund policy */
-  DeleteRefundPolicyAsync: {
+  RefundPolicies_DeleteRefundPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3499,7 +3515,7 @@ export interface operations {
    * Patch a refund policy
    * @description Partially updates an existing refund policy by its unique identifier.
    */
-  PatchRefundPolicyAsync: {
+  RefundPolicies_PatchRefundPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3543,7 +3559,7 @@ export interface operations {
     };
   };
   /** Retrieve refund requests */
-  GetRefundRequestsAsync: {
+  RefundRequests_GetRefundRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -3570,7 +3586,7 @@ export interface operations {
     };
   };
   /** Create a refund request */
-  CreateRefundRequestAsync: {
+  RefundRequests_CreateRefundRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -3597,7 +3613,7 @@ export interface operations {
     };
   };
   /** Get refund requests count */
-  GetRefundRequestsCountAsync: {
+  RefundRequests_GetRefundRequestsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3624,7 +3640,7 @@ export interface operations {
     };
   };
   /** Retrieve a refund request by ID */
-  GetRefundRequestAsync: {
+  RefundRequests_GetRefundRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -3648,7 +3664,7 @@ export interface operations {
     };
   };
   /** Update a refund request */
-  UpdateRefundRequestAsync: {
+  RefundRequests_UpdateRefundRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -3678,7 +3694,7 @@ export interface operations {
     };
   };
   /** Delete a refund request */
-  DeleteRefundRequestAsync: {
+  RefundRequests_DeleteRefundRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -3705,7 +3721,7 @@ export interface operations {
    * Patch a refund request
    * @description Partially updates an existing refund request by its unique identifier.
    */
-  PatchRefundRequestAsync: {
+  RefundRequests_PatchRefundRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -3749,7 +3765,7 @@ export interface operations {
     };
   };
   /** Retrieve a list of return policies */
-  GetReturnPoliciesAsync: {
+  ReturnPolicies_GetReturnPolicies: {
     parameters: {
       query: {
         tenantId: string;
@@ -3790,7 +3806,7 @@ export interface operations {
     };
   };
   /** Create a new return policy */
-  CreateReturnPolicyAsync: {
+  ReturnPolicies_CreateReturnPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3831,7 +3847,7 @@ export interface operations {
     };
   };
   /** Get the count of return policies */
-  GetReturnPoliciesCountAsync: {
+  ReturnPolicies_GetReturnPoliciesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3872,7 +3888,7 @@ export interface operations {
     };
   };
   /** Retrieve a return policy by ID */
-  GetReturnPolicyAsync: {
+  ReturnPolicies_GetReturnPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3910,7 +3926,7 @@ export interface operations {
     };
   };
   /** Update a return policy */
-  UpdateReturnPolicyAsync: {
+  ReturnPolicies_UpdateReturnPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3954,7 +3970,7 @@ export interface operations {
     };
   };
   /** Delete a return policy */
-  DeleteReturnPolicyAsync: {
+  ReturnPolicies_DeleteReturnPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3995,7 +4011,7 @@ export interface operations {
    * Patch a return policy
    * @description Partially updates an existing return policy by its unique identifier.
    */
-  PatchReturnPolicyAsync: {
+  ReturnPolicies_PatchReturnPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -4039,7 +4055,7 @@ export interface operations {
     };
   };
   /** Retrieve return requests */
-  GetReturnRequestsAsync: {
+  ReturnRequests_GetReturnRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -4066,7 +4082,7 @@ export interface operations {
     };
   };
   /** Create a return request */
-  CreateReturnRequestAsync: {
+  ReturnRequests_CreateReturnRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -4093,7 +4109,7 @@ export interface operations {
     };
   };
   /** Get return requests count */
-  GetReturnRequestsCountAsync: {
+  ReturnRequests_GetReturnRequestsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4120,7 +4136,7 @@ export interface operations {
     };
   };
   /** Retrieve a return request by ID */
-  GetReturnRequestAsync: {
+  ReturnRequests_GetReturnRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -4144,7 +4160,7 @@ export interface operations {
     };
   };
   /** Update a return request */
-  UpdateReturnRequestAsync: {
+  ReturnRequests_UpdateReturnRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -4174,7 +4190,7 @@ export interface operations {
     };
   };
   /** Delete a return request */
-  DeleteReturnRequestAsync: {
+  ReturnRequests_DeleteReturnRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -4201,7 +4217,7 @@ export interface operations {
    * Patch a return request
    * @description Partially updates an existing return request by its unique identifier.
    */
-  PatchReturnRequestAsync: {
+  ReturnRequests_PatchReturnRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -4248,7 +4264,7 @@ export interface operations {
    * Retrieve a list of support entitlements
    * @description Retrieves a list of support entitlements for the specified tenant with OData query support.
    */
-  GetSupportEntitlementsAsync: {
+  SupportEntitlements_GetSupportEntitlements: {
     parameters: {
       query: {
         tenantId: string;
@@ -4292,7 +4308,7 @@ export interface operations {
    * Create a new support entitlement
    * @description Creates a new support entitlement for the specified tenant.
    */
-  CreateSupportEntitlementAsync: {
+  SupportEntitlements_CreateSupportEntitlement: {
     parameters: {
       query: {
         tenantId: string;
@@ -4336,7 +4352,7 @@ export interface operations {
    * Get the count of support entitlements
    * @description Returns the total count of support entitlements for the specified tenant with OData query support.
    */
-  GetSupportEntitlementsCountAsync: {
+  SupportEntitlements_GetSupportEntitlementsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4380,7 +4396,7 @@ export interface operations {
    * Retrieve a support entitlement by ID
    * @description Retrieves a single support entitlement by its unique identifier.
    */
-  GetSupportEntitlementAsync: {
+  SupportEntitlements_GetSupportEntitlement: {
     parameters: {
       query: {
         tenantId: string;
@@ -4421,7 +4437,7 @@ export interface operations {
    * Update a support entitlement
    * @description Updates an existing support entitlement by its unique identifier.
    */
-  UpdateSupportEntitlementAsync: {
+  SupportEntitlements_UpdateSupportEntitlement: {
     parameters: {
       query: {
         tenantId: string;
@@ -4468,7 +4484,7 @@ export interface operations {
    * Delete a support entitlement
    * @description Deletes a support entitlement by its unique identifier.
    */
-  DeleteSupportEntitlementAsync: {
+  SupportEntitlements_DeleteSupportEntitlement: {
     parameters: {
       query: {
         tenantId: string;
@@ -4509,7 +4525,7 @@ export interface operations {
    * Patch a support entitlement
    * @description Partially updates an existing support entitlement by its unique identifier.
    */
-  PatchSupportEntitlementAsync: {
+  SupportEntitlements_PatchSupportEntitlement: {
     parameters: {
       query: {
         tenantId: string;
@@ -4556,7 +4572,7 @@ export interface operations {
    * Retrieve a list of support request attachments
    * @description Retrieves a list of support request attachments for the specified tenant with OData query support.
    */
-  GetSupportRequestAttachmentsAsync: {
+  SupportRequestAttachments_GetSupportRequestAttachments: {
     parameters: {
       query: {
         tenantId: string;
@@ -4600,7 +4616,7 @@ export interface operations {
    * Create a new support request attachment
    * @description Creates a new support request attachment for the specified tenant.
    */
-  CreateSupportRequestAttachmentAsync: {
+  SupportRequestAttachments_CreateSupportRequestAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4644,7 +4660,7 @@ export interface operations {
    * Get the count of support request attachments
    * @description Returns the total count of support request attachments for the specified tenant with OData query support.
    */
-  GetSupportRequestAttachmentsCountAsync: {
+  SupportRequestAttachments_GetSupportRequestAttachmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4688,7 +4704,7 @@ export interface operations {
    * Retrieve a support request attachment by ID
    * @description Retrieves a single support request attachment by its unique identifier.
    */
-  GetSupportRequestAttachmentAsync: {
+  SupportRequestAttachments_GetSupportRequestAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4729,7 +4745,7 @@ export interface operations {
    * Update a support request attachment
    * @description Updates an existing support request attachment by its unique identifier.
    */
-  UpdateSupportRequestAttachmentAsync: {
+  SupportRequestAttachments_UpdateSupportRequestAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4776,7 +4792,7 @@ export interface operations {
    * Delete a support request attachment
    * @description Deletes a support request attachment by its unique identifier.
    */
-  DeleteSupportRequestAttachmentAsync: {
+  SupportRequestAttachments_DeleteSupportRequestAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4817,7 +4833,7 @@ export interface operations {
    * Patch a support request attachment
    * @description Partially updates an existing support request attachment by its unique identifier.
    */
-  PatchSupportRequestAttachmentAsync: {
+  SupportRequestAttachments_PatchSupportRequestAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4864,7 +4880,7 @@ export interface operations {
    * Retrieve a list of support requests
    * @description Retrieves a list of support requests for the specified tenant with OData query support.
    */
-  GetSupportRequestsAsync: {
+  SupportRequests_GetSupportRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -4908,7 +4924,7 @@ export interface operations {
    * Create a new support request
    * @description Creates a new support request for the specified tenant.
    */
-  CreateSupportRequestAsync: {
+  SupportRequests_CreateSupportRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -4952,7 +4968,7 @@ export interface operations {
    * Get the count of support requests
    * @description Returns the total count of support requests for the specified tenant with OData query support.
    */
-  GetSupportRequestsCountAsync: {
+  SupportRequests_GetSupportRequestsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4996,7 +5012,7 @@ export interface operations {
    * Retrieve a support request by ID
    * @description Retrieves a single support request by its unique identifier.
    */
-  GetSupportRequestAsync: {
+  SupportRequests_GetSupportRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5037,7 +5053,7 @@ export interface operations {
    * Update a support request
    * @description Updates an existing support request by its unique identifier.
    */
-  UpdateSupportRequestAsync: {
+  SupportRequests_UpdateSupportRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5084,7 +5100,7 @@ export interface operations {
    * Delete a support request
    * @description Deletes a support request by its unique identifier.
    */
-  DeleteSupportRequestAsync: {
+  SupportRequests_DeleteSupportRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5125,7 +5141,7 @@ export interface operations {
    * Patch a support request
    * @description Partially updates an existing support request by its unique identifier.
    */
-  PatchSupportRequestAsync: {
+  SupportRequests_PatchSupportRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5172,7 +5188,7 @@ export interface operations {
    * Retrieve tickets for a support request
    * @description Retrieves the list of support tickets associated with a specific support request.
    */
-  GetSupportRequestTicketsAsync: {
+  SupportRequests_GetSupportRequestTickets: {
     parameters: {
       query: {
         tenantId: string;
@@ -5219,7 +5235,7 @@ export interface operations {
    * Retrieve attachments for a support request
    * @description Retrieves the list of attachments associated with a specific support request.
    */
-  GetSupportRequestAttachmentsByRequest: {
+  SupportRequests_GetSupportRequestAttachmentsByRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5266,7 +5282,7 @@ export interface operations {
    * Add an attachment to a support request
    * @description Creates a new attachment and associates it with the specified support request.
    */
-  RelateSupportRequestToAttachmentAsync: {
+  SupportRequests_RelateSupportRequestToAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -5313,7 +5329,7 @@ export interface operations {
    * Get the count of attachments for a support request
    * @description Returns the total count of attachments for a specific support request.
    */
-  GetSupportRequestAttachmentsCountByRequest: {
+  SupportRequests_GetSupportRequestAttachmentsCountByRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5360,7 +5376,7 @@ export interface operations {
    * Retrieve a specific attachment for a support request
    * @description Retrieves a single attachment by its ID for a specific support request.
    */
-  GetSupportRequestAttachmentByRequest: {
+  SupportRequests_GetSupportRequestAttachmentByRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -5402,7 +5418,7 @@ export interface operations {
    * Retrieve a list of support ticket priorities
    * @description Retrieves a list of support ticket priorities for the specified tenant with OData query support.
    */
-  GetSupportTicketPrioritiesAsync: {
+  SupportTicketPriorities_GetSupportTicketPriorities: {
     parameters: {
       query: {
         tenantId: string;
@@ -5446,7 +5462,7 @@ export interface operations {
    * Create a new support ticket priority
    * @description Creates a new support ticket priority for the specified tenant.
    */
-  CreateSupportTicketPriorityAsync: {
+  SupportTicketPriorities_CreateSupportTicketPriority: {
     parameters: {
       query: {
         tenantId: string;
@@ -5490,7 +5506,7 @@ export interface operations {
    * Get the count of support ticket priorities
    * @description Returns the total count of support ticket priorities for the specified tenant with OData query support.
    */
-  GetSupportTicketPrioritiesCountAsync: {
+  SupportTicketPriorities_GetSupportTicketPrioritiesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5534,7 +5550,7 @@ export interface operations {
    * Retrieve a support ticket priority by ID
    * @description Retrieves a single support ticket priority by its unique identifier.
    */
-  GetSupportTicketPriorityAsync: {
+  SupportTicketPriorities_GetSupportTicketPriority: {
     parameters: {
       query: {
         tenantId: string;
@@ -5575,7 +5591,7 @@ export interface operations {
    * Update a support ticket priority
    * @description Updates an existing support ticket priority by its unique identifier.
    */
-  UpdateSupportTicketPriorityAsync: {
+  SupportTicketPriorities_UpdateSupportTicketPriority: {
     parameters: {
       query: {
         tenantId: string;
@@ -5622,7 +5638,7 @@ export interface operations {
    * Delete a support ticket priority
    * @description Deletes a support ticket priority by its unique identifier.
    */
-  DeleteSupportTicketPriorityAsync: {
+  SupportTicketPriorities_DeleteSupportTicketPriority: {
     parameters: {
       query: {
         tenantId: string;
@@ -5663,7 +5679,7 @@ export interface operations {
    * Patch a support ticket priority
    * @description Partially updates an existing support ticket priority by its unique identifier.
    */
-  PatchSupportTicketPriorityAsync: {
+  SupportTicketPriorities_PatchSupportTicketPriority: {
     parameters: {
       query: {
         tenantId: string;
@@ -5710,7 +5726,7 @@ export interface operations {
    * Retrieve a list of support tickets
    * @description Retrieves a list of support tickets for the specified tenant with OData query support.
    */
-  GetSupportTicketsAsync: {
+  SupportTickets_GetSupportTickets: {
     parameters: {
       query: {
         tenantId: string;
@@ -5754,7 +5770,7 @@ export interface operations {
    * Create a new support ticket
    * @description Creates a new support ticket for the specified tenant.
    */
-  CreateSupportTicketAsync: {
+  SupportTickets_CreateSupportTicket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5798,7 +5814,7 @@ export interface operations {
    * Get the count of support tickets
    * @description Returns the total count of support tickets for the specified tenant with OData query support.
    */
-  GetSupportTicketsCountAsync: {
+  SupportTickets_GetSupportTicketsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5842,7 +5858,7 @@ export interface operations {
    * Retrieve a support ticket by ID
    * @description Retrieves a single support ticket by its unique identifier.
    */
-  GetSupportTicketAsync: {
+  SupportTickets_GetSupportTicket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5883,7 +5899,7 @@ export interface operations {
    * Update a support ticket
    * @description Updates an existing support ticket by its unique identifier.
    */
-  UpdateSupportTicketAsync: {
+  SupportTickets_UpdateSupportTicket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5930,7 +5946,7 @@ export interface operations {
    * Delete a support ticket
    * @description Deletes a support ticket by its unique identifier.
    */
-  DeleteSupportTicketAsync: {
+  SupportTickets_DeleteSupportTicket: {
     parameters: {
       query: {
         tenantId: string;
@@ -5971,7 +5987,7 @@ export interface operations {
    * Patch a support ticket
    * @description Partially updates an existing support ticket by its unique identifier.
    */
-  PatchSupportTicketAsync: {
+  SupportTickets_PatchSupportTicket: {
     parameters: {
       query: {
         tenantId: string;
@@ -6018,7 +6034,7 @@ export interface operations {
    * Retrieve conversations for a support ticket
    * @description Retrieves the list of conversations associated with a specific support ticket.
    */
-  GetSupportTicketConversationsAsync: {
+  SupportTickets_GetSupportTicketConversations: {
     parameters: {
       query: {
         tenantId: string;
@@ -6065,7 +6081,7 @@ export interface operations {
    * Create a conversation for a support ticket
    * @description Creates a new conversation and associates it with the specified support ticket.
    */
-  RelateSupportTicketToConversationAsync: {
+  SupportTickets_RelateSupportTicketToConversation: {
     parameters: {
       query: {
         tenantId: string;
@@ -6112,7 +6128,7 @@ export interface operations {
    * Retrieve a specific conversation for a support ticket
    * @description Retrieves a single conversation by its ID for a specific support ticket.
    */
-  GetSupportTicketConversationAsync: {
+  SupportTickets_GetSupportTicketConversation: {
     parameters: {
       query: {
         tenantId: string;
@@ -6154,7 +6170,7 @@ export interface operations {
    * Delete a conversation from a support ticket
    * @description Deletes a specific conversation from a support ticket.
    */
-  DeleteSupportTicketConversationAsync: {
+  SupportTickets_DeleteSupportTicketConversation: {
     parameters: {
       query: {
         tenantId: string;
@@ -6196,7 +6212,7 @@ export interface operations {
    * Retrieve messages for a support ticket conversation
    * @description Retrieves the list of messages within a specific conversation of a support ticket.
    */
-  GetSupportTicketConversationMessagesAsync: {
+  SupportTickets_GetSupportTicketConversationMessages: {
     parameters: {
       query: {
         tenantId: string;
@@ -6240,7 +6256,7 @@ export interface operations {
    * Retrieve a list of support ticket types
    * @description Retrieves a list of support ticket types for the specified tenant with OData query support.
    */
-  GetSupportTicketTypesAsync: {
+  SupportTicketTypes_GetSupportTicketTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -6284,7 +6300,7 @@ export interface operations {
    * Create a new support ticket type
    * @description Creates a new support ticket type for the specified tenant.
    */
-  CreateSupportTicketTypeAsync: {
+  SupportTicketTypes_CreateSupportTicketType: {
     parameters: {
       query: {
         tenantId: string;
@@ -6328,7 +6344,7 @@ export interface operations {
    * Get the count of support ticket types
    * @description Returns the total count of support ticket types for the specified tenant with OData query support.
    */
-  GetSupportTicketTypesCountAsync: {
+  SupportTicketTypes_GetSupportTicketTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6372,7 +6388,7 @@ export interface operations {
    * Retrieve a support ticket type by ID
    * @description Retrieves a single support ticket type by its unique identifier.
    */
-  GetSupportTicketTypeAsync: {
+  SupportTicketTypes_GetSupportTicketType: {
     parameters: {
       query: {
         tenantId: string;
@@ -6413,7 +6429,7 @@ export interface operations {
    * Update a support ticket type
    * @description Updates an existing support ticket type by its unique identifier.
    */
-  UpdateSupportTicketTypeAsync: {
+  SupportTicketTypes_UpdateSupportTicketType: {
     parameters: {
       query: {
         tenantId: string;
@@ -6460,7 +6476,7 @@ export interface operations {
    * Delete a support ticket type
    * @description Deletes a support ticket type by its unique identifier.
    */
-  DeleteSupportTicketTypeAsync: {
+  SupportTicketTypes_DeleteSupportTicketType: {
     parameters: {
       query: {
         tenantId: string;
@@ -6501,7 +6517,7 @@ export interface operations {
    * Patch a support ticket type
    * @description Partially updates an existing support ticket type by its unique identifier.
    */
-  PatchSupportTicketTypeAsync: {
+  SupportTicketTypes_PatchSupportTicketType: {
     parameters: {
       query: {
         tenantId: string;
@@ -6545,7 +6561,7 @@ export interface operations {
     };
   };
   /** Retrieve a list of warranty policies */
-  GetWarrantyPoliciesAsync: {
+  WarrantyPolicies_GetWarrantyPolicies: {
     parameters: {
       query: {
         tenantId: string;
@@ -6586,7 +6602,7 @@ export interface operations {
     };
   };
   /** Create a new warranty policy */
-  CreateWarrantyPolicyAsync: {
+  WarrantyPolicies_CreateWarrantyPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -6627,7 +6643,7 @@ export interface operations {
     };
   };
   /** Get the count of warranty policies */
-  GetWarrantyPoliciesCountAsync: {
+  WarrantyPolicies_GetWarrantyPoliciesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6668,7 +6684,7 @@ export interface operations {
     };
   };
   /** Retrieve a warranty policy by ID */
-  GetWarrantyPolicyAsync: {
+  WarrantyPolicies_GetWarrantyPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -6706,7 +6722,7 @@ export interface operations {
     };
   };
   /** Update a warranty policy */
-  UpdateWarrantyPolicyAsync: {
+  WarrantyPolicies_UpdateWarrantyPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -6750,7 +6766,7 @@ export interface operations {
     };
   };
   /** Delete a warranty policy */
-  DeleteWarrantyPolicyAsync: {
+  WarrantyPolicies_DeleteWarrantyPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -6791,7 +6807,7 @@ export interface operations {
    * Patch a warranty policy
    * @description Partially updates an existing warranty policy by its unique identifier.
    */
-  PatchWarrantyPolicyAsync: {
+  WarrantyPolicies_PatchWarrantyPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -6835,7 +6851,7 @@ export interface operations {
     };
   };
   /** Retrieve warranty requests */
-  GetWarrantyRequestsAsync: {
+  WarrantyRequests_GetWarrantyRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -6862,7 +6878,7 @@ export interface operations {
     };
   };
   /** Create a warranty request */
-  CreateWarrantyRequestAsync: {
+  WarrantyRequests_CreateWarrantyRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -6889,7 +6905,7 @@ export interface operations {
     };
   };
   /** Get warranty requests count */
-  GetWarrantyRequestsCountAsync: {
+  WarrantyRequests_GetWarrantyRequestsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6916,7 +6932,7 @@ export interface operations {
     };
   };
   /** Retrieve a warranty request by ID */
-  GetWarrantyRequestAsync: {
+  WarrantyRequests_GetWarrantyRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -6940,7 +6956,7 @@ export interface operations {
     };
   };
   /** Update a warranty request */
-  UpdateWarrantyRequestAsync: {
+  WarrantyRequests_UpdateWarrantyRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -6970,7 +6986,7 @@ export interface operations {
     };
   };
   /** Delete a warranty request */
-  DeleteWarrantyRequestAsync: {
+  WarrantyRequests_DeleteWarrantyRequest: {
     parameters: {
       query: {
         tenantId: string;
@@ -6997,7 +7013,7 @@ export interface operations {
    * Patch a warranty request
    * @description Partially updates an existing warranty request by its unique identifier.
    */
-  PatchWarrantyRequestAsync: {
+  WarrantyRequests_PatchWarrantyRequest: {
     parameters: {
       query: {
         tenantId: string;

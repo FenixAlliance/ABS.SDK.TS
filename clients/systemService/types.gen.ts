@@ -629,6 +629,7 @@ export type ExtendedUserDtoReadable = {
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
     settings?: UserSettingsDto;
+    twoFactorEnabled?: boolean;
 };
 
 export type ExtendedUserDtoWritable = {
@@ -682,6 +683,7 @@ export type ExtendedUserDtoWritable = {
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
     settings?: UserSettingsDto;
+    twoFactorEnabled?: boolean;
 };
 
 export type ExtendedUserDtoCollectionQueryParametersReadable = {
@@ -953,6 +955,7 @@ export type InboxAdminReasonDto = {
 export type InboxHealthDto = {
     enabled?: boolean;
     receivedCount?: number;
+    authenticityPendingCount?: number;
     acceptedCount?: number;
     processingCount?: number;
     retryScheduledCount?: number;
@@ -963,6 +966,9 @@ export type InboxHealthDto = {
     oldestAcceptedAgeSeconds?: number | null;
     lastSuccessfulProcessingUtc?: string | null;
     successfulProcessingTracked?: boolean;
+    verificationAdvancerComposed?: boolean;
+    ready?: boolean;
+    readinessIssues?: Array<string> | null;
 };
 
 export type InboxHealthDtoEnvelopeReadable = {
@@ -1351,6 +1357,7 @@ export type OutboxHealthDto = {
     oldestPendingAgeSeconds?: number | null;
     lastSuccessfulDispatchUtc?: string | null;
     successfulDispatchTracked?: boolean;
+    unresolvedPoisonCount?: number | null;
 };
 
 export type OutboxHealthDtoEnvelopeReadable = {
@@ -1473,6 +1480,46 @@ export type OutboxMessageDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<OutboxMessageDto> | null;
 };
 
+export type OutboxPoisonPositionDto = {
+    consumerKey?: string | null;
+    partitionKey?: string | null;
+    sequence?: number;
+    messageId?: string | null;
+    messageType?: string | null;
+    deadLetteredAtUtc?: string;
+    deadLetterDetail?: string | null;
+    messageRetained?: boolean;
+    errorCode?: string | null;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    causationId?: string | null;
+};
+
+export type OutboxPoisonPositionDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<OutboxPoisonPositionDto> | null;
+};
+
+export type OutboxPoisonPositionDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<OutboxPoisonPositionDto> | null;
+};
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
@@ -1497,6 +1544,15 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type ResolveOutboxPoisonRequest = {
+    consumerKey?: string | null;
+    partitionKey: string;
+    sequence?: number;
+    kind: 'Replayed' | 'Superseded';
+    reason: string;
+    replacementSequence?: number | null;
 };
 
 export type SecurityPermissionDto = {
@@ -1604,6 +1660,13 @@ export type StudioModuleListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<StudioModule> | null;
+};
+
+export type SuiteLicenseAssignmentCreateDto = {
+    id?: string;
+    timestamp?: string;
+    suiteLicenseId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type SuiteLicenseAssignmentDto = {
@@ -1850,7 +1913,7 @@ export type TenantCreateDto = {
     handler?: string | null;
     about?: string | null;
     slogan?: string | null;
-    currencyId: string;
+    currencyId?: string | null;
     duns?: string | null;
     taxId?: string | null;
     avatarUrl?: string | null;
@@ -2119,8 +2182,8 @@ export type UserAdminUpdateDto = {
     lastName?: string | null;
     publicName?: string | null;
     about?: string | null;
-    twoFactorEnabled?: boolean;
-    lockoutEnabled?: boolean;
+    twoFactorEnabled?: boolean | null;
+    lockoutEnabled?: boolean | null;
     lockoutEnd?: string | null;
 };
 
@@ -2336,6 +2399,11 @@ export type UserOrderSummaryDto = {
     id?: string | null;
     orderType?: 'SalesOrder' | 'PurchaseOrder';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    tenantId?: string | null;
+    receiverTenantId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    timestamp?: string;
 };
 
 export type UserSettingsDto = {
@@ -2391,6 +2459,9 @@ export type WalletDto = {
     mainNetEtherBalance?: number;
     ethereumAddress?: string | null;
     ethereumPublicKey?: string | null;
+    /**
+     * @deprecated
+     */
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
 };
@@ -2507,7 +2578,7 @@ export type WebPortalUpdateDto = {
     businessPortalApplicationId?: string | null;
 };
 
-export type GetAndStoreTokensData = {
+export type AntiforgeryGetAndStoreTokensData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2519,14 +2590,14 @@ export type GetAndStoreTokensData = {
     url: '/api/v2/SystemService/Antiforgery/GetAndStoreTokens';
 };
 
-export type GetAndStoreTokensResponses = {
+export type AntiforgeryGetAndStoreTokensResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type IsRequestValidAsyncData = {
+export type AntiforgeryIsRequestValidData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2538,14 +2609,14 @@ export type IsRequestValidAsyncData = {
     url: '/api/v2/SystemService/Antiforgery/IsRequestValid';
 };
 
-export type IsRequestValidAsyncResponses = {
+export type AntiforgeryIsRequestValidResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetGlobalApplicationPrincipalsData = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsData = {
     body?: ApplicationPrincipalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2557,7 +2628,7 @@ export type GetGlobalApplicationPrincipalsData = {
     url: '/api/v2/SystemService/ApplicationPrincipals';
 };
 
-export type GetGlobalApplicationPrincipalsErrors = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsErrors = {
     /**
      * Unauthorized
      */
@@ -2568,18 +2639,18 @@ export type GetGlobalApplicationPrincipalsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGlobalApplicationPrincipalsError = GetGlobalApplicationPrincipalsErrors[keyof GetGlobalApplicationPrincipalsErrors];
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsError = ApplicationPrincipalsGetGlobalApplicationPrincipalsErrors[keyof ApplicationPrincipalsGetGlobalApplicationPrincipalsErrors];
 
-export type GetGlobalApplicationPrincipalsResponses = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetGlobalApplicationPrincipalsResponse = GetGlobalApplicationPrincipalsResponses[keyof GetGlobalApplicationPrincipalsResponses];
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsResponse = ApplicationPrincipalsGetGlobalApplicationPrincipalsResponses[keyof ApplicationPrincipalsGetGlobalApplicationPrincipalsResponses];
 
-export type GetGlobalApplicationPrincipalsCountData = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsCountData = {
     body?: ApplicationPrincipalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2591,7 +2662,7 @@ export type GetGlobalApplicationPrincipalsCountData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/Count';
 };
 
-export type GetGlobalApplicationPrincipalsCountErrors = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2602,18 +2673,18 @@ export type GetGlobalApplicationPrincipalsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGlobalApplicationPrincipalsCountError = GetGlobalApplicationPrincipalsCountErrors[keyof GetGlobalApplicationPrincipalsCountErrors];
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsCountError = ApplicationPrincipalsGetGlobalApplicationPrincipalsCountErrors[keyof ApplicationPrincipalsGetGlobalApplicationPrincipalsCountErrors];
 
-export type GetGlobalApplicationPrincipalsCountResponses = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetGlobalApplicationPrincipalsCountResponse = GetGlobalApplicationPrincipalsCountResponses[keyof GetGlobalApplicationPrincipalsCountResponses];
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalsCountResponse = ApplicationPrincipalsGetGlobalApplicationPrincipalsCountResponses[keyof ApplicationPrincipalsGetGlobalApplicationPrincipalsCountResponses];
 
-export type GetGlobalApplicationPrincipalData = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2628,7 +2699,7 @@ export type GetGlobalApplicationPrincipalData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}';
 };
 
-export type GetGlobalApplicationPrincipalErrors = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalErrors = {
     /**
      * Unauthorized
      */
@@ -2643,18 +2714,18 @@ export type GetGlobalApplicationPrincipalErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetGlobalApplicationPrincipalError = GetGlobalApplicationPrincipalErrors[keyof GetGlobalApplicationPrincipalErrors];
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalError = ApplicationPrincipalsGetGlobalApplicationPrincipalErrors[keyof ApplicationPrincipalsGetGlobalApplicationPrincipalErrors];
 
-export type GetGlobalApplicationPrincipalResponses = {
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalDetailDtoEnvelopeReadable;
 };
 
-export type GetGlobalApplicationPrincipalResponse = GetGlobalApplicationPrincipalResponses[keyof GetGlobalApplicationPrincipalResponses];
+export type ApplicationPrincipalsGetGlobalApplicationPrincipalResponse = ApplicationPrincipalsGetGlobalApplicationPrincipalResponses[keyof ApplicationPrincipalsGetGlobalApplicationPrincipalResponses];
 
-export type ProvisionGlobalApplicationPrincipalData = {
+export type ApplicationPrincipalsProvisionGlobalApplicationPrincipalData = {
     body: ApplicationPrincipalProvisionRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -2667,7 +2738,7 @@ export type ProvisionGlobalApplicationPrincipalData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/Provision';
 };
 
-export type ProvisionGlobalApplicationPrincipalErrors = {
+export type ApplicationPrincipalsProvisionGlobalApplicationPrincipalErrors = {
     /**
      * Bad Request
      */
@@ -2686,18 +2757,18 @@ export type ProvisionGlobalApplicationPrincipalErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type ProvisionGlobalApplicationPrincipalError = ProvisionGlobalApplicationPrincipalErrors[keyof ProvisionGlobalApplicationPrincipalErrors];
+export type ApplicationPrincipalsProvisionGlobalApplicationPrincipalError = ApplicationPrincipalsProvisionGlobalApplicationPrincipalErrors[keyof ApplicationPrincipalsProvisionGlobalApplicationPrincipalErrors];
 
-export type ProvisionGlobalApplicationPrincipalResponses = {
+export type ApplicationPrincipalsProvisionGlobalApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalProvisioningResultDtoEnvelopeReadable;
 };
 
-export type ProvisionGlobalApplicationPrincipalResponse = ProvisionGlobalApplicationPrincipalResponses[keyof ProvisionGlobalApplicationPrincipalResponses];
+export type ApplicationPrincipalsProvisionGlobalApplicationPrincipalResponse = ApplicationPrincipalsProvisionGlobalApplicationPrincipalResponses[keyof ApplicationPrincipalsProvisionGlobalApplicationPrincipalResponses];
 
-export type ProvisionPaymentsConnectorData = {
+export type ApplicationPrincipalsProvisionPaymentsConnectorData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2710,7 +2781,7 @@ export type ProvisionPaymentsConnectorData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/PaymentsConnector';
 };
 
-export type ProvisionPaymentsConnectorErrors = {
+export type ApplicationPrincipalsProvisionPaymentsConnectorErrors = {
     /**
      * Unauthorized
      */
@@ -2725,18 +2796,18 @@ export type ProvisionPaymentsConnectorErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type ProvisionPaymentsConnectorError = ProvisionPaymentsConnectorErrors[keyof ProvisionPaymentsConnectorErrors];
+export type ApplicationPrincipalsProvisionPaymentsConnectorError = ApplicationPrincipalsProvisionPaymentsConnectorErrors[keyof ApplicationPrincipalsProvisionPaymentsConnectorErrors];
 
-export type ProvisionPaymentsConnectorResponses = {
+export type ApplicationPrincipalsProvisionPaymentsConnectorResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalProvisioningResultDtoEnvelopeReadable;
 };
 
-export type ProvisionPaymentsConnectorResponse = ProvisionPaymentsConnectorResponses[keyof ProvisionPaymentsConnectorResponses];
+export type ApplicationPrincipalsProvisionPaymentsConnectorResponse = ApplicationPrincipalsProvisionPaymentsConnectorResponses[keyof ApplicationPrincipalsProvisionPaymentsConnectorResponses];
 
-export type GrantGlobalApplicationPrincipalPermissionData = {
+export type ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionData = {
     body: ApplicationPrincipalPermissionRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -2751,7 +2822,7 @@ export type GrantGlobalApplicationPrincipalPermissionData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions';
 };
 
-export type GrantGlobalApplicationPrincipalPermissionErrors = {
+export type ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionErrors = {
     /**
      * Unauthorized
      */
@@ -2770,18 +2841,18 @@ export type GrantGlobalApplicationPrincipalPermissionErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type GrantGlobalApplicationPrincipalPermissionError = GrantGlobalApplicationPrincipalPermissionErrors[keyof GrantGlobalApplicationPrincipalPermissionErrors];
+export type ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionError = ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionErrors[keyof ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionErrors];
 
-export type GrantGlobalApplicationPrincipalPermissionResponses = {
+export type ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type GrantGlobalApplicationPrincipalPermissionResponse = GrantGlobalApplicationPrincipalPermissionResponses[keyof GrantGlobalApplicationPrincipalPermissionResponses];
+export type ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionResponse = ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionResponses[keyof ApplicationPrincipalsGrantGlobalApplicationPrincipalPermissionResponses];
 
-export type RevokeGlobalApplicationPrincipalPermissionData = {
+export type ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2797,7 +2868,7 @@ export type RevokeGlobalApplicationPrincipalPermissionData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions/{permission}';
 };
 
-export type RevokeGlobalApplicationPrincipalPermissionErrors = {
+export type ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionErrors = {
     /**
      * Unauthorized
      */
@@ -2812,18 +2883,18 @@ export type RevokeGlobalApplicationPrincipalPermissionErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type RevokeGlobalApplicationPrincipalPermissionError = RevokeGlobalApplicationPrincipalPermissionErrors[keyof RevokeGlobalApplicationPrincipalPermissionErrors];
+export type ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionError = ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionErrors[keyof ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionErrors];
 
-export type RevokeGlobalApplicationPrincipalPermissionResponses = {
+export type ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type RevokeGlobalApplicationPrincipalPermissionResponse = RevokeGlobalApplicationPrincipalPermissionResponses[keyof RevokeGlobalApplicationPrincipalPermissionResponses];
+export type ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionResponse = ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionResponses[keyof ApplicationPrincipalsRevokeGlobalApplicationPrincipalPermissionResponses];
 
-export type EnableGlobalApplicationPrincipalData = {
+export type ApplicationPrincipalsEnableGlobalApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2838,7 +2909,7 @@ export type EnableGlobalApplicationPrincipalData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Enable';
 };
 
-export type EnableGlobalApplicationPrincipalErrors = {
+export type ApplicationPrincipalsEnableGlobalApplicationPrincipalErrors = {
     /**
      * Unauthorized
      */
@@ -2853,18 +2924,18 @@ export type EnableGlobalApplicationPrincipalErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type EnableGlobalApplicationPrincipalError = EnableGlobalApplicationPrincipalErrors[keyof EnableGlobalApplicationPrincipalErrors];
+export type ApplicationPrincipalsEnableGlobalApplicationPrincipalError = ApplicationPrincipalsEnableGlobalApplicationPrincipalErrors[keyof ApplicationPrincipalsEnableGlobalApplicationPrincipalErrors];
 
-export type EnableGlobalApplicationPrincipalResponses = {
+export type ApplicationPrincipalsEnableGlobalApplicationPrincipalResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type EnableGlobalApplicationPrincipalResponse = EnableGlobalApplicationPrincipalResponses[keyof EnableGlobalApplicationPrincipalResponses];
+export type ApplicationPrincipalsEnableGlobalApplicationPrincipalResponse = ApplicationPrincipalsEnableGlobalApplicationPrincipalResponses[keyof ApplicationPrincipalsEnableGlobalApplicationPrincipalResponses];
 
-export type SuspendGlobalApplicationPrincipalData = {
+export type ApplicationPrincipalsSuspendGlobalApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2879,7 +2950,7 @@ export type SuspendGlobalApplicationPrincipalData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Suspend';
 };
 
-export type SuspendGlobalApplicationPrincipalErrors = {
+export type ApplicationPrincipalsSuspendGlobalApplicationPrincipalErrors = {
     /**
      * Unauthorized
      */
@@ -2894,18 +2965,18 @@ export type SuspendGlobalApplicationPrincipalErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type SuspendGlobalApplicationPrincipalError = SuspendGlobalApplicationPrincipalErrors[keyof SuspendGlobalApplicationPrincipalErrors];
+export type ApplicationPrincipalsSuspendGlobalApplicationPrincipalError = ApplicationPrincipalsSuspendGlobalApplicationPrincipalErrors[keyof ApplicationPrincipalsSuspendGlobalApplicationPrincipalErrors];
 
-export type SuspendGlobalApplicationPrincipalResponses = {
+export type ApplicationPrincipalsSuspendGlobalApplicationPrincipalResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type SuspendGlobalApplicationPrincipalResponse = SuspendGlobalApplicationPrincipalResponses[keyof SuspendGlobalApplicationPrincipalResponses];
+export type ApplicationPrincipalsSuspendGlobalApplicationPrincipalResponse = ApplicationPrincipalsSuspendGlobalApplicationPrincipalResponses[keyof ApplicationPrincipalsSuspendGlobalApplicationPrincipalResponses];
 
-export type DisableGlobalApplicationPrincipalData = {
+export type ApplicationPrincipalsDisableGlobalApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2920,7 +2991,7 @@ export type DisableGlobalApplicationPrincipalData = {
     url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Disable';
 };
 
-export type DisableGlobalApplicationPrincipalErrors = {
+export type ApplicationPrincipalsDisableGlobalApplicationPrincipalErrors = {
     /**
      * Unauthorized
      */
@@ -2935,18 +3006,18 @@ export type DisableGlobalApplicationPrincipalErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DisableGlobalApplicationPrincipalError = DisableGlobalApplicationPrincipalErrors[keyof DisableGlobalApplicationPrincipalErrors];
+export type ApplicationPrincipalsDisableGlobalApplicationPrincipalError = ApplicationPrincipalsDisableGlobalApplicationPrincipalErrors[keyof ApplicationPrincipalsDisableGlobalApplicationPrincipalErrors];
 
-export type DisableGlobalApplicationPrincipalResponses = {
+export type ApplicationPrincipalsDisableGlobalApplicationPrincipalResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DisableGlobalApplicationPrincipalResponse = DisableGlobalApplicationPrincipalResponses[keyof DisableGlobalApplicationPrincipalResponses];
+export type ApplicationPrincipalsDisableGlobalApplicationPrincipalResponse = ApplicationPrincipalsDisableGlobalApplicationPrincipalResponses[keyof ApplicationPrincipalsDisableGlobalApplicationPrincipalResponses];
 
-export type GetSystemBusinessDomainsData = {
+export type BusinessDomainsGetSystemBusinessDomainsData = {
     body?: BusinessDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2958,7 +3029,7 @@ export type GetSystemBusinessDomainsData = {
     url: '/api/v2/SystemService/BusinessDomains';
 };
 
-export type GetSystemBusinessDomainsErrors = {
+export type BusinessDomainsGetSystemBusinessDomainsErrors = {
     /**
      * Unauthorized
      */
@@ -2969,18 +3040,18 @@ export type GetSystemBusinessDomainsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemBusinessDomainsError = GetSystemBusinessDomainsErrors[keyof GetSystemBusinessDomainsErrors];
+export type BusinessDomainsGetSystemBusinessDomainsError = BusinessDomainsGetSystemBusinessDomainsErrors[keyof BusinessDomainsGetSystemBusinessDomainsErrors];
 
-export type GetSystemBusinessDomainsResponses = {
+export type BusinessDomainsGetSystemBusinessDomainsResponses = {
     /**
      * OK
      */
     200: BusinessDomainDtoListEnvelopeReadable;
 };
 
-export type GetSystemBusinessDomainsResponse = GetSystemBusinessDomainsResponses[keyof GetSystemBusinessDomainsResponses];
+export type BusinessDomainsGetSystemBusinessDomainsResponse = BusinessDomainsGetSystemBusinessDomainsResponses[keyof BusinessDomainsGetSystemBusinessDomainsResponses];
 
-export type GetSystemBusinessDomainsCountData = {
+export type BusinessDomainsGetSystemBusinessDomainsCountData = {
     body?: BusinessDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2992,7 +3063,7 @@ export type GetSystemBusinessDomainsCountData = {
     url: '/api/v2/SystemService/BusinessDomains/Count';
 };
 
-export type GetSystemBusinessDomainsCountErrors = {
+export type BusinessDomainsGetSystemBusinessDomainsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3003,18 +3074,18 @@ export type GetSystemBusinessDomainsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemBusinessDomainsCountError = GetSystemBusinessDomainsCountErrors[keyof GetSystemBusinessDomainsCountErrors];
+export type BusinessDomainsGetSystemBusinessDomainsCountError = BusinessDomainsGetSystemBusinessDomainsCountErrors[keyof BusinessDomainsGetSystemBusinessDomainsCountErrors];
 
-export type GetSystemBusinessDomainsCountResponses = {
+export type BusinessDomainsGetSystemBusinessDomainsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemBusinessDomainsCountResponse = GetSystemBusinessDomainsCountResponses[keyof GetSystemBusinessDomainsCountResponses];
+export type BusinessDomainsGetSystemBusinessDomainsCountResponse = BusinessDomainsGetSystemBusinessDomainsCountResponses[keyof BusinessDomainsGetSystemBusinessDomainsCountResponses];
 
-export type DeleteSystemBusinessDomainData = {
+export type BusinessDomainsDeleteSystemBusinessDomainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3028,7 +3099,7 @@ export type DeleteSystemBusinessDomainData = {
     url: '/api/v2/SystemService/BusinessDomains/{businessDomainId}';
 };
 
-export type DeleteSystemBusinessDomainErrors = {
+export type BusinessDomainsDeleteSystemBusinessDomainErrors = {
     /**
      * Unauthorized
      */
@@ -3039,18 +3110,18 @@ export type DeleteSystemBusinessDomainErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemBusinessDomainError = DeleteSystemBusinessDomainErrors[keyof DeleteSystemBusinessDomainErrors];
+export type BusinessDomainsDeleteSystemBusinessDomainError = BusinessDomainsDeleteSystemBusinessDomainErrors[keyof BusinessDomainsDeleteSystemBusinessDomainErrors];
 
-export type DeleteSystemBusinessDomainResponses = {
+export type BusinessDomainsDeleteSystemBusinessDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemBusinessDomainResponse = DeleteSystemBusinessDomainResponses[keyof DeleteSystemBusinessDomainResponses];
+export type BusinessDomainsDeleteSystemBusinessDomainResponse = BusinessDomainsDeleteSystemBusinessDomainResponses[keyof BusinessDomainsDeleteSystemBusinessDomainResponses];
 
-export type GetSystemBusinessDomainByIdData = {
+export type BusinessDomainsGetSystemBusinessDomainByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3064,7 +3135,7 @@ export type GetSystemBusinessDomainByIdData = {
     url: '/api/v2/SystemService/BusinessDomains/{businessDomainId}';
 };
 
-export type GetSystemBusinessDomainByIdErrors = {
+export type BusinessDomainsGetSystemBusinessDomainByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3075,18 +3146,18 @@ export type GetSystemBusinessDomainByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemBusinessDomainByIdError = GetSystemBusinessDomainByIdErrors[keyof GetSystemBusinessDomainByIdErrors];
+export type BusinessDomainsGetSystemBusinessDomainByIdError = BusinessDomainsGetSystemBusinessDomainByIdErrors[keyof BusinessDomainsGetSystemBusinessDomainByIdErrors];
 
-export type GetSystemBusinessDomainByIdResponses = {
+export type BusinessDomainsGetSystemBusinessDomainByIdResponses = {
     /**
      * OK
      */
     200: BusinessDomainDtoEnvelopeReadable;
 };
 
-export type GetSystemBusinessDomainByIdResponse = GetSystemBusinessDomainByIdResponses[keyof GetSystemBusinessDomainByIdResponses];
+export type BusinessDomainsGetSystemBusinessDomainByIdResponse = BusinessDomainsGetSystemBusinessDomainByIdResponses[keyof BusinessDomainsGetSystemBusinessDomainByIdResponses];
 
-export type VerifySystemBusinessDomainData = {
+export type BusinessDomainsVerifySystemBusinessDomainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3100,7 +3171,7 @@ export type VerifySystemBusinessDomainData = {
     url: '/api/v2/SystemService/BusinessDomains/{businessDomainId}/Verify';
 };
 
-export type VerifySystemBusinessDomainErrors = {
+export type BusinessDomainsVerifySystemBusinessDomainErrors = {
     /**
      * Bad Request
      */
@@ -3115,18 +3186,18 @@ export type VerifySystemBusinessDomainErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type VerifySystemBusinessDomainError = VerifySystemBusinessDomainErrors[keyof VerifySystemBusinessDomainErrors];
+export type BusinessDomainsVerifySystemBusinessDomainError = BusinessDomainsVerifySystemBusinessDomainErrors[keyof BusinessDomainsVerifySystemBusinessDomainErrors];
 
-export type VerifySystemBusinessDomainResponses = {
+export type BusinessDomainsVerifySystemBusinessDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type VerifySystemBusinessDomainResponse = VerifySystemBusinessDomainResponses[keyof VerifySystemBusinessDomainResponses];
+export type BusinessDomainsVerifySystemBusinessDomainResponse = BusinessDomainsVerifySystemBusinessDomainResponses[keyof BusinessDomainsVerifySystemBusinessDomainResponses];
 
-export type GetSystemCartsData = {
+export type CartsGetSystemCartsData = {
     body?: CartDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3138,7 +3209,7 @@ export type GetSystemCartsData = {
     url: '/api/v2/SystemService/Carts';
 };
 
-export type GetSystemCartsErrors = {
+export type CartsGetSystemCartsErrors = {
     /**
      * Unauthorized
      */
@@ -3149,18 +3220,18 @@ export type GetSystemCartsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemCartsError = GetSystemCartsErrors[keyof GetSystemCartsErrors];
+export type CartsGetSystemCartsError = CartsGetSystemCartsErrors[keyof CartsGetSystemCartsErrors];
 
-export type GetSystemCartsResponses = {
+export type CartsGetSystemCartsResponses = {
     /**
      * OK
      */
     200: CartDtoListEnvelopeReadable;
 };
 
-export type GetSystemCartsResponse = GetSystemCartsResponses[keyof GetSystemCartsResponses];
+export type CartsGetSystemCartsResponse = CartsGetSystemCartsResponses[keyof CartsGetSystemCartsResponses];
 
-export type GetSystemCartsCountData = {
+export type CartsGetSystemCartsCountData = {
     body?: CartDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3172,7 +3243,7 @@ export type GetSystemCartsCountData = {
     url: '/api/v2/SystemService/Carts/Count';
 };
 
-export type GetSystemCartsCountErrors = {
+export type CartsGetSystemCartsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3183,18 +3254,18 @@ export type GetSystemCartsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemCartsCountError = GetSystemCartsCountErrors[keyof GetSystemCartsCountErrors];
+export type CartsGetSystemCartsCountError = CartsGetSystemCartsCountErrors[keyof CartsGetSystemCartsCountErrors];
 
-export type GetSystemCartsCountResponses = {
+export type CartsGetSystemCartsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemCartsCountResponse = GetSystemCartsCountResponses[keyof GetSystemCartsCountResponses];
+export type CartsGetSystemCartsCountResponse = CartsGetSystemCartsCountResponses[keyof CartsGetSystemCartsCountResponses];
 
-export type DeleteSystemCartData = {
+export type CartsDeleteSystemCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3208,7 +3279,7 @@ export type DeleteSystemCartData = {
     url: '/api/v2/SystemService/Carts/{cartId}';
 };
 
-export type DeleteSystemCartErrors = {
+export type CartsDeleteSystemCartErrors = {
     /**
      * Unauthorized
      */
@@ -3219,18 +3290,18 @@ export type DeleteSystemCartErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemCartError = DeleteSystemCartErrors[keyof DeleteSystemCartErrors];
+export type CartsDeleteSystemCartError = CartsDeleteSystemCartErrors[keyof CartsDeleteSystemCartErrors];
 
-export type DeleteSystemCartResponses = {
+export type CartsDeleteSystemCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemCartResponse = DeleteSystemCartResponses[keyof DeleteSystemCartResponses];
+export type CartsDeleteSystemCartResponse = CartsDeleteSystemCartResponses[keyof CartsDeleteSystemCartResponses];
 
-export type GetSystemCartByIdData = {
+export type CartsGetSystemCartByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3244,7 +3315,7 @@ export type GetSystemCartByIdData = {
     url: '/api/v2/SystemService/Carts/{cartId}';
 };
 
-export type GetSystemCartByIdErrors = {
+export type CartsGetSystemCartByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3255,18 +3326,18 @@ export type GetSystemCartByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemCartByIdError = GetSystemCartByIdErrors[keyof GetSystemCartByIdErrors];
+export type CartsGetSystemCartByIdError = CartsGetSystemCartByIdErrors[keyof CartsGetSystemCartByIdErrors];
 
-export type GetSystemCartByIdResponses = {
+export type CartsGetSystemCartByIdResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetSystemCartByIdResponse = GetSystemCartByIdResponses[keyof GetSystemCartByIdResponses];
+export type CartsGetSystemCartByIdResponse = CartsGetSystemCartByIdResponses[keyof CartsGetSystemCartByIdResponses];
 
-export type PurgeSystemGuestCartsData = {
+export type CartsPurgeSystemGuestCartsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3278,7 +3349,7 @@ export type PurgeSystemGuestCartsData = {
     url: '/api/v2/SystemService/Carts/Guests';
 };
 
-export type PurgeSystemGuestCartsErrors = {
+export type CartsPurgeSystemGuestCartsErrors = {
     /**
      * Unauthorized
      */
@@ -3289,18 +3360,18 @@ export type PurgeSystemGuestCartsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PurgeSystemGuestCartsError = PurgeSystemGuestCartsErrors[keyof PurgeSystemGuestCartsErrors];
+export type CartsPurgeSystemGuestCartsError = CartsPurgeSystemGuestCartsErrors[keyof CartsPurgeSystemGuestCartsErrors];
 
-export type PurgeSystemGuestCartsResponses = {
+export type CartsPurgeSystemGuestCartsResponses = {
     /**
      * OK
      */
     200: GuestCartPurgeResultDtoEnvelopeReadable;
 };
 
-export type PurgeSystemGuestCartsResponse = PurgeSystemGuestCartsResponses[keyof PurgeSystemGuestCartsResponses];
+export type CartsPurgeSystemGuestCartsResponse = CartsPurgeSystemGuestCartsResponses[keyof CartsPurgeSystemGuestCartsResponses];
 
-export type GetSystemContactOptionsData = {
+export type ContactOptionsGetSystemContactOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3315,7 +3386,7 @@ export type GetSystemContactOptionsData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options';
 };
 
-export type GetSystemContactOptionsErrors = {
+export type ContactOptionsGetSystemContactOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -3326,18 +3397,18 @@ export type GetSystemContactOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemContactOptionsError = GetSystemContactOptionsErrors[keyof GetSystemContactOptionsErrors];
+export type ContactOptionsGetSystemContactOptionsError = ContactOptionsGetSystemContactOptionsErrors[keyof ContactOptionsGetSystemContactOptionsErrors];
 
-export type GetSystemContactOptionsResponses = {
+export type ContactOptionsGetSystemContactOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetSystemContactOptionsResponse = GetSystemContactOptionsResponses[keyof GetSystemContactOptionsResponses];
+export type ContactOptionsGetSystemContactOptionsResponse = ContactOptionsGetSystemContactOptionsResponses[keyof ContactOptionsGetSystemContactOptionsResponses];
 
-export type CreateSystemContactOptionData = {
+export type ContactOptionsCreateSystemContactOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3353,7 +3424,7 @@ export type CreateSystemContactOptionData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options';
 };
 
-export type CreateSystemContactOptionErrors = {
+export type ContactOptionsCreateSystemContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3364,18 +3435,18 @@ export type CreateSystemContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSystemContactOptionError = CreateSystemContactOptionErrors[keyof CreateSystemContactOptionErrors];
+export type ContactOptionsCreateSystemContactOptionError = ContactOptionsCreateSystemContactOptionErrors[keyof ContactOptionsCreateSystemContactOptionErrors];
 
-export type CreateSystemContactOptionResponses = {
+export type ContactOptionsCreateSystemContactOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSystemContactOptionResponse = CreateSystemContactOptionResponses[keyof CreateSystemContactOptionResponses];
+export type ContactOptionsCreateSystemContactOptionResponse = ContactOptionsCreateSystemContactOptionResponses[keyof ContactOptionsCreateSystemContactOptionResponses];
 
-export type GetSystemContactOptionsCountData = {
+export type ContactOptionsGetSystemContactOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3390,7 +3461,7 @@ export type GetSystemContactOptionsCountData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options/Count';
 };
 
-export type GetSystemContactOptionsCountErrors = {
+export type ContactOptionsGetSystemContactOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3401,18 +3472,18 @@ export type GetSystemContactOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemContactOptionsCountError = GetSystemContactOptionsCountErrors[keyof GetSystemContactOptionsCountErrors];
+export type ContactOptionsGetSystemContactOptionsCountError = ContactOptionsGetSystemContactOptionsCountErrors[keyof ContactOptionsGetSystemContactOptionsCountErrors];
 
-export type GetSystemContactOptionsCountResponses = {
+export type ContactOptionsGetSystemContactOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemContactOptionsCountResponse = GetSystemContactOptionsCountResponses[keyof GetSystemContactOptionsCountResponses];
+export type ContactOptionsGetSystemContactOptionsCountResponse = ContactOptionsGetSystemContactOptionsCountResponses[keyof ContactOptionsGetSystemContactOptionsCountResponses];
 
-export type DeleteSystemContactOptionData = {
+export type ContactOptionsDeleteSystemContactOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3427,7 +3498,7 @@ export type DeleteSystemContactOptionData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type DeleteSystemContactOptionErrors = {
+export type ContactOptionsDeleteSystemContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3438,18 +3509,18 @@ export type DeleteSystemContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemContactOptionError = DeleteSystemContactOptionErrors[keyof DeleteSystemContactOptionErrors];
+export type ContactOptionsDeleteSystemContactOptionError = ContactOptionsDeleteSystemContactOptionErrors[keyof ContactOptionsDeleteSystemContactOptionErrors];
 
-export type DeleteSystemContactOptionResponses = {
+export type ContactOptionsDeleteSystemContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemContactOptionResponse = DeleteSystemContactOptionResponses[keyof DeleteSystemContactOptionResponses];
+export type ContactOptionsDeleteSystemContactOptionResponse = ContactOptionsDeleteSystemContactOptionResponses[keyof ContactOptionsDeleteSystemContactOptionResponses];
 
-export type GetSystemContactOptionByIdData = {
+export type ContactOptionsGetSystemContactOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3464,7 +3535,7 @@ export type GetSystemContactOptionByIdData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type GetSystemContactOptionByIdErrors = {
+export type ContactOptionsGetSystemContactOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3475,18 +3546,18 @@ export type GetSystemContactOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemContactOptionByIdError = GetSystemContactOptionByIdErrors[keyof GetSystemContactOptionByIdErrors];
+export type ContactOptionsGetSystemContactOptionByIdError = ContactOptionsGetSystemContactOptionByIdErrors[keyof ContactOptionsGetSystemContactOptionByIdErrors];
 
-export type GetSystemContactOptionByIdResponses = {
+export type ContactOptionsGetSystemContactOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetSystemContactOptionByIdResponse = GetSystemContactOptionByIdResponses[keyof GetSystemContactOptionByIdResponses];
+export type ContactOptionsGetSystemContactOptionByIdResponse = ContactOptionsGetSystemContactOptionByIdResponses[keyof ContactOptionsGetSystemContactOptionByIdResponses];
 
-export type PatchSystemContactOptionData = {
+export type ContactOptionsPatchSystemContactOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3501,7 +3572,7 @@ export type PatchSystemContactOptionData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type PatchSystemContactOptionErrors = {
+export type ContactOptionsPatchSystemContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3512,18 +3583,18 @@ export type PatchSystemContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSystemContactOptionError = PatchSystemContactOptionErrors[keyof PatchSystemContactOptionErrors];
+export type ContactOptionsPatchSystemContactOptionError = ContactOptionsPatchSystemContactOptionErrors[keyof ContactOptionsPatchSystemContactOptionErrors];
 
-export type PatchSystemContactOptionResponses = {
+export type ContactOptionsPatchSystemContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSystemContactOptionResponse = PatchSystemContactOptionResponses[keyof PatchSystemContactOptionResponses];
+export type ContactOptionsPatchSystemContactOptionResponse = ContactOptionsPatchSystemContactOptionResponses[keyof ContactOptionsPatchSystemContactOptionResponses];
 
-export type UpdateSystemContactOptionData = {
+export type ContactOptionsUpdateSystemContactOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3538,7 +3609,7 @@ export type UpdateSystemContactOptionData = {
     url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type UpdateSystemContactOptionErrors = {
+export type ContactOptionsUpdateSystemContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -3549,18 +3620,18 @@ export type UpdateSystemContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSystemContactOptionError = UpdateSystemContactOptionErrors[keyof UpdateSystemContactOptionErrors];
+export type ContactOptionsUpdateSystemContactOptionError = ContactOptionsUpdateSystemContactOptionErrors[keyof ContactOptionsUpdateSystemContactOptionErrors];
 
-export type UpdateSystemContactOptionResponses = {
+export type ContactOptionsUpdateSystemContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSystemContactOptionResponse = UpdateSystemContactOptionResponses[keyof UpdateSystemContactOptionResponses];
+export type ContactOptionsUpdateSystemContactOptionResponse = ContactOptionsUpdateSystemContactOptionResponses[keyof ContactOptionsUpdateSystemContactOptionResponses];
 
-export type AdminSendBasicEmailData = {
+export type EmailsAdminSendBasicEmailData = {
     body?: ObjectEmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -3572,7 +3643,7 @@ export type AdminSendBasicEmailData = {
     url: '/api/v2/SystemService/Emails/SendBasic';
 };
 
-export type AdminSendBasicEmailErrors = {
+export type EmailsAdminSendBasicEmailErrors = {
     /**
      * Unauthorized
      */
@@ -3583,18 +3654,18 @@ export type AdminSendBasicEmailErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AdminSendBasicEmailError = AdminSendBasicEmailErrors[keyof AdminSendBasicEmailErrors];
+export type EmailsAdminSendBasicEmailError = EmailsAdminSendBasicEmailErrors[keyof EmailsAdminSendBasicEmailErrors];
 
-export type AdminSendBasicEmailResponses = {
+export type EmailsAdminSendBasicEmailResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type AdminSendBasicEmailResponse = AdminSendBasicEmailResponses[keyof AdminSendBasicEmailResponses];
+export type EmailsAdminSendBasicEmailResponse = EmailsAdminSendBasicEmailResponses[keyof EmailsAdminSendBasicEmailResponses];
 
-export type AdminPreviewBasicEmailTemplateData = {
+export type EmailsAdminPreviewBasicEmailTemplateData = {
     body?: ObjectEmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -3606,79 +3677,79 @@ export type AdminPreviewBasicEmailTemplateData = {
     url: '/api/v2/SystemService/Emails/Preview';
 };
 
-export type AdminPreviewBasicEmailTemplateResponses = {
+export type EmailsAdminPreviewBasicEmailTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -3688,32 +3759,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -3724,81 +3795,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -3809,25 +3880,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -3838,25 +3909,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -3867,18 +3938,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -3888,14 +3959,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -3904,14 +3975,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -3920,28 +3991,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetInboxHealthData = {
+export type InboxGetInboxHealthData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3953,7 +4024,7 @@ export type GetInboxHealthData = {
     url: '/api/v2/SystemService/Inbox/Health';
 };
 
-export type GetInboxHealthErrors = {
+export type InboxGetInboxHealthErrors = {
     /**
      * Unauthorized
      */
@@ -3964,18 +4035,18 @@ export type GetInboxHealthErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInboxHealthError = GetInboxHealthErrors[keyof GetInboxHealthErrors];
+export type InboxGetInboxHealthError = InboxGetInboxHealthErrors[keyof InboxGetInboxHealthErrors];
 
-export type GetInboxHealthResponses = {
+export type InboxGetInboxHealthResponses = {
     /**
      * OK
      */
     200: InboxHealthDtoEnvelopeReadable;
 };
 
-export type GetInboxHealthResponse = GetInboxHealthResponses[keyof GetInboxHealthResponses];
+export type InboxGetInboxHealthResponse = InboxGetInboxHealthResponses[keyof InboxGetInboxHealthResponses];
 
-export type GetInboxMessagesData = {
+export type InboxGetInboxMessagesData = {
     body?: InboxMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3987,7 +4058,7 @@ export type GetInboxMessagesData = {
     url: '/api/v2/SystemService/Inbox/Messages';
 };
 
-export type GetInboxMessagesErrors = {
+export type InboxGetInboxMessagesErrors = {
     /**
      * Unauthorized
      */
@@ -3998,18 +4069,18 @@ export type GetInboxMessagesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInboxMessagesError = GetInboxMessagesErrors[keyof GetInboxMessagesErrors];
+export type InboxGetInboxMessagesError = InboxGetInboxMessagesErrors[keyof InboxGetInboxMessagesErrors];
 
-export type GetInboxMessagesResponses = {
+export type InboxGetInboxMessagesResponses = {
     /**
      * OK
      */
     200: InboxMessageDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetInboxMessagesResponse = GetInboxMessagesResponses[keyof GetInboxMessagesResponses];
+export type InboxGetInboxMessagesResponse = InboxGetInboxMessagesResponses[keyof InboxGetInboxMessagesResponses];
 
-export type GetInboxMessagesCountData = {
+export type InboxGetInboxMessagesCountData = {
     body?: InboxMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4021,7 +4092,7 @@ export type GetInboxMessagesCountData = {
     url: '/api/v2/SystemService/Inbox/Messages/Count';
 };
 
-export type GetInboxMessagesCountErrors = {
+export type InboxGetInboxMessagesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4032,18 +4103,18 @@ export type GetInboxMessagesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetInboxMessagesCountError = GetInboxMessagesCountErrors[keyof GetInboxMessagesCountErrors];
+export type InboxGetInboxMessagesCountError = InboxGetInboxMessagesCountErrors[keyof InboxGetInboxMessagesCountErrors];
 
-export type GetInboxMessagesCountResponses = {
+export type InboxGetInboxMessagesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInboxMessagesCountResponse = GetInboxMessagesCountResponses[keyof GetInboxMessagesCountResponses];
+export type InboxGetInboxMessagesCountResponse = InboxGetInboxMessagesCountResponses[keyof InboxGetInboxMessagesCountResponses];
 
-export type GetInboxMessageData = {
+export type InboxGetInboxMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4057,7 +4128,7 @@ export type GetInboxMessageData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}';
 };
 
-export type GetInboxMessageErrors = {
+export type InboxGetInboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -4072,18 +4143,18 @@ export type GetInboxMessageErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetInboxMessageError = GetInboxMessageErrors[keyof GetInboxMessageErrors];
+export type InboxGetInboxMessageError = InboxGetInboxMessageErrors[keyof InboxGetInboxMessageErrors];
 
-export type GetInboxMessageResponses = {
+export type InboxGetInboxMessageResponses = {
     /**
      * OK
      */
     200: InboxMessageDtoEnvelopeReadable;
 };
 
-export type GetInboxMessageResponse = GetInboxMessageResponses[keyof GetInboxMessageResponses];
+export type InboxGetInboxMessageResponse = InboxGetInboxMessageResponses[keyof InboxGetInboxMessageResponses];
 
-export type GetInboxCorrelationChainData = {
+export type InboxGetInboxCorrelationChainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4097,7 +4168,7 @@ export type GetInboxCorrelationChainData = {
     url: '/api/v2/SystemService/Inbox/Correlations/{correlationId}';
 };
 
-export type GetInboxCorrelationChainErrors = {
+export type InboxGetInboxCorrelationChainErrors = {
     /**
      * Unauthorized
      */
@@ -4112,18 +4183,18 @@ export type GetInboxCorrelationChainErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type GetInboxCorrelationChainError = GetInboxCorrelationChainErrors[keyof GetInboxCorrelationChainErrors];
+export type InboxGetInboxCorrelationChainError = InboxGetInboxCorrelationChainErrors[keyof InboxGetInboxCorrelationChainErrors];
 
-export type GetInboxCorrelationChainResponses = {
+export type InboxGetInboxCorrelationChainResponses = {
     /**
      * OK
      */
     200: InboxMessageDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetInboxCorrelationChainResponse = GetInboxCorrelationChainResponses[keyof GetInboxCorrelationChainResponses];
+export type InboxGetInboxCorrelationChainResponse = InboxGetInboxCorrelationChainResponses[keyof InboxGetInboxCorrelationChainResponses];
 
-export type GetDuplicateInboxMessagesData = {
+export type InboxGetDuplicateInboxMessagesData = {
     body?: InboxMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4135,7 +4206,7 @@ export type GetDuplicateInboxMessagesData = {
     url: '/api/v2/SystemService/Inbox/Duplicates';
 };
 
-export type GetDuplicateInboxMessagesErrors = {
+export type InboxGetDuplicateInboxMessagesErrors = {
     /**
      * Unauthorized
      */
@@ -4146,18 +4217,18 @@ export type GetDuplicateInboxMessagesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDuplicateInboxMessagesError = GetDuplicateInboxMessagesErrors[keyof GetDuplicateInboxMessagesErrors];
+export type InboxGetDuplicateInboxMessagesError = InboxGetDuplicateInboxMessagesErrors[keyof InboxGetDuplicateInboxMessagesErrors];
 
-export type GetDuplicateInboxMessagesResponses = {
+export type InboxGetDuplicateInboxMessagesResponses = {
     /**
      * OK
      */
     200: InboxMessageDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetDuplicateInboxMessagesResponse = GetDuplicateInboxMessagesResponses[keyof GetDuplicateInboxMessagesResponses];
+export type InboxGetDuplicateInboxMessagesResponse = InboxGetDuplicateInboxMessagesResponses[keyof InboxGetDuplicateInboxMessagesResponses];
 
-export type GetDuplicateInboxMessagesCountData = {
+export type InboxGetDuplicateInboxMessagesCountData = {
     body?: InboxMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4169,7 +4240,7 @@ export type GetDuplicateInboxMessagesCountData = {
     url: '/api/v2/SystemService/Inbox/Duplicates/Count';
 };
 
-export type GetDuplicateInboxMessagesCountErrors = {
+export type InboxGetDuplicateInboxMessagesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4180,18 +4251,18 @@ export type GetDuplicateInboxMessagesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetDuplicateInboxMessagesCountError = GetDuplicateInboxMessagesCountErrors[keyof GetDuplicateInboxMessagesCountErrors];
+export type InboxGetDuplicateInboxMessagesCountError = InboxGetDuplicateInboxMessagesCountErrors[keyof InboxGetDuplicateInboxMessagesCountErrors];
 
-export type GetDuplicateInboxMessagesCountResponses = {
+export type InboxGetDuplicateInboxMessagesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDuplicateInboxMessagesCountResponse = GetDuplicateInboxMessagesCountResponses[keyof GetDuplicateInboxMessagesCountResponses];
+export type InboxGetDuplicateInboxMessagesCountResponse = InboxGetDuplicateInboxMessagesCountResponses[keyof InboxGetDuplicateInboxMessagesCountResponses];
 
-export type ExpediteInboxMessageData = {
+export type InboxExpediteInboxMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4205,7 +4276,7 @@ export type ExpediteInboxMessageData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}/Expedite';
 };
 
-export type ExpediteInboxMessageErrors = {
+export type InboxExpediteInboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -4224,18 +4295,18 @@ export type ExpediteInboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ExpediteInboxMessageError = ExpediteInboxMessageErrors[keyof ExpediteInboxMessageErrors];
+export type InboxExpediteInboxMessageError = InboxExpediteInboxMessageErrors[keyof InboxExpediteInboxMessageErrors];
 
-export type ExpediteInboxMessageResponses = {
+export type InboxExpediteInboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type ExpediteInboxMessageResponse = ExpediteInboxMessageResponses[keyof ExpediteInboxMessageResponses];
+export type InboxExpediteInboxMessageResponse = InboxExpediteInboxMessageResponses[keyof InboxExpediteInboxMessageResponses];
 
-export type CancelInboxMessageRetryData = {
+export type InboxCancelInboxMessageRetryData = {
     body?: InboxAdminReasonDto;
     headers?: {
         'x-api-version'?: string;
@@ -4249,7 +4320,7 @@ export type CancelInboxMessageRetryData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}/CancelRetry';
 };
 
-export type CancelInboxMessageRetryErrors = {
+export type InboxCancelInboxMessageRetryErrors = {
     /**
      * Unauthorized
      */
@@ -4268,18 +4339,18 @@ export type CancelInboxMessageRetryErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type CancelInboxMessageRetryError = CancelInboxMessageRetryErrors[keyof CancelInboxMessageRetryErrors];
+export type InboxCancelInboxMessageRetryError = InboxCancelInboxMessageRetryErrors[keyof InboxCancelInboxMessageRetryErrors];
 
-export type CancelInboxMessageRetryResponses = {
+export type InboxCancelInboxMessageRetryResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type CancelInboxMessageRetryResponse = CancelInboxMessageRetryResponses[keyof CancelInboxMessageRetryResponses];
+export type InboxCancelInboxMessageRetryResponse = InboxCancelInboxMessageRetryResponses[keyof InboxCancelInboxMessageRetryResponses];
 
-export type ReleaseInboxMessageLeaseData = {
+export type InboxReleaseInboxMessageLeaseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4293,7 +4364,7 @@ export type ReleaseInboxMessageLeaseData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}/ReleaseLease';
 };
 
-export type ReleaseInboxMessageLeaseErrors = {
+export type InboxReleaseInboxMessageLeaseErrors = {
     /**
      * Unauthorized
      */
@@ -4312,18 +4383,18 @@ export type ReleaseInboxMessageLeaseErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ReleaseInboxMessageLeaseError = ReleaseInboxMessageLeaseErrors[keyof ReleaseInboxMessageLeaseErrors];
+export type InboxReleaseInboxMessageLeaseError = InboxReleaseInboxMessageLeaseErrors[keyof InboxReleaseInboxMessageLeaseErrors];
 
-export type ReleaseInboxMessageLeaseResponses = {
+export type InboxReleaseInboxMessageLeaseResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type ReleaseInboxMessageLeaseResponse = ReleaseInboxMessageLeaseResponses[keyof ReleaseInboxMessageLeaseResponses];
+export type InboxReleaseInboxMessageLeaseResponse = InboxReleaseInboxMessageLeaseResponses[keyof InboxReleaseInboxMessageLeaseResponses];
 
-export type DeadLetterInboxMessageData = {
+export type InboxDeadLetterInboxMessageData = {
     body?: InboxAdminReasonDto;
     headers?: {
         'x-api-version'?: string;
@@ -4337,7 +4408,7 @@ export type DeadLetterInboxMessageData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}/DeadLetter';
 };
 
-export type DeadLetterInboxMessageErrors = {
+export type InboxDeadLetterInboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -4356,18 +4427,18 @@ export type DeadLetterInboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type DeadLetterInboxMessageError = DeadLetterInboxMessageErrors[keyof DeadLetterInboxMessageErrors];
+export type InboxDeadLetterInboxMessageError = InboxDeadLetterInboxMessageErrors[keyof InboxDeadLetterInboxMessageErrors];
 
-export type DeadLetterInboxMessageResponses = {
+export type InboxDeadLetterInboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeadLetterInboxMessageResponse = DeadLetterInboxMessageResponses[keyof DeadLetterInboxMessageResponses];
+export type InboxDeadLetterInboxMessageResponse = InboxDeadLetterInboxMessageResponses[keyof InboxDeadLetterInboxMessageResponses];
 
-export type QuarantineInboxMessageData = {
+export type InboxQuarantineInboxMessageData = {
     body?: InboxAdminReasonDto;
     headers?: {
         'x-api-version'?: string;
@@ -4381,7 +4452,7 @@ export type QuarantineInboxMessageData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}/Quarantine';
 };
 
-export type QuarantineInboxMessageErrors = {
+export type InboxQuarantineInboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -4400,18 +4471,18 @@ export type QuarantineInboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type QuarantineInboxMessageError = QuarantineInboxMessageErrors[keyof QuarantineInboxMessageErrors];
+export type InboxQuarantineInboxMessageError = InboxQuarantineInboxMessageErrors[keyof InboxQuarantineInboxMessageErrors];
 
-export type QuarantineInboxMessageResponses = {
+export type InboxQuarantineInboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type QuarantineInboxMessageResponse = QuarantineInboxMessageResponses[keyof QuarantineInboxMessageResponses];
+export type InboxQuarantineInboxMessageResponse = InboxQuarantineInboxMessageResponses[keyof InboxQuarantineInboxMessageResponses];
 
-export type ReplayInboxMessageData = {
+export type InboxReplayInboxMessageData = {
     body?: InboxAdminReasonDto;
     headers?: {
         'x-api-version'?: string;
@@ -4425,7 +4496,7 @@ export type ReplayInboxMessageData = {
     url: '/api/v2/SystemService/Inbox/Messages/{id}/Replay';
 };
 
-export type ReplayInboxMessageErrors = {
+export type InboxReplayInboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -4444,18 +4515,18 @@ export type ReplayInboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ReplayInboxMessageError = ReplayInboxMessageErrors[keyof ReplayInboxMessageErrors];
+export type InboxReplayInboxMessageError = InboxReplayInboxMessageErrors[keyof InboxReplayInboxMessageErrors];
 
-export type ReplayInboxMessageResponses = {
+export type InboxReplayInboxMessageResponses = {
     /**
      * OK
      */
     200: InboxReplayResultDtoEnvelopeReadable;
 };
 
-export type ReplayInboxMessageResponse = ReplayInboxMessageResponses[keyof ReplayInboxMessageResponses];
+export type InboxReplayInboxMessageResponse = InboxReplayInboxMessageResponses[keyof InboxReplayInboxMessageResponses];
 
-export type GetSystemIpLookupsData = {
+export type IpLookupsGetSystemIpLookupsData = {
     body?: IpLookupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4467,7 +4538,7 @@ export type GetSystemIpLookupsData = {
     url: '/api/v2/SystemService/IPLookups';
 };
 
-export type GetSystemIpLookupsErrors = {
+export type IpLookupsGetSystemIpLookupsErrors = {
     /**
      * Unauthorized
      */
@@ -4478,18 +4549,18 @@ export type GetSystemIpLookupsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemIpLookupsError = GetSystemIpLookupsErrors[keyof GetSystemIpLookupsErrors];
+export type IpLookupsGetSystemIpLookupsError = IpLookupsGetSystemIpLookupsErrors[keyof IpLookupsGetSystemIpLookupsErrors];
 
-export type GetSystemIpLookupsResponses = {
+export type IpLookupsGetSystemIpLookupsResponses = {
     /**
      * OK
      */
     200: IpLookupDtoListEnvelopeReadable;
 };
 
-export type GetSystemIpLookupsResponse = GetSystemIpLookupsResponses[keyof GetSystemIpLookupsResponses];
+export type IpLookupsGetSystemIpLookupsResponse = IpLookupsGetSystemIpLookupsResponses[keyof IpLookupsGetSystemIpLookupsResponses];
 
-export type GetSystemIpLookupsCountData = {
+export type IpLookupsGetSystemIpLookupsCountData = {
     body?: IpLookupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4501,7 +4572,7 @@ export type GetSystemIpLookupsCountData = {
     url: '/api/v2/SystemService/IPLookups/Count';
 };
 
-export type GetSystemIpLookupsCountErrors = {
+export type IpLookupsGetSystemIpLookupsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4512,18 +4583,18 @@ export type GetSystemIpLookupsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemIpLookupsCountError = GetSystemIpLookupsCountErrors[keyof GetSystemIpLookupsCountErrors];
+export type IpLookupsGetSystemIpLookupsCountError = IpLookupsGetSystemIpLookupsCountErrors[keyof IpLookupsGetSystemIpLookupsCountErrors];
 
-export type GetSystemIpLookupsCountResponses = {
+export type IpLookupsGetSystemIpLookupsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemIpLookupsCountResponse = GetSystemIpLookupsCountResponses[keyof GetSystemIpLookupsCountResponses];
+export type IpLookupsGetSystemIpLookupsCountResponse = IpLookupsGetSystemIpLookupsCountResponses[keyof IpLookupsGetSystemIpLookupsCountResponses];
 
-export type DeleteSystemIpLookupData = {
+export type IpLookupsDeleteSystemIpLookupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4537,7 +4608,7 @@ export type DeleteSystemIpLookupData = {
     url: '/api/v2/SystemService/IPLookups/{ipLookupId}';
 };
 
-export type DeleteSystemIpLookupErrors = {
+export type IpLookupsDeleteSystemIpLookupErrors = {
     /**
      * Unauthorized
      */
@@ -4548,18 +4619,18 @@ export type DeleteSystemIpLookupErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemIpLookupError = DeleteSystemIpLookupErrors[keyof DeleteSystemIpLookupErrors];
+export type IpLookupsDeleteSystemIpLookupError = IpLookupsDeleteSystemIpLookupErrors[keyof IpLookupsDeleteSystemIpLookupErrors];
 
-export type DeleteSystemIpLookupResponses = {
+export type IpLookupsDeleteSystemIpLookupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemIpLookupResponse = DeleteSystemIpLookupResponses[keyof DeleteSystemIpLookupResponses];
+export type IpLookupsDeleteSystemIpLookupResponse = IpLookupsDeleteSystemIpLookupResponses[keyof IpLookupsDeleteSystemIpLookupResponses];
 
-export type GetSystemIpLookupByIdData = {
+export type IpLookupsGetSystemIpLookupByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4573,7 +4644,7 @@ export type GetSystemIpLookupByIdData = {
     url: '/api/v2/SystemService/IPLookups/{ipLookupId}';
 };
 
-export type GetSystemIpLookupByIdErrors = {
+export type IpLookupsGetSystemIpLookupByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4584,49 +4655,155 @@ export type GetSystemIpLookupByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemIpLookupByIdError = GetSystemIpLookupByIdErrors[keyof GetSystemIpLookupByIdErrors];
+export type IpLookupsGetSystemIpLookupByIdError = IpLookupsGetSystemIpLookupByIdErrors[keyof IpLookupsGetSystemIpLookupByIdErrors];
 
-export type GetSystemIpLookupByIdResponses = {
+export type IpLookupsGetSystemIpLookupByIdResponses = {
     /**
      * OK
      */
     200: IpLookupDtoEnvelopeReadable;
 };
 
-export type GetSystemIpLookupByIdResponse = GetSystemIpLookupByIdResponses[keyof GetSystemIpLookupByIdResponses];
+export type IpLookupsGetSystemIpLookupByIdResponse = IpLookupsGetSystemIpLookupByIdResponses[keyof IpLookupsGetSystemIpLookupByIdResponses];
 
-export type GetLicensesAsyncData = {
+export type LicenseAssignmentsGetLicenseAssignmentsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
     };
-    path?: never;
-    query?: {
-        tenantId?: string;
+    path: {
+        licenseId: string;
+    };
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
-    url: '/api/v2/SystemService/Licensing/Licenses';
+    url: '/api/v2/SystemService/LicenseAssignments/{licenseId}';
 };
 
-export type GetLicensesAsyncErrors = {
+export type LicenseAssignmentsGetLicenseAssignmentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicensesAsyncError = GetLicensesAsyncErrors[keyof GetLicensesAsyncErrors];
+export type LicenseAssignmentsGetLicenseAssignmentsError = LicenseAssignmentsGetLicenseAssignmentsErrors[keyof LicenseAssignmentsGetLicenseAssignmentsErrors];
 
-export type GetLicensesAsyncResponses = {
+export type LicenseAssignmentsGetLicenseAssignmentsResponses = {
+    /**
+     * OK
+     */
+    200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
+};
+
+export type LicenseAssignmentsGetLicenseAssignmentsResponse = LicenseAssignmentsGetLicenseAssignmentsResponses[keyof LicenseAssignmentsGetLicenseAssignmentsResponses];
+
+export type LicenseAssignmentsAssignLicenseData = {
+    body: SuiteLicenseAssignmentCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/LicenseAssignments';
+};
+
+export type LicenseAssignmentsAssignLicenseErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type LicenseAssignmentsAssignLicenseError = LicenseAssignmentsAssignLicenseErrors[keyof LicenseAssignmentsAssignLicenseErrors];
+
+export type LicenseAssignmentsAssignLicenseResponses = {
+    /**
+     * OK
+     */
+    200: BooleanEnvelopeReadable;
+};
+
+export type LicenseAssignmentsAssignLicenseResponse = LicenseAssignmentsAssignLicenseResponses[keyof LicenseAssignmentsAssignLicenseResponses];
+
+export type LicenseAssignmentsRevokeLicenseData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        licenseId: string;
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/LicenseAssignments/{licenseId}/{enrollmentId}';
+};
+
+export type LicenseAssignmentsRevokeLicenseErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type LicenseAssignmentsRevokeLicenseError = LicenseAssignmentsRevokeLicenseErrors[keyof LicenseAssignmentsRevokeLicenseErrors];
+
+export type LicenseAssignmentsRevokeLicenseResponses = {
+    /**
+     * OK
+     */
+    200: BooleanEnvelopeReadable;
+};
+
+export type LicenseAssignmentsRevokeLicenseResponse = LicenseAssignmentsRevokeLicenseResponses[keyof LicenseAssignmentsRevokeLicenseResponses];
+
+export type LicensingGetLicensesData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Licensing/Licenses';
+};
+
+export type LicensingGetLicensesErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type LicensingGetLicensesError = LicensingGetLicensesErrors[keyof LicensingGetLicensesErrors];
+
+export type LicensingGetLicensesResponses = {
     /**
      * OK
      */
     200: SuiteLicenseDtoListEnvelopeReadable;
 };
 
-export type GetLicensesAsyncResponse = GetLicensesAsyncResponses[keyof GetLicensesAsyncResponses];
+export type LicensingGetLicensesResponse = LicensingGetLicensesResponses[keyof LicensingGetLicensesResponses];
 
-export type GetLicenseByIdAsyncData = {
+export type LicensingGetLicenseByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4641,25 +4818,25 @@ export type GetLicenseByIdAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}';
 };
 
-export type GetLicenseByIdAsyncErrors = {
+export type LicensingGetLicenseByIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseByIdAsyncError = GetLicenseByIdAsyncErrors[keyof GetLicenseByIdAsyncErrors];
+export type LicensingGetLicenseByIdError = LicensingGetLicenseByIdErrors[keyof LicensingGetLicenseByIdErrors];
 
-export type GetLicenseByIdAsyncResponses = {
+export type LicensingGetLicenseByIdResponses = {
     /**
      * OK
      */
     200: SuiteLicenseDtoEnvelopeReadable;
 };
 
-export type GetLicenseByIdAsyncResponse = GetLicenseByIdAsyncResponses[keyof GetLicenseByIdAsyncResponses];
+export type LicensingGetLicenseByIdResponse = LicensingGetLicenseByIdResponses[keyof LicensingGetLicenseByIdResponses];
 
-export type GetLicenseAssignmentsAsyncData = {
+export type LicensingGetLicenseAssignmentsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4674,25 +4851,25 @@ export type GetLicenseAssignmentsAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}/Assignments';
 };
 
-export type GetLicenseAssignmentsAsyncErrors = {
+export type LicensingGetLicenseAssignmentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseAssignmentsAsyncError = GetLicenseAssignmentsAsyncErrors[keyof GetLicenseAssignmentsAsyncErrors];
+export type LicensingGetLicenseAssignmentsError = LicensingGetLicenseAssignmentsErrors[keyof LicensingGetLicenseAssignmentsErrors];
 
-export type GetLicenseAssignmentsAsyncResponses = {
+export type LicensingGetLicenseAssignmentsResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetLicenseAssignmentsAsyncResponse = GetLicenseAssignmentsAsyncResponses[keyof GetLicenseAssignmentsAsyncResponses];
+export type LicensingGetLicenseAssignmentsResponse = LicensingGetLicenseAssignmentsResponses[keyof LicensingGetLicenseAssignmentsResponses];
 
-export type GetAttributesForLicenseAsyncData = {
+export type LicensingGetAttributesForLicenseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4707,25 +4884,25 @@ export type GetAttributesForLicenseAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}/Attributes';
 };
 
-export type GetAttributesForLicenseAsyncErrors = {
+export type LicensingGetAttributesForLicenseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAttributesForLicenseAsyncError = GetAttributesForLicenseAsyncErrors[keyof GetAttributesForLicenseAsyncErrors];
+export type LicensingGetAttributesForLicenseError = LicensingGetAttributesForLicenseErrors[keyof LicensingGetAttributesForLicenseErrors];
 
-export type GetAttributesForLicenseAsyncResponses = {
+export type LicensingGetAttributesForLicenseResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetAttributesForLicenseAsyncResponse = GetAttributesForLicenseAsyncResponses[keyof GetAttributesForLicenseAsyncResponses];
+export type LicensingGetAttributesForLicenseResponse = LicensingGetAttributesForLicenseResponses[keyof LicensingGetAttributesForLicenseResponses];
 
-export type GetFeaturesForLicenseAsyncData = {
+export type LicensingGetFeaturesForLicenseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4740,25 +4917,25 @@ export type GetFeaturesForLicenseAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features';
 };
 
-export type GetFeaturesForLicenseAsyncErrors = {
+export type LicensingGetFeaturesForLicenseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFeaturesForLicenseAsyncError = GetFeaturesForLicenseAsyncErrors[keyof GetFeaturesForLicenseAsyncErrors];
+export type LicensingGetFeaturesForLicenseError = LicensingGetFeaturesForLicenseErrors[keyof LicensingGetFeaturesForLicenseErrors];
 
-export type GetFeaturesForLicenseAsyncResponses = {
+export type LicensingGetFeaturesForLicenseResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetFeaturesForLicenseAsyncResponse = GetFeaturesForLicenseAsyncResponses[keyof GetFeaturesForLicenseAsyncResponses];
+export type LicensingGetFeaturesForLicenseResponse = LicensingGetFeaturesForLicenseResponses[keyof LicensingGetFeaturesForLicenseResponses];
 
-export type GetLicenseRecordsQuotaAsyncData = {
+export type LicensingGetLicenseRecordsQuotaData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4773,25 +4950,25 @@ export type GetLicenseRecordsQuotaAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}/Quota';
 };
 
-export type GetLicenseRecordsQuotaAsyncErrors = {
+export type LicensingGetLicenseRecordsQuotaErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseRecordsQuotaAsyncError = GetLicenseRecordsQuotaAsyncErrors[keyof GetLicenseRecordsQuotaAsyncErrors];
+export type LicensingGetLicenseRecordsQuotaError = LicensingGetLicenseRecordsQuotaErrors[keyof LicensingGetLicenseRecordsQuotaErrors];
 
-export type GetLicenseRecordsQuotaAsyncResponses = {
+export type LicensingGetLicenseRecordsQuotaResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetLicenseRecordsQuotaAsyncResponse = GetLicenseRecordsQuotaAsyncResponses[keyof GetLicenseRecordsQuotaAsyncResponses];
+export type LicensingGetLicenseRecordsQuotaResponse = LicensingGetLicenseRecordsQuotaResponses[keyof LicensingGetLicenseRecordsQuotaResponses];
 
-export type RedeemLicenseAsyncData = {
+export type LicensingRedeemLicenseData = {
     body: LicenseValidationRequest;
     headers?: {
         'x-api-version'?: string;
@@ -4804,25 +4981,25 @@ export type RedeemLicenseAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/Redeem';
 };
 
-export type RedeemLicenseAsyncErrors = {
+export type LicensingRedeemLicenseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type RedeemLicenseAsyncError = RedeemLicenseAsyncErrors[keyof RedeemLicenseAsyncErrors];
+export type LicensingRedeemLicenseError = LicensingRedeemLicenseErrors[keyof LicensingRedeemLicenseErrors];
 
-export type RedeemLicenseAsyncResponses = {
+export type LicensingRedeemLicenseResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type RedeemLicenseAsyncResponse = RedeemLicenseAsyncResponses[keyof RedeemLicenseAsyncResponses];
+export type LicensingRedeemLicenseResponse = LicensingRedeemLicenseResponses[keyof LicensingRedeemLicenseResponses];
 
-export type ValidateLicenseAsyncData = {
+export type LicensingValidateLicenseData = {
     body: LicenseValidationRequest;
     headers?: {
         'x-api-version'?: string;
@@ -4834,25 +5011,25 @@ export type ValidateLicenseAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/Validate';
 };
 
-export type ValidateLicenseAsyncErrors = {
+export type LicensingValidateLicenseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type ValidateLicenseAsyncError = ValidateLicenseAsyncErrors[keyof ValidateLicenseAsyncErrors];
+export type LicensingValidateLicenseError = LicensingValidateLicenseErrors[keyof LicensingValidateLicenseErrors];
 
-export type ValidateLicenseAsyncResponses = {
+export type LicensingValidateLicenseResponses = {
     /**
      * OK
      */
     200: IValidationFailureListEnvelopeReadable;
 };
 
-export type ValidateLicenseAsyncResponse = ValidateLicenseAsyncResponses[keyof ValidateLicenseAsyncResponses];
+export type LicensingValidateLicenseResponse = LicensingValidateLicenseResponses[keyof LicensingValidateLicenseResponses];
 
-export type MigrationsData = {
+export type MigrationsMigrationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4865,7 +5042,7 @@ export type MigrationsData = {
     url: '/api/v2/SystemService/Migrations';
 };
 
-export type MigrationsErrors = {
+export type MigrationsMigrationsErrors = {
     /**
      * Unauthorized
      */
@@ -4876,18 +5053,18 @@ export type MigrationsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type MigrationsError = MigrationsErrors[keyof MigrationsErrors];
+export type MigrationsMigrationsError = MigrationsMigrationsErrors[keyof MigrationsMigrationsErrors];
 
-export type MigrationsResponses = {
+export type MigrationsMigrationsResponses = {
     /**
      * OK
      */
     200: StringListEnvelopeReadable;
 };
 
-export type MigrationsResponse = MigrationsResponses[keyof MigrationsResponses];
+export type MigrationsMigrationsResponse = MigrationsMigrationsResponses[keyof MigrationsMigrationsResponses];
 
-export type MigrateData = {
+export type MigrationsMigrateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4899,7 +5076,7 @@ export type MigrateData = {
     url: '/api/v2/SystemService/Migrations/Migrate';
 };
 
-export type MigrateErrors = {
+export type MigrationsMigrateErrors = {
     /**
      * Unauthorized
      */
@@ -4910,18 +5087,18 @@ export type MigrateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type MigrateError = MigrateErrors[keyof MigrateErrors];
+export type MigrationsMigrateError = MigrationsMigrateErrors[keyof MigrationsMigrateErrors];
 
-export type MigrateResponses = {
+export type MigrationsMigrateResponses = {
     /**
      * OK
      */
     200: StringListEnvelopeReadable;
 };
 
-export type MigrateResponse = MigrateResponses[keyof MigrateResponses];
+export type MigrationsMigrateResponse = MigrationsMigrateResponses[keyof MigrationsMigrateResponses];
 
-export type GetAllModulesData = {
+export type ModulesGetAllModulesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4934,7 +5111,7 @@ export type GetAllModulesData = {
     url: '/api/v2/StudioService/Modules';
 };
 
-export type GetAllModulesErrors = {
+export type ModulesGetAllModulesErrors = {
     /**
      * Unauthorized
      */
@@ -4945,18 +5122,18 @@ export type GetAllModulesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAllModulesError = GetAllModulesErrors[keyof GetAllModulesErrors];
+export type ModulesGetAllModulesError = ModulesGetAllModulesErrors[keyof ModulesGetAllModulesErrors];
 
-export type GetAllModulesResponses = {
+export type ModulesGetAllModulesResponses = {
     /**
      * OK
      */
     200: StudioModuleListEnvelopeReadable;
 };
 
-export type GetAllModulesResponse = GetAllModulesResponses[keyof GetAllModulesResponses];
+export type ModulesGetAllModulesResponse = ModulesGetAllModulesResponses[keyof ModulesGetAllModulesResponses];
 
-export type GetAvailableModulesData = {
+export type ModulesGetAvailableModulesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4969,7 +5146,7 @@ export type GetAvailableModulesData = {
     url: '/api/v2/StudioService/Modules/Data';
 };
 
-export type GetAvailableModulesErrors = {
+export type ModulesGetAvailableModulesErrors = {
     /**
      * Unauthorized
      */
@@ -4980,18 +5157,18 @@ export type GetAvailableModulesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAvailableModulesError = GetAvailableModulesErrors[keyof GetAvailableModulesErrors];
+export type ModulesGetAvailableModulesError = ModulesGetAvailableModulesErrors[keyof ModulesGetAvailableModulesErrors];
 
-export type GetAvailableModulesResponses = {
+export type ModulesGetAvailableModulesResponses = {
     /**
      * OK
      */
     200: SuiteModuleListEnvelopeReadable;
 };
 
-export type GetAvailableModulesResponse = GetAvailableModulesResponses[keyof GetAvailableModulesResponses];
+export type ModulesGetAvailableModulesResponse = ModulesGetAvailableModulesResponses[keyof ModulesGetAvailableModulesResponses];
 
-export type GetSystemOptionsData = {
+export type OptionsGetSystemOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5004,7 +5181,7 @@ export type GetSystemOptionsData = {
     url: '/api/v2/SystemService/Options';
 };
 
-export type GetSystemOptionsErrors = {
+export type OptionsGetSystemOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -5015,18 +5192,18 @@ export type GetSystemOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemOptionsError = GetSystemOptionsErrors[keyof GetSystemOptionsErrors];
+export type OptionsGetSystemOptionsError = OptionsGetSystemOptionsErrors[keyof OptionsGetSystemOptionsErrors];
 
-export type GetSystemOptionsResponses = {
+export type OptionsGetSystemOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetSystemOptionsResponse = GetSystemOptionsResponses[keyof GetSystemOptionsResponses];
+export type OptionsGetSystemOptionsResponse = OptionsGetSystemOptionsResponses[keyof OptionsGetSystemOptionsResponses];
 
-export type CreateSystemOptionData = {
+export type OptionsCreateSystemOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5040,7 +5217,7 @@ export type CreateSystemOptionData = {
     url: '/api/v2/SystemService/Options';
 };
 
-export type CreateSystemOptionErrors = {
+export type OptionsCreateSystemOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5051,18 +5228,18 @@ export type CreateSystemOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSystemOptionError = CreateSystemOptionErrors[keyof CreateSystemOptionErrors];
+export type OptionsCreateSystemOptionError = OptionsCreateSystemOptionErrors[keyof OptionsCreateSystemOptionErrors];
 
-export type CreateSystemOptionResponses = {
+export type OptionsCreateSystemOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSystemOptionResponse = CreateSystemOptionResponses[keyof CreateSystemOptionResponses];
+export type OptionsCreateSystemOptionResponse = OptionsCreateSystemOptionResponses[keyof OptionsCreateSystemOptionResponses];
 
-export type GetSystemOptionsCountData = {
+export type OptionsGetSystemOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5075,7 +5252,7 @@ export type GetSystemOptionsCountData = {
     url: '/api/v2/SystemService/Options/Count';
 };
 
-export type GetSystemOptionsCountErrors = {
+export type OptionsGetSystemOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5086,18 +5263,18 @@ export type GetSystemOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemOptionsCountError = GetSystemOptionsCountErrors[keyof GetSystemOptionsCountErrors];
+export type OptionsGetSystemOptionsCountError = OptionsGetSystemOptionsCountErrors[keyof OptionsGetSystemOptionsCountErrors];
 
-export type GetSystemOptionsCountResponses = {
+export type OptionsGetSystemOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemOptionsCountResponse = GetSystemOptionsCountResponses[keyof GetSystemOptionsCountResponses];
+export type OptionsGetSystemOptionsCountResponse = OptionsGetSystemOptionsCountResponses[keyof OptionsGetSystemOptionsCountResponses];
 
-export type DeleteSystemOptionData = {
+export type OptionsDeleteSystemOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5111,7 +5288,7 @@ export type DeleteSystemOptionData = {
     url: '/api/v2/SystemService/Options/{optionId}';
 };
 
-export type DeleteSystemOptionErrors = {
+export type OptionsDeleteSystemOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5122,18 +5299,18 @@ export type DeleteSystemOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemOptionError = DeleteSystemOptionErrors[keyof DeleteSystemOptionErrors];
+export type OptionsDeleteSystemOptionError = OptionsDeleteSystemOptionErrors[keyof OptionsDeleteSystemOptionErrors];
 
-export type DeleteSystemOptionResponses = {
+export type OptionsDeleteSystemOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemOptionResponse = DeleteSystemOptionResponses[keyof DeleteSystemOptionResponses];
+export type OptionsDeleteSystemOptionResponse = OptionsDeleteSystemOptionResponses[keyof OptionsDeleteSystemOptionResponses];
 
-export type GetSystemOptionByIdData = {
+export type OptionsGetSystemOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5147,7 +5324,7 @@ export type GetSystemOptionByIdData = {
     url: '/api/v2/SystemService/Options/{optionId}';
 };
 
-export type GetSystemOptionByIdErrors = {
+export type OptionsGetSystemOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5158,18 +5335,18 @@ export type GetSystemOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemOptionByIdError = GetSystemOptionByIdErrors[keyof GetSystemOptionByIdErrors];
+export type OptionsGetSystemOptionByIdError = OptionsGetSystemOptionByIdErrors[keyof OptionsGetSystemOptionByIdErrors];
 
-export type GetSystemOptionByIdResponses = {
+export type OptionsGetSystemOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetSystemOptionByIdResponse = GetSystemOptionByIdResponses[keyof GetSystemOptionByIdResponses];
+export type OptionsGetSystemOptionByIdResponse = OptionsGetSystemOptionByIdResponses[keyof OptionsGetSystemOptionByIdResponses];
 
-export type PatchSystemOptionData = {
+export type OptionsPatchSystemOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5183,7 +5360,7 @@ export type PatchSystemOptionData = {
     url: '/api/v2/SystemService/Options/{optionId}';
 };
 
-export type PatchSystemOptionErrors = {
+export type OptionsPatchSystemOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5194,18 +5371,18 @@ export type PatchSystemOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSystemOptionError = PatchSystemOptionErrors[keyof PatchSystemOptionErrors];
+export type OptionsPatchSystemOptionError = OptionsPatchSystemOptionErrors[keyof OptionsPatchSystemOptionErrors];
 
-export type PatchSystemOptionResponses = {
+export type OptionsPatchSystemOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSystemOptionResponse = PatchSystemOptionResponses[keyof PatchSystemOptionResponses];
+export type OptionsPatchSystemOptionResponse = OptionsPatchSystemOptionResponses[keyof OptionsPatchSystemOptionResponses];
 
-export type UpdateSystemOptionData = {
+export type OptionsUpdateSystemOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5219,7 +5396,7 @@ export type UpdateSystemOptionData = {
     url: '/api/v2/SystemService/Options/{optionId}';
 };
 
-export type UpdateSystemOptionErrors = {
+export type OptionsUpdateSystemOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5230,18 +5407,18 @@ export type UpdateSystemOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSystemOptionError = UpdateSystemOptionErrors[keyof UpdateSystemOptionErrors];
+export type OptionsUpdateSystemOptionError = OptionsUpdateSystemOptionErrors[keyof OptionsUpdateSystemOptionErrors];
 
-export type UpdateSystemOptionResponses = {
+export type OptionsUpdateSystemOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSystemOptionResponse = UpdateSystemOptionResponses[keyof UpdateSystemOptionResponses];
+export type OptionsUpdateSystemOptionResponse = OptionsUpdateSystemOptionResponses[keyof OptionsUpdateSystemOptionResponses];
 
-export type GetSystemOptionByKeyData = {
+export type OptionsGetSystemOptionByKeyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5256,7 +5433,7 @@ export type GetSystemOptionByKeyData = {
     url: '/api/v2/SystemService/Options/Key/{key}';
 };
 
-export type GetSystemOptionByKeyErrors = {
+export type OptionsGetSystemOptionByKeyErrors = {
     /**
      * Unauthorized
      */
@@ -5267,18 +5444,18 @@ export type GetSystemOptionByKeyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemOptionByKeyError = GetSystemOptionByKeyErrors[keyof GetSystemOptionByKeyErrors];
+export type OptionsGetSystemOptionByKeyError = OptionsGetSystemOptionByKeyErrors[keyof OptionsGetSystemOptionByKeyErrors];
 
-export type GetSystemOptionByKeyResponses = {
+export type OptionsGetSystemOptionByKeyResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetSystemOptionByKeyResponse = GetSystemOptionByKeyResponses[keyof GetSystemOptionByKeyResponses];
+export type OptionsGetSystemOptionByKeyResponse = OptionsGetSystemOptionByKeyResponses[keyof OptionsGetSystemOptionByKeyResponses];
 
-export type UpsertSystemOptionData = {
+export type OptionsUpsertSystemOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5293,7 +5470,7 @@ export type UpsertSystemOptionData = {
     url: '/api/v2/SystemService/Options/Upsert/{key}';
 };
 
-export type UpsertSystemOptionErrors = {
+export type OptionsUpsertSystemOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5304,18 +5481,18 @@ export type UpsertSystemOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpsertSystemOptionError = UpsertSystemOptionErrors[keyof UpsertSystemOptionErrors];
+export type OptionsUpsertSystemOptionError = OptionsUpsertSystemOptionErrors[keyof OptionsUpsertSystemOptionErrors];
 
-export type UpsertSystemOptionResponses = {
+export type OptionsUpsertSystemOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpsertSystemOptionResponse = UpsertSystemOptionResponses[keyof UpsertSystemOptionResponses];
+export type OptionsUpsertSystemOptionResponse = OptionsUpsertSystemOptionResponses[keyof OptionsUpsertSystemOptionResponses];
 
-export type GetOutboxHealthData = {
+export type OutboxGetOutboxHealthData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5327,7 +5504,7 @@ export type GetOutboxHealthData = {
     url: '/api/v2/SystemService/Outbox/Health';
 };
 
-export type GetOutboxHealthErrors = {
+export type OutboxGetOutboxHealthErrors = {
     /**
      * Unauthorized
      */
@@ -5338,18 +5515,18 @@ export type GetOutboxHealthErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutboxHealthError = GetOutboxHealthErrors[keyof GetOutboxHealthErrors];
+export type OutboxGetOutboxHealthError = OutboxGetOutboxHealthErrors[keyof OutboxGetOutboxHealthErrors];
 
-export type GetOutboxHealthResponses = {
+export type OutboxGetOutboxHealthResponses = {
     /**
      * OK
      */
     200: OutboxHealthDtoEnvelopeReadable;
 };
 
-export type GetOutboxHealthResponse = GetOutboxHealthResponses[keyof GetOutboxHealthResponses];
+export type OutboxGetOutboxHealthResponse = OutboxGetOutboxHealthResponses[keyof OutboxGetOutboxHealthResponses];
 
-export type GetOutboxMessagesData = {
+export type OutboxGetOutboxMessagesData = {
     body?: OutboxMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5361,7 +5538,7 @@ export type GetOutboxMessagesData = {
     url: '/api/v2/SystemService/Outbox/Messages';
 };
 
-export type GetOutboxMessagesErrors = {
+export type OutboxGetOutboxMessagesErrors = {
     /**
      * Unauthorized
      */
@@ -5372,18 +5549,18 @@ export type GetOutboxMessagesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutboxMessagesError = GetOutboxMessagesErrors[keyof GetOutboxMessagesErrors];
+export type OutboxGetOutboxMessagesError = OutboxGetOutboxMessagesErrors[keyof OutboxGetOutboxMessagesErrors];
 
-export type GetOutboxMessagesResponses = {
+export type OutboxGetOutboxMessagesResponses = {
     /**
      * OK
      */
     200: OutboxMessageDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetOutboxMessagesResponse = GetOutboxMessagesResponses[keyof GetOutboxMessagesResponses];
+export type OutboxGetOutboxMessagesResponse = OutboxGetOutboxMessagesResponses[keyof OutboxGetOutboxMessagesResponses];
 
-export type GetOutboxMessagesCountData = {
+export type OutboxGetOutboxMessagesCountData = {
     body?: OutboxMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5395,7 +5572,7 @@ export type GetOutboxMessagesCountData = {
     url: '/api/v2/SystemService/Outbox/Messages/Count';
 };
 
-export type GetOutboxMessagesCountErrors = {
+export type OutboxGetOutboxMessagesCountErrors = {
     /**
      * Unauthorized
      */
@@ -5406,18 +5583,18 @@ export type GetOutboxMessagesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOutboxMessagesCountError = GetOutboxMessagesCountErrors[keyof GetOutboxMessagesCountErrors];
+export type OutboxGetOutboxMessagesCountError = OutboxGetOutboxMessagesCountErrors[keyof OutboxGetOutboxMessagesCountErrors];
 
-export type GetOutboxMessagesCountResponses = {
+export type OutboxGetOutboxMessagesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOutboxMessagesCountResponse = GetOutboxMessagesCountResponses[keyof GetOutboxMessagesCountResponses];
+export type OutboxGetOutboxMessagesCountResponse = OutboxGetOutboxMessagesCountResponses[keyof OutboxGetOutboxMessagesCountResponses];
 
-export type GetOutboxMessageData = {
+export type OutboxGetOutboxMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5431,7 +5608,7 @@ export type GetOutboxMessageData = {
     url: '/api/v2/SystemService/Outbox/Messages/{id}';
 };
 
-export type GetOutboxMessageErrors = {
+export type OutboxGetOutboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5446,18 +5623,18 @@ export type GetOutboxMessageErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetOutboxMessageError = GetOutboxMessageErrors[keyof GetOutboxMessageErrors];
+export type OutboxGetOutboxMessageError = OutboxGetOutboxMessageErrors[keyof OutboxGetOutboxMessageErrors];
 
-export type GetOutboxMessageResponses = {
+export type OutboxGetOutboxMessageResponses = {
     /**
      * OK
      */
     200: OutboxMessageDtoEnvelopeReadable;
 };
 
-export type GetOutboxMessageResponse = GetOutboxMessageResponses[keyof GetOutboxMessageResponses];
+export type OutboxGetOutboxMessageResponse = OutboxGetOutboxMessageResponses[keyof OutboxGetOutboxMessageResponses];
 
-export type GetOutboxCorrelationChainData = {
+export type OutboxGetOutboxCorrelationChainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5471,7 +5648,7 @@ export type GetOutboxCorrelationChainData = {
     url: '/api/v2/SystemService/Outbox/Correlations/{correlationId}';
 };
 
-export type GetOutboxCorrelationChainErrors = {
+export type OutboxGetOutboxCorrelationChainErrors = {
     /**
      * Unauthorized
      */
@@ -5486,18 +5663,18 @@ export type GetOutboxCorrelationChainErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type GetOutboxCorrelationChainError = GetOutboxCorrelationChainErrors[keyof GetOutboxCorrelationChainErrors];
+export type OutboxGetOutboxCorrelationChainError = OutboxGetOutboxCorrelationChainErrors[keyof OutboxGetOutboxCorrelationChainErrors];
 
-export type GetOutboxCorrelationChainResponses = {
+export type OutboxGetOutboxCorrelationChainResponses = {
     /**
      * OK
      */
     200: OutboxMessageDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetOutboxCorrelationChainResponse = GetOutboxCorrelationChainResponses[keyof GetOutboxCorrelationChainResponses];
+export type OutboxGetOutboxCorrelationChainResponse = OutboxGetOutboxCorrelationChainResponses[keyof OutboxGetOutboxCorrelationChainResponses];
 
-export type ReplayOutboxMessageData = {
+export type OutboxReplayOutboxMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5511,7 +5688,7 @@ export type ReplayOutboxMessageData = {
     url: '/api/v2/SystemService/Outbox/Messages/{id}/Replay';
 };
 
-export type ReplayOutboxMessageErrors = {
+export type OutboxReplayOutboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5530,18 +5707,18 @@ export type ReplayOutboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ReplayOutboxMessageError = ReplayOutboxMessageErrors[keyof ReplayOutboxMessageErrors];
+export type OutboxReplayOutboxMessageError = OutboxReplayOutboxMessageErrors[keyof OutboxReplayOutboxMessageErrors];
 
-export type ReplayOutboxMessageResponses = {
+export type OutboxReplayOutboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type ReplayOutboxMessageResponse = ReplayOutboxMessageResponses[keyof ReplayOutboxMessageResponses];
+export type OutboxReplayOutboxMessageResponse = OutboxReplayOutboxMessageResponses[keyof OutboxReplayOutboxMessageResponses];
 
-export type ExpediteOutboxMessageData = {
+export type OutboxExpediteOutboxMessageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5555,7 +5732,7 @@ export type ExpediteOutboxMessageData = {
     url: '/api/v2/SystemService/Outbox/Messages/{id}/Expedite';
 };
 
-export type ExpediteOutboxMessageErrors = {
+export type OutboxExpediteOutboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5574,18 +5751,18 @@ export type ExpediteOutboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ExpediteOutboxMessageError = ExpediteOutboxMessageErrors[keyof ExpediteOutboxMessageErrors];
+export type OutboxExpediteOutboxMessageError = OutboxExpediteOutboxMessageErrors[keyof OutboxExpediteOutboxMessageErrors];
 
-export type ExpediteOutboxMessageResponses = {
+export type OutboxExpediteOutboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type ExpediteOutboxMessageResponse = ExpediteOutboxMessageResponses[keyof ExpediteOutboxMessageResponses];
+export type OutboxExpediteOutboxMessageResponse = OutboxExpediteOutboxMessageResponses[keyof OutboxExpediteOutboxMessageResponses];
 
-export type CancelOutboxMessageData = {
+export type OutboxCancelOutboxMessageData = {
     body?: OutboxAdminReasonDto;
     headers?: {
         'x-api-version'?: string;
@@ -5599,7 +5776,7 @@ export type CancelOutboxMessageData = {
     url: '/api/v2/SystemService/Outbox/Messages/{id}/Cancel';
 };
 
-export type CancelOutboxMessageErrors = {
+export type OutboxCancelOutboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5618,18 +5795,18 @@ export type CancelOutboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type CancelOutboxMessageError = CancelOutboxMessageErrors[keyof CancelOutboxMessageErrors];
+export type OutboxCancelOutboxMessageError = OutboxCancelOutboxMessageErrors[keyof OutboxCancelOutboxMessageErrors];
 
-export type CancelOutboxMessageResponses = {
+export type OutboxCancelOutboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type CancelOutboxMessageResponse = CancelOutboxMessageResponses[keyof CancelOutboxMessageResponses];
+export type OutboxCancelOutboxMessageResponse = OutboxCancelOutboxMessageResponses[keyof OutboxCancelOutboxMessageResponses];
 
-export type DeadLetterOutboxMessageData = {
+export type OutboxDeadLetterOutboxMessageData = {
     body?: OutboxAdminReasonDto;
     headers?: {
         'x-api-version'?: string;
@@ -5643,7 +5820,7 @@ export type DeadLetterOutboxMessageData = {
     url: '/api/v2/SystemService/Outbox/Messages/{id}/DeadLetter';
 };
 
-export type DeadLetterOutboxMessageErrors = {
+export type OutboxDeadLetterOutboxMessageErrors = {
     /**
      * Unauthorized
      */
@@ -5662,18 +5839,18 @@ export type DeadLetterOutboxMessageErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type DeadLetterOutboxMessageError = DeadLetterOutboxMessageErrors[keyof DeadLetterOutboxMessageErrors];
+export type OutboxDeadLetterOutboxMessageError = OutboxDeadLetterOutboxMessageErrors[keyof OutboxDeadLetterOutboxMessageErrors];
 
-export type DeadLetterOutboxMessageResponses = {
+export type OutboxDeadLetterOutboxMessageResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeadLetterOutboxMessageResponse = DeadLetterOutboxMessageResponses[keyof DeadLetterOutboxMessageResponses];
+export type OutboxDeadLetterOutboxMessageResponse = OutboxDeadLetterOutboxMessageResponses[keyof OutboxDeadLetterOutboxMessageResponses];
 
-export type ReleaseOutboxMessageLeaseData = {
+export type OutboxReleaseOutboxMessageLeaseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5687,7 +5864,7 @@ export type ReleaseOutboxMessageLeaseData = {
     url: '/api/v2/SystemService/Outbox/Messages/{id}/ReleaseLease';
 };
 
-export type ReleaseOutboxMessageLeaseErrors = {
+export type OutboxReleaseOutboxMessageLeaseErrors = {
     /**
      * Unauthorized
      */
@@ -5706,18 +5883,192 @@ export type ReleaseOutboxMessageLeaseErrors = {
     422: ErrorEnvelopeReadable;
 };
 
-export type ReleaseOutboxMessageLeaseError = ReleaseOutboxMessageLeaseErrors[keyof ReleaseOutboxMessageLeaseErrors];
+export type OutboxReleaseOutboxMessageLeaseError = OutboxReleaseOutboxMessageLeaseErrors[keyof OutboxReleaseOutboxMessageLeaseErrors];
 
-export type ReleaseOutboxMessageLeaseResponses = {
+export type OutboxReleaseOutboxMessageLeaseResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type ReleaseOutboxMessageLeaseResponse = ReleaseOutboxMessageLeaseResponses[keyof ReleaseOutboxMessageLeaseResponses];
+export type OutboxReleaseOutboxMessageLeaseResponse = OutboxReleaseOutboxMessageLeaseResponses[keyof OutboxReleaseOutboxMessageLeaseResponses];
 
-export type GetSystemOverviewData = {
+export type OutboxGetOutboxPoisonPositionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        partitionKey: string;
+        consumerKey?: string;
+        throughSequence?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Poison';
+};
+
+export type OutboxGetOutboxPoisonPositionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type OutboxGetOutboxPoisonPositionsError = OutboxGetOutboxPoisonPositionsErrors[keyof OutboxGetOutboxPoisonPositionsErrors];
+
+export type OutboxGetOutboxPoisonPositionsResponses = {
+    /**
+     * OK
+     */
+    200: OutboxPoisonPositionDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type OutboxGetOutboxPoisonPositionsResponse = OutboxGetOutboxPoisonPositionsResponses[keyof OutboxGetOutboxPoisonPositionsResponses];
+
+export type OutboxResolveOutboxPoisonData = {
+    body?: ResolveOutboxPoisonRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Poison/Resolve';
+};
+
+export type OutboxResolveOutboxPoisonErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type OutboxResolveOutboxPoisonError = OutboxResolveOutboxPoisonErrors[keyof OutboxResolveOutboxPoisonErrors];
+
+export type OutboxResolveOutboxPoisonResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type OutboxResolveOutboxPoisonResponse = OutboxResolveOutboxPoisonResponses[keyof OutboxResolveOutboxPoisonResponses];
+
+export type OutboxGetTenantOutboxPoisonPositionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query: {
+        partitionKey: string;
+        consumerKey?: string;
+        throughSequence?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Tenants/{tenantId}/Poison';
+};
+
+export type OutboxGetTenantOutboxPoisonPositionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type OutboxGetTenantOutboxPoisonPositionsError = OutboxGetTenantOutboxPoisonPositionsErrors[keyof OutboxGetTenantOutboxPoisonPositionsErrors];
+
+export type OutboxGetTenantOutboxPoisonPositionsResponses = {
+    /**
+     * OK
+     */
+    200: OutboxPoisonPositionDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type OutboxGetTenantOutboxPoisonPositionsResponse = OutboxGetTenantOutboxPoisonPositionsResponses[keyof OutboxGetTenantOutboxPoisonPositionsResponses];
+
+export type OutboxResolveTenantOutboxPoisonData = {
+    body?: ResolveOutboxPoisonRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Tenants/{tenantId}/Poison/Resolve';
+};
+
+export type OutboxResolveTenantOutboxPoisonErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type OutboxResolveTenantOutboxPoisonError = OutboxResolveTenantOutboxPoisonErrors[keyof OutboxResolveTenantOutboxPoisonErrors];
+
+export type OutboxResolveTenantOutboxPoisonResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type OutboxResolveTenantOutboxPoisonResponse = OutboxResolveTenantOutboxPoisonResponses[keyof OutboxResolveTenantOutboxPoisonResponses];
+
+export type OverviewGetSystemOverviewData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5729,7 +6080,7 @@ export type GetSystemOverviewData = {
     url: '/api/v2/SystemService/Overview';
 };
 
-export type GetSystemOverviewErrors = {
+export type OverviewGetSystemOverviewErrors = {
     /**
      * Unauthorized
      */
@@ -5740,18 +6091,18 @@ export type GetSystemOverviewErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemOverviewError = GetSystemOverviewErrors[keyof GetSystemOverviewErrors];
+export type OverviewGetSystemOverviewError = OverviewGetSystemOverviewErrors[keyof OverviewGetSystemOverviewErrors];
 
-export type GetSystemOverviewResponses = {
+export type OverviewGetSystemOverviewResponses = {
     /**
      * OK
      */
     200: SystemOverviewDtoEnvelopeReadable;
 };
 
-export type GetSystemOverviewResponse = GetSystemOverviewResponses[keyof GetSystemOverviewResponses];
+export type OverviewGetSystemOverviewResponse = OverviewGetSystemOverviewResponses[keyof OverviewGetSystemOverviewResponses];
 
-export type GetSystemPortalsData = {
+export type PortalsGetSystemPortalsData = {
     body?: WebPortalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5763,7 +6114,7 @@ export type GetSystemPortalsData = {
     url: '/api/v2/SystemService/Portals';
 };
 
-export type GetSystemPortalsErrors = {
+export type PortalsGetSystemPortalsErrors = {
     /**
      * Unauthorized
      */
@@ -5774,18 +6125,18 @@ export type GetSystemPortalsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemPortalsError = GetSystemPortalsErrors[keyof GetSystemPortalsErrors];
+export type PortalsGetSystemPortalsError = PortalsGetSystemPortalsErrors[keyof PortalsGetSystemPortalsErrors];
 
-export type GetSystemPortalsResponses = {
+export type PortalsGetSystemPortalsResponses = {
     /**
      * OK
      */
     200: WebPortalDtoListEnvelopeReadable;
 };
 
-export type GetSystemPortalsResponse = GetSystemPortalsResponses[keyof GetSystemPortalsResponses];
+export type PortalsGetSystemPortalsResponse = PortalsGetSystemPortalsResponses[keyof PortalsGetSystemPortalsResponses];
 
-export type CreateSystemPortalData = {
+export type PortalsCreateSystemPortalData = {
     body?: WebPortalCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5797,7 +6148,7 @@ export type CreateSystemPortalData = {
     url: '/api/v2/SystemService/Portals';
 };
 
-export type CreateSystemPortalErrors = {
+export type PortalsCreateSystemPortalErrors = {
     /**
      * Unauthorized
      */
@@ -5808,18 +6159,18 @@ export type CreateSystemPortalErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSystemPortalError = CreateSystemPortalErrors[keyof CreateSystemPortalErrors];
+export type PortalsCreateSystemPortalError = PortalsCreateSystemPortalErrors[keyof PortalsCreateSystemPortalErrors];
 
-export type CreateSystemPortalResponses = {
+export type PortalsCreateSystemPortalResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSystemPortalResponse = CreateSystemPortalResponses[keyof CreateSystemPortalResponses];
+export type PortalsCreateSystemPortalResponse = PortalsCreateSystemPortalResponses[keyof PortalsCreateSystemPortalResponses];
 
-export type GetSystemPortalsCountData = {
+export type PortalsGetSystemPortalsCountData = {
     body?: WebPortalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5831,7 +6182,7 @@ export type GetSystemPortalsCountData = {
     url: '/api/v2/SystemService/Portals/Count';
 };
 
-export type GetSystemPortalsCountErrors = {
+export type PortalsGetSystemPortalsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5842,18 +6193,18 @@ export type GetSystemPortalsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemPortalsCountError = GetSystemPortalsCountErrors[keyof GetSystemPortalsCountErrors];
+export type PortalsGetSystemPortalsCountError = PortalsGetSystemPortalsCountErrors[keyof PortalsGetSystemPortalsCountErrors];
 
-export type GetSystemPortalsCountResponses = {
+export type PortalsGetSystemPortalsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemPortalsCountResponse = GetSystemPortalsCountResponses[keyof GetSystemPortalsCountResponses];
+export type PortalsGetSystemPortalsCountResponse = PortalsGetSystemPortalsCountResponses[keyof PortalsGetSystemPortalsCountResponses];
 
-export type DeleteSystemPortalData = {
+export type PortalsDeleteSystemPortalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5867,7 +6218,7 @@ export type DeleteSystemPortalData = {
     url: '/api/v2/SystemService/Portals/{portalId}';
 };
 
-export type DeleteSystemPortalErrors = {
+export type PortalsDeleteSystemPortalErrors = {
     /**
      * Unauthorized
      */
@@ -5878,18 +6229,18 @@ export type DeleteSystemPortalErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemPortalError = DeleteSystemPortalErrors[keyof DeleteSystemPortalErrors];
+export type PortalsDeleteSystemPortalError = PortalsDeleteSystemPortalErrors[keyof PortalsDeleteSystemPortalErrors];
 
-export type DeleteSystemPortalResponses = {
+export type PortalsDeleteSystemPortalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemPortalResponse = DeleteSystemPortalResponses[keyof DeleteSystemPortalResponses];
+export type PortalsDeleteSystemPortalResponse = PortalsDeleteSystemPortalResponses[keyof PortalsDeleteSystemPortalResponses];
 
-export type GetSystemPortalByIdData = {
+export type PortalsGetSystemPortalByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5903,7 +6254,7 @@ export type GetSystemPortalByIdData = {
     url: '/api/v2/SystemService/Portals/{portalId}';
 };
 
-export type GetSystemPortalByIdErrors = {
+export type PortalsGetSystemPortalByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5914,18 +6265,18 @@ export type GetSystemPortalByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemPortalByIdError = GetSystemPortalByIdErrors[keyof GetSystemPortalByIdErrors];
+export type PortalsGetSystemPortalByIdError = PortalsGetSystemPortalByIdErrors[keyof PortalsGetSystemPortalByIdErrors];
 
-export type GetSystemPortalByIdResponses = {
+export type PortalsGetSystemPortalByIdResponses = {
     /**
      * OK
      */
     200: WebPortalDtoEnvelopeReadable;
 };
 
-export type GetSystemPortalByIdResponse = GetSystemPortalByIdResponses[keyof GetSystemPortalByIdResponses];
+export type PortalsGetSystemPortalByIdResponse = PortalsGetSystemPortalByIdResponses[keyof PortalsGetSystemPortalByIdResponses];
 
-export type PatchSystemPortalData = {
+export type PortalsPatchSystemPortalData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5939,7 +6290,7 @@ export type PatchSystemPortalData = {
     url: '/api/v2/SystemService/Portals/{portalId}';
 };
 
-export type PatchSystemPortalErrors = {
+export type PortalsPatchSystemPortalErrors = {
     /**
      * Unauthorized
      */
@@ -5950,18 +6301,18 @@ export type PatchSystemPortalErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSystemPortalError = PatchSystemPortalErrors[keyof PatchSystemPortalErrors];
+export type PortalsPatchSystemPortalError = PortalsPatchSystemPortalErrors[keyof PortalsPatchSystemPortalErrors];
 
-export type PatchSystemPortalResponses = {
+export type PortalsPatchSystemPortalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSystemPortalResponse = PatchSystemPortalResponses[keyof PatchSystemPortalResponses];
+export type PortalsPatchSystemPortalResponse = PortalsPatchSystemPortalResponses[keyof PortalsPatchSystemPortalResponses];
 
-export type UpdateSystemPortalData = {
+export type PortalsUpdateSystemPortalData = {
     body?: WebPortalUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5975,7 +6326,7 @@ export type UpdateSystemPortalData = {
     url: '/api/v2/SystemService/Portals/{portalId}';
 };
 
-export type UpdateSystemPortalErrors = {
+export type PortalsUpdateSystemPortalErrors = {
     /**
      * Unauthorized
      */
@@ -5986,18 +6337,18 @@ export type UpdateSystemPortalErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSystemPortalError = UpdateSystemPortalErrors[keyof UpdateSystemPortalErrors];
+export type PortalsUpdateSystemPortalError = PortalsUpdateSystemPortalErrors[keyof PortalsUpdateSystemPortalErrors];
 
-export type UpdateSystemPortalResponses = {
+export type PortalsUpdateSystemPortalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSystemPortalResponse = UpdateSystemPortalResponses[keyof UpdateSystemPortalResponses];
+export type PortalsUpdateSystemPortalResponse = PortalsUpdateSystemPortalResponses[keyof PortalsUpdateSystemPortalResponses];
 
-export type GetSystemTenantOptionsData = {
+export type TenantOptionsGetSystemTenantOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6012,7 +6363,7 @@ export type GetSystemTenantOptionsData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options';
 };
 
-export type GetSystemTenantOptionsErrors = {
+export type TenantOptionsGetSystemTenantOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -6023,18 +6374,18 @@ export type GetSystemTenantOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemTenantOptionsError = GetSystemTenantOptionsErrors[keyof GetSystemTenantOptionsErrors];
+export type TenantOptionsGetSystemTenantOptionsError = TenantOptionsGetSystemTenantOptionsErrors[keyof TenantOptionsGetSystemTenantOptionsErrors];
 
-export type GetSystemTenantOptionsResponses = {
+export type TenantOptionsGetSystemTenantOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetSystemTenantOptionsResponse = GetSystemTenantOptionsResponses[keyof GetSystemTenantOptionsResponses];
+export type TenantOptionsGetSystemTenantOptionsResponse = TenantOptionsGetSystemTenantOptionsResponses[keyof TenantOptionsGetSystemTenantOptionsResponses];
 
-export type CreateSystemTenantOptionData = {
+export type TenantOptionsCreateSystemTenantOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6050,7 +6401,7 @@ export type CreateSystemTenantOptionData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options';
 };
 
-export type CreateSystemTenantOptionErrors = {
+export type TenantOptionsCreateSystemTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6061,18 +6412,18 @@ export type CreateSystemTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSystemTenantOptionError = CreateSystemTenantOptionErrors[keyof CreateSystemTenantOptionErrors];
+export type TenantOptionsCreateSystemTenantOptionError = TenantOptionsCreateSystemTenantOptionErrors[keyof TenantOptionsCreateSystemTenantOptionErrors];
 
-export type CreateSystemTenantOptionResponses = {
+export type TenantOptionsCreateSystemTenantOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSystemTenantOptionResponse = CreateSystemTenantOptionResponses[keyof CreateSystemTenantOptionResponses];
+export type TenantOptionsCreateSystemTenantOptionResponse = TenantOptionsCreateSystemTenantOptionResponses[keyof TenantOptionsCreateSystemTenantOptionResponses];
 
-export type GetSystemTenantOptionsCountData = {
+export type TenantOptionsGetSystemTenantOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6087,7 +6438,7 @@ export type GetSystemTenantOptionsCountData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options/Count';
 };
 
-export type GetSystemTenantOptionsCountErrors = {
+export type TenantOptionsGetSystemTenantOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6098,18 +6449,18 @@ export type GetSystemTenantOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemTenantOptionsCountError = GetSystemTenantOptionsCountErrors[keyof GetSystemTenantOptionsCountErrors];
+export type TenantOptionsGetSystemTenantOptionsCountError = TenantOptionsGetSystemTenantOptionsCountErrors[keyof TenantOptionsGetSystemTenantOptionsCountErrors];
 
-export type GetSystemTenantOptionsCountResponses = {
+export type TenantOptionsGetSystemTenantOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemTenantOptionsCountResponse = GetSystemTenantOptionsCountResponses[keyof GetSystemTenantOptionsCountResponses];
+export type TenantOptionsGetSystemTenantOptionsCountResponse = TenantOptionsGetSystemTenantOptionsCountResponses[keyof TenantOptionsGetSystemTenantOptionsCountResponses];
 
-export type DeleteSystemTenantOptionData = {
+export type TenantOptionsDeleteSystemTenantOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6124,7 +6475,7 @@ export type DeleteSystemTenantOptionData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
 };
 
-export type DeleteSystemTenantOptionErrors = {
+export type TenantOptionsDeleteSystemTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6135,18 +6486,18 @@ export type DeleteSystemTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemTenantOptionError = DeleteSystemTenantOptionErrors[keyof DeleteSystemTenantOptionErrors];
+export type TenantOptionsDeleteSystemTenantOptionError = TenantOptionsDeleteSystemTenantOptionErrors[keyof TenantOptionsDeleteSystemTenantOptionErrors];
 
-export type DeleteSystemTenantOptionResponses = {
+export type TenantOptionsDeleteSystemTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemTenantOptionResponse = DeleteSystemTenantOptionResponses[keyof DeleteSystemTenantOptionResponses];
+export type TenantOptionsDeleteSystemTenantOptionResponse = TenantOptionsDeleteSystemTenantOptionResponses[keyof TenantOptionsDeleteSystemTenantOptionResponses];
 
-export type GetSystemTenantOptionByIdData = {
+export type TenantOptionsGetSystemTenantOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6161,7 +6512,7 @@ export type GetSystemTenantOptionByIdData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
 };
 
-export type GetSystemTenantOptionByIdErrors = {
+export type TenantOptionsGetSystemTenantOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6172,18 +6523,18 @@ export type GetSystemTenantOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemTenantOptionByIdError = GetSystemTenantOptionByIdErrors[keyof GetSystemTenantOptionByIdErrors];
+export type TenantOptionsGetSystemTenantOptionByIdError = TenantOptionsGetSystemTenantOptionByIdErrors[keyof TenantOptionsGetSystemTenantOptionByIdErrors];
 
-export type GetSystemTenantOptionByIdResponses = {
+export type TenantOptionsGetSystemTenantOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetSystemTenantOptionByIdResponse = GetSystemTenantOptionByIdResponses[keyof GetSystemTenantOptionByIdResponses];
+export type TenantOptionsGetSystemTenantOptionByIdResponse = TenantOptionsGetSystemTenantOptionByIdResponses[keyof TenantOptionsGetSystemTenantOptionByIdResponses];
 
-export type PatchSystemTenantOptionData = {
+export type TenantOptionsPatchSystemTenantOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6198,7 +6549,7 @@ export type PatchSystemTenantOptionData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
 };
 
-export type PatchSystemTenantOptionErrors = {
+export type TenantOptionsPatchSystemTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6209,18 +6560,18 @@ export type PatchSystemTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSystemTenantOptionError = PatchSystemTenantOptionErrors[keyof PatchSystemTenantOptionErrors];
+export type TenantOptionsPatchSystemTenantOptionError = TenantOptionsPatchSystemTenantOptionErrors[keyof TenantOptionsPatchSystemTenantOptionErrors];
 
-export type PatchSystemTenantOptionResponses = {
+export type TenantOptionsPatchSystemTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSystemTenantOptionResponse = PatchSystemTenantOptionResponses[keyof PatchSystemTenantOptionResponses];
+export type TenantOptionsPatchSystemTenantOptionResponse = TenantOptionsPatchSystemTenantOptionResponses[keyof TenantOptionsPatchSystemTenantOptionResponses];
 
-export type UpdateSystemTenantOptionData = {
+export type TenantOptionsUpdateSystemTenantOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6235,7 +6586,7 @@ export type UpdateSystemTenantOptionData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
 };
 
-export type UpdateSystemTenantOptionErrors = {
+export type TenantOptionsUpdateSystemTenantOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6246,18 +6597,18 @@ export type UpdateSystemTenantOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSystemTenantOptionError = UpdateSystemTenantOptionErrors[keyof UpdateSystemTenantOptionErrors];
+export type TenantOptionsUpdateSystemTenantOptionError = TenantOptionsUpdateSystemTenantOptionErrors[keyof TenantOptionsUpdateSystemTenantOptionErrors];
 
-export type UpdateSystemTenantOptionResponses = {
+export type TenantOptionsUpdateSystemTenantOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSystemTenantOptionResponse = UpdateSystemTenantOptionResponses[keyof UpdateSystemTenantOptionResponses];
+export type TenantOptionsUpdateSystemTenantOptionResponse = TenantOptionsUpdateSystemTenantOptionResponses[keyof TenantOptionsUpdateSystemTenantOptionResponses];
 
-export type GetAllTenantsData = {
+export type TenantsGetAllTenantsData = {
     body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6269,7 +6620,7 @@ export type GetAllTenantsData = {
     url: '/api/v2/SystemService/Tenants';
 };
 
-export type GetAllTenantsErrors = {
+export type TenantsGetAllTenantsErrors = {
     /**
      * Unauthorized
      */
@@ -6280,18 +6631,18 @@ export type GetAllTenantsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAllTenantsError = GetAllTenantsErrors[keyof GetAllTenantsErrors];
+export type TenantsGetAllTenantsError = TenantsGetAllTenantsErrors[keyof TenantsGetAllTenantsErrors];
 
-export type GetAllTenantsResponses = {
+export type TenantsGetAllTenantsResponses = {
     /**
      * OK
      */
     200: TenantDtoListEnvelopeReadable;
 };
 
-export type GetAllTenantsResponse = GetAllTenantsResponses[keyof GetAllTenantsResponses];
+export type TenantsGetAllTenantsResponse = TenantsGetAllTenantsResponses[keyof TenantsGetAllTenantsResponses];
 
-export type CreateTenantData = {
+export type TenantsCreateTenantData = {
     body?: TenantCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6303,7 +6654,7 @@ export type CreateTenantData = {
     url: '/api/v2/SystemService/Tenants';
 };
 
-export type CreateTenantErrors = {
+export type TenantsCreateTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6314,18 +6665,18 @@ export type CreateTenantErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTenantError = CreateTenantErrors[keyof CreateTenantErrors];
+export type TenantsCreateTenantError = TenantsCreateTenantErrors[keyof TenantsCreateTenantErrors];
 
-export type CreateTenantResponses = {
+export type TenantsCreateTenantResponses = {
     /**
      * Created
      */
     201: TenantDtoEnvelopeReadable;
 };
 
-export type CreateTenantResponse = CreateTenantResponses[keyof CreateTenantResponses];
+export type TenantsCreateTenantResponse = TenantsCreateTenantResponses[keyof TenantsCreateTenantResponses];
 
-export type GetTenantsCountData = {
+export type TenantsGetTenantsCountData = {
     body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6337,7 +6688,7 @@ export type GetTenantsCountData = {
     url: '/api/v2/SystemService/Tenants/Count';
 };
 
-export type GetTenantsCountErrors = {
+export type TenantsGetTenantsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6348,18 +6699,18 @@ export type GetTenantsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantsCountError = GetTenantsCountErrors[keyof GetTenantsCountErrors];
+export type TenantsGetTenantsCountError = TenantsGetTenantsCountErrors[keyof TenantsGetTenantsCountErrors];
 
-export type GetTenantsCountResponses = {
+export type TenantsGetTenantsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTenantsCountResponse = GetTenantsCountResponses[keyof GetTenantsCountResponses];
+export type TenantsGetTenantsCountResponse = TenantsGetTenantsCountResponses[keyof TenantsGetTenantsCountResponses];
 
-export type GetAllExtendedTenantsData = {
+export type TenantsGetAllExtendedTenantsData = {
     body?: ExtendedTenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6371,7 +6722,7 @@ export type GetAllExtendedTenantsData = {
     url: '/api/v2/SystemService/Tenants/Extended';
 };
 
-export type GetAllExtendedTenantsErrors = {
+export type TenantsGetAllExtendedTenantsErrors = {
     /**
      * Unauthorized
      */
@@ -6382,18 +6733,18 @@ export type GetAllExtendedTenantsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAllExtendedTenantsError = GetAllExtendedTenantsErrors[keyof GetAllExtendedTenantsErrors];
+export type TenantsGetAllExtendedTenantsError = TenantsGetAllExtendedTenantsErrors[keyof TenantsGetAllExtendedTenantsErrors];
 
-export type GetAllExtendedTenantsResponses = {
+export type TenantsGetAllExtendedTenantsResponses = {
     /**
      * OK
      */
     200: ExtendedTenantDtoListEnvelopeReadable;
 };
 
-export type GetAllExtendedTenantsResponse = GetAllExtendedTenantsResponses[keyof GetAllExtendedTenantsResponses];
+export type TenantsGetAllExtendedTenantsResponse = TenantsGetAllExtendedTenantsResponses[keyof TenantsGetAllExtendedTenantsResponses];
 
-export type GetExtendedTenantsCountData = {
+export type TenantsGetExtendedTenantsCountData = {
     body?: ExtendedTenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6405,7 +6756,7 @@ export type GetExtendedTenantsCountData = {
     url: '/api/v2/SystemService/Tenants/Extended/Count';
 };
 
-export type GetExtendedTenantsCountErrors = {
+export type TenantsGetExtendedTenantsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6416,18 +6767,18 @@ export type GetExtendedTenantsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedTenantsCountError = GetExtendedTenantsCountErrors[keyof GetExtendedTenantsCountErrors];
+export type TenantsGetExtendedTenantsCountError = TenantsGetExtendedTenantsCountErrors[keyof TenantsGetExtendedTenantsCountErrors];
 
-export type GetExtendedTenantsCountResponses = {
+export type TenantsGetExtendedTenantsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetExtendedTenantsCountResponse = GetExtendedTenantsCountResponses[keyof GetExtendedTenantsCountResponses];
+export type TenantsGetExtendedTenantsCountResponse = TenantsGetExtendedTenantsCountResponses[keyof TenantsGetExtendedTenantsCountResponses];
 
-export type DeleteTenantData = {
+export type TenantsDeleteTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6441,7 +6792,7 @@ export type DeleteTenantData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}';
 };
 
-export type DeleteTenantErrors = {
+export type TenantsDeleteTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6452,18 +6803,18 @@ export type DeleteTenantErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTenantError = DeleteTenantErrors[keyof DeleteTenantErrors];
+export type TenantsDeleteTenantError = TenantsDeleteTenantErrors[keyof TenantsDeleteTenantErrors];
 
-export type DeleteTenantResponses = {
+export type TenantsDeleteTenantResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteTenantResponse = DeleteTenantResponses[keyof DeleteTenantResponses];
+export type TenantsDeleteTenantResponse = TenantsDeleteTenantResponses[keyof TenantsDeleteTenantResponses];
 
-export type GetTenantData = {
+export type TenantsGetTenantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6477,7 +6828,7 @@ export type GetTenantData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}';
 };
 
-export type GetTenantErrors = {
+export type TenantsGetTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6488,18 +6839,18 @@ export type GetTenantErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantError = GetTenantErrors[keyof GetTenantErrors];
+export type TenantsGetTenantError = TenantsGetTenantErrors[keyof TenantsGetTenantErrors];
 
-export type GetTenantResponses = {
+export type TenantsGetTenantResponses = {
     /**
      * OK
      */
     200: TenantDtoEnvelopeReadable;
 };
 
-export type GetTenantResponse = GetTenantResponses[keyof GetTenantResponses];
+export type TenantsGetTenantResponse = TenantsGetTenantResponses[keyof TenantsGetTenantResponses];
 
-export type PatchTenantData = {
+export type TenantsPatchTenantData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6513,7 +6864,7 @@ export type PatchTenantData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}';
 };
 
-export type PatchTenantErrors = {
+export type TenantsPatchTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6524,18 +6875,18 @@ export type PatchTenantErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTenantError = PatchTenantErrors[keyof PatchTenantErrors];
+export type TenantsPatchTenantError = TenantsPatchTenantErrors[keyof TenantsPatchTenantErrors];
 
-export type PatchTenantResponses = {
+export type TenantsPatchTenantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTenantResponse = PatchTenantResponses[keyof PatchTenantResponses];
+export type TenantsPatchTenantResponse = TenantsPatchTenantResponses[keyof TenantsPatchTenantResponses];
 
-export type UpdateTenantData = {
+export type TenantsUpdateTenantData = {
     body?: TenantUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6549,7 +6900,7 @@ export type UpdateTenantData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}';
 };
 
-export type UpdateTenantErrors = {
+export type TenantsUpdateTenantErrors = {
     /**
      * Unauthorized
      */
@@ -6560,18 +6911,18 @@ export type UpdateTenantErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantError = UpdateTenantErrors[keyof UpdateTenantErrors];
+export type TenantsUpdateTenantError = TenantsUpdateTenantErrors[keyof TenantsUpdateTenantErrors];
 
-export type UpdateTenantResponses = {
+export type TenantsUpdateTenantResponses = {
     /**
      * OK
      */
     200: TenantDtoEnvelopeReadable;
 };
 
-export type UpdateTenantResponse = UpdateTenantResponses[keyof UpdateTenantResponses];
+export type TenantsUpdateTenantResponse = TenantsUpdateTenantResponses[keyof TenantsUpdateTenantResponses];
 
-export type GetTenantModuleGrantsData = {
+export type TenantsGetTenantModuleGrantsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6585,7 +6936,7 @@ export type GetTenantModuleGrantsData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants';
 };
 
-export type GetTenantModuleGrantsErrors = {
+export type TenantsGetTenantModuleGrantsErrors = {
     /**
      * Unauthorized
      */
@@ -6596,18 +6947,18 @@ export type GetTenantModuleGrantsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantModuleGrantsError = GetTenantModuleGrantsErrors[keyof GetTenantModuleGrantsErrors];
+export type TenantsGetTenantModuleGrantsError = TenantsGetTenantModuleGrantsErrors[keyof TenantsGetTenantModuleGrantsErrors];
 
-export type GetTenantModuleGrantsResponses = {
+export type TenantsGetTenantModuleGrantsResponses = {
     /**
      * OK
      */
     200: ModuleGrantDtoListEnvelopeReadable;
 };
 
-export type GetTenantModuleGrantsResponse = GetTenantModuleGrantsResponses[keyof GetTenantModuleGrantsResponses];
+export type TenantsGetTenantModuleGrantsResponse = TenantsGetTenantModuleGrantsResponses[keyof TenantsGetTenantModuleGrantsResponses];
 
-export type SetTenantModuleGrantsData = {
+export type TenantsSetTenantModuleGrantsData = {
     body?: Array<ModuleGrantDto>;
     headers?: {
         'x-api-version'?: string;
@@ -6621,7 +6972,7 @@ export type SetTenantModuleGrantsData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants';
 };
 
-export type SetTenantModuleGrantsErrors = {
+export type TenantsSetTenantModuleGrantsErrors = {
     /**
      * Unauthorized
      */
@@ -6632,18 +6983,18 @@ export type SetTenantModuleGrantsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SetTenantModuleGrantsError = SetTenantModuleGrantsErrors[keyof SetTenantModuleGrantsErrors];
+export type TenantsSetTenantModuleGrantsError = TenantsSetTenantModuleGrantsErrors[keyof TenantsSetTenantModuleGrantsErrors];
 
-export type SetTenantModuleGrantsResponses = {
+export type TenantsSetTenantModuleGrantsResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SetTenantModuleGrantsResponse = SetTenantModuleGrantsResponses[keyof SetTenantModuleGrantsResponses];
+export type TenantsSetTenantModuleGrantsResponse = TenantsSetTenantModuleGrantsResponses[keyof TenantsSetTenantModuleGrantsResponses];
 
-export type AdminPreviewTenantEmailData = {
+export type TenantsAdminPreviewTenantEmailData = {
     body?: EmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -6657,14 +7008,14 @@ export type AdminPreviewTenantEmailData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview';
 };
 
-export type AdminPreviewTenantEmailResponses = {
+export type TenantsAdminPreviewTenantEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type AdminSendTenantEmailData = {
+export type TenantsAdminSendTenantEmailData = {
     body?: EmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -6678,14 +7029,14 @@ export type AdminSendTenantEmailData = {
     url: '/api/v2/SystemService/Tenants/{tenantId}/Emails/Send';
 };
 
-export type AdminSendTenantEmailResponses = {
+export type TenantsAdminSendTenantEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetSystemUserOptionsData = {
+export type UserOptionsGetSystemUserOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6700,7 +7051,7 @@ export type GetSystemUserOptionsData = {
     url: '/api/v2/SystemService/Users/{userId}/Options';
 };
 
-export type GetSystemUserOptionsErrors = {
+export type UserOptionsGetSystemUserOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -6711,18 +7062,18 @@ export type GetSystemUserOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemUserOptionsError = GetSystemUserOptionsErrors[keyof GetSystemUserOptionsErrors];
+export type UserOptionsGetSystemUserOptionsError = UserOptionsGetSystemUserOptionsErrors[keyof UserOptionsGetSystemUserOptionsErrors];
 
-export type GetSystemUserOptionsResponses = {
+export type UserOptionsGetSystemUserOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetSystemUserOptionsResponse = GetSystemUserOptionsResponses[keyof GetSystemUserOptionsResponses];
+export type UserOptionsGetSystemUserOptionsResponse = UserOptionsGetSystemUserOptionsResponses[keyof UserOptionsGetSystemUserOptionsResponses];
 
-export type CreateSystemUserOptionData = {
+export type UserOptionsCreateSystemUserOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6738,7 +7089,7 @@ export type CreateSystemUserOptionData = {
     url: '/api/v2/SystemService/Users/{userId}/Options';
 };
 
-export type CreateSystemUserOptionErrors = {
+export type UserOptionsCreateSystemUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6749,18 +7100,18 @@ export type CreateSystemUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSystemUserOptionError = CreateSystemUserOptionErrors[keyof CreateSystemUserOptionErrors];
+export type UserOptionsCreateSystemUserOptionError = UserOptionsCreateSystemUserOptionErrors[keyof UserOptionsCreateSystemUserOptionErrors];
 
-export type CreateSystemUserOptionResponses = {
+export type UserOptionsCreateSystemUserOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSystemUserOptionResponse = CreateSystemUserOptionResponses[keyof CreateSystemUserOptionResponses];
+export type UserOptionsCreateSystemUserOptionResponse = UserOptionsCreateSystemUserOptionResponses[keyof UserOptionsCreateSystemUserOptionResponses];
 
-export type GetSystemUserOptionsCountData = {
+export type UserOptionsGetSystemUserOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6775,7 +7126,7 @@ export type GetSystemUserOptionsCountData = {
     url: '/api/v2/SystemService/Users/{userId}/Options/Count';
 };
 
-export type GetSystemUserOptionsCountErrors = {
+export type UserOptionsGetSystemUserOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6786,18 +7137,18 @@ export type GetSystemUserOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemUserOptionsCountError = GetSystemUserOptionsCountErrors[keyof GetSystemUserOptionsCountErrors];
+export type UserOptionsGetSystemUserOptionsCountError = UserOptionsGetSystemUserOptionsCountErrors[keyof UserOptionsGetSystemUserOptionsCountErrors];
 
-export type GetSystemUserOptionsCountResponses = {
+export type UserOptionsGetSystemUserOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSystemUserOptionsCountResponse = GetSystemUserOptionsCountResponses[keyof GetSystemUserOptionsCountResponses];
+export type UserOptionsGetSystemUserOptionsCountResponse = UserOptionsGetSystemUserOptionsCountResponses[keyof UserOptionsGetSystemUserOptionsCountResponses];
 
-export type DeleteSystemUserOptionData = {
+export type UserOptionsDeleteSystemUserOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6812,7 +7163,7 @@ export type DeleteSystemUserOptionData = {
     url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
 };
 
-export type DeleteSystemUserOptionErrors = {
+export type UserOptionsDeleteSystemUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6823,18 +7174,18 @@ export type DeleteSystemUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSystemUserOptionError = DeleteSystemUserOptionErrors[keyof DeleteSystemUserOptionErrors];
+export type UserOptionsDeleteSystemUserOptionError = UserOptionsDeleteSystemUserOptionErrors[keyof UserOptionsDeleteSystemUserOptionErrors];
 
-export type DeleteSystemUserOptionResponses = {
+export type UserOptionsDeleteSystemUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSystemUserOptionResponse = DeleteSystemUserOptionResponses[keyof DeleteSystemUserOptionResponses];
+export type UserOptionsDeleteSystemUserOptionResponse = UserOptionsDeleteSystemUserOptionResponses[keyof UserOptionsDeleteSystemUserOptionResponses];
 
-export type GetSystemUserOptionByIdData = {
+export type UserOptionsGetSystemUserOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6849,7 +7200,7 @@ export type GetSystemUserOptionByIdData = {
     url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
 };
 
-export type GetSystemUserOptionByIdErrors = {
+export type UserOptionsGetSystemUserOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6860,18 +7211,18 @@ export type GetSystemUserOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSystemUserOptionByIdError = GetSystemUserOptionByIdErrors[keyof GetSystemUserOptionByIdErrors];
+export type UserOptionsGetSystemUserOptionByIdError = UserOptionsGetSystemUserOptionByIdErrors[keyof UserOptionsGetSystemUserOptionByIdErrors];
 
-export type GetSystemUserOptionByIdResponses = {
+export type UserOptionsGetSystemUserOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetSystemUserOptionByIdResponse = GetSystemUserOptionByIdResponses[keyof GetSystemUserOptionByIdResponses];
+export type UserOptionsGetSystemUserOptionByIdResponse = UserOptionsGetSystemUserOptionByIdResponses[keyof UserOptionsGetSystemUserOptionByIdResponses];
 
-export type PatchSystemUserOptionData = {
+export type UserOptionsPatchSystemUserOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6886,7 +7237,7 @@ export type PatchSystemUserOptionData = {
     url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
 };
 
-export type PatchSystemUserOptionErrors = {
+export type UserOptionsPatchSystemUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6897,18 +7248,18 @@ export type PatchSystemUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSystemUserOptionError = PatchSystemUserOptionErrors[keyof PatchSystemUserOptionErrors];
+export type UserOptionsPatchSystemUserOptionError = UserOptionsPatchSystemUserOptionErrors[keyof UserOptionsPatchSystemUserOptionErrors];
 
-export type PatchSystemUserOptionResponses = {
+export type UserOptionsPatchSystemUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSystemUserOptionResponse = PatchSystemUserOptionResponses[keyof PatchSystemUserOptionResponses];
+export type UserOptionsPatchSystemUserOptionResponse = UserOptionsPatchSystemUserOptionResponses[keyof UserOptionsPatchSystemUserOptionResponses];
 
-export type UpdateSystemUserOptionData = {
+export type UserOptionsUpdateSystemUserOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6923,7 +7274,7 @@ export type UpdateSystemUserOptionData = {
     url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
 };
 
-export type UpdateSystemUserOptionErrors = {
+export type UserOptionsUpdateSystemUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -6934,18 +7285,18 @@ export type UpdateSystemUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSystemUserOptionError = UpdateSystemUserOptionErrors[keyof UpdateSystemUserOptionErrors];
+export type UserOptionsUpdateSystemUserOptionError = UserOptionsUpdateSystemUserOptionErrors[keyof UserOptionsUpdateSystemUserOptionErrors];
 
-export type UpdateSystemUserOptionResponses = {
+export type UserOptionsUpdateSystemUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSystemUserOptionResponse = UpdateSystemUserOptionResponses[keyof UpdateSystemUserOptionResponses];
+export type UserOptionsUpdateSystemUserOptionResponse = UserOptionsUpdateSystemUserOptionResponses[keyof UserOptionsUpdateSystemUserOptionResponses];
 
-export type GetUsersAsyncData = {
+export type UsersGetUsersData = {
     body?: UserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6957,7 +7308,7 @@ export type GetUsersAsyncData = {
     url: '/api/v2/SystemService/Users';
 };
 
-export type GetUsersAsyncErrors = {
+export type UsersGetUsersErrors = {
     /**
      * Unauthorized
      */
@@ -6968,18 +7319,18 @@ export type GetUsersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUsersAsyncError = GetUsersAsyncErrors[keyof GetUsersAsyncErrors];
+export type UsersGetUsersError = UsersGetUsersErrors[keyof UsersGetUsersErrors];
 
-export type GetUsersAsyncResponses = {
+export type UsersGetUsersResponses = {
     /**
      * OK
      */
     200: UserDtoListEnvelopeReadable;
 };
 
-export type GetUsersAsyncResponse = GetUsersAsyncResponses[keyof GetUsersAsyncResponses];
+export type UsersGetUsersResponse = UsersGetUsersResponses[keyof UsersGetUsersResponses];
 
-export type CreateAccountHolderAsyncData = {
+export type UsersCreateAccountHolderData = {
     body?: UserCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6991,7 +7342,7 @@ export type CreateAccountHolderAsyncData = {
     url: '/api/v2/SystemService/Users';
 };
 
-export type CreateAccountHolderAsyncErrors = {
+export type UsersCreateAccountHolderErrors = {
     /**
      * Unauthorized
      */
@@ -7002,18 +7353,18 @@ export type CreateAccountHolderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAccountHolderAsyncError = CreateAccountHolderAsyncErrors[keyof CreateAccountHolderAsyncErrors];
+export type UsersCreateAccountHolderError = UsersCreateAccountHolderErrors[keyof UsersCreateAccountHolderErrors];
 
-export type CreateAccountHolderAsyncResponses = {
+export type UsersCreateAccountHolderResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAccountHolderAsyncResponse = CreateAccountHolderAsyncResponses[keyof CreateAccountHolderAsyncResponses];
+export type UsersCreateAccountHolderResponse = UsersCreateAccountHolderResponses[keyof UsersCreateAccountHolderResponses];
 
-export type GetUsersCountAsyncData = {
+export type UsersGetUsersCountData = {
     body?: UserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7025,7 +7376,7 @@ export type GetUsersCountAsyncData = {
     url: '/api/v2/SystemService/Users/Count';
 };
 
-export type GetUsersCountAsyncErrors = {
+export type UsersGetUsersCountErrors = {
     /**
      * Unauthorized
      */
@@ -7036,18 +7387,18 @@ export type GetUsersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUsersCountAsyncError = GetUsersCountAsyncErrors[keyof GetUsersCountAsyncErrors];
+export type UsersGetUsersCountError = UsersGetUsersCountErrors[keyof UsersGetUsersCountErrors];
 
-export type GetUsersCountAsyncResponses = {
+export type UsersGetUsersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetUsersCountAsyncResponse = GetUsersCountAsyncResponses[keyof GetUsersCountAsyncResponses];
+export type UsersGetUsersCountResponse = UsersGetUsersCountResponses[keyof UsersGetUsersCountResponses];
 
-export type GetExtendedUsersAsyncData = {
+export type UsersGetExtendedUsersData = {
     body?: ExtendedUserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7059,7 +7410,7 @@ export type GetExtendedUsersAsyncData = {
     url: '/api/v2/SystemService/Users/Extended';
 };
 
-export type GetExtendedUsersAsyncErrors = {
+export type UsersGetExtendedUsersErrors = {
     /**
      * Unauthorized
      */
@@ -7070,18 +7421,18 @@ export type GetExtendedUsersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedUsersAsyncError = GetExtendedUsersAsyncErrors[keyof GetExtendedUsersAsyncErrors];
+export type UsersGetExtendedUsersError = UsersGetExtendedUsersErrors[keyof UsersGetExtendedUsersErrors];
 
-export type GetExtendedUsersAsyncResponses = {
+export type UsersGetExtendedUsersResponses = {
     /**
      * OK
      */
     200: ExtendedUserDtoListEnvelopeReadable;
 };
 
-export type GetExtendedUsersAsyncResponse = GetExtendedUsersAsyncResponses[keyof GetExtendedUsersAsyncResponses];
+export type UsersGetExtendedUsersResponse = UsersGetExtendedUsersResponses[keyof UsersGetExtendedUsersResponses];
 
-export type GetExtendedUsersCountAsyncData = {
+export type UsersGetExtendedUsersCountData = {
     body?: ExtendedUserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7093,7 +7444,7 @@ export type GetExtendedUsersCountAsyncData = {
     url: '/api/v2/SystemService/Users/Extended/Count';
 };
 
-export type GetExtendedUsersCountAsyncErrors = {
+export type UsersGetExtendedUsersCountErrors = {
     /**
      * Unauthorized
      */
@@ -7104,18 +7455,18 @@ export type GetExtendedUsersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedUsersCountAsyncError = GetExtendedUsersCountAsyncErrors[keyof GetExtendedUsersCountAsyncErrors];
+export type UsersGetExtendedUsersCountError = UsersGetExtendedUsersCountErrors[keyof UsersGetExtendedUsersCountErrors];
 
-export type GetExtendedUsersCountAsyncResponses = {
+export type UsersGetExtendedUsersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetExtendedUsersCountAsyncResponse = GetExtendedUsersCountAsyncResponses[keyof GetExtendedUsersCountAsyncResponses];
+export type UsersGetExtendedUsersCountResponse = UsersGetExtendedUsersCountResponses[keyof UsersGetExtendedUsersCountResponses];
 
-export type DeleteAccountHolderAsyncData = {
+export type UsersDeleteAccountHolderData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7129,7 +7480,7 @@ export type DeleteAccountHolderAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}';
 };
 
-export type DeleteAccountHolderAsyncErrors = {
+export type UsersDeleteAccountHolderErrors = {
     /**
      * Unauthorized
      */
@@ -7140,18 +7491,18 @@ export type DeleteAccountHolderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAccountHolderAsyncError = DeleteAccountHolderAsyncErrors[keyof DeleteAccountHolderAsyncErrors];
+export type UsersDeleteAccountHolderError = UsersDeleteAccountHolderErrors[keyof UsersDeleteAccountHolderErrors];
 
-export type DeleteAccountHolderAsyncResponses = {
+export type UsersDeleteAccountHolderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAccountHolderAsyncResponse = DeleteAccountHolderAsyncResponses[keyof DeleteAccountHolderAsyncResponses];
+export type UsersDeleteAccountHolderResponse = UsersDeleteAccountHolderResponses[keyof UsersDeleteAccountHolderResponses];
 
-export type GetUserAsyncData = {
+export type UsersGetUserData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7165,7 +7516,7 @@ export type GetUserAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}';
 };
 
-export type GetUserAsyncErrors = {
+export type UsersGetUserErrors = {
     /**
      * Unauthorized
      */
@@ -7176,18 +7527,18 @@ export type GetUserAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserAsyncError = GetUserAsyncErrors[keyof GetUserAsyncErrors];
+export type UsersGetUserError = UsersGetUserErrors[keyof UsersGetUserErrors];
 
-export type GetUserAsyncResponses = {
+export type UsersGetUserResponses = {
     /**
      * OK
      */
     200: UserDtoEnvelopeReadable;
 };
 
-export type GetUserAsyncResponse = GetUserAsyncResponses[keyof GetUserAsyncResponses];
+export type UsersGetUserResponse = UsersGetUserResponses[keyof UsersGetUserResponses];
 
-export type PatchAccountHolderAsyncData = {
+export type UsersPatchAccountHolderData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7201,7 +7552,7 @@ export type PatchAccountHolderAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}';
 };
 
-export type PatchAccountHolderAsyncErrors = {
+export type UsersPatchAccountHolderErrors = {
     /**
      * Unauthorized
      */
@@ -7212,18 +7563,18 @@ export type PatchAccountHolderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchAccountHolderAsyncError = PatchAccountHolderAsyncErrors[keyof PatchAccountHolderAsyncErrors];
+export type UsersPatchAccountHolderError = UsersPatchAccountHolderErrors[keyof UsersPatchAccountHolderErrors];
 
-export type PatchAccountHolderAsyncResponses = {
+export type UsersPatchAccountHolderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAccountHolderAsyncResponse = PatchAccountHolderAsyncResponses[keyof PatchAccountHolderAsyncResponses];
+export type UsersPatchAccountHolderResponse = UsersPatchAccountHolderResponses[keyof UsersPatchAccountHolderResponses];
 
-export type UpdateAccountHolderAsyncData = {
+export type UsersUpdateAccountHolderData = {
     body?: UserUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7237,7 +7588,7 @@ export type UpdateAccountHolderAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}';
 };
 
-export type UpdateAccountHolderAsyncErrors = {
+export type UsersUpdateAccountHolderErrors = {
     /**
      * Unauthorized
      */
@@ -7248,18 +7599,18 @@ export type UpdateAccountHolderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountHolderAsyncError = UpdateAccountHolderAsyncErrors[keyof UpdateAccountHolderAsyncErrors];
+export type UsersUpdateAccountHolderError = UsersUpdateAccountHolderErrors[keyof UsersUpdateAccountHolderErrors];
 
-export type UpdateAccountHolderAsyncResponses = {
+export type UsersUpdateAccountHolderResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAccountHolderAsyncResponse = UpdateAccountHolderAsyncResponses[keyof UpdateAccountHolderAsyncResponses];
+export type UsersUpdateAccountHolderResponse = UsersUpdateAccountHolderResponses[keyof UsersUpdateAccountHolderResponses];
 
-export type GetExtendedAccountHolderAsyncData = {
+export type UsersGetExtendedAccountHolderData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7273,7 +7624,7 @@ export type GetExtendedAccountHolderAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}/Extended';
 };
 
-export type GetExtendedAccountHolderAsyncErrors = {
+export type UsersGetExtendedAccountHolderErrors = {
     /**
      * Unauthorized
      */
@@ -7284,18 +7635,18 @@ export type GetExtendedAccountHolderAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedAccountHolderAsyncError = GetExtendedAccountHolderAsyncErrors[keyof GetExtendedAccountHolderAsyncErrors];
+export type UsersGetExtendedAccountHolderError = UsersGetExtendedAccountHolderErrors[keyof UsersGetExtendedAccountHolderErrors];
 
-export type GetExtendedAccountHolderAsyncResponses = {
+export type UsersGetExtendedAccountHolderResponses = {
     /**
      * OK
      */
     200: ExtendedUserDtoEnvelopeReadable;
 };
 
-export type GetExtendedAccountHolderAsyncResponse = GetExtendedAccountHolderAsyncResponses[keyof GetExtendedAccountHolderAsyncResponses];
+export type UsersGetExtendedAccountHolderResponse = UsersGetExtendedAccountHolderResponses[keyof UsersGetExtendedAccountHolderResponses];
 
-export type GetUserAdminDetailAsyncData = {
+export type UsersGetUserAdminDetailData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7310,7 +7661,7 @@ export type GetUserAdminDetailAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}/AdminDetail';
 };
 
-export type GetUserAdminDetailAsyncErrors = {
+export type UsersGetUserAdminDetailErrors = {
     /**
      * Unauthorized
      */
@@ -7321,18 +7672,18 @@ export type GetUserAdminDetailAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserAdminDetailAsyncError = GetUserAdminDetailAsyncErrors[keyof GetUserAdminDetailAsyncErrors];
+export type UsersGetUserAdminDetailError = UsersGetUserAdminDetailErrors[keyof UsersGetUserAdminDetailErrors];
 
-export type GetUserAdminDetailAsyncResponses = {
+export type UsersGetUserAdminDetailResponses = {
     /**
      * OK
      */
     200: UserAdminDetailDtoEnvelopeReadable;
 };
 
-export type GetUserAdminDetailAsyncResponse = GetUserAdminDetailAsyncResponses[keyof GetUserAdminDetailAsyncResponses];
+export type UsersGetUserAdminDetailResponse = UsersGetUserAdminDetailResponses[keyof UsersGetUserAdminDetailResponses];
 
-export type SetUserPasswordAsyncData = {
+export type UsersSetUserPasswordData = {
     body?: SetUserPasswordDto;
     headers?: {
         'x-api-version'?: string;
@@ -7346,7 +7697,7 @@ export type SetUserPasswordAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}/Password';
 };
 
-export type SetUserPasswordAsyncErrors = {
+export type UsersSetUserPasswordErrors = {
     /**
      * Bad Request
      */
@@ -7361,18 +7712,58 @@ export type SetUserPasswordAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SetUserPasswordAsyncError = SetUserPasswordAsyncErrors[keyof SetUserPasswordAsyncErrors];
+export type UsersSetUserPasswordError = UsersSetUserPasswordErrors[keyof UsersSetUserPasswordErrors];
 
-export type SetUserPasswordAsyncResponses = {
+export type UsersSetUserPasswordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SetUserPasswordAsyncResponse = SetUserPasswordAsyncResponses[keyof SetUserPasswordAsyncResponses];
+export type UsersSetUserPasswordResponse = UsersSetUserPasswordResponses[keyof UsersSetUserPasswordResponses];
 
-export type UpdateAccountHolderAdminProfileAsyncData = {
+export type UsersConfirmUserEmailData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Email/Confirm';
+};
+
+export type UsersConfirmUserEmailErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UsersConfirmUserEmailError = UsersConfirmUserEmailErrors[keyof UsersConfirmUserEmailErrors];
+
+export type UsersConfirmUserEmailResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UsersConfirmUserEmailResponse = UsersConfirmUserEmailResponses[keyof UsersConfirmUserEmailResponses];
+
+export type UsersUpdateAccountHolderAdminProfileData = {
     body?: UserAdminUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7386,7 +7777,7 @@ export type UpdateAccountHolderAdminProfileAsyncData = {
     url: '/api/v2/SystemService/Users/{userId}/AdminProfile';
 };
 
-export type UpdateAccountHolderAdminProfileAsyncErrors = {
+export type UsersUpdateAccountHolderAdminProfileErrors = {
     /**
      * Unauthorized
      */
@@ -7397,18 +7788,18 @@ export type UpdateAccountHolderAdminProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAccountHolderAdminProfileAsyncError = UpdateAccountHolderAdminProfileAsyncErrors[keyof UpdateAccountHolderAdminProfileAsyncErrors];
+export type UsersUpdateAccountHolderAdminProfileError = UsersUpdateAccountHolderAdminProfileErrors[keyof UsersUpdateAccountHolderAdminProfileErrors];
 
-export type UpdateAccountHolderAdminProfileAsyncResponses = {
+export type UsersUpdateAccountHolderAdminProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAccountHolderAdminProfileAsyncResponse = UpdateAccountHolderAdminProfileAsyncResponses[keyof UpdateAccountHolderAdminProfileAsyncResponses];
+export type UsersUpdateAccountHolderAdminProfileResponse = UsersUpdateAccountHolderAdminProfileResponses[keyof UsersUpdateAccountHolderAdminProfileResponses];
 
-export type AdminPreviewUserEmailTemplateData = {
+export type UsersAdminPreviewUserEmailTemplateData = {
     body?: EmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -7422,7 +7813,7 @@ export type AdminPreviewUserEmailTemplateData = {
     url: '/api/v2/SystemService/Users/{userId}/Emails/Preview';
 };
 
-export type AdminPreviewUserEmailTemplateErrors = {
+export type UsersAdminPreviewUserEmailTemplateErrors = {
     /**
      * Unauthorized
      */
@@ -7433,9 +7824,9 @@ export type AdminPreviewUserEmailTemplateErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AdminPreviewUserEmailTemplateError = AdminPreviewUserEmailTemplateErrors[keyof AdminPreviewUserEmailTemplateErrors];
+export type UsersAdminPreviewUserEmailTemplateError = UsersAdminPreviewUserEmailTemplateErrors[keyof UsersAdminPreviewUserEmailTemplateErrors];
 
-export type AdminSendUserEmailData = {
+export type UsersAdminSendUserEmailData = {
     body?: EmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -7449,7 +7840,7 @@ export type AdminSendUserEmailData = {
     url: '/api/v2/SystemService/Users/{userId}/Emails/Send';
 };
 
-export type AdminSendUserEmailErrors = {
+export type UsersAdminSendUserEmailErrors = {
     /**
      * Unauthorized
      */
@@ -7460,16 +7851,16 @@ export type AdminSendUserEmailErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AdminSendUserEmailError = AdminSendUserEmailErrors[keyof AdminSendUserEmailErrors];
+export type UsersAdminSendUserEmailError = UsersAdminSendUserEmailErrors[keyof UsersAdminSendUserEmailErrors];
 
-export type AdminSendUserEmailResponses = {
+export type UsersAdminSendUserEmailResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AdminSendUserEmailResponse = AdminSendUserEmailResponses[keyof AdminSendUserEmailResponses];
+export type UsersAdminSendUserEmailResponse = UsersAdminSendUserEmailResponses[keyof UsersAdminSendUserEmailResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

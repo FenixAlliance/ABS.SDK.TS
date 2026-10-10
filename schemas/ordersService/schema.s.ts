@@ -6,425 +6,177 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/OrdersService/Orders/SubmitCart": {
     /**
      * Submits a cart and creates an order.
      * @description Submits the specified cart and creates an order for the authenticated user.
      */
-    post: operations["SubmitCart"];
+    post: operations["Orders_SubmitCart"];
   };
   "/api/v2/OrdersService/Orders": {
     /**
      * Gets a list of orders for a tenant.
      * @description Retrieves a list of orders for the specified tenant.
      */
-    get: operations["GetOrders"];
+    get: operations["Orders_GetOrders"];
     /**
      * Creates a new order.
      * @description Creates a new order for the specified tenant.
      */
-    post: operations["CreateOrder"];
+    post: operations["Orders_CreateOrder"];
   };
   "/api/v2/OrdersService/Orders/Extended": {
     /**
      * Gets a list of extended orders for a tenant.
      * @description Retrieves a list of extended order details for the specified tenant.
      */
-    get: operations["GetExtendedOrders"];
+    get: operations["Orders_GetExtendedOrders"];
   };
   "/api/v2/OrdersService/Orders/Count": {
     /**
      * Gets the count of orders for a tenant.
      * @description Retrieves the total number of orders for the specified tenant.
      */
-    get: operations["GetOrdersCount"];
+    get: operations["Orders_GetOrdersCount"];
   };
   "/api/v2/OrdersService/Orders/{orderId}": {
     /**
      * Gets a specific order by ID.
      * @description Retrieves the details of a specific order by its ID.
      */
-    get: operations["GetOrder"];
+    get: operations["Orders_GetOrder"];
     /**
      * Updates an existing order.
      * @description Updates the details of an existing order.
      */
-    put: operations["UpdateOrder"];
+    put: operations["Orders_UpdateOrder"];
     /**
      * Deletes an order.
      * @description Deletes the specified order.
      */
-    delete: operations["DeleteOrder"];
+    delete: operations["Orders_DeleteOrder"];
     /**
      * Partially updates an existing order.
      * @description Applies a JSON Patch document to partially update an existing order.
      */
-    patch: operations["PatchOrder"];
+    patch: operations["Orders_PatchOrder"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Calculate": {
     /**
      * Calculates totals for an order.
      * @description Performs calculation of totals and taxes for the specified order.
      */
-    put: operations["CalculateOrder"];
+    put: operations["Orders_CalculateOrder"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines": {
     /**
      * Gets order lines for an order.
      * @description Retrieves the lines (items) for the specified order.
      */
-    get: operations["GetOrderLines"];
+    get: operations["Orders_GetOrderLines"];
     /**
      * Creates a new order line.
      * @description Creates a new line (item) for the specified order.
      */
-    post: operations["CreateOrderLine"];
+    post: operations["Orders_CreateOrderLine"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/Count": {
     /**
      * Gets the count of order lines for an order.
      * @description Retrieves the total number of lines for the specified order.
      */
-    get: operations["GetOrderLinesCount"];
+    get: operations["Orders_GetOrderLinesCount"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}": {
     /**
      * Gets a specific order line.
      * @description Retrieves the details of a specific order line by its ID.
      */
-    get: operations["GetOrderLine"];
+    get: operations["Orders_GetOrderLine"];
     /**
      * Updates an order line.
      * @description Updates the details of a specific order line.
      */
-    put: operations["UpdateOrderLine"];
+    put: operations["Orders_UpdateOrderLine"];
     /**
      * Deletes an order line.
      * @description Deletes the specified order line.
      */
-    delete: operations["DeleteOrderLine"];
+    delete: operations["Orders_DeleteOrderLine"];
     /**
      * Partially updates an order line.
      * @description Applies a JSON Patch document to partially update a specific order line.
      */
-    patch: operations["PatchOrderLine"];
+    patch: operations["Orders_PatchOrderLine"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}/Calculate": {
     /**
      * Calculates totals for an order line.
      * @description Performs calculation of totals and taxes for the specified order line.
      */
-    put: operations["CalculateOrderLine"];
+    put: operations["Orders_CalculateOrderLine"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Emails/Send": {
     /**
      * Send a transactional email for an order.
      * @description Sends a transactional email for the specified order. Only users with the 'send_email' permission are permitted.
      */
-    post: operations["SendOrderEmail"];
+    post: operations["Orders_SendOrderEmail"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Emails/Preview": {
     /**
      * Preview the rendered email for an Order.
      * @description Previews the rendered email template for the specified order. Only users with the 'send_email' permission are permitted.
      */
-    post: operations["PreviewOrderEmailTemplate"];
+    post: operations["Orders_PreviewOrderEmailTemplate"];
   };
 }
 
@@ -512,9 +264,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     EmailDispatchRequest: {
       title: string;
@@ -1770,7 +1525,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1785,11 +1619,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Submits a cart and creates an order.
    * @description Submits the specified cart and creates an order for the authenticated user.
    */
-  SubmitCart: {
+  Orders_SubmitCart: {
     parameters: {
       query: {
         cartId: string;
@@ -1816,7 +1835,7 @@ export interface operations {
    * Gets a list of orders for a tenant.
    * @description Retrieves a list of orders for the specified tenant.
    */
-  GetOrders: {
+  Orders_GetOrders: {
     parameters: {
       query: {
         tenantId: string;
@@ -1849,7 +1868,7 @@ export interface operations {
    * Creates a new order.
    * @description Creates a new order for the specified tenant.
    */
-  CreateOrder: {
+  Orders_CreateOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1882,7 +1901,7 @@ export interface operations {
    * Gets a list of extended orders for a tenant.
    * @description Retrieves a list of extended order details for the specified tenant.
    */
-  GetExtendedOrders: {
+  Orders_GetExtendedOrders: {
     parameters: {
       query: {
         tenantId: string;
@@ -1915,7 +1934,7 @@ export interface operations {
    * Gets the count of orders for a tenant.
    * @description Retrieves the total number of orders for the specified tenant.
    */
-  GetOrdersCount: {
+  Orders_GetOrdersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1948,7 +1967,7 @@ export interface operations {
    * Gets a specific order by ID.
    * @description Retrieves the details of a specific order by its ID.
    */
-  GetOrder: {
+  Orders_GetOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1978,7 +1997,7 @@ export interface operations {
    * Updates an existing order.
    * @description Updates the details of an existing order.
    */
-  UpdateOrder: {
+  Orders_UpdateOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -2014,7 +2033,7 @@ export interface operations {
    * Deletes an order.
    * @description Deletes the specified order.
    */
-  DeleteOrder: {
+  Orders_DeleteOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -2044,7 +2063,7 @@ export interface operations {
    * Partially updates an existing order.
    * @description Applies a JSON Patch document to partially update an existing order.
    */
-  PatchOrder: {
+  Orders_PatchOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -2080,7 +2099,7 @@ export interface operations {
    * Calculates totals for an order.
    * @description Performs calculation of totals and taxes for the specified order.
    */
-  CalculateOrder: {
+  Orders_CalculateOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -2110,7 +2129,7 @@ export interface operations {
    * Gets order lines for an order.
    * @description Retrieves the lines (items) for the specified order.
    */
-  GetOrderLines: {
+  Orders_GetOrderLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -2147,7 +2166,7 @@ export interface operations {
    * Creates a new order line.
    * @description Creates a new line (item) for the specified order.
    */
-  CreateOrderLine: {
+  Orders_CreateOrderLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2183,7 +2202,7 @@ export interface operations {
    * Gets the count of order lines for an order.
    * @description Retrieves the total number of lines for the specified order.
    */
-  GetOrderLinesCount: {
+  Orders_GetOrderLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2219,7 +2238,7 @@ export interface operations {
    * Gets a specific order line.
    * @description Retrieves the details of a specific order line by its ID.
    */
-  GetOrderLine: {
+  Orders_GetOrderLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2250,7 +2269,7 @@ export interface operations {
    * Updates an order line.
    * @description Updates the details of a specific order line.
    */
-  UpdateOrderLine: {
+  Orders_UpdateOrderLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2287,7 +2306,7 @@ export interface operations {
    * Deletes an order line.
    * @description Deletes the specified order line.
    */
-  DeleteOrderLine: {
+  Orders_DeleteOrderLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2318,7 +2337,7 @@ export interface operations {
    * Partially updates an order line.
    * @description Applies a JSON Patch document to partially update a specific order line.
    */
-  PatchOrderLine: {
+  Orders_PatchOrderLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2355,7 +2374,7 @@ export interface operations {
    * Calculates totals for an order line.
    * @description Performs calculation of totals and taxes for the specified order line.
    */
-  CalculateOrderLine: {
+  Orders_CalculateOrderLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2386,7 +2405,7 @@ export interface operations {
    * Send a transactional email for an order.
    * @description Sends a transactional email for the specified order. Only users with the 'send_email' permission are permitted.
    */
-  SendOrderEmail: {
+  Orders_SendOrderEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -2429,7 +2448,7 @@ export interface operations {
    * Preview the rendered email for an Order.
    * @description Previews the rendered email template for the specified order. Only users with the 'send_email' permission are permitted.
    */
-  PreviewOrderEmailTemplate: {
+  Orders_PreviewOrderEmailTemplate: {
     parameters: {
       query: {
         tenantId: string;

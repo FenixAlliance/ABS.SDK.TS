@@ -10,1394 +10,1186 @@ export interface paths {
      * Get appraisal stages
      * @description Retrieves appraisal stages for the specified tenant.
      */
-    get: operations["GetAppraisalStagesAsync"];
+    get: operations["AppraisalStages_GetAppraisalStages"];
     /**
      * Create an appraisal stage
      * @description Creates a new appraisal stage for the specified tenant.
      */
-    post: operations["CreateAppraisalStageAsync"];
+    post: operations["AppraisalStages_CreateAppraisalStage"];
   };
   "/api/v2/HrmsService/AppraisalStages/Count": {
     /**
      * Count appraisal stages
      * @description Counts appraisal stages for the specified tenant.
      */
-    get: operations["GetAppraisalStagesCountAsync"];
+    get: operations["AppraisalStages_GetAppraisalStagesCount"];
   };
   "/api/v2/HrmsService/AppraisalStages/{stageId}": {
     /**
      * Get appraisal stage by ID
      * @description Retrieves a specific appraisal stage by its identifier.
      */
-    get: operations["GetAppraisalStageByIdAsync"];
+    get: operations["AppraisalStages_GetAppraisalStageById"];
     /**
      * Update an appraisal stage
      * @description Updates an existing appraisal stage for the specified tenant.
      */
-    put: operations["UpdateAppraisalStageAsync"];
+    put: operations["AppraisalStages_UpdateAppraisalStage"];
     /**
      * Delete an appraisal stage
      * @description Deletes an appraisal stage for the specified tenant.
      */
-    delete: operations["DeleteAppraisalStageAsync"];
+    delete: operations["AppraisalStages_DeleteAppraisalStage"];
   };
   "/api/v2/HrmsService/AppraisalWorkflows": {
     /**
      * Get appraisal workflows
      * @description Retrieves appraisal workflows for the specified tenant.
      */
-    get: operations["GetAppraisalWorkflowsAsync"];
+    get: operations["AppraisalWorkflows_GetAppraisalWorkflows"];
     /**
      * Create an appraisal workflow
      * @description Creates a new appraisal workflow for the specified tenant.
      */
-    post: operations["CreateAppraisalWorkflowAsync"];
+    post: operations["AppraisalWorkflows_CreateAppraisalWorkflow"];
   };
   "/api/v2/HrmsService/AppraisalWorkflows/Count": {
     /**
      * Count appraisal workflows
      * @description Counts appraisal workflows for the specified tenant.
      */
-    get: operations["GetAppraisalWorkflowsCountAsync"];
+    get: operations["AppraisalWorkflows_GetAppraisalWorkflowsCount"];
   };
   "/api/v2/HrmsService/AppraisalWorkflows/{workflowId}": {
     /**
      * Get appraisal workflow by ID
      * @description Retrieves a specific appraisal workflow by its identifier.
      */
-    get: operations["GetAppraisalWorkflowByIdAsync"];
+    get: operations["AppraisalWorkflows_GetAppraisalWorkflowById"];
     /**
      * Update an appraisal workflow
      * @description Updates an existing appraisal workflow for the specified tenant.
      */
-    put: operations["UpdateAppraisalWorkflowAsync"];
+    put: operations["AppraisalWorkflows_UpdateAppraisalWorkflow"];
     /**
      * Delete an appraisal workflow
      * @description Deletes an appraisal workflow for the specified tenant.
      */
-    delete: operations["DeleteAppraisalWorkflowAsync"];
+    delete: operations["AppraisalWorkflows_DeleteAppraisalWorkflow"];
   };
   "/api/v2/HrmsService/EmployeeAppraisalSessions": {
     /**
      * Get employee appraisal sessions
      * @description Retrieves employee appraisal sessions for the specified tenant.
      */
-    get: operations["GetEmployeeAppraisalSessionsAsync"];
+    get: operations["EmployeeAppraisalSessions_GetEmployeeAppraisalSessions"];
     /**
      * Create an employee appraisal session
      * @description Creates a new employee appraisal session for the specified tenant.
      */
-    post: operations["CreateEmployeeAppraisalSessionAsync"];
+    post: operations["EmployeeAppraisalSessions_CreateEmployeeAppraisalSession"];
   };
   "/api/v2/HrmsService/EmployeeAppraisalSessions/Count": {
     /**
      * Count employee appraisal sessions
      * @description Counts employee appraisal sessions for the specified tenant.
      */
-    get: operations["GetEmployeeAppraisalSessionsCountAsync"];
+    get: operations["EmployeeAppraisalSessions_GetEmployeeAppraisalSessionsCount"];
   };
   "/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}": {
     /**
      * Get employee appraisal session by ID
      * @description Retrieves a specific employee appraisal session by its identifier.
      */
-    get: operations["GetEmployeeAppraisalSessionByIdAsync"];
+    get: operations["EmployeeAppraisalSessions_GetEmployeeAppraisalSessionById"];
     /**
      * Update an employee appraisal session
      * @description Updates an existing employee appraisal session for the specified tenant.
      */
-    put: operations["UpdateEmployeeAppraisalSessionAsync"];
+    put: operations["EmployeeAppraisalSessions_UpdateEmployeeAppraisalSession"];
     /**
      * Delete an employee appraisal session
      * @description Deletes an employee appraisal session for the specified tenant.
      */
-    delete: operations["DeleteEmployeeAppraisalSessionAsync"];
+    delete: operations["EmployeeAppraisalSessions_DeleteEmployeeAppraisalSession"];
     /**
      * Patch an employee appraisal session
      * @description Partially updates an existing employee appraisal session for the specified tenant.
      */
-    patch: operations["PatchEmployeeAppraisalSessionAsync"];
+    patch: operations["EmployeeAppraisalSessions_PatchEmployeeAppraisalSession"];
   };
   "/api/v2/HrmsService/Employees": {
     /**
      * Get employees
      * @description Retrieves employees for the specified tenant.
      */
-    get: operations["GetEmployeesAsync"];
+    get: operations["Employees_GetEmployees"];
     /**
      * Create an employee
      * @description Creates a new employee for the specified tenant.
      */
-    post: operations["CreateEmployeeAsync"];
+    post: operations["Employees_CreateEmployee"];
   };
   "/api/v2/HrmsService/Employees/Count": {
     /**
      * Count employees
      * @description Counts employees for the specified tenant.
      */
-    get: operations["GetEmployeesCountAsync"];
+    get: operations["Employees_GetEmployeesCount"];
   };
   "/api/v2/HrmsService/Employees/{employeeId}": {
     /**
      * Get employee by ID
      * @description Retrieves a specific employee by its identifier.
      */
-    get: operations["GetEmployeeByIdAsync"];
+    get: operations["Employees_GetEmployeeById"];
     /**
      * Update an employee
      * @description Updates an existing employee for the specified tenant.
      */
-    put: operations["UpdateEmployeeAsync"];
+    put: operations["Employees_UpdateEmployee"];
     /**
      * Delete an employee
      * @description Deletes an employee for the specified tenant.
      */
-    delete: operations["DeleteEmployeeAsync"];
+    delete: operations["Employees_DeleteEmployee"];
     /**
      * Patch an employee
      * @description Partially updates an existing employee for the specified tenant.
      */
-    patch: operations["PatchEmployeeAsync"];
+    patch: operations["Employees_PatchEmployee"];
   };
   "/api/v2/HrmsService/EmployeeTypes": {
     /**
      * Get employee types
      * @description Retrieves employee types for the specified tenant.
      */
-    get: operations["GetEmployeeTypesAsync"];
+    get: operations["EmployeeTypes_GetEmployeeTypes"];
     /**
      * Create an employee type
      * @description Creates a new employee type for the specified tenant.
      */
-    post: operations["CreateEmployeeTypeAsync"];
+    post: operations["EmployeeTypes_CreateEmployeeType"];
   };
   "/api/v2/HrmsService/EmployeeTypes/Count": {
     /**
      * Count employee types
      * @description Counts employee types for the specified tenant.
      */
-    get: operations["GetEmployeeTypesCountAsync"];
+    get: operations["EmployeeTypes_GetEmployeeTypesCount"];
   };
   "/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}": {
     /**
      * Get employee type by ID
      * @description Retrieves a specific employee type by its identifier.
      */
-    get: operations["GetEmployeeTypeByIdAsync"];
+    get: operations["EmployeeTypes_GetEmployeeTypeById"];
     /**
      * Update an employee type
      * @description Updates an existing employee type for the specified tenant.
      */
-    put: operations["UpdateEmployeeTypeAsync"];
+    put: operations["EmployeeTypes_UpdateEmployeeType"];
     /**
      * Delete an employee type
      * @description Deletes an employee type for the specified tenant.
      */
-    delete: operations["DeleteEmployeeTypeAsync"];
+    delete: operations["EmployeeTypes_DeleteEmployeeType"];
     /**
      * Patch an employee type
      * @description Partially updates an existing employee type for the specified tenant.
      */
-    patch: operations["PatchEmployeeTypeAsync"];
+    patch: operations["EmployeeTypes_PatchEmployeeType"];
   };
   "/api/v2/HrmsService/Employers": {
     /**
      * Get employers
      * @description Retrieves employers for the specified tenant.
      */
-    get: operations["GetEmployersAsync"];
+    get: operations["Employers_GetEmployers"];
     /**
      * Create an employer
      * @description Creates a new employer for the specified tenant.
      */
-    post: operations["CreateEmployerAsync"];
+    post: operations["Employers_CreateEmployer"];
   };
   "/api/v2/HrmsService/Employers/Count": {
     /**
      * Count employers
      * @description Counts employers for the specified tenant.
      */
-    get: operations["GetEmployersCountAsync"];
+    get: operations["Employers_GetEmployersCount"];
   };
   "/api/v2/HrmsService/Employers/{employerId}": {
     /**
      * Get employer by ID
      * @description Retrieves a specific employer by its identifier.
      */
-    get: operations["GetEmployerByIdAsync"];
+    get: operations["Employers_GetEmployerById"];
     /**
      * Update an employer
      * @description Updates an existing employer for the specified tenant.
      */
-    put: operations["UpdateEmployerAsync"];
+    put: operations["Employers_UpdateEmployer"];
     /**
      * Delete an employer
      * @description Deletes an employer for the specified tenant.
      */
-    delete: operations["DeleteEmployerAsync"];
+    delete: operations["Employers_DeleteEmployer"];
     /**
      * Patch an employer
      * @description Partially updates an existing employer for the specified tenant.
      */
-    patch: operations["PatchEmployerAsync"];
+    patch: operations["Employers_PatchEmployer"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/HrmsService/GigApplications": {
     /**
      * Get gig applications
      * @description Retrieves proposals submitted against the tenant's gigs. Filter with `$filter=GigId eq '...'` or `JobApplicantProfileId eq '...'`.
      */
-    get: operations["GetGigApplicationsAsync"];
+    get: operations["GigApplications_GetGigApplications"];
     /**
      * Create a gig application
      * @description Records a candidate's proposal against one of the tenant's gigs. The targeted gig must belong to the tenant.
      */
-    post: operations["CreateGigApplicationAsync"];
+    post: operations["GigApplications_CreateGigApplication"];
   };
   "/api/v2/HrmsService/GigApplications/Count": {
     /**
      * Count gig applications
      * @description Counts proposals submitted against the tenant's gigs.
      */
-    get: operations["GetGigApplicationsCountAsync"];
+    get: operations["GigApplications_GetGigApplicationsCount"];
   };
   "/api/v2/HrmsService/GigApplications/{gigApplicationId}": {
     /**
      * Get gig application by ID
      * @description Retrieves a specific proposal submitted against one of the tenant's gigs.
      */
-    get: operations["GetGigApplicationByIdAsync"];
+    get: operations["GigApplications_GetGigApplicationById"];
     /**
      * Update a gig application
      * @description Updates an existing proposal submitted against one of the tenant's gigs (e.g. accept it).
      */
-    put: operations["UpdateGigApplicationAsync"];
+    put: operations["GigApplications_UpdateGigApplication"];
     /**
      * Delete a gig application
      * @description Removes a proposal submitted against one of the tenant's gigs.
      */
-    delete: operations["DeleteGigApplicationAsync"];
+    delete: operations["GigApplications_DeleteGigApplication"];
     /**
      * Patch a gig application
      * @description Partially updates an existing proposal submitted against one of the tenant's gigs.
      */
-    patch: operations["PatchGigApplicationAsync"];
+    patch: operations["GigApplications_PatchGigApplication"];
   };
   "/api/v2/HrmsService/GigApplications/{gigApplicationId}/Accept": {
     /**
      * Accept a gig application
      * @description Accepts the candidate's gig proposal, forming an engagement (raises GigApplicationAccepted). A proposal cannot be accepted twice.
      */
-    post: operations["AcceptGigApplicationAsync"];
+    post: operations["GigApplications_AcceptGigApplication"];
   };
   "/api/v2/HrmsService/Gigs": {
     /**
      * Get gigs
      * @description Retrieves gigs for the specified tenant.
      */
-    get: operations["GetGigsAsync"];
+    get: operations["Gigs_GetGigs"];
     /**
      * Create a gig
      * @description Creates a new gig for the specified tenant.
      */
-    post: operations["CreateGigAsync"];
+    post: operations["Gigs_CreateGig"];
   };
   "/api/v2/HrmsService/Gigs/Count": {
     /**
      * Count gigs
      * @description Counts gigs for the specified tenant.
      */
-    get: operations["GetGigsCountAsync"];
+    get: operations["Gigs_GetGigsCount"];
   };
   "/api/v2/HrmsService/Gigs/{gigId}": {
     /**
      * Get gig by ID
      * @description Retrieves a specific gig by its identifier.
      */
-    get: operations["GetGigByIdAsync"];
+    get: operations["Gigs_GetGigById"];
     /**
      * Update a gig
      * @description Updates an existing gig for the specified tenant.
      */
-    put: operations["UpdateGigAsync"];
+    put: operations["Gigs_UpdateGig"];
     /**
      * Delete a gig
      * @description Deletes a gig for the specified tenant.
      */
-    delete: operations["DeleteGigAsync"];
+    delete: operations["Gigs_DeleteGig"];
     /**
      * Patch a gig
      * @description Partially updates an existing gig for the specified tenant.
      */
-    patch: operations["PatchGigAsync"];
+    patch: operations["Gigs_PatchGig"];
   };
   "/api/v2/HrmsService/JobApplicants": {
     /**
      * Get job applicants
      * @description Retrieves job applicant (candidate) profiles for the specified tenant.
      */
-    get: operations["GetJobApplicantsAsync"];
+    get: operations["JobApplicants_GetJobApplicants"];
     /**
      * Create a job applicant
      * @description Creates a new job applicant (candidate) profile for the specified tenant.
      */
-    post: operations["CreateJobApplicantAsync"];
+    post: operations["JobApplicants_CreateJobApplicant"];
   };
   "/api/v2/HrmsService/JobApplicants/Count": {
     /**
      * Count job applicants
      * @description Counts job applicant profiles for the specified tenant.
      */
-    get: operations["GetJobApplicantsCountAsync"];
+    get: operations["JobApplicants_GetJobApplicantsCount"];
   };
   "/api/v2/HrmsService/JobApplicants/{jobApplicantId}": {
     /**
      * Get job applicant by ID
      * @description Retrieves a specific job applicant (candidate) profile by its identifier.
      */
-    get: operations["GetJobApplicantByIdAsync"];
+    get: operations["JobApplicants_GetJobApplicantById"];
     /**
      * Update a job applicant
      * @description Updates an existing job applicant (candidate) profile for the specified tenant.
      */
-    put: operations["UpdateJobApplicantAsync"];
+    put: operations["JobApplicants_UpdateJobApplicant"];
     /**
      * Delete a job applicant
      * @description Deletes a job applicant (candidate) profile for the specified tenant.
      */
-    delete: operations["DeleteJobApplicantAsync"];
+    delete: operations["JobApplicants_DeleteJobApplicant"];
     /**
      * Patch a job applicant
      * @description Partially updates an existing job applicant (candidate) profile for the specified tenant.
      */
-    patch: operations["PatchJobApplicantAsync"];
+    patch: operations["JobApplicants_PatchJobApplicant"];
   };
   "/api/v2/HrmsService/JobApplications": {
     /**
      * Get job applications
      * @description Retrieves applications submitted against the tenant's job offers. Filter with `$filter=JobOfferId eq '...'` or `JobApplicantProfileId eq '...'`.
      */
-    get: operations["GetJobApplicationsAsync"];
+    get: operations["JobApplications_GetJobApplications"];
     /**
      * Create a job application
      * @description Records a candidate's application against one of the tenant's job offers. The targeted job offer must belong to the tenant.
      */
-    post: operations["CreateJobApplicationAsync"];
+    post: operations["JobApplications_CreateJobApplication"];
   };
   "/api/v2/HrmsService/JobApplications/Count": {
     /**
      * Count job applications
      * @description Counts applications submitted against the tenant's job offers.
      */
-    get: operations["GetJobApplicationsCountAsync"];
+    get: operations["JobApplications_GetJobApplicationsCount"];
   };
   "/api/v2/HrmsService/JobApplications/{jobApplicationId}": {
     /**
      * Get job application by ID
      * @description Retrieves a specific application submitted against one of the tenant's job offers.
      */
-    get: operations["GetJobApplicationByIdAsync"];
+    get: operations["JobApplications_GetJobApplicationById"];
     /**
      * Update a job application
      * @description Updates an existing application submitted against one of the tenant's job offers.
      */
-    put: operations["UpdateJobApplicationAsync"];
+    put: operations["JobApplications_UpdateJobApplication"];
     /**
      * Delete a job application
      * @description Removes an application submitted against one of the tenant's job offers.
      */
-    delete: operations["DeleteJobApplicationAsync"];
+    delete: operations["JobApplications_DeleteJobApplication"];
     /**
      * Patch a job application
      * @description Partially updates an existing application submitted against one of the tenant's job offers.
      */
-    patch: operations["PatchJobApplicationAsync"];
+    patch: operations["JobApplications_PatchJobApplication"];
   };
   "/api/v2/HrmsService/JobApplications/{jobApplicationId}/Status": {
     /**
      * Change job application status
      * @description Transitions the application to a new funnel status (e.g. UnderReview, Interviewing, Offered, Hired, Rejected). Raises JobApplicationStatusChanged; terminal statuses are immutable.
      */
-    post: operations["ChangeJobApplicationStatusAsync"];
+    post: operations["JobApplications_ChangeJobApplicationStatus"];
   };
   "/api/v2/HrmsService/JobFields": {
     /**
      * Get job fields
      * @description Retrieves job field (role domain) taxonomy entries for the specified tenant.
      */
-    get: operations["GetJobFieldsAsync"];
+    get: operations["JobFields_GetJobFields"];
     /**
      * Create a job field
      * @description Creates a new job field (role domain) for the specified tenant.
      */
-    post: operations["CreateJobFieldAsync"];
+    post: operations["JobFields_CreateJobField"];
   };
   "/api/v2/HrmsService/JobFields/Count": {
     /**
      * Count job fields
      * @description Counts job field taxonomy entries for the specified tenant.
      */
-    get: operations["GetJobFieldsCountAsync"];
+    get: operations["JobFields_GetJobFieldsCount"];
   };
   "/api/v2/HrmsService/JobFields/{jobFieldId}": {
     /**
      * Get job field by ID
      * @description Retrieves a specific job field by its identifier.
      */
-    get: operations["GetJobFieldByIdAsync"];
+    get: operations["JobFields_GetJobFieldById"];
     /**
      * Update a job field
      * @description Updates an existing job field for the specified tenant.
      */
-    put: operations["UpdateJobFieldAsync"];
+    put: operations["JobFields_UpdateJobField"];
     /**
      * Delete a job field
      * @description Deletes a job field for the specified tenant.
      */
-    delete: operations["DeleteJobFieldAsync"];
+    delete: operations["JobFields_DeleteJobField"];
     /**
      * Patch a job field
      * @description Partially updates an existing job field for the specified tenant.
      */
-    patch: operations["PatchJobFieldAsync"];
+    patch: operations["JobFields_PatchJobField"];
   };
   "/api/v2/HrmsService/JobOfferFields": {
     /**
      * Get job offer fields
      * @description Retrieves job-offer field link records for the tenant. Filter with `$filter=JobOfferId eq '...'` or `JobFieldId eq '...'`.
      */
-    get: operations["GetJobOfferFieldsAsync"];
+    get: operations["JobOfferFields_GetJobOfferFields"];
     /**
      * Create a job offer field
      * @description Links a job field to a job offer for the specified tenant.
      */
-    post: operations["CreateJobOfferFieldAsync"];
+    post: operations["JobOfferFields_CreateJobOfferField"];
   };
   "/api/v2/HrmsService/JobOfferFields/Count": {
     /**
      * Count job offer fields
      * @description Counts job-offer field link records for the specified tenant.
      */
-    get: operations["GetJobOfferFieldsCountAsync"];
+    get: operations["JobOfferFields_GetJobOfferFieldsCount"];
   };
   "/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}": {
     /**
      * Get job offer field by ID
      * @description Retrieves a specific job-offer field link record by its identifier.
      */
-    get: operations["GetJobOfferFieldByIdAsync"];
+    get: operations["JobOfferFields_GetJobOfferFieldById"];
     /**
      * Update a job offer field
      * @description Updates an existing job-offer field link record for the specified tenant.
      */
-    put: operations["UpdateJobOfferFieldAsync"];
+    put: operations["JobOfferFields_UpdateJobOfferField"];
     /**
      * Delete a job offer field
      * @description Removes a job-offer field link record for the specified tenant.
      */
-    delete: operations["DeleteJobOfferFieldAsync"];
+    delete: operations["JobOfferFields_DeleteJobOfferField"];
     /**
      * Patch a job offer field
      * @description Partially updates an existing job-offer field link record for the specified tenant.
      */
-    patch: operations["PatchJobOfferFieldAsync"];
+    patch: operations["JobOfferFields_PatchJobOfferField"];
   };
   "/api/v2/HrmsService/JobOffers": {
     /**
      * Get job offers
      * @description Retrieves job offers for the specified tenant.
      */
-    get: operations["GetJobOffersAsync"];
+    get: operations["JobOffers_GetJobOffers"];
     /**
      * Create a job offer
      * @description Creates a new job offer for the specified tenant.
      */
-    post: operations["CreateJobOfferAsync"];
+    post: operations["JobOffers_CreateJobOffer"];
   };
   "/api/v2/HrmsService/JobOffers/Count": {
     /**
      * Count job offers
      * @description Counts job offers for the specified tenant.
      */
-    get: operations["GetJobOffersCountAsync"];
+    get: operations["JobOffers_GetJobOffersCount"];
   };
   "/api/v2/HrmsService/JobOffers/{jobOfferId}": {
     /**
      * Get job offer by ID
      * @description Retrieves a specific job offer by its identifier.
      */
-    get: operations["GetJobOfferByIdAsync"];
+    get: operations["JobOffers_GetJobOfferById"];
     /**
      * Update a job offer
      * @description Updates an existing job offer for the specified tenant.
      */
-    put: operations["UpdateJobOfferAsync"];
+    put: operations["JobOffers_UpdateJobOffer"];
     /**
      * Delete a job offer
      * @description Deletes a job offer for the specified tenant.
      */
-    delete: operations["DeleteJobOfferAsync"];
+    delete: operations["JobOffers_DeleteJobOffer"];
     /**
      * Patch a job offer
      * @description Partially updates an existing job offer for the specified tenant.
      */
-    patch: operations["PatchJobOfferAsync"];
+    patch: operations["JobOffers_PatchJobOffer"];
   };
   "/api/v2/HrmsService/JobOffers/Public": {
     /**
      * Get public job offers
      * @description Retrieves published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
      */
-    get: operations["GetPublicJobOffersAsync"];
+    get: operations["JobOffers_GetPublicJobOffers"];
   };
   "/api/v2/HrmsService/JobOffers/Public/Count": {
     /**
      * Count public job offers
      * @description Counts published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
      */
-    get: operations["GetPublicJobOffersCountAsync"];
+    get: operations["JobOffers_GetPublicJobOffersCount"];
   };
   "/api/v2/HrmsService/JobOffers/Public/{jobOfferId}": {
     /**
      * Get public job offer by ID
      * @description Retrieves a published job offer by its identifier for the Talent Portal. Anonymous; optionally scoped to a tenant.
      */
-    get: operations["GetPublicJobOfferByIdAsync"];
+    get: operations["JobOffers_GetPublicJobOfferById"];
   };
   "/api/v2/HrmsService/JobOffers/{jobOfferId}/Publish": {
     /**
      * Publish a job offer
      * @description Publishes the job offer to the public Talent Portal (raises JobOfferPublished).
      */
-    post: operations["PublishJobOfferAsync"];
+    post: operations["JobOffers_PublishJobOffer"];
   };
   "/api/v2/HrmsService/JobOffers/{jobOfferId}/Close": {
     /**
      * Close a job offer
      * @description Closes the job offer without a hire and removes it from the public board (raises JobOfferClosed).
      */
-    post: operations["CloseJobOfferAsync"];
+    post: operations["JobOffers_CloseJobOffer"];
   };
   "/api/v2/HrmsService/JobOffers/{jobOfferId}/Fill": {
     /**
      * Mark a job offer filled
      * @description Marks the offer filled — converted to a hire — and removes it from the public board (raises JobOfferFilled).
      */
-    post: operations["FillJobOfferAsync"];
+    post: operations["JobOffers_FillJobOffer"];
   };
   "/api/v2/HrmsService/JobTitles": {
     /**
      * Get job titles
      * @description Retrieves job titles for the specified tenant.
      */
-    get: operations["GetJobTitlesAsync"];
+    get: operations["JobTitles_GetJobTitles"];
     /**
      * Create a job title
      * @description Creates a new job title for the specified tenant.
      */
-    post: operations["CreateJobTitleAsync"];
+    post: operations["JobTitles_CreateJobTitle"];
   };
   "/api/v2/HrmsService/JobTitles/Count": {
     /**
      * Count job titles
      * @description Counts job titles for the specified tenant.
      */
-    get: operations["GetJobTitlesCountAsync"];
+    get: operations["JobTitles_GetJobTitlesCount"];
   };
   "/api/v2/HrmsService/JobTitles/{jobTitleId}": {
     /**
      * Get job title by ID
      * @description Retrieves a specific job title by its identifier.
      */
-    get: operations["GetJobTitleByIdAsync"];
+    get: operations["JobTitles_GetJobTitleById"];
     /**
      * Update a job title
      * @description Updates an existing job title for the specified tenant.
      */
-    put: operations["UpdateJobTitleAsync"];
+    put: operations["JobTitles_UpdateJobTitle"];
     /**
      * Delete a job title
      * @description Deletes a job title for the specified tenant.
      */
-    delete: operations["DeleteJobTitleAsync"];
+    delete: operations["JobTitles_DeleteJobTitle"];
     /**
      * Patch a job title
      * @description Partially updates an existing job title for the specified tenant.
      */
-    patch: operations["PatchJobTitleAsync"];
+    patch: operations["JobTitles_PatchJobTitle"];
   };
   "/api/v2/HrmsService/LeaveApplications": {
     /**
      * Get leave applications
      * @description Retrieves leave applications for the specified tenant.
      */
-    get: operations["GetLeaveApplicationsAsync"];
+    get: operations["LeaveApplications_GetLeaveApplications"];
     /**
      * Create a leave application
      * @description Creates a new leave application for the specified tenant.
      */
-    post: operations["CreateLeaveApplicationAsync"];
+    post: operations["LeaveApplications_CreateLeaveApplication"];
   };
   "/api/v2/HrmsService/LeaveApplications/Count": {
     /**
      * Count leave applications
      * @description Counts leave applications for the specified tenant.
      */
-    get: operations["GetLeaveApplicationsCountAsync"];
+    get: operations["LeaveApplications_GetLeaveApplicationsCount"];
   };
   "/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}": {
     /**
      * Get leave application by ID
      * @description Retrieves a specific leave application by its identifier.
      */
-    get: operations["GetLeaveApplicationByIdAsync"];
+    get: operations["LeaveApplications_GetLeaveApplicationById"];
     /**
      * Update a leave application
      * @description Updates an existing leave application for the specified tenant.
      */
-    put: operations["UpdateLeaveApplicationAsync"];
+    put: operations["LeaveApplications_UpdateLeaveApplication"];
     /**
      * Delete a leave application
      * @description Deletes a leave application for the specified tenant.
      */
-    delete: operations["DeleteLeaveApplicationAsync"];
+    delete: operations["LeaveApplications_DeleteLeaveApplication"];
     /**
      * Patch a leave application
      * @description Partially updates an existing leave application for the specified tenant.
      */
-    patch: operations["PatchLeaveApplicationAsync"];
+    patch: operations["LeaveApplications_PatchLeaveApplication"];
   };
   "/api/v2/HrmsService/LeaveTypes": {
     /**
      * Get leave types
      * @description Retrieves leave types for the specified tenant.
      */
-    get: operations["GetLeaveTypesAsync"];
+    get: operations["LeaveTypes_GetLeaveTypes"];
     /**
      * Create a leave type
      * @description Creates a new leave type for the specified tenant.
      */
-    post: operations["CreateLeaveTypeAsync"];
+    post: operations["LeaveTypes_CreateLeaveType"];
   };
   "/api/v2/HrmsService/LeaveTypes/Count": {
     /**
      * Count leave types
      * @description Counts leave types for the specified tenant.
      */
-    get: operations["GetLeaveTypesCountAsync"];
+    get: operations["LeaveTypes_GetLeaveTypesCount"];
   };
   "/api/v2/HrmsService/LeaveTypes/{leaveTypeId}": {
     /**
      * Get leave type by ID
      * @description Retrieves a specific leave type by its identifier.
      */
-    get: operations["GetLeaveTypeByIdAsync"];
+    get: operations["LeaveTypes_GetLeaveTypeById"];
     /**
      * Update a leave type
      * @description Updates an existing leave type for the specified tenant.
      */
-    put: operations["UpdateLeaveTypeAsync"];
+    put: operations["LeaveTypes_UpdateLeaveType"];
     /**
      * Delete a leave type
      * @description Deletes a leave type for the specified tenant.
      */
-    delete: operations["DeleteLeaveTypeAsync"];
+    delete: operations["LeaveTypes_DeleteLeaveType"];
   };
   "/api/v2/HrmsService/PayrollPeriods": {
     /**
      * Get payroll periods
      * @description Retrieves payroll periods for the specified tenant.
      */
-    get: operations["GetPayrollPeriodsAsync"];
+    get: operations["PayrollPeriods_GetPayrollPeriods"];
     /**
      * Create a payroll period
      * @description Creates a new payroll period for the specified tenant.
      */
-    post: operations["CreatePayrollPeriodAsync"];
+    post: operations["PayrollPeriods_CreatePayrollPeriod"];
   };
   "/api/v2/HrmsService/PayrollPeriods/Count": {
     /**
      * Count payroll periods
      * @description Counts payroll periods for the specified tenant.
      */
-    get: operations["GetPayrollPeriodsCountAsync"];
+    get: operations["PayrollPeriods_GetPayrollPeriodsCount"];
   };
   "/api/v2/HrmsService/PayrollPeriods/{periodId}": {
     /**
      * Get payroll period by ID
      * @description Retrieves a specific payroll period by its identifier.
      */
-    get: operations["GetPayrollPeriodByIdAsync"];
+    get: operations["PayrollPeriods_GetPayrollPeriodById"];
     /**
      * Update a payroll period
      * @description Updates an existing payroll period for the specified tenant.
      */
-    put: operations["UpdatePayrollPeriodAsync"];
+    put: operations["PayrollPeriods_UpdatePayrollPeriod"];
     /**
      * Delete a payroll period
      * @description Deletes a payroll period for the specified tenant.
      */
-    delete: operations["DeletePayrollPeriodAsync"];
+    delete: operations["PayrollPeriods_DeletePayrollPeriod"];
   };
   "/api/v2/HrmsService/Payrolls": {
     /**
      * Get payrolls
      * @description Retrieves payrolls for the specified tenant.
      */
-    get: operations["GetPayrollsAsync"];
+    get: operations["Payrolls_GetPayrolls"];
     /**
      * Create a payroll
      * @description Creates a new payroll for the specified tenant.
      */
-    post: operations["CreatePayrollAsync"];
+    post: operations["Payrolls_CreatePayroll"];
   };
   "/api/v2/HrmsService/Payrolls/Count": {
     /**
      * Count payrolls
      * @description Counts payrolls for the specified tenant.
      */
-    get: operations["GetPayrollsCountAsync"];
+    get: operations["Payrolls_GetPayrollsCount"];
   };
   "/api/v2/HrmsService/Payrolls/{payrollId}": {
     /**
      * Get payroll by ID
      * @description Retrieves a specific payroll by its identifier.
      */
-    get: operations["GetPayrollByIdAsync"];
+    get: operations["Payrolls_GetPayrollById"];
     /**
      * Update a payroll
      * @description Updates an existing payroll for the specified tenant.
      */
-    put: operations["UpdatePayrollAsync"];
+    put: operations["Payrolls_UpdatePayroll"];
     /**
      * Delete a payroll
      * @description Deletes a payroll for the specified tenant.
      */
-    delete: operations["DeletePayrollAsync"];
+    delete: operations["Payrolls_DeletePayroll"];
     /**
      * Patch a payroll
      * @description Partially updates an existing payroll for the specified tenant.
      */
-    patch: operations["PatchPayrollAsync"];
+    patch: operations["Payrolls_PatchPayroll"];
+  };
+  "/api/v2/HrmsService/Positions/{positionId}/Assignments": {
+    /**
+     * Get position assignments
+     * @description Retrieves the assignments, active and ended, of a position owned by the tenant.
+     */
+    get: operations["PositionSeats_GetPositionAssignments"];
+    /**
+     * Assign a position
+     * @description Fills a seat on the position with an enrollment of the tenant (a human, application or agent principal). Conflict when every seat is filled or the enrollment already holds one.
+     */
+    post: operations["PositionSeats_AssignPosition"];
+  };
+  "/api/v2/HrmsService/Positions/{positionId}/Assignments/Count": {
+    /**
+     * Count position assignments
+     * @description Counts the assignments of a position owned by the tenant.
+     */
+    get: operations["PositionSeats_GetPositionAssignmentsCount"];
+  };
+  "/api/v2/HrmsService/Positions/{positionId}/Assignments/{assignmentId}/End": {
+    /**
+     * End a position assignment
+     * @description Vacates a seat. The assignment is kept as history.
+     */
+    post: operations["PositionSeats_EndPositionAssignment"];
+  };
+  "/api/v2/HrmsService/Positions/{positionId}/Capacity": {
+    /**
+     * Change a position's capacity
+     * @description Sets the number of seats: at least 1, never below the filled seats (Conflict).
+     */
+    put: operations["PositionSeats_ChangePositionCapacity"];
+  };
+  "/api/v2/HrmsService/Positions/{positionId}/Department": {
+    /**
+     * Change a position's department
+     * @description Moves the position to an enabled department of the same tenant.
+     */
+    put: operations["PositionSeats_ChangePositionDepartment"];
   };
   "/api/v2/HrmsService/RequiredSkills": {
     /**
      * Get required skills
      * @description Retrieves required-skill records for the specified tenant. Filter by `$filter=JobOfferId eq '...'` or `EmployerProfileId eq '...'`.
      */
-    get: operations["GetRequiredSkillsAsync"];
+    get: operations["RequiredSkills_GetRequiredSkills"];
     /**
      * Create a required skill
      * @description Creates a new required-skill record for the specified tenant.
      */
-    post: operations["CreateRequiredSkillAsync"];
+    post: operations["RequiredSkills_CreateRequiredSkill"];
   };
   "/api/v2/HrmsService/RequiredSkills/Count": {
     /**
      * Count required skills
      * @description Counts required-skill records for the specified tenant.
      */
-    get: operations["GetRequiredSkillsCountAsync"];
+    get: operations["RequiredSkills_GetRequiredSkillsCount"];
   };
   "/api/v2/HrmsService/RequiredSkills/{requiredSkillId}": {
     /**
      * Get required skill by ID
      * @description Retrieves a specific required-skill record by its identifier.
      */
-    get: operations["GetRequiredSkillByIdAsync"];
+    get: operations["RequiredSkills_GetRequiredSkillById"];
     /**
      * Update a required skill
      * @description Updates an existing required-skill record for the specified tenant.
      */
-    put: operations["UpdateRequiredSkillAsync"];
+    put: operations["RequiredSkills_UpdateRequiredSkill"];
     /**
      * Delete a required skill
      * @description Deletes a required-skill record for the specified tenant.
      */
-    delete: operations["DeleteRequiredSkillAsync"];
+    delete: operations["RequiredSkills_DeleteRequiredSkill"];
     /**
      * Patch a required skill
      * @description Partially updates an existing required-skill record for the specified tenant.
      */
-    patch: operations["PatchRequiredSkillAsync"];
+    patch: operations["RequiredSkills_PatchRequiredSkill"];
   };
   "/api/v2/HrmsService/Salaries": {
     /**
      * Get salaries
      * @description Retrieves salaries for the specified tenant.
      */
-    get: operations["GetSalariesAsync"];
+    get: operations["Salaries_GetSalaries"];
     /**
      * Create a salary
      * @description Creates a new salary for the specified tenant.
      */
-    post: operations["CreateSalaryAsync"];
+    post: operations["Salaries_CreateSalary"];
   };
   "/api/v2/HrmsService/Salaries/Count": {
     /**
      * Count salaries
      * @description Counts salaries for the specified tenant.
      */
-    get: operations["GetSalariesCountAsync"];
+    get: operations["Salaries_GetSalariesCount"];
   };
   "/api/v2/HrmsService/Salaries/{salaryId}": {
     /**
      * Get salary by ID
      * @description Retrieves a specific salary by its identifier.
      */
-    get: operations["GetSalaryByIdAsync"];
+    get: operations["Salaries_GetSalaryById"];
     /**
      * Update a salary
      * @description Updates an existing salary for the specified tenant.
      */
-    put: operations["UpdateSalaryAsync"];
+    put: operations["Salaries_UpdateSalary"];
     /**
      * Delete a salary
      * @description Deletes a salary for the specified tenant.
      */
-    delete: operations["DeleteSalaryAsync"];
+    delete: operations["Salaries_DeleteSalary"];
     /**
      * Patch a salary
      * @description Partially updates an existing salary for the specified tenant.
      */
-    patch: operations["PatchSalaryAsync"];
+    patch: operations["Salaries_PatchSalary"];
   };
   "/api/v2/HrmsService/Schedules": {
     /**
      * Get schedules
      * @description Retrieves schedules for the specified tenant.
      */
-    get: operations["GetSchedulesAsync"];
+    get: operations["Schedules_GetSchedules"];
     /**
      * Create a schedule
      * @description Creates a new schedule for the specified tenant.
      */
-    post: operations["CreateScheduleAsync"];
+    post: operations["Schedules_CreateSchedule"];
   };
   "/api/v2/HrmsService/Schedules/Count": {
     /**
      * Count schedules
      * @description Counts schedules for the specified tenant.
      */
-    get: operations["GetSchedulesCountAsync"];
+    get: operations["Schedules_GetSchedulesCount"];
   };
   "/api/v2/HrmsService/Schedules/{scheduleId}": {
     /**
      * Get schedule by ID
      * @description Retrieves a specific schedule by its identifier.
      */
-    get: operations["GetScheduleByIdAsync"];
+    get: operations["Schedules_GetScheduleById"];
     /**
      * Update a schedule
      * @description Updates an existing schedule for the specified tenant.
      */
-    put: operations["UpdateScheduleAsync"];
+    put: operations["Schedules_UpdateSchedule"];
     /**
      * Delete a schedule
      * @description Deletes a schedule for the specified tenant.
      */
-    delete: operations["DeleteScheduleAsync"];
+    delete: operations["Schedules_DeleteSchedule"];
     /**
      * Patch a schedule
      * @description Partially updates an existing schedule for the specified tenant.
      */
-    patch: operations["PatchScheduleAsync"];
+    patch: operations["Schedules_PatchSchedule"];
   };
   "/api/v2/HrmsService/Shifts": {
     /**
      * Get shifts
      * @description Retrieves shifts for the specified tenant.
      */
-    get: operations["GetShiftsAsync"];
+    get: operations["Shifts_GetShifts"];
     /**
      * Create a shift
      * @description Creates a new shift for the specified tenant.
      */
-    post: operations["CreateShiftAsync"];
+    post: operations["Shifts_CreateShift"];
   };
   "/api/v2/HrmsService/Shifts/Count": {
     /**
      * Count shifts
      * @description Counts shifts for the specified tenant.
      */
-    get: operations["GetShiftsCountAsync"];
+    get: operations["Shifts_GetShiftsCount"];
   };
   "/api/v2/HrmsService/Shifts/{shiftId}": {
     /**
      * Get shift by ID
      * @description Retrieves a specific shift by its identifier.
      */
-    get: operations["GetShiftByIdAsync"];
+    get: operations["Shifts_GetShiftById"];
     /**
      * Update a shift
      * @description Updates an existing shift for the specified tenant.
      */
-    put: operations["UpdateShiftAsync"];
+    put: operations["Shifts_UpdateShift"];
     /**
      * Delete a shift
      * @description Deletes a shift for the specified tenant.
      */
-    delete: operations["DeleteShiftAsync"];
+    delete: operations["Shifts_DeleteShift"];
     /**
      * Patch a shift
      * @description Partially updates an existing shift for the specified tenant.
      */
-    patch: operations["PatchShiftAsync"];
+    patch: operations["Shifts_PatchShift"];
   };
   "/api/v2/HrmsService/TimeIntervals": {
     /**
      * Get time intervals
      * @description Retrieves time intervals for the specified tenant.
      */
-    get: operations["GetTimeIntervalsAsync"];
+    get: operations["TimeIntervals_GetTimeIntervals"];
     /**
      * Create a time interval
      * @description Creates a new time interval for the specified tenant.
      */
-    post: operations["CreateTimeIntervalAsync"];
+    post: operations["TimeIntervals_CreateTimeInterval"];
   };
   "/api/v2/HrmsService/TimeIntervals/Count": {
     /**
      * Count time intervals
      * @description Counts time intervals for the specified tenant.
      */
-    get: operations["GetTimeIntervalsCountAsync"];
+    get: operations["TimeIntervals_GetTimeIntervalsCount"];
   };
   "/api/v2/HrmsService/TimeIntervals/{timeIntervalId}": {
     /**
      * Get time interval by ID
      * @description Retrieves a specific time interval by its identifier.
      */
-    get: operations["GetTimeIntervalByIdAsync"];
+    get: operations["TimeIntervals_GetTimeIntervalById"];
     /**
      * Update a time interval
      * @description Updates an existing time interval for the specified tenant.
      */
-    put: operations["UpdateTimeIntervalAsync"];
+    put: operations["TimeIntervals_UpdateTimeInterval"];
     /**
      * Delete a time interval
      * @description Deletes a time interval for the specified tenant.
      */
-    delete: operations["DeleteTimeIntervalAsync"];
+    delete: operations["TimeIntervals_DeleteTimeInterval"];
     /**
      * Patch a time interval
      * @description Partially updates an existing time interval for the specified tenant.
      */
-    patch: operations["PatchTimeIntervalAsync"];
+    patch: operations["TimeIntervals_PatchTimeInterval"];
   };
   "/api/v2/HrmsService/TrainingProgramCourses": {
     /**
      * Get training program courses
      * @description Retrieves training program courses for the specified tenant.
      */
-    get: operations["GetTrainingProgramCoursesAsync"];
+    get: operations["TrainingProgramCourses_GetTrainingProgramCourses"];
     /**
      * Create a training program course
      * @description Creates a new training program course for the specified tenant.
      */
-    post: operations["CreateTrainingProgramCourseAsync"];
+    post: operations["TrainingProgramCourses_CreateTrainingProgramCourse"];
   };
   "/api/v2/HrmsService/TrainingProgramCourses/Count": {
     /**
      * Count training program courses
      * @description Counts training program courses for the specified tenant.
      */
-    get: operations["GetTrainingProgramCoursesCountAsync"];
+    get: operations["TrainingProgramCourses_GetTrainingProgramCoursesCount"];
   };
   "/api/v2/HrmsService/TrainingProgramCourses/{courseId}": {
     /**
      * Get training program course by ID
      * @description Retrieves a specific training program course by its identifier.
      */
-    get: operations["GetTrainingProgramCourseByIdAsync"];
+    get: operations["TrainingProgramCourses_GetTrainingProgramCourseById"];
     /**
      * Update a training program course
      * @description Updates an existing training program course for the specified tenant.
      */
-    put: operations["UpdateTrainingProgramCourseAsync"];
+    put: operations["TrainingProgramCourses_UpdateTrainingProgramCourse"];
     /**
      * Delete a training program course
      * @description Deletes a training program course for the specified tenant.
      */
-    delete: operations["DeleteTrainingProgramCourseAsync"];
+    delete: operations["TrainingProgramCourses_DeleteTrainingProgramCourse"];
     /**
      * Patch a training program course
      * @description Partially updates an existing training program course for the specified tenant.
      */
-    patch: operations["PatchTrainingProgramCourseAsync"];
+    patch: operations["TrainingProgramCourses_PatchTrainingProgramCourse"];
   };
   "/api/v2/HrmsService/TrainingProgramEvents": {
     /**
      * Get training program events
      * @description Retrieves training program events for the specified tenant.
      */
-    get: operations["GetTrainingProgramEventsAsync"];
+    get: operations["TrainingProgramEvents_GetTrainingProgramEvents"];
     /**
      * Create a training program event
      * @description Creates a new training program event for the specified tenant.
      */
-    post: operations["CreateTrainingProgramEventAsync"];
+    post: operations["TrainingProgramEvents_CreateTrainingProgramEvent"];
   };
   "/api/v2/HrmsService/TrainingProgramEvents/Count": {
     /**
      * Count training program events
      * @description Counts training program events for the specified tenant.
      */
-    get: operations["GetTrainingProgramEventsCountAsync"];
+    get: operations["TrainingProgramEvents_GetTrainingProgramEventsCount"];
   };
   "/api/v2/HrmsService/TrainingProgramEvents/{eventId}": {
     /**
      * Get training program event by ID
      * @description Retrieves a specific training program event by its identifier.
      */
-    get: operations["GetTrainingProgramEventByIdAsync"];
+    get: operations["TrainingProgramEvents_GetTrainingProgramEventById"];
     /**
      * Update a training program event
      * @description Updates an existing training program event for the specified tenant.
      */
-    put: operations["UpdateTrainingProgramEventAsync"];
+    put: operations["TrainingProgramEvents_UpdateTrainingProgramEvent"];
     /**
      * Delete a training program event
      * @description Deletes a training program event for the specified tenant.
      */
-    delete: operations["DeleteTrainingProgramEventAsync"];
+    delete: operations["TrainingProgramEvents_DeleteTrainingProgramEvent"];
     /**
      * Patch a training program event
      * @description Partially updates an existing training program event for the specified tenant.
      */
-    patch: operations["PatchTrainingProgramEventAsync"];
+    patch: operations["TrainingProgramEvents_PatchTrainingProgramEvent"];
   };
   "/api/v2/HrmsService/TrainingPrograms": {
     /**
      * Get training programs
      * @description Retrieves training programs for the specified tenant.
      */
-    get: operations["GetTrainingProgramsAsync"];
+    get: operations["TrainingPrograms_GetTrainingPrograms"];
     /**
      * Create a training program
      * @description Creates a new training program for the specified tenant.
      */
-    post: operations["CreateTrainingProgramAsync"];
+    post: operations["TrainingPrograms_CreateTrainingProgram"];
   };
   "/api/v2/HrmsService/TrainingPrograms/Count": {
     /**
      * Count training programs
      * @description Counts training programs for the specified tenant.
      */
-    get: operations["GetTrainingProgramsCountAsync"];
+    get: operations["TrainingPrograms_GetTrainingProgramsCount"];
   };
   "/api/v2/HrmsService/TrainingPrograms/{programId}": {
     /**
      * Get training program by ID
      * @description Retrieves a specific training program by its identifier.
      */
-    get: operations["GetTrainingProgramByIdAsync"];
+    get: operations["TrainingPrograms_GetTrainingProgramById"];
     /**
      * Update a training program
      * @description Updates an existing training program for the specified tenant.
      */
-    put: operations["UpdateTrainingProgramAsync"];
+    put: operations["TrainingPrograms_UpdateTrainingProgram"];
     /**
      * Delete a training program
      * @description Deletes a training program for the specified tenant.
      */
-    delete: operations["DeleteTrainingProgramAsync"];
+    delete: operations["TrainingPrograms_DeleteTrainingProgram"];
   };
 }
 
@@ -1547,6 +1339,48 @@ export interface components {
       name?: string | null;
       description?: string | null;
     };
+    BusinessPositionAssignmentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      positionId?: string | null;
+      tenantId?: string | null;
+      occupantEnrollmentId?: string | null;
+      /** Format: date-time */
+      from?: string;
+      /** Format: date-time */
+      until?: string | null;
+      acting?: boolean;
+      enrollmentId?: string | null;
+    };
+    BusinessPositionAssignmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    BusinessPositionAssignmentDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BusinessPositionAssignmentDto"][] | null;
+    };
     ContactCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1671,9 +1505,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     EmployeeAppraisalSessionCreateDto: {
       /** Format: uuid */
@@ -2987,6 +2824,86 @@ export interface components {
       jobFieldId?: string | null;
       jobOfferId?: string | null;
     };
+    JobOfferPublicDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      technicalSkills?: string | null;
+      nonTechnicalSkills?: string | null;
+      certifications?: string | null;
+      projectExperience?: string | null;
+      technologies?: string | null;
+      benefits?: string | null;
+      remote?: boolean;
+      isRemoteJobOffer?: boolean;
+      isMidTimeJobOffer?: boolean;
+      isUndergraduateOption?: boolean;
+      /** Format: int32 */
+      minOverallExperienceYears?: number;
+      /** Format: int32 */
+      availablePositionsCount?: number;
+      /** Format: double */
+      minSalaryAmount?: number;
+      /** Format: double */
+      maxSalaryAmount?: number;
+      currencyId?: string | null;
+      jobFieldId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      location?: string | null;
+      imageUrl?: string | null;
+      externalUrl?: string | null;
+      /** Format: date-time */
+      expectedHireDate?: string;
+      employerName?: string | null;
+      employerAvatarUrl?: string | null;
+    };
+    JobOfferPublicDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    JobOfferPublicDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["JobOfferPublicDto"];
+    };
+    JobOfferPublicDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["JobOfferPublicDto"][] | null;
+    };
     JobOfferUpdateDto: {
       remote?: boolean;
       /** Format: date-time */
@@ -3357,6 +3274,8 @@ export interface components {
       start?: string | null;
       /** Format: date-time */
       end?: string | null;
+      /** @enum {string} */
+      status?: "Open" | "Closed";
     };
     PayrollPeriodDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -3411,6 +3330,21 @@ export interface components {
     };
     PayrollUpdateDto: {
       payrollPeriodId?: string | null;
+    };
+    PositionAssignmentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      occupantEnrollmentId?: string | null;
+      acting?: boolean;
+    };
+    PositionCapacityUpdateDto: {
+      /** Format: int32 */
+      capacity?: number;
+    };
+    PositionDepartmentUpdateDto: {
+      departmentId?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -4242,7 +4176,7 @@ export interface operations {
    * Get appraisal stages
    * @description Retrieves appraisal stages for the specified tenant.
    */
-  GetAppraisalStagesAsync: {
+  AppraisalStages_GetAppraisalStages: {
     parameters: {
       query: {
         tenantId: string;
@@ -4286,7 +4220,7 @@ export interface operations {
    * Create an appraisal stage
    * @description Creates a new appraisal stage for the specified tenant.
    */
-  CreateAppraisalStageAsync: {
+  AppraisalStages_CreateAppraisalStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -4337,7 +4271,7 @@ export interface operations {
    * Count appraisal stages
    * @description Counts appraisal stages for the specified tenant.
    */
-  GetAppraisalStagesCountAsync: {
+  AppraisalStages_GetAppraisalStagesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4381,7 +4315,7 @@ export interface operations {
    * Get appraisal stage by ID
    * @description Retrieves a specific appraisal stage by its identifier.
    */
-  GetAppraisalStageByIdAsync: {
+  AppraisalStages_GetAppraisalStageById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4422,7 +4356,7 @@ export interface operations {
    * Update an appraisal stage
    * @description Updates an existing appraisal stage for the specified tenant.
    */
-  UpdateAppraisalStageAsync: {
+  AppraisalStages_UpdateAppraisalStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -4476,7 +4410,7 @@ export interface operations {
    * Delete an appraisal stage
    * @description Deletes an appraisal stage for the specified tenant.
    */
-  DeleteAppraisalStageAsync: {
+  AppraisalStages_DeleteAppraisalStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -4524,7 +4458,7 @@ export interface operations {
    * Get appraisal workflows
    * @description Retrieves appraisal workflows for the specified tenant.
    */
-  GetAppraisalWorkflowsAsync: {
+  AppraisalWorkflows_GetAppraisalWorkflows: {
     parameters: {
       query: {
         tenantId: string;
@@ -4568,7 +4502,7 @@ export interface operations {
    * Create an appraisal workflow
    * @description Creates a new appraisal workflow for the specified tenant.
    */
-  CreateAppraisalWorkflowAsync: {
+  AppraisalWorkflows_CreateAppraisalWorkflow: {
     parameters: {
       query: {
         tenantId: string;
@@ -4619,7 +4553,7 @@ export interface operations {
    * Count appraisal workflows
    * @description Counts appraisal workflows for the specified tenant.
    */
-  GetAppraisalWorkflowsCountAsync: {
+  AppraisalWorkflows_GetAppraisalWorkflowsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4663,7 +4597,7 @@ export interface operations {
    * Get appraisal workflow by ID
    * @description Retrieves a specific appraisal workflow by its identifier.
    */
-  GetAppraisalWorkflowByIdAsync: {
+  AppraisalWorkflows_GetAppraisalWorkflowById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4704,7 +4638,7 @@ export interface operations {
    * Update an appraisal workflow
    * @description Updates an existing appraisal workflow for the specified tenant.
    */
-  UpdateAppraisalWorkflowAsync: {
+  AppraisalWorkflows_UpdateAppraisalWorkflow: {
     parameters: {
       query: {
         tenantId: string;
@@ -4758,7 +4692,7 @@ export interface operations {
    * Delete an appraisal workflow
    * @description Deletes an appraisal workflow for the specified tenant.
    */
-  DeleteAppraisalWorkflowAsync: {
+  AppraisalWorkflows_DeleteAppraisalWorkflow: {
     parameters: {
       query: {
         tenantId: string;
@@ -4806,7 +4740,7 @@ export interface operations {
    * Get employee appraisal sessions
    * @description Retrieves employee appraisal sessions for the specified tenant.
    */
-  GetEmployeeAppraisalSessionsAsync: {
+  EmployeeAppraisalSessions_GetEmployeeAppraisalSessions: {
     parameters: {
       query: {
         tenantId: string;
@@ -4850,7 +4784,7 @@ export interface operations {
    * Create an employee appraisal session
    * @description Creates a new employee appraisal session for the specified tenant.
    */
-  CreateEmployeeAppraisalSessionAsync: {
+  EmployeeAppraisalSessions_CreateEmployeeAppraisalSession: {
     parameters: {
       query: {
         tenantId: string;
@@ -4901,7 +4835,7 @@ export interface operations {
    * Count employee appraisal sessions
    * @description Counts employee appraisal sessions for the specified tenant.
    */
-  GetEmployeeAppraisalSessionsCountAsync: {
+  EmployeeAppraisalSessions_GetEmployeeAppraisalSessionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4945,7 +4879,7 @@ export interface operations {
    * Get employee appraisal session by ID
    * @description Retrieves a specific employee appraisal session by its identifier.
    */
-  GetEmployeeAppraisalSessionByIdAsync: {
+  EmployeeAppraisalSessions_GetEmployeeAppraisalSessionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4986,7 +4920,7 @@ export interface operations {
    * Update an employee appraisal session
    * @description Updates an existing employee appraisal session for the specified tenant.
    */
-  UpdateEmployeeAppraisalSessionAsync: {
+  EmployeeAppraisalSessions_UpdateEmployeeAppraisalSession: {
     parameters: {
       query: {
         tenantId: string;
@@ -5040,7 +4974,7 @@ export interface operations {
    * Delete an employee appraisal session
    * @description Deletes an employee appraisal session for the specified tenant.
    */
-  DeleteEmployeeAppraisalSessionAsync: {
+  EmployeeAppraisalSessions_DeleteEmployeeAppraisalSession: {
     parameters: {
       query: {
         tenantId: string;
@@ -5088,7 +5022,7 @@ export interface operations {
    * Patch an employee appraisal session
    * @description Partially updates an existing employee appraisal session for the specified tenant.
    */
-  PatchEmployeeAppraisalSessionAsync: {
+  EmployeeAppraisalSessions_PatchEmployeeAppraisalSession: {
     parameters: {
       query: {
         tenantId: string;
@@ -5142,7 +5076,7 @@ export interface operations {
    * Get employees
    * @description Retrieves employees for the specified tenant.
    */
-  GetEmployeesAsync: {
+  Employees_GetEmployees: {
     parameters: {
       query: {
         tenantId: string;
@@ -5186,7 +5120,7 @@ export interface operations {
    * Create an employee
    * @description Creates a new employee for the specified tenant.
    */
-  CreateEmployeeAsync: {
+  Employees_CreateEmployee: {
     parameters: {
       query: {
         tenantId: string;
@@ -5237,7 +5171,7 @@ export interface operations {
    * Count employees
    * @description Counts employees for the specified tenant.
    */
-  GetEmployeesCountAsync: {
+  Employees_GetEmployeesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5281,7 +5215,7 @@ export interface operations {
    * Get employee by ID
    * @description Retrieves a specific employee by its identifier.
    */
-  GetEmployeeByIdAsync: {
+  Employees_GetEmployeeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5322,7 +5256,7 @@ export interface operations {
    * Update an employee
    * @description Updates an existing employee for the specified tenant.
    */
-  UpdateEmployeeAsync: {
+  Employees_UpdateEmployee: {
     parameters: {
       query: {
         tenantId: string;
@@ -5376,7 +5310,7 @@ export interface operations {
    * Delete an employee
    * @description Deletes an employee for the specified tenant.
    */
-  DeleteEmployeeAsync: {
+  Employees_DeleteEmployee: {
     parameters: {
       query: {
         tenantId: string;
@@ -5424,7 +5358,7 @@ export interface operations {
    * Patch an employee
    * @description Partially updates an existing employee for the specified tenant.
    */
-  PatchEmployeeAsync: {
+  Employees_PatchEmployee: {
     parameters: {
       query: {
         tenantId: string;
@@ -5478,7 +5412,7 @@ export interface operations {
    * Get employee types
    * @description Retrieves employee types for the specified tenant.
    */
-  GetEmployeeTypesAsync: {
+  EmployeeTypes_GetEmployeeTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -5522,7 +5456,7 @@ export interface operations {
    * Create an employee type
    * @description Creates a new employee type for the specified tenant.
    */
-  CreateEmployeeTypeAsync: {
+  EmployeeTypes_CreateEmployeeType: {
     parameters: {
       query: {
         tenantId: string;
@@ -5573,7 +5507,7 @@ export interface operations {
    * Count employee types
    * @description Counts employee types for the specified tenant.
    */
-  GetEmployeeTypesCountAsync: {
+  EmployeeTypes_GetEmployeeTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5617,7 +5551,7 @@ export interface operations {
    * Get employee type by ID
    * @description Retrieves a specific employee type by its identifier.
    */
-  GetEmployeeTypeByIdAsync: {
+  EmployeeTypes_GetEmployeeTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5658,7 +5592,7 @@ export interface operations {
    * Update an employee type
    * @description Updates an existing employee type for the specified tenant.
    */
-  UpdateEmployeeTypeAsync: {
+  EmployeeTypes_UpdateEmployeeType: {
     parameters: {
       query: {
         tenantId: string;
@@ -5712,7 +5646,7 @@ export interface operations {
    * Delete an employee type
    * @description Deletes an employee type for the specified tenant.
    */
-  DeleteEmployeeTypeAsync: {
+  EmployeeTypes_DeleteEmployeeType: {
     parameters: {
       query: {
         tenantId: string;
@@ -5760,7 +5694,7 @@ export interface operations {
    * Patch an employee type
    * @description Partially updates an existing employee type for the specified tenant.
    */
-  PatchEmployeeTypeAsync: {
+  EmployeeTypes_PatchEmployeeType: {
     parameters: {
       query: {
         tenantId: string;
@@ -5814,7 +5748,7 @@ export interface operations {
    * Get employers
    * @description Retrieves employers for the specified tenant.
    */
-  GetEmployersAsync: {
+  Employers_GetEmployers: {
     parameters: {
       query: {
         tenantId: string;
@@ -5858,7 +5792,7 @@ export interface operations {
    * Create an employer
    * @description Creates a new employer for the specified tenant.
    */
-  CreateEmployerAsync: {
+  Employers_CreateEmployer: {
     parameters: {
       query: {
         tenantId: string;
@@ -5909,7 +5843,7 @@ export interface operations {
    * Count employers
    * @description Counts employers for the specified tenant.
    */
-  GetEmployersCountAsync: {
+  Employers_GetEmployersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5953,7 +5887,7 @@ export interface operations {
    * Get employer by ID
    * @description Retrieves a specific employer by its identifier.
    */
-  GetEmployerByIdAsync: {
+  Employers_GetEmployerById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5994,7 +5928,7 @@ export interface operations {
    * Update an employer
    * @description Updates an existing employer for the specified tenant.
    */
-  UpdateEmployerAsync: {
+  Employers_UpdateEmployer: {
     parameters: {
       query: {
         tenantId: string;
@@ -6048,7 +5982,7 @@ export interface operations {
    * Delete an employer
    * @description Deletes an employer for the specified tenant.
    */
-  DeleteEmployerAsync: {
+  Employers_DeleteEmployer: {
     parameters: {
       query: {
         tenantId: string;
@@ -6096,7 +6030,7 @@ export interface operations {
    * Patch an employer
    * @description Partially updates an existing employer for the specified tenant.
    */
-  PatchEmployerAsync: {
+  Employers_PatchEmployer: {
     parameters: {
       query: {
         tenantId: string;
@@ -6146,7 +6080,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -6161,11 +6174,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get gig applications
    * @description Retrieves proposals submitted against the tenant's gigs. Filter with `$filter=GigId eq '...'` or `JobApplicantProfileId eq '...'`.
    */
-  GetGigApplicationsAsync: {
+  GigApplications_GetGigApplications: {
     parameters: {
       query: {
         tenantId: string;
@@ -6209,7 +6407,7 @@ export interface operations {
    * Create a gig application
    * @description Records a candidate's proposal against one of the tenant's gigs. The targeted gig must belong to the tenant.
    */
-  CreateGigApplicationAsync: {
+  GigApplications_CreateGigApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -6260,7 +6458,7 @@ export interface operations {
    * Count gig applications
    * @description Counts proposals submitted against the tenant's gigs.
    */
-  GetGigApplicationsCountAsync: {
+  GigApplications_GetGigApplicationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6304,7 +6502,7 @@ export interface operations {
    * Get gig application by ID
    * @description Retrieves a specific proposal submitted against one of the tenant's gigs.
    */
-  GetGigApplicationByIdAsync: {
+  GigApplications_GetGigApplicationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6345,7 +6543,7 @@ export interface operations {
    * Update a gig application
    * @description Updates an existing proposal submitted against one of the tenant's gigs (e.g. accept it).
    */
-  UpdateGigApplicationAsync: {
+  GigApplications_UpdateGigApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -6399,7 +6597,7 @@ export interface operations {
    * Delete a gig application
    * @description Removes a proposal submitted against one of the tenant's gigs.
    */
-  DeleteGigApplicationAsync: {
+  GigApplications_DeleteGigApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -6447,7 +6645,7 @@ export interface operations {
    * Patch a gig application
    * @description Partially updates an existing proposal submitted against one of the tenant's gigs.
    */
-  PatchGigApplicationAsync: {
+  GigApplications_PatchGigApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -6501,7 +6699,7 @@ export interface operations {
    * Accept a gig application
    * @description Accepts the candidate's gig proposal, forming an engagement (raises GigApplicationAccepted). A proposal cannot be accepted twice.
    */
-  AcceptGigApplicationAsync: {
+  GigApplications_AcceptGigApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -6542,7 +6740,7 @@ export interface operations {
    * Get gigs
    * @description Retrieves gigs for the specified tenant.
    */
-  GetGigsAsync: {
+  Gigs_GetGigs: {
     parameters: {
       query: {
         tenantId: string;
@@ -6586,7 +6784,7 @@ export interface operations {
    * Create a gig
    * @description Creates a new gig for the specified tenant.
    */
-  CreateGigAsync: {
+  Gigs_CreateGig: {
     parameters: {
       query: {
         tenantId: string;
@@ -6637,7 +6835,7 @@ export interface operations {
    * Count gigs
    * @description Counts gigs for the specified tenant.
    */
-  GetGigsCountAsync: {
+  Gigs_GetGigsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6681,7 +6879,7 @@ export interface operations {
    * Get gig by ID
    * @description Retrieves a specific gig by its identifier.
    */
-  GetGigByIdAsync: {
+  Gigs_GetGigById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6722,7 +6920,7 @@ export interface operations {
    * Update a gig
    * @description Updates an existing gig for the specified tenant.
    */
-  UpdateGigAsync: {
+  Gigs_UpdateGig: {
     parameters: {
       query: {
         tenantId: string;
@@ -6776,7 +6974,7 @@ export interface operations {
    * Delete a gig
    * @description Deletes a gig for the specified tenant.
    */
-  DeleteGigAsync: {
+  Gigs_DeleteGig: {
     parameters: {
       query: {
         tenantId: string;
@@ -6824,7 +7022,7 @@ export interface operations {
    * Patch a gig
    * @description Partially updates an existing gig for the specified tenant.
    */
-  PatchGigAsync: {
+  Gigs_PatchGig: {
     parameters: {
       query: {
         tenantId: string;
@@ -6878,7 +7076,7 @@ export interface operations {
    * Get job applicants
    * @description Retrieves job applicant (candidate) profiles for the specified tenant.
    */
-  GetJobApplicantsAsync: {
+  JobApplicants_GetJobApplicants: {
     parameters: {
       query: {
         tenantId: string;
@@ -6922,7 +7120,7 @@ export interface operations {
    * Create a job applicant
    * @description Creates a new job applicant (candidate) profile for the specified tenant.
    */
-  CreateJobApplicantAsync: {
+  JobApplicants_CreateJobApplicant: {
     parameters: {
       query: {
         tenantId: string;
@@ -6973,7 +7171,7 @@ export interface operations {
    * Count job applicants
    * @description Counts job applicant profiles for the specified tenant.
    */
-  GetJobApplicantsCountAsync: {
+  JobApplicants_GetJobApplicantsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7017,7 +7215,7 @@ export interface operations {
    * Get job applicant by ID
    * @description Retrieves a specific job applicant (candidate) profile by its identifier.
    */
-  GetJobApplicantByIdAsync: {
+  JobApplicants_GetJobApplicantById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7058,7 +7256,7 @@ export interface operations {
    * Update a job applicant
    * @description Updates an existing job applicant (candidate) profile for the specified tenant.
    */
-  UpdateJobApplicantAsync: {
+  JobApplicants_UpdateJobApplicant: {
     parameters: {
       query: {
         tenantId: string;
@@ -7112,7 +7310,7 @@ export interface operations {
    * Delete a job applicant
    * @description Deletes a job applicant (candidate) profile for the specified tenant.
    */
-  DeleteJobApplicantAsync: {
+  JobApplicants_DeleteJobApplicant: {
     parameters: {
       query: {
         tenantId: string;
@@ -7160,7 +7358,7 @@ export interface operations {
    * Patch a job applicant
    * @description Partially updates an existing job applicant (candidate) profile for the specified tenant.
    */
-  PatchJobApplicantAsync: {
+  JobApplicants_PatchJobApplicant: {
     parameters: {
       query: {
         tenantId: string;
@@ -7214,7 +7412,7 @@ export interface operations {
    * Get job applications
    * @description Retrieves applications submitted against the tenant's job offers. Filter with `$filter=JobOfferId eq '...'` or `JobApplicantProfileId eq '...'`.
    */
-  GetJobApplicationsAsync: {
+  JobApplications_GetJobApplications: {
     parameters: {
       query: {
         tenantId: string;
@@ -7258,7 +7456,7 @@ export interface operations {
    * Create a job application
    * @description Records a candidate's application against one of the tenant's job offers. The targeted job offer must belong to the tenant.
    */
-  CreateJobApplicationAsync: {
+  JobApplications_CreateJobApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -7309,7 +7507,7 @@ export interface operations {
    * Count job applications
    * @description Counts applications submitted against the tenant's job offers.
    */
-  GetJobApplicationsCountAsync: {
+  JobApplications_GetJobApplicationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7353,7 +7551,7 @@ export interface operations {
    * Get job application by ID
    * @description Retrieves a specific application submitted against one of the tenant's job offers.
    */
-  GetJobApplicationByIdAsync: {
+  JobApplications_GetJobApplicationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7394,7 +7592,7 @@ export interface operations {
    * Update a job application
    * @description Updates an existing application submitted against one of the tenant's job offers.
    */
-  UpdateJobApplicationAsync: {
+  JobApplications_UpdateJobApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -7448,7 +7646,7 @@ export interface operations {
    * Delete a job application
    * @description Removes an application submitted against one of the tenant's job offers.
    */
-  DeleteJobApplicationAsync: {
+  JobApplications_DeleteJobApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -7496,7 +7694,7 @@ export interface operations {
    * Patch a job application
    * @description Partially updates an existing application submitted against one of the tenant's job offers.
    */
-  PatchJobApplicationAsync: {
+  JobApplications_PatchJobApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -7550,7 +7748,7 @@ export interface operations {
    * Change job application status
    * @description Transitions the application to a new funnel status (e.g. UnderReview, Interviewing, Offered, Hired, Rejected). Raises JobApplicationStatusChanged; terminal statuses are immutable.
    */
-  ChangeJobApplicationStatusAsync: {
+  JobApplications_ChangeJobApplicationStatus: {
     parameters: {
       query: {
         tenantId: string;
@@ -7592,7 +7790,7 @@ export interface operations {
    * Get job fields
    * @description Retrieves job field (role domain) taxonomy entries for the specified tenant.
    */
-  GetJobFieldsAsync: {
+  JobFields_GetJobFields: {
     parameters: {
       query: {
         tenantId: string;
@@ -7636,7 +7834,7 @@ export interface operations {
    * Create a job field
    * @description Creates a new job field (role domain) for the specified tenant.
    */
-  CreateJobFieldAsync: {
+  JobFields_CreateJobField: {
     parameters: {
       query: {
         tenantId: string;
@@ -7687,7 +7885,7 @@ export interface operations {
    * Count job fields
    * @description Counts job field taxonomy entries for the specified tenant.
    */
-  GetJobFieldsCountAsync: {
+  JobFields_GetJobFieldsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7731,7 +7929,7 @@ export interface operations {
    * Get job field by ID
    * @description Retrieves a specific job field by its identifier.
    */
-  GetJobFieldByIdAsync: {
+  JobFields_GetJobFieldById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7772,7 +7970,7 @@ export interface operations {
    * Update a job field
    * @description Updates an existing job field for the specified tenant.
    */
-  UpdateJobFieldAsync: {
+  JobFields_UpdateJobField: {
     parameters: {
       query: {
         tenantId: string;
@@ -7826,7 +8024,7 @@ export interface operations {
    * Delete a job field
    * @description Deletes a job field for the specified tenant.
    */
-  DeleteJobFieldAsync: {
+  JobFields_DeleteJobField: {
     parameters: {
       query: {
         tenantId: string;
@@ -7874,7 +8072,7 @@ export interface operations {
    * Patch a job field
    * @description Partially updates an existing job field for the specified tenant.
    */
-  PatchJobFieldAsync: {
+  JobFields_PatchJobField: {
     parameters: {
       query: {
         tenantId: string;
@@ -7928,7 +8126,7 @@ export interface operations {
    * Get job offer fields
    * @description Retrieves job-offer field link records for the tenant. Filter with `$filter=JobOfferId eq '...'` or `JobFieldId eq '...'`.
    */
-  GetJobOfferFieldsAsync: {
+  JobOfferFields_GetJobOfferFields: {
     parameters: {
       query: {
         tenantId: string;
@@ -7972,7 +8170,7 @@ export interface operations {
    * Create a job offer field
    * @description Links a job field to a job offer for the specified tenant.
    */
-  CreateJobOfferFieldAsync: {
+  JobOfferFields_CreateJobOfferField: {
     parameters: {
       query: {
         tenantId: string;
@@ -8023,7 +8221,7 @@ export interface operations {
    * Count job offer fields
    * @description Counts job-offer field link records for the specified tenant.
    */
-  GetJobOfferFieldsCountAsync: {
+  JobOfferFields_GetJobOfferFieldsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8067,7 +8265,7 @@ export interface operations {
    * Get job offer field by ID
    * @description Retrieves a specific job-offer field link record by its identifier.
    */
-  GetJobOfferFieldByIdAsync: {
+  JobOfferFields_GetJobOfferFieldById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8108,7 +8306,7 @@ export interface operations {
    * Update a job offer field
    * @description Updates an existing job-offer field link record for the specified tenant.
    */
-  UpdateJobOfferFieldAsync: {
+  JobOfferFields_UpdateJobOfferField: {
     parameters: {
       query: {
         tenantId: string;
@@ -8162,7 +8360,7 @@ export interface operations {
    * Delete a job offer field
    * @description Removes a job-offer field link record for the specified tenant.
    */
-  DeleteJobOfferFieldAsync: {
+  JobOfferFields_DeleteJobOfferField: {
     parameters: {
       query: {
         tenantId: string;
@@ -8210,7 +8408,7 @@ export interface operations {
    * Patch a job offer field
    * @description Partially updates an existing job-offer field link record for the specified tenant.
    */
-  PatchJobOfferFieldAsync: {
+  JobOfferFields_PatchJobOfferField: {
     parameters: {
       query: {
         tenantId: string;
@@ -8264,7 +8462,7 @@ export interface operations {
    * Get job offers
    * @description Retrieves job offers for the specified tenant.
    */
-  GetJobOffersAsync: {
+  JobOffers_GetJobOffers: {
     parameters: {
       query: {
         tenantId: string;
@@ -8308,7 +8506,7 @@ export interface operations {
    * Create a job offer
    * @description Creates a new job offer for the specified tenant.
    */
-  CreateJobOfferAsync: {
+  JobOffers_CreateJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8359,7 +8557,7 @@ export interface operations {
    * Count job offers
    * @description Counts job offers for the specified tenant.
    */
-  GetJobOffersCountAsync: {
+  JobOffers_GetJobOffersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8403,7 +8601,7 @@ export interface operations {
    * Get job offer by ID
    * @description Retrieves a specific job offer by its identifier.
    */
-  GetJobOfferByIdAsync: {
+  JobOffers_GetJobOfferById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8444,7 +8642,7 @@ export interface operations {
    * Update a job offer
    * @description Updates an existing job offer for the specified tenant.
    */
-  UpdateJobOfferAsync: {
+  JobOffers_UpdateJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8498,7 +8696,7 @@ export interface operations {
    * Delete a job offer
    * @description Deletes a job offer for the specified tenant.
    */
-  DeleteJobOfferAsync: {
+  JobOffers_DeleteJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8546,7 +8744,7 @@ export interface operations {
    * Patch a job offer
    * @description Partially updates an existing job offer for the specified tenant.
    */
-  PatchJobOfferAsync: {
+  JobOffers_PatchJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8600,7 +8798,7 @@ export interface operations {
    * Get public job offers
    * @description Retrieves published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
    */
-  GetPublicJobOffersAsync: {
+  JobOffers_GetPublicJobOffers: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -8612,16 +8810,16 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["JobOfferDtoCollectionQueryParameters"];
-        "application/xml": components["schemas"]["JobOfferDtoCollectionQueryParameters"];
+        "application/json": components["schemas"]["JobOfferPublicDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JobOfferPublicDtoCollectionQueryParameters"];
       };
     };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["JobOfferDtoListEnvelope"];
-          "application/xml": components["schemas"]["JobOfferDtoListEnvelope"];
+          "application/json": components["schemas"]["JobOfferPublicDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobOfferPublicDtoListEnvelope"];
         };
       };
       /** @description Bad Request */
@@ -8637,7 +8835,7 @@ export interface operations {
    * Count public job offers
    * @description Counts published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
    */
-  GetPublicJobOffersCountAsync: {
+  JobOffers_GetPublicJobOffersCount: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -8649,8 +8847,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["JobOfferDtoCollectionQueryParameters"];
-        "application/xml": components["schemas"]["JobOfferDtoCollectionQueryParameters"];
+        "application/json": components["schemas"]["JobOfferPublicDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JobOfferPublicDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8674,7 +8872,7 @@ export interface operations {
    * Get public job offer by ID
    * @description Retrieves a published job offer by its identifier for the Talent Portal. Anonymous; optionally scoped to a tenant.
    */
-  GetPublicJobOfferByIdAsync: {
+  JobOffers_GetPublicJobOfferById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -8691,12 +8889,19 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["JobOfferDtoEnvelope"];
-          "application/xml": components["schemas"]["JobOfferDtoEnvelope"];
+          "application/json": components["schemas"]["JobOfferPublicDtoEnvelope"];
+          "application/xml": components["schemas"]["JobOfferPublicDtoEnvelope"];
         };
       };
       /** @description Bad Request */
       400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -8708,7 +8913,7 @@ export interface operations {
    * Publish a job offer
    * @description Publishes the job offer to the public Talent Portal (raises JobOfferPublished).
    */
-  PublishJobOfferAsync: {
+  JobOffers_PublishJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8749,7 +8954,7 @@ export interface operations {
    * Close a job offer
    * @description Closes the job offer without a hire and removes it from the public board (raises JobOfferClosed).
    */
-  CloseJobOfferAsync: {
+  JobOffers_CloseJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8790,7 +8995,7 @@ export interface operations {
    * Mark a job offer filled
    * @description Marks the offer filled — converted to a hire — and removes it from the public board (raises JobOfferFilled).
    */
-  FillJobOfferAsync: {
+  JobOffers_FillJobOffer: {
     parameters: {
       query: {
         tenantId: string;
@@ -8831,7 +9036,7 @@ export interface operations {
    * Get job titles
    * @description Retrieves job titles for the specified tenant.
    */
-  GetJobTitlesAsync: {
+  JobTitles_GetJobTitles: {
     parameters: {
       query: {
         tenantId: string;
@@ -8875,7 +9080,7 @@ export interface operations {
    * Create a job title
    * @description Creates a new job title for the specified tenant.
    */
-  CreateJobTitleAsync: {
+  JobTitles_CreateJobTitle: {
     parameters: {
       query: {
         tenantId: string;
@@ -8926,7 +9131,7 @@ export interface operations {
    * Count job titles
    * @description Counts job titles for the specified tenant.
    */
-  GetJobTitlesCountAsync: {
+  JobTitles_GetJobTitlesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8970,7 +9175,7 @@ export interface operations {
    * Get job title by ID
    * @description Retrieves a specific job title by its identifier.
    */
-  GetJobTitleByIdAsync: {
+  JobTitles_GetJobTitleById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9011,7 +9216,7 @@ export interface operations {
    * Update a job title
    * @description Updates an existing job title for the specified tenant.
    */
-  UpdateJobTitleAsync: {
+  JobTitles_UpdateJobTitle: {
     parameters: {
       query: {
         tenantId: string;
@@ -9065,7 +9270,7 @@ export interface operations {
    * Delete a job title
    * @description Deletes a job title for the specified tenant.
    */
-  DeleteJobTitleAsync: {
+  JobTitles_DeleteJobTitle: {
     parameters: {
       query: {
         tenantId: string;
@@ -9113,7 +9318,7 @@ export interface operations {
    * Patch a job title
    * @description Partially updates an existing job title for the specified tenant.
    */
-  PatchJobTitleAsync: {
+  JobTitles_PatchJobTitle: {
     parameters: {
       query: {
         tenantId: string;
@@ -9167,7 +9372,7 @@ export interface operations {
    * Get leave applications
    * @description Retrieves leave applications for the specified tenant.
    */
-  GetLeaveApplicationsAsync: {
+  LeaveApplications_GetLeaveApplications: {
     parameters: {
       query: {
         tenantId: string;
@@ -9211,7 +9416,7 @@ export interface operations {
    * Create a leave application
    * @description Creates a new leave application for the specified tenant.
    */
-  CreateLeaveApplicationAsync: {
+  LeaveApplications_CreateLeaveApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -9262,7 +9467,7 @@ export interface operations {
    * Count leave applications
    * @description Counts leave applications for the specified tenant.
    */
-  GetLeaveApplicationsCountAsync: {
+  LeaveApplications_GetLeaveApplicationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9306,7 +9511,7 @@ export interface operations {
    * Get leave application by ID
    * @description Retrieves a specific leave application by its identifier.
    */
-  GetLeaveApplicationByIdAsync: {
+  LeaveApplications_GetLeaveApplicationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9347,7 +9552,7 @@ export interface operations {
    * Update a leave application
    * @description Updates an existing leave application for the specified tenant.
    */
-  UpdateLeaveApplicationAsync: {
+  LeaveApplications_UpdateLeaveApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -9401,7 +9606,7 @@ export interface operations {
    * Delete a leave application
    * @description Deletes a leave application for the specified tenant.
    */
-  DeleteLeaveApplicationAsync: {
+  LeaveApplications_DeleteLeaveApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -9449,7 +9654,7 @@ export interface operations {
    * Patch a leave application
    * @description Partially updates an existing leave application for the specified tenant.
    */
-  PatchLeaveApplicationAsync: {
+  LeaveApplications_PatchLeaveApplication: {
     parameters: {
       query: {
         tenantId: string;
@@ -9503,7 +9708,7 @@ export interface operations {
    * Get leave types
    * @description Retrieves leave types for the specified tenant.
    */
-  GetLeaveTypesAsync: {
+  LeaveTypes_GetLeaveTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -9547,7 +9752,7 @@ export interface operations {
    * Create a leave type
    * @description Creates a new leave type for the specified tenant.
    */
-  CreateLeaveTypeAsync: {
+  LeaveTypes_CreateLeaveType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9598,7 +9803,7 @@ export interface operations {
    * Count leave types
    * @description Counts leave types for the specified tenant.
    */
-  GetLeaveTypesCountAsync: {
+  LeaveTypes_GetLeaveTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9642,7 +9847,7 @@ export interface operations {
    * Get leave type by ID
    * @description Retrieves a specific leave type by its identifier.
    */
-  GetLeaveTypeByIdAsync: {
+  LeaveTypes_GetLeaveTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9683,7 +9888,7 @@ export interface operations {
    * Update a leave type
    * @description Updates an existing leave type for the specified tenant.
    */
-  UpdateLeaveTypeAsync: {
+  LeaveTypes_UpdateLeaveType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9737,7 +9942,7 @@ export interface operations {
    * Delete a leave type
    * @description Deletes a leave type for the specified tenant.
    */
-  DeleteLeaveTypeAsync: {
+  LeaveTypes_DeleteLeaveType: {
     parameters: {
       query: {
         tenantId: string;
@@ -9785,7 +9990,7 @@ export interface operations {
    * Get payroll periods
    * @description Retrieves payroll periods for the specified tenant.
    */
-  GetPayrollPeriodsAsync: {
+  PayrollPeriods_GetPayrollPeriods: {
     parameters: {
       query: {
         tenantId: string;
@@ -9829,7 +10034,7 @@ export interface operations {
    * Create a payroll period
    * @description Creates a new payroll period for the specified tenant.
    */
-  CreatePayrollPeriodAsync: {
+  PayrollPeriods_CreatePayrollPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -9880,7 +10085,7 @@ export interface operations {
    * Count payroll periods
    * @description Counts payroll periods for the specified tenant.
    */
-  GetPayrollPeriodsCountAsync: {
+  PayrollPeriods_GetPayrollPeriodsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9924,7 +10129,7 @@ export interface operations {
    * Get payroll period by ID
    * @description Retrieves a specific payroll period by its identifier.
    */
-  GetPayrollPeriodByIdAsync: {
+  PayrollPeriods_GetPayrollPeriodById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9965,7 +10170,7 @@ export interface operations {
    * Update a payroll period
    * @description Updates an existing payroll period for the specified tenant.
    */
-  UpdatePayrollPeriodAsync: {
+  PayrollPeriods_UpdatePayrollPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -10019,7 +10224,7 @@ export interface operations {
    * Delete a payroll period
    * @description Deletes a payroll period for the specified tenant.
    */
-  DeletePayrollPeriodAsync: {
+  PayrollPeriods_DeletePayrollPeriod: {
     parameters: {
       query: {
         tenantId: string;
@@ -10067,7 +10272,7 @@ export interface operations {
    * Get payrolls
    * @description Retrieves payrolls for the specified tenant.
    */
-  GetPayrollsAsync: {
+  Payrolls_GetPayrolls: {
     parameters: {
       query: {
         tenantId: string;
@@ -10111,7 +10316,7 @@ export interface operations {
    * Create a payroll
    * @description Creates a new payroll for the specified tenant.
    */
-  CreatePayrollAsync: {
+  Payrolls_CreatePayroll: {
     parameters: {
       query: {
         tenantId: string;
@@ -10162,7 +10367,7 @@ export interface operations {
    * Count payrolls
    * @description Counts payrolls for the specified tenant.
    */
-  GetPayrollsCountAsync: {
+  Payrolls_GetPayrollsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10206,7 +10411,7 @@ export interface operations {
    * Get payroll by ID
    * @description Retrieves a specific payroll by its identifier.
    */
-  GetPayrollByIdAsync: {
+  Payrolls_GetPayrollById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10247,7 +10452,7 @@ export interface operations {
    * Update a payroll
    * @description Updates an existing payroll for the specified tenant.
    */
-  UpdatePayrollAsync: {
+  Payrolls_UpdatePayroll: {
     parameters: {
       query: {
         tenantId: string;
@@ -10301,7 +10506,7 @@ export interface operations {
    * Delete a payroll
    * @description Deletes a payroll for the specified tenant.
    */
-  DeletePayrollAsync: {
+  Payrolls_DeletePayroll: {
     parameters: {
       query: {
         tenantId: string;
@@ -10349,7 +10554,7 @@ export interface operations {
    * Patch a payroll
    * @description Partially updates an existing payroll for the specified tenant.
    */
-  PatchPayrollAsync: {
+  Payrolls_PatchPayroll: {
     parameters: {
       query: {
         tenantId: string;
@@ -10400,10 +10605,329 @@ export interface operations {
     };
   };
   /**
+   * Get position assignments
+   * @description Retrieves the assignments, active and ended, of a position owned by the tenant.
+   */
+  PositionSeats_GetPositionAssignments: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessPositionAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessPositionAssignmentDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BusinessPositionAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["BusinessPositionAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Assign a position
+   * @description Fills a seat on the position with an enrollment of the tenant (a human, application or agent principal). Conflict when every seat is filled or the enrollment already holds one.
+   */
+  PositionSeats_AssignPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionAssignmentCreateDto"];
+        "application/xml": components["schemas"]["PositionAssignmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count position assignments
+   * @description Counts the assignments of a position owned by the tenant.
+   */
+  PositionSeats_GetPositionAssignmentsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessPositionAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessPositionAssignmentDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * End a position assignment
+   * @description Vacates a seat. The assignment is kept as history.
+   */
+  PositionSeats_EndPositionAssignment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+        assignmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Change a position's capacity
+   * @description Sets the number of seats: at least 1, never below the filled seats (Conflict).
+   */
+  PositionSeats_ChangePositionCapacity: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionCapacityUpdateDto"];
+        "application/xml": components["schemas"]["PositionCapacityUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Change a position's department
+   * @description Moves the position to an enabled department of the same tenant.
+   */
+  PositionSeats_ChangePositionDepartment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionDepartmentUpdateDto"];
+        "application/xml": components["schemas"]["PositionDepartmentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get required skills
    * @description Retrieves required-skill records for the specified tenant. Filter by `$filter=JobOfferId eq '...'` or `EmployerProfileId eq '...'`.
    */
-  GetRequiredSkillsAsync: {
+  RequiredSkills_GetRequiredSkills: {
     parameters: {
       query: {
         tenantId: string;
@@ -10447,7 +10971,7 @@ export interface operations {
    * Create a required skill
    * @description Creates a new required-skill record for the specified tenant.
    */
-  CreateRequiredSkillAsync: {
+  RequiredSkills_CreateRequiredSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -10498,7 +11022,7 @@ export interface operations {
    * Count required skills
    * @description Counts required-skill records for the specified tenant.
    */
-  GetRequiredSkillsCountAsync: {
+  RequiredSkills_GetRequiredSkillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10542,7 +11066,7 @@ export interface operations {
    * Get required skill by ID
    * @description Retrieves a specific required-skill record by its identifier.
    */
-  GetRequiredSkillByIdAsync: {
+  RequiredSkills_GetRequiredSkillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10583,7 +11107,7 @@ export interface operations {
    * Update a required skill
    * @description Updates an existing required-skill record for the specified tenant.
    */
-  UpdateRequiredSkillAsync: {
+  RequiredSkills_UpdateRequiredSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -10637,7 +11161,7 @@ export interface operations {
    * Delete a required skill
    * @description Deletes a required-skill record for the specified tenant.
    */
-  DeleteRequiredSkillAsync: {
+  RequiredSkills_DeleteRequiredSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -10685,7 +11209,7 @@ export interface operations {
    * Patch a required skill
    * @description Partially updates an existing required-skill record for the specified tenant.
    */
-  PatchRequiredSkillAsync: {
+  RequiredSkills_PatchRequiredSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -10739,7 +11263,7 @@ export interface operations {
    * Get salaries
    * @description Retrieves salaries for the specified tenant.
    */
-  GetSalariesAsync: {
+  Salaries_GetSalaries: {
     parameters: {
       query: {
         tenantId: string;
@@ -10783,7 +11307,7 @@ export interface operations {
    * Create a salary
    * @description Creates a new salary for the specified tenant.
    */
-  CreateSalaryAsync: {
+  Salaries_CreateSalary: {
     parameters: {
       query: {
         tenantId: string;
@@ -10834,7 +11358,7 @@ export interface operations {
    * Count salaries
    * @description Counts salaries for the specified tenant.
    */
-  GetSalariesCountAsync: {
+  Salaries_GetSalariesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10878,7 +11402,7 @@ export interface operations {
    * Get salary by ID
    * @description Retrieves a specific salary by its identifier.
    */
-  GetSalaryByIdAsync: {
+  Salaries_GetSalaryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10919,7 +11443,7 @@ export interface operations {
    * Update a salary
    * @description Updates an existing salary for the specified tenant.
    */
-  UpdateSalaryAsync: {
+  Salaries_UpdateSalary: {
     parameters: {
       query: {
         tenantId: string;
@@ -10973,7 +11497,7 @@ export interface operations {
    * Delete a salary
    * @description Deletes a salary for the specified tenant.
    */
-  DeleteSalaryAsync: {
+  Salaries_DeleteSalary: {
     parameters: {
       query: {
         tenantId: string;
@@ -11021,7 +11545,7 @@ export interface operations {
    * Patch a salary
    * @description Partially updates an existing salary for the specified tenant.
    */
-  PatchSalaryAsync: {
+  Salaries_PatchSalary: {
     parameters: {
       query: {
         tenantId: string;
@@ -11075,7 +11599,7 @@ export interface operations {
    * Get schedules
    * @description Retrieves schedules for the specified tenant.
    */
-  GetSchedulesAsync: {
+  Schedules_GetSchedules: {
     parameters: {
       query: {
         tenantId: string;
@@ -11119,7 +11643,7 @@ export interface operations {
    * Create a schedule
    * @description Creates a new schedule for the specified tenant.
    */
-  CreateScheduleAsync: {
+  Schedules_CreateSchedule: {
     parameters: {
       query: {
         tenantId: string;
@@ -11170,7 +11694,7 @@ export interface operations {
    * Count schedules
    * @description Counts schedules for the specified tenant.
    */
-  GetSchedulesCountAsync: {
+  Schedules_GetSchedulesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11214,7 +11738,7 @@ export interface operations {
    * Get schedule by ID
    * @description Retrieves a specific schedule by its identifier.
    */
-  GetScheduleByIdAsync: {
+  Schedules_GetScheduleById: {
     parameters: {
       query: {
         tenantId: string;
@@ -11255,7 +11779,7 @@ export interface operations {
    * Update a schedule
    * @description Updates an existing schedule for the specified tenant.
    */
-  UpdateScheduleAsync: {
+  Schedules_UpdateSchedule: {
     parameters: {
       query: {
         tenantId: string;
@@ -11309,7 +11833,7 @@ export interface operations {
    * Delete a schedule
    * @description Deletes a schedule for the specified tenant.
    */
-  DeleteScheduleAsync: {
+  Schedules_DeleteSchedule: {
     parameters: {
       query: {
         tenantId: string;
@@ -11357,7 +11881,7 @@ export interface operations {
    * Patch a schedule
    * @description Partially updates an existing schedule for the specified tenant.
    */
-  PatchScheduleAsync: {
+  Schedules_PatchSchedule: {
     parameters: {
       query: {
         tenantId: string;
@@ -11411,7 +11935,7 @@ export interface operations {
    * Get shifts
    * @description Retrieves shifts for the specified tenant.
    */
-  GetShiftsAsync: {
+  Shifts_GetShifts: {
     parameters: {
       query: {
         tenantId: string;
@@ -11455,7 +11979,7 @@ export interface operations {
    * Create a shift
    * @description Creates a new shift for the specified tenant.
    */
-  CreateShiftAsync: {
+  Shifts_CreateShift: {
     parameters: {
       query: {
         tenantId: string;
@@ -11506,7 +12030,7 @@ export interface operations {
    * Count shifts
    * @description Counts shifts for the specified tenant.
    */
-  GetShiftsCountAsync: {
+  Shifts_GetShiftsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11550,7 +12074,7 @@ export interface operations {
    * Get shift by ID
    * @description Retrieves a specific shift by its identifier.
    */
-  GetShiftByIdAsync: {
+  Shifts_GetShiftById: {
     parameters: {
       query: {
         tenantId: string;
@@ -11591,7 +12115,7 @@ export interface operations {
    * Update a shift
    * @description Updates an existing shift for the specified tenant.
    */
-  UpdateShiftAsync: {
+  Shifts_UpdateShift: {
     parameters: {
       query: {
         tenantId: string;
@@ -11645,7 +12169,7 @@ export interface operations {
    * Delete a shift
    * @description Deletes a shift for the specified tenant.
    */
-  DeleteShiftAsync: {
+  Shifts_DeleteShift: {
     parameters: {
       query: {
         tenantId: string;
@@ -11693,7 +12217,7 @@ export interface operations {
    * Patch a shift
    * @description Partially updates an existing shift for the specified tenant.
    */
-  PatchShiftAsync: {
+  Shifts_PatchShift: {
     parameters: {
       query: {
         tenantId: string;
@@ -11747,7 +12271,7 @@ export interface operations {
    * Get time intervals
    * @description Retrieves time intervals for the specified tenant.
    */
-  GetTimeIntervalsAsync: {
+  TimeIntervals_GetTimeIntervals: {
     parameters: {
       query: {
         tenantId: string;
@@ -11791,7 +12315,7 @@ export interface operations {
    * Create a time interval
    * @description Creates a new time interval for the specified tenant.
    */
-  CreateTimeIntervalAsync: {
+  TimeIntervals_CreateTimeInterval: {
     parameters: {
       query: {
         tenantId: string;
@@ -11842,7 +12366,7 @@ export interface operations {
    * Count time intervals
    * @description Counts time intervals for the specified tenant.
    */
-  GetTimeIntervalsCountAsync: {
+  TimeIntervals_GetTimeIntervalsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11886,7 +12410,7 @@ export interface operations {
    * Get time interval by ID
    * @description Retrieves a specific time interval by its identifier.
    */
-  GetTimeIntervalByIdAsync: {
+  TimeIntervals_GetTimeIntervalById: {
     parameters: {
       query: {
         tenantId: string;
@@ -11927,7 +12451,7 @@ export interface operations {
    * Update a time interval
    * @description Updates an existing time interval for the specified tenant.
    */
-  UpdateTimeIntervalAsync: {
+  TimeIntervals_UpdateTimeInterval: {
     parameters: {
       query: {
         tenantId: string;
@@ -11981,7 +12505,7 @@ export interface operations {
    * Delete a time interval
    * @description Deletes a time interval for the specified tenant.
    */
-  DeleteTimeIntervalAsync: {
+  TimeIntervals_DeleteTimeInterval: {
     parameters: {
       query: {
         tenantId: string;
@@ -12029,7 +12553,7 @@ export interface operations {
    * Patch a time interval
    * @description Partially updates an existing time interval for the specified tenant.
    */
-  PatchTimeIntervalAsync: {
+  TimeIntervals_PatchTimeInterval: {
     parameters: {
       query: {
         tenantId: string;
@@ -12083,7 +12607,7 @@ export interface operations {
    * Get training program courses
    * @description Retrieves training program courses for the specified tenant.
    */
-  GetTrainingProgramCoursesAsync: {
+  TrainingProgramCourses_GetTrainingProgramCourses: {
     parameters: {
       query: {
         tenantId: string;
@@ -12127,7 +12651,7 @@ export interface operations {
    * Create a training program course
    * @description Creates a new training program course for the specified tenant.
    */
-  CreateTrainingProgramCourseAsync: {
+  TrainingProgramCourses_CreateTrainingProgramCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12178,7 +12702,7 @@ export interface operations {
    * Count training program courses
    * @description Counts training program courses for the specified tenant.
    */
-  GetTrainingProgramCoursesCountAsync: {
+  TrainingProgramCourses_GetTrainingProgramCoursesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12222,7 +12746,7 @@ export interface operations {
    * Get training program course by ID
    * @description Retrieves a specific training program course by its identifier.
    */
-  GetTrainingProgramCourseByIdAsync: {
+  TrainingProgramCourses_GetTrainingProgramCourseById: {
     parameters: {
       query: {
         tenantId: string;
@@ -12263,7 +12787,7 @@ export interface operations {
    * Update a training program course
    * @description Updates an existing training program course for the specified tenant.
    */
-  UpdateTrainingProgramCourseAsync: {
+  TrainingProgramCourses_UpdateTrainingProgramCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12317,7 +12841,7 @@ export interface operations {
    * Delete a training program course
    * @description Deletes a training program course for the specified tenant.
    */
-  DeleteTrainingProgramCourseAsync: {
+  TrainingProgramCourses_DeleteTrainingProgramCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12365,7 +12889,7 @@ export interface operations {
    * Patch a training program course
    * @description Partially updates an existing training program course for the specified tenant.
    */
-  PatchTrainingProgramCourseAsync: {
+  TrainingProgramCourses_PatchTrainingProgramCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12419,7 +12943,7 @@ export interface operations {
    * Get training program events
    * @description Retrieves training program events for the specified tenant.
    */
-  GetTrainingProgramEventsAsync: {
+  TrainingProgramEvents_GetTrainingProgramEvents: {
     parameters: {
       query: {
         tenantId: string;
@@ -12463,7 +12987,7 @@ export interface operations {
    * Create a training program event
    * @description Creates a new training program event for the specified tenant.
    */
-  CreateTrainingProgramEventAsync: {
+  TrainingProgramEvents_CreateTrainingProgramEvent: {
     parameters: {
       query: {
         tenantId: string;
@@ -12514,7 +13038,7 @@ export interface operations {
    * Count training program events
    * @description Counts training program events for the specified tenant.
    */
-  GetTrainingProgramEventsCountAsync: {
+  TrainingProgramEvents_GetTrainingProgramEventsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12558,7 +13082,7 @@ export interface operations {
    * Get training program event by ID
    * @description Retrieves a specific training program event by its identifier.
    */
-  GetTrainingProgramEventByIdAsync: {
+  TrainingProgramEvents_GetTrainingProgramEventById: {
     parameters: {
       query: {
         tenantId: string;
@@ -12599,7 +13123,7 @@ export interface operations {
    * Update a training program event
    * @description Updates an existing training program event for the specified tenant.
    */
-  UpdateTrainingProgramEventAsync: {
+  TrainingProgramEvents_UpdateTrainingProgramEvent: {
     parameters: {
       query: {
         tenantId: string;
@@ -12653,7 +13177,7 @@ export interface operations {
    * Delete a training program event
    * @description Deletes a training program event for the specified tenant.
    */
-  DeleteTrainingProgramEventAsync: {
+  TrainingProgramEvents_DeleteTrainingProgramEvent: {
     parameters: {
       query: {
         tenantId: string;
@@ -12701,7 +13225,7 @@ export interface operations {
    * Patch a training program event
    * @description Partially updates an existing training program event for the specified tenant.
    */
-  PatchTrainingProgramEventAsync: {
+  TrainingProgramEvents_PatchTrainingProgramEvent: {
     parameters: {
       query: {
         tenantId: string;
@@ -12755,7 +13279,7 @@ export interface operations {
    * Get training programs
    * @description Retrieves training programs for the specified tenant.
    */
-  GetTrainingProgramsAsync: {
+  TrainingPrograms_GetTrainingPrograms: {
     parameters: {
       query: {
         tenantId: string;
@@ -12799,7 +13323,7 @@ export interface operations {
    * Create a training program
    * @description Creates a new training program for the specified tenant.
    */
-  CreateTrainingProgramAsync: {
+  TrainingPrograms_CreateTrainingProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -12850,7 +13374,7 @@ export interface operations {
    * Count training programs
    * @description Counts training programs for the specified tenant.
    */
-  GetTrainingProgramsCountAsync: {
+  TrainingPrograms_GetTrainingProgramsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12894,7 +13418,7 @@ export interface operations {
    * Get training program by ID
    * @description Retrieves a specific training program by its identifier.
    */
-  GetTrainingProgramByIdAsync: {
+  TrainingPrograms_GetTrainingProgramById: {
     parameters: {
       query: {
         tenantId: string;
@@ -12935,7 +13459,7 @@ export interface operations {
    * Update a training program
    * @description Updates an existing training program for the specified tenant.
    */
-  UpdateTrainingProgramAsync: {
+  TrainingPrograms_UpdateTrainingProgram: {
     parameters: {
       query: {
         tenantId: string;
@@ -12989,7 +13513,7 @@ export interface operations {
    * Delete a training program
    * @description Deletes a training program for the specified tenant.
    */
-  DeleteTrainingProgramAsync: {
+  TrainingPrograms_DeleteTrainingProgram: {
     parameters: {
       query: {
         tenantId: string;

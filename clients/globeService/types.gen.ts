@@ -717,7 +717,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetAllCountriesData = {
+export type CountriesGetAllCountriesData = {
     body?: CountryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -729,7 +729,7 @@ export type GetAllCountriesData = {
     url: '/api/v2/GlobeService/Countries';
 };
 
-export type GetAllCountriesErrors = {
+export type CountriesGetAllCountriesErrors = {
     /**
      * Unauthorized
      */
@@ -740,18 +740,18 @@ export type GetAllCountriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAllCountriesError = GetAllCountriesErrors[keyof GetAllCountriesErrors];
+export type CountriesGetAllCountriesError = CountriesGetAllCountriesErrors[keyof CountriesGetAllCountriesErrors];
 
-export type GetAllCountriesResponses = {
+export type CountriesGetAllCountriesResponses = {
     /**
      * OK
      */
     200: CountryDtoListEnvelopeReadable;
 };
 
-export type GetAllCountriesResponse = GetAllCountriesResponses[keyof GetAllCountriesResponses];
+export type CountriesGetAllCountriesResponse = CountriesGetAllCountriesResponses[keyof CountriesGetAllCountriesResponses];
 
-export type CountCountriesData = {
+export type CountriesCountCountriesData = {
     body?: CountryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -763,7 +763,7 @@ export type CountCountriesData = {
     url: '/api/v2/GlobeService/Countries/Count';
 };
 
-export type CountCountriesErrors = {
+export type CountriesCountCountriesErrors = {
     /**
      * Unauthorized
      */
@@ -774,18 +774,18 @@ export type CountCountriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountCountriesError = CountCountriesErrors[keyof CountCountriesErrors];
+export type CountriesCountCountriesError = CountriesCountCountriesErrors[keyof CountriesCountCountriesErrors];
 
-export type CountCountriesResponses = {
+export type CountriesCountCountriesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCountriesResponse = CountCountriesResponses[keyof CountCountriesResponses];
+export type CountriesCountCountriesResponse = CountriesCountCountriesResponses[keyof CountriesCountCountriesResponses];
 
-export type SearchCountriesByNameAsyncData = {
+export type CountriesSearchCountriesByNameData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -798,7 +798,7 @@ export type SearchCountriesByNameAsyncData = {
     url: '/api/v2/GlobeService/Countries/Search';
 };
 
-export type SearchCountriesByNameAsyncErrors = {
+export type CountriesSearchCountriesByNameErrors = {
     /**
      * Unauthorized
      */
@@ -809,18 +809,18 @@ export type SearchCountriesByNameAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SearchCountriesByNameAsyncError = SearchCountriesByNameAsyncErrors[keyof SearchCountriesByNameAsyncErrors];
+export type CountriesSearchCountriesByNameError = CountriesSearchCountriesByNameErrors[keyof CountriesSearchCountriesByNameErrors];
 
-export type SearchCountriesByNameAsyncResponses = {
+export type CountriesSearchCountriesByNameResponses = {
     /**
      * OK
      */
     200: CountryDtoListEnvelopeReadable;
 };
 
-export type SearchCountriesByNameAsyncResponse = SearchCountriesByNameAsyncResponses[keyof SearchCountriesByNameAsyncResponses];
+export type CountriesSearchCountriesByNameResponse = CountriesSearchCountriesByNameResponses[keyof CountriesSearchCountriesByNameResponses];
 
-export type GetCountryByIdData = {
+export type CountriesGetCountryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -834,7 +834,7 @@ export type GetCountryByIdData = {
     url: '/api/v2/GlobeService/Countries/{countryId}';
 };
 
-export type GetCountryByIdErrors = {
+export type CountriesGetCountryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -845,18 +845,18 @@ export type GetCountryByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCountryByIdError = GetCountryByIdErrors[keyof GetCountryByIdErrors];
+export type CountriesGetCountryByIdError = CountriesGetCountryByIdErrors[keyof CountriesGetCountryByIdErrors];
 
-export type GetCountryByIdResponses = {
+export type CountriesGetCountryByIdResponses = {
     /**
      * OK
      */
     200: CountryDtoEnvelopeReadable;
 };
 
-export type GetCountryByIdResponse = GetCountryByIdResponses[keyof GetCountryByIdResponses];
+export type CountriesGetCountryByIdResponse = CountriesGetCountryByIdResponses[keyof CountriesGetCountryByIdResponses];
 
-export type GetCountryStatesAsyncData = {
+export type CountriesGetCountryStatesData = {
     body?: CountryStateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -870,7 +870,7 @@ export type GetCountryStatesAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/States';
 };
 
-export type GetCountryStatesAsyncErrors = {
+export type CountriesGetCountryStatesErrors = {
     /**
      * Unauthorized
      */
@@ -881,18 +881,18 @@ export type GetCountryStatesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCountryStatesAsyncError = GetCountryStatesAsyncErrors[keyof GetCountryStatesAsyncErrors];
+export type CountriesGetCountryStatesError = CountriesGetCountryStatesErrors[keyof CountriesGetCountryStatesErrors];
 
-export type GetCountryStatesAsyncResponses = {
+export type CountriesGetCountryStatesResponses = {
     /**
      * OK
      */
     200: CountryStateDtoListEnvelopeReadable;
 };
 
-export type GetCountryStatesAsyncResponse = GetCountryStatesAsyncResponses[keyof GetCountryStatesAsyncResponses];
+export type CountriesGetCountryStatesResponse = CountriesGetCountryStatesResponses[keyof CountriesGetCountryStatesResponses];
 
-export type CountCountryStatesAsyncData = {
+export type CountriesCountCountryStatesData = {
     body?: CountryStateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -906,7 +906,7 @@ export type CountCountryStatesAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/States/Count';
 };
 
-export type CountCountryStatesAsyncErrors = {
+export type CountriesCountCountryStatesErrors = {
     /**
      * Unauthorized
      */
@@ -917,18 +917,18 @@ export type CountCountryStatesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountCountryStatesAsyncError = CountCountryStatesAsyncErrors[keyof CountCountryStatesAsyncErrors];
+export type CountriesCountCountryStatesError = CountriesCountCountryStatesErrors[keyof CountriesCountCountryStatesErrors];
 
-export type CountCountryStatesAsyncResponses = {
+export type CountriesCountCountryStatesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCountryStatesAsyncResponse = CountCountryStatesAsyncResponses[keyof CountCountryStatesAsyncResponses];
+export type CountriesCountCountryStatesResponse = CountriesCountCountryStatesResponses[keyof CountriesCountCountryStatesResponses];
 
-export type GetCountryStateByIdAsyncData = {
+export type CountriesGetCountryStateByIdData = {
     body?: CountryStateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -943,7 +943,7 @@ export type GetCountryStateByIdAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}';
 };
 
-export type GetCountryStateByIdAsyncErrors = {
+export type CountriesGetCountryStateByIdErrors = {
     /**
      * Unauthorized
      */
@@ -954,18 +954,18 @@ export type GetCountryStateByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCountryStateByIdAsyncError = GetCountryStateByIdAsyncErrors[keyof GetCountryStateByIdAsyncErrors];
+export type CountriesGetCountryStateByIdError = CountriesGetCountryStateByIdErrors[keyof CountriesGetCountryStateByIdErrors];
 
-export type GetCountryStateByIdAsyncResponses = {
+export type CountriesGetCountryStateByIdResponses = {
     /**
      * OK
      */
     200: CountryStateDtoEnvelopeReadable;
 };
 
-export type GetCountryStateByIdAsyncResponse = GetCountryStateByIdAsyncResponses[keyof GetCountryStateByIdAsyncResponses];
+export type CountriesGetCountryStateByIdResponse = CountriesGetCountryStateByIdResponses[keyof CountriesGetCountryStateByIdResponses];
 
-export type GetCitiesByCountryStateIdAsyncData = {
+export type CountriesGetCitiesByCountryStateIdData = {
     body?: CityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -980,7 +980,7 @@ export type GetCitiesByCountryStateIdAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}/Cities';
 };
 
-export type GetCitiesByCountryStateIdAsyncErrors = {
+export type CountriesGetCitiesByCountryStateIdErrors = {
     /**
      * Unauthorized
      */
@@ -991,18 +991,18 @@ export type GetCitiesByCountryStateIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCitiesByCountryStateIdAsyncError = GetCitiesByCountryStateIdAsyncErrors[keyof GetCitiesByCountryStateIdAsyncErrors];
+export type CountriesGetCitiesByCountryStateIdError = CountriesGetCitiesByCountryStateIdErrors[keyof CountriesGetCitiesByCountryStateIdErrors];
 
-export type GetCitiesByCountryStateIdAsyncResponses = {
+export type CountriesGetCitiesByCountryStateIdResponses = {
     /**
      * OK
      */
     200: CityDtoListEnvelopeReadable;
 };
 
-export type GetCitiesByCountryStateIdAsyncResponse = GetCitiesByCountryStateIdAsyncResponses[keyof GetCitiesByCountryStateIdAsyncResponses];
+export type CountriesGetCitiesByCountryStateIdResponse = CountriesGetCitiesByCountryStateIdResponses[keyof CountriesGetCitiesByCountryStateIdResponses];
 
-export type CountCitiesByStateAsyncData = {
+export type CountriesCountCitiesByStateData = {
     body?: CityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1017,7 +1017,7 @@ export type CountCitiesByStateAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}/Cities/Count';
 };
 
-export type CountCitiesByStateAsyncErrors = {
+export type CountriesCountCitiesByStateErrors = {
     /**
      * Unauthorized
      */
@@ -1028,18 +1028,18 @@ export type CountCitiesByStateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountCitiesByStateAsyncError = CountCitiesByStateAsyncErrors[keyof CountCitiesByStateAsyncErrors];
+export type CountriesCountCitiesByStateError = CountriesCountCitiesByStateErrors[keyof CountriesCountCitiesByStateErrors];
 
-export type CountCitiesByStateAsyncResponses = {
+export type CountriesCountCitiesByStateResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCitiesByStateAsyncResponse = CountCitiesByStateAsyncResponses[keyof CountCitiesByStateAsyncResponses];
+export type CountriesCountCitiesByStateResponse = CountriesCountCitiesByStateResponses[keyof CountriesCountCitiesByStateResponses];
 
-export type GetTimeZonesByCountryIdAsyncData = {
+export type CountriesGetTimeZonesByCountryIdData = {
     body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1053,7 +1053,7 @@ export type GetTimeZonesByCountryIdAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/Timezones';
 };
 
-export type GetTimeZonesByCountryIdAsyncErrors = {
+export type CountriesGetTimeZonesByCountryIdErrors = {
     /**
      * Unauthorized
      */
@@ -1064,18 +1064,18 @@ export type GetTimeZonesByCountryIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeZonesByCountryIdAsyncError = GetTimeZonesByCountryIdAsyncErrors[keyof GetTimeZonesByCountryIdAsyncErrors];
+export type CountriesGetTimeZonesByCountryIdError = CountriesGetTimeZonesByCountryIdErrors[keyof CountriesGetTimeZonesByCountryIdErrors];
 
-export type GetTimeZonesByCountryIdAsyncResponses = {
+export type CountriesGetTimeZonesByCountryIdResponses = {
     /**
      * OK
      */
     200: TimezoneDtoListEnvelopeReadable;
 };
 
-export type GetTimeZonesByCountryIdAsyncResponse = GetTimeZonesByCountryIdAsyncResponses[keyof GetTimeZonesByCountryIdAsyncResponses];
+export type CountriesGetTimeZonesByCountryIdResponse = CountriesGetTimeZonesByCountryIdResponses[keyof CountriesGetTimeZonesByCountryIdResponses];
 
-export type CountTimezonesByCountryAsyncData = {
+export type CountriesCountTimezonesByCountryData = {
     body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1089,7 +1089,7 @@ export type CountTimezonesByCountryAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/Timezones/Count';
 };
 
-export type CountTimezonesByCountryAsyncErrors = {
+export type CountriesCountTimezonesByCountryErrors = {
     /**
      * Unauthorized
      */
@@ -1100,18 +1100,18 @@ export type CountTimezonesByCountryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountTimezonesByCountryAsyncError = CountTimezonesByCountryAsyncErrors[keyof CountTimezonesByCountryAsyncErrors];
+export type CountriesCountTimezonesByCountryError = CountriesCountTimezonesByCountryErrors[keyof CountriesCountTimezonesByCountryErrors];
 
-export type CountTimezonesByCountryAsyncResponses = {
+export type CountriesCountTimezonesByCountryResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountTimezonesByCountryAsyncResponse = CountTimezonesByCountryAsyncResponses[keyof CountTimezonesByCountryAsyncResponses];
+export type CountriesCountTimezonesByCountryResponse = CountriesCountTimezonesByCountryResponses[keyof CountriesCountTimezonesByCountryResponses];
 
-export type GetEnabledCurrenciesByCountryIdAsyncData = {
+export type CountriesGetEnabledCurrenciesByCountryIdData = {
     body?: CurrencyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1125,7 +1125,7 @@ export type GetEnabledCurrenciesByCountryIdAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/Currencies';
 };
 
-export type GetEnabledCurrenciesByCountryIdAsyncErrors = {
+export type CountriesGetEnabledCurrenciesByCountryIdErrors = {
     /**
      * Unauthorized
      */
@@ -1136,18 +1136,18 @@ export type GetEnabledCurrenciesByCountryIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnabledCurrenciesByCountryIdAsyncError = GetEnabledCurrenciesByCountryIdAsyncErrors[keyof GetEnabledCurrenciesByCountryIdAsyncErrors];
+export type CountriesGetEnabledCurrenciesByCountryIdError = CountriesGetEnabledCurrenciesByCountryIdErrors[keyof CountriesGetEnabledCurrenciesByCountryIdErrors];
 
-export type GetEnabledCurrenciesByCountryIdAsyncResponses = {
+export type CountriesGetEnabledCurrenciesByCountryIdResponses = {
     /**
      * OK
      */
     200: CurrencyDtoListEnvelopeReadable;
 };
 
-export type GetEnabledCurrenciesByCountryIdAsyncResponse = GetEnabledCurrenciesByCountryIdAsyncResponses[keyof GetEnabledCurrenciesByCountryIdAsyncResponses];
+export type CountriesGetEnabledCurrenciesByCountryIdResponse = CountriesGetEnabledCurrenciesByCountryIdResponses[keyof CountriesGetEnabledCurrenciesByCountryIdResponses];
 
-export type GetTopLevelDomainsByCountryIdAsyncData = {
+export type CountriesGetTopLevelDomainsByCountryIdData = {
     body?: CountryTopLevelDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1161,7 +1161,7 @@ export type GetTopLevelDomainsByCountryIdAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/TopLevelDomains';
 };
 
-export type GetTopLevelDomainsByCountryIdAsyncErrors = {
+export type CountriesGetTopLevelDomainsByCountryIdErrors = {
     /**
      * Unauthorized
      */
@@ -1172,18 +1172,18 @@ export type GetTopLevelDomainsByCountryIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTopLevelDomainsByCountryIdAsyncError = GetTopLevelDomainsByCountryIdAsyncErrors[keyof GetTopLevelDomainsByCountryIdAsyncErrors];
+export type CountriesGetTopLevelDomainsByCountryIdError = CountriesGetTopLevelDomainsByCountryIdErrors[keyof CountriesGetTopLevelDomainsByCountryIdErrors];
 
-export type GetTopLevelDomainsByCountryIdAsyncResponses = {
+export type CountriesGetTopLevelDomainsByCountryIdResponses = {
     /**
      * OK
      */
     200: CountryTopLevelDomainDtoListEnvelopeReadable;
 };
 
-export type GetTopLevelDomainsByCountryIdAsyncResponse = GetTopLevelDomainsByCountryIdAsyncResponses[keyof GetTopLevelDomainsByCountryIdAsyncResponses];
+export type CountriesGetTopLevelDomainsByCountryIdResponse = CountriesGetTopLevelDomainsByCountryIdResponses[keyof CountriesGetTopLevelDomainsByCountryIdResponses];
 
-export type CountTopLevelDomainsByCountryAsyncData = {
+export type CountriesCountTopLevelDomainsByCountryData = {
     body?: CountryTopLevelDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1197,7 +1197,7 @@ export type CountTopLevelDomainsByCountryAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/TopLevelDomains/Count';
 };
 
-export type CountTopLevelDomainsByCountryAsyncErrors = {
+export type CountriesCountTopLevelDomainsByCountryErrors = {
     /**
      * Unauthorized
      */
@@ -1208,18 +1208,18 @@ export type CountTopLevelDomainsByCountryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountTopLevelDomainsByCountryAsyncError = CountTopLevelDomainsByCountryAsyncErrors[keyof CountTopLevelDomainsByCountryAsyncErrors];
+export type CountriesCountTopLevelDomainsByCountryError = CountriesCountTopLevelDomainsByCountryErrors[keyof CountriesCountTopLevelDomainsByCountryErrors];
 
-export type CountTopLevelDomainsByCountryAsyncResponses = {
+export type CountriesCountTopLevelDomainsByCountryResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountTopLevelDomainsByCountryAsyncResponse = CountTopLevelDomainsByCountryAsyncResponses[keyof CountTopLevelDomainsByCountryAsyncResponses];
+export type CountriesCountTopLevelDomainsByCountryResponse = CountriesCountTopLevelDomainsByCountryResponses[keyof CountriesCountTopLevelDomainsByCountryResponses];
 
-export type GetCallingCodesByCountryIdAsyncData = {
+export type CountriesGetCallingCodesByCountryIdData = {
     body?: CountryCallingCodeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1233,7 +1233,7 @@ export type GetCallingCodesByCountryIdAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/CallingCodes';
 };
 
-export type GetCallingCodesByCountryIdAsyncErrors = {
+export type CountriesGetCallingCodesByCountryIdErrors = {
     /**
      * Unauthorized
      */
@@ -1244,18 +1244,18 @@ export type GetCallingCodesByCountryIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCallingCodesByCountryIdAsyncError = GetCallingCodesByCountryIdAsyncErrors[keyof GetCallingCodesByCountryIdAsyncErrors];
+export type CountriesGetCallingCodesByCountryIdError = CountriesGetCallingCodesByCountryIdErrors[keyof CountriesGetCallingCodesByCountryIdErrors];
 
-export type GetCallingCodesByCountryIdAsyncResponses = {
+export type CountriesGetCallingCodesByCountryIdResponses = {
     /**
      * OK
      */
     200: CountryCallingCodeDtoListEnvelopeReadable;
 };
 
-export type GetCallingCodesByCountryIdAsyncResponse = GetCallingCodesByCountryIdAsyncResponses[keyof GetCallingCodesByCountryIdAsyncResponses];
+export type CountriesGetCallingCodesByCountryIdResponse = CountriesGetCallingCodesByCountryIdResponses[keyof CountriesGetCallingCodesByCountryIdResponses];
 
-export type CountCallingCodesByCountryAsyncData = {
+export type CountriesCountCallingCodesByCountryData = {
     body?: CountryCallingCodeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1269,7 +1269,7 @@ export type CountCallingCodesByCountryAsyncData = {
     url: '/api/v2/GlobeService/Countries/{countryId}/CallingCodes/Count';
 };
 
-export type CountCallingCodesByCountryAsyncErrors = {
+export type CountriesCountCallingCodesByCountryErrors = {
     /**
      * Unauthorized
      */
@@ -1280,18 +1280,18 @@ export type CountCallingCodesByCountryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountCallingCodesByCountryAsyncError = CountCallingCodesByCountryAsyncErrors[keyof CountCallingCodesByCountryAsyncErrors];
+export type CountriesCountCallingCodesByCountryError = CountriesCountCallingCodesByCountryErrors[keyof CountriesCountCallingCodesByCountryErrors];
 
-export type CountCallingCodesByCountryAsyncResponses = {
+export type CountriesCountCallingCodesByCountryResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCallingCodesByCountryAsyncResponse = CountCallingCodesByCountryAsyncResponses[keyof CountCallingCodesByCountryAsyncResponses];
+export type CountriesCountCallingCodesByCountryResponse = CountriesCountCallingCodesByCountryResponses[keyof CountriesCountCallingCodesByCountryResponses];
 
-export type GetEnabledCurrenciesAsyncData = {
+export type CurrenciesGetEnabledCurrenciesData = {
     body?: CurrencyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1303,7 +1303,7 @@ export type GetEnabledCurrenciesAsyncData = {
     url: '/api/v2/GlobeService/Currencies';
 };
 
-export type GetEnabledCurrenciesAsyncErrors = {
+export type CurrenciesGetEnabledCurrenciesErrors = {
     /**
      * Unauthorized
      */
@@ -1314,18 +1314,18 @@ export type GetEnabledCurrenciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnabledCurrenciesAsyncError = GetEnabledCurrenciesAsyncErrors[keyof GetEnabledCurrenciesAsyncErrors];
+export type CurrenciesGetEnabledCurrenciesError = CurrenciesGetEnabledCurrenciesErrors[keyof CurrenciesGetEnabledCurrenciesErrors];
 
-export type GetEnabledCurrenciesAsyncResponses = {
+export type CurrenciesGetEnabledCurrenciesResponses = {
     /**
      * OK
      */
     200: CurrencyDtoListEnvelopeReadable;
 };
 
-export type GetEnabledCurrenciesAsyncResponse = GetEnabledCurrenciesAsyncResponses[keyof GetEnabledCurrenciesAsyncResponses];
+export type CurrenciesGetEnabledCurrenciesResponse = CurrenciesGetEnabledCurrenciesResponses[keyof CurrenciesGetEnabledCurrenciesResponses];
 
-export type CountCurrenciesAsyncData = {
+export type CurrenciesCountCurrenciesData = {
     body?: CurrencyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1337,7 +1337,7 @@ export type CountCurrenciesAsyncData = {
     url: '/api/v2/GlobeService/Currencies/Count';
 };
 
-export type CountCurrenciesAsyncErrors = {
+export type CurrenciesCountCurrenciesErrors = {
     /**
      * Unauthorized
      */
@@ -1348,18 +1348,18 @@ export type CountCurrenciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountCurrenciesAsyncError = CountCurrenciesAsyncErrors[keyof CountCurrenciesAsyncErrors];
+export type CurrenciesCountCurrenciesError = CurrenciesCountCurrenciesErrors[keyof CurrenciesCountCurrenciesErrors];
 
-export type CountCurrenciesAsyncResponses = {
+export type CurrenciesCountCurrenciesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCurrenciesAsyncResponse = CountCurrenciesAsyncResponses[keyof CountCurrenciesAsyncResponses];
+export type CurrenciesCountCurrenciesResponse = CurrenciesCountCurrenciesResponses[keyof CurrenciesCountCurrenciesResponses];
 
-export type GetCurrencyByIdAsyncData = {
+export type CurrenciesGetCurrencyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1373,7 +1373,7 @@ export type GetCurrencyByIdAsyncData = {
     url: '/api/v2/GlobeService/Currencies/{currencyId}';
 };
 
-export type GetCurrencyByIdAsyncErrors = {
+export type CurrenciesGetCurrencyByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1384,83 +1384,83 @@ export type GetCurrencyByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrencyByIdAsyncError = GetCurrencyByIdAsyncErrors[keyof GetCurrencyByIdAsyncErrors];
+export type CurrenciesGetCurrencyByIdError = CurrenciesGetCurrencyByIdErrors[keyof CurrenciesGetCurrencyByIdErrors];
 
-export type GetCurrencyByIdAsyncResponses = {
+export type CurrenciesGetCurrencyByIdResponses = {
     /**
      * OK
      */
     200: CurrencyDtoEnvelopeReadable;
 };
 
-export type GetCurrencyByIdAsyncResponse = GetCurrencyByIdAsyncResponses[keyof GetCurrencyByIdAsyncResponses];
+export type CurrenciesGetCurrencyByIdResponse = CurrenciesGetCurrencyByIdResponses[keyof CurrenciesGetCurrencyByIdResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1470,32 +1470,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1506,81 +1506,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1591,25 +1591,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1620,25 +1620,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1649,18 +1649,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1670,14 +1670,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1686,14 +1686,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1702,28 +1702,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLanguagesAsyncData = {
+export type LanguagesGetLanguagesData = {
     body?: CountryLanguageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1735,7 +1735,7 @@ export type GetLanguagesAsyncData = {
     url: '/api/v2/GlobeService/Languages';
 };
 
-export type GetLanguagesAsyncErrors = {
+export type LanguagesGetLanguagesErrors = {
     /**
      * Unauthorized
      */
@@ -1746,18 +1746,18 @@ export type GetLanguagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLanguagesAsyncError = GetLanguagesAsyncErrors[keyof GetLanguagesAsyncErrors];
+export type LanguagesGetLanguagesError = LanguagesGetLanguagesErrors[keyof LanguagesGetLanguagesErrors];
 
-export type GetLanguagesAsyncResponses = {
+export type LanguagesGetLanguagesResponses = {
     /**
      * OK
      */
     200: CountryLanguageDtoListEnvelopeReadable;
 };
 
-export type GetLanguagesAsyncResponse = GetLanguagesAsyncResponses[keyof GetLanguagesAsyncResponses];
+export type LanguagesGetLanguagesResponse = LanguagesGetLanguagesResponses[keyof LanguagesGetLanguagesResponses];
 
-export type CountLanguagesAsyncData = {
+export type LanguagesCountLanguagesData = {
     body?: CountryLanguageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1769,7 +1769,7 @@ export type CountLanguagesAsyncData = {
     url: '/api/v2/GlobeService/Languages/Count';
 };
 
-export type CountLanguagesAsyncErrors = {
+export type LanguagesCountLanguagesErrors = {
     /**
      * Unauthorized
      */
@@ -1780,18 +1780,18 @@ export type CountLanguagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountLanguagesAsyncError = CountLanguagesAsyncErrors[keyof CountLanguagesAsyncErrors];
+export type LanguagesCountLanguagesError = LanguagesCountLanguagesErrors[keyof LanguagesCountLanguagesErrors];
 
-export type CountLanguagesAsyncResponses = {
+export type LanguagesCountLanguagesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountLanguagesAsyncResponse = CountLanguagesAsyncResponses[keyof CountLanguagesAsyncResponses];
+export type LanguagesCountLanguagesResponse = LanguagesCountLanguagesResponses[keyof LanguagesCountLanguagesResponses];
 
-export type GetLanguageByIdAsyncData = {
+export type LanguagesGetLanguageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1805,7 +1805,7 @@ export type GetLanguageByIdAsyncData = {
     url: '/api/v2/GlobeService/Languages/{languageId}';
 };
 
-export type GetLanguageByIdAsyncErrors = {
+export type LanguagesGetLanguageByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1816,18 +1816,18 @@ export type GetLanguageByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLanguageByIdAsyncError = GetLanguageByIdAsyncErrors[keyof GetLanguageByIdAsyncErrors];
+export type LanguagesGetLanguageByIdError = LanguagesGetLanguageByIdErrors[keyof LanguagesGetLanguageByIdErrors];
 
-export type GetLanguageByIdAsyncResponses = {
+export type LanguagesGetLanguageByIdResponses = {
     /**
      * OK
      */
     200: CountryLanguageDtoEnvelopeReadable;
 };
 
-export type GetLanguageByIdAsyncResponse = GetLanguageByIdAsyncResponses[keyof GetLanguageByIdAsyncResponses];
+export type LanguagesGetLanguageByIdResponse = LanguagesGetLanguageByIdResponses[keyof LanguagesGetLanguageByIdResponses];
 
-export type GetTimeZonesAsyncData = {
+export type TimezonesGetTimeZonesData = {
     body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1839,7 +1839,7 @@ export type GetTimeZonesAsyncData = {
     url: '/api/v2/GlobeService/Timezones';
 };
 
-export type GetTimeZonesAsyncErrors = {
+export type TimezonesGetTimeZonesErrors = {
     /**
      * Unauthorized
      */
@@ -1850,18 +1850,18 @@ export type GetTimeZonesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeZonesAsyncError = GetTimeZonesAsyncErrors[keyof GetTimeZonesAsyncErrors];
+export type TimezonesGetTimeZonesError = TimezonesGetTimeZonesErrors[keyof TimezonesGetTimeZonesErrors];
 
-export type GetTimeZonesAsyncResponses = {
+export type TimezonesGetTimeZonesResponses = {
     /**
      * OK
      */
     200: TimezoneDtoListEnvelopeReadable;
 };
 
-export type GetTimeZonesAsyncResponse = GetTimeZonesAsyncResponses[keyof GetTimeZonesAsyncResponses];
+export type TimezonesGetTimeZonesResponse = TimezonesGetTimeZonesResponses[keyof TimezonesGetTimeZonesResponses];
 
-export type CountTimezonesAsyncData = {
+export type TimezonesCountTimezonesData = {
     body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1873,7 +1873,7 @@ export type CountTimezonesAsyncData = {
     url: '/api/v2/GlobeService/Timezones/Count';
 };
 
-export type CountTimezonesAsyncErrors = {
+export type TimezonesCountTimezonesErrors = {
     /**
      * Unauthorized
      */
@@ -1884,18 +1884,18 @@ export type CountTimezonesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountTimezonesAsyncError = CountTimezonesAsyncErrors[keyof CountTimezonesAsyncErrors];
+export type TimezonesCountTimezonesError = TimezonesCountTimezonesErrors[keyof TimezonesCountTimezonesErrors];
 
-export type CountTimezonesAsyncResponses = {
+export type TimezonesCountTimezonesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountTimezonesAsyncResponse = CountTimezonesAsyncResponses[keyof CountTimezonesAsyncResponses];
+export type TimezonesCountTimezonesResponse = TimezonesCountTimezonesResponses[keyof TimezonesCountTimezonesResponses];
 
-export type GetTimeZoneByIdAsyncData = {
+export type TimezonesGetTimeZoneByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1909,7 +1909,7 @@ export type GetTimeZoneByIdAsyncData = {
     url: '/api/v2/GlobeService/Timezones/{timeZoneId}';
 };
 
-export type GetTimeZoneByIdAsyncErrors = {
+export type TimezonesGetTimeZoneByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1920,16 +1920,16 @@ export type GetTimeZoneByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeZoneByIdAsyncError = GetTimeZoneByIdAsyncErrors[keyof GetTimeZoneByIdAsyncErrors];
+export type TimezonesGetTimeZoneByIdError = TimezonesGetTimeZoneByIdErrors[keyof TimezonesGetTimeZoneByIdErrors];
 
-export type GetTimeZoneByIdAsyncResponses = {
+export type TimezonesGetTimeZoneByIdResponses = {
     /**
      * OK
      */
     200: TimezoneDtoEnvelopeReadable;
 };
 
-export type GetTimeZoneByIdAsyncResponse = GetTimeZoneByIdAsyncResponses[keyof GetTimeZoneByIdAsyncResponses];
+export type TimezonesGetTimeZoneByIdResponse = TimezonesGetTimeZoneByIdResponses[keyof TimezonesGetTimeZoneByIdResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

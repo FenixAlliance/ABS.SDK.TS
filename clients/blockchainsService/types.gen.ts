@@ -406,7 +406,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetBlockchainsAsyncData = {
+export type BlockchainsGetBlockchainsData = {
     body?: BlockchainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -419,25 +419,25 @@ export type GetBlockchainsAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains';
 };
 
-export type GetBlockchainsAsyncErrors = {
+export type BlockchainsGetBlockchainsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlockchainsAsyncError = GetBlockchainsAsyncErrors[keyof GetBlockchainsAsyncErrors];
+export type BlockchainsGetBlockchainsError = BlockchainsGetBlockchainsErrors[keyof BlockchainsGetBlockchainsErrors];
 
-export type GetBlockchainsAsyncResponses = {
+export type BlockchainsGetBlockchainsResponses = {
     /**
      * OK
      */
     200: BlockchainDtoListEnvelopeReadable;
 };
 
-export type GetBlockchainsAsyncResponse = GetBlockchainsAsyncResponses[keyof GetBlockchainsAsyncResponses];
+export type BlockchainsGetBlockchainsResponse = BlockchainsGetBlockchainsResponses[keyof BlockchainsGetBlockchainsResponses];
 
-export type CreateBlockchainAsyncData = {
+export type BlockchainsCreateBlockchainData = {
     body?: BlockchainCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -450,7 +450,7 @@ export type CreateBlockchainAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains';
 };
 
-export type CreateBlockchainAsyncErrors = {
+export type BlockchainsCreateBlockchainErrors = {
     /**
      * Bad Request
      */
@@ -461,16 +461,16 @@ export type CreateBlockchainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBlockchainAsyncError = CreateBlockchainAsyncErrors[keyof CreateBlockchainAsyncErrors];
+export type BlockchainsCreateBlockchainError = BlockchainsCreateBlockchainErrors[keyof BlockchainsCreateBlockchainErrors];
 
-export type CreateBlockchainAsyncResponses = {
+export type BlockchainsCreateBlockchainResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetBlockchainsCountAsyncData = {
+export type BlockchainsGetBlockchainsCountData = {
     body?: BlockchainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -483,25 +483,25 @@ export type GetBlockchainsCountAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/Count';
 };
 
-export type GetBlockchainsCountAsyncErrors = {
+export type BlockchainsGetBlockchainsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlockchainsCountAsyncError = GetBlockchainsCountAsyncErrors[keyof GetBlockchainsCountAsyncErrors];
+export type BlockchainsGetBlockchainsCountError = BlockchainsGetBlockchainsCountErrors[keyof BlockchainsGetBlockchainsCountErrors];
 
-export type GetBlockchainsCountAsyncResponses = {
+export type BlockchainsGetBlockchainsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBlockchainsCountAsyncResponse = GetBlockchainsCountAsyncResponses[keyof GetBlockchainsCountAsyncResponses];
+export type BlockchainsGetBlockchainsCountResponse = BlockchainsGetBlockchainsCountResponses[keyof BlockchainsGetBlockchainsCountResponses];
 
-export type DeleteBlockchainAsyncData = {
+export type BlockchainsDeleteBlockchainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -516,7 +516,7 @@ export type DeleteBlockchainAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{id}';
 };
 
-export type DeleteBlockchainAsyncErrors = {
+export type BlockchainsDeleteBlockchainErrors = {
     /**
      * Forbidden
      */
@@ -527,16 +527,16 @@ export type DeleteBlockchainAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBlockchainAsyncError = DeleteBlockchainAsyncErrors[keyof DeleteBlockchainAsyncErrors];
+export type BlockchainsDeleteBlockchainError = BlockchainsDeleteBlockchainErrors[keyof BlockchainsDeleteBlockchainErrors];
 
-export type DeleteBlockchainAsyncResponses = {
+export type BlockchainsDeleteBlockchainResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetBlockchainByIdAsyncData = {
+export type BlockchainsGetBlockchainByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -551,7 +551,7 @@ export type GetBlockchainByIdAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{id}';
 };
 
-export type GetBlockchainByIdAsyncErrors = {
+export type BlockchainsGetBlockchainByIdErrors = {
     /**
      * Forbidden
      */
@@ -562,18 +562,18 @@ export type GetBlockchainByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBlockchainByIdAsyncError = GetBlockchainByIdAsyncErrors[keyof GetBlockchainByIdAsyncErrors];
+export type BlockchainsGetBlockchainByIdError = BlockchainsGetBlockchainByIdErrors[keyof BlockchainsGetBlockchainByIdErrors];
 
-export type GetBlockchainByIdAsyncResponses = {
+export type BlockchainsGetBlockchainByIdResponses = {
     /**
      * OK
      */
     200: BlockchainDto;
 };
 
-export type GetBlockchainByIdAsyncResponse = GetBlockchainByIdAsyncResponses[keyof GetBlockchainByIdAsyncResponses];
+export type BlockchainsGetBlockchainByIdResponse = BlockchainsGetBlockchainByIdResponses[keyof BlockchainsGetBlockchainByIdResponses];
 
-export type PatchBlockchainAsyncData = {
+export type BlockchainsPatchBlockchainData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -588,7 +588,7 @@ export type PatchBlockchainAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{id}';
 };
 
-export type PatchBlockchainAsyncErrors = {
+export type BlockchainsPatchBlockchainErrors = {
     /**
      * Unauthorized
      */
@@ -599,18 +599,18 @@ export type PatchBlockchainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBlockchainAsyncError = PatchBlockchainAsyncErrors[keyof PatchBlockchainAsyncErrors];
+export type BlockchainsPatchBlockchainError = BlockchainsPatchBlockchainErrors[keyof BlockchainsPatchBlockchainErrors];
 
-export type PatchBlockchainAsyncResponses = {
+export type BlockchainsPatchBlockchainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBlockchainAsyncResponse = PatchBlockchainAsyncResponses[keyof PatchBlockchainAsyncResponses];
+export type BlockchainsPatchBlockchainResponse = BlockchainsPatchBlockchainResponses[keyof BlockchainsPatchBlockchainResponses];
 
-export type UpdateBlockchainAsyncData = {
+export type BlockchainsUpdateBlockchainData = {
     body?: BlockchainUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -625,7 +625,7 @@ export type UpdateBlockchainAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{id}';
 };
 
-export type UpdateBlockchainAsyncErrors = {
+export type BlockchainsUpdateBlockchainErrors = {
     /**
      * Forbidden
      */
@@ -636,16 +636,16 @@ export type UpdateBlockchainAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateBlockchainAsyncError = UpdateBlockchainAsyncErrors[keyof UpdateBlockchainAsyncErrors];
+export type BlockchainsUpdateBlockchainError = BlockchainsUpdateBlockchainErrors[keyof BlockchainsUpdateBlockchainErrors];
 
-export type UpdateBlockchainAsyncResponses = {
+export type BlockchainsUpdateBlockchainResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetBlockchainBlocksAsyncData = {
+export type BlockchainsGetBlockchainBlocksData = {
     body?: BlockchainBlockDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -660,16 +660,16 @@ export type GetBlockchainBlocksAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks';
 };
 
-export type GetBlockchainBlocksAsyncResponses = {
+export type BlockchainsGetBlockchainBlocksResponses = {
     /**
      * OK
      */
     200: BlockchainBlockDtoListEnvelopeReadable;
 };
 
-export type GetBlockchainBlocksAsyncResponse = GetBlockchainBlocksAsyncResponses[keyof GetBlockchainBlocksAsyncResponses];
+export type BlockchainsGetBlockchainBlocksResponse = BlockchainsGetBlockchainBlocksResponses[keyof BlockchainsGetBlockchainBlocksResponses];
 
-export type CreateBlockchainBlockAsyncData = {
+export type BlockchainsCreateBlockchainBlockData = {
     body?: BlockchainBlockCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -684,14 +684,14 @@ export type CreateBlockchainBlockAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks';
 };
 
-export type CreateBlockchainBlockAsyncResponses = {
+export type BlockchainsCreateBlockchainBlockResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetBlockchainBlocksCountAsyncData = {
+export type BlockchainsGetBlockchainBlocksCountData = {
     body?: BlockchainBlockDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -706,16 +706,16 @@ export type GetBlockchainBlocksCountAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/Count';
 };
 
-export type GetBlockchainBlocksCountAsyncResponses = {
+export type BlockchainsGetBlockchainBlocksCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBlockchainBlocksCountAsyncResponse = GetBlockchainBlocksCountAsyncResponses[keyof GetBlockchainBlocksCountAsyncResponses];
+export type BlockchainsGetBlockchainBlocksCountResponse = BlockchainsGetBlockchainBlocksCountResponses[keyof BlockchainsGetBlockchainBlocksCountResponses];
 
-export type DeleteBlockchainBlockAsyncData = {
+export type BlockchainsDeleteBlockchainBlockData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -731,14 +731,14 @@ export type DeleteBlockchainBlockAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/{blockId}';
 };
 
-export type DeleteBlockchainBlockAsyncResponses = {
+export type BlockchainsDeleteBlockchainBlockResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetBlockchainBlockByIdAsyncData = {
+export type BlockchainsGetBlockchainBlockByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -754,16 +754,16 @@ export type GetBlockchainBlockByIdAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/{blockId}';
 };
 
-export type GetBlockchainBlockByIdAsyncResponses = {
+export type BlockchainsGetBlockchainBlockByIdResponses = {
     /**
      * OK
      */
     200: BlockchainBlockDto;
 };
 
-export type GetBlockchainBlockByIdAsyncResponse = GetBlockchainBlockByIdAsyncResponses[keyof GetBlockchainBlockByIdAsyncResponses];
+export type BlockchainsGetBlockchainBlockByIdResponse = BlockchainsGetBlockchainBlockByIdResponses[keyof BlockchainsGetBlockchainBlockByIdResponses];
 
-export type PatchBlockchainBlockAsyncData = {
+export type BlockchainsPatchBlockchainBlockData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -779,7 +779,7 @@ export type PatchBlockchainBlockAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/{blockId}';
 };
 
-export type PatchBlockchainBlockAsyncErrors = {
+export type BlockchainsPatchBlockchainBlockErrors = {
     /**
      * Unauthorized
      */
@@ -790,18 +790,18 @@ export type PatchBlockchainBlockAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBlockchainBlockAsyncError = PatchBlockchainBlockAsyncErrors[keyof PatchBlockchainBlockAsyncErrors];
+export type BlockchainsPatchBlockchainBlockError = BlockchainsPatchBlockchainBlockErrors[keyof BlockchainsPatchBlockchainBlockErrors];
 
-export type PatchBlockchainBlockAsyncResponses = {
+export type BlockchainsPatchBlockchainBlockResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBlockchainBlockAsyncResponse = PatchBlockchainBlockAsyncResponses[keyof PatchBlockchainBlockAsyncResponses];
+export type BlockchainsPatchBlockchainBlockResponse = BlockchainsPatchBlockchainBlockResponses[keyof BlockchainsPatchBlockchainBlockResponses];
 
-export type UpdateBlockchainBlockAsyncData = {
+export type BlockchainsUpdateBlockchainBlockData = {
     body?: BlockchainBlockUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -817,79 +817,79 @@ export type UpdateBlockchainBlockAsyncData = {
     url: '/api/v2/BlockchainsService/Blockchains/{blockchainId}/Blocks/{blockId}';
 };
 
-export type UpdateBlockchainBlockAsyncResponses = {
+export type BlockchainsUpdateBlockchainBlockResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -899,32 +899,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -935,81 +935,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1020,25 +1020,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1049,25 +1049,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1078,18 +1078,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1099,14 +1099,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1115,14 +1115,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1131,28 +1131,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetNonFungibleTokensAsyncData = {
+export type NonFungibleTokensGetNonFungibleTokensData = {
     body?: NonFungibleTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1165,25 +1165,25 @@ export type GetNonFungibleTokensAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens';
 };
 
-export type GetNonFungibleTokensAsyncErrors = {
+export type NonFungibleTokensGetNonFungibleTokensErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNonFungibleTokensAsyncError = GetNonFungibleTokensAsyncErrors[keyof GetNonFungibleTokensAsyncErrors];
+export type NonFungibleTokensGetNonFungibleTokensError = NonFungibleTokensGetNonFungibleTokensErrors[keyof NonFungibleTokensGetNonFungibleTokensErrors];
 
-export type GetNonFungibleTokensAsyncResponses = {
+export type NonFungibleTokensGetNonFungibleTokensResponses = {
     /**
      * OK
      */
     200: NonFungibleTokenDtoListEnvelopeReadable;
 };
 
-export type GetNonFungibleTokensAsyncResponse = GetNonFungibleTokensAsyncResponses[keyof GetNonFungibleTokensAsyncResponses];
+export type NonFungibleTokensGetNonFungibleTokensResponse = NonFungibleTokensGetNonFungibleTokensResponses[keyof NonFungibleTokensGetNonFungibleTokensResponses];
 
-export type CreateNonFungibleTokenAsyncData = {
+export type NonFungibleTokensCreateNonFungibleTokenData = {
     body?: NonFungibleTokenCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1196,7 +1196,7 @@ export type CreateNonFungibleTokenAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens';
 };
 
-export type CreateNonFungibleTokenAsyncErrors = {
+export type NonFungibleTokensCreateNonFungibleTokenErrors = {
     /**
      * Bad Request
      */
@@ -1207,16 +1207,16 @@ export type CreateNonFungibleTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateNonFungibleTokenAsyncError = CreateNonFungibleTokenAsyncErrors[keyof CreateNonFungibleTokenAsyncErrors];
+export type NonFungibleTokensCreateNonFungibleTokenError = NonFungibleTokensCreateNonFungibleTokenErrors[keyof NonFungibleTokensCreateNonFungibleTokenErrors];
 
-export type CreateNonFungibleTokenAsyncResponses = {
+export type NonFungibleTokensCreateNonFungibleTokenResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetNonFungibleTokensCountAsyncData = {
+export type NonFungibleTokensGetNonFungibleTokensCountData = {
     body?: NonFungibleTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1229,25 +1229,25 @@ export type GetNonFungibleTokensCountAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens/Count';
 };
 
-export type GetNonFungibleTokensCountAsyncErrors = {
+export type NonFungibleTokensGetNonFungibleTokensCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNonFungibleTokensCountAsyncError = GetNonFungibleTokensCountAsyncErrors[keyof GetNonFungibleTokensCountAsyncErrors];
+export type NonFungibleTokensGetNonFungibleTokensCountError = NonFungibleTokensGetNonFungibleTokensCountErrors[keyof NonFungibleTokensGetNonFungibleTokensCountErrors];
 
-export type GetNonFungibleTokensCountAsyncResponses = {
+export type NonFungibleTokensGetNonFungibleTokensCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetNonFungibleTokensCountAsyncResponse = GetNonFungibleTokensCountAsyncResponses[keyof GetNonFungibleTokensCountAsyncResponses];
+export type NonFungibleTokensGetNonFungibleTokensCountResponse = NonFungibleTokensGetNonFungibleTokensCountResponses[keyof NonFungibleTokensGetNonFungibleTokensCountResponses];
 
-export type DeleteNonFungibleTokenAsyncData = {
+export type NonFungibleTokensDeleteNonFungibleTokenData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1262,7 +1262,7 @@ export type DeleteNonFungibleTokenAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens/{id}';
 };
 
-export type DeleteNonFungibleTokenAsyncErrors = {
+export type NonFungibleTokensDeleteNonFungibleTokenErrors = {
     /**
      * Forbidden
      */
@@ -1273,16 +1273,16 @@ export type DeleteNonFungibleTokenAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteNonFungibleTokenAsyncError = DeleteNonFungibleTokenAsyncErrors[keyof DeleteNonFungibleTokenAsyncErrors];
+export type NonFungibleTokensDeleteNonFungibleTokenError = NonFungibleTokensDeleteNonFungibleTokenErrors[keyof NonFungibleTokensDeleteNonFungibleTokenErrors];
 
-export type DeleteNonFungibleTokenAsyncResponses = {
+export type NonFungibleTokensDeleteNonFungibleTokenResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetNonFungibleTokenByIdAsyncData = {
+export type NonFungibleTokensGetNonFungibleTokenByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1297,7 +1297,7 @@ export type GetNonFungibleTokenByIdAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens/{id}';
 };
 
-export type GetNonFungibleTokenByIdAsyncErrors = {
+export type NonFungibleTokensGetNonFungibleTokenByIdErrors = {
     /**
      * Forbidden
      */
@@ -1308,18 +1308,18 @@ export type GetNonFungibleTokenByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetNonFungibleTokenByIdAsyncError = GetNonFungibleTokenByIdAsyncErrors[keyof GetNonFungibleTokenByIdAsyncErrors];
+export type NonFungibleTokensGetNonFungibleTokenByIdError = NonFungibleTokensGetNonFungibleTokenByIdErrors[keyof NonFungibleTokensGetNonFungibleTokenByIdErrors];
 
-export type GetNonFungibleTokenByIdAsyncResponses = {
+export type NonFungibleTokensGetNonFungibleTokenByIdResponses = {
     /**
      * OK
      */
     200: NonFungibleTokenDto;
 };
 
-export type GetNonFungibleTokenByIdAsyncResponse = GetNonFungibleTokenByIdAsyncResponses[keyof GetNonFungibleTokenByIdAsyncResponses];
+export type NonFungibleTokensGetNonFungibleTokenByIdResponse = NonFungibleTokensGetNonFungibleTokenByIdResponses[keyof NonFungibleTokensGetNonFungibleTokenByIdResponses];
 
-export type PatchNonFungibleTokenAsyncData = {
+export type NonFungibleTokensPatchNonFungibleTokenData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1334,7 +1334,7 @@ export type PatchNonFungibleTokenAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens/{id}';
 };
 
-export type PatchNonFungibleTokenAsyncErrors = {
+export type NonFungibleTokensPatchNonFungibleTokenErrors = {
     /**
      * Unauthorized
      */
@@ -1345,18 +1345,18 @@ export type PatchNonFungibleTokenAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchNonFungibleTokenAsyncError = PatchNonFungibleTokenAsyncErrors[keyof PatchNonFungibleTokenAsyncErrors];
+export type NonFungibleTokensPatchNonFungibleTokenError = NonFungibleTokensPatchNonFungibleTokenErrors[keyof NonFungibleTokensPatchNonFungibleTokenErrors];
 
-export type PatchNonFungibleTokenAsyncResponses = {
+export type NonFungibleTokensPatchNonFungibleTokenResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchNonFungibleTokenAsyncResponse = PatchNonFungibleTokenAsyncResponses[keyof PatchNonFungibleTokenAsyncResponses];
+export type NonFungibleTokensPatchNonFungibleTokenResponse = NonFungibleTokensPatchNonFungibleTokenResponses[keyof NonFungibleTokensPatchNonFungibleTokenResponses];
 
-export type UpdateNonFungibleTokenAsyncData = {
+export type NonFungibleTokensUpdateNonFungibleTokenData = {
     body?: NonFungibleTokenUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1371,7 +1371,7 @@ export type UpdateNonFungibleTokenAsyncData = {
     url: '/api/v2/BlockchainsService/NonFungibleTokens/{id}';
 };
 
-export type UpdateNonFungibleTokenAsyncErrors = {
+export type NonFungibleTokensUpdateNonFungibleTokenErrors = {
     /**
      * Forbidden
      */
@@ -1382,9 +1382,9 @@ export type UpdateNonFungibleTokenAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateNonFungibleTokenAsyncError = UpdateNonFungibleTokenAsyncErrors[keyof UpdateNonFungibleTokenAsyncErrors];
+export type NonFungibleTokensUpdateNonFungibleTokenError = NonFungibleTokensUpdateNonFungibleTokenErrors[keyof NonFungibleTokensUpdateNonFungibleTokenErrors];
 
-export type UpdateNonFungibleTokenAsyncResponses = {
+export type NonFungibleTokensUpdateNonFungibleTokenResponses = {
     /**
      * OK
      */

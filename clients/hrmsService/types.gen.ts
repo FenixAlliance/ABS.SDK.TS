@@ -205,6 +205,66 @@ export type AppraisalWorkflowUpdateDto = {
     description?: string | null;
 };
 
+export type BusinessPositionAssignmentDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    positionId?: string | null;
+    tenantId?: string | null;
+    occupantEnrollmentId?: string | null;
+    from?: string;
+    until?: string | null;
+    acting?: boolean;
+    enrollmentId?: string | null;
+};
+
+export type BusinessPositionAssignmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BusinessPositionAssignmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type BusinessPositionAssignmentDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BusinessPositionAssignmentDto> | null;
+};
+
+export type BusinessPositionAssignmentDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BusinessPositionAssignmentDto> | null;
+};
+
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
@@ -352,8 +412,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -413,8 +478,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type EmployeeAppraisalSessionCreateDto = {
@@ -2248,6 +2318,111 @@ export type JobOfferFieldRecordUpdateDto = {
     jobOfferId?: string | null;
 };
 
+export type JobOfferPublicDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    description?: string | null;
+    technicalSkills?: string | null;
+    nonTechnicalSkills?: string | null;
+    certifications?: string | null;
+    projectExperience?: string | null;
+    technologies?: string | null;
+    benefits?: string | null;
+    remote?: boolean;
+    isRemoteJobOffer?: boolean;
+    isMidTimeJobOffer?: boolean;
+    isUndergraduateOption?: boolean;
+    minOverallExperienceYears?: number;
+    availablePositionsCount?: number;
+    minSalaryAmount?: number;
+    maxSalaryAmount?: number;
+    currencyId?: string | null;
+    jobFieldId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
+    location?: string | null;
+    imageUrl?: string | null;
+    externalUrl?: string | null;
+    expectedHireDate?: string;
+    employerName?: string | null;
+    employerAvatarUrl?: string | null;
+};
+
+export type JobOfferPublicDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobOfferPublicDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type JobOfferPublicDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: JobOfferPublicDto;
+};
+
+export type JobOfferPublicDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: JobOfferPublicDto;
+};
+
+export type JobOfferPublicDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<JobOfferPublicDto> | null;
+};
+
+export type JobOfferPublicDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<JobOfferPublicDto> | null;
+};
+
 export type JobOfferUpdateDto = {
     remote?: boolean;
     expectedHireDate?: string;
@@ -2723,6 +2898,7 @@ export type PayrollPeriodDto = {
     description?: string | null;
     start?: string | null;
     end?: string | null;
+    status?: 'Open' | 'Closed';
 };
 
 export type PayrollPeriodDtoCollectionQueryParametersReadable = {
@@ -2807,6 +2983,21 @@ export type PayrollPeriodUpdateDto = {
 
 export type PayrollUpdateDto = {
     payrollPeriodId?: string | null;
+};
+
+export type PositionAssignmentCreateDto = {
+    id?: string;
+    timestamp?: string;
+    occupantEnrollmentId?: string | null;
+    acting?: boolean;
+};
+
+export type PositionCapacityUpdateDto = {
+    capacity?: number;
+};
+
+export type PositionDepartmentUpdateDto = {
+    departmentId?: string | null;
 };
 
 export type RefreshRequest = {
@@ -3797,7 +3988,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetAppraisalStagesAsyncData = {
+export type AppraisalStagesGetAppraisalStagesData = {
     body?: AppraisalStageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3810,7 +4001,7 @@ export type GetAppraisalStagesAsyncData = {
     url: '/api/v2/HrmsService/AppraisalStages';
 };
 
-export type GetAppraisalStagesAsyncErrors = {
+export type AppraisalStagesGetAppraisalStagesErrors = {
     /**
      * Unauthorized
      */
@@ -3821,18 +4012,18 @@ export type GetAppraisalStagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppraisalStagesAsyncError = GetAppraisalStagesAsyncErrors[keyof GetAppraisalStagesAsyncErrors];
+export type AppraisalStagesGetAppraisalStagesError = AppraisalStagesGetAppraisalStagesErrors[keyof AppraisalStagesGetAppraisalStagesErrors];
 
-export type GetAppraisalStagesAsyncResponses = {
+export type AppraisalStagesGetAppraisalStagesResponses = {
     /**
      * OK
      */
     200: AppraisalStageDtoListEnvelopeReadable;
 };
 
-export type GetAppraisalStagesAsyncResponse = GetAppraisalStagesAsyncResponses[keyof GetAppraisalStagesAsyncResponses];
+export type AppraisalStagesGetAppraisalStagesResponse = AppraisalStagesGetAppraisalStagesResponses[keyof AppraisalStagesGetAppraisalStagesResponses];
 
-export type CreateAppraisalStageAsyncData = {
+export type AppraisalStagesCreateAppraisalStageData = {
     body?: AppraisalStageCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3845,7 +4036,7 @@ export type CreateAppraisalStageAsyncData = {
     url: '/api/v2/HrmsService/AppraisalStages';
 };
 
-export type CreateAppraisalStageAsyncErrors = {
+export type AppraisalStagesCreateAppraisalStageErrors = {
     /**
      * Bad Request
      */
@@ -3860,18 +4051,18 @@ export type CreateAppraisalStageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAppraisalStageAsyncError = CreateAppraisalStageAsyncErrors[keyof CreateAppraisalStageAsyncErrors];
+export type AppraisalStagesCreateAppraisalStageError = AppraisalStagesCreateAppraisalStageErrors[keyof AppraisalStagesCreateAppraisalStageErrors];
 
-export type CreateAppraisalStageAsyncResponses = {
+export type AppraisalStagesCreateAppraisalStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateAppraisalStageAsyncResponse = CreateAppraisalStageAsyncResponses[keyof CreateAppraisalStageAsyncResponses];
+export type AppraisalStagesCreateAppraisalStageResponse = AppraisalStagesCreateAppraisalStageResponses[keyof AppraisalStagesCreateAppraisalStageResponses];
 
-export type GetAppraisalStagesCountAsyncData = {
+export type AppraisalStagesGetAppraisalStagesCountData = {
     body?: AppraisalStageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3884,7 +4075,7 @@ export type GetAppraisalStagesCountAsyncData = {
     url: '/api/v2/HrmsService/AppraisalStages/Count';
 };
 
-export type GetAppraisalStagesCountAsyncErrors = {
+export type AppraisalStagesGetAppraisalStagesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3895,18 +4086,18 @@ export type GetAppraisalStagesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppraisalStagesCountAsyncError = GetAppraisalStagesCountAsyncErrors[keyof GetAppraisalStagesCountAsyncErrors];
+export type AppraisalStagesGetAppraisalStagesCountError = AppraisalStagesGetAppraisalStagesCountErrors[keyof AppraisalStagesGetAppraisalStagesCountErrors];
 
-export type GetAppraisalStagesCountAsyncResponses = {
+export type AppraisalStagesGetAppraisalStagesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAppraisalStagesCountAsyncResponse = GetAppraisalStagesCountAsyncResponses[keyof GetAppraisalStagesCountAsyncResponses];
+export type AppraisalStagesGetAppraisalStagesCountResponse = AppraisalStagesGetAppraisalStagesCountResponses[keyof AppraisalStagesGetAppraisalStagesCountResponses];
 
-export type DeleteAppraisalStageAsyncData = {
+export type AppraisalStagesDeleteAppraisalStageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3921,7 +4112,7 @@ export type DeleteAppraisalStageAsyncData = {
     url: '/api/v2/HrmsService/AppraisalStages/{stageId}';
 };
 
-export type DeleteAppraisalStageAsyncErrors = {
+export type AppraisalStagesDeleteAppraisalStageErrors = {
     /**
      * Bad Request
      */
@@ -3936,18 +4127,18 @@ export type DeleteAppraisalStageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAppraisalStageAsyncError = DeleteAppraisalStageAsyncErrors[keyof DeleteAppraisalStageAsyncErrors];
+export type AppraisalStagesDeleteAppraisalStageError = AppraisalStagesDeleteAppraisalStageErrors[keyof AppraisalStagesDeleteAppraisalStageErrors];
 
-export type DeleteAppraisalStageAsyncResponses = {
+export type AppraisalStagesDeleteAppraisalStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAppraisalStageAsyncResponse = DeleteAppraisalStageAsyncResponses[keyof DeleteAppraisalStageAsyncResponses];
+export type AppraisalStagesDeleteAppraisalStageResponse = AppraisalStagesDeleteAppraisalStageResponses[keyof AppraisalStagesDeleteAppraisalStageResponses];
 
-export type GetAppraisalStageByIdAsyncData = {
+export type AppraisalStagesGetAppraisalStageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3962,7 +4153,7 @@ export type GetAppraisalStageByIdAsyncData = {
     url: '/api/v2/HrmsService/AppraisalStages/{stageId}';
 };
 
-export type GetAppraisalStageByIdAsyncErrors = {
+export type AppraisalStagesGetAppraisalStageByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3973,18 +4164,18 @@ export type GetAppraisalStageByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppraisalStageByIdAsyncError = GetAppraisalStageByIdAsyncErrors[keyof GetAppraisalStageByIdAsyncErrors];
+export type AppraisalStagesGetAppraisalStageByIdError = AppraisalStagesGetAppraisalStageByIdErrors[keyof AppraisalStagesGetAppraisalStageByIdErrors];
 
-export type GetAppraisalStageByIdAsyncResponses = {
+export type AppraisalStagesGetAppraisalStageByIdResponses = {
     /**
      * OK
      */
     200: AppraisalStageDtoEnvelopeReadable;
 };
 
-export type GetAppraisalStageByIdAsyncResponse = GetAppraisalStageByIdAsyncResponses[keyof GetAppraisalStageByIdAsyncResponses];
+export type AppraisalStagesGetAppraisalStageByIdResponse = AppraisalStagesGetAppraisalStageByIdResponses[keyof AppraisalStagesGetAppraisalStageByIdResponses];
 
-export type UpdateAppraisalStageAsyncData = {
+export type AppraisalStagesUpdateAppraisalStageData = {
     body?: AppraisalStageUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3999,7 +4190,7 @@ export type UpdateAppraisalStageAsyncData = {
     url: '/api/v2/HrmsService/AppraisalStages/{stageId}';
 };
 
-export type UpdateAppraisalStageAsyncErrors = {
+export type AppraisalStagesUpdateAppraisalStageErrors = {
     /**
      * Bad Request
      */
@@ -4014,18 +4205,18 @@ export type UpdateAppraisalStageAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAppraisalStageAsyncError = UpdateAppraisalStageAsyncErrors[keyof UpdateAppraisalStageAsyncErrors];
+export type AppraisalStagesUpdateAppraisalStageError = AppraisalStagesUpdateAppraisalStageErrors[keyof AppraisalStagesUpdateAppraisalStageErrors];
 
-export type UpdateAppraisalStageAsyncResponses = {
+export type AppraisalStagesUpdateAppraisalStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAppraisalStageAsyncResponse = UpdateAppraisalStageAsyncResponses[keyof UpdateAppraisalStageAsyncResponses];
+export type AppraisalStagesUpdateAppraisalStageResponse = AppraisalStagesUpdateAppraisalStageResponses[keyof AppraisalStagesUpdateAppraisalStageResponses];
 
-export type GetAppraisalWorkflowsAsyncData = {
+export type AppraisalWorkflowsGetAppraisalWorkflowsData = {
     body?: AppraisalWorkflowDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4038,7 +4229,7 @@ export type GetAppraisalWorkflowsAsyncData = {
     url: '/api/v2/HrmsService/AppraisalWorkflows';
 };
 
-export type GetAppraisalWorkflowsAsyncErrors = {
+export type AppraisalWorkflowsGetAppraisalWorkflowsErrors = {
     /**
      * Unauthorized
      */
@@ -4049,18 +4240,18 @@ export type GetAppraisalWorkflowsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppraisalWorkflowsAsyncError = GetAppraisalWorkflowsAsyncErrors[keyof GetAppraisalWorkflowsAsyncErrors];
+export type AppraisalWorkflowsGetAppraisalWorkflowsError = AppraisalWorkflowsGetAppraisalWorkflowsErrors[keyof AppraisalWorkflowsGetAppraisalWorkflowsErrors];
 
-export type GetAppraisalWorkflowsAsyncResponses = {
+export type AppraisalWorkflowsGetAppraisalWorkflowsResponses = {
     /**
      * OK
      */
     200: AppraisalWorkflowDtoListEnvelopeReadable;
 };
 
-export type GetAppraisalWorkflowsAsyncResponse = GetAppraisalWorkflowsAsyncResponses[keyof GetAppraisalWorkflowsAsyncResponses];
+export type AppraisalWorkflowsGetAppraisalWorkflowsResponse = AppraisalWorkflowsGetAppraisalWorkflowsResponses[keyof AppraisalWorkflowsGetAppraisalWorkflowsResponses];
 
-export type CreateAppraisalWorkflowAsyncData = {
+export type AppraisalWorkflowsCreateAppraisalWorkflowData = {
     body?: AppraisalWorkflowCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4073,7 +4264,7 @@ export type CreateAppraisalWorkflowAsyncData = {
     url: '/api/v2/HrmsService/AppraisalWorkflows';
 };
 
-export type CreateAppraisalWorkflowAsyncErrors = {
+export type AppraisalWorkflowsCreateAppraisalWorkflowErrors = {
     /**
      * Bad Request
      */
@@ -4088,18 +4279,18 @@ export type CreateAppraisalWorkflowAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAppraisalWorkflowAsyncError = CreateAppraisalWorkflowAsyncErrors[keyof CreateAppraisalWorkflowAsyncErrors];
+export type AppraisalWorkflowsCreateAppraisalWorkflowError = AppraisalWorkflowsCreateAppraisalWorkflowErrors[keyof AppraisalWorkflowsCreateAppraisalWorkflowErrors];
 
-export type CreateAppraisalWorkflowAsyncResponses = {
+export type AppraisalWorkflowsCreateAppraisalWorkflowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateAppraisalWorkflowAsyncResponse = CreateAppraisalWorkflowAsyncResponses[keyof CreateAppraisalWorkflowAsyncResponses];
+export type AppraisalWorkflowsCreateAppraisalWorkflowResponse = AppraisalWorkflowsCreateAppraisalWorkflowResponses[keyof AppraisalWorkflowsCreateAppraisalWorkflowResponses];
 
-export type GetAppraisalWorkflowsCountAsyncData = {
+export type AppraisalWorkflowsGetAppraisalWorkflowsCountData = {
     body?: AppraisalWorkflowDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4112,7 +4303,7 @@ export type GetAppraisalWorkflowsCountAsyncData = {
     url: '/api/v2/HrmsService/AppraisalWorkflows/Count';
 };
 
-export type GetAppraisalWorkflowsCountAsyncErrors = {
+export type AppraisalWorkflowsGetAppraisalWorkflowsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4123,18 +4314,18 @@ export type GetAppraisalWorkflowsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppraisalWorkflowsCountAsyncError = GetAppraisalWorkflowsCountAsyncErrors[keyof GetAppraisalWorkflowsCountAsyncErrors];
+export type AppraisalWorkflowsGetAppraisalWorkflowsCountError = AppraisalWorkflowsGetAppraisalWorkflowsCountErrors[keyof AppraisalWorkflowsGetAppraisalWorkflowsCountErrors];
 
-export type GetAppraisalWorkflowsCountAsyncResponses = {
+export type AppraisalWorkflowsGetAppraisalWorkflowsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAppraisalWorkflowsCountAsyncResponse = GetAppraisalWorkflowsCountAsyncResponses[keyof GetAppraisalWorkflowsCountAsyncResponses];
+export type AppraisalWorkflowsGetAppraisalWorkflowsCountResponse = AppraisalWorkflowsGetAppraisalWorkflowsCountResponses[keyof AppraisalWorkflowsGetAppraisalWorkflowsCountResponses];
 
-export type DeleteAppraisalWorkflowAsyncData = {
+export type AppraisalWorkflowsDeleteAppraisalWorkflowData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4149,7 +4340,7 @@ export type DeleteAppraisalWorkflowAsyncData = {
     url: '/api/v2/HrmsService/AppraisalWorkflows/{workflowId}';
 };
 
-export type DeleteAppraisalWorkflowAsyncErrors = {
+export type AppraisalWorkflowsDeleteAppraisalWorkflowErrors = {
     /**
      * Bad Request
      */
@@ -4164,18 +4355,18 @@ export type DeleteAppraisalWorkflowAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAppraisalWorkflowAsyncError = DeleteAppraisalWorkflowAsyncErrors[keyof DeleteAppraisalWorkflowAsyncErrors];
+export type AppraisalWorkflowsDeleteAppraisalWorkflowError = AppraisalWorkflowsDeleteAppraisalWorkflowErrors[keyof AppraisalWorkflowsDeleteAppraisalWorkflowErrors];
 
-export type DeleteAppraisalWorkflowAsyncResponses = {
+export type AppraisalWorkflowsDeleteAppraisalWorkflowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAppraisalWorkflowAsyncResponse = DeleteAppraisalWorkflowAsyncResponses[keyof DeleteAppraisalWorkflowAsyncResponses];
+export type AppraisalWorkflowsDeleteAppraisalWorkflowResponse = AppraisalWorkflowsDeleteAppraisalWorkflowResponses[keyof AppraisalWorkflowsDeleteAppraisalWorkflowResponses];
 
-export type GetAppraisalWorkflowByIdAsyncData = {
+export type AppraisalWorkflowsGetAppraisalWorkflowByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4190,7 +4381,7 @@ export type GetAppraisalWorkflowByIdAsyncData = {
     url: '/api/v2/HrmsService/AppraisalWorkflows/{workflowId}';
 };
 
-export type GetAppraisalWorkflowByIdAsyncErrors = {
+export type AppraisalWorkflowsGetAppraisalWorkflowByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4201,18 +4392,18 @@ export type GetAppraisalWorkflowByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAppraisalWorkflowByIdAsyncError = GetAppraisalWorkflowByIdAsyncErrors[keyof GetAppraisalWorkflowByIdAsyncErrors];
+export type AppraisalWorkflowsGetAppraisalWorkflowByIdError = AppraisalWorkflowsGetAppraisalWorkflowByIdErrors[keyof AppraisalWorkflowsGetAppraisalWorkflowByIdErrors];
 
-export type GetAppraisalWorkflowByIdAsyncResponses = {
+export type AppraisalWorkflowsGetAppraisalWorkflowByIdResponses = {
     /**
      * OK
      */
     200: AppraisalWorkflowDtoEnvelopeReadable;
 };
 
-export type GetAppraisalWorkflowByIdAsyncResponse = GetAppraisalWorkflowByIdAsyncResponses[keyof GetAppraisalWorkflowByIdAsyncResponses];
+export type AppraisalWorkflowsGetAppraisalWorkflowByIdResponse = AppraisalWorkflowsGetAppraisalWorkflowByIdResponses[keyof AppraisalWorkflowsGetAppraisalWorkflowByIdResponses];
 
-export type UpdateAppraisalWorkflowAsyncData = {
+export type AppraisalWorkflowsUpdateAppraisalWorkflowData = {
     body?: AppraisalWorkflowUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4227,7 +4418,7 @@ export type UpdateAppraisalWorkflowAsyncData = {
     url: '/api/v2/HrmsService/AppraisalWorkflows/{workflowId}';
 };
 
-export type UpdateAppraisalWorkflowAsyncErrors = {
+export type AppraisalWorkflowsUpdateAppraisalWorkflowErrors = {
     /**
      * Bad Request
      */
@@ -4242,18 +4433,18 @@ export type UpdateAppraisalWorkflowAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAppraisalWorkflowAsyncError = UpdateAppraisalWorkflowAsyncErrors[keyof UpdateAppraisalWorkflowAsyncErrors];
+export type AppraisalWorkflowsUpdateAppraisalWorkflowError = AppraisalWorkflowsUpdateAppraisalWorkflowErrors[keyof AppraisalWorkflowsUpdateAppraisalWorkflowErrors];
 
-export type UpdateAppraisalWorkflowAsyncResponses = {
+export type AppraisalWorkflowsUpdateAppraisalWorkflowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAppraisalWorkflowAsyncResponse = UpdateAppraisalWorkflowAsyncResponses[keyof UpdateAppraisalWorkflowAsyncResponses];
+export type AppraisalWorkflowsUpdateAppraisalWorkflowResponse = AppraisalWorkflowsUpdateAppraisalWorkflowResponses[keyof AppraisalWorkflowsUpdateAppraisalWorkflowResponses];
 
-export type GetEmployeeAppraisalSessionsAsyncData = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsData = {
     body?: EmployeeAppraisalSessionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4266,7 +4457,7 @@ export type GetEmployeeAppraisalSessionsAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions';
 };
 
-export type GetEmployeeAppraisalSessionsAsyncErrors = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsErrors = {
     /**
      * Unauthorized
      */
@@ -4277,18 +4468,18 @@ export type GetEmployeeAppraisalSessionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeAppraisalSessionsAsyncError = GetEmployeeAppraisalSessionsAsyncErrors[keyof GetEmployeeAppraisalSessionsAsyncErrors];
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsError = EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsErrors[keyof EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsErrors];
 
-export type GetEmployeeAppraisalSessionsAsyncResponses = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsResponses = {
     /**
      * OK
      */
     200: EmployeeAppraisalSessionDtoListEnvelopeReadable;
 };
 
-export type GetEmployeeAppraisalSessionsAsyncResponse = GetEmployeeAppraisalSessionsAsyncResponses[keyof GetEmployeeAppraisalSessionsAsyncResponses];
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsResponse = EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsResponses[keyof EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsResponses];
 
-export type CreateEmployeeAppraisalSessionAsyncData = {
+export type EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionData = {
     body?: EmployeeAppraisalSessionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4301,7 +4492,7 @@ export type CreateEmployeeAppraisalSessionAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions';
 };
 
-export type CreateEmployeeAppraisalSessionAsyncErrors = {
+export type EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionErrors = {
     /**
      * Bad Request
      */
@@ -4316,18 +4507,18 @@ export type CreateEmployeeAppraisalSessionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmployeeAppraisalSessionAsyncError = CreateEmployeeAppraisalSessionAsyncErrors[keyof CreateEmployeeAppraisalSessionAsyncErrors];
+export type EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionError = EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionErrors[keyof EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionErrors];
 
-export type CreateEmployeeAppraisalSessionAsyncResponses = {
+export type EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateEmployeeAppraisalSessionAsyncResponse = CreateEmployeeAppraisalSessionAsyncResponses[keyof CreateEmployeeAppraisalSessionAsyncResponses];
+export type EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionResponse = EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionResponses[keyof EmployeeAppraisalSessionsCreateEmployeeAppraisalSessionResponses];
 
-export type GetEmployeeAppraisalSessionsCountAsyncData = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountData = {
     body?: EmployeeAppraisalSessionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4340,7 +4531,7 @@ export type GetEmployeeAppraisalSessionsCountAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions/Count';
 };
 
-export type GetEmployeeAppraisalSessionsCountAsyncErrors = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4351,18 +4542,18 @@ export type GetEmployeeAppraisalSessionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeAppraisalSessionsCountAsyncError = GetEmployeeAppraisalSessionsCountAsyncErrors[keyof GetEmployeeAppraisalSessionsCountAsyncErrors];
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountError = EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountErrors[keyof EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountErrors];
 
-export type GetEmployeeAppraisalSessionsCountAsyncResponses = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmployeeAppraisalSessionsCountAsyncResponse = GetEmployeeAppraisalSessionsCountAsyncResponses[keyof GetEmployeeAppraisalSessionsCountAsyncResponses];
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountResponse = EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountResponses[keyof EmployeeAppraisalSessionsGetEmployeeAppraisalSessionsCountResponses];
 
-export type DeleteEmployeeAppraisalSessionAsyncData = {
+export type EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4377,7 +4568,7 @@ export type DeleteEmployeeAppraisalSessionAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}';
 };
 
-export type DeleteEmployeeAppraisalSessionAsyncErrors = {
+export type EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionErrors = {
     /**
      * Bad Request
      */
@@ -4392,18 +4583,18 @@ export type DeleteEmployeeAppraisalSessionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmployeeAppraisalSessionAsyncError = DeleteEmployeeAppraisalSessionAsyncErrors[keyof DeleteEmployeeAppraisalSessionAsyncErrors];
+export type EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionError = EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionErrors[keyof EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionErrors];
 
-export type DeleteEmployeeAppraisalSessionAsyncResponses = {
+export type EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmployeeAppraisalSessionAsyncResponse = DeleteEmployeeAppraisalSessionAsyncResponses[keyof DeleteEmployeeAppraisalSessionAsyncResponses];
+export type EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionResponse = EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionResponses[keyof EmployeeAppraisalSessionsDeleteEmployeeAppraisalSessionResponses];
 
-export type GetEmployeeAppraisalSessionByIdAsyncData = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4418,7 +4609,7 @@ export type GetEmployeeAppraisalSessionByIdAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}';
 };
 
-export type GetEmployeeAppraisalSessionByIdAsyncErrors = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4429,18 +4620,18 @@ export type GetEmployeeAppraisalSessionByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeAppraisalSessionByIdAsyncError = GetEmployeeAppraisalSessionByIdAsyncErrors[keyof GetEmployeeAppraisalSessionByIdAsyncErrors];
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdError = EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdErrors[keyof EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdErrors];
 
-export type GetEmployeeAppraisalSessionByIdAsyncResponses = {
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdResponses = {
     /**
      * OK
      */
     200: EmployeeAppraisalSessionDtoEnvelopeReadable;
 };
 
-export type GetEmployeeAppraisalSessionByIdAsyncResponse = GetEmployeeAppraisalSessionByIdAsyncResponses[keyof GetEmployeeAppraisalSessionByIdAsyncResponses];
+export type EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdResponse = EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdResponses[keyof EmployeeAppraisalSessionsGetEmployeeAppraisalSessionByIdResponses];
 
-export type PatchEmployeeAppraisalSessionAsyncData = {
+export type EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4455,7 +4646,7 @@ export type PatchEmployeeAppraisalSessionAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}';
 };
 
-export type PatchEmployeeAppraisalSessionAsyncErrors = {
+export type EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionErrors = {
     /**
      * Bad Request
      */
@@ -4470,18 +4661,18 @@ export type PatchEmployeeAppraisalSessionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmployeeAppraisalSessionAsyncError = PatchEmployeeAppraisalSessionAsyncErrors[keyof PatchEmployeeAppraisalSessionAsyncErrors];
+export type EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionError = EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionErrors[keyof EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionErrors];
 
-export type PatchEmployeeAppraisalSessionAsyncResponses = {
+export type EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmployeeAppraisalSessionAsyncResponse = PatchEmployeeAppraisalSessionAsyncResponses[keyof PatchEmployeeAppraisalSessionAsyncResponses];
+export type EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionResponse = EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionResponses[keyof EmployeeAppraisalSessionsPatchEmployeeAppraisalSessionResponses];
 
-export type UpdateEmployeeAppraisalSessionAsyncData = {
+export type EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionData = {
     body?: EmployeeAppraisalSessionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4496,7 +4687,7 @@ export type UpdateEmployeeAppraisalSessionAsyncData = {
     url: '/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}';
 };
 
-export type UpdateEmployeeAppraisalSessionAsyncErrors = {
+export type EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionErrors = {
     /**
      * Bad Request
      */
@@ -4511,18 +4702,18 @@ export type UpdateEmployeeAppraisalSessionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmployeeAppraisalSessionAsyncError = UpdateEmployeeAppraisalSessionAsyncErrors[keyof UpdateEmployeeAppraisalSessionAsyncErrors];
+export type EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionError = EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionErrors[keyof EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionErrors];
 
-export type UpdateEmployeeAppraisalSessionAsyncResponses = {
+export type EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmployeeAppraisalSessionAsyncResponse = UpdateEmployeeAppraisalSessionAsyncResponses[keyof UpdateEmployeeAppraisalSessionAsyncResponses];
+export type EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionResponse = EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionResponses[keyof EmployeeAppraisalSessionsUpdateEmployeeAppraisalSessionResponses];
 
-export type GetEmployeesAsyncData = {
+export type EmployeesGetEmployeesData = {
     body?: EmployeeProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4535,7 +4726,7 @@ export type GetEmployeesAsyncData = {
     url: '/api/v2/HrmsService/Employees';
 };
 
-export type GetEmployeesAsyncErrors = {
+export type EmployeesGetEmployeesErrors = {
     /**
      * Unauthorized
      */
@@ -4546,18 +4737,18 @@ export type GetEmployeesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeesAsyncError = GetEmployeesAsyncErrors[keyof GetEmployeesAsyncErrors];
+export type EmployeesGetEmployeesError = EmployeesGetEmployeesErrors[keyof EmployeesGetEmployeesErrors];
 
-export type GetEmployeesAsyncResponses = {
+export type EmployeesGetEmployeesResponses = {
     /**
      * OK
      */
     200: EmployeeProfileDtoListEnvelopeReadable;
 };
 
-export type GetEmployeesAsyncResponse = GetEmployeesAsyncResponses[keyof GetEmployeesAsyncResponses];
+export type EmployeesGetEmployeesResponse = EmployeesGetEmployeesResponses[keyof EmployeesGetEmployeesResponses];
 
-export type CreateEmployeeAsyncData = {
+export type EmployeesCreateEmployeeData = {
     body?: EmployeeProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4570,7 +4761,7 @@ export type CreateEmployeeAsyncData = {
     url: '/api/v2/HrmsService/Employees';
 };
 
-export type CreateEmployeeAsyncErrors = {
+export type EmployeesCreateEmployeeErrors = {
     /**
      * Bad Request
      */
@@ -4585,18 +4776,18 @@ export type CreateEmployeeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmployeeAsyncError = CreateEmployeeAsyncErrors[keyof CreateEmployeeAsyncErrors];
+export type EmployeesCreateEmployeeError = EmployeesCreateEmployeeErrors[keyof EmployeesCreateEmployeeErrors];
 
-export type CreateEmployeeAsyncResponses = {
+export type EmployeesCreateEmployeeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateEmployeeAsyncResponse = CreateEmployeeAsyncResponses[keyof CreateEmployeeAsyncResponses];
+export type EmployeesCreateEmployeeResponse = EmployeesCreateEmployeeResponses[keyof EmployeesCreateEmployeeResponses];
 
-export type GetEmployeesCountAsyncData = {
+export type EmployeesGetEmployeesCountData = {
     body?: EmployeeProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4609,7 +4800,7 @@ export type GetEmployeesCountAsyncData = {
     url: '/api/v2/HrmsService/Employees/Count';
 };
 
-export type GetEmployeesCountAsyncErrors = {
+export type EmployeesGetEmployeesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4620,18 +4811,18 @@ export type GetEmployeesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeesCountAsyncError = GetEmployeesCountAsyncErrors[keyof GetEmployeesCountAsyncErrors];
+export type EmployeesGetEmployeesCountError = EmployeesGetEmployeesCountErrors[keyof EmployeesGetEmployeesCountErrors];
 
-export type GetEmployeesCountAsyncResponses = {
+export type EmployeesGetEmployeesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmployeesCountAsyncResponse = GetEmployeesCountAsyncResponses[keyof GetEmployeesCountAsyncResponses];
+export type EmployeesGetEmployeesCountResponse = EmployeesGetEmployeesCountResponses[keyof EmployeesGetEmployeesCountResponses];
 
-export type DeleteEmployeeAsyncData = {
+export type EmployeesDeleteEmployeeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4646,7 +4837,7 @@ export type DeleteEmployeeAsyncData = {
     url: '/api/v2/HrmsService/Employees/{employeeId}';
 };
 
-export type DeleteEmployeeAsyncErrors = {
+export type EmployeesDeleteEmployeeErrors = {
     /**
      * Bad Request
      */
@@ -4661,18 +4852,18 @@ export type DeleteEmployeeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmployeeAsyncError = DeleteEmployeeAsyncErrors[keyof DeleteEmployeeAsyncErrors];
+export type EmployeesDeleteEmployeeError = EmployeesDeleteEmployeeErrors[keyof EmployeesDeleteEmployeeErrors];
 
-export type DeleteEmployeeAsyncResponses = {
+export type EmployeesDeleteEmployeeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmployeeAsyncResponse = DeleteEmployeeAsyncResponses[keyof DeleteEmployeeAsyncResponses];
+export type EmployeesDeleteEmployeeResponse = EmployeesDeleteEmployeeResponses[keyof EmployeesDeleteEmployeeResponses];
 
-export type GetEmployeeByIdAsyncData = {
+export type EmployeesGetEmployeeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4687,7 +4878,7 @@ export type GetEmployeeByIdAsyncData = {
     url: '/api/v2/HrmsService/Employees/{employeeId}';
 };
 
-export type GetEmployeeByIdAsyncErrors = {
+export type EmployeesGetEmployeeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4698,18 +4889,18 @@ export type GetEmployeeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeByIdAsyncError = GetEmployeeByIdAsyncErrors[keyof GetEmployeeByIdAsyncErrors];
+export type EmployeesGetEmployeeByIdError = EmployeesGetEmployeeByIdErrors[keyof EmployeesGetEmployeeByIdErrors];
 
-export type GetEmployeeByIdAsyncResponses = {
+export type EmployeesGetEmployeeByIdResponses = {
     /**
      * OK
      */
     200: EmployeeProfileDtoEnvelopeReadable;
 };
 
-export type GetEmployeeByIdAsyncResponse = GetEmployeeByIdAsyncResponses[keyof GetEmployeeByIdAsyncResponses];
+export type EmployeesGetEmployeeByIdResponse = EmployeesGetEmployeeByIdResponses[keyof EmployeesGetEmployeeByIdResponses];
 
-export type PatchEmployeeAsyncData = {
+export type EmployeesPatchEmployeeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4724,7 +4915,7 @@ export type PatchEmployeeAsyncData = {
     url: '/api/v2/HrmsService/Employees/{employeeId}';
 };
 
-export type PatchEmployeeAsyncErrors = {
+export type EmployeesPatchEmployeeErrors = {
     /**
      * Bad Request
      */
@@ -4739,18 +4930,18 @@ export type PatchEmployeeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmployeeAsyncError = PatchEmployeeAsyncErrors[keyof PatchEmployeeAsyncErrors];
+export type EmployeesPatchEmployeeError = EmployeesPatchEmployeeErrors[keyof EmployeesPatchEmployeeErrors];
 
-export type PatchEmployeeAsyncResponses = {
+export type EmployeesPatchEmployeeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmployeeAsyncResponse = PatchEmployeeAsyncResponses[keyof PatchEmployeeAsyncResponses];
+export type EmployeesPatchEmployeeResponse = EmployeesPatchEmployeeResponses[keyof EmployeesPatchEmployeeResponses];
 
-export type UpdateEmployeeAsyncData = {
+export type EmployeesUpdateEmployeeData = {
     body?: EmployeeProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4765,7 +4956,7 @@ export type UpdateEmployeeAsyncData = {
     url: '/api/v2/HrmsService/Employees/{employeeId}';
 };
 
-export type UpdateEmployeeAsyncErrors = {
+export type EmployeesUpdateEmployeeErrors = {
     /**
      * Bad Request
      */
@@ -4780,18 +4971,18 @@ export type UpdateEmployeeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmployeeAsyncError = UpdateEmployeeAsyncErrors[keyof UpdateEmployeeAsyncErrors];
+export type EmployeesUpdateEmployeeError = EmployeesUpdateEmployeeErrors[keyof EmployeesUpdateEmployeeErrors];
 
-export type UpdateEmployeeAsyncResponses = {
+export type EmployeesUpdateEmployeeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmployeeAsyncResponse = UpdateEmployeeAsyncResponses[keyof UpdateEmployeeAsyncResponses];
+export type EmployeesUpdateEmployeeResponse = EmployeesUpdateEmployeeResponses[keyof EmployeesUpdateEmployeeResponses];
 
-export type GetEmployeeTypesAsyncData = {
+export type EmployeeTypesGetEmployeeTypesData = {
     body?: EmployeeTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4804,7 +4995,7 @@ export type GetEmployeeTypesAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes';
 };
 
-export type GetEmployeeTypesAsyncErrors = {
+export type EmployeeTypesGetEmployeeTypesErrors = {
     /**
      * Unauthorized
      */
@@ -4815,18 +5006,18 @@ export type GetEmployeeTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeTypesAsyncError = GetEmployeeTypesAsyncErrors[keyof GetEmployeeTypesAsyncErrors];
+export type EmployeeTypesGetEmployeeTypesError = EmployeeTypesGetEmployeeTypesErrors[keyof EmployeeTypesGetEmployeeTypesErrors];
 
-export type GetEmployeeTypesAsyncResponses = {
+export type EmployeeTypesGetEmployeeTypesResponses = {
     /**
      * OK
      */
     200: EmployeeTypeDtoListEnvelopeReadable;
 };
 
-export type GetEmployeeTypesAsyncResponse = GetEmployeeTypesAsyncResponses[keyof GetEmployeeTypesAsyncResponses];
+export type EmployeeTypesGetEmployeeTypesResponse = EmployeeTypesGetEmployeeTypesResponses[keyof EmployeeTypesGetEmployeeTypesResponses];
 
-export type CreateEmployeeTypeAsyncData = {
+export type EmployeeTypesCreateEmployeeTypeData = {
     body?: EmployeeTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4839,7 +5030,7 @@ export type CreateEmployeeTypeAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes';
 };
 
-export type CreateEmployeeTypeAsyncErrors = {
+export type EmployeeTypesCreateEmployeeTypeErrors = {
     /**
      * Bad Request
      */
@@ -4854,18 +5045,18 @@ export type CreateEmployeeTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmployeeTypeAsyncError = CreateEmployeeTypeAsyncErrors[keyof CreateEmployeeTypeAsyncErrors];
+export type EmployeeTypesCreateEmployeeTypeError = EmployeeTypesCreateEmployeeTypeErrors[keyof EmployeeTypesCreateEmployeeTypeErrors];
 
-export type CreateEmployeeTypeAsyncResponses = {
+export type EmployeeTypesCreateEmployeeTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateEmployeeTypeAsyncResponse = CreateEmployeeTypeAsyncResponses[keyof CreateEmployeeTypeAsyncResponses];
+export type EmployeeTypesCreateEmployeeTypeResponse = EmployeeTypesCreateEmployeeTypeResponses[keyof EmployeeTypesCreateEmployeeTypeResponses];
 
-export type GetEmployeeTypesCountAsyncData = {
+export type EmployeeTypesGetEmployeeTypesCountData = {
     body?: EmployeeTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4878,7 +5069,7 @@ export type GetEmployeeTypesCountAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes/Count';
 };
 
-export type GetEmployeeTypesCountAsyncErrors = {
+export type EmployeeTypesGetEmployeeTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4889,18 +5080,18 @@ export type GetEmployeeTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeTypesCountAsyncError = GetEmployeeTypesCountAsyncErrors[keyof GetEmployeeTypesCountAsyncErrors];
+export type EmployeeTypesGetEmployeeTypesCountError = EmployeeTypesGetEmployeeTypesCountErrors[keyof EmployeeTypesGetEmployeeTypesCountErrors];
 
-export type GetEmployeeTypesCountAsyncResponses = {
+export type EmployeeTypesGetEmployeeTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmployeeTypesCountAsyncResponse = GetEmployeeTypesCountAsyncResponses[keyof GetEmployeeTypesCountAsyncResponses];
+export type EmployeeTypesGetEmployeeTypesCountResponse = EmployeeTypesGetEmployeeTypesCountResponses[keyof EmployeeTypesGetEmployeeTypesCountResponses];
 
-export type DeleteEmployeeTypeAsyncData = {
+export type EmployeeTypesDeleteEmployeeTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4915,7 +5106,7 @@ export type DeleteEmployeeTypeAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}';
 };
 
-export type DeleteEmployeeTypeAsyncErrors = {
+export type EmployeeTypesDeleteEmployeeTypeErrors = {
     /**
      * Bad Request
      */
@@ -4930,18 +5121,18 @@ export type DeleteEmployeeTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmployeeTypeAsyncError = DeleteEmployeeTypeAsyncErrors[keyof DeleteEmployeeTypeAsyncErrors];
+export type EmployeeTypesDeleteEmployeeTypeError = EmployeeTypesDeleteEmployeeTypeErrors[keyof EmployeeTypesDeleteEmployeeTypeErrors];
 
-export type DeleteEmployeeTypeAsyncResponses = {
+export type EmployeeTypesDeleteEmployeeTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmployeeTypeAsyncResponse = DeleteEmployeeTypeAsyncResponses[keyof DeleteEmployeeTypeAsyncResponses];
+export type EmployeeTypesDeleteEmployeeTypeResponse = EmployeeTypesDeleteEmployeeTypeResponses[keyof EmployeeTypesDeleteEmployeeTypeResponses];
 
-export type GetEmployeeTypeByIdAsyncData = {
+export type EmployeeTypesGetEmployeeTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4956,7 +5147,7 @@ export type GetEmployeeTypeByIdAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}';
 };
 
-export type GetEmployeeTypeByIdAsyncErrors = {
+export type EmployeeTypesGetEmployeeTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4967,18 +5158,18 @@ export type GetEmployeeTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployeeTypeByIdAsyncError = GetEmployeeTypeByIdAsyncErrors[keyof GetEmployeeTypeByIdAsyncErrors];
+export type EmployeeTypesGetEmployeeTypeByIdError = EmployeeTypesGetEmployeeTypeByIdErrors[keyof EmployeeTypesGetEmployeeTypeByIdErrors];
 
-export type GetEmployeeTypeByIdAsyncResponses = {
+export type EmployeeTypesGetEmployeeTypeByIdResponses = {
     /**
      * OK
      */
     200: EmployeeTypeDtoEnvelopeReadable;
 };
 
-export type GetEmployeeTypeByIdAsyncResponse = GetEmployeeTypeByIdAsyncResponses[keyof GetEmployeeTypeByIdAsyncResponses];
+export type EmployeeTypesGetEmployeeTypeByIdResponse = EmployeeTypesGetEmployeeTypeByIdResponses[keyof EmployeeTypesGetEmployeeTypeByIdResponses];
 
-export type PatchEmployeeTypeAsyncData = {
+export type EmployeeTypesPatchEmployeeTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4993,7 +5184,7 @@ export type PatchEmployeeTypeAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}';
 };
 
-export type PatchEmployeeTypeAsyncErrors = {
+export type EmployeeTypesPatchEmployeeTypeErrors = {
     /**
      * Bad Request
      */
@@ -5008,18 +5199,18 @@ export type PatchEmployeeTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmployeeTypeAsyncError = PatchEmployeeTypeAsyncErrors[keyof PatchEmployeeTypeAsyncErrors];
+export type EmployeeTypesPatchEmployeeTypeError = EmployeeTypesPatchEmployeeTypeErrors[keyof EmployeeTypesPatchEmployeeTypeErrors];
 
-export type PatchEmployeeTypeAsyncResponses = {
+export type EmployeeTypesPatchEmployeeTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmployeeTypeAsyncResponse = PatchEmployeeTypeAsyncResponses[keyof PatchEmployeeTypeAsyncResponses];
+export type EmployeeTypesPatchEmployeeTypeResponse = EmployeeTypesPatchEmployeeTypeResponses[keyof EmployeeTypesPatchEmployeeTypeResponses];
 
-export type UpdateEmployeeTypeAsyncData = {
+export type EmployeeTypesUpdateEmployeeTypeData = {
     body?: EmployeeTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5034,7 +5225,7 @@ export type UpdateEmployeeTypeAsyncData = {
     url: '/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}';
 };
 
-export type UpdateEmployeeTypeAsyncErrors = {
+export type EmployeeTypesUpdateEmployeeTypeErrors = {
     /**
      * Bad Request
      */
@@ -5049,18 +5240,18 @@ export type UpdateEmployeeTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmployeeTypeAsyncError = UpdateEmployeeTypeAsyncErrors[keyof UpdateEmployeeTypeAsyncErrors];
+export type EmployeeTypesUpdateEmployeeTypeError = EmployeeTypesUpdateEmployeeTypeErrors[keyof EmployeeTypesUpdateEmployeeTypeErrors];
 
-export type UpdateEmployeeTypeAsyncResponses = {
+export type EmployeeTypesUpdateEmployeeTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmployeeTypeAsyncResponse = UpdateEmployeeTypeAsyncResponses[keyof UpdateEmployeeTypeAsyncResponses];
+export type EmployeeTypesUpdateEmployeeTypeResponse = EmployeeTypesUpdateEmployeeTypeResponses[keyof EmployeeTypesUpdateEmployeeTypeResponses];
 
-export type GetEmployersAsyncData = {
+export type EmployersGetEmployersData = {
     body?: EmployerProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5073,7 +5264,7 @@ export type GetEmployersAsyncData = {
     url: '/api/v2/HrmsService/Employers';
 };
 
-export type GetEmployersAsyncErrors = {
+export type EmployersGetEmployersErrors = {
     /**
      * Unauthorized
      */
@@ -5084,18 +5275,18 @@ export type GetEmployersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployersAsyncError = GetEmployersAsyncErrors[keyof GetEmployersAsyncErrors];
+export type EmployersGetEmployersError = EmployersGetEmployersErrors[keyof EmployersGetEmployersErrors];
 
-export type GetEmployersAsyncResponses = {
+export type EmployersGetEmployersResponses = {
     /**
      * OK
      */
     200: EmployerProfileDtoListEnvelopeReadable;
 };
 
-export type GetEmployersAsyncResponse = GetEmployersAsyncResponses[keyof GetEmployersAsyncResponses];
+export type EmployersGetEmployersResponse = EmployersGetEmployersResponses[keyof EmployersGetEmployersResponses];
 
-export type CreateEmployerAsyncData = {
+export type EmployersCreateEmployerData = {
     body?: EmployerProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5108,7 +5299,7 @@ export type CreateEmployerAsyncData = {
     url: '/api/v2/HrmsService/Employers';
 };
 
-export type CreateEmployerAsyncErrors = {
+export type EmployersCreateEmployerErrors = {
     /**
      * Bad Request
      */
@@ -5123,18 +5314,18 @@ export type CreateEmployerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmployerAsyncError = CreateEmployerAsyncErrors[keyof CreateEmployerAsyncErrors];
+export type EmployersCreateEmployerError = EmployersCreateEmployerErrors[keyof EmployersCreateEmployerErrors];
 
-export type CreateEmployerAsyncResponses = {
+export type EmployersCreateEmployerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateEmployerAsyncResponse = CreateEmployerAsyncResponses[keyof CreateEmployerAsyncResponses];
+export type EmployersCreateEmployerResponse = EmployersCreateEmployerResponses[keyof EmployersCreateEmployerResponses];
 
-export type GetEmployersCountAsyncData = {
+export type EmployersGetEmployersCountData = {
     body?: EmployerProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5147,7 +5338,7 @@ export type GetEmployersCountAsyncData = {
     url: '/api/v2/HrmsService/Employers/Count';
 };
 
-export type GetEmployersCountAsyncErrors = {
+export type EmployersGetEmployersCountErrors = {
     /**
      * Unauthorized
      */
@@ -5158,18 +5349,18 @@ export type GetEmployersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployersCountAsyncError = GetEmployersCountAsyncErrors[keyof GetEmployersCountAsyncErrors];
+export type EmployersGetEmployersCountError = EmployersGetEmployersCountErrors[keyof EmployersGetEmployersCountErrors];
 
-export type GetEmployersCountAsyncResponses = {
+export type EmployersGetEmployersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmployersCountAsyncResponse = GetEmployersCountAsyncResponses[keyof GetEmployersCountAsyncResponses];
+export type EmployersGetEmployersCountResponse = EmployersGetEmployersCountResponses[keyof EmployersGetEmployersCountResponses];
 
-export type DeleteEmployerAsyncData = {
+export type EmployersDeleteEmployerData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5184,7 +5375,7 @@ export type DeleteEmployerAsyncData = {
     url: '/api/v2/HrmsService/Employers/{employerId}';
 };
 
-export type DeleteEmployerAsyncErrors = {
+export type EmployersDeleteEmployerErrors = {
     /**
      * Bad Request
      */
@@ -5199,18 +5390,18 @@ export type DeleteEmployerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmployerAsyncError = DeleteEmployerAsyncErrors[keyof DeleteEmployerAsyncErrors];
+export type EmployersDeleteEmployerError = EmployersDeleteEmployerErrors[keyof EmployersDeleteEmployerErrors];
 
-export type DeleteEmployerAsyncResponses = {
+export type EmployersDeleteEmployerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmployerAsyncResponse = DeleteEmployerAsyncResponses[keyof DeleteEmployerAsyncResponses];
+export type EmployersDeleteEmployerResponse = EmployersDeleteEmployerResponses[keyof EmployersDeleteEmployerResponses];
 
-export type GetEmployerByIdAsyncData = {
+export type EmployersGetEmployerByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5225,7 +5416,7 @@ export type GetEmployerByIdAsyncData = {
     url: '/api/v2/HrmsService/Employers/{employerId}';
 };
 
-export type GetEmployerByIdAsyncErrors = {
+export type EmployersGetEmployerByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5236,18 +5427,18 @@ export type GetEmployerByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmployerByIdAsyncError = GetEmployerByIdAsyncErrors[keyof GetEmployerByIdAsyncErrors];
+export type EmployersGetEmployerByIdError = EmployersGetEmployerByIdErrors[keyof EmployersGetEmployerByIdErrors];
 
-export type GetEmployerByIdAsyncResponses = {
+export type EmployersGetEmployerByIdResponses = {
     /**
      * OK
      */
     200: EmployerProfileDtoEnvelopeReadable;
 };
 
-export type GetEmployerByIdAsyncResponse = GetEmployerByIdAsyncResponses[keyof GetEmployerByIdAsyncResponses];
+export type EmployersGetEmployerByIdResponse = EmployersGetEmployerByIdResponses[keyof EmployersGetEmployerByIdResponses];
 
-export type PatchEmployerAsyncData = {
+export type EmployersPatchEmployerData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5262,7 +5453,7 @@ export type PatchEmployerAsyncData = {
     url: '/api/v2/HrmsService/Employers/{employerId}';
 };
 
-export type PatchEmployerAsyncErrors = {
+export type EmployersPatchEmployerErrors = {
     /**
      * Bad Request
      */
@@ -5277,18 +5468,18 @@ export type PatchEmployerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmployerAsyncError = PatchEmployerAsyncErrors[keyof PatchEmployerAsyncErrors];
+export type EmployersPatchEmployerError = EmployersPatchEmployerErrors[keyof EmployersPatchEmployerErrors];
 
-export type PatchEmployerAsyncResponses = {
+export type EmployersPatchEmployerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmployerAsyncResponse = PatchEmployerAsyncResponses[keyof PatchEmployerAsyncResponses];
+export type EmployersPatchEmployerResponse = EmployersPatchEmployerResponses[keyof EmployersPatchEmployerResponses];
 
-export type UpdateEmployerAsyncData = {
+export type EmployersUpdateEmployerData = {
     body?: EmployerProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5303,7 +5494,7 @@ export type UpdateEmployerAsyncData = {
     url: '/api/v2/HrmsService/Employers/{employerId}';
 };
 
-export type UpdateEmployerAsyncErrors = {
+export type EmployersUpdateEmployerErrors = {
     /**
      * Bad Request
      */
@@ -5318,83 +5509,83 @@ export type UpdateEmployerAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmployerAsyncError = UpdateEmployerAsyncErrors[keyof UpdateEmployerAsyncErrors];
+export type EmployersUpdateEmployerError = EmployersUpdateEmployerErrors[keyof EmployersUpdateEmployerErrors];
 
-export type UpdateEmployerAsyncResponses = {
+export type EmployersUpdateEmployerResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmployerAsyncResponse = UpdateEmployerAsyncResponses[keyof UpdateEmployerAsyncResponses];
+export type EmployersUpdateEmployerResponse = EmployersUpdateEmployerResponses[keyof EmployersUpdateEmployerResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -5404,32 +5595,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -5440,81 +5631,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -5525,25 +5716,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -5554,25 +5745,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -5583,18 +5774,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -5604,14 +5795,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -5620,14 +5811,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -5636,28 +5827,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetGigApplicationsAsyncData = {
+export type GigApplicationsGetGigApplicationsData = {
     body?: GigApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5670,7 +5861,7 @@ export type GetGigApplicationsAsyncData = {
     url: '/api/v2/HrmsService/GigApplications';
 };
 
-export type GetGigApplicationsAsyncErrors = {
+export type GigApplicationsGetGigApplicationsErrors = {
     /**
      * Unauthorized
      */
@@ -5681,18 +5872,18 @@ export type GetGigApplicationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGigApplicationsAsyncError = GetGigApplicationsAsyncErrors[keyof GetGigApplicationsAsyncErrors];
+export type GigApplicationsGetGigApplicationsError = GigApplicationsGetGigApplicationsErrors[keyof GigApplicationsGetGigApplicationsErrors];
 
-export type GetGigApplicationsAsyncResponses = {
+export type GigApplicationsGetGigApplicationsResponses = {
     /**
      * OK
      */
     200: GigApplicationDtoListEnvelopeReadable;
 };
 
-export type GetGigApplicationsAsyncResponse = GetGigApplicationsAsyncResponses[keyof GetGigApplicationsAsyncResponses];
+export type GigApplicationsGetGigApplicationsResponse = GigApplicationsGetGigApplicationsResponses[keyof GigApplicationsGetGigApplicationsResponses];
 
-export type CreateGigApplicationAsyncData = {
+export type GigApplicationsCreateGigApplicationData = {
     body?: GigApplicationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5705,7 +5896,7 @@ export type CreateGigApplicationAsyncData = {
     url: '/api/v2/HrmsService/GigApplications';
 };
 
-export type CreateGigApplicationAsyncErrors = {
+export type GigApplicationsCreateGigApplicationErrors = {
     /**
      * Bad Request
      */
@@ -5720,18 +5911,18 @@ export type CreateGigApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateGigApplicationAsyncError = CreateGigApplicationAsyncErrors[keyof CreateGigApplicationAsyncErrors];
+export type GigApplicationsCreateGigApplicationError = GigApplicationsCreateGigApplicationErrors[keyof GigApplicationsCreateGigApplicationErrors];
 
-export type CreateGigApplicationAsyncResponses = {
+export type GigApplicationsCreateGigApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateGigApplicationAsyncResponse = CreateGigApplicationAsyncResponses[keyof CreateGigApplicationAsyncResponses];
+export type GigApplicationsCreateGigApplicationResponse = GigApplicationsCreateGigApplicationResponses[keyof GigApplicationsCreateGigApplicationResponses];
 
-export type GetGigApplicationsCountAsyncData = {
+export type GigApplicationsGetGigApplicationsCountData = {
     body?: GigApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5744,7 +5935,7 @@ export type GetGigApplicationsCountAsyncData = {
     url: '/api/v2/HrmsService/GigApplications/Count';
 };
 
-export type GetGigApplicationsCountAsyncErrors = {
+export type GigApplicationsGetGigApplicationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5755,18 +5946,18 @@ export type GetGigApplicationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGigApplicationsCountAsyncError = GetGigApplicationsCountAsyncErrors[keyof GetGigApplicationsCountAsyncErrors];
+export type GigApplicationsGetGigApplicationsCountError = GigApplicationsGetGigApplicationsCountErrors[keyof GigApplicationsGetGigApplicationsCountErrors];
 
-export type GetGigApplicationsCountAsyncResponses = {
+export type GigApplicationsGetGigApplicationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetGigApplicationsCountAsyncResponse = GetGigApplicationsCountAsyncResponses[keyof GetGigApplicationsCountAsyncResponses];
+export type GigApplicationsGetGigApplicationsCountResponse = GigApplicationsGetGigApplicationsCountResponses[keyof GigApplicationsGetGigApplicationsCountResponses];
 
-export type DeleteGigApplicationAsyncData = {
+export type GigApplicationsDeleteGigApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5781,7 +5972,7 @@ export type DeleteGigApplicationAsyncData = {
     url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
 };
 
-export type DeleteGigApplicationAsyncErrors = {
+export type GigApplicationsDeleteGigApplicationErrors = {
     /**
      * Bad Request
      */
@@ -5796,18 +5987,18 @@ export type DeleteGigApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteGigApplicationAsyncError = DeleteGigApplicationAsyncErrors[keyof DeleteGigApplicationAsyncErrors];
+export type GigApplicationsDeleteGigApplicationError = GigApplicationsDeleteGigApplicationErrors[keyof GigApplicationsDeleteGigApplicationErrors];
 
-export type DeleteGigApplicationAsyncResponses = {
+export type GigApplicationsDeleteGigApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteGigApplicationAsyncResponse = DeleteGigApplicationAsyncResponses[keyof DeleteGigApplicationAsyncResponses];
+export type GigApplicationsDeleteGigApplicationResponse = GigApplicationsDeleteGigApplicationResponses[keyof GigApplicationsDeleteGigApplicationResponses];
 
-export type GetGigApplicationByIdAsyncData = {
+export type GigApplicationsGetGigApplicationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5822,7 +6013,7 @@ export type GetGigApplicationByIdAsyncData = {
     url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
 };
 
-export type GetGigApplicationByIdAsyncErrors = {
+export type GigApplicationsGetGigApplicationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5833,18 +6024,18 @@ export type GetGigApplicationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGigApplicationByIdAsyncError = GetGigApplicationByIdAsyncErrors[keyof GetGigApplicationByIdAsyncErrors];
+export type GigApplicationsGetGigApplicationByIdError = GigApplicationsGetGigApplicationByIdErrors[keyof GigApplicationsGetGigApplicationByIdErrors];
 
-export type GetGigApplicationByIdAsyncResponses = {
+export type GigApplicationsGetGigApplicationByIdResponses = {
     /**
      * OK
      */
     200: GigApplicationDtoEnvelopeReadable;
 };
 
-export type GetGigApplicationByIdAsyncResponse = GetGigApplicationByIdAsyncResponses[keyof GetGigApplicationByIdAsyncResponses];
+export type GigApplicationsGetGigApplicationByIdResponse = GigApplicationsGetGigApplicationByIdResponses[keyof GigApplicationsGetGigApplicationByIdResponses];
 
-export type PatchGigApplicationAsyncData = {
+export type GigApplicationsPatchGigApplicationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5859,7 +6050,7 @@ export type PatchGigApplicationAsyncData = {
     url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
 };
 
-export type PatchGigApplicationAsyncErrors = {
+export type GigApplicationsPatchGigApplicationErrors = {
     /**
      * Bad Request
      */
@@ -5874,18 +6065,18 @@ export type PatchGigApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchGigApplicationAsyncError = PatchGigApplicationAsyncErrors[keyof PatchGigApplicationAsyncErrors];
+export type GigApplicationsPatchGigApplicationError = GigApplicationsPatchGigApplicationErrors[keyof GigApplicationsPatchGigApplicationErrors];
 
-export type PatchGigApplicationAsyncResponses = {
+export type GigApplicationsPatchGigApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchGigApplicationAsyncResponse = PatchGigApplicationAsyncResponses[keyof PatchGigApplicationAsyncResponses];
+export type GigApplicationsPatchGigApplicationResponse = GigApplicationsPatchGigApplicationResponses[keyof GigApplicationsPatchGigApplicationResponses];
 
-export type UpdateGigApplicationAsyncData = {
+export type GigApplicationsUpdateGigApplicationData = {
     body?: GigApplicationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5900,7 +6091,7 @@ export type UpdateGigApplicationAsyncData = {
     url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
 };
 
-export type UpdateGigApplicationAsyncErrors = {
+export type GigApplicationsUpdateGigApplicationErrors = {
     /**
      * Bad Request
      */
@@ -5915,18 +6106,18 @@ export type UpdateGigApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateGigApplicationAsyncError = UpdateGigApplicationAsyncErrors[keyof UpdateGigApplicationAsyncErrors];
+export type GigApplicationsUpdateGigApplicationError = GigApplicationsUpdateGigApplicationErrors[keyof GigApplicationsUpdateGigApplicationErrors];
 
-export type UpdateGigApplicationAsyncResponses = {
+export type GigApplicationsUpdateGigApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateGigApplicationAsyncResponse = UpdateGigApplicationAsyncResponses[keyof UpdateGigApplicationAsyncResponses];
+export type GigApplicationsUpdateGigApplicationResponse = GigApplicationsUpdateGigApplicationResponses[keyof GigApplicationsUpdateGigApplicationResponses];
 
-export type AcceptGigApplicationAsyncData = {
+export type GigApplicationsAcceptGigApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5941,7 +6132,7 @@ export type AcceptGigApplicationAsyncData = {
     url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}/Accept';
 };
 
-export type AcceptGigApplicationAsyncErrors = {
+export type GigApplicationsAcceptGigApplicationErrors = {
     /**
      * Bad Request
      */
@@ -5952,18 +6143,18 @@ export type AcceptGigApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AcceptGigApplicationAsyncError = AcceptGigApplicationAsyncErrors[keyof AcceptGigApplicationAsyncErrors];
+export type GigApplicationsAcceptGigApplicationError = GigApplicationsAcceptGigApplicationErrors[keyof GigApplicationsAcceptGigApplicationErrors];
 
-export type AcceptGigApplicationAsyncResponses = {
+export type GigApplicationsAcceptGigApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AcceptGigApplicationAsyncResponse = AcceptGigApplicationAsyncResponses[keyof AcceptGigApplicationAsyncResponses];
+export type GigApplicationsAcceptGigApplicationResponse = GigApplicationsAcceptGigApplicationResponses[keyof GigApplicationsAcceptGigApplicationResponses];
 
-export type GetGigsAsyncData = {
+export type GigsGetGigsData = {
     body?: GigDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5976,7 +6167,7 @@ export type GetGigsAsyncData = {
     url: '/api/v2/HrmsService/Gigs';
 };
 
-export type GetGigsAsyncErrors = {
+export type GigsGetGigsErrors = {
     /**
      * Unauthorized
      */
@@ -5987,18 +6178,18 @@ export type GetGigsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGigsAsyncError = GetGigsAsyncErrors[keyof GetGigsAsyncErrors];
+export type GigsGetGigsError = GigsGetGigsErrors[keyof GigsGetGigsErrors];
 
-export type GetGigsAsyncResponses = {
+export type GigsGetGigsResponses = {
     /**
      * OK
      */
     200: GigDtoListEnvelopeReadable;
 };
 
-export type GetGigsAsyncResponse = GetGigsAsyncResponses[keyof GetGigsAsyncResponses];
+export type GigsGetGigsResponse = GigsGetGigsResponses[keyof GigsGetGigsResponses];
 
-export type CreateGigAsyncData = {
+export type GigsCreateGigData = {
     body?: GigCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6011,7 +6202,7 @@ export type CreateGigAsyncData = {
     url: '/api/v2/HrmsService/Gigs';
 };
 
-export type CreateGigAsyncErrors = {
+export type GigsCreateGigErrors = {
     /**
      * Bad Request
      */
@@ -6026,18 +6217,18 @@ export type CreateGigAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateGigAsyncError = CreateGigAsyncErrors[keyof CreateGigAsyncErrors];
+export type GigsCreateGigError = GigsCreateGigErrors[keyof GigsCreateGigErrors];
 
-export type CreateGigAsyncResponses = {
+export type GigsCreateGigResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateGigAsyncResponse = CreateGigAsyncResponses[keyof CreateGigAsyncResponses];
+export type GigsCreateGigResponse = GigsCreateGigResponses[keyof GigsCreateGigResponses];
 
-export type GetGigsCountAsyncData = {
+export type GigsGetGigsCountData = {
     body?: GigDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6050,7 +6241,7 @@ export type GetGigsCountAsyncData = {
     url: '/api/v2/HrmsService/Gigs/Count';
 };
 
-export type GetGigsCountAsyncErrors = {
+export type GigsGetGigsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6061,18 +6252,18 @@ export type GetGigsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGigsCountAsyncError = GetGigsCountAsyncErrors[keyof GetGigsCountAsyncErrors];
+export type GigsGetGigsCountError = GigsGetGigsCountErrors[keyof GigsGetGigsCountErrors];
 
-export type GetGigsCountAsyncResponses = {
+export type GigsGetGigsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetGigsCountAsyncResponse = GetGigsCountAsyncResponses[keyof GetGigsCountAsyncResponses];
+export type GigsGetGigsCountResponse = GigsGetGigsCountResponses[keyof GigsGetGigsCountResponses];
 
-export type DeleteGigAsyncData = {
+export type GigsDeleteGigData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6087,7 +6278,7 @@ export type DeleteGigAsyncData = {
     url: '/api/v2/HrmsService/Gigs/{gigId}';
 };
 
-export type DeleteGigAsyncErrors = {
+export type GigsDeleteGigErrors = {
     /**
      * Bad Request
      */
@@ -6102,18 +6293,18 @@ export type DeleteGigAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteGigAsyncError = DeleteGigAsyncErrors[keyof DeleteGigAsyncErrors];
+export type GigsDeleteGigError = GigsDeleteGigErrors[keyof GigsDeleteGigErrors];
 
-export type DeleteGigAsyncResponses = {
+export type GigsDeleteGigResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteGigAsyncResponse = DeleteGigAsyncResponses[keyof DeleteGigAsyncResponses];
+export type GigsDeleteGigResponse = GigsDeleteGigResponses[keyof GigsDeleteGigResponses];
 
-export type GetGigByIdAsyncData = {
+export type GigsGetGigByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6128,7 +6319,7 @@ export type GetGigByIdAsyncData = {
     url: '/api/v2/HrmsService/Gigs/{gigId}';
 };
 
-export type GetGigByIdAsyncErrors = {
+export type GigsGetGigByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6139,18 +6330,18 @@ export type GetGigByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGigByIdAsyncError = GetGigByIdAsyncErrors[keyof GetGigByIdAsyncErrors];
+export type GigsGetGigByIdError = GigsGetGigByIdErrors[keyof GigsGetGigByIdErrors];
 
-export type GetGigByIdAsyncResponses = {
+export type GigsGetGigByIdResponses = {
     /**
      * OK
      */
     200: GigDtoEnvelopeReadable;
 };
 
-export type GetGigByIdAsyncResponse = GetGigByIdAsyncResponses[keyof GetGigByIdAsyncResponses];
+export type GigsGetGigByIdResponse = GigsGetGigByIdResponses[keyof GigsGetGigByIdResponses];
 
-export type PatchGigAsyncData = {
+export type GigsPatchGigData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6165,7 +6356,7 @@ export type PatchGigAsyncData = {
     url: '/api/v2/HrmsService/Gigs/{gigId}';
 };
 
-export type PatchGigAsyncErrors = {
+export type GigsPatchGigErrors = {
     /**
      * Bad Request
      */
@@ -6180,18 +6371,18 @@ export type PatchGigAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchGigAsyncError = PatchGigAsyncErrors[keyof PatchGigAsyncErrors];
+export type GigsPatchGigError = GigsPatchGigErrors[keyof GigsPatchGigErrors];
 
-export type PatchGigAsyncResponses = {
+export type GigsPatchGigResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchGigAsyncResponse = PatchGigAsyncResponses[keyof PatchGigAsyncResponses];
+export type GigsPatchGigResponse = GigsPatchGigResponses[keyof GigsPatchGigResponses];
 
-export type UpdateGigAsyncData = {
+export type GigsUpdateGigData = {
     body?: GigUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6206,7 +6397,7 @@ export type UpdateGigAsyncData = {
     url: '/api/v2/HrmsService/Gigs/{gigId}';
 };
 
-export type UpdateGigAsyncErrors = {
+export type GigsUpdateGigErrors = {
     /**
      * Bad Request
      */
@@ -6221,18 +6412,18 @@ export type UpdateGigAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateGigAsyncError = UpdateGigAsyncErrors[keyof UpdateGigAsyncErrors];
+export type GigsUpdateGigError = GigsUpdateGigErrors[keyof GigsUpdateGigErrors];
 
-export type UpdateGigAsyncResponses = {
+export type GigsUpdateGigResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateGigAsyncResponse = UpdateGigAsyncResponses[keyof UpdateGigAsyncResponses];
+export type GigsUpdateGigResponse = GigsUpdateGigResponses[keyof GigsUpdateGigResponses];
 
-export type GetJobApplicantsAsyncData = {
+export type JobApplicantsGetJobApplicantsData = {
     body?: JobApplicantProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6245,7 +6436,7 @@ export type GetJobApplicantsAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants';
 };
 
-export type GetJobApplicantsAsyncErrors = {
+export type JobApplicantsGetJobApplicantsErrors = {
     /**
      * Unauthorized
      */
@@ -6256,18 +6447,18 @@ export type GetJobApplicantsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobApplicantsAsyncError = GetJobApplicantsAsyncErrors[keyof GetJobApplicantsAsyncErrors];
+export type JobApplicantsGetJobApplicantsError = JobApplicantsGetJobApplicantsErrors[keyof JobApplicantsGetJobApplicantsErrors];
 
-export type GetJobApplicantsAsyncResponses = {
+export type JobApplicantsGetJobApplicantsResponses = {
     /**
      * OK
      */
     200: JobApplicantProfileDtoListEnvelopeReadable;
 };
 
-export type GetJobApplicantsAsyncResponse = GetJobApplicantsAsyncResponses[keyof GetJobApplicantsAsyncResponses];
+export type JobApplicantsGetJobApplicantsResponse = JobApplicantsGetJobApplicantsResponses[keyof JobApplicantsGetJobApplicantsResponses];
 
-export type CreateJobApplicantAsyncData = {
+export type JobApplicantsCreateJobApplicantData = {
     body?: JobApplicantProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6280,7 +6471,7 @@ export type CreateJobApplicantAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants';
 };
 
-export type CreateJobApplicantAsyncErrors = {
+export type JobApplicantsCreateJobApplicantErrors = {
     /**
      * Bad Request
      */
@@ -6295,18 +6486,18 @@ export type CreateJobApplicantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJobApplicantAsyncError = CreateJobApplicantAsyncErrors[keyof CreateJobApplicantAsyncErrors];
+export type JobApplicantsCreateJobApplicantError = JobApplicantsCreateJobApplicantErrors[keyof JobApplicantsCreateJobApplicantErrors];
 
-export type CreateJobApplicantAsyncResponses = {
+export type JobApplicantsCreateJobApplicantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJobApplicantAsyncResponse = CreateJobApplicantAsyncResponses[keyof CreateJobApplicantAsyncResponses];
+export type JobApplicantsCreateJobApplicantResponse = JobApplicantsCreateJobApplicantResponses[keyof JobApplicantsCreateJobApplicantResponses];
 
-export type GetJobApplicantsCountAsyncData = {
+export type JobApplicantsGetJobApplicantsCountData = {
     body?: JobApplicantProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6319,7 +6510,7 @@ export type GetJobApplicantsCountAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants/Count';
 };
 
-export type GetJobApplicantsCountAsyncErrors = {
+export type JobApplicantsGetJobApplicantsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6330,18 +6521,18 @@ export type GetJobApplicantsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobApplicantsCountAsyncError = GetJobApplicantsCountAsyncErrors[keyof GetJobApplicantsCountAsyncErrors];
+export type JobApplicantsGetJobApplicantsCountError = JobApplicantsGetJobApplicantsCountErrors[keyof JobApplicantsGetJobApplicantsCountErrors];
 
-export type GetJobApplicantsCountAsyncResponses = {
+export type JobApplicantsGetJobApplicantsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJobApplicantsCountAsyncResponse = GetJobApplicantsCountAsyncResponses[keyof GetJobApplicantsCountAsyncResponses];
+export type JobApplicantsGetJobApplicantsCountResponse = JobApplicantsGetJobApplicantsCountResponses[keyof JobApplicantsGetJobApplicantsCountResponses];
 
-export type DeleteJobApplicantAsyncData = {
+export type JobApplicantsDeleteJobApplicantData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6356,7 +6547,7 @@ export type DeleteJobApplicantAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
 };
 
-export type DeleteJobApplicantAsyncErrors = {
+export type JobApplicantsDeleteJobApplicantErrors = {
     /**
      * Bad Request
      */
@@ -6371,18 +6562,18 @@ export type DeleteJobApplicantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJobApplicantAsyncError = DeleteJobApplicantAsyncErrors[keyof DeleteJobApplicantAsyncErrors];
+export type JobApplicantsDeleteJobApplicantError = JobApplicantsDeleteJobApplicantErrors[keyof JobApplicantsDeleteJobApplicantErrors];
 
-export type DeleteJobApplicantAsyncResponses = {
+export type JobApplicantsDeleteJobApplicantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJobApplicantAsyncResponse = DeleteJobApplicantAsyncResponses[keyof DeleteJobApplicantAsyncResponses];
+export type JobApplicantsDeleteJobApplicantResponse = JobApplicantsDeleteJobApplicantResponses[keyof JobApplicantsDeleteJobApplicantResponses];
 
-export type GetJobApplicantByIdAsyncData = {
+export type JobApplicantsGetJobApplicantByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6397,7 +6588,7 @@ export type GetJobApplicantByIdAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
 };
 
-export type GetJobApplicantByIdAsyncErrors = {
+export type JobApplicantsGetJobApplicantByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6408,18 +6599,18 @@ export type GetJobApplicantByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobApplicantByIdAsyncError = GetJobApplicantByIdAsyncErrors[keyof GetJobApplicantByIdAsyncErrors];
+export type JobApplicantsGetJobApplicantByIdError = JobApplicantsGetJobApplicantByIdErrors[keyof JobApplicantsGetJobApplicantByIdErrors];
 
-export type GetJobApplicantByIdAsyncResponses = {
+export type JobApplicantsGetJobApplicantByIdResponses = {
     /**
      * OK
      */
     200: JobApplicantProfileDtoEnvelopeReadable;
 };
 
-export type GetJobApplicantByIdAsyncResponse = GetJobApplicantByIdAsyncResponses[keyof GetJobApplicantByIdAsyncResponses];
+export type JobApplicantsGetJobApplicantByIdResponse = JobApplicantsGetJobApplicantByIdResponses[keyof JobApplicantsGetJobApplicantByIdResponses];
 
-export type PatchJobApplicantAsyncData = {
+export type JobApplicantsPatchJobApplicantData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6434,7 +6625,7 @@ export type PatchJobApplicantAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
 };
 
-export type PatchJobApplicantAsyncErrors = {
+export type JobApplicantsPatchJobApplicantErrors = {
     /**
      * Bad Request
      */
@@ -6449,18 +6640,18 @@ export type PatchJobApplicantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJobApplicantAsyncError = PatchJobApplicantAsyncErrors[keyof PatchJobApplicantAsyncErrors];
+export type JobApplicantsPatchJobApplicantError = JobApplicantsPatchJobApplicantErrors[keyof JobApplicantsPatchJobApplicantErrors];
 
-export type PatchJobApplicantAsyncResponses = {
+export type JobApplicantsPatchJobApplicantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJobApplicantAsyncResponse = PatchJobApplicantAsyncResponses[keyof PatchJobApplicantAsyncResponses];
+export type JobApplicantsPatchJobApplicantResponse = JobApplicantsPatchJobApplicantResponses[keyof JobApplicantsPatchJobApplicantResponses];
 
-export type UpdateJobApplicantAsyncData = {
+export type JobApplicantsUpdateJobApplicantData = {
     body?: JobApplicantProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6475,7 +6666,7 @@ export type UpdateJobApplicantAsyncData = {
     url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
 };
 
-export type UpdateJobApplicantAsyncErrors = {
+export type JobApplicantsUpdateJobApplicantErrors = {
     /**
      * Bad Request
      */
@@ -6490,18 +6681,18 @@ export type UpdateJobApplicantAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJobApplicantAsyncError = UpdateJobApplicantAsyncErrors[keyof UpdateJobApplicantAsyncErrors];
+export type JobApplicantsUpdateJobApplicantError = JobApplicantsUpdateJobApplicantErrors[keyof JobApplicantsUpdateJobApplicantErrors];
 
-export type UpdateJobApplicantAsyncResponses = {
+export type JobApplicantsUpdateJobApplicantResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJobApplicantAsyncResponse = UpdateJobApplicantAsyncResponses[keyof UpdateJobApplicantAsyncResponses];
+export type JobApplicantsUpdateJobApplicantResponse = JobApplicantsUpdateJobApplicantResponses[keyof JobApplicantsUpdateJobApplicantResponses];
 
-export type GetJobApplicationsAsyncData = {
+export type JobApplicationsGetJobApplicationsData = {
     body?: JobOfferApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6514,7 +6705,7 @@ export type GetJobApplicationsAsyncData = {
     url: '/api/v2/HrmsService/JobApplications';
 };
 
-export type GetJobApplicationsAsyncErrors = {
+export type JobApplicationsGetJobApplicationsErrors = {
     /**
      * Unauthorized
      */
@@ -6525,18 +6716,18 @@ export type GetJobApplicationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobApplicationsAsyncError = GetJobApplicationsAsyncErrors[keyof GetJobApplicationsAsyncErrors];
+export type JobApplicationsGetJobApplicationsError = JobApplicationsGetJobApplicationsErrors[keyof JobApplicationsGetJobApplicationsErrors];
 
-export type GetJobApplicationsAsyncResponses = {
+export type JobApplicationsGetJobApplicationsResponses = {
     /**
      * OK
      */
     200: JobOfferApplicationDtoListEnvelopeReadable;
 };
 
-export type GetJobApplicationsAsyncResponse = GetJobApplicationsAsyncResponses[keyof GetJobApplicationsAsyncResponses];
+export type JobApplicationsGetJobApplicationsResponse = JobApplicationsGetJobApplicationsResponses[keyof JobApplicationsGetJobApplicationsResponses];
 
-export type CreateJobApplicationAsyncData = {
+export type JobApplicationsCreateJobApplicationData = {
     body?: JobOfferApplicationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6549,7 +6740,7 @@ export type CreateJobApplicationAsyncData = {
     url: '/api/v2/HrmsService/JobApplications';
 };
 
-export type CreateJobApplicationAsyncErrors = {
+export type JobApplicationsCreateJobApplicationErrors = {
     /**
      * Bad Request
      */
@@ -6564,18 +6755,18 @@ export type CreateJobApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJobApplicationAsyncError = CreateJobApplicationAsyncErrors[keyof CreateJobApplicationAsyncErrors];
+export type JobApplicationsCreateJobApplicationError = JobApplicationsCreateJobApplicationErrors[keyof JobApplicationsCreateJobApplicationErrors];
 
-export type CreateJobApplicationAsyncResponses = {
+export type JobApplicationsCreateJobApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJobApplicationAsyncResponse = CreateJobApplicationAsyncResponses[keyof CreateJobApplicationAsyncResponses];
+export type JobApplicationsCreateJobApplicationResponse = JobApplicationsCreateJobApplicationResponses[keyof JobApplicationsCreateJobApplicationResponses];
 
-export type GetJobApplicationsCountAsyncData = {
+export type JobApplicationsGetJobApplicationsCountData = {
     body?: JobOfferApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6588,7 +6779,7 @@ export type GetJobApplicationsCountAsyncData = {
     url: '/api/v2/HrmsService/JobApplications/Count';
 };
 
-export type GetJobApplicationsCountAsyncErrors = {
+export type JobApplicationsGetJobApplicationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6599,18 +6790,18 @@ export type GetJobApplicationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobApplicationsCountAsyncError = GetJobApplicationsCountAsyncErrors[keyof GetJobApplicationsCountAsyncErrors];
+export type JobApplicationsGetJobApplicationsCountError = JobApplicationsGetJobApplicationsCountErrors[keyof JobApplicationsGetJobApplicationsCountErrors];
 
-export type GetJobApplicationsCountAsyncResponses = {
+export type JobApplicationsGetJobApplicationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJobApplicationsCountAsyncResponse = GetJobApplicationsCountAsyncResponses[keyof GetJobApplicationsCountAsyncResponses];
+export type JobApplicationsGetJobApplicationsCountResponse = JobApplicationsGetJobApplicationsCountResponses[keyof JobApplicationsGetJobApplicationsCountResponses];
 
-export type DeleteJobApplicationAsyncData = {
+export type JobApplicationsDeleteJobApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6625,7 +6816,7 @@ export type DeleteJobApplicationAsyncData = {
     url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
 };
 
-export type DeleteJobApplicationAsyncErrors = {
+export type JobApplicationsDeleteJobApplicationErrors = {
     /**
      * Bad Request
      */
@@ -6640,18 +6831,18 @@ export type DeleteJobApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJobApplicationAsyncError = DeleteJobApplicationAsyncErrors[keyof DeleteJobApplicationAsyncErrors];
+export type JobApplicationsDeleteJobApplicationError = JobApplicationsDeleteJobApplicationErrors[keyof JobApplicationsDeleteJobApplicationErrors];
 
-export type DeleteJobApplicationAsyncResponses = {
+export type JobApplicationsDeleteJobApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJobApplicationAsyncResponse = DeleteJobApplicationAsyncResponses[keyof DeleteJobApplicationAsyncResponses];
+export type JobApplicationsDeleteJobApplicationResponse = JobApplicationsDeleteJobApplicationResponses[keyof JobApplicationsDeleteJobApplicationResponses];
 
-export type GetJobApplicationByIdAsyncData = {
+export type JobApplicationsGetJobApplicationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6666,7 +6857,7 @@ export type GetJobApplicationByIdAsyncData = {
     url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
 };
 
-export type GetJobApplicationByIdAsyncErrors = {
+export type JobApplicationsGetJobApplicationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6677,18 +6868,18 @@ export type GetJobApplicationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobApplicationByIdAsyncError = GetJobApplicationByIdAsyncErrors[keyof GetJobApplicationByIdAsyncErrors];
+export type JobApplicationsGetJobApplicationByIdError = JobApplicationsGetJobApplicationByIdErrors[keyof JobApplicationsGetJobApplicationByIdErrors];
 
-export type GetJobApplicationByIdAsyncResponses = {
+export type JobApplicationsGetJobApplicationByIdResponses = {
     /**
      * OK
      */
     200: JobOfferApplicationDtoEnvelopeReadable;
 };
 
-export type GetJobApplicationByIdAsyncResponse = GetJobApplicationByIdAsyncResponses[keyof GetJobApplicationByIdAsyncResponses];
+export type JobApplicationsGetJobApplicationByIdResponse = JobApplicationsGetJobApplicationByIdResponses[keyof JobApplicationsGetJobApplicationByIdResponses];
 
-export type PatchJobApplicationAsyncData = {
+export type JobApplicationsPatchJobApplicationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6703,7 +6894,7 @@ export type PatchJobApplicationAsyncData = {
     url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
 };
 
-export type PatchJobApplicationAsyncErrors = {
+export type JobApplicationsPatchJobApplicationErrors = {
     /**
      * Bad Request
      */
@@ -6718,18 +6909,18 @@ export type PatchJobApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJobApplicationAsyncError = PatchJobApplicationAsyncErrors[keyof PatchJobApplicationAsyncErrors];
+export type JobApplicationsPatchJobApplicationError = JobApplicationsPatchJobApplicationErrors[keyof JobApplicationsPatchJobApplicationErrors];
 
-export type PatchJobApplicationAsyncResponses = {
+export type JobApplicationsPatchJobApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJobApplicationAsyncResponse = PatchJobApplicationAsyncResponses[keyof PatchJobApplicationAsyncResponses];
+export type JobApplicationsPatchJobApplicationResponse = JobApplicationsPatchJobApplicationResponses[keyof JobApplicationsPatchJobApplicationResponses];
 
-export type UpdateJobApplicationAsyncData = {
+export type JobApplicationsUpdateJobApplicationData = {
     body?: JobOfferApplicationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6744,7 +6935,7 @@ export type UpdateJobApplicationAsyncData = {
     url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
 };
 
-export type UpdateJobApplicationAsyncErrors = {
+export type JobApplicationsUpdateJobApplicationErrors = {
     /**
      * Bad Request
      */
@@ -6759,18 +6950,18 @@ export type UpdateJobApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJobApplicationAsyncError = UpdateJobApplicationAsyncErrors[keyof UpdateJobApplicationAsyncErrors];
+export type JobApplicationsUpdateJobApplicationError = JobApplicationsUpdateJobApplicationErrors[keyof JobApplicationsUpdateJobApplicationErrors];
 
-export type UpdateJobApplicationAsyncResponses = {
+export type JobApplicationsUpdateJobApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJobApplicationAsyncResponse = UpdateJobApplicationAsyncResponses[keyof UpdateJobApplicationAsyncResponses];
+export type JobApplicationsUpdateJobApplicationResponse = JobApplicationsUpdateJobApplicationResponses[keyof JobApplicationsUpdateJobApplicationResponses];
 
-export type ChangeJobApplicationStatusAsyncData = {
+export type JobApplicationsChangeJobApplicationStatusData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6786,7 +6977,7 @@ export type ChangeJobApplicationStatusAsyncData = {
     url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}/Status';
 };
 
-export type ChangeJobApplicationStatusAsyncErrors = {
+export type JobApplicationsChangeJobApplicationStatusErrors = {
     /**
      * Bad Request
      */
@@ -6797,18 +6988,18 @@ export type ChangeJobApplicationStatusAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ChangeJobApplicationStatusAsyncError = ChangeJobApplicationStatusAsyncErrors[keyof ChangeJobApplicationStatusAsyncErrors];
+export type JobApplicationsChangeJobApplicationStatusError = JobApplicationsChangeJobApplicationStatusErrors[keyof JobApplicationsChangeJobApplicationStatusErrors];
 
-export type ChangeJobApplicationStatusAsyncResponses = {
+export type JobApplicationsChangeJobApplicationStatusResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type ChangeJobApplicationStatusAsyncResponse = ChangeJobApplicationStatusAsyncResponses[keyof ChangeJobApplicationStatusAsyncResponses];
+export type JobApplicationsChangeJobApplicationStatusResponse = JobApplicationsChangeJobApplicationStatusResponses[keyof JobApplicationsChangeJobApplicationStatusResponses];
 
-export type GetJobFieldsAsyncData = {
+export type JobFieldsGetJobFieldsData = {
     body?: JobFieldDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6821,7 +7012,7 @@ export type GetJobFieldsAsyncData = {
     url: '/api/v2/HrmsService/JobFields';
 };
 
-export type GetJobFieldsAsyncErrors = {
+export type JobFieldsGetJobFieldsErrors = {
     /**
      * Unauthorized
      */
@@ -6832,18 +7023,18 @@ export type GetJobFieldsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobFieldsAsyncError = GetJobFieldsAsyncErrors[keyof GetJobFieldsAsyncErrors];
+export type JobFieldsGetJobFieldsError = JobFieldsGetJobFieldsErrors[keyof JobFieldsGetJobFieldsErrors];
 
-export type GetJobFieldsAsyncResponses = {
+export type JobFieldsGetJobFieldsResponses = {
     /**
      * OK
      */
     200: JobFieldDtoListEnvelopeReadable;
 };
 
-export type GetJobFieldsAsyncResponse = GetJobFieldsAsyncResponses[keyof GetJobFieldsAsyncResponses];
+export type JobFieldsGetJobFieldsResponse = JobFieldsGetJobFieldsResponses[keyof JobFieldsGetJobFieldsResponses];
 
-export type CreateJobFieldAsyncData = {
+export type JobFieldsCreateJobFieldData = {
     body?: JobFieldCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6856,7 +7047,7 @@ export type CreateJobFieldAsyncData = {
     url: '/api/v2/HrmsService/JobFields';
 };
 
-export type CreateJobFieldAsyncErrors = {
+export type JobFieldsCreateJobFieldErrors = {
     /**
      * Bad Request
      */
@@ -6871,18 +7062,18 @@ export type CreateJobFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJobFieldAsyncError = CreateJobFieldAsyncErrors[keyof CreateJobFieldAsyncErrors];
+export type JobFieldsCreateJobFieldError = JobFieldsCreateJobFieldErrors[keyof JobFieldsCreateJobFieldErrors];
 
-export type CreateJobFieldAsyncResponses = {
+export type JobFieldsCreateJobFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJobFieldAsyncResponse = CreateJobFieldAsyncResponses[keyof CreateJobFieldAsyncResponses];
+export type JobFieldsCreateJobFieldResponse = JobFieldsCreateJobFieldResponses[keyof JobFieldsCreateJobFieldResponses];
 
-export type GetJobFieldsCountAsyncData = {
+export type JobFieldsGetJobFieldsCountData = {
     body?: JobFieldDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6895,7 +7086,7 @@ export type GetJobFieldsCountAsyncData = {
     url: '/api/v2/HrmsService/JobFields/Count';
 };
 
-export type GetJobFieldsCountAsyncErrors = {
+export type JobFieldsGetJobFieldsCountErrors = {
     /**
      * Unauthorized
      */
@@ -6906,18 +7097,18 @@ export type GetJobFieldsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobFieldsCountAsyncError = GetJobFieldsCountAsyncErrors[keyof GetJobFieldsCountAsyncErrors];
+export type JobFieldsGetJobFieldsCountError = JobFieldsGetJobFieldsCountErrors[keyof JobFieldsGetJobFieldsCountErrors];
 
-export type GetJobFieldsCountAsyncResponses = {
+export type JobFieldsGetJobFieldsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJobFieldsCountAsyncResponse = GetJobFieldsCountAsyncResponses[keyof GetJobFieldsCountAsyncResponses];
+export type JobFieldsGetJobFieldsCountResponse = JobFieldsGetJobFieldsCountResponses[keyof JobFieldsGetJobFieldsCountResponses];
 
-export type DeleteJobFieldAsyncData = {
+export type JobFieldsDeleteJobFieldData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6932,7 +7123,7 @@ export type DeleteJobFieldAsyncData = {
     url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
 };
 
-export type DeleteJobFieldAsyncErrors = {
+export type JobFieldsDeleteJobFieldErrors = {
     /**
      * Bad Request
      */
@@ -6947,18 +7138,18 @@ export type DeleteJobFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJobFieldAsyncError = DeleteJobFieldAsyncErrors[keyof DeleteJobFieldAsyncErrors];
+export type JobFieldsDeleteJobFieldError = JobFieldsDeleteJobFieldErrors[keyof JobFieldsDeleteJobFieldErrors];
 
-export type DeleteJobFieldAsyncResponses = {
+export type JobFieldsDeleteJobFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJobFieldAsyncResponse = DeleteJobFieldAsyncResponses[keyof DeleteJobFieldAsyncResponses];
+export type JobFieldsDeleteJobFieldResponse = JobFieldsDeleteJobFieldResponses[keyof JobFieldsDeleteJobFieldResponses];
 
-export type GetJobFieldByIdAsyncData = {
+export type JobFieldsGetJobFieldByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6973,7 +7164,7 @@ export type GetJobFieldByIdAsyncData = {
     url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
 };
 
-export type GetJobFieldByIdAsyncErrors = {
+export type JobFieldsGetJobFieldByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6984,18 +7175,18 @@ export type GetJobFieldByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobFieldByIdAsyncError = GetJobFieldByIdAsyncErrors[keyof GetJobFieldByIdAsyncErrors];
+export type JobFieldsGetJobFieldByIdError = JobFieldsGetJobFieldByIdErrors[keyof JobFieldsGetJobFieldByIdErrors];
 
-export type GetJobFieldByIdAsyncResponses = {
+export type JobFieldsGetJobFieldByIdResponses = {
     /**
      * OK
      */
     200: JobFieldDtoEnvelopeReadable;
 };
 
-export type GetJobFieldByIdAsyncResponse = GetJobFieldByIdAsyncResponses[keyof GetJobFieldByIdAsyncResponses];
+export type JobFieldsGetJobFieldByIdResponse = JobFieldsGetJobFieldByIdResponses[keyof JobFieldsGetJobFieldByIdResponses];
 
-export type PatchJobFieldAsyncData = {
+export type JobFieldsPatchJobFieldData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7010,7 +7201,7 @@ export type PatchJobFieldAsyncData = {
     url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
 };
 
-export type PatchJobFieldAsyncErrors = {
+export type JobFieldsPatchJobFieldErrors = {
     /**
      * Bad Request
      */
@@ -7025,18 +7216,18 @@ export type PatchJobFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJobFieldAsyncError = PatchJobFieldAsyncErrors[keyof PatchJobFieldAsyncErrors];
+export type JobFieldsPatchJobFieldError = JobFieldsPatchJobFieldErrors[keyof JobFieldsPatchJobFieldErrors];
 
-export type PatchJobFieldAsyncResponses = {
+export type JobFieldsPatchJobFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJobFieldAsyncResponse = PatchJobFieldAsyncResponses[keyof PatchJobFieldAsyncResponses];
+export type JobFieldsPatchJobFieldResponse = JobFieldsPatchJobFieldResponses[keyof JobFieldsPatchJobFieldResponses];
 
-export type UpdateJobFieldAsyncData = {
+export type JobFieldsUpdateJobFieldData = {
     body?: JobFieldUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7051,7 +7242,7 @@ export type UpdateJobFieldAsyncData = {
     url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
 };
 
-export type UpdateJobFieldAsyncErrors = {
+export type JobFieldsUpdateJobFieldErrors = {
     /**
      * Bad Request
      */
@@ -7066,18 +7257,18 @@ export type UpdateJobFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJobFieldAsyncError = UpdateJobFieldAsyncErrors[keyof UpdateJobFieldAsyncErrors];
+export type JobFieldsUpdateJobFieldError = JobFieldsUpdateJobFieldErrors[keyof JobFieldsUpdateJobFieldErrors];
 
-export type UpdateJobFieldAsyncResponses = {
+export type JobFieldsUpdateJobFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJobFieldAsyncResponse = UpdateJobFieldAsyncResponses[keyof UpdateJobFieldAsyncResponses];
+export type JobFieldsUpdateJobFieldResponse = JobFieldsUpdateJobFieldResponses[keyof JobFieldsUpdateJobFieldResponses];
 
-export type GetJobOfferFieldsAsyncData = {
+export type JobOfferFieldsGetJobOfferFieldsData = {
     body?: JobOfferFieldRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7090,7 +7281,7 @@ export type GetJobOfferFieldsAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields';
 };
 
-export type GetJobOfferFieldsAsyncErrors = {
+export type JobOfferFieldsGetJobOfferFieldsErrors = {
     /**
      * Unauthorized
      */
@@ -7101,18 +7292,18 @@ export type GetJobOfferFieldsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobOfferFieldsAsyncError = GetJobOfferFieldsAsyncErrors[keyof GetJobOfferFieldsAsyncErrors];
+export type JobOfferFieldsGetJobOfferFieldsError = JobOfferFieldsGetJobOfferFieldsErrors[keyof JobOfferFieldsGetJobOfferFieldsErrors];
 
-export type GetJobOfferFieldsAsyncResponses = {
+export type JobOfferFieldsGetJobOfferFieldsResponses = {
     /**
      * OK
      */
     200: JobOfferFieldRecordDtoListEnvelopeReadable;
 };
 
-export type GetJobOfferFieldsAsyncResponse = GetJobOfferFieldsAsyncResponses[keyof GetJobOfferFieldsAsyncResponses];
+export type JobOfferFieldsGetJobOfferFieldsResponse = JobOfferFieldsGetJobOfferFieldsResponses[keyof JobOfferFieldsGetJobOfferFieldsResponses];
 
-export type CreateJobOfferFieldAsyncData = {
+export type JobOfferFieldsCreateJobOfferFieldData = {
     body?: JobOfferFieldRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7125,7 +7316,7 @@ export type CreateJobOfferFieldAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields';
 };
 
-export type CreateJobOfferFieldAsyncErrors = {
+export type JobOfferFieldsCreateJobOfferFieldErrors = {
     /**
      * Bad Request
      */
@@ -7140,18 +7331,18 @@ export type CreateJobOfferFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJobOfferFieldAsyncError = CreateJobOfferFieldAsyncErrors[keyof CreateJobOfferFieldAsyncErrors];
+export type JobOfferFieldsCreateJobOfferFieldError = JobOfferFieldsCreateJobOfferFieldErrors[keyof JobOfferFieldsCreateJobOfferFieldErrors];
 
-export type CreateJobOfferFieldAsyncResponses = {
+export type JobOfferFieldsCreateJobOfferFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJobOfferFieldAsyncResponse = CreateJobOfferFieldAsyncResponses[keyof CreateJobOfferFieldAsyncResponses];
+export type JobOfferFieldsCreateJobOfferFieldResponse = JobOfferFieldsCreateJobOfferFieldResponses[keyof JobOfferFieldsCreateJobOfferFieldResponses];
 
-export type GetJobOfferFieldsCountAsyncData = {
+export type JobOfferFieldsGetJobOfferFieldsCountData = {
     body?: JobOfferFieldRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7164,7 +7355,7 @@ export type GetJobOfferFieldsCountAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields/Count';
 };
 
-export type GetJobOfferFieldsCountAsyncErrors = {
+export type JobOfferFieldsGetJobOfferFieldsCountErrors = {
     /**
      * Unauthorized
      */
@@ -7175,18 +7366,18 @@ export type GetJobOfferFieldsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobOfferFieldsCountAsyncError = GetJobOfferFieldsCountAsyncErrors[keyof GetJobOfferFieldsCountAsyncErrors];
+export type JobOfferFieldsGetJobOfferFieldsCountError = JobOfferFieldsGetJobOfferFieldsCountErrors[keyof JobOfferFieldsGetJobOfferFieldsCountErrors];
 
-export type GetJobOfferFieldsCountAsyncResponses = {
+export type JobOfferFieldsGetJobOfferFieldsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJobOfferFieldsCountAsyncResponse = GetJobOfferFieldsCountAsyncResponses[keyof GetJobOfferFieldsCountAsyncResponses];
+export type JobOfferFieldsGetJobOfferFieldsCountResponse = JobOfferFieldsGetJobOfferFieldsCountResponses[keyof JobOfferFieldsGetJobOfferFieldsCountResponses];
 
-export type DeleteJobOfferFieldAsyncData = {
+export type JobOfferFieldsDeleteJobOfferFieldData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7201,7 +7392,7 @@ export type DeleteJobOfferFieldAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
 };
 
-export type DeleteJobOfferFieldAsyncErrors = {
+export type JobOfferFieldsDeleteJobOfferFieldErrors = {
     /**
      * Bad Request
      */
@@ -7216,18 +7407,18 @@ export type DeleteJobOfferFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJobOfferFieldAsyncError = DeleteJobOfferFieldAsyncErrors[keyof DeleteJobOfferFieldAsyncErrors];
+export type JobOfferFieldsDeleteJobOfferFieldError = JobOfferFieldsDeleteJobOfferFieldErrors[keyof JobOfferFieldsDeleteJobOfferFieldErrors];
 
-export type DeleteJobOfferFieldAsyncResponses = {
+export type JobOfferFieldsDeleteJobOfferFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJobOfferFieldAsyncResponse = DeleteJobOfferFieldAsyncResponses[keyof DeleteJobOfferFieldAsyncResponses];
+export type JobOfferFieldsDeleteJobOfferFieldResponse = JobOfferFieldsDeleteJobOfferFieldResponses[keyof JobOfferFieldsDeleteJobOfferFieldResponses];
 
-export type GetJobOfferFieldByIdAsyncData = {
+export type JobOfferFieldsGetJobOfferFieldByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7242,7 +7433,7 @@ export type GetJobOfferFieldByIdAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
 };
 
-export type GetJobOfferFieldByIdAsyncErrors = {
+export type JobOfferFieldsGetJobOfferFieldByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7253,18 +7444,18 @@ export type GetJobOfferFieldByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobOfferFieldByIdAsyncError = GetJobOfferFieldByIdAsyncErrors[keyof GetJobOfferFieldByIdAsyncErrors];
+export type JobOfferFieldsGetJobOfferFieldByIdError = JobOfferFieldsGetJobOfferFieldByIdErrors[keyof JobOfferFieldsGetJobOfferFieldByIdErrors];
 
-export type GetJobOfferFieldByIdAsyncResponses = {
+export type JobOfferFieldsGetJobOfferFieldByIdResponses = {
     /**
      * OK
      */
     200: JobOfferFieldRecordDtoEnvelopeReadable;
 };
 
-export type GetJobOfferFieldByIdAsyncResponse = GetJobOfferFieldByIdAsyncResponses[keyof GetJobOfferFieldByIdAsyncResponses];
+export type JobOfferFieldsGetJobOfferFieldByIdResponse = JobOfferFieldsGetJobOfferFieldByIdResponses[keyof JobOfferFieldsGetJobOfferFieldByIdResponses];
 
-export type PatchJobOfferFieldAsyncData = {
+export type JobOfferFieldsPatchJobOfferFieldData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7279,7 +7470,7 @@ export type PatchJobOfferFieldAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
 };
 
-export type PatchJobOfferFieldAsyncErrors = {
+export type JobOfferFieldsPatchJobOfferFieldErrors = {
     /**
      * Bad Request
      */
@@ -7294,18 +7485,18 @@ export type PatchJobOfferFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJobOfferFieldAsyncError = PatchJobOfferFieldAsyncErrors[keyof PatchJobOfferFieldAsyncErrors];
+export type JobOfferFieldsPatchJobOfferFieldError = JobOfferFieldsPatchJobOfferFieldErrors[keyof JobOfferFieldsPatchJobOfferFieldErrors];
 
-export type PatchJobOfferFieldAsyncResponses = {
+export type JobOfferFieldsPatchJobOfferFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJobOfferFieldAsyncResponse = PatchJobOfferFieldAsyncResponses[keyof PatchJobOfferFieldAsyncResponses];
+export type JobOfferFieldsPatchJobOfferFieldResponse = JobOfferFieldsPatchJobOfferFieldResponses[keyof JobOfferFieldsPatchJobOfferFieldResponses];
 
-export type UpdateJobOfferFieldAsyncData = {
+export type JobOfferFieldsUpdateJobOfferFieldData = {
     body?: JobOfferFieldRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7320,7 +7511,7 @@ export type UpdateJobOfferFieldAsyncData = {
     url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
 };
 
-export type UpdateJobOfferFieldAsyncErrors = {
+export type JobOfferFieldsUpdateJobOfferFieldErrors = {
     /**
      * Bad Request
      */
@@ -7335,18 +7526,18 @@ export type UpdateJobOfferFieldAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJobOfferFieldAsyncError = UpdateJobOfferFieldAsyncErrors[keyof UpdateJobOfferFieldAsyncErrors];
+export type JobOfferFieldsUpdateJobOfferFieldError = JobOfferFieldsUpdateJobOfferFieldErrors[keyof JobOfferFieldsUpdateJobOfferFieldErrors];
 
-export type UpdateJobOfferFieldAsyncResponses = {
+export type JobOfferFieldsUpdateJobOfferFieldResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJobOfferFieldAsyncResponse = UpdateJobOfferFieldAsyncResponses[keyof UpdateJobOfferFieldAsyncResponses];
+export type JobOfferFieldsUpdateJobOfferFieldResponse = JobOfferFieldsUpdateJobOfferFieldResponses[keyof JobOfferFieldsUpdateJobOfferFieldResponses];
 
-export type GetJobOffersAsyncData = {
+export type JobOffersGetJobOffersData = {
     body?: JobOfferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7359,7 +7550,7 @@ export type GetJobOffersAsyncData = {
     url: '/api/v2/HrmsService/JobOffers';
 };
 
-export type GetJobOffersAsyncErrors = {
+export type JobOffersGetJobOffersErrors = {
     /**
      * Unauthorized
      */
@@ -7370,18 +7561,18 @@ export type GetJobOffersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobOffersAsyncError = GetJobOffersAsyncErrors[keyof GetJobOffersAsyncErrors];
+export type JobOffersGetJobOffersError = JobOffersGetJobOffersErrors[keyof JobOffersGetJobOffersErrors];
 
-export type GetJobOffersAsyncResponses = {
+export type JobOffersGetJobOffersResponses = {
     /**
      * OK
      */
     200: JobOfferDtoListEnvelopeReadable;
 };
 
-export type GetJobOffersAsyncResponse = GetJobOffersAsyncResponses[keyof GetJobOffersAsyncResponses];
+export type JobOffersGetJobOffersResponse = JobOffersGetJobOffersResponses[keyof JobOffersGetJobOffersResponses];
 
-export type CreateJobOfferAsyncData = {
+export type JobOffersCreateJobOfferData = {
     body?: JobOfferCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7394,7 +7585,7 @@ export type CreateJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers';
 };
 
-export type CreateJobOfferAsyncErrors = {
+export type JobOffersCreateJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7409,18 +7600,18 @@ export type CreateJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJobOfferAsyncError = CreateJobOfferAsyncErrors[keyof CreateJobOfferAsyncErrors];
+export type JobOffersCreateJobOfferError = JobOffersCreateJobOfferErrors[keyof JobOffersCreateJobOfferErrors];
 
-export type CreateJobOfferAsyncResponses = {
+export type JobOffersCreateJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJobOfferAsyncResponse = CreateJobOfferAsyncResponses[keyof CreateJobOfferAsyncResponses];
+export type JobOffersCreateJobOfferResponse = JobOffersCreateJobOfferResponses[keyof JobOffersCreateJobOfferResponses];
 
-export type GetJobOffersCountAsyncData = {
+export type JobOffersGetJobOffersCountData = {
     body?: JobOfferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7433,7 +7624,7 @@ export type GetJobOffersCountAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/Count';
 };
 
-export type GetJobOffersCountAsyncErrors = {
+export type JobOffersGetJobOffersCountErrors = {
     /**
      * Unauthorized
      */
@@ -7444,18 +7635,18 @@ export type GetJobOffersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobOffersCountAsyncError = GetJobOffersCountAsyncErrors[keyof GetJobOffersCountAsyncErrors];
+export type JobOffersGetJobOffersCountError = JobOffersGetJobOffersCountErrors[keyof JobOffersGetJobOffersCountErrors];
 
-export type GetJobOffersCountAsyncResponses = {
+export type JobOffersGetJobOffersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJobOffersCountAsyncResponse = GetJobOffersCountAsyncResponses[keyof GetJobOffersCountAsyncResponses];
+export type JobOffersGetJobOffersCountResponse = JobOffersGetJobOffersCountResponses[keyof JobOffersGetJobOffersCountResponses];
 
-export type DeleteJobOfferAsyncData = {
+export type JobOffersDeleteJobOfferData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7470,7 +7661,7 @@ export type DeleteJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}';
 };
 
-export type DeleteJobOfferAsyncErrors = {
+export type JobOffersDeleteJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7485,18 +7676,18 @@ export type DeleteJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJobOfferAsyncError = DeleteJobOfferAsyncErrors[keyof DeleteJobOfferAsyncErrors];
+export type JobOffersDeleteJobOfferError = JobOffersDeleteJobOfferErrors[keyof JobOffersDeleteJobOfferErrors];
 
-export type DeleteJobOfferAsyncResponses = {
+export type JobOffersDeleteJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJobOfferAsyncResponse = DeleteJobOfferAsyncResponses[keyof DeleteJobOfferAsyncResponses];
+export type JobOffersDeleteJobOfferResponse = JobOffersDeleteJobOfferResponses[keyof JobOffersDeleteJobOfferResponses];
 
-export type GetJobOfferByIdAsyncData = {
+export type JobOffersGetJobOfferByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7511,7 +7702,7 @@ export type GetJobOfferByIdAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}';
 };
 
-export type GetJobOfferByIdAsyncErrors = {
+export type JobOffersGetJobOfferByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7522,18 +7713,18 @@ export type GetJobOfferByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobOfferByIdAsyncError = GetJobOfferByIdAsyncErrors[keyof GetJobOfferByIdAsyncErrors];
+export type JobOffersGetJobOfferByIdError = JobOffersGetJobOfferByIdErrors[keyof JobOffersGetJobOfferByIdErrors];
 
-export type GetJobOfferByIdAsyncResponses = {
+export type JobOffersGetJobOfferByIdResponses = {
     /**
      * OK
      */
     200: JobOfferDtoEnvelopeReadable;
 };
 
-export type GetJobOfferByIdAsyncResponse = GetJobOfferByIdAsyncResponses[keyof GetJobOfferByIdAsyncResponses];
+export type JobOffersGetJobOfferByIdResponse = JobOffersGetJobOfferByIdResponses[keyof JobOffersGetJobOfferByIdResponses];
 
-export type PatchJobOfferAsyncData = {
+export type JobOffersPatchJobOfferData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7548,7 +7739,7 @@ export type PatchJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}';
 };
 
-export type PatchJobOfferAsyncErrors = {
+export type JobOffersPatchJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7563,18 +7754,18 @@ export type PatchJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJobOfferAsyncError = PatchJobOfferAsyncErrors[keyof PatchJobOfferAsyncErrors];
+export type JobOffersPatchJobOfferError = JobOffersPatchJobOfferErrors[keyof JobOffersPatchJobOfferErrors];
 
-export type PatchJobOfferAsyncResponses = {
+export type JobOffersPatchJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJobOfferAsyncResponse = PatchJobOfferAsyncResponses[keyof PatchJobOfferAsyncResponses];
+export type JobOffersPatchJobOfferResponse = JobOffersPatchJobOfferResponses[keyof JobOffersPatchJobOfferResponses];
 
-export type UpdateJobOfferAsyncData = {
+export type JobOffersUpdateJobOfferData = {
     body?: JobOfferUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7589,7 +7780,7 @@ export type UpdateJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}';
 };
 
-export type UpdateJobOfferAsyncErrors = {
+export type JobOffersUpdateJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7604,19 +7795,19 @@ export type UpdateJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJobOfferAsyncError = UpdateJobOfferAsyncErrors[keyof UpdateJobOfferAsyncErrors];
+export type JobOffersUpdateJobOfferError = JobOffersUpdateJobOfferErrors[keyof JobOffersUpdateJobOfferErrors];
 
-export type UpdateJobOfferAsyncResponses = {
+export type JobOffersUpdateJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJobOfferAsyncResponse = UpdateJobOfferAsyncResponses[keyof UpdateJobOfferAsyncResponses];
+export type JobOffersUpdateJobOfferResponse = JobOffersUpdateJobOfferResponses[keyof JobOffersUpdateJobOfferResponses];
 
-export type GetPublicJobOffersAsyncData = {
-    body?: JobOfferDtoCollectionQueryParametersWritable;
+export type JobOffersGetPublicJobOffersData = {
+    body?: JobOfferPublicDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7628,26 +7819,26 @@ export type GetPublicJobOffersAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/Public';
 };
 
-export type GetPublicJobOffersAsyncErrors = {
+export type JobOffersGetPublicJobOffersErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type GetPublicJobOffersAsyncError = GetPublicJobOffersAsyncErrors[keyof GetPublicJobOffersAsyncErrors];
+export type JobOffersGetPublicJobOffersError = JobOffersGetPublicJobOffersErrors[keyof JobOffersGetPublicJobOffersErrors];
 
-export type GetPublicJobOffersAsyncResponses = {
+export type JobOffersGetPublicJobOffersResponses = {
     /**
      * OK
      */
-    200: JobOfferDtoListEnvelopeReadable;
+    200: JobOfferPublicDtoListEnvelopeReadable;
 };
 
-export type GetPublicJobOffersAsyncResponse = GetPublicJobOffersAsyncResponses[keyof GetPublicJobOffersAsyncResponses];
+export type JobOffersGetPublicJobOffersResponse = JobOffersGetPublicJobOffersResponses[keyof JobOffersGetPublicJobOffersResponses];
 
-export type GetPublicJobOffersCountAsyncData = {
-    body?: JobOfferDtoCollectionQueryParametersWritable;
+export type JobOffersGetPublicJobOffersCountData = {
+    body?: JobOfferPublicDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7659,25 +7850,25 @@ export type GetPublicJobOffersCountAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/Public/Count';
 };
 
-export type GetPublicJobOffersCountAsyncErrors = {
+export type JobOffersGetPublicJobOffersCountErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type GetPublicJobOffersCountAsyncError = GetPublicJobOffersCountAsyncErrors[keyof GetPublicJobOffersCountAsyncErrors];
+export type JobOffersGetPublicJobOffersCountError = JobOffersGetPublicJobOffersCountErrors[keyof JobOffersGetPublicJobOffersCountErrors];
 
-export type GetPublicJobOffersCountAsyncResponses = {
+export type JobOffersGetPublicJobOffersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPublicJobOffersCountAsyncResponse = GetPublicJobOffersCountAsyncResponses[keyof GetPublicJobOffersCountAsyncResponses];
+export type JobOffersGetPublicJobOffersCountResponse = JobOffersGetPublicJobOffersCountResponses[keyof JobOffersGetPublicJobOffersCountResponses];
 
-export type GetPublicJobOfferByIdAsyncData = {
+export type JobOffersGetPublicJobOfferByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7692,25 +7883,29 @@ export type GetPublicJobOfferByIdAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/Public/{jobOfferId}';
 };
 
-export type GetPublicJobOfferByIdAsyncErrors = {
+export type JobOffersGetPublicJobOfferByIdErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetPublicJobOfferByIdAsyncError = GetPublicJobOfferByIdAsyncErrors[keyof GetPublicJobOfferByIdAsyncErrors];
+export type JobOffersGetPublicJobOfferByIdError = JobOffersGetPublicJobOfferByIdErrors[keyof JobOffersGetPublicJobOfferByIdErrors];
 
-export type GetPublicJobOfferByIdAsyncResponses = {
+export type JobOffersGetPublicJobOfferByIdResponses = {
     /**
      * OK
      */
-    200: JobOfferDtoEnvelopeReadable;
+    200: JobOfferPublicDtoEnvelopeReadable;
 };
 
-export type GetPublicJobOfferByIdAsyncResponse = GetPublicJobOfferByIdAsyncResponses[keyof GetPublicJobOfferByIdAsyncResponses];
+export type JobOffersGetPublicJobOfferByIdResponse = JobOffersGetPublicJobOfferByIdResponses[keyof JobOffersGetPublicJobOfferByIdResponses];
 
-export type PublishJobOfferAsyncData = {
+export type JobOffersPublishJobOfferData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7725,7 +7920,7 @@ export type PublishJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}/Publish';
 };
 
-export type PublishJobOfferAsyncErrors = {
+export type JobOffersPublishJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7736,18 +7931,18 @@ export type PublishJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PublishJobOfferAsyncError = PublishJobOfferAsyncErrors[keyof PublishJobOfferAsyncErrors];
+export type JobOffersPublishJobOfferError = JobOffersPublishJobOfferErrors[keyof JobOffersPublishJobOfferErrors];
 
-export type PublishJobOfferAsyncResponses = {
+export type JobOffersPublishJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PublishJobOfferAsyncResponse = PublishJobOfferAsyncResponses[keyof PublishJobOfferAsyncResponses];
+export type JobOffersPublishJobOfferResponse = JobOffersPublishJobOfferResponses[keyof JobOffersPublishJobOfferResponses];
 
-export type CloseJobOfferAsyncData = {
+export type JobOffersCloseJobOfferData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7762,7 +7957,7 @@ export type CloseJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}/Close';
 };
 
-export type CloseJobOfferAsyncErrors = {
+export type JobOffersCloseJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7773,18 +7968,18 @@ export type CloseJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CloseJobOfferAsyncError = CloseJobOfferAsyncErrors[keyof CloseJobOfferAsyncErrors];
+export type JobOffersCloseJobOfferError = JobOffersCloseJobOfferErrors[keyof JobOffersCloseJobOfferErrors];
 
-export type CloseJobOfferAsyncResponses = {
+export type JobOffersCloseJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CloseJobOfferAsyncResponse = CloseJobOfferAsyncResponses[keyof CloseJobOfferAsyncResponses];
+export type JobOffersCloseJobOfferResponse = JobOffersCloseJobOfferResponses[keyof JobOffersCloseJobOfferResponses];
 
-export type FillJobOfferAsyncData = {
+export type JobOffersFillJobOfferData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7799,7 +7994,7 @@ export type FillJobOfferAsyncData = {
     url: '/api/v2/HrmsService/JobOffers/{jobOfferId}/Fill';
 };
 
-export type FillJobOfferAsyncErrors = {
+export type JobOffersFillJobOfferErrors = {
     /**
      * Bad Request
      */
@@ -7810,18 +8005,18 @@ export type FillJobOfferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type FillJobOfferAsyncError = FillJobOfferAsyncErrors[keyof FillJobOfferAsyncErrors];
+export type JobOffersFillJobOfferError = JobOffersFillJobOfferErrors[keyof JobOffersFillJobOfferErrors];
 
-export type FillJobOfferAsyncResponses = {
+export type JobOffersFillJobOfferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type FillJobOfferAsyncResponse = FillJobOfferAsyncResponses[keyof FillJobOfferAsyncResponses];
+export type JobOffersFillJobOfferResponse = JobOffersFillJobOfferResponses[keyof JobOffersFillJobOfferResponses];
 
-export type GetJobTitlesAsyncData = {
+export type JobTitlesGetJobTitlesData = {
     body?: JobTitleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7834,7 +8029,7 @@ export type GetJobTitlesAsyncData = {
     url: '/api/v2/HrmsService/JobTitles';
 };
 
-export type GetJobTitlesAsyncErrors = {
+export type JobTitlesGetJobTitlesErrors = {
     /**
      * Unauthorized
      */
@@ -7845,18 +8040,18 @@ export type GetJobTitlesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobTitlesAsyncError = GetJobTitlesAsyncErrors[keyof GetJobTitlesAsyncErrors];
+export type JobTitlesGetJobTitlesError = JobTitlesGetJobTitlesErrors[keyof JobTitlesGetJobTitlesErrors];
 
-export type GetJobTitlesAsyncResponses = {
+export type JobTitlesGetJobTitlesResponses = {
     /**
      * OK
      */
     200: JobTitleDtoListEnvelopeReadable;
 };
 
-export type GetJobTitlesAsyncResponse = GetJobTitlesAsyncResponses[keyof GetJobTitlesAsyncResponses];
+export type JobTitlesGetJobTitlesResponse = JobTitlesGetJobTitlesResponses[keyof JobTitlesGetJobTitlesResponses];
 
-export type CreateJobTitleAsyncData = {
+export type JobTitlesCreateJobTitleData = {
     body?: JobTitleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7869,7 +8064,7 @@ export type CreateJobTitleAsyncData = {
     url: '/api/v2/HrmsService/JobTitles';
 };
 
-export type CreateJobTitleAsyncErrors = {
+export type JobTitlesCreateJobTitleErrors = {
     /**
      * Bad Request
      */
@@ -7884,18 +8079,18 @@ export type CreateJobTitleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateJobTitleAsyncError = CreateJobTitleAsyncErrors[keyof CreateJobTitleAsyncErrors];
+export type JobTitlesCreateJobTitleError = JobTitlesCreateJobTitleErrors[keyof JobTitlesCreateJobTitleErrors];
 
-export type CreateJobTitleAsyncResponses = {
+export type JobTitlesCreateJobTitleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateJobTitleAsyncResponse = CreateJobTitleAsyncResponses[keyof CreateJobTitleAsyncResponses];
+export type JobTitlesCreateJobTitleResponse = JobTitlesCreateJobTitleResponses[keyof JobTitlesCreateJobTitleResponses];
 
-export type GetJobTitlesCountAsyncData = {
+export type JobTitlesGetJobTitlesCountData = {
     body?: JobTitleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7908,7 +8103,7 @@ export type GetJobTitlesCountAsyncData = {
     url: '/api/v2/HrmsService/JobTitles/Count';
 };
 
-export type GetJobTitlesCountAsyncErrors = {
+export type JobTitlesGetJobTitlesCountErrors = {
     /**
      * Unauthorized
      */
@@ -7919,18 +8114,18 @@ export type GetJobTitlesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobTitlesCountAsyncError = GetJobTitlesCountAsyncErrors[keyof GetJobTitlesCountAsyncErrors];
+export type JobTitlesGetJobTitlesCountError = JobTitlesGetJobTitlesCountErrors[keyof JobTitlesGetJobTitlesCountErrors];
 
-export type GetJobTitlesCountAsyncResponses = {
+export type JobTitlesGetJobTitlesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetJobTitlesCountAsyncResponse = GetJobTitlesCountAsyncResponses[keyof GetJobTitlesCountAsyncResponses];
+export type JobTitlesGetJobTitlesCountResponse = JobTitlesGetJobTitlesCountResponses[keyof JobTitlesGetJobTitlesCountResponses];
 
-export type DeleteJobTitleAsyncData = {
+export type JobTitlesDeleteJobTitleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7945,7 +8140,7 @@ export type DeleteJobTitleAsyncData = {
     url: '/api/v2/HrmsService/JobTitles/{jobTitleId}';
 };
 
-export type DeleteJobTitleAsyncErrors = {
+export type JobTitlesDeleteJobTitleErrors = {
     /**
      * Bad Request
      */
@@ -7960,18 +8155,18 @@ export type DeleteJobTitleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteJobTitleAsyncError = DeleteJobTitleAsyncErrors[keyof DeleteJobTitleAsyncErrors];
+export type JobTitlesDeleteJobTitleError = JobTitlesDeleteJobTitleErrors[keyof JobTitlesDeleteJobTitleErrors];
 
-export type DeleteJobTitleAsyncResponses = {
+export type JobTitlesDeleteJobTitleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteJobTitleAsyncResponse = DeleteJobTitleAsyncResponses[keyof DeleteJobTitleAsyncResponses];
+export type JobTitlesDeleteJobTitleResponse = JobTitlesDeleteJobTitleResponses[keyof JobTitlesDeleteJobTitleResponses];
 
-export type GetJobTitleByIdAsyncData = {
+export type JobTitlesGetJobTitleByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7986,7 +8181,7 @@ export type GetJobTitleByIdAsyncData = {
     url: '/api/v2/HrmsService/JobTitles/{jobTitleId}';
 };
 
-export type GetJobTitleByIdAsyncErrors = {
+export type JobTitlesGetJobTitleByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7997,18 +8192,18 @@ export type GetJobTitleByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetJobTitleByIdAsyncError = GetJobTitleByIdAsyncErrors[keyof GetJobTitleByIdAsyncErrors];
+export type JobTitlesGetJobTitleByIdError = JobTitlesGetJobTitleByIdErrors[keyof JobTitlesGetJobTitleByIdErrors];
 
-export type GetJobTitleByIdAsyncResponses = {
+export type JobTitlesGetJobTitleByIdResponses = {
     /**
      * OK
      */
     200: JobTitleDtoEnvelopeReadable;
 };
 
-export type GetJobTitleByIdAsyncResponse = GetJobTitleByIdAsyncResponses[keyof GetJobTitleByIdAsyncResponses];
+export type JobTitlesGetJobTitleByIdResponse = JobTitlesGetJobTitleByIdResponses[keyof JobTitlesGetJobTitleByIdResponses];
 
-export type PatchJobTitleAsyncData = {
+export type JobTitlesPatchJobTitleData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8023,7 +8218,7 @@ export type PatchJobTitleAsyncData = {
     url: '/api/v2/HrmsService/JobTitles/{jobTitleId}';
 };
 
-export type PatchJobTitleAsyncErrors = {
+export type JobTitlesPatchJobTitleErrors = {
     /**
      * Bad Request
      */
@@ -8038,18 +8233,18 @@ export type PatchJobTitleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchJobTitleAsyncError = PatchJobTitleAsyncErrors[keyof PatchJobTitleAsyncErrors];
+export type JobTitlesPatchJobTitleError = JobTitlesPatchJobTitleErrors[keyof JobTitlesPatchJobTitleErrors];
 
-export type PatchJobTitleAsyncResponses = {
+export type JobTitlesPatchJobTitleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchJobTitleAsyncResponse = PatchJobTitleAsyncResponses[keyof PatchJobTitleAsyncResponses];
+export type JobTitlesPatchJobTitleResponse = JobTitlesPatchJobTitleResponses[keyof JobTitlesPatchJobTitleResponses];
 
-export type UpdateJobTitleAsyncData = {
+export type JobTitlesUpdateJobTitleData = {
     body?: JobTitleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8064,7 +8259,7 @@ export type UpdateJobTitleAsyncData = {
     url: '/api/v2/HrmsService/JobTitles/{jobTitleId}';
 };
 
-export type UpdateJobTitleAsyncErrors = {
+export type JobTitlesUpdateJobTitleErrors = {
     /**
      * Bad Request
      */
@@ -8079,18 +8274,18 @@ export type UpdateJobTitleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateJobTitleAsyncError = UpdateJobTitleAsyncErrors[keyof UpdateJobTitleAsyncErrors];
+export type JobTitlesUpdateJobTitleError = JobTitlesUpdateJobTitleErrors[keyof JobTitlesUpdateJobTitleErrors];
 
-export type UpdateJobTitleAsyncResponses = {
+export type JobTitlesUpdateJobTitleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateJobTitleAsyncResponse = UpdateJobTitleAsyncResponses[keyof UpdateJobTitleAsyncResponses];
+export type JobTitlesUpdateJobTitleResponse = JobTitlesUpdateJobTitleResponses[keyof JobTitlesUpdateJobTitleResponses];
 
-export type GetLeaveApplicationsAsyncData = {
+export type LeaveApplicationsGetLeaveApplicationsData = {
     body?: LeaveApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8103,7 +8298,7 @@ export type GetLeaveApplicationsAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications';
 };
 
-export type GetLeaveApplicationsAsyncErrors = {
+export type LeaveApplicationsGetLeaveApplicationsErrors = {
     /**
      * Unauthorized
      */
@@ -8114,18 +8309,18 @@ export type GetLeaveApplicationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLeaveApplicationsAsyncError = GetLeaveApplicationsAsyncErrors[keyof GetLeaveApplicationsAsyncErrors];
+export type LeaveApplicationsGetLeaveApplicationsError = LeaveApplicationsGetLeaveApplicationsErrors[keyof LeaveApplicationsGetLeaveApplicationsErrors];
 
-export type GetLeaveApplicationsAsyncResponses = {
+export type LeaveApplicationsGetLeaveApplicationsResponses = {
     /**
      * OK
      */
     200: LeaveApplicationDtoListEnvelopeReadable;
 };
 
-export type GetLeaveApplicationsAsyncResponse = GetLeaveApplicationsAsyncResponses[keyof GetLeaveApplicationsAsyncResponses];
+export type LeaveApplicationsGetLeaveApplicationsResponse = LeaveApplicationsGetLeaveApplicationsResponses[keyof LeaveApplicationsGetLeaveApplicationsResponses];
 
-export type CreateLeaveApplicationAsyncData = {
+export type LeaveApplicationsCreateLeaveApplicationData = {
     body?: LeaveApplicationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8138,7 +8333,7 @@ export type CreateLeaveApplicationAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications';
 };
 
-export type CreateLeaveApplicationAsyncErrors = {
+export type LeaveApplicationsCreateLeaveApplicationErrors = {
     /**
      * Bad Request
      */
@@ -8153,18 +8348,18 @@ export type CreateLeaveApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLeaveApplicationAsyncError = CreateLeaveApplicationAsyncErrors[keyof CreateLeaveApplicationAsyncErrors];
+export type LeaveApplicationsCreateLeaveApplicationError = LeaveApplicationsCreateLeaveApplicationErrors[keyof LeaveApplicationsCreateLeaveApplicationErrors];
 
-export type CreateLeaveApplicationAsyncResponses = {
+export type LeaveApplicationsCreateLeaveApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateLeaveApplicationAsyncResponse = CreateLeaveApplicationAsyncResponses[keyof CreateLeaveApplicationAsyncResponses];
+export type LeaveApplicationsCreateLeaveApplicationResponse = LeaveApplicationsCreateLeaveApplicationResponses[keyof LeaveApplicationsCreateLeaveApplicationResponses];
 
-export type GetLeaveApplicationsCountAsyncData = {
+export type LeaveApplicationsGetLeaveApplicationsCountData = {
     body?: LeaveApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8177,7 +8372,7 @@ export type GetLeaveApplicationsCountAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications/Count';
 };
 
-export type GetLeaveApplicationsCountAsyncErrors = {
+export type LeaveApplicationsGetLeaveApplicationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8188,18 +8383,18 @@ export type GetLeaveApplicationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLeaveApplicationsCountAsyncError = GetLeaveApplicationsCountAsyncErrors[keyof GetLeaveApplicationsCountAsyncErrors];
+export type LeaveApplicationsGetLeaveApplicationsCountError = LeaveApplicationsGetLeaveApplicationsCountErrors[keyof LeaveApplicationsGetLeaveApplicationsCountErrors];
 
-export type GetLeaveApplicationsCountAsyncResponses = {
+export type LeaveApplicationsGetLeaveApplicationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLeaveApplicationsCountAsyncResponse = GetLeaveApplicationsCountAsyncResponses[keyof GetLeaveApplicationsCountAsyncResponses];
+export type LeaveApplicationsGetLeaveApplicationsCountResponse = LeaveApplicationsGetLeaveApplicationsCountResponses[keyof LeaveApplicationsGetLeaveApplicationsCountResponses];
 
-export type DeleteLeaveApplicationAsyncData = {
+export type LeaveApplicationsDeleteLeaveApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8214,7 +8409,7 @@ export type DeleteLeaveApplicationAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}';
 };
 
-export type DeleteLeaveApplicationAsyncErrors = {
+export type LeaveApplicationsDeleteLeaveApplicationErrors = {
     /**
      * Bad Request
      */
@@ -8229,18 +8424,18 @@ export type DeleteLeaveApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLeaveApplicationAsyncError = DeleteLeaveApplicationAsyncErrors[keyof DeleteLeaveApplicationAsyncErrors];
+export type LeaveApplicationsDeleteLeaveApplicationError = LeaveApplicationsDeleteLeaveApplicationErrors[keyof LeaveApplicationsDeleteLeaveApplicationErrors];
 
-export type DeleteLeaveApplicationAsyncResponses = {
+export type LeaveApplicationsDeleteLeaveApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLeaveApplicationAsyncResponse = DeleteLeaveApplicationAsyncResponses[keyof DeleteLeaveApplicationAsyncResponses];
+export type LeaveApplicationsDeleteLeaveApplicationResponse = LeaveApplicationsDeleteLeaveApplicationResponses[keyof LeaveApplicationsDeleteLeaveApplicationResponses];
 
-export type GetLeaveApplicationByIdAsyncData = {
+export type LeaveApplicationsGetLeaveApplicationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8255,7 +8450,7 @@ export type GetLeaveApplicationByIdAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}';
 };
 
-export type GetLeaveApplicationByIdAsyncErrors = {
+export type LeaveApplicationsGetLeaveApplicationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8266,18 +8461,18 @@ export type GetLeaveApplicationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLeaveApplicationByIdAsyncError = GetLeaveApplicationByIdAsyncErrors[keyof GetLeaveApplicationByIdAsyncErrors];
+export type LeaveApplicationsGetLeaveApplicationByIdError = LeaveApplicationsGetLeaveApplicationByIdErrors[keyof LeaveApplicationsGetLeaveApplicationByIdErrors];
 
-export type GetLeaveApplicationByIdAsyncResponses = {
+export type LeaveApplicationsGetLeaveApplicationByIdResponses = {
     /**
      * OK
      */
     200: LeaveApplicationDtoEnvelopeReadable;
 };
 
-export type GetLeaveApplicationByIdAsyncResponse = GetLeaveApplicationByIdAsyncResponses[keyof GetLeaveApplicationByIdAsyncResponses];
+export type LeaveApplicationsGetLeaveApplicationByIdResponse = LeaveApplicationsGetLeaveApplicationByIdResponses[keyof LeaveApplicationsGetLeaveApplicationByIdResponses];
 
-export type PatchLeaveApplicationAsyncData = {
+export type LeaveApplicationsPatchLeaveApplicationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8292,7 +8487,7 @@ export type PatchLeaveApplicationAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}';
 };
 
-export type PatchLeaveApplicationAsyncErrors = {
+export type LeaveApplicationsPatchLeaveApplicationErrors = {
     /**
      * Bad Request
      */
@@ -8307,18 +8502,18 @@ export type PatchLeaveApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLeaveApplicationAsyncError = PatchLeaveApplicationAsyncErrors[keyof PatchLeaveApplicationAsyncErrors];
+export type LeaveApplicationsPatchLeaveApplicationError = LeaveApplicationsPatchLeaveApplicationErrors[keyof LeaveApplicationsPatchLeaveApplicationErrors];
 
-export type PatchLeaveApplicationAsyncResponses = {
+export type LeaveApplicationsPatchLeaveApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLeaveApplicationAsyncResponse = PatchLeaveApplicationAsyncResponses[keyof PatchLeaveApplicationAsyncResponses];
+export type LeaveApplicationsPatchLeaveApplicationResponse = LeaveApplicationsPatchLeaveApplicationResponses[keyof LeaveApplicationsPatchLeaveApplicationResponses];
 
-export type UpdateLeaveApplicationAsyncData = {
+export type LeaveApplicationsUpdateLeaveApplicationData = {
     body?: LeaveApplicationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8333,7 +8528,7 @@ export type UpdateLeaveApplicationAsyncData = {
     url: '/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}';
 };
 
-export type UpdateLeaveApplicationAsyncErrors = {
+export type LeaveApplicationsUpdateLeaveApplicationErrors = {
     /**
      * Bad Request
      */
@@ -8348,18 +8543,18 @@ export type UpdateLeaveApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLeaveApplicationAsyncError = UpdateLeaveApplicationAsyncErrors[keyof UpdateLeaveApplicationAsyncErrors];
+export type LeaveApplicationsUpdateLeaveApplicationError = LeaveApplicationsUpdateLeaveApplicationErrors[keyof LeaveApplicationsUpdateLeaveApplicationErrors];
 
-export type UpdateLeaveApplicationAsyncResponses = {
+export type LeaveApplicationsUpdateLeaveApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLeaveApplicationAsyncResponse = UpdateLeaveApplicationAsyncResponses[keyof UpdateLeaveApplicationAsyncResponses];
+export type LeaveApplicationsUpdateLeaveApplicationResponse = LeaveApplicationsUpdateLeaveApplicationResponses[keyof LeaveApplicationsUpdateLeaveApplicationResponses];
 
-export type GetLeaveTypesAsyncData = {
+export type LeaveTypesGetLeaveTypesData = {
     body?: LeaveTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8372,7 +8567,7 @@ export type GetLeaveTypesAsyncData = {
     url: '/api/v2/HrmsService/LeaveTypes';
 };
 
-export type GetLeaveTypesAsyncErrors = {
+export type LeaveTypesGetLeaveTypesErrors = {
     /**
      * Unauthorized
      */
@@ -8383,18 +8578,18 @@ export type GetLeaveTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLeaveTypesAsyncError = GetLeaveTypesAsyncErrors[keyof GetLeaveTypesAsyncErrors];
+export type LeaveTypesGetLeaveTypesError = LeaveTypesGetLeaveTypesErrors[keyof LeaveTypesGetLeaveTypesErrors];
 
-export type GetLeaveTypesAsyncResponses = {
+export type LeaveTypesGetLeaveTypesResponses = {
     /**
      * OK
      */
     200: LeaveTypeDtoListEnvelopeReadable;
 };
 
-export type GetLeaveTypesAsyncResponse = GetLeaveTypesAsyncResponses[keyof GetLeaveTypesAsyncResponses];
+export type LeaveTypesGetLeaveTypesResponse = LeaveTypesGetLeaveTypesResponses[keyof LeaveTypesGetLeaveTypesResponses];
 
-export type CreateLeaveTypeAsyncData = {
+export type LeaveTypesCreateLeaveTypeData = {
     body?: LeaveTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8407,7 +8602,7 @@ export type CreateLeaveTypeAsyncData = {
     url: '/api/v2/HrmsService/LeaveTypes';
 };
 
-export type CreateLeaveTypeAsyncErrors = {
+export type LeaveTypesCreateLeaveTypeErrors = {
     /**
      * Bad Request
      */
@@ -8422,18 +8617,18 @@ export type CreateLeaveTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLeaveTypeAsyncError = CreateLeaveTypeAsyncErrors[keyof CreateLeaveTypeAsyncErrors];
+export type LeaveTypesCreateLeaveTypeError = LeaveTypesCreateLeaveTypeErrors[keyof LeaveTypesCreateLeaveTypeErrors];
 
-export type CreateLeaveTypeAsyncResponses = {
+export type LeaveTypesCreateLeaveTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateLeaveTypeAsyncResponse = CreateLeaveTypeAsyncResponses[keyof CreateLeaveTypeAsyncResponses];
+export type LeaveTypesCreateLeaveTypeResponse = LeaveTypesCreateLeaveTypeResponses[keyof LeaveTypesCreateLeaveTypeResponses];
 
-export type GetLeaveTypesCountAsyncData = {
+export type LeaveTypesGetLeaveTypesCountData = {
     body?: LeaveTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8446,7 +8641,7 @@ export type GetLeaveTypesCountAsyncData = {
     url: '/api/v2/HrmsService/LeaveTypes/Count';
 };
 
-export type GetLeaveTypesCountAsyncErrors = {
+export type LeaveTypesGetLeaveTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -8457,18 +8652,18 @@ export type GetLeaveTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLeaveTypesCountAsyncError = GetLeaveTypesCountAsyncErrors[keyof GetLeaveTypesCountAsyncErrors];
+export type LeaveTypesGetLeaveTypesCountError = LeaveTypesGetLeaveTypesCountErrors[keyof LeaveTypesGetLeaveTypesCountErrors];
 
-export type GetLeaveTypesCountAsyncResponses = {
+export type LeaveTypesGetLeaveTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLeaveTypesCountAsyncResponse = GetLeaveTypesCountAsyncResponses[keyof GetLeaveTypesCountAsyncResponses];
+export type LeaveTypesGetLeaveTypesCountResponse = LeaveTypesGetLeaveTypesCountResponses[keyof LeaveTypesGetLeaveTypesCountResponses];
 
-export type DeleteLeaveTypeAsyncData = {
+export type LeaveTypesDeleteLeaveTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8483,7 +8678,7 @@ export type DeleteLeaveTypeAsyncData = {
     url: '/api/v2/HrmsService/LeaveTypes/{leaveTypeId}';
 };
 
-export type DeleteLeaveTypeAsyncErrors = {
+export type LeaveTypesDeleteLeaveTypeErrors = {
     /**
      * Bad Request
      */
@@ -8498,18 +8693,18 @@ export type DeleteLeaveTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLeaveTypeAsyncError = DeleteLeaveTypeAsyncErrors[keyof DeleteLeaveTypeAsyncErrors];
+export type LeaveTypesDeleteLeaveTypeError = LeaveTypesDeleteLeaveTypeErrors[keyof LeaveTypesDeleteLeaveTypeErrors];
 
-export type DeleteLeaveTypeAsyncResponses = {
+export type LeaveTypesDeleteLeaveTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLeaveTypeAsyncResponse = DeleteLeaveTypeAsyncResponses[keyof DeleteLeaveTypeAsyncResponses];
+export type LeaveTypesDeleteLeaveTypeResponse = LeaveTypesDeleteLeaveTypeResponses[keyof LeaveTypesDeleteLeaveTypeResponses];
 
-export type GetLeaveTypeByIdAsyncData = {
+export type LeaveTypesGetLeaveTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8524,7 +8719,7 @@ export type GetLeaveTypeByIdAsyncData = {
     url: '/api/v2/HrmsService/LeaveTypes/{leaveTypeId}';
 };
 
-export type GetLeaveTypeByIdAsyncErrors = {
+export type LeaveTypesGetLeaveTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8535,18 +8730,18 @@ export type GetLeaveTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLeaveTypeByIdAsyncError = GetLeaveTypeByIdAsyncErrors[keyof GetLeaveTypeByIdAsyncErrors];
+export type LeaveTypesGetLeaveTypeByIdError = LeaveTypesGetLeaveTypeByIdErrors[keyof LeaveTypesGetLeaveTypeByIdErrors];
 
-export type GetLeaveTypeByIdAsyncResponses = {
+export type LeaveTypesGetLeaveTypeByIdResponses = {
     /**
      * OK
      */
     200: LeaveTypeDtoEnvelopeReadable;
 };
 
-export type GetLeaveTypeByIdAsyncResponse = GetLeaveTypeByIdAsyncResponses[keyof GetLeaveTypeByIdAsyncResponses];
+export type LeaveTypesGetLeaveTypeByIdResponse = LeaveTypesGetLeaveTypeByIdResponses[keyof LeaveTypesGetLeaveTypeByIdResponses];
 
-export type UpdateLeaveTypeAsyncData = {
+export type LeaveTypesUpdateLeaveTypeData = {
     body?: LeaveTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8561,7 +8756,7 @@ export type UpdateLeaveTypeAsyncData = {
     url: '/api/v2/HrmsService/LeaveTypes/{leaveTypeId}';
 };
 
-export type UpdateLeaveTypeAsyncErrors = {
+export type LeaveTypesUpdateLeaveTypeErrors = {
     /**
      * Bad Request
      */
@@ -8576,18 +8771,18 @@ export type UpdateLeaveTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLeaveTypeAsyncError = UpdateLeaveTypeAsyncErrors[keyof UpdateLeaveTypeAsyncErrors];
+export type LeaveTypesUpdateLeaveTypeError = LeaveTypesUpdateLeaveTypeErrors[keyof LeaveTypesUpdateLeaveTypeErrors];
 
-export type UpdateLeaveTypeAsyncResponses = {
+export type LeaveTypesUpdateLeaveTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLeaveTypeAsyncResponse = UpdateLeaveTypeAsyncResponses[keyof UpdateLeaveTypeAsyncResponses];
+export type LeaveTypesUpdateLeaveTypeResponse = LeaveTypesUpdateLeaveTypeResponses[keyof LeaveTypesUpdateLeaveTypeResponses];
 
-export type GetPayrollPeriodsAsyncData = {
+export type PayrollPeriodsGetPayrollPeriodsData = {
     body?: PayrollPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8600,7 +8795,7 @@ export type GetPayrollPeriodsAsyncData = {
     url: '/api/v2/HrmsService/PayrollPeriods';
 };
 
-export type GetPayrollPeriodsAsyncErrors = {
+export type PayrollPeriodsGetPayrollPeriodsErrors = {
     /**
      * Unauthorized
      */
@@ -8611,18 +8806,18 @@ export type GetPayrollPeriodsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPayrollPeriodsAsyncError = GetPayrollPeriodsAsyncErrors[keyof GetPayrollPeriodsAsyncErrors];
+export type PayrollPeriodsGetPayrollPeriodsError = PayrollPeriodsGetPayrollPeriodsErrors[keyof PayrollPeriodsGetPayrollPeriodsErrors];
 
-export type GetPayrollPeriodsAsyncResponses = {
+export type PayrollPeriodsGetPayrollPeriodsResponses = {
     /**
      * OK
      */
     200: PayrollPeriodDtoListEnvelopeReadable;
 };
 
-export type GetPayrollPeriodsAsyncResponse = GetPayrollPeriodsAsyncResponses[keyof GetPayrollPeriodsAsyncResponses];
+export type PayrollPeriodsGetPayrollPeriodsResponse = PayrollPeriodsGetPayrollPeriodsResponses[keyof PayrollPeriodsGetPayrollPeriodsResponses];
 
-export type CreatePayrollPeriodAsyncData = {
+export type PayrollPeriodsCreatePayrollPeriodData = {
     body?: PayrollPeriodCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8635,7 +8830,7 @@ export type CreatePayrollPeriodAsyncData = {
     url: '/api/v2/HrmsService/PayrollPeriods';
 };
 
-export type CreatePayrollPeriodAsyncErrors = {
+export type PayrollPeriodsCreatePayrollPeriodErrors = {
     /**
      * Bad Request
      */
@@ -8650,18 +8845,18 @@ export type CreatePayrollPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePayrollPeriodAsyncError = CreatePayrollPeriodAsyncErrors[keyof CreatePayrollPeriodAsyncErrors];
+export type PayrollPeriodsCreatePayrollPeriodError = PayrollPeriodsCreatePayrollPeriodErrors[keyof PayrollPeriodsCreatePayrollPeriodErrors];
 
-export type CreatePayrollPeriodAsyncResponses = {
+export type PayrollPeriodsCreatePayrollPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreatePayrollPeriodAsyncResponse = CreatePayrollPeriodAsyncResponses[keyof CreatePayrollPeriodAsyncResponses];
+export type PayrollPeriodsCreatePayrollPeriodResponse = PayrollPeriodsCreatePayrollPeriodResponses[keyof PayrollPeriodsCreatePayrollPeriodResponses];
 
-export type GetPayrollPeriodsCountAsyncData = {
+export type PayrollPeriodsGetPayrollPeriodsCountData = {
     body?: PayrollPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8674,7 +8869,7 @@ export type GetPayrollPeriodsCountAsyncData = {
     url: '/api/v2/HrmsService/PayrollPeriods/Count';
 };
 
-export type GetPayrollPeriodsCountAsyncErrors = {
+export type PayrollPeriodsGetPayrollPeriodsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8685,18 +8880,18 @@ export type GetPayrollPeriodsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPayrollPeriodsCountAsyncError = GetPayrollPeriodsCountAsyncErrors[keyof GetPayrollPeriodsCountAsyncErrors];
+export type PayrollPeriodsGetPayrollPeriodsCountError = PayrollPeriodsGetPayrollPeriodsCountErrors[keyof PayrollPeriodsGetPayrollPeriodsCountErrors];
 
-export type GetPayrollPeriodsCountAsyncResponses = {
+export type PayrollPeriodsGetPayrollPeriodsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPayrollPeriodsCountAsyncResponse = GetPayrollPeriodsCountAsyncResponses[keyof GetPayrollPeriodsCountAsyncResponses];
+export type PayrollPeriodsGetPayrollPeriodsCountResponse = PayrollPeriodsGetPayrollPeriodsCountResponses[keyof PayrollPeriodsGetPayrollPeriodsCountResponses];
 
-export type DeletePayrollPeriodAsyncData = {
+export type PayrollPeriodsDeletePayrollPeriodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8711,7 +8906,7 @@ export type DeletePayrollPeriodAsyncData = {
     url: '/api/v2/HrmsService/PayrollPeriods/{periodId}';
 };
 
-export type DeletePayrollPeriodAsyncErrors = {
+export type PayrollPeriodsDeletePayrollPeriodErrors = {
     /**
      * Bad Request
      */
@@ -8726,18 +8921,18 @@ export type DeletePayrollPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePayrollPeriodAsyncError = DeletePayrollPeriodAsyncErrors[keyof DeletePayrollPeriodAsyncErrors];
+export type PayrollPeriodsDeletePayrollPeriodError = PayrollPeriodsDeletePayrollPeriodErrors[keyof PayrollPeriodsDeletePayrollPeriodErrors];
 
-export type DeletePayrollPeriodAsyncResponses = {
+export type PayrollPeriodsDeletePayrollPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePayrollPeriodAsyncResponse = DeletePayrollPeriodAsyncResponses[keyof DeletePayrollPeriodAsyncResponses];
+export type PayrollPeriodsDeletePayrollPeriodResponse = PayrollPeriodsDeletePayrollPeriodResponses[keyof PayrollPeriodsDeletePayrollPeriodResponses];
 
-export type GetPayrollPeriodByIdAsyncData = {
+export type PayrollPeriodsGetPayrollPeriodByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8752,7 +8947,7 @@ export type GetPayrollPeriodByIdAsyncData = {
     url: '/api/v2/HrmsService/PayrollPeriods/{periodId}';
 };
 
-export type GetPayrollPeriodByIdAsyncErrors = {
+export type PayrollPeriodsGetPayrollPeriodByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8763,18 +8958,18 @@ export type GetPayrollPeriodByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPayrollPeriodByIdAsyncError = GetPayrollPeriodByIdAsyncErrors[keyof GetPayrollPeriodByIdAsyncErrors];
+export type PayrollPeriodsGetPayrollPeriodByIdError = PayrollPeriodsGetPayrollPeriodByIdErrors[keyof PayrollPeriodsGetPayrollPeriodByIdErrors];
 
-export type GetPayrollPeriodByIdAsyncResponses = {
+export type PayrollPeriodsGetPayrollPeriodByIdResponses = {
     /**
      * OK
      */
     200: PayrollPeriodDtoEnvelopeReadable;
 };
 
-export type GetPayrollPeriodByIdAsyncResponse = GetPayrollPeriodByIdAsyncResponses[keyof GetPayrollPeriodByIdAsyncResponses];
+export type PayrollPeriodsGetPayrollPeriodByIdResponse = PayrollPeriodsGetPayrollPeriodByIdResponses[keyof PayrollPeriodsGetPayrollPeriodByIdResponses];
 
-export type UpdatePayrollPeriodAsyncData = {
+export type PayrollPeriodsUpdatePayrollPeriodData = {
     body?: PayrollPeriodUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8789,7 +8984,7 @@ export type UpdatePayrollPeriodAsyncData = {
     url: '/api/v2/HrmsService/PayrollPeriods/{periodId}';
 };
 
-export type UpdatePayrollPeriodAsyncErrors = {
+export type PayrollPeriodsUpdatePayrollPeriodErrors = {
     /**
      * Bad Request
      */
@@ -8804,18 +8999,18 @@ export type UpdatePayrollPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePayrollPeriodAsyncError = UpdatePayrollPeriodAsyncErrors[keyof UpdatePayrollPeriodAsyncErrors];
+export type PayrollPeriodsUpdatePayrollPeriodError = PayrollPeriodsUpdatePayrollPeriodErrors[keyof PayrollPeriodsUpdatePayrollPeriodErrors];
 
-export type UpdatePayrollPeriodAsyncResponses = {
+export type PayrollPeriodsUpdatePayrollPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePayrollPeriodAsyncResponse = UpdatePayrollPeriodAsyncResponses[keyof UpdatePayrollPeriodAsyncResponses];
+export type PayrollPeriodsUpdatePayrollPeriodResponse = PayrollPeriodsUpdatePayrollPeriodResponses[keyof PayrollPeriodsUpdatePayrollPeriodResponses];
 
-export type GetPayrollsAsyncData = {
+export type PayrollsGetPayrollsData = {
     body?: PayrollDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8828,7 +9023,7 @@ export type GetPayrollsAsyncData = {
     url: '/api/v2/HrmsService/Payrolls';
 };
 
-export type GetPayrollsAsyncErrors = {
+export type PayrollsGetPayrollsErrors = {
     /**
      * Unauthorized
      */
@@ -8839,18 +9034,18 @@ export type GetPayrollsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPayrollsAsyncError = GetPayrollsAsyncErrors[keyof GetPayrollsAsyncErrors];
+export type PayrollsGetPayrollsError = PayrollsGetPayrollsErrors[keyof PayrollsGetPayrollsErrors];
 
-export type GetPayrollsAsyncResponses = {
+export type PayrollsGetPayrollsResponses = {
     /**
      * OK
      */
     200: PayrollDtoListEnvelopeReadable;
 };
 
-export type GetPayrollsAsyncResponse = GetPayrollsAsyncResponses[keyof GetPayrollsAsyncResponses];
+export type PayrollsGetPayrollsResponse = PayrollsGetPayrollsResponses[keyof PayrollsGetPayrollsResponses];
 
-export type CreatePayrollAsyncData = {
+export type PayrollsCreatePayrollData = {
     body?: PayrollCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8863,7 +9058,7 @@ export type CreatePayrollAsyncData = {
     url: '/api/v2/HrmsService/Payrolls';
 };
 
-export type CreatePayrollAsyncErrors = {
+export type PayrollsCreatePayrollErrors = {
     /**
      * Bad Request
      */
@@ -8878,18 +9073,18 @@ export type CreatePayrollAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePayrollAsyncError = CreatePayrollAsyncErrors[keyof CreatePayrollAsyncErrors];
+export type PayrollsCreatePayrollError = PayrollsCreatePayrollErrors[keyof PayrollsCreatePayrollErrors];
 
-export type CreatePayrollAsyncResponses = {
+export type PayrollsCreatePayrollResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreatePayrollAsyncResponse = CreatePayrollAsyncResponses[keyof CreatePayrollAsyncResponses];
+export type PayrollsCreatePayrollResponse = PayrollsCreatePayrollResponses[keyof PayrollsCreatePayrollResponses];
 
-export type GetPayrollsCountAsyncData = {
+export type PayrollsGetPayrollsCountData = {
     body?: PayrollDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8902,7 +9097,7 @@ export type GetPayrollsCountAsyncData = {
     url: '/api/v2/HrmsService/Payrolls/Count';
 };
 
-export type GetPayrollsCountAsyncErrors = {
+export type PayrollsGetPayrollsCountErrors = {
     /**
      * Unauthorized
      */
@@ -8913,18 +9108,18 @@ export type GetPayrollsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPayrollsCountAsyncError = GetPayrollsCountAsyncErrors[keyof GetPayrollsCountAsyncErrors];
+export type PayrollsGetPayrollsCountError = PayrollsGetPayrollsCountErrors[keyof PayrollsGetPayrollsCountErrors];
 
-export type GetPayrollsCountAsyncResponses = {
+export type PayrollsGetPayrollsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPayrollsCountAsyncResponse = GetPayrollsCountAsyncResponses[keyof GetPayrollsCountAsyncResponses];
+export type PayrollsGetPayrollsCountResponse = PayrollsGetPayrollsCountResponses[keyof PayrollsGetPayrollsCountResponses];
 
-export type DeletePayrollAsyncData = {
+export type PayrollsDeletePayrollData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8939,7 +9134,7 @@ export type DeletePayrollAsyncData = {
     url: '/api/v2/HrmsService/Payrolls/{payrollId}';
 };
 
-export type DeletePayrollAsyncErrors = {
+export type PayrollsDeletePayrollErrors = {
     /**
      * Bad Request
      */
@@ -8954,18 +9149,18 @@ export type DeletePayrollAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePayrollAsyncError = DeletePayrollAsyncErrors[keyof DeletePayrollAsyncErrors];
+export type PayrollsDeletePayrollError = PayrollsDeletePayrollErrors[keyof PayrollsDeletePayrollErrors];
 
-export type DeletePayrollAsyncResponses = {
+export type PayrollsDeletePayrollResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeletePayrollAsyncResponse = DeletePayrollAsyncResponses[keyof DeletePayrollAsyncResponses];
+export type PayrollsDeletePayrollResponse = PayrollsDeletePayrollResponses[keyof PayrollsDeletePayrollResponses];
 
-export type GetPayrollByIdAsyncData = {
+export type PayrollsGetPayrollByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8980,7 +9175,7 @@ export type GetPayrollByIdAsyncData = {
     url: '/api/v2/HrmsService/Payrolls/{payrollId}';
 };
 
-export type GetPayrollByIdAsyncErrors = {
+export type PayrollsGetPayrollByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8991,18 +9186,18 @@ export type GetPayrollByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPayrollByIdAsyncError = GetPayrollByIdAsyncErrors[keyof GetPayrollByIdAsyncErrors];
+export type PayrollsGetPayrollByIdError = PayrollsGetPayrollByIdErrors[keyof PayrollsGetPayrollByIdErrors];
 
-export type GetPayrollByIdAsyncResponses = {
+export type PayrollsGetPayrollByIdResponses = {
     /**
      * OK
      */
     200: PayrollDtoEnvelopeReadable;
 };
 
-export type GetPayrollByIdAsyncResponse = GetPayrollByIdAsyncResponses[keyof GetPayrollByIdAsyncResponses];
+export type PayrollsGetPayrollByIdResponse = PayrollsGetPayrollByIdResponses[keyof PayrollsGetPayrollByIdResponses];
 
-export type PatchPayrollAsyncData = {
+export type PayrollsPatchPayrollData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9017,7 +9212,7 @@ export type PatchPayrollAsyncData = {
     url: '/api/v2/HrmsService/Payrolls/{payrollId}';
 };
 
-export type PatchPayrollAsyncErrors = {
+export type PayrollsPatchPayrollErrors = {
     /**
      * Bad Request
      */
@@ -9032,18 +9227,18 @@ export type PatchPayrollAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPayrollAsyncError = PatchPayrollAsyncErrors[keyof PatchPayrollAsyncErrors];
+export type PayrollsPatchPayrollError = PayrollsPatchPayrollErrors[keyof PayrollsPatchPayrollErrors];
 
-export type PatchPayrollAsyncResponses = {
+export type PayrollsPatchPayrollResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPayrollAsyncResponse = PatchPayrollAsyncResponses[keyof PatchPayrollAsyncResponses];
+export type PayrollsPatchPayrollResponse = PayrollsPatchPayrollResponses[keyof PayrollsPatchPayrollResponses];
 
-export type UpdatePayrollAsyncData = {
+export type PayrollsUpdatePayrollData = {
     body?: PayrollUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9058,7 +9253,7 @@ export type UpdatePayrollAsyncData = {
     url: '/api/v2/HrmsService/Payrolls/{payrollId}';
 };
 
-export type UpdatePayrollAsyncErrors = {
+export type PayrollsUpdatePayrollErrors = {
     /**
      * Bad Request
      */
@@ -9073,18 +9268,265 @@ export type UpdatePayrollAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePayrollAsyncError = UpdatePayrollAsyncErrors[keyof UpdatePayrollAsyncErrors];
+export type PayrollsUpdatePayrollError = PayrollsUpdatePayrollErrors[keyof PayrollsUpdatePayrollErrors];
 
-export type UpdatePayrollAsyncResponses = {
+export type PayrollsUpdatePayrollResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePayrollAsyncResponse = UpdatePayrollAsyncResponses[keyof UpdatePayrollAsyncResponses];
+export type PayrollsUpdatePayrollResponse = PayrollsUpdatePayrollResponses[keyof PayrollsUpdatePayrollResponses];
 
-export type GetRequiredSkillsAsyncData = {
+export type PositionSeatsGetPositionAssignmentsData = {
+    body?: BusinessPositionAssignmentDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Assignments';
+};
+
+export type PositionSeatsGetPositionAssignmentsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsGetPositionAssignmentsError = PositionSeatsGetPositionAssignmentsErrors[keyof PositionSeatsGetPositionAssignmentsErrors];
+
+export type PositionSeatsGetPositionAssignmentsResponses = {
+    /**
+     * OK
+     */
+    200: BusinessPositionAssignmentDtoListEnvelopeReadable;
+};
+
+export type PositionSeatsGetPositionAssignmentsResponse = PositionSeatsGetPositionAssignmentsResponses[keyof PositionSeatsGetPositionAssignmentsResponses];
+
+export type PositionSeatsAssignPositionData = {
+    body?: PositionAssignmentCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Assignments';
+};
+
+export type PositionSeatsAssignPositionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsAssignPositionError = PositionSeatsAssignPositionErrors[keyof PositionSeatsAssignPositionErrors];
+
+export type PositionSeatsAssignPositionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionSeatsAssignPositionResponse = PositionSeatsAssignPositionResponses[keyof PositionSeatsAssignPositionResponses];
+
+export type PositionSeatsGetPositionAssignmentsCountData = {
+    body?: BusinessPositionAssignmentDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Assignments/Count';
+};
+
+export type PositionSeatsGetPositionAssignmentsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsGetPositionAssignmentsCountError = PositionSeatsGetPositionAssignmentsCountErrors[keyof PositionSeatsGetPositionAssignmentsCountErrors];
+
+export type PositionSeatsGetPositionAssignmentsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type PositionSeatsGetPositionAssignmentsCountResponse = PositionSeatsGetPositionAssignmentsCountResponses[keyof PositionSeatsGetPositionAssignmentsCountResponses];
+
+export type PositionSeatsEndPositionAssignmentData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+        assignmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Assignments/{assignmentId}/End';
+};
+
+export type PositionSeatsEndPositionAssignmentErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsEndPositionAssignmentError = PositionSeatsEndPositionAssignmentErrors[keyof PositionSeatsEndPositionAssignmentErrors];
+
+export type PositionSeatsEndPositionAssignmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionSeatsEndPositionAssignmentResponse = PositionSeatsEndPositionAssignmentResponses[keyof PositionSeatsEndPositionAssignmentResponses];
+
+export type PositionSeatsChangePositionCapacityData = {
+    body?: PositionCapacityUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Capacity';
+};
+
+export type PositionSeatsChangePositionCapacityErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsChangePositionCapacityError = PositionSeatsChangePositionCapacityErrors[keyof PositionSeatsChangePositionCapacityErrors];
+
+export type PositionSeatsChangePositionCapacityResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionSeatsChangePositionCapacityResponse = PositionSeatsChangePositionCapacityResponses[keyof PositionSeatsChangePositionCapacityResponses];
+
+export type PositionSeatsChangePositionDepartmentData = {
+    body?: PositionDepartmentUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Department';
+};
+
+export type PositionSeatsChangePositionDepartmentErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsChangePositionDepartmentError = PositionSeatsChangePositionDepartmentErrors[keyof PositionSeatsChangePositionDepartmentErrors];
+
+export type PositionSeatsChangePositionDepartmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionSeatsChangePositionDepartmentResponse = PositionSeatsChangePositionDepartmentResponses[keyof PositionSeatsChangePositionDepartmentResponses];
+
+export type RequiredSkillsGetRequiredSkillsData = {
     body?: RequiredSkillRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9097,7 +9539,7 @@ export type GetRequiredSkillsAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills';
 };
 
-export type GetRequiredSkillsAsyncErrors = {
+export type RequiredSkillsGetRequiredSkillsErrors = {
     /**
      * Unauthorized
      */
@@ -9108,18 +9550,18 @@ export type GetRequiredSkillsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRequiredSkillsAsyncError = GetRequiredSkillsAsyncErrors[keyof GetRequiredSkillsAsyncErrors];
+export type RequiredSkillsGetRequiredSkillsError = RequiredSkillsGetRequiredSkillsErrors[keyof RequiredSkillsGetRequiredSkillsErrors];
 
-export type GetRequiredSkillsAsyncResponses = {
+export type RequiredSkillsGetRequiredSkillsResponses = {
     /**
      * OK
      */
     200: RequiredSkillRecordDtoListEnvelopeReadable;
 };
 
-export type GetRequiredSkillsAsyncResponse = GetRequiredSkillsAsyncResponses[keyof GetRequiredSkillsAsyncResponses];
+export type RequiredSkillsGetRequiredSkillsResponse = RequiredSkillsGetRequiredSkillsResponses[keyof RequiredSkillsGetRequiredSkillsResponses];
 
-export type CreateRequiredSkillAsyncData = {
+export type RequiredSkillsCreateRequiredSkillData = {
     body?: RequiredSkillRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9132,7 +9574,7 @@ export type CreateRequiredSkillAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills';
 };
 
-export type CreateRequiredSkillAsyncErrors = {
+export type RequiredSkillsCreateRequiredSkillErrors = {
     /**
      * Bad Request
      */
@@ -9147,18 +9589,18 @@ export type CreateRequiredSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateRequiredSkillAsyncError = CreateRequiredSkillAsyncErrors[keyof CreateRequiredSkillAsyncErrors];
+export type RequiredSkillsCreateRequiredSkillError = RequiredSkillsCreateRequiredSkillErrors[keyof RequiredSkillsCreateRequiredSkillErrors];
 
-export type CreateRequiredSkillAsyncResponses = {
+export type RequiredSkillsCreateRequiredSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateRequiredSkillAsyncResponse = CreateRequiredSkillAsyncResponses[keyof CreateRequiredSkillAsyncResponses];
+export type RequiredSkillsCreateRequiredSkillResponse = RequiredSkillsCreateRequiredSkillResponses[keyof RequiredSkillsCreateRequiredSkillResponses];
 
-export type GetRequiredSkillsCountAsyncData = {
+export type RequiredSkillsGetRequiredSkillsCountData = {
     body?: RequiredSkillRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9171,7 +9613,7 @@ export type GetRequiredSkillsCountAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills/Count';
 };
 
-export type GetRequiredSkillsCountAsyncErrors = {
+export type RequiredSkillsGetRequiredSkillsCountErrors = {
     /**
      * Unauthorized
      */
@@ -9182,18 +9624,18 @@ export type GetRequiredSkillsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRequiredSkillsCountAsyncError = GetRequiredSkillsCountAsyncErrors[keyof GetRequiredSkillsCountAsyncErrors];
+export type RequiredSkillsGetRequiredSkillsCountError = RequiredSkillsGetRequiredSkillsCountErrors[keyof RequiredSkillsGetRequiredSkillsCountErrors];
 
-export type GetRequiredSkillsCountAsyncResponses = {
+export type RequiredSkillsGetRequiredSkillsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetRequiredSkillsCountAsyncResponse = GetRequiredSkillsCountAsyncResponses[keyof GetRequiredSkillsCountAsyncResponses];
+export type RequiredSkillsGetRequiredSkillsCountResponse = RequiredSkillsGetRequiredSkillsCountResponses[keyof RequiredSkillsGetRequiredSkillsCountResponses];
 
-export type DeleteRequiredSkillAsyncData = {
+export type RequiredSkillsDeleteRequiredSkillData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9208,7 +9650,7 @@ export type DeleteRequiredSkillAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
 };
 
-export type DeleteRequiredSkillAsyncErrors = {
+export type RequiredSkillsDeleteRequiredSkillErrors = {
     /**
      * Bad Request
      */
@@ -9223,18 +9665,18 @@ export type DeleteRequiredSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteRequiredSkillAsyncError = DeleteRequiredSkillAsyncErrors[keyof DeleteRequiredSkillAsyncErrors];
+export type RequiredSkillsDeleteRequiredSkillError = RequiredSkillsDeleteRequiredSkillErrors[keyof RequiredSkillsDeleteRequiredSkillErrors];
 
-export type DeleteRequiredSkillAsyncResponses = {
+export type RequiredSkillsDeleteRequiredSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteRequiredSkillAsyncResponse = DeleteRequiredSkillAsyncResponses[keyof DeleteRequiredSkillAsyncResponses];
+export type RequiredSkillsDeleteRequiredSkillResponse = RequiredSkillsDeleteRequiredSkillResponses[keyof RequiredSkillsDeleteRequiredSkillResponses];
 
-export type GetRequiredSkillByIdAsyncData = {
+export type RequiredSkillsGetRequiredSkillByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9249,7 +9691,7 @@ export type GetRequiredSkillByIdAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
 };
 
-export type GetRequiredSkillByIdAsyncErrors = {
+export type RequiredSkillsGetRequiredSkillByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9260,18 +9702,18 @@ export type GetRequiredSkillByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRequiredSkillByIdAsyncError = GetRequiredSkillByIdAsyncErrors[keyof GetRequiredSkillByIdAsyncErrors];
+export type RequiredSkillsGetRequiredSkillByIdError = RequiredSkillsGetRequiredSkillByIdErrors[keyof RequiredSkillsGetRequiredSkillByIdErrors];
 
-export type GetRequiredSkillByIdAsyncResponses = {
+export type RequiredSkillsGetRequiredSkillByIdResponses = {
     /**
      * OK
      */
     200: RequiredSkillRecordDtoEnvelopeReadable;
 };
 
-export type GetRequiredSkillByIdAsyncResponse = GetRequiredSkillByIdAsyncResponses[keyof GetRequiredSkillByIdAsyncResponses];
+export type RequiredSkillsGetRequiredSkillByIdResponse = RequiredSkillsGetRequiredSkillByIdResponses[keyof RequiredSkillsGetRequiredSkillByIdResponses];
 
-export type PatchRequiredSkillAsyncData = {
+export type RequiredSkillsPatchRequiredSkillData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9286,7 +9728,7 @@ export type PatchRequiredSkillAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
 };
 
-export type PatchRequiredSkillAsyncErrors = {
+export type RequiredSkillsPatchRequiredSkillErrors = {
     /**
      * Bad Request
      */
@@ -9301,18 +9743,18 @@ export type PatchRequiredSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchRequiredSkillAsyncError = PatchRequiredSkillAsyncErrors[keyof PatchRequiredSkillAsyncErrors];
+export type RequiredSkillsPatchRequiredSkillError = RequiredSkillsPatchRequiredSkillErrors[keyof RequiredSkillsPatchRequiredSkillErrors];
 
-export type PatchRequiredSkillAsyncResponses = {
+export type RequiredSkillsPatchRequiredSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchRequiredSkillAsyncResponse = PatchRequiredSkillAsyncResponses[keyof PatchRequiredSkillAsyncResponses];
+export type RequiredSkillsPatchRequiredSkillResponse = RequiredSkillsPatchRequiredSkillResponses[keyof RequiredSkillsPatchRequiredSkillResponses];
 
-export type UpdateRequiredSkillAsyncData = {
+export type RequiredSkillsUpdateRequiredSkillData = {
     body?: RequiredSkillRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9327,7 +9769,7 @@ export type UpdateRequiredSkillAsyncData = {
     url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
 };
 
-export type UpdateRequiredSkillAsyncErrors = {
+export type RequiredSkillsUpdateRequiredSkillErrors = {
     /**
      * Bad Request
      */
@@ -9342,18 +9784,18 @@ export type UpdateRequiredSkillAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateRequiredSkillAsyncError = UpdateRequiredSkillAsyncErrors[keyof UpdateRequiredSkillAsyncErrors];
+export type RequiredSkillsUpdateRequiredSkillError = RequiredSkillsUpdateRequiredSkillErrors[keyof RequiredSkillsUpdateRequiredSkillErrors];
 
-export type UpdateRequiredSkillAsyncResponses = {
+export type RequiredSkillsUpdateRequiredSkillResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateRequiredSkillAsyncResponse = UpdateRequiredSkillAsyncResponses[keyof UpdateRequiredSkillAsyncResponses];
+export type RequiredSkillsUpdateRequiredSkillResponse = RequiredSkillsUpdateRequiredSkillResponses[keyof RequiredSkillsUpdateRequiredSkillResponses];
 
-export type GetSalariesAsyncData = {
+export type SalariesGetSalariesData = {
     body?: SalaryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9366,7 +9808,7 @@ export type GetSalariesAsyncData = {
     url: '/api/v2/HrmsService/Salaries';
 };
 
-export type GetSalariesAsyncErrors = {
+export type SalariesGetSalariesErrors = {
     /**
      * Unauthorized
      */
@@ -9377,18 +9819,18 @@ export type GetSalariesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSalariesAsyncError = GetSalariesAsyncErrors[keyof GetSalariesAsyncErrors];
+export type SalariesGetSalariesError = SalariesGetSalariesErrors[keyof SalariesGetSalariesErrors];
 
-export type GetSalariesAsyncResponses = {
+export type SalariesGetSalariesResponses = {
     /**
      * OK
      */
     200: SalaryDtoListEnvelopeReadable;
 };
 
-export type GetSalariesAsyncResponse = GetSalariesAsyncResponses[keyof GetSalariesAsyncResponses];
+export type SalariesGetSalariesResponse = SalariesGetSalariesResponses[keyof SalariesGetSalariesResponses];
 
-export type CreateSalaryAsyncData = {
+export type SalariesCreateSalaryData = {
     body?: SalaryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9401,7 +9843,7 @@ export type CreateSalaryAsyncData = {
     url: '/api/v2/HrmsService/Salaries';
 };
 
-export type CreateSalaryAsyncErrors = {
+export type SalariesCreateSalaryErrors = {
     /**
      * Bad Request
      */
@@ -9416,18 +9858,18 @@ export type CreateSalaryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSalaryAsyncError = CreateSalaryAsyncErrors[keyof CreateSalaryAsyncErrors];
+export type SalariesCreateSalaryError = SalariesCreateSalaryErrors[keyof SalariesCreateSalaryErrors];
 
-export type CreateSalaryAsyncResponses = {
+export type SalariesCreateSalaryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSalaryAsyncResponse = CreateSalaryAsyncResponses[keyof CreateSalaryAsyncResponses];
+export type SalariesCreateSalaryResponse = SalariesCreateSalaryResponses[keyof SalariesCreateSalaryResponses];
 
-export type GetSalariesCountAsyncData = {
+export type SalariesGetSalariesCountData = {
     body?: SalaryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9440,7 +9882,7 @@ export type GetSalariesCountAsyncData = {
     url: '/api/v2/HrmsService/Salaries/Count';
 };
 
-export type GetSalariesCountAsyncErrors = {
+export type SalariesGetSalariesCountErrors = {
     /**
      * Unauthorized
      */
@@ -9451,18 +9893,18 @@ export type GetSalariesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSalariesCountAsyncError = GetSalariesCountAsyncErrors[keyof GetSalariesCountAsyncErrors];
+export type SalariesGetSalariesCountError = SalariesGetSalariesCountErrors[keyof SalariesGetSalariesCountErrors];
 
-export type GetSalariesCountAsyncResponses = {
+export type SalariesGetSalariesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSalariesCountAsyncResponse = GetSalariesCountAsyncResponses[keyof GetSalariesCountAsyncResponses];
+export type SalariesGetSalariesCountResponse = SalariesGetSalariesCountResponses[keyof SalariesGetSalariesCountResponses];
 
-export type DeleteSalaryAsyncData = {
+export type SalariesDeleteSalaryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9477,7 +9919,7 @@ export type DeleteSalaryAsyncData = {
     url: '/api/v2/HrmsService/Salaries/{salaryId}';
 };
 
-export type DeleteSalaryAsyncErrors = {
+export type SalariesDeleteSalaryErrors = {
     /**
      * Bad Request
      */
@@ -9492,18 +9934,18 @@ export type DeleteSalaryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSalaryAsyncError = DeleteSalaryAsyncErrors[keyof DeleteSalaryAsyncErrors];
+export type SalariesDeleteSalaryError = SalariesDeleteSalaryErrors[keyof SalariesDeleteSalaryErrors];
 
-export type DeleteSalaryAsyncResponses = {
+export type SalariesDeleteSalaryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSalaryAsyncResponse = DeleteSalaryAsyncResponses[keyof DeleteSalaryAsyncResponses];
+export type SalariesDeleteSalaryResponse = SalariesDeleteSalaryResponses[keyof SalariesDeleteSalaryResponses];
 
-export type GetSalaryByIdAsyncData = {
+export type SalariesGetSalaryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9518,7 +9960,7 @@ export type GetSalaryByIdAsyncData = {
     url: '/api/v2/HrmsService/Salaries/{salaryId}';
 };
 
-export type GetSalaryByIdAsyncErrors = {
+export type SalariesGetSalaryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9529,18 +9971,18 @@ export type GetSalaryByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSalaryByIdAsyncError = GetSalaryByIdAsyncErrors[keyof GetSalaryByIdAsyncErrors];
+export type SalariesGetSalaryByIdError = SalariesGetSalaryByIdErrors[keyof SalariesGetSalaryByIdErrors];
 
-export type GetSalaryByIdAsyncResponses = {
+export type SalariesGetSalaryByIdResponses = {
     /**
      * OK
      */
     200: SalaryDtoEnvelopeReadable;
 };
 
-export type GetSalaryByIdAsyncResponse = GetSalaryByIdAsyncResponses[keyof GetSalaryByIdAsyncResponses];
+export type SalariesGetSalaryByIdResponse = SalariesGetSalaryByIdResponses[keyof SalariesGetSalaryByIdResponses];
 
-export type PatchSalaryAsyncData = {
+export type SalariesPatchSalaryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9555,7 +9997,7 @@ export type PatchSalaryAsyncData = {
     url: '/api/v2/HrmsService/Salaries/{salaryId}';
 };
 
-export type PatchSalaryAsyncErrors = {
+export type SalariesPatchSalaryErrors = {
     /**
      * Bad Request
      */
@@ -9570,18 +10012,18 @@ export type PatchSalaryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSalaryAsyncError = PatchSalaryAsyncErrors[keyof PatchSalaryAsyncErrors];
+export type SalariesPatchSalaryError = SalariesPatchSalaryErrors[keyof SalariesPatchSalaryErrors];
 
-export type PatchSalaryAsyncResponses = {
+export type SalariesPatchSalaryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSalaryAsyncResponse = PatchSalaryAsyncResponses[keyof PatchSalaryAsyncResponses];
+export type SalariesPatchSalaryResponse = SalariesPatchSalaryResponses[keyof SalariesPatchSalaryResponses];
 
-export type UpdateSalaryAsyncData = {
+export type SalariesUpdateSalaryData = {
     body?: SalaryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9596,7 +10038,7 @@ export type UpdateSalaryAsyncData = {
     url: '/api/v2/HrmsService/Salaries/{salaryId}';
 };
 
-export type UpdateSalaryAsyncErrors = {
+export type SalariesUpdateSalaryErrors = {
     /**
      * Bad Request
      */
@@ -9611,18 +10053,18 @@ export type UpdateSalaryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSalaryAsyncError = UpdateSalaryAsyncErrors[keyof UpdateSalaryAsyncErrors];
+export type SalariesUpdateSalaryError = SalariesUpdateSalaryErrors[keyof SalariesUpdateSalaryErrors];
 
-export type UpdateSalaryAsyncResponses = {
+export type SalariesUpdateSalaryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSalaryAsyncResponse = UpdateSalaryAsyncResponses[keyof UpdateSalaryAsyncResponses];
+export type SalariesUpdateSalaryResponse = SalariesUpdateSalaryResponses[keyof SalariesUpdateSalaryResponses];
 
-export type GetSchedulesAsyncData = {
+export type SchedulesGetSchedulesData = {
     body?: ScheduleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9635,7 +10077,7 @@ export type GetSchedulesAsyncData = {
     url: '/api/v2/HrmsService/Schedules';
 };
 
-export type GetSchedulesAsyncErrors = {
+export type SchedulesGetSchedulesErrors = {
     /**
      * Unauthorized
      */
@@ -9646,18 +10088,18 @@ export type GetSchedulesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSchedulesAsyncError = GetSchedulesAsyncErrors[keyof GetSchedulesAsyncErrors];
+export type SchedulesGetSchedulesError = SchedulesGetSchedulesErrors[keyof SchedulesGetSchedulesErrors];
 
-export type GetSchedulesAsyncResponses = {
+export type SchedulesGetSchedulesResponses = {
     /**
      * OK
      */
     200: ScheduleDtoListEnvelopeReadable;
 };
 
-export type GetSchedulesAsyncResponse = GetSchedulesAsyncResponses[keyof GetSchedulesAsyncResponses];
+export type SchedulesGetSchedulesResponse = SchedulesGetSchedulesResponses[keyof SchedulesGetSchedulesResponses];
 
-export type CreateScheduleAsyncData = {
+export type SchedulesCreateScheduleData = {
     body?: ScheduleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9670,7 +10112,7 @@ export type CreateScheduleAsyncData = {
     url: '/api/v2/HrmsService/Schedules';
 };
 
-export type CreateScheduleAsyncErrors = {
+export type SchedulesCreateScheduleErrors = {
     /**
      * Bad Request
      */
@@ -9685,18 +10127,18 @@ export type CreateScheduleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateScheduleAsyncError = CreateScheduleAsyncErrors[keyof CreateScheduleAsyncErrors];
+export type SchedulesCreateScheduleError = SchedulesCreateScheduleErrors[keyof SchedulesCreateScheduleErrors];
 
-export type CreateScheduleAsyncResponses = {
+export type SchedulesCreateScheduleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateScheduleAsyncResponse = CreateScheduleAsyncResponses[keyof CreateScheduleAsyncResponses];
+export type SchedulesCreateScheduleResponse = SchedulesCreateScheduleResponses[keyof SchedulesCreateScheduleResponses];
 
-export type GetSchedulesCountAsyncData = {
+export type SchedulesGetSchedulesCountData = {
     body?: ScheduleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9709,7 +10151,7 @@ export type GetSchedulesCountAsyncData = {
     url: '/api/v2/HrmsService/Schedules/Count';
 };
 
-export type GetSchedulesCountAsyncErrors = {
+export type SchedulesGetSchedulesCountErrors = {
     /**
      * Unauthorized
      */
@@ -9720,18 +10162,18 @@ export type GetSchedulesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSchedulesCountAsyncError = GetSchedulesCountAsyncErrors[keyof GetSchedulesCountAsyncErrors];
+export type SchedulesGetSchedulesCountError = SchedulesGetSchedulesCountErrors[keyof SchedulesGetSchedulesCountErrors];
 
-export type GetSchedulesCountAsyncResponses = {
+export type SchedulesGetSchedulesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSchedulesCountAsyncResponse = GetSchedulesCountAsyncResponses[keyof GetSchedulesCountAsyncResponses];
+export type SchedulesGetSchedulesCountResponse = SchedulesGetSchedulesCountResponses[keyof SchedulesGetSchedulesCountResponses];
 
-export type DeleteScheduleAsyncData = {
+export type SchedulesDeleteScheduleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9746,7 +10188,7 @@ export type DeleteScheduleAsyncData = {
     url: '/api/v2/HrmsService/Schedules/{scheduleId}';
 };
 
-export type DeleteScheduleAsyncErrors = {
+export type SchedulesDeleteScheduleErrors = {
     /**
      * Bad Request
      */
@@ -9761,18 +10203,18 @@ export type DeleteScheduleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteScheduleAsyncError = DeleteScheduleAsyncErrors[keyof DeleteScheduleAsyncErrors];
+export type SchedulesDeleteScheduleError = SchedulesDeleteScheduleErrors[keyof SchedulesDeleteScheduleErrors];
 
-export type DeleteScheduleAsyncResponses = {
+export type SchedulesDeleteScheduleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteScheduleAsyncResponse = DeleteScheduleAsyncResponses[keyof DeleteScheduleAsyncResponses];
+export type SchedulesDeleteScheduleResponse = SchedulesDeleteScheduleResponses[keyof SchedulesDeleteScheduleResponses];
 
-export type GetScheduleByIdAsyncData = {
+export type SchedulesGetScheduleByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9787,7 +10229,7 @@ export type GetScheduleByIdAsyncData = {
     url: '/api/v2/HrmsService/Schedules/{scheduleId}';
 };
 
-export type GetScheduleByIdAsyncErrors = {
+export type SchedulesGetScheduleByIdErrors = {
     /**
      * Unauthorized
      */
@@ -9798,18 +10240,18 @@ export type GetScheduleByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetScheduleByIdAsyncError = GetScheduleByIdAsyncErrors[keyof GetScheduleByIdAsyncErrors];
+export type SchedulesGetScheduleByIdError = SchedulesGetScheduleByIdErrors[keyof SchedulesGetScheduleByIdErrors];
 
-export type GetScheduleByIdAsyncResponses = {
+export type SchedulesGetScheduleByIdResponses = {
     /**
      * OK
      */
     200: ScheduleDtoEnvelopeReadable;
 };
 
-export type GetScheduleByIdAsyncResponse = GetScheduleByIdAsyncResponses[keyof GetScheduleByIdAsyncResponses];
+export type SchedulesGetScheduleByIdResponse = SchedulesGetScheduleByIdResponses[keyof SchedulesGetScheduleByIdResponses];
 
-export type PatchScheduleAsyncData = {
+export type SchedulesPatchScheduleData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9824,7 +10266,7 @@ export type PatchScheduleAsyncData = {
     url: '/api/v2/HrmsService/Schedules/{scheduleId}';
 };
 
-export type PatchScheduleAsyncErrors = {
+export type SchedulesPatchScheduleErrors = {
     /**
      * Bad Request
      */
@@ -9839,18 +10281,18 @@ export type PatchScheduleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchScheduleAsyncError = PatchScheduleAsyncErrors[keyof PatchScheduleAsyncErrors];
+export type SchedulesPatchScheduleError = SchedulesPatchScheduleErrors[keyof SchedulesPatchScheduleErrors];
 
-export type PatchScheduleAsyncResponses = {
+export type SchedulesPatchScheduleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchScheduleAsyncResponse = PatchScheduleAsyncResponses[keyof PatchScheduleAsyncResponses];
+export type SchedulesPatchScheduleResponse = SchedulesPatchScheduleResponses[keyof SchedulesPatchScheduleResponses];
 
-export type UpdateScheduleAsyncData = {
+export type SchedulesUpdateScheduleData = {
     body?: ScheduleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9865,7 +10307,7 @@ export type UpdateScheduleAsyncData = {
     url: '/api/v2/HrmsService/Schedules/{scheduleId}';
 };
 
-export type UpdateScheduleAsyncErrors = {
+export type SchedulesUpdateScheduleErrors = {
     /**
      * Bad Request
      */
@@ -9880,18 +10322,18 @@ export type UpdateScheduleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateScheduleAsyncError = UpdateScheduleAsyncErrors[keyof UpdateScheduleAsyncErrors];
+export type SchedulesUpdateScheduleError = SchedulesUpdateScheduleErrors[keyof SchedulesUpdateScheduleErrors];
 
-export type UpdateScheduleAsyncResponses = {
+export type SchedulesUpdateScheduleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateScheduleAsyncResponse = UpdateScheduleAsyncResponses[keyof UpdateScheduleAsyncResponses];
+export type SchedulesUpdateScheduleResponse = SchedulesUpdateScheduleResponses[keyof SchedulesUpdateScheduleResponses];
 
-export type GetShiftsAsyncData = {
+export type ShiftsGetShiftsData = {
     body?: ShiftDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9904,7 +10346,7 @@ export type GetShiftsAsyncData = {
     url: '/api/v2/HrmsService/Shifts';
 };
 
-export type GetShiftsAsyncErrors = {
+export type ShiftsGetShiftsErrors = {
     /**
      * Unauthorized
      */
@@ -9915,18 +10357,18 @@ export type GetShiftsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShiftsAsyncError = GetShiftsAsyncErrors[keyof GetShiftsAsyncErrors];
+export type ShiftsGetShiftsError = ShiftsGetShiftsErrors[keyof ShiftsGetShiftsErrors];
 
-export type GetShiftsAsyncResponses = {
+export type ShiftsGetShiftsResponses = {
     /**
      * OK
      */
     200: ShiftDtoListEnvelopeReadable;
 };
 
-export type GetShiftsAsyncResponse = GetShiftsAsyncResponses[keyof GetShiftsAsyncResponses];
+export type ShiftsGetShiftsResponse = ShiftsGetShiftsResponses[keyof ShiftsGetShiftsResponses];
 
-export type CreateShiftAsyncData = {
+export type ShiftsCreateShiftData = {
     body?: ShiftCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9939,7 +10381,7 @@ export type CreateShiftAsyncData = {
     url: '/api/v2/HrmsService/Shifts';
 };
 
-export type CreateShiftAsyncErrors = {
+export type ShiftsCreateShiftErrors = {
     /**
      * Bad Request
      */
@@ -9954,18 +10396,18 @@ export type CreateShiftAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateShiftAsyncError = CreateShiftAsyncErrors[keyof CreateShiftAsyncErrors];
+export type ShiftsCreateShiftError = ShiftsCreateShiftErrors[keyof ShiftsCreateShiftErrors];
 
-export type CreateShiftAsyncResponses = {
+export type ShiftsCreateShiftResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateShiftAsyncResponse = CreateShiftAsyncResponses[keyof CreateShiftAsyncResponses];
+export type ShiftsCreateShiftResponse = ShiftsCreateShiftResponses[keyof ShiftsCreateShiftResponses];
 
-export type GetShiftsCountAsyncData = {
+export type ShiftsGetShiftsCountData = {
     body?: ShiftDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9978,7 +10420,7 @@ export type GetShiftsCountAsyncData = {
     url: '/api/v2/HrmsService/Shifts/Count';
 };
 
-export type GetShiftsCountAsyncErrors = {
+export type ShiftsGetShiftsCountErrors = {
     /**
      * Unauthorized
      */
@@ -9989,18 +10431,18 @@ export type GetShiftsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShiftsCountAsyncError = GetShiftsCountAsyncErrors[keyof GetShiftsCountAsyncErrors];
+export type ShiftsGetShiftsCountError = ShiftsGetShiftsCountErrors[keyof ShiftsGetShiftsCountErrors];
 
-export type GetShiftsCountAsyncResponses = {
+export type ShiftsGetShiftsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShiftsCountAsyncResponse = GetShiftsCountAsyncResponses[keyof GetShiftsCountAsyncResponses];
+export type ShiftsGetShiftsCountResponse = ShiftsGetShiftsCountResponses[keyof ShiftsGetShiftsCountResponses];
 
-export type DeleteShiftAsyncData = {
+export type ShiftsDeleteShiftData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10015,7 +10457,7 @@ export type DeleteShiftAsyncData = {
     url: '/api/v2/HrmsService/Shifts/{shiftId}';
 };
 
-export type DeleteShiftAsyncErrors = {
+export type ShiftsDeleteShiftErrors = {
     /**
      * Bad Request
      */
@@ -10030,18 +10472,18 @@ export type DeleteShiftAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteShiftAsyncError = DeleteShiftAsyncErrors[keyof DeleteShiftAsyncErrors];
+export type ShiftsDeleteShiftError = ShiftsDeleteShiftErrors[keyof ShiftsDeleteShiftErrors];
 
-export type DeleteShiftAsyncResponses = {
+export type ShiftsDeleteShiftResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteShiftAsyncResponse = DeleteShiftAsyncResponses[keyof DeleteShiftAsyncResponses];
+export type ShiftsDeleteShiftResponse = ShiftsDeleteShiftResponses[keyof ShiftsDeleteShiftResponses];
 
-export type GetShiftByIdAsyncData = {
+export type ShiftsGetShiftByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10056,7 +10498,7 @@ export type GetShiftByIdAsyncData = {
     url: '/api/v2/HrmsService/Shifts/{shiftId}';
 };
 
-export type GetShiftByIdAsyncErrors = {
+export type ShiftsGetShiftByIdErrors = {
     /**
      * Unauthorized
      */
@@ -10067,18 +10509,18 @@ export type GetShiftByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShiftByIdAsyncError = GetShiftByIdAsyncErrors[keyof GetShiftByIdAsyncErrors];
+export type ShiftsGetShiftByIdError = ShiftsGetShiftByIdErrors[keyof ShiftsGetShiftByIdErrors];
 
-export type GetShiftByIdAsyncResponses = {
+export type ShiftsGetShiftByIdResponses = {
     /**
      * OK
      */
     200: ShiftDtoEnvelopeReadable;
 };
 
-export type GetShiftByIdAsyncResponse = GetShiftByIdAsyncResponses[keyof GetShiftByIdAsyncResponses];
+export type ShiftsGetShiftByIdResponse = ShiftsGetShiftByIdResponses[keyof ShiftsGetShiftByIdResponses];
 
-export type PatchShiftAsyncData = {
+export type ShiftsPatchShiftData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10093,7 +10535,7 @@ export type PatchShiftAsyncData = {
     url: '/api/v2/HrmsService/Shifts/{shiftId}';
 };
 
-export type PatchShiftAsyncErrors = {
+export type ShiftsPatchShiftErrors = {
     /**
      * Bad Request
      */
@@ -10108,18 +10550,18 @@ export type PatchShiftAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShiftAsyncError = PatchShiftAsyncErrors[keyof PatchShiftAsyncErrors];
+export type ShiftsPatchShiftError = ShiftsPatchShiftErrors[keyof ShiftsPatchShiftErrors];
 
-export type PatchShiftAsyncResponses = {
+export type ShiftsPatchShiftResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShiftAsyncResponse = PatchShiftAsyncResponses[keyof PatchShiftAsyncResponses];
+export type ShiftsPatchShiftResponse = ShiftsPatchShiftResponses[keyof ShiftsPatchShiftResponses];
 
-export type UpdateShiftAsyncData = {
+export type ShiftsUpdateShiftData = {
     body?: ShiftUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10134,7 +10576,7 @@ export type UpdateShiftAsyncData = {
     url: '/api/v2/HrmsService/Shifts/{shiftId}';
 };
 
-export type UpdateShiftAsyncErrors = {
+export type ShiftsUpdateShiftErrors = {
     /**
      * Bad Request
      */
@@ -10149,18 +10591,18 @@ export type UpdateShiftAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateShiftAsyncError = UpdateShiftAsyncErrors[keyof UpdateShiftAsyncErrors];
+export type ShiftsUpdateShiftError = ShiftsUpdateShiftErrors[keyof ShiftsUpdateShiftErrors];
 
-export type UpdateShiftAsyncResponses = {
+export type ShiftsUpdateShiftResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateShiftAsyncResponse = UpdateShiftAsyncResponses[keyof UpdateShiftAsyncResponses];
+export type ShiftsUpdateShiftResponse = ShiftsUpdateShiftResponses[keyof ShiftsUpdateShiftResponses];
 
-export type GetTimeIntervalsAsyncData = {
+export type TimeIntervalsGetTimeIntervalsData = {
     body?: TimeIntervalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10173,7 +10615,7 @@ export type GetTimeIntervalsAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals';
 };
 
-export type GetTimeIntervalsAsyncErrors = {
+export type TimeIntervalsGetTimeIntervalsErrors = {
     /**
      * Unauthorized
      */
@@ -10184,18 +10626,18 @@ export type GetTimeIntervalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeIntervalsAsyncError = GetTimeIntervalsAsyncErrors[keyof GetTimeIntervalsAsyncErrors];
+export type TimeIntervalsGetTimeIntervalsError = TimeIntervalsGetTimeIntervalsErrors[keyof TimeIntervalsGetTimeIntervalsErrors];
 
-export type GetTimeIntervalsAsyncResponses = {
+export type TimeIntervalsGetTimeIntervalsResponses = {
     /**
      * OK
      */
     200: TimeIntervalDtoListEnvelopeReadable;
 };
 
-export type GetTimeIntervalsAsyncResponse = GetTimeIntervalsAsyncResponses[keyof GetTimeIntervalsAsyncResponses];
+export type TimeIntervalsGetTimeIntervalsResponse = TimeIntervalsGetTimeIntervalsResponses[keyof TimeIntervalsGetTimeIntervalsResponses];
 
-export type CreateTimeIntervalAsyncData = {
+export type TimeIntervalsCreateTimeIntervalData = {
     body?: TimeIntervalCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10208,7 +10650,7 @@ export type CreateTimeIntervalAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals';
 };
 
-export type CreateTimeIntervalAsyncErrors = {
+export type TimeIntervalsCreateTimeIntervalErrors = {
     /**
      * Bad Request
      */
@@ -10223,18 +10665,18 @@ export type CreateTimeIntervalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTimeIntervalAsyncError = CreateTimeIntervalAsyncErrors[keyof CreateTimeIntervalAsyncErrors];
+export type TimeIntervalsCreateTimeIntervalError = TimeIntervalsCreateTimeIntervalErrors[keyof TimeIntervalsCreateTimeIntervalErrors];
 
-export type CreateTimeIntervalAsyncResponses = {
+export type TimeIntervalsCreateTimeIntervalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateTimeIntervalAsyncResponse = CreateTimeIntervalAsyncResponses[keyof CreateTimeIntervalAsyncResponses];
+export type TimeIntervalsCreateTimeIntervalResponse = TimeIntervalsCreateTimeIntervalResponses[keyof TimeIntervalsCreateTimeIntervalResponses];
 
-export type GetTimeIntervalsCountAsyncData = {
+export type TimeIntervalsGetTimeIntervalsCountData = {
     body?: TimeIntervalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10247,7 +10689,7 @@ export type GetTimeIntervalsCountAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals/Count';
 };
 
-export type GetTimeIntervalsCountAsyncErrors = {
+export type TimeIntervalsGetTimeIntervalsCountErrors = {
     /**
      * Unauthorized
      */
@@ -10258,18 +10700,18 @@ export type GetTimeIntervalsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeIntervalsCountAsyncError = GetTimeIntervalsCountAsyncErrors[keyof GetTimeIntervalsCountAsyncErrors];
+export type TimeIntervalsGetTimeIntervalsCountError = TimeIntervalsGetTimeIntervalsCountErrors[keyof TimeIntervalsGetTimeIntervalsCountErrors];
 
-export type GetTimeIntervalsCountAsyncResponses = {
+export type TimeIntervalsGetTimeIntervalsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTimeIntervalsCountAsyncResponse = GetTimeIntervalsCountAsyncResponses[keyof GetTimeIntervalsCountAsyncResponses];
+export type TimeIntervalsGetTimeIntervalsCountResponse = TimeIntervalsGetTimeIntervalsCountResponses[keyof TimeIntervalsGetTimeIntervalsCountResponses];
 
-export type DeleteTimeIntervalAsyncData = {
+export type TimeIntervalsDeleteTimeIntervalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10284,7 +10726,7 @@ export type DeleteTimeIntervalAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals/{timeIntervalId}';
 };
 
-export type DeleteTimeIntervalAsyncErrors = {
+export type TimeIntervalsDeleteTimeIntervalErrors = {
     /**
      * Bad Request
      */
@@ -10299,18 +10741,18 @@ export type DeleteTimeIntervalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTimeIntervalAsyncError = DeleteTimeIntervalAsyncErrors[keyof DeleteTimeIntervalAsyncErrors];
+export type TimeIntervalsDeleteTimeIntervalError = TimeIntervalsDeleteTimeIntervalErrors[keyof TimeIntervalsDeleteTimeIntervalErrors];
 
-export type DeleteTimeIntervalAsyncResponses = {
+export type TimeIntervalsDeleteTimeIntervalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTimeIntervalAsyncResponse = DeleteTimeIntervalAsyncResponses[keyof DeleteTimeIntervalAsyncResponses];
+export type TimeIntervalsDeleteTimeIntervalResponse = TimeIntervalsDeleteTimeIntervalResponses[keyof TimeIntervalsDeleteTimeIntervalResponses];
 
-export type GetTimeIntervalByIdAsyncData = {
+export type TimeIntervalsGetTimeIntervalByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10325,7 +10767,7 @@ export type GetTimeIntervalByIdAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals/{timeIntervalId}';
 };
 
-export type GetTimeIntervalByIdAsyncErrors = {
+export type TimeIntervalsGetTimeIntervalByIdErrors = {
     /**
      * Unauthorized
      */
@@ -10336,18 +10778,18 @@ export type GetTimeIntervalByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeIntervalByIdAsyncError = GetTimeIntervalByIdAsyncErrors[keyof GetTimeIntervalByIdAsyncErrors];
+export type TimeIntervalsGetTimeIntervalByIdError = TimeIntervalsGetTimeIntervalByIdErrors[keyof TimeIntervalsGetTimeIntervalByIdErrors];
 
-export type GetTimeIntervalByIdAsyncResponses = {
+export type TimeIntervalsGetTimeIntervalByIdResponses = {
     /**
      * OK
      */
     200: TimeIntervalDtoEnvelopeReadable;
 };
 
-export type GetTimeIntervalByIdAsyncResponse = GetTimeIntervalByIdAsyncResponses[keyof GetTimeIntervalByIdAsyncResponses];
+export type TimeIntervalsGetTimeIntervalByIdResponse = TimeIntervalsGetTimeIntervalByIdResponses[keyof TimeIntervalsGetTimeIntervalByIdResponses];
 
-export type PatchTimeIntervalAsyncData = {
+export type TimeIntervalsPatchTimeIntervalData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10362,7 +10804,7 @@ export type PatchTimeIntervalAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals/{timeIntervalId}';
 };
 
-export type PatchTimeIntervalAsyncErrors = {
+export type TimeIntervalsPatchTimeIntervalErrors = {
     /**
      * Bad Request
      */
@@ -10377,18 +10819,18 @@ export type PatchTimeIntervalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTimeIntervalAsyncError = PatchTimeIntervalAsyncErrors[keyof PatchTimeIntervalAsyncErrors];
+export type TimeIntervalsPatchTimeIntervalError = TimeIntervalsPatchTimeIntervalErrors[keyof TimeIntervalsPatchTimeIntervalErrors];
 
-export type PatchTimeIntervalAsyncResponses = {
+export type TimeIntervalsPatchTimeIntervalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTimeIntervalAsyncResponse = PatchTimeIntervalAsyncResponses[keyof PatchTimeIntervalAsyncResponses];
+export type TimeIntervalsPatchTimeIntervalResponse = TimeIntervalsPatchTimeIntervalResponses[keyof TimeIntervalsPatchTimeIntervalResponses];
 
-export type UpdateTimeIntervalAsyncData = {
+export type TimeIntervalsUpdateTimeIntervalData = {
     body?: TimeIntervalUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10403,7 +10845,7 @@ export type UpdateTimeIntervalAsyncData = {
     url: '/api/v2/HrmsService/TimeIntervals/{timeIntervalId}';
 };
 
-export type UpdateTimeIntervalAsyncErrors = {
+export type TimeIntervalsUpdateTimeIntervalErrors = {
     /**
      * Bad Request
      */
@@ -10418,18 +10860,18 @@ export type UpdateTimeIntervalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTimeIntervalAsyncError = UpdateTimeIntervalAsyncErrors[keyof UpdateTimeIntervalAsyncErrors];
+export type TimeIntervalsUpdateTimeIntervalError = TimeIntervalsUpdateTimeIntervalErrors[keyof TimeIntervalsUpdateTimeIntervalErrors];
 
-export type UpdateTimeIntervalAsyncResponses = {
+export type TimeIntervalsUpdateTimeIntervalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTimeIntervalAsyncResponse = UpdateTimeIntervalAsyncResponses[keyof UpdateTimeIntervalAsyncResponses];
+export type TimeIntervalsUpdateTimeIntervalResponse = TimeIntervalsUpdateTimeIntervalResponses[keyof TimeIntervalsUpdateTimeIntervalResponses];
 
-export type GetTrainingProgramCoursesAsyncData = {
+export type TrainingProgramCoursesGetTrainingProgramCoursesData = {
     body?: TrainingProgramCourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10442,7 +10884,7 @@ export type GetTrainingProgramCoursesAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses';
 };
 
-export type GetTrainingProgramCoursesAsyncErrors = {
+export type TrainingProgramCoursesGetTrainingProgramCoursesErrors = {
     /**
      * Unauthorized
      */
@@ -10453,18 +10895,18 @@ export type GetTrainingProgramCoursesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramCoursesAsyncError = GetTrainingProgramCoursesAsyncErrors[keyof GetTrainingProgramCoursesAsyncErrors];
+export type TrainingProgramCoursesGetTrainingProgramCoursesError = TrainingProgramCoursesGetTrainingProgramCoursesErrors[keyof TrainingProgramCoursesGetTrainingProgramCoursesErrors];
 
-export type GetTrainingProgramCoursesAsyncResponses = {
+export type TrainingProgramCoursesGetTrainingProgramCoursesResponses = {
     /**
      * OK
      */
     200: TrainingProgramCourseDtoListEnvelopeReadable;
 };
 
-export type GetTrainingProgramCoursesAsyncResponse = GetTrainingProgramCoursesAsyncResponses[keyof GetTrainingProgramCoursesAsyncResponses];
+export type TrainingProgramCoursesGetTrainingProgramCoursesResponse = TrainingProgramCoursesGetTrainingProgramCoursesResponses[keyof TrainingProgramCoursesGetTrainingProgramCoursesResponses];
 
-export type CreateTrainingProgramCourseAsyncData = {
+export type TrainingProgramCoursesCreateTrainingProgramCourseData = {
     body?: TrainingProgramCourseCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10477,7 +10919,7 @@ export type CreateTrainingProgramCourseAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses';
 };
 
-export type CreateTrainingProgramCourseAsyncErrors = {
+export type TrainingProgramCoursesCreateTrainingProgramCourseErrors = {
     /**
      * Bad Request
      */
@@ -10492,18 +10934,18 @@ export type CreateTrainingProgramCourseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTrainingProgramCourseAsyncError = CreateTrainingProgramCourseAsyncErrors[keyof CreateTrainingProgramCourseAsyncErrors];
+export type TrainingProgramCoursesCreateTrainingProgramCourseError = TrainingProgramCoursesCreateTrainingProgramCourseErrors[keyof TrainingProgramCoursesCreateTrainingProgramCourseErrors];
 
-export type CreateTrainingProgramCourseAsyncResponses = {
+export type TrainingProgramCoursesCreateTrainingProgramCourseResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateTrainingProgramCourseAsyncResponse = CreateTrainingProgramCourseAsyncResponses[keyof CreateTrainingProgramCourseAsyncResponses];
+export type TrainingProgramCoursesCreateTrainingProgramCourseResponse = TrainingProgramCoursesCreateTrainingProgramCourseResponses[keyof TrainingProgramCoursesCreateTrainingProgramCourseResponses];
 
-export type GetTrainingProgramCoursesCountAsyncData = {
+export type TrainingProgramCoursesGetTrainingProgramCoursesCountData = {
     body?: TrainingProgramCourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10516,7 +10958,7 @@ export type GetTrainingProgramCoursesCountAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses/Count';
 };
 
-export type GetTrainingProgramCoursesCountAsyncErrors = {
+export type TrainingProgramCoursesGetTrainingProgramCoursesCountErrors = {
     /**
      * Unauthorized
      */
@@ -10527,18 +10969,18 @@ export type GetTrainingProgramCoursesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramCoursesCountAsyncError = GetTrainingProgramCoursesCountAsyncErrors[keyof GetTrainingProgramCoursesCountAsyncErrors];
+export type TrainingProgramCoursesGetTrainingProgramCoursesCountError = TrainingProgramCoursesGetTrainingProgramCoursesCountErrors[keyof TrainingProgramCoursesGetTrainingProgramCoursesCountErrors];
 
-export type GetTrainingProgramCoursesCountAsyncResponses = {
+export type TrainingProgramCoursesGetTrainingProgramCoursesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTrainingProgramCoursesCountAsyncResponse = GetTrainingProgramCoursesCountAsyncResponses[keyof GetTrainingProgramCoursesCountAsyncResponses];
+export type TrainingProgramCoursesGetTrainingProgramCoursesCountResponse = TrainingProgramCoursesGetTrainingProgramCoursesCountResponses[keyof TrainingProgramCoursesGetTrainingProgramCoursesCountResponses];
 
-export type DeleteTrainingProgramCourseAsyncData = {
+export type TrainingProgramCoursesDeleteTrainingProgramCourseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10553,7 +10995,7 @@ export type DeleteTrainingProgramCourseAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses/{courseId}';
 };
 
-export type DeleteTrainingProgramCourseAsyncErrors = {
+export type TrainingProgramCoursesDeleteTrainingProgramCourseErrors = {
     /**
      * Bad Request
      */
@@ -10568,18 +11010,18 @@ export type DeleteTrainingProgramCourseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTrainingProgramCourseAsyncError = DeleteTrainingProgramCourseAsyncErrors[keyof DeleteTrainingProgramCourseAsyncErrors];
+export type TrainingProgramCoursesDeleteTrainingProgramCourseError = TrainingProgramCoursesDeleteTrainingProgramCourseErrors[keyof TrainingProgramCoursesDeleteTrainingProgramCourseErrors];
 
-export type DeleteTrainingProgramCourseAsyncResponses = {
+export type TrainingProgramCoursesDeleteTrainingProgramCourseResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTrainingProgramCourseAsyncResponse = DeleteTrainingProgramCourseAsyncResponses[keyof DeleteTrainingProgramCourseAsyncResponses];
+export type TrainingProgramCoursesDeleteTrainingProgramCourseResponse = TrainingProgramCoursesDeleteTrainingProgramCourseResponses[keyof TrainingProgramCoursesDeleteTrainingProgramCourseResponses];
 
-export type GetTrainingProgramCourseByIdAsyncData = {
+export type TrainingProgramCoursesGetTrainingProgramCourseByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10594,7 +11036,7 @@ export type GetTrainingProgramCourseByIdAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses/{courseId}';
 };
 
-export type GetTrainingProgramCourseByIdAsyncErrors = {
+export type TrainingProgramCoursesGetTrainingProgramCourseByIdErrors = {
     /**
      * Unauthorized
      */
@@ -10605,18 +11047,18 @@ export type GetTrainingProgramCourseByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramCourseByIdAsyncError = GetTrainingProgramCourseByIdAsyncErrors[keyof GetTrainingProgramCourseByIdAsyncErrors];
+export type TrainingProgramCoursesGetTrainingProgramCourseByIdError = TrainingProgramCoursesGetTrainingProgramCourseByIdErrors[keyof TrainingProgramCoursesGetTrainingProgramCourseByIdErrors];
 
-export type GetTrainingProgramCourseByIdAsyncResponses = {
+export type TrainingProgramCoursesGetTrainingProgramCourseByIdResponses = {
     /**
      * OK
      */
     200: TrainingProgramCourseDtoEnvelopeReadable;
 };
 
-export type GetTrainingProgramCourseByIdAsyncResponse = GetTrainingProgramCourseByIdAsyncResponses[keyof GetTrainingProgramCourseByIdAsyncResponses];
+export type TrainingProgramCoursesGetTrainingProgramCourseByIdResponse = TrainingProgramCoursesGetTrainingProgramCourseByIdResponses[keyof TrainingProgramCoursesGetTrainingProgramCourseByIdResponses];
 
-export type PatchTrainingProgramCourseAsyncData = {
+export type TrainingProgramCoursesPatchTrainingProgramCourseData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10631,7 +11073,7 @@ export type PatchTrainingProgramCourseAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses/{courseId}';
 };
 
-export type PatchTrainingProgramCourseAsyncErrors = {
+export type TrainingProgramCoursesPatchTrainingProgramCourseErrors = {
     /**
      * Bad Request
      */
@@ -10646,18 +11088,18 @@ export type PatchTrainingProgramCourseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTrainingProgramCourseAsyncError = PatchTrainingProgramCourseAsyncErrors[keyof PatchTrainingProgramCourseAsyncErrors];
+export type TrainingProgramCoursesPatchTrainingProgramCourseError = TrainingProgramCoursesPatchTrainingProgramCourseErrors[keyof TrainingProgramCoursesPatchTrainingProgramCourseErrors];
 
-export type PatchTrainingProgramCourseAsyncResponses = {
+export type TrainingProgramCoursesPatchTrainingProgramCourseResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTrainingProgramCourseAsyncResponse = PatchTrainingProgramCourseAsyncResponses[keyof PatchTrainingProgramCourseAsyncResponses];
+export type TrainingProgramCoursesPatchTrainingProgramCourseResponse = TrainingProgramCoursesPatchTrainingProgramCourseResponses[keyof TrainingProgramCoursesPatchTrainingProgramCourseResponses];
 
-export type UpdateTrainingProgramCourseAsyncData = {
+export type TrainingProgramCoursesUpdateTrainingProgramCourseData = {
     body?: TrainingProgramCourseUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10672,7 +11114,7 @@ export type UpdateTrainingProgramCourseAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramCourses/{courseId}';
 };
 
-export type UpdateTrainingProgramCourseAsyncErrors = {
+export type TrainingProgramCoursesUpdateTrainingProgramCourseErrors = {
     /**
      * Bad Request
      */
@@ -10687,18 +11129,18 @@ export type UpdateTrainingProgramCourseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTrainingProgramCourseAsyncError = UpdateTrainingProgramCourseAsyncErrors[keyof UpdateTrainingProgramCourseAsyncErrors];
+export type TrainingProgramCoursesUpdateTrainingProgramCourseError = TrainingProgramCoursesUpdateTrainingProgramCourseErrors[keyof TrainingProgramCoursesUpdateTrainingProgramCourseErrors];
 
-export type UpdateTrainingProgramCourseAsyncResponses = {
+export type TrainingProgramCoursesUpdateTrainingProgramCourseResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTrainingProgramCourseAsyncResponse = UpdateTrainingProgramCourseAsyncResponses[keyof UpdateTrainingProgramCourseAsyncResponses];
+export type TrainingProgramCoursesUpdateTrainingProgramCourseResponse = TrainingProgramCoursesUpdateTrainingProgramCourseResponses[keyof TrainingProgramCoursesUpdateTrainingProgramCourseResponses];
 
-export type GetTrainingProgramEventsAsyncData = {
+export type TrainingProgramEventsGetTrainingProgramEventsData = {
     body?: TrainingProgramEventDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10711,7 +11153,7 @@ export type GetTrainingProgramEventsAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents';
 };
 
-export type GetTrainingProgramEventsAsyncErrors = {
+export type TrainingProgramEventsGetTrainingProgramEventsErrors = {
     /**
      * Unauthorized
      */
@@ -10722,18 +11164,18 @@ export type GetTrainingProgramEventsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramEventsAsyncError = GetTrainingProgramEventsAsyncErrors[keyof GetTrainingProgramEventsAsyncErrors];
+export type TrainingProgramEventsGetTrainingProgramEventsError = TrainingProgramEventsGetTrainingProgramEventsErrors[keyof TrainingProgramEventsGetTrainingProgramEventsErrors];
 
-export type GetTrainingProgramEventsAsyncResponses = {
+export type TrainingProgramEventsGetTrainingProgramEventsResponses = {
     /**
      * OK
      */
     200: TrainingProgramEventDtoListEnvelopeReadable;
 };
 
-export type GetTrainingProgramEventsAsyncResponse = GetTrainingProgramEventsAsyncResponses[keyof GetTrainingProgramEventsAsyncResponses];
+export type TrainingProgramEventsGetTrainingProgramEventsResponse = TrainingProgramEventsGetTrainingProgramEventsResponses[keyof TrainingProgramEventsGetTrainingProgramEventsResponses];
 
-export type CreateTrainingProgramEventAsyncData = {
+export type TrainingProgramEventsCreateTrainingProgramEventData = {
     body?: TrainingProgramEventCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10746,7 +11188,7 @@ export type CreateTrainingProgramEventAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents';
 };
 
-export type CreateTrainingProgramEventAsyncErrors = {
+export type TrainingProgramEventsCreateTrainingProgramEventErrors = {
     /**
      * Bad Request
      */
@@ -10761,18 +11203,18 @@ export type CreateTrainingProgramEventAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTrainingProgramEventAsyncError = CreateTrainingProgramEventAsyncErrors[keyof CreateTrainingProgramEventAsyncErrors];
+export type TrainingProgramEventsCreateTrainingProgramEventError = TrainingProgramEventsCreateTrainingProgramEventErrors[keyof TrainingProgramEventsCreateTrainingProgramEventErrors];
 
-export type CreateTrainingProgramEventAsyncResponses = {
+export type TrainingProgramEventsCreateTrainingProgramEventResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateTrainingProgramEventAsyncResponse = CreateTrainingProgramEventAsyncResponses[keyof CreateTrainingProgramEventAsyncResponses];
+export type TrainingProgramEventsCreateTrainingProgramEventResponse = TrainingProgramEventsCreateTrainingProgramEventResponses[keyof TrainingProgramEventsCreateTrainingProgramEventResponses];
 
-export type GetTrainingProgramEventsCountAsyncData = {
+export type TrainingProgramEventsGetTrainingProgramEventsCountData = {
     body?: TrainingProgramEventDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10785,7 +11227,7 @@ export type GetTrainingProgramEventsCountAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents/Count';
 };
 
-export type GetTrainingProgramEventsCountAsyncErrors = {
+export type TrainingProgramEventsGetTrainingProgramEventsCountErrors = {
     /**
      * Unauthorized
      */
@@ -10796,18 +11238,18 @@ export type GetTrainingProgramEventsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramEventsCountAsyncError = GetTrainingProgramEventsCountAsyncErrors[keyof GetTrainingProgramEventsCountAsyncErrors];
+export type TrainingProgramEventsGetTrainingProgramEventsCountError = TrainingProgramEventsGetTrainingProgramEventsCountErrors[keyof TrainingProgramEventsGetTrainingProgramEventsCountErrors];
 
-export type GetTrainingProgramEventsCountAsyncResponses = {
+export type TrainingProgramEventsGetTrainingProgramEventsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTrainingProgramEventsCountAsyncResponse = GetTrainingProgramEventsCountAsyncResponses[keyof GetTrainingProgramEventsCountAsyncResponses];
+export type TrainingProgramEventsGetTrainingProgramEventsCountResponse = TrainingProgramEventsGetTrainingProgramEventsCountResponses[keyof TrainingProgramEventsGetTrainingProgramEventsCountResponses];
 
-export type DeleteTrainingProgramEventAsyncData = {
+export type TrainingProgramEventsDeleteTrainingProgramEventData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10822,7 +11264,7 @@ export type DeleteTrainingProgramEventAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents/{eventId}';
 };
 
-export type DeleteTrainingProgramEventAsyncErrors = {
+export type TrainingProgramEventsDeleteTrainingProgramEventErrors = {
     /**
      * Bad Request
      */
@@ -10837,18 +11279,18 @@ export type DeleteTrainingProgramEventAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTrainingProgramEventAsyncError = DeleteTrainingProgramEventAsyncErrors[keyof DeleteTrainingProgramEventAsyncErrors];
+export type TrainingProgramEventsDeleteTrainingProgramEventError = TrainingProgramEventsDeleteTrainingProgramEventErrors[keyof TrainingProgramEventsDeleteTrainingProgramEventErrors];
 
-export type DeleteTrainingProgramEventAsyncResponses = {
+export type TrainingProgramEventsDeleteTrainingProgramEventResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTrainingProgramEventAsyncResponse = DeleteTrainingProgramEventAsyncResponses[keyof DeleteTrainingProgramEventAsyncResponses];
+export type TrainingProgramEventsDeleteTrainingProgramEventResponse = TrainingProgramEventsDeleteTrainingProgramEventResponses[keyof TrainingProgramEventsDeleteTrainingProgramEventResponses];
 
-export type GetTrainingProgramEventByIdAsyncData = {
+export type TrainingProgramEventsGetTrainingProgramEventByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10863,7 +11305,7 @@ export type GetTrainingProgramEventByIdAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents/{eventId}';
 };
 
-export type GetTrainingProgramEventByIdAsyncErrors = {
+export type TrainingProgramEventsGetTrainingProgramEventByIdErrors = {
     /**
      * Unauthorized
      */
@@ -10874,18 +11316,18 @@ export type GetTrainingProgramEventByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramEventByIdAsyncError = GetTrainingProgramEventByIdAsyncErrors[keyof GetTrainingProgramEventByIdAsyncErrors];
+export type TrainingProgramEventsGetTrainingProgramEventByIdError = TrainingProgramEventsGetTrainingProgramEventByIdErrors[keyof TrainingProgramEventsGetTrainingProgramEventByIdErrors];
 
-export type GetTrainingProgramEventByIdAsyncResponses = {
+export type TrainingProgramEventsGetTrainingProgramEventByIdResponses = {
     /**
      * OK
      */
     200: TrainingProgramEventDtoEnvelopeReadable;
 };
 
-export type GetTrainingProgramEventByIdAsyncResponse = GetTrainingProgramEventByIdAsyncResponses[keyof GetTrainingProgramEventByIdAsyncResponses];
+export type TrainingProgramEventsGetTrainingProgramEventByIdResponse = TrainingProgramEventsGetTrainingProgramEventByIdResponses[keyof TrainingProgramEventsGetTrainingProgramEventByIdResponses];
 
-export type PatchTrainingProgramEventAsyncData = {
+export type TrainingProgramEventsPatchTrainingProgramEventData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -10900,7 +11342,7 @@ export type PatchTrainingProgramEventAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents/{eventId}';
 };
 
-export type PatchTrainingProgramEventAsyncErrors = {
+export type TrainingProgramEventsPatchTrainingProgramEventErrors = {
     /**
      * Bad Request
      */
@@ -10915,18 +11357,18 @@ export type PatchTrainingProgramEventAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTrainingProgramEventAsyncError = PatchTrainingProgramEventAsyncErrors[keyof PatchTrainingProgramEventAsyncErrors];
+export type TrainingProgramEventsPatchTrainingProgramEventError = TrainingProgramEventsPatchTrainingProgramEventErrors[keyof TrainingProgramEventsPatchTrainingProgramEventErrors];
 
-export type PatchTrainingProgramEventAsyncResponses = {
+export type TrainingProgramEventsPatchTrainingProgramEventResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTrainingProgramEventAsyncResponse = PatchTrainingProgramEventAsyncResponses[keyof PatchTrainingProgramEventAsyncResponses];
+export type TrainingProgramEventsPatchTrainingProgramEventResponse = TrainingProgramEventsPatchTrainingProgramEventResponses[keyof TrainingProgramEventsPatchTrainingProgramEventResponses];
 
-export type UpdateTrainingProgramEventAsyncData = {
+export type TrainingProgramEventsUpdateTrainingProgramEventData = {
     body?: TrainingProgramEventUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10941,7 +11383,7 @@ export type UpdateTrainingProgramEventAsyncData = {
     url: '/api/v2/HrmsService/TrainingProgramEvents/{eventId}';
 };
 
-export type UpdateTrainingProgramEventAsyncErrors = {
+export type TrainingProgramEventsUpdateTrainingProgramEventErrors = {
     /**
      * Bad Request
      */
@@ -10956,18 +11398,18 @@ export type UpdateTrainingProgramEventAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTrainingProgramEventAsyncError = UpdateTrainingProgramEventAsyncErrors[keyof UpdateTrainingProgramEventAsyncErrors];
+export type TrainingProgramEventsUpdateTrainingProgramEventError = TrainingProgramEventsUpdateTrainingProgramEventErrors[keyof TrainingProgramEventsUpdateTrainingProgramEventErrors];
 
-export type UpdateTrainingProgramEventAsyncResponses = {
+export type TrainingProgramEventsUpdateTrainingProgramEventResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTrainingProgramEventAsyncResponse = UpdateTrainingProgramEventAsyncResponses[keyof UpdateTrainingProgramEventAsyncResponses];
+export type TrainingProgramEventsUpdateTrainingProgramEventResponse = TrainingProgramEventsUpdateTrainingProgramEventResponses[keyof TrainingProgramEventsUpdateTrainingProgramEventResponses];
 
-export type GetTrainingProgramsAsyncData = {
+export type TrainingProgramsGetTrainingProgramsData = {
     body?: TrainingProgramDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -10980,7 +11422,7 @@ export type GetTrainingProgramsAsyncData = {
     url: '/api/v2/HrmsService/TrainingPrograms';
 };
 
-export type GetTrainingProgramsAsyncErrors = {
+export type TrainingProgramsGetTrainingProgramsErrors = {
     /**
      * Unauthorized
      */
@@ -10991,18 +11433,18 @@ export type GetTrainingProgramsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramsAsyncError = GetTrainingProgramsAsyncErrors[keyof GetTrainingProgramsAsyncErrors];
+export type TrainingProgramsGetTrainingProgramsError = TrainingProgramsGetTrainingProgramsErrors[keyof TrainingProgramsGetTrainingProgramsErrors];
 
-export type GetTrainingProgramsAsyncResponses = {
+export type TrainingProgramsGetTrainingProgramsResponses = {
     /**
      * OK
      */
     200: TrainingProgramDtoListEnvelopeReadable;
 };
 
-export type GetTrainingProgramsAsyncResponse = GetTrainingProgramsAsyncResponses[keyof GetTrainingProgramsAsyncResponses];
+export type TrainingProgramsGetTrainingProgramsResponse = TrainingProgramsGetTrainingProgramsResponses[keyof TrainingProgramsGetTrainingProgramsResponses];
 
-export type CreateTrainingProgramAsyncData = {
+export type TrainingProgramsCreateTrainingProgramData = {
     body?: TrainingProgramCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11015,7 +11457,7 @@ export type CreateTrainingProgramAsyncData = {
     url: '/api/v2/HrmsService/TrainingPrograms';
 };
 
-export type CreateTrainingProgramAsyncErrors = {
+export type TrainingProgramsCreateTrainingProgramErrors = {
     /**
      * Bad Request
      */
@@ -11030,18 +11472,18 @@ export type CreateTrainingProgramAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTrainingProgramAsyncError = CreateTrainingProgramAsyncErrors[keyof CreateTrainingProgramAsyncErrors];
+export type TrainingProgramsCreateTrainingProgramError = TrainingProgramsCreateTrainingProgramErrors[keyof TrainingProgramsCreateTrainingProgramErrors];
 
-export type CreateTrainingProgramAsyncResponses = {
+export type TrainingProgramsCreateTrainingProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateTrainingProgramAsyncResponse = CreateTrainingProgramAsyncResponses[keyof CreateTrainingProgramAsyncResponses];
+export type TrainingProgramsCreateTrainingProgramResponse = TrainingProgramsCreateTrainingProgramResponses[keyof TrainingProgramsCreateTrainingProgramResponses];
 
-export type GetTrainingProgramsCountAsyncData = {
+export type TrainingProgramsGetTrainingProgramsCountData = {
     body?: TrainingProgramDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -11054,7 +11496,7 @@ export type GetTrainingProgramsCountAsyncData = {
     url: '/api/v2/HrmsService/TrainingPrograms/Count';
 };
 
-export type GetTrainingProgramsCountAsyncErrors = {
+export type TrainingProgramsGetTrainingProgramsCountErrors = {
     /**
      * Unauthorized
      */
@@ -11065,18 +11507,18 @@ export type GetTrainingProgramsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramsCountAsyncError = GetTrainingProgramsCountAsyncErrors[keyof GetTrainingProgramsCountAsyncErrors];
+export type TrainingProgramsGetTrainingProgramsCountError = TrainingProgramsGetTrainingProgramsCountErrors[keyof TrainingProgramsGetTrainingProgramsCountErrors];
 
-export type GetTrainingProgramsCountAsyncResponses = {
+export type TrainingProgramsGetTrainingProgramsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTrainingProgramsCountAsyncResponse = GetTrainingProgramsCountAsyncResponses[keyof GetTrainingProgramsCountAsyncResponses];
+export type TrainingProgramsGetTrainingProgramsCountResponse = TrainingProgramsGetTrainingProgramsCountResponses[keyof TrainingProgramsGetTrainingProgramsCountResponses];
 
-export type DeleteTrainingProgramAsyncData = {
+export type TrainingProgramsDeleteTrainingProgramData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11091,7 +11533,7 @@ export type DeleteTrainingProgramAsyncData = {
     url: '/api/v2/HrmsService/TrainingPrograms/{programId}';
 };
 
-export type DeleteTrainingProgramAsyncErrors = {
+export type TrainingProgramsDeleteTrainingProgramErrors = {
     /**
      * Bad Request
      */
@@ -11106,18 +11548,18 @@ export type DeleteTrainingProgramAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTrainingProgramAsyncError = DeleteTrainingProgramAsyncErrors[keyof DeleteTrainingProgramAsyncErrors];
+export type TrainingProgramsDeleteTrainingProgramError = TrainingProgramsDeleteTrainingProgramErrors[keyof TrainingProgramsDeleteTrainingProgramErrors];
 
-export type DeleteTrainingProgramAsyncResponses = {
+export type TrainingProgramsDeleteTrainingProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTrainingProgramAsyncResponse = DeleteTrainingProgramAsyncResponses[keyof DeleteTrainingProgramAsyncResponses];
+export type TrainingProgramsDeleteTrainingProgramResponse = TrainingProgramsDeleteTrainingProgramResponses[keyof TrainingProgramsDeleteTrainingProgramResponses];
 
-export type GetTrainingProgramByIdAsyncData = {
+export type TrainingProgramsGetTrainingProgramByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -11132,7 +11574,7 @@ export type GetTrainingProgramByIdAsyncData = {
     url: '/api/v2/HrmsService/TrainingPrograms/{programId}';
 };
 
-export type GetTrainingProgramByIdAsyncErrors = {
+export type TrainingProgramsGetTrainingProgramByIdErrors = {
     /**
      * Unauthorized
      */
@@ -11143,18 +11585,18 @@ export type GetTrainingProgramByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTrainingProgramByIdAsyncError = GetTrainingProgramByIdAsyncErrors[keyof GetTrainingProgramByIdAsyncErrors];
+export type TrainingProgramsGetTrainingProgramByIdError = TrainingProgramsGetTrainingProgramByIdErrors[keyof TrainingProgramsGetTrainingProgramByIdErrors];
 
-export type GetTrainingProgramByIdAsyncResponses = {
+export type TrainingProgramsGetTrainingProgramByIdResponses = {
     /**
      * OK
      */
     200: TrainingProgramDtoEnvelopeReadable;
 };
 
-export type GetTrainingProgramByIdAsyncResponse = GetTrainingProgramByIdAsyncResponses[keyof GetTrainingProgramByIdAsyncResponses];
+export type TrainingProgramsGetTrainingProgramByIdResponse = TrainingProgramsGetTrainingProgramByIdResponses[keyof TrainingProgramsGetTrainingProgramByIdResponses];
 
-export type UpdateTrainingProgramAsyncData = {
+export type TrainingProgramsUpdateTrainingProgramData = {
     body?: TrainingProgramUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -11169,7 +11611,7 @@ export type UpdateTrainingProgramAsyncData = {
     url: '/api/v2/HrmsService/TrainingPrograms/{programId}';
 };
 
-export type UpdateTrainingProgramAsyncErrors = {
+export type TrainingProgramsUpdateTrainingProgramErrors = {
     /**
      * Bad Request
      */
@@ -11184,16 +11626,16 @@ export type UpdateTrainingProgramAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTrainingProgramAsyncError = UpdateTrainingProgramAsyncErrors[keyof UpdateTrainingProgramAsyncErrors];
+export type TrainingProgramsUpdateTrainingProgramError = TrainingProgramsUpdateTrainingProgramErrors[keyof TrainingProgramsUpdateTrainingProgramErrors];
 
-export type UpdateTrainingProgramAsyncResponses = {
+export type TrainingProgramsUpdateTrainingProgramResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTrainingProgramAsyncResponse = UpdateTrainingProgramAsyncResponses[keyof UpdateTrainingProgramAsyncResponses];
+export type TrainingProgramsUpdateTrainingProgramResponse = TrainingProgramsUpdateTrainingProgramResponses[keyof TrainingProgramsUpdateTrainingProgramResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

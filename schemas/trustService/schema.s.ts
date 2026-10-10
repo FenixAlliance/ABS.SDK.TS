@@ -6,696 +6,472 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/TrustService/Signatures": {
     /**
      * Get all signatures
      * @description Retrieves all signatures for the specified tenant.
      */
-    get: operations["GetSignaturesAsync"];
+    get: operations["Signatures_GetSignatures"];
   };
   "/api/v2/TrustService/Signatures/Count": {
     /**
      * Get signatures count
      * @description Returns the count of signatures for the specified tenant.
      */
-    get: operations["GetSignaturesCountAsync"];
+    get: operations["Signatures_GetSignaturesCount"];
   };
   "/api/v2/TrustService/Signatures/{id}": {
     /**
      * Get signature by ID
      * @description Retrieves a specific signature by its identifier.
      */
-    get: operations["GetSignatureByIdAsync"];
+    get: operations["Signatures_GetSignatureById"];
   };
   "/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/primary-file/{fileUploadId}": {
     /**
      * Set the primary authoring file
      * @description Links an existing scan-gated FileUpload as the document's mutable authoring artifact (only while editable).
      */
-    put: operations["SetPrimaryAuthoringFileAsync"];
+    put: operations["SignedDocumentArtifacts_SetPrimaryAuthoringFile"];
   };
   "/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/freeze": {
     /**
      * Freeze the source for signature
      * @description Copies the primary authoring artifact into a new Sealed frozen-source artifact, hashes it, and binds it to the document (LockState = FrozenForSignature).
      */
-    post: operations["FreezeAsync"];
+    post: operations["SignedDocumentArtifacts_Freeze"];
   };
   "/api/v2/TrustService/SignedDocumentArtifacts/reference/{fileUploadId}": {
     /**
      * Get an artifact reference
      * @description Resolves a stored artifact's reference (FileUpload id + key + hash + media hints).
      */
-    get: operations["GetReferenceAsync"];
+    get: operations["SignedDocumentArtifacts_GetReference"];
   };
   "/api/v2/TrustService/SignedDocumentArtifacts/reference/{fileUploadId}/verify": {
     /**
      * Verify an artifact hash
      * @description Re-reads the artifact bytes and verifies them against the recorded SHA-256. Returns true on match.
      */
-    get: operations["VerifyAsync"];
+    get: operations["SignedDocumentArtifacts_Verify"];
   };
   "/api/v2/TrustService/SignedDocumentAttachments": {
     /**
      * Get all signed document attachments
      * @description Retrieves all signed document attachments for the specified tenant.
      */
-    get: operations["GetSignedDocumentAttachmentsAsync"];
+    get: operations["SignedDocumentAttachments_GetSignedDocumentAttachments"];
     /**
      * Create a new signed document attachment
      * @description Links an already-stored file to a SignedDocument (metadata + Storage pointer; no bytes).
      */
-    post: operations["CreateSignedDocumentAttachmentAsync"];
+    post: operations["SignedDocumentAttachments_CreateSignedDocumentAttachment"];
   };
   "/api/v2/TrustService/SignedDocumentAttachments/Count": {
     /**
      * Get signed document attachments count
      * @description Returns the count of signed document attachments for the specified tenant.
      */
-    get: operations["GetSignedDocumentAttachmentsCountAsync"];
+    get: operations["SignedDocumentAttachments_GetSignedDocumentAttachmentsCount"];
   };
   "/api/v2/TrustService/SignedDocumentAttachments/{id}": {
     /**
      * Get signed document attachment by ID
      * @description Retrieves a specific signed document attachment by its identifier.
      */
-    get: operations["GetSignedDocumentAttachmentByIdAsync"];
+    get: operations["SignedDocumentAttachments_GetSignedDocumentAttachmentById"];
     /**
      * Update a signed document attachment
      * @description Updates signed document attachment metadata for the specified tenant.
      */
-    put: operations["UpdateSignedDocumentAttachmentAsync"];
+    put: operations["SignedDocumentAttachments_UpdateSignedDocumentAttachment"];
     /**
      * Delete a signed document attachment
      * @description Deletes a signed document attachment link for the specified tenant.
      */
-    delete: operations["DeleteSignedDocumentAttachmentAsync"];
+    delete: operations["SignedDocumentAttachments_DeleteSignedDocumentAttachment"];
     /**
      * Patch a signed document attachment
      * @description Patch a signed document attachment
      */
-    patch: operations["PatchSignedDocumentAttachmentAsync"];
+    patch: operations["SignedDocumentAttachments_PatchSignedDocumentAttachment"];
   };
   "/api/v2/TrustService/SignedDocuments": {
     /**
      * Get all signed documents
      * @description Retrieves all signed documents for the specified tenant.
      */
-    get: operations["GetSignedDocumentsAsync"];
+    get: operations["SignedDocuments_GetSignedDocuments"];
     /**
      * Create a new signed document
      * @description Creates a new signed document for the specified tenant.
      */
-    post: operations["CreateSignedDocumentAsync"];
+    post: operations["SignedDocuments_CreateSignedDocument"];
   };
   "/api/v2/TrustService/SignedDocuments/Count": {
     /**
      * Get signed documents count
      * @description Returns the count of signed documents for the specified tenant.
      */
-    get: operations["GetSignedDocumentsCountAsync"];
+    get: operations["SignedDocuments_GetSignedDocumentsCount"];
   };
   "/api/v2/TrustService/SignedDocuments/{id}": {
     /**
      * Get signed document by ID
      * @description Retrieves a specific signed document by its identifier.
      */
-    get: operations["GetSignedDocumentByIdAsync"];
+    get: operations["SignedDocuments_GetSignedDocumentById"];
     /**
      * Update a signed document
      * @description Updates an existing signed document for the specified tenant.
      */
-    put: operations["UpdateSignedDocumentAsync"];
+    put: operations["SignedDocuments_UpdateSignedDocument"];
     /**
      * Delete a signed document
      * @description Deletes a signed document for the specified tenant.
      */
-    delete: operations["DeleteSignedDocumentAsync"];
+    delete: operations["SignedDocuments_DeleteSignedDocument"];
     /**
      * Patch a signed document
      * @description Patch a signed document
      */
-    patch: operations["PatchSignedDocumentAsync"];
+    patch: operations["SignedDocuments_PatchSignedDocument"];
   };
   "/api/v2/TrustService/SignedDocuments/{id}/quick-sign": {
     /**
      * Quick-sign a frozen document
      * @description Signs a frozen signed document directly with a chosen certificate + provider (no signing-request workflow) and seals it. Returns the sealed document.
      */
-    post: operations["QuickSignSignedDocumentAsync"];
+    post: operations["SignedDocuments_QuickSignSignedDocument"];
   };
   "/api/v2/TrustService/SignedDocuments/prepare-and-quick-sign": {
     /**
      * Create, freeze, and quick-sign a document in one call
      * @description Server-side single-signer flow: creates a SignedDocument from the uploaded source, stores it, freezes it, signs it with the chosen certificate + provider, and seals it — all in one unit of work. Returns the sealed document. Evidence truth (signed/status/hashes/artifact ids) is server-produced and cannot be supplied by the caller.
      */
-    post: operations["PrepareAndQuickSignAsync"];
+    post: operations["SignedDocuments_PrepareAndQuickSign"];
   };
   "/api/v2/TrustService/SignedDocuments/{id}/verify-signature": {
     /**
      * Verify a signed document's signature
      * @description Re-verifies the document's signature against its stored signed artifact (bytes intact + signed by the embedded certificate; certificate trust is a separate concern).
      */
-    get: operations["VerifySignedDocumentSignatureAsync"];
+    get: operations["SignedDocuments_VerifySignedDocumentSignature"];
   };
   "/api/v2/TrustService/SigningCertificates": {
     /**
      * Get all signing certificates
      * @description Retrieves all signing certificates for the specified tenant.
      */
-    get: operations["GetSigningCertificatesAsync"];
+    get: operations["SigningCertificates_GetSigningCertificates"];
     /**
      * Create a new signing certificate
      * @description Creates a new signing certificate for the specified tenant.
      */
-    post: operations["CreateSigningCertificateAsync"];
+    post: operations["SigningCertificates_CreateSigningCertificate"];
   };
   "/api/v2/TrustService/SigningCertificates/Count": {
     /**
      * Get signing certificates count
      * @description Returns the count of signing certificates for the specified tenant.
      */
-    get: operations["GetSigningCertificatesCountAsync"];
+    get: operations["SigningCertificates_GetSigningCertificatesCount"];
   };
   "/api/v2/TrustService/SigningCertificates/{id}": {
     /**
      * Get signing certificate by ID
      * @description Retrieves a specific signing certificate by its identifier.
      */
-    get: operations["GetSigningCertificateByIdAsync"];
+    get: operations["SigningCertificates_GetSigningCertificateById"];
     /**
      * Update a signing certificate
      * @description Updates an existing signing certificate for the specified tenant.
      */
-    put: operations["UpdateSigningCertificateAsync"];
+    put: operations["SigningCertificates_UpdateSigningCertificate"];
     /**
      * Delete a signing certificate
      * @description Deletes a signing certificate for the specified tenant.
      */
-    delete: operations["DeleteSigningCertificateAsync"];
+    delete: operations["SigningCertificates_DeleteSigningCertificate"];
     /**
      * Patch a signing certificate
      * @description Patch a signing certificate
      */
-    patch: operations["PatchSigningCertificateAsync"];
+    patch: operations["SigningCertificates_PatchSigningCertificate"];
   };
   "/api/v2/TrustService/SigningCertificates/Import": {
     /**
      * Import a PFX/P12 signing certificate into custody
      * @description Parses the uploaded PFX/P12, imports the private material into the configured signing custody, and creates the certificate metadata record. The PFX and password are used only for the request — never returned or stored.
      */
-    post: operations["ImportSigningCertificateAsync"];
+    post: operations["SigningCertificates_ImportSigningCertificate"];
   };
   "/api/v2/TrustService/SigningEngine/Providers": {
     /**
      * List signing providers
      * @description Returns the registered alpha signing providers (Noop / Manual / External). OData-queryable.
      */
-    get: operations["GetProvidersAsync"];
+    get: operations["SigningEngine_GetProviders"];
   };
   "/api/v2/TrustService/SigningEngine/Providers/Count": {
     /**
      * Count signing providers
      * @description Returns the count of registered alpha signing providers. OData-queryable.
      */
-    get: operations["GetProvidersCountAsync"];
+    get: operations["SigningEngine_GetProvidersCount"];
   };
   "/api/v2/TrustService/SigningEngine/Preview": {
     /**
      * Preview signing readiness
      * @description Side-effect-free: validates a signing request and reports whether it can proceed and with what policy.
      */
-    post: operations["PreviewAsync"];
+    post: operations["SigningEngine_Preview"];
+  };
+  "/api/v2/TrustService/SigningKeys/Platform": {
+    /**
+     * Generate a platform authority signing key in custody
+     * @description Generates the Alliance root or the licensing issuer key inside the configured signing custody and records its descriptor. Only the instance root tenant may call it, and only for a configured platform authority. The private key never leaves custody; the response carries public data only.
+     */
+    post: operations["SigningKeys_GeneratePlatformSigningKey"];
   };
   "/api/v2/TrustService/SigningLogs": {
     /**
      * Get all signing logs
      * @description Retrieves all signing logs for the specified tenant.
      */
-    get: operations["GetSigningLogsAsync"];
+    get: operations["SigningLogs_GetSigningLogs"];
   };
   "/api/v2/TrustService/SigningLogs/Count": {
     /**
      * Get signing logs count
      * @description Returns the count of signing logs for the specified tenant.
      */
-    get: operations["GetSigningLogsCountAsync"];
+    get: operations["SigningLogs_GetSigningLogsCount"];
   };
   "/api/v2/TrustService/SigningLogs/{id}": {
     /**
      * Get signing log by ID
      * @description Retrieves a specific signing log by its identifier.
      */
-    get: operations["GetSigningLogByIdAsync"];
+    get: operations["SigningLogs_GetSigningLogById"];
   };
   "/api/v2/TrustService/SigningParticipants": {
     /** Get all signing participants */
-    get: operations["GetSigningParticipantsAsync"];
+    get: operations["SigningParticipants_GetSigningParticipants"];
   };
   "/api/v2/TrustService/SigningParticipants/Count": {
     /** Get signing participants count */
-    get: operations["GetSigningParticipantsCountAsync"];
+    get: operations["SigningParticipants_GetSigningParticipantsCount"];
   };
   "/api/v2/TrustService/SigningParticipants/{id}": {
     /** Get signing participant by ID */
-    get: operations["GetSigningParticipantByIdAsync"];
+    get: operations["SigningParticipants_GetSigningParticipantById"];
   };
   "/api/v2/TrustService/SigningParticipants/{id}/viewed": {
     /** Mark a participant as having viewed the request */
-    post: operations["MarkViewedAsync"];
+    post: operations["SigningParticipants_MarkViewed"];
   };
   "/api/v2/TrustService/SigningParticipants/{id}/outcome": {
     /** Record a manual/external participant outcome */
-    post: operations["RecordOutcomeAsync"];
+    post: operations["SigningParticipants_RecordOutcome"];
   };
   "/api/v2/TrustService/SigningProfileGraphicalRepresentations": {
     /**
      * Get all signature representations
      * @description Retrieves all reusable signature representations for the specified tenant.
      */
-    get: operations["GetSigningProfileGraphicalRepresentationsAsync"];
+    get: operations["SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentations"];
     /**
      * Create a new signature representation
      * @description Creates a new reusable signature representation for the specified tenant.
      */
-    post: operations["CreateSigningProfileGraphicalRepresentationAsync"];
+    post: operations["SigningProfileGraphicalRepresentations_CreateSigningProfileGraphicalRepresentation"];
   };
   "/api/v2/TrustService/SigningProfileGraphicalRepresentations/Count": {
     /**
      * Get signature representations count
      * @description Returns the count of signature representations for the specified tenant.
      */
-    get: operations["GetSigningProfileGraphicalRepresentationsCountAsync"];
+    get: operations["SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentationsCount"];
   };
   "/api/v2/TrustService/SigningProfileGraphicalRepresentations/{id}": {
     /**
      * Get signature representation by ID
      * @description Retrieves a specific signature representation by its identifier.
      */
-    get: operations["GetSigningProfileGraphicalRepresentationByIdAsync"];
+    get: operations["SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentationById"];
     /**
      * Update a signature representation
      * @description Updates an existing signature representation for the specified tenant.
      */
-    put: operations["UpdateSigningProfileGraphicalRepresentationAsync"];
+    put: operations["SigningProfileGraphicalRepresentations_UpdateSigningProfileGraphicalRepresentation"];
     /**
      * Delete a signature representation
      * @description Deletes a signature representation for the specified tenant.
      */
-    delete: operations["DeleteSigningProfileGraphicalRepresentationAsync"];
+    delete: operations["SigningProfileGraphicalRepresentations_DeleteSigningProfileGraphicalRepresentation"];
     /**
      * Patch a signature representation
      * @description Patch a signature representation
      */
-    patch: operations["PatchSigningProfileGraphicalRepresentationAsync"];
+    patch: operations["SigningProfileGraphicalRepresentations_PatchSigningProfileGraphicalRepresentation"];
   };
   "/api/v2/TrustService/SigningProfiles": {
     /**
      * Get all signing profiles
      * @description Retrieves all signing profiles for the specified tenant.
      */
-    get: operations["GetSigningProfilesAsync"];
+    get: operations["SigningProfiles_GetSigningProfiles"];
     /**
      * Create a new signing profile
      * @description Creates a new signing profile for the specified tenant (supports inline contact creation).
      */
-    post: operations["CreateSigningProfileAsync"];
+    post: operations["SigningProfiles_CreateSigningProfile"];
   };
   "/api/v2/TrustService/SigningProfiles/Count": {
     /**
      * Get signing profiles count
      * @description Returns the count of signing profiles for the specified tenant.
      */
-    get: operations["GetSigningProfilesCountAsync"];
+    get: operations["SigningProfiles_GetSigningProfilesCount"];
   };
   "/api/v2/TrustService/SigningProfiles/{id}": {
     /**
      * Get signing profile by ID
      * @description Retrieves a specific signing profile by its identifier.
      */
-    get: operations["GetSigningProfileByIdAsync"];
+    get: operations["SigningProfiles_GetSigningProfileById"];
     /**
      * Update a signing profile
      * @description Updates an existing signing profile for the specified tenant.
      */
-    put: operations["UpdateSigningProfileAsync"];
+    put: operations["SigningProfiles_UpdateSigningProfile"];
     /**
      * Delete a signing profile
      * @description Deletes a signing profile for the specified tenant.
      */
-    delete: operations["DeleteSigningProfileAsync"];
+    delete: operations["SigningProfiles_DeleteSigningProfile"];
     /**
      * Patch a signing profile
      * @description Patch a signing profile
      */
-    patch: operations["PatchSigningProfileAsync"];
+    patch: operations["SigningProfiles_PatchSigningProfile"];
+  };
+  "/api/v2/TrustService/SigningProfiles/{id}/execution-binding": {
+    /**
+     * Get a signing profile's execution binding
+     * @description Read-only inspection of the tenant-owned signing profile's authoritative execution binding — which registered signing implementation it signs through and which tenant certificate it signs with — together with a read-only custody-readiness status computed from the same fail-closed usability check the write path runs. It NEVER exposes key material, credential references or certificate bytes, and NEVER mutates the profile. This is the READ counterpart to the dedicated set-binding operation; a missing or cross-tenant profile fails closed as not found.
+     */
+    get: operations["SigningProfiles_GetSigningProfileExecutionBinding"];
+    /**
+     * Set a signing profile's execution binding
+     * @description Dedicated, security-sensitive admin operation that configures the tenant-owned signing profile's authoritative execution binding — which registered signing implementation it signs through and which tenant certificate it signs with. The provider, certificate validity and custody usability are validated server-side and fail closed. This is NOT part of the generic profile update surface, and the runtime signing path can never override the binding set here.
+     */
+    post: operations["SigningProfiles_SetSigningProfileExecutionBinding"];
   };
   "/api/v2/TrustService/SigningRequests": {
     /** Get all signing requests */
-    get: operations["GetSigningRequestsAsync"];
+    get: operations["SigningRequests_GetSigningRequests"];
   };
   "/api/v2/TrustService/SigningRequests/Count": {
     /** Get signing requests count */
-    get: operations["GetSigningRequestsCountAsync"];
+    get: operations["SigningRequests_GetSigningRequestsCount"];
   };
   "/api/v2/TrustService/SigningRequests/{id}": {
     /** Get signing request by ID */
-    get: operations["GetSigningRequestByIdAsync"];
+    get: operations["SigningRequests_GetSigningRequestById"];
   };
   "/api/v2/TrustService/SigningRequests/{id}/Participants": {
     /** Get participants of a signing request */
-    get: operations["GetSigningRequestParticipantsAsync"];
+    get: operations["SigningRequests_GetSigningRequestParticipants"];
+    /** Add a participant to a signing request */
+    post: operations["SigningRequests_AddParticipant"];
   };
   "/api/v2/TrustService/SigningRequests/from-document/{signedDocumentId}": {
     /** Create a signing request from a frozen document */
-    post: operations["CreateFromDocumentAsync"];
+    post: operations["SigningRequests_CreateFromDocument"];
   };
   "/api/v2/TrustService/SigningRequests/prepare-and-create": {
     /**
      * Create, store, freeze a document and open a signing request in one call
      * @description Server-owned flow (T-UX4): creates a SignedDocument from the uploaded source, stores it, freezes it, then creates a signing request over the frozen artifact and attaches its signers — all in one unit of work. Evidence truth (status/hashes/ids/tokens) is server-produced; the caller supplies intent only. The server generates the new document id.
      */
-    post: operations["PrepareAndCreateAsync"];
-  };
-  "/api/v2/TrustService/SigningRequests/{id}/participants": {
-    /** Add a participant to a signing request */
-    post: operations["AddParticipantAsync"];
+    post: operations["SigningRequests_PrepareAndCreate"];
   };
   "/api/v2/TrustService/SigningRequests/{id}/send": {
     /** Send a signing request */
-    post: operations["SendAsync"];
+    post: operations["SigningRequests_Send"];
   };
   "/api/v2/TrustService/SigningRequests/{id}/void": {
     /** Void a signing request */
-    post: operations["VoidAsync"];
+    post: operations["SigningRequests_Void"];
   };
   "/api/v2/TrustService/SigningRequests/{id}/expire": {
     /** Expire a signing request */
-    post: operations["ExpireAsync"];
+    post: operations["SigningRequests_Expire"];
   };
   "/api/v2/TrustService/SigningRequests/{id}/finalize": {
     /** Finalize a completed request into a signed artifact */
-    post: operations["FinalizeAsync"];
+    post: operations["SigningRequests_Finalize"];
   };
   "/api/v2/TrustService/SigningRequests/{id}/execute-provider": {
     /** Run a signing provider to produce + finalize the signed artifact */
-    post: operations["ExecuteProviderAsync"];
+    post: operations["SigningRequests_ExecuteProvider"];
+  };
+  "/api/v2/TrustService/TrustManifests/Platform": {
+    /**
+     * Compose the platform trust manifest with the root key in custody
+     * @description The configured root key signs, inside custody, the delegation to the configured licensing issuer key. The manifest is returned only after the runtime trust store resolves the issuer key through it. Only the instance root tenant may call it. Public data only.
+     */
+    post: operations["TrustManifests_ComposePlatformTrustManifest"];
   };
 }
 
@@ -849,9 +625,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     CreateSigningParticipantDto: {
       contactId: string;
@@ -963,6 +742,74 @@ export interface components {
       from?: string | null;
       value?: unknown;
     };
+    PlatformSigningKeyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      authorityId?: string | null;
+      keyId?: string | null;
+      algorithm?: string | null;
+      publicKey?: string | null;
+      custodyKeyRef?: string | null;
+      /** Format: date-time */
+      validFromUtc?: string;
+      /** Format: date-time */
+      validUntilUtc?: string;
+    };
+    PlatformSigningKeyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PlatformSigningKeyDto"];
+    };
+    PlatformSigningKeyGenerateDto: {
+      authorityId?: string | null;
+      keyId?: string | null;
+      /** Format: date-time */
+      validUntilUtc?: string;
+    };
+    PlatformTrustManifestComposeDto: {
+      rootKeyId?: string | null;
+      issuerKeyId?: string | null;
+      /** Format: int64 */
+      generation?: number;
+    };
+    PlatformTrustManifestDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      authorityId?: string | null;
+      issuerAuthorityId?: string | null;
+      rootKeyId?: string | null;
+      issuerKeyId?: string | null;
+      /** Format: int64 */
+      generation?: number;
+      document?: string | null;
+    };
+    PlatformTrustManifestDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PlatformTrustManifestDto"];
+    };
     QuickSignSignedDocumentDto: {
       providerName: string;
       signingCertificateId: string;
@@ -990,6 +837,11 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    SetSigningProfileExecutionBindingRequest: {
+      signingProviderKey: string;
+      /** Format: uuid */
+      signingCertificateId: string;
     };
     SignatureDto: {
       id?: string | null;
@@ -1344,7 +1196,7 @@ export interface components {
       signingCertificateId?: string | null;
       signedDocumentId?: string | null;
       /** @enum {string|null} */
-      operationType?: "Unknown" | "Sign" | "Verify" | "Seal" | "RotateCredential" | "ResolveCredential" | "SubmitToAuthority" | "ReceiveAuthorityResponse" | "Freeze" | null;
+      operationType?: "Unknown" | "Sign" | "Verify" | "Seal" | "RotateCredential" | "ResolveCredential" | "SubmitToAuthority" | "ReceiveAuthorityResponse" | "Freeze" | "ConfigureSigningBinding" | null;
       correlationId?: string | null;
       inputHash?: string | null;
       outputHash?: string | null;
@@ -1559,6 +1411,32 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningProfileDto"][] | null;
+    };
+    SigningProfileExecutionBindingDto: {
+      /** Format: uuid */
+      signingProfileId?: string;
+      signingProviderKey?: string | null;
+      /** Format: uuid */
+      signingCertificateId?: string | null;
+      isBound?: boolean;
+      /** @enum {string} */
+      custodyReadiness?: "Unbound" | "Ready" | "NotReady";
+      readinessDetail?: string | null;
+    };
+    SigningProfileExecutionBindingDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["SigningProfileExecutionBindingDto"];
     };
     SigningProfileGraphicalRepresentationCreateDto: {
       /** Format: uuid */
@@ -1874,7 +1752,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1889,11 +1846,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all signatures
    * @description Retrieves all signatures for the specified tenant.
    */
-  GetSignaturesAsync: {
+  Signatures_GetSignatures: {
     parameters: {
       query: {
         tenantId: string;
@@ -1930,7 +2072,7 @@ export interface operations {
    * Get signatures count
    * @description Returns the count of signatures for the specified tenant.
    */
-  GetSignaturesCountAsync: {
+  Signatures_GetSignaturesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1967,7 +2109,7 @@ export interface operations {
    * Get signature by ID
    * @description Retrieves a specific signature by its identifier.
    */
-  GetSignatureByIdAsync: {
+  Signatures_GetSignatureById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2008,7 +2150,7 @@ export interface operations {
    * Set the primary authoring file
    * @description Links an existing scan-gated FileUpload as the document's mutable authoring artifact (only while editable).
    */
-  SetPrimaryAuthoringFileAsync: {
+  SignedDocumentArtifacts_SetPrimaryAuthoringFile: {
     parameters: {
       query: {
         tenantId: string;
@@ -2047,7 +2189,7 @@ export interface operations {
    * Freeze the source for signature
    * @description Copies the primary authoring artifact into a new Sealed frozen-source artifact, hashes it, and binds it to the document (LockState = FrozenForSignature).
    */
-  FreezeAsync: {
+  SignedDocumentArtifacts_Freeze: {
     parameters: {
       query: {
         tenantId: string;
@@ -2095,7 +2237,7 @@ export interface operations {
    * Get an artifact reference
    * @description Resolves a stored artifact's reference (FileUpload id + key + hash + media hints).
    */
-  GetReferenceAsync: {
+  SignedDocumentArtifacts_GetReference: {
     parameters: {
       query: {
         tenantId: string;
@@ -2136,7 +2278,7 @@ export interface operations {
    * Verify an artifact hash
    * @description Re-reads the artifact bytes and verifies them against the recorded SHA-256. Returns true on match.
    */
-  VerifyAsync: {
+  SignedDocumentArtifacts_Verify: {
     parameters: {
       query: {
         tenantId: string;
@@ -2177,7 +2319,7 @@ export interface operations {
    * Get all signed document attachments
    * @description Retrieves all signed document attachments for the specified tenant.
    */
-  GetSignedDocumentAttachmentsAsync: {
+  SignedDocumentAttachments_GetSignedDocumentAttachments: {
     parameters: {
       query: {
         tenantId: string;
@@ -2214,7 +2356,7 @@ export interface operations {
    * Create a new signed document attachment
    * @description Links an already-stored file to a SignedDocument (metadata + Storage pointer; no bytes).
    */
-  CreateSignedDocumentAttachmentAsync: {
+  SignedDocumentAttachments_CreateSignedDocumentAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2255,7 +2397,7 @@ export interface operations {
    * Get signed document attachments count
    * @description Returns the count of signed document attachments for the specified tenant.
    */
-  GetSignedDocumentAttachmentsCountAsync: {
+  SignedDocumentAttachments_GetSignedDocumentAttachmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2292,7 +2434,7 @@ export interface operations {
    * Get signed document attachment by ID
    * @description Retrieves a specific signed document attachment by its identifier.
    */
-  GetSignedDocumentAttachmentByIdAsync: {
+  SignedDocumentAttachments_GetSignedDocumentAttachmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2333,7 +2475,7 @@ export interface operations {
    * Update a signed document attachment
    * @description Updates signed document attachment metadata for the specified tenant.
    */
-  UpdateSignedDocumentAttachmentAsync: {
+  SignedDocumentAttachments_UpdateSignedDocumentAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2377,7 +2519,7 @@ export interface operations {
    * Delete a signed document attachment
    * @description Deletes a signed document attachment link for the specified tenant.
    */
-  DeleteSignedDocumentAttachmentAsync: {
+  SignedDocumentAttachments_DeleteSignedDocumentAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2415,7 +2557,7 @@ export interface operations {
    * Patch a signed document attachment
    * @description Patch a signed document attachment
    */
-  PatchSignedDocumentAttachmentAsync: {
+  SignedDocumentAttachments_PatchSignedDocumentAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2462,7 +2604,7 @@ export interface operations {
    * Get all signed documents
    * @description Retrieves all signed documents for the specified tenant.
    */
-  GetSignedDocumentsAsync: {
+  SignedDocuments_GetSignedDocuments: {
     parameters: {
       query: {
         tenantId: string;
@@ -2499,7 +2641,7 @@ export interface operations {
    * Create a new signed document
    * @description Creates a new signed document for the specified tenant.
    */
-  CreateSignedDocumentAsync: {
+  SignedDocuments_CreateSignedDocument: {
     parameters: {
       query: {
         tenantId: string;
@@ -2540,7 +2682,7 @@ export interface operations {
    * Get signed documents count
    * @description Returns the count of signed documents for the specified tenant.
    */
-  GetSignedDocumentsCountAsync: {
+  SignedDocuments_GetSignedDocumentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2577,7 +2719,7 @@ export interface operations {
    * Get signed document by ID
    * @description Retrieves a specific signed document by its identifier.
    */
-  GetSignedDocumentByIdAsync: {
+  SignedDocuments_GetSignedDocumentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2618,7 +2760,7 @@ export interface operations {
    * Update a signed document
    * @description Updates an existing signed document for the specified tenant.
    */
-  UpdateSignedDocumentAsync: {
+  SignedDocuments_UpdateSignedDocument: {
     parameters: {
       query: {
         tenantId: string;
@@ -2662,7 +2804,7 @@ export interface operations {
    * Delete a signed document
    * @description Deletes a signed document for the specified tenant.
    */
-  DeleteSignedDocumentAsync: {
+  SignedDocuments_DeleteSignedDocument: {
     parameters: {
       query: {
         tenantId: string;
@@ -2700,7 +2842,7 @@ export interface operations {
    * Patch a signed document
    * @description Patch a signed document
    */
-  PatchSignedDocumentAsync: {
+  SignedDocuments_PatchSignedDocument: {
     parameters: {
       query: {
         tenantId: string;
@@ -2747,7 +2889,7 @@ export interface operations {
    * Quick-sign a frozen document
    * @description Signs a frozen signed document directly with a chosen certificate + provider (no signing-request workflow) and seals it. Returns the sealed document.
    */
-  QuickSignSignedDocumentAsync: {
+  SignedDocuments_QuickSignSignedDocument: {
     parameters: {
       query: {
         tenantId: string;
@@ -2798,7 +2940,7 @@ export interface operations {
    * Create, freeze, and quick-sign a document in one call
    * @description Server-side single-signer flow: creates a SignedDocument from the uploaded source, stores it, freezes it, signs it with the chosen certificate + provider, and seals it — all in one unit of work. Returns the sealed document. Evidence truth (signed/status/hashes/artifact ids) is server-produced and cannot be supplied by the caller.
    */
-  PrepareAndQuickSignAsync: {
+  SignedDocuments_PrepareAndQuickSign: {
     parameters: {
       query: {
         tenantId: string;
@@ -2880,7 +3022,7 @@ export interface operations {
    * Verify a signed document's signature
    * @description Re-verifies the document's signature against its stored signed artifact (bytes intact + signed by the embedded certificate; certificate trust is a separate concern).
    */
-  VerifySignedDocumentSignatureAsync: {
+  SignedDocuments_VerifySignedDocumentSignature: {
     parameters: {
       query: {
         tenantId: string;
@@ -2921,7 +3063,7 @@ export interface operations {
    * Get all signing certificates
    * @description Retrieves all signing certificates for the specified tenant.
    */
-  GetSigningCertificatesAsync: {
+  SigningCertificates_GetSigningCertificates: {
     parameters: {
       query: {
         tenantId: string;
@@ -2958,7 +3100,7 @@ export interface operations {
    * Create a new signing certificate
    * @description Creates a new signing certificate for the specified tenant.
    */
-  CreateSigningCertificateAsync: {
+  SigningCertificates_CreateSigningCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -2999,7 +3141,7 @@ export interface operations {
    * Get signing certificates count
    * @description Returns the count of signing certificates for the specified tenant.
    */
-  GetSigningCertificatesCountAsync: {
+  SigningCertificates_GetSigningCertificatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3036,7 +3178,7 @@ export interface operations {
    * Get signing certificate by ID
    * @description Retrieves a specific signing certificate by its identifier.
    */
-  GetSigningCertificateByIdAsync: {
+  SigningCertificates_GetSigningCertificateById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3077,7 +3219,7 @@ export interface operations {
    * Update a signing certificate
    * @description Updates an existing signing certificate for the specified tenant.
    */
-  UpdateSigningCertificateAsync: {
+  SigningCertificates_UpdateSigningCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3121,7 +3263,7 @@ export interface operations {
    * Delete a signing certificate
    * @description Deletes a signing certificate for the specified tenant.
    */
-  DeleteSigningCertificateAsync: {
+  SigningCertificates_DeleteSigningCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3159,7 +3301,7 @@ export interface operations {
    * Patch a signing certificate
    * @description Patch a signing certificate
    */
-  PatchSigningCertificateAsync: {
+  SigningCertificates_PatchSigningCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3206,7 +3348,7 @@ export interface operations {
    * Import a PFX/P12 signing certificate into custody
    * @description Parses the uploaded PFX/P12, imports the private material into the configured signing custody, and creates the certificate metadata record. The PFX and password are used only for the request — never returned or stored.
    */
-  ImportSigningCertificateAsync: {
+  SigningCertificates_ImportSigningCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -3272,7 +3414,7 @@ export interface operations {
    * List signing providers
    * @description Returns the registered alpha signing providers (Noop / Manual / External). OData-queryable.
    */
-  GetProvidersAsync: {
+  SigningEngine_GetProviders: {
     parameters: {
       query: {
         tenantId: string;
@@ -3309,7 +3451,7 @@ export interface operations {
    * Count signing providers
    * @description Returns the count of registered alpha signing providers. OData-queryable.
    */
-  GetProvidersCountAsync: {
+  SigningEngine_GetProvidersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3346,7 +3488,7 @@ export interface operations {
    * Preview signing readiness
    * @description Side-effect-free: validates a signing request and reports whether it can proceed and with what policy.
    */
-  PreviewAsync: {
+  SigningEngine_Preview: {
     parameters: {
       query: {
         tenantId: string;
@@ -3387,10 +3529,61 @@ export interface operations {
     };
   };
   /**
+   * Generate a platform authority signing key in custody
+   * @description Generates the Alliance root or the licensing issuer key inside the configured signing custody and records its descriptor. Only the instance root tenant may call it, and only for a configured platform authority. The private key never leaves custody; the response carries public data only.
+   */
+  SigningKeys_GeneratePlatformSigningKey: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PlatformSigningKeyGenerateDto"];
+        "application/xml": components["schemas"]["PlatformSigningKeyGenerateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PlatformSigningKeyDtoEnvelope"];
+          "application/xml": components["schemas"]["PlatformSigningKeyDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all signing logs
    * @description Retrieves all signing logs for the specified tenant.
    */
-  GetSigningLogsAsync: {
+  SigningLogs_GetSigningLogs: {
     parameters: {
       query: {
         tenantId: string;
@@ -3427,7 +3620,7 @@ export interface operations {
    * Get signing logs count
    * @description Returns the count of signing logs for the specified tenant.
    */
-  GetSigningLogsCountAsync: {
+  SigningLogs_GetSigningLogsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3464,7 +3657,7 @@ export interface operations {
    * Get signing log by ID
    * @description Retrieves a specific signing log by its identifier.
    */
-  GetSigningLogByIdAsync: {
+  SigningLogs_GetSigningLogById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3502,7 +3695,7 @@ export interface operations {
     };
   };
   /** Get all signing participants */
-  GetSigningParticipantsAsync: {
+  SigningParticipants_GetSigningParticipants: {
     parameters: {
       query: {
         tenantId: string;
@@ -3536,7 +3729,7 @@ export interface operations {
     };
   };
   /** Get signing participants count */
-  GetSigningParticipantsCountAsync: {
+  SigningParticipants_GetSigningParticipantsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3563,7 +3756,7 @@ export interface operations {
     };
   };
   /** Get signing participant by ID */
-  GetSigningParticipantByIdAsync: {
+  SigningParticipants_GetSigningParticipantById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3594,7 +3787,7 @@ export interface operations {
     };
   };
   /** Mark a participant as having viewed the request */
-  MarkViewedAsync: {
+  SigningParticipants_MarkViewed: {
     parameters: {
       query: {
         tenantId: string;
@@ -3615,7 +3808,7 @@ export interface operations {
     };
   };
   /** Record a manual/external participant outcome */
-  RecordOutcomeAsync: {
+  SigningParticipants_RecordOutcome: {
     parameters: {
       query: {
         tenantId: string;
@@ -3652,7 +3845,7 @@ export interface operations {
    * Get all signature representations
    * @description Retrieves all reusable signature representations for the specified tenant.
    */
-  GetSigningProfileGraphicalRepresentationsAsync: {
+  SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentations: {
     parameters: {
       query: {
         tenantId: string;
@@ -3689,7 +3882,7 @@ export interface operations {
    * Create a new signature representation
    * @description Creates a new reusable signature representation for the specified tenant.
    */
-  CreateSigningProfileGraphicalRepresentationAsync: {
+  SigningProfileGraphicalRepresentations_CreateSigningProfileGraphicalRepresentation: {
     parameters: {
       query: {
         tenantId: string;
@@ -3730,7 +3923,7 @@ export interface operations {
    * Get signature representations count
    * @description Returns the count of signature representations for the specified tenant.
    */
-  GetSigningProfileGraphicalRepresentationsCountAsync: {
+  SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3767,7 +3960,7 @@ export interface operations {
    * Get signature representation by ID
    * @description Retrieves a specific signature representation by its identifier.
    */
-  GetSigningProfileGraphicalRepresentationByIdAsync: {
+  SigningProfileGraphicalRepresentations_GetSigningProfileGraphicalRepresentationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3808,7 +4001,7 @@ export interface operations {
    * Update a signature representation
    * @description Updates an existing signature representation for the specified tenant.
    */
-  UpdateSigningProfileGraphicalRepresentationAsync: {
+  SigningProfileGraphicalRepresentations_UpdateSigningProfileGraphicalRepresentation: {
     parameters: {
       query: {
         tenantId: string;
@@ -3852,7 +4045,7 @@ export interface operations {
    * Delete a signature representation
    * @description Deletes a signature representation for the specified tenant.
    */
-  DeleteSigningProfileGraphicalRepresentationAsync: {
+  SigningProfileGraphicalRepresentations_DeleteSigningProfileGraphicalRepresentation: {
     parameters: {
       query: {
         tenantId: string;
@@ -3890,7 +4083,7 @@ export interface operations {
    * Patch a signature representation
    * @description Patch a signature representation
    */
-  PatchSigningProfileGraphicalRepresentationAsync: {
+  SigningProfileGraphicalRepresentations_PatchSigningProfileGraphicalRepresentation: {
     parameters: {
       query: {
         tenantId: string;
@@ -3937,7 +4130,7 @@ export interface operations {
    * Get all signing profiles
    * @description Retrieves all signing profiles for the specified tenant.
    */
-  GetSigningProfilesAsync: {
+  SigningProfiles_GetSigningProfiles: {
     parameters: {
       query: {
         tenantId: string;
@@ -3974,7 +4167,7 @@ export interface operations {
    * Create a new signing profile
    * @description Creates a new signing profile for the specified tenant (supports inline contact creation).
    */
-  CreateSigningProfileAsync: {
+  SigningProfiles_CreateSigningProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -4015,7 +4208,7 @@ export interface operations {
    * Get signing profiles count
    * @description Returns the count of signing profiles for the specified tenant.
    */
-  GetSigningProfilesCountAsync: {
+  SigningProfiles_GetSigningProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4052,7 +4245,7 @@ export interface operations {
    * Get signing profile by ID
    * @description Retrieves a specific signing profile by its identifier.
    */
-  GetSigningProfileByIdAsync: {
+  SigningProfiles_GetSigningProfileById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4093,7 +4286,7 @@ export interface operations {
    * Update a signing profile
    * @description Updates an existing signing profile for the specified tenant.
    */
-  UpdateSigningProfileAsync: {
+  SigningProfiles_UpdateSigningProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -4137,7 +4330,7 @@ export interface operations {
    * Delete a signing profile
    * @description Deletes a signing profile for the specified tenant.
    */
-  DeleteSigningProfileAsync: {
+  SigningProfiles_DeleteSigningProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -4175,7 +4368,7 @@ export interface operations {
    * Patch a signing profile
    * @description Patch a signing profile
    */
-  PatchSigningProfileAsync: {
+  SigningProfiles_PatchSigningProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -4218,8 +4411,103 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get a signing profile's execution binding
+   * @description Read-only inspection of the tenant-owned signing profile's authoritative execution binding — which registered signing implementation it signs through and which tenant certificate it signs with — together with a read-only custody-readiness status computed from the same fail-closed usability check the write path runs. It NEVER exposes key material, credential references or certificate bytes, and NEVER mutates the profile. This is the READ counterpart to the dedicated set-binding operation; a missing or cross-tenant profile fails closed as not found.
+   */
+  SigningProfiles_GetSigningProfileExecutionBinding: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SigningProfileExecutionBindingDtoEnvelope"];
+          "application/xml": components["schemas"]["SigningProfileExecutionBindingDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Set a signing profile's execution binding
+   * @description Dedicated, security-sensitive admin operation that configures the tenant-owned signing profile's authoritative execution binding — which registered signing implementation it signs through and which tenant certificate it signs with. The provider, certificate validity and custody usability are validated server-side and fail closed. This is NOT part of the generic profile update surface, and the runtime signing path can never override the binding set here.
+   */
+  SigningProfiles_SetSigningProfileExecutionBinding: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SetSigningProfileExecutionBindingRequest"];
+        "application/xml": components["schemas"]["SetSigningProfileExecutionBindingRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Get all signing requests */
-  GetSigningRequestsAsync: {
+  SigningRequests_GetSigningRequests: {
     parameters: {
       query: {
         tenantId: string;
@@ -4253,7 +4541,7 @@ export interface operations {
     };
   };
   /** Get signing requests count */
-  GetSigningRequestsCountAsync: {
+  SigningRequests_GetSigningRequestsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4287,7 +4575,7 @@ export interface operations {
     };
   };
   /** Get signing request by ID */
-  GetSigningRequestByIdAsync: {
+  SigningRequests_GetSigningRequestById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4318,7 +4606,7 @@ export interface operations {
     };
   };
   /** Get participants of a signing request */
-  GetSigningRequestParticipantsAsync: {
+  SigningRequests_GetSigningRequestParticipants: {
     parameters: {
       query: {
         tenantId: string;
@@ -4341,8 +4629,38 @@ export interface operations {
       };
     };
   };
+  /** Add a participant to a signing request */
+  SigningRequests_AddParticipant: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateSigningParticipantDto"];
+        "application/xml": components["schemas"]["CreateSigningParticipantDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SigningParticipantDto"];
+          "application/xml": components["schemas"]["SigningParticipantDto"];
+        };
+      };
+    };
+  };
   /** Create a signing request from a frozen document */
-  CreateFromDocumentAsync: {
+  SigningRequests_CreateFromDocument: {
     parameters: {
       query: {
         tenantId: string;
@@ -4382,7 +4700,7 @@ export interface operations {
    * Create, store, freeze a document and open a signing request in one call
    * @description Server-owned flow (T-UX4): creates a SignedDocument from the uploaded source, stores it, freezes it, then creates a signing request over the frozen artifact and attaches its signers — all in one unit of work. Evidence truth (status/hashes/ids/tokens) is server-produced; the caller supplies intent only. The server generates the new document id.
    */
-  PrepareAndCreateAsync: {
+  SigningRequests_PrepareAndCreate: {
     parameters: {
       query: {
         tenantId: string;
@@ -4469,38 +4787,8 @@ export interface operations {
       };
     };
   };
-  /** Add a participant to a signing request */
-  AddParticipantAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        id: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["CreateSigningParticipantDto"];
-        "application/xml": components["schemas"]["CreateSigningParticipantDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["SigningParticipantDto"];
-          "application/xml": components["schemas"]["SigningParticipantDto"];
-        };
-      };
-    };
-  };
   /** Send a signing request */
-  SendAsync: {
+  SigningRequests_Send: {
     parameters: {
       query: {
         tenantId: string;
@@ -4521,7 +4809,7 @@ export interface operations {
     };
   };
   /** Void a signing request */
-  VoidAsync: {
+  SigningRequests_Void: {
     parameters: {
       query: {
         tenantId: string;
@@ -4548,7 +4836,7 @@ export interface operations {
     };
   };
   /** Expire a signing request */
-  ExpireAsync: {
+  SigningRequests_Expire: {
     parameters: {
       query: {
         tenantId: string;
@@ -4569,7 +4857,7 @@ export interface operations {
     };
   };
   /** Finalize a completed request into a signed artifact */
-  FinalizeAsync: {
+  SigningRequests_Finalize: {
     parameters: {
       query: {
         tenantId: string;
@@ -4603,7 +4891,7 @@ export interface operations {
     };
   };
   /** Run a signing provider to produce + finalize the signed artifact */
-  ExecuteProviderAsync: {
+  SigningRequests_ExecuteProvider: {
     parameters: {
       query: {
         tenantId: string;
@@ -4629,6 +4917,57 @@ export interface operations {
       };
       /** @description Bad Request */
       400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Compose the platform trust manifest with the root key in custody
+   * @description The configured root key signs, inside custody, the delegation to the configured licensing issuer key. The manifest is returned only after the runtime trust store resolves the issuer key through it. Only the instance root tenant may call it. Public data only.
+   */
+  TrustManifests_ComposePlatformTrustManifest: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PlatformTrustManifestComposeDto"];
+        "application/xml": components["schemas"]["PlatformTrustManifestComposeDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PlatformTrustManifestDtoEnvelope"];
+          "application/xml": components["schemas"]["PlatformTrustManifestDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

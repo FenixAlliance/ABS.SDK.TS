@@ -5,358 +5,131 @@
 
 
 export interface paths {
+  "/api/v2/ForexService/Documents/Reprice": {
+    /**
+     * Re-price unissued documents (root-only)
+     * @description Re-prices unissued invoices and quotes whose rates snapshot is frozen. Dry run unless Apply is true.
+     */
+    post: operations["Documents_RepriceUnissuedDocuments"];
+  };
   "/api/v2/ForexService/Exchange/Latest": {
     /**
      * Exchange currency at latest rates
      * @description Exchange an amount of money from one currency to another using the latest available exchange rates.
      */
-    get: operations["ExchangeAmountAsync"];
+    get: operations["Exchange_ExchangeAmount"];
   };
   "/api/v2/ForexService/Exchange/History": {
     /**
      * Exchange currency at historical rates
      * @description Exchange an amount of money from one currency to another using exchange rates from a specific historical date.
      */
-    get: operations["ExchangeAmountHistoricalAsync"];
+    get: operations["Exchange_ExchangeAmountHistorical"];
   };
   "/api/v3/ForexService/Exchange/Latest": {
     /**
      * Exchange currency at latest rates (v3)
      * @description Exchange an amount of money from one currency to another using the latest available exchange rates. Returns the full ExchangeRate details.
      */
-    get: operations["ExchangeAmountV3Async"];
+    get: operations["ExchangeV_ExchangeAmountV3"];
   };
   "/api/v3/ForexService/Exchange/History": {
     /**
      * Exchange currency at historical rates (v3)
      * @description Exchange an amount of money from one currency to another using exchange rates from a specific historical date. Returns the full ExchangeRate details.
      */
-    get: operations["ExchangeAmountHistoricalV3Async"];
+    get: operations["ExchangeV_ExchangeAmountHistoricalV3"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/ForexService/Rates/Latest": {
     /**
      * Get latest currency rates
      * @description Retrieves the latest exchange rates for all supported currencies.
      */
-    get: operations["GetLatestCurrencyRatesModelAsync"];
+    get: operations["Rates_GetLatestCurrencyRatesModel"];
   };
   "/api/v2/ForexService/Rates/Latest/{currencyId}": {
     /**
      * Get latest rate for a currency
      * @description Retrieves the latest exchange rate for a specific currency by its identifier.
      */
-    get: operations["GetLatestCurrencyRateAsync"];
+    get: operations["Rates_GetLatestCurrencyRate"];
   };
   "/api/v2/ForexService/Rates/History": {
     /**
      * Get historical currency rates
      * @description Retrieves exchange rates for all supported currencies as of a specific historical date.
      */
-    get: operations["GetHistoricalCurrencyRatesAsync"];
+    get: operations["Rates_GetHistoricalCurrencyRates"];
   };
   "/api/v2/ForexService/Rates/History/{currencyId}": {
     /**
      * Get historical rate for a currency
      * @description Retrieves the exchange rate for a specific currency as of a specific historical date.
      */
-    get: operations["GetHistoricalCurrencyRateAsync"];
+    get: operations["Rates_GetHistoricalCurrencyRate"];
+  };
+  "/api/v2/ForexService/Rates/History/{currencyId}/Series": {
+    /**
+     * Get a currency's daily rate series
+     * @description Retrieves a currency's stored daily exchange rates (units per USD) for a date range of at most 400 days.
+     */
+    get: operations["Rates_GetForexRateSeries"];
+  };
+  "/api/v2/ForexService/Sets/Repair": {
+    /**
+     * Repair stored forex sets (root-only)
+     * @description Rebuilds the stored daily forex sets from the rates feed's history. Dry run unless Apply is true.
+     */
+    post: operations["Sets_RepairForeignExchangeSets"];
   };
 }
 
@@ -375,6 +148,51 @@ export interface components {
       value?: string | null;
       code?: string | null;
       country?: string | null;
+    };
+    DocumentRepriceItem: {
+      documentType?: string | null;
+      documentId?: string | null;
+      tenantId?: string | null;
+      status?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      oldTotal?: number;
+      /** Format: double */
+      newTotal?: number | null;
+      /** Format: date-time */
+      oldRatesAsOfUtc?: string | null;
+      /** Format: double */
+      oldRate?: number | null;
+      /** Format: double */
+      newRate?: number | null;
+      skippedReason?: string | null;
+    };
+    DocumentRepriceReport: {
+      applied?: boolean;
+      /** Format: date-time */
+      since?: string;
+      /** Format: date-time */
+      currentRatesAsOfUtc?: string | null;
+      documents?: components["schemas"]["DocumentRepriceItem"][] | null;
+      /** Format: int32 */
+      invoices?: number;
+      /** Format: int32 */
+      quotes?: number;
+    };
+    DocumentRepriceReportEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["DocumentRepriceReport"];
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -410,12 +228,48 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ExchangeRate"];
     };
+    ForexRateChange: {
+      currency?: string | null;
+      /** Format: double */
+      old?: number | null;
+      /** Format: double */
+      new?: number | null;
+    };
+    ForexRatePoint: {
+      /** Format: date-time */
+      date?: string;
+      /** Format: double */
+      rate?: number;
+    };
+    ForexRateSeries: {
+      currencyId?: string | null;
+      base?: string | null;
+      points?: components["schemas"]["ForexRatePoint"][] | null;
+    };
+    ForexRateSeriesEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ForexRateSeries"];
+    };
     ForexRatesDto: {
       success?: boolean;
       date?: string | null;
       base?: string | null;
       /** Format: int64 */
       timestamp?: number;
+      /** Format: date-time */
+      ratesAsOfUtc?: string | null;
+      isStale?: boolean;
       /** Format: date-time */
       requestTimestamp?: string;
       rates?: {
@@ -436,6 +290,55 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ForexRatesDto"];
+    };
+    ForexSetRepairDay: {
+      /** Format: date-time */
+      date?: string;
+      /** @enum {string} */
+      action?: "Create" | "Replace" | "Unchanged" | "NoSnapshot";
+      snapshotRevision?: string | null;
+      /** Format: date-time */
+      snapshotCommittedAtUtc?: string | null;
+      /** Format: date-time */
+      oldRatesAsOfUtc?: string | null;
+      /** Format: date-time */
+      ratesAsOfUtc?: string | null;
+      majors?: components["schemas"]["ForexRateChange"][] | null;
+      note?: string | null;
+      /** Format: int32 */
+      storedRows?: number;
+    };
+    ForexSetRepairReport: {
+      applied?: boolean;
+      /** Format: date-time */
+      from?: string;
+      /** Format: date-time */
+      to?: string;
+      canonicalTime?: string | null;
+      days?: components["schemas"]["ForexSetRepairDay"][] | null;
+      /** Format: int32 */
+      created?: number;
+      /** Format: int32 */
+      replaced?: number;
+      /** Format: int32 */
+      unchanged?: number;
+      /** Format: int32 */
+      withoutSnapshot?: number;
+    };
+    ForexSetRepairReportEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ForexSetRepairReport"];
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -494,6 +397,18 @@ export interface components {
       email: string | null;
       password: string | null;
     };
+    RepairForeignExchangeSetsCommand: {
+      /** Format: date-time */
+      from?: string;
+      /** Format: date-time */
+      to?: string;
+      apply?: boolean;
+    };
+    RepriceUnissuedDocumentsCommand: {
+      /** Format: date-time */
+      since?: string;
+      apply?: boolean;
+    };
     ResendConfirmationEmailRequest: {
       email: string | null;
     };
@@ -532,10 +447,53 @@ export type external = Record<string, never>;
 export interface operations {
 
   /**
+   * Re-price unissued documents (root-only)
+   * @description Re-prices unissued invoices and quotes whose rates snapshot is frozen. Dry run unless Apply is true.
+   */
+  Documents_RepriceUnissuedDocuments: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RepriceUnissuedDocumentsCommand"];
+        "application/xml": components["schemas"]["RepriceUnissuedDocumentsCommand"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DocumentRepriceReportEnvelope"];
+          "application/xml": components["schemas"]["DocumentRepriceReportEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Exchange currency at latest rates
    * @description Exchange an amount of money from one currency to another using the latest available exchange rates.
    */
-  ExchangeAmountAsync: {
+  Exchange_ExchangeAmount: {
     parameters: {
       query: {
         amount: number;
@@ -571,7 +529,7 @@ export interface operations {
    * Exchange currency at historical rates
    * @description Exchange an amount of money from one currency to another using exchange rates from a specific historical date.
    */
-  ExchangeAmountHistoricalAsync: {
+  Exchange_ExchangeAmountHistorical: {
     parameters: {
       query: {
         amount: number;
@@ -608,7 +566,7 @@ export interface operations {
    * Exchange currency at latest rates (v3)
    * @description Exchange an amount of money from one currency to another using the latest available exchange rates. Returns the full ExchangeRate details.
    */
-  ExchangeAmountV3Async: {
+  ExchangeV_ExchangeAmountV3: {
     parameters: {
       query: {
         amount: number;
@@ -644,7 +602,7 @@ export interface operations {
    * Exchange currency at historical rates (v3)
    * @description Exchange an amount of money from one currency to another using exchange rates from a specific historical date. Returns the full ExchangeRate details.
    */
-  ExchangeAmountHistoricalV3Async: {
+  ExchangeV_ExchangeAmountHistoricalV3: {
     parameters: {
       query: {
         amount: number;
@@ -677,7 +635,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -692,11 +729,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get latest currency rates
    * @description Retrieves the latest exchange rates for all supported currencies.
    */
-  GetLatestCurrencyRatesModelAsync: {
+  Rates_GetLatestCurrencyRatesModel: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -733,7 +955,7 @@ export interface operations {
    * Get latest rate for a currency
    * @description Retrieves the latest exchange rate for a specific currency by its identifier.
    */
-  GetLatestCurrencyRateAsync: {
+  Rates_GetLatestCurrencyRate: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -773,7 +995,7 @@ export interface operations {
    * Get historical currency rates
    * @description Retrieves exchange rates for all supported currencies as of a specific historical date.
    */
-  GetHistoricalCurrencyRatesAsync: {
+  Rates_GetHistoricalCurrencyRates: {
     parameters: {
       query?: {
         date?: string;
@@ -811,7 +1033,7 @@ export interface operations {
    * Get historical rate for a currency
    * @description Retrieves the exchange rate for a specific currency as of a specific historical date.
    */
-  GetHistoricalCurrencyRateAsync: {
+  Rates_GetHistoricalCurrencyRate: {
     parameters: {
       query?: {
         date?: string;
@@ -830,6 +1052,84 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ExchangeRateEnvelope"];
           "application/xml": components["schemas"]["ExchangeRateEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a currency's daily rate series
+   * @description Retrieves a currency's stored daily exchange rates (units per USD) for a date range of at most 400 days.
+   */
+  Rates_GetForexRateSeries: {
+    parameters: {
+      query?: {
+        from?: string;
+        to?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        currencyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ForexRateSeriesEnvelope"];
+          "application/xml": components["schemas"]["ForexRateSeriesEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Repair stored forex sets (root-only)
+   * @description Rebuilds the stored daily forex sets from the rates feed's history. Dry run unless Apply is true.
+   */
+  Sets_RepairForeignExchangeSets: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RepairForeignExchangeSetsCommand"];
+        "application/xml": components["schemas"]["RepairForeignExchangeSetsCommand"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ForexSetRepairReportEnvelope"];
+          "application/xml": components["schemas"]["ForexSetRepairReportEnvelope"];
         };
       };
       /** @description Unauthorized */

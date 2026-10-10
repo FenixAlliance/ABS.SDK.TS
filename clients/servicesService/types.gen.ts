@@ -1737,72 +1737,72 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1812,32 +1812,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1848,81 +1848,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1933,25 +1933,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1962,25 +1962,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1991,18 +1991,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2012,14 +2012,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2028,14 +2028,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2044,28 +2044,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetServiceCasesAsyncData = {
+export type ServiceCasesGetServiceCasesData = {
     body?: ServiceCaseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2078,7 +2078,7 @@ export type GetServiceCasesAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases';
 };
 
-export type GetServiceCasesAsyncErrors = {
+export type ServiceCasesGetServiceCasesErrors = {
     /**
      * Unauthorized
      */
@@ -2089,18 +2089,18 @@ export type GetServiceCasesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceCasesAsyncError = GetServiceCasesAsyncErrors[keyof GetServiceCasesAsyncErrors];
+export type ServiceCasesGetServiceCasesError = ServiceCasesGetServiceCasesErrors[keyof ServiceCasesGetServiceCasesErrors];
 
-export type GetServiceCasesAsyncResponses = {
+export type ServiceCasesGetServiceCasesResponses = {
     /**
      * OK
      */
     200: ServiceCaseDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetServiceCasesAsyncResponse = GetServiceCasesAsyncResponses[keyof GetServiceCasesAsyncResponses];
+export type ServiceCasesGetServiceCasesResponse = ServiceCasesGetServiceCasesResponses[keyof ServiceCasesGetServiceCasesResponses];
 
-export type CreateServiceCaseAsyncData = {
+export type ServiceCasesCreateServiceCaseData = {
     body?: ServiceCaseCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2113,7 +2113,7 @@ export type CreateServiceCaseAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases';
 };
 
-export type CreateServiceCaseAsyncErrors = {
+export type ServiceCasesCreateServiceCaseErrors = {
     /**
      * Unauthorized
      */
@@ -2124,18 +2124,18 @@ export type CreateServiceCaseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateServiceCaseAsyncError = CreateServiceCaseAsyncErrors[keyof CreateServiceCaseAsyncErrors];
+export type ServiceCasesCreateServiceCaseError = ServiceCasesCreateServiceCaseErrors[keyof ServiceCasesCreateServiceCaseErrors];
 
-export type CreateServiceCaseAsyncResponses = {
+export type ServiceCasesCreateServiceCaseResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateServiceCaseAsyncResponse = CreateServiceCaseAsyncResponses[keyof CreateServiceCaseAsyncResponses];
+export type ServiceCasesCreateServiceCaseResponse = ServiceCasesCreateServiceCaseResponses[keyof ServiceCasesCreateServiceCaseResponses];
 
-export type GetServiceCasesCountAsyncData = {
+export type ServiceCasesGetServiceCasesCountData = {
     body?: ServiceCaseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2148,7 +2148,7 @@ export type GetServiceCasesCountAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases/Count';
 };
 
-export type GetServiceCasesCountAsyncErrors = {
+export type ServiceCasesGetServiceCasesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2159,18 +2159,18 @@ export type GetServiceCasesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceCasesCountAsyncError = GetServiceCasesCountAsyncErrors[keyof GetServiceCasesCountAsyncErrors];
+export type ServiceCasesGetServiceCasesCountError = ServiceCasesGetServiceCasesCountErrors[keyof ServiceCasesGetServiceCasesCountErrors];
 
-export type GetServiceCasesCountAsyncResponses = {
+export type ServiceCasesGetServiceCasesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetServiceCasesCountAsyncResponse = GetServiceCasesCountAsyncResponses[keyof GetServiceCasesCountAsyncResponses];
+export type ServiceCasesGetServiceCasesCountResponse = ServiceCasesGetServiceCasesCountResponses[keyof ServiceCasesGetServiceCasesCountResponses];
 
-export type DeleteServiceCaseAsyncData = {
+export type ServiceCasesDeleteServiceCaseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2185,7 +2185,7 @@ export type DeleteServiceCaseAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases/{serviceCaseId}';
 };
 
-export type DeleteServiceCaseAsyncErrors = {
+export type ServiceCasesDeleteServiceCaseErrors = {
     /**
      * Unauthorized
      */
@@ -2196,18 +2196,18 @@ export type DeleteServiceCaseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteServiceCaseAsyncError = DeleteServiceCaseAsyncErrors[keyof DeleteServiceCaseAsyncErrors];
+export type ServiceCasesDeleteServiceCaseError = ServiceCasesDeleteServiceCaseErrors[keyof ServiceCasesDeleteServiceCaseErrors];
 
-export type DeleteServiceCaseAsyncResponses = {
+export type ServiceCasesDeleteServiceCaseResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteServiceCaseAsyncResponse = DeleteServiceCaseAsyncResponses[keyof DeleteServiceCaseAsyncResponses];
+export type ServiceCasesDeleteServiceCaseResponse = ServiceCasesDeleteServiceCaseResponses[keyof ServiceCasesDeleteServiceCaseResponses];
 
-export type GetServiceCaseByIdAsyncData = {
+export type ServiceCasesGetServiceCaseByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2222,7 +2222,7 @@ export type GetServiceCaseByIdAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases/{serviceCaseId}';
 };
 
-export type GetServiceCaseByIdAsyncErrors = {
+export type ServiceCasesGetServiceCaseByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2233,18 +2233,18 @@ export type GetServiceCaseByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceCaseByIdAsyncError = GetServiceCaseByIdAsyncErrors[keyof GetServiceCaseByIdAsyncErrors];
+export type ServiceCasesGetServiceCaseByIdError = ServiceCasesGetServiceCaseByIdErrors[keyof ServiceCasesGetServiceCaseByIdErrors];
 
-export type GetServiceCaseByIdAsyncResponses = {
+export type ServiceCasesGetServiceCaseByIdResponses = {
     /**
      * OK
      */
     200: ServiceCaseDtoEnvelopeReadable;
 };
 
-export type GetServiceCaseByIdAsyncResponse = GetServiceCaseByIdAsyncResponses[keyof GetServiceCaseByIdAsyncResponses];
+export type ServiceCasesGetServiceCaseByIdResponse = ServiceCasesGetServiceCaseByIdResponses[keyof ServiceCasesGetServiceCaseByIdResponses];
 
-export type PatchServiceCaseAsyncData = {
+export type ServiceCasesPatchServiceCaseData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2259,7 +2259,7 @@ export type PatchServiceCaseAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases/{serviceCaseId}';
 };
 
-export type PatchServiceCaseAsyncErrors = {
+export type ServiceCasesPatchServiceCaseErrors = {
     /**
      * Unauthorized
      */
@@ -2270,18 +2270,18 @@ export type PatchServiceCaseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchServiceCaseAsyncError = PatchServiceCaseAsyncErrors[keyof PatchServiceCaseAsyncErrors];
+export type ServiceCasesPatchServiceCaseError = ServiceCasesPatchServiceCaseErrors[keyof ServiceCasesPatchServiceCaseErrors];
 
-export type PatchServiceCaseAsyncResponses = {
+export type ServiceCasesPatchServiceCaseResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type PatchServiceCaseAsyncResponse = PatchServiceCaseAsyncResponses[keyof PatchServiceCaseAsyncResponses];
+export type ServiceCasesPatchServiceCaseResponse = ServiceCasesPatchServiceCaseResponses[keyof ServiceCasesPatchServiceCaseResponses];
 
-export type UpdateServiceCaseAsyncData = {
+export type ServiceCasesUpdateServiceCaseData = {
     body?: ServiceCaseUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2296,7 +2296,7 @@ export type UpdateServiceCaseAsyncData = {
     url: '/api/v2/ServicesService/ServiceCases/{serviceCaseId}';
 };
 
-export type UpdateServiceCaseAsyncErrors = {
+export type ServiceCasesUpdateServiceCaseErrors = {
     /**
      * Unauthorized
      */
@@ -2307,18 +2307,18 @@ export type UpdateServiceCaseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateServiceCaseAsyncError = UpdateServiceCaseAsyncErrors[keyof UpdateServiceCaseAsyncErrors];
+export type ServiceCasesUpdateServiceCaseError = ServiceCasesUpdateServiceCaseErrors[keyof ServiceCasesUpdateServiceCaseErrors];
 
-export type UpdateServiceCaseAsyncResponses = {
+export type ServiceCasesUpdateServiceCaseResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateServiceCaseAsyncResponse = UpdateServiceCaseAsyncResponses[keyof UpdateServiceCaseAsyncResponses];
+export type ServiceCasesUpdateServiceCaseResponse = ServiceCasesUpdateServiceCaseResponses[keyof ServiceCasesUpdateServiceCaseResponses];
 
-export type GetServiceCaseTypesAsyncData = {
+export type ServiceCaseTypesGetServiceCaseTypesData = {
     body?: ServiceCaseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2331,7 +2331,7 @@ export type GetServiceCaseTypesAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes';
 };
 
-export type GetServiceCaseTypesAsyncErrors = {
+export type ServiceCaseTypesGetServiceCaseTypesErrors = {
     /**
      * Unauthorized
      */
@@ -2342,18 +2342,18 @@ export type GetServiceCaseTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceCaseTypesAsyncError = GetServiceCaseTypesAsyncErrors[keyof GetServiceCaseTypesAsyncErrors];
+export type ServiceCaseTypesGetServiceCaseTypesError = ServiceCaseTypesGetServiceCaseTypesErrors[keyof ServiceCaseTypesGetServiceCaseTypesErrors];
 
-export type GetServiceCaseTypesAsyncResponses = {
+export type ServiceCaseTypesGetServiceCaseTypesResponses = {
     /**
      * OK
      */
     200: ServiceCaseTypeDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetServiceCaseTypesAsyncResponse = GetServiceCaseTypesAsyncResponses[keyof GetServiceCaseTypesAsyncResponses];
+export type ServiceCaseTypesGetServiceCaseTypesResponse = ServiceCaseTypesGetServiceCaseTypesResponses[keyof ServiceCaseTypesGetServiceCaseTypesResponses];
 
-export type CreateServiceCaseTypeAsyncData = {
+export type ServiceCaseTypesCreateServiceCaseTypeData = {
     body?: ServiceCaseTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2366,7 +2366,7 @@ export type CreateServiceCaseTypeAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes';
 };
 
-export type CreateServiceCaseTypeAsyncErrors = {
+export type ServiceCaseTypesCreateServiceCaseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2377,18 +2377,18 @@ export type CreateServiceCaseTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateServiceCaseTypeAsyncError = CreateServiceCaseTypeAsyncErrors[keyof CreateServiceCaseTypeAsyncErrors];
+export type ServiceCaseTypesCreateServiceCaseTypeError = ServiceCaseTypesCreateServiceCaseTypeErrors[keyof ServiceCaseTypesCreateServiceCaseTypeErrors];
 
-export type CreateServiceCaseTypeAsyncResponses = {
+export type ServiceCaseTypesCreateServiceCaseTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateServiceCaseTypeAsyncResponse = CreateServiceCaseTypeAsyncResponses[keyof CreateServiceCaseTypeAsyncResponses];
+export type ServiceCaseTypesCreateServiceCaseTypeResponse = ServiceCaseTypesCreateServiceCaseTypeResponses[keyof ServiceCaseTypesCreateServiceCaseTypeResponses];
 
-export type GetServiceCaseTypesCountAsyncData = {
+export type ServiceCaseTypesGetServiceCaseTypesCountData = {
     body?: ServiceCaseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2401,7 +2401,7 @@ export type GetServiceCaseTypesCountAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes/Count';
 };
 
-export type GetServiceCaseTypesCountAsyncErrors = {
+export type ServiceCaseTypesGetServiceCaseTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -2412,18 +2412,18 @@ export type GetServiceCaseTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceCaseTypesCountAsyncError = GetServiceCaseTypesCountAsyncErrors[keyof GetServiceCaseTypesCountAsyncErrors];
+export type ServiceCaseTypesGetServiceCaseTypesCountError = ServiceCaseTypesGetServiceCaseTypesCountErrors[keyof ServiceCaseTypesGetServiceCaseTypesCountErrors];
 
-export type GetServiceCaseTypesCountAsyncResponses = {
+export type ServiceCaseTypesGetServiceCaseTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetServiceCaseTypesCountAsyncResponse = GetServiceCaseTypesCountAsyncResponses[keyof GetServiceCaseTypesCountAsyncResponses];
+export type ServiceCaseTypesGetServiceCaseTypesCountResponse = ServiceCaseTypesGetServiceCaseTypesCountResponses[keyof ServiceCaseTypesGetServiceCaseTypesCountResponses];
 
-export type DeleteServiceCaseTypeAsyncData = {
+export type ServiceCaseTypesDeleteServiceCaseTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2438,7 +2438,7 @@ export type DeleteServiceCaseTypeAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}';
 };
 
-export type DeleteServiceCaseTypeAsyncErrors = {
+export type ServiceCaseTypesDeleteServiceCaseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2449,18 +2449,18 @@ export type DeleteServiceCaseTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteServiceCaseTypeAsyncError = DeleteServiceCaseTypeAsyncErrors[keyof DeleteServiceCaseTypeAsyncErrors];
+export type ServiceCaseTypesDeleteServiceCaseTypeError = ServiceCaseTypesDeleteServiceCaseTypeErrors[keyof ServiceCaseTypesDeleteServiceCaseTypeErrors];
 
-export type DeleteServiceCaseTypeAsyncResponses = {
+export type ServiceCaseTypesDeleteServiceCaseTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteServiceCaseTypeAsyncResponse = DeleteServiceCaseTypeAsyncResponses[keyof DeleteServiceCaseTypeAsyncResponses];
+export type ServiceCaseTypesDeleteServiceCaseTypeResponse = ServiceCaseTypesDeleteServiceCaseTypeResponses[keyof ServiceCaseTypesDeleteServiceCaseTypeResponses];
 
-export type GetServiceCaseTypeByIdAsyncData = {
+export type ServiceCaseTypesGetServiceCaseTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2475,7 +2475,7 @@ export type GetServiceCaseTypeByIdAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}';
 };
 
-export type GetServiceCaseTypeByIdAsyncErrors = {
+export type ServiceCaseTypesGetServiceCaseTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2486,18 +2486,18 @@ export type GetServiceCaseTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceCaseTypeByIdAsyncError = GetServiceCaseTypeByIdAsyncErrors[keyof GetServiceCaseTypeByIdAsyncErrors];
+export type ServiceCaseTypesGetServiceCaseTypeByIdError = ServiceCaseTypesGetServiceCaseTypeByIdErrors[keyof ServiceCaseTypesGetServiceCaseTypeByIdErrors];
 
-export type GetServiceCaseTypeByIdAsyncResponses = {
+export type ServiceCaseTypesGetServiceCaseTypeByIdResponses = {
     /**
      * OK
      */
     200: ServiceCaseTypeDtoEnvelopeReadable;
 };
 
-export type GetServiceCaseTypeByIdAsyncResponse = GetServiceCaseTypeByIdAsyncResponses[keyof GetServiceCaseTypeByIdAsyncResponses];
+export type ServiceCaseTypesGetServiceCaseTypeByIdResponse = ServiceCaseTypesGetServiceCaseTypeByIdResponses[keyof ServiceCaseTypesGetServiceCaseTypeByIdResponses];
 
-export type PatchServiceCaseTypeAsyncData = {
+export type ServiceCaseTypesPatchServiceCaseTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2512,7 +2512,7 @@ export type PatchServiceCaseTypeAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}';
 };
 
-export type PatchServiceCaseTypeAsyncErrors = {
+export type ServiceCaseTypesPatchServiceCaseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2523,18 +2523,18 @@ export type PatchServiceCaseTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchServiceCaseTypeAsyncError = PatchServiceCaseTypeAsyncErrors[keyof PatchServiceCaseTypeAsyncErrors];
+export type ServiceCaseTypesPatchServiceCaseTypeError = ServiceCaseTypesPatchServiceCaseTypeErrors[keyof ServiceCaseTypesPatchServiceCaseTypeErrors];
 
-export type PatchServiceCaseTypeAsyncResponses = {
+export type ServiceCaseTypesPatchServiceCaseTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type PatchServiceCaseTypeAsyncResponse = PatchServiceCaseTypeAsyncResponses[keyof PatchServiceCaseTypeAsyncResponses];
+export type ServiceCaseTypesPatchServiceCaseTypeResponse = ServiceCaseTypesPatchServiceCaseTypeResponses[keyof ServiceCaseTypesPatchServiceCaseTypeResponses];
 
-export type UpdateServiceCaseTypeAsyncData = {
+export type ServiceCaseTypesUpdateServiceCaseTypeData = {
     body?: ServiceCaseTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2549,7 +2549,7 @@ export type UpdateServiceCaseTypeAsyncData = {
     url: '/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}';
 };
 
-export type UpdateServiceCaseTypeAsyncErrors = {
+export type ServiceCaseTypesUpdateServiceCaseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2560,18 +2560,18 @@ export type UpdateServiceCaseTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateServiceCaseTypeAsyncError = UpdateServiceCaseTypeAsyncErrors[keyof UpdateServiceCaseTypeAsyncErrors];
+export type ServiceCaseTypesUpdateServiceCaseTypeError = ServiceCaseTypesUpdateServiceCaseTypeErrors[keyof ServiceCaseTypesUpdateServiceCaseTypeErrors];
 
-export type UpdateServiceCaseTypeAsyncResponses = {
+export type ServiceCaseTypesUpdateServiceCaseTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateServiceCaseTypeAsyncResponse = UpdateServiceCaseTypeAsyncResponses[keyof UpdateServiceCaseTypeAsyncResponses];
+export type ServiceCaseTypesUpdateServiceCaseTypeResponse = ServiceCaseTypesUpdateServiceCaseTypeResponses[keyof ServiceCaseTypesUpdateServiceCaseTypeResponses];
 
-export type GetServiceLevelAgreementsAsyncData = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementsData = {
     body?: ServiceLevelAgreementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2584,7 +2584,7 @@ export type GetServiceLevelAgreementsAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements';
 };
 
-export type GetServiceLevelAgreementsAsyncErrors = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementsErrors = {
     /**
      * Unauthorized
      */
@@ -2595,18 +2595,18 @@ export type GetServiceLevelAgreementsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceLevelAgreementsAsyncError = GetServiceLevelAgreementsAsyncErrors[keyof GetServiceLevelAgreementsAsyncErrors];
+export type ServiceLevelAgreementsGetServiceLevelAgreementsError = ServiceLevelAgreementsGetServiceLevelAgreementsErrors[keyof ServiceLevelAgreementsGetServiceLevelAgreementsErrors];
 
-export type GetServiceLevelAgreementsAsyncResponses = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementsResponses = {
     /**
      * OK
      */
     200: ServiceLevelAgreementDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetServiceLevelAgreementsAsyncResponse = GetServiceLevelAgreementsAsyncResponses[keyof GetServiceLevelAgreementsAsyncResponses];
+export type ServiceLevelAgreementsGetServiceLevelAgreementsResponse = ServiceLevelAgreementsGetServiceLevelAgreementsResponses[keyof ServiceLevelAgreementsGetServiceLevelAgreementsResponses];
 
-export type CreateServiceLevelAgreementAsyncData = {
+export type ServiceLevelAgreementsCreateServiceLevelAgreementData = {
     body?: ServiceLevelAgreementCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2619,7 +2619,7 @@ export type CreateServiceLevelAgreementAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements';
 };
 
-export type CreateServiceLevelAgreementAsyncErrors = {
+export type ServiceLevelAgreementsCreateServiceLevelAgreementErrors = {
     /**
      * Unauthorized
      */
@@ -2630,18 +2630,18 @@ export type CreateServiceLevelAgreementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateServiceLevelAgreementAsyncError = CreateServiceLevelAgreementAsyncErrors[keyof CreateServiceLevelAgreementAsyncErrors];
+export type ServiceLevelAgreementsCreateServiceLevelAgreementError = ServiceLevelAgreementsCreateServiceLevelAgreementErrors[keyof ServiceLevelAgreementsCreateServiceLevelAgreementErrors];
 
-export type CreateServiceLevelAgreementAsyncResponses = {
+export type ServiceLevelAgreementsCreateServiceLevelAgreementResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateServiceLevelAgreementAsyncResponse = CreateServiceLevelAgreementAsyncResponses[keyof CreateServiceLevelAgreementAsyncResponses];
+export type ServiceLevelAgreementsCreateServiceLevelAgreementResponse = ServiceLevelAgreementsCreateServiceLevelAgreementResponses[keyof ServiceLevelAgreementsCreateServiceLevelAgreementResponses];
 
-export type GetServiceLevelAgreementsCountAsyncData = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementsCountData = {
     body?: ServiceLevelAgreementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2654,7 +2654,7 @@ export type GetServiceLevelAgreementsCountAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements/Count';
 };
 
-export type GetServiceLevelAgreementsCountAsyncErrors = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2665,18 +2665,18 @@ export type GetServiceLevelAgreementsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceLevelAgreementsCountAsyncError = GetServiceLevelAgreementsCountAsyncErrors[keyof GetServiceLevelAgreementsCountAsyncErrors];
+export type ServiceLevelAgreementsGetServiceLevelAgreementsCountError = ServiceLevelAgreementsGetServiceLevelAgreementsCountErrors[keyof ServiceLevelAgreementsGetServiceLevelAgreementsCountErrors];
 
-export type GetServiceLevelAgreementsCountAsyncResponses = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetServiceLevelAgreementsCountAsyncResponse = GetServiceLevelAgreementsCountAsyncResponses[keyof GetServiceLevelAgreementsCountAsyncResponses];
+export type ServiceLevelAgreementsGetServiceLevelAgreementsCountResponse = ServiceLevelAgreementsGetServiceLevelAgreementsCountResponses[keyof ServiceLevelAgreementsGetServiceLevelAgreementsCountResponses];
 
-export type DeleteServiceLevelAgreementAsyncData = {
+export type ServiceLevelAgreementsDeleteServiceLevelAgreementData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2691,7 +2691,7 @@ export type DeleteServiceLevelAgreementAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}';
 };
 
-export type DeleteServiceLevelAgreementAsyncErrors = {
+export type ServiceLevelAgreementsDeleteServiceLevelAgreementErrors = {
     /**
      * Unauthorized
      */
@@ -2702,18 +2702,18 @@ export type DeleteServiceLevelAgreementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteServiceLevelAgreementAsyncError = DeleteServiceLevelAgreementAsyncErrors[keyof DeleteServiceLevelAgreementAsyncErrors];
+export type ServiceLevelAgreementsDeleteServiceLevelAgreementError = ServiceLevelAgreementsDeleteServiceLevelAgreementErrors[keyof ServiceLevelAgreementsDeleteServiceLevelAgreementErrors];
 
-export type DeleteServiceLevelAgreementAsyncResponses = {
+export type ServiceLevelAgreementsDeleteServiceLevelAgreementResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteServiceLevelAgreementAsyncResponse = DeleteServiceLevelAgreementAsyncResponses[keyof DeleteServiceLevelAgreementAsyncResponses];
+export type ServiceLevelAgreementsDeleteServiceLevelAgreementResponse = ServiceLevelAgreementsDeleteServiceLevelAgreementResponses[keyof ServiceLevelAgreementsDeleteServiceLevelAgreementResponses];
 
-export type GetServiceLevelAgreementByIdAsyncData = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2728,7 +2728,7 @@ export type GetServiceLevelAgreementByIdAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}';
 };
 
-export type GetServiceLevelAgreementByIdAsyncErrors = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2739,18 +2739,18 @@ export type GetServiceLevelAgreementByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceLevelAgreementByIdAsyncError = GetServiceLevelAgreementByIdAsyncErrors[keyof GetServiceLevelAgreementByIdAsyncErrors];
+export type ServiceLevelAgreementsGetServiceLevelAgreementByIdError = ServiceLevelAgreementsGetServiceLevelAgreementByIdErrors[keyof ServiceLevelAgreementsGetServiceLevelAgreementByIdErrors];
 
-export type GetServiceLevelAgreementByIdAsyncResponses = {
+export type ServiceLevelAgreementsGetServiceLevelAgreementByIdResponses = {
     /**
      * OK
      */
     200: ServiceLevelAgreementDtoEnvelopeReadable;
 };
 
-export type GetServiceLevelAgreementByIdAsyncResponse = GetServiceLevelAgreementByIdAsyncResponses[keyof GetServiceLevelAgreementByIdAsyncResponses];
+export type ServiceLevelAgreementsGetServiceLevelAgreementByIdResponse = ServiceLevelAgreementsGetServiceLevelAgreementByIdResponses[keyof ServiceLevelAgreementsGetServiceLevelAgreementByIdResponses];
 
-export type PatchServiceLevelAgreementAsyncData = {
+export type ServiceLevelAgreementsPatchServiceLevelAgreementData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2765,7 +2765,7 @@ export type PatchServiceLevelAgreementAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}';
 };
 
-export type PatchServiceLevelAgreementAsyncErrors = {
+export type ServiceLevelAgreementsPatchServiceLevelAgreementErrors = {
     /**
      * Unauthorized
      */
@@ -2776,18 +2776,18 @@ export type PatchServiceLevelAgreementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchServiceLevelAgreementAsyncError = PatchServiceLevelAgreementAsyncErrors[keyof PatchServiceLevelAgreementAsyncErrors];
+export type ServiceLevelAgreementsPatchServiceLevelAgreementError = ServiceLevelAgreementsPatchServiceLevelAgreementErrors[keyof ServiceLevelAgreementsPatchServiceLevelAgreementErrors];
 
-export type PatchServiceLevelAgreementAsyncResponses = {
+export type ServiceLevelAgreementsPatchServiceLevelAgreementResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type PatchServiceLevelAgreementAsyncResponse = PatchServiceLevelAgreementAsyncResponses[keyof PatchServiceLevelAgreementAsyncResponses];
+export type ServiceLevelAgreementsPatchServiceLevelAgreementResponse = ServiceLevelAgreementsPatchServiceLevelAgreementResponses[keyof ServiceLevelAgreementsPatchServiceLevelAgreementResponses];
 
-export type UpdateServiceLevelAgreementAsyncData = {
+export type ServiceLevelAgreementsUpdateServiceLevelAgreementData = {
     body?: ServiceLevelAgreementUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2802,7 +2802,7 @@ export type UpdateServiceLevelAgreementAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}';
 };
 
-export type UpdateServiceLevelAgreementAsyncErrors = {
+export type ServiceLevelAgreementsUpdateServiceLevelAgreementErrors = {
     /**
      * Unauthorized
      */
@@ -2813,18 +2813,18 @@ export type UpdateServiceLevelAgreementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateServiceLevelAgreementAsyncError = UpdateServiceLevelAgreementAsyncErrors[keyof UpdateServiceLevelAgreementAsyncErrors];
+export type ServiceLevelAgreementsUpdateServiceLevelAgreementError = ServiceLevelAgreementsUpdateServiceLevelAgreementErrors[keyof ServiceLevelAgreementsUpdateServiceLevelAgreementErrors];
 
-export type UpdateServiceLevelAgreementAsyncResponses = {
+export type ServiceLevelAgreementsUpdateServiceLevelAgreementResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateServiceLevelAgreementAsyncResponse = UpdateServiceLevelAgreementAsyncResponses[keyof UpdateServiceLevelAgreementAsyncResponses];
+export type ServiceLevelAgreementsUpdateServiceLevelAgreementResponse = ServiceLevelAgreementsUpdateServiceLevelAgreementResponses[keyof ServiceLevelAgreementsUpdateServiceLevelAgreementResponses];
 
-export type GetAllServiceLevelsAsyncData = {
+export type ServiceLevelsGetAllServiceLevelsData = {
     body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2837,7 +2837,7 @@ export type GetAllServiceLevelsAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevels';
 };
 
-export type GetAllServiceLevelsAsyncErrors = {
+export type ServiceLevelsGetAllServiceLevelsErrors = {
     /**
      * Unauthorized
      */
@@ -2848,18 +2848,18 @@ export type GetAllServiceLevelsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAllServiceLevelsAsyncError = GetAllServiceLevelsAsyncErrors[keyof GetAllServiceLevelsAsyncErrors];
+export type ServiceLevelsGetAllServiceLevelsError = ServiceLevelsGetAllServiceLevelsErrors[keyof ServiceLevelsGetAllServiceLevelsErrors];
 
-export type GetAllServiceLevelsAsyncResponses = {
+export type ServiceLevelsGetAllServiceLevelsResponses = {
     /**
      * OK
      */
     200: ServiceLevelDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetAllServiceLevelsAsyncResponse = GetAllServiceLevelsAsyncResponses[keyof GetAllServiceLevelsAsyncResponses];
+export type ServiceLevelsGetAllServiceLevelsResponse = ServiceLevelsGetAllServiceLevelsResponses[keyof ServiceLevelsGetAllServiceLevelsResponses];
 
-export type CountAllServiceLevelsAsyncData = {
+export type ServiceLevelsCountAllServiceLevelsData = {
     body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2872,7 +2872,7 @@ export type CountAllServiceLevelsAsyncData = {
     url: '/api/v2/ServicesService/ServiceLevels/Count';
 };
 
-export type CountAllServiceLevelsAsyncErrors = {
+export type ServiceLevelsCountAllServiceLevelsErrors = {
     /**
      * Unauthorized
      */
@@ -2883,18 +2883,18 @@ export type CountAllServiceLevelsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountAllServiceLevelsAsyncError = CountAllServiceLevelsAsyncErrors[keyof CountAllServiceLevelsAsyncErrors];
+export type ServiceLevelsCountAllServiceLevelsError = ServiceLevelsCountAllServiceLevelsErrors[keyof ServiceLevelsCountAllServiceLevelsErrors];
 
-export type CountAllServiceLevelsAsyncResponses = {
+export type ServiceLevelsCountAllServiceLevelsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountAllServiceLevelsAsyncResponse = CountAllServiceLevelsAsyncResponses[keyof CountAllServiceLevelsAsyncResponses];
+export type ServiceLevelsCountAllServiceLevelsResponse = ServiceLevelsCountAllServiceLevelsResponses[keyof ServiceLevelsCountAllServiceLevelsResponses];
 
-export type GetServiceLevelsAsyncData = {
+export type ServiceLevelsGetServiceLevelsData = {
     body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2909,7 +2909,7 @@ export type GetServiceLevelsAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels';
 };
 
-export type GetServiceLevelsAsyncErrors = {
+export type ServiceLevelsGetServiceLevelsErrors = {
     /**
      * Unauthorized
      */
@@ -2920,18 +2920,18 @@ export type GetServiceLevelsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceLevelsAsyncError = GetServiceLevelsAsyncErrors[keyof GetServiceLevelsAsyncErrors];
+export type ServiceLevelsGetServiceLevelsError = ServiceLevelsGetServiceLevelsErrors[keyof ServiceLevelsGetServiceLevelsErrors];
 
-export type GetServiceLevelsAsyncResponses = {
+export type ServiceLevelsGetServiceLevelsResponses = {
     /**
      * OK
      */
     200: ServiceLevelDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetServiceLevelsAsyncResponse = GetServiceLevelsAsyncResponses[keyof GetServiceLevelsAsyncResponses];
+export type ServiceLevelsGetServiceLevelsResponse = ServiceLevelsGetServiceLevelsResponses[keyof ServiceLevelsGetServiceLevelsResponses];
 
-export type CreateServiceLevelAsyncData = {
+export type ServiceLevelsCreateServiceLevelData = {
     body?: ServiceLevelCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2946,7 +2946,7 @@ export type CreateServiceLevelAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels';
 };
 
-export type CreateServiceLevelAsyncErrors = {
+export type ServiceLevelsCreateServiceLevelErrors = {
     /**
      * Unauthorized
      */
@@ -2957,18 +2957,18 @@ export type CreateServiceLevelAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateServiceLevelAsyncError = CreateServiceLevelAsyncErrors[keyof CreateServiceLevelAsyncErrors];
+export type ServiceLevelsCreateServiceLevelError = ServiceLevelsCreateServiceLevelErrors[keyof ServiceLevelsCreateServiceLevelErrors];
 
-export type CreateServiceLevelAsyncResponses = {
+export type ServiceLevelsCreateServiceLevelResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateServiceLevelAsyncResponse = CreateServiceLevelAsyncResponses[keyof CreateServiceLevelAsyncResponses];
+export type ServiceLevelsCreateServiceLevelResponse = ServiceLevelsCreateServiceLevelResponses[keyof ServiceLevelsCreateServiceLevelResponses];
 
-export type GetServiceLevelsCountAsyncData = {
+export type ServiceLevelsGetServiceLevelsCountData = {
     body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2983,7 +2983,7 @@ export type GetServiceLevelsCountAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/Count';
 };
 
-export type GetServiceLevelsCountAsyncErrors = {
+export type ServiceLevelsGetServiceLevelsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2994,18 +2994,18 @@ export type GetServiceLevelsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceLevelsCountAsyncError = GetServiceLevelsCountAsyncErrors[keyof GetServiceLevelsCountAsyncErrors];
+export type ServiceLevelsGetServiceLevelsCountError = ServiceLevelsGetServiceLevelsCountErrors[keyof ServiceLevelsGetServiceLevelsCountErrors];
 
-export type GetServiceLevelsCountAsyncResponses = {
+export type ServiceLevelsGetServiceLevelsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetServiceLevelsCountAsyncResponse = GetServiceLevelsCountAsyncResponses[keyof GetServiceLevelsCountAsyncResponses];
+export type ServiceLevelsGetServiceLevelsCountResponse = ServiceLevelsGetServiceLevelsCountResponses[keyof ServiceLevelsGetServiceLevelsCountResponses];
 
-export type DeleteServiceLevelAsyncData = {
+export type ServiceLevelsDeleteServiceLevelData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3021,7 +3021,7 @@ export type DeleteServiceLevelAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}';
 };
 
-export type DeleteServiceLevelAsyncErrors = {
+export type ServiceLevelsDeleteServiceLevelErrors = {
     /**
      * Unauthorized
      */
@@ -3032,18 +3032,18 @@ export type DeleteServiceLevelAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteServiceLevelAsyncError = DeleteServiceLevelAsyncErrors[keyof DeleteServiceLevelAsyncErrors];
+export type ServiceLevelsDeleteServiceLevelError = ServiceLevelsDeleteServiceLevelErrors[keyof ServiceLevelsDeleteServiceLevelErrors];
 
-export type DeleteServiceLevelAsyncResponses = {
+export type ServiceLevelsDeleteServiceLevelResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteServiceLevelAsyncResponse = DeleteServiceLevelAsyncResponses[keyof DeleteServiceLevelAsyncResponses];
+export type ServiceLevelsDeleteServiceLevelResponse = ServiceLevelsDeleteServiceLevelResponses[keyof ServiceLevelsDeleteServiceLevelResponses];
 
-export type GetServiceLevelByIdAsyncData = {
+export type ServiceLevelsGetServiceLevelByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3059,7 +3059,7 @@ export type GetServiceLevelByIdAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}';
 };
 
-export type GetServiceLevelByIdAsyncErrors = {
+export type ServiceLevelsGetServiceLevelByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3070,18 +3070,18 @@ export type GetServiceLevelByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceLevelByIdAsyncError = GetServiceLevelByIdAsyncErrors[keyof GetServiceLevelByIdAsyncErrors];
+export type ServiceLevelsGetServiceLevelByIdError = ServiceLevelsGetServiceLevelByIdErrors[keyof ServiceLevelsGetServiceLevelByIdErrors];
 
-export type GetServiceLevelByIdAsyncResponses = {
+export type ServiceLevelsGetServiceLevelByIdResponses = {
     /**
      * OK
      */
     200: ServiceLevelDtoEnvelopeReadable;
 };
 
-export type GetServiceLevelByIdAsyncResponse = GetServiceLevelByIdAsyncResponses[keyof GetServiceLevelByIdAsyncResponses];
+export type ServiceLevelsGetServiceLevelByIdResponse = ServiceLevelsGetServiceLevelByIdResponses[keyof ServiceLevelsGetServiceLevelByIdResponses];
 
-export type PatchServiceLevelAsyncData = {
+export type ServiceLevelsPatchServiceLevelData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3097,7 +3097,7 @@ export type PatchServiceLevelAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}';
 };
 
-export type PatchServiceLevelAsyncErrors = {
+export type ServiceLevelsPatchServiceLevelErrors = {
     /**
      * Unauthorized
      */
@@ -3108,18 +3108,18 @@ export type PatchServiceLevelAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchServiceLevelAsyncError = PatchServiceLevelAsyncErrors[keyof PatchServiceLevelAsyncErrors];
+export type ServiceLevelsPatchServiceLevelError = ServiceLevelsPatchServiceLevelErrors[keyof ServiceLevelsPatchServiceLevelErrors];
 
-export type PatchServiceLevelAsyncResponses = {
+export type ServiceLevelsPatchServiceLevelResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type PatchServiceLevelAsyncResponse = PatchServiceLevelAsyncResponses[keyof PatchServiceLevelAsyncResponses];
+export type ServiceLevelsPatchServiceLevelResponse = ServiceLevelsPatchServiceLevelResponses[keyof ServiceLevelsPatchServiceLevelResponses];
 
-export type UpdateServiceLevelAsyncData = {
+export type ServiceLevelsUpdateServiceLevelData = {
     body?: ServiceLevelUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3135,7 +3135,7 @@ export type UpdateServiceLevelAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}';
 };
 
-export type UpdateServiceLevelAsyncErrors = {
+export type ServiceLevelsUpdateServiceLevelErrors = {
     /**
      * Unauthorized
      */
@@ -3146,18 +3146,18 @@ export type UpdateServiceLevelAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateServiceLevelAsyncError = UpdateServiceLevelAsyncErrors[keyof UpdateServiceLevelAsyncErrors];
+export type ServiceLevelsUpdateServiceLevelError = ServiceLevelsUpdateServiceLevelErrors[keyof ServiceLevelsUpdateServiceLevelErrors];
 
-export type UpdateServiceLevelAsyncResponses = {
+export type ServiceLevelsUpdateServiceLevelResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateServiceLevelAsyncResponse = UpdateServiceLevelAsyncResponses[keyof UpdateServiceLevelAsyncResponses];
+export type ServiceLevelsUpdateServiceLevelResponse = ServiceLevelsUpdateServiceLevelResponses[keyof ServiceLevelsUpdateServiceLevelResponses];
 
-export type GetServiceQueuesAsyncData = {
+export type ServiceQueuesGetServiceQueuesData = {
     body?: ServiceQueueDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3170,7 +3170,7 @@ export type GetServiceQueuesAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues';
 };
 
-export type GetServiceQueuesAsyncErrors = {
+export type ServiceQueuesGetServiceQueuesErrors = {
     /**
      * Unauthorized
      */
@@ -3181,18 +3181,18 @@ export type GetServiceQueuesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceQueuesAsyncError = GetServiceQueuesAsyncErrors[keyof GetServiceQueuesAsyncErrors];
+export type ServiceQueuesGetServiceQueuesError = ServiceQueuesGetServiceQueuesErrors[keyof ServiceQueuesGetServiceQueuesErrors];
 
-export type GetServiceQueuesAsyncResponses = {
+export type ServiceQueuesGetServiceQueuesResponses = {
     /**
      * OK
      */
     200: ServiceQueueDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetServiceQueuesAsyncResponse = GetServiceQueuesAsyncResponses[keyof GetServiceQueuesAsyncResponses];
+export type ServiceQueuesGetServiceQueuesResponse = ServiceQueuesGetServiceQueuesResponses[keyof ServiceQueuesGetServiceQueuesResponses];
 
-export type CreateServiceQueueAsyncData = {
+export type ServiceQueuesCreateServiceQueueData = {
     body?: ServiceQueueCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3205,7 +3205,7 @@ export type CreateServiceQueueAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues';
 };
 
-export type CreateServiceQueueAsyncErrors = {
+export type ServiceQueuesCreateServiceQueueErrors = {
     /**
      * Unauthorized
      */
@@ -3216,18 +3216,18 @@ export type CreateServiceQueueAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateServiceQueueAsyncError = CreateServiceQueueAsyncErrors[keyof CreateServiceQueueAsyncErrors];
+export type ServiceQueuesCreateServiceQueueError = ServiceQueuesCreateServiceQueueErrors[keyof ServiceQueuesCreateServiceQueueErrors];
 
-export type CreateServiceQueueAsyncResponses = {
+export type ServiceQueuesCreateServiceQueueResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateServiceQueueAsyncResponse = CreateServiceQueueAsyncResponses[keyof CreateServiceQueueAsyncResponses];
+export type ServiceQueuesCreateServiceQueueResponse = ServiceQueuesCreateServiceQueueResponses[keyof ServiceQueuesCreateServiceQueueResponses];
 
-export type GetServiceQueuesCountAsyncData = {
+export type ServiceQueuesGetServiceQueuesCountData = {
     body?: ServiceQueueDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3240,7 +3240,7 @@ export type GetServiceQueuesCountAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues/Count';
 };
 
-export type GetServiceQueuesCountAsyncErrors = {
+export type ServiceQueuesGetServiceQueuesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3251,18 +3251,18 @@ export type GetServiceQueuesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceQueuesCountAsyncError = GetServiceQueuesCountAsyncErrors[keyof GetServiceQueuesCountAsyncErrors];
+export type ServiceQueuesGetServiceQueuesCountError = ServiceQueuesGetServiceQueuesCountErrors[keyof ServiceQueuesGetServiceQueuesCountErrors];
 
-export type GetServiceQueuesCountAsyncResponses = {
+export type ServiceQueuesGetServiceQueuesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetServiceQueuesCountAsyncResponse = GetServiceQueuesCountAsyncResponses[keyof GetServiceQueuesCountAsyncResponses];
+export type ServiceQueuesGetServiceQueuesCountResponse = ServiceQueuesGetServiceQueuesCountResponses[keyof ServiceQueuesGetServiceQueuesCountResponses];
 
-export type DeleteServiceQueueAsyncData = {
+export type ServiceQueuesDeleteServiceQueueData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3277,7 +3277,7 @@ export type DeleteServiceQueueAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues/{serviceQueueId}';
 };
 
-export type DeleteServiceQueueAsyncErrors = {
+export type ServiceQueuesDeleteServiceQueueErrors = {
     /**
      * Unauthorized
      */
@@ -3288,18 +3288,18 @@ export type DeleteServiceQueueAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteServiceQueueAsyncError = DeleteServiceQueueAsyncErrors[keyof DeleteServiceQueueAsyncErrors];
+export type ServiceQueuesDeleteServiceQueueError = ServiceQueuesDeleteServiceQueueErrors[keyof ServiceQueuesDeleteServiceQueueErrors];
 
-export type DeleteServiceQueueAsyncResponses = {
+export type ServiceQueuesDeleteServiceQueueResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteServiceQueueAsyncResponse = DeleteServiceQueueAsyncResponses[keyof DeleteServiceQueueAsyncResponses];
+export type ServiceQueuesDeleteServiceQueueResponse = ServiceQueuesDeleteServiceQueueResponses[keyof ServiceQueuesDeleteServiceQueueResponses];
 
-export type GetServiceQueueByIdAsyncData = {
+export type ServiceQueuesGetServiceQueueByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3314,7 +3314,7 @@ export type GetServiceQueueByIdAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues/{serviceQueueId}';
 };
 
-export type GetServiceQueueByIdAsyncErrors = {
+export type ServiceQueuesGetServiceQueueByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3325,18 +3325,18 @@ export type GetServiceQueueByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceQueueByIdAsyncError = GetServiceQueueByIdAsyncErrors[keyof GetServiceQueueByIdAsyncErrors];
+export type ServiceQueuesGetServiceQueueByIdError = ServiceQueuesGetServiceQueueByIdErrors[keyof ServiceQueuesGetServiceQueueByIdErrors];
 
-export type GetServiceQueueByIdAsyncResponses = {
+export type ServiceQueuesGetServiceQueueByIdResponses = {
     /**
      * OK
      */
     200: ServiceQueueDtoEnvelopeReadable;
 };
 
-export type GetServiceQueueByIdAsyncResponse = GetServiceQueueByIdAsyncResponses[keyof GetServiceQueueByIdAsyncResponses];
+export type ServiceQueuesGetServiceQueueByIdResponse = ServiceQueuesGetServiceQueueByIdResponses[keyof ServiceQueuesGetServiceQueueByIdResponses];
 
-export type PatchServiceQueueAsyncData = {
+export type ServiceQueuesPatchServiceQueueData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3351,7 +3351,7 @@ export type PatchServiceQueueAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues/{serviceQueueId}';
 };
 
-export type PatchServiceQueueAsyncErrors = {
+export type ServiceQueuesPatchServiceQueueErrors = {
     /**
      * Unauthorized
      */
@@ -3362,18 +3362,18 @@ export type PatchServiceQueueAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchServiceQueueAsyncError = PatchServiceQueueAsyncErrors[keyof PatchServiceQueueAsyncErrors];
+export type ServiceQueuesPatchServiceQueueError = ServiceQueuesPatchServiceQueueErrors[keyof ServiceQueuesPatchServiceQueueErrors];
 
-export type PatchServiceQueueAsyncResponses = {
+export type ServiceQueuesPatchServiceQueueResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type PatchServiceQueueAsyncResponse = PatchServiceQueueAsyncResponses[keyof PatchServiceQueueAsyncResponses];
+export type ServiceQueuesPatchServiceQueueResponse = ServiceQueuesPatchServiceQueueResponses[keyof ServiceQueuesPatchServiceQueueResponses];
 
-export type UpdateServiceQueueAsyncData = {
+export type ServiceQueuesUpdateServiceQueueData = {
     body?: ServiceQueueUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3388,7 +3388,7 @@ export type UpdateServiceQueueAsyncData = {
     url: '/api/v2/ServicesService/ServiceQueues/{serviceQueueId}';
 };
 
-export type UpdateServiceQueueAsyncErrors = {
+export type ServiceQueuesUpdateServiceQueueErrors = {
     /**
      * Unauthorized
      */
@@ -3399,18 +3399,18 @@ export type UpdateServiceQueueAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateServiceQueueAsyncError = UpdateServiceQueueAsyncErrors[keyof UpdateServiceQueueAsyncErrors];
+export type ServiceQueuesUpdateServiceQueueError = ServiceQueuesUpdateServiceQueueErrors[keyof ServiceQueuesUpdateServiceQueueErrors];
 
-export type UpdateServiceQueueAsyncResponses = {
+export type ServiceQueuesUpdateServiceQueueResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateServiceQueueAsyncResponse = UpdateServiceQueueAsyncResponses[keyof UpdateServiceQueueAsyncResponses];
+export type ServiceQueuesUpdateServiceQueueResponse = ServiceQueuesUpdateServiceQueueResponses[keyof ServiceQueuesUpdateServiceQueueResponses];
 
-export type GetServicesAsyncData = {
+export type ServicesGetServicesData = {
     body?: ServiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3423,7 +3423,7 @@ export type GetServicesAsyncData = {
     url: '/api/v2/ServicesService/Services';
 };
 
-export type GetServicesAsyncErrors = {
+export type ServicesGetServicesErrors = {
     /**
      * Unauthorized
      */
@@ -3434,18 +3434,18 @@ export type GetServicesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServicesAsyncError = GetServicesAsyncErrors[keyof GetServicesAsyncErrors];
+export type ServicesGetServicesError = ServicesGetServicesErrors[keyof ServicesGetServicesErrors];
 
-export type GetServicesAsyncResponses = {
+export type ServicesGetServicesResponses = {
     /**
      * OK
      */
     200: ServiceDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetServicesAsyncResponse = GetServicesAsyncResponses[keyof GetServicesAsyncResponses];
+export type ServicesGetServicesResponse = ServicesGetServicesResponses[keyof ServicesGetServicesResponses];
 
-export type CreateServiceAsyncData = {
+export type ServicesCreateServiceData = {
     body?: ServiceCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3458,7 +3458,7 @@ export type CreateServiceAsyncData = {
     url: '/api/v2/ServicesService/Services';
 };
 
-export type CreateServiceAsyncErrors = {
+export type ServicesCreateServiceErrors = {
     /**
      * Unauthorized
      */
@@ -3469,18 +3469,18 @@ export type CreateServiceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateServiceAsyncError = CreateServiceAsyncErrors[keyof CreateServiceAsyncErrors];
+export type ServicesCreateServiceError = ServicesCreateServiceErrors[keyof ServicesCreateServiceErrors];
 
-export type CreateServiceAsyncResponses = {
+export type ServicesCreateServiceResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateServiceAsyncResponse = CreateServiceAsyncResponses[keyof CreateServiceAsyncResponses];
+export type ServicesCreateServiceResponse = ServicesCreateServiceResponses[keyof ServicesCreateServiceResponses];
 
-export type GetServicesCountAsyncData = {
+export type ServicesGetServicesCountData = {
     body?: ServiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3493,7 +3493,7 @@ export type GetServicesCountAsyncData = {
     url: '/api/v2/ServicesService/Services/Count';
 };
 
-export type GetServicesCountAsyncErrors = {
+export type ServicesGetServicesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3504,18 +3504,18 @@ export type GetServicesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServicesCountAsyncError = GetServicesCountAsyncErrors[keyof GetServicesCountAsyncErrors];
+export type ServicesGetServicesCountError = ServicesGetServicesCountErrors[keyof ServicesGetServicesCountErrors];
 
-export type GetServicesCountAsyncResponses = {
+export type ServicesGetServicesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetServicesCountAsyncResponse = GetServicesCountAsyncResponses[keyof GetServicesCountAsyncResponses];
+export type ServicesGetServicesCountResponse = ServicesGetServicesCountResponses[keyof ServicesGetServicesCountResponses];
 
-export type DeleteServiceAsyncData = {
+export type ServicesDeleteServiceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3530,7 +3530,7 @@ export type DeleteServiceAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}';
 };
 
-export type DeleteServiceAsyncErrors = {
+export type ServicesDeleteServiceErrors = {
     /**
      * Unauthorized
      */
@@ -3541,18 +3541,18 @@ export type DeleteServiceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteServiceAsyncError = DeleteServiceAsyncErrors[keyof DeleteServiceAsyncErrors];
+export type ServicesDeleteServiceError = ServicesDeleteServiceErrors[keyof ServicesDeleteServiceErrors];
 
-export type DeleteServiceAsyncResponses = {
+export type ServicesDeleteServiceResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteServiceAsyncResponse = DeleteServiceAsyncResponses[keyof DeleteServiceAsyncResponses];
+export type ServicesDeleteServiceResponse = ServicesDeleteServiceResponses[keyof ServicesDeleteServiceResponses];
 
-export type GetServiceByIdAsyncData = {
+export type ServicesGetServiceByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3567,7 +3567,7 @@ export type GetServiceByIdAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}';
 };
 
-export type GetServiceByIdAsyncErrors = {
+export type ServicesGetServiceByIdErrors = {
     /**
      * Unauthorized
      */
@@ -3578,18 +3578,18 @@ export type GetServiceByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetServiceByIdAsyncError = GetServiceByIdAsyncErrors[keyof GetServiceByIdAsyncErrors];
+export type ServicesGetServiceByIdError = ServicesGetServiceByIdErrors[keyof ServicesGetServiceByIdErrors];
 
-export type GetServiceByIdAsyncResponses = {
+export type ServicesGetServiceByIdResponses = {
     /**
      * OK
      */
     200: ServiceDtoEnvelopeReadable;
 };
 
-export type GetServiceByIdAsyncResponse = GetServiceByIdAsyncResponses[keyof GetServiceByIdAsyncResponses];
+export type ServicesGetServiceByIdResponse = ServicesGetServiceByIdResponses[keyof ServicesGetServiceByIdResponses];
 
-export type PatchServiceAsyncData = {
+export type ServicesPatchServiceData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3604,7 +3604,7 @@ export type PatchServiceAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}';
 };
 
-export type PatchServiceAsyncErrors = {
+export type ServicesPatchServiceErrors = {
     /**
      * Unauthorized
      */
@@ -3615,18 +3615,18 @@ export type PatchServiceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchServiceAsyncError = PatchServiceAsyncErrors[keyof PatchServiceAsyncErrors];
+export type ServicesPatchServiceError = ServicesPatchServiceErrors[keyof ServicesPatchServiceErrors];
 
-export type PatchServiceAsyncResponses = {
+export type ServicesPatchServiceResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type PatchServiceAsyncResponse = PatchServiceAsyncResponses[keyof PatchServiceAsyncResponses];
+export type ServicesPatchServiceResponse = ServicesPatchServiceResponses[keyof ServicesPatchServiceResponses];
 
-export type UpdateServiceAsyncData = {
+export type ServicesUpdateServiceData = {
     body?: ServiceUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3641,7 +3641,7 @@ export type UpdateServiceAsyncData = {
     url: '/api/v2/ServicesService/Services/{serviceId}';
 };
 
-export type UpdateServiceAsyncErrors = {
+export type ServicesUpdateServiceErrors = {
     /**
      * Unauthorized
      */
@@ -3652,16 +3652,16 @@ export type UpdateServiceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateServiceAsyncError = UpdateServiceAsyncErrors[keyof UpdateServiceAsyncErrors];
+export type ServicesUpdateServiceError = ServicesUpdateServiceErrors[keyof ServicesUpdateServiceErrors];
 
-export type UpdateServiceAsyncResponses = {
+export type ServicesUpdateServiceResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateServiceAsyncResponse = UpdateServiceAsyncResponses[keyof UpdateServiceAsyncResponses];
+export type ServicesUpdateServiceResponse = ServicesUpdateServiceResponses[keyof ServicesUpdateServiceResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

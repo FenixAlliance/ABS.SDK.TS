@@ -6,383 +6,135 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/LocationsService/Locations": {
     /**
      * Get Locations
      * @description Get all locations with OData query support.
      */
-    get: operations["GetLocationsAsync"];
+    get: operations["Locations_GetLocations"];
     /**
      * Create Location
      * @description Create a new location.
      */
-    post: operations["CreateLocationAsync"];
+    post: operations["Locations_CreateLocation"];
   };
   "/api/v2/LocationsService/Locations/count": {
     /**
      * Get Locations Count
      * @description Get the count of locations with OData query support.
      */
-    get: operations["GetLocationsCountAsync"];
+    get: operations["Locations_GetLocationsCount"];
   };
   "/api/v2/LocationsService/Locations/{locationId}": {
     /**
      * Get Location
      * @description Get details of a specific location by ID.
      */
-    get: operations["GetLocationAsync"];
+    get: operations["Locations_GetLocation"];
     /**
      * Update Location
      * @description Update a specific location by ID.
      */
-    put: operations["UpdateLocationAsync"];
+    put: operations["Locations_UpdateLocation"];
     /**
      * Delete Location
      * @description Delete a specific location by ID.
      */
-    delete: operations["DeleteLocationAsync"];
+    delete: operations["Locations_DeleteLocation"];
     /**
      * Patch a location
      * @description Patch a location
      */
-    patch: operations["PatchLocationAsync"];
+    patch: operations["Locations_PatchLocation"];
   };
   "/api/v2/LocationsService/Locations/wallet/{walletId}": {
     /**
      * Get Wallet Locations
      * @description Get locations for a specific wallet by ID.
      */
-    get: operations["GetWalletLocationsAsync"];
+    get: operations["Locations_GetWalletLocations"];
     /**
      * Create Wallet Location
      * @description Create a new location for a specific wallet.
      */
-    post: operations["CreateWalletLocationAsync"];
+    post: operations["Locations_CreateWalletLocation"];
   };
   "/api/v2/LocationsService/Locations/wallet/{walletId}/count": {
     /**
      * Get Wallet Locations Count
      * @description Get the count of locations for a specific wallet by ID.
      */
-    get: operations["GetWalletLocationsCountAsync"];
+    get: operations["Locations_GetWalletLocationsCount"];
   };
   "/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}": {
     /**
      * Get Wallet Location
      * @description Get a specific location of a wallet by ID.
      */
-    get: operations["GetWalletLocationAsync"];
+    get: operations["Locations_GetWalletLocation"];
     /**
      * Update Wallet Location
      * @description Update a specific location of a wallet.
      */
-    put: operations["UpdateWalletLocationAsync"];
+    put: operations["Locations_UpdateWalletLocation"];
     /**
      * Delete Wallet Location
      * @description Delete a specific location of a wallet.
      */
-    delete: operations["DeleteWalletLocationAsync"];
+    delete: operations["Locations_DeleteWalletLocation"];
     /**
      * Patch a wallet location
      * @description Patch a wallet location
      */
-    patch: operations["PatchWalletLocationAsync"];
+    patch: operations["Locations_PatchWalletLocation"];
   };
 }
 
@@ -649,7 +401,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -664,11 +495,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get Locations
    * @description Get all locations with OData query support.
    */
-  GetLocationsAsync: {
+  Locations_GetLocations: {
     parameters: {
       query: {
         tenantId: string;
@@ -708,7 +724,7 @@ export interface operations {
    * Create Location
    * @description Create a new location.
    */
-  CreateLocationAsync: {
+  Locations_CreateLocation: {
     parameters: {
       query: {
         tenantId: string;
@@ -748,7 +764,7 @@ export interface operations {
    * Get Locations Count
    * @description Get the count of locations with OData query support.
    */
-  GetLocationsCountAsync: {
+  Locations_GetLocationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -788,7 +804,7 @@ export interface operations {
    * Get Location
    * @description Get details of a specific location by ID.
    */
-  GetLocationAsync: {
+  Locations_GetLocation: {
     parameters: {
       query: {
         tenantId: string;
@@ -825,7 +841,7 @@ export interface operations {
    * Update Location
    * @description Update a specific location by ID.
    */
-  UpdateLocationAsync: {
+  Locations_UpdateLocation: {
     parameters: {
       query: {
         tenantId: string;
@@ -868,7 +884,7 @@ export interface operations {
    * Delete Location
    * @description Delete a specific location by ID.
    */
-  DeleteLocationAsync: {
+  Locations_DeleteLocation: {
     parameters: {
       query: {
         tenantId: string;
@@ -905,7 +921,7 @@ export interface operations {
    * Patch a location
    * @description Patch a location
    */
-  PatchLocationAsync: {
+  Locations_PatchLocation: {
     parameters: {
       query: {
         tenantId: string;
@@ -948,8 +964,11 @@ export interface operations {
    * Get Wallet Locations
    * @description Get locations for a specific wallet by ID.
    */
-  GetWalletLocationsAsync: {
+  Locations_GetWalletLocations: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
       };
@@ -988,8 +1007,11 @@ export interface operations {
    * Create Wallet Location
    * @description Create a new location for a specific wallet.
    */
-  CreateWalletLocationAsync: {
+  Locations_CreateWalletLocation: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
       };
@@ -1028,8 +1050,11 @@ export interface operations {
    * Get Wallet Locations Count
    * @description Get the count of locations for a specific wallet by ID.
    */
-  GetWalletLocationsCountAsync: {
+  Locations_GetWalletLocationsCount: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
       };
@@ -1068,8 +1093,11 @@ export interface operations {
    * Get Wallet Location
    * @description Get a specific location of a wallet by ID.
    */
-  GetWalletLocationAsync: {
+  Locations_GetWalletLocation: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
         locationId: string;
@@ -1103,8 +1131,11 @@ export interface operations {
    * Update Wallet Location
    * @description Update a specific location of a wallet.
    */
-  UpdateWalletLocationAsync: {
+  Locations_UpdateWalletLocation: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
         locationId: string;
@@ -1144,8 +1175,11 @@ export interface operations {
    * Delete Wallet Location
    * @description Delete a specific location of a wallet.
    */
-  DeleteWalletLocationAsync: {
+  Locations_DeleteWalletLocation: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
         locationId: string;
@@ -1179,8 +1213,11 @@ export interface operations {
    * Patch a wallet location
    * @description Patch a wallet location
    */
-  PatchWalletLocationAsync: {
+  Locations_PatchWalletLocation: {
     parameters: {
+      query?: {
+        tenantId?: string;
+      };
       path: {
         walletId: string;
         locationId: string;

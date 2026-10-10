@@ -10,489 +10,241 @@ export interface paths {
      * Get deal unit flows
      * @description Retrieves a list of deal unit flows for the specified tenant with OData query support.
      */
-    get: operations["GetDealUnitFlowsAsync"];
+    get: operations["DealUnitFlows_GetDealUnitFlows"];
     /**
      * Create a deal unit flow
      * @description Creates a new deal unit flow for the specified tenant.
      */
-    post: operations["CreateDealUnitFlowAsync"];
+    post: operations["DealUnitFlows_CreateDealUnitFlow"];
   };
   "/api/v2/DealsService/DealUnitFlows/Count": {
     /**
      * Get deal unit flows count
      * @description Returns the total count of deal unit flows for the specified tenant with OData filter support.
      */
-    get: operations["GetDealUnitFlowsCountAsync"];
+    get: operations["DealUnitFlows_GetDealUnitFlowsCount"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}": {
     /**
      * Get deal unit flow by ID
      * @description Retrieves a single deal unit flow by its unique identifier.
      */
-    get: operations["GetDealUnitFlowAsync"];
+    get: operations["DealUnitFlows_GetDealUnitFlow"];
     /**
      * Update a deal unit flow
      * @description Updates an existing deal unit flow by its unique identifier.
      */
-    put: operations["UpdateDealUnitFlowAsync"];
+    put: operations["DealUnitFlows_UpdateDealUnitFlow"];
     /**
      * Delete a deal unit flow
      * @description Deletes an existing deal unit flow by its unique identifier.
      */
-    delete: operations["DeleteDealUnitFlowAsync"];
+    delete: operations["DealUnitFlows_DeleteDealUnitFlow"];
     /**
      * Patch a deal unit flow
      * @description Partially updates an existing deal unit flow by its unique identifier using a JSON Patch document.
      */
-    patch: operations["PatchDealUnitFlowAsync"];
+    patch: operations["DealUnitFlows_PatchDealUnitFlow"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages": {
     /**
      * Get stages for a deal unit flow
      * @description Retrieves a list of stages for a specific deal unit flow with OData query support.
      */
-    get: operations["GetDealUnitFlowStagesAsync"];
+    get: operations["DealUnitFlows_GetDealUnitFlowStages"];
     /**
      * Create a deal unit flow stage
      * @description Creates a new stage within a specific deal unit flow.
      */
-    post: operations["CreateDealUnitFlowStageAsync"];
+    post: operations["DealUnitFlows_CreateDealUnitFlowStage"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/Count": {
     /**
      * Get stages count for a deal unit flow
      * @description Returns the total count of stages for a specific deal unit flow with OData filter support.
      */
-    get: operations["GetDealUnitFlowStagesCountAsync"];
+    get: operations["DealUnitFlows_GetDealUnitFlowStagesCount"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}": {
     /**
      * Get a deal unit flow stage by ID
      * @description Retrieves a single stage for a specific deal unit flow by its unique identifier.
      */
-    get: operations["GetDealUnitFlowStageAsync"];
+    get: operations["DealUnitFlows_GetDealUnitFlowStage"];
     /**
      * Update a deal unit flow stage
      * @description Updates an existing stage within a specific deal unit flow.
      */
-    put: operations["UpdateDealUnitFlowStageAsync"];
+    put: operations["DealUnitFlows_UpdateDealUnitFlowStage"];
     /**
      * Delete a deal unit flow stage
      * @description Deletes an existing stage from a specific deal unit flow.
      */
-    delete: operations["DeleteDealUnitFlowStageAsync"];
+    delete: operations["DealUnitFlows_DeleteDealUnitFlowStage"];
     /**
      * Patch a deal unit flow stage
      * @description Partially updates an existing stage within a specific deal unit flow using a JSON Patch document.
      */
-    patch: operations["PatchDealUnitFlowStageAsync"];
+    patch: operations["DealUnitFlows_PatchDealUnitFlowStage"];
   };
   "/api/v2/DealsService/DealUnits": {
     /**
      * Get deal units
      * @description Retrieves a list of deal units for the specified tenant with OData query support.
      */
-    get: operations["GetDealUnitsAsync"];
+    get: operations["DealUnits_GetDealUnits"];
     /**
      * Create a deal unit
      * @description Creates a new deal unit for the specified tenant.
      */
-    post: operations["CreateDealUnitAsync"];
+    post: operations["DealUnits_CreateDealUnit"];
   };
   "/api/v2/DealsService/DealUnits/Count": {
     /**
      * Get deal units count
      * @description Returns the total count of deal units for the specified tenant with OData filter support.
      */
-    get: operations["GetDealUnitsCountAsync"];
+    get: operations["DealUnits_GetDealUnitsCount"];
   };
   "/api/v2/DealsService/DealUnits/Extended": {
     /**
      * Get extended deal units
      * @description Retrieves a list of deal units with extended details for the specified tenant with OData query support.
      */
-    get: operations["GetExtendedDealUnitsAsync"];
+    get: operations["DealUnits_GetExtendedDealUnits"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}": {
     /**
      * Get deal unit by ID
      * @description Retrieves a single deal unit by its unique identifier.
      */
-    get: operations["GetDealUnitAsync"];
+    get: operations["DealUnits_GetDealUnit"];
     /**
      * Update a deal unit
      * @description Updates an existing deal unit by its unique identifier.
      */
-    put: operations["UpdateDealUnitAsync"];
+    put: operations["DealUnits_UpdateDealUnit"];
     /**
      * Delete a deal unit
      * @description Deletes an existing deal unit by its unique identifier.
      */
-    delete: operations["DeleteDealUnitAsync"];
+    delete: operations["DealUnits_DeleteDealUnit"];
     /**
      * Patch a deal unit
      * @description Partially updates an existing deal unit by its unique identifier using a JSON Patch document.
      */
-    patch: operations["PatchDealUnitAsync"];
+    patch: operations["DealUnits_PatchDealUnit"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Extended": {
     /**
      * Get extended deal unit by ID
      * @description Retrieves a single deal unit with extended details by its unique identifier.
      */
-    get: operations["GetExtendedDealUnitAsync"];
+    get: operations["DealUnits_GetExtendedDealUnit"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Calculate": {
     /**
      * Calculate a deal unit
      * @description Triggers recalculation of totals and derived values for a specific deal unit.
      */
-    put: operations["CalculateDealUnitAsync"];
+    put: operations["DealUnits_CalculateDealUnit"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines": {
     /**
      * Get deal unit lines
      * @description Retrieves a list of lines for a specific deal unit with OData query support.
      */
-    get: operations["GetDealUnitLinesAsync"];
+    get: operations["DealUnits_GetDealUnitLines"];
     /**
      * Create a deal unit line
      * @description Creates a new line within a specific deal unit.
      */
-    post: operations["CreateGetDealUnitLinesAsync"];
+    post: operations["DealUnits_CreateGetDealUnitLines"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/Count": {
     /**
      * Get deal unit lines count
      * @description Returns the total count of lines for a specific deal unit with OData filter support.
      */
-    get: operations["GetDealUnitLinesCountAsync"];
+    get: operations["DealUnits_GetDealUnitLinesCount"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}": {
     /**
      * Get a deal unit line by ID
      * @description Retrieves a single deal unit line by its unique identifier.
      */
-    get: operations["GetDealUnitPriceAsync"];
+    get: operations["DealUnits_GetDealUnitPrice"];
     /**
      * Update a deal unit line
      * @description Updates an existing line within a specific deal unit.
      */
-    put: operations["UpdateDealUnitPriceAsync"];
+    put: operations["DealUnits_UpdateDealUnitPrice"];
     /**
      * Delete a deal unit line
      * @description Deletes an existing line from a specific deal unit.
      */
-    delete: operations["DeleteDealUnitPriceAsync"];
+    delete: operations["DealUnits_DeleteDealUnitPrice"];
     /**
      * Patch a deal unit line
      * @description Partially updates an existing line within a specific deal unit using a JSON Patch document.
      */
-    patch: operations["PatchDealUnitLineAsync"];
+    patch: operations["DealUnits_PatchDealUnitLine"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}/Calculate": {
     /**
      * Calculate a deal unit line
      * @description Triggers recalculation of totals and derived values for a specific deal unit line.
      */
-    put: operations["CalculateDealUnitLineAsync"];
+    put: operations["DealUnits_CalculateDealUnitLine"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
 }
 
@@ -580,9 +332,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     DealUnitCreateDto: {
       /** Format: uuid */
@@ -2023,7 +1778,7 @@ export interface operations {
    * Get deal unit flows
    * @description Retrieves a list of deal unit flows for the specified tenant with OData query support.
    */
-  GetDealUnitFlowsAsync: {
+  DealUnitFlows_GetDealUnitFlows: {
     parameters: {
       query: {
         tenantId: string;
@@ -2056,7 +1811,7 @@ export interface operations {
    * Create a deal unit flow
    * @description Creates a new deal unit flow for the specified tenant.
    */
-  CreateDealUnitFlowAsync: {
+  DealUnitFlows_CreateDealUnitFlow: {
     parameters: {
       query: {
         tenantId: string;
@@ -2089,7 +1844,7 @@ export interface operations {
    * Get deal unit flows count
    * @description Returns the total count of deal unit flows for the specified tenant with OData filter support.
    */
-  GetDealUnitFlowsCountAsync: {
+  DealUnitFlows_GetDealUnitFlowsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2122,7 +1877,7 @@ export interface operations {
    * Get deal unit flow by ID
    * @description Retrieves a single deal unit flow by its unique identifier.
    */
-  GetDealUnitFlowAsync: {
+  DealUnitFlows_GetDealUnitFlow: {
     parameters: {
       query: {
         tenantId: string;
@@ -2152,7 +1907,7 @@ export interface operations {
    * Update a deal unit flow
    * @description Updates an existing deal unit flow by its unique identifier.
    */
-  UpdateDealUnitFlowAsync: {
+  DealUnitFlows_UpdateDealUnitFlow: {
     parameters: {
       query: {
         tenantId: string;
@@ -2188,7 +1943,7 @@ export interface operations {
    * Delete a deal unit flow
    * @description Deletes an existing deal unit flow by its unique identifier.
    */
-  DeleteDealUnitFlowAsync: {
+  DealUnitFlows_DeleteDealUnitFlow: {
     parameters: {
       query: {
         tenantId: string;
@@ -2218,7 +1973,7 @@ export interface operations {
    * Patch a deal unit flow
    * @description Partially updates an existing deal unit flow by its unique identifier using a JSON Patch document.
    */
-  PatchDealUnitFlowAsync: {
+  DealUnitFlows_PatchDealUnitFlow: {
     parameters: {
       query: {
         tenantId: string;
@@ -2254,7 +2009,7 @@ export interface operations {
    * Get stages for a deal unit flow
    * @description Retrieves a list of stages for a specific deal unit flow with OData query support.
    */
-  GetDealUnitFlowStagesAsync: {
+  DealUnitFlows_GetDealUnitFlowStages: {
     parameters: {
       query: {
         tenantId: string;
@@ -2290,7 +2045,7 @@ export interface operations {
    * Create a deal unit flow stage
    * @description Creates a new stage within a specific deal unit flow.
    */
-  CreateDealUnitFlowStageAsync: {
+  DealUnitFlows_CreateDealUnitFlowStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -2326,7 +2081,7 @@ export interface operations {
    * Get stages count for a deal unit flow
    * @description Returns the total count of stages for a specific deal unit flow with OData filter support.
    */
-  GetDealUnitFlowStagesCountAsync: {
+  DealUnitFlows_GetDealUnitFlowStagesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2362,7 +2117,7 @@ export interface operations {
    * Get a deal unit flow stage by ID
    * @description Retrieves a single stage for a specific deal unit flow by its unique identifier.
    */
-  GetDealUnitFlowStageAsync: {
+  DealUnitFlows_GetDealUnitFlowStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -2393,7 +2148,7 @@ export interface operations {
    * Update a deal unit flow stage
    * @description Updates an existing stage within a specific deal unit flow.
    */
-  UpdateDealUnitFlowStageAsync: {
+  DealUnitFlows_UpdateDealUnitFlowStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -2430,7 +2185,7 @@ export interface operations {
    * Delete a deal unit flow stage
    * @description Deletes an existing stage from a specific deal unit flow.
    */
-  DeleteDealUnitFlowStageAsync: {
+  DealUnitFlows_DeleteDealUnitFlowStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -2461,7 +2216,7 @@ export interface operations {
    * Patch a deal unit flow stage
    * @description Partially updates an existing stage within a specific deal unit flow using a JSON Patch document.
    */
-  PatchDealUnitFlowStageAsync: {
+  DealUnitFlows_PatchDealUnitFlowStage: {
     parameters: {
       query: {
         tenantId: string;
@@ -2498,7 +2253,7 @@ export interface operations {
    * Get deal units
    * @description Retrieves a list of deal units for the specified tenant with OData query support.
    */
-  GetDealUnitsAsync: {
+  DealUnits_GetDealUnits: {
     parameters: {
       query: {
         tenantId: string;
@@ -2531,7 +2286,7 @@ export interface operations {
    * Create a deal unit
    * @description Creates a new deal unit for the specified tenant.
    */
-  CreateDealUnitAsync: {
+  DealUnits_CreateDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2564,7 +2319,7 @@ export interface operations {
    * Get deal units count
    * @description Returns the total count of deal units for the specified tenant with OData filter support.
    */
-  GetDealUnitsCountAsync: {
+  DealUnits_GetDealUnitsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2597,7 +2352,7 @@ export interface operations {
    * Get extended deal units
    * @description Retrieves a list of deal units with extended details for the specified tenant with OData query support.
    */
-  GetExtendedDealUnitsAsync: {
+  DealUnits_GetExtendedDealUnits: {
     parameters: {
       query: {
         tenantId: string;
@@ -2630,7 +2385,7 @@ export interface operations {
    * Get deal unit by ID
    * @description Retrieves a single deal unit by its unique identifier.
    */
-  GetDealUnitAsync: {
+  DealUnits_GetDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2660,7 +2415,7 @@ export interface operations {
    * Update a deal unit
    * @description Updates an existing deal unit by its unique identifier.
    */
-  UpdateDealUnitAsync: {
+  DealUnits_UpdateDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2696,7 +2451,7 @@ export interface operations {
    * Delete a deal unit
    * @description Deletes an existing deal unit by its unique identifier.
    */
-  DeleteDealUnitAsync: {
+  DealUnits_DeleteDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2726,7 +2481,7 @@ export interface operations {
    * Patch a deal unit
    * @description Partially updates an existing deal unit by its unique identifier using a JSON Patch document.
    */
-  PatchDealUnitAsync: {
+  DealUnits_PatchDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2762,7 +2517,7 @@ export interface operations {
    * Get extended deal unit by ID
    * @description Retrieves a single deal unit with extended details by its unique identifier.
    */
-  GetExtendedDealUnitAsync: {
+  DealUnits_GetExtendedDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2792,7 +2547,7 @@ export interface operations {
    * Calculate a deal unit
    * @description Triggers recalculation of totals and derived values for a specific deal unit.
    */
-  CalculateDealUnitAsync: {
+  DealUnits_CalculateDealUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -2822,7 +2577,7 @@ export interface operations {
    * Get deal unit lines
    * @description Retrieves a list of lines for a specific deal unit with OData query support.
    */
-  GetDealUnitLinesAsync: {
+  DealUnits_GetDealUnitLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -2859,7 +2614,7 @@ export interface operations {
    * Create a deal unit line
    * @description Creates a new line within a specific deal unit.
    */
-  CreateGetDealUnitLinesAsync: {
+  DealUnits_CreateGetDealUnitLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -2895,7 +2650,7 @@ export interface operations {
    * Get deal unit lines count
    * @description Returns the total count of lines for a specific deal unit with OData filter support.
    */
-  GetDealUnitLinesCountAsync: {
+  DealUnits_GetDealUnitLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2931,7 +2686,7 @@ export interface operations {
    * Get a deal unit line by ID
    * @description Retrieves a single deal unit line by its unique identifier.
    */
-  GetDealUnitPriceAsync: {
+  DealUnits_GetDealUnitPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2962,7 +2717,7 @@ export interface operations {
    * Update a deal unit line
    * @description Updates an existing line within a specific deal unit.
    */
-  UpdateDealUnitPriceAsync: {
+  DealUnits_UpdateDealUnitPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2999,7 +2754,7 @@ export interface operations {
    * Delete a deal unit line
    * @description Deletes an existing line from a specific deal unit.
    */
-  DeleteDealUnitPriceAsync: {
+  DealUnits_DeleteDealUnitPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -3030,7 +2785,7 @@ export interface operations {
    * Patch a deal unit line
    * @description Partially updates an existing line within a specific deal unit using a JSON Patch document.
    */
-  PatchDealUnitLineAsync: {
+  DealUnits_PatchDealUnitLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -3067,7 +2822,7 @@ export interface operations {
    * Calculate a deal unit line
    * @description Triggers recalculation of totals and derived values for a specific deal unit line.
    */
-  CalculateDealUnitLineAsync: {
+  DealUnits_CalculateDealUnitLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -3094,7 +2849,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -3102,6 +2936,191 @@ export interface operations {
         changedEmail?: string;
       };
     };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
     responses: {
       /** @description OK */
       200: {

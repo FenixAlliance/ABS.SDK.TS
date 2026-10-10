@@ -10,1614 +10,1366 @@ export interface paths {
      * Get all airway bills
      * @description Retrieves all airway bills for the specified tenant.
      */
-    get: operations["GetAirwayBillsAsync"];
+    get: operations["AirwayBills_GetAirwayBills"];
     /**
      * Create an airway bill
      * @description Creates a new airway bill for the specified tenant.
      */
-    post: operations["CreateAirwayBillAsync"];
+    post: operations["AirwayBills_CreateAirwayBill"];
   };
   "/api/v2/LogisticsService/AirwayBills/Count": {
     /**
      * Get airway bills count
      * @description Returns the count of airway bills for the specified tenant.
      */
-    get: operations["GetAirwayBillsCountAsync"];
+    get: operations["AirwayBills_GetAirwayBillsCount"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}": {
     /**
      * Get airway bill by ID
      * @description Retrieves a specific airway bill by its identifier.
      */
-    get: operations["GetAirwayBillByIdAsync"];
+    get: operations["AirwayBills_GetAirwayBillById"];
     /**
      * Update an airway bill
      * @description Updates an existing airway bill.
      */
-    put: operations["UpdateAirwayBillAsync"];
+    put: operations["AirwayBills_UpdateAirwayBill"];
     /**
      * Delete an airway bill
      * @description Deletes an airway bill.
      */
-    delete: operations["DeleteAirwayBillAsync"];
+    delete: operations["AirwayBills_DeleteAirwayBill"];
     /**
      * Patch an airway bill
      * @description Partially updates an existing airway bill using a JSON Patch document.
      */
-    patch: operations["PatchAirwayBillAsync"];
+    patch: operations["AirwayBills_PatchAirwayBill"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/Issue": {
     /**
      * Issue an airway bill
      * @description Issues an airway bill.
      */
-    post: operations["IssueAirwayBillAsync"];
+    post: operations["AirwayBills_IssueAirwayBill"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/MarkInTransit": {
     /**
      * Mark airway bill in transit
      * @description Marks an airway bill as in transit.
      */
-    post: operations["MarkAirwayBillInTransitAsync"];
+    post: operations["AirwayBills_MarkAirwayBillInTransit"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/MarkArrived": {
     /**
      * Mark airway bill arrived
      * @description Marks an airway bill as arrived.
      */
-    post: operations["MarkAirwayBillArrivedAsync"];
+    post: operations["AirwayBills_MarkAirwayBillArrived"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/MarkDelivered": {
     /**
      * Mark airway bill delivered
      * @description Marks an airway bill as delivered.
      */
-    post: operations["MarkAirwayBillDeliveredAsync"];
+    post: operations["AirwayBills_MarkAirwayBillDelivered"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/Cancel": {
     /**
      * Cancel an airway bill
      * @description Cancels an airway bill.
      */
-    post: operations["CancelAirwayBillAsync"];
+    post: operations["AirwayBills_CancelAirwayBill"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/Lines": {
     /**
      * Get airway bill lines
      * @description Retrieves all lines for a specific airway bill.
      */
-    get: operations["GetAirwayBillLinesAsync"];
+    get: operations["AirwayBills_GetAirwayBillLines"];
     /**
      * Add a line to airway bill
      * @description Adds a new line to an airway bill.
      */
-    post: operations["AddAirwayBillLineAsync"];
+    post: operations["AirwayBills_AddAirwayBillLine"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/Lines/Count": {
     /**
      * Get airway bill lines count
      * @description Returns the count of lines for a specific airway bill.
      */
-    get: operations["GetAirwayBillLinesCountAsync"];
+    get: operations["AirwayBills_GetAirwayBillLinesCount"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/Lines/{lineId}": {
     /**
      * Update an airway bill line
      * @description Updates an existing line on an airway bill.
      */
-    put: operations["UpdateAirwayBillLineAsync"];
+    put: operations["AirwayBills_UpdateAirwayBillLine"];
     /**
      * Remove an airway bill line
      * @description Removes a line from an airway bill.
      */
-    delete: operations["RemoveAirwayBillLineAsync"];
+    delete: operations["AirwayBills_RemoveAirwayBillLine"];
     /**
      * Patch an airway bill line
      * @description Partially updates a line on an airway bill using a JSON Patch document.
      */
-    patch: operations["PatchAirwayBillLineAsync"];
+    patch: operations["AirwayBills_PatchAirwayBillLine"];
   };
   "/api/v2/LogisticsService/DeliveryNotes": {
     /**
      * Get all delivery notes
      * @description Retrieves all delivery notes for the specified tenant.
      */
-    get: operations["GetDeliveryNotesAsync"];
+    get: operations["DeliveryNotes_GetDeliveryNotes"];
     /**
      * Create a delivery note
      * @description Creates a new delivery note.
      */
-    post: operations["CreateDeliveryNoteAsync"];
+    post: operations["DeliveryNotes_CreateDeliveryNote"];
   };
   "/api/v2/LogisticsService/DeliveryNotes/Count": {
     /**
      * Get delivery notes count
      * @description Returns the count of delivery notes.
      */
-    get: operations["GetDeliveryNotesCountAsync"];
+    get: operations["DeliveryNotes_GetDeliveryNotesCount"];
   };
   "/api/v2/LogisticsService/DeliveryNotes/{deliveryNoteId}": {
     /**
      * Get delivery note by ID
      * @description Retrieves a specific delivery note.
      */
-    get: operations["GetDeliveryNoteByIdAsync"];
+    get: operations["DeliveryNotes_GetDeliveryNoteById"];
     /**
      * Update a delivery note
      * @description Updates an existing delivery note.
      */
-    put: operations["UpdateDeliveryNoteAsync"];
+    put: operations["DeliveryNotes_UpdateDeliveryNote"];
     /**
      * Delete a delivery note
      * @description Deletes a delivery note.
      */
-    delete: operations["DeleteDeliveryNoteAsync"];
+    delete: operations["DeliveryNotes_DeleteDeliveryNote"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips": {
     /**
      * Get all item packing slips
      * @description Retrieves all item packing slips for the specified tenant.
      */
-    get: operations["GetItemPackingSlipsAsync"];
+    get: operations["ItemPackingSlips_GetItemPackingSlips"];
     /**
      * Create an item packing slip
      * @description Creates a new item packing slip.
      */
-    post: operations["CreateItemPackingSlipAsync"];
+    post: operations["ItemPackingSlips_CreateItemPackingSlip"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips/Count": {
     /**
      * Get item packing slips count
      * @description Returns the count of item packing slips.
      */
-    get: operations["GetItemPackingSlipsCountAsync"];
+    get: operations["ItemPackingSlips_GetItemPackingSlipsCount"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}": {
     /**
      * Get item packing slip by ID
      * @description Retrieves a specific item packing slip.
      */
-    get: operations["GetItemPackingSlipByIdAsync"];
+    get: operations["ItemPackingSlips_GetItemPackingSlipById"];
     /**
      * Update an item packing slip
      * @description Updates an existing item packing slip.
      */
-    put: operations["UpdateItemPackingSlipAsync"];
+    put: operations["ItemPackingSlips_UpdateItemPackingSlip"];
     /**
      * Delete an item packing slip
      * @description Deletes an item packing slip.
      */
-    delete: operations["DeleteItemPackingSlipAsync"];
+    delete: operations["ItemPackingSlips_DeleteItemPackingSlip"];
     /**
      * Patch an item packing slip
      * @description Applies a JSON Patch document to an item packing slip.
      */
-    patch: operations["PatchItemPackingSlipAsync"];
+    patch: operations["ItemPackingSlips_PatchItemPackingSlip"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries": {
     /**
      * Get packing slip entries
      * @description Retrieves all entries for the specified packing slip.
      */
-    get: operations["GetItemPackingSlipEntriesAsync"];
+    get: operations["ItemPackingSlips_GetItemPackingSlipEntries"];
     /**
      * Create a packing slip entry
      * @description Creates a new packing slip entry.
      */
-    post: operations["CreateItemPackingSlipEntryAsync"];
+    post: operations["ItemPackingSlips_CreateItemPackingSlipEntry"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/Count": {
     /**
      * Get packing slip entries count
      * @description Returns the count of packing slip entries.
      */
-    get: operations["GetItemPackingSlipEntriesCountAsync"];
+    get: operations["ItemPackingSlips_GetItemPackingSlipEntriesCount"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/{entryId}": {
     /**
      * Get packing slip entry by ID
      * @description Retrieves a specific packing slip entry.
      */
-    get: operations["GetItemPackingSlipEntryByIdAsync"];
+    get: operations["ItemPackingSlips_GetItemPackingSlipEntryById"];
     /**
      * Update a packing slip entry
      * @description Updates an existing packing slip entry.
      */
-    put: operations["UpdateItemPackingSlipEntryAsync"];
+    put: operations["ItemPackingSlips_UpdateItemPackingSlipEntry"];
     /**
      * Delete a packing slip entry
      * @description Deletes a packing slip entry.
      */
-    delete: operations["DeleteItemPackingSlipEntryAsync"];
+    delete: operations["ItemPackingSlips_DeleteItemPackingSlipEntry"];
     /**
      * Patch a packing slip entry
      * @description Applies a JSON Patch document to a packing slip entry.
      */
-    patch: operations["PatchItemPackingSlipEntryAsync"];
+    patch: operations["ItemPackingSlips_PatchItemPackingSlipEntry"];
   };
   "/api/v2/LogisticsService/ItemPickLists": {
     /**
      * Get all item pick lists
      * @description Retrieves all item pick lists for the specified tenant.
      */
-    get: operations["GetItemPickListsAsync"];
+    get: operations["ItemPickLists_GetItemPickLists"];
     /**
      * Create an item pick list
      * @description Creates a new item pick list.
      */
-    post: operations["CreateItemPickListAsync"];
+    post: operations["ItemPickLists_CreateItemPickList"];
   };
   "/api/v2/LogisticsService/ItemPickLists/Count": {
     /**
      * Get item pick lists count
      * @description Returns the count of item pick lists.
      */
-    get: operations["GetItemPickListsCountAsync"];
+    get: operations["ItemPickLists_GetItemPickListsCount"];
   };
   "/api/v2/LogisticsService/ItemPickLists/{pickListId}": {
     /**
      * Get item pick list by ID
      * @description Retrieves a specific item pick list.
      */
-    get: operations["GetItemPickListByIdAsync"];
+    get: operations["ItemPickLists_GetItemPickListById"];
     /**
      * Update an item pick list
      * @description Updates an existing item pick list.
      */
-    put: operations["UpdateItemPickListAsync"];
+    put: operations["ItemPickLists_UpdateItemPickList"];
     /**
      * Delete an item pick list
      * @description Deletes an item pick list.
      */
-    delete: operations["DeleteItemPickListAsync"];
+    delete: operations["ItemPickLists_DeleteItemPickList"];
     /**
      * Patch an item pick list
      * @description Applies a JSON Patch document to an item pick list.
      */
-    patch: operations["PatchItemPickListAsync"];
+    patch: operations["ItemPickLists_PatchItemPickList"];
   };
   "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries": {
     /**
      * Get pick list entries
      * @description Retrieves all entries for the specified pick list.
      */
-    get: operations["GetItemPickListEntriesAsync"];
+    get: operations["ItemPickLists_GetItemPickListEntries"];
     /**
      * Create a pick list entry
      * @description Creates a new pick list entry.
      */
-    post: operations["CreateItemPickListEntryAsync"];
+    post: operations["ItemPickLists_CreateItemPickListEntry"];
   };
   "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/Count": {
     /**
      * Get pick list entries count
      * @description Returns the count of pick list entries.
      */
-    get: operations["GetItemPickListEntriesCountAsync"];
+    get: operations["ItemPickLists_GetItemPickListEntriesCount"];
   };
   "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/{entryId}": {
     /**
      * Get pick list entry by ID
      * @description Retrieves a specific pick list entry.
      */
-    get: operations["GetItemPickListEntryByIdAsync"];
+    get: operations["ItemPickLists_GetItemPickListEntryById"];
     /**
      * Update a pick list entry
      * @description Updates an existing pick list entry.
      */
-    put: operations["UpdateItemPickListEntryAsync"];
+    put: operations["ItemPickLists_UpdateItemPickListEntry"];
     /**
      * Delete a pick list entry
      * @description Deletes a pick list entry.
      */
-    delete: operations["DeleteItemPickListEntryAsync"];
+    delete: operations["ItemPickLists_DeleteItemPickListEntry"];
     /**
      * Patch a pick list entry
      * @description Applies a JSON Patch document to a pick list entry.
      */
-    patch: operations["PatchItemPickListEntryAsync"];
+    patch: operations["ItemPickLists_PatchItemPickListEntry"];
   };
   "/api/v2/LogisticsService/ItemRestocks": {
     /**
      * Get all item restocks
      * @description Retrieves all item restocks for the specified tenant.
      */
-    get: operations["GetItemRestocksAsync"];
+    get: operations["ItemRestocks_GetItemRestocks"];
     /**
      * Create an item restock
      * @description Creates a new item restock.
      */
-    post: operations["CreateItemRestockAsync"];
+    post: operations["ItemRestocks_CreateItemRestock"];
   };
   "/api/v2/LogisticsService/ItemRestocks/Count": {
     /**
      * Get item restocks count
      * @description Returns the count of item restocks.
      */
-    get: operations["GetItemRestocksCountAsync"];
+    get: operations["ItemRestocks_GetItemRestocksCount"];
   };
   "/api/v2/LogisticsService/ItemRestocks/{restockId}": {
     /**
      * Get item restock by ID
      * @description Retrieves a specific item restock.
      */
-    get: operations["GetItemRestockByIdAsync"];
+    get: operations["ItemRestocks_GetItemRestockById"];
     /**
      * Update an item restock
      * @description Updates an existing item restock.
      */
-    put: operations["UpdateItemRestockAsync"];
+    put: operations["ItemRestocks_UpdateItemRestock"];
     /**
      * Delete an item restock
      * @description Deletes an item restock.
      */
-    delete: operations["DeleteItemRestockAsync"];
+    delete: operations["ItemRestocks_DeleteItemRestock"];
     /**
      * Patch an item restock
      * @description Applies a JSON Patch document to an item restock.
      */
-    patch: operations["PatchItemRestockAsync"];
+    patch: operations["ItemRestocks_PatchItemRestock"];
   };
   "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries": {
     /**
      * Get restock entries
      * @description Retrieves all entries for the specified restock.
      */
-    get: operations["GetItemRestockEntriesAsync"];
+    get: operations["ItemRestocks_GetItemRestockEntries"];
     /**
      * Create a restock entry
      * @description Creates a new restock entry.
      */
-    post: operations["CreateItemRestockEntryAsync"];
+    post: operations["ItemRestocks_CreateItemRestockEntry"];
   };
   "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/Count": {
     /**
      * Get restock entries count
      * @description Returns the count of restock entries.
      */
-    get: operations["GetItemRestockEntriesCountAsync"];
+    get: operations["ItemRestocks_GetItemRestockEntriesCount"];
   };
   "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/{entryId}": {
     /**
      * Get restock entry by ID
      * @description Retrieves a specific restock entry.
      */
-    get: operations["GetItemRestockEntryByIdAsync"];
+    get: operations["ItemRestocks_GetItemRestockEntryById"];
     /**
      * Update a restock entry
      * @description Updates an existing restock entry.
      */
-    put: operations["UpdateItemRestockEntryAsync"];
+    put: operations["ItemRestocks_UpdateItemRestockEntry"];
     /**
      * Delete a restock entry
      * @description Deletes a restock entry.
      */
-    delete: operations["DeleteItemRestockEntryAsync"];
+    delete: operations["ItemRestocks_DeleteItemRestockEntry"];
     /**
      * Patch a restock entry
      * @description Applies a JSON Patch document to a restock entry.
      */
-    patch: operations["PatchItemRestockEntryAsync"];
+    patch: operations["ItemRestocks_PatchItemRestockEntry"];
   };
   "/api/v2/LogisticsService/ItemRetainSamples": {
     /**
      * Get all item retain samples
      * @description Retrieves all item retain samples for the specified tenant.
      */
-    get: operations["GetItemRetainSamplesAsync"];
+    get: operations["ItemRetainSamples_GetItemRetainSamples"];
     /**
      * Create an item retain sample
      * @description Creates a new item retain sample.
      */
-    post: operations["CreateItemRetainSampleAsync"];
+    post: operations["ItemRetainSamples_CreateItemRetainSample"];
   };
   "/api/v2/LogisticsService/ItemRetainSamples/Count": {
     /**
      * Get item retain samples count
      * @description Returns the count of item retain samples.
      */
-    get: operations["GetItemRetainSamplesCountAsync"];
+    get: operations["ItemRetainSamples_GetItemRetainSamplesCount"];
   };
   "/api/v2/LogisticsService/ItemRetainSamples/{retainSampleId}": {
     /**
      * Get item retain sample by ID
      * @description Retrieves a specific item retain sample.
      */
-    get: operations["GetItemRetainSampleByIdAsync"];
+    get: operations["ItemRetainSamples_GetItemRetainSampleById"];
     /**
      * Update an item retain sample
      * @description Updates an existing item retain sample.
      */
-    put: operations["UpdateItemRetainSampleAsync"];
+    put: operations["ItemRetainSamples_UpdateItemRetainSample"];
     /**
      * Delete an item retain sample
      * @description Deletes an item retain sample.
      */
-    delete: operations["DeleteItemRetainSampleAsync"];
+    delete: operations["ItemRetainSamples_DeleteItemRetainSample"];
     /**
      * Patch an item retain sample
      * @description Applies a JSON Patch document to an item retain sample.
      */
-    patch: operations["PatchItemRetainSampleAsync"];
+    patch: operations["ItemRetainSamples_PatchItemRetainSample"];
   };
   "/api/v2/LogisticsService/Ports": {
     /**
      * Get all ports
      * @description Retrieves all ports for the specified tenant.
      */
-    get: operations["GetPortsAsync"];
+    get: operations["Ports_GetPorts"];
     /**
      * Create a port
      * @description Creates a new port for the specified tenant.
      */
-    post: operations["CreatePortAsync"];
+    post: operations["Ports_CreatePort"];
   };
   "/api/v2/LogisticsService/Ports/Count": {
     /**
      * Get ports count
      * @description Returns the count of ports for the specified tenant.
      */
-    get: operations["GetPortsCountAsync"];
+    get: operations["Ports_GetPortsCount"];
   };
   "/api/v2/LogisticsService/Ports/{portId}": {
     /**
      * Get port by ID
      * @description Retrieves a specific port by its identifier.
      */
-    get: operations["GetPortByIdAsync"];
+    get: operations["Ports_GetPortById"];
     /**
      * Update a port
      * @description Updates an existing port.
      */
-    put: operations["UpdatePortAsync"];
+    put: operations["Ports_UpdatePort"];
     /**
      * Delete a port
      * @description Deletes a port.
      */
-    delete: operations["DeletePortAsync"];
+    delete: operations["Ports_DeletePort"];
     /**
      * Patch a port
      * @description Partially updates an existing port using JSON Patch.
      */
-    patch: operations["PatchPortAsync"];
+    patch: operations["Ports_PatchPort"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery": {
     /**
      * Get all proofs of delivery
      * @description Retrieves all proofs of delivery for the specified tenant.
      */
-    get: operations["GetProofsOfDeliveryAsync"];
+    get: operations["ProofsOfDelivery_GetProofsOfDelivery"];
     /**
      * Create a proof of delivery
      * @description Creates a new proof of delivery for the specified tenant.
      */
-    post: operations["CreateProofOfDeliveryAsync"];
+    post: operations["ProofsOfDelivery_CreateProofOfDelivery"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/Count": {
     /**
      * Get proofs of delivery count
      * @description Returns the count of proofs of delivery for the specified tenant.
      */
-    get: operations["GetProofsOfDeliveryCountAsync"];
+    get: operations["ProofsOfDelivery_GetProofsOfDeliveryCount"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}": {
     /**
      * Get proof of delivery by ID
      * @description Retrieves a specific proof of delivery by its identifier.
      */
-    get: operations["GetProofOfDeliveryByIdAsync"];
+    get: operations["ProofsOfDelivery_GetProofOfDeliveryById"];
     /**
      * Update a proof of delivery
      * @description Updates an existing proof of delivery.
      */
-    put: operations["UpdateProofOfDeliveryAsync"];
+    put: operations["ProofsOfDelivery_UpdateProofOfDelivery"];
     /**
      * Delete a proof of delivery
      * @description Deletes a proof of delivery.
      */
-    delete: operations["DeleteProofOfDeliveryAsync"];
+    delete: operations["ProofsOfDelivery_DeleteProofOfDelivery"];
     /**
      * Patch a proof of delivery
      * @description Partially updates an existing proof of delivery using JSON Patch.
      */
-    patch: operations["PatchProofOfDeliveryAsync"];
+    patch: operations["ProofsOfDelivery_PatchProofOfDelivery"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Sign": {
     /**
      * Sign a proof of delivery
      * @description Signs a proof of delivery.
      */
-    post: operations["SignProofOfDeliveryAsync"];
+    post: operations["ProofsOfDelivery_SignProofOfDelivery"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Dispute": {
     /**
      * Dispute a proof of delivery
      * @description Disputes a proof of delivery.
      */
-    post: operations["DisputeProofOfDeliveryAsync"];
+    post: operations["ProofsOfDelivery_DisputeProofOfDelivery"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Reject": {
     /**
      * Reject a proof of delivery
      * @description Rejects a proof of delivery.
      */
-    post: operations["RejectProofOfDeliveryAsync"];
+    post: operations["ProofsOfDelivery_RejectProofOfDelivery"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines": {
     /**
      * Get proof of delivery lines
      * @description Retrieves all lines for a specific proof of delivery.
      */
-    get: operations["GetProofOfDeliveryLinesAsync"];
+    get: operations["ProofsOfDelivery_GetProofOfDeliveryLines"];
     /**
      * Add a line to proof of delivery
      * @description Adds a new line to a proof of delivery.
      */
-    post: operations["AddProofOfDeliveryLineAsync"];
+    post: operations["ProofsOfDelivery_AddProofOfDeliveryLine"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/Count": {
     /**
      * Get proof of delivery lines count
      * @description Returns the count of lines for a specific proof of delivery.
      */
-    get: operations["GetProofOfDeliveryLinesCountAsync"];
+    get: operations["ProofsOfDelivery_GetProofOfDeliveryLinesCount"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/{lineId}": {
     /**
      * Update a proof of delivery line
      * @description Updates an existing line on a proof of delivery.
      */
-    put: operations["UpdateProofOfDeliveryLineAsync"];
+    put: operations["ProofsOfDelivery_UpdateProofOfDeliveryLine"];
     /**
      * Remove a proof of delivery line
      * @description Removes a line from a proof of delivery.
      */
-    delete: operations["RemoveProofOfDeliveryLineAsync"];
+    delete: operations["ProofsOfDelivery_RemoveProofOfDeliveryLine"];
     /**
      * Patch a proof of delivery line
      * @description Partially updates an existing proof of delivery line using JSON Patch.
      */
-    patch: operations["PatchProofOfDeliveryLineAsync"];
+    patch: operations["ProofsOfDelivery_PatchProofOfDeliveryLine"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes": {
     /**
      * Get attached delivery notes
      * @description Retrieves all delivery notes attached to a proof of delivery.
      */
-    get: operations["GetProofOfDeliveryDeliveryNotesAsync"];
+    get: operations["ProofsOfDelivery_GetProofOfDeliveryDeliveryNotes"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/Count": {
     /**
      * Get delivery notes count
      * @description Returns the count of delivery notes attached to a proof of delivery.
      */
-    get: operations["GetProofOfDeliveryDeliveryNotesCountAsync"];
+    get: operations["ProofsOfDelivery_GetProofOfDeliveryDeliveryNotesCount"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/{noteId}": {
     /**
      * Attach a delivery note
      * @description Attaches a delivery note to a proof of delivery.
      */
-    post: operations["AttachDeliveryNoteAsync"];
+    post: operations["ProofsOfDelivery_AttachDeliveryNote"];
     /**
      * Detach a delivery note
      * @description Detaches a delivery note from a proof of delivery.
      */
-    delete: operations["DetachDeliveryNoteAsync"];
+    delete: operations["ProofsOfDelivery_DetachDeliveryNote"];
   };
   "/api/v2/LogisticsService/RailWaybills": {
     /**
      * Get all rail waybills
      * @description Retrieves all rail waybills for the specified tenant.
      */
-    get: operations["GetRailWaybillsAsync"];
+    get: operations["RailWaybills_GetRailWaybills"];
     /**
      * Create a rail waybill
      * @description Creates a new rail waybill for the specified tenant.
      */
-    post: operations["CreateRailWaybillAsync"];
+    post: operations["RailWaybills_CreateRailWaybill"];
   };
   "/api/v2/LogisticsService/RailWaybills/Count": {
     /**
      * Get rail waybills count
      * @description Returns the count of rail waybills for the specified tenant.
      */
-    get: operations["GetRailWaybillsCountAsync"];
+    get: operations["RailWaybills_GetRailWaybillsCount"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}": {
     /**
      * Get rail waybill by ID
      * @description Retrieves a specific rail waybill by its identifier.
      */
-    get: operations["GetRailWaybillByIdAsync"];
+    get: operations["RailWaybills_GetRailWaybillById"];
     /**
      * Update a rail waybill
      * @description Updates an existing rail waybill.
      */
-    put: operations["UpdateRailWaybillAsync"];
+    put: operations["RailWaybills_UpdateRailWaybill"];
     /**
      * Delete a rail waybill
      * @description Deletes a rail waybill.
      */
-    delete: operations["DeleteRailWaybillAsync"];
+    delete: operations["RailWaybills_DeleteRailWaybill"];
     /**
      * Patch a rail waybill
      * @description Partially updates an existing rail waybill using a JSON Patch document.
      */
-    patch: operations["PatchRailWaybillAsync"];
+    patch: operations["RailWaybills_PatchRailWaybill"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/Issue": {
     /**
      * Issue a rail waybill
      * @description Issues a rail waybill.
      */
-    post: operations["IssueRailWaybillAsync"];
+    post: operations["RailWaybills_IssueRailWaybill"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/MarkInTransit": {
     /**
      * Mark rail waybill in transit
      * @description Marks a rail waybill as in transit.
      */
-    post: operations["MarkRailWaybillInTransitAsync"];
+    post: operations["RailWaybills_MarkRailWaybillInTransit"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/MarkDelivered": {
     /**
      * Mark rail waybill delivered
      * @description Marks a rail waybill as delivered.
      */
-    post: operations["MarkRailWaybillDeliveredAsync"];
+    post: operations["RailWaybills_MarkRailWaybillDelivered"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/Cancel": {
     /**
      * Cancel a rail waybill
      * @description Cancels a rail waybill.
      */
-    post: operations["CancelRailWaybillAsync"];
+    post: operations["RailWaybills_CancelRailWaybill"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines": {
     /**
      * Get rail waybill lines
      * @description Retrieves all lines for a specific rail waybill.
      */
-    get: operations["GetRailWaybillLinesAsync"];
+    get: operations["RailWaybills_GetRailWaybillLines"];
     /**
      * Add a line to rail waybill
      * @description Adds a new line to a rail waybill.
      */
-    post: operations["AddRailWaybillLineAsync"];
+    post: operations["RailWaybills_AddRailWaybillLine"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/Count": {
     /**
      * Get rail waybill lines count
      * @description Returns the count of lines for a specific rail waybill.
      */
-    get: operations["GetRailWaybillLinesCountAsync"];
+    get: operations["RailWaybills_GetRailWaybillLinesCount"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/{lineId}": {
     /**
      * Update a rail waybill line
      * @description Updates an existing line on a rail waybill.
      */
-    put: operations["UpdateRailWaybillLineAsync"];
+    put: operations["RailWaybills_UpdateRailWaybillLine"];
     /**
      * Remove a rail waybill line
      * @description Removes a line from a rail waybill.
      */
-    delete: operations["RemoveRailWaybillLineAsync"];
+    delete: operations["RailWaybills_RemoveRailWaybillLine"];
     /**
      * Patch a rail waybill line
      * @description Partially updates a line on a rail waybill using a JSON Patch document.
      */
-    patch: operations["PatchRailWaybillLineAsync"];
+    patch: operations["RailWaybills_PatchRailWaybillLine"];
   };
   "/api/v2/LogisticsService/RoadWaybills": {
     /**
      * Get all road waybills
      * @description Retrieves all road waybills for the specified tenant.
      */
-    get: operations["GetRoadWaybillsAsync"];
+    get: operations["RoadWaybills_GetRoadWaybills"];
     /**
      * Create a road waybill
      * @description Creates a new road waybill for the specified tenant.
      */
-    post: operations["CreateRoadWaybillAsync"];
+    post: operations["RoadWaybills_CreateRoadWaybill"];
   };
   "/api/v2/LogisticsService/RoadWaybills/Count": {
     /**
      * Get road waybills count
      * @description Returns the count of road waybills for the specified tenant.
      */
-    get: operations["GetRoadWaybillsCountAsync"];
+    get: operations["RoadWaybills_GetRoadWaybillsCount"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}": {
     /**
      * Get road waybill by ID
      * @description Retrieves a specific road waybill by its identifier.
      */
-    get: operations["GetRoadWaybillByIdAsync"];
+    get: operations["RoadWaybills_GetRoadWaybillById"];
     /**
      * Update a road waybill
      * @description Updates an existing road waybill.
      */
-    put: operations["UpdateRoadWaybillAsync"];
+    put: operations["RoadWaybills_UpdateRoadWaybill"];
     /**
      * Delete a road waybill
      * @description Deletes a road waybill.
      */
-    delete: operations["DeleteRoadWaybillAsync"];
+    delete: operations["RoadWaybills_DeleteRoadWaybill"];
     /**
      * Patch a road waybill
      * @description Partially updates an existing road waybill using a JSON Patch document.
      */
-    patch: operations["PatchRoadWaybillAsync"];
+    patch: operations["RoadWaybills_PatchRoadWaybill"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Issue": {
     /**
      * Issue a road waybill
      * @description Issues a road waybill.
      */
-    post: operations["IssueRoadWaybillAsync"];
+    post: operations["RoadWaybills_IssueRoadWaybill"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/MarkInTransit": {
     /**
      * Mark road waybill in transit
      * @description Marks a road waybill as in transit.
      */
-    post: operations["MarkRoadWaybillInTransitAsync"];
+    post: operations["RoadWaybills_MarkRoadWaybillInTransit"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/MarkDelivered": {
     /**
      * Mark road waybill delivered
      * @description Marks a road waybill as delivered.
      */
-    post: operations["MarkRoadWaybillDeliveredAsync"];
+    post: operations["RoadWaybills_MarkRoadWaybillDelivered"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Dispute": {
     /**
      * Dispute a road waybill
      * @description Disputes a road waybill.
      */
-    post: operations["DisputeRoadWaybillAsync"];
+    post: operations["RoadWaybills_DisputeRoadWaybill"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Cancel": {
     /**
      * Cancel a road waybill
      * @description Cancels a road waybill.
      */
-    post: operations["CancelRoadWaybillAsync"];
+    post: operations["RoadWaybills_CancelRoadWaybill"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines": {
     /**
      * Get road waybill lines
      * @description Retrieves all lines for a specific road waybill.
      */
-    get: operations["GetRoadWaybillLinesAsync"];
+    get: operations["RoadWaybills_GetRoadWaybillLines"];
     /**
      * Add a line to road waybill
      * @description Adds a new line to a road waybill.
      */
-    post: operations["AddRoadWaybillLineAsync"];
+    post: operations["RoadWaybills_AddRoadWaybillLine"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/Count": {
     /**
      * Get road waybill lines count
      * @description Returns the count of lines for a specific road waybill.
      */
-    get: operations["GetRoadWaybillLinesCountAsync"];
+    get: operations["RoadWaybills_GetRoadWaybillLinesCount"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/{lineId}": {
     /**
      * Update a road waybill line
      * @description Updates an existing line on a road waybill.
      */
-    put: operations["UpdateRoadWaybillLineAsync"];
+    put: operations["RoadWaybills_UpdateRoadWaybillLine"];
     /**
      * Remove a road waybill line
      * @description Removes a line from a road waybill.
      */
-    delete: operations["RemoveRoadWaybillLineAsync"];
+    delete: operations["RoadWaybills_RemoveRoadWaybillLine"];
     /**
      * Patch a road waybill line
      * @description Partially updates a line on a road waybill using a JSON Patch document.
      */
-    patch: operations["PatchRoadWaybillLineAsync"];
+    patch: operations["RoadWaybills_PatchRoadWaybillLine"];
   };
   "/api/v2/LogisticsService/SeawayBills": {
     /**
      * Get all seaway bills
      * @description Retrieves all seaway bills for the specified tenant.
      */
-    get: operations["GetSeawayBillsAsync"];
+    get: operations["SeawayBills_GetSeawayBills"];
     /**
      * Create a seaway bill
      * @description Creates a new seaway bill for the specified tenant.
      */
-    post: operations["CreateSeawayBillAsync"];
+    post: operations["SeawayBills_CreateSeawayBill"];
   };
   "/api/v2/LogisticsService/SeawayBills/Count": {
     /**
      * Get seaway bills count
      * @description Returns the count of seaway bills for the specified tenant.
      */
-    get: operations["GetSeawayBillsCountAsync"];
+    get: operations["SeawayBills_GetSeawayBillsCount"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}": {
     /**
      * Get seaway bill by ID
      * @description Retrieves a specific seaway bill by its identifier.
      */
-    get: operations["GetSeawayBillByIdAsync"];
+    get: operations["SeawayBills_GetSeawayBillById"];
     /**
      * Update a seaway bill
      * @description Updates an existing seaway bill.
      */
-    put: operations["UpdateSeawayBillAsync"];
+    put: operations["SeawayBills_UpdateSeawayBill"];
     /**
      * Delete a seaway bill
      * @description Deletes a seaway bill.
      */
-    delete: operations["DeleteSeawayBillAsync"];
+    delete: operations["SeawayBills_DeleteSeawayBill"];
     /**
      * Patch a seaway bill
      * @description Partially updates an existing seaway bill using a JSON Patch document.
      */
-    patch: operations["PatchSeawayBillAsync"];
+    patch: operations["SeawayBills_PatchSeawayBill"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Issue": {
     /**
      * Issue a seaway bill
      * @description Issues a seaway bill.
      */
-    post: operations["IssueSeawayBillAsync"];
+    post: operations["SeawayBills_IssueSeawayBill"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/MarkInTransit": {
     /**
      * Mark seaway bill in transit
      * @description Marks a seaway bill as in transit.
      */
-    post: operations["MarkSeawayBillInTransitAsync"];
+    post: operations["SeawayBills_MarkSeawayBillInTransit"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/MarkArrived": {
     /**
      * Mark seaway bill arrived
      * @description Marks a seaway bill as arrived.
      */
-    post: operations["MarkSeawayBillArrivedAsync"];
+    post: operations["SeawayBills_MarkSeawayBillArrived"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Release": {
     /**
      * Release a seaway bill
      * @description Releases a seaway bill.
      */
-    post: operations["ReleaseSeawayBillAsync"];
+    post: operations["SeawayBills_ReleaseSeawayBill"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Cancel": {
     /**
      * Cancel a seaway bill
      * @description Cancels a seaway bill.
      */
-    post: operations["CancelSeawayBillAsync"];
+    post: operations["SeawayBills_CancelSeawayBill"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Lines": {
     /**
      * Get seaway bill lines
      * @description Retrieves all lines for a specific seaway bill.
      */
-    get: operations["GetSeawayBillLinesAsync"];
+    get: operations["SeawayBills_GetSeawayBillLines"];
     /**
      * Add a line to seaway bill
      * @description Adds a new line to a seaway bill.
      */
-    post: operations["AddSeawayBillLineAsync"];
+    post: operations["SeawayBills_AddSeawayBillLine"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Lines/Count": {
     /**
      * Get seaway bill lines count
      * @description Returns the count of lines for a specific seaway bill.
      */
-    get: operations["GetSeawayBillLinesCountAsync"];
+    get: operations["SeawayBills_GetSeawayBillLinesCount"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Lines/{lineId}": {
     /**
      * Update a seaway bill line
      * @description Updates an existing line on a seaway bill.
      */
-    put: operations["UpdateSeawayBillLineAsync"];
+    put: operations["SeawayBills_UpdateSeawayBillLine"];
     /**
      * Remove a seaway bill line
      * @description Removes a line from a seaway bill.
      */
-    delete: operations["RemoveSeawayBillLineAsync"];
+    delete: operations["SeawayBills_RemoveSeawayBillLine"];
     /**
      * Patch a seaway bill line
      * @description Partially updates a line on a seaway bill using a JSON Patch document.
      */
-    patch: operations["PatchSeawayBillLineAsync"];
+    patch: operations["SeawayBills_PatchSeawayBillLine"];
   };
   "/api/v2/LogisticsService/SupplierProfiles": {
     /**
      * Get all supplier profiles
      * @description Retrieves all supplier profiles for the specified tenant.
      */
-    get: operations["GetSupplierProfilesAsync"];
+    get: operations["SupplierProfiles_GetSupplierProfiles"];
     /**
      * Create a supplier profile
      * @description Creates a new supplier profile for the specified tenant.
      */
-    post: operations["CreateSupplierProfileAsync"];
+    post: operations["SupplierProfiles_CreateSupplierProfile"];
   };
   "/api/v2/LogisticsService/SupplierProfiles/Count": {
     /**
      * Get supplier profiles count
      * @description Returns the count of supplier profiles for the specified tenant.
      */
-    get: operations["GetSupplierProfilesCountAsync"];
+    get: operations["SupplierProfiles_GetSupplierProfilesCount"];
   };
   "/api/v2/LogisticsService/SupplierProfiles/{supplierProfileId}": {
     /**
      * Get supplier profile by ID
      * @description Retrieves a specific supplier profile by its identifier.
      */
-    get: operations["GetSupplierProfileByIdAsync"];
+    get: operations["SupplierProfiles_GetSupplierProfileById"];
     /**
      * Update a supplier profile
      * @description Updates an existing supplier profile.
      */
-    put: operations["UpdateSupplierProfileAsync"];
+    put: operations["SupplierProfiles_UpdateSupplierProfile"];
     /**
      * Delete a supplier profile
      * @description Deletes a supplier profile.
      */
-    delete: operations["DeleteSupplierProfileAsync"];
+    delete: operations["SupplierProfiles_DeleteSupplierProfile"];
     /**
      * Patch a supplier profile
      * @description Applies a JSON Patch document to a supplier profile.
      */
-    patch: operations["PatchSupplierProfileAsync"];
+    patch: operations["SupplierProfiles_PatchSupplierProfile"];
   };
   "/api/v2/LogisticsService/TruckDrivers": {
     /**
      * Get all truck drivers
      * @description Retrieves all truck drivers for the specified tenant.
      */
-    get: operations["GetTruckDriversAsync"];
+    get: operations["TruckDrivers_GetTruckDrivers"];
     /**
      * Create a truck driver
      * @description Creates a new truck driver for the specified tenant.
      */
-    post: operations["CreateTruckDriverAsync"];
+    post: operations["TruckDrivers_CreateTruckDriver"];
   };
   "/api/v2/LogisticsService/TruckDrivers/Count": {
     /**
      * Get truck drivers count
      * @description Returns the count of truck drivers for the specified tenant.
      */
-    get: operations["GetTruckDriversCountAsync"];
+    get: operations["TruckDrivers_GetTruckDriversCount"];
   };
   "/api/v2/LogisticsService/TruckDrivers/{driverId}": {
     /**
      * Get truck driver by ID
      * @description Retrieves a specific truck driver by its identifier.
      */
-    get: operations["GetTruckDriverByIdAsync"];
+    get: operations["TruckDrivers_GetTruckDriverById"];
     /**
      * Update a truck driver
      * @description Updates an existing truck driver.
      */
-    put: operations["UpdateTruckDriverAsync"];
+    put: operations["TruckDrivers_UpdateTruckDriver"];
     /**
      * Delete a truck driver
      * @description Deletes a truck driver.
      */
-    delete: operations["DeleteTruckDriverAsync"];
+    delete: operations["TruckDrivers_DeleteTruckDriver"];
     /**
      * Patch a truck driver
      * @description Partially updates an existing truck driver using JSON Patch.
      */
-    patch: operations["PatchTruckDriverAsync"];
+    patch: operations["TruckDrivers_PatchTruckDriver"];
   };
   "/api/v2/LogisticsService/TruckDrivers/{driverId}/Activate": {
     /**
      * Activate a truck driver
      * @description Activates a truck driver.
      */
-    post: operations["ActivateTruckDriverAsync"];
+    post: operations["TruckDrivers_ActivateTruckDriver"];
   };
   "/api/v2/LogisticsService/TruckDrivers/{driverId}/Deactivate": {
     /**
      * Deactivate a truck driver
      * @description Deactivates a truck driver.
      */
-    post: operations["DeactivateTruckDriverAsync"];
+    post: operations["TruckDrivers_DeactivateTruckDriver"];
   };
   "/api/v2/LogisticsService/Trucks": {
     /**
      * Get all trucks
      * @description Retrieves all trucks for the specified tenant.
      */
-    get: operations["GetTrucksAsync"];
+    get: operations["Trucks_GetTrucks"];
     /**
      * Create a truck
      * @description Creates a new truck for the specified tenant.
      */
-    post: operations["CreateTruckAsync"];
+    post: operations["Trucks_CreateTruck"];
   };
   "/api/v2/LogisticsService/Trucks/Count": {
     /**
      * Get trucks count
      * @description Returns the count of trucks for the specified tenant.
      */
-    get: operations["GetTrucksCountAsync"];
+    get: operations["Trucks_GetTrucksCount"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}": {
     /**
      * Get truck by ID
      * @description Retrieves a specific truck by its identifier.
      */
-    get: operations["GetTruckByIdAsync"];
+    get: operations["Trucks_GetTruckById"];
     /**
      * Update a truck
      * @description Updates an existing truck.
      */
-    put: operations["UpdateTruckAsync"];
+    put: operations["Trucks_UpdateTruck"];
     /**
      * Delete a truck
      * @description Deletes a truck.
      */
-    delete: operations["DeleteTruckAsync"];
+    delete: operations["Trucks_DeleteTruck"];
     /**
      * Patch a truck
      * @description Partially updates an existing truck using JSON Patch.
      */
-    patch: operations["PatchTruckAsync"];
+    patch: operations["Trucks_PatchTruck"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips": {
     /**
      * Get truck trips
      * @description Retrieves all trips for a specific truck.
      */
-    get: operations["GetTruckTripsAsync"];
+    get: operations["Trucks_GetTruckTrips"];
     /**
      * Create a truck trip
      * @description Creates a new trip for a truck.
      */
-    post: operations["CreateTruckTripAsync"];
+    post: operations["Trucks_CreateTruckTrip"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/Count": {
     /**
      * Get truck trips count
      * @description Returns the count of trips for a specific truck.
      */
-    get: operations["GetTruckTripsCountAsync"];
+    get: operations["Trucks_GetTruckTripsCount"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}": {
     /**
      * Update a truck trip
      * @description Updates an existing truck trip.
      */
-    put: operations["UpdateTruckTripAsync"];
+    put: operations["Trucks_UpdateTruckTrip"];
     /**
      * Delete a truck trip
      * @description Deletes a truck trip.
      */
-    delete: operations["DeleteTruckTripAsync"];
+    delete: operations["Trucks_DeleteTruckTrip"];
     /**
      * Patch a truck trip
      * @description Partially updates an existing truck trip using JSON Patch.
      */
-    patch: operations["PatchTruckTripAsync"];
+    patch: operations["Trucks_PatchTruckTrip"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Dispatch": {
     /**
      * Dispatch a trip
      * @description Dispatches a truck trip.
      */
-    post: operations["DispatchTripAsync"];
+    post: operations["Trucks_DispatchTrip"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Depart": {
     /**
      * Depart a trip
      * @description Marks a truck trip as departed.
      */
-    post: operations["DepartTripAsync"];
+    post: operations["Trucks_DepartTrip"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Arrive": {
     /**
      * Arrive a trip
      * @description Marks a truck trip as arrived.
      */
-    post: operations["ArriveTripAsync"];
+    post: operations["Trucks_ArriveTrip"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Deliver": {
     /**
      * Deliver a trip
      * @description Marks a truck trip as delivered.
      */
-    post: operations["DeliverTripAsync"];
+    post: operations["Trucks_DeliverTrip"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Cancel": {
     /**
      * Cancel a trip
      * @description Cancels a truck trip.
      */
-    post: operations["CancelTripAsync"];
+    post: operations["Trucks_CancelTrip"];
   };
   "/api/v2/LogisticsService/Vessels": {
     /**
      * Get all vessels
      * @description Retrieves all vessels for the specified tenant.
      */
-    get: operations["GetVesselsAsync"];
+    get: operations["Vessels_GetVessels"];
     /**
      * Create a vessel
      * @description Creates a new vessel for the specified tenant.
      */
-    post: operations["CreateVesselAsync"];
+    post: operations["Vessels_CreateVessel"];
   };
   "/api/v2/LogisticsService/Vessels/Count": {
     /**
      * Get vessels count
      * @description Returns the count of vessels for the specified tenant.
      */
-    get: operations["GetVesselsCountAsync"];
+    get: operations["Vessels_GetVesselsCount"];
   };
   "/api/v2/LogisticsService/Vessels/{vesselId}": {
     /**
      * Get vessel by ID
      * @description Retrieves a specific vessel by its identifier.
      */
-    get: operations["GetVesselByIdAsync"];
+    get: operations["Vessels_GetVesselById"];
     /**
      * Update a vessel
      * @description Updates an existing vessel.
      */
-    put: operations["UpdateVesselAsync"];
+    put: operations["Vessels_UpdateVessel"];
     /**
      * Delete a vessel
      * @description Deletes a vessel.
      */
-    delete: operations["DeleteVesselAsync"];
+    delete: operations["Vessels_DeleteVessel"];
     /**
      * Patch a vessel
      * @description Partially updates an existing vessel using JSON Patch.
      */
-    patch: operations["PatchVesselAsync"];
+    patch: operations["Vessels_PatchVessel"];
   };
   "/api/v2/LogisticsService/Voyages": {
     /**
      * Get all voyages
      * @description Retrieves all voyages for the specified tenant.
      */
-    get: operations["GetVoyagesAsync"];
+    get: operations["Voyages_GetVoyages"];
     /**
      * Create a voyage
      * @description Creates a new voyage for the specified tenant.
      */
-    post: operations["CreateVoyageAsync"];
+    post: operations["Voyages_CreateVoyage"];
   };
   "/api/v2/LogisticsService/Voyages/Count": {
     /**
      * Get voyages count
      * @description Returns the count of voyages for the specified tenant.
      */
-    get: operations["GetVoyagesCountAsync"];
+    get: operations["Voyages_GetVoyagesCount"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}": {
     /**
      * Get voyage by ID
      * @description Retrieves a specific voyage by its identifier.
      */
-    get: operations["GetVoyageByIdAsync"];
+    get: operations["Voyages_GetVoyageById"];
     /**
      * Update a voyage
      * @description Updates an existing voyage.
      */
-    put: operations["UpdateVoyageAsync"];
+    put: operations["Voyages_UpdateVoyage"];
     /**
      * Delete a voyage
      * @description Deletes a voyage.
      */
-    delete: operations["DeleteVoyageAsync"];
+    delete: operations["Voyages_DeleteVoyage"];
     /**
      * Patch a voyage
      * @description Partially updates an existing voyage using JSON Patch.
      */
-    patch: operations["PatchVoyageAsync"];
+    patch: operations["Voyages_PatchVoyage"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/Start": {
     /**
      * Start a voyage
      * @description Starts a voyage.
      */
-    post: operations["StartVoyageAsync"];
+    post: operations["Voyages_StartVoyage"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/Complete": {
     /**
      * Complete a voyage
      * @description Marks a voyage as completed.
      */
-    post: operations["CompleteVoyageAsync"];
+    post: operations["Voyages_CompleteVoyage"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/Cancel": {
     /**
      * Cancel a voyage
      * @description Cancels a voyage.
      */
-    post: operations["CancelVoyageAsync"];
+    post: operations["Voyages_CancelVoyage"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls": {
     /**
      * Get voyage port calls
      * @description Retrieves all port calls for a specific voyage.
      */
-    get: operations["GetVoyagePortCallsAsync"];
+    get: operations["Voyages_GetVoyagePortCalls"];
     /**
      * Create a port call
      * @description Creates a new port call for a voyage.
      */
-    post: operations["CreateVoyagePortCallAsync"];
+    post: operations["Voyages_CreateVoyagePortCall"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/Count": {
     /**
      * Get voyage port calls count
      * @description Returns the count of port calls for a specific voyage.
      */
-    get: operations["GetVoyagePortCallsCountAsync"];
+    get: operations["Voyages_GetVoyagePortCallsCount"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/{portCallId}": {
     /**
      * Update a port call
      * @description Updates an existing port call.
      */
-    put: operations["UpdateVoyagePortCallAsync"];
+    put: operations["Voyages_UpdateVoyagePortCall"];
     /**
      * Delete a port call
      * @description Deletes a port call.
      */
-    delete: operations["DeleteVoyagePortCallAsync"];
+    delete: operations["Voyages_DeleteVoyagePortCall"];
     /**
      * Patch a voyage port call
      * @description Partially updates an existing voyage port call using JSON Patch.
      */
-    patch: operations["PatchVoyagePortCallAsync"];
+    patch: operations["Voyages_PatchVoyagePortCall"];
   };
   "/api/v2/LogisticsService/Warehouses": {
     /**
      * Get all warehouses
      * @description Retrieves all warehouses for the specified tenant.
      */
-    get: operations["GetWarehousesAsync"];
+    get: operations["Warehouses_GetWarehouses"];
     /**
      * Create a warehouse
      * @description Creates a new warehouse.
      */
-    post: operations["CreateWarehouseAsync"];
+    post: operations["Warehouses_CreateWarehouse"];
   };
   "/api/v2/LogisticsService/Warehouses/Count": {
     /**
      * Get warehouses count
      * @description Returns the count of warehouses.
      */
-    get: operations["GetWarehousesCountAsync"];
+    get: operations["Warehouses_GetWarehousesCount"];
   };
   "/api/v2/LogisticsService/Warehouses/{warehouseId}": {
     /**
      * Get warehouse by ID
      * @description Retrieves a specific warehouse.
      */
-    get: operations["GetWarehouseByIdAsync"];
+    get: operations["Warehouses_GetWarehouseById"];
     /**
      * Update a warehouse
      * @description Updates an existing warehouse.
      */
-    put: operations["UpdateWarehouseAsync"];
+    put: operations["Warehouses_UpdateWarehouse"];
     /**
      * Delete a warehouse
      * @description Deletes a warehouse.
      */
-    delete: operations["DeleteWarehouseAsync"];
+    delete: operations["Warehouses_DeleteWarehouse"];
     /**
      * Patch a warehouse
      * @description Partially updates an existing warehouse using JSON Patch.
      */
-    patch: operations["PatchWarehouseAsync"];
+    patch: operations["Warehouses_PatchWarehouse"];
   };
 }
 
@@ -1935,9 +1687,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     DeliveryNoteCreateDto: {
       /** Format: uuid */
@@ -4366,7 +4121,7 @@ export interface operations {
    * Get all airway bills
    * @description Retrieves all airway bills for the specified tenant.
    */
-  GetAirwayBillsAsync: {
+  AirwayBills_GetAirwayBills: {
     parameters: {
       query: {
         tenantId: string;
@@ -4410,7 +4165,7 @@ export interface operations {
    * Create an airway bill
    * @description Creates a new airway bill for the specified tenant.
    */
-  CreateAirwayBillAsync: {
+  AirwayBills_CreateAirwayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -4447,7 +4202,7 @@ export interface operations {
    * Get airway bills count
    * @description Returns the count of airway bills for the specified tenant.
    */
-  GetAirwayBillsCountAsync: {
+  AirwayBills_GetAirwayBillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4484,7 +4239,7 @@ export interface operations {
    * Get airway bill by ID
    * @description Retrieves a specific airway bill by its identifier.
    */
-  GetAirwayBillByIdAsync: {
+  AirwayBills_GetAirwayBillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4518,7 +4273,7 @@ export interface operations {
    * Update an airway bill
    * @description Updates an existing airway bill.
    */
-  UpdateAirwayBillAsync: {
+  AirwayBills_UpdateAirwayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -4558,7 +4313,7 @@ export interface operations {
    * Delete an airway bill
    * @description Deletes an airway bill.
    */
-  DeleteAirwayBillAsync: {
+  AirwayBills_DeleteAirwayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -4592,7 +4347,7 @@ export interface operations {
    * Patch an airway bill
    * @description Partially updates an existing airway bill using a JSON Patch document.
    */
-  PatchAirwayBillAsync: {
+  AirwayBills_PatchAirwayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -4632,7 +4387,7 @@ export interface operations {
    * Issue an airway bill
    * @description Issues an airway bill.
    */
-  IssueAirwayBillAsync: {
+  AirwayBills_IssueAirwayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -4666,7 +4421,7 @@ export interface operations {
    * Mark airway bill in transit
    * @description Marks an airway bill as in transit.
    */
-  MarkAirwayBillInTransitAsync: {
+  AirwayBills_MarkAirwayBillInTransit: {
     parameters: {
       query: {
         tenantId: string;
@@ -4700,7 +4455,7 @@ export interface operations {
    * Mark airway bill arrived
    * @description Marks an airway bill as arrived.
    */
-  MarkAirwayBillArrivedAsync: {
+  AirwayBills_MarkAirwayBillArrived: {
     parameters: {
       query: {
         tenantId: string;
@@ -4734,7 +4489,7 @@ export interface operations {
    * Mark airway bill delivered
    * @description Marks an airway bill as delivered.
    */
-  MarkAirwayBillDeliveredAsync: {
+  AirwayBills_MarkAirwayBillDelivered: {
     parameters: {
       query: {
         tenantId: string;
@@ -4768,7 +4523,7 @@ export interface operations {
    * Cancel an airway bill
    * @description Cancels an airway bill.
    */
-  CancelAirwayBillAsync: {
+  AirwayBills_CancelAirwayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -4802,7 +4557,7 @@ export interface operations {
    * Get airway bill lines
    * @description Retrieves all lines for a specific airway bill.
    */
-  GetAirwayBillLinesAsync: {
+  AirwayBills_GetAirwayBillLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -4842,7 +4597,7 @@ export interface operations {
    * Add a line to airway bill
    * @description Adds a new line to an airway bill.
    */
-  AddAirwayBillLineAsync: {
+  AirwayBills_AddAirwayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -4882,7 +4637,7 @@ export interface operations {
    * Get airway bill lines count
    * @description Returns the count of lines for a specific airway bill.
    */
-  GetAirwayBillLinesCountAsync: {
+  AirwayBills_GetAirwayBillLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4922,7 +4677,7 @@ export interface operations {
    * Update an airway bill line
    * @description Updates an existing line on an airway bill.
    */
-  UpdateAirwayBillLineAsync: {
+  AirwayBills_UpdateAirwayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -4963,7 +4718,7 @@ export interface operations {
    * Remove an airway bill line
    * @description Removes a line from an airway bill.
    */
-  RemoveAirwayBillLineAsync: {
+  AirwayBills_RemoveAirwayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -4998,7 +4753,7 @@ export interface operations {
    * Patch an airway bill line
    * @description Partially updates a line on an airway bill using a JSON Patch document.
    */
-  PatchAirwayBillLineAsync: {
+  AirwayBills_PatchAirwayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -5039,7 +4794,7 @@ export interface operations {
    * Get all delivery notes
    * @description Retrieves all delivery notes for the specified tenant.
    */
-  GetDeliveryNotesAsync: {
+  DeliveryNotes_GetDeliveryNotes: {
     parameters: {
       query: {
         tenantId: string;
@@ -5083,7 +4838,7 @@ export interface operations {
    * Create a delivery note
    * @description Creates a new delivery note.
    */
-  CreateDeliveryNoteAsync: {
+  DeliveryNotes_CreateDeliveryNote: {
     parameters: {
       query: {
         tenantId: string;
@@ -5120,7 +4875,7 @@ export interface operations {
    * Get delivery notes count
    * @description Returns the count of delivery notes.
    */
-  GetDeliveryNotesCountAsync: {
+  DeliveryNotes_GetDeliveryNotesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5150,7 +4905,7 @@ export interface operations {
    * Get delivery note by ID
    * @description Retrieves a specific delivery note.
    */
-  GetDeliveryNoteByIdAsync: {
+  DeliveryNotes_GetDeliveryNoteById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5184,7 +4939,7 @@ export interface operations {
    * Update a delivery note
    * @description Updates an existing delivery note.
    */
-  UpdateDeliveryNoteAsync: {
+  DeliveryNotes_UpdateDeliveryNote: {
     parameters: {
       query: {
         tenantId: string;
@@ -5224,7 +4979,7 @@ export interface operations {
    * Delete a delivery note
    * @description Deletes a delivery note.
    */
-  DeleteDeliveryNoteAsync: {
+  DeliveryNotes_DeleteDeliveryNote: {
     parameters: {
       query: {
         tenantId: string;
@@ -5254,7 +5009,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -5269,11 +5103,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all item packing slips
    * @description Retrieves all item packing slips for the specified tenant.
    */
-  GetItemPackingSlipsAsync: {
+  ItemPackingSlips_GetItemPackingSlips: {
     parameters: {
       query: {
         tenantId: string;
@@ -5317,7 +5336,7 @@ export interface operations {
    * Create an item packing slip
    * @description Creates a new item packing slip.
    */
-  CreateItemPackingSlipAsync: {
+  ItemPackingSlips_CreateItemPackingSlip: {
     parameters: {
       query: {
         tenantId: string;
@@ -5354,7 +5373,7 @@ export interface operations {
    * Get item packing slips count
    * @description Returns the count of item packing slips.
    */
-  GetItemPackingSlipsCountAsync: {
+  ItemPackingSlips_GetItemPackingSlipsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5384,7 +5403,7 @@ export interface operations {
    * Get item packing slip by ID
    * @description Retrieves a specific item packing slip.
    */
-  GetItemPackingSlipByIdAsync: {
+  ItemPackingSlips_GetItemPackingSlipById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5418,7 +5437,7 @@ export interface operations {
    * Update an item packing slip
    * @description Updates an existing item packing slip.
    */
-  UpdateItemPackingSlipAsync: {
+  ItemPackingSlips_UpdateItemPackingSlip: {
     parameters: {
       query: {
         tenantId: string;
@@ -5458,7 +5477,7 @@ export interface operations {
    * Delete an item packing slip
    * @description Deletes an item packing slip.
    */
-  DeleteItemPackingSlipAsync: {
+  ItemPackingSlips_DeleteItemPackingSlip: {
     parameters: {
       query: {
         tenantId: string;
@@ -5492,7 +5511,7 @@ export interface operations {
    * Patch an item packing slip
    * @description Applies a JSON Patch document to an item packing slip.
    */
-  PatchItemPackingSlipAsync: {
+  ItemPackingSlips_PatchItemPackingSlip: {
     parameters: {
       query: {
         tenantId: string;
@@ -5532,7 +5551,7 @@ export interface operations {
    * Get packing slip entries
    * @description Retrieves all entries for the specified packing slip.
    */
-  GetItemPackingSlipEntriesAsync: {
+  ItemPackingSlips_GetItemPackingSlipEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -5565,7 +5584,7 @@ export interface operations {
    * Create a packing slip entry
    * @description Creates a new packing slip entry.
    */
-  CreateItemPackingSlipEntryAsync: {
+  ItemPackingSlips_CreateItemPackingSlipEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -5605,7 +5624,7 @@ export interface operations {
    * Get packing slip entries count
    * @description Returns the count of packing slip entries.
    */
-  GetItemPackingSlipEntriesCountAsync: {
+  ItemPackingSlips_GetItemPackingSlipEntriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5638,7 +5657,7 @@ export interface operations {
    * Get packing slip entry by ID
    * @description Retrieves a specific packing slip entry.
    */
-  GetItemPackingSlipEntryByIdAsync: {
+  ItemPackingSlips_GetItemPackingSlipEntryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5673,7 +5692,7 @@ export interface operations {
    * Update a packing slip entry
    * @description Updates an existing packing slip entry.
    */
-  UpdateItemPackingSlipEntryAsync: {
+  ItemPackingSlips_UpdateItemPackingSlipEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -5714,7 +5733,7 @@ export interface operations {
    * Delete a packing slip entry
    * @description Deletes a packing slip entry.
    */
-  DeleteItemPackingSlipEntryAsync: {
+  ItemPackingSlips_DeleteItemPackingSlipEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -5749,7 +5768,7 @@ export interface operations {
    * Patch a packing slip entry
    * @description Applies a JSON Patch document to a packing slip entry.
    */
-  PatchItemPackingSlipEntryAsync: {
+  ItemPackingSlips_PatchItemPackingSlipEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -5790,7 +5809,7 @@ export interface operations {
    * Get all item pick lists
    * @description Retrieves all item pick lists for the specified tenant.
    */
-  GetItemPickListsAsync: {
+  ItemPickLists_GetItemPickLists: {
     parameters: {
       query: {
         tenantId: string;
@@ -5834,7 +5853,7 @@ export interface operations {
    * Create an item pick list
    * @description Creates a new item pick list.
    */
-  CreateItemPickListAsync: {
+  ItemPickLists_CreateItemPickList: {
     parameters: {
       query: {
         tenantId: string;
@@ -5871,7 +5890,7 @@ export interface operations {
    * Get item pick lists count
    * @description Returns the count of item pick lists.
    */
-  GetItemPickListsCountAsync: {
+  ItemPickLists_GetItemPickListsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5901,7 +5920,7 @@ export interface operations {
    * Get item pick list by ID
    * @description Retrieves a specific item pick list.
    */
-  GetItemPickListByIdAsync: {
+  ItemPickLists_GetItemPickListById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5935,7 +5954,7 @@ export interface operations {
    * Update an item pick list
    * @description Updates an existing item pick list.
    */
-  UpdateItemPickListAsync: {
+  ItemPickLists_UpdateItemPickList: {
     parameters: {
       query: {
         tenantId: string;
@@ -5975,7 +5994,7 @@ export interface operations {
    * Delete an item pick list
    * @description Deletes an item pick list.
    */
-  DeleteItemPickListAsync: {
+  ItemPickLists_DeleteItemPickList: {
     parameters: {
       query: {
         tenantId: string;
@@ -6009,7 +6028,7 @@ export interface operations {
    * Patch an item pick list
    * @description Applies a JSON Patch document to an item pick list.
    */
-  PatchItemPickListAsync: {
+  ItemPickLists_PatchItemPickList: {
     parameters: {
       query: {
         tenantId: string;
@@ -6049,7 +6068,7 @@ export interface operations {
    * Get pick list entries
    * @description Retrieves all entries for the specified pick list.
    */
-  GetItemPickListEntriesAsync: {
+  ItemPickLists_GetItemPickListEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -6082,7 +6101,7 @@ export interface operations {
    * Create a pick list entry
    * @description Creates a new pick list entry.
    */
-  CreateItemPickListEntryAsync: {
+  ItemPickLists_CreateItemPickListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6122,7 +6141,7 @@ export interface operations {
    * Get pick list entries count
    * @description Returns the count of pick list entries.
    */
-  GetItemPickListEntriesCountAsync: {
+  ItemPickLists_GetItemPickListEntriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6155,7 +6174,7 @@ export interface operations {
    * Get pick list entry by ID
    * @description Retrieves a specific pick list entry.
    */
-  GetItemPickListEntryByIdAsync: {
+  ItemPickLists_GetItemPickListEntryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6190,7 +6209,7 @@ export interface operations {
    * Update a pick list entry
    * @description Updates an existing pick list entry.
    */
-  UpdateItemPickListEntryAsync: {
+  ItemPickLists_UpdateItemPickListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6231,7 +6250,7 @@ export interface operations {
    * Delete a pick list entry
    * @description Deletes a pick list entry.
    */
-  DeleteItemPickListEntryAsync: {
+  ItemPickLists_DeleteItemPickListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6266,7 +6285,7 @@ export interface operations {
    * Patch a pick list entry
    * @description Applies a JSON Patch document to a pick list entry.
    */
-  PatchItemPickListEntryAsync: {
+  ItemPickLists_PatchItemPickListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6307,7 +6326,7 @@ export interface operations {
    * Get all item restocks
    * @description Retrieves all item restocks for the specified tenant.
    */
-  GetItemRestocksAsync: {
+  ItemRestocks_GetItemRestocks: {
     parameters: {
       query: {
         tenantId: string;
@@ -6351,7 +6370,7 @@ export interface operations {
    * Create an item restock
    * @description Creates a new item restock.
    */
-  CreateItemRestockAsync: {
+  ItemRestocks_CreateItemRestock: {
     parameters: {
       query: {
         tenantId: string;
@@ -6388,7 +6407,7 @@ export interface operations {
    * Get item restocks count
    * @description Returns the count of item restocks.
    */
-  GetItemRestocksCountAsync: {
+  ItemRestocks_GetItemRestocksCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6418,7 +6437,7 @@ export interface operations {
    * Get item restock by ID
    * @description Retrieves a specific item restock.
    */
-  GetItemRestockByIdAsync: {
+  ItemRestocks_GetItemRestockById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6452,7 +6471,7 @@ export interface operations {
    * Update an item restock
    * @description Updates an existing item restock.
    */
-  UpdateItemRestockAsync: {
+  ItemRestocks_UpdateItemRestock: {
     parameters: {
       query: {
         tenantId: string;
@@ -6492,7 +6511,7 @@ export interface operations {
    * Delete an item restock
    * @description Deletes an item restock.
    */
-  DeleteItemRestockAsync: {
+  ItemRestocks_DeleteItemRestock: {
     parameters: {
       query: {
         tenantId: string;
@@ -6526,7 +6545,7 @@ export interface operations {
    * Patch an item restock
    * @description Applies a JSON Patch document to an item restock.
    */
-  PatchItemRestockAsync: {
+  ItemRestocks_PatchItemRestock: {
     parameters: {
       query: {
         tenantId: string;
@@ -6566,7 +6585,7 @@ export interface operations {
    * Get restock entries
    * @description Retrieves all entries for the specified restock.
    */
-  GetItemRestockEntriesAsync: {
+  ItemRestocks_GetItemRestockEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -6599,7 +6618,7 @@ export interface operations {
    * Create a restock entry
    * @description Creates a new restock entry.
    */
-  CreateItemRestockEntryAsync: {
+  ItemRestocks_CreateItemRestockEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6639,7 +6658,7 @@ export interface operations {
    * Get restock entries count
    * @description Returns the count of restock entries.
    */
-  GetItemRestockEntriesCountAsync: {
+  ItemRestocks_GetItemRestockEntriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6672,7 +6691,7 @@ export interface operations {
    * Get restock entry by ID
    * @description Retrieves a specific restock entry.
    */
-  GetItemRestockEntryByIdAsync: {
+  ItemRestocks_GetItemRestockEntryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6707,7 +6726,7 @@ export interface operations {
    * Update a restock entry
    * @description Updates an existing restock entry.
    */
-  UpdateItemRestockEntryAsync: {
+  ItemRestocks_UpdateItemRestockEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6748,7 +6767,7 @@ export interface operations {
    * Delete a restock entry
    * @description Deletes a restock entry.
    */
-  DeleteItemRestockEntryAsync: {
+  ItemRestocks_DeleteItemRestockEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6783,7 +6802,7 @@ export interface operations {
    * Patch a restock entry
    * @description Applies a JSON Patch document to a restock entry.
    */
-  PatchItemRestockEntryAsync: {
+  ItemRestocks_PatchItemRestockEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -6824,7 +6843,7 @@ export interface operations {
    * Get all item retain samples
    * @description Retrieves all item retain samples for the specified tenant.
    */
-  GetItemRetainSamplesAsync: {
+  ItemRetainSamples_GetItemRetainSamples: {
     parameters: {
       query: {
         tenantId: string;
@@ -6868,7 +6887,7 @@ export interface operations {
    * Create an item retain sample
    * @description Creates a new item retain sample.
    */
-  CreateItemRetainSampleAsync: {
+  ItemRetainSamples_CreateItemRetainSample: {
     parameters: {
       query: {
         tenantId: string;
@@ -6905,7 +6924,7 @@ export interface operations {
    * Get item retain samples count
    * @description Returns the count of item retain samples.
    */
-  GetItemRetainSamplesCountAsync: {
+  ItemRetainSamples_GetItemRetainSamplesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6935,7 +6954,7 @@ export interface operations {
    * Get item retain sample by ID
    * @description Retrieves a specific item retain sample.
    */
-  GetItemRetainSampleByIdAsync: {
+  ItemRetainSamples_GetItemRetainSampleById: {
     parameters: {
       query: {
         tenantId: string;
@@ -6969,7 +6988,7 @@ export interface operations {
    * Update an item retain sample
    * @description Updates an existing item retain sample.
    */
-  UpdateItemRetainSampleAsync: {
+  ItemRetainSamples_UpdateItemRetainSample: {
     parameters: {
       query: {
         tenantId: string;
@@ -7009,7 +7028,7 @@ export interface operations {
    * Delete an item retain sample
    * @description Deletes an item retain sample.
    */
-  DeleteItemRetainSampleAsync: {
+  ItemRetainSamples_DeleteItemRetainSample: {
     parameters: {
       query: {
         tenantId: string;
@@ -7043,7 +7062,7 @@ export interface operations {
    * Patch an item retain sample
    * @description Applies a JSON Patch document to an item retain sample.
    */
-  PatchItemRetainSampleAsync: {
+  ItemRetainSamples_PatchItemRetainSample: {
     parameters: {
       query: {
         tenantId: string;
@@ -7083,7 +7102,7 @@ export interface operations {
    * Get all ports
    * @description Retrieves all ports for the specified tenant.
    */
-  GetPortsAsync: {
+  Ports_GetPorts: {
     parameters: {
       query: {
         tenantId: string;
@@ -7127,7 +7146,7 @@ export interface operations {
    * Create a port
    * @description Creates a new port for the specified tenant.
    */
-  CreatePortAsync: {
+  Ports_CreatePort: {
     parameters: {
       query: {
         tenantId: string;
@@ -7164,7 +7183,7 @@ export interface operations {
    * Get ports count
    * @description Returns the count of ports for the specified tenant.
    */
-  GetPortsCountAsync: {
+  Ports_GetPortsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7201,7 +7220,7 @@ export interface operations {
    * Get port by ID
    * @description Retrieves a specific port by its identifier.
    */
-  GetPortByIdAsync: {
+  Ports_GetPortById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7235,7 +7254,7 @@ export interface operations {
    * Update a port
    * @description Updates an existing port.
    */
-  UpdatePortAsync: {
+  Ports_UpdatePort: {
     parameters: {
       query: {
         tenantId: string;
@@ -7275,7 +7294,7 @@ export interface operations {
    * Delete a port
    * @description Deletes a port.
    */
-  DeletePortAsync: {
+  Ports_DeletePort: {
     parameters: {
       query: {
         tenantId: string;
@@ -7309,7 +7328,7 @@ export interface operations {
    * Patch a port
    * @description Partially updates an existing port using JSON Patch.
    */
-  PatchPortAsync: {
+  Ports_PatchPort: {
     parameters: {
       query: {
         tenantId: string;
@@ -7363,7 +7382,7 @@ export interface operations {
    * Get all proofs of delivery
    * @description Retrieves all proofs of delivery for the specified tenant.
    */
-  GetProofsOfDeliveryAsync: {
+  ProofsOfDelivery_GetProofsOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7407,7 +7426,7 @@ export interface operations {
    * Create a proof of delivery
    * @description Creates a new proof of delivery for the specified tenant.
    */
-  CreateProofOfDeliveryAsync: {
+  ProofsOfDelivery_CreateProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7444,7 +7463,7 @@ export interface operations {
    * Get proofs of delivery count
    * @description Returns the count of proofs of delivery for the specified tenant.
    */
-  GetProofsOfDeliveryCountAsync: {
+  ProofsOfDelivery_GetProofsOfDeliveryCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7481,7 +7500,7 @@ export interface operations {
    * Get proof of delivery by ID
    * @description Retrieves a specific proof of delivery by its identifier.
    */
-  GetProofOfDeliveryByIdAsync: {
+  ProofsOfDelivery_GetProofOfDeliveryById: {
     parameters: {
       query: {
         tenantId: string;
@@ -7515,7 +7534,7 @@ export interface operations {
    * Update a proof of delivery
    * @description Updates an existing proof of delivery.
    */
-  UpdateProofOfDeliveryAsync: {
+  ProofsOfDelivery_UpdateProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7555,7 +7574,7 @@ export interface operations {
    * Delete a proof of delivery
    * @description Deletes a proof of delivery.
    */
-  DeleteProofOfDeliveryAsync: {
+  ProofsOfDelivery_DeleteProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7589,7 +7608,7 @@ export interface operations {
    * Patch a proof of delivery
    * @description Partially updates an existing proof of delivery using JSON Patch.
    */
-  PatchProofOfDeliveryAsync: {
+  ProofsOfDelivery_PatchProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7643,7 +7662,7 @@ export interface operations {
    * Sign a proof of delivery
    * @description Signs a proof of delivery.
    */
-  SignProofOfDeliveryAsync: {
+  ProofsOfDelivery_SignProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7683,7 +7702,7 @@ export interface operations {
    * Dispute a proof of delivery
    * @description Disputes a proof of delivery.
    */
-  DisputeProofOfDeliveryAsync: {
+  ProofsOfDelivery_DisputeProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7723,7 +7742,7 @@ export interface operations {
    * Reject a proof of delivery
    * @description Rejects a proof of delivery.
    */
-  RejectProofOfDeliveryAsync: {
+  ProofsOfDelivery_RejectProofOfDelivery: {
     parameters: {
       query: {
         tenantId: string;
@@ -7763,7 +7782,7 @@ export interface operations {
    * Get proof of delivery lines
    * @description Retrieves all lines for a specific proof of delivery.
    */
-  GetProofOfDeliveryLinesAsync: {
+  ProofsOfDelivery_GetProofOfDeliveryLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -7803,7 +7822,7 @@ export interface operations {
    * Add a line to proof of delivery
    * @description Adds a new line to a proof of delivery.
    */
-  AddProofOfDeliveryLineAsync: {
+  ProofsOfDelivery_AddProofOfDeliveryLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -7843,7 +7862,7 @@ export interface operations {
    * Get proof of delivery lines count
    * @description Returns the count of lines for a specific proof of delivery.
    */
-  GetProofOfDeliveryLinesCountAsync: {
+  ProofsOfDelivery_GetProofOfDeliveryLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7883,7 +7902,7 @@ export interface operations {
    * Update a proof of delivery line
    * @description Updates an existing line on a proof of delivery.
    */
-  UpdateProofOfDeliveryLineAsync: {
+  ProofsOfDelivery_UpdateProofOfDeliveryLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -7924,7 +7943,7 @@ export interface operations {
    * Remove a proof of delivery line
    * @description Removes a line from a proof of delivery.
    */
-  RemoveProofOfDeliveryLineAsync: {
+  ProofsOfDelivery_RemoveProofOfDeliveryLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -7959,7 +7978,7 @@ export interface operations {
    * Patch a proof of delivery line
    * @description Partially updates an existing proof of delivery line using JSON Patch.
    */
-  PatchProofOfDeliveryLineAsync: {
+  ProofsOfDelivery_PatchProofOfDeliveryLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -8014,7 +8033,7 @@ export interface operations {
    * Get attached delivery notes
    * @description Retrieves all delivery notes attached to a proof of delivery.
    */
-  GetProofOfDeliveryDeliveryNotesAsync: {
+  ProofsOfDelivery_GetProofOfDeliveryDeliveryNotes: {
     parameters: {
       query: {
         tenantId: string;
@@ -8048,7 +8067,7 @@ export interface operations {
    * Get delivery notes count
    * @description Returns the count of delivery notes attached to a proof of delivery.
    */
-  GetProofOfDeliveryDeliveryNotesCountAsync: {
+  ProofsOfDelivery_GetProofOfDeliveryDeliveryNotesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8082,7 +8101,7 @@ export interface operations {
    * Attach a delivery note
    * @description Attaches a delivery note to a proof of delivery.
    */
-  AttachDeliveryNoteAsync: {
+  ProofsOfDelivery_AttachDeliveryNote: {
     parameters: {
       query: {
         tenantId: string;
@@ -8117,7 +8136,7 @@ export interface operations {
    * Detach a delivery note
    * @description Detaches a delivery note from a proof of delivery.
    */
-  DetachDeliveryNoteAsync: {
+  ProofsOfDelivery_DetachDeliveryNote: {
     parameters: {
       query: {
         tenantId: string;
@@ -8152,7 +8171,7 @@ export interface operations {
    * Get all rail waybills
    * @description Retrieves all rail waybills for the specified tenant.
    */
-  GetRailWaybillsAsync: {
+  RailWaybills_GetRailWaybills: {
     parameters: {
       query: {
         tenantId: string;
@@ -8196,7 +8215,7 @@ export interface operations {
    * Create a rail waybill
    * @description Creates a new rail waybill for the specified tenant.
    */
-  CreateRailWaybillAsync: {
+  RailWaybills_CreateRailWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8233,7 +8252,7 @@ export interface operations {
    * Get rail waybills count
    * @description Returns the count of rail waybills for the specified tenant.
    */
-  GetRailWaybillsCountAsync: {
+  RailWaybills_GetRailWaybillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8270,7 +8289,7 @@ export interface operations {
    * Get rail waybill by ID
    * @description Retrieves a specific rail waybill by its identifier.
    */
-  GetRailWaybillByIdAsync: {
+  RailWaybills_GetRailWaybillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8304,7 +8323,7 @@ export interface operations {
    * Update a rail waybill
    * @description Updates an existing rail waybill.
    */
-  UpdateRailWaybillAsync: {
+  RailWaybills_UpdateRailWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8344,7 +8363,7 @@ export interface operations {
    * Delete a rail waybill
    * @description Deletes a rail waybill.
    */
-  DeleteRailWaybillAsync: {
+  RailWaybills_DeleteRailWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8378,7 +8397,7 @@ export interface operations {
    * Patch a rail waybill
    * @description Partially updates an existing rail waybill using a JSON Patch document.
    */
-  PatchRailWaybillAsync: {
+  RailWaybills_PatchRailWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8418,7 +8437,7 @@ export interface operations {
    * Issue a rail waybill
    * @description Issues a rail waybill.
    */
-  IssueRailWaybillAsync: {
+  RailWaybills_IssueRailWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8452,7 +8471,7 @@ export interface operations {
    * Mark rail waybill in transit
    * @description Marks a rail waybill as in transit.
    */
-  MarkRailWaybillInTransitAsync: {
+  RailWaybills_MarkRailWaybillInTransit: {
     parameters: {
       query: {
         tenantId: string;
@@ -8486,7 +8505,7 @@ export interface operations {
    * Mark rail waybill delivered
    * @description Marks a rail waybill as delivered.
    */
-  MarkRailWaybillDeliveredAsync: {
+  RailWaybills_MarkRailWaybillDelivered: {
     parameters: {
       query: {
         tenantId: string;
@@ -8520,7 +8539,7 @@ export interface operations {
    * Cancel a rail waybill
    * @description Cancels a rail waybill.
    */
-  CancelRailWaybillAsync: {
+  RailWaybills_CancelRailWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8554,7 +8573,7 @@ export interface operations {
    * Get rail waybill lines
    * @description Retrieves all lines for a specific rail waybill.
    */
-  GetRailWaybillLinesAsync: {
+  RailWaybills_GetRailWaybillLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -8594,7 +8613,7 @@ export interface operations {
    * Add a line to rail waybill
    * @description Adds a new line to a rail waybill.
    */
-  AddRailWaybillLineAsync: {
+  RailWaybills_AddRailWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -8634,7 +8653,7 @@ export interface operations {
    * Get rail waybill lines count
    * @description Returns the count of lines for a specific rail waybill.
    */
-  GetRailWaybillLinesCountAsync: {
+  RailWaybills_GetRailWaybillLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8674,7 +8693,7 @@ export interface operations {
    * Update a rail waybill line
    * @description Updates an existing line on a rail waybill.
    */
-  UpdateRailWaybillLineAsync: {
+  RailWaybills_UpdateRailWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -8715,7 +8734,7 @@ export interface operations {
    * Remove a rail waybill line
    * @description Removes a line from a rail waybill.
    */
-  RemoveRailWaybillLineAsync: {
+  RailWaybills_RemoveRailWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -8750,7 +8769,7 @@ export interface operations {
    * Patch a rail waybill line
    * @description Partially updates a line on a rail waybill using a JSON Patch document.
    */
-  PatchRailWaybillLineAsync: {
+  RailWaybills_PatchRailWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -8791,7 +8810,7 @@ export interface operations {
    * Get all road waybills
    * @description Retrieves all road waybills for the specified tenant.
    */
-  GetRoadWaybillsAsync: {
+  RoadWaybills_GetRoadWaybills: {
     parameters: {
       query: {
         tenantId: string;
@@ -8835,7 +8854,7 @@ export interface operations {
    * Create a road waybill
    * @description Creates a new road waybill for the specified tenant.
    */
-  CreateRoadWaybillAsync: {
+  RoadWaybills_CreateRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8872,7 +8891,7 @@ export interface operations {
    * Get road waybills count
    * @description Returns the count of road waybills for the specified tenant.
    */
-  GetRoadWaybillsCountAsync: {
+  RoadWaybills_GetRoadWaybillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8909,7 +8928,7 @@ export interface operations {
    * Get road waybill by ID
    * @description Retrieves a specific road waybill by its identifier.
    */
-  GetRoadWaybillByIdAsync: {
+  RoadWaybills_GetRoadWaybillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -8943,7 +8962,7 @@ export interface operations {
    * Update a road waybill
    * @description Updates an existing road waybill.
    */
-  UpdateRoadWaybillAsync: {
+  RoadWaybills_UpdateRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -8983,7 +9002,7 @@ export interface operations {
    * Delete a road waybill
    * @description Deletes a road waybill.
    */
-  DeleteRoadWaybillAsync: {
+  RoadWaybills_DeleteRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9017,7 +9036,7 @@ export interface operations {
    * Patch a road waybill
    * @description Partially updates an existing road waybill using a JSON Patch document.
    */
-  PatchRoadWaybillAsync: {
+  RoadWaybills_PatchRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9057,7 +9076,7 @@ export interface operations {
    * Issue a road waybill
    * @description Issues a road waybill.
    */
-  IssueRoadWaybillAsync: {
+  RoadWaybills_IssueRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9091,7 +9110,7 @@ export interface operations {
    * Mark road waybill in transit
    * @description Marks a road waybill as in transit.
    */
-  MarkRoadWaybillInTransitAsync: {
+  RoadWaybills_MarkRoadWaybillInTransit: {
     parameters: {
       query: {
         tenantId: string;
@@ -9125,7 +9144,7 @@ export interface operations {
    * Mark road waybill delivered
    * @description Marks a road waybill as delivered.
    */
-  MarkRoadWaybillDeliveredAsync: {
+  RoadWaybills_MarkRoadWaybillDelivered: {
     parameters: {
       query: {
         tenantId: string;
@@ -9159,7 +9178,7 @@ export interface operations {
    * Dispute a road waybill
    * @description Disputes a road waybill.
    */
-  DisputeRoadWaybillAsync: {
+  RoadWaybills_DisputeRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9193,7 +9212,7 @@ export interface operations {
    * Cancel a road waybill
    * @description Cancels a road waybill.
    */
-  CancelRoadWaybillAsync: {
+  RoadWaybills_CancelRoadWaybill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9227,7 +9246,7 @@ export interface operations {
    * Get road waybill lines
    * @description Retrieves all lines for a specific road waybill.
    */
-  GetRoadWaybillLinesAsync: {
+  RoadWaybills_GetRoadWaybillLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -9267,7 +9286,7 @@ export interface operations {
    * Add a line to road waybill
    * @description Adds a new line to a road waybill.
    */
-  AddRoadWaybillLineAsync: {
+  RoadWaybills_AddRoadWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -9307,7 +9326,7 @@ export interface operations {
    * Get road waybill lines count
    * @description Returns the count of lines for a specific road waybill.
    */
-  GetRoadWaybillLinesCountAsync: {
+  RoadWaybills_GetRoadWaybillLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9347,7 +9366,7 @@ export interface operations {
    * Update a road waybill line
    * @description Updates an existing line on a road waybill.
    */
-  UpdateRoadWaybillLineAsync: {
+  RoadWaybills_UpdateRoadWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -9388,7 +9407,7 @@ export interface operations {
    * Remove a road waybill line
    * @description Removes a line from a road waybill.
    */
-  RemoveRoadWaybillLineAsync: {
+  RoadWaybills_RemoveRoadWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -9423,7 +9442,7 @@ export interface operations {
    * Patch a road waybill line
    * @description Partially updates a line on a road waybill using a JSON Patch document.
    */
-  PatchRoadWaybillLineAsync: {
+  RoadWaybills_PatchRoadWaybillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -9464,7 +9483,7 @@ export interface operations {
    * Get all seaway bills
    * @description Retrieves all seaway bills for the specified tenant.
    */
-  GetSeawayBillsAsync: {
+  SeawayBills_GetSeawayBills: {
     parameters: {
       query: {
         tenantId: string;
@@ -9508,7 +9527,7 @@ export interface operations {
    * Create a seaway bill
    * @description Creates a new seaway bill for the specified tenant.
    */
-  CreateSeawayBillAsync: {
+  SeawayBills_CreateSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9545,7 +9564,7 @@ export interface operations {
    * Get seaway bills count
    * @description Returns the count of seaway bills for the specified tenant.
    */
-  GetSeawayBillsCountAsync: {
+  SeawayBills_GetSeawayBillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -9582,7 +9601,7 @@ export interface operations {
    * Get seaway bill by ID
    * @description Retrieves a specific seaway bill by its identifier.
    */
-  GetSeawayBillByIdAsync: {
+  SeawayBills_GetSeawayBillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -9616,7 +9635,7 @@ export interface operations {
    * Update a seaway bill
    * @description Updates an existing seaway bill.
    */
-  UpdateSeawayBillAsync: {
+  SeawayBills_UpdateSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9656,7 +9675,7 @@ export interface operations {
    * Delete a seaway bill
    * @description Deletes a seaway bill.
    */
-  DeleteSeawayBillAsync: {
+  SeawayBills_DeleteSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9690,7 +9709,7 @@ export interface operations {
    * Patch a seaway bill
    * @description Partially updates an existing seaway bill using a JSON Patch document.
    */
-  PatchSeawayBillAsync: {
+  SeawayBills_PatchSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9730,7 +9749,7 @@ export interface operations {
    * Issue a seaway bill
    * @description Issues a seaway bill.
    */
-  IssueSeawayBillAsync: {
+  SeawayBills_IssueSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9764,7 +9783,7 @@ export interface operations {
    * Mark seaway bill in transit
    * @description Marks a seaway bill as in transit.
    */
-  MarkSeawayBillInTransitAsync: {
+  SeawayBills_MarkSeawayBillInTransit: {
     parameters: {
       query: {
         tenantId: string;
@@ -9798,7 +9817,7 @@ export interface operations {
    * Mark seaway bill arrived
    * @description Marks a seaway bill as arrived.
    */
-  MarkSeawayBillArrivedAsync: {
+  SeawayBills_MarkSeawayBillArrived: {
     parameters: {
       query: {
         tenantId: string;
@@ -9832,7 +9851,7 @@ export interface operations {
    * Release a seaway bill
    * @description Releases a seaway bill.
    */
-  ReleaseSeawayBillAsync: {
+  SeawayBills_ReleaseSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9866,7 +9885,7 @@ export interface operations {
    * Cancel a seaway bill
    * @description Cancels a seaway bill.
    */
-  CancelSeawayBillAsync: {
+  SeawayBills_CancelSeawayBill: {
     parameters: {
       query: {
         tenantId: string;
@@ -9900,7 +9919,7 @@ export interface operations {
    * Get seaway bill lines
    * @description Retrieves all lines for a specific seaway bill.
    */
-  GetSeawayBillLinesAsync: {
+  SeawayBills_GetSeawayBillLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -9940,7 +9959,7 @@ export interface operations {
    * Add a line to seaway bill
    * @description Adds a new line to a seaway bill.
    */
-  AddSeawayBillLineAsync: {
+  SeawayBills_AddSeawayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -9980,7 +9999,7 @@ export interface operations {
    * Get seaway bill lines count
    * @description Returns the count of lines for a specific seaway bill.
    */
-  GetSeawayBillLinesCountAsync: {
+  SeawayBills_GetSeawayBillLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10020,7 +10039,7 @@ export interface operations {
    * Update a seaway bill line
    * @description Updates an existing line on a seaway bill.
    */
-  UpdateSeawayBillLineAsync: {
+  SeawayBills_UpdateSeawayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -10061,7 +10080,7 @@ export interface operations {
    * Remove a seaway bill line
    * @description Removes a line from a seaway bill.
    */
-  RemoveSeawayBillLineAsync: {
+  SeawayBills_RemoveSeawayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -10096,7 +10115,7 @@ export interface operations {
    * Patch a seaway bill line
    * @description Partially updates a line on a seaway bill using a JSON Patch document.
    */
-  PatchSeawayBillLineAsync: {
+  SeawayBills_PatchSeawayBillLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -10137,7 +10156,7 @@ export interface operations {
    * Get all supplier profiles
    * @description Retrieves all supplier profiles for the specified tenant.
    */
-  GetSupplierProfilesAsync: {
+  SupplierProfiles_GetSupplierProfiles: {
     parameters: {
       query: {
         tenantId: string;
@@ -10181,7 +10200,7 @@ export interface operations {
    * Create a supplier profile
    * @description Creates a new supplier profile for the specified tenant.
    */
-  CreateSupplierProfileAsync: {
+  SupplierProfiles_CreateSupplierProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -10218,7 +10237,7 @@ export interface operations {
    * Get supplier profiles count
    * @description Returns the count of supplier profiles for the specified tenant.
    */
-  GetSupplierProfilesCountAsync: {
+  SupplierProfiles_GetSupplierProfilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10255,7 +10274,7 @@ export interface operations {
    * Get supplier profile by ID
    * @description Retrieves a specific supplier profile by its identifier.
    */
-  GetSupplierProfileByIdAsync: {
+  SupplierProfiles_GetSupplierProfileById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10289,7 +10308,7 @@ export interface operations {
    * Update a supplier profile
    * @description Updates an existing supplier profile.
    */
-  UpdateSupplierProfileAsync: {
+  SupplierProfiles_UpdateSupplierProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -10329,7 +10348,7 @@ export interface operations {
    * Delete a supplier profile
    * @description Deletes a supplier profile.
    */
-  DeleteSupplierProfileAsync: {
+  SupplierProfiles_DeleteSupplierProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -10363,7 +10382,7 @@ export interface operations {
    * Patch a supplier profile
    * @description Applies a JSON Patch document to a supplier profile.
    */
-  PatchSupplierProfileAsync: {
+  SupplierProfiles_PatchSupplierProfile: {
     parameters: {
       query: {
         tenantId: string;
@@ -10403,7 +10422,7 @@ export interface operations {
    * Get all truck drivers
    * @description Retrieves all truck drivers for the specified tenant.
    */
-  GetTruckDriversAsync: {
+  TruckDrivers_GetTruckDrivers: {
     parameters: {
       query: {
         tenantId: string;
@@ -10447,7 +10466,7 @@ export interface operations {
    * Create a truck driver
    * @description Creates a new truck driver for the specified tenant.
    */
-  CreateTruckDriverAsync: {
+  TruckDrivers_CreateTruckDriver: {
     parameters: {
       query: {
         tenantId: string;
@@ -10484,7 +10503,7 @@ export interface operations {
    * Get truck drivers count
    * @description Returns the count of truck drivers for the specified tenant.
    */
-  GetTruckDriversCountAsync: {
+  TruckDrivers_GetTruckDriversCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10521,7 +10540,7 @@ export interface operations {
    * Get truck driver by ID
    * @description Retrieves a specific truck driver by its identifier.
    */
-  GetTruckDriverByIdAsync: {
+  TruckDrivers_GetTruckDriverById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10555,7 +10574,7 @@ export interface operations {
    * Update a truck driver
    * @description Updates an existing truck driver.
    */
-  UpdateTruckDriverAsync: {
+  TruckDrivers_UpdateTruckDriver: {
     parameters: {
       query: {
         tenantId: string;
@@ -10595,7 +10614,7 @@ export interface operations {
    * Delete a truck driver
    * @description Deletes a truck driver.
    */
-  DeleteTruckDriverAsync: {
+  TruckDrivers_DeleteTruckDriver: {
     parameters: {
       query: {
         tenantId: string;
@@ -10629,7 +10648,7 @@ export interface operations {
    * Patch a truck driver
    * @description Partially updates an existing truck driver using JSON Patch.
    */
-  PatchTruckDriverAsync: {
+  TruckDrivers_PatchTruckDriver: {
     parameters: {
       query: {
         tenantId: string;
@@ -10683,7 +10702,7 @@ export interface operations {
    * Activate a truck driver
    * @description Activates a truck driver.
    */
-  ActivateTruckDriverAsync: {
+  TruckDrivers_ActivateTruckDriver: {
     parameters: {
       query: {
         tenantId: string;
@@ -10717,7 +10736,7 @@ export interface operations {
    * Deactivate a truck driver
    * @description Deactivates a truck driver.
    */
-  DeactivateTruckDriverAsync: {
+  TruckDrivers_DeactivateTruckDriver: {
     parameters: {
       query: {
         tenantId: string;
@@ -10751,7 +10770,7 @@ export interface operations {
    * Get all trucks
    * @description Retrieves all trucks for the specified tenant.
    */
-  GetTrucksAsync: {
+  Trucks_GetTrucks: {
     parameters: {
       query: {
         tenantId: string;
@@ -10795,7 +10814,7 @@ export interface operations {
    * Create a truck
    * @description Creates a new truck for the specified tenant.
    */
-  CreateTruckAsync: {
+  Trucks_CreateTruck: {
     parameters: {
       query: {
         tenantId: string;
@@ -10832,7 +10851,7 @@ export interface operations {
    * Get trucks count
    * @description Returns the count of trucks for the specified tenant.
    */
-  GetTrucksCountAsync: {
+  Trucks_GetTrucksCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10869,7 +10888,7 @@ export interface operations {
    * Get truck by ID
    * @description Retrieves a specific truck by its identifier.
    */
-  GetTruckByIdAsync: {
+  Trucks_GetTruckById: {
     parameters: {
       query: {
         tenantId: string;
@@ -10903,7 +10922,7 @@ export interface operations {
    * Update a truck
    * @description Updates an existing truck.
    */
-  UpdateTruckAsync: {
+  Trucks_UpdateTruck: {
     parameters: {
       query: {
         tenantId: string;
@@ -10943,7 +10962,7 @@ export interface operations {
    * Delete a truck
    * @description Deletes a truck.
    */
-  DeleteTruckAsync: {
+  Trucks_DeleteTruck: {
     parameters: {
       query: {
         tenantId: string;
@@ -10977,7 +10996,7 @@ export interface operations {
    * Patch a truck
    * @description Partially updates an existing truck using JSON Patch.
    */
-  PatchTruckAsync: {
+  Trucks_PatchTruck: {
     parameters: {
       query: {
         tenantId: string;
@@ -11031,7 +11050,7 @@ export interface operations {
    * Get truck trips
    * @description Retrieves all trips for a specific truck.
    */
-  GetTruckTripsAsync: {
+  Trucks_GetTruckTrips: {
     parameters: {
       query: {
         tenantId: string;
@@ -11071,7 +11090,7 @@ export interface operations {
    * Create a truck trip
    * @description Creates a new trip for a truck.
    */
-  CreateTruckTripAsync: {
+  Trucks_CreateTruckTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11111,7 +11130,7 @@ export interface operations {
    * Get truck trips count
    * @description Returns the count of trips for a specific truck.
    */
-  GetTruckTripsCountAsync: {
+  Trucks_GetTruckTripsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11151,7 +11170,7 @@ export interface operations {
    * Update a truck trip
    * @description Updates an existing truck trip.
    */
-  UpdateTruckTripAsync: {
+  Trucks_UpdateTruckTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11192,7 +11211,7 @@ export interface operations {
    * Delete a truck trip
    * @description Deletes a truck trip.
    */
-  DeleteTruckTripAsync: {
+  Trucks_DeleteTruckTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11227,7 +11246,7 @@ export interface operations {
    * Patch a truck trip
    * @description Partially updates an existing truck trip using JSON Patch.
    */
-  PatchTruckTripAsync: {
+  Trucks_PatchTruckTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11282,7 +11301,7 @@ export interface operations {
    * Dispatch a trip
    * @description Dispatches a truck trip.
    */
-  DispatchTripAsync: {
+  Trucks_DispatchTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11317,7 +11336,7 @@ export interface operations {
    * Depart a trip
    * @description Marks a truck trip as departed.
    */
-  DepartTripAsync: {
+  Trucks_DepartTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11352,7 +11371,7 @@ export interface operations {
    * Arrive a trip
    * @description Marks a truck trip as arrived.
    */
-  ArriveTripAsync: {
+  Trucks_ArriveTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11387,7 +11406,7 @@ export interface operations {
    * Deliver a trip
    * @description Marks a truck trip as delivered.
    */
-  DeliverTripAsync: {
+  Trucks_DeliverTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11422,7 +11441,7 @@ export interface operations {
    * Cancel a trip
    * @description Cancels a truck trip.
    */
-  CancelTripAsync: {
+  Trucks_CancelTrip: {
     parameters: {
       query: {
         tenantId: string;
@@ -11457,7 +11476,7 @@ export interface operations {
    * Get all vessels
    * @description Retrieves all vessels for the specified tenant.
    */
-  GetVesselsAsync: {
+  Vessels_GetVessels: {
     parameters: {
       query: {
         tenantId: string;
@@ -11501,7 +11520,7 @@ export interface operations {
    * Create a vessel
    * @description Creates a new vessel for the specified tenant.
    */
-  CreateVesselAsync: {
+  Vessels_CreateVessel: {
     parameters: {
       query: {
         tenantId: string;
@@ -11538,7 +11557,7 @@ export interface operations {
    * Get vessels count
    * @description Returns the count of vessels for the specified tenant.
    */
-  GetVesselsCountAsync: {
+  Vessels_GetVesselsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11575,7 +11594,7 @@ export interface operations {
    * Get vessel by ID
    * @description Retrieves a specific vessel by its identifier.
    */
-  GetVesselByIdAsync: {
+  Vessels_GetVesselById: {
     parameters: {
       query: {
         tenantId: string;
@@ -11609,7 +11628,7 @@ export interface operations {
    * Update a vessel
    * @description Updates an existing vessel.
    */
-  UpdateVesselAsync: {
+  Vessels_UpdateVessel: {
     parameters: {
       query: {
         tenantId: string;
@@ -11649,7 +11668,7 @@ export interface operations {
    * Delete a vessel
    * @description Deletes a vessel.
    */
-  DeleteVesselAsync: {
+  Vessels_DeleteVessel: {
     parameters: {
       query: {
         tenantId: string;
@@ -11683,7 +11702,7 @@ export interface operations {
    * Patch a vessel
    * @description Partially updates an existing vessel using JSON Patch.
    */
-  PatchVesselAsync: {
+  Vessels_PatchVessel: {
     parameters: {
       query: {
         tenantId: string;
@@ -11737,7 +11756,7 @@ export interface operations {
    * Get all voyages
    * @description Retrieves all voyages for the specified tenant.
    */
-  GetVoyagesAsync: {
+  Voyages_GetVoyages: {
     parameters: {
       query: {
         tenantId: string;
@@ -11781,7 +11800,7 @@ export interface operations {
    * Create a voyage
    * @description Creates a new voyage for the specified tenant.
    */
-  CreateVoyageAsync: {
+  Voyages_CreateVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -11818,7 +11837,7 @@ export interface operations {
    * Get voyages count
    * @description Returns the count of voyages for the specified tenant.
    */
-  GetVoyagesCountAsync: {
+  Voyages_GetVoyagesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11855,7 +11874,7 @@ export interface operations {
    * Get voyage by ID
    * @description Retrieves a specific voyage by its identifier.
    */
-  GetVoyageByIdAsync: {
+  Voyages_GetVoyageById: {
     parameters: {
       query: {
         tenantId: string;
@@ -11889,7 +11908,7 @@ export interface operations {
    * Update a voyage
    * @description Updates an existing voyage.
    */
-  UpdateVoyageAsync: {
+  Voyages_UpdateVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -11929,7 +11948,7 @@ export interface operations {
    * Delete a voyage
    * @description Deletes a voyage.
    */
-  DeleteVoyageAsync: {
+  Voyages_DeleteVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -11963,7 +11982,7 @@ export interface operations {
    * Patch a voyage
    * @description Partially updates an existing voyage using JSON Patch.
    */
-  PatchVoyageAsync: {
+  Voyages_PatchVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -12017,7 +12036,7 @@ export interface operations {
    * Start a voyage
    * @description Starts a voyage.
    */
-  StartVoyageAsync: {
+  Voyages_StartVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -12051,7 +12070,7 @@ export interface operations {
    * Complete a voyage
    * @description Marks a voyage as completed.
    */
-  CompleteVoyageAsync: {
+  Voyages_CompleteVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -12085,7 +12104,7 @@ export interface operations {
    * Cancel a voyage
    * @description Cancels a voyage.
    */
-  CancelVoyageAsync: {
+  Voyages_CancelVoyage: {
     parameters: {
       query: {
         tenantId: string;
@@ -12119,7 +12138,7 @@ export interface operations {
    * Get voyage port calls
    * @description Retrieves all port calls for a specific voyage.
    */
-  GetVoyagePortCallsAsync: {
+  Voyages_GetVoyagePortCalls: {
     parameters: {
       query: {
         tenantId: string;
@@ -12159,7 +12178,7 @@ export interface operations {
    * Create a port call
    * @description Creates a new port call for a voyage.
    */
-  CreateVoyagePortCallAsync: {
+  Voyages_CreateVoyagePortCall: {
     parameters: {
       query: {
         tenantId: string;
@@ -12199,7 +12218,7 @@ export interface operations {
    * Get voyage port calls count
    * @description Returns the count of port calls for a specific voyage.
    */
-  GetVoyagePortCallsCountAsync: {
+  Voyages_GetVoyagePortCallsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12239,7 +12258,7 @@ export interface operations {
    * Update a port call
    * @description Updates an existing port call.
    */
-  UpdateVoyagePortCallAsync: {
+  Voyages_UpdateVoyagePortCall: {
     parameters: {
       query: {
         tenantId: string;
@@ -12280,7 +12299,7 @@ export interface operations {
    * Delete a port call
    * @description Deletes a port call.
    */
-  DeleteVoyagePortCallAsync: {
+  Voyages_DeleteVoyagePortCall: {
     parameters: {
       query: {
         tenantId: string;
@@ -12315,7 +12334,7 @@ export interface operations {
    * Patch a voyage port call
    * @description Partially updates an existing voyage port call using JSON Patch.
    */
-  PatchVoyagePortCallAsync: {
+  Voyages_PatchVoyagePortCall: {
     parameters: {
       query: {
         tenantId: string;
@@ -12370,7 +12389,7 @@ export interface operations {
    * Get all warehouses
    * @description Retrieves all warehouses for the specified tenant.
    */
-  GetWarehousesAsync: {
+  Warehouses_GetWarehouses: {
     parameters: {
       query: {
         tenantId: string;
@@ -12414,7 +12433,7 @@ export interface operations {
    * Create a warehouse
    * @description Creates a new warehouse.
    */
-  CreateWarehouseAsync: {
+  Warehouses_CreateWarehouse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12451,7 +12470,7 @@ export interface operations {
    * Get warehouses count
    * @description Returns the count of warehouses.
    */
-  GetWarehousesCountAsync: {
+  Warehouses_GetWarehousesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -12481,7 +12500,7 @@ export interface operations {
    * Get warehouse by ID
    * @description Retrieves a specific warehouse.
    */
-  GetWarehouseByIdAsync: {
+  Warehouses_GetWarehouseById: {
     parameters: {
       query: {
         tenantId: string;
@@ -12515,7 +12534,7 @@ export interface operations {
    * Update a warehouse
    * @description Updates an existing warehouse.
    */
-  UpdateWarehouseAsync: {
+  Warehouses_UpdateWarehouse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12555,7 +12574,7 @@ export interface operations {
    * Delete a warehouse
    * @description Deletes a warehouse.
    */
-  DeleteWarehouseAsync: {
+  Warehouses_DeleteWarehouse: {
     parameters: {
       query: {
         tenantId: string;
@@ -12589,7 +12608,7 @@ export interface operations {
    * Patch a warehouse
    * @description Partially updates an existing warehouse using JSON Patch.
    */
-  PatchWarehouseAsync: {
+  Warehouses_PatchWarehouse: {
     parameters: {
       query: {
         tenantId: string;

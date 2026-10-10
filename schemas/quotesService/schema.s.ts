@@ -6,453 +6,205 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/QuotesService/Quotes": {
     /**
      * Get a list of quotes.
      * @description Retrieves a list of quotes for the specified tenant, supporting OData query options.
      */
-    get: operations["GetQuotes"];
+    get: operations["Quotes_GetQuotes"];
     /**
      * Create a new quote.
      * @description Creates a new quote for the specified tenant.
      */
-    post: operations["CreateQuote"];
+    post: operations["Quotes_CreateQuote"];
   };
   "/api/v2/QuotesService/Quotes/Count": {
     /**
      * Get the count of quotes.
      * @description Retrieves the total count of quotes for the specified tenant, supporting OData query options.
      */
-    get: operations["GetQuotesCount"];
+    get: operations["Quotes_GetQuotesCount"];
   };
   "/api/v2/QuotesService/Quotes/Extended": {
     /**
      * Get a list of extended quotes.
      * @description Retrieves a list of extended quotes for the specified tenant, supporting OData query options.
      */
-    get: operations["GetExtendedQuotes"];
+    get: operations["Quotes_GetExtendedQuotes"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}": {
     /**
      * Get a quote by ID.
      * @description Retrieves a single quote by its unique identifier for the specified tenant.
      */
-    get: operations["GetQuote"];
+    get: operations["Quotes_GetQuote"];
     /**
      * Update an existing quote.
      * @description Updates an existing quote for the specified tenant and quote ID.
      */
-    put: operations["UpdateQuote"];
+    put: operations["Quotes_UpdateQuote"];
     /**
      * Delete a quote.
      * @description Deletes the specified quote for the tenant.
      */
-    delete: operations["DeleteQuote"];
+    delete: operations["Quotes_DeleteQuote"];
     /**
      * Patch an existing quote.
      * @description Partially updates an existing quote for the specified tenant and quote ID using a JSON Patch document.
      */
-    patch: operations["PatchQuoteAsync"];
+    patch: operations["Quotes_PatchQuote"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Calculate": {
     /**
      * Calculate a quote.
      * @description Performs calculation logic for the specified quote.
      */
-    put: operations["CalculateQuote"];
+    put: operations["Quotes_CalculateQuote"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Close": {
     /**
      * Close a quote.
      * @description Closes the specified quote for the tenant.
      */
-    put: operations["CloseQuote"];
+    put: operations["Quotes_CloseQuote"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Reopen": {
     /**
      * Reopen a closed quote.
      * @description Reopens a previously closed quote for the tenant.
      */
-    put: operations["ReopenQuote"];
+    put: operations["Quotes_ReopenQuote"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Orders": {
     /**
      * Create an order from a quote.
      * @description Creates an order based on the specified quote for the tenant.
      */
-    post: operations["CreateOrderFromQuote"];
+    post: operations["Quotes_CreateOrderFromQuote"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines": {
     /**
      * Get quote lines for a quote.
      * @description Retrieves all quote lines for the specified quote and tenant.
      */
-    get: operations["GetQuoteLines"];
+    get: operations["Quotes_GetQuoteLines"];
     /**
      * Create a new quote line.
      * @description Creates a new quote line for the specified quote and tenant.
      */
-    post: operations["CreateQuoteLine"];
+    post: operations["Quotes_CreateQuoteLine"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines/Count": {
     /**
      * Get the count of quote lines.
      * @description Retrieves the total count of quote lines for the specified quote and tenant.
      */
-    get: operations["GetQuoteLinesCount"];
+    get: operations["Quotes_GetQuoteLinesCount"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}": {
     /**
      * Get a quote line by ID.
      * @description Retrieves a single quote line by its unique identifier for the specified quote and tenant.
      */
-    get: operations["GetQuoteLine"];
+    get: operations["Quotes_GetQuoteLine"];
     /**
      * Update a quote line.
      * @description Updates an existing quote line for the specified quote and tenant.
      */
-    put: operations["UpdateQuoteLine"];
+    put: operations["Quotes_UpdateQuoteLine"];
     /**
      * Delete a quote line.
      * @description Deletes the specified quote line for the quote and tenant.
      */
-    delete: operations["DeleteQuoteLine"];
+    delete: operations["Quotes_DeleteQuoteLine"];
     /**
      * Patch a quote line.
      * @description Partially updates an existing quote line for the specified quote and tenant using a JSON Patch document.
      */
-    patch: operations["PatchQuoteLineAsync"];
+    patch: operations["Quotes_PatchQuoteLine"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}/Upsert": {
     /**
      * Upsert a quote line.
      * @description Creates or updates a quote line for the specified quote and tenant.
      */
-    put: operations["UpsertQuoteLine"];
+    put: operations["Quotes_UpsertQuoteLine"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}/Calculate": {
     /**
      * Calculate a quote line.
      * @description Performs calculation logic for the specified quote line.
      */
-    put: operations["CalculateQuoteLine"];
+    put: operations["Quotes_CalculateQuoteLine"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines/Exists": {
     /**
      * Check if a quote line exists.
      * @description Checks if a quote line exists for the specified quote and tenant, by quote line ID or item ID.
      */
-    get: operations["QuoteLineExists"];
+    get: operations["Quotes_QuoteLineExists"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Emails/Send": {
     /**
      * Send a quote transactional email to recipients.
      * @description This action is only available for users with the 'send_email' permission.
      */
-    post: operations["SendQuoteEmail"];
+    post: operations["Quotes_SendQuoteEmail"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Emails/Preview": {
     /**
      * Preview the rendered email for an invoice.
      * @description This action is only available for users with the 'send_email' permission.
      */
-    post: operations["PreviewQuoteEmailTemplate"];
+    post: operations["Quotes_PreviewQuoteEmailTemplate"];
   };
 }
 
@@ -555,9 +307,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     EmailDispatchRequest: {
       title: string;
@@ -1907,7 +1662,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1922,11 +1756,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get a list of quotes.
    * @description Retrieves a list of quotes for the specified tenant, supporting OData query options.
    */
-  GetQuotes: {
+  Quotes_GetQuotes: {
     parameters: {
       query: {
         tenantId: string;
@@ -1959,7 +1978,7 @@ export interface operations {
    * Create a new quote.
    * @description Creates a new quote for the specified tenant.
    */
-  CreateQuote: {
+  Quotes_CreateQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -1992,7 +2011,7 @@ export interface operations {
    * Get the count of quotes.
    * @description Retrieves the total count of quotes for the specified tenant, supporting OData query options.
    */
-  GetQuotesCount: {
+  Quotes_GetQuotesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2025,7 +2044,7 @@ export interface operations {
    * Get a list of extended quotes.
    * @description Retrieves a list of extended quotes for the specified tenant, supporting OData query options.
    */
-  GetExtendedQuotes: {
+  Quotes_GetExtendedQuotes: {
     parameters: {
       query: {
         tenantId: string;
@@ -2058,7 +2077,7 @@ export interface operations {
    * Get a quote by ID.
    * @description Retrieves a single quote by its unique identifier for the specified tenant.
    */
-  GetQuote: {
+  Quotes_GetQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2088,7 +2107,7 @@ export interface operations {
    * Update an existing quote.
    * @description Updates an existing quote for the specified tenant and quote ID.
    */
-  UpdateQuote: {
+  Quotes_UpdateQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2124,7 +2143,7 @@ export interface operations {
    * Delete a quote.
    * @description Deletes the specified quote for the tenant.
    */
-  DeleteQuote: {
+  Quotes_DeleteQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2154,7 +2173,7 @@ export interface operations {
    * Patch an existing quote.
    * @description Partially updates an existing quote for the specified tenant and quote ID using a JSON Patch document.
    */
-  PatchQuoteAsync: {
+  Quotes_PatchQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2204,7 +2223,7 @@ export interface operations {
    * Calculate a quote.
    * @description Performs calculation logic for the specified quote.
    */
-  CalculateQuote: {
+  Quotes_CalculateQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2234,7 +2253,7 @@ export interface operations {
    * Close a quote.
    * @description Closes the specified quote for the tenant.
    */
-  CloseQuote: {
+  Quotes_CloseQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2264,7 +2283,7 @@ export interface operations {
    * Reopen a closed quote.
    * @description Reopens a previously closed quote for the tenant.
    */
-  ReopenQuote: {
+  Quotes_ReopenQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2294,7 +2313,7 @@ export interface operations {
    * Create an order from a quote.
    * @description Creates an order based on the specified quote for the tenant.
    */
-  CreateOrderFromQuote: {
+  Quotes_CreateOrderFromQuote: {
     parameters: {
       query: {
         tenantId: string;
@@ -2324,7 +2343,7 @@ export interface operations {
    * Get quote lines for a quote.
    * @description Retrieves all quote lines for the specified quote and tenant.
    */
-  GetQuoteLines: {
+  Quotes_GetQuoteLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -2361,7 +2380,7 @@ export interface operations {
    * Create a new quote line.
    * @description Creates a new quote line for the specified quote and tenant.
    */
-  CreateQuoteLine: {
+  Quotes_CreateQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2397,7 +2416,7 @@ export interface operations {
    * Get the count of quote lines.
    * @description Retrieves the total count of quote lines for the specified quote and tenant.
    */
-  GetQuoteLinesCount: {
+  Quotes_GetQuoteLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2433,7 +2452,7 @@ export interface operations {
    * Get a quote line by ID.
    * @description Retrieves a single quote line by its unique identifier for the specified quote and tenant.
    */
-  GetQuoteLine: {
+  Quotes_GetQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2464,7 +2483,7 @@ export interface operations {
    * Update a quote line.
    * @description Updates an existing quote line for the specified quote and tenant.
    */
-  UpdateQuoteLine: {
+  Quotes_UpdateQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2501,7 +2520,7 @@ export interface operations {
    * Delete a quote line.
    * @description Deletes the specified quote line for the quote and tenant.
    */
-  DeleteQuoteLine: {
+  Quotes_DeleteQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2532,7 +2551,7 @@ export interface operations {
    * Patch a quote line.
    * @description Partially updates an existing quote line for the specified quote and tenant using a JSON Patch document.
    */
-  PatchQuoteLineAsync: {
+  Quotes_PatchQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2583,7 +2602,7 @@ export interface operations {
    * Upsert a quote line.
    * @description Creates or updates a quote line for the specified quote and tenant.
    */
-  UpsertQuoteLine: {
+  Quotes_UpsertQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2620,7 +2639,7 @@ export interface operations {
    * Calculate a quote line.
    * @description Performs calculation logic for the specified quote line.
    */
-  CalculateQuoteLine: {
+  Quotes_CalculateQuoteLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2651,7 +2670,7 @@ export interface operations {
    * Check if a quote line exists.
    * @description Checks if a quote line exists for the specified quote and tenant, by quote line ID or item ID.
    */
-  QuoteLineExists: {
+  Quotes_QuoteLineExists: {
     parameters: {
       query: {
         tenantId: string;
@@ -2683,7 +2702,7 @@ export interface operations {
    * Send a quote transactional email to recipients.
    * @description This action is only available for users with the 'send_email' permission.
    */
-  SendQuoteEmail: {
+  Quotes_SendQuoteEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -2726,7 +2745,7 @@ export interface operations {
    * Preview the rendered email for an invoice.
    * @description This action is only available for users with the 'send_email' permission.
    */
-  PreviewQuoteEmailTemplate: {
+  Quotes_PreviewQuoteEmailTemplate: {
     parameters: {
       query: {
         tenantId: string;

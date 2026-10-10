@@ -5,614 +5,415 @@
 
 
 export interface paths {
+  "/api/v2/InvoicingService/Coupons/Recognition": {
+    /**
+     * Recognise a voucher code for your cart.
+     * @description Says whether a voucher code is recognised for the caller's own cart. The seller is derived from the cart's lines, never from the request. Every miss answers the same 'not recognised'. Recognition does not apply the voucher.
+     */
+    get: operations["Coupons_GetBillingCouponRecognition"];
+  };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/InvoicingService/Invoices": {
     /**
      * Get a list of invoices.
      * @description Retrieves a list of invoices for the specified tenant.
      */
-    get: operations["GetInvoices"];
+    get: operations["Invoices_GetInvoices"];
     /**
      * Create a new invoice.
      * @description Creates a new invoice for the specified tenant.
      */
-    post: operations["CreateInvoice"];
+    post: operations["Invoices_CreateInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/Count": {
     /**
      * Get the count of invoices.
      * @description Retrieves the total count of invoices for the specified tenant.
      */
-    get: operations["GetInvoicesCount"];
+    get: operations["Invoices_GetInvoicesCount"];
   };
   "/api/v2/InvoicingService/Invoices/Extended": {
     /**
      * Get a list of extended invoices.
      * @description Retrieves a list of extended invoice details for the specified tenant.
      */
-    get: operations["GetExtendedInvoices"];
+    get: operations["Invoices_GetExtendedInvoices"];
   };
   "/api/v2/InvoicingService/Invoices/Extended/Count": {
     /**
      * Get the count of extended invoices.
      * @description Retrieves the total count of extended invoices for the specified tenant.
      */
-    get: operations["GetExtendedInvoicesCount"];
+    get: operations["Invoices_GetExtendedInvoicesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Extended": {
     /**
      * Get an extended invoice by ID.
      * @description Retrieves the extended invoice details for the specified invoice ID.
      */
-    get: operations["GetExtendedInvoice"];
+    get: operations["Invoices_GetExtendedInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}": {
     /**
      * Get an invoice by ID.
      * @description Retrieves the invoice details for the specified invoice ID.
      */
-    get: operations["GetInvoice"];
+    get: operations["Invoices_GetInvoice"];
     /**
      * Update an invoice.
      * @description Updates the specified invoice for the tenant.
      */
-    put: operations["UpdateInvoice"];
+    put: operations["Invoices_UpdateInvoice"];
     /**
      * Delete an invoice.
      * @description Deletes the specified invoice for the tenant.
      */
-    delete: operations["DeleteInvoice"];
+    delete: operations["Invoices_DeleteInvoice"];
     /**
      * Patch an invoice.
      * @description Partially updates the specified invoice for the tenant.
      */
-    patch: operations["PatchInvoice"];
+    patch: operations["Invoices_PatchInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Calculate": {
     /**
      * Calculate an invoice.
      * @description Calculates the totals and taxes for the specified invoice.
      */
-    put: operations["CalculateInvoice"];
+    put: operations["Invoices_CalculateInvoice"];
+  };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/Issue": {
+    /**
+     * Issue an invoice.
+     * @description Issues the specified Draft invoice: it becomes Signed and a payable obligation, and its amounts can no longer change. Issuing an invoice that is already issued succeeds and changes nothing.
+     */
+    post: operations["Invoices_IssueInvoice"];
+  };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/CreditNotes": {
+    /**
+     * Issue a credit note against an issued invoice.
+     * @description Issues a credit note in the invoice's currency that reduces what is owed on it: numbered from the tenant's credit note series and signed in one step. The amount cannot exceed what can still be credited, and an annulment credits all of it. The invoice must be issued and must not itself be a note.
+     */
+    post: operations["Invoices_CreateCreditNote"];
+  };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/DebitNotes": {
+    /**
+     * Issue a debit note against an issued invoice.
+     * @description Issues a debit note in the invoice's currency that increases what is owed on it: numbered from the tenant's debit note series and signed in one step. The invoice must be issued and must not itself be a note.
+     */
+    post: operations["Invoices_CreateDebitNote"];
+  };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/CreditableAmount": {
+    /**
+     * Get what can still be credited on an invoice.
+     * @description The invoice's total plus its issued debit notes, minus its issued credit notes, in its own currency: the most a new credit note can credit.
+     */
+    get: operations["Invoices_GetInvoiceCreditableAmount"];
+  };
+  "/api/v2/InvoicingService/Invoices/IssuedUnnumbered": {
+    /**
+     * List the tenants that issue unnumbered invoices (root tenant only).
+     * @description Invoice numbering is opt-in per tenant: a tenant without an enumeration range issues unnumbered invoices. Lists those tenants with the count and the latest issue instant, so a range can be configured. Only the instance's root tenant may call it.
+     */
+    get: operations["Invoices_GetUnnumberedIssuingTenants"];
+  };
+  "/api/v2/InvoicingService/Invoices/IssuedAtBackfill": {
+    /**
+     * Backfill the issuance instant of legacy invoices (root tenant only).
+     * @description One bounded run of the one-time backfill: stamps the issuance instant on up to batchSize legacy live invoices that were already payable obligations, without re-posting them, and records an audit entry. Run again until it reports 0. Only the instance's root tenant may call it.
+     */
+    post: operations["Invoices_BackfillInvoiceIssuedAt"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines": {
     /**
      * Get invoice lines.
      * @description Retrieves the invoice lines for the specified invoice.
      */
-    get: operations["GetInvoiceLines"];
+    get: operations["Invoices_GetInvoiceLines"];
     /**
      * Create a new invoice line.
      * @description Creates a new invoice line for the specified invoice.
      */
-    post: operations["CreateInvoiceLine"];
+    post: operations["Invoices_CreateInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/Count": {
     /**
      * Get the count of invoice lines.
      * @description Retrieves the total count of invoice lines for the specified invoice.
      */
-    get: operations["GetInvoiceLinesCount"];
+    get: operations["Invoices_GetInvoiceLinesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}": {
     /**
      * Get an invoice line by ID.
      * @description Retrieves the invoice line details for the specified invoice line ID.
      */
-    get: operations["GetInvoiceLine"];
+    get: operations["Invoices_GetInvoiceLine"];
     /**
      * Update an invoice line.
      * @description Updates the specified invoice line.
      */
-    put: operations["UpdateInvoiceLine"];
+    put: operations["Invoices_UpdateInvoiceLine"];
     /**
      * Delete an invoice line.
      * @description Deletes the specified invoice line.
      */
-    delete: operations["DeleteInvoiceLine"];
+    delete: operations["Invoices_DeleteInvoiceLine"];
     /**
      * Patch an invoice line.
      * @description Partially updates the specified invoice line.
      */
-    patch: operations["PatchInvoiceLine"];
+    patch: operations["Invoices_PatchInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Calculate": {
     /**
      * Calculate an invoice line.
      * @description Calculates the totals and taxes for the specified invoice line.
      */
-    put: operations["CalculateInvoiceLine"];
+    put: operations["Invoices_CalculateInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes": {
     /**
      * Get taxes for an invoice line.
      * @description Retrieves the taxes applied to the specified invoice line.
      */
-    get: operations["GetInvoiceLineTaxes"];
+    get: operations["Invoices_GetInvoiceLineTaxes"];
     /**
      * Create a new tax for an invoice line.
      * @description Creates a new tax entry for the specified invoice line.
      */
-    post: operations["CreateInvoiceLineTax"];
+    post: operations["Invoices_CreateInvoiceLineTax"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/Count": {
     /**
      * Get the count of taxes for an invoice line.
      * @description Retrieves the total count of taxes applied to the specified invoice line.
      */
-    get: operations["GetInvoiceLineTaxesCount"];
+    get: operations["Invoices_GetInvoiceLineTaxesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}": {
     /**
      * Update a tax for an invoice line.
      * @description Updates the specified tax entry for the invoice line.
      */
-    put: operations["UpdateInvoiceLineTax"];
+    put: operations["Invoices_UpdateInvoiceLineTax"];
     /**
      * Delete a tax from an invoice line.
      * @description Deletes the specified tax entry from the invoice line.
      */
-    delete: operations["DeleteInvoiceLineTax"];
+    delete: operations["Invoices_DeleteInvoiceLineTax"];
     /**
      * Patch a tax for an invoice line.
      * @description Partially updates the specified tax entry for the invoice line.
      */
-    patch: operations["PatchInvoiceLineTax"];
+    patch: operations["Invoices_PatchInvoiceLineTax"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments": {
     /**
      * Get invoice adjustments.
      * @description Retrieves the adjustments for the specified invoice.
      */
-    get: operations["GetInvoiceAdjustments"];
+    get: operations["Invoices_GetInvoiceAdjustments"];
     /**
      * Create a new invoice adjustment.
      * @description Creates a new adjustment for the specified invoice.
      */
-    post: operations["CreateInvoiceAdjustment"];
+    post: operations["Invoices_CreateInvoiceAdjustment"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/Count": {
     /**
      * Get the count of invoice adjustments.
      * @description Retrieves the total count of adjustments for the specified invoice.
      */
-    get: operations["GetInvoiceAdjustmentsCount"];
+    get: operations["Invoices_GetInvoiceAdjustmentsCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}": {
     /**
      * Get an invoice adjustment by ID.
      * @description Retrieves the adjustment details for the specified invoice adjustment ID.
      */
-    get: operations["GetInvoiceAdjustment"];
+    get: operations["Invoices_GetInvoiceAdjustment"];
     /**
      * Update an invoice adjustment.
      * @description Updates the specified adjustment for the invoice.
      */
-    put: operations["UpdateInvoiceAdjustment"];
+    put: operations["Invoices_UpdateInvoiceAdjustment"];
     /**
      * Delete an invoice adjustment.
      * @description Deletes the specified adjustment from the invoice.
      */
-    delete: operations["DeleteInvoiceAdjustment"];
+    delete: operations["Invoices_DeleteInvoiceAdjustment"];
     /**
      * Patch an invoice adjustment.
      * @description Partially updates the specified adjustment for the invoice.
      */
-    patch: operations["PatchInvoiceAdjustment"];
+    patch: operations["Invoices_PatchInvoiceAdjustment"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References": {
     /**
      * Get invoice references.
      * @description Retrieves the references for the specified invoice.
      */
-    get: operations["GetInvoiceReferences"];
+    get: operations["Invoices_GetInvoiceReferences"];
     /**
      * Create a new invoice reference.
      * @description Creates a new reference for the specified invoice.
      */
-    post: operations["CreateInvoiceReference"];
+    post: operations["Invoices_CreateInvoiceReference"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References/Count": {
     /**
      * Get the count of invoice references.
      * @description Retrieves the total count of references for the specified invoice.
      */
-    get: operations["GetInvoiceReferencesCount"];
+    get: operations["Invoices_GetInvoiceReferencesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}": {
     /**
      * Get an invoice reference by ID.
      * @description Retrieves the reference details for the specified invoice reference ID.
      */
-    get: operations["GetInvoiceReference"];
+    get: operations["Invoices_GetInvoiceReference"];
     /**
      * Update an invoice reference.
      * @description Updates the specified reference for the invoice.
      */
-    put: operations["UpdateInvoiceReference"];
+    put: operations["Invoices_UpdateInvoiceReference"];
     /**
      * Delete an invoice reference.
      * @description Deletes the specified reference from the invoice.
      */
-    delete: operations["DeleteInvoiceReference"];
+    delete: operations["Invoices_DeleteInvoiceReference"];
     /**
      * Patch an invoice reference.
      * @description Partially updates the specified reference for the invoice.
      */
-    patch: operations["PatchInvoiceReference"];
+    patch: operations["Invoices_PatchInvoiceReference"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Payments": {
     /**
      * Get payments for an invoice.
      * @description Retrieves the list of payments related to the specified invoice.
      */
-    get: operations["GetInvoicePayments"];
+    get: operations["Invoices_GetInvoicePayments"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Payments/Count": {
     /**
      * Get the count of payments for an invoice.
      * @description Retrieves the total count of payments for the specified invoice.
      */
-    get: operations["GetInvoicePaymentsCount"];
+    get: operations["Invoices_GetInvoicePaymentsCount"];
   };
   "/api/v2/InvoicingService/Invoices/TotalsAggregate": {
     /**
      * Aggregate invoice totals.
      * @description Aggregates the totals for the specified invoices.
      */
-    post: operations["AggregateInvoiceTotals"];
+    post: operations["Invoices_AggregateInvoiceTotals"];
   };
   "/api/v2/InvoicingService/Invoices/TaxesAggregate": {
     /**
      * Aggregate invoice taxes.
      * @description Aggregates the taxes for the specified invoices.
      */
-    post: operations["AggregateInvoiceTaxes"];
+    post: operations["Invoices_AggregateInvoiceTaxes"];
   };
   "/api/v2/InvoicingService/Invoices/DiscountsAggregate": {
     /**
      * Aggregate invoice discounts.
      * @description Aggregates the discounts for the specified invoices.
      */
-    post: operations["AggregateInvoiceDiscounts"];
+    post: operations["Invoices_AggregateInvoiceDiscounts"];
   };
   "/api/v2/InvoicingService/Invoices/TaxBasesAggregate": {
     /**
      * Aggregate invoice tax bases.
      * @description Aggregates the tax bases for the specified invoices.
      */
-    post: operations["AggregateInvoiceTaxBases"];
+    post: operations["Invoices_AggregateInvoiceTaxBases"];
   };
   "/api/v2/InvoicingService/Invoices/GlobalSurchargesAggregate": {
     /**
      * Aggregate invoice global surcharges.
      * @description Aggregates the global surcharges for the specified invoices.
      */
-    post: operations["AggregateInvoiceGlobalSurcharges"];
+    post: operations["Invoices_AggregateInvoiceGlobalSurcharges"];
   };
   "/api/v2/InvoicingService/Invoices/SalesInvoices/Sum": {
     /**
      * Sum tenant sales-invoice totals.
      * @description Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType == SalesInvoice, filtered by the supplied OData date range.
      */
-    get: operations["GetSalesInvoicesSum"];
+    get: operations["Invoices_GetSalesInvoicesSum"];
   };
   "/api/v2/InvoicingService/Invoices/PurchaseInvoices/Sum": {
     /**
      * Sum tenant purchase-invoice totals.
      * @description Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType == PurchaseInvoice, filtered by the supplied OData date range.
      */
-    get: operations["GetPurchaseInvoicesSum"];
+    get: operations["Invoices_GetPurchaseInvoicesSum"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Send": {
     /**
      * Send an invoice transactional email to recipients.
      * @description This action is only available for users with the 'send_email' permission.
      */
-    post: operations["SendInvoiceEmail"];
+    post: operations["Invoices_SendInvoiceEmail"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Preview": {
     /**
      * Preview the rendered email for an invoice.
      * @description This action is only available for users with the 'send_email' permission.
      */
-    post: operations["PreviewInvoiceEmail"];
+    post: operations["Invoices_PreviewInvoiceEmail"];
   };
 }
 
@@ -627,10 +428,44 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    BillingCouponRecognitionDto: {
+      recognised?: boolean;
+      applicable?: boolean;
+      reason?: string | null;
+    };
+    BillingCouponRecognitionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BillingCouponRecognitionDto"];
+    };
+    CreditNoteCreateDto: {
+      /** Format: double */
+      amount?: number;
+      /** @enum {string} */
+      reason?: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange";
+      reasonDescription?: string | null;
+    };
     CurrencyId: {
       value?: string | null;
       code?: string | null;
       country?: string | null;
+    };
+    DebitNoteCreateDto: {
+      /** Format: double */
+      amount?: number;
+      /** @enum {string} */
+      reason?: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange";
+      reasonDescription?: string | null;
     };
     EmailDispatchRequest: {
       title: string;
@@ -815,6 +650,23 @@ export interface components {
       organization?: components["schemas"]["SimpleContactDto"];
       enrollment?: components["schemas"]["SimpleTenantEnrollmentDto"];
       invoiceLines?: components["schemas"]["InvoiceLineDto"][] | null;
+      invoiceEnumerationRange?: components["schemas"]["InvoiceEnumerationRangeDto"];
+      /** Format: date-time */
+      expiration?: string;
+      /** Format: double */
+      effectiveDiscountPercent?: number;
+      /** Format: double */
+      effectiveSurchargePercent?: number;
+      /** Format: double */
+      effectiveTaxesPercent?: number;
+      /** Format: double */
+      effectiveGlobalDiscountPercent?: number;
+      /** Format: double */
+      effectiveGlobalSurchargePercent?: number;
+      emisorParty?: components["schemas"]["InvoicePartyDto"];
+      receiverParty?: components["schemas"]["InvoicePartyDto"];
+      emisorPartyUnresolved?: boolean;
+      receiverPartyUnresolved?: boolean;
     };
     ExtendedInvoiceDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1095,6 +947,27 @@ export interface components {
       invoiceReferences?: components["schemas"]["InvoiceReferenceCreateDto"][] | null;
       invoiceAdjustments?: components["schemas"]["InvoiceAdjustmentCreateDto"][] | null;
     };
+    InvoiceCreditableAmountDto: {
+      invoiceId?: string | null;
+      /** Format: double */
+      amount?: number;
+      currencyId?: string | null;
+    };
+    InvoiceCreditableAmountDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InvoiceCreditableAmountDto"];
+    };
     InvoiceDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1252,6 +1125,50 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceDto"][] | null;
+    };
+    InvoiceEnumerationRangeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      prefix?: string | null;
+      suffix?: string | null;
+      identifier?: string | null;
+      qualifiedName?: string | null;
+      /** Format: int64 */
+      currentNumeration?: number;
+      /** Format: int64 */
+      numerationTo?: number;
+      /** Format: int64 */
+      numerationFrom?: number;
+      /** Format: date-time */
+      validFrom?: string;
+      /** Format: date-time */
+      validTo?: string;
+      fiscalAuthorityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+    };
+    InvoiceIssuedAtBackfillResultDto: {
+      /** Format: int32 */
+      invoicesStamped?: number;
+      mayHaveMore?: boolean;
+    };
+    InvoiceIssuedAtBackfillResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InvoiceIssuedAtBackfillResultDto"];
     };
     InvoiceLineAppliedTaxCreateDto: {
       /** Format: uuid */
@@ -1664,6 +1581,51 @@ export interface components {
       taxAmountInUsd?: number;
       /** Format: double */
       taxBaseAmountInUsd?: number;
+    };
+    InvoiceNoteDto: {
+      id?: string | null;
+      parentInvoiceId?: string | null;
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      /** @enum {string|null} */
+      reason?: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange" | null;
+      reasonDescription?: string | null;
+      enumeration?: string | null;
+      /** Format: double */
+      amount?: number;
+      currencyId?: string | null;
+      /** Format: date-time */
+      issuedAtUtc?: string | null;
+    };
+    InvoiceNoteDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InvoiceNoteDto"];
+    };
+    InvoicePartyDto: {
+      registrationName?: string | null;
+      commercialName?: string | null;
+      taxId?: string | null;
+      identificationCode?: string | null;
+      verificationDigit?: string | null;
+      taxLevelCode?: string | null;
+      streetName?: string | null;
+      cityName?: string | null;
+      postalZone?: string | null;
+      countrySubentityCode?: string | null;
+      countryCode?: string | null;
+      email?: string | null;
+      phone?: string | null;
     };
     InvoiceReferenceCreateDto: {
       /** Format: uuid */
@@ -2105,6 +2067,28 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    UnnumberedIssuingTenantDto: {
+      tenantId?: string | null;
+      /** Format: int32 */
+      unnumberedIssuedInvoices?: number;
+      /** Format: date-time */
+      lastIssuedAtUtc?: string | null;
+    };
+    UnnumberedIssuingTenantDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["UnnumberedIssuingTenantDto"][] | null;
+    };
   };
   responses: never;
   parameters: never;
@@ -2119,7 +2103,115 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  /**
+   * Recognise a voucher code for your cart.
+   * @description Says whether a voucher code is recognised for the caller's own cart. The seller is derived from the cart's lines, never from the request. Every miss answers the same 'not recognised'. Recognition does not apply the voucher.
+   */
+  Coupons_GetBillingCouponRecognition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        cartId: string;
+        code: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BillingCouponRecognitionDtoEnvelope"];
+          "application/xml": components["schemas"]["BillingCouponRecognitionDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2134,11 +2226,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get a list of invoices.
    * @description Retrieves a list of invoices for the specified tenant.
    */
-  GetInvoices: {
+  Invoices_GetInvoices: {
     parameters: {
       query: {
         tenantId: string;
@@ -2171,7 +2448,7 @@ export interface operations {
    * Create a new invoice.
    * @description Creates a new invoice for the specified tenant.
    */
-  CreateInvoice: {
+  Invoices_CreateInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2204,7 +2481,7 @@ export interface operations {
    * Get the count of invoices.
    * @description Retrieves the total count of invoices for the specified tenant.
    */
-  GetInvoicesCount: {
+  Invoices_GetInvoicesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2237,7 +2514,7 @@ export interface operations {
    * Get a list of extended invoices.
    * @description Retrieves a list of extended invoice details for the specified tenant.
    */
-  GetExtendedInvoices: {
+  Invoices_GetExtendedInvoices: {
     parameters: {
       query: {
         tenantId: string;
@@ -2270,7 +2547,7 @@ export interface operations {
    * Get the count of extended invoices.
    * @description Retrieves the total count of extended invoices for the specified tenant.
    */
-  GetExtendedInvoicesCount: {
+  Invoices_GetExtendedInvoicesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2303,7 +2580,7 @@ export interface operations {
    * Get an extended invoice by ID.
    * @description Retrieves the extended invoice details for the specified invoice ID.
    */
-  GetExtendedInvoice: {
+  Invoices_GetExtendedInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2333,7 +2610,7 @@ export interface operations {
    * Get an invoice by ID.
    * @description Retrieves the invoice details for the specified invoice ID.
    */
-  GetInvoice: {
+  Invoices_GetInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2363,7 +2640,7 @@ export interface operations {
    * Update an invoice.
    * @description Updates the specified invoice for the tenant.
    */
-  UpdateInvoice: {
+  Invoices_UpdateInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2399,7 +2676,7 @@ export interface operations {
    * Delete an invoice.
    * @description Deletes the specified invoice for the tenant.
    */
-  DeleteInvoice: {
+  Invoices_DeleteInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2429,7 +2706,7 @@ export interface operations {
    * Patch an invoice.
    * @description Partially updates the specified invoice for the tenant.
    */
-  PatchInvoice: {
+  Invoices_PatchInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2465,7 +2742,7 @@ export interface operations {
    * Calculate an invoice.
    * @description Calculates the totals and taxes for the specified invoice.
    */
-  CalculateInvoice: {
+  Invoices_CalculateInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2492,10 +2769,226 @@ export interface operations {
     };
   };
   /**
+   * Issue an invoice.
+   * @description Issues the specified Draft invoice: it becomes Signed and a payable obligation, and its amounts can no longer change. Issuing an invoice that is already issued succeeds and changes nothing.
+   */
+  Invoices_IssueInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issue a credit note against an issued invoice.
+   * @description Issues a credit note in the invoice's currency that reduces what is owed on it: numbered from the tenant's credit note series and signed in one step. The amount cannot exceed what can still be credited, and an annulment credits all of it. The invoice must be issued and must not itself be a note.
+   */
+  Invoices_CreateCreditNote: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreditNoteCreateDto"];
+        "application/xml": components["schemas"]["CreditNoteCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceNoteDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceNoteDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issue a debit note against an issued invoice.
+   * @description Issues a debit note in the invoice's currency that increases what is owed on it: numbered from the tenant's debit note series and signed in one step. The invoice must be issued and must not itself be a note.
+   */
+  Invoices_CreateDebitNote: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DebitNoteCreateDto"];
+        "application/xml": components["schemas"]["DebitNoteCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceNoteDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceNoteDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get what can still be credited on an invoice.
+   * @description The invoice's total plus its issued debit notes, minus its issued credit notes, in its own currency: the most a new credit note can credit.
+   */
+  Invoices_GetInvoiceCreditableAmount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceCreditableAmountDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceCreditableAmountDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the tenants that issue unnumbered invoices (root tenant only).
+   * @description Invoice numbering is opt-in per tenant: a tenant without an enumeration range issues unnumbered invoices. Lists those tenants with the count and the latest issue instant, so a range can be configured. Only the instance's root tenant may call it.
+   */
+  Invoices_GetUnnumberedIssuingTenants: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UnnumberedIssuingTenantDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["UnnumberedIssuingTenantDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Backfill the issuance instant of legacy invoices (root tenant only).
+   * @description One bounded run of the one-time backfill: stamps the issuance instant on up to batchSize legacy live invoices that were already payable obligations, without re-posting them, and records an audit entry. Run again until it reports 0. Only the instance's root tenant may call it.
+   */
+  Invoices_BackfillInvoiceIssuedAt: {
+    parameters: {
+      query: {
+        tenantId: string;
+        batchSize: number;
+        reason: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceIssuedAtBackfillResultDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceIssuedAtBackfillResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get invoice lines.
    * @description Retrieves the invoice lines for the specified invoice.
    */
-  GetInvoiceLines: {
+  Invoices_GetInvoiceLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -2525,7 +3018,7 @@ export interface operations {
    * Create a new invoice line.
    * @description Creates a new invoice line for the specified invoice.
    */
-  CreateInvoiceLine: {
+  Invoices_CreateInvoiceLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2554,7 +3047,7 @@ export interface operations {
    * Get the count of invoice lines.
    * @description Retrieves the total count of invoice lines for the specified invoice.
    */
-  GetInvoiceLinesCount: {
+  Invoices_GetInvoiceLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2583,7 +3076,7 @@ export interface operations {
    * Get an invoice line by ID.
    * @description Retrieves the invoice line details for the specified invoice line ID.
    */
-  GetInvoiceLine: {
+  Invoices_GetInvoiceLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2607,7 +3100,7 @@ export interface operations {
    * Update an invoice line.
    * @description Updates the specified invoice line.
    */
-  UpdateInvoiceLine: {
+  Invoices_UpdateInvoiceLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2637,7 +3130,7 @@ export interface operations {
    * Delete an invoice line.
    * @description Deletes the specified invoice line.
    */
-  DeleteInvoiceLine: {
+  Invoices_DeleteInvoiceLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2661,7 +3154,7 @@ export interface operations {
    * Patch an invoice line.
    * @description Partially updates the specified invoice line.
    */
-  PatchInvoiceLine: {
+  Invoices_PatchInvoiceLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2698,7 +3191,7 @@ export interface operations {
    * Calculate an invoice line.
    * @description Calculates the totals and taxes for the specified invoice line.
    */
-  CalculateInvoiceLine: {
+  Invoices_CalculateInvoiceLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2722,7 +3215,7 @@ export interface operations {
    * Get taxes for an invoice line.
    * @description Retrieves the taxes applied to the specified invoice line.
    */
-  GetInvoiceLineTaxes: {
+  Invoices_GetInvoiceLineTaxes: {
     parameters: {
       query: {
         tenantId: string;
@@ -2752,7 +3245,7 @@ export interface operations {
    * Create a new tax for an invoice line.
    * @description Creates a new tax entry for the specified invoice line.
    */
-  CreateInvoiceLineTax: {
+  Invoices_CreateInvoiceLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -2782,7 +3275,7 @@ export interface operations {
    * Get the count of taxes for an invoice line.
    * @description Retrieves the total count of taxes applied to the specified invoice line.
    */
-  GetInvoiceLineTaxesCount: {
+  Invoices_GetInvoiceLineTaxesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2812,7 +3305,7 @@ export interface operations {
    * Update a tax for an invoice line.
    * @description Updates the specified tax entry for the invoice line.
    */
-  UpdateInvoiceLineTax: {
+  Invoices_UpdateInvoiceLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -2843,7 +3336,7 @@ export interface operations {
    * Delete a tax from an invoice line.
    * @description Deletes the specified tax entry from the invoice line.
    */
-  DeleteInvoiceLineTax: {
+  Invoices_DeleteInvoiceLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -2868,7 +3361,7 @@ export interface operations {
    * Patch a tax for an invoice line.
    * @description Partially updates the specified tax entry for the invoice line.
    */
-  PatchInvoiceLineTax: {
+  Invoices_PatchInvoiceLineTax: {
     parameters: {
       query: {
         tenantId: string;
@@ -2899,7 +3392,7 @@ export interface operations {
    * Get invoice adjustments.
    * @description Retrieves the adjustments for the specified invoice.
    */
-  GetInvoiceAdjustments: {
+  Invoices_GetInvoiceAdjustments: {
     parameters: {
       query: {
         tenantId: string;
@@ -2928,7 +3421,7 @@ export interface operations {
    * Create a new invoice adjustment.
    * @description Creates a new adjustment for the specified invoice.
    */
-  CreateInvoiceAdjustment: {
+  Invoices_CreateInvoiceAdjustment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2957,7 +3450,7 @@ export interface operations {
    * Get the count of invoice adjustments.
    * @description Retrieves the total count of adjustments for the specified invoice.
    */
-  GetInvoiceAdjustmentsCount: {
+  Invoices_GetInvoiceAdjustmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2986,7 +3479,7 @@ export interface operations {
    * Get an invoice adjustment by ID.
    * @description Retrieves the adjustment details for the specified invoice adjustment ID.
    */
-  GetInvoiceAdjustment: {
+  Invoices_GetInvoiceAdjustment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3010,7 +3503,7 @@ export interface operations {
    * Update an invoice adjustment.
    * @description Updates the specified adjustment for the invoice.
    */
-  UpdateInvoiceAdjustment: {
+  Invoices_UpdateInvoiceAdjustment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3040,7 +3533,7 @@ export interface operations {
    * Delete an invoice adjustment.
    * @description Deletes the specified adjustment from the invoice.
    */
-  DeleteInvoiceAdjustment: {
+  Invoices_DeleteInvoiceAdjustment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3064,7 +3557,7 @@ export interface operations {
    * Patch an invoice adjustment.
    * @description Partially updates the specified adjustment for the invoice.
    */
-  PatchInvoiceAdjustment: {
+  Invoices_PatchInvoiceAdjustment: {
     parameters: {
       query: {
         tenantId: string;
@@ -3101,7 +3594,7 @@ export interface operations {
    * Get invoice references.
    * @description Retrieves the references for the specified invoice.
    */
-  GetInvoiceReferences: {
+  Invoices_GetInvoiceReferences: {
     parameters: {
       query: {
         tenantId: string;
@@ -3130,7 +3623,7 @@ export interface operations {
    * Create a new invoice reference.
    * @description Creates a new reference for the specified invoice.
    */
-  CreateInvoiceReference: {
+  Invoices_CreateInvoiceReference: {
     parameters: {
       query: {
         tenantId: string;
@@ -3159,7 +3652,7 @@ export interface operations {
    * Get the count of invoice references.
    * @description Retrieves the total count of references for the specified invoice.
    */
-  GetInvoiceReferencesCount: {
+  Invoices_GetInvoiceReferencesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3188,7 +3681,7 @@ export interface operations {
    * Get an invoice reference by ID.
    * @description Retrieves the reference details for the specified invoice reference ID.
    */
-  GetInvoiceReference: {
+  Invoices_GetInvoiceReference: {
     parameters: {
       query: {
         tenantId: string;
@@ -3212,7 +3705,7 @@ export interface operations {
    * Update an invoice reference.
    * @description Updates the specified reference for the invoice.
    */
-  UpdateInvoiceReference: {
+  Invoices_UpdateInvoiceReference: {
     parameters: {
       query: {
         tenantId: string;
@@ -3242,7 +3735,7 @@ export interface operations {
    * Delete an invoice reference.
    * @description Deletes the specified reference from the invoice.
    */
-  DeleteInvoiceReference: {
+  Invoices_DeleteInvoiceReference: {
     parameters: {
       query: {
         tenantId: string;
@@ -3266,7 +3759,7 @@ export interface operations {
    * Patch an invoice reference.
    * @description Partially updates the specified reference for the invoice.
    */
-  PatchInvoiceReference: {
+  Invoices_PatchInvoiceReference: {
     parameters: {
       query: {
         tenantId: string;
@@ -3296,7 +3789,7 @@ export interface operations {
    * Get payments for an invoice.
    * @description Retrieves the list of payments related to the specified invoice.
    */
-  GetInvoicePayments: {
+  Invoices_GetInvoicePayments: {
     parameters: {
       query: {
         tenantId: string;
@@ -3325,7 +3818,7 @@ export interface operations {
    * Get the count of payments for an invoice.
    * @description Retrieves the total count of payments for the specified invoice.
    */
-  GetInvoicePaymentsCount: {
+  Invoices_GetInvoicePaymentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3354,7 +3847,7 @@ export interface operations {
    * Aggregate invoice totals.
    * @description Aggregates the totals for the specified invoices.
    */
-  AggregateInvoiceTotals: {
+  Invoices_AggregateInvoiceTotals: {
     parameters: {
       query: {
         tenantId: string;
@@ -3381,7 +3874,7 @@ export interface operations {
    * Aggregate invoice taxes.
    * @description Aggregates the taxes for the specified invoices.
    */
-  AggregateInvoiceTaxes: {
+  Invoices_AggregateInvoiceTaxes: {
     parameters: {
       query: {
         tenantId: string;
@@ -3408,7 +3901,7 @@ export interface operations {
    * Aggregate invoice discounts.
    * @description Aggregates the discounts for the specified invoices.
    */
-  AggregateInvoiceDiscounts: {
+  Invoices_AggregateInvoiceDiscounts: {
     parameters: {
       query: {
         tenantId: string;
@@ -3435,7 +3928,7 @@ export interface operations {
    * Aggregate invoice tax bases.
    * @description Aggregates the tax bases for the specified invoices.
    */
-  AggregateInvoiceTaxBases: {
+  Invoices_AggregateInvoiceTaxBases: {
     parameters: {
       query: {
         tenantId: string;
@@ -3462,7 +3955,7 @@ export interface operations {
    * Aggregate invoice global surcharges.
    * @description Aggregates the global surcharges for the specified invoices.
    */
-  AggregateInvoiceGlobalSurcharges: {
+  Invoices_AggregateInvoiceGlobalSurcharges: {
     parameters: {
       query: {
         tenantId: string;
@@ -3489,7 +3982,7 @@ export interface operations {
    * Sum tenant sales-invoice totals.
    * @description Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType == SalesInvoice, filtered by the supplied OData date range.
    */
-  GetSalesInvoicesSum: {
+  Invoices_GetSalesInvoicesSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -3529,7 +4022,7 @@ export interface operations {
    * Sum tenant purchase-invoice totals.
    * @description Returns SUM(Invoice.TotalAmountInUSD) for invoices with InvoiceType == PurchaseInvoice, filtered by the supplied OData date range.
    */
-  GetPurchaseInvoicesSum: {
+  Invoices_GetPurchaseInvoicesSum: {
     parameters: {
       query: {
         tenantId: string;
@@ -3569,7 +4062,7 @@ export interface operations {
    * Send an invoice transactional email to recipients.
    * @description This action is only available for users with the 'send_email' permission.
    */
-  SendInvoiceEmail: {
+  Invoices_SendInvoiceEmail: {
     parameters: {
       query: {
         tenantId: string;
@@ -3598,7 +4091,7 @@ export interface operations {
    * Preview the rendered email for an invoice.
    * @description This action is only available for users with the 'send_email' permission.
    */
-  PreviewInvoiceEmail: {
+  Invoices_PreviewInvoiceEmail: {
     parameters: {
       query: {
         tenantId: string;

@@ -6,465 +6,217 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/ManufacturingService/ProductionPlans": {
     /**
      * Get all production plans
      * @description Retrieves all production plans for the specified tenant.
      */
-    get: operations["GetProductionPlansAsync"];
+    get: operations["ProductionPlans_GetProductionPlans"];
     /**
      * Create a new production plan
      * @description Creates a new production plan for the specified tenant.
      */
-    post: operations["CreateProductionPlanAsync"];
+    post: operations["ProductionPlans_CreateProductionPlan"];
   };
   "/api/v2/ManufacturingService/ProductionPlans/Count": {
     /**
      * Get production plans count
      * @description Returns the count of production plans for the specified tenant.
      */
-    get: operations["GetProductionPlansCountAsync"];
+    get: operations["ProductionPlans_GetProductionPlansCount"];
   };
   "/api/v2/ManufacturingService/ProductionPlans/{id}": {
     /**
      * Get production plan by ID
      * @description Retrieves a specific production plan by its identifier.
      */
-    get: operations["GetProductionPlanByIdAsync"];
+    get: operations["ProductionPlans_GetProductionPlanById"];
     /**
      * Update a production plan
      * @description Updates an existing production plan for the specified tenant.
      */
-    put: operations["UpdateProductionPlanAsync"];
+    put: operations["ProductionPlans_UpdateProductionPlan"];
     /**
      * Delete a production plan
      * @description Deletes a production plan for the specified tenant.
      */
-    delete: operations["DeleteProductionPlanAsync"];
+    delete: operations["ProductionPlans_DeleteProductionPlan"];
     /**
      * Patch a production plan
      * @description Patch a production plan
      */
-    patch: operations["PatchProductionPlanAsync"];
+    patch: operations["ProductionPlans_PatchProductionPlan"];
   };
   "/api/v2/ManufacturingService/WorkOrders": {
     /**
      * Get all work orders
      * @description Retrieves all work orders for the specified tenant.
      */
-    get: operations["GetWorkOrdersAsync"];
+    get: operations["WorkOrders_GetWorkOrders"];
     /**
      * Create a new work order
      * @description Creates a new work order for the specified tenant.
      */
-    post: operations["CreateWorkOrderAsync"];
+    post: operations["WorkOrders_CreateWorkOrder"];
   };
   "/api/v2/ManufacturingService/WorkOrders/Count": {
     /**
      * Get work orders count
      * @description Returns the count of work orders for the specified tenant.
      */
-    get: operations["GetWorkOrdersCountAsync"];
+    get: operations["WorkOrders_GetWorkOrdersCount"];
   };
   "/api/v2/ManufacturingService/WorkOrders/{id}": {
     /**
      * Get work order by ID
      * @description Retrieves a specific work order by its identifier.
      */
-    get: operations["GetWorkOrderByIdAsync"];
+    get: operations["WorkOrders_GetWorkOrderById"];
     /**
      * Update a work order
      * @description Updates an existing work order for the specified tenant.
      */
-    put: operations["UpdateWorkOrderAsync"];
+    put: operations["WorkOrders_UpdateWorkOrder"];
     /**
      * Delete a work order
      * @description Deletes a work order for the specified tenant.
      */
-    delete: operations["DeleteWorkOrderAsync"];
+    delete: operations["WorkOrders_DeleteWorkOrder"];
     /**
      * Patch a work order
      * @description Patch a work order
      */
-    patch: operations["PatchWorkOrderAsync"];
+    patch: operations["WorkOrders_PatchWorkOrder"];
   };
   "/api/v2/ManufacturingService/WorkOrderTypes": {
     /**
      * Get all work order types
      * @description Retrieves all work order types for the specified tenant.
      */
-    get: operations["GetWorkOrderTypesAsync"];
+    get: operations["WorkOrderTypes_GetWorkOrderTypes"];
     /**
      * Create a new work order type
      * @description Creates a new work order type for the specified tenant.
      */
-    post: operations["CreateWorkOrderTypeAsync"];
+    post: operations["WorkOrderTypes_CreateWorkOrderType"];
   };
   "/api/v2/ManufacturingService/WorkOrderTypes/Count": {
     /**
      * Get work order types count
      * @description Returns the count of work order types for the specified tenant.
      */
-    get: operations["GetWorkOrderTypesCountAsync"];
+    get: operations["WorkOrderTypes_GetWorkOrderTypesCount"];
   };
   "/api/v2/ManufacturingService/WorkOrderTypes/{id}": {
     /**
      * Get work order type by ID
      * @description Retrieves a specific work order type by its identifier.
      */
-    get: operations["GetWorkOrderTypeByIdAsync"];
+    get: operations["WorkOrderTypes_GetWorkOrderTypeById"];
     /**
      * Update a work order type
      * @description Updates an existing work order type for the specified tenant.
      */
-    put: operations["UpdateWorkOrderTypeAsync"];
+    put: operations["WorkOrderTypes_UpdateWorkOrderType"];
     /**
      * Delete a work order type
      * @description Deletes a work order type for the specified tenant.
      */
-    delete: operations["DeleteWorkOrderTypeAsync"];
+    delete: operations["WorkOrderTypes_DeleteWorkOrderType"];
     /**
      * Patch a work order type
      * @description Patch a work order type
      */
-    patch: operations["PatchWorkOrderTypeAsync"];
+    patch: operations["WorkOrderTypes_PatchWorkOrderType"];
   };
   "/api/v2/ManufacturingService/Workstations": {
     /**
      * Get all workstations
      * @description Retrieves all workstations for the specified tenant.
      */
-    get: operations["GetWorkstationsAsync"];
+    get: operations["Workstations_GetWorkstations"];
     /**
      * Create a new workstation
      * @description Creates a new workstation for the specified tenant.
      */
-    post: operations["CreateWorkstationAsync"];
+    post: operations["Workstations_CreateWorkstation"];
   };
   "/api/v2/ManufacturingService/Workstations/Count": {
     /**
      * Get workstations count
      * @description Returns the count of workstations for the specified tenant.
      */
-    get: operations["GetWorkstationsCountAsync"];
+    get: operations["Workstations_GetWorkstationsCount"];
   };
   "/api/v2/ManufacturingService/Workstations/{id}": {
     /**
      * Get workstation by ID
      * @description Retrieves a specific workstation by its identifier.
      */
-    get: operations["GetWorkstationByIdAsync"];
+    get: operations["Workstations_GetWorkstationById"];
     /**
      * Update a workstation
      * @description Updates an existing workstation for the specified tenant.
      */
-    put: operations["UpdateWorkstationAsync"];
+    put: operations["Workstations_UpdateWorkstation"];
     /**
      * Delete a workstation
      * @description Deletes a workstation for the specified tenant.
      */
-    delete: operations["DeleteWorkstationAsync"];
+    delete: operations["Workstations_DeleteWorkstation"];
     /**
      * Patch a workstation
      * @description Patch a workstation
      */
-    patch: operations["PatchWorkstationAsync"];
+    patch: operations["Workstations_PatchWorkstation"];
   };
 }
 
@@ -838,7 +590,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -853,11 +684,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all production plans
    * @description Retrieves all production plans for the specified tenant.
    */
-  GetProductionPlansAsync: {
+  ProductionPlans_GetProductionPlans: {
     parameters: {
       query: {
         tenantId: string;
@@ -894,7 +910,7 @@ export interface operations {
    * Create a new production plan
    * @description Creates a new production plan for the specified tenant.
    */
-  CreateProductionPlanAsync: {
+  ProductionPlans_CreateProductionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -935,7 +951,7 @@ export interface operations {
    * Get production plans count
    * @description Returns the count of production plans for the specified tenant.
    */
-  GetProductionPlansCountAsync: {
+  ProductionPlans_GetProductionPlansCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -972,7 +988,7 @@ export interface operations {
    * Get production plan by ID
    * @description Retrieves a specific production plan by its identifier.
    */
-  GetProductionPlanByIdAsync: {
+  ProductionPlans_GetProductionPlanById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1013,7 +1029,7 @@ export interface operations {
    * Update a production plan
    * @description Updates an existing production plan for the specified tenant.
    */
-  UpdateProductionPlanAsync: {
+  ProductionPlans_UpdateProductionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1057,7 +1073,7 @@ export interface operations {
    * Delete a production plan
    * @description Deletes a production plan for the specified tenant.
    */
-  DeleteProductionPlanAsync: {
+  ProductionPlans_DeleteProductionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1095,7 +1111,7 @@ export interface operations {
    * Patch a production plan
    * @description Patch a production plan
    */
-  PatchProductionPlanAsync: {
+  ProductionPlans_PatchProductionPlan: {
     parameters: {
       query: {
         tenantId: string;
@@ -1142,7 +1158,7 @@ export interface operations {
    * Get all work orders
    * @description Retrieves all work orders for the specified tenant.
    */
-  GetWorkOrdersAsync: {
+  WorkOrders_GetWorkOrders: {
     parameters: {
       query: {
         tenantId: string;
@@ -1179,7 +1195,7 @@ export interface operations {
    * Create a new work order
    * @description Creates a new work order for the specified tenant.
    */
-  CreateWorkOrderAsync: {
+  WorkOrders_CreateWorkOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1220,7 +1236,7 @@ export interface operations {
    * Get work orders count
    * @description Returns the count of work orders for the specified tenant.
    */
-  GetWorkOrdersCountAsync: {
+  WorkOrders_GetWorkOrdersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1257,7 +1273,7 @@ export interface operations {
    * Get work order by ID
    * @description Retrieves a specific work order by its identifier.
    */
-  GetWorkOrderByIdAsync: {
+  WorkOrders_GetWorkOrderById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1298,7 +1314,7 @@ export interface operations {
    * Update a work order
    * @description Updates an existing work order for the specified tenant.
    */
-  UpdateWorkOrderAsync: {
+  WorkOrders_UpdateWorkOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1342,7 +1358,7 @@ export interface operations {
    * Delete a work order
    * @description Deletes a work order for the specified tenant.
    */
-  DeleteWorkOrderAsync: {
+  WorkOrders_DeleteWorkOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1380,7 +1396,7 @@ export interface operations {
    * Patch a work order
    * @description Patch a work order
    */
-  PatchWorkOrderAsync: {
+  WorkOrders_PatchWorkOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1427,7 +1443,7 @@ export interface operations {
    * Get all work order types
    * @description Retrieves all work order types for the specified tenant.
    */
-  GetWorkOrderTypesAsync: {
+  WorkOrderTypes_GetWorkOrderTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -1464,7 +1480,7 @@ export interface operations {
    * Create a new work order type
    * @description Creates a new work order type for the specified tenant.
    */
-  CreateWorkOrderTypeAsync: {
+  WorkOrderTypes_CreateWorkOrderType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1505,7 +1521,7 @@ export interface operations {
    * Get work order types count
    * @description Returns the count of work order types for the specified tenant.
    */
-  GetWorkOrderTypesCountAsync: {
+  WorkOrderTypes_GetWorkOrderTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1542,7 +1558,7 @@ export interface operations {
    * Get work order type by ID
    * @description Retrieves a specific work order type by its identifier.
    */
-  GetWorkOrderTypeByIdAsync: {
+  WorkOrderTypes_GetWorkOrderTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1583,7 +1599,7 @@ export interface operations {
    * Update a work order type
    * @description Updates an existing work order type for the specified tenant.
    */
-  UpdateWorkOrderTypeAsync: {
+  WorkOrderTypes_UpdateWorkOrderType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1627,7 +1643,7 @@ export interface operations {
    * Delete a work order type
    * @description Deletes a work order type for the specified tenant.
    */
-  DeleteWorkOrderTypeAsync: {
+  WorkOrderTypes_DeleteWorkOrderType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1665,7 +1681,7 @@ export interface operations {
    * Patch a work order type
    * @description Patch a work order type
    */
-  PatchWorkOrderTypeAsync: {
+  WorkOrderTypes_PatchWorkOrderType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1712,7 +1728,7 @@ export interface operations {
    * Get all workstations
    * @description Retrieves all workstations for the specified tenant.
    */
-  GetWorkstationsAsync: {
+  Workstations_GetWorkstations: {
     parameters: {
       query: {
         tenantId: string;
@@ -1749,7 +1765,7 @@ export interface operations {
    * Create a new workstation
    * @description Creates a new workstation for the specified tenant.
    */
-  CreateWorkstationAsync: {
+  Workstations_CreateWorkstation: {
     parameters: {
       query: {
         tenantId: string;
@@ -1790,7 +1806,7 @@ export interface operations {
    * Get workstations count
    * @description Returns the count of workstations for the specified tenant.
    */
-  GetWorkstationsCountAsync: {
+  Workstations_GetWorkstationsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1827,7 +1843,7 @@ export interface operations {
    * Get workstation by ID
    * @description Retrieves a specific workstation by its identifier.
    */
-  GetWorkstationByIdAsync: {
+  Workstations_GetWorkstationById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1868,7 +1884,7 @@ export interface operations {
    * Update a workstation
    * @description Updates an existing workstation for the specified tenant.
    */
-  UpdateWorkstationAsync: {
+  Workstations_UpdateWorkstation: {
     parameters: {
       query: {
         tenantId: string;
@@ -1912,7 +1928,7 @@ export interface operations {
    * Delete a workstation
    * @description Deletes a workstation for the specified tenant.
    */
-  DeleteWorkstationAsync: {
+  Workstations_DeleteWorkstation: {
     parameters: {
       query: {
         tenantId: string;
@@ -1950,7 +1966,7 @@ export interface operations {
    * Patch a workstation
    * @description Patch a workstation
    */
-  PatchWorkstationAsync: {
+  Workstations_PatchWorkstation: {
     parameters: {
       query: {
         tenantId: string;

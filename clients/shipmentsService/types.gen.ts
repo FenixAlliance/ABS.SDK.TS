@@ -1324,7 +1324,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetBillsOfLadingAsyncData = {
+export type BillsOfLadingGetBillsOfLadingData = {
     body?: BillOfLadingDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1337,7 +1337,7 @@ export type GetBillsOfLadingAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading';
 };
 
-export type GetBillsOfLadingAsyncErrors = {
+export type BillsOfLadingGetBillsOfLadingErrors = {
     /**
      * Unauthorized
      */
@@ -1348,18 +1348,18 @@ export type GetBillsOfLadingAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBillsOfLadingAsyncError = GetBillsOfLadingAsyncErrors[keyof GetBillsOfLadingAsyncErrors];
+export type BillsOfLadingGetBillsOfLadingError = BillsOfLadingGetBillsOfLadingErrors[keyof BillsOfLadingGetBillsOfLadingErrors];
 
-export type GetBillsOfLadingAsyncResponses = {
+export type BillsOfLadingGetBillsOfLadingResponses = {
     /**
      * OK
      */
     200: BillOfLadingDtoListEnvelopeReadable;
 };
 
-export type GetBillsOfLadingAsyncResponse = GetBillsOfLadingAsyncResponses[keyof GetBillsOfLadingAsyncResponses];
+export type BillsOfLadingGetBillsOfLadingResponse = BillsOfLadingGetBillsOfLadingResponses[keyof BillsOfLadingGetBillsOfLadingResponses];
 
-export type CreateBillOfLadingAsyncData = {
+export type BillsOfLadingCreateBillOfLadingData = {
     body?: BillOfLadingCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1372,25 +1372,25 @@ export type CreateBillOfLadingAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading';
 };
 
-export type CreateBillOfLadingAsyncErrors = {
+export type BillsOfLadingCreateBillOfLadingErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateBillOfLadingAsyncError = CreateBillOfLadingAsyncErrors[keyof CreateBillOfLadingAsyncErrors];
+export type BillsOfLadingCreateBillOfLadingError = BillsOfLadingCreateBillOfLadingErrors[keyof BillsOfLadingCreateBillOfLadingErrors];
 
-export type CreateBillOfLadingAsyncResponses = {
+export type BillsOfLadingCreateBillOfLadingResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateBillOfLadingAsyncResponse = CreateBillOfLadingAsyncResponses[keyof CreateBillOfLadingAsyncResponses];
+export type BillsOfLadingCreateBillOfLadingResponse = BillsOfLadingCreateBillOfLadingResponses[keyof BillsOfLadingCreateBillOfLadingResponses];
 
-export type GetBillsOfLadingCountAsyncData = {
+export type BillsOfLadingGetBillsOfLadingCountData = {
     body?: BillOfLadingDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1403,25 +1403,25 @@ export type GetBillsOfLadingCountAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/Count';
 };
 
-export type GetBillsOfLadingCountAsyncErrors = {
+export type BillsOfLadingGetBillsOfLadingCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBillsOfLadingCountAsyncError = GetBillsOfLadingCountAsyncErrors[keyof GetBillsOfLadingCountAsyncErrors];
+export type BillsOfLadingGetBillsOfLadingCountError = BillsOfLadingGetBillsOfLadingCountErrors[keyof BillsOfLadingGetBillsOfLadingCountErrors];
 
-export type GetBillsOfLadingCountAsyncResponses = {
+export type BillsOfLadingGetBillsOfLadingCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBillsOfLadingCountAsyncResponse = GetBillsOfLadingCountAsyncResponses[keyof GetBillsOfLadingCountAsyncResponses];
+export type BillsOfLadingGetBillsOfLadingCountResponse = BillsOfLadingGetBillsOfLadingCountResponses[keyof BillsOfLadingGetBillsOfLadingCountResponses];
 
-export type DeleteBillOfLadingAsyncData = {
+export type BillsOfLadingDeleteBillOfLadingData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1436,25 +1436,25 @@ export type DeleteBillOfLadingAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
 };
 
-export type DeleteBillOfLadingAsyncErrors = {
+export type BillsOfLadingDeleteBillOfLadingErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBillOfLadingAsyncError = DeleteBillOfLadingAsyncErrors[keyof DeleteBillOfLadingAsyncErrors];
+export type BillsOfLadingDeleteBillOfLadingError = BillsOfLadingDeleteBillOfLadingErrors[keyof BillsOfLadingDeleteBillOfLadingErrors];
 
-export type DeleteBillOfLadingAsyncResponses = {
+export type BillsOfLadingDeleteBillOfLadingResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBillOfLadingAsyncResponse = DeleteBillOfLadingAsyncResponses[keyof DeleteBillOfLadingAsyncResponses];
+export type BillsOfLadingDeleteBillOfLadingResponse = BillsOfLadingDeleteBillOfLadingResponses[keyof BillsOfLadingDeleteBillOfLadingResponses];
 
-export type GetBillOfLadingByIdAsyncData = {
+export type BillsOfLadingGetBillOfLadingByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1469,25 +1469,25 @@ export type GetBillOfLadingByIdAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
 };
 
-export type GetBillOfLadingByIdAsyncErrors = {
+export type BillsOfLadingGetBillOfLadingByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBillOfLadingByIdAsyncError = GetBillOfLadingByIdAsyncErrors[keyof GetBillOfLadingByIdAsyncErrors];
+export type BillsOfLadingGetBillOfLadingByIdError = BillsOfLadingGetBillOfLadingByIdErrors[keyof BillsOfLadingGetBillOfLadingByIdErrors];
 
-export type GetBillOfLadingByIdAsyncResponses = {
+export type BillsOfLadingGetBillOfLadingByIdResponses = {
     /**
      * OK
      */
     200: BillOfLadingDtoEnvelopeReadable;
 };
 
-export type GetBillOfLadingByIdAsyncResponse = GetBillOfLadingByIdAsyncResponses[keyof GetBillOfLadingByIdAsyncResponses];
+export type BillsOfLadingGetBillOfLadingByIdResponse = BillsOfLadingGetBillOfLadingByIdResponses[keyof BillsOfLadingGetBillOfLadingByIdResponses];
 
-export type PatchBillOfLadingAsyncData = {
+export type BillsOfLadingPatchBillOfLadingData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1502,7 +1502,7 @@ export type PatchBillOfLadingAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
 };
 
-export type PatchBillOfLadingAsyncErrors = {
+export type BillsOfLadingPatchBillOfLadingErrors = {
     /**
      * Bad Request
      */
@@ -1517,18 +1517,18 @@ export type PatchBillOfLadingAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBillOfLadingAsyncError = PatchBillOfLadingAsyncErrors[keyof PatchBillOfLadingAsyncErrors];
+export type BillsOfLadingPatchBillOfLadingError = BillsOfLadingPatchBillOfLadingErrors[keyof BillsOfLadingPatchBillOfLadingErrors];
 
-export type PatchBillOfLadingAsyncResponses = {
+export type BillsOfLadingPatchBillOfLadingResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBillOfLadingAsyncResponse = PatchBillOfLadingAsyncResponses[keyof PatchBillOfLadingAsyncResponses];
+export type BillsOfLadingPatchBillOfLadingResponse = BillsOfLadingPatchBillOfLadingResponses[keyof BillsOfLadingPatchBillOfLadingResponses];
 
-export type UpdateBillOfLadingAsyncData = {
+export type BillsOfLadingUpdateBillOfLadingData = {
     body?: BillOfLadingUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1543,25 +1543,25 @@ export type UpdateBillOfLadingAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
 };
 
-export type UpdateBillOfLadingAsyncErrors = {
+export type BillsOfLadingUpdateBillOfLadingErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateBillOfLadingAsyncError = UpdateBillOfLadingAsyncErrors[keyof UpdateBillOfLadingAsyncErrors];
+export type BillsOfLadingUpdateBillOfLadingError = BillsOfLadingUpdateBillOfLadingErrors[keyof BillsOfLadingUpdateBillOfLadingErrors];
 
-export type UpdateBillOfLadingAsyncResponses = {
+export type BillsOfLadingUpdateBillOfLadingResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBillOfLadingAsyncResponse = UpdateBillOfLadingAsyncResponses[keyof UpdateBillOfLadingAsyncResponses];
+export type BillsOfLadingUpdateBillOfLadingResponse = BillsOfLadingUpdateBillOfLadingResponses[keyof BillsOfLadingUpdateBillOfLadingResponses];
 
-export type GetBillOfLadingLinesAsyncData = {
+export type BillsOfLadingGetBillOfLadingLinesData = {
     body?: BillOfLadingLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1576,25 +1576,25 @@ export type GetBillOfLadingLinesAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines';
 };
 
-export type GetBillOfLadingLinesAsyncErrors = {
+export type BillsOfLadingGetBillOfLadingLinesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBillOfLadingLinesAsyncError = GetBillOfLadingLinesAsyncErrors[keyof GetBillOfLadingLinesAsyncErrors];
+export type BillsOfLadingGetBillOfLadingLinesError = BillsOfLadingGetBillOfLadingLinesErrors[keyof BillsOfLadingGetBillOfLadingLinesErrors];
 
-export type GetBillOfLadingLinesAsyncResponses = {
+export type BillsOfLadingGetBillOfLadingLinesResponses = {
     /**
      * OK
      */
     200: BillOfLadingLineDtoListEnvelopeReadable;
 };
 
-export type GetBillOfLadingLinesAsyncResponse = GetBillOfLadingLinesAsyncResponses[keyof GetBillOfLadingLinesAsyncResponses];
+export type BillsOfLadingGetBillOfLadingLinesResponse = BillsOfLadingGetBillOfLadingLinesResponses[keyof BillsOfLadingGetBillOfLadingLinesResponses];
 
-export type CreateBillOfLadingLineAsyncData = {
+export type BillsOfLadingCreateBillOfLadingLineData = {
     body?: BillOfLadingLineCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1609,25 +1609,25 @@ export type CreateBillOfLadingLineAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines';
 };
 
-export type CreateBillOfLadingLineAsyncErrors = {
+export type BillsOfLadingCreateBillOfLadingLineErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateBillOfLadingLineAsyncError = CreateBillOfLadingLineAsyncErrors[keyof CreateBillOfLadingLineAsyncErrors];
+export type BillsOfLadingCreateBillOfLadingLineError = BillsOfLadingCreateBillOfLadingLineErrors[keyof BillsOfLadingCreateBillOfLadingLineErrors];
 
-export type CreateBillOfLadingLineAsyncResponses = {
+export type BillsOfLadingCreateBillOfLadingLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateBillOfLadingLineAsyncResponse = CreateBillOfLadingLineAsyncResponses[keyof CreateBillOfLadingLineAsyncResponses];
+export type BillsOfLadingCreateBillOfLadingLineResponse = BillsOfLadingCreateBillOfLadingLineResponses[keyof BillsOfLadingCreateBillOfLadingLineResponses];
 
-export type GetBillOfLadingLinesCountAsyncData = {
+export type BillsOfLadingGetBillOfLadingLinesCountData = {
     body?: BillOfLadingLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1642,16 +1642,16 @@ export type GetBillOfLadingLinesCountAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/Count';
 };
 
-export type GetBillOfLadingLinesCountAsyncResponses = {
+export type BillsOfLadingGetBillOfLadingLinesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBillOfLadingLinesCountAsyncResponse = GetBillOfLadingLinesCountAsyncResponses[keyof GetBillOfLadingLinesCountAsyncResponses];
+export type BillsOfLadingGetBillOfLadingLinesCountResponse = BillsOfLadingGetBillOfLadingLinesCountResponses[keyof BillsOfLadingGetBillOfLadingLinesCountResponses];
 
-export type DeleteBillOfLadingLineAsyncData = {
+export type BillsOfLadingDeleteBillOfLadingLineData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1667,25 +1667,25 @@ export type DeleteBillOfLadingLineAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
 };
 
-export type DeleteBillOfLadingLineAsyncErrors = {
+export type BillsOfLadingDeleteBillOfLadingLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteBillOfLadingLineAsyncError = DeleteBillOfLadingLineAsyncErrors[keyof DeleteBillOfLadingLineAsyncErrors];
+export type BillsOfLadingDeleteBillOfLadingLineError = BillsOfLadingDeleteBillOfLadingLineErrors[keyof BillsOfLadingDeleteBillOfLadingLineErrors];
 
-export type DeleteBillOfLadingLineAsyncResponses = {
+export type BillsOfLadingDeleteBillOfLadingLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBillOfLadingLineAsyncResponse = DeleteBillOfLadingLineAsyncResponses[keyof DeleteBillOfLadingLineAsyncResponses];
+export type BillsOfLadingDeleteBillOfLadingLineResponse = BillsOfLadingDeleteBillOfLadingLineResponses[keyof BillsOfLadingDeleteBillOfLadingLineResponses];
 
-export type GetBillOfLadingLineByIdAsyncData = {
+export type BillsOfLadingGetBillOfLadingLineByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1701,25 +1701,25 @@ export type GetBillOfLadingLineByIdAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
 };
 
-export type GetBillOfLadingLineByIdAsyncErrors = {
+export type BillsOfLadingGetBillOfLadingLineByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBillOfLadingLineByIdAsyncError = GetBillOfLadingLineByIdAsyncErrors[keyof GetBillOfLadingLineByIdAsyncErrors];
+export type BillsOfLadingGetBillOfLadingLineByIdError = BillsOfLadingGetBillOfLadingLineByIdErrors[keyof BillsOfLadingGetBillOfLadingLineByIdErrors];
 
-export type GetBillOfLadingLineByIdAsyncResponses = {
+export type BillsOfLadingGetBillOfLadingLineByIdResponses = {
     /**
      * OK
      */
     200: BillOfLadingLineDtoEnvelopeReadable;
 };
 
-export type GetBillOfLadingLineByIdAsyncResponse = GetBillOfLadingLineByIdAsyncResponses[keyof GetBillOfLadingLineByIdAsyncResponses];
+export type BillsOfLadingGetBillOfLadingLineByIdResponse = BillsOfLadingGetBillOfLadingLineByIdResponses[keyof BillsOfLadingGetBillOfLadingLineByIdResponses];
 
-export type PatchBillOfLadingLineAsyncData = {
+export type BillsOfLadingPatchBillOfLadingLineData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1735,7 +1735,7 @@ export type PatchBillOfLadingLineAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
 };
 
-export type PatchBillOfLadingLineAsyncErrors = {
+export type BillsOfLadingPatchBillOfLadingLineErrors = {
     /**
      * Bad Request
      */
@@ -1750,18 +1750,18 @@ export type PatchBillOfLadingLineAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBillOfLadingLineAsyncError = PatchBillOfLadingLineAsyncErrors[keyof PatchBillOfLadingLineAsyncErrors];
+export type BillsOfLadingPatchBillOfLadingLineError = BillsOfLadingPatchBillOfLadingLineErrors[keyof BillsOfLadingPatchBillOfLadingLineErrors];
 
-export type PatchBillOfLadingLineAsyncResponses = {
+export type BillsOfLadingPatchBillOfLadingLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBillOfLadingLineAsyncResponse = PatchBillOfLadingLineAsyncResponses[keyof PatchBillOfLadingLineAsyncResponses];
+export type BillsOfLadingPatchBillOfLadingLineResponse = BillsOfLadingPatchBillOfLadingLineResponses[keyof BillsOfLadingPatchBillOfLadingLineResponses];
 
-export type UpdateBillOfLadingLineAsyncData = {
+export type BillsOfLadingUpdateBillOfLadingLineData = {
     body?: BillOfLadingLineUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1777,90 +1777,90 @@ export type UpdateBillOfLadingLineAsyncData = {
     url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
 };
 
-export type UpdateBillOfLadingLineAsyncErrors = {
+export type BillsOfLadingUpdateBillOfLadingLineErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateBillOfLadingLineAsyncError = UpdateBillOfLadingLineAsyncErrors[keyof UpdateBillOfLadingLineAsyncErrors];
+export type BillsOfLadingUpdateBillOfLadingLineError = BillsOfLadingUpdateBillOfLadingLineErrors[keyof BillsOfLadingUpdateBillOfLadingLineErrors];
 
-export type UpdateBillOfLadingLineAsyncResponses = {
+export type BillsOfLadingUpdateBillOfLadingLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBillOfLadingLineAsyncResponse = UpdateBillOfLadingLineAsyncResponses[keyof UpdateBillOfLadingLineAsyncResponses];
+export type BillsOfLadingUpdateBillOfLadingLineResponse = BillsOfLadingUpdateBillOfLadingLineResponses[keyof BillsOfLadingUpdateBillOfLadingLineResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1870,32 +1870,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1906,81 +1906,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1991,25 +1991,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2020,25 +2020,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2049,18 +2049,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2070,14 +2070,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2086,14 +2086,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2102,28 +2102,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemShippingPoliciesAsyncData = {
+export type ItemShippingPoliciesGetItemShippingPoliciesData = {
     body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2136,7 +2136,7 @@ export type GetItemShippingPoliciesAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies';
 };
 
-export type GetItemShippingPoliciesAsyncErrors = {
+export type ItemShippingPoliciesGetItemShippingPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -2147,18 +2147,18 @@ export type GetItemShippingPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetItemShippingPoliciesAsyncError = GetItemShippingPoliciesAsyncErrors[keyof GetItemShippingPoliciesAsyncErrors];
+export type ItemShippingPoliciesGetItemShippingPoliciesError = ItemShippingPoliciesGetItemShippingPoliciesErrors[keyof ItemShippingPoliciesGetItemShippingPoliciesErrors];
 
-export type GetItemShippingPoliciesAsyncResponses = {
+export type ItemShippingPoliciesGetItemShippingPoliciesResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoListEnvelopeReadable;
 };
 
-export type GetItemShippingPoliciesAsyncResponse = GetItemShippingPoliciesAsyncResponses[keyof GetItemShippingPoliciesAsyncResponses];
+export type ItemShippingPoliciesGetItemShippingPoliciesResponse = ItemShippingPoliciesGetItemShippingPoliciesResponses[keyof ItemShippingPoliciesGetItemShippingPoliciesResponses];
 
-export type CreateItemShippingPolicyAsyncData = {
+export type ItemShippingPoliciesCreateItemShippingPolicyData = {
     body?: ItemShippingPolicyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2171,23 +2171,23 @@ export type CreateItemShippingPolicyAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies';
 };
 
-export type CreateItemShippingPolicyAsyncErrors = {
+export type ItemShippingPoliciesCreateItemShippingPolicyErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateItemShippingPolicyAsyncError = CreateItemShippingPolicyAsyncErrors[keyof CreateItemShippingPolicyAsyncErrors];
+export type ItemShippingPoliciesCreateItemShippingPolicyError = ItemShippingPoliciesCreateItemShippingPolicyErrors[keyof ItemShippingPoliciesCreateItemShippingPolicyErrors];
 
-export type CreateItemShippingPolicyAsyncResponses = {
+export type ItemShippingPoliciesCreateItemShippingPolicyResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetItemShippingPoliciesCountAsyncData = {
+export type ItemShippingPoliciesGetItemShippingPoliciesCountData = {
     body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2200,16 +2200,16 @@ export type GetItemShippingPoliciesCountAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies/Count';
 };
 
-export type GetItemShippingPoliciesCountAsyncResponses = {
+export type ItemShippingPoliciesGetItemShippingPoliciesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetItemShippingPoliciesCountAsyncResponse = GetItemShippingPoliciesCountAsyncResponses[keyof GetItemShippingPoliciesCountAsyncResponses];
+export type ItemShippingPoliciesGetItemShippingPoliciesCountResponse = ItemShippingPoliciesGetItemShippingPoliciesCountResponses[keyof ItemShippingPoliciesGetItemShippingPoliciesCountResponses];
 
-export type DeleteItemShippingPolicyAsyncData = {
+export type ItemShippingPoliciesDeleteItemShippingPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2224,23 +2224,23 @@ export type DeleteItemShippingPolicyAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
 };
 
-export type DeleteItemShippingPolicyAsyncErrors = {
+export type ItemShippingPoliciesDeleteItemShippingPolicyErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteItemShippingPolicyAsyncError = DeleteItemShippingPolicyAsyncErrors[keyof DeleteItemShippingPolicyAsyncErrors];
+export type ItemShippingPoliciesDeleteItemShippingPolicyError = ItemShippingPoliciesDeleteItemShippingPolicyErrors[keyof ItemShippingPoliciesDeleteItemShippingPolicyErrors];
 
-export type DeleteItemShippingPolicyAsyncResponses = {
+export type ItemShippingPoliciesDeleteItemShippingPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetItemShippingPolicyByIdAsyncData = {
+export type ItemShippingPoliciesGetItemShippingPolicyByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2255,25 +2255,25 @@ export type GetItemShippingPolicyByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
 };
 
-export type GetItemShippingPolicyByIdAsyncErrors = {
+export type ItemShippingPoliciesGetItemShippingPolicyByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetItemShippingPolicyByIdAsyncError = GetItemShippingPolicyByIdAsyncErrors[keyof GetItemShippingPolicyByIdAsyncErrors];
+export type ItemShippingPoliciesGetItemShippingPolicyByIdError = ItemShippingPoliciesGetItemShippingPolicyByIdErrors[keyof ItemShippingPoliciesGetItemShippingPolicyByIdErrors];
 
-export type GetItemShippingPolicyByIdAsyncResponses = {
+export type ItemShippingPoliciesGetItemShippingPolicyByIdResponses = {
     /**
      * OK
      */
     200: ItemShippingPolicyDtoEnvelopeReadable;
 };
 
-export type GetItemShippingPolicyByIdAsyncResponse = GetItemShippingPolicyByIdAsyncResponses[keyof GetItemShippingPolicyByIdAsyncResponses];
+export type ItemShippingPoliciesGetItemShippingPolicyByIdResponse = ItemShippingPoliciesGetItemShippingPolicyByIdResponses[keyof ItemShippingPoliciesGetItemShippingPolicyByIdResponses];
 
-export type PatchItemShippingPolicyAsyncData = {
+export type ItemShippingPoliciesPatchItemShippingPolicyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2288,7 +2288,7 @@ export type PatchItemShippingPolicyAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
 };
 
-export type PatchItemShippingPolicyAsyncErrors = {
+export type ItemShippingPoliciesPatchItemShippingPolicyErrors = {
     /**
      * Bad Request
      */
@@ -2303,18 +2303,18 @@ export type PatchItemShippingPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchItemShippingPolicyAsyncError = PatchItemShippingPolicyAsyncErrors[keyof PatchItemShippingPolicyAsyncErrors];
+export type ItemShippingPoliciesPatchItemShippingPolicyError = ItemShippingPoliciesPatchItemShippingPolicyErrors[keyof ItemShippingPoliciesPatchItemShippingPolicyErrors];
 
-export type PatchItemShippingPolicyAsyncResponses = {
+export type ItemShippingPoliciesPatchItemShippingPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchItemShippingPolicyAsyncResponse = PatchItemShippingPolicyAsyncResponses[keyof PatchItemShippingPolicyAsyncResponses];
+export type ItemShippingPoliciesPatchItemShippingPolicyResponse = ItemShippingPoliciesPatchItemShippingPolicyResponses[keyof ItemShippingPoliciesPatchItemShippingPolicyResponses];
 
-export type UpdateItemShippingPolicyAsyncData = {
+export type ItemShippingPoliciesUpdateItemShippingPolicyData = {
     body?: ItemShippingPolicyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2329,23 +2329,23 @@ export type UpdateItemShippingPolicyAsyncData = {
     url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
 };
 
-export type UpdateItemShippingPolicyAsyncErrors = {
+export type ItemShippingPoliciesUpdateItemShippingPolicyErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemShippingPolicyAsyncError = UpdateItemShippingPolicyAsyncErrors[keyof UpdateItemShippingPolicyAsyncErrors];
+export type ItemShippingPoliciesUpdateItemShippingPolicyError = ItemShippingPoliciesUpdateItemShippingPolicyErrors[keyof ItemShippingPoliciesUpdateItemShippingPolicyErrors];
 
-export type UpdateItemShippingPolicyAsyncResponses = {
+export type ItemShippingPoliciesUpdateItemShippingPolicyResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShipmentsAsyncData = {
+export type ShipmentsGetShipmentsData = {
     body?: ShipmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2358,7 +2358,7 @@ export type GetShipmentsAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments';
 };
 
-export type GetShipmentsAsyncErrors = {
+export type ShipmentsGetShipmentsErrors = {
     /**
      * Unauthorized
      */
@@ -2369,18 +2369,18 @@ export type GetShipmentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShipmentsAsyncError = GetShipmentsAsyncErrors[keyof GetShipmentsAsyncErrors];
+export type ShipmentsGetShipmentsError = ShipmentsGetShipmentsErrors[keyof ShipmentsGetShipmentsErrors];
 
-export type GetShipmentsAsyncResponses = {
+export type ShipmentsGetShipmentsResponses = {
     /**
      * OK
      */
     200: ShipmentDtoListEnvelopeReadable;
 };
 
-export type GetShipmentsAsyncResponse = GetShipmentsAsyncResponses[keyof GetShipmentsAsyncResponses];
+export type ShipmentsGetShipmentsResponse = ShipmentsGetShipmentsResponses[keyof ShipmentsGetShipmentsResponses];
 
-export type CreateShipmentAsyncData = {
+export type ShipmentsCreateShipmentData = {
     body?: ShipmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2393,23 +2393,23 @@ export type CreateShipmentAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments';
 };
 
-export type CreateShipmentAsyncErrors = {
+export type ShipmentsCreateShipmentErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShipmentAsyncError = CreateShipmentAsyncErrors[keyof CreateShipmentAsyncErrors];
+export type ShipmentsCreateShipmentError = ShipmentsCreateShipmentErrors[keyof ShipmentsCreateShipmentErrors];
 
-export type CreateShipmentAsyncResponses = {
+export type ShipmentsCreateShipmentResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShipmentsCountAsyncData = {
+export type ShipmentsGetShipmentsCountData = {
     body?: ShipmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2422,25 +2422,25 @@ export type GetShipmentsCountAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments/Count';
 };
 
-export type GetShipmentsCountAsyncErrors = {
+export type ShipmentsGetShipmentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShipmentsCountAsyncError = GetShipmentsCountAsyncErrors[keyof GetShipmentsCountAsyncErrors];
+export type ShipmentsGetShipmentsCountError = ShipmentsGetShipmentsCountErrors[keyof ShipmentsGetShipmentsCountErrors];
 
-export type GetShipmentsCountAsyncResponses = {
+export type ShipmentsGetShipmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShipmentsCountAsyncResponse = GetShipmentsCountAsyncResponses[keyof GetShipmentsCountAsyncResponses];
+export type ShipmentsGetShipmentsCountResponse = ShipmentsGetShipmentsCountResponses[keyof ShipmentsGetShipmentsCountResponses];
 
-export type DeleteShipmentAsyncData = {
+export type ShipmentsDeleteShipmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2455,23 +2455,23 @@ export type DeleteShipmentAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
 };
 
-export type DeleteShipmentAsyncErrors = {
+export type ShipmentsDeleteShipmentErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShipmentAsyncError = DeleteShipmentAsyncErrors[keyof DeleteShipmentAsyncErrors];
+export type ShipmentsDeleteShipmentError = ShipmentsDeleteShipmentErrors[keyof ShipmentsDeleteShipmentErrors];
 
-export type DeleteShipmentAsyncResponses = {
+export type ShipmentsDeleteShipmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShipmentByIdAsyncData = {
+export type ShipmentsGetShipmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2486,25 +2486,25 @@ export type GetShipmentByIdAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
 };
 
-export type GetShipmentByIdAsyncErrors = {
+export type ShipmentsGetShipmentByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShipmentByIdAsyncError = GetShipmentByIdAsyncErrors[keyof GetShipmentByIdAsyncErrors];
+export type ShipmentsGetShipmentByIdError = ShipmentsGetShipmentByIdErrors[keyof ShipmentsGetShipmentByIdErrors];
 
-export type GetShipmentByIdAsyncResponses = {
+export type ShipmentsGetShipmentByIdResponses = {
     /**
      * OK
      */
     200: ShipmentDtoEnvelopeReadable;
 };
 
-export type GetShipmentByIdAsyncResponse = GetShipmentByIdAsyncResponses[keyof GetShipmentByIdAsyncResponses];
+export type ShipmentsGetShipmentByIdResponse = ShipmentsGetShipmentByIdResponses[keyof ShipmentsGetShipmentByIdResponses];
 
-export type PatchShipmentAsyncData = {
+export type ShipmentsPatchShipmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2519,7 +2519,7 @@ export type PatchShipmentAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
 };
 
-export type PatchShipmentAsyncErrors = {
+export type ShipmentsPatchShipmentErrors = {
     /**
      * Bad Request
      */
@@ -2534,18 +2534,18 @@ export type PatchShipmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShipmentAsyncError = PatchShipmentAsyncErrors[keyof PatchShipmentAsyncErrors];
+export type ShipmentsPatchShipmentError = ShipmentsPatchShipmentErrors[keyof ShipmentsPatchShipmentErrors];
 
-export type PatchShipmentAsyncResponses = {
+export type ShipmentsPatchShipmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShipmentAsyncResponse = PatchShipmentAsyncResponses[keyof PatchShipmentAsyncResponses];
+export type ShipmentsPatchShipmentResponse = ShipmentsPatchShipmentResponses[keyof ShipmentsPatchShipmentResponses];
 
-export type UpdateShipmentAsyncData = {
+export type ShipmentsUpdateShipmentData = {
     body?: ShipmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2560,23 +2560,23 @@ export type UpdateShipmentAsyncData = {
     url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
 };
 
-export type UpdateShipmentAsyncErrors = {
+export type ShipmentsUpdateShipmentErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShipmentAsyncError = UpdateShipmentAsyncErrors[keyof UpdateShipmentAsyncErrors];
+export type ShipmentsUpdateShipmentError = ShipmentsUpdateShipmentErrors[keyof ShipmentsUpdateShipmentErrors];
 
-export type UpdateShipmentAsyncResponses = {
+export type ShipmentsUpdateShipmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingClassesAsyncData = {
+export type ShippingClassesGetShippingClassesData = {
     body?: ShippingClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2589,7 +2589,7 @@ export type GetShippingClassesAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses';
 };
 
-export type GetShippingClassesAsyncErrors = {
+export type ShippingClassesGetShippingClassesErrors = {
     /**
      * Unauthorized
      */
@@ -2600,18 +2600,18 @@ export type GetShippingClassesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingClassesAsyncError = GetShippingClassesAsyncErrors[keyof GetShippingClassesAsyncErrors];
+export type ShippingClassesGetShippingClassesError = ShippingClassesGetShippingClassesErrors[keyof ShippingClassesGetShippingClassesErrors];
 
-export type GetShippingClassesAsyncResponses = {
+export type ShippingClassesGetShippingClassesResponses = {
     /**
      * OK
      */
     200: ShippingClassDtoListEnvelopeReadable;
 };
 
-export type GetShippingClassesAsyncResponse = GetShippingClassesAsyncResponses[keyof GetShippingClassesAsyncResponses];
+export type ShippingClassesGetShippingClassesResponse = ShippingClassesGetShippingClassesResponses[keyof ShippingClassesGetShippingClassesResponses];
 
-export type CreateShippingClassAsyncData = {
+export type ShippingClassesCreateShippingClassData = {
     body?: ShippingClassCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2624,23 +2624,23 @@ export type CreateShippingClassAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses';
 };
 
-export type CreateShippingClassAsyncErrors = {
+export type ShippingClassesCreateShippingClassErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShippingClassAsyncError = CreateShippingClassAsyncErrors[keyof CreateShippingClassAsyncErrors];
+export type ShippingClassesCreateShippingClassError = ShippingClassesCreateShippingClassErrors[keyof ShippingClassesCreateShippingClassErrors];
 
-export type CreateShippingClassAsyncResponses = {
+export type ShippingClassesCreateShippingClassResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShippingClassesCountAsyncData = {
+export type ShippingClassesGetShippingClassesCountData = {
     body?: ShippingClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2653,16 +2653,16 @@ export type GetShippingClassesCountAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses/Count';
 };
 
-export type GetShippingClassesCountAsyncResponses = {
+export type ShippingClassesGetShippingClassesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShippingClassesCountAsyncResponse = GetShippingClassesCountAsyncResponses[keyof GetShippingClassesCountAsyncResponses];
+export type ShippingClassesGetShippingClassesCountResponse = ShippingClassesGetShippingClassesCountResponses[keyof ShippingClassesGetShippingClassesCountResponses];
 
-export type DeleteShippingClassAsyncData = {
+export type ShippingClassesDeleteShippingClassData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2677,23 +2677,23 @@ export type DeleteShippingClassAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
 };
 
-export type DeleteShippingClassAsyncErrors = {
+export type ShippingClassesDeleteShippingClassErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShippingClassAsyncError = DeleteShippingClassAsyncErrors[keyof DeleteShippingClassAsyncErrors];
+export type ShippingClassesDeleteShippingClassError = ShippingClassesDeleteShippingClassErrors[keyof ShippingClassesDeleteShippingClassErrors];
 
-export type DeleteShippingClassAsyncResponses = {
+export type ShippingClassesDeleteShippingClassResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingClassByIdAsyncData = {
+export type ShippingClassesGetShippingClassByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2708,25 +2708,25 @@ export type GetShippingClassByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
 };
 
-export type GetShippingClassByIdAsyncErrors = {
+export type ShippingClassesGetShippingClassByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShippingClassByIdAsyncError = GetShippingClassByIdAsyncErrors[keyof GetShippingClassByIdAsyncErrors];
+export type ShippingClassesGetShippingClassByIdError = ShippingClassesGetShippingClassByIdErrors[keyof ShippingClassesGetShippingClassByIdErrors];
 
-export type GetShippingClassByIdAsyncResponses = {
+export type ShippingClassesGetShippingClassByIdResponses = {
     /**
      * OK
      */
     200: ShippingClassDtoEnvelopeReadable;
 };
 
-export type GetShippingClassByIdAsyncResponse = GetShippingClassByIdAsyncResponses[keyof GetShippingClassByIdAsyncResponses];
+export type ShippingClassesGetShippingClassByIdResponse = ShippingClassesGetShippingClassByIdResponses[keyof ShippingClassesGetShippingClassByIdResponses];
 
-export type PatchShippingClassAsyncData = {
+export type ShippingClassesPatchShippingClassData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2741,7 +2741,7 @@ export type PatchShippingClassAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
 };
 
-export type PatchShippingClassAsyncErrors = {
+export type ShippingClassesPatchShippingClassErrors = {
     /**
      * Bad Request
      */
@@ -2756,18 +2756,18 @@ export type PatchShippingClassAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShippingClassAsyncError = PatchShippingClassAsyncErrors[keyof PatchShippingClassAsyncErrors];
+export type ShippingClassesPatchShippingClassError = ShippingClassesPatchShippingClassErrors[keyof ShippingClassesPatchShippingClassErrors];
 
-export type PatchShippingClassAsyncResponses = {
+export type ShippingClassesPatchShippingClassResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShippingClassAsyncResponse = PatchShippingClassAsyncResponses[keyof PatchShippingClassAsyncResponses];
+export type ShippingClassesPatchShippingClassResponse = ShippingClassesPatchShippingClassResponses[keyof ShippingClassesPatchShippingClassResponses];
 
-export type UpdateShippingClassAsyncData = {
+export type ShippingClassesUpdateShippingClassData = {
     body?: ShippingClassUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2782,23 +2782,23 @@ export type UpdateShippingClassAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
 };
 
-export type UpdateShippingClassAsyncErrors = {
+export type ShippingClassesUpdateShippingClassErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShippingClassAsyncError = UpdateShippingClassAsyncErrors[keyof UpdateShippingClassAsyncErrors];
+export type ShippingClassesUpdateShippingClassError = ShippingClassesUpdateShippingClassErrors[keyof ShippingClassesUpdateShippingClassErrors];
 
-export type UpdateShippingClassAsyncResponses = {
+export type ShippingClassesUpdateShippingClassResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingCouriersAsyncData = {
+export type ShippingCouriersGetShippingCouriersData = {
     body?: ShippingCourierDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2811,7 +2811,7 @@ export type GetShippingCouriersAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers';
 };
 
-export type GetShippingCouriersAsyncErrors = {
+export type ShippingCouriersGetShippingCouriersErrors = {
     /**
      * Unauthorized
      */
@@ -2822,18 +2822,18 @@ export type GetShippingCouriersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingCouriersAsyncError = GetShippingCouriersAsyncErrors[keyof GetShippingCouriersAsyncErrors];
+export type ShippingCouriersGetShippingCouriersError = ShippingCouriersGetShippingCouriersErrors[keyof ShippingCouriersGetShippingCouriersErrors];
 
-export type GetShippingCouriersAsyncResponses = {
+export type ShippingCouriersGetShippingCouriersResponses = {
     /**
      * OK
      */
     200: ShippingCourierDtoListEnvelopeReadable;
 };
 
-export type GetShippingCouriersAsyncResponse = GetShippingCouriersAsyncResponses[keyof GetShippingCouriersAsyncResponses];
+export type ShippingCouriersGetShippingCouriersResponse = ShippingCouriersGetShippingCouriersResponses[keyof ShippingCouriersGetShippingCouriersResponses];
 
-export type CreateShippingCourierAsyncData = {
+export type ShippingCouriersCreateShippingCourierData = {
     body?: ShippingCourierCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2846,23 +2846,23 @@ export type CreateShippingCourierAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers';
 };
 
-export type CreateShippingCourierAsyncErrors = {
+export type ShippingCouriersCreateShippingCourierErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShippingCourierAsyncError = CreateShippingCourierAsyncErrors[keyof CreateShippingCourierAsyncErrors];
+export type ShippingCouriersCreateShippingCourierError = ShippingCouriersCreateShippingCourierErrors[keyof ShippingCouriersCreateShippingCourierErrors];
 
-export type CreateShippingCourierAsyncResponses = {
+export type ShippingCouriersCreateShippingCourierResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShippingCouriersCountAsyncData = {
+export type ShippingCouriersGetShippingCouriersCountData = {
     body?: ShippingCourierDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2875,25 +2875,25 @@ export type GetShippingCouriersCountAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers/Count';
 };
 
-export type GetShippingCouriersCountAsyncErrors = {
+export type ShippingCouriersGetShippingCouriersCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingCouriersCountAsyncError = GetShippingCouriersCountAsyncErrors[keyof GetShippingCouriersCountAsyncErrors];
+export type ShippingCouriersGetShippingCouriersCountError = ShippingCouriersGetShippingCouriersCountErrors[keyof ShippingCouriersGetShippingCouriersCountErrors];
 
-export type GetShippingCouriersCountAsyncResponses = {
+export type ShippingCouriersGetShippingCouriersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShippingCouriersCountAsyncResponse = GetShippingCouriersCountAsyncResponses[keyof GetShippingCouriersCountAsyncResponses];
+export type ShippingCouriersGetShippingCouriersCountResponse = ShippingCouriersGetShippingCouriersCountResponses[keyof ShippingCouriersGetShippingCouriersCountResponses];
 
-export type DeleteShippingCourierAsyncData = {
+export type ShippingCouriersDeleteShippingCourierData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2908,23 +2908,23 @@ export type DeleteShippingCourierAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
 };
 
-export type DeleteShippingCourierAsyncErrors = {
+export type ShippingCouriersDeleteShippingCourierErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShippingCourierAsyncError = DeleteShippingCourierAsyncErrors[keyof DeleteShippingCourierAsyncErrors];
+export type ShippingCouriersDeleteShippingCourierError = ShippingCouriersDeleteShippingCourierErrors[keyof ShippingCouriersDeleteShippingCourierErrors];
 
-export type DeleteShippingCourierAsyncResponses = {
+export type ShippingCouriersDeleteShippingCourierResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingCourierByIdAsyncData = {
+export type ShippingCouriersGetShippingCourierByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2939,25 +2939,25 @@ export type GetShippingCourierByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
 };
 
-export type GetShippingCourierByIdAsyncErrors = {
+export type ShippingCouriersGetShippingCourierByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShippingCourierByIdAsyncError = GetShippingCourierByIdAsyncErrors[keyof GetShippingCourierByIdAsyncErrors];
+export type ShippingCouriersGetShippingCourierByIdError = ShippingCouriersGetShippingCourierByIdErrors[keyof ShippingCouriersGetShippingCourierByIdErrors];
 
-export type GetShippingCourierByIdAsyncResponses = {
+export type ShippingCouriersGetShippingCourierByIdResponses = {
     /**
      * OK
      */
     200: ShippingCourierDtoEnvelopeReadable;
 };
 
-export type GetShippingCourierByIdAsyncResponse = GetShippingCourierByIdAsyncResponses[keyof GetShippingCourierByIdAsyncResponses];
+export type ShippingCouriersGetShippingCourierByIdResponse = ShippingCouriersGetShippingCourierByIdResponses[keyof ShippingCouriersGetShippingCourierByIdResponses];
 
-export type PatchShippingCourierAsyncData = {
+export type ShippingCouriersPatchShippingCourierData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2972,7 +2972,7 @@ export type PatchShippingCourierAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
 };
 
-export type PatchShippingCourierAsyncErrors = {
+export type ShippingCouriersPatchShippingCourierErrors = {
     /**
      * Bad Request
      */
@@ -2987,18 +2987,18 @@ export type PatchShippingCourierAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShippingCourierAsyncError = PatchShippingCourierAsyncErrors[keyof PatchShippingCourierAsyncErrors];
+export type ShippingCouriersPatchShippingCourierError = ShippingCouriersPatchShippingCourierErrors[keyof ShippingCouriersPatchShippingCourierErrors];
 
-export type PatchShippingCourierAsyncResponses = {
+export type ShippingCouriersPatchShippingCourierResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShippingCourierAsyncResponse = PatchShippingCourierAsyncResponses[keyof PatchShippingCourierAsyncResponses];
+export type ShippingCouriersPatchShippingCourierResponse = ShippingCouriersPatchShippingCourierResponses[keyof ShippingCouriersPatchShippingCourierResponses];
 
-export type UpdateShippingCourierAsyncData = {
+export type ShippingCouriersUpdateShippingCourierData = {
     body?: ShippingCourierUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3013,23 +3013,23 @@ export type UpdateShippingCourierAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
 };
 
-export type UpdateShippingCourierAsyncErrors = {
+export type ShippingCouriersUpdateShippingCourierErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShippingCourierAsyncError = UpdateShippingCourierAsyncErrors[keyof UpdateShippingCourierAsyncErrors];
+export type ShippingCouriersUpdateShippingCourierError = ShippingCouriersUpdateShippingCourierErrors[keyof ShippingCouriersUpdateShippingCourierErrors];
 
-export type UpdateShippingCourierAsyncResponses = {
+export type ShippingCouriersUpdateShippingCourierResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingLabelsAsyncData = {
+export type ShippingLabelsGetShippingLabelsData = {
     body?: ShippingLabelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3042,7 +3042,7 @@ export type GetShippingLabelsAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels';
 };
 
-export type GetShippingLabelsAsyncErrors = {
+export type ShippingLabelsGetShippingLabelsErrors = {
     /**
      * Unauthorized
      */
@@ -3053,18 +3053,18 @@ export type GetShippingLabelsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingLabelsAsyncError = GetShippingLabelsAsyncErrors[keyof GetShippingLabelsAsyncErrors];
+export type ShippingLabelsGetShippingLabelsError = ShippingLabelsGetShippingLabelsErrors[keyof ShippingLabelsGetShippingLabelsErrors];
 
-export type GetShippingLabelsAsyncResponses = {
+export type ShippingLabelsGetShippingLabelsResponses = {
     /**
      * OK
      */
     200: ShippingLabelDtoListEnvelopeReadable;
 };
 
-export type GetShippingLabelsAsyncResponse = GetShippingLabelsAsyncResponses[keyof GetShippingLabelsAsyncResponses];
+export type ShippingLabelsGetShippingLabelsResponse = ShippingLabelsGetShippingLabelsResponses[keyof ShippingLabelsGetShippingLabelsResponses];
 
-export type CreateShippingLabelAsyncData = {
+export type ShippingLabelsCreateShippingLabelData = {
     body?: ShippingLabelCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3077,23 +3077,23 @@ export type CreateShippingLabelAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels';
 };
 
-export type CreateShippingLabelAsyncErrors = {
+export type ShippingLabelsCreateShippingLabelErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShippingLabelAsyncError = CreateShippingLabelAsyncErrors[keyof CreateShippingLabelAsyncErrors];
+export type ShippingLabelsCreateShippingLabelError = ShippingLabelsCreateShippingLabelErrors[keyof ShippingLabelsCreateShippingLabelErrors];
 
-export type CreateShippingLabelAsyncResponses = {
+export type ShippingLabelsCreateShippingLabelResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShippingLabelsCountAsyncData = {
+export type ShippingLabelsGetShippingLabelsCountData = {
     body?: ShippingLabelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3106,16 +3106,16 @@ export type GetShippingLabelsCountAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels/Count';
 };
 
-export type GetShippingLabelsCountAsyncResponses = {
+export type ShippingLabelsGetShippingLabelsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShippingLabelsCountAsyncResponse = GetShippingLabelsCountAsyncResponses[keyof GetShippingLabelsCountAsyncResponses];
+export type ShippingLabelsGetShippingLabelsCountResponse = ShippingLabelsGetShippingLabelsCountResponses[keyof ShippingLabelsGetShippingLabelsCountResponses];
 
-export type DeleteShippingLabelAsyncData = {
+export type ShippingLabelsDeleteShippingLabelData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3130,23 +3130,23 @@ export type DeleteShippingLabelAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
 };
 
-export type DeleteShippingLabelAsyncErrors = {
+export type ShippingLabelsDeleteShippingLabelErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShippingLabelAsyncError = DeleteShippingLabelAsyncErrors[keyof DeleteShippingLabelAsyncErrors];
+export type ShippingLabelsDeleteShippingLabelError = ShippingLabelsDeleteShippingLabelErrors[keyof ShippingLabelsDeleteShippingLabelErrors];
 
-export type DeleteShippingLabelAsyncResponses = {
+export type ShippingLabelsDeleteShippingLabelResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingLabelByIdAsyncData = {
+export type ShippingLabelsGetShippingLabelByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3161,25 +3161,25 @@ export type GetShippingLabelByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
 };
 
-export type GetShippingLabelByIdAsyncErrors = {
+export type ShippingLabelsGetShippingLabelByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShippingLabelByIdAsyncError = GetShippingLabelByIdAsyncErrors[keyof GetShippingLabelByIdAsyncErrors];
+export type ShippingLabelsGetShippingLabelByIdError = ShippingLabelsGetShippingLabelByIdErrors[keyof ShippingLabelsGetShippingLabelByIdErrors];
 
-export type GetShippingLabelByIdAsyncResponses = {
+export type ShippingLabelsGetShippingLabelByIdResponses = {
     /**
      * OK
      */
     200: ShippingLabelDtoEnvelopeReadable;
 };
 
-export type GetShippingLabelByIdAsyncResponse = GetShippingLabelByIdAsyncResponses[keyof GetShippingLabelByIdAsyncResponses];
+export type ShippingLabelsGetShippingLabelByIdResponse = ShippingLabelsGetShippingLabelByIdResponses[keyof ShippingLabelsGetShippingLabelByIdResponses];
 
-export type PatchShippingLabelAsyncData = {
+export type ShippingLabelsPatchShippingLabelData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3194,7 +3194,7 @@ export type PatchShippingLabelAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
 };
 
-export type PatchShippingLabelAsyncErrors = {
+export type ShippingLabelsPatchShippingLabelErrors = {
     /**
      * Bad Request
      */
@@ -3209,18 +3209,18 @@ export type PatchShippingLabelAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShippingLabelAsyncError = PatchShippingLabelAsyncErrors[keyof PatchShippingLabelAsyncErrors];
+export type ShippingLabelsPatchShippingLabelError = ShippingLabelsPatchShippingLabelErrors[keyof ShippingLabelsPatchShippingLabelErrors];
 
-export type PatchShippingLabelAsyncResponses = {
+export type ShippingLabelsPatchShippingLabelResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShippingLabelAsyncResponse = PatchShippingLabelAsyncResponses[keyof PatchShippingLabelAsyncResponses];
+export type ShippingLabelsPatchShippingLabelResponse = ShippingLabelsPatchShippingLabelResponses[keyof ShippingLabelsPatchShippingLabelResponses];
 
-export type UpdateShippingLabelAsyncData = {
+export type ShippingLabelsUpdateShippingLabelData = {
     body?: ShippingLabelUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3235,23 +3235,23 @@ export type UpdateShippingLabelAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
 };
 
-export type UpdateShippingLabelAsyncErrors = {
+export type ShippingLabelsUpdateShippingLabelErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShippingLabelAsyncError = UpdateShippingLabelAsyncErrors[keyof UpdateShippingLabelAsyncErrors];
+export type ShippingLabelsUpdateShippingLabelError = ShippingLabelsUpdateShippingLabelErrors[keyof ShippingLabelsUpdateShippingLabelErrors];
 
-export type UpdateShippingLabelAsyncResponses = {
+export type ShippingLabelsUpdateShippingLabelResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingMethodsAsyncData = {
+export type ShippingMethodsGetShippingMethodsData = {
     body?: ShippingMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3264,7 +3264,7 @@ export type GetShippingMethodsAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods';
 };
 
-export type GetShippingMethodsAsyncErrors = {
+export type ShippingMethodsGetShippingMethodsErrors = {
     /**
      * Unauthorized
      */
@@ -3275,18 +3275,18 @@ export type GetShippingMethodsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingMethodsAsyncError = GetShippingMethodsAsyncErrors[keyof GetShippingMethodsAsyncErrors];
+export type ShippingMethodsGetShippingMethodsError = ShippingMethodsGetShippingMethodsErrors[keyof ShippingMethodsGetShippingMethodsErrors];
 
-export type GetShippingMethodsAsyncResponses = {
+export type ShippingMethodsGetShippingMethodsResponses = {
     /**
      * OK
      */
     200: ShippingMethodDtoListEnvelopeReadable;
 };
 
-export type GetShippingMethodsAsyncResponse = GetShippingMethodsAsyncResponses[keyof GetShippingMethodsAsyncResponses];
+export type ShippingMethodsGetShippingMethodsResponse = ShippingMethodsGetShippingMethodsResponses[keyof ShippingMethodsGetShippingMethodsResponses];
 
-export type CreateShippingMethodAsyncData = {
+export type ShippingMethodsCreateShippingMethodData = {
     body?: ShippingMethodCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3299,23 +3299,23 @@ export type CreateShippingMethodAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods';
 };
 
-export type CreateShippingMethodAsyncErrors = {
+export type ShippingMethodsCreateShippingMethodErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShippingMethodAsyncError = CreateShippingMethodAsyncErrors[keyof CreateShippingMethodAsyncErrors];
+export type ShippingMethodsCreateShippingMethodError = ShippingMethodsCreateShippingMethodErrors[keyof ShippingMethodsCreateShippingMethodErrors];
 
-export type CreateShippingMethodAsyncResponses = {
+export type ShippingMethodsCreateShippingMethodResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShippingMethodsCountAsyncData = {
+export type ShippingMethodsGetShippingMethodsCountData = {
     body?: ShippingMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3328,16 +3328,16 @@ export type GetShippingMethodsCountAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods/Count';
 };
 
-export type GetShippingMethodsCountAsyncResponses = {
+export type ShippingMethodsGetShippingMethodsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShippingMethodsCountAsyncResponse = GetShippingMethodsCountAsyncResponses[keyof GetShippingMethodsCountAsyncResponses];
+export type ShippingMethodsGetShippingMethodsCountResponse = ShippingMethodsGetShippingMethodsCountResponses[keyof ShippingMethodsGetShippingMethodsCountResponses];
 
-export type DeleteShippingMethodAsyncData = {
+export type ShippingMethodsDeleteShippingMethodData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3352,23 +3352,23 @@ export type DeleteShippingMethodAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
 };
 
-export type DeleteShippingMethodAsyncErrors = {
+export type ShippingMethodsDeleteShippingMethodErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShippingMethodAsyncError = DeleteShippingMethodAsyncErrors[keyof DeleteShippingMethodAsyncErrors];
+export type ShippingMethodsDeleteShippingMethodError = ShippingMethodsDeleteShippingMethodErrors[keyof ShippingMethodsDeleteShippingMethodErrors];
 
-export type DeleteShippingMethodAsyncResponses = {
+export type ShippingMethodsDeleteShippingMethodResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingMethodByIdAsyncData = {
+export type ShippingMethodsGetShippingMethodByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3383,25 +3383,25 @@ export type GetShippingMethodByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
 };
 
-export type GetShippingMethodByIdAsyncErrors = {
+export type ShippingMethodsGetShippingMethodByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShippingMethodByIdAsyncError = GetShippingMethodByIdAsyncErrors[keyof GetShippingMethodByIdAsyncErrors];
+export type ShippingMethodsGetShippingMethodByIdError = ShippingMethodsGetShippingMethodByIdErrors[keyof ShippingMethodsGetShippingMethodByIdErrors];
 
-export type GetShippingMethodByIdAsyncResponses = {
+export type ShippingMethodsGetShippingMethodByIdResponses = {
     /**
      * OK
      */
     200: ShippingMethodDtoEnvelopeReadable;
 };
 
-export type GetShippingMethodByIdAsyncResponse = GetShippingMethodByIdAsyncResponses[keyof GetShippingMethodByIdAsyncResponses];
+export type ShippingMethodsGetShippingMethodByIdResponse = ShippingMethodsGetShippingMethodByIdResponses[keyof ShippingMethodsGetShippingMethodByIdResponses];
 
-export type PatchShippingMethodAsyncData = {
+export type ShippingMethodsPatchShippingMethodData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3416,7 +3416,7 @@ export type PatchShippingMethodAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
 };
 
-export type PatchShippingMethodAsyncErrors = {
+export type ShippingMethodsPatchShippingMethodErrors = {
     /**
      * Bad Request
      */
@@ -3431,18 +3431,18 @@ export type PatchShippingMethodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShippingMethodAsyncError = PatchShippingMethodAsyncErrors[keyof PatchShippingMethodAsyncErrors];
+export type ShippingMethodsPatchShippingMethodError = ShippingMethodsPatchShippingMethodErrors[keyof ShippingMethodsPatchShippingMethodErrors];
 
-export type PatchShippingMethodAsyncResponses = {
+export type ShippingMethodsPatchShippingMethodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShippingMethodAsyncResponse = PatchShippingMethodAsyncResponses[keyof PatchShippingMethodAsyncResponses];
+export type ShippingMethodsPatchShippingMethodResponse = ShippingMethodsPatchShippingMethodResponses[keyof ShippingMethodsPatchShippingMethodResponses];
 
-export type UpdateShippingMethodAsyncData = {
+export type ShippingMethodsUpdateShippingMethodData = {
     body?: ShippingMethodUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3457,23 +3457,23 @@ export type UpdateShippingMethodAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
 };
 
-export type UpdateShippingMethodAsyncErrors = {
+export type ShippingMethodsUpdateShippingMethodErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShippingMethodAsyncError = UpdateShippingMethodAsyncErrors[keyof UpdateShippingMethodAsyncErrors];
+export type ShippingMethodsUpdateShippingMethodError = ShippingMethodsUpdateShippingMethodErrors[keyof ShippingMethodsUpdateShippingMethodErrors];
 
-export type UpdateShippingMethodAsyncResponses = {
+export type ShippingMethodsUpdateShippingMethodResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingRegionsAsyncData = {
+export type ShippingRegionsGetShippingRegionsData = {
     body?: ShippingRegionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3486,7 +3486,7 @@ export type GetShippingRegionsAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions';
 };
 
-export type GetShippingRegionsAsyncErrors = {
+export type ShippingRegionsGetShippingRegionsErrors = {
     /**
      * Unauthorized
      */
@@ -3497,18 +3497,18 @@ export type GetShippingRegionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingRegionsAsyncError = GetShippingRegionsAsyncErrors[keyof GetShippingRegionsAsyncErrors];
+export type ShippingRegionsGetShippingRegionsError = ShippingRegionsGetShippingRegionsErrors[keyof ShippingRegionsGetShippingRegionsErrors];
 
-export type GetShippingRegionsAsyncResponses = {
+export type ShippingRegionsGetShippingRegionsResponses = {
     /**
      * OK
      */
     200: ShippingRegionDtoListEnvelopeReadable;
 };
 
-export type GetShippingRegionsAsyncResponse = GetShippingRegionsAsyncResponses[keyof GetShippingRegionsAsyncResponses];
+export type ShippingRegionsGetShippingRegionsResponse = ShippingRegionsGetShippingRegionsResponses[keyof ShippingRegionsGetShippingRegionsResponses];
 
-export type CreateShippingRegionAsyncData = {
+export type ShippingRegionsCreateShippingRegionData = {
     body?: ShippingRegionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3521,23 +3521,23 @@ export type CreateShippingRegionAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions';
 };
 
-export type CreateShippingRegionAsyncErrors = {
+export type ShippingRegionsCreateShippingRegionErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShippingRegionAsyncError = CreateShippingRegionAsyncErrors[keyof CreateShippingRegionAsyncErrors];
+export type ShippingRegionsCreateShippingRegionError = ShippingRegionsCreateShippingRegionErrors[keyof ShippingRegionsCreateShippingRegionErrors];
 
-export type CreateShippingRegionAsyncResponses = {
+export type ShippingRegionsCreateShippingRegionResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShippingRegionsCountAsyncData = {
+export type ShippingRegionsGetShippingRegionsCountData = {
     body?: ShippingRegionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3550,16 +3550,16 @@ export type GetShippingRegionsCountAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions/Count';
 };
 
-export type GetShippingRegionsCountAsyncResponses = {
+export type ShippingRegionsGetShippingRegionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShippingRegionsCountAsyncResponse = GetShippingRegionsCountAsyncResponses[keyof GetShippingRegionsCountAsyncResponses];
+export type ShippingRegionsGetShippingRegionsCountResponse = ShippingRegionsGetShippingRegionsCountResponses[keyof ShippingRegionsGetShippingRegionsCountResponses];
 
-export type DeleteShippingRegionAsyncData = {
+export type ShippingRegionsDeleteShippingRegionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3574,23 +3574,23 @@ export type DeleteShippingRegionAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
 };
 
-export type DeleteShippingRegionAsyncErrors = {
+export type ShippingRegionsDeleteShippingRegionErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShippingRegionAsyncError = DeleteShippingRegionAsyncErrors[keyof DeleteShippingRegionAsyncErrors];
+export type ShippingRegionsDeleteShippingRegionError = ShippingRegionsDeleteShippingRegionErrors[keyof ShippingRegionsDeleteShippingRegionErrors];
 
-export type DeleteShippingRegionAsyncResponses = {
+export type ShippingRegionsDeleteShippingRegionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingRegionByIdAsyncData = {
+export type ShippingRegionsGetShippingRegionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3605,25 +3605,25 @@ export type GetShippingRegionByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
 };
 
-export type GetShippingRegionByIdAsyncErrors = {
+export type ShippingRegionsGetShippingRegionByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShippingRegionByIdAsyncError = GetShippingRegionByIdAsyncErrors[keyof GetShippingRegionByIdAsyncErrors];
+export type ShippingRegionsGetShippingRegionByIdError = ShippingRegionsGetShippingRegionByIdErrors[keyof ShippingRegionsGetShippingRegionByIdErrors];
 
-export type GetShippingRegionByIdAsyncResponses = {
+export type ShippingRegionsGetShippingRegionByIdResponses = {
     /**
      * OK
      */
     200: ShippingRegionDtoEnvelopeReadable;
 };
 
-export type GetShippingRegionByIdAsyncResponse = GetShippingRegionByIdAsyncResponses[keyof GetShippingRegionByIdAsyncResponses];
+export type ShippingRegionsGetShippingRegionByIdResponse = ShippingRegionsGetShippingRegionByIdResponses[keyof ShippingRegionsGetShippingRegionByIdResponses];
 
-export type PatchShippingRegionAsyncData = {
+export type ShippingRegionsPatchShippingRegionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3638,7 +3638,7 @@ export type PatchShippingRegionAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
 };
 
-export type PatchShippingRegionAsyncErrors = {
+export type ShippingRegionsPatchShippingRegionErrors = {
     /**
      * Bad Request
      */
@@ -3653,18 +3653,18 @@ export type PatchShippingRegionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShippingRegionAsyncError = PatchShippingRegionAsyncErrors[keyof PatchShippingRegionAsyncErrors];
+export type ShippingRegionsPatchShippingRegionError = ShippingRegionsPatchShippingRegionErrors[keyof ShippingRegionsPatchShippingRegionErrors];
 
-export type PatchShippingRegionAsyncResponses = {
+export type ShippingRegionsPatchShippingRegionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShippingRegionAsyncResponse = PatchShippingRegionAsyncResponses[keyof PatchShippingRegionAsyncResponses];
+export type ShippingRegionsPatchShippingRegionResponse = ShippingRegionsPatchShippingRegionResponses[keyof ShippingRegionsPatchShippingRegionResponses];
 
-export type UpdateShippingRegionAsyncData = {
+export type ShippingRegionsUpdateShippingRegionData = {
     body?: ShippingRegionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3679,23 +3679,23 @@ export type UpdateShippingRegionAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
 };
 
-export type UpdateShippingRegionAsyncErrors = {
+export type ShippingRegionsUpdateShippingRegionErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShippingRegionAsyncError = UpdateShippingRegionAsyncErrors[keyof UpdateShippingRegionAsyncErrors];
+export type ShippingRegionsUpdateShippingRegionError = ShippingRegionsUpdateShippingRegionErrors[keyof ShippingRegionsUpdateShippingRegionErrors];
 
-export type UpdateShippingRegionAsyncResponses = {
+export type ShippingRegionsUpdateShippingRegionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingZonesAsyncData = {
+export type ShippingZonesGetShippingZonesData = {
     body?: ShippingZoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3708,7 +3708,7 @@ export type GetShippingZonesAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones';
 };
 
-export type GetShippingZonesAsyncErrors = {
+export type ShippingZonesGetShippingZonesErrors = {
     /**
      * Unauthorized
      */
@@ -3719,18 +3719,18 @@ export type GetShippingZonesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetShippingZonesAsyncError = GetShippingZonesAsyncErrors[keyof GetShippingZonesAsyncErrors];
+export type ShippingZonesGetShippingZonesError = ShippingZonesGetShippingZonesErrors[keyof ShippingZonesGetShippingZonesErrors];
 
-export type GetShippingZonesAsyncResponses = {
+export type ShippingZonesGetShippingZonesResponses = {
     /**
      * OK
      */
     200: ShippingZoneDtoListEnvelopeReadable;
 };
 
-export type GetShippingZonesAsyncResponse = GetShippingZonesAsyncResponses[keyof GetShippingZonesAsyncResponses];
+export type ShippingZonesGetShippingZonesResponse = ShippingZonesGetShippingZonesResponses[keyof ShippingZonesGetShippingZonesResponses];
 
-export type CreateShippingZoneAsyncData = {
+export type ShippingZonesCreateShippingZoneData = {
     body?: ShippingZoneCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3743,23 +3743,23 @@ export type CreateShippingZoneAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones';
 };
 
-export type CreateShippingZoneAsyncErrors = {
+export type ShippingZonesCreateShippingZoneErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateShippingZoneAsyncError = CreateShippingZoneAsyncErrors[keyof CreateShippingZoneAsyncErrors];
+export type ShippingZonesCreateShippingZoneError = ShippingZonesCreateShippingZoneErrors[keyof ShippingZonesCreateShippingZoneErrors];
 
-export type CreateShippingZoneAsyncResponses = {
+export type ShippingZonesCreateShippingZoneResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetShippingZonesCountAsyncData = {
+export type ShippingZonesGetShippingZonesCountData = {
     body?: ShippingZoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3772,16 +3772,16 @@ export type GetShippingZonesCountAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones/Count';
 };
 
-export type GetShippingZonesCountAsyncResponses = {
+export type ShippingZonesGetShippingZonesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetShippingZonesCountAsyncResponse = GetShippingZonesCountAsyncResponses[keyof GetShippingZonesCountAsyncResponses];
+export type ShippingZonesGetShippingZonesCountResponse = ShippingZonesGetShippingZonesCountResponses[keyof ShippingZonesGetShippingZonesCountResponses];
 
-export type DeleteShippingZoneAsyncData = {
+export type ShippingZonesDeleteShippingZoneData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3796,23 +3796,23 @@ export type DeleteShippingZoneAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
 };
 
-export type DeleteShippingZoneAsyncErrors = {
+export type ShippingZonesDeleteShippingZoneErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteShippingZoneAsyncError = DeleteShippingZoneAsyncErrors[keyof DeleteShippingZoneAsyncErrors];
+export type ShippingZonesDeleteShippingZoneError = ShippingZonesDeleteShippingZoneErrors[keyof ShippingZonesDeleteShippingZoneErrors];
 
-export type DeleteShippingZoneAsyncResponses = {
+export type ShippingZonesDeleteShippingZoneResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetShippingZoneByIdAsyncData = {
+export type ShippingZonesGetShippingZoneByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3827,25 +3827,25 @@ export type GetShippingZoneByIdAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
 };
 
-export type GetShippingZoneByIdAsyncErrors = {
+export type ShippingZonesGetShippingZoneByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetShippingZoneByIdAsyncError = GetShippingZoneByIdAsyncErrors[keyof GetShippingZoneByIdAsyncErrors];
+export type ShippingZonesGetShippingZoneByIdError = ShippingZonesGetShippingZoneByIdErrors[keyof ShippingZonesGetShippingZoneByIdErrors];
 
-export type GetShippingZoneByIdAsyncResponses = {
+export type ShippingZonesGetShippingZoneByIdResponses = {
     /**
      * OK
      */
     200: ShippingZoneDtoEnvelopeReadable;
 };
 
-export type GetShippingZoneByIdAsyncResponse = GetShippingZoneByIdAsyncResponses[keyof GetShippingZoneByIdAsyncResponses];
+export type ShippingZonesGetShippingZoneByIdResponse = ShippingZonesGetShippingZoneByIdResponses[keyof ShippingZonesGetShippingZoneByIdResponses];
 
-export type PatchShippingZoneAsyncData = {
+export type ShippingZonesPatchShippingZoneData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3860,7 +3860,7 @@ export type PatchShippingZoneAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
 };
 
-export type PatchShippingZoneAsyncErrors = {
+export type ShippingZonesPatchShippingZoneErrors = {
     /**
      * Bad Request
      */
@@ -3875,18 +3875,18 @@ export type PatchShippingZoneAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchShippingZoneAsyncError = PatchShippingZoneAsyncErrors[keyof PatchShippingZoneAsyncErrors];
+export type ShippingZonesPatchShippingZoneError = ShippingZonesPatchShippingZoneErrors[keyof ShippingZonesPatchShippingZoneErrors];
 
-export type PatchShippingZoneAsyncResponses = {
+export type ShippingZonesPatchShippingZoneResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchShippingZoneAsyncResponse = PatchShippingZoneAsyncResponses[keyof PatchShippingZoneAsyncResponses];
+export type ShippingZonesPatchShippingZoneResponse = ShippingZonesPatchShippingZoneResponses[keyof ShippingZonesPatchShippingZoneResponses];
 
-export type UpdateShippingZoneAsyncData = {
+export type ShippingZonesUpdateShippingZoneData = {
     body?: ShippingZoneUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3901,16 +3901,16 @@ export type UpdateShippingZoneAsyncData = {
     url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
 };
 
-export type UpdateShippingZoneAsyncErrors = {
+export type ShippingZonesUpdateShippingZoneErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateShippingZoneAsyncError = UpdateShippingZoneAsyncErrors[keyof UpdateShippingZoneAsyncErrors];
+export type ShippingZonesUpdateShippingZoneError = ShippingZonesUpdateShippingZoneErrors[keyof ShippingZonesUpdateShippingZoneErrors];
 
-export type UpdateShippingZoneAsyncResponses = {
+export type ShippingZonesUpdateShippingZoneResponses = {
     /**
      * OK
      */

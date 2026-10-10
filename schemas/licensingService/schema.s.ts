@@ -6,501 +6,281 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/LicensingService/LicenseAttributes": {
     /**
      * Get all license attributes
      * @description Retrieves all license attributes for the specified tenant.
      */
-    get: operations["GetLicenseAttributesAsync"];
+    get: operations["LicenseAttributes_GetLicenseAttributes"];
     /**
      * Create a new license attribute
      * @description Creates a new license attribute for the specified tenant.
      */
-    post: operations["CreateLicenseAttributeAsync"];
+    post: operations["LicenseAttributes_CreateLicenseAttribute"];
   };
   "/api/v2/LicensingService/LicenseAttributes/Count": {
     /**
      * Get license attributes count
      * @description Returns the count of license attributes for the specified tenant.
      */
-    get: operations["GetLicenseAttributesCountAsync"];
+    get: operations["LicenseAttributes_GetLicenseAttributesCount"];
   };
   "/api/v2/LicensingService/LicenseAttributes/{id}": {
     /**
      * Get license attribute by ID
      * @description Retrieves a specific license attribute by its identifier.
      */
-    get: operations["GetLicenseAttributeByIdAsync"];
+    get: operations["LicenseAttributes_GetLicenseAttributeById"];
     /**
      * Update a license attribute
      * @description Updates an existing license attribute for the specified tenant.
      */
-    put: operations["UpdateLicenseAttributeAsync"];
+    put: operations["LicenseAttributes_UpdateLicenseAttribute"];
     /**
      * Delete a license attribute
      * @description Deletes a license attribute for the specified tenant.
      */
-    delete: operations["DeleteLicenseAttributeAsync"];
+    delete: operations["LicenseAttributes_DeleteLicenseAttribute"];
     /**
      * Patch a license attribute
      * @description Patch a license attribute for the specified tenant.
      */
-    patch: operations["PatchLicenseAttributeAsync"];
+    patch: operations["LicenseAttributes_PatchLicenseAttribute"];
   };
   "/api/v2/LicensingService/LicenseFeatures": {
     /**
      * Get all license features
      * @description Retrieves all license features for the specified tenant.
      */
-    get: operations["GetLicenseFeaturesAsync"];
+    get: operations["LicenseFeatures_GetLicenseFeatures"];
     /**
      * Create a new license feature
      * @description Creates a new license feature for the specified tenant.
      */
-    post: operations["CreateLicenseFeatureAsync"];
+    post: operations["LicenseFeatures_CreateLicenseFeature"];
   };
   "/api/v2/LicensingService/LicenseFeatures/Count": {
     /**
      * Get license features count
      * @description Returns the count of license features for the specified tenant.
      */
-    get: operations["GetLicenseFeaturesCountAsync"];
+    get: operations["LicenseFeatures_GetLicenseFeaturesCount"];
   };
   "/api/v2/LicensingService/LicenseFeatures/{id}": {
     /**
      * Get license feature by ID
      * @description Retrieves a specific license feature by its identifier.
      */
-    get: operations["GetLicenseFeatureByIdAsync"];
+    get: operations["LicenseFeatures_GetLicenseFeatureById"];
     /**
      * Update a license feature
      * @description Updates an existing license feature for the specified tenant.
      */
-    put: operations["UpdateLicenseFeatureAsync"];
+    put: operations["LicenseFeatures_UpdateLicenseFeature"];
     /**
      * Delete a license feature
      * @description Deletes a license feature for the specified tenant.
      */
-    delete: operations["DeleteLicenseFeatureAsync"];
+    delete: operations["LicenseFeatures_DeleteLicenseFeature"];
     /**
      * Patch a license feature
      * @description Patch a license feature for the specified tenant.
      */
-    patch: operations["PatchLicenseFeatureAsync"];
+    patch: operations["LicenseFeatures_PatchLicenseFeature"];
   };
   "/api/v2/LicensingService/Licenses": {
     /**
      * Get licenses
      * @description Retrieves the license instances owned by the specified tenant, filtered via OData query options.
      */
-    get: operations["GetLicensesAsync"];
+    get: operations["Licenses_GetLicenses"];
     /**
      * Create a new license
      * @description Creates a new license instance for the specified tenant.
      */
-    post: operations["CreateLicenseAsync"];
+    post: operations["Licenses_CreateLicense"];
   };
   "/api/v2/LicensingService/Licenses/Count": {
     /**
      * Get licenses count
      * @description Returns the count of license instances owned by the specified tenant.
      */
-    get: operations["GetLicensesCountAsync"];
+    get: operations["Licenses_GetLicensesCount"];
   };
   "/api/v2/LicensingService/Licenses/{licenseId}": {
     /**
      * Get license by ID
      * @description Retrieves a specific license instance by its identifier.
      */
-    get: operations["GetLicenseByIdAsync"];
+    get: operations["Licenses_GetLicenseById"];
     /**
      * Update a license
      * @description Updates an existing license instance for the specified tenant.
      */
-    put: operations["UpdateLicenseAsync"];
+    put: operations["Licenses_UpdateLicense"];
     /**
      * Delete a license
      * @description Deletes a license instance for the specified tenant.
      */
-    delete: operations["DeleteLicenseAsync"];
+    delete: operations["Licenses_DeleteLicense"];
   };
   "/api/v2/LicensingService/LicenseTypes": {
     /**
      * Get all license types
      * @description Retrieves all license types for the specified tenant.
      */
-    get: operations["GetLicenseTypesAsync"];
+    get: operations["LicenseTypes_GetLicenseTypes"];
     /**
      * Create a new license type
      * @description Creates a new license type for the specified tenant.
      */
-    post: operations["CreateLicenseTypeAsync"];
+    post: operations["LicenseTypes_CreateLicenseType"];
   };
   "/api/v2/LicensingService/LicenseTypes/Count": {
     /**
      * Get license types count
      * @description Returns the count of license types for the specified tenant.
      */
-    get: operations["GetLicenseTypesCountAsync"];
+    get: operations["LicenseTypes_GetLicenseTypesCount"];
   };
   "/api/v2/LicensingService/LicenseTypes/{id}": {
     /**
      * Get license type by ID
      * @description Retrieves a specific license type by its identifier.
      */
-    get: operations["GetLicenseTypeByIdAsync"];
+    get: operations["LicenseTypes_GetLicenseTypeById"];
     /**
      * Update a license type
      * @description Updates an existing license type for the specified tenant.
      */
-    put: operations["UpdateLicenseTypeAsync"];
+    put: operations["LicenseTypes_UpdateLicenseType"];
     /**
      * Delete a license type
      * @description Deletes a license type for the specified tenant.
      */
-    delete: operations["DeleteLicenseTypeAsync"];
+    delete: operations["LicenseTypes_DeleteLicenseType"];
     /**
      * Patch a license type
      * @description Patch a license type for the specified tenant.
      */
-    patch: operations["PatchLicenseTypeAsync"];
+    patch: operations["LicenseTypes_PatchLicenseType"];
   };
   "/api/v2/LicensingService/LicensingCertificates": {
     /**
      * Get all licensing certificates
      * @description Retrieves all licensing certificates for the specified tenant.
      */
-    get: operations["GetLicensingCertificatesAsync"];
+    get: operations["LicensingCertificates_GetLicensingCertificates"];
     /**
      * Create a new licensing certificate
      * @description Creates a new licensing certificate for the specified tenant.
      */
-    post: operations["CreateLicensingCertificateAsync"];
+    post: operations["LicensingCertificates_CreateLicensingCertificate"];
   };
   "/api/v2/LicensingService/LicensingCertificates/Count": {
     /**
      * Get licensing certificates count
      * @description Returns the count of licensing certificates for the specified tenant.
      */
-    get: operations["GetLicensingCertificatesCountAsync"];
+    get: operations["LicensingCertificates_GetLicensingCertificatesCount"];
   };
   "/api/v2/LicensingService/LicensingCertificates/{id}": {
     /**
      * Get licensing certificate by ID
      * @description Retrieves a specific licensing certificate by its identifier.
      */
-    get: operations["GetLicensingCertificateByIdAsync"];
+    get: operations["LicensingCertificates_GetLicensingCertificateById"];
     /**
      * Update a licensing certificate
      * @description Updates an existing licensing certificate for the specified tenant.
      */
-    put: operations["UpdateLicensingCertificateAsync"];
+    put: operations["LicensingCertificates_UpdateLicensingCertificate"];
     /**
      * Delete a licensing certificate
      * @description Deletes a licensing certificate for the specified tenant.
      */
-    delete: operations["DeleteLicensingCertificateAsync"];
+    delete: operations["LicensingCertificates_DeleteLicensingCertificate"];
     /**
      * Patch a licensing certificate
      * @description Patch a licensing certificate for the specified tenant.
      */
-    patch: operations["PatchLicensingCertificateAsync"];
+    patch: operations["LicensingCertificates_PatchLicensingCertificate"];
+  };
+  "/api/v2/LicensingService/Usage": {
+    /**
+     * Get the tenant's usage
+     * @description The tenant's usage per license: plan, current period and, per licensed entitlement, the allowance, consumption, trend, projection and limit behaviour; plus meters consumed without a licensed entitlement.
+     */
+    get: operations["Usage_GetTenantUsage"];
+  };
+  "/api/v2/LicensingService/Usage/Meters": {
+    /**
+     * Get the usage meter registry
+     * @description Every registered usage meter: key, unit, aggregation, licensed entitlement, source and whether it is rated.
+     */
+    get: operations["Usage_GetUsageMeters"];
+  };
+  "/api/v2/LicensingService/Admin/Usage": {
+    /**
+     * List every tenant's usage against its limits (root admin)
+     * @description Root-admin, server-paged list of tenants holding licenses: the worst meter status, the highest percent used, meters near or over, and active hard stops. Usage and limits only; no personal data.
+     */
+    get: operations["Usage_GetTenantsUsage"];
+  };
+  "/api/v2/LicensingService/Admin/Usage/{targetTenantId}": {
+    /**
+     * Get a tenant's usage (root admin)
+     * @description Root-admin read of one tenant's usage detail. Refused for anyone who is not a root admin of the instance root tenant.
+     */
+    get: operations["Usage_GetTenantUsageAsAdmin"];
   };
 }
 
@@ -912,6 +692,100 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    TenantUsageDto: {
+      tenantId?: string | null;
+      tenantName?: string | null;
+      currencyId?: string | null;
+      measurementWindow?: components["schemas"]["UsagePeriodDto"];
+      licenses?: components["schemas"]["UsageLicenseDto"][] | null;
+      unlicensedMeters?: components["schemas"]["UsageMeterDto"][] | null;
+      overageBudget?: components["schemas"]["UsageBudgetDto"];
+      projectedPeriodCost?: components["schemas"]["UsageMoneyDto"];
+      activeOverrides?: components["schemas"]["TenantUsageLimitOverrideDto"][] | null;
+      /** Format: date-time */
+      generatedAtUtc?: string;
+      capabilities?: components["schemas"]["UsageCapabilitiesDto"];
+    };
+    TenantUsageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantUsageDto"];
+    };
+    TenantUsageLimitOverrideDto: {
+      id?: string | null;
+      tenantId?: string | null;
+      licenseId?: string | null;
+      meterKey?: string | null;
+      entitlementKey?: string | null;
+      /** @enum {string} */
+      kind?: "SetAllowance" | "ExtendAllowance" | "ResetHardStop";
+      /** Format: double */
+      quantity?: number | null;
+      /** Format: date-time */
+      createdAtUtc?: string;
+      /** Format: date-time */
+      expiresAtUtc?: string | null;
+      reason?: string | null;
+      createdByUserId?: string | null;
+      /** Format: double */
+      effectiveAllowanceBefore?: number | null;
+      /** Format: double */
+      effectiveAllowanceAfter?: number | null;
+      /** Format: double */
+      pooledAllowanceBefore?: number | null;
+      /** Format: double */
+      pooledAllowanceAfter?: number | null;
+      /** Format: date-time */
+      periodStartUtc?: string;
+      stoppedBefore?: boolean;
+      stoppedAfter?: boolean;
+      active?: boolean;
+    };
+    TenantUsageSummaryDto: {
+      tenantId?: string | null;
+      tenantName?: string | null;
+      offeringKey?: string | null;
+      planName?: string | null;
+      /** Format: date-time */
+      periodEndUtc?: string | null;
+      /** Format: double */
+      maxPercentUsed?: number | null;
+      maxPercentMeterKey?: string | null;
+      /** @enum {string} */
+      worstStatus?: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
+      /** Format: int32 */
+      metersNear?: number;
+      /** Format: int32 */
+      metersAtOrOver?: number;
+      hardStopActive?: boolean;
+      /** Format: int32 */
+      activeOverrides?: number;
+    };
+    TenantUsageSummaryDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantUsageSummaryDto"][] | null;
+    };
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -927,6 +801,156 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    UsageBudgetDto: {
+      budget?: components["schemas"]["UsageMoneyDto"];
+      used?: components["schemas"]["UsageMoneyDto"];
+      /** Format: double */
+      percentUsed?: number | null;
+      enforced?: boolean | null;
+    };
+    UsageCapabilitiesDto: {
+      canChangePlan?: boolean;
+      canManageBudget?: boolean;
+      canOverrideLimits?: boolean;
+    };
+    UsageGrantDto: {
+      licenseId?: string | null;
+      /** @enum {string} */
+      allowanceKind?: "Finite" | "Unlimited" | "NotIncluded" | "Unknown" | "Unlicensed";
+      /** Format: double */
+      planAllowance?: number | null;
+      /** Format: double */
+      allowance?: number | null;
+      overridden?: boolean;
+      /** Format: date-time */
+      overrideExpiresAtUtc?: string | null;
+      revision?: string | null;
+    };
+    UsageLicenseDto: {
+      licenseId?: string | null;
+      state?: string | null;
+      plan?: components["schemas"]["UsagePlanDto"];
+      period?: components["schemas"]["UsagePeriodDto"];
+      entitlements?: components["schemas"]["UsageMeterDto"][] | null;
+      pooledEntitlementKeys?: string[] | null;
+    };
+    UsageMeterDefinitionDto: {
+      key?: string | null;
+      labelKey?: string | null;
+      label?: string | null;
+      unit?: string | null;
+      /** @enum {string} */
+      aggregation?: "PeriodCumulative" | "Gauge" | "TimeIntegral";
+      entitlementKey?: string | null;
+      sourceService?: string | null;
+      rated?: boolean;
+    };
+    UsageMeterDefinitionDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["UsageMeterDefinitionDto"][] | null;
+    };
+    UsageMeterDto: {
+      key?: string | null;
+      entitlementKey?: string | null;
+      licenseId?: string | null;
+      grantingLicenseIds?: string[] | null;
+      grants?: components["schemas"]["UsageGrantDto"][] | null;
+      labelKey?: string | null;
+      label?: string | null;
+      unit?: string | null;
+      /** @enum {string} */
+      aggregation?: "PeriodCumulative" | "Gauge" | "TimeIntegral";
+      /** @enum {string} */
+      allowanceKind?: "Finite" | "Unlimited" | "NotIncluded" | "Unknown" | "Unlicensed";
+      /** Format: double */
+      allowance?: number | null;
+      /** Format: double */
+      planAllowance?: number | null;
+      overridden?: boolean;
+      /** Format: double */
+      nearThresholdPercent?: number;
+      allowedOverrides?: (("SetAllowance" | "ExtendAllowance" | "ResetHardStop")[]) | null;
+      overrideNote?: string | null;
+      /** @enum {string} */
+      dataState?: "Measured" | "Partial" | "Delayed" | "Unavailable";
+      /** Format: double */
+      consumed?: number | null;
+      /** Format: double */
+      peak?: number | null;
+      /** Format: int64 */
+      unmeasuredEvents?: number;
+      /** Format: double */
+      remaining?: number | null;
+      /** Format: double */
+      percentUsed?: number | null;
+      /** Format: double */
+      projectedAtPeriodEnd?: number | null;
+      projectionBasis?: string | null;
+      /** @enum {string} */
+      status?: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
+      /** @enum {string} */
+      limitBehavior?: "None" | "HardStop" | "Overage";
+      stopped?: boolean;
+      /** Format: double */
+      includedQuantity?: number | null;
+      /** Format: double */
+      overageQuantity?: number | null;
+      /** @enum {string} */
+      costStatus?: "NotRated" | "Estimated" | "Invoiced";
+      overageCost?: components["schemas"]["UsageMoneyDto"];
+      costBasis?: string | null;
+      trend?: components["schemas"]["UsageTrendPointDto"][] | null;
+      source?: string | null;
+      /** Format: date-time */
+      asOfUtc?: string | null;
+      note?: string | null;
+    };
+    UsageMoneyDto: {
+      /** Format: double */
+      amount?: number;
+      currencyId?: string | null;
+    };
+    UsagePeriodDto: {
+      /** Format: date-time */
+      startUtc?: string;
+      /** Format: date-time */
+      endUtc?: string;
+      timezoneId?: string | null;
+      /** Format: int32 */
+      daysElapsed?: number;
+      /** Format: int32 */
+      daysTotal?: number;
+    };
+    UsagePlanDto: {
+      subscriptionId?: string | null;
+      offeringKey?: string | null;
+      planSku?: string | null;
+      name?: string | null;
+      /** @enum {string} */
+      billingCycle?: "Monthly" | "Annual";
+      periodPrice?: components["schemas"]["UsageMoneyDto"];
+      hardStop?: boolean;
+    };
+    UsageTrendPointDto: {
+      /** Format: date-time */
+      dateUtc?: string;
+      /** Format: double */
+      consumed?: number;
+      /** Format: double */
+      cumulative?: number;
+      missing?: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -941,7 +965,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -956,11 +1059,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all license attributes
    * @description Retrieves all license attributes for the specified tenant.
    */
-  GetLicenseAttributesAsync: {
+  LicenseAttributes_GetLicenseAttributes: {
     parameters: {
       query: {
         tenantId: string;
@@ -997,7 +1285,7 @@ export interface operations {
    * Create a new license attribute
    * @description Creates a new license attribute for the specified tenant.
    */
-  CreateLicenseAttributeAsync: {
+  LicenseAttributes_CreateLicenseAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -1038,7 +1326,7 @@ export interface operations {
    * Get license attributes count
    * @description Returns the count of license attributes for the specified tenant.
    */
-  GetLicenseAttributesCountAsync: {
+  LicenseAttributes_GetLicenseAttributesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1075,7 +1363,7 @@ export interface operations {
    * Get license attribute by ID
    * @description Retrieves a specific license attribute by its identifier.
    */
-  GetLicenseAttributeByIdAsync: {
+  LicenseAttributes_GetLicenseAttributeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1116,7 +1404,7 @@ export interface operations {
    * Update a license attribute
    * @description Updates an existing license attribute for the specified tenant.
    */
-  UpdateLicenseAttributeAsync: {
+  LicenseAttributes_UpdateLicenseAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -1160,7 +1448,7 @@ export interface operations {
    * Delete a license attribute
    * @description Deletes a license attribute for the specified tenant.
    */
-  DeleteLicenseAttributeAsync: {
+  LicenseAttributes_DeleteLicenseAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -1198,7 +1486,7 @@ export interface operations {
    * Patch a license attribute
    * @description Patch a license attribute for the specified tenant.
    */
-  PatchLicenseAttributeAsync: {
+  LicenseAttributes_PatchLicenseAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -1245,7 +1533,7 @@ export interface operations {
    * Get all license features
    * @description Retrieves all license features for the specified tenant.
    */
-  GetLicenseFeaturesAsync: {
+  LicenseFeatures_GetLicenseFeatures: {
     parameters: {
       query: {
         tenantId: string;
@@ -1282,7 +1570,7 @@ export interface operations {
    * Create a new license feature
    * @description Creates a new license feature for the specified tenant.
    */
-  CreateLicenseFeatureAsync: {
+  LicenseFeatures_CreateLicenseFeature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1323,7 +1611,7 @@ export interface operations {
    * Get license features count
    * @description Returns the count of license features for the specified tenant.
    */
-  GetLicenseFeaturesCountAsync: {
+  LicenseFeatures_GetLicenseFeaturesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1360,7 +1648,7 @@ export interface operations {
    * Get license feature by ID
    * @description Retrieves a specific license feature by its identifier.
    */
-  GetLicenseFeatureByIdAsync: {
+  LicenseFeatures_GetLicenseFeatureById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1401,7 +1689,7 @@ export interface operations {
    * Update a license feature
    * @description Updates an existing license feature for the specified tenant.
    */
-  UpdateLicenseFeatureAsync: {
+  LicenseFeatures_UpdateLicenseFeature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1445,7 +1733,7 @@ export interface operations {
    * Delete a license feature
    * @description Deletes a license feature for the specified tenant.
    */
-  DeleteLicenseFeatureAsync: {
+  LicenseFeatures_DeleteLicenseFeature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1483,7 +1771,7 @@ export interface operations {
    * Patch a license feature
    * @description Patch a license feature for the specified tenant.
    */
-  PatchLicenseFeatureAsync: {
+  LicenseFeatures_PatchLicenseFeature: {
     parameters: {
       query: {
         tenantId: string;
@@ -1530,7 +1818,7 @@ export interface operations {
    * Get licenses
    * @description Retrieves the license instances owned by the specified tenant, filtered via OData query options.
    */
-  GetLicensesAsync: {
+  Licenses_GetLicenses: {
     parameters: {
       query: {
         tenantId: string;
@@ -1567,7 +1855,7 @@ export interface operations {
    * Create a new license
    * @description Creates a new license instance for the specified tenant.
    */
-  CreateLicenseAsync: {
+  Licenses_CreateLicense: {
     parameters: {
       query: {
         tenantId: string;
@@ -1608,7 +1896,7 @@ export interface operations {
    * Get licenses count
    * @description Returns the count of license instances owned by the specified tenant.
    */
-  GetLicensesCountAsync: {
+  Licenses_GetLicensesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1645,7 +1933,7 @@ export interface operations {
    * Get license by ID
    * @description Retrieves a specific license instance by its identifier.
    */
-  GetLicenseByIdAsync: {
+  Licenses_GetLicenseById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1686,7 +1974,7 @@ export interface operations {
    * Update a license
    * @description Updates an existing license instance for the specified tenant.
    */
-  UpdateLicenseAsync: {
+  Licenses_UpdateLicense: {
     parameters: {
       query: {
         tenantId: string;
@@ -1730,7 +2018,7 @@ export interface operations {
    * Delete a license
    * @description Deletes a license instance for the specified tenant.
    */
-  DeleteLicenseAsync: {
+  Licenses_DeleteLicense: {
     parameters: {
       query: {
         tenantId: string;
@@ -1768,7 +2056,7 @@ export interface operations {
    * Get all license types
    * @description Retrieves all license types for the specified tenant.
    */
-  GetLicenseTypesAsync: {
+  LicenseTypes_GetLicenseTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -1805,7 +2093,7 @@ export interface operations {
    * Create a new license type
    * @description Creates a new license type for the specified tenant.
    */
-  CreateLicenseTypeAsync: {
+  LicenseTypes_CreateLicenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1846,7 +2134,7 @@ export interface operations {
    * Get license types count
    * @description Returns the count of license types for the specified tenant.
    */
-  GetLicenseTypesCountAsync: {
+  LicenseTypes_GetLicenseTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1883,7 +2171,7 @@ export interface operations {
    * Get license type by ID
    * @description Retrieves a specific license type by its identifier.
    */
-  GetLicenseTypeByIdAsync: {
+  LicenseTypes_GetLicenseTypeById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1924,7 +2212,7 @@ export interface operations {
    * Update a license type
    * @description Updates an existing license type for the specified tenant.
    */
-  UpdateLicenseTypeAsync: {
+  LicenseTypes_UpdateLicenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -1968,7 +2256,7 @@ export interface operations {
    * Delete a license type
    * @description Deletes a license type for the specified tenant.
    */
-  DeleteLicenseTypeAsync: {
+  LicenseTypes_DeleteLicenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2006,7 +2294,7 @@ export interface operations {
    * Patch a license type
    * @description Patch a license type for the specified tenant.
    */
-  PatchLicenseTypeAsync: {
+  LicenseTypes_PatchLicenseType: {
     parameters: {
       query: {
         tenantId: string;
@@ -2053,7 +2341,7 @@ export interface operations {
    * Get all licensing certificates
    * @description Retrieves all licensing certificates for the specified tenant.
    */
-  GetLicensingCertificatesAsync: {
+  LicensingCertificates_GetLicensingCertificates: {
     parameters: {
       query: {
         tenantId: string;
@@ -2090,7 +2378,7 @@ export interface operations {
    * Create a new licensing certificate
    * @description Creates a new licensing certificate for the specified tenant.
    */
-  CreateLicensingCertificateAsync: {
+  LicensingCertificates_CreateLicensingCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -2131,7 +2419,7 @@ export interface operations {
    * Get licensing certificates count
    * @description Returns the count of licensing certificates for the specified tenant.
    */
-  GetLicensingCertificatesCountAsync: {
+  LicensingCertificates_GetLicensingCertificatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2168,7 +2456,7 @@ export interface operations {
    * Get licensing certificate by ID
    * @description Retrieves a specific licensing certificate by its identifier.
    */
-  GetLicensingCertificateByIdAsync: {
+  LicensingCertificates_GetLicensingCertificateById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2209,7 +2497,7 @@ export interface operations {
    * Update a licensing certificate
    * @description Updates an existing licensing certificate for the specified tenant.
    */
-  UpdateLicensingCertificateAsync: {
+  LicensingCertificates_UpdateLicensingCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -2253,7 +2541,7 @@ export interface operations {
    * Delete a licensing certificate
    * @description Deletes a licensing certificate for the specified tenant.
    */
-  DeleteLicensingCertificateAsync: {
+  LicensingCertificates_DeleteLicensingCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -2291,7 +2579,7 @@ export interface operations {
    * Patch a licensing certificate
    * @description Patch a licensing certificate for the specified tenant.
    */
-  PatchLicensingCertificateAsync: {
+  LicensingCertificates_PatchLicensingCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -2323,6 +2611,139 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the tenant's usage
+   * @description The tenant's usage per license: plan, current period and, per licensed entitlement, the allowance, consumption, trend, projection and limit behaviour; plus meters consumed without a licensed entitlement.
+   */
+  Usage_GetTenantUsage: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantUsageDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantUsageDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the usage meter registry
+   * @description Every registered usage meter: key, unit, aggregation, licensed entitlement, source and whether it is rated.
+   */
+  Usage_GetUsageMeters: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UsageMeterDefinitionDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["UsageMeterDefinitionDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List every tenant's usage against its limits (root admin)
+   * @description Root-admin, server-paged list of tenants holding licenses: the worst meter status, the highest percent used, meters near or over, and active hard stops. Usage and limits only; no personal data.
+   */
+  Usage_GetTenantsUsage: {
+    parameters: {
+      query: {
+        tenantId: string;
+        minimumStatus?: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
+        search?: string;
+        sortBy?: string;
+        descending?: boolean;
+        skip?: number;
+        top?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantUsageSummaryDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["TenantUsageSummaryDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a tenant's usage (root admin)
+   * @description Root-admin read of one tenant's usage detail. Refused for anyone who is not a root admin of the instance root tenant.
+   */
+  Usage_GetTenantUsageAsAdmin: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        targetTenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantUsageDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantUsageDtoEnvelope"];
         };
       };
       /** @description Forbidden */

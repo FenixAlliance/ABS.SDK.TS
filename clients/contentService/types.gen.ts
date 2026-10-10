@@ -58,6 +58,9 @@ export type AuthResult = {
     runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
     principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
     provenance?: ExecutionProvenance;
+    executionPrincipalId?: UserId;
+    executionPrincipalEnrollmentId?: EnrollmentId;
+    executionPrincipalScopes?: Array<string> | null;
 };
 
 export type AzureAppInsightIntegrationOptions = {
@@ -110,6 +113,11 @@ export type BackgroundOptions = {
     backgroundColorForPage?: string | null;
     mainContentColor?: string | null;
     mainContentImageURL?: string | null;
+};
+
+export type BaseThemePackageOptions = {
+    url?: string | null;
+    sha256?: string | null;
 };
 
 export type BlogAuthorDto = {
@@ -976,8 +984,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -1037,8 +1050,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactId = string;
@@ -1265,7 +1283,7 @@ export type ExecutionContextReadable = {
     rootTenantMappings?: CrmContextReadable;
     cart?: CartDto;
     currency?: CurrencyDto;
-    forexRates?: ForexRatesDto;
+    forexRates?: ForexRatesDtoReadable;
     exchangeRate?: MoneyReadable;
     country?: CountryDto;
     rootTenant?: TenantDtoReadable;
@@ -1297,7 +1315,7 @@ export type ExecutionContextWritable = {
     rootTenantMappings?: CrmContextWritable;
     cart?: CartDto;
     currency?: CurrencyDto;
-    forexRates?: ForexRatesDto;
+    forexRates?: ForexRatesDtoWritable;
     exchangeRate?: MoneyWritable;
     country?: CountryDto;
     rootTenant?: TenantDtoWritable;
@@ -1349,6 +1367,7 @@ export type ExtendedInviteDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
+    tenantName?: string | null;
     revoked?: boolean;
     redeemed?: boolean;
     redeemedTimestamp?: string | null;
@@ -1362,6 +1381,7 @@ export type ExtendedInviteDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
+    tenantName?: string | null;
     revoked?: boolean;
     redeemed?: boolean;
     redeemedTimestamp?: string | null;
@@ -1536,6 +1556,7 @@ export type ExtendedUserDtoReadable = {
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
     settings?: UserSettingsDto;
+    twoFactorEnabled?: boolean;
 };
 
 export type ExtendedUserDtoWritable = {
@@ -1589,6 +1610,7 @@ export type ExtendedUserDtoWritable = {
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
     settings?: UserSettingsDto;
+    twoFactorEnabled?: boolean;
 };
 
 export type FacebookIntegrationOptions = {
@@ -1645,11 +1667,32 @@ export type FooterOptions = {
     copyrightTypography?: Typography;
 };
 
-export type ForexRatesDto = {
+export type ForexIntegrationOptions = {
+    enable?: boolean;
+    exchangeRateHostApiKey?: string | null;
+    staleAfterHours?: number;
+    stalenessMode?: 'Off' | 'Flag' | 'Block';
+};
+
+export type ForexRatesDtoReadable = {
     success?: boolean;
     date?: string | null;
     base?: string | null;
     timestamp?: number;
+    readonly ratesAsOfUtc?: string | null;
+    isStale?: boolean;
+    requestTimestamp?: string;
+    rates?: {
+        [key: string]: number;
+    } | null;
+};
+
+export type ForexRatesDtoWritable = {
+    success?: boolean;
+    date?: string | null;
+    base?: string | null;
+    timestamp?: number;
+    isStale?: boolean;
     requestTimestamp?: string;
     rates?: {
         [key: string]: number;
@@ -1837,6 +1880,7 @@ export type IntegrationsOptions = {
     microsoft?: MicrosoftIntegrationsOptions;
     fenixAlliance?: FenixAllianceIntegrationsOptions;
     openExchangeRates?: OpenExchangeRatesIntegrationsOptions;
+    forex?: ForexIntegrationOptions;
 };
 
 export type InventoryOptions = {
@@ -2306,31 +2350,6 @@ export type PortalOptions = {
     emails?: EmailsOptions;
 };
 
-export type PortalOptionsEnvelopeReadable = {
-    readonly isSuccess?: boolean;
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    readonly timestamp?: string;
-    httpStatus?: number | null;
-    errorCode?: string | null;
-    validationDetails?: {
-        [key: string]: Array<string> | null;
-    } | null;
-    readonly activityId?: string | null;
-    result?: PortalOptions;
-};
-
-export type PortalOptionsEnvelopeWritable = {
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    httpStatus?: number | null;
-    errorCode?: string | null;
-    validationDetails?: {
-        [key: string]: Array<string> | null;
-    } | null;
-    result?: PortalOptions;
-};
-
 export type PortalSettings = {
     enable?: boolean;
     portalID?: string | null;
@@ -2347,6 +2366,7 @@ export type PortalSettings = {
     authTokenType?: string | null;
     authTokenExpiration?: number;
     options?: PortalOptions;
+    baseThemePackage?: BaseThemePackageOptions;
 };
 
 export type PortalSettingsEnvelopeReadable = {
@@ -2388,6 +2408,199 @@ export type PrivacyOptions = {
 
 export type ProductOptions = {
     [key: string]: never;
+};
+
+export type PublicBlogAuthorDto = {
+    publicName?: string | null;
+    jobTitle?: string | null;
+    about?: string | null;
+    avatarUrl?: string | null;
+};
+
+export type PublicBlogPostDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    slug?: string | null;
+    summary?: string | null;
+    description?: string | null;
+    htmlContent?: string | null;
+    featuredImageUrl?: string | null;
+    highlightImage?: string | null;
+    releaseDateTime?: string;
+    seoTitle?: string | null;
+    metaDescription?: string | null;
+    canonicalUrl?: string | null;
+    blogPostCategoryId?: string | null;
+    author?: PublicBlogAuthorDto;
+};
+
+export type PublicBlogPostDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PublicBlogPostDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type PublicBlogPostDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PublicBlogPostDto;
+};
+
+export type PublicBlogPostDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PublicBlogPostDto;
+};
+
+export type PublicBlogPostDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<PublicBlogPostDto> | null;
+};
+
+export type PublicBlogPostDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<PublicBlogPostDto> | null;
+};
+
+export type PublicPortalOptions = {
+    title?: string | null;
+    description?: string | null;
+    portalUiEngine?: 'Angular' | 'React' | 'Razor';
+    seo?: SeoOptions;
+    theming?: ThemingOptions;
+    branding?: BrandingOptions;
+    social?: SocialMediaOptions;
+    privacy?: PrivacyOptions;
+    blog?: BlogOptions;
+    forums?: ForumOptions;
+    footer?: FooterOptions;
+    background?: BackgroundOptions;
+    breadcrumbs?: BreadcrumbsOptions;
+    color?: ColorOptions;
+    header?: HeaderOptions;
+    titleBar?: TitleBarOptions;
+    typography?: TypographyOptions;
+    socialMedia?: SocialMediaOptions;
+    slidingBar?: SlidingBarOptions;
+    slideshow?: SlideshowOptions;
+    slider?: SliderOptions;
+    sidebar?: SidebarOptions;
+    search?: SearchOptions;
+    responsive?: ResponsiveOptions;
+    portfolio?: PortfolioOptions;
+    pagination?: PaginationOptions;
+    menu?: MenuOptions;
+    grid?: GridOptions;
+    mansory?: MansoryOptions;
+    lightbox?: LightboxOptions;
+    layout?: LayoutOptions;
+};
+
+export type PublicPortalOptionsEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PublicPortalOptions;
+};
+
+export type PublicPortalOptionsEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PublicPortalOptions;
+};
+
+export type PublicPortalSettings = {
+    portalID?: string | null;
+    homePageID?: string | null;
+    blogPageID?: string | null;
+    storePageID?: string | null;
+    baseEndpoint?: string | null;
+    storeRoutePrefix?: string | null;
+    publicKey?: string | null;
+    options?: PublicPortalOptions;
+};
+
+export type PublicPortalSettingsEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PublicPortalSettings;
+};
+
+export type PublicPortalSettingsEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PublicPortalSettings;
 };
 
 export type RecommendationOptions = {
@@ -2927,6 +3140,9 @@ export type WalletDto = {
     mainNetEtherBalance?: number;
     ethereumAddress?: string | null;
     ethereumPublicKey?: string | null;
+    /**
+     * @deprecated
+     */
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
 };
@@ -2935,6 +3151,7 @@ export type WebComponentCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
+    webPortalId?: string | null;
     title?: string | null;
     description?: string | null;
     code?: string | null;
@@ -4054,7 +4271,7 @@ export type WebsiteThemeUpdateDto = {
     enable?: boolean | null;
 };
 
-export type GetBlogAuthorsAsyncData = {
+export type BlogPostAuthorsGetBlogAuthorsData = {
     body?: BlogAuthorDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4067,25 +4284,25 @@ export type GetBlogAuthorsAsyncData = {
     url: '/api/v2/ContentService/BlogPostAuthors';
 };
 
-export type GetBlogAuthorsAsyncErrors = {
+export type BlogPostAuthorsGetBlogAuthorsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogAuthorsAsyncError = GetBlogAuthorsAsyncErrors[keyof GetBlogAuthorsAsyncErrors];
+export type BlogPostAuthorsGetBlogAuthorsError = BlogPostAuthorsGetBlogAuthorsErrors[keyof BlogPostAuthorsGetBlogAuthorsErrors];
 
-export type GetBlogAuthorsAsyncResponses = {
+export type BlogPostAuthorsGetBlogAuthorsResponses = {
     /**
      * OK
      */
     200: BlogAuthorDtoListEnvelopeReadable;
 };
 
-export type GetBlogAuthorsAsyncResponse = GetBlogAuthorsAsyncResponses[keyof GetBlogAuthorsAsyncResponses];
+export type BlogPostAuthorsGetBlogAuthorsResponse = BlogPostAuthorsGetBlogAuthorsResponses[keyof BlogPostAuthorsGetBlogAuthorsResponses];
 
-export type GetBlogAuthorByIdAsyncData = {
+export type BlogPostAuthorsGetBlogAuthorByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4099,25 +4316,25 @@ export type GetBlogAuthorByIdAsyncData = {
     url: '/api/v2/ContentService/BlogPostAuthors/{authorId}';
 };
 
-export type GetBlogAuthorByIdAsyncErrors = {
+export type BlogPostAuthorsGetBlogAuthorByIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogAuthorByIdAsyncError = GetBlogAuthorByIdAsyncErrors[keyof GetBlogAuthorByIdAsyncErrors];
+export type BlogPostAuthorsGetBlogAuthorByIdError = BlogPostAuthorsGetBlogAuthorByIdErrors[keyof BlogPostAuthorsGetBlogAuthorByIdErrors];
 
-export type GetBlogAuthorByIdAsyncResponses = {
+export type BlogPostAuthorsGetBlogAuthorByIdResponses = {
     /**
      * OK
      */
     200: BlogAuthorDtoEnvelopeReadable;
 };
 
-export type GetBlogAuthorByIdAsyncResponse = GetBlogAuthorByIdAsyncResponses[keyof GetBlogAuthorByIdAsyncResponses];
+export type BlogPostAuthorsGetBlogAuthorByIdResponse = BlogPostAuthorsGetBlogAuthorByIdResponses[keyof BlogPostAuthorsGetBlogAuthorByIdResponses];
 
-export type GetBlogPostsByAuthorAsyncData = {
+export type BlogPostAuthorsGetBlogPostsByAuthorData = {
     body?: BlogPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4131,25 +4348,25 @@ export type GetBlogPostsByAuthorAsyncData = {
     url: '/api/v2/ContentService/BlogPostAuthors/{authorId}/BlogPosts';
 };
 
-export type GetBlogPostsByAuthorAsyncErrors = {
+export type BlogPostAuthorsGetBlogPostsByAuthorErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostsByAuthorAsyncError = GetBlogPostsByAuthorAsyncErrors[keyof GetBlogPostsByAuthorAsyncErrors];
+export type BlogPostAuthorsGetBlogPostsByAuthorError = BlogPostAuthorsGetBlogPostsByAuthorErrors[keyof BlogPostAuthorsGetBlogPostsByAuthorErrors];
 
-export type GetBlogPostsByAuthorAsyncResponses = {
+export type BlogPostAuthorsGetBlogPostsByAuthorResponses = {
     /**
      * OK
      */
     200: BlogPostDtoListEnvelopeReadable;
 };
 
-export type GetBlogPostsByAuthorAsyncResponse = GetBlogPostsByAuthorAsyncResponses[keyof GetBlogPostsByAuthorAsyncResponses];
+export type BlogPostAuthorsGetBlogPostsByAuthorResponse = BlogPostAuthorsGetBlogPostsByAuthorResponses[keyof BlogPostAuthorsGetBlogPostsByAuthorResponses];
 
-export type CountBlogPostsByAuthorAsyncData = {
+export type BlogPostAuthorsCountBlogPostsByAuthorData = {
     body?: BlogPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4163,25 +4380,25 @@ export type CountBlogPostsByAuthorAsyncData = {
     url: '/api/v2/ContentService/BlogPostAuthors/{authorId}/BlogPosts/Count';
 };
 
-export type CountBlogPostsByAuthorAsyncErrors = {
+export type BlogPostAuthorsCountBlogPostsByAuthorErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CountBlogPostsByAuthorAsyncError = CountBlogPostsByAuthorAsyncErrors[keyof CountBlogPostsByAuthorAsyncErrors];
+export type BlogPostAuthorsCountBlogPostsByAuthorError = BlogPostAuthorsCountBlogPostsByAuthorErrors[keyof BlogPostAuthorsCountBlogPostsByAuthorErrors];
 
-export type CountBlogPostsByAuthorAsyncResponses = {
+export type BlogPostAuthorsCountBlogPostsByAuthorResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountBlogPostsByAuthorAsyncResponse = CountBlogPostsByAuthorAsyncResponses[keyof CountBlogPostsByAuthorAsyncResponses];
+export type BlogPostAuthorsCountBlogPostsByAuthorResponse = BlogPostAuthorsCountBlogPostsByAuthorResponses[keyof BlogPostAuthorsCountBlogPostsByAuthorResponses];
 
-export type CountBlogPostCategoriesAsyncData = {
+export type BlogPostCategoriesCountBlogPostCategoriesData = {
     body?: BlogPostCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4194,7 +4411,7 @@ export type CountBlogPostCategoriesAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories/Count';
 };
 
-export type CountBlogPostCategoriesAsyncErrors = {
+export type BlogPostCategoriesCountBlogPostCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -4205,18 +4422,18 @@ export type CountBlogPostCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountBlogPostCategoriesAsyncError = CountBlogPostCategoriesAsyncErrors[keyof CountBlogPostCategoriesAsyncErrors];
+export type BlogPostCategoriesCountBlogPostCategoriesError = BlogPostCategoriesCountBlogPostCategoriesErrors[keyof BlogPostCategoriesCountBlogPostCategoriesErrors];
 
-export type CountBlogPostCategoriesAsyncResponses = {
+export type BlogPostCategoriesCountBlogPostCategoriesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountBlogPostCategoriesAsyncResponse = CountBlogPostCategoriesAsyncResponses[keyof CountBlogPostCategoriesAsyncResponses];
+export type BlogPostCategoriesCountBlogPostCategoriesResponse = BlogPostCategoriesCountBlogPostCategoriesResponses[keyof BlogPostCategoriesCountBlogPostCategoriesResponses];
 
-export type GetBlogPostCategoriesAsyncData = {
+export type BlogPostCategoriesGetBlogPostCategoriesData = {
     body?: BlogPostCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4229,7 +4446,7 @@ export type GetBlogPostCategoriesAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories';
 };
 
-export type GetBlogPostCategoriesAsyncErrors = {
+export type BlogPostCategoriesGetBlogPostCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -4240,18 +4457,18 @@ export type GetBlogPostCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostCategoriesAsyncError = GetBlogPostCategoriesAsyncErrors[keyof GetBlogPostCategoriesAsyncErrors];
+export type BlogPostCategoriesGetBlogPostCategoriesError = BlogPostCategoriesGetBlogPostCategoriesErrors[keyof BlogPostCategoriesGetBlogPostCategoriesErrors];
 
-export type GetBlogPostCategoriesAsyncResponses = {
+export type BlogPostCategoriesGetBlogPostCategoriesResponses = {
     /**
      * OK
      */
     200: BlogPostCategoryDtoListEnvelopeReadable;
 };
 
-export type GetBlogPostCategoriesAsyncResponse = GetBlogPostCategoriesAsyncResponses[keyof GetBlogPostCategoriesAsyncResponses];
+export type BlogPostCategoriesGetBlogPostCategoriesResponse = BlogPostCategoriesGetBlogPostCategoriesResponses[keyof BlogPostCategoriesGetBlogPostCategoriesResponses];
 
-export type CreateBlogPostCategoryAsyncData = {
+export type BlogPostCategoriesCreateBlogPostCategoryData = {
     body?: BlogPostCategoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4264,7 +4481,7 @@ export type CreateBlogPostCategoryAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories';
 };
 
-export type CreateBlogPostCategoryAsyncErrors = {
+export type BlogPostCategoriesCreateBlogPostCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4275,18 +4492,18 @@ export type CreateBlogPostCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBlogPostCategoryAsyncError = CreateBlogPostCategoryAsyncErrors[keyof CreateBlogPostCategoryAsyncErrors];
+export type BlogPostCategoriesCreateBlogPostCategoryError = BlogPostCategoriesCreateBlogPostCategoryErrors[keyof BlogPostCategoriesCreateBlogPostCategoryErrors];
 
-export type CreateBlogPostCategoryAsyncResponses = {
+export type BlogPostCategoriesCreateBlogPostCategoryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBlogPostCategoryAsyncResponse = CreateBlogPostCategoryAsyncResponses[keyof CreateBlogPostCategoryAsyncResponses];
+export type BlogPostCategoriesCreateBlogPostCategoryResponse = BlogPostCategoriesCreateBlogPostCategoryResponses[keyof BlogPostCategoriesCreateBlogPostCategoryResponses];
 
-export type DeleteBlogPostCategoryAsyncData = {
+export type BlogPostCategoriesDeleteBlogPostCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4301,7 +4518,7 @@ export type DeleteBlogPostCategoryAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories/{blogPostCategoryId}';
 };
 
-export type DeleteBlogPostCategoryAsyncErrors = {
+export type BlogPostCategoriesDeleteBlogPostCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4312,18 +4529,18 @@ export type DeleteBlogPostCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBlogPostCategoryAsyncError = DeleteBlogPostCategoryAsyncErrors[keyof DeleteBlogPostCategoryAsyncErrors];
+export type BlogPostCategoriesDeleteBlogPostCategoryError = BlogPostCategoriesDeleteBlogPostCategoryErrors[keyof BlogPostCategoriesDeleteBlogPostCategoryErrors];
 
-export type DeleteBlogPostCategoryAsyncResponses = {
+export type BlogPostCategoriesDeleteBlogPostCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBlogPostCategoryAsyncResponse = DeleteBlogPostCategoryAsyncResponses[keyof DeleteBlogPostCategoryAsyncResponses];
+export type BlogPostCategoriesDeleteBlogPostCategoryResponse = BlogPostCategoriesDeleteBlogPostCategoryResponses[keyof BlogPostCategoriesDeleteBlogPostCategoryResponses];
 
-export type GetBlogPostCategoryByIdAsyncData = {
+export type BlogPostCategoriesGetBlogPostCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4338,7 +4555,7 @@ export type GetBlogPostCategoryByIdAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories/{blogPostCategoryId}';
 };
 
-export type GetBlogPostCategoryByIdAsyncErrors = {
+export type BlogPostCategoriesGetBlogPostCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4349,18 +4566,18 @@ export type GetBlogPostCategoryByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostCategoryByIdAsyncError = GetBlogPostCategoryByIdAsyncErrors[keyof GetBlogPostCategoryByIdAsyncErrors];
+export type BlogPostCategoriesGetBlogPostCategoryByIdError = BlogPostCategoriesGetBlogPostCategoryByIdErrors[keyof BlogPostCategoriesGetBlogPostCategoryByIdErrors];
 
-export type GetBlogPostCategoryByIdAsyncResponses = {
+export type BlogPostCategoriesGetBlogPostCategoryByIdResponses = {
     /**
      * OK
      */
     200: BlogPostCategoryDtoEnvelopeReadable;
 };
 
-export type GetBlogPostCategoryByIdAsyncResponse = GetBlogPostCategoryByIdAsyncResponses[keyof GetBlogPostCategoryByIdAsyncResponses];
+export type BlogPostCategoriesGetBlogPostCategoryByIdResponse = BlogPostCategoriesGetBlogPostCategoryByIdResponses[keyof BlogPostCategoriesGetBlogPostCategoryByIdResponses];
 
-export type PatchBlogPostCategoryAsyncData = {
+export type BlogPostCategoriesPatchBlogPostCategoryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4375,7 +4592,7 @@ export type PatchBlogPostCategoryAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories/{blogPostCategoryId}';
 };
 
-export type PatchBlogPostCategoryAsyncErrors = {
+export type BlogPostCategoriesPatchBlogPostCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4386,18 +4603,18 @@ export type PatchBlogPostCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBlogPostCategoryAsyncError = PatchBlogPostCategoryAsyncErrors[keyof PatchBlogPostCategoryAsyncErrors];
+export type BlogPostCategoriesPatchBlogPostCategoryError = BlogPostCategoriesPatchBlogPostCategoryErrors[keyof BlogPostCategoriesPatchBlogPostCategoryErrors];
 
-export type PatchBlogPostCategoryAsyncResponses = {
+export type BlogPostCategoriesPatchBlogPostCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBlogPostCategoryAsyncResponse = PatchBlogPostCategoryAsyncResponses[keyof PatchBlogPostCategoryAsyncResponses];
+export type BlogPostCategoriesPatchBlogPostCategoryResponse = BlogPostCategoriesPatchBlogPostCategoryResponses[keyof BlogPostCategoriesPatchBlogPostCategoryResponses];
 
-export type UpdateBlogPostCategoryAsyncData = {
+export type BlogPostCategoriesUpdateBlogPostCategoryData = {
     body?: BlogPostCategoryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4412,7 +4629,7 @@ export type UpdateBlogPostCategoryAsyncData = {
     url: '/api/v2/ContentService/BlogPostCategories/{blogPostCategoryId}';
 };
 
-export type UpdateBlogPostCategoryAsyncErrors = {
+export type BlogPostCategoriesUpdateBlogPostCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -4423,18 +4640,18 @@ export type UpdateBlogPostCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBlogPostCategoryAsyncError = UpdateBlogPostCategoryAsyncErrors[keyof UpdateBlogPostCategoryAsyncErrors];
+export type BlogPostCategoriesUpdateBlogPostCategoryError = BlogPostCategoriesUpdateBlogPostCategoryErrors[keyof BlogPostCategoriesUpdateBlogPostCategoryErrors];
 
-export type UpdateBlogPostCategoryAsyncResponses = {
+export type BlogPostCategoriesUpdateBlogPostCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBlogPostCategoryAsyncResponse = UpdateBlogPostCategoryAsyncResponses[keyof UpdateBlogPostCategoryAsyncResponses];
+export type BlogPostCategoriesUpdateBlogPostCategoryResponse = BlogPostCategoriesUpdateBlogPostCategoryResponses[keyof BlogPostCategoriesUpdateBlogPostCategoryResponses];
 
-export type GetBlogPostsAsyncData = {
+export type BlogPostsGetBlogPostsData = {
     body?: BlogPostDtoCollectionQueryParametersWritable;
     path?: never;
     query?: {
@@ -4443,7 +4660,7 @@ export type GetBlogPostsAsyncData = {
     url: '/api/v2/ContentService/BlogPosts';
 };
 
-export type GetBlogPostsAsyncErrors = {
+export type BlogPostsGetBlogPostsErrors = {
     /**
      * Unauthorized
      */
@@ -4454,18 +4671,18 @@ export type GetBlogPostsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostsAsyncError = GetBlogPostsAsyncErrors[keyof GetBlogPostsAsyncErrors];
+export type BlogPostsGetBlogPostsError = BlogPostsGetBlogPostsErrors[keyof BlogPostsGetBlogPostsErrors];
 
-export type GetBlogPostsAsyncResponses = {
+export type BlogPostsGetBlogPostsResponses = {
     /**
      * OK
      */
     200: BlogPostDtoListEnvelopeReadable;
 };
 
-export type GetBlogPostsAsyncResponse = GetBlogPostsAsyncResponses[keyof GetBlogPostsAsyncResponses];
+export type BlogPostsGetBlogPostsResponse = BlogPostsGetBlogPostsResponses[keyof BlogPostsGetBlogPostsResponses];
 
-export type CreateBlogPostAsyncData = {
+export type BlogPostsCreateBlogPostData = {
     body?: BlogPostCreateDto;
     path?: never;
     query: {
@@ -4474,7 +4691,7 @@ export type CreateBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts';
 };
 
-export type CreateBlogPostAsyncErrors = {
+export type BlogPostsCreateBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4485,18 +4702,18 @@ export type CreateBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBlogPostAsyncError = CreateBlogPostAsyncErrors[keyof CreateBlogPostAsyncErrors];
+export type BlogPostsCreateBlogPostError = BlogPostsCreateBlogPostErrors[keyof BlogPostsCreateBlogPostErrors];
 
-export type CreateBlogPostAsyncResponses = {
+export type BlogPostsCreateBlogPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBlogPostAsyncResponse = CreateBlogPostAsyncResponses[keyof CreateBlogPostAsyncResponses];
+export type BlogPostsCreateBlogPostResponse = BlogPostsCreateBlogPostResponses[keyof BlogPostsCreateBlogPostResponses];
 
-export type GetBlogPostsCountAsyncData = {
+export type BlogPostsGetBlogPostsCountData = {
     body?: BlogPostDtoCollectionQueryParametersWritable;
     path?: never;
     query?: {
@@ -4505,7 +4722,7 @@ export type GetBlogPostsCountAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/Count';
 };
 
-export type GetBlogPostsCountAsyncErrors = {
+export type BlogPostsGetBlogPostsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4516,18 +4733,18 @@ export type GetBlogPostsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostsCountAsyncError = GetBlogPostsCountAsyncErrors[keyof GetBlogPostsCountAsyncErrors];
+export type BlogPostsGetBlogPostsCountError = BlogPostsGetBlogPostsCountErrors[keyof BlogPostsGetBlogPostsCountErrors];
 
-export type GetBlogPostsCountAsyncResponses = {
+export type BlogPostsGetBlogPostsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBlogPostsCountAsyncResponse = GetBlogPostsCountAsyncResponses[keyof GetBlogPostsCountAsyncResponses];
+export type BlogPostsGetBlogPostsCountResponse = BlogPostsGetBlogPostsCountResponses[keyof BlogPostsGetBlogPostsCountResponses];
 
-export type DeleteBlogPostAsyncData = {
+export type BlogPostsDeleteBlogPostData = {
     body?: never;
     path: {
         blogPostId: string;
@@ -4538,7 +4755,7 @@ export type DeleteBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}';
 };
 
-export type DeleteBlogPostAsyncErrors = {
+export type BlogPostsDeleteBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4549,27 +4766,29 @@ export type DeleteBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBlogPostAsyncError = DeleteBlogPostAsyncErrors[keyof DeleteBlogPostAsyncErrors];
+export type BlogPostsDeleteBlogPostError = BlogPostsDeleteBlogPostErrors[keyof BlogPostsDeleteBlogPostErrors];
 
-export type DeleteBlogPostAsyncResponses = {
+export type BlogPostsDeleteBlogPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBlogPostAsyncResponse = DeleteBlogPostAsyncResponses[keyof DeleteBlogPostAsyncResponses];
+export type BlogPostsDeleteBlogPostResponse = BlogPostsDeleteBlogPostResponses[keyof BlogPostsDeleteBlogPostResponses];
 
-export type GetBlogPostByIdAsyncData = {
+export type BlogPostsGetBlogPostByIdData = {
     body?: never;
     path: {
         blogPostId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}';
 };
 
-export type GetBlogPostByIdAsyncErrors = {
+export type BlogPostsGetBlogPostByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4578,20 +4797,24 @@ export type GetBlogPostByIdAsyncErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostByIdAsyncError = GetBlogPostByIdAsyncErrors[keyof GetBlogPostByIdAsyncErrors];
+export type BlogPostsGetBlogPostByIdError = BlogPostsGetBlogPostByIdErrors[keyof BlogPostsGetBlogPostByIdErrors];
 
-export type GetBlogPostByIdAsyncResponses = {
+export type BlogPostsGetBlogPostByIdResponses = {
     /**
      * OK
      */
     200: BlogPostDtoEnvelopeReadable;
 };
 
-export type GetBlogPostByIdAsyncResponse = GetBlogPostByIdAsyncResponses[keyof GetBlogPostByIdAsyncResponses];
+export type BlogPostsGetBlogPostByIdResponse = BlogPostsGetBlogPostByIdResponses[keyof BlogPostsGetBlogPostByIdResponses];
 
-export type PatchBlogPostAsyncData = {
+export type BlogPostsPatchBlogPostData = {
     body?: Array<PatchOperation>;
     path: {
         blogPostId: string;
@@ -4602,7 +4825,7 @@ export type PatchBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}';
 };
 
-export type PatchBlogPostAsyncErrors = {
+export type BlogPostsPatchBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4613,18 +4836,18 @@ export type PatchBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBlogPostAsyncError = PatchBlogPostAsyncErrors[keyof PatchBlogPostAsyncErrors];
+export type BlogPostsPatchBlogPostError = BlogPostsPatchBlogPostErrors[keyof BlogPostsPatchBlogPostErrors];
 
-export type PatchBlogPostAsyncResponses = {
+export type BlogPostsPatchBlogPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBlogPostAsyncResponse = PatchBlogPostAsyncResponses[keyof PatchBlogPostAsyncResponses];
+export type BlogPostsPatchBlogPostResponse = BlogPostsPatchBlogPostResponses[keyof BlogPostsPatchBlogPostResponses];
 
-export type UpdateBlogPostAsyncData = {
+export type BlogPostsUpdateBlogPostData = {
     body?: BlogPostUpdateDto;
     path: {
         blogPostId: string;
@@ -4635,7 +4858,7 @@ export type UpdateBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}';
 };
 
-export type UpdateBlogPostAsyncErrors = {
+export type BlogPostsUpdateBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4646,18 +4869,105 @@ export type UpdateBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBlogPostAsyncError = UpdateBlogPostAsyncErrors[keyof UpdateBlogPostAsyncErrors];
+export type BlogPostsUpdateBlogPostError = BlogPostsUpdateBlogPostErrors[keyof BlogPostsUpdateBlogPostErrors];
 
-export type UpdateBlogPostAsyncResponses = {
+export type BlogPostsUpdateBlogPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBlogPostAsyncResponse = UpdateBlogPostAsyncResponses[keyof UpdateBlogPostAsyncResponses];
+export type BlogPostsUpdateBlogPostResponse = BlogPostsUpdateBlogPostResponses[keyof BlogPostsUpdateBlogPostResponses];
 
-export type GetTagsForBlogPostAsyncData = {
+export type BlogPostsGetPublicBlogPostsData = {
+    body?: PublicBlogPostDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        portalId: string;
+    };
+    url: '/api/v2/ContentService/BlogPosts/Public';
+};
+
+export type BlogPostsGetPublicBlogPostsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type BlogPostsGetPublicBlogPostsError = BlogPostsGetPublicBlogPostsErrors[keyof BlogPostsGetPublicBlogPostsErrors];
+
+export type BlogPostsGetPublicBlogPostsResponses = {
+    /**
+     * OK
+     */
+    200: PublicBlogPostDtoListEnvelopeReadable;
+};
+
+export type BlogPostsGetPublicBlogPostsResponse = BlogPostsGetPublicBlogPostsResponses[keyof BlogPostsGetPublicBlogPostsResponses];
+
+export type BlogPostsCountPublicBlogPostsData = {
+    body?: PublicBlogPostDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        portalId: string;
+    };
+    url: '/api/v2/ContentService/BlogPosts/Public/Count';
+};
+
+export type BlogPostsCountPublicBlogPostsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type BlogPostsCountPublicBlogPostsError = BlogPostsCountPublicBlogPostsErrors[keyof BlogPostsCountPublicBlogPostsErrors];
+
+export type BlogPostsCountPublicBlogPostsResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type BlogPostsCountPublicBlogPostsResponse = BlogPostsCountPublicBlogPostsResponses[keyof BlogPostsCountPublicBlogPostsResponses];
+
+export type BlogPostsGetPublicBlogPostByIdData = {
+    body?: never;
+    path: {
+        blogPostId: string;
+    };
+    query: {
+        portalId: string;
+    };
+    url: '/api/v2/ContentService/BlogPosts/Public/{blogPostId}';
+};
+
+export type BlogPostsGetPublicBlogPostByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BlogPostsGetPublicBlogPostByIdError = BlogPostsGetPublicBlogPostByIdErrors[keyof BlogPostsGetPublicBlogPostByIdErrors];
+
+export type BlogPostsGetPublicBlogPostByIdResponses = {
+    /**
+     * OK
+     */
+    200: PublicBlogPostDtoEnvelopeReadable;
+};
+
+export type BlogPostsGetPublicBlogPostByIdResponse = BlogPostsGetPublicBlogPostByIdResponses[keyof BlogPostsGetPublicBlogPostByIdResponses];
+
+export type BlogPostsGetTagsForBlogPostData = {
     body?: BlogPostTagDtoCollectionQueryParametersWritable;
     path: {
         blogPostId: string;
@@ -4666,7 +4976,7 @@ export type GetTagsForBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Tags';
 };
 
-export type GetTagsForBlogPostAsyncErrors = {
+export type BlogPostsGetTagsForBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4677,18 +4987,18 @@ export type GetTagsForBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTagsForBlogPostAsyncError = GetTagsForBlogPostAsyncErrors[keyof GetTagsForBlogPostAsyncErrors];
+export type BlogPostsGetTagsForBlogPostError = BlogPostsGetTagsForBlogPostErrors[keyof BlogPostsGetTagsForBlogPostErrors];
 
-export type GetTagsForBlogPostAsyncResponses = {
+export type BlogPostsGetTagsForBlogPostResponses = {
     /**
      * OK
      */
     200: BlogPostTagDtoListEnvelopeReadable;
 };
 
-export type GetTagsForBlogPostAsyncResponse = GetTagsForBlogPostAsyncResponses[keyof GetTagsForBlogPostAsyncResponses];
+export type BlogPostsGetTagsForBlogPostResponse = BlogPostsGetTagsForBlogPostResponses[keyof BlogPostsGetTagsForBlogPostResponses];
 
-export type CreateTagForBlogPostAsyncData = {
+export type BlogPostsCreateTagForBlogPostData = {
     body?: BlogPostTagCreateDto;
     path: {
         blogPostId: string;
@@ -4699,7 +5009,7 @@ export type CreateTagForBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Tags';
 };
 
-export type CreateTagForBlogPostAsyncErrors = {
+export type BlogPostsCreateTagForBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4710,18 +5020,18 @@ export type CreateTagForBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTagForBlogPostAsyncError = CreateTagForBlogPostAsyncErrors[keyof CreateTagForBlogPostAsyncErrors];
+export type BlogPostsCreateTagForBlogPostError = BlogPostsCreateTagForBlogPostErrors[keyof BlogPostsCreateTagForBlogPostErrors];
 
-export type CreateTagForBlogPostAsyncResponses = {
+export type BlogPostsCreateTagForBlogPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateTagForBlogPostAsyncResponse = CreateTagForBlogPostAsyncResponses[keyof CreateTagForBlogPostAsyncResponses];
+export type BlogPostsCreateTagForBlogPostResponse = BlogPostsCreateTagForBlogPostResponses[keyof BlogPostsCreateTagForBlogPostResponses];
 
-export type UnrelateTagFromBlogPostAsyncData = {
+export type BlogPostsUnrelateTagFromBlogPostData = {
     body?: never;
     path: {
         blogPostId: string;
@@ -4733,7 +5043,7 @@ export type UnrelateTagFromBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Tags/{tagId}';
 };
 
-export type UnrelateTagFromBlogPostAsyncErrors = {
+export type BlogPostsUnrelateTagFromBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4744,18 +5054,18 @@ export type UnrelateTagFromBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UnrelateTagFromBlogPostAsyncError = UnrelateTagFromBlogPostAsyncErrors[keyof UnrelateTagFromBlogPostAsyncErrors];
+export type BlogPostsUnrelateTagFromBlogPostError = BlogPostsUnrelateTagFromBlogPostErrors[keyof BlogPostsUnrelateTagFromBlogPostErrors];
 
-export type UnrelateTagFromBlogPostAsyncResponses = {
+export type BlogPostsUnrelateTagFromBlogPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UnrelateTagFromBlogPostAsyncResponse = UnrelateTagFromBlogPostAsyncResponses[keyof UnrelateTagFromBlogPostAsyncResponses];
+export type BlogPostsUnrelateTagFromBlogPostResponse = BlogPostsUnrelateTagFromBlogPostResponses[keyof BlogPostsUnrelateTagFromBlogPostResponses];
 
-export type RelateTagToBlogPostAsyncData = {
+export type BlogPostsRelateTagToBlogPostData = {
     body?: never;
     path: {
         blogPostId: string;
@@ -4767,7 +5077,7 @@ export type RelateTagToBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Tags/{tagId}';
 };
 
-export type RelateTagToBlogPostAsyncErrors = {
+export type BlogPostsRelateTagToBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4778,18 +5088,18 @@ export type RelateTagToBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateTagToBlogPostAsyncError = RelateTagToBlogPostAsyncErrors[keyof RelateTagToBlogPostAsyncErrors];
+export type BlogPostsRelateTagToBlogPostError = BlogPostsRelateTagToBlogPostErrors[keyof BlogPostsRelateTagToBlogPostErrors];
 
-export type RelateTagToBlogPostAsyncResponses = {
+export type BlogPostsRelateTagToBlogPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type RelateTagToBlogPostAsyncResponse = RelateTagToBlogPostAsyncResponses[keyof RelateTagToBlogPostAsyncResponses];
+export type BlogPostsRelateTagToBlogPostResponse = BlogPostsRelateTagToBlogPostResponses[keyof BlogPostsRelateTagToBlogPostResponses];
 
-export type GetCategoriesForBlogPostAsyncData = {
+export type BlogPostsGetCategoriesForBlogPostData = {
     body?: BlogPostCategoryDtoCollectionQueryParametersWritable;
     path: {
         blogPostId: string;
@@ -4798,7 +5108,7 @@ export type GetCategoriesForBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Categories';
 };
 
-export type GetCategoriesForBlogPostAsyncErrors = {
+export type BlogPostsGetCategoriesForBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4809,18 +5119,18 @@ export type GetCategoriesForBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCategoriesForBlogPostAsyncError = GetCategoriesForBlogPostAsyncErrors[keyof GetCategoriesForBlogPostAsyncErrors];
+export type BlogPostsGetCategoriesForBlogPostError = BlogPostsGetCategoriesForBlogPostErrors[keyof BlogPostsGetCategoriesForBlogPostErrors];
 
-export type GetCategoriesForBlogPostAsyncResponses = {
+export type BlogPostsGetCategoriesForBlogPostResponses = {
     /**
      * OK
      */
     200: BlogPostCategoryDtoListEnvelopeReadable;
 };
 
-export type GetCategoriesForBlogPostAsyncResponse = GetCategoriesForBlogPostAsyncResponses[keyof GetCategoriesForBlogPostAsyncResponses];
+export type BlogPostsGetCategoriesForBlogPostResponse = BlogPostsGetCategoriesForBlogPostResponses[keyof BlogPostsGetCategoriesForBlogPostResponses];
 
-export type CreateCategoryForBlogPostAsyncData = {
+export type BlogPostsCreateCategoryForBlogPostData = {
     body?: BlogPostCategoryCreateDto;
     path: {
         blogPostId: string;
@@ -4831,7 +5141,7 @@ export type CreateCategoryForBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Categories';
 };
 
-export type CreateCategoryForBlogPostAsyncErrors = {
+export type BlogPostsCreateCategoryForBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4842,18 +5152,18 @@ export type CreateCategoryForBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCategoryForBlogPostAsyncError = CreateCategoryForBlogPostAsyncErrors[keyof CreateCategoryForBlogPostAsyncErrors];
+export type BlogPostsCreateCategoryForBlogPostError = BlogPostsCreateCategoryForBlogPostErrors[keyof BlogPostsCreateCategoryForBlogPostErrors];
 
-export type CreateCategoryForBlogPostAsyncResponses = {
+export type BlogPostsCreateCategoryForBlogPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCategoryForBlogPostAsyncResponse = CreateCategoryForBlogPostAsyncResponses[keyof CreateCategoryForBlogPostAsyncResponses];
+export type BlogPostsCreateCategoryForBlogPostResponse = BlogPostsCreateCategoryForBlogPostResponses[keyof BlogPostsCreateCategoryForBlogPostResponses];
 
-export type UnrelateCategoryFromBlogPostAsyncData = {
+export type BlogPostsUnrelateCategoryFromBlogPostData = {
     body?: never;
     path: {
         blogPostId: string;
@@ -4865,7 +5175,7 @@ export type UnrelateCategoryFromBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Categories/{categoryId}';
 };
 
-export type UnrelateCategoryFromBlogPostAsyncErrors = {
+export type BlogPostsUnrelateCategoryFromBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4876,18 +5186,18 @@ export type UnrelateCategoryFromBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UnrelateCategoryFromBlogPostAsyncError = UnrelateCategoryFromBlogPostAsyncErrors[keyof UnrelateCategoryFromBlogPostAsyncErrors];
+export type BlogPostsUnrelateCategoryFromBlogPostError = BlogPostsUnrelateCategoryFromBlogPostErrors[keyof BlogPostsUnrelateCategoryFromBlogPostErrors];
 
-export type UnrelateCategoryFromBlogPostAsyncResponses = {
+export type BlogPostsUnrelateCategoryFromBlogPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UnrelateCategoryFromBlogPostAsyncResponse = UnrelateCategoryFromBlogPostAsyncResponses[keyof UnrelateCategoryFromBlogPostAsyncResponses];
+export type BlogPostsUnrelateCategoryFromBlogPostResponse = BlogPostsUnrelateCategoryFromBlogPostResponses[keyof BlogPostsUnrelateCategoryFromBlogPostResponses];
 
-export type RelateCategoryToBlogPostAsyncData = {
+export type BlogPostsRelateCategoryToBlogPostData = {
     body?: never;
     path: {
         blogPostId: string;
@@ -4899,7 +5209,7 @@ export type RelateCategoryToBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Categories/{categoryId}';
 };
 
-export type RelateCategoryToBlogPostAsyncErrors = {
+export type BlogPostsRelateCategoryToBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4910,18 +5220,18 @@ export type RelateCategoryToBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateCategoryToBlogPostAsyncError = RelateCategoryToBlogPostAsyncErrors[keyof RelateCategoryToBlogPostAsyncErrors];
+export type BlogPostsRelateCategoryToBlogPostError = BlogPostsRelateCategoryToBlogPostErrors[keyof BlogPostsRelateCategoryToBlogPostErrors];
 
-export type RelateCategoryToBlogPostAsyncResponses = {
+export type BlogPostsRelateCategoryToBlogPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type RelateCategoryToBlogPostAsyncResponse = RelateCategoryToBlogPostAsyncResponses[keyof RelateCategoryToBlogPostAsyncResponses];
+export type BlogPostsRelateCategoryToBlogPostResponse = BlogPostsRelateCategoryToBlogPostResponses[keyof BlogPostsRelateCategoryToBlogPostResponses];
 
-export type GetCommentsForBlogPostAsyncData = {
+export type BlogPostsGetCommentsForBlogPostData = {
     body?: BlogPostCommentDtoCollectionQueryParametersWritable;
     path: {
         blogPostId: string;
@@ -4930,7 +5240,7 @@ export type GetCommentsForBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Comments';
 };
 
-export type GetCommentsForBlogPostAsyncErrors = {
+export type BlogPostsGetCommentsForBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4941,18 +5251,18 @@ export type GetCommentsForBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCommentsForBlogPostAsyncError = GetCommentsForBlogPostAsyncErrors[keyof GetCommentsForBlogPostAsyncErrors];
+export type BlogPostsGetCommentsForBlogPostError = BlogPostsGetCommentsForBlogPostErrors[keyof BlogPostsGetCommentsForBlogPostErrors];
 
-export type GetCommentsForBlogPostAsyncResponses = {
+export type BlogPostsGetCommentsForBlogPostResponses = {
     /**
      * OK
      */
     200: BlogPostCommentDtoListEnvelopeReadable;
 };
 
-export type GetCommentsForBlogPostAsyncResponse = GetCommentsForBlogPostAsyncResponses[keyof GetCommentsForBlogPostAsyncResponses];
+export type BlogPostsGetCommentsForBlogPostResponse = BlogPostsGetCommentsForBlogPostResponses[keyof BlogPostsGetCommentsForBlogPostResponses];
 
-export type CreateCommentForBlogPostAsyncData = {
+export type BlogPostsCreateCommentForBlogPostData = {
     body?: BlogPostCommentCreateDto;
     path: {
         blogPostId: string;
@@ -4963,7 +5273,7 @@ export type CreateCommentForBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Comments';
 };
 
-export type CreateCommentForBlogPostAsyncErrors = {
+export type BlogPostsCreateCommentForBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -4974,18 +5284,18 @@ export type CreateCommentForBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCommentForBlogPostAsyncError = CreateCommentForBlogPostAsyncErrors[keyof CreateCommentForBlogPostAsyncErrors];
+export type BlogPostsCreateCommentForBlogPostError = BlogPostsCreateCommentForBlogPostErrors[keyof BlogPostsCreateCommentForBlogPostErrors];
 
-export type CreateCommentForBlogPostAsyncResponses = {
+export type BlogPostsCreateCommentForBlogPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateCommentForBlogPostAsyncResponse = CreateCommentForBlogPostAsyncResponses[keyof CreateCommentForBlogPostAsyncResponses];
+export type BlogPostsCreateCommentForBlogPostResponse = BlogPostsCreateCommentForBlogPostResponses[keyof BlogPostsCreateCommentForBlogPostResponses];
 
-export type GetRepliesForCommentAsyncData = {
+export type BlogPostsGetRepliesForCommentData = {
     body?: BlogPostCommentDtoCollectionQueryParametersWritable;
     path: {
         commentId: string;
@@ -4995,7 +5305,7 @@ export type GetRepliesForCommentAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}/Replies';
 };
 
-export type GetRepliesForCommentAsyncErrors = {
+export type BlogPostsGetRepliesForCommentErrors = {
     /**
      * Unauthorized
      */
@@ -5006,18 +5316,18 @@ export type GetRepliesForCommentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRepliesForCommentAsyncError = GetRepliesForCommentAsyncErrors[keyof GetRepliesForCommentAsyncErrors];
+export type BlogPostsGetRepliesForCommentError = BlogPostsGetRepliesForCommentErrors[keyof BlogPostsGetRepliesForCommentErrors];
 
-export type GetRepliesForCommentAsyncResponses = {
+export type BlogPostsGetRepliesForCommentResponses = {
     /**
      * OK
      */
     200: BlogPostCommentDtoListEnvelopeReadable;
 };
 
-export type GetRepliesForCommentAsyncResponse = GetRepliesForCommentAsyncResponses[keyof GetRepliesForCommentAsyncResponses];
+export type BlogPostsGetRepliesForCommentResponse = BlogPostsGetRepliesForCommentResponses[keyof BlogPostsGetRepliesForCommentResponses];
 
-export type ReplyToCommentAsyncData = {
+export type BlogPostsReplyToCommentData = {
     body?: BlogPostCommentCreateDto;
     path: {
         blogPostId: string;
@@ -5029,7 +5339,7 @@ export type ReplyToCommentAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}/Reply';
 };
 
-export type ReplyToCommentAsyncErrors = {
+export type BlogPostsReplyToCommentErrors = {
     /**
      * Unauthorized
      */
@@ -5040,18 +5350,18 @@ export type ReplyToCommentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ReplyToCommentAsyncError = ReplyToCommentAsyncErrors[keyof ReplyToCommentAsyncErrors];
+export type BlogPostsReplyToCommentError = BlogPostsReplyToCommentErrors[keyof BlogPostsReplyToCommentErrors];
 
-export type ReplyToCommentAsyncResponses = {
+export type BlogPostsReplyToCommentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type ReplyToCommentAsyncResponse = ReplyToCommentAsyncResponses[keyof ReplyToCommentAsyncResponses];
+export type BlogPostsReplyToCommentResponse = BlogPostsReplyToCommentResponses[keyof BlogPostsReplyToCommentResponses];
 
-export type DeleteCommentFromBlogPostAsyncData = {
+export type BlogPostsDeleteCommentFromBlogPostData = {
     body?: never;
     path: {
         blogPostId: string;
@@ -5063,7 +5373,7 @@ export type DeleteCommentFromBlogPostAsyncData = {
     url: '/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}';
 };
 
-export type DeleteCommentFromBlogPostAsyncErrors = {
+export type BlogPostsDeleteCommentFromBlogPostErrors = {
     /**
      * Unauthorized
      */
@@ -5074,18 +5384,18 @@ export type DeleteCommentFromBlogPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCommentFromBlogPostAsyncError = DeleteCommentFromBlogPostAsyncErrors[keyof DeleteCommentFromBlogPostAsyncErrors];
+export type BlogPostsDeleteCommentFromBlogPostError = BlogPostsDeleteCommentFromBlogPostErrors[keyof BlogPostsDeleteCommentFromBlogPostErrors];
 
-export type DeleteCommentFromBlogPostAsyncResponses = {
+export type BlogPostsDeleteCommentFromBlogPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCommentFromBlogPostAsyncResponse = DeleteCommentFromBlogPostAsyncResponses[keyof DeleteCommentFromBlogPostAsyncResponses];
+export type BlogPostsDeleteCommentFromBlogPostResponse = BlogPostsDeleteCommentFromBlogPostResponses[keyof BlogPostsDeleteCommentFromBlogPostResponses];
 
-export type GetBlogPostTagsAsyncData = {
+export type BlogPostTagsGetBlogPostTagsData = {
     body?: BlogPostTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5098,7 +5408,7 @@ export type GetBlogPostTagsAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags';
 };
 
-export type GetBlogPostTagsAsyncErrors = {
+export type BlogPostTagsGetBlogPostTagsErrors = {
     /**
      * Unauthorized
      */
@@ -5109,18 +5419,18 @@ export type GetBlogPostTagsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostTagsAsyncError = GetBlogPostTagsAsyncErrors[keyof GetBlogPostTagsAsyncErrors];
+export type BlogPostTagsGetBlogPostTagsError = BlogPostTagsGetBlogPostTagsErrors[keyof BlogPostTagsGetBlogPostTagsErrors];
 
-export type GetBlogPostTagsAsyncResponses = {
+export type BlogPostTagsGetBlogPostTagsResponses = {
     /**
      * OK
      */
     200: BlogPostTagDtoListEnvelopeReadable;
 };
 
-export type GetBlogPostTagsAsyncResponse = GetBlogPostTagsAsyncResponses[keyof GetBlogPostTagsAsyncResponses];
+export type BlogPostTagsGetBlogPostTagsResponse = BlogPostTagsGetBlogPostTagsResponses[keyof BlogPostTagsGetBlogPostTagsResponses];
 
-export type CreateBlogPostTagAsyncData = {
+export type BlogPostTagsCreateBlogPostTagData = {
     body?: BlogPostTagCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5133,7 +5443,7 @@ export type CreateBlogPostTagAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags';
 };
 
-export type CreateBlogPostTagAsyncErrors = {
+export type BlogPostTagsCreateBlogPostTagErrors = {
     /**
      * Unauthorized
      */
@@ -5144,18 +5454,18 @@ export type CreateBlogPostTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBlogPostTagAsyncError = CreateBlogPostTagAsyncErrors[keyof CreateBlogPostTagAsyncErrors];
+export type BlogPostTagsCreateBlogPostTagError = BlogPostTagsCreateBlogPostTagErrors[keyof BlogPostTagsCreateBlogPostTagErrors];
 
-export type CreateBlogPostTagAsyncResponses = {
+export type BlogPostTagsCreateBlogPostTagResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBlogPostTagAsyncResponse = CreateBlogPostTagAsyncResponses[keyof CreateBlogPostTagAsyncResponses];
+export type BlogPostTagsCreateBlogPostTagResponse = BlogPostTagsCreateBlogPostTagResponses[keyof BlogPostTagsCreateBlogPostTagResponses];
 
-export type CountBlogPostTagsAsyncData = {
+export type BlogPostTagsCountBlogPostTagsData = {
     body?: BlogPostTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5168,7 +5478,7 @@ export type CountBlogPostTagsAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags/Count';
 };
 
-export type CountBlogPostTagsAsyncErrors = {
+export type BlogPostTagsCountBlogPostTagsErrors = {
     /**
      * Unauthorized
      */
@@ -5179,18 +5489,18 @@ export type CountBlogPostTagsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountBlogPostTagsAsyncError = CountBlogPostTagsAsyncErrors[keyof CountBlogPostTagsAsyncErrors];
+export type BlogPostTagsCountBlogPostTagsError = BlogPostTagsCountBlogPostTagsErrors[keyof BlogPostTagsCountBlogPostTagsErrors];
 
-export type CountBlogPostTagsAsyncResponses = {
+export type BlogPostTagsCountBlogPostTagsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountBlogPostTagsAsyncResponse = CountBlogPostTagsAsyncResponses[keyof CountBlogPostTagsAsyncResponses];
+export type BlogPostTagsCountBlogPostTagsResponse = BlogPostTagsCountBlogPostTagsResponses[keyof BlogPostTagsCountBlogPostTagsResponses];
 
-export type DeleteBlogPostTagAsyncData = {
+export type BlogPostTagsDeleteBlogPostTagData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5205,7 +5515,7 @@ export type DeleteBlogPostTagAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags/{blogPostTagId}';
 };
 
-export type DeleteBlogPostTagAsyncErrors = {
+export type BlogPostTagsDeleteBlogPostTagErrors = {
     /**
      * Unauthorized
      */
@@ -5216,18 +5526,18 @@ export type DeleteBlogPostTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBlogPostTagAsyncError = DeleteBlogPostTagAsyncErrors[keyof DeleteBlogPostTagAsyncErrors];
+export type BlogPostTagsDeleteBlogPostTagError = BlogPostTagsDeleteBlogPostTagErrors[keyof BlogPostTagsDeleteBlogPostTagErrors];
 
-export type DeleteBlogPostTagAsyncResponses = {
+export type BlogPostTagsDeleteBlogPostTagResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBlogPostTagAsyncResponse = DeleteBlogPostTagAsyncResponses[keyof DeleteBlogPostTagAsyncResponses];
+export type BlogPostTagsDeleteBlogPostTagResponse = BlogPostTagsDeleteBlogPostTagResponses[keyof BlogPostTagsDeleteBlogPostTagResponses];
 
-export type GetBlogPostTagByIdAsyncData = {
+export type BlogPostTagsGetBlogPostTagByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5242,7 +5552,7 @@ export type GetBlogPostTagByIdAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags/{blogPostTagId}';
 };
 
-export type GetBlogPostTagByIdAsyncErrors = {
+export type BlogPostTagsGetBlogPostTagByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5253,18 +5563,18 @@ export type GetBlogPostTagByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlogPostTagByIdAsyncError = GetBlogPostTagByIdAsyncErrors[keyof GetBlogPostTagByIdAsyncErrors];
+export type BlogPostTagsGetBlogPostTagByIdError = BlogPostTagsGetBlogPostTagByIdErrors[keyof BlogPostTagsGetBlogPostTagByIdErrors];
 
-export type GetBlogPostTagByIdAsyncResponses = {
+export type BlogPostTagsGetBlogPostTagByIdResponses = {
     /**
      * OK
      */
     200: BlogPostTagDtoEnvelopeReadable;
 };
 
-export type GetBlogPostTagByIdAsyncResponse = GetBlogPostTagByIdAsyncResponses[keyof GetBlogPostTagByIdAsyncResponses];
+export type BlogPostTagsGetBlogPostTagByIdResponse = BlogPostTagsGetBlogPostTagByIdResponses[keyof BlogPostTagsGetBlogPostTagByIdResponses];
 
-export type PatchBlogPostTagAsyncData = {
+export type BlogPostTagsPatchBlogPostTagData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5279,7 +5589,7 @@ export type PatchBlogPostTagAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags/{blogPostTagId}';
 };
 
-export type PatchBlogPostTagAsyncErrors = {
+export type BlogPostTagsPatchBlogPostTagErrors = {
     /**
      * Unauthorized
      */
@@ -5290,18 +5600,18 @@ export type PatchBlogPostTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBlogPostTagAsyncError = PatchBlogPostTagAsyncErrors[keyof PatchBlogPostTagAsyncErrors];
+export type BlogPostTagsPatchBlogPostTagError = BlogPostTagsPatchBlogPostTagErrors[keyof BlogPostTagsPatchBlogPostTagErrors];
 
-export type PatchBlogPostTagAsyncResponses = {
+export type BlogPostTagsPatchBlogPostTagResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBlogPostTagAsyncResponse = PatchBlogPostTagAsyncResponses[keyof PatchBlogPostTagAsyncResponses];
+export type BlogPostTagsPatchBlogPostTagResponse = BlogPostTagsPatchBlogPostTagResponses[keyof BlogPostTagsPatchBlogPostTagResponses];
 
-export type UpdateBlogPostTagAsyncData = {
+export type BlogPostTagsUpdateBlogPostTagData = {
     body?: BlogPostTagUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5316,7 +5626,7 @@ export type UpdateBlogPostTagAsyncData = {
     url: '/api/v2/ContentService/BlogPostTags/{blogPostTagId}';
 };
 
-export type UpdateBlogPostTagAsyncErrors = {
+export type BlogPostTagsUpdateBlogPostTagErrors = {
     /**
      * Unauthorized
      */
@@ -5327,18 +5637,18 @@ export type UpdateBlogPostTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBlogPostTagAsyncError = UpdateBlogPostTagAsyncErrors[keyof UpdateBlogPostTagAsyncErrors];
+export type BlogPostTagsUpdateBlogPostTagError = BlogPostTagsUpdateBlogPostTagErrors[keyof BlogPostTagsUpdateBlogPostTagErrors];
 
-export type UpdateBlogPostTagAsyncResponses = {
+export type BlogPostTagsUpdateBlogPostTagResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBlogPostTagAsyncResponse = UpdateBlogPostTagAsyncResponses[keyof UpdateBlogPostTagAsyncResponses];
+export type BlogPostTagsUpdateBlogPostTagResponse = BlogPostTagsUpdateBlogPostTagResponses[keyof BlogPostTagsUpdateBlogPostTagResponses];
 
-export type GetBusinessDomainsAsyncData = {
+export type BusinessDomainsGetBusinessDomainsData = {
     body?: BusinessDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5351,7 +5661,7 @@ export type GetBusinessDomainsAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains';
 };
 
-export type GetBusinessDomainsAsyncErrors = {
+export type BusinessDomainsGetBusinessDomainsErrors = {
     /**
      * Unauthorized
      */
@@ -5362,18 +5672,18 @@ export type GetBusinessDomainsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessDomainsAsyncError = GetBusinessDomainsAsyncErrors[keyof GetBusinessDomainsAsyncErrors];
+export type BusinessDomainsGetBusinessDomainsError = BusinessDomainsGetBusinessDomainsErrors[keyof BusinessDomainsGetBusinessDomainsErrors];
 
-export type GetBusinessDomainsAsyncResponses = {
+export type BusinessDomainsGetBusinessDomainsResponses = {
     /**
      * OK
      */
     200: BusinessDomainDtoListEnvelopeReadable;
 };
 
-export type GetBusinessDomainsAsyncResponse = GetBusinessDomainsAsyncResponses[keyof GetBusinessDomainsAsyncResponses];
+export type BusinessDomainsGetBusinessDomainsResponse = BusinessDomainsGetBusinessDomainsResponses[keyof BusinessDomainsGetBusinessDomainsResponses];
 
-export type CreateBusinessDomainAsyncData = {
+export type BusinessDomainsCreateBusinessDomainData = {
     body: BusinessDomainCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5386,7 +5696,7 @@ export type CreateBusinessDomainAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains';
 };
 
-export type CreateBusinessDomainAsyncErrors = {
+export type BusinessDomainsCreateBusinessDomainErrors = {
     /**
      * Bad Request
      */
@@ -5401,18 +5711,18 @@ export type CreateBusinessDomainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBusinessDomainAsyncError = CreateBusinessDomainAsyncErrors[keyof CreateBusinessDomainAsyncErrors];
+export type BusinessDomainsCreateBusinessDomainError = BusinessDomainsCreateBusinessDomainErrors[keyof BusinessDomainsCreateBusinessDomainErrors];
 
-export type CreateBusinessDomainAsyncResponses = {
+export type BusinessDomainsCreateBusinessDomainResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBusinessDomainAsyncResponse = CreateBusinessDomainAsyncResponses[keyof CreateBusinessDomainAsyncResponses];
+export type BusinessDomainsCreateBusinessDomainResponse = BusinessDomainsCreateBusinessDomainResponses[keyof BusinessDomainsCreateBusinessDomainResponses];
 
-export type GetBusinessDomainsCountAsyncData = {
+export type BusinessDomainsGetBusinessDomainsCountData = {
     body?: BusinessDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5425,7 +5735,7 @@ export type GetBusinessDomainsCountAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains/Count';
 };
 
-export type GetBusinessDomainsCountAsyncErrors = {
+export type BusinessDomainsGetBusinessDomainsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5436,18 +5746,18 @@ export type GetBusinessDomainsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessDomainsCountAsyncError = GetBusinessDomainsCountAsyncErrors[keyof GetBusinessDomainsCountAsyncErrors];
+export type BusinessDomainsGetBusinessDomainsCountError = BusinessDomainsGetBusinessDomainsCountErrors[keyof BusinessDomainsGetBusinessDomainsCountErrors];
 
-export type GetBusinessDomainsCountAsyncResponses = {
+export type BusinessDomainsGetBusinessDomainsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBusinessDomainsCountAsyncResponse = GetBusinessDomainsCountAsyncResponses[keyof GetBusinessDomainsCountAsyncResponses];
+export type BusinessDomainsGetBusinessDomainsCountResponse = BusinessDomainsGetBusinessDomainsCountResponses[keyof BusinessDomainsGetBusinessDomainsCountResponses];
 
-export type DeleteBusinessDomainAsyncData = {
+export type BusinessDomainsDeleteBusinessDomainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5462,7 +5772,7 @@ export type DeleteBusinessDomainAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains/{businessDomainId}';
 };
 
-export type DeleteBusinessDomainAsyncErrors = {
+export type BusinessDomainsDeleteBusinessDomainErrors = {
     /**
      * Unauthorized
      */
@@ -5473,18 +5783,18 @@ export type DeleteBusinessDomainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBusinessDomainAsyncError = DeleteBusinessDomainAsyncErrors[keyof DeleteBusinessDomainAsyncErrors];
+export type BusinessDomainsDeleteBusinessDomainError = BusinessDomainsDeleteBusinessDomainErrors[keyof BusinessDomainsDeleteBusinessDomainErrors];
 
-export type DeleteBusinessDomainAsyncResponses = {
+export type BusinessDomainsDeleteBusinessDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteBusinessDomainAsyncResponse = DeleteBusinessDomainAsyncResponses[keyof DeleteBusinessDomainAsyncResponses];
+export type BusinessDomainsDeleteBusinessDomainResponse = BusinessDomainsDeleteBusinessDomainResponses[keyof BusinessDomainsDeleteBusinessDomainResponses];
 
-export type GetBusinessDomainByIdAsyncData = {
+export type BusinessDomainsGetBusinessDomainByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5499,7 +5809,7 @@ export type GetBusinessDomainByIdAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains/{businessDomainId}';
 };
 
-export type GetBusinessDomainByIdAsyncErrors = {
+export type BusinessDomainsGetBusinessDomainByIdErrors = {
     /**
      * Unauthorized
      */
@@ -5510,18 +5820,18 @@ export type GetBusinessDomainByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessDomainByIdAsyncError = GetBusinessDomainByIdAsyncErrors[keyof GetBusinessDomainByIdAsyncErrors];
+export type BusinessDomainsGetBusinessDomainByIdError = BusinessDomainsGetBusinessDomainByIdErrors[keyof BusinessDomainsGetBusinessDomainByIdErrors];
 
-export type GetBusinessDomainByIdAsyncResponses = {
+export type BusinessDomainsGetBusinessDomainByIdResponses = {
     /**
      * OK
      */
     200: BusinessDomainDtoEnvelopeReadable;
 };
 
-export type GetBusinessDomainByIdAsyncResponse = GetBusinessDomainByIdAsyncResponses[keyof GetBusinessDomainByIdAsyncResponses];
+export type BusinessDomainsGetBusinessDomainByIdResponse = BusinessDomainsGetBusinessDomainByIdResponses[keyof BusinessDomainsGetBusinessDomainByIdResponses];
 
-export type UpdateBusinessDomainAsyncData = {
+export type BusinessDomainsUpdateBusinessDomainData = {
     body: BusinessDomainUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5536,7 +5846,7 @@ export type UpdateBusinessDomainAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains/{businessDomainId}';
 };
 
-export type UpdateBusinessDomainAsyncErrors = {
+export type BusinessDomainsUpdateBusinessDomainErrors = {
     /**
      * Unauthorized
      */
@@ -5547,18 +5857,18 @@ export type UpdateBusinessDomainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBusinessDomainAsyncError = UpdateBusinessDomainAsyncErrors[keyof UpdateBusinessDomainAsyncErrors];
+export type BusinessDomainsUpdateBusinessDomainError = BusinessDomainsUpdateBusinessDomainErrors[keyof BusinessDomainsUpdateBusinessDomainErrors];
 
-export type UpdateBusinessDomainAsyncResponses = {
+export type BusinessDomainsUpdateBusinessDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBusinessDomainAsyncResponse = UpdateBusinessDomainAsyncResponses[keyof UpdateBusinessDomainAsyncResponses];
+export type BusinessDomainsUpdateBusinessDomainResponse = BusinessDomainsUpdateBusinessDomainResponses[keyof BusinessDomainsUpdateBusinessDomainResponses];
 
-export type VerifyBusinessDomainAsyncData = {
+export type BusinessDomainsVerifyBusinessDomainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5573,7 +5883,7 @@ export type VerifyBusinessDomainAsyncData = {
     url: '/api/v2/ContentService/BusinessDomains/{businessDomainId}/Verify';
 };
 
-export type VerifyBusinessDomainAsyncErrors = {
+export type BusinessDomainsVerifyBusinessDomainErrors = {
     /**
      * Bad Request
      */
@@ -5588,83 +5898,83 @@ export type VerifyBusinessDomainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type VerifyBusinessDomainAsyncError = VerifyBusinessDomainAsyncErrors[keyof VerifyBusinessDomainAsyncErrors];
+export type BusinessDomainsVerifyBusinessDomainError = BusinessDomainsVerifyBusinessDomainErrors[keyof BusinessDomainsVerifyBusinessDomainErrors];
 
-export type VerifyBusinessDomainAsyncResponses = {
+export type BusinessDomainsVerifyBusinessDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type VerifyBusinessDomainAsyncResponse = VerifyBusinessDomainAsyncResponses[keyof VerifyBusinessDomainAsyncResponses];
+export type BusinessDomainsVerifyBusinessDomainResponse = BusinessDomainsVerifyBusinessDomainResponses[keyof BusinessDomainsVerifyBusinessDomainResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -5674,32 +5984,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -5710,81 +6020,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -5795,25 +6105,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -5824,25 +6134,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -5853,18 +6163,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -5874,14 +6184,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -5890,14 +6200,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -5906,28 +6216,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLocalizationStringsAsyncData = {
+export type LocalizationStringsGetLocalizationStringsData = {
     body?: LocalizationStringDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5940,7 +6250,7 @@ export type GetLocalizationStringsAsyncData = {
     url: '/api/v2/ContentService/LocalizationStrings';
 };
 
-export type GetLocalizationStringsAsyncErrors = {
+export type LocalizationStringsGetLocalizationStringsErrors = {
     /**
      * Unauthorized
      */
@@ -5951,18 +6261,18 @@ export type GetLocalizationStringsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocalizationStringsAsyncError = GetLocalizationStringsAsyncErrors[keyof GetLocalizationStringsAsyncErrors];
+export type LocalizationStringsGetLocalizationStringsError = LocalizationStringsGetLocalizationStringsErrors[keyof LocalizationStringsGetLocalizationStringsErrors];
 
-export type GetLocalizationStringsAsyncResponses = {
+export type LocalizationStringsGetLocalizationStringsResponses = {
     /**
      * OK
      */
     200: LocalizationStringDtoListEnvelopeReadable;
 };
 
-export type GetLocalizationStringsAsyncResponse = GetLocalizationStringsAsyncResponses[keyof GetLocalizationStringsAsyncResponses];
+export type LocalizationStringsGetLocalizationStringsResponse = LocalizationStringsGetLocalizationStringsResponses[keyof LocalizationStringsGetLocalizationStringsResponses];
 
-export type CreateLocalizationStringAsyncData = {
+export type LocalizationStringsCreateLocalizationStringData = {
     body: LocalizationStringCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5975,7 +6285,7 @@ export type CreateLocalizationStringAsyncData = {
     url: '/api/v2/ContentService/LocalizationStrings';
 };
 
-export type CreateLocalizationStringAsyncErrors = {
+export type LocalizationStringsCreateLocalizationStringErrors = {
     /**
      * Unauthorized
      */
@@ -5986,18 +6296,18 @@ export type CreateLocalizationStringAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLocalizationStringAsyncError = CreateLocalizationStringAsyncErrors[keyof CreateLocalizationStringAsyncErrors];
+export type LocalizationStringsCreateLocalizationStringError = LocalizationStringsCreateLocalizationStringErrors[keyof LocalizationStringsCreateLocalizationStringErrors];
 
-export type CreateLocalizationStringAsyncResponses = {
+export type LocalizationStringsCreateLocalizationStringResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLocalizationStringAsyncResponse = CreateLocalizationStringAsyncResponses[keyof CreateLocalizationStringAsyncResponses];
+export type LocalizationStringsCreateLocalizationStringResponse = LocalizationStringsCreateLocalizationStringResponses[keyof LocalizationStringsCreateLocalizationStringResponses];
 
-export type CountLocalizationStringsAsyncData = {
+export type LocalizationStringsCountLocalizationStringsData = {
     body?: LocalizationStringDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6010,7 +6320,7 @@ export type CountLocalizationStringsAsyncData = {
     url: '/api/v2/ContentService/LocalizationStrings/Count';
 };
 
-export type CountLocalizationStringsAsyncErrors = {
+export type LocalizationStringsCountLocalizationStringsErrors = {
     /**
      * Unauthorized
      */
@@ -6021,18 +6331,18 @@ export type CountLocalizationStringsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountLocalizationStringsAsyncError = CountLocalizationStringsAsyncErrors[keyof CountLocalizationStringsAsyncErrors];
+export type LocalizationStringsCountLocalizationStringsError = LocalizationStringsCountLocalizationStringsErrors[keyof LocalizationStringsCountLocalizationStringsErrors];
 
-export type CountLocalizationStringsAsyncResponses = {
+export type LocalizationStringsCountLocalizationStringsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountLocalizationStringsAsyncResponse = CountLocalizationStringsAsyncResponses[keyof CountLocalizationStringsAsyncResponses];
+export type LocalizationStringsCountLocalizationStringsResponse = LocalizationStringsCountLocalizationStringsResponses[keyof LocalizationStringsCountLocalizationStringsResponses];
 
-export type DeleteLocalizationStringAsyncData = {
+export type LocalizationStringsDeleteLocalizationStringData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6047,7 +6357,7 @@ export type DeleteLocalizationStringAsyncData = {
     url: '/api/v2/ContentService/LocalizationStrings/{localizationStringId}';
 };
 
-export type DeleteLocalizationStringAsyncErrors = {
+export type LocalizationStringsDeleteLocalizationStringErrors = {
     /**
      * Unauthorized
      */
@@ -6058,18 +6368,18 @@ export type DeleteLocalizationStringAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLocalizationStringAsyncError = DeleteLocalizationStringAsyncErrors[keyof DeleteLocalizationStringAsyncErrors];
+export type LocalizationStringsDeleteLocalizationStringError = LocalizationStringsDeleteLocalizationStringErrors[keyof LocalizationStringsDeleteLocalizationStringErrors];
 
-export type DeleteLocalizationStringAsyncResponses = {
+export type LocalizationStringsDeleteLocalizationStringResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteLocalizationStringAsyncResponse = DeleteLocalizationStringAsyncResponses[keyof DeleteLocalizationStringAsyncResponses];
+export type LocalizationStringsDeleteLocalizationStringResponse = LocalizationStringsDeleteLocalizationStringResponses[keyof LocalizationStringsDeleteLocalizationStringResponses];
 
-export type GetLocalizationStringByIdAsyncData = {
+export type LocalizationStringsGetLocalizationStringByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6084,7 +6394,7 @@ export type GetLocalizationStringByIdAsyncData = {
     url: '/api/v2/ContentService/LocalizationStrings/{localizationStringId}';
 };
 
-export type GetLocalizationStringByIdAsyncErrors = {
+export type LocalizationStringsGetLocalizationStringByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6095,18 +6405,18 @@ export type GetLocalizationStringByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocalizationStringByIdAsyncError = GetLocalizationStringByIdAsyncErrors[keyof GetLocalizationStringByIdAsyncErrors];
+export type LocalizationStringsGetLocalizationStringByIdError = LocalizationStringsGetLocalizationStringByIdErrors[keyof LocalizationStringsGetLocalizationStringByIdErrors];
 
-export type GetLocalizationStringByIdAsyncResponses = {
+export type LocalizationStringsGetLocalizationStringByIdResponses = {
     /**
      * OK
      */
     200: LocalizationStringDtoEnvelopeReadable;
 };
 
-export type GetLocalizationStringByIdAsyncResponse = GetLocalizationStringByIdAsyncResponses[keyof GetLocalizationStringByIdAsyncResponses];
+export type LocalizationStringsGetLocalizationStringByIdResponse = LocalizationStringsGetLocalizationStringByIdResponses[keyof LocalizationStringsGetLocalizationStringByIdResponses];
 
-export type UpdateLocalizationStringAsyncData = {
+export type LocalizationStringsUpdateLocalizationStringData = {
     body: LocalizationStringUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6121,7 +6431,7 @@ export type UpdateLocalizationStringAsyncData = {
     url: '/api/v2/ContentService/LocalizationStrings/{localizationStringId}';
 };
 
-export type UpdateLocalizationStringAsyncErrors = {
+export type LocalizationStringsUpdateLocalizationStringErrors = {
     /**
      * Unauthorized
      */
@@ -6132,18 +6442,18 @@ export type UpdateLocalizationStringAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLocalizationStringAsyncError = UpdateLocalizationStringAsyncErrors[keyof UpdateLocalizationStringAsyncErrors];
+export type LocalizationStringsUpdateLocalizationStringError = LocalizationStringsUpdateLocalizationStringErrors[keyof LocalizationStringsUpdateLocalizationStringErrors];
 
-export type UpdateLocalizationStringAsyncResponses = {
+export type LocalizationStringsUpdateLocalizationStringResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLocalizationStringAsyncResponse = UpdateLocalizationStringAsyncResponses[keyof UpdateLocalizationStringAsyncResponses];
+export type LocalizationStringsUpdateLocalizationStringResponse = LocalizationStringsUpdateLocalizationStringResponses[keyof LocalizationStringsUpdateLocalizationStringResponses];
 
-export type GetMenuContextsAsyncData = {
+export type MenuContextsGetMenuContextsData = {
     body?: MenuContextDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6156,7 +6466,7 @@ export type GetMenuContextsAsyncData = {
     url: '/api/v2/ContentService/MenuContexts';
 };
 
-export type GetMenuContextsAsyncErrors = {
+export type MenuContextsGetMenuContextsErrors = {
     /**
      * Unauthorized
      */
@@ -6167,18 +6477,18 @@ export type GetMenuContextsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMenuContextsAsyncError = GetMenuContextsAsyncErrors[keyof GetMenuContextsAsyncErrors];
+export type MenuContextsGetMenuContextsError = MenuContextsGetMenuContextsErrors[keyof MenuContextsGetMenuContextsErrors];
 
-export type GetMenuContextsAsyncResponses = {
+export type MenuContextsGetMenuContextsResponses = {
     /**
      * OK
      */
     200: MenuContextDtoListEnvelopeReadable;
 };
 
-export type GetMenuContextsAsyncResponse = GetMenuContextsAsyncResponses[keyof GetMenuContextsAsyncResponses];
+export type MenuContextsGetMenuContextsResponse = MenuContextsGetMenuContextsResponses[keyof MenuContextsGetMenuContextsResponses];
 
-export type CreateMenuContextAsyncData = {
+export type MenuContextsCreateMenuContextData = {
     body: MenuContextCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6191,7 +6501,7 @@ export type CreateMenuContextAsyncData = {
     url: '/api/v2/ContentService/MenuContexts';
 };
 
-export type CreateMenuContextAsyncErrors = {
+export type MenuContextsCreateMenuContextErrors = {
     /**
      * Unauthorized
      */
@@ -6202,18 +6512,18 @@ export type CreateMenuContextAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateMenuContextAsyncError = CreateMenuContextAsyncErrors[keyof CreateMenuContextAsyncErrors];
+export type MenuContextsCreateMenuContextError = MenuContextsCreateMenuContextErrors[keyof MenuContextsCreateMenuContextErrors];
 
-export type CreateMenuContextAsyncResponses = {
+export type MenuContextsCreateMenuContextResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateMenuContextAsyncResponse = CreateMenuContextAsyncResponses[keyof CreateMenuContextAsyncResponses];
+export type MenuContextsCreateMenuContextResponse = MenuContextsCreateMenuContextResponses[keyof MenuContextsCreateMenuContextResponses];
 
-export type CountMenuContextsAsyncData = {
+export type MenuContextsCountMenuContextsData = {
     body?: MenuContextDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6226,7 +6536,7 @@ export type CountMenuContextsAsyncData = {
     url: '/api/v2/ContentService/MenuContexts/Count';
 };
 
-export type CountMenuContextsAsyncErrors = {
+export type MenuContextsCountMenuContextsErrors = {
     /**
      * Unauthorized
      */
@@ -6237,18 +6547,18 @@ export type CountMenuContextsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountMenuContextsAsyncError = CountMenuContextsAsyncErrors[keyof CountMenuContextsAsyncErrors];
+export type MenuContextsCountMenuContextsError = MenuContextsCountMenuContextsErrors[keyof MenuContextsCountMenuContextsErrors];
 
-export type CountMenuContextsAsyncResponses = {
+export type MenuContextsCountMenuContextsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountMenuContextsAsyncResponse = CountMenuContextsAsyncResponses[keyof CountMenuContextsAsyncResponses];
+export type MenuContextsCountMenuContextsResponse = MenuContextsCountMenuContextsResponses[keyof MenuContextsCountMenuContextsResponses];
 
-export type DeleteMenuContextAsyncData = {
+export type MenuContextsDeleteMenuContextData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6263,7 +6573,7 @@ export type DeleteMenuContextAsyncData = {
     url: '/api/v2/ContentService/MenuContexts/{menuContextId}';
 };
 
-export type DeleteMenuContextAsyncErrors = {
+export type MenuContextsDeleteMenuContextErrors = {
     /**
      * Unauthorized
      */
@@ -6274,18 +6584,18 @@ export type DeleteMenuContextAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteMenuContextAsyncError = DeleteMenuContextAsyncErrors[keyof DeleteMenuContextAsyncErrors];
+export type MenuContextsDeleteMenuContextError = MenuContextsDeleteMenuContextErrors[keyof MenuContextsDeleteMenuContextErrors];
 
-export type DeleteMenuContextAsyncResponses = {
+export type MenuContextsDeleteMenuContextResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMenuContextAsyncResponse = DeleteMenuContextAsyncResponses[keyof DeleteMenuContextAsyncResponses];
+export type MenuContextsDeleteMenuContextResponse = MenuContextsDeleteMenuContextResponses[keyof MenuContextsDeleteMenuContextResponses];
 
-export type GetMenuContextByIdAsyncData = {
+export type MenuContextsGetMenuContextByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6300,7 +6610,7 @@ export type GetMenuContextByIdAsyncData = {
     url: '/api/v2/ContentService/MenuContexts/{menuContextId}';
 };
 
-export type GetMenuContextByIdAsyncErrors = {
+export type MenuContextsGetMenuContextByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6311,18 +6621,18 @@ export type GetMenuContextByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMenuContextByIdAsyncError = GetMenuContextByIdAsyncErrors[keyof GetMenuContextByIdAsyncErrors];
+export type MenuContextsGetMenuContextByIdError = MenuContextsGetMenuContextByIdErrors[keyof MenuContextsGetMenuContextByIdErrors];
 
-export type GetMenuContextByIdAsyncResponses = {
+export type MenuContextsGetMenuContextByIdResponses = {
     /**
      * OK
      */
     200: MenuContextDtoEnvelopeReadable;
 };
 
-export type GetMenuContextByIdAsyncResponse = GetMenuContextByIdAsyncResponses[keyof GetMenuContextByIdAsyncResponses];
+export type MenuContextsGetMenuContextByIdResponse = MenuContextsGetMenuContextByIdResponses[keyof MenuContextsGetMenuContextByIdResponses];
 
-export type UpdateMenuContextAsyncData = {
+export type MenuContextsUpdateMenuContextData = {
     body: MenuContextUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6337,7 +6647,7 @@ export type UpdateMenuContextAsyncData = {
     url: '/api/v2/ContentService/MenuContexts/{menuContextId}';
 };
 
-export type UpdateMenuContextAsyncErrors = {
+export type MenuContextsUpdateMenuContextErrors = {
     /**
      * Unauthorized
      */
@@ -6348,18 +6658,18 @@ export type UpdateMenuContextAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateMenuContextAsyncError = UpdateMenuContextAsyncErrors[keyof UpdateMenuContextAsyncErrors];
+export type MenuContextsUpdateMenuContextError = MenuContextsUpdateMenuContextErrors[keyof MenuContextsUpdateMenuContextErrors];
 
-export type UpdateMenuContextAsyncResponses = {
+export type MenuContextsUpdateMenuContextResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMenuContextAsyncResponse = UpdateMenuContextAsyncResponses[keyof UpdateMenuContextAsyncResponses];
+export type MenuContextsUpdateMenuContextResponse = MenuContextsUpdateMenuContextResponses[keyof MenuContextsUpdateMenuContextResponses];
 
-export type GetPortalsAsyncData = {
+export type PortalsGetPortalsData = {
     body?: WebPortalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6372,7 +6682,7 @@ export type GetPortalsAsyncData = {
     url: '/api/v2/ContentService/Portals';
 };
 
-export type GetPortalsAsyncErrors = {
+export type PortalsGetPortalsErrors = {
     /**
      * Unauthorized
      */
@@ -6383,18 +6693,18 @@ export type GetPortalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPortalsAsyncError = GetPortalsAsyncErrors[keyof GetPortalsAsyncErrors];
+export type PortalsGetPortalsError = PortalsGetPortalsErrors[keyof PortalsGetPortalsErrors];
 
-export type GetPortalsAsyncResponses = {
+export type PortalsGetPortalsResponses = {
     /**
      * OK
      */
     200: WebPortalDtoListEnvelopeReadable;
 };
 
-export type GetPortalsAsyncResponse = GetPortalsAsyncResponses[keyof GetPortalsAsyncResponses];
+export type PortalsGetPortalsResponse = PortalsGetPortalsResponses[keyof PortalsGetPortalsResponses];
 
-export type CreateWebPortalAsyncData = {
+export type PortalsCreateWebPortalData = {
     body?: WebPortalCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6407,7 +6717,7 @@ export type CreateWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals';
 };
 
-export type CreateWebPortalAsyncErrors = {
+export type PortalsCreateWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6418,18 +6728,18 @@ export type CreateWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebPortalAsyncError = CreateWebPortalAsyncErrors[keyof CreateWebPortalAsyncErrors];
+export type PortalsCreateWebPortalError = PortalsCreateWebPortalErrors[keyof PortalsCreateWebPortalErrors];
 
-export type CreateWebPortalAsyncResponses = {
+export type PortalsCreateWebPortalResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWebPortalAsyncResponse = CreateWebPortalAsyncResponses[keyof CreateWebPortalAsyncResponses];
+export type PortalsCreateWebPortalResponse = PortalsCreateWebPortalResponses[keyof PortalsCreateWebPortalResponses];
 
-export type CountPortalsAsyncData = {
+export type PortalsCountPortalsData = {
     body?: WebPortalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6442,7 +6752,7 @@ export type CountPortalsAsyncData = {
     url: '/api/v2/ContentService/Portals/Count';
 };
 
-export type CountPortalsAsyncErrors = {
+export type PortalsCountPortalsErrors = {
     /**
      * Unauthorized
      */
@@ -6453,18 +6763,18 @@ export type CountPortalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountPortalsAsyncError = CountPortalsAsyncErrors[keyof CountPortalsAsyncErrors];
+export type PortalsCountPortalsError = PortalsCountPortalsErrors[keyof PortalsCountPortalsErrors];
 
-export type CountPortalsAsyncResponses = {
+export type PortalsCountPortalsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountPortalsAsyncResponse = CountPortalsAsyncResponses[keyof CountPortalsAsyncResponses];
+export type PortalsCountPortalsResponse = PortalsCountPortalsResponses[keyof PortalsCountPortalsResponses];
 
-export type GetRootWebPortalAsyncData = {
+export type PortalsGetRootWebPortalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6476,7 +6786,7 @@ export type GetRootWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/Root';
 };
 
-export type GetRootWebPortalAsyncErrors = {
+export type PortalsGetRootWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6487,18 +6797,18 @@ export type GetRootWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRootWebPortalAsyncError = GetRootWebPortalAsyncErrors[keyof GetRootWebPortalAsyncErrors];
+export type PortalsGetRootWebPortalError = PortalsGetRootWebPortalErrors[keyof PortalsGetRootWebPortalErrors];
 
-export type GetRootWebPortalAsyncResponses = {
+export type PortalsGetRootWebPortalResponses = {
     /**
      * OK
      */
     200: WebPortalDtoEnvelopeReadable;
 };
 
-export type GetRootWebPortalAsyncResponse = GetRootWebPortalAsyncResponses[keyof GetRootWebPortalAsyncResponses];
+export type PortalsGetRootWebPortalResponse = PortalsGetRootWebPortalResponses[keyof PortalsGetRootWebPortalResponses];
 
-export type GetCurrentWebPortalAsyncData = {
+export type PortalsGetCurrentWebPortalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6510,7 +6820,7 @@ export type GetCurrentWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/Current';
 };
 
-export type GetCurrentWebPortalAsyncErrors = {
+export type PortalsGetCurrentWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6521,18 +6831,18 @@ export type GetCurrentWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentWebPortalAsyncError = GetCurrentWebPortalAsyncErrors[keyof GetCurrentWebPortalAsyncErrors];
+export type PortalsGetCurrentWebPortalError = PortalsGetCurrentWebPortalErrors[keyof PortalsGetCurrentWebPortalErrors];
 
-export type GetCurrentWebPortalAsyncResponses = {
+export type PortalsGetCurrentWebPortalResponses = {
     /**
      * OK
      */
     200: WebPortalDtoEnvelopeReadable;
 };
 
-export type GetCurrentWebPortalAsyncResponse = GetCurrentWebPortalAsyncResponses[keyof GetCurrentWebPortalAsyncResponses];
+export type PortalsGetCurrentWebPortalResponse = PortalsGetCurrentWebPortalResponses[keyof PortalsGetCurrentWebPortalResponses];
 
-export type InitializeCurrentWebPortalAsyncData = {
+export type PortalsInitializeCurrentWebPortalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6544,7 +6854,7 @@ export type InitializeCurrentWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/Initialize';
 };
 
-export type InitializeCurrentWebPortalAsyncErrors = {
+export type PortalsInitializeCurrentWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6555,18 +6865,18 @@ export type InitializeCurrentWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type InitializeCurrentWebPortalAsyncError = InitializeCurrentWebPortalAsyncErrors[keyof InitializeCurrentWebPortalAsyncErrors];
+export type PortalsInitializeCurrentWebPortalError = PortalsInitializeCurrentWebPortalErrors[keyof PortalsInitializeCurrentWebPortalErrors];
 
-export type InitializeCurrentWebPortalAsyncResponses = {
+export type PortalsInitializeCurrentWebPortalResponses = {
     /**
      * OK
      */
     200: ExecutionContextEnvelopeReadable;
 };
 
-export type InitializeCurrentWebPortalAsyncResponse = InitializeCurrentWebPortalAsyncResponses[keyof InitializeCurrentWebPortalAsyncResponses];
+export type PortalsInitializeCurrentWebPortalResponse = PortalsInitializeCurrentWebPortalResponses[keyof PortalsInitializeCurrentWebPortalResponses];
 
-export type GetCurrentWebPortalOptionsAsyncData = {
+export type PortalsGetCurrentWebPortalOptionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6578,7 +6888,7 @@ export type GetCurrentWebPortalOptionsAsyncData = {
     url: '/api/v2/ContentService/Portals/Current/Options';
 };
 
-export type GetCurrentWebPortalOptionsAsyncErrors = {
+export type PortalsGetCurrentWebPortalOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -6589,18 +6899,18 @@ export type GetCurrentWebPortalOptionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentWebPortalOptionsAsyncError = GetCurrentWebPortalOptionsAsyncErrors[keyof GetCurrentWebPortalOptionsAsyncErrors];
+export type PortalsGetCurrentWebPortalOptionsError = PortalsGetCurrentWebPortalOptionsErrors[keyof PortalsGetCurrentWebPortalOptionsErrors];
 
-export type GetCurrentWebPortalOptionsAsyncResponses = {
+export type PortalsGetCurrentWebPortalOptionsResponses = {
     /**
      * OK
      */
-    200: PortalOptionsEnvelopeReadable;
+    200: PublicPortalOptionsEnvelopeReadable;
 };
 
-export type GetCurrentWebPortalOptionsAsyncResponse = GetCurrentWebPortalOptionsAsyncResponses[keyof GetCurrentWebPortalOptionsAsyncResponses];
+export type PortalsGetCurrentWebPortalOptionsResponse = PortalsGetCurrentWebPortalOptionsResponses[keyof PortalsGetCurrentWebPortalOptionsResponses];
 
-export type SearchWebPortalAsyncData = {
+export type PortalsSearchWebPortalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6613,7 +6923,7 @@ export type SearchWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/Search';
 };
 
-export type SearchWebPortalAsyncErrors = {
+export type PortalsSearchWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6624,18 +6934,18 @@ export type SearchWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SearchWebPortalAsyncError = SearchWebPortalAsyncErrors[keyof SearchWebPortalAsyncErrors];
+export type PortalsSearchWebPortalError = PortalsSearchWebPortalErrors[keyof PortalsSearchWebPortalErrors];
 
-export type SearchWebPortalAsyncResponses = {
+export type PortalsSearchWebPortalResponses = {
     /**
      * OK
      */
     200: WebPortalDtoEnvelopeReadable;
 };
 
-export type SearchWebPortalAsyncResponse = SearchWebPortalAsyncResponses[keyof SearchWebPortalAsyncResponses];
+export type PortalsSearchWebPortalResponse = PortalsSearchWebPortalResponses[keyof PortalsSearchWebPortalResponses];
 
-export type DeleteWebPortalAsyncData = {
+export type PortalsDeleteWebPortalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6650,7 +6960,7 @@ export type DeleteWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}';
 };
 
-export type DeleteWebPortalAsyncErrors = {
+export type PortalsDeleteWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6661,18 +6971,18 @@ export type DeleteWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebPortalAsyncError = DeleteWebPortalAsyncErrors[keyof DeleteWebPortalAsyncErrors];
+export type PortalsDeleteWebPortalError = PortalsDeleteWebPortalErrors[keyof PortalsDeleteWebPortalErrors];
 
-export type DeleteWebPortalAsyncResponses = {
+export type PortalsDeleteWebPortalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWebPortalAsyncResponse = DeleteWebPortalAsyncResponses[keyof DeleteWebPortalAsyncResponses];
+export type PortalsDeleteWebPortalResponse = PortalsDeleteWebPortalResponses[keyof PortalsDeleteWebPortalResponses];
 
-export type GetWebPortalByIdAsyncData = {
+export type PortalsGetWebPortalByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6681,12 +6991,13 @@ export type GetWebPortalByIdAsyncData = {
         portalId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/ContentService/Portals/{portalId}';
 };
 
-export type GetWebPortalByIdAsyncErrors = {
+export type PortalsGetWebPortalByIdErrors = {
     /**
      * Unauthorized
      */
@@ -6697,18 +7008,18 @@ export type GetWebPortalByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPortalByIdAsyncError = GetWebPortalByIdAsyncErrors[keyof GetWebPortalByIdAsyncErrors];
+export type PortalsGetWebPortalByIdError = PortalsGetWebPortalByIdErrors[keyof PortalsGetWebPortalByIdErrors];
 
-export type GetWebPortalByIdAsyncResponses = {
+export type PortalsGetWebPortalByIdResponses = {
     /**
      * OK
      */
     200: WebPortalDtoEnvelopeReadable;
 };
 
-export type GetWebPortalByIdAsyncResponse = GetWebPortalByIdAsyncResponses[keyof GetWebPortalByIdAsyncResponses];
+export type PortalsGetWebPortalByIdResponse = PortalsGetWebPortalByIdResponses[keyof PortalsGetWebPortalByIdResponses];
 
-export type PatchWebPortalAsyncData = {
+export type PortalsPatchWebPortalData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6723,7 +7034,7 @@ export type PatchWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}';
 };
 
-export type PatchWebPortalAsyncErrors = {
+export type PortalsPatchWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6734,18 +7045,18 @@ export type PatchWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWebPortalAsyncError = PatchWebPortalAsyncErrors[keyof PatchWebPortalAsyncErrors];
+export type PortalsPatchWebPortalError = PortalsPatchWebPortalErrors[keyof PortalsPatchWebPortalErrors];
 
-export type PatchWebPortalAsyncResponses = {
+export type PortalsPatchWebPortalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWebPortalAsyncResponse = PatchWebPortalAsyncResponses[keyof PatchWebPortalAsyncResponses];
+export type PortalsPatchWebPortalResponse = PortalsPatchWebPortalResponses[keyof PortalsPatchWebPortalResponses];
 
-export type UpdateWebPortalAsyncData = {
+export type PortalsUpdateWebPortalData = {
     body?: WebPortalUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6760,7 +7071,7 @@ export type UpdateWebPortalAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}';
 };
 
-export type UpdateWebPortalAsyncErrors = {
+export type PortalsUpdateWebPortalErrors = {
     /**
      * Unauthorized
      */
@@ -6771,18 +7082,18 @@ export type UpdateWebPortalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebPortalAsyncError = UpdateWebPortalAsyncErrors[keyof UpdateWebPortalAsyncErrors];
+export type PortalsUpdateWebPortalError = PortalsUpdateWebPortalErrors[keyof PortalsUpdateWebPortalErrors];
 
-export type UpdateWebPortalAsyncResponses = {
+export type PortalsUpdateWebPortalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWebPortalAsyncResponse = UpdateWebPortalAsyncResponses[keyof UpdateWebPortalAsyncResponses];
+export type PortalsUpdateWebPortalResponse = PortalsUpdateWebPortalResponses[keyof PortalsUpdateWebPortalResponses];
 
-export type GetWebPortalSettingsAsyncData = {
+export type PortalsGetWebPortalSettingsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6796,7 +7107,7 @@ export type GetWebPortalSettingsAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}/Settings';
 };
 
-export type GetWebPortalSettingsAsyncErrors = {
+export type PortalsGetWebPortalSettingsErrors = {
     /**
      * Unauthorized
      */
@@ -6805,20 +7116,24 @@ export type GetWebPortalSettingsAsyncErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetWebPortalSettingsAsyncError = GetWebPortalSettingsAsyncErrors[keyof GetWebPortalSettingsAsyncErrors];
+export type PortalsGetWebPortalSettingsError = PortalsGetWebPortalSettingsErrors[keyof PortalsGetWebPortalSettingsErrors];
 
-export type GetWebPortalSettingsAsyncResponses = {
+export type PortalsGetWebPortalSettingsResponses = {
     /**
      * OK
      */
-    200: PortalSettingsEnvelopeReadable;
+    200: PublicPortalSettingsEnvelopeReadable;
 };
 
-export type GetWebPortalSettingsAsyncResponse = GetWebPortalSettingsAsyncResponses[keyof GetWebPortalSettingsAsyncResponses];
+export type PortalsGetWebPortalSettingsResponse = PortalsGetWebPortalSettingsResponses[keyof PortalsGetWebPortalSettingsResponses];
 
-export type UpdateWebPortalSettingsAsyncData = {
+export type PortalsUpdateWebPortalSettingsData = {
     body?: PortalSettings;
     headers?: {
         'x-api-version'?: string;
@@ -6833,7 +7148,7 @@ export type UpdateWebPortalSettingsAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}/Settings';
 };
 
-export type UpdateWebPortalSettingsAsyncErrors = {
+export type PortalsUpdateWebPortalSettingsErrors = {
     /**
      * Unauthorized
      */
@@ -6844,18 +7159,59 @@ export type UpdateWebPortalSettingsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebPortalSettingsAsyncError = UpdateWebPortalSettingsAsyncErrors[keyof UpdateWebPortalSettingsAsyncErrors];
+export type PortalsUpdateWebPortalSettingsError = PortalsUpdateWebPortalSettingsErrors[keyof PortalsUpdateWebPortalSettingsErrors];
 
-export type UpdateWebPortalSettingsAsyncResponses = {
+export type PortalsUpdateWebPortalSettingsResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWebPortalSettingsAsyncResponse = UpdateWebPortalSettingsAsyncResponses[keyof UpdateWebPortalSettingsAsyncResponses];
+export type PortalsUpdateWebPortalSettingsResponse = PortalsUpdateWebPortalSettingsResponses[keyof PortalsUpdateWebPortalSettingsResponses];
 
-export type GetWebPortalOptionsAsyncData = {
+export type PortalsGetWebPortalFullSettingsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/Portals/{portalId}/Settings/Full';
+};
+
+export type PortalsGetWebPortalFullSettingsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PortalsGetWebPortalFullSettingsError = PortalsGetWebPortalFullSettingsErrors[keyof PortalsGetWebPortalFullSettingsErrors];
+
+export type PortalsGetWebPortalFullSettingsResponses = {
+    /**
+     * OK
+     */
+    200: PortalSettingsEnvelopeReadable;
+};
+
+export type PortalsGetWebPortalFullSettingsResponse = PortalsGetWebPortalFullSettingsResponses[keyof PortalsGetWebPortalFullSettingsResponses];
+
+export type PortalsGetWebPortalOptionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6869,7 +7225,7 @@ export type GetWebPortalOptionsAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}/Options';
 };
 
-export type GetWebPortalOptionsAsyncErrors = {
+export type PortalsGetWebPortalOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -6878,20 +7234,24 @@ export type GetWebPortalOptionsAsyncErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
 };
 
-export type GetWebPortalOptionsAsyncError = GetWebPortalOptionsAsyncErrors[keyof GetWebPortalOptionsAsyncErrors];
+export type PortalsGetWebPortalOptionsError = PortalsGetWebPortalOptionsErrors[keyof PortalsGetWebPortalOptionsErrors];
 
-export type GetWebPortalOptionsAsyncResponses = {
+export type PortalsGetWebPortalOptionsResponses = {
     /**
      * OK
      */
-    200: PortalOptionsEnvelopeReadable;
+    200: PublicPortalOptionsEnvelopeReadable;
 };
 
-export type GetWebPortalOptionsAsyncResponse = GetWebPortalOptionsAsyncResponses[keyof GetWebPortalOptionsAsyncResponses];
+export type PortalsGetWebPortalOptionsResponse = PortalsGetWebPortalOptionsResponses[keyof PortalsGetWebPortalOptionsResponses];
 
-export type GetWebPortalDomainBindingsAsyncData = {
+export type PortalsGetWebPortalDomainBindingsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6906,7 +7266,7 @@ export type GetWebPortalDomainBindingsAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}/DomainBindings';
 };
 
-export type GetWebPortalDomainBindingsAsyncErrors = {
+export type PortalsGetWebPortalDomainBindingsErrors = {
     /**
      * Unauthorized
      */
@@ -6917,18 +7277,18 @@ export type GetWebPortalDomainBindingsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPortalDomainBindingsAsyncError = GetWebPortalDomainBindingsAsyncErrors[keyof GetWebPortalDomainBindingsAsyncErrors];
+export type PortalsGetWebPortalDomainBindingsError = PortalsGetWebPortalDomainBindingsErrors[keyof PortalsGetWebPortalDomainBindingsErrors];
 
-export type GetWebPortalDomainBindingsAsyncResponses = {
+export type PortalsGetWebPortalDomainBindingsResponses = {
     /**
      * OK
      */
     200: BusinessDomainDtoListEnvelopeReadable;
 };
 
-export type GetWebPortalDomainBindingsAsyncResponse = GetWebPortalDomainBindingsAsyncResponses[keyof GetWebPortalDomainBindingsAsyncResponses];
+export type PortalsGetWebPortalDomainBindingsResponse = PortalsGetWebPortalDomainBindingsResponses[keyof PortalsGetWebPortalDomainBindingsResponses];
 
-export type UnbindWebPortalDomainAsyncData = {
+export type PortalsUnbindWebPortalDomainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6944,7 +7304,7 @@ export type UnbindWebPortalDomainAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}/DomainBindings/{businessDomainId}';
 };
 
-export type UnbindWebPortalDomainAsyncErrors = {
+export type PortalsUnbindWebPortalDomainErrors = {
     /**
      * Unauthorized
      */
@@ -6955,18 +7315,18 @@ export type UnbindWebPortalDomainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UnbindWebPortalDomainAsyncError = UnbindWebPortalDomainAsyncErrors[keyof UnbindWebPortalDomainAsyncErrors];
+export type PortalsUnbindWebPortalDomainError = PortalsUnbindWebPortalDomainErrors[keyof PortalsUnbindWebPortalDomainErrors];
 
-export type UnbindWebPortalDomainAsyncResponses = {
+export type PortalsUnbindWebPortalDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UnbindWebPortalDomainAsyncResponse = UnbindWebPortalDomainAsyncResponses[keyof UnbindWebPortalDomainAsyncResponses];
+export type PortalsUnbindWebPortalDomainResponse = PortalsUnbindWebPortalDomainResponses[keyof PortalsUnbindWebPortalDomainResponses];
 
-export type BindWebPortalDomainAsyncData = {
+export type PortalsBindWebPortalDomainData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6982,7 +7342,7 @@ export type BindWebPortalDomainAsyncData = {
     url: '/api/v2/ContentService/Portals/{portalId}/DomainBindings/{businessDomainId}';
 };
 
-export type BindWebPortalDomainAsyncErrors = {
+export type PortalsBindWebPortalDomainErrors = {
     /**
      * Unauthorized
      */
@@ -6993,18 +7353,18 @@ export type BindWebPortalDomainAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type BindWebPortalDomainAsyncError = BindWebPortalDomainAsyncErrors[keyof BindWebPortalDomainAsyncErrors];
+export type PortalsBindWebPortalDomainError = PortalsBindWebPortalDomainErrors[keyof PortalsBindWebPortalDomainErrors];
 
-export type BindWebPortalDomainAsyncResponses = {
+export type PortalsBindWebPortalDomainResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type BindWebPortalDomainAsyncResponse = BindWebPortalDomainAsyncResponses[keyof BindWebPortalDomainAsyncResponses];
+export type PortalsBindWebPortalDomainResponse = PortalsBindWebPortalDomainResponses[keyof PortalsBindWebPortalDomainResponses];
 
-export type UpdateThemesAsyncData = {
+export type ThemesUpdateBaseWebContentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7013,10 +7373,14 @@ export type UpdateThemesAsyncData = {
     query?: {
         'api-version'?: string;
     };
-    url: '/api/v2/ContentService/Themes/Update';
+    url: '/api/v2/ContentService/Themes/BaseWebContent';
 };
 
-export type UpdateThemesAsyncErrors = {
+export type ThemesUpdateBaseWebContentErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
     /**
      * Unauthorized
      */
@@ -7027,9 +7391,18 @@ export type UpdateThemesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateThemesAsyncError = UpdateThemesAsyncErrors[keyof UpdateThemesAsyncErrors];
+export type ThemesUpdateBaseWebContentError = ThemesUpdateBaseWebContentErrors[keyof ThemesUpdateBaseWebContentErrors];
 
-export type GetWebComponentsAsyncData = {
+export type ThemesUpdateBaseWebContentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ThemesUpdateBaseWebContentResponse = ThemesUpdateBaseWebContentResponses[keyof ThemesUpdateBaseWebContentResponses];
+
+export type WebComponentsGetWebComponentsData = {
     body?: WebComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7042,7 +7415,7 @@ export type GetWebComponentsAsyncData = {
     url: '/api/v2/ContentService/WebComponents';
 };
 
-export type GetWebComponentsAsyncErrors = {
+export type WebComponentsGetWebComponentsErrors = {
     /**
      * Unauthorized
      */
@@ -7053,18 +7426,18 @@ export type GetWebComponentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebComponentsAsyncError = GetWebComponentsAsyncErrors[keyof GetWebComponentsAsyncErrors];
+export type WebComponentsGetWebComponentsError = WebComponentsGetWebComponentsErrors[keyof WebComponentsGetWebComponentsErrors];
 
-export type GetWebComponentsAsyncResponses = {
+export type WebComponentsGetWebComponentsResponses = {
     /**
      * OK
      */
     200: WebComponentDtoListEnvelopeReadable;
 };
 
-export type GetWebComponentsAsyncResponse = GetWebComponentsAsyncResponses[keyof GetWebComponentsAsyncResponses];
+export type WebComponentsGetWebComponentsResponse = WebComponentsGetWebComponentsResponses[keyof WebComponentsGetWebComponentsResponses];
 
-export type CreateWebComponentAsyncData = {
+export type WebComponentsCreateWebComponentData = {
     body: WebComponentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7077,7 +7450,7 @@ export type CreateWebComponentAsyncData = {
     url: '/api/v2/ContentService/WebComponents';
 };
 
-export type CreateWebComponentAsyncErrors = {
+export type WebComponentsCreateWebComponentErrors = {
     /**
      * Unauthorized
      */
@@ -7088,18 +7461,18 @@ export type CreateWebComponentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebComponentAsyncError = CreateWebComponentAsyncErrors[keyof CreateWebComponentAsyncErrors];
+export type WebComponentsCreateWebComponentError = WebComponentsCreateWebComponentErrors[keyof WebComponentsCreateWebComponentErrors];
 
-export type CreateWebComponentAsyncResponses = {
+export type WebComponentsCreateWebComponentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWebComponentAsyncResponse = CreateWebComponentAsyncResponses[keyof CreateWebComponentAsyncResponses];
+export type WebComponentsCreateWebComponentResponse = WebComponentsCreateWebComponentResponses[keyof WebComponentsCreateWebComponentResponses];
 
-export type CountWebComponentsAsyncData = {
+export type WebComponentsCountWebComponentsData = {
     body?: WebComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7112,7 +7485,7 @@ export type CountWebComponentsAsyncData = {
     url: '/api/v2/ContentService/WebComponents/Count';
 };
 
-export type CountWebComponentsAsyncErrors = {
+export type WebComponentsCountWebComponentsErrors = {
     /**
      * Unauthorized
      */
@@ -7123,18 +7496,18 @@ export type CountWebComponentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountWebComponentsAsyncError = CountWebComponentsAsyncErrors[keyof CountWebComponentsAsyncErrors];
+export type WebComponentsCountWebComponentsError = WebComponentsCountWebComponentsErrors[keyof WebComponentsCountWebComponentsErrors];
 
-export type CountWebComponentsAsyncResponses = {
+export type WebComponentsCountWebComponentsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountWebComponentsAsyncResponse = CountWebComponentsAsyncResponses[keyof CountWebComponentsAsyncResponses];
+export type WebComponentsCountWebComponentsResponse = WebComponentsCountWebComponentsResponses[keyof WebComponentsCountWebComponentsResponses];
 
-export type DeleteWebComponentAsyncData = {
+export type WebComponentsDeleteWebComponentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7149,7 +7522,7 @@ export type DeleteWebComponentAsyncData = {
     url: '/api/v2/ContentService/WebComponents/{webComponentId}';
 };
 
-export type DeleteWebComponentAsyncErrors = {
+export type WebComponentsDeleteWebComponentErrors = {
     /**
      * Unauthorized
      */
@@ -7160,18 +7533,18 @@ export type DeleteWebComponentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebComponentAsyncError = DeleteWebComponentAsyncErrors[keyof DeleteWebComponentAsyncErrors];
+export type WebComponentsDeleteWebComponentError = WebComponentsDeleteWebComponentErrors[keyof WebComponentsDeleteWebComponentErrors];
 
-export type DeleteWebComponentAsyncResponses = {
+export type WebComponentsDeleteWebComponentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWebComponentAsyncResponse = DeleteWebComponentAsyncResponses[keyof DeleteWebComponentAsyncResponses];
+export type WebComponentsDeleteWebComponentResponse = WebComponentsDeleteWebComponentResponses[keyof WebComponentsDeleteWebComponentResponses];
 
-export type GetWebComponentByIdAsyncData = {
+export type WebComponentsGetWebComponentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7186,7 +7559,7 @@ export type GetWebComponentByIdAsyncData = {
     url: '/api/v2/ContentService/WebComponents/{webComponentId}';
 };
 
-export type GetWebComponentByIdAsyncErrors = {
+export type WebComponentsGetWebComponentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7197,18 +7570,18 @@ export type GetWebComponentByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebComponentByIdAsyncError = GetWebComponentByIdAsyncErrors[keyof GetWebComponentByIdAsyncErrors];
+export type WebComponentsGetWebComponentByIdError = WebComponentsGetWebComponentByIdErrors[keyof WebComponentsGetWebComponentByIdErrors];
 
-export type GetWebComponentByIdAsyncResponses = {
+export type WebComponentsGetWebComponentByIdResponses = {
     /**
      * OK
      */
     200: WebComponentDtoEnvelopeReadable;
 };
 
-export type GetWebComponentByIdAsyncResponse = GetWebComponentByIdAsyncResponses[keyof GetWebComponentByIdAsyncResponses];
+export type WebComponentsGetWebComponentByIdResponse = WebComponentsGetWebComponentByIdResponses[keyof WebComponentsGetWebComponentByIdResponses];
 
-export type UpdateWebComponentAsyncData = {
+export type WebComponentsUpdateWebComponentData = {
     body: WebComponentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7223,7 +7596,7 @@ export type UpdateWebComponentAsyncData = {
     url: '/api/v2/ContentService/WebComponents/{webComponentId}';
 };
 
-export type UpdateWebComponentAsyncErrors = {
+export type WebComponentsUpdateWebComponentErrors = {
     /**
      * Unauthorized
      */
@@ -7234,18 +7607,18 @@ export type UpdateWebComponentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebComponentAsyncError = UpdateWebComponentAsyncErrors[keyof UpdateWebComponentAsyncErrors];
+export type WebComponentsUpdateWebComponentError = WebComponentsUpdateWebComponentErrors[keyof WebComponentsUpdateWebComponentErrors];
 
-export type UpdateWebComponentAsyncResponses = {
+export type WebComponentsUpdateWebComponentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWebComponentAsyncResponse = UpdateWebComponentAsyncResponses[keyof UpdateWebComponentAsyncResponses];
+export type WebComponentsUpdateWebComponentResponse = WebComponentsUpdateWebComponentResponses[keyof WebComponentsUpdateWebComponentResponses];
 
-export type CountWebContentsAsyncData = {
+export type WebContentsCountWebContentsData = {
     body?: WebContentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7258,7 +7631,7 @@ export type CountWebContentsAsyncData = {
     url: '/api/v2/ContentService/WebContents/Count';
 };
 
-export type CountWebContentsAsyncErrors = {
+export type WebContentsCountWebContentsErrors = {
     /**
      * Unauthorized
      */
@@ -7269,18 +7642,18 @@ export type CountWebContentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountWebContentsAsyncError = CountWebContentsAsyncErrors[keyof CountWebContentsAsyncErrors];
+export type WebContentsCountWebContentsError = WebContentsCountWebContentsErrors[keyof WebContentsCountWebContentsErrors];
 
-export type CountWebContentsAsyncResponses = {
+export type WebContentsCountWebContentsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountWebContentsAsyncResponse = CountWebContentsAsyncResponses[keyof CountWebContentsAsyncResponses];
+export type WebContentsCountWebContentsResponse = WebContentsCountWebContentsResponses[keyof WebContentsCountWebContentsResponses];
 
-export type GetWebContentsAsyncData = {
+export type WebContentsGetWebContentsData = {
     body?: WebContentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7293,7 +7666,7 @@ export type GetWebContentsAsyncData = {
     url: '/api/v2/ContentService/WebContents';
 };
 
-export type GetWebContentsAsyncErrors = {
+export type WebContentsGetWebContentsErrors = {
     /**
      * Unauthorized
      */
@@ -7304,18 +7677,18 @@ export type GetWebContentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebContentsAsyncError = GetWebContentsAsyncErrors[keyof GetWebContentsAsyncErrors];
+export type WebContentsGetWebContentsError = WebContentsGetWebContentsErrors[keyof WebContentsGetWebContentsErrors];
 
-export type GetWebContentsAsyncResponses = {
+export type WebContentsGetWebContentsResponses = {
     /**
      * OK
      */
     200: WebContentDtoListEnvelopeReadable;
 };
 
-export type GetWebContentsAsyncResponse = GetWebContentsAsyncResponses[keyof GetWebContentsAsyncResponses];
+export type WebContentsGetWebContentsResponse = WebContentsGetWebContentsResponses[keyof WebContentsGetWebContentsResponses];
 
-export type CreateWebContentAsyncData = {
+export type WebContentsCreateWebContentData = {
     body?: WebContentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7328,7 +7701,7 @@ export type CreateWebContentAsyncData = {
     url: '/api/v2/ContentService/WebContents';
 };
 
-export type CreateWebContentAsyncErrors = {
+export type WebContentsCreateWebContentErrors = {
     /**
      * Unauthorized
      */
@@ -7339,18 +7712,18 @@ export type CreateWebContentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebContentAsyncError = CreateWebContentAsyncErrors[keyof CreateWebContentAsyncErrors];
+export type WebContentsCreateWebContentError = WebContentsCreateWebContentErrors[keyof WebContentsCreateWebContentErrors];
 
-export type CreateWebContentAsyncResponses = {
+export type WebContentsCreateWebContentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWebContentAsyncResponse = CreateWebContentAsyncResponses[keyof CreateWebContentAsyncResponses];
+export type WebContentsCreateWebContentResponse = WebContentsCreateWebContentResponses[keyof WebContentsCreateWebContentResponses];
 
-export type DeleteWebContentAsyncData = {
+export type WebContentsDeleteWebContentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7365,7 +7738,7 @@ export type DeleteWebContentAsyncData = {
     url: '/api/v2/ContentService/WebContents/{webContentId}';
 };
 
-export type DeleteWebContentAsyncErrors = {
+export type WebContentsDeleteWebContentErrors = {
     /**
      * Unauthorized
      */
@@ -7376,18 +7749,18 @@ export type DeleteWebContentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebContentAsyncError = DeleteWebContentAsyncErrors[keyof DeleteWebContentAsyncErrors];
+export type WebContentsDeleteWebContentError = WebContentsDeleteWebContentErrors[keyof WebContentsDeleteWebContentErrors];
 
-export type DeleteWebContentAsyncResponses = {
+export type WebContentsDeleteWebContentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWebContentAsyncResponse = DeleteWebContentAsyncResponses[keyof DeleteWebContentAsyncResponses];
+export type WebContentsDeleteWebContentResponse = WebContentsDeleteWebContentResponses[keyof WebContentsDeleteWebContentResponses];
 
-export type GetWebContentByIdAsyncData = {
+export type WebContentsGetWebContentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7402,7 +7775,7 @@ export type GetWebContentByIdAsyncData = {
     url: '/api/v2/ContentService/WebContents/{webContentId}';
 };
 
-export type GetWebContentByIdAsyncErrors = {
+export type WebContentsGetWebContentByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7413,18 +7786,18 @@ export type GetWebContentByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebContentByIdAsyncError = GetWebContentByIdAsyncErrors[keyof GetWebContentByIdAsyncErrors];
+export type WebContentsGetWebContentByIdError = WebContentsGetWebContentByIdErrors[keyof WebContentsGetWebContentByIdErrors];
 
-export type GetWebContentByIdAsyncResponses = {
+export type WebContentsGetWebContentByIdResponses = {
     /**
      * OK
      */
     200: WebContentDtoEnvelopeReadable;
 };
 
-export type GetWebContentByIdAsyncResponse = GetWebContentByIdAsyncResponses[keyof GetWebContentByIdAsyncResponses];
+export type WebContentsGetWebContentByIdResponse = WebContentsGetWebContentByIdResponses[keyof WebContentsGetWebContentByIdResponses];
 
-export type PatchWebContentAsyncData = {
+export type WebContentsPatchWebContentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7439,7 +7812,7 @@ export type PatchWebContentAsyncData = {
     url: '/api/v2/ContentService/WebContents/{webContentId}';
 };
 
-export type PatchWebContentAsyncErrors = {
+export type WebContentsPatchWebContentErrors = {
     /**
      * Unauthorized
      */
@@ -7450,18 +7823,18 @@ export type PatchWebContentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWebContentAsyncError = PatchWebContentAsyncErrors[keyof PatchWebContentAsyncErrors];
+export type WebContentsPatchWebContentError = WebContentsPatchWebContentErrors[keyof WebContentsPatchWebContentErrors];
 
-export type PatchWebContentAsyncResponses = {
+export type WebContentsPatchWebContentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWebContentAsyncResponse = PatchWebContentAsyncResponses[keyof PatchWebContentAsyncResponses];
+export type WebContentsPatchWebContentResponse = WebContentsPatchWebContentResponses[keyof WebContentsPatchWebContentResponses];
 
-export type UpdateWebContentAsyncData = {
+export type WebContentsUpdateWebContentData = {
     body?: WebContentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7476,7 +7849,7 @@ export type UpdateWebContentAsyncData = {
     url: '/api/v2/ContentService/WebContents/{webContentId}';
 };
 
-export type UpdateWebContentAsyncErrors = {
+export type WebContentsUpdateWebContentErrors = {
     /**
      * Unauthorized
      */
@@ -7487,18 +7860,18 @@ export type UpdateWebContentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebContentAsyncError = UpdateWebContentAsyncErrors[keyof UpdateWebContentAsyncErrors];
+export type WebContentsUpdateWebContentError = WebContentsUpdateWebContentErrors[keyof WebContentsUpdateWebContentErrors];
 
-export type UpdateWebContentAsyncResponses = {
+export type WebContentsUpdateWebContentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWebContentAsyncResponse = UpdateWebContentAsyncResponses[keyof UpdateWebContentAsyncResponses];
+export type WebContentsUpdateWebContentResponse = WebContentsUpdateWebContentResponses[keyof WebContentsUpdateWebContentResponses];
 
-export type GetWebPageCategoriesAsyncData = {
+export type WebPageCategoriesGetWebPageCategoriesData = {
     body?: WebPageCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7511,7 +7884,7 @@ export type GetWebPageCategoriesAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories';
 };
 
-export type GetWebPageCategoriesAsyncErrors = {
+export type WebPageCategoriesGetWebPageCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -7522,18 +7895,18 @@ export type GetWebPageCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPageCategoriesAsyncError = GetWebPageCategoriesAsyncErrors[keyof GetWebPageCategoriesAsyncErrors];
+export type WebPageCategoriesGetWebPageCategoriesError = WebPageCategoriesGetWebPageCategoriesErrors[keyof WebPageCategoriesGetWebPageCategoriesErrors];
 
-export type GetWebPageCategoriesAsyncResponses = {
+export type WebPageCategoriesGetWebPageCategoriesResponses = {
     /**
      * OK
      */
     200: WebPageCategoryDtoListEnvelopeReadable;
 };
 
-export type GetWebPageCategoriesAsyncResponse = GetWebPageCategoriesAsyncResponses[keyof GetWebPageCategoriesAsyncResponses];
+export type WebPageCategoriesGetWebPageCategoriesResponse = WebPageCategoriesGetWebPageCategoriesResponses[keyof WebPageCategoriesGetWebPageCategoriesResponses];
 
-export type CreateWebPageCategoryAsyncData = {
+export type WebPageCategoriesCreateWebPageCategoryData = {
     body?: WebPageCategoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7546,7 +7919,7 @@ export type CreateWebPageCategoryAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories';
 };
 
-export type CreateWebPageCategoryAsyncErrors = {
+export type WebPageCategoriesCreateWebPageCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -7557,18 +7930,18 @@ export type CreateWebPageCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebPageCategoryAsyncError = CreateWebPageCategoryAsyncErrors[keyof CreateWebPageCategoryAsyncErrors];
+export type WebPageCategoriesCreateWebPageCategoryError = WebPageCategoriesCreateWebPageCategoryErrors[keyof WebPageCategoriesCreateWebPageCategoryErrors];
 
-export type CreateWebPageCategoryAsyncResponses = {
+export type WebPageCategoriesCreateWebPageCategoryResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWebPageCategoryAsyncResponse = CreateWebPageCategoryAsyncResponses[keyof CreateWebPageCategoryAsyncResponses];
+export type WebPageCategoriesCreateWebPageCategoryResponse = WebPageCategoriesCreateWebPageCategoryResponses[keyof WebPageCategoriesCreateWebPageCategoryResponses];
 
-export type CountWebPageCategoriesAsyncData = {
+export type WebPageCategoriesCountWebPageCategoriesData = {
     body?: WebPageCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7581,7 +7954,7 @@ export type CountWebPageCategoriesAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories/Count';
 };
 
-export type CountWebPageCategoriesAsyncErrors = {
+export type WebPageCategoriesCountWebPageCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -7592,18 +7965,18 @@ export type CountWebPageCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountWebPageCategoriesAsyncError = CountWebPageCategoriesAsyncErrors[keyof CountWebPageCategoriesAsyncErrors];
+export type WebPageCategoriesCountWebPageCategoriesError = WebPageCategoriesCountWebPageCategoriesErrors[keyof WebPageCategoriesCountWebPageCategoriesErrors];
 
-export type CountWebPageCategoriesAsyncResponses = {
+export type WebPageCategoriesCountWebPageCategoriesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountWebPageCategoriesAsyncResponse = CountWebPageCategoriesAsyncResponses[keyof CountWebPageCategoriesAsyncResponses];
+export type WebPageCategoriesCountWebPageCategoriesResponse = WebPageCategoriesCountWebPageCategoriesResponses[keyof WebPageCategoriesCountWebPageCategoriesResponses];
 
-export type DeleteWebPageCategoryAsyncData = {
+export type WebPageCategoriesDeleteWebPageCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7618,7 +7991,7 @@ export type DeleteWebPageCategoryAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories/{webPageCategoryId}';
 };
 
-export type DeleteWebPageCategoryAsyncErrors = {
+export type WebPageCategoriesDeleteWebPageCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -7629,18 +8002,18 @@ export type DeleteWebPageCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebPageCategoryAsyncError = DeleteWebPageCategoryAsyncErrors[keyof DeleteWebPageCategoryAsyncErrors];
+export type WebPageCategoriesDeleteWebPageCategoryError = WebPageCategoriesDeleteWebPageCategoryErrors[keyof WebPageCategoriesDeleteWebPageCategoryErrors];
 
-export type DeleteWebPageCategoryAsyncResponses = {
+export type WebPageCategoriesDeleteWebPageCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWebPageCategoryAsyncResponse = DeleteWebPageCategoryAsyncResponses[keyof DeleteWebPageCategoryAsyncResponses];
+export type WebPageCategoriesDeleteWebPageCategoryResponse = WebPageCategoriesDeleteWebPageCategoryResponses[keyof WebPageCategoriesDeleteWebPageCategoryResponses];
 
-export type GetWebPageCategoryByIdAsyncData = {
+export type WebPageCategoriesGetWebPageCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7655,7 +8028,7 @@ export type GetWebPageCategoryByIdAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories/{webPageCategoryId}';
 };
 
-export type GetWebPageCategoryByIdAsyncErrors = {
+export type WebPageCategoriesGetWebPageCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -7666,18 +8039,18 @@ export type GetWebPageCategoryByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPageCategoryByIdAsyncError = GetWebPageCategoryByIdAsyncErrors[keyof GetWebPageCategoryByIdAsyncErrors];
+export type WebPageCategoriesGetWebPageCategoryByIdError = WebPageCategoriesGetWebPageCategoryByIdErrors[keyof WebPageCategoriesGetWebPageCategoryByIdErrors];
 
-export type GetWebPageCategoryByIdAsyncResponses = {
+export type WebPageCategoriesGetWebPageCategoryByIdResponses = {
     /**
      * OK
      */
     200: WebPageCategoryDtoEnvelopeReadable;
 };
 
-export type GetWebPageCategoryByIdAsyncResponse = GetWebPageCategoryByIdAsyncResponses[keyof GetWebPageCategoryByIdAsyncResponses];
+export type WebPageCategoriesGetWebPageCategoryByIdResponse = WebPageCategoriesGetWebPageCategoryByIdResponses[keyof WebPageCategoriesGetWebPageCategoryByIdResponses];
 
-export type PatchWebPageCategoryAsyncData = {
+export type WebPageCategoriesPatchWebPageCategoryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7692,7 +8065,7 @@ export type PatchWebPageCategoryAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories/{webPageCategoryId}';
 };
 
-export type PatchWebPageCategoryAsyncErrors = {
+export type WebPageCategoriesPatchWebPageCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -7703,18 +8076,18 @@ export type PatchWebPageCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWebPageCategoryAsyncError = PatchWebPageCategoryAsyncErrors[keyof PatchWebPageCategoryAsyncErrors];
+export type WebPageCategoriesPatchWebPageCategoryError = WebPageCategoriesPatchWebPageCategoryErrors[keyof WebPageCategoriesPatchWebPageCategoryErrors];
 
-export type PatchWebPageCategoryAsyncResponses = {
+export type WebPageCategoriesPatchWebPageCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWebPageCategoryAsyncResponse = PatchWebPageCategoryAsyncResponses[keyof PatchWebPageCategoryAsyncResponses];
+export type WebPageCategoriesPatchWebPageCategoryResponse = WebPageCategoriesPatchWebPageCategoryResponses[keyof WebPageCategoriesPatchWebPageCategoryResponses];
 
-export type UpdateWebPageCategoryAsyncData = {
+export type WebPageCategoriesUpdateWebPageCategoryData = {
     body?: WebPageCategoryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7729,7 +8102,7 @@ export type UpdateWebPageCategoryAsyncData = {
     url: '/api/v2/ContentService/WebPageCategories/{webPageCategoryId}';
 };
 
-export type UpdateWebPageCategoryAsyncErrors = {
+export type WebPageCategoriesUpdateWebPageCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -7740,18 +8113,18 @@ export type UpdateWebPageCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebPageCategoryAsyncError = UpdateWebPageCategoryAsyncErrors[keyof UpdateWebPageCategoryAsyncErrors];
+export type WebPageCategoriesUpdateWebPageCategoryError = WebPageCategoriesUpdateWebPageCategoryErrors[keyof WebPageCategoriesUpdateWebPageCategoryErrors];
 
-export type UpdateWebPageCategoryAsyncResponses = {
+export type WebPageCategoriesUpdateWebPageCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWebPageCategoryAsyncResponse = UpdateWebPageCategoryAsyncResponses[keyof UpdateWebPageCategoryAsyncResponses];
+export type WebPageCategoriesUpdateWebPageCategoryResponse = WebPageCategoriesUpdateWebPageCategoryResponses[keyof WebPageCategoriesUpdateWebPageCategoryResponses];
 
-export type CountWebPagesAsyncData = {
+export type WebPagesCountWebPagesData = {
     body?: WebPageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7764,25 +8137,25 @@ export type CountWebPagesAsyncData = {
     url: '/api/v2/ContentService/WebPages/Count';
 };
 
-export type CountWebPagesAsyncErrors = {
+export type WebPagesCountWebPagesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CountWebPagesAsyncError = CountWebPagesAsyncErrors[keyof CountWebPagesAsyncErrors];
+export type WebPagesCountWebPagesError = WebPagesCountWebPagesErrors[keyof WebPagesCountWebPagesErrors];
 
-export type CountWebPagesAsyncResponses = {
+export type WebPagesCountWebPagesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountWebPagesAsyncResponse = CountWebPagesAsyncResponses[keyof CountWebPagesAsyncResponses];
+export type WebPagesCountWebPagesResponse = WebPagesCountWebPagesResponses[keyof WebPagesCountWebPagesResponses];
 
-export type GetWebPagesAsyncData = {
+export type WebPagesGetWebPagesData = {
     body?: WebPageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7795,25 +8168,25 @@ export type GetWebPagesAsyncData = {
     url: '/api/v2/ContentService/WebPages';
 };
 
-export type GetWebPagesAsyncErrors = {
+export type WebPagesGetWebPagesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPagesAsyncError = GetWebPagesAsyncErrors[keyof GetWebPagesAsyncErrors];
+export type WebPagesGetWebPagesError = WebPagesGetWebPagesErrors[keyof WebPagesGetWebPagesErrors];
 
-export type GetWebPagesAsyncResponses = {
+export type WebPagesGetWebPagesResponses = {
     /**
      * OK
      */
     200: WebPageDtoListEnvelopeReadable;
 };
 
-export type GetWebPagesAsyncResponse = GetWebPagesAsyncResponses[keyof GetWebPagesAsyncResponses];
+export type WebPagesGetWebPagesResponse = WebPagesGetWebPagesResponses[keyof WebPagesGetWebPagesResponses];
 
-export type CreateWebPageAsyncData = {
+export type WebPagesCreateWebPageData = {
     body?: WebPageCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7826,23 +8199,23 @@ export type CreateWebPageAsyncData = {
     url: '/api/v2/ContentService/WebPages';
 };
 
-export type CreateWebPageAsyncErrors = {
+export type WebPagesCreateWebPageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebPageAsyncError = CreateWebPageAsyncErrors[keyof CreateWebPageAsyncErrors];
+export type WebPagesCreateWebPageError = WebPagesCreateWebPageErrors[keyof WebPagesCreateWebPageErrors];
 
-export type CreateWebPageAsyncResponses = {
+export type WebPagesCreateWebPageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type DeleteWebPageAsyncData = {
+export type WebPagesDeleteWebPageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7857,23 +8230,23 @@ export type DeleteWebPageAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}';
 };
 
-export type DeleteWebPageAsyncErrors = {
+export type WebPagesDeleteWebPageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebPageAsyncError = DeleteWebPageAsyncErrors[keyof DeleteWebPageAsyncErrors];
+export type WebPagesDeleteWebPageError = WebPagesDeleteWebPageErrors[keyof WebPagesDeleteWebPageErrors];
 
-export type DeleteWebPageAsyncResponses = {
+export type WebPagesDeleteWebPageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWebPageByIdAsyncData = {
+export type WebPagesGetWebPageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7888,25 +8261,25 @@ export type GetWebPageByIdAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}';
 };
 
-export type GetWebPageByIdAsyncErrors = {
+export type WebPagesGetWebPageByIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPageByIdAsyncError = GetWebPageByIdAsyncErrors[keyof GetWebPageByIdAsyncErrors];
+export type WebPagesGetWebPageByIdError = WebPagesGetWebPageByIdErrors[keyof WebPagesGetWebPageByIdErrors];
 
-export type GetWebPageByIdAsyncResponses = {
+export type WebPagesGetWebPageByIdResponses = {
     /**
      * OK
      */
     200: WebPageDtoEnvelopeReadable;
 };
 
-export type GetWebPageByIdAsyncResponse = GetWebPageByIdAsyncResponses[keyof GetWebPageByIdAsyncResponses];
+export type WebPagesGetWebPageByIdResponse = WebPagesGetWebPageByIdResponses[keyof WebPagesGetWebPageByIdResponses];
 
-export type PatchWebPageAsyncData = {
+export type WebPagesPatchWebPageData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7921,23 +8294,23 @@ export type PatchWebPageAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}';
 };
 
-export type PatchWebPageAsyncErrors = {
+export type WebPagesPatchWebPageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWebPageAsyncError = PatchWebPageAsyncErrors[keyof PatchWebPageAsyncErrors];
+export type WebPagesPatchWebPageError = WebPagesPatchWebPageErrors[keyof WebPagesPatchWebPageErrors];
 
-export type PatchWebPageAsyncResponses = {
+export type WebPagesPatchWebPageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateWebPageAsyncData = {
+export type WebPagesUpdateWebPageData = {
     body?: WebPageUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7952,23 +8325,23 @@ export type UpdateWebPageAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}';
 };
 
-export type UpdateWebPageAsyncErrors = {
+export type WebPagesUpdateWebPageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebPageAsyncError = UpdateWebPageAsyncErrors[keyof UpdateWebPageAsyncErrors];
+export type WebPagesUpdateWebPageError = WebPagesUpdateWebPageErrors[keyof WebPagesUpdateWebPageErrors];
 
-export type UpdateWebPageAsyncResponses = {
+export type WebPagesUpdateWebPageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetTagsByWebPageAsyncData = {
+export type WebPagesGetTagsByWebPageData = {
     body?: WebPageTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7982,25 +8355,25 @@ export type GetTagsByWebPageAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Tags';
 };
 
-export type GetTagsByWebPageAsyncErrors = {
+export type WebPagesGetTagsByWebPageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTagsByWebPageAsyncError = GetTagsByWebPageAsyncErrors[keyof GetTagsByWebPageAsyncErrors];
+export type WebPagesGetTagsByWebPageError = WebPagesGetTagsByWebPageErrors[keyof WebPagesGetTagsByWebPageErrors];
 
-export type GetTagsByWebPageAsyncResponses = {
+export type WebPagesGetTagsByWebPageResponses = {
     /**
      * OK
      */
     200: WebPageTagDtoListEnvelopeReadable;
 };
 
-export type GetTagsByWebPageAsyncResponse = GetTagsByWebPageAsyncResponses[keyof GetTagsByWebPageAsyncResponses];
+export type WebPagesGetTagsByWebPageResponse = WebPagesGetTagsByWebPageResponses[keyof WebPagesGetTagsByWebPageResponses];
 
-export type CreateWebPageTagRelationAsyncData = {
+export type WebPagesCreateWebPageTagRelationData = {
     body?: WebPageTagCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8015,23 +8388,23 @@ export type CreateWebPageTagRelationAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Tags';
 };
 
-export type CreateWebPageTagRelationAsyncErrors = {
+export type WebPagesCreateWebPageTagRelationErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebPageTagRelationAsyncError = CreateWebPageTagRelationAsyncErrors[keyof CreateWebPageTagRelationAsyncErrors];
+export type WebPagesCreateWebPageTagRelationError = WebPagesCreateWebPageTagRelationErrors[keyof WebPagesCreateWebPageTagRelationErrors];
 
-export type CreateWebPageTagRelationAsyncResponses = {
+export type WebPagesCreateWebPageTagRelationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UnrelateWebPageTagAsyncData = {
+export type WebPagesUnrelateWebPageTagData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8047,23 +8420,23 @@ export type UnrelateWebPageTagAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Tags/{tagId}';
 };
 
-export type UnrelateWebPageTagAsyncErrors = {
+export type WebPagesUnrelateWebPageTagErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UnrelateWebPageTagAsyncError = UnrelateWebPageTagAsyncErrors[keyof UnrelateWebPageTagAsyncErrors];
+export type WebPagesUnrelateWebPageTagError = WebPagesUnrelateWebPageTagErrors[keyof WebPagesUnrelateWebPageTagErrors];
 
-export type UnrelateWebPageTagAsyncResponses = {
+export type WebPagesUnrelateWebPageTagResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RelateWebPageToTagAsyncData = {
+export type WebPagesRelateWebPageToTagData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8079,23 +8452,23 @@ export type RelateWebPageToTagAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Tags/{tagId}';
 };
 
-export type RelateWebPageToTagAsyncErrors = {
+export type WebPagesRelateWebPageToTagErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateWebPageToTagAsyncError = RelateWebPageToTagAsyncErrors[keyof RelateWebPageToTagAsyncErrors];
+export type WebPagesRelateWebPageToTagError = WebPagesRelateWebPageToTagErrors[keyof WebPagesRelateWebPageToTagErrors];
 
-export type RelateWebPageToTagAsyncResponses = {
+export type WebPagesRelateWebPageToTagResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCategoriesByWebPageAsyncData = {
+export type WebPagesGetCategoriesByWebPageData = {
     body?: WebPageCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8109,25 +8482,25 @@ export type GetCategoriesByWebPageAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Categories';
 };
 
-export type GetCategoriesByWebPageAsyncErrors = {
+export type WebPagesGetCategoriesByWebPageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCategoriesByWebPageAsyncError = GetCategoriesByWebPageAsyncErrors[keyof GetCategoriesByWebPageAsyncErrors];
+export type WebPagesGetCategoriesByWebPageError = WebPagesGetCategoriesByWebPageErrors[keyof WebPagesGetCategoriesByWebPageErrors];
 
-export type GetCategoriesByWebPageAsyncResponses = {
+export type WebPagesGetCategoriesByWebPageResponses = {
     /**
      * OK
      */
     200: WebPageCategoryDtoListEnvelopeReadable;
 };
 
-export type GetCategoriesByWebPageAsyncResponse = GetCategoriesByWebPageAsyncResponses[keyof GetCategoriesByWebPageAsyncResponses];
+export type WebPagesGetCategoriesByWebPageResponse = WebPagesGetCategoriesByWebPageResponses[keyof WebPagesGetCategoriesByWebPageResponses];
 
-export type CreateWebPageCategoryRelationAsyncData = {
+export type WebPagesCreateWebPageCategoryRelationData = {
     body?: WebPageCategoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8142,23 +8515,23 @@ export type CreateWebPageCategoryRelationAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Categories';
 };
 
-export type CreateWebPageCategoryRelationAsyncErrors = {
+export type WebPagesCreateWebPageCategoryRelationErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebPageCategoryRelationAsyncError = CreateWebPageCategoryRelationAsyncErrors[keyof CreateWebPageCategoryRelationAsyncErrors];
+export type WebPagesCreateWebPageCategoryRelationError = WebPagesCreateWebPageCategoryRelationErrors[keyof WebPagesCreateWebPageCategoryRelationErrors];
 
-export type CreateWebPageCategoryRelationAsyncResponses = {
+export type WebPagesCreateWebPageCategoryRelationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UnrelateWebPageCategoryAsyncData = {
+export type WebPagesUnrelateWebPageCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8174,23 +8547,23 @@ export type UnrelateWebPageCategoryAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Categories/{categoryId}';
 };
 
-export type UnrelateWebPageCategoryAsyncErrors = {
+export type WebPagesUnrelateWebPageCategoryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UnrelateWebPageCategoryAsyncError = UnrelateWebPageCategoryAsyncErrors[keyof UnrelateWebPageCategoryAsyncErrors];
+export type WebPagesUnrelateWebPageCategoryError = WebPagesUnrelateWebPageCategoryErrors[keyof WebPagesUnrelateWebPageCategoryErrors];
 
-export type UnrelateWebPageCategoryAsyncResponses = {
+export type WebPagesUnrelateWebPageCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RelateWebPageToCategoryAsyncData = {
+export type WebPagesRelateWebPageToCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8206,23 +8579,23 @@ export type RelateWebPageToCategoryAsyncData = {
     url: '/api/v2/ContentService/WebPages/{webPageId}/Categories/{categoryId}';
 };
 
-export type RelateWebPageToCategoryAsyncErrors = {
+export type WebPagesRelateWebPageToCategoryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateWebPageToCategoryAsyncError = RelateWebPageToCategoryAsyncErrors[keyof RelateWebPageToCategoryAsyncErrors];
+export type WebPagesRelateWebPageToCategoryError = WebPagesRelateWebPageToCategoryErrors[keyof WebPagesRelateWebPageToCategoryErrors];
 
-export type RelateWebPageToCategoryAsyncResponses = {
+export type WebPagesRelateWebPageToCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWebPageTagsAsyncData = {
+export type WebPageTagsGetWebPageTagsData = {
     body?: WebPageTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8235,7 +8608,7 @@ export type GetWebPageTagsAsyncData = {
     url: '/api/v2/ContentService/WebPageTags';
 };
 
-export type GetWebPageTagsAsyncErrors = {
+export type WebPageTagsGetWebPageTagsErrors = {
     /**
      * Unauthorized
      */
@@ -8246,18 +8619,18 @@ export type GetWebPageTagsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPageTagsAsyncError = GetWebPageTagsAsyncErrors[keyof GetWebPageTagsAsyncErrors];
+export type WebPageTagsGetWebPageTagsError = WebPageTagsGetWebPageTagsErrors[keyof WebPageTagsGetWebPageTagsErrors];
 
-export type GetWebPageTagsAsyncResponses = {
+export type WebPageTagsGetWebPageTagsResponses = {
     /**
      * OK
      */
     200: WebPageTagDtoListEnvelopeReadable;
 };
 
-export type GetWebPageTagsAsyncResponse = GetWebPageTagsAsyncResponses[keyof GetWebPageTagsAsyncResponses];
+export type WebPageTagsGetWebPageTagsResponse = WebPageTagsGetWebPageTagsResponses[keyof WebPageTagsGetWebPageTagsResponses];
 
-export type CreateWebPageTagAsyncData = {
+export type WebPageTagsCreateWebPageTagData = {
     body?: WebPageTagCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8270,7 +8643,7 @@ export type CreateWebPageTagAsyncData = {
     url: '/api/v2/ContentService/WebPageTags';
 };
 
-export type CreateWebPageTagAsyncErrors = {
+export type WebPageTagsCreateWebPageTagErrors = {
     /**
      * Unauthorized
      */
@@ -8281,18 +8654,18 @@ export type CreateWebPageTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebPageTagAsyncError = CreateWebPageTagAsyncErrors[keyof CreateWebPageTagAsyncErrors];
+export type WebPageTagsCreateWebPageTagError = WebPageTagsCreateWebPageTagErrors[keyof WebPageTagsCreateWebPageTagErrors];
 
-export type CreateWebPageTagAsyncResponses = {
+export type WebPageTagsCreateWebPageTagResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWebPageTagAsyncResponse = CreateWebPageTagAsyncResponses[keyof CreateWebPageTagAsyncResponses];
+export type WebPageTagsCreateWebPageTagResponse = WebPageTagsCreateWebPageTagResponses[keyof WebPageTagsCreateWebPageTagResponses];
 
-export type CountWebPageTagsAsyncData = {
+export type WebPageTagsCountWebPageTagsData = {
     body?: WebPageTagDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8305,7 +8678,7 @@ export type CountWebPageTagsAsyncData = {
     url: '/api/v2/ContentService/WebPageTags/Count';
 };
 
-export type CountWebPageTagsAsyncErrors = {
+export type WebPageTagsCountWebPageTagsErrors = {
     /**
      * Unauthorized
      */
@@ -8316,18 +8689,18 @@ export type CountWebPageTagsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountWebPageTagsAsyncError = CountWebPageTagsAsyncErrors[keyof CountWebPageTagsAsyncErrors];
+export type WebPageTagsCountWebPageTagsError = WebPageTagsCountWebPageTagsErrors[keyof WebPageTagsCountWebPageTagsErrors];
 
-export type CountWebPageTagsAsyncResponses = {
+export type WebPageTagsCountWebPageTagsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountWebPageTagsAsyncResponse = CountWebPageTagsAsyncResponses[keyof CountWebPageTagsAsyncResponses];
+export type WebPageTagsCountWebPageTagsResponse = WebPageTagsCountWebPageTagsResponses[keyof WebPageTagsCountWebPageTagsResponses];
 
-export type DeleteWebPageTagAsyncData = {
+export type WebPageTagsDeleteWebPageTagData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8342,7 +8715,7 @@ export type DeleteWebPageTagAsyncData = {
     url: '/api/v2/ContentService/WebPageTags/{webPageTagId}';
 };
 
-export type DeleteWebPageTagAsyncErrors = {
+export type WebPageTagsDeleteWebPageTagErrors = {
     /**
      * Unauthorized
      */
@@ -8353,18 +8726,18 @@ export type DeleteWebPageTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebPageTagAsyncError = DeleteWebPageTagAsyncErrors[keyof DeleteWebPageTagAsyncErrors];
+export type WebPageTagsDeleteWebPageTagError = WebPageTagsDeleteWebPageTagErrors[keyof WebPageTagsDeleteWebPageTagErrors];
 
-export type DeleteWebPageTagAsyncResponses = {
+export type WebPageTagsDeleteWebPageTagResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWebPageTagAsyncResponse = DeleteWebPageTagAsyncResponses[keyof DeleteWebPageTagAsyncResponses];
+export type WebPageTagsDeleteWebPageTagResponse = WebPageTagsDeleteWebPageTagResponses[keyof WebPageTagsDeleteWebPageTagResponses];
 
-export type GetWebPageTagByIdAsyncData = {
+export type WebPageTagsGetWebPageTagByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8379,7 +8752,7 @@ export type GetWebPageTagByIdAsyncData = {
     url: '/api/v2/ContentService/WebPageTags/{webPageTagId}';
 };
 
-export type GetWebPageTagByIdAsyncErrors = {
+export type WebPageTagsGetWebPageTagByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8390,18 +8763,18 @@ export type GetWebPageTagByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebPageTagByIdAsyncError = GetWebPageTagByIdAsyncErrors[keyof GetWebPageTagByIdAsyncErrors];
+export type WebPageTagsGetWebPageTagByIdError = WebPageTagsGetWebPageTagByIdErrors[keyof WebPageTagsGetWebPageTagByIdErrors];
 
-export type GetWebPageTagByIdAsyncResponses = {
+export type WebPageTagsGetWebPageTagByIdResponses = {
     /**
      * OK
      */
     200: WebPageTagDtoEnvelopeReadable;
 };
 
-export type GetWebPageTagByIdAsyncResponse = GetWebPageTagByIdAsyncResponses[keyof GetWebPageTagByIdAsyncResponses];
+export type WebPageTagsGetWebPageTagByIdResponse = WebPageTagsGetWebPageTagByIdResponses[keyof WebPageTagsGetWebPageTagByIdResponses];
 
-export type PatchWebPageTagAsyncData = {
+export type WebPageTagsPatchWebPageTagData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8416,7 +8789,7 @@ export type PatchWebPageTagAsyncData = {
     url: '/api/v2/ContentService/WebPageTags/{webPageTagId}';
 };
 
-export type PatchWebPageTagAsyncErrors = {
+export type WebPageTagsPatchWebPageTagErrors = {
     /**
      * Unauthorized
      */
@@ -8427,18 +8800,18 @@ export type PatchWebPageTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWebPageTagAsyncError = PatchWebPageTagAsyncErrors[keyof PatchWebPageTagAsyncErrors];
+export type WebPageTagsPatchWebPageTagError = WebPageTagsPatchWebPageTagErrors[keyof WebPageTagsPatchWebPageTagErrors];
 
-export type PatchWebPageTagAsyncResponses = {
+export type WebPageTagsPatchWebPageTagResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWebPageTagAsyncResponse = PatchWebPageTagAsyncResponses[keyof PatchWebPageTagAsyncResponses];
+export type WebPageTagsPatchWebPageTagResponse = WebPageTagsPatchWebPageTagResponses[keyof WebPageTagsPatchWebPageTagResponses];
 
-export type UpdateWebPageTagAsyncData = {
+export type WebPageTagsUpdateWebPageTagData = {
     body?: WebPageTagUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8453,7 +8826,7 @@ export type UpdateWebPageTagAsyncData = {
     url: '/api/v2/ContentService/WebPageTags/{webPageTagId}';
 };
 
-export type UpdateWebPageTagAsyncErrors = {
+export type WebPageTagsUpdateWebPageTagErrors = {
     /**
      * Unauthorized
      */
@@ -8464,18 +8837,18 @@ export type UpdateWebPageTagAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebPageTagAsyncError = UpdateWebPageTagAsyncErrors[keyof UpdateWebPageTagAsyncErrors];
+export type WebPageTagsUpdateWebPageTagError = WebPageTagsUpdateWebPageTagErrors[keyof WebPageTagsUpdateWebPageTagErrors];
 
-export type UpdateWebPageTagAsyncResponses = {
+export type WebPageTagsUpdateWebPageTagResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWebPageTagAsyncResponse = UpdateWebPageTagAsyncResponses[keyof UpdateWebPageTagAsyncResponses];
+export type WebPageTagsUpdateWebPageTagResponse = WebPageTagsUpdateWebPageTagResponses[keyof WebPageTagsUpdateWebPageTagResponses];
 
-export type GetWebsiteThemesAsyncData = {
+export type WebsiteThemesGetWebsiteThemesData = {
     body?: WebsiteThemeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8488,25 +8861,25 @@ export type GetWebsiteThemesAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes';
 };
 
-export type GetWebsiteThemesAsyncErrors = {
+export type WebsiteThemesGetWebsiteThemesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebsiteThemesAsyncError = GetWebsiteThemesAsyncErrors[keyof GetWebsiteThemesAsyncErrors];
+export type WebsiteThemesGetWebsiteThemesError = WebsiteThemesGetWebsiteThemesErrors[keyof WebsiteThemesGetWebsiteThemesErrors];
 
-export type GetWebsiteThemesAsyncResponses = {
+export type WebsiteThemesGetWebsiteThemesResponses = {
     /**
      * OK
      */
     200: WebsiteThemeDtoListEnvelopeReadable;
 };
 
-export type GetWebsiteThemesAsyncResponse = GetWebsiteThemesAsyncResponses[keyof GetWebsiteThemesAsyncResponses];
+export type WebsiteThemesGetWebsiteThemesResponse = WebsiteThemesGetWebsiteThemesResponses[keyof WebsiteThemesGetWebsiteThemesResponses];
 
-export type CreateWebsiteThemeAsyncData = {
+export type WebsiteThemesCreateWebsiteThemeData = {
     body?: WebsiteThemeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8519,7 +8892,7 @@ export type CreateWebsiteThemeAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes';
 };
 
-export type CreateWebsiteThemeAsyncErrors = {
+export type WebsiteThemesCreateWebsiteThemeErrors = {
     /**
      * Bad Request
      */
@@ -8530,16 +8903,16 @@ export type CreateWebsiteThemeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebsiteThemeAsyncError = CreateWebsiteThemeAsyncErrors[keyof CreateWebsiteThemeAsyncErrors];
+export type WebsiteThemesCreateWebsiteThemeError = WebsiteThemesCreateWebsiteThemeErrors[keyof WebsiteThemesCreateWebsiteThemeErrors];
 
-export type CreateWebsiteThemeAsyncResponses = {
+export type WebsiteThemesCreateWebsiteThemeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWebsiteThemesCountAsyncData = {
+export type WebsiteThemesGetWebsiteThemesCountData = {
     body?: WebsiteThemeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8552,25 +8925,25 @@ export type GetWebsiteThemesCountAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes/Count';
 };
 
-export type GetWebsiteThemesCountAsyncErrors = {
+export type WebsiteThemesGetWebsiteThemesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebsiteThemesCountAsyncError = GetWebsiteThemesCountAsyncErrors[keyof GetWebsiteThemesCountAsyncErrors];
+export type WebsiteThemesGetWebsiteThemesCountError = WebsiteThemesGetWebsiteThemesCountErrors[keyof WebsiteThemesGetWebsiteThemesCountErrors];
 
-export type GetWebsiteThemesCountAsyncResponses = {
+export type WebsiteThemesGetWebsiteThemesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWebsiteThemesCountAsyncResponse = GetWebsiteThemesCountAsyncResponses[keyof GetWebsiteThemesCountAsyncResponses];
+export type WebsiteThemesGetWebsiteThemesCountResponse = WebsiteThemesGetWebsiteThemesCountResponses[keyof WebsiteThemesGetWebsiteThemesCountResponses];
 
-export type DeleteWebsiteThemeAsyncData = {
+export type WebsiteThemesDeleteWebsiteThemeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8585,7 +8958,7 @@ export type DeleteWebsiteThemeAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes/{id}';
 };
 
-export type DeleteWebsiteThemeAsyncErrors = {
+export type WebsiteThemesDeleteWebsiteThemeErrors = {
     /**
      * Forbidden
      */
@@ -8596,16 +8969,16 @@ export type DeleteWebsiteThemeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebsiteThemeAsyncError = DeleteWebsiteThemeAsyncErrors[keyof DeleteWebsiteThemeAsyncErrors];
+export type WebsiteThemesDeleteWebsiteThemeError = WebsiteThemesDeleteWebsiteThemeErrors[keyof WebsiteThemesDeleteWebsiteThemeErrors];
 
-export type DeleteWebsiteThemeAsyncResponses = {
+export type WebsiteThemesDeleteWebsiteThemeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWebsiteThemeByIdAsyncData = {
+export type WebsiteThemesGetWebsiteThemeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8620,7 +8993,7 @@ export type GetWebsiteThemeByIdAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes/{id}';
 };
 
-export type GetWebsiteThemeByIdAsyncErrors = {
+export type WebsiteThemesGetWebsiteThemeByIdErrors = {
     /**
      * Forbidden
      */
@@ -8631,18 +9004,18 @@ export type GetWebsiteThemeByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetWebsiteThemeByIdAsyncError = GetWebsiteThemeByIdAsyncErrors[keyof GetWebsiteThemeByIdAsyncErrors];
+export type WebsiteThemesGetWebsiteThemeByIdError = WebsiteThemesGetWebsiteThemeByIdErrors[keyof WebsiteThemesGetWebsiteThemeByIdErrors];
 
-export type GetWebsiteThemeByIdAsyncResponses = {
+export type WebsiteThemesGetWebsiteThemeByIdResponses = {
     /**
      * OK
      */
     200: WebsiteThemeDto;
 };
 
-export type GetWebsiteThemeByIdAsyncResponse = GetWebsiteThemeByIdAsyncResponses[keyof GetWebsiteThemeByIdAsyncResponses];
+export type WebsiteThemesGetWebsiteThemeByIdResponse = WebsiteThemesGetWebsiteThemeByIdResponses[keyof WebsiteThemesGetWebsiteThemeByIdResponses];
 
-export type PatchWebsiteThemeAsyncData = {
+export type WebsiteThemesPatchWebsiteThemeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8657,7 +9030,7 @@ export type PatchWebsiteThemeAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes/{id}';
 };
 
-export type PatchWebsiteThemeAsyncErrors = {
+export type WebsiteThemesPatchWebsiteThemeErrors = {
     /**
      * Forbidden
      */
@@ -8668,16 +9041,16 @@ export type PatchWebsiteThemeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchWebsiteThemeAsyncError = PatchWebsiteThemeAsyncErrors[keyof PatchWebsiteThemeAsyncErrors];
+export type WebsiteThemesPatchWebsiteThemeError = WebsiteThemesPatchWebsiteThemeErrors[keyof WebsiteThemesPatchWebsiteThemeErrors];
 
-export type PatchWebsiteThemeAsyncResponses = {
+export type WebsiteThemesPatchWebsiteThemeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateWebsiteThemeAsyncData = {
+export type WebsiteThemesUpdateWebsiteThemeData = {
     body?: WebsiteThemeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8692,7 +9065,7 @@ export type UpdateWebsiteThemeAsyncData = {
     url: '/api/v2/ContentService/WebsiteThemes/{id}';
 };
 
-export type UpdateWebsiteThemeAsyncErrors = {
+export type WebsiteThemesUpdateWebsiteThemeErrors = {
     /**
      * Forbidden
      */
@@ -8703,16 +9076,16 @@ export type UpdateWebsiteThemeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebsiteThemeAsyncError = UpdateWebsiteThemeAsyncErrors[keyof UpdateWebsiteThemeAsyncErrors];
+export type WebsiteThemesUpdateWebsiteThemeError = WebsiteThemesUpdateWebsiteThemeErrors[keyof WebsiteThemesUpdateWebsiteThemeErrors];
 
-export type UpdateWebsiteThemeAsyncResponses = {
+export type WebsiteThemesUpdateWebsiteThemeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWebTemplatesAsyncData = {
+export type WebTemplatesGetWebTemplatesData = {
     body?: WebTemplateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8725,7 +9098,7 @@ export type GetWebTemplatesAsyncData = {
     url: '/api/v2/ContentService/WebTemplates';
 };
 
-export type GetWebTemplatesAsyncErrors = {
+export type WebTemplatesGetWebTemplatesErrors = {
     /**
      * Unauthorized
      */
@@ -8736,18 +9109,18 @@ export type GetWebTemplatesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebTemplatesAsyncError = GetWebTemplatesAsyncErrors[keyof GetWebTemplatesAsyncErrors];
+export type WebTemplatesGetWebTemplatesError = WebTemplatesGetWebTemplatesErrors[keyof WebTemplatesGetWebTemplatesErrors];
 
-export type GetWebTemplatesAsyncResponses = {
+export type WebTemplatesGetWebTemplatesResponses = {
     /**
      * OK
      */
     200: WebTemplateDtoListEnvelopeReadable;
 };
 
-export type GetWebTemplatesAsyncResponse = GetWebTemplatesAsyncResponses[keyof GetWebTemplatesAsyncResponses];
+export type WebTemplatesGetWebTemplatesResponse = WebTemplatesGetWebTemplatesResponses[keyof WebTemplatesGetWebTemplatesResponses];
 
-export type CreateWebTemplateAsyncData = {
+export type WebTemplatesCreateWebTemplateData = {
     body?: WebTemplateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8760,7 +9133,7 @@ export type CreateWebTemplateAsyncData = {
     url: '/api/v2/ContentService/WebTemplates';
 };
 
-export type CreateWebTemplateAsyncErrors = {
+export type WebTemplatesCreateWebTemplateErrors = {
     /**
      * Unauthorized
      */
@@ -8771,16 +9144,16 @@ export type CreateWebTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWebTemplateAsyncError = CreateWebTemplateAsyncErrors[keyof CreateWebTemplateAsyncErrors];
+export type WebTemplatesCreateWebTemplateError = WebTemplatesCreateWebTemplateErrors[keyof WebTemplatesCreateWebTemplateErrors];
 
-export type CreateWebTemplateAsyncResponses = {
+export type WebTemplatesCreateWebTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountWebTemplatesAsyncData = {
+export type WebTemplatesCountWebTemplatesData = {
     body?: WebTemplateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8793,7 +9166,7 @@ export type CountWebTemplatesAsyncData = {
     url: '/api/v2/ContentService/WebTemplates/Count';
 };
 
-export type CountWebTemplatesAsyncErrors = {
+export type WebTemplatesCountWebTemplatesErrors = {
     /**
      * Unauthorized
      */
@@ -8804,18 +9177,18 @@ export type CountWebTemplatesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountWebTemplatesAsyncError = CountWebTemplatesAsyncErrors[keyof CountWebTemplatesAsyncErrors];
+export type WebTemplatesCountWebTemplatesError = WebTemplatesCountWebTemplatesErrors[keyof WebTemplatesCountWebTemplatesErrors];
 
-export type CountWebTemplatesAsyncResponses = {
+export type WebTemplatesCountWebTemplatesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountWebTemplatesAsyncResponse = CountWebTemplatesAsyncResponses[keyof CountWebTemplatesAsyncResponses];
+export type WebTemplatesCountWebTemplatesResponse = WebTemplatesCountWebTemplatesResponses[keyof WebTemplatesCountWebTemplatesResponses];
 
-export type DeleteWebTemplateAsyncData = {
+export type WebTemplatesDeleteWebTemplateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8830,7 +9203,7 @@ export type DeleteWebTemplateAsyncData = {
     url: '/api/v2/ContentService/WebTemplates/{webTemplateId}';
 };
 
-export type DeleteWebTemplateAsyncErrors = {
+export type WebTemplatesDeleteWebTemplateErrors = {
     /**
      * Unauthorized
      */
@@ -8841,16 +9214,16 @@ export type DeleteWebTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWebTemplateAsyncError = DeleteWebTemplateAsyncErrors[keyof DeleteWebTemplateAsyncErrors];
+export type WebTemplatesDeleteWebTemplateError = WebTemplatesDeleteWebTemplateErrors[keyof WebTemplatesDeleteWebTemplateErrors];
 
-export type DeleteWebTemplateAsyncResponses = {
+export type WebTemplatesDeleteWebTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetWebTemplateByIdAsyncData = {
+export type WebTemplatesGetWebTemplateByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8865,7 +9238,7 @@ export type GetWebTemplateByIdAsyncData = {
     url: '/api/v2/ContentService/WebTemplates/{webTemplateId}';
 };
 
-export type GetWebTemplateByIdAsyncErrors = {
+export type WebTemplatesGetWebTemplateByIdErrors = {
     /**
      * Unauthorized
      */
@@ -8876,18 +9249,18 @@ export type GetWebTemplateByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebTemplateByIdAsyncError = GetWebTemplateByIdAsyncErrors[keyof GetWebTemplateByIdAsyncErrors];
+export type WebTemplatesGetWebTemplateByIdError = WebTemplatesGetWebTemplateByIdErrors[keyof WebTemplatesGetWebTemplateByIdErrors];
 
-export type GetWebTemplateByIdAsyncResponses = {
+export type WebTemplatesGetWebTemplateByIdResponses = {
     /**
      * OK
      */
     200: WebTemplateDtoEnvelopeReadable;
 };
 
-export type GetWebTemplateByIdAsyncResponse = GetWebTemplateByIdAsyncResponses[keyof GetWebTemplateByIdAsyncResponses];
+export type WebTemplatesGetWebTemplateByIdResponse = WebTemplatesGetWebTemplateByIdResponses[keyof WebTemplatesGetWebTemplateByIdResponses];
 
-export type PatchWebTemplateAsyncData = {
+export type WebTemplatesPatchWebTemplateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8902,7 +9275,7 @@ export type PatchWebTemplateAsyncData = {
     url: '/api/v2/ContentService/WebTemplates/{webTemplateId}';
 };
 
-export type PatchWebTemplateAsyncErrors = {
+export type WebTemplatesPatchWebTemplateErrors = {
     /**
      * Unauthorized
      */
@@ -8913,16 +9286,16 @@ export type PatchWebTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWebTemplateAsyncError = PatchWebTemplateAsyncErrors[keyof PatchWebTemplateAsyncErrors];
+export type WebTemplatesPatchWebTemplateError = WebTemplatesPatchWebTemplateErrors[keyof WebTemplatesPatchWebTemplateErrors];
 
-export type PatchWebTemplateAsyncResponses = {
+export type WebTemplatesPatchWebTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateWebTemplateAsyncData = {
+export type WebTemplatesUpdateWebTemplateData = {
     body?: WebTemplateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8937,7 +9310,7 @@ export type UpdateWebTemplateAsyncData = {
     url: '/api/v2/ContentService/WebTemplates/{webTemplateId}';
 };
 
-export type UpdateWebTemplateAsyncErrors = {
+export type WebTemplatesUpdateWebTemplateErrors = {
     /**
      * Unauthorized
      */
@@ -8948,9 +9321,9 @@ export type UpdateWebTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWebTemplateAsyncError = UpdateWebTemplateAsyncErrors[keyof UpdateWebTemplateAsyncErrors];
+export type WebTemplatesUpdateWebTemplateError = WebTemplatesUpdateWebTemplateErrors[keyof WebTemplatesUpdateWebTemplateErrors];
 
-export type UpdateWebTemplateAsyncResponses = {
+export type WebTemplatesUpdateWebTemplateResponses = {
     /**
      * OK
      */

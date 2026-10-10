@@ -977,7 +977,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetAssetCategoriesData = {
+export type AssetCategoriesGetAssetCategoriesData = {
     body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -986,7 +986,7 @@ export type GetAssetCategoriesData = {
     url: '/api/v2/AssetsService/AssetCategories';
 };
 
-export type GetAssetCategoriesErrors = {
+export type AssetCategoriesGetAssetCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -997,18 +997,18 @@ export type GetAssetCategoriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetCategoriesError = GetAssetCategoriesErrors[keyof GetAssetCategoriesErrors];
+export type AssetCategoriesGetAssetCategoriesError = AssetCategoriesGetAssetCategoriesErrors[keyof AssetCategoriesGetAssetCategoriesErrors];
 
-export type GetAssetCategoriesResponses = {
+export type AssetCategoriesGetAssetCategoriesResponses = {
     /**
      * OK
      */
     200: AssetCategoryDtoListEnvelopeReadable;
 };
 
-export type GetAssetCategoriesResponse = GetAssetCategoriesResponses[keyof GetAssetCategoriesResponses];
+export type AssetCategoriesGetAssetCategoriesResponse = AssetCategoriesGetAssetCategoriesResponses[keyof AssetCategoriesGetAssetCategoriesResponses];
 
-export type CreateAssetCategoryData = {
+export type AssetCategoriesCreateAssetCategoryData = {
     body?: AssetCategoryCreateDto;
     path?: never;
     query: {
@@ -1017,7 +1017,7 @@ export type CreateAssetCategoryData = {
     url: '/api/v2/AssetsService/AssetCategories';
 };
 
-export type CreateAssetCategoryErrors = {
+export type AssetCategoriesCreateAssetCategoryErrors = {
     /**
      * Bad Request
      */
@@ -1032,18 +1032,18 @@ export type CreateAssetCategoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetCategoryError = CreateAssetCategoryErrors[keyof CreateAssetCategoryErrors];
+export type AssetCategoriesCreateAssetCategoryError = AssetCategoriesCreateAssetCategoryErrors[keyof AssetCategoriesCreateAssetCategoryErrors];
 
-export type CreateAssetCategoryResponses = {
+export type AssetCategoriesCreateAssetCategoryResponses = {
     /**
      * Created
      */
     201: AssetCategoryDtoEnvelopeReadable;
 };
 
-export type CreateAssetCategoryResponse = CreateAssetCategoryResponses[keyof CreateAssetCategoryResponses];
+export type AssetCategoriesCreateAssetCategoryResponse = AssetCategoriesCreateAssetCategoryResponses[keyof AssetCategoriesCreateAssetCategoryResponses];
 
-export type DeleteAssetCategoryData = {
+export type AssetCategoriesDeleteAssetCategoryData = {
     body?: never;
     path: {
         categoryId: string;
@@ -1054,7 +1054,7 @@ export type DeleteAssetCategoryData = {
     url: '/api/v2/AssetsService/AssetCategories/{categoryId}';
 };
 
-export type DeleteAssetCategoryErrors = {
+export type AssetCategoriesDeleteAssetCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -1069,18 +1069,18 @@ export type DeleteAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetCategoryError = DeleteAssetCategoryErrors[keyof DeleteAssetCategoryErrors];
+export type AssetCategoriesDeleteAssetCategoryError = AssetCategoriesDeleteAssetCategoryErrors[keyof AssetCategoriesDeleteAssetCategoryErrors];
 
-export type DeleteAssetCategoryResponses = {
+export type AssetCategoriesDeleteAssetCategoryResponses = {
     /**
      * No Content
      */
     204: void;
 };
 
-export type DeleteAssetCategoryResponse = DeleteAssetCategoryResponses[keyof DeleteAssetCategoryResponses];
+export type AssetCategoriesDeleteAssetCategoryResponse = AssetCategoriesDeleteAssetCategoryResponses[keyof AssetCategoriesDeleteAssetCategoryResponses];
 
-export type GetAssetCategoryData = {
+export type AssetCategoriesGetAssetCategoryData = {
     body?: never;
     path: {
         categoryId: string;
@@ -1091,7 +1091,7 @@ export type GetAssetCategoryData = {
     url: '/api/v2/AssetsService/AssetCategories/{categoryId}';
 };
 
-export type GetAssetCategoryErrors = {
+export type AssetCategoriesGetAssetCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -1106,18 +1106,18 @@ export type GetAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetAssetCategoryError = GetAssetCategoryErrors[keyof GetAssetCategoryErrors];
+export type AssetCategoriesGetAssetCategoryError = AssetCategoriesGetAssetCategoryErrors[keyof AssetCategoriesGetAssetCategoryErrors];
 
-export type GetAssetCategoryResponses = {
+export type AssetCategoriesGetAssetCategoryResponses = {
     /**
      * OK
      */
     200: AssetCategoryDtoEnvelopeReadable;
 };
 
-export type GetAssetCategoryResponse = GetAssetCategoryResponses[keyof GetAssetCategoryResponses];
+export type AssetCategoriesGetAssetCategoryResponse = AssetCategoriesGetAssetCategoryResponses[keyof AssetCategoriesGetAssetCategoryResponses];
 
-export type PatchAssetCategoryData = {
+export type AssetCategoriesPatchAssetCategoryData = {
     body?: Array<PatchOperation>;
     path: {
         categoryId: string;
@@ -1128,7 +1128,7 @@ export type PatchAssetCategoryData = {
     url: '/api/v2/AssetsService/AssetCategories/{categoryId}';
 };
 
-export type PatchAssetCategoryErrors = {
+export type AssetCategoriesPatchAssetCategoryErrors = {
     /**
      * Bad Request
      */
@@ -1147,18 +1147,18 @@ export type PatchAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetCategoryError = PatchAssetCategoryErrors[keyof PatchAssetCategoryErrors];
+export type AssetCategoriesPatchAssetCategoryError = AssetCategoriesPatchAssetCategoryErrors[keyof AssetCategoriesPatchAssetCategoryErrors];
 
-export type PatchAssetCategoryResponses = {
+export type AssetCategoriesPatchAssetCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetCategoryResponse = PatchAssetCategoryResponses[keyof PatchAssetCategoryResponses];
+export type AssetCategoriesPatchAssetCategoryResponse = AssetCategoriesPatchAssetCategoryResponses[keyof AssetCategoriesPatchAssetCategoryResponses];
 
-export type UpdateAssetCategoryData = {
+export type AssetCategoriesUpdateAssetCategoryData = {
     body?: AssetCategoryUpdateDto;
     path: {
         categoryId: string;
@@ -1169,7 +1169,7 @@ export type UpdateAssetCategoryData = {
     url: '/api/v2/AssetsService/AssetCategories/{categoryId}';
 };
 
-export type UpdateAssetCategoryErrors = {
+export type AssetCategoriesUpdateAssetCategoryErrors = {
     /**
      * Bad Request
      */
@@ -1188,18 +1188,18 @@ export type UpdateAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetCategoryError = UpdateAssetCategoryErrors[keyof UpdateAssetCategoryErrors];
+export type AssetCategoriesUpdateAssetCategoryError = AssetCategoriesUpdateAssetCategoryErrors[keyof AssetCategoriesUpdateAssetCategoryErrors];
 
-export type UpdateAssetCategoryResponses = {
+export type AssetCategoriesUpdateAssetCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetCategoryResponse = UpdateAssetCategoryResponses[keyof UpdateAssetCategoryResponses];
+export type AssetCategoriesUpdateAssetCategoryResponse = AssetCategoriesUpdateAssetCategoryResponses[keyof AssetCategoriesUpdateAssetCategoryResponses];
 
-export type GetAssetCategoriesCountData = {
+export type AssetCategoriesGetAssetCategoriesCountData = {
     body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1208,7 +1208,7 @@ export type GetAssetCategoriesCountData = {
     url: '/api/v2/AssetsService/AssetCategories/count';
 };
 
-export type GetAssetCategoriesCountErrors = {
+export type AssetCategoriesGetAssetCategoriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -1219,18 +1219,18 @@ export type GetAssetCategoriesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetCategoriesCountError = GetAssetCategoriesCountErrors[keyof GetAssetCategoriesCountErrors];
+export type AssetCategoriesGetAssetCategoriesCountError = AssetCategoriesGetAssetCategoriesCountErrors[keyof AssetCategoriesGetAssetCategoriesCountErrors];
 
-export type GetAssetCategoriesCountResponses = {
+export type AssetCategoriesGetAssetCategoriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetCategoriesCountResponse = GetAssetCategoriesCountResponses[keyof GetAssetCategoriesCountResponses];
+export type AssetCategoriesGetAssetCategoriesCountResponse = AssetCategoriesGetAssetCategoriesCountResponses[keyof AssetCategoriesGetAssetCategoriesCountResponses];
 
-export type GetAssetsData = {
+export type AssetsGetAssetsData = {
     body?: AssetDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1239,7 +1239,7 @@ export type GetAssetsData = {
     url: '/api/v2/AssetsService/Assets';
 };
 
-export type GetAssetsErrors = {
+export type AssetsGetAssetsErrors = {
     /**
      * Unauthorized
      */
@@ -1250,18 +1250,18 @@ export type GetAssetsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetsError = GetAssetsErrors[keyof GetAssetsErrors];
+export type AssetsGetAssetsError = AssetsGetAssetsErrors[keyof AssetsGetAssetsErrors];
 
-export type GetAssetsResponses = {
+export type AssetsGetAssetsResponses = {
     /**
      * OK
      */
     200: AssetDtoListEnvelopeReadable;
 };
 
-export type GetAssetsResponse = GetAssetsResponses[keyof GetAssetsResponses];
+export type AssetsGetAssetsResponse = AssetsGetAssetsResponses[keyof AssetsGetAssetsResponses];
 
-export type CreateAssetData = {
+export type AssetsCreateAssetData = {
     body?: AssetCreateDto;
     path?: never;
     query: {
@@ -1270,7 +1270,7 @@ export type CreateAssetData = {
     url: '/api/v2/AssetsService/Assets';
 };
 
-export type CreateAssetErrors = {
+export type AssetsCreateAssetErrors = {
     /**
      * Bad Request
      */
@@ -1285,18 +1285,18 @@ export type CreateAssetErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetError = CreateAssetErrors[keyof CreateAssetErrors];
+export type AssetsCreateAssetError = AssetsCreateAssetErrors[keyof AssetsCreateAssetErrors];
 
-export type CreateAssetResponses = {
+export type AssetsCreateAssetResponses = {
     /**
      * Created
      */
     201: AssetDtoEnvelopeReadable;
 };
 
-export type CreateAssetResponse = CreateAssetResponses[keyof CreateAssetResponses];
+export type AssetsCreateAssetResponse = AssetsCreateAssetResponses[keyof AssetsCreateAssetResponses];
 
-export type GetAssetsCountData = {
+export type AssetsGetAssetsCountData = {
     body?: AssetDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1305,7 +1305,7 @@ export type GetAssetsCountData = {
     url: '/api/v2/AssetsService/Assets/count';
 };
 
-export type GetAssetsCountErrors = {
+export type AssetsGetAssetsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1316,18 +1316,18 @@ export type GetAssetsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetsCountError = GetAssetsCountErrors[keyof GetAssetsCountErrors];
+export type AssetsGetAssetsCountError = AssetsGetAssetsCountErrors[keyof AssetsGetAssetsCountErrors];
 
-export type GetAssetsCountResponses = {
+export type AssetsGetAssetsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetsCountResponse = GetAssetsCountResponses[keyof GetAssetsCountResponses];
+export type AssetsGetAssetsCountResponse = AssetsGetAssetsCountResponses[keyof AssetsGetAssetsCountResponses];
 
-export type DeleteAssetData = {
+export type AssetsDeleteAssetData = {
     body?: never;
     path: {
         assetId: string;
@@ -1338,7 +1338,7 @@ export type DeleteAssetData = {
     url: '/api/v2/AssetsService/Assets/{assetId}';
 };
 
-export type DeleteAssetErrors = {
+export type AssetsDeleteAssetErrors = {
     /**
      * Unauthorized
      */
@@ -1353,18 +1353,18 @@ export type DeleteAssetErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetError = DeleteAssetErrors[keyof DeleteAssetErrors];
+export type AssetsDeleteAssetError = AssetsDeleteAssetErrors[keyof AssetsDeleteAssetErrors];
 
-export type DeleteAssetResponses = {
+export type AssetsDeleteAssetResponses = {
     /**
      * No Content
      */
     204: void;
 };
 
-export type DeleteAssetResponse = DeleteAssetResponses[keyof DeleteAssetResponses];
+export type AssetsDeleteAssetResponse = AssetsDeleteAssetResponses[keyof AssetsDeleteAssetResponses];
 
-export type GetAssetData = {
+export type AssetsGetAssetData = {
     body?: never;
     path: {
         assetId: string;
@@ -1375,7 +1375,7 @@ export type GetAssetData = {
     url: '/api/v2/AssetsService/Assets/{assetId}';
 };
 
-export type GetAssetErrors = {
+export type AssetsGetAssetErrors = {
     /**
      * Unauthorized
      */
@@ -1390,18 +1390,18 @@ export type GetAssetErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetAssetError = GetAssetErrors[keyof GetAssetErrors];
+export type AssetsGetAssetError = AssetsGetAssetErrors[keyof AssetsGetAssetErrors];
 
-export type GetAssetResponses = {
+export type AssetsGetAssetResponses = {
     /**
      * OK
      */
     200: AssetDtoEnvelopeReadable;
 };
 
-export type GetAssetResponse = GetAssetResponses[keyof GetAssetResponses];
+export type AssetsGetAssetResponse = AssetsGetAssetResponses[keyof AssetsGetAssetResponses];
 
-export type PatchAssetData = {
+export type AssetsPatchAssetData = {
     body?: Array<PatchOperation>;
     path: {
         assetId: string;
@@ -1412,7 +1412,7 @@ export type PatchAssetData = {
     url: '/api/v2/AssetsService/Assets/{assetId}';
 };
 
-export type PatchAssetErrors = {
+export type AssetsPatchAssetErrors = {
     /**
      * Bad Request
      */
@@ -1431,18 +1431,18 @@ export type PatchAssetErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetError = PatchAssetErrors[keyof PatchAssetErrors];
+export type AssetsPatchAssetError = AssetsPatchAssetErrors[keyof AssetsPatchAssetErrors];
 
-export type PatchAssetResponses = {
+export type AssetsPatchAssetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetResponse = PatchAssetResponses[keyof PatchAssetResponses];
+export type AssetsPatchAssetResponse = AssetsPatchAssetResponses[keyof AssetsPatchAssetResponses];
 
-export type UpdateAssetData = {
+export type AssetsUpdateAssetData = {
     body?: AssetUpdateDto;
     path: {
         assetId: string;
@@ -1453,7 +1453,7 @@ export type UpdateAssetData = {
     url: '/api/v2/AssetsService/Assets/{assetId}';
 };
 
-export type UpdateAssetErrors = {
+export type AssetsUpdateAssetErrors = {
     /**
      * Bad Request
      */
@@ -1472,18 +1472,18 @@ export type UpdateAssetErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetError = UpdateAssetErrors[keyof UpdateAssetErrors];
+export type AssetsUpdateAssetError = AssetsUpdateAssetErrors[keyof AssetsUpdateAssetErrors];
 
-export type UpdateAssetResponses = {
+export type AssetsUpdateAssetResponses = {
     /**
      * OK
      */
     200: AssetDtoEnvelopeReadable;
 };
 
-export type UpdateAssetResponse = UpdateAssetResponses[keyof UpdateAssetResponses];
+export type AssetsUpdateAssetResponse = AssetsUpdateAssetResponses[keyof AssetsUpdateAssetResponses];
 
-export type GetAssetAssetCategoriesData = {
+export type AssetsGetAssetAssetCategoriesData = {
     body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1492,7 +1492,7 @@ export type GetAssetAssetCategoriesData = {
     url: '/api/v2/AssetsService/Assets/Categories';
 };
 
-export type GetAssetAssetCategoriesErrors = {
+export type AssetsGetAssetAssetCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -1503,18 +1503,18 @@ export type GetAssetAssetCategoriesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetAssetCategoriesError = GetAssetAssetCategoriesErrors[keyof GetAssetAssetCategoriesErrors];
+export type AssetsGetAssetAssetCategoriesError = AssetsGetAssetAssetCategoriesErrors[keyof AssetsGetAssetAssetCategoriesErrors];
 
-export type GetAssetAssetCategoriesResponses = {
+export type AssetsGetAssetAssetCategoriesResponses = {
     /**
      * OK
      */
     200: AssetCategoryDtoListEnvelopeReadable;
 };
 
-export type GetAssetAssetCategoriesResponse = GetAssetAssetCategoriesResponses[keyof GetAssetAssetCategoriesResponses];
+export type AssetsGetAssetAssetCategoriesResponse = AssetsGetAssetAssetCategoriesResponses[keyof AssetsGetAssetAssetCategoriesResponses];
 
-export type CreateAssetAssetCategoryData = {
+export type AssetsCreateAssetAssetCategoryData = {
     body?: AssetCategoryCreateDto;
     path?: never;
     query: {
@@ -1523,7 +1523,7 @@ export type CreateAssetAssetCategoryData = {
     url: '/api/v2/AssetsService/Assets/Categories';
 };
 
-export type CreateAssetAssetCategoryErrors = {
+export type AssetsCreateAssetAssetCategoryErrors = {
     /**
      * Bad Request
      */
@@ -1538,18 +1538,18 @@ export type CreateAssetAssetCategoryErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetAssetCategoryError = CreateAssetAssetCategoryErrors[keyof CreateAssetAssetCategoryErrors];
+export type AssetsCreateAssetAssetCategoryError = AssetsCreateAssetAssetCategoryErrors[keyof AssetsCreateAssetAssetCategoryErrors];
 
-export type CreateAssetAssetCategoryResponses = {
+export type AssetsCreateAssetAssetCategoryResponses = {
     /**
      * Created
      */
     201: AssetCategoryDtoEnvelopeReadable;
 };
 
-export type CreateAssetAssetCategoryResponse = CreateAssetAssetCategoryResponses[keyof CreateAssetAssetCategoryResponses];
+export type AssetsCreateAssetAssetCategoryResponse = AssetsCreateAssetAssetCategoryResponses[keyof AssetsCreateAssetAssetCategoryResponses];
 
-export type GetAssetAssetCategoriesCountData = {
+export type AssetsGetAssetAssetCategoriesCountData = {
     body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1558,7 +1558,7 @@ export type GetAssetAssetCategoriesCountData = {
     url: '/api/v2/AssetsService/Assets/Categories/count';
 };
 
-export type GetAssetAssetCategoriesCountErrors = {
+export type AssetsGetAssetAssetCategoriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -1569,18 +1569,18 @@ export type GetAssetAssetCategoriesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetAssetCategoriesCountError = GetAssetAssetCategoriesCountErrors[keyof GetAssetAssetCategoriesCountErrors];
+export type AssetsGetAssetAssetCategoriesCountError = AssetsGetAssetAssetCategoriesCountErrors[keyof AssetsGetAssetAssetCategoriesCountErrors];
 
-export type GetAssetAssetCategoriesCountResponses = {
+export type AssetsGetAssetAssetCategoriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetAssetCategoriesCountResponse = GetAssetAssetCategoriesCountResponses[keyof GetAssetAssetCategoriesCountResponses];
+export type AssetsGetAssetAssetCategoriesCountResponse = AssetsGetAssetAssetCategoriesCountResponses[keyof AssetsGetAssetAssetCategoriesCountResponses];
 
-export type DeleteAssetAssetCategoryData = {
+export type AssetsDeleteAssetAssetCategoryData = {
     body?: never;
     path: {
         categoryId: string;
@@ -1591,7 +1591,7 @@ export type DeleteAssetAssetCategoryData = {
     url: '/api/v2/AssetsService/Assets/Categories/{categoryId}';
 };
 
-export type DeleteAssetAssetCategoryErrors = {
+export type AssetsDeleteAssetAssetCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -1606,18 +1606,18 @@ export type DeleteAssetAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetAssetCategoryError = DeleteAssetAssetCategoryErrors[keyof DeleteAssetAssetCategoryErrors];
+export type AssetsDeleteAssetAssetCategoryError = AssetsDeleteAssetAssetCategoryErrors[keyof AssetsDeleteAssetAssetCategoryErrors];
 
-export type DeleteAssetAssetCategoryResponses = {
+export type AssetsDeleteAssetAssetCategoryResponses = {
     /**
      * No Content
      */
     204: void;
 };
 
-export type DeleteAssetAssetCategoryResponse = DeleteAssetAssetCategoryResponses[keyof DeleteAssetAssetCategoryResponses];
+export type AssetsDeleteAssetAssetCategoryResponse = AssetsDeleteAssetAssetCategoryResponses[keyof AssetsDeleteAssetAssetCategoryResponses];
 
-export type GetAssetAssetCategoryData = {
+export type AssetsGetAssetAssetCategoryData = {
     body?: never;
     path: {
         categoryId: string;
@@ -1628,7 +1628,7 @@ export type GetAssetAssetCategoryData = {
     url: '/api/v2/AssetsService/Assets/Categories/{categoryId}';
 };
 
-export type GetAssetAssetCategoryErrors = {
+export type AssetsGetAssetAssetCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -1643,18 +1643,18 @@ export type GetAssetAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetAssetAssetCategoryError = GetAssetAssetCategoryErrors[keyof GetAssetAssetCategoryErrors];
+export type AssetsGetAssetAssetCategoryError = AssetsGetAssetAssetCategoryErrors[keyof AssetsGetAssetAssetCategoryErrors];
 
-export type GetAssetAssetCategoryResponses = {
+export type AssetsGetAssetAssetCategoryResponses = {
     /**
      * OK
      */
     200: AssetCategoryDtoEnvelopeReadable;
 };
 
-export type GetAssetAssetCategoryResponse = GetAssetAssetCategoryResponses[keyof GetAssetAssetCategoryResponses];
+export type AssetsGetAssetAssetCategoryResponse = AssetsGetAssetAssetCategoryResponses[keyof AssetsGetAssetAssetCategoryResponses];
 
-export type PatchAssetAssetCategoryData = {
+export type AssetsPatchAssetAssetCategoryData = {
     body?: Array<PatchOperation>;
     path: {
         categoryId: string;
@@ -1665,7 +1665,7 @@ export type PatchAssetAssetCategoryData = {
     url: '/api/v2/AssetsService/Assets/Categories/{categoryId}';
 };
 
-export type PatchAssetAssetCategoryErrors = {
+export type AssetsPatchAssetAssetCategoryErrors = {
     /**
      * Bad Request
      */
@@ -1684,18 +1684,18 @@ export type PatchAssetAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetAssetCategoryError = PatchAssetAssetCategoryErrors[keyof PatchAssetAssetCategoryErrors];
+export type AssetsPatchAssetAssetCategoryError = AssetsPatchAssetAssetCategoryErrors[keyof AssetsPatchAssetAssetCategoryErrors];
 
-export type PatchAssetAssetCategoryResponses = {
+export type AssetsPatchAssetAssetCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetAssetCategoryResponse = PatchAssetAssetCategoryResponses[keyof PatchAssetAssetCategoryResponses];
+export type AssetsPatchAssetAssetCategoryResponse = AssetsPatchAssetAssetCategoryResponses[keyof AssetsPatchAssetAssetCategoryResponses];
 
-export type UpdateAssetAssetCategoryData = {
+export type AssetsUpdateAssetAssetCategoryData = {
     body?: AssetCategoryUpdateDto;
     path: {
         categoryId: string;
@@ -1706,7 +1706,7 @@ export type UpdateAssetAssetCategoryData = {
     url: '/api/v2/AssetsService/Assets/Categories/{categoryId}';
 };
 
-export type UpdateAssetAssetCategoryErrors = {
+export type AssetsUpdateAssetAssetCategoryErrors = {
     /**
      * Bad Request
      */
@@ -1725,18 +1725,18 @@ export type UpdateAssetAssetCategoryErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetAssetCategoryError = UpdateAssetAssetCategoryErrors[keyof UpdateAssetAssetCategoryErrors];
+export type AssetsUpdateAssetAssetCategoryError = AssetsUpdateAssetAssetCategoryErrors[keyof AssetsUpdateAssetAssetCategoryErrors];
 
-export type UpdateAssetAssetCategoryResponses = {
+export type AssetsUpdateAssetAssetCategoryResponses = {
     /**
      * OK
      */
     200: AssetCategoryDtoEnvelopeReadable;
 };
 
-export type UpdateAssetAssetCategoryResponse = UpdateAssetAssetCategoryResponses[keyof UpdateAssetAssetCategoryResponses];
+export type AssetsUpdateAssetAssetCategoryResponse = AssetsUpdateAssetAssetCategoryResponses[keyof AssetsUpdateAssetAssetCategoryResponses];
 
-export type GetAssetRepairsData = {
+export type AssetsGetAssetRepairsData = {
     body?: AssetRepairDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -1747,7 +1747,7 @@ export type GetAssetRepairsData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs';
 };
 
-export type GetAssetRepairsErrors = {
+export type AssetsGetAssetRepairsErrors = {
     /**
      * Unauthorized
      */
@@ -1758,18 +1758,18 @@ export type GetAssetRepairsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetRepairsError = GetAssetRepairsErrors[keyof GetAssetRepairsErrors];
+export type AssetsGetAssetRepairsError = AssetsGetAssetRepairsErrors[keyof AssetsGetAssetRepairsErrors];
 
-export type GetAssetRepairsResponses = {
+export type AssetsGetAssetRepairsResponses = {
     /**
      * OK
      */
     200: AssetRepairDtoListEnvelopeReadable;
 };
 
-export type GetAssetRepairsResponse = GetAssetRepairsResponses[keyof GetAssetRepairsResponses];
+export type AssetsGetAssetRepairsResponse = AssetsGetAssetRepairsResponses[keyof AssetsGetAssetRepairsResponses];
 
-export type CreateAssetRepairData = {
+export type AssetsCreateAssetRepairData = {
     body?: AssetRepairCreateDto;
     path: {
         assetId: string;
@@ -1780,7 +1780,7 @@ export type CreateAssetRepairData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs';
 };
 
-export type CreateAssetRepairErrors = {
+export type AssetsCreateAssetRepairErrors = {
     /**
      * Unauthorized
      */
@@ -1791,18 +1791,18 @@ export type CreateAssetRepairErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetRepairError = CreateAssetRepairErrors[keyof CreateAssetRepairErrors];
+export type AssetsCreateAssetRepairError = AssetsCreateAssetRepairErrors[keyof AssetsCreateAssetRepairErrors];
 
-export type CreateAssetRepairResponses = {
+export type AssetsCreateAssetRepairResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAssetRepairResponse = CreateAssetRepairResponses[keyof CreateAssetRepairResponses];
+export type AssetsCreateAssetRepairResponse = AssetsCreateAssetRepairResponses[keyof AssetsCreateAssetRepairResponses];
 
-export type GetAssetRepairsCountData = {
+export type AssetsGetAssetRepairsCountData = {
     body?: AssetRepairDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -1813,7 +1813,7 @@ export type GetAssetRepairsCountData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs/Count';
 };
 
-export type GetAssetRepairsCountErrors = {
+export type AssetsGetAssetRepairsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1824,18 +1824,18 @@ export type GetAssetRepairsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetRepairsCountError = GetAssetRepairsCountErrors[keyof GetAssetRepairsCountErrors];
+export type AssetsGetAssetRepairsCountError = AssetsGetAssetRepairsCountErrors[keyof AssetsGetAssetRepairsCountErrors];
 
-export type GetAssetRepairsCountResponses = {
+export type AssetsGetAssetRepairsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetRepairsCountResponse = GetAssetRepairsCountResponses[keyof GetAssetRepairsCountResponses];
+export type AssetsGetAssetRepairsCountResponse = AssetsGetAssetRepairsCountResponses[keyof AssetsGetAssetRepairsCountResponses];
 
-export type DeleteAssetRepairData = {
+export type AssetsDeleteAssetRepairData = {
     body?: never;
     path: {
         assetId: string;
@@ -1847,7 +1847,7 @@ export type DeleteAssetRepairData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs/{repairId}';
 };
 
-export type DeleteAssetRepairErrors = {
+export type AssetsDeleteAssetRepairErrors = {
     /**
      * Unauthorized
      */
@@ -1858,18 +1858,18 @@ export type DeleteAssetRepairErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetRepairError = DeleteAssetRepairErrors[keyof DeleteAssetRepairErrors];
+export type AssetsDeleteAssetRepairError = AssetsDeleteAssetRepairErrors[keyof AssetsDeleteAssetRepairErrors];
 
-export type DeleteAssetRepairResponses = {
+export type AssetsDeleteAssetRepairResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAssetRepairResponse = DeleteAssetRepairResponses[keyof DeleteAssetRepairResponses];
+export type AssetsDeleteAssetRepairResponse = AssetsDeleteAssetRepairResponses[keyof AssetsDeleteAssetRepairResponses];
 
-export type GetAssetRepairData = {
+export type AssetsGetAssetRepairData = {
     body?: never;
     path: {
         assetId: string;
@@ -1881,7 +1881,7 @@ export type GetAssetRepairData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs/{repairId}';
 };
 
-export type GetAssetRepairErrors = {
+export type AssetsGetAssetRepairErrors = {
     /**
      * Unauthorized
      */
@@ -1892,18 +1892,18 @@ export type GetAssetRepairErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetRepairError = GetAssetRepairErrors[keyof GetAssetRepairErrors];
+export type AssetsGetAssetRepairError = AssetsGetAssetRepairErrors[keyof AssetsGetAssetRepairErrors];
 
-export type GetAssetRepairResponses = {
+export type AssetsGetAssetRepairResponses = {
     /**
      * OK
      */
     200: AssetRepairDtoEnvelopeReadable;
 };
 
-export type GetAssetRepairResponse = GetAssetRepairResponses[keyof GetAssetRepairResponses];
+export type AssetsGetAssetRepairResponse = AssetsGetAssetRepairResponses[keyof AssetsGetAssetRepairResponses];
 
-export type PatchAssetRepairData = {
+export type AssetsPatchAssetRepairData = {
     body?: Array<PatchOperation>;
     path: {
         assetId: string;
@@ -1915,7 +1915,7 @@ export type PatchAssetRepairData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs/{repairId}';
 };
 
-export type PatchAssetRepairErrors = {
+export type AssetsPatchAssetRepairErrors = {
     /**
      * Bad Request
      */
@@ -1934,18 +1934,18 @@ export type PatchAssetRepairErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetRepairError = PatchAssetRepairErrors[keyof PatchAssetRepairErrors];
+export type AssetsPatchAssetRepairError = AssetsPatchAssetRepairErrors[keyof AssetsPatchAssetRepairErrors];
 
-export type PatchAssetRepairResponses = {
+export type AssetsPatchAssetRepairResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetRepairResponse = PatchAssetRepairResponses[keyof PatchAssetRepairResponses];
+export type AssetsPatchAssetRepairResponse = AssetsPatchAssetRepairResponses[keyof AssetsPatchAssetRepairResponses];
 
-export type UpdateAssetRepairData = {
+export type AssetsUpdateAssetRepairData = {
     body?: AssetRepairUpdateDto;
     path: {
         assetId: string;
@@ -1957,7 +1957,7 @@ export type UpdateAssetRepairData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Repairs/{repairId}';
 };
 
-export type UpdateAssetRepairErrors = {
+export type AssetsUpdateAssetRepairErrors = {
     /**
      * Unauthorized
      */
@@ -1968,18 +1968,18 @@ export type UpdateAssetRepairErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetRepairError = UpdateAssetRepairErrors[keyof UpdateAssetRepairErrors];
+export type AssetsUpdateAssetRepairError = AssetsUpdateAssetRepairErrors[keyof AssetsUpdateAssetRepairErrors];
 
-export type UpdateAssetRepairResponses = {
+export type AssetsUpdateAssetRepairResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetRepairResponse = UpdateAssetRepairResponses[keyof UpdateAssetRepairResponses];
+export type AssetsUpdateAssetRepairResponse = AssetsUpdateAssetRepairResponses[keyof AssetsUpdateAssetRepairResponses];
 
-export type GetAssetValueAmendsData = {
+export type AssetsGetAssetValueAmendsData = {
     body?: AssetValueAmendDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -1990,7 +1990,7 @@ export type GetAssetValueAmendsData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends';
 };
 
-export type GetAssetValueAmendsErrors = {
+export type AssetsGetAssetValueAmendsErrors = {
     /**
      * Unauthorized
      */
@@ -2001,18 +2001,18 @@ export type GetAssetValueAmendsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetValueAmendsError = GetAssetValueAmendsErrors[keyof GetAssetValueAmendsErrors];
+export type AssetsGetAssetValueAmendsError = AssetsGetAssetValueAmendsErrors[keyof AssetsGetAssetValueAmendsErrors];
 
-export type GetAssetValueAmendsResponses = {
+export type AssetsGetAssetValueAmendsResponses = {
     /**
      * OK
      */
     200: AssetValueAmendDtoListEnvelopeReadable;
 };
 
-export type GetAssetValueAmendsResponse = GetAssetValueAmendsResponses[keyof GetAssetValueAmendsResponses];
+export type AssetsGetAssetValueAmendsResponse = AssetsGetAssetValueAmendsResponses[keyof AssetsGetAssetValueAmendsResponses];
 
-export type CreateAssetValueAmendData = {
+export type AssetsCreateAssetValueAmendData = {
     body?: AssetValueAmendCreateDto;
     path: {
         assetId: string;
@@ -2023,7 +2023,7 @@ export type CreateAssetValueAmendData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends';
 };
 
-export type CreateAssetValueAmendErrors = {
+export type AssetsCreateAssetValueAmendErrors = {
     /**
      * Unauthorized
      */
@@ -2034,18 +2034,18 @@ export type CreateAssetValueAmendErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetValueAmendError = CreateAssetValueAmendErrors[keyof CreateAssetValueAmendErrors];
+export type AssetsCreateAssetValueAmendError = AssetsCreateAssetValueAmendErrors[keyof AssetsCreateAssetValueAmendErrors];
 
-export type CreateAssetValueAmendResponses = {
+export type AssetsCreateAssetValueAmendResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAssetValueAmendResponse = CreateAssetValueAmendResponses[keyof CreateAssetValueAmendResponses];
+export type AssetsCreateAssetValueAmendResponse = AssetsCreateAssetValueAmendResponses[keyof AssetsCreateAssetValueAmendResponses];
 
-export type GetAssetValueAmendsCountData = {
+export type AssetsGetAssetValueAmendsCountData = {
     body?: AssetValueAmendDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -2056,7 +2056,7 @@ export type GetAssetValueAmendsCountData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends/Count';
 };
 
-export type GetAssetValueAmendsCountErrors = {
+export type AssetsGetAssetValueAmendsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2067,18 +2067,18 @@ export type GetAssetValueAmendsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetValueAmendsCountError = GetAssetValueAmendsCountErrors[keyof GetAssetValueAmendsCountErrors];
+export type AssetsGetAssetValueAmendsCountError = AssetsGetAssetValueAmendsCountErrors[keyof AssetsGetAssetValueAmendsCountErrors];
 
-export type GetAssetValueAmendsCountResponses = {
+export type AssetsGetAssetValueAmendsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetValueAmendsCountResponse = GetAssetValueAmendsCountResponses[keyof GetAssetValueAmendsCountResponses];
+export type AssetsGetAssetValueAmendsCountResponse = AssetsGetAssetValueAmendsCountResponses[keyof AssetsGetAssetValueAmendsCountResponses];
 
-export type DeleteAssetValueAmendData = {
+export type AssetsDeleteAssetValueAmendData = {
     body?: never;
     path: {
         assetId: string;
@@ -2090,7 +2090,7 @@ export type DeleteAssetValueAmendData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends/{amendId}';
 };
 
-export type DeleteAssetValueAmendErrors = {
+export type AssetsDeleteAssetValueAmendErrors = {
     /**
      * Unauthorized
      */
@@ -2101,18 +2101,18 @@ export type DeleteAssetValueAmendErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetValueAmendError = DeleteAssetValueAmendErrors[keyof DeleteAssetValueAmendErrors];
+export type AssetsDeleteAssetValueAmendError = AssetsDeleteAssetValueAmendErrors[keyof AssetsDeleteAssetValueAmendErrors];
 
-export type DeleteAssetValueAmendResponses = {
+export type AssetsDeleteAssetValueAmendResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAssetValueAmendResponse = DeleteAssetValueAmendResponses[keyof DeleteAssetValueAmendResponses];
+export type AssetsDeleteAssetValueAmendResponse = AssetsDeleteAssetValueAmendResponses[keyof AssetsDeleteAssetValueAmendResponses];
 
-export type GetAssetValueAmendData = {
+export type AssetsGetAssetValueAmendData = {
     body?: never;
     path: {
         assetId: string;
@@ -2124,7 +2124,7 @@ export type GetAssetValueAmendData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends/{amendId}';
 };
 
-export type GetAssetValueAmendErrors = {
+export type AssetsGetAssetValueAmendErrors = {
     /**
      * Unauthorized
      */
@@ -2135,18 +2135,18 @@ export type GetAssetValueAmendErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetValueAmendError = GetAssetValueAmendErrors[keyof GetAssetValueAmendErrors];
+export type AssetsGetAssetValueAmendError = AssetsGetAssetValueAmendErrors[keyof AssetsGetAssetValueAmendErrors];
 
-export type GetAssetValueAmendResponses = {
+export type AssetsGetAssetValueAmendResponses = {
     /**
      * OK
      */
     200: AssetValueAmendDtoEnvelopeReadable;
 };
 
-export type GetAssetValueAmendResponse = GetAssetValueAmendResponses[keyof GetAssetValueAmendResponses];
+export type AssetsGetAssetValueAmendResponse = AssetsGetAssetValueAmendResponses[keyof AssetsGetAssetValueAmendResponses];
 
-export type PatchAssetValueAmendData = {
+export type AssetsPatchAssetValueAmendData = {
     body?: Array<PatchOperation>;
     path: {
         assetId: string;
@@ -2158,7 +2158,7 @@ export type PatchAssetValueAmendData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends/{amendId}';
 };
 
-export type PatchAssetValueAmendErrors = {
+export type AssetsPatchAssetValueAmendErrors = {
     /**
      * Bad Request
      */
@@ -2177,18 +2177,18 @@ export type PatchAssetValueAmendErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetValueAmendError = PatchAssetValueAmendErrors[keyof PatchAssetValueAmendErrors];
+export type AssetsPatchAssetValueAmendError = AssetsPatchAssetValueAmendErrors[keyof AssetsPatchAssetValueAmendErrors];
 
-export type PatchAssetValueAmendResponses = {
+export type AssetsPatchAssetValueAmendResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetValueAmendResponse = PatchAssetValueAmendResponses[keyof PatchAssetValueAmendResponses];
+export type AssetsPatchAssetValueAmendResponse = AssetsPatchAssetValueAmendResponses[keyof AssetsPatchAssetValueAmendResponses];
 
-export type UpdateAssetValueAmendData = {
+export type AssetsUpdateAssetValueAmendData = {
     body?: AssetValueAmendUpdateDto;
     path: {
         assetId: string;
@@ -2200,7 +2200,7 @@ export type UpdateAssetValueAmendData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends/{amendId}';
 };
 
-export type UpdateAssetValueAmendErrors = {
+export type AssetsUpdateAssetValueAmendErrors = {
     /**
      * Unauthorized
      */
@@ -2211,18 +2211,18 @@ export type UpdateAssetValueAmendErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetValueAmendError = UpdateAssetValueAmendErrors[keyof UpdateAssetValueAmendErrors];
+export type AssetsUpdateAssetValueAmendError = AssetsUpdateAssetValueAmendErrors[keyof AssetsUpdateAssetValueAmendErrors];
 
-export type UpdateAssetValueAmendResponses = {
+export type AssetsUpdateAssetValueAmendResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetValueAmendResponse = UpdateAssetValueAmendResponses[keyof UpdateAssetValueAmendResponses];
+export type AssetsUpdateAssetValueAmendResponse = AssetsUpdateAssetValueAmendResponses[keyof AssetsUpdateAssetValueAmendResponses];
 
-export type GetAssetDepreciationRecordsData = {
+export type AssetsGetAssetDepreciationRecordsData = {
     body?: AssetDepreciationRecordDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -2233,7 +2233,7 @@ export type GetAssetDepreciationRecordsData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords';
 };
 
-export type GetAssetDepreciationRecordsErrors = {
+export type AssetsGetAssetDepreciationRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -2244,18 +2244,18 @@ export type GetAssetDepreciationRecordsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetDepreciationRecordsError = GetAssetDepreciationRecordsErrors[keyof GetAssetDepreciationRecordsErrors];
+export type AssetsGetAssetDepreciationRecordsError = AssetsGetAssetDepreciationRecordsErrors[keyof AssetsGetAssetDepreciationRecordsErrors];
 
-export type GetAssetDepreciationRecordsResponses = {
+export type AssetsGetAssetDepreciationRecordsResponses = {
     /**
      * OK
      */
     200: AssetDepreciationRecordDtoListEnvelopeReadable;
 };
 
-export type GetAssetDepreciationRecordsResponse = GetAssetDepreciationRecordsResponses[keyof GetAssetDepreciationRecordsResponses];
+export type AssetsGetAssetDepreciationRecordsResponse = AssetsGetAssetDepreciationRecordsResponses[keyof AssetsGetAssetDepreciationRecordsResponses];
 
-export type CreateAssetDepreciationRecordData = {
+export type AssetsCreateAssetDepreciationRecordData = {
     body?: AssetDepreciationRecordCreateDto;
     path: {
         assetId: string;
@@ -2266,7 +2266,7 @@ export type CreateAssetDepreciationRecordData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords';
 };
 
-export type CreateAssetDepreciationRecordErrors = {
+export type AssetsCreateAssetDepreciationRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2277,18 +2277,18 @@ export type CreateAssetDepreciationRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetDepreciationRecordError = CreateAssetDepreciationRecordErrors[keyof CreateAssetDepreciationRecordErrors];
+export type AssetsCreateAssetDepreciationRecordError = AssetsCreateAssetDepreciationRecordErrors[keyof AssetsCreateAssetDepreciationRecordErrors];
 
-export type CreateAssetDepreciationRecordResponses = {
+export type AssetsCreateAssetDepreciationRecordResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAssetDepreciationRecordResponse = CreateAssetDepreciationRecordResponses[keyof CreateAssetDepreciationRecordResponses];
+export type AssetsCreateAssetDepreciationRecordResponse = AssetsCreateAssetDepreciationRecordResponses[keyof AssetsCreateAssetDepreciationRecordResponses];
 
-export type GetAssetDepreciationRecordsCountData = {
+export type AssetsGetAssetDepreciationRecordsCountData = {
     body?: AssetDepreciationRecordDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -2299,7 +2299,7 @@ export type GetAssetDepreciationRecordsCountData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/Count';
 };
 
-export type GetAssetDepreciationRecordsCountErrors = {
+export type AssetsGetAssetDepreciationRecordsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2310,18 +2310,18 @@ export type GetAssetDepreciationRecordsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetDepreciationRecordsCountError = GetAssetDepreciationRecordsCountErrors[keyof GetAssetDepreciationRecordsCountErrors];
+export type AssetsGetAssetDepreciationRecordsCountError = AssetsGetAssetDepreciationRecordsCountErrors[keyof AssetsGetAssetDepreciationRecordsCountErrors];
 
-export type GetAssetDepreciationRecordsCountResponses = {
+export type AssetsGetAssetDepreciationRecordsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetDepreciationRecordsCountResponse = GetAssetDepreciationRecordsCountResponses[keyof GetAssetDepreciationRecordsCountResponses];
+export type AssetsGetAssetDepreciationRecordsCountResponse = AssetsGetAssetDepreciationRecordsCountResponses[keyof AssetsGetAssetDepreciationRecordsCountResponses];
 
-export type DeleteAssetDepreciationRecordData = {
+export type AssetsDeleteAssetDepreciationRecordData = {
     body?: never;
     path: {
         assetId: string;
@@ -2333,7 +2333,7 @@ export type DeleteAssetDepreciationRecordData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/{recordId}';
 };
 
-export type DeleteAssetDepreciationRecordErrors = {
+export type AssetsDeleteAssetDepreciationRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2344,18 +2344,18 @@ export type DeleteAssetDepreciationRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetDepreciationRecordError = DeleteAssetDepreciationRecordErrors[keyof DeleteAssetDepreciationRecordErrors];
+export type AssetsDeleteAssetDepreciationRecordError = AssetsDeleteAssetDepreciationRecordErrors[keyof AssetsDeleteAssetDepreciationRecordErrors];
 
-export type DeleteAssetDepreciationRecordResponses = {
+export type AssetsDeleteAssetDepreciationRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAssetDepreciationRecordResponse = DeleteAssetDepreciationRecordResponses[keyof DeleteAssetDepreciationRecordResponses];
+export type AssetsDeleteAssetDepreciationRecordResponse = AssetsDeleteAssetDepreciationRecordResponses[keyof AssetsDeleteAssetDepreciationRecordResponses];
 
-export type GetAssetDepreciationRecordData = {
+export type AssetsGetAssetDepreciationRecordData = {
     body?: never;
     path: {
         assetId: string;
@@ -2367,7 +2367,7 @@ export type GetAssetDepreciationRecordData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/{recordId}';
 };
 
-export type GetAssetDepreciationRecordErrors = {
+export type AssetsGetAssetDepreciationRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2378,18 +2378,18 @@ export type GetAssetDepreciationRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetDepreciationRecordError = GetAssetDepreciationRecordErrors[keyof GetAssetDepreciationRecordErrors];
+export type AssetsGetAssetDepreciationRecordError = AssetsGetAssetDepreciationRecordErrors[keyof AssetsGetAssetDepreciationRecordErrors];
 
-export type GetAssetDepreciationRecordResponses = {
+export type AssetsGetAssetDepreciationRecordResponses = {
     /**
      * OK
      */
     200: AssetDepreciationRecordDtoEnvelopeReadable;
 };
 
-export type GetAssetDepreciationRecordResponse = GetAssetDepreciationRecordResponses[keyof GetAssetDepreciationRecordResponses];
+export type AssetsGetAssetDepreciationRecordResponse = AssetsGetAssetDepreciationRecordResponses[keyof AssetsGetAssetDepreciationRecordResponses];
 
-export type PatchAssetDepreciationRecordData = {
+export type AssetsPatchAssetDepreciationRecordData = {
     body?: Array<PatchOperation>;
     path: {
         assetId: string;
@@ -2401,7 +2401,7 @@ export type PatchAssetDepreciationRecordData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/{recordId}';
 };
 
-export type PatchAssetDepreciationRecordErrors = {
+export type AssetsPatchAssetDepreciationRecordErrors = {
     /**
      * Bad Request
      */
@@ -2420,18 +2420,18 @@ export type PatchAssetDepreciationRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetDepreciationRecordError = PatchAssetDepreciationRecordErrors[keyof PatchAssetDepreciationRecordErrors];
+export type AssetsPatchAssetDepreciationRecordError = AssetsPatchAssetDepreciationRecordErrors[keyof AssetsPatchAssetDepreciationRecordErrors];
 
-export type PatchAssetDepreciationRecordResponses = {
+export type AssetsPatchAssetDepreciationRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetDepreciationRecordResponse = PatchAssetDepreciationRecordResponses[keyof PatchAssetDepreciationRecordResponses];
+export type AssetsPatchAssetDepreciationRecordResponse = AssetsPatchAssetDepreciationRecordResponses[keyof AssetsPatchAssetDepreciationRecordResponses];
 
-export type UpdateAssetDepreciationRecordData = {
+export type AssetsUpdateAssetDepreciationRecordData = {
     body?: AssetDepreciationRecordUpdateDto;
     path: {
         assetId: string;
@@ -2443,7 +2443,7 @@ export type UpdateAssetDepreciationRecordData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/{recordId}';
 };
 
-export type UpdateAssetDepreciationRecordErrors = {
+export type AssetsUpdateAssetDepreciationRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2454,18 +2454,18 @@ export type UpdateAssetDepreciationRecordErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetDepreciationRecordError = UpdateAssetDepreciationRecordErrors[keyof UpdateAssetDepreciationRecordErrors];
+export type AssetsUpdateAssetDepreciationRecordError = AssetsUpdateAssetDepreciationRecordErrors[keyof AssetsUpdateAssetDepreciationRecordErrors];
 
-export type UpdateAssetDepreciationRecordResponses = {
+export type AssetsUpdateAssetDepreciationRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetDepreciationRecordResponse = UpdateAssetDepreciationRecordResponses[keyof UpdateAssetDepreciationRecordResponses];
+export type AssetsUpdateAssetDepreciationRecordResponse = AssetsUpdateAssetDepreciationRecordResponses[keyof AssetsUpdateAssetDepreciationRecordResponses];
 
-export type GetAssetTransfersData = {
+export type AssetsGetAssetTransfersData = {
     body?: AssetTransferDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -2476,7 +2476,7 @@ export type GetAssetTransfersData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers';
 };
 
-export type GetAssetTransfersErrors = {
+export type AssetsGetAssetTransfersErrors = {
     /**
      * Unauthorized
      */
@@ -2487,18 +2487,18 @@ export type GetAssetTransfersErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTransfersError = GetAssetTransfersErrors[keyof GetAssetTransfersErrors];
+export type AssetsGetAssetTransfersError = AssetsGetAssetTransfersErrors[keyof AssetsGetAssetTransfersErrors];
 
-export type GetAssetTransfersResponses = {
+export type AssetsGetAssetTransfersResponses = {
     /**
      * OK
      */
     200: AssetTransferDtoListEnvelopeReadable;
 };
 
-export type GetAssetTransfersResponse = GetAssetTransfersResponses[keyof GetAssetTransfersResponses];
+export type AssetsGetAssetTransfersResponse = AssetsGetAssetTransfersResponses[keyof AssetsGetAssetTransfersResponses];
 
-export type CreateAssetTransferData = {
+export type AssetsCreateAssetTransferData = {
     body?: AssetTransferCreateDto;
     path: {
         assetId: string;
@@ -2509,7 +2509,7 @@ export type CreateAssetTransferData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers';
 };
 
-export type CreateAssetTransferErrors = {
+export type AssetsCreateAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2520,18 +2520,18 @@ export type CreateAssetTransferErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetTransferError = CreateAssetTransferErrors[keyof CreateAssetTransferErrors];
+export type AssetsCreateAssetTransferError = AssetsCreateAssetTransferErrors[keyof AssetsCreateAssetTransferErrors];
 
-export type CreateAssetTransferResponses = {
+export type AssetsCreateAssetTransferResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAssetTransferResponse = CreateAssetTransferResponses[keyof CreateAssetTransferResponses];
+export type AssetsCreateAssetTransferResponse = AssetsCreateAssetTransferResponses[keyof AssetsCreateAssetTransferResponses];
 
-export type GetAssetTransfersCountData = {
+export type AssetsGetAssetTransfersCountData = {
     body?: AssetTransferDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
@@ -2542,7 +2542,7 @@ export type GetAssetTransfersCountData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers/Count';
 };
 
-export type GetAssetTransfersCountErrors = {
+export type AssetsGetAssetTransfersCountErrors = {
     /**
      * Unauthorized
      */
@@ -2553,18 +2553,18 @@ export type GetAssetTransfersCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTransfersCountError = GetAssetTransfersCountErrors[keyof GetAssetTransfersCountErrors];
+export type AssetsGetAssetTransfersCountError = AssetsGetAssetTransfersCountErrors[keyof AssetsGetAssetTransfersCountErrors];
 
-export type GetAssetTransfersCountResponses = {
+export type AssetsGetAssetTransfersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetTransfersCountResponse = GetAssetTransfersCountResponses[keyof GetAssetTransfersCountResponses];
+export type AssetsGetAssetTransfersCountResponse = AssetsGetAssetTransfersCountResponses[keyof AssetsGetAssetTransfersCountResponses];
 
-export type DeleteAssetTransferData = {
+export type AssetsDeleteAssetTransferData = {
     body?: never;
     path: {
         assetId: string;
@@ -2576,7 +2576,7 @@ export type DeleteAssetTransferData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers/{transferId}';
 };
 
-export type DeleteAssetTransferErrors = {
+export type AssetsDeleteAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2587,18 +2587,18 @@ export type DeleteAssetTransferErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetTransferError = DeleteAssetTransferErrors[keyof DeleteAssetTransferErrors];
+export type AssetsDeleteAssetTransferError = AssetsDeleteAssetTransferErrors[keyof AssetsDeleteAssetTransferErrors];
 
-export type DeleteAssetTransferResponses = {
+export type AssetsDeleteAssetTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAssetTransferResponse = DeleteAssetTransferResponses[keyof DeleteAssetTransferResponses];
+export type AssetsDeleteAssetTransferResponse = AssetsDeleteAssetTransferResponses[keyof AssetsDeleteAssetTransferResponses];
 
-export type GetAssetTransferData = {
+export type AssetsGetAssetTransferData = {
     body?: never;
     path: {
         assetId: string;
@@ -2610,7 +2610,7 @@ export type GetAssetTransferData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers/{transferId}';
 };
 
-export type GetAssetTransferErrors = {
+export type AssetsGetAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2621,18 +2621,18 @@ export type GetAssetTransferErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTransferError = GetAssetTransferErrors[keyof GetAssetTransferErrors];
+export type AssetsGetAssetTransferError = AssetsGetAssetTransferErrors[keyof AssetsGetAssetTransferErrors];
 
-export type GetAssetTransferResponses = {
+export type AssetsGetAssetTransferResponses = {
     /**
      * OK
      */
     200: AssetTransferDtoEnvelopeReadable;
 };
 
-export type GetAssetTransferResponse = GetAssetTransferResponses[keyof GetAssetTransferResponses];
+export type AssetsGetAssetTransferResponse = AssetsGetAssetTransferResponses[keyof AssetsGetAssetTransferResponses];
 
-export type PatchAssetTransferData = {
+export type AssetsPatchAssetTransferData = {
     body?: Array<PatchOperation>;
     path: {
         assetId: string;
@@ -2644,7 +2644,7 @@ export type PatchAssetTransferData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers/{transferId}';
 };
 
-export type PatchAssetTransferErrors = {
+export type AssetsPatchAssetTransferErrors = {
     /**
      * Bad Request
      */
@@ -2663,18 +2663,18 @@ export type PatchAssetTransferErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetTransferError = PatchAssetTransferErrors[keyof PatchAssetTransferErrors];
+export type AssetsPatchAssetTransferError = AssetsPatchAssetTransferErrors[keyof AssetsPatchAssetTransferErrors];
 
-export type PatchAssetTransferResponses = {
+export type AssetsPatchAssetTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetTransferResponse = PatchAssetTransferResponses[keyof PatchAssetTransferResponses];
+export type AssetsPatchAssetTransferResponse = AssetsPatchAssetTransferResponses[keyof AssetsPatchAssetTransferResponses];
 
-export type UpdateAssetTransferData = {
+export type AssetsUpdateAssetTransferData = {
     body?: AssetTransferUpdateDto;
     path: {
         assetId: string;
@@ -2686,7 +2686,7 @@ export type UpdateAssetTransferData = {
     url: '/api/v2/AssetsService/Assets/{assetId}/Transfers/{transferId}';
 };
 
-export type UpdateAssetTransferErrors = {
+export type AssetsUpdateAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2697,18 +2697,18 @@ export type UpdateAssetTransferErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetTransferError = UpdateAssetTransferErrors[keyof UpdateAssetTransferErrors];
+export type AssetsUpdateAssetTransferError = AssetsUpdateAssetTransferErrors[keyof AssetsUpdateAssetTransferErrors];
 
-export type UpdateAssetTransferResponses = {
+export type AssetsUpdateAssetTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetTransferResponse = UpdateAssetTransferResponses[keyof UpdateAssetTransferResponses];
+export type AssetsUpdateAssetTransferResponse = AssetsUpdateAssetTransferResponses[keyof AssetsUpdateAssetTransferResponses];
 
-export type GetAssetTransfersAsyncData = {
+export type AssetTransfersGetAssetTransfersData = {
     body?: AssetTransferDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2717,7 +2717,7 @@ export type GetAssetTransfersAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers';
 };
 
-export type GetAssetTransfersAsyncErrors = {
+export type AssetTransfersGetAssetTransfersErrors = {
     /**
      * Unauthorized
      */
@@ -2728,18 +2728,18 @@ export type GetAssetTransfersAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTransfersAsyncError = GetAssetTransfersAsyncErrors[keyof GetAssetTransfersAsyncErrors];
+export type AssetTransfersGetAssetTransfersError = AssetTransfersGetAssetTransfersErrors[keyof AssetTransfersGetAssetTransfersErrors];
 
-export type GetAssetTransfersAsyncResponses = {
+export type AssetTransfersGetAssetTransfersResponses = {
     /**
      * OK
      */
     200: AssetTransferDtoListEnvelopeReadable;
 };
 
-export type GetAssetTransfersAsyncResponse = GetAssetTransfersAsyncResponses[keyof GetAssetTransfersAsyncResponses];
+export type AssetTransfersGetAssetTransfersResponse = AssetTransfersGetAssetTransfersResponses[keyof AssetTransfersGetAssetTransfersResponses];
 
-export type CreateAssetTransferAsyncData = {
+export type AssetTransfersCreateAssetTransferData = {
     body?: AssetTransferCreateDto;
     path?: never;
     query: {
@@ -2748,7 +2748,7 @@ export type CreateAssetTransferAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers';
 };
 
-export type CreateAssetTransferAsyncErrors = {
+export type AssetTransfersCreateAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2759,18 +2759,18 @@ export type CreateAssetTransferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetTransferAsyncError = CreateAssetTransferAsyncErrors[keyof CreateAssetTransferAsyncErrors];
+export type AssetTransfersCreateAssetTransferError = AssetTransfersCreateAssetTransferErrors[keyof AssetTransfersCreateAssetTransferErrors];
 
-export type CreateAssetTransferAsyncResponses = {
+export type AssetTransfersCreateAssetTransferResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateAssetTransferAsyncResponse = CreateAssetTransferAsyncResponses[keyof CreateAssetTransferAsyncResponses];
+export type AssetTransfersCreateAssetTransferResponse = AssetTransfersCreateAssetTransferResponses[keyof AssetTransfersCreateAssetTransferResponses];
 
-export type GetAssetTransfersCountAsyncData = {
+export type AssetTransfersGetAssetTransfersCountData = {
     body?: AssetTransferDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2779,7 +2779,7 @@ export type GetAssetTransfersCountAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers/Count';
 };
 
-export type GetAssetTransfersCountAsyncErrors = {
+export type AssetTransfersGetAssetTransfersCountErrors = {
     /**
      * Unauthorized
      */
@@ -2790,18 +2790,18 @@ export type GetAssetTransfersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTransfersCountAsyncError = GetAssetTransfersCountAsyncErrors[keyof GetAssetTransfersCountAsyncErrors];
+export type AssetTransfersGetAssetTransfersCountError = AssetTransfersGetAssetTransfersCountErrors[keyof AssetTransfersGetAssetTransfersCountErrors];
 
-export type GetAssetTransfersCountAsyncResponses = {
+export type AssetTransfersGetAssetTransfersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetTransfersCountAsyncResponse = GetAssetTransfersCountAsyncResponses[keyof GetAssetTransfersCountAsyncResponses];
+export type AssetTransfersGetAssetTransfersCountResponse = AssetTransfersGetAssetTransfersCountResponses[keyof AssetTransfersGetAssetTransfersCountResponses];
 
-export type DeleteAssetTransferAsyncData = {
+export type AssetTransfersDeleteAssetTransferData = {
     body?: never;
     path: {
         transferId: string;
@@ -2812,7 +2812,7 @@ export type DeleteAssetTransferAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers/{transferId}';
 };
 
-export type DeleteAssetTransferAsyncErrors = {
+export type AssetTransfersDeleteAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2823,18 +2823,18 @@ export type DeleteAssetTransferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetTransferAsyncError = DeleteAssetTransferAsyncErrors[keyof DeleteAssetTransferAsyncErrors];
+export type AssetTransfersDeleteAssetTransferError = AssetTransfersDeleteAssetTransferErrors[keyof AssetTransfersDeleteAssetTransferErrors];
 
-export type DeleteAssetTransferAsyncResponses = {
+export type AssetTransfersDeleteAssetTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteAssetTransferAsyncResponse = DeleteAssetTransferAsyncResponses[keyof DeleteAssetTransferAsyncResponses];
+export type AssetTransfersDeleteAssetTransferResponse = AssetTransfersDeleteAssetTransferResponses[keyof AssetTransfersDeleteAssetTransferResponses];
 
-export type GetAssetTransferAsyncData = {
+export type AssetTransfersGetAssetTransferData = {
     body?: never;
     path: {
         transferId: string;
@@ -2845,7 +2845,7 @@ export type GetAssetTransferAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers/{transferId}';
 };
 
-export type GetAssetTransferAsyncErrors = {
+export type AssetTransfersGetAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2856,18 +2856,18 @@ export type GetAssetTransferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTransferAsyncError = GetAssetTransferAsyncErrors[keyof GetAssetTransferAsyncErrors];
+export type AssetTransfersGetAssetTransferError = AssetTransfersGetAssetTransferErrors[keyof AssetTransfersGetAssetTransferErrors];
 
-export type GetAssetTransferAsyncResponses = {
+export type AssetTransfersGetAssetTransferResponses = {
     /**
      * OK
      */
     200: AssetTransferDtoEnvelopeReadable;
 };
 
-export type GetAssetTransferAsyncResponse = GetAssetTransferAsyncResponses[keyof GetAssetTransferAsyncResponses];
+export type AssetTransfersGetAssetTransferResponse = AssetTransfersGetAssetTransferResponses[keyof AssetTransfersGetAssetTransferResponses];
 
-export type PatchAssetTransferAsyncData = {
+export type AssetTransfersPatchAssetTransferData = {
     body?: Array<PatchOperation>;
     path: {
         transferId: string;
@@ -2878,7 +2878,7 @@ export type PatchAssetTransferAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers/{transferId}';
 };
 
-export type PatchAssetTransferAsyncErrors = {
+export type AssetTransfersPatchAssetTransferErrors = {
     /**
      * Bad Request
      */
@@ -2897,18 +2897,18 @@ export type PatchAssetTransferAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetTransferAsyncError = PatchAssetTransferAsyncErrors[keyof PatchAssetTransferAsyncErrors];
+export type AssetTransfersPatchAssetTransferError = AssetTransfersPatchAssetTransferErrors[keyof AssetTransfersPatchAssetTransferErrors];
 
-export type PatchAssetTransferAsyncResponses = {
+export type AssetTransfersPatchAssetTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetTransferAsyncResponse = PatchAssetTransferAsyncResponses[keyof PatchAssetTransferAsyncResponses];
+export type AssetTransfersPatchAssetTransferResponse = AssetTransfersPatchAssetTransferResponses[keyof AssetTransfersPatchAssetTransferResponses];
 
-export type UpdateAssetTransferAsyncData = {
+export type AssetTransfersUpdateAssetTransferData = {
     body?: AssetTransferUpdateDto;
     path: {
         transferId: string;
@@ -2919,7 +2919,7 @@ export type UpdateAssetTransferAsyncData = {
     url: '/api/v2/AssetsService/AssetTransfers/{transferId}';
 };
 
-export type UpdateAssetTransferAsyncErrors = {
+export type AssetTransfersUpdateAssetTransferErrors = {
     /**
      * Unauthorized
      */
@@ -2930,18 +2930,18 @@ export type UpdateAssetTransferAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetTransferAsyncError = UpdateAssetTransferAsyncErrors[keyof UpdateAssetTransferAsyncErrors];
+export type AssetTransfersUpdateAssetTransferError = AssetTransfersUpdateAssetTransferErrors[keyof AssetTransfersUpdateAssetTransferErrors];
 
-export type UpdateAssetTransferAsyncResponses = {
+export type AssetTransfersUpdateAssetTransferResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetTransferAsyncResponse = UpdateAssetTransferAsyncResponses[keyof UpdateAssetTransferAsyncResponses];
+export type AssetTransfersUpdateAssetTransferResponse = AssetTransfersUpdateAssetTransferResponses[keyof AssetTransfersUpdateAssetTransferResponses];
 
-export type GetAssetTypesData = {
+export type AssetTypesGetAssetTypesData = {
     body?: AssetTypeDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2950,7 +2950,7 @@ export type GetAssetTypesData = {
     url: '/api/v2/AssetsService/AssetTypes';
 };
 
-export type GetAssetTypesErrors = {
+export type AssetTypesGetAssetTypesErrors = {
     /**
      * Unauthorized
      */
@@ -2961,18 +2961,18 @@ export type GetAssetTypesErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTypesError = GetAssetTypesErrors[keyof GetAssetTypesErrors];
+export type AssetTypesGetAssetTypesError = AssetTypesGetAssetTypesErrors[keyof AssetTypesGetAssetTypesErrors];
 
-export type GetAssetTypesResponses = {
+export type AssetTypesGetAssetTypesResponses = {
     /**
      * OK
      */
     200: AssetTypeDtoListEnvelopeReadable;
 };
 
-export type GetAssetTypesResponse = GetAssetTypesResponses[keyof GetAssetTypesResponses];
+export type AssetTypesGetAssetTypesResponse = AssetTypesGetAssetTypesResponses[keyof AssetTypesGetAssetTypesResponses];
 
-export type CreateAssetTypeData = {
+export type AssetTypesCreateAssetTypeData = {
     body?: AssetTypeCreateDto;
     path?: never;
     query: {
@@ -2981,7 +2981,7 @@ export type CreateAssetTypeData = {
     url: '/api/v2/AssetsService/AssetTypes';
 };
 
-export type CreateAssetTypeErrors = {
+export type AssetTypesCreateAssetTypeErrors = {
     /**
      * Bad Request
      */
@@ -2996,18 +2996,18 @@ export type CreateAssetTypeErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateAssetTypeError = CreateAssetTypeErrors[keyof CreateAssetTypeErrors];
+export type AssetTypesCreateAssetTypeError = AssetTypesCreateAssetTypeErrors[keyof AssetTypesCreateAssetTypeErrors];
 
-export type CreateAssetTypeResponses = {
+export type AssetTypesCreateAssetTypeResponses = {
     /**
      * Created
      */
     201: AssetTypeDtoEnvelopeReadable;
 };
 
-export type CreateAssetTypeResponse = CreateAssetTypeResponses[keyof CreateAssetTypeResponses];
+export type AssetTypesCreateAssetTypeResponse = AssetTypesCreateAssetTypeResponses[keyof AssetTypesCreateAssetTypeResponses];
 
-export type DeleteAssetTypeData = {
+export type AssetTypesDeleteAssetTypeData = {
     body?: never;
     path: {
         typeId: string;
@@ -3018,7 +3018,7 @@ export type DeleteAssetTypeData = {
     url: '/api/v2/AssetsService/AssetTypes/{typeId}';
 };
 
-export type DeleteAssetTypeErrors = {
+export type AssetTypesDeleteAssetTypeErrors = {
     /**
      * Unauthorized
      */
@@ -3033,18 +3033,18 @@ export type DeleteAssetTypeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteAssetTypeError = DeleteAssetTypeErrors[keyof DeleteAssetTypeErrors];
+export type AssetTypesDeleteAssetTypeError = AssetTypesDeleteAssetTypeErrors[keyof AssetTypesDeleteAssetTypeErrors];
 
-export type DeleteAssetTypeResponses = {
+export type AssetTypesDeleteAssetTypeResponses = {
     /**
      * No Content
      */
     204: void;
 };
 
-export type DeleteAssetTypeResponse = DeleteAssetTypeResponses[keyof DeleteAssetTypeResponses];
+export type AssetTypesDeleteAssetTypeResponse = AssetTypesDeleteAssetTypeResponses[keyof AssetTypesDeleteAssetTypeResponses];
 
-export type GetAssetTypeData = {
+export type AssetTypesGetAssetTypeData = {
     body?: never;
     path: {
         typeId: string;
@@ -3055,7 +3055,7 @@ export type GetAssetTypeData = {
     url: '/api/v2/AssetsService/AssetTypes/{typeId}';
 };
 
-export type GetAssetTypeErrors = {
+export type AssetTypesGetAssetTypeErrors = {
     /**
      * Unauthorized
      */
@@ -3070,18 +3070,18 @@ export type GetAssetTypeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTypeError = GetAssetTypeErrors[keyof GetAssetTypeErrors];
+export type AssetTypesGetAssetTypeError = AssetTypesGetAssetTypeErrors[keyof AssetTypesGetAssetTypeErrors];
 
-export type GetAssetTypeResponses = {
+export type AssetTypesGetAssetTypeResponses = {
     /**
      * OK
      */
     200: AssetTypeDtoEnvelopeReadable;
 };
 
-export type GetAssetTypeResponse = GetAssetTypeResponses[keyof GetAssetTypeResponses];
+export type AssetTypesGetAssetTypeResponse = AssetTypesGetAssetTypeResponses[keyof AssetTypesGetAssetTypeResponses];
 
-export type PatchAssetTypeData = {
+export type AssetTypesPatchAssetTypeData = {
     body?: Array<PatchOperation>;
     path: {
         typeId: string;
@@ -3092,7 +3092,7 @@ export type PatchAssetTypeData = {
     url: '/api/v2/AssetsService/AssetTypes/{typeId}';
 };
 
-export type PatchAssetTypeErrors = {
+export type AssetTypesPatchAssetTypeErrors = {
     /**
      * Bad Request
      */
@@ -3111,18 +3111,18 @@ export type PatchAssetTypeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchAssetTypeError = PatchAssetTypeErrors[keyof PatchAssetTypeErrors];
+export type AssetTypesPatchAssetTypeError = AssetTypesPatchAssetTypeErrors[keyof AssetTypesPatchAssetTypeErrors];
 
-export type PatchAssetTypeResponses = {
+export type AssetTypesPatchAssetTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchAssetTypeResponse = PatchAssetTypeResponses[keyof PatchAssetTypeResponses];
+export type AssetTypesPatchAssetTypeResponse = AssetTypesPatchAssetTypeResponses[keyof AssetTypesPatchAssetTypeResponses];
 
-export type UpdateAssetTypeData = {
+export type AssetTypesUpdateAssetTypeData = {
     body?: AssetTypeUpdateDto;
     path: {
         typeId: string;
@@ -3133,7 +3133,7 @@ export type UpdateAssetTypeData = {
     url: '/api/v2/AssetsService/AssetTypes/{typeId}';
 };
 
-export type UpdateAssetTypeErrors = {
+export type AssetTypesUpdateAssetTypeErrors = {
     /**
      * Bad Request
      */
@@ -3152,18 +3152,18 @@ export type UpdateAssetTypeErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateAssetTypeError = UpdateAssetTypeErrors[keyof UpdateAssetTypeErrors];
+export type AssetTypesUpdateAssetTypeError = AssetTypesUpdateAssetTypeErrors[keyof AssetTypesUpdateAssetTypeErrors];
 
-export type UpdateAssetTypeResponses = {
+export type AssetTypesUpdateAssetTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAssetTypeResponse = UpdateAssetTypeResponses[keyof UpdateAssetTypeResponses];
+export type AssetTypesUpdateAssetTypeResponse = AssetTypesUpdateAssetTypeResponses[keyof AssetTypesUpdateAssetTypeResponses];
 
-export type GetAssetTypesCountData = {
+export type AssetTypesGetAssetTypesCountData = {
     body?: AssetTypeDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -3172,7 +3172,7 @@ export type GetAssetTypesCountData = {
     url: '/api/v2/AssetsService/AssetTypes/count';
 };
 
-export type GetAssetTypesCountErrors = {
+export type AssetTypesGetAssetTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3183,83 +3183,83 @@ export type GetAssetTypesCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetAssetTypesCountError = GetAssetTypesCountErrors[keyof GetAssetTypesCountErrors];
+export type AssetTypesGetAssetTypesCountError = AssetTypesGetAssetTypesCountErrors[keyof AssetTypesGetAssetTypesCountErrors];
 
-export type GetAssetTypesCountResponses = {
+export type AssetTypesGetAssetTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetAssetTypesCountResponse = GetAssetTypesCountResponses[keyof GetAssetTypesCountResponses];
+export type AssetTypesGetAssetTypesCountResponse = AssetTypesGetAssetTypesCountResponses[keyof AssetTypesGetAssetTypesCountResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -3269,32 +3269,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -3305,81 +3305,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -3390,25 +3390,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -3419,25 +3419,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -3448,18 +3448,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -3469,14 +3469,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -3485,14 +3485,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -3501,21 +3501,21 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */

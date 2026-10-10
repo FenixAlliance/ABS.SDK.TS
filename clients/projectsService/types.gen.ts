@@ -643,72 +643,72 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -718,32 +718,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -754,81 +754,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -839,25 +839,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -868,25 +868,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -897,18 +897,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -918,14 +918,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -934,14 +934,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -950,28 +950,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProjectsByTenantIdAsyncData = {
+export type ProjectsGetProjectsByTenantIdData = {
     body?: ProjectDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -980,7 +980,7 @@ export type GetProjectsByTenantIdAsyncData = {
     url: '/api/v2/ProjectsService/Projects';
 };
 
-export type GetProjectsByTenantIdAsyncErrors = {
+export type ProjectsGetProjectsByTenantIdErrors = {
     /**
      * Unauthorized
      */
@@ -991,18 +991,18 @@ export type GetProjectsByTenantIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectsByTenantIdAsyncError = GetProjectsByTenantIdAsyncErrors[keyof GetProjectsByTenantIdAsyncErrors];
+export type ProjectsGetProjectsByTenantIdError = ProjectsGetProjectsByTenantIdErrors[keyof ProjectsGetProjectsByTenantIdErrors];
 
-export type GetProjectsByTenantIdAsyncResponses = {
+export type ProjectsGetProjectsByTenantIdResponses = {
     /**
      * OK
      */
     200: ProjectDtoListEnvelopeReadable;
 };
 
-export type GetProjectsByTenantIdAsyncResponse = GetProjectsByTenantIdAsyncResponses[keyof GetProjectsByTenantIdAsyncResponses];
+export type ProjectsGetProjectsByTenantIdResponse = ProjectsGetProjectsByTenantIdResponses[keyof ProjectsGetProjectsByTenantIdResponses];
 
-export type CreateProjectAsyncData = {
+export type ProjectsCreateProjectData = {
     body?: ProjectCreateDto;
     path?: never;
     query: {
@@ -1011,7 +1011,7 @@ export type CreateProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects';
 };
 
-export type CreateProjectAsyncErrors = {
+export type ProjectsCreateProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1022,18 +1022,18 @@ export type CreateProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateProjectAsyncError = CreateProjectAsyncErrors[keyof CreateProjectAsyncErrors];
+export type ProjectsCreateProjectError = ProjectsCreateProjectErrors[keyof ProjectsCreateProjectErrors];
 
-export type CreateProjectAsyncResponses = {
+export type ProjectsCreateProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateProjectAsyncResponse = CreateProjectAsyncResponses[keyof CreateProjectAsyncResponses];
+export type ProjectsCreateProjectResponse = ProjectsCreateProjectResponses[keyof ProjectsCreateProjectResponses];
 
-export type GetProjectsCountByTenantIdAsyncData = {
+export type ProjectsGetProjectsCountByTenantIdData = {
     body?: ProjectDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1042,7 +1042,7 @@ export type GetProjectsCountByTenantIdAsyncData = {
     url: '/api/v2/ProjectsService/Projects/Count';
 };
 
-export type GetProjectsCountByTenantIdAsyncErrors = {
+export type ProjectsGetProjectsCountByTenantIdErrors = {
     /**
      * Unauthorized
      */
@@ -1053,18 +1053,18 @@ export type GetProjectsCountByTenantIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectsCountByTenantIdAsyncError = GetProjectsCountByTenantIdAsyncErrors[keyof GetProjectsCountByTenantIdAsyncErrors];
+export type ProjectsGetProjectsCountByTenantIdError = ProjectsGetProjectsCountByTenantIdErrors[keyof ProjectsGetProjectsCountByTenantIdErrors];
 
-export type GetProjectsCountByTenantIdAsyncResponses = {
+export type ProjectsGetProjectsCountByTenantIdResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProjectsCountByTenantIdAsyncResponse = GetProjectsCountByTenantIdAsyncResponses[keyof GetProjectsCountByTenantIdAsyncResponses];
+export type ProjectsGetProjectsCountByTenantIdResponse = ProjectsGetProjectsCountByTenantIdResponses[keyof ProjectsGetProjectsCountByTenantIdResponses];
 
-export type DeleteProjectAsyncData = {
+export type ProjectsDeleteProjectData = {
     body?: never;
     path: {
         projectId: string;
@@ -1075,7 +1075,7 @@ export type DeleteProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}';
 };
 
-export type DeleteProjectAsyncErrors = {
+export type ProjectsDeleteProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1086,18 +1086,18 @@ export type DeleteProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteProjectAsyncError = DeleteProjectAsyncErrors[keyof DeleteProjectAsyncErrors];
+export type ProjectsDeleteProjectError = ProjectsDeleteProjectErrors[keyof ProjectsDeleteProjectErrors];
 
-export type DeleteProjectAsyncResponses = {
+export type ProjectsDeleteProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteProjectAsyncResponse = DeleteProjectAsyncResponses[keyof DeleteProjectAsyncResponses];
+export type ProjectsDeleteProjectResponse = ProjectsDeleteProjectResponses[keyof ProjectsDeleteProjectResponses];
 
-export type GetProjectByIdAsyncData = {
+export type ProjectsGetProjectByIdData = {
     body?: never;
     path: {
         projectId: string;
@@ -1108,7 +1108,7 @@ export type GetProjectByIdAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}';
 };
 
-export type GetProjectByIdAsyncErrors = {
+export type ProjectsGetProjectByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1119,18 +1119,18 @@ export type GetProjectByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectByIdAsyncError = GetProjectByIdAsyncErrors[keyof GetProjectByIdAsyncErrors];
+export type ProjectsGetProjectByIdError = ProjectsGetProjectByIdErrors[keyof ProjectsGetProjectByIdErrors];
 
-export type GetProjectByIdAsyncResponses = {
+export type ProjectsGetProjectByIdResponses = {
     /**
      * OK
      */
     200: ProjectDtoEnvelopeReadable;
 };
 
-export type GetProjectByIdAsyncResponse = GetProjectByIdAsyncResponses[keyof GetProjectByIdAsyncResponses];
+export type ProjectsGetProjectByIdResponse = ProjectsGetProjectByIdResponses[keyof ProjectsGetProjectByIdResponses];
 
-export type PatchProjectAsyncData = {
+export type ProjectsPatchProjectData = {
     body?: Array<PatchOperation>;
     path: {
         projectId: string;
@@ -1141,7 +1141,7 @@ export type PatchProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}';
 };
 
-export type PatchProjectAsyncErrors = {
+export type ProjectsPatchProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1152,18 +1152,18 @@ export type PatchProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchProjectAsyncError = PatchProjectAsyncErrors[keyof PatchProjectAsyncErrors];
+export type ProjectsPatchProjectError = ProjectsPatchProjectErrors[keyof ProjectsPatchProjectErrors];
 
-export type PatchProjectAsyncResponses = {
+export type ProjectsPatchProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchProjectAsyncResponse = PatchProjectAsyncResponses[keyof PatchProjectAsyncResponses];
+export type ProjectsPatchProjectResponse = ProjectsPatchProjectResponses[keyof ProjectsPatchProjectResponses];
 
-export type UpdateProjectAsyncData = {
+export type ProjectsUpdateProjectData = {
     body?: ProjectUpdateDto;
     path: {
         projectId: string;
@@ -1174,7 +1174,7 @@ export type UpdateProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}';
 };
 
-export type UpdateProjectAsyncErrors = {
+export type ProjectsUpdateProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1185,18 +1185,18 @@ export type UpdateProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateProjectAsyncError = UpdateProjectAsyncErrors[keyof UpdateProjectAsyncErrors];
+export type ProjectsUpdateProjectError = ProjectsUpdateProjectErrors[keyof ProjectsUpdateProjectErrors];
 
-export type UpdateProjectAsyncResponses = {
+export type ProjectsUpdateProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateProjectAsyncResponse = UpdateProjectAsyncResponses[keyof UpdateProjectAsyncResponses];
+export type ProjectsUpdateProjectResponse = ProjectsUpdateProjectResponses[keyof ProjectsUpdateProjectResponses];
 
-export type GetProjectPeriodsAsyncData = {
+export type ProjectsGetProjectPeriodsData = {
     body?: never;
     path: {
         projectId: string;
@@ -1207,7 +1207,7 @@ export type GetProjectPeriodsAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Periods';
 };
 
-export type GetProjectPeriodsAsyncErrors = {
+export type ProjectsGetProjectPeriodsErrors = {
     /**
      * Unauthorized
      */
@@ -1218,18 +1218,18 @@ export type GetProjectPeriodsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectPeriodsAsyncError = GetProjectPeriodsAsyncErrors[keyof GetProjectPeriodsAsyncErrors];
+export type ProjectsGetProjectPeriodsError = ProjectsGetProjectPeriodsErrors[keyof ProjectsGetProjectPeriodsErrors];
 
-export type GetProjectPeriodsAsyncResponses = {
+export type ProjectsGetProjectPeriodsResponses = {
     /**
      * OK
      */
     200: ProjectPeriodDtoListEnvelopeReadable;
 };
 
-export type GetProjectPeriodsAsyncResponse = GetProjectPeriodsAsyncResponses[keyof GetProjectPeriodsAsyncResponses];
+export type ProjectsGetProjectPeriodsResponse = ProjectsGetProjectPeriodsResponses[keyof ProjectsGetProjectPeriodsResponses];
 
-export type CreateProjectPeriodAsyncData = {
+export type ProjectsCreateProjectPeriodData = {
     body?: ProjectPeriodCreateDto;
     path: {
         projectId: string;
@@ -1240,7 +1240,7 @@ export type CreateProjectPeriodAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Periods';
 };
 
-export type CreateProjectPeriodAsyncErrors = {
+export type ProjectsCreateProjectPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -1251,18 +1251,18 @@ export type CreateProjectPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateProjectPeriodAsyncError = CreateProjectPeriodAsyncErrors[keyof CreateProjectPeriodAsyncErrors];
+export type ProjectsCreateProjectPeriodError = ProjectsCreateProjectPeriodErrors[keyof ProjectsCreateProjectPeriodErrors];
 
-export type CreateProjectPeriodAsyncResponses = {
+export type ProjectsCreateProjectPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateProjectPeriodAsyncResponse = CreateProjectPeriodAsyncResponses[keyof CreateProjectPeriodAsyncResponses];
+export type ProjectsCreateProjectPeriodResponse = ProjectsCreateProjectPeriodResponses[keyof ProjectsCreateProjectPeriodResponses];
 
-export type DeleteProjectPeriodAsyncData = {
+export type ProjectsDeleteProjectPeriodData = {
     body?: never;
     path: {
         projectId: string;
@@ -1274,7 +1274,7 @@ export type DeleteProjectPeriodAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Periods/{projectPeriodId}';
 };
 
-export type DeleteProjectPeriodAsyncErrors = {
+export type ProjectsDeleteProjectPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -1285,18 +1285,18 @@ export type DeleteProjectPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteProjectPeriodAsyncError = DeleteProjectPeriodAsyncErrors[keyof DeleteProjectPeriodAsyncErrors];
+export type ProjectsDeleteProjectPeriodError = ProjectsDeleteProjectPeriodErrors[keyof ProjectsDeleteProjectPeriodErrors];
 
-export type DeleteProjectPeriodAsyncResponses = {
+export type ProjectsDeleteProjectPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteProjectPeriodAsyncResponse = DeleteProjectPeriodAsyncResponses[keyof DeleteProjectPeriodAsyncResponses];
+export type ProjectsDeleteProjectPeriodResponse = ProjectsDeleteProjectPeriodResponses[keyof ProjectsDeleteProjectPeriodResponses];
 
-export type PatchProjectPeriodAsyncData = {
+export type ProjectsPatchProjectPeriodData = {
     body?: Array<PatchOperation>;
     path: {
         projectId: string;
@@ -1308,7 +1308,7 @@ export type PatchProjectPeriodAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Periods/{projectPeriodId}';
 };
 
-export type PatchProjectPeriodAsyncErrors = {
+export type ProjectsPatchProjectPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -1319,18 +1319,18 @@ export type PatchProjectPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchProjectPeriodAsyncError = PatchProjectPeriodAsyncErrors[keyof PatchProjectPeriodAsyncErrors];
+export type ProjectsPatchProjectPeriodError = ProjectsPatchProjectPeriodErrors[keyof ProjectsPatchProjectPeriodErrors];
 
-export type PatchProjectPeriodAsyncResponses = {
+export type ProjectsPatchProjectPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchProjectPeriodAsyncResponse = PatchProjectPeriodAsyncResponses[keyof PatchProjectPeriodAsyncResponses];
+export type ProjectsPatchProjectPeriodResponse = ProjectsPatchProjectPeriodResponses[keyof ProjectsPatchProjectPeriodResponses];
 
-export type UpdateProjectPeriodAsyncData = {
+export type ProjectsUpdateProjectPeriodData = {
     body?: ProjectPeriodUpdateDto;
     path: {
         projectId: string;
@@ -1342,7 +1342,7 @@ export type UpdateProjectPeriodAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Periods/{projectPeriodId}';
 };
 
-export type UpdateProjectPeriodAsyncErrors = {
+export type ProjectsUpdateProjectPeriodErrors = {
     /**
      * Unauthorized
      */
@@ -1353,18 +1353,18 @@ export type UpdateProjectPeriodAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateProjectPeriodAsyncError = UpdateProjectPeriodAsyncErrors[keyof UpdateProjectPeriodAsyncErrors];
+export type ProjectsUpdateProjectPeriodError = ProjectsUpdateProjectPeriodErrors[keyof ProjectsUpdateProjectPeriodErrors];
 
-export type UpdateProjectPeriodAsyncResponses = {
+export type ProjectsUpdateProjectPeriodResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateProjectPeriodAsyncResponse = UpdateProjectPeriodAsyncResponses[keyof UpdateProjectPeriodAsyncResponses];
+export type ProjectsUpdateProjectPeriodResponse = ProjectsUpdateProjectPeriodResponses[keyof ProjectsUpdateProjectPeriodResponses];
 
-export type GetTimeLogsForProjectAsyncData = {
+export type ProjectsGetTimeLogsForProjectData = {
     body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
@@ -1375,7 +1375,7 @@ export type GetTimeLogsForProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/TimeLogs';
 };
 
-export type GetTimeLogsForProjectAsyncErrors = {
+export type ProjectsGetTimeLogsForProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1386,18 +1386,18 @@ export type GetTimeLogsForProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTimeLogsForProjectAsyncError = GetTimeLogsForProjectAsyncErrors[keyof GetTimeLogsForProjectAsyncErrors];
+export type ProjectsGetTimeLogsForProjectError = ProjectsGetTimeLogsForProjectErrors[keyof ProjectsGetTimeLogsForProjectErrors];
 
-export type GetTimeLogsForProjectAsyncResponses = {
+export type ProjectsGetTimeLogsForProjectResponses = {
     /**
      * OK
      */
     200: ProjectTimeLogDtoListEnvelopeReadable;
 };
 
-export type GetTimeLogsForProjectAsyncResponse = GetTimeLogsForProjectAsyncResponses[keyof GetTimeLogsForProjectAsyncResponses];
+export type ProjectsGetTimeLogsForProjectResponse = ProjectsGetTimeLogsForProjectResponses[keyof ProjectsGetTimeLogsForProjectResponses];
 
-export type GetProjectTimeLogsCountAsyncData = {
+export type ProjectsGetProjectTimeLogsCountData = {
     body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
@@ -1408,7 +1408,7 @@ export type GetProjectTimeLogsCountAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/TimeLogs/Count';
 };
 
-export type GetProjectTimeLogsCountAsyncErrors = {
+export type ProjectsGetProjectTimeLogsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1419,18 +1419,18 @@ export type GetProjectTimeLogsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsCountAsyncError = GetProjectTimeLogsCountAsyncErrors[keyof GetProjectTimeLogsCountAsyncErrors];
+export type ProjectsGetProjectTimeLogsCountError = ProjectsGetProjectTimeLogsCountErrors[keyof ProjectsGetProjectTimeLogsCountErrors];
 
-export type GetProjectTimeLogsCountAsyncResponses = {
+export type ProjectsGetProjectTimeLogsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProjectTimeLogsCountAsyncResponse = GetProjectTimeLogsCountAsyncResponses[keyof GetProjectTimeLogsCountAsyncResponses];
+export type ProjectsGetProjectTimeLogsCountResponse = ProjectsGetProjectTimeLogsCountResponses[keyof ProjectsGetProjectTimeLogsCountResponses];
 
-export type GetTasksForProjectAsyncData = {
+export type ProjectsGetTasksForProjectData = {
     body?: ProjectTaskDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
@@ -1441,7 +1441,7 @@ export type GetTasksForProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks';
 };
 
-export type GetTasksForProjectAsyncErrors = {
+export type ProjectsGetTasksForProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1452,18 +1452,18 @@ export type GetTasksForProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTasksForProjectAsyncError = GetTasksForProjectAsyncErrors[keyof GetTasksForProjectAsyncErrors];
+export type ProjectsGetTasksForProjectError = ProjectsGetTasksForProjectErrors[keyof ProjectsGetTasksForProjectErrors];
 
-export type GetTasksForProjectAsyncResponses = {
+export type ProjectsGetTasksForProjectResponses = {
     /**
      * OK
      */
     200: ProjectTaskDtoListEnvelopeReadable;
 };
 
-export type GetTasksForProjectAsyncResponse = GetTasksForProjectAsyncResponses[keyof GetTasksForProjectAsyncResponses];
+export type ProjectsGetTasksForProjectResponse = ProjectsGetTasksForProjectResponses[keyof ProjectsGetTasksForProjectResponses];
 
-export type CreateTaskForProjectAsyncData = {
+export type ProjectsCreateTaskForProjectData = {
     body?: ProjectTaskCreateDto;
     path: {
         projectId: string;
@@ -1474,7 +1474,7 @@ export type CreateTaskForProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks';
 };
 
-export type CreateTaskForProjectAsyncErrors = {
+export type ProjectsCreateTaskForProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1485,18 +1485,18 @@ export type CreateTaskForProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTaskForProjectAsyncError = CreateTaskForProjectAsyncErrors[keyof CreateTaskForProjectAsyncErrors];
+export type ProjectsCreateTaskForProjectError = ProjectsCreateTaskForProjectErrors[keyof ProjectsCreateTaskForProjectErrors];
 
-export type CreateTaskForProjectAsyncResponses = {
+export type ProjectsCreateTaskForProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateTaskForProjectAsyncResponse = CreateTaskForProjectAsyncResponses[keyof CreateTaskForProjectAsyncResponses];
+export type ProjectsCreateTaskForProjectResponse = ProjectsCreateTaskForProjectResponses[keyof ProjectsCreateTaskForProjectResponses];
 
-export type GetTasksForProjectCountAsyncData = {
+export type ProjectsGetTasksForProjectCountData = {
     body?: ProjectTaskDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
@@ -1507,7 +1507,7 @@ export type GetTasksForProjectCountAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks/Count';
 };
 
-export type GetTasksForProjectCountAsyncErrors = {
+export type ProjectsGetTasksForProjectCountErrors = {
     /**
      * Unauthorized
      */
@@ -1518,18 +1518,18 @@ export type GetTasksForProjectCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTasksForProjectCountAsyncError = GetTasksForProjectCountAsyncErrors[keyof GetTasksForProjectCountAsyncErrors];
+export type ProjectsGetTasksForProjectCountError = ProjectsGetTasksForProjectCountErrors[keyof ProjectsGetTasksForProjectCountErrors];
 
-export type GetTasksForProjectCountAsyncResponses = {
+export type ProjectsGetTasksForProjectCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetTasksForProjectCountAsyncResponse = GetTasksForProjectCountAsyncResponses[keyof GetTasksForProjectCountAsyncResponses];
+export type ProjectsGetTasksForProjectCountResponse = ProjectsGetTasksForProjectCountResponses[keyof ProjectsGetTasksForProjectCountResponses];
 
-export type DeleteTaskForProjectAsyncData = {
+export type ProjectsDeleteTaskForProjectData = {
     body?: never;
     path: {
         projectId: string;
@@ -1541,7 +1541,7 @@ export type DeleteTaskForProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks/{projectTaskId}';
 };
 
-export type DeleteTaskForProjectAsyncErrors = {
+export type ProjectsDeleteTaskForProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1552,18 +1552,18 @@ export type DeleteTaskForProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTaskForProjectAsyncError = DeleteTaskForProjectAsyncErrors[keyof DeleteTaskForProjectAsyncErrors];
+export type ProjectsDeleteTaskForProjectError = ProjectsDeleteTaskForProjectErrors[keyof ProjectsDeleteTaskForProjectErrors];
 
-export type DeleteTaskForProjectAsyncResponses = {
+export type ProjectsDeleteTaskForProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteTaskForProjectAsyncResponse = DeleteTaskForProjectAsyncResponses[keyof DeleteTaskForProjectAsyncResponses];
+export type ProjectsDeleteTaskForProjectResponse = ProjectsDeleteTaskForProjectResponses[keyof ProjectsDeleteTaskForProjectResponses];
 
-export type PatchTaskForProjectAsyncData = {
+export type ProjectsPatchTaskForProjectData = {
     body?: Array<PatchOperation>;
     path: {
         projectId: string;
@@ -1575,7 +1575,7 @@ export type PatchTaskForProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks/{projectTaskId}';
 };
 
-export type PatchTaskForProjectAsyncErrors = {
+export type ProjectsPatchTaskForProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1586,18 +1586,18 @@ export type PatchTaskForProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTaskForProjectAsyncError = PatchTaskForProjectAsyncErrors[keyof PatchTaskForProjectAsyncErrors];
+export type ProjectsPatchTaskForProjectError = ProjectsPatchTaskForProjectErrors[keyof ProjectsPatchTaskForProjectErrors];
 
-export type PatchTaskForProjectAsyncResponses = {
+export type ProjectsPatchTaskForProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTaskForProjectAsyncResponse = PatchTaskForProjectAsyncResponses[keyof PatchTaskForProjectAsyncResponses];
+export type ProjectsPatchTaskForProjectResponse = ProjectsPatchTaskForProjectResponses[keyof ProjectsPatchTaskForProjectResponses];
 
-export type UpdateTaskForProjectAsyncData = {
+export type ProjectsUpdateTaskForProjectData = {
     body?: ProjectTaskUpdateDto;
     path: {
         projectId: string;
@@ -1609,7 +1609,7 @@ export type UpdateTaskForProjectAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks/{projectTaskId}';
 };
 
-export type UpdateTaskForProjectAsyncErrors = {
+export type ProjectsUpdateTaskForProjectErrors = {
     /**
      * Unauthorized
      */
@@ -1620,18 +1620,18 @@ export type UpdateTaskForProjectAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTaskForProjectAsyncError = UpdateTaskForProjectAsyncErrors[keyof UpdateTaskForProjectAsyncErrors];
+export type ProjectsUpdateTaskForProjectError = ProjectsUpdateTaskForProjectErrors[keyof ProjectsUpdateTaskForProjectErrors];
 
-export type UpdateTaskForProjectAsyncResponses = {
+export type ProjectsUpdateTaskForProjectResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTaskForProjectAsyncResponse = UpdateTaskForProjectAsyncResponses[keyof UpdateTaskForProjectAsyncResponses];
+export type ProjectsUpdateTaskForProjectResponse = ProjectsUpdateTaskForProjectResponses[keyof ProjectsUpdateTaskForProjectResponses];
 
-export type GetProjectTaskCategoriesAsyncData = {
+export type ProjectsGetProjectTaskCategoriesData = {
     body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
@@ -1642,7 +1642,7 @@ export type GetProjectTaskCategoriesAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/TaskCategories';
 };
 
-export type GetProjectTaskCategoriesAsyncErrors = {
+export type ProjectsGetProjectTaskCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -1653,18 +1653,18 @@ export type GetProjectTaskCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTaskCategoriesAsyncError = GetProjectTaskCategoriesAsyncErrors[keyof GetProjectTaskCategoriesAsyncErrors];
+export type ProjectsGetProjectTaskCategoriesError = ProjectsGetProjectTaskCategoriesErrors[keyof ProjectsGetProjectTaskCategoriesErrors];
 
-export type GetProjectTaskCategoriesAsyncResponses = {
+export type ProjectsGetProjectTaskCategoriesResponses = {
     /**
      * OK
      */
     200: TaskCategoryDtoListEnvelopeReadable;
 };
 
-export type GetProjectTaskCategoriesAsyncResponse = GetProjectTaskCategoriesAsyncResponses[keyof GetProjectTaskCategoriesAsyncResponses];
+export type ProjectsGetProjectTaskCategoriesResponse = ProjectsGetProjectTaskCategoriesResponses[keyof ProjectsGetProjectTaskCategoriesResponses];
 
-export type GetProjectTaskCategoriesCountAsyncData = {
+export type ProjectsGetProjectTaskCategoriesCountData = {
     body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
@@ -1675,7 +1675,7 @@ export type GetProjectTaskCategoriesCountAsyncData = {
     url: '/api/v2/ProjectsService/Projects/{projectId}/TaskCategories/Count';
 };
 
-export type GetProjectTaskCategoriesCountAsyncErrors = {
+export type ProjectsGetProjectTaskCategoriesCountErrors = {
     /**
      * Unauthorized
      */
@@ -1686,18 +1686,18 @@ export type GetProjectTaskCategoriesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTaskCategoriesCountAsyncError = GetProjectTaskCategoriesCountAsyncErrors[keyof GetProjectTaskCategoriesCountAsyncErrors];
+export type ProjectsGetProjectTaskCategoriesCountError = ProjectsGetProjectTaskCategoriesCountErrors[keyof ProjectsGetProjectTaskCategoriesCountErrors];
 
-export type GetProjectTaskCategoriesCountAsyncResponses = {
+export type ProjectsGetProjectTaskCategoriesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProjectTaskCategoriesCountAsyncResponse = GetProjectTaskCategoriesCountAsyncResponses[keyof GetProjectTaskCategoriesCountAsyncResponses];
+export type ProjectsGetProjectTaskCategoriesCountResponse = ProjectsGetProjectTaskCategoriesCountResponses[keyof ProjectsGetProjectTaskCategoriesCountResponses];
 
-export type GetProjectTasksAsyncData = {
+export type ProjectTasksGetProjectTasksData = {
     body?: ProjectTaskDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1710,7 +1710,7 @@ export type GetProjectTasksAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks';
 };
 
-export type GetProjectTasksAsyncErrors = {
+export type ProjectTasksGetProjectTasksErrors = {
     /**
      * Unauthorized
      */
@@ -1721,18 +1721,18 @@ export type GetProjectTasksAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTasksAsyncError = GetProjectTasksAsyncErrors[keyof GetProjectTasksAsyncErrors];
+export type ProjectTasksGetProjectTasksError = ProjectTasksGetProjectTasksErrors[keyof ProjectTasksGetProjectTasksErrors];
 
-export type GetProjectTasksAsyncResponses = {
+export type ProjectTasksGetProjectTasksResponses = {
     /**
      * OK
      */
     200: ProjectTaskDtoListEnvelopeReadable;
 };
 
-export type GetProjectTasksAsyncResponse = GetProjectTasksAsyncResponses[keyof GetProjectTasksAsyncResponses];
+export type ProjectTasksGetProjectTasksResponse = ProjectTasksGetProjectTasksResponses[keyof ProjectTasksGetProjectTasksResponses];
 
-export type CreateProjectTaskAsyncData = {
+export type ProjectTasksCreateProjectTaskData = {
     body?: ProjectTaskCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1745,25 +1745,25 @@ export type CreateProjectTaskAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks';
 };
 
-export type CreateProjectTaskAsyncErrors = {
+export type ProjectTasksCreateProjectTaskErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type CreateProjectTaskAsyncError = CreateProjectTaskAsyncErrors[keyof CreateProjectTaskAsyncErrors];
+export type ProjectTasksCreateProjectTaskError = ProjectTasksCreateProjectTaskErrors[keyof ProjectTasksCreateProjectTaskErrors];
 
-export type CreateProjectTaskAsyncResponses = {
+export type ProjectTasksCreateProjectTaskResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateProjectTaskAsyncResponse = CreateProjectTaskAsyncResponses[keyof CreateProjectTaskAsyncResponses];
+export type ProjectTasksCreateProjectTaskResponse = ProjectTasksCreateProjectTaskResponses[keyof ProjectTasksCreateProjectTaskResponses];
 
-export type GetProjectTasksCountAsyncData = {
+export type ProjectTasksGetProjectTasksCountData = {
     body?: ProjectTaskDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1776,16 +1776,16 @@ export type GetProjectTasksCountAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks/Count';
 };
 
-export type GetProjectTasksCountAsyncResponses = {
+export type ProjectTasksGetProjectTasksCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProjectTasksCountAsyncResponse = GetProjectTasksCountAsyncResponses[keyof GetProjectTasksCountAsyncResponses];
+export type ProjectTasksGetProjectTasksCountResponse = ProjectTasksGetProjectTasksCountResponses[keyof ProjectTasksGetProjectTasksCountResponses];
 
-export type DeleteProjectTaskAsyncData = {
+export type ProjectTasksDeleteProjectTaskData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1800,25 +1800,25 @@ export type DeleteProjectTaskAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
 };
 
-export type DeleteProjectTaskAsyncErrors = {
+export type ProjectTasksDeleteProjectTaskErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type DeleteProjectTaskAsyncError = DeleteProjectTaskAsyncErrors[keyof DeleteProjectTaskAsyncErrors];
+export type ProjectTasksDeleteProjectTaskError = ProjectTasksDeleteProjectTaskErrors[keyof ProjectTasksDeleteProjectTaskErrors];
 
-export type DeleteProjectTaskAsyncResponses = {
+export type ProjectTasksDeleteProjectTaskResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteProjectTaskAsyncResponse = DeleteProjectTaskAsyncResponses[keyof DeleteProjectTaskAsyncResponses];
+export type ProjectTasksDeleteProjectTaskResponse = ProjectTasksDeleteProjectTaskResponses[keyof ProjectTasksDeleteProjectTaskResponses];
 
-export type GetProjectTaskByIdAsyncData = {
+export type ProjectTasksGetProjectTaskByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1833,25 +1833,25 @@ export type GetProjectTaskByIdAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
 };
 
-export type GetProjectTaskByIdAsyncErrors = {
+export type ProjectTasksGetProjectTaskByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTaskByIdAsyncError = GetProjectTaskByIdAsyncErrors[keyof GetProjectTaskByIdAsyncErrors];
+export type ProjectTasksGetProjectTaskByIdError = ProjectTasksGetProjectTaskByIdErrors[keyof ProjectTasksGetProjectTaskByIdErrors];
 
-export type GetProjectTaskByIdAsyncResponses = {
+export type ProjectTasksGetProjectTaskByIdResponses = {
     /**
      * OK
      */
     200: ProjectTaskDtoEnvelopeReadable;
 };
 
-export type GetProjectTaskByIdAsyncResponse = GetProjectTaskByIdAsyncResponses[keyof GetProjectTaskByIdAsyncResponses];
+export type ProjectTasksGetProjectTaskByIdResponse = ProjectTasksGetProjectTaskByIdResponses[keyof ProjectTasksGetProjectTaskByIdResponses];
 
-export type PatchProjectTaskAsyncData = {
+export type ProjectTasksPatchProjectTaskData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1866,25 +1866,25 @@ export type PatchProjectTaskAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
 };
 
-export type PatchProjectTaskAsyncErrors = {
+export type ProjectTasksPatchProjectTaskErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type PatchProjectTaskAsyncError = PatchProjectTaskAsyncErrors[keyof PatchProjectTaskAsyncErrors];
+export type ProjectTasksPatchProjectTaskError = ProjectTasksPatchProjectTaskErrors[keyof ProjectTasksPatchProjectTaskErrors];
 
-export type PatchProjectTaskAsyncResponses = {
+export type ProjectTasksPatchProjectTaskResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchProjectTaskAsyncResponse = PatchProjectTaskAsyncResponses[keyof PatchProjectTaskAsyncResponses];
+export type ProjectTasksPatchProjectTaskResponse = ProjectTasksPatchProjectTaskResponses[keyof ProjectTasksPatchProjectTaskResponses];
 
-export type UpdateProjectTaskAsyncData = {
+export type ProjectTasksUpdateProjectTaskData = {
     body?: ProjectTaskUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1899,25 +1899,25 @@ export type UpdateProjectTaskAsyncData = {
     url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
 };
 
-export type UpdateProjectTaskAsyncErrors = {
+export type ProjectTasksUpdateProjectTaskErrors = {
     /**
      * Bad Request
      */
     400: ErrorEnvelopeReadable;
 };
 
-export type UpdateProjectTaskAsyncError = UpdateProjectTaskAsyncErrors[keyof UpdateProjectTaskAsyncErrors];
+export type ProjectTasksUpdateProjectTaskError = ProjectTasksUpdateProjectTaskErrors[keyof ProjectTasksUpdateProjectTaskErrors];
 
-export type UpdateProjectTaskAsyncResponses = {
+export type ProjectTasksUpdateProjectTaskResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateProjectTaskAsyncResponse = UpdateProjectTaskAsyncResponses[keyof UpdateProjectTaskAsyncResponses];
+export type ProjectTasksUpdateProjectTaskResponse = ProjectTasksUpdateProjectTaskResponses[keyof ProjectTasksUpdateProjectTaskResponses];
 
-export type GetTenantTaskCategoriesAsyncData = {
+export type TaskCategoriesGetTenantTaskCategoriesData = {
     body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1926,7 +1926,7 @@ export type GetTenantTaskCategoriesAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories';
 };
 
-export type GetTenantTaskCategoriesAsyncErrors = {
+export type TaskCategoriesGetTenantTaskCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -1937,18 +1937,18 @@ export type GetTenantTaskCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantTaskCategoriesAsyncError = GetTenantTaskCategoriesAsyncErrors[keyof GetTenantTaskCategoriesAsyncErrors];
+export type TaskCategoriesGetTenantTaskCategoriesError = TaskCategoriesGetTenantTaskCategoriesErrors[keyof TaskCategoriesGetTenantTaskCategoriesErrors];
 
-export type GetTenantTaskCategoriesAsyncResponses = {
+export type TaskCategoriesGetTenantTaskCategoriesResponses = {
     /**
      * OK
      */
     200: TaskCategoryDtoListEnvelopeReadable;
 };
 
-export type GetTenantTaskCategoriesAsyncResponse = GetTenantTaskCategoriesAsyncResponses[keyof GetTenantTaskCategoriesAsyncResponses];
+export type TaskCategoriesGetTenantTaskCategoriesResponse = TaskCategoriesGetTenantTaskCategoriesResponses[keyof TaskCategoriesGetTenantTaskCategoriesResponses];
 
-export type CreateTaskCategoryAsyncData = {
+export type TaskCategoriesCreateTaskCategoryData = {
     body?: TaskCategoryCreateDto;
     path?: never;
     query: {
@@ -1957,7 +1957,7 @@ export type CreateTaskCategoryAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories';
 };
 
-export type CreateTaskCategoryAsyncErrors = {
+export type TaskCategoriesCreateTaskCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -1968,18 +1968,18 @@ export type CreateTaskCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTaskCategoryAsyncError = CreateTaskCategoryAsyncErrors[keyof CreateTaskCategoryAsyncErrors];
+export type TaskCategoriesCreateTaskCategoryError = TaskCategoriesCreateTaskCategoryErrors[keyof TaskCategoriesCreateTaskCategoryErrors];
 
-export type CreateTaskCategoryAsyncResponses = {
+export type TaskCategoriesCreateTaskCategoryResponses = {
     /**
      * OK
      */
     200: TaskCategoryDto;
 };
 
-export type CreateTaskCategoryAsyncResponse = CreateTaskCategoryAsyncResponses[keyof CreateTaskCategoryAsyncResponses];
+export type TaskCategoriesCreateTaskCategoryResponse = TaskCategoriesCreateTaskCategoryResponses[keyof TaskCategoriesCreateTaskCategoryResponses];
 
-export type CountTenantTaskCategoriesAsyncData = {
+export type TaskCategoriesCountTenantTaskCategoriesData = {
     body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1988,7 +1988,7 @@ export type CountTenantTaskCategoriesAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories/Count';
 };
 
-export type CountTenantTaskCategoriesAsyncErrors = {
+export type TaskCategoriesCountTenantTaskCategoriesErrors = {
     /**
      * Unauthorized
      */
@@ -1999,18 +1999,18 @@ export type CountTenantTaskCategoriesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountTenantTaskCategoriesAsyncError = CountTenantTaskCategoriesAsyncErrors[keyof CountTenantTaskCategoriesAsyncErrors];
+export type TaskCategoriesCountTenantTaskCategoriesError = TaskCategoriesCountTenantTaskCategoriesErrors[keyof TaskCategoriesCountTenantTaskCategoriesErrors];
 
-export type CountTenantTaskCategoriesAsyncResponses = {
+export type TaskCategoriesCountTenantTaskCategoriesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountTenantTaskCategoriesAsyncResponse = CountTenantTaskCategoriesAsyncResponses[keyof CountTenantTaskCategoriesAsyncResponses];
+export type TaskCategoriesCountTenantTaskCategoriesResponse = TaskCategoriesCountTenantTaskCategoriesResponses[keyof TaskCategoriesCountTenantTaskCategoriesResponses];
 
-export type DeleteTaskCategoryAsyncData = {
+export type TaskCategoriesDeleteTaskCategoryData = {
     body?: never;
     path: {
         taskCategoryId: string;
@@ -2021,7 +2021,7 @@ export type DeleteTaskCategoryAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories/{taskCategoryId}';
 };
 
-export type DeleteTaskCategoryAsyncErrors = {
+export type TaskCategoriesDeleteTaskCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -2032,18 +2032,18 @@ export type DeleteTaskCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTaskCategoryAsyncError = DeleteTaskCategoryAsyncErrors[keyof DeleteTaskCategoryAsyncErrors];
+export type TaskCategoriesDeleteTaskCategoryError = TaskCategoriesDeleteTaskCategoryErrors[keyof TaskCategoriesDeleteTaskCategoryErrors];
 
-export type DeleteTaskCategoryAsyncResponses = {
+export type TaskCategoriesDeleteTaskCategoryResponses = {
     /**
      * OK
      */
     200: TaskCategoryDto;
 };
 
-export type DeleteTaskCategoryAsyncResponse = DeleteTaskCategoryAsyncResponses[keyof DeleteTaskCategoryAsyncResponses];
+export type TaskCategoriesDeleteTaskCategoryResponse = TaskCategoriesDeleteTaskCategoryResponses[keyof TaskCategoriesDeleteTaskCategoryResponses];
 
-export type GetTaskCategoryByIdAsyncData = {
+export type TaskCategoriesGetTaskCategoryByIdData = {
     body?: never;
     path: {
         taskCategoryId: string;
@@ -2054,7 +2054,7 @@ export type GetTaskCategoryByIdAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories/{taskCategoryId}';
 };
 
-export type GetTaskCategoryByIdAsyncErrors = {
+export type TaskCategoriesGetTaskCategoryByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2065,18 +2065,18 @@ export type GetTaskCategoryByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaskCategoryByIdAsyncError = GetTaskCategoryByIdAsyncErrors[keyof GetTaskCategoryByIdAsyncErrors];
+export type TaskCategoriesGetTaskCategoryByIdError = TaskCategoriesGetTaskCategoryByIdErrors[keyof TaskCategoriesGetTaskCategoryByIdErrors];
 
-export type GetTaskCategoryByIdAsyncResponses = {
+export type TaskCategoriesGetTaskCategoryByIdResponses = {
     /**
      * OK
      */
     200: TaskCategoryDto;
 };
 
-export type GetTaskCategoryByIdAsyncResponse = GetTaskCategoryByIdAsyncResponses[keyof GetTaskCategoryByIdAsyncResponses];
+export type TaskCategoriesGetTaskCategoryByIdResponse = TaskCategoriesGetTaskCategoryByIdResponses[keyof TaskCategoriesGetTaskCategoryByIdResponses];
 
-export type PatchTaskCategoryAsyncData = {
+export type TaskCategoriesPatchTaskCategoryData = {
     body?: Array<PatchOperation>;
     path: {
         taskCategoryId: string;
@@ -2087,7 +2087,7 @@ export type PatchTaskCategoryAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories/{taskCategoryId}';
 };
 
-export type PatchTaskCategoryAsyncErrors = {
+export type TaskCategoriesPatchTaskCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -2098,18 +2098,18 @@ export type PatchTaskCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTaskCategoryAsyncError = PatchTaskCategoryAsyncErrors[keyof PatchTaskCategoryAsyncErrors];
+export type TaskCategoriesPatchTaskCategoryError = TaskCategoriesPatchTaskCategoryErrors[keyof TaskCategoriesPatchTaskCategoryErrors];
 
-export type PatchTaskCategoryAsyncResponses = {
+export type TaskCategoriesPatchTaskCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTaskCategoryAsyncResponse = PatchTaskCategoryAsyncResponses[keyof PatchTaskCategoryAsyncResponses];
+export type TaskCategoriesPatchTaskCategoryResponse = TaskCategoriesPatchTaskCategoryResponses[keyof TaskCategoriesPatchTaskCategoryResponses];
 
-export type UpdateTaskCategoryAsyncData = {
+export type TaskCategoriesUpdateTaskCategoryData = {
     body?: TaskCategoryUpdateDto;
     path: {
         taskCategoryId: string;
@@ -2120,7 +2120,7 @@ export type UpdateTaskCategoryAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories/{taskCategoryId}';
 };
 
-export type UpdateTaskCategoryAsyncErrors = {
+export type TaskCategoriesUpdateTaskCategoryErrors = {
     /**
      * Unauthorized
      */
@@ -2131,18 +2131,18 @@ export type UpdateTaskCategoryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTaskCategoryAsyncError = UpdateTaskCategoryAsyncErrors[keyof UpdateTaskCategoryAsyncErrors];
+export type TaskCategoriesUpdateTaskCategoryError = TaskCategoriesUpdateTaskCategoryErrors[keyof TaskCategoriesUpdateTaskCategoryErrors];
 
-export type UpdateTaskCategoryAsyncResponses = {
+export type TaskCategoriesUpdateTaskCategoryResponses = {
     /**
      * OK
      */
     200: TaskCategoryDto;
 };
 
-export type UpdateTaskCategoryAsyncResponse = UpdateTaskCategoryAsyncResponses[keyof UpdateTaskCategoryAsyncResponses];
+export type TaskCategoriesUpdateTaskCategoryResponse = TaskCategoriesUpdateTaskCategoryResponses[keyof TaskCategoriesUpdateTaskCategoryResponses];
 
-export type GetTaskCategoryTaskTypesAsyncData = {
+export type TaskCategoriesGetTaskCategoryTaskTypesData = {
     body?: never;
     path: {
         taskCategoryId: string;
@@ -2153,7 +2153,7 @@ export type GetTaskCategoryTaskTypesAsyncData = {
     url: '/api/v2/ProjectsService/TaskCategories/{taskCategoryId}/Types';
 };
 
-export type GetTaskCategoryTaskTypesAsyncErrors = {
+export type TaskCategoriesGetTaskCategoryTaskTypesErrors = {
     /**
      * Unauthorized
      */
@@ -2164,18 +2164,18 @@ export type GetTaskCategoryTaskTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaskCategoryTaskTypesAsyncError = GetTaskCategoryTaskTypesAsyncErrors[keyof GetTaskCategoryTaskTypesAsyncErrors];
+export type TaskCategoriesGetTaskCategoryTaskTypesError = TaskCategoriesGetTaskCategoryTaskTypesErrors[keyof TaskCategoriesGetTaskCategoryTaskTypesErrors];
 
-export type GetTaskCategoryTaskTypesAsyncResponses = {
+export type TaskCategoriesGetTaskCategoryTaskTypesResponses = {
     /**
      * OK
      */
     200: TaskCategoryDto;
 };
 
-export type GetTaskCategoryTaskTypesAsyncResponse = GetTaskCategoryTaskTypesAsyncResponses[keyof GetTaskCategoryTaskTypesAsyncResponses];
+export type TaskCategoriesGetTaskCategoryTaskTypesResponse = TaskCategoriesGetTaskCategoryTaskTypesResponses[keyof TaskCategoriesGetTaskCategoryTaskTypesResponses];
 
-export type DeleteTaskTypeAsyncData = {
+export type TaskTypesDeleteTaskTypeData = {
     body?: never;
     path: {
         taskTypeId: string;
@@ -2186,7 +2186,7 @@ export type DeleteTaskTypeAsyncData = {
     url: '/api/v2/ProjectsService/TaskTypes/{taskTypeId}';
 };
 
-export type DeleteTaskTypeAsyncErrors = {
+export type TaskTypesDeleteTaskTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2197,18 +2197,18 @@ export type DeleteTaskTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteTaskTypeAsyncError = DeleteTaskTypeAsyncErrors[keyof DeleteTaskTypeAsyncErrors];
+export type TaskTypesDeleteTaskTypeError = TaskTypesDeleteTaskTypeErrors[keyof TaskTypesDeleteTaskTypeErrors];
 
-export type DeleteTaskTypeAsyncResponses = {
+export type TaskTypesDeleteTaskTypeResponses = {
     /**
      * OK
      */
     200: TaskTypeDto;
 };
 
-export type DeleteTaskTypeAsyncResponse = DeleteTaskTypeAsyncResponses[keyof DeleteTaskTypeAsyncResponses];
+export type TaskTypesDeleteTaskTypeResponse = TaskTypesDeleteTaskTypeResponses[keyof TaskTypesDeleteTaskTypeResponses];
 
-export type GetTaskTypeByIdAsyncData = {
+export type TaskTypesGetTaskTypeByIdData = {
     body?: never;
     path: {
         taskTypeId: string;
@@ -2219,7 +2219,7 @@ export type GetTaskTypeByIdAsyncData = {
     url: '/api/v2/ProjectsService/TaskTypes/{taskTypeId}';
 };
 
-export type GetTaskTypeByIdAsyncErrors = {
+export type TaskTypesGetTaskTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2230,18 +2230,18 @@ export type GetTaskTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTaskTypeByIdAsyncError = GetTaskTypeByIdAsyncErrors[keyof GetTaskTypeByIdAsyncErrors];
+export type TaskTypesGetTaskTypeByIdError = TaskTypesGetTaskTypeByIdErrors[keyof TaskTypesGetTaskTypeByIdErrors];
 
-export type GetTaskTypeByIdAsyncResponses = {
+export type TaskTypesGetTaskTypeByIdResponses = {
     /**
      * OK
      */
     200: TaskTypeDto;
 };
 
-export type GetTaskTypeByIdAsyncResponse = GetTaskTypeByIdAsyncResponses[keyof GetTaskTypeByIdAsyncResponses];
+export type TaskTypesGetTaskTypeByIdResponse = TaskTypesGetTaskTypeByIdResponses[keyof TaskTypesGetTaskTypeByIdResponses];
 
-export type PatchTaskTypeAsyncData = {
+export type TaskTypesPatchTaskTypeData = {
     body?: Array<PatchOperation>;
     path: {
         taskTypeId: string;
@@ -2252,7 +2252,7 @@ export type PatchTaskTypeAsyncData = {
     url: '/api/v2/ProjectsService/TaskTypes/{taskTypeId}';
 };
 
-export type PatchTaskTypeAsyncErrors = {
+export type TaskTypesPatchTaskTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2263,18 +2263,18 @@ export type PatchTaskTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchTaskTypeAsyncError = PatchTaskTypeAsyncErrors[keyof PatchTaskTypeAsyncErrors];
+export type TaskTypesPatchTaskTypeError = TaskTypesPatchTaskTypeErrors[keyof TaskTypesPatchTaskTypeErrors];
 
-export type PatchTaskTypeAsyncResponses = {
+export type TaskTypesPatchTaskTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchTaskTypeAsyncResponse = PatchTaskTypeAsyncResponses[keyof PatchTaskTypeAsyncResponses];
+export type TaskTypesPatchTaskTypeResponse = TaskTypesPatchTaskTypeResponses[keyof TaskTypesPatchTaskTypeResponses];
 
-export type UpdateTaskTypeAsyncData = {
+export type TaskTypesUpdateTaskTypeData = {
     body?: TaskTypeUpdateDto;
     path: {
         taskTypeId: string;
@@ -2285,7 +2285,7 @@ export type UpdateTaskTypeAsyncData = {
     url: '/api/v2/ProjectsService/TaskTypes/{taskTypeId}';
 };
 
-export type UpdateTaskTypeAsyncErrors = {
+export type TaskTypesUpdateTaskTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2296,18 +2296,18 @@ export type UpdateTaskTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTaskTypeAsyncError = UpdateTaskTypeAsyncErrors[keyof UpdateTaskTypeAsyncErrors];
+export type TaskTypesUpdateTaskTypeError = TaskTypesUpdateTaskTypeErrors[keyof TaskTypesUpdateTaskTypeErrors];
 
-export type UpdateTaskTypeAsyncResponses = {
+export type TaskTypesUpdateTaskTypeResponses = {
     /**
      * OK
      */
     200: TaskTypeDto;
 };
 
-export type UpdateTaskTypeAsyncResponse = UpdateTaskTypeAsyncResponses[keyof UpdateTaskTypeAsyncResponses];
+export type TaskTypesUpdateTaskTypeResponse = TaskTypesUpdateTaskTypeResponses[keyof TaskTypesUpdateTaskTypeResponses];
 
-export type CreateTaskTypeAsyncData = {
+export type TaskTypesCreateTaskTypeData = {
     body?: TaskTypeCreateDto;
     path?: never;
     query: {
@@ -2316,7 +2316,7 @@ export type CreateTaskTypeAsyncData = {
     url: '/api/v2/ProjectsService/TaskTypes';
 };
 
-export type CreateTaskTypeAsyncErrors = {
+export type TaskTypesCreateTaskTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2327,18 +2327,18 @@ export type CreateTaskTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateTaskTypeAsyncError = CreateTaskTypeAsyncErrors[keyof CreateTaskTypeAsyncErrors];
+export type TaskTypesCreateTaskTypeError = TaskTypesCreateTaskTypeErrors[keyof TaskTypesCreateTaskTypeErrors];
 
-export type CreateTaskTypeAsyncResponses = {
+export type TaskTypesCreateTaskTypeResponses = {
     /**
      * OK
      */
     200: TaskTypeDto;
 };
 
-export type CreateTaskTypeAsyncResponse = CreateTaskTypeAsyncResponses[keyof CreateTaskTypeAsyncResponses];
+export type TaskTypesCreateTaskTypeResponse = TaskTypesCreateTaskTypeResponses[keyof TaskTypesCreateTaskTypeResponses];
 
-export type RequestProjectHoursApprovalAsyncData = {
+export type TimeLogApprovalsRequestProjectHoursApprovalData = {
     body?: ProjectHoursApprovalCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2351,7 +2351,7 @@ export type RequestProjectHoursApprovalAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogApprovals';
 };
 
-export type RequestProjectHoursApprovalAsyncErrors = {
+export type TimeLogApprovalsRequestProjectHoursApprovalErrors = {
     /**
      * Unauthorized
      */
@@ -2362,16 +2362,16 @@ export type RequestProjectHoursApprovalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RequestProjectHoursApprovalAsyncError = RequestProjectHoursApprovalAsyncErrors[keyof RequestProjectHoursApprovalAsyncErrors];
+export type TimeLogApprovalsRequestProjectHoursApprovalError = TimeLogApprovalsRequestProjectHoursApprovalErrors[keyof TimeLogApprovalsRequestProjectHoursApprovalErrors];
 
-export type RequestProjectHoursApprovalAsyncResponses = {
+export type TimeLogApprovalsRequestProjectHoursApprovalResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateProjectHoursApprovalStatusAsyncData = {
+export type TimeLogApprovalsUpdateProjectHoursApprovalStatusData = {
     body?: ProjectHoursApprovalStatusUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2386,7 +2386,7 @@ export type UpdateProjectHoursApprovalStatusAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogApprovals/{approvalId}/Status';
 };
 
-export type UpdateProjectHoursApprovalStatusAsyncErrors = {
+export type TimeLogApprovalsUpdateProjectHoursApprovalStatusErrors = {
     /**
      * Unauthorized
      */
@@ -2397,16 +2397,16 @@ export type UpdateProjectHoursApprovalStatusAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateProjectHoursApprovalStatusAsyncError = UpdateProjectHoursApprovalStatusAsyncErrors[keyof UpdateProjectHoursApprovalStatusAsyncErrors];
+export type TimeLogApprovalsUpdateProjectHoursApprovalStatusError = TimeLogApprovalsUpdateProjectHoursApprovalStatusErrors[keyof TimeLogApprovalsUpdateProjectHoursApprovalStatusErrors];
 
-export type UpdateProjectHoursApprovalStatusAsyncResponses = {
+export type TimeLogApprovalsUpdateProjectHoursApprovalStatusResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateProjectHoursApprovalApproverAsyncData = {
+export type TimeLogApprovalsUpdateProjectHoursApprovalApproverData = {
     body?: ProjectHoursApprovalApproverUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2421,7 +2421,7 @@ export type UpdateProjectHoursApprovalApproverAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogApprovals/{approvalId}/Approver';
 };
 
-export type UpdateProjectHoursApprovalApproverAsyncErrors = {
+export type TimeLogApprovalsUpdateProjectHoursApprovalApproverErrors = {
     /**
      * Unauthorized
      */
@@ -2432,16 +2432,16 @@ export type UpdateProjectHoursApprovalApproverAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateProjectHoursApprovalApproverAsyncError = UpdateProjectHoursApprovalApproverAsyncErrors[keyof UpdateProjectHoursApprovalApproverAsyncErrors];
+export type TimeLogApprovalsUpdateProjectHoursApprovalApproverError = TimeLogApprovalsUpdateProjectHoursApprovalApproverErrors[keyof TimeLogApprovalsUpdateProjectHoursApprovalApproverErrors];
 
-export type UpdateProjectHoursApprovalApproverAsyncResponses = {
+export type TimeLogApprovalsUpdateProjectHoursApprovalApproverResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProjectPeriodTimeLogsAsyncData = {
+export type TimeLogsGetProjectPeriodTimeLogsData = {
     body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2455,7 +2455,7 @@ export type GetProjectPeriodTimeLogsAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs';
 };
 
-export type GetProjectPeriodTimeLogsAsyncErrors = {
+export type TimeLogsGetProjectPeriodTimeLogsErrors = {
     /**
      * Unauthorized
      */
@@ -2466,18 +2466,18 @@ export type GetProjectPeriodTimeLogsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectPeriodTimeLogsAsyncError = GetProjectPeriodTimeLogsAsyncErrors[keyof GetProjectPeriodTimeLogsAsyncErrors];
+export type TimeLogsGetProjectPeriodTimeLogsError = TimeLogsGetProjectPeriodTimeLogsErrors[keyof TimeLogsGetProjectPeriodTimeLogsErrors];
 
-export type GetProjectPeriodTimeLogsAsyncResponses = {
+export type TimeLogsGetProjectPeriodTimeLogsResponses = {
     /**
      * OK
      */
     200: ProjectTimeLogDtoListEnvelopeReadable;
 };
 
-export type GetProjectPeriodTimeLogsAsyncResponse = GetProjectPeriodTimeLogsAsyncResponses[keyof GetProjectPeriodTimeLogsAsyncResponses];
+export type TimeLogsGetProjectPeriodTimeLogsResponse = TimeLogsGetProjectPeriodTimeLogsResponses[keyof TimeLogsGetProjectPeriodTimeLogsResponses];
 
-export type CreateProjectTimeLogAsyncData = {
+export type TimeLogsCreateProjectTimeLogData = {
     body?: ProjectTimeLogCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2490,7 +2490,7 @@ export type CreateProjectTimeLogAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs';
 };
 
-export type CreateProjectTimeLogAsyncErrors = {
+export type TimeLogsCreateProjectTimeLogErrors = {
     /**
      * Unauthorized
      */
@@ -2501,16 +2501,16 @@ export type CreateProjectTimeLogAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateProjectTimeLogAsyncError = CreateProjectTimeLogAsyncErrors[keyof CreateProjectTimeLogAsyncErrors];
+export type TimeLogsCreateProjectTimeLogError = TimeLogsCreateProjectTimeLogErrors[keyof TimeLogsCreateProjectTimeLogErrors];
 
-export type CreateProjectTimeLogAsyncResponses = {
+export type TimeLogsCreateProjectTimeLogResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type CountProjectPeriodTimeLogsAsyncData = {
+export type TimeLogsCountProjectPeriodTimeLogsData = {
     body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2524,7 +2524,7 @@ export type CountProjectPeriodTimeLogsAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/Count';
 };
 
-export type CountProjectPeriodTimeLogsAsyncErrors = {
+export type TimeLogsCountProjectPeriodTimeLogsErrors = {
     /**
      * Unauthorized
      */
@@ -2535,18 +2535,18 @@ export type CountProjectPeriodTimeLogsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountProjectPeriodTimeLogsAsyncError = CountProjectPeriodTimeLogsAsyncErrors[keyof CountProjectPeriodTimeLogsAsyncErrors];
+export type TimeLogsCountProjectPeriodTimeLogsError = TimeLogsCountProjectPeriodTimeLogsErrors[keyof TimeLogsCountProjectPeriodTimeLogsErrors];
 
-export type CountProjectPeriodTimeLogsAsyncResponses = {
+export type TimeLogsCountProjectPeriodTimeLogsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountProjectPeriodTimeLogsAsyncResponse = CountProjectPeriodTimeLogsAsyncResponses[keyof CountProjectPeriodTimeLogsAsyncResponses];
+export type TimeLogsCountProjectPeriodTimeLogsResponse = TimeLogsCountProjectPeriodTimeLogsResponses[keyof TimeLogsCountProjectPeriodTimeLogsResponses];
 
-export type GetProjectTimeLogsByResponsibleContactAsyncData = {
+export type TimeLogsGetProjectTimeLogsByResponsibleContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2560,7 +2560,7 @@ export type GetProjectTimeLogsByResponsibleContactAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/ByResponsibleContact';
 };
 
-export type GetProjectTimeLogsByResponsibleContactAsyncErrors = {
+export type TimeLogsGetProjectTimeLogsByResponsibleContactErrors = {
     /**
      * Unauthorized
      */
@@ -2571,18 +2571,18 @@ export type GetProjectTimeLogsByResponsibleContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsByResponsibleContactAsyncError = GetProjectTimeLogsByResponsibleContactAsyncErrors[keyof GetProjectTimeLogsByResponsibleContactAsyncErrors];
+export type TimeLogsGetProjectTimeLogsByResponsibleContactError = TimeLogsGetProjectTimeLogsByResponsibleContactErrors[keyof TimeLogsGetProjectTimeLogsByResponsibleContactErrors];
 
-export type GetProjectTimeLogsByResponsibleContactAsyncResponses = {
+export type TimeLogsGetProjectTimeLogsByResponsibleContactResponses = {
     /**
      * OK
      */
     200: ProjectTimeLogDtoListEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsByResponsibleContactAsyncResponse = GetProjectTimeLogsByResponsibleContactAsyncResponses[keyof GetProjectTimeLogsByResponsibleContactAsyncResponses];
+export type TimeLogsGetProjectTimeLogsByResponsibleContactResponse = TimeLogsGetProjectTimeLogsByResponsibleContactResponses[keyof TimeLogsGetProjectTimeLogsByResponsibleContactResponses];
 
-export type GetProjectTimeLogsCreatedByContactAsyncData = {
+export type TimeLogsGetProjectTimeLogsCreatedByContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2596,7 +2596,7 @@ export type GetProjectTimeLogsCreatedByContactAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/CreatedByContact';
 };
 
-export type GetProjectTimeLogsCreatedByContactAsyncErrors = {
+export type TimeLogsGetProjectTimeLogsCreatedByContactErrors = {
     /**
      * Unauthorized
      */
@@ -2607,18 +2607,18 @@ export type GetProjectTimeLogsCreatedByContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsCreatedByContactAsyncError = GetProjectTimeLogsCreatedByContactAsyncErrors[keyof GetProjectTimeLogsCreatedByContactAsyncErrors];
+export type TimeLogsGetProjectTimeLogsCreatedByContactError = TimeLogsGetProjectTimeLogsCreatedByContactErrors[keyof TimeLogsGetProjectTimeLogsCreatedByContactErrors];
 
-export type GetProjectTimeLogsCreatedByContactAsyncResponses = {
+export type TimeLogsGetProjectTimeLogsCreatedByContactResponses = {
     /**
      * OK
      */
     200: ProjectTimeLogDtoListEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsCreatedByContactAsyncResponse = GetProjectTimeLogsCreatedByContactAsyncResponses[keyof GetProjectTimeLogsCreatedByContactAsyncResponses];
+export type TimeLogsGetProjectTimeLogsCreatedByContactResponse = TimeLogsGetProjectTimeLogsCreatedByContactResponses[keyof TimeLogsGetProjectTimeLogsCreatedByContactResponses];
 
-export type GetProjectTimeLogsAsyncData = {
+export type TimeLogsGetProjectTimeLogsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2633,7 +2633,7 @@ export type GetProjectTimeLogsAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/ForProject/{projectId}';
 };
 
-export type GetProjectTimeLogsAsyncErrors = {
+export type TimeLogsGetProjectTimeLogsErrors = {
     /**
      * Unauthorized
      */
@@ -2644,18 +2644,18 @@ export type GetProjectTimeLogsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsAsyncError = GetProjectTimeLogsAsyncErrors[keyof GetProjectTimeLogsAsyncErrors];
+export type TimeLogsGetProjectTimeLogsError = TimeLogsGetProjectTimeLogsErrors[keyof TimeLogsGetProjectTimeLogsErrors];
 
-export type GetProjectTimeLogsAsyncResponses = {
+export type TimeLogsGetProjectTimeLogsResponses = {
     /**
      * OK
      */
     200: ProjectTimeLogDtoListEnvelopeReadable;
 };
 
-export type GetProjectTimeLogsAsyncResponse = GetProjectTimeLogsAsyncResponses[keyof GetProjectTimeLogsAsyncResponses];
+export type TimeLogsGetProjectTimeLogsResponse = TimeLogsGetProjectTimeLogsResponses[keyof TimeLogsGetProjectTimeLogsResponses];
 
-export type DeleteProjectTimeLogAsyncData = {
+export type TimeLogsDeleteProjectTimeLogData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2670,7 +2670,7 @@ export type DeleteProjectTimeLogAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
 };
 
-export type DeleteProjectTimeLogAsyncErrors = {
+export type TimeLogsDeleteProjectTimeLogErrors = {
     /**
      * Unauthorized
      */
@@ -2681,16 +2681,16 @@ export type DeleteProjectTimeLogAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteProjectTimeLogAsyncError = DeleteProjectTimeLogAsyncErrors[keyof DeleteProjectTimeLogAsyncErrors];
+export type TimeLogsDeleteProjectTimeLogError = TimeLogsDeleteProjectTimeLogErrors[keyof TimeLogsDeleteProjectTimeLogErrors];
 
-export type DeleteProjectTimeLogAsyncResponses = {
+export type TimeLogsDeleteProjectTimeLogResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProjectTimeLogByIdAsyncData = {
+export type TimeLogsGetProjectTimeLogByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2705,7 +2705,7 @@ export type GetProjectTimeLogByIdAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
 };
 
-export type GetProjectTimeLogByIdAsyncErrors = {
+export type TimeLogsGetProjectTimeLogByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2716,18 +2716,18 @@ export type GetProjectTimeLogByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProjectTimeLogByIdAsyncError = GetProjectTimeLogByIdAsyncErrors[keyof GetProjectTimeLogByIdAsyncErrors];
+export type TimeLogsGetProjectTimeLogByIdError = TimeLogsGetProjectTimeLogByIdErrors[keyof TimeLogsGetProjectTimeLogByIdErrors];
 
-export type GetProjectTimeLogByIdAsyncResponses = {
+export type TimeLogsGetProjectTimeLogByIdResponses = {
     /**
      * OK
      */
     200: ProjectTimeLogDtoEnvelopeReadable;
 };
 
-export type GetProjectTimeLogByIdAsyncResponse = GetProjectTimeLogByIdAsyncResponses[keyof GetProjectTimeLogByIdAsyncResponses];
+export type TimeLogsGetProjectTimeLogByIdResponse = TimeLogsGetProjectTimeLogByIdResponses[keyof TimeLogsGetProjectTimeLogByIdResponses];
 
-export type PatchProjectTimeLogAsyncData = {
+export type TimeLogsPatchProjectTimeLogData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2742,7 +2742,7 @@ export type PatchProjectTimeLogAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
 };
 
-export type PatchProjectTimeLogAsyncErrors = {
+export type TimeLogsPatchProjectTimeLogErrors = {
     /**
      * Unauthorized
      */
@@ -2753,16 +2753,16 @@ export type PatchProjectTimeLogAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchProjectTimeLogAsyncError = PatchProjectTimeLogAsyncErrors[keyof PatchProjectTimeLogAsyncErrors];
+export type TimeLogsPatchProjectTimeLogError = TimeLogsPatchProjectTimeLogErrors[keyof TimeLogsPatchProjectTimeLogErrors];
 
-export type PatchProjectTimeLogAsyncResponses = {
+export type TimeLogsPatchProjectTimeLogResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateProjectTimeLogAsyncData = {
+export type TimeLogsUpdateProjectTimeLogData = {
     body?: ProjectTimeLogUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2777,7 +2777,7 @@ export type UpdateProjectTimeLogAsyncData = {
     url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
 };
 
-export type UpdateProjectTimeLogAsyncErrors = {
+export type TimeLogsUpdateProjectTimeLogErrors = {
     /**
      * Unauthorized
      */
@@ -2788,9 +2788,9 @@ export type UpdateProjectTimeLogAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateProjectTimeLogAsyncError = UpdateProjectTimeLogAsyncErrors[keyof UpdateProjectTimeLogAsyncErrors];
+export type TimeLogsUpdateProjectTimeLogError = TimeLogsUpdateProjectTimeLogErrors[keyof TimeLogsUpdateProjectTimeLogErrors];
 
-export type UpdateProjectTimeLogAsyncResponses = {
+export type TimeLogsUpdateProjectTimeLogResponses = {
     /**
      * OK
      */

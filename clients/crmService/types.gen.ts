@@ -200,8 +200,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -261,8 +266,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoCollectionQueryParametersReadable = {
@@ -1149,8 +1159,13 @@ export type ExtendedContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -1215,8 +1230,13 @@ export type ExtendedContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -1638,6 +1658,9 @@ export type WalletDto = {
     mainNetEtherBalance?: number;
     ethereumAddress?: string | null;
     ethereumPublicKey?: string | null;
+    /**
+     * @deprecated
+     */
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
 };
@@ -1667,7 +1690,7 @@ export type WalletDtoEnvelopeWritable = {
     result?: WalletDto;
 };
 
-export type GetContactGroupsAsyncData = {
+export type ContactGroupsGetContactGroupsData = {
     body?: ContactsGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1680,25 +1703,25 @@ export type GetContactGroupsAsyncData = {
     url: '/api/v2/CrmService/ContactGroups';
 };
 
-export type GetContactGroupsAsyncErrors = {
+export type ContactGroupsGetContactGroupsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactGroupsAsyncError = GetContactGroupsAsyncErrors[keyof GetContactGroupsAsyncErrors];
+export type ContactGroupsGetContactGroupsError = ContactGroupsGetContactGroupsErrors[keyof ContactGroupsGetContactGroupsErrors];
 
-export type GetContactGroupsAsyncResponses = {
+export type ContactGroupsGetContactGroupsResponses = {
     /**
      * OK
      */
     200: ContactsGroupDtoListEnvelopeReadable;
 };
 
-export type GetContactGroupsAsyncResponse = GetContactGroupsAsyncResponses[keyof GetContactGroupsAsyncResponses];
+export type ContactGroupsGetContactGroupsResponse = ContactGroupsGetContactGroupsResponses[keyof ContactGroupsGetContactGroupsResponses];
 
-export type CreateContactGroupAsyncData = {
+export type ContactGroupsCreateContactGroupData = {
     body?: ContactsGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1711,7 +1734,7 @@ export type CreateContactGroupAsyncData = {
     url: '/api/v2/CrmService/ContactGroups';
 };
 
-export type CreateContactGroupAsyncErrors = {
+export type ContactGroupsCreateContactGroupErrors = {
     /**
      * Bad Request
      */
@@ -1722,16 +1745,16 @@ export type CreateContactGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactGroupAsyncError = CreateContactGroupAsyncErrors[keyof CreateContactGroupAsyncErrors];
+export type ContactGroupsCreateContactGroupError = ContactGroupsCreateContactGroupErrors[keyof ContactGroupsCreateContactGroupErrors];
 
-export type CreateContactGroupAsyncResponses = {
+export type ContactGroupsCreateContactGroupResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactGroupsCountAsyncData = {
+export type ContactGroupsGetContactGroupsCountData = {
     body?: ContactsGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1744,25 +1767,25 @@ export type GetContactGroupsCountAsyncData = {
     url: '/api/v2/CrmService/ContactGroups/Count';
 };
 
-export type GetContactGroupsCountAsyncErrors = {
+export type ContactGroupsGetContactGroupsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactGroupsCountAsyncError = GetContactGroupsCountAsyncErrors[keyof GetContactGroupsCountAsyncErrors];
+export type ContactGroupsGetContactGroupsCountError = ContactGroupsGetContactGroupsCountErrors[keyof ContactGroupsGetContactGroupsCountErrors];
 
-export type GetContactGroupsCountAsyncResponses = {
+export type ContactGroupsGetContactGroupsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactGroupsCountAsyncResponse = GetContactGroupsCountAsyncResponses[keyof GetContactGroupsCountAsyncResponses];
+export type ContactGroupsGetContactGroupsCountResponse = ContactGroupsGetContactGroupsCountResponses[keyof ContactGroupsGetContactGroupsCountResponses];
 
-export type DeleteContactGroupAsyncData = {
+export type ContactGroupsDeleteContactGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1777,7 +1800,7 @@ export type DeleteContactGroupAsyncData = {
     url: '/api/v2/CrmService/ContactGroups/{id}';
 };
 
-export type DeleteContactGroupAsyncErrors = {
+export type ContactGroupsDeleteContactGroupErrors = {
     /**
      * Forbidden
      */
@@ -1788,16 +1811,16 @@ export type DeleteContactGroupAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactGroupAsyncError = DeleteContactGroupAsyncErrors[keyof DeleteContactGroupAsyncErrors];
+export type ContactGroupsDeleteContactGroupError = ContactGroupsDeleteContactGroupErrors[keyof ContactGroupsDeleteContactGroupErrors];
 
-export type DeleteContactGroupAsyncResponses = {
+export type ContactGroupsDeleteContactGroupResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactGroupByIdAsyncData = {
+export type ContactGroupsGetContactGroupByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1812,7 +1835,7 @@ export type GetContactGroupByIdAsyncData = {
     url: '/api/v2/CrmService/ContactGroups/{id}';
 };
 
-export type GetContactGroupByIdAsyncErrors = {
+export type ContactGroupsGetContactGroupByIdErrors = {
     /**
      * Forbidden
      */
@@ -1823,18 +1846,18 @@ export type GetContactGroupByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactGroupByIdAsyncError = GetContactGroupByIdAsyncErrors[keyof GetContactGroupByIdAsyncErrors];
+export type ContactGroupsGetContactGroupByIdError = ContactGroupsGetContactGroupByIdErrors[keyof ContactGroupsGetContactGroupByIdErrors];
 
-export type GetContactGroupByIdAsyncResponses = {
+export type ContactGroupsGetContactGroupByIdResponses = {
     /**
      * OK
      */
     200: ContactsGroupDto;
 };
 
-export type GetContactGroupByIdAsyncResponse = GetContactGroupByIdAsyncResponses[keyof GetContactGroupByIdAsyncResponses];
+export type ContactGroupsGetContactGroupByIdResponse = ContactGroupsGetContactGroupByIdResponses[keyof ContactGroupsGetContactGroupByIdResponses];
 
-export type PatchContactGroupAsyncData = {
+export type ContactGroupsPatchContactGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1849,7 +1872,7 @@ export type PatchContactGroupAsyncData = {
     url: '/api/v2/CrmService/ContactGroups/{id}';
 };
 
-export type PatchContactGroupAsyncErrors = {
+export type ContactGroupsPatchContactGroupErrors = {
     /**
      * Unauthorized
      */
@@ -1860,18 +1883,18 @@ export type PatchContactGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactGroupAsyncError = PatchContactGroupAsyncErrors[keyof PatchContactGroupAsyncErrors];
+export type ContactGroupsPatchContactGroupError = ContactGroupsPatchContactGroupErrors[keyof ContactGroupsPatchContactGroupErrors];
 
-export type PatchContactGroupAsyncResponses = {
+export type ContactGroupsPatchContactGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactGroupAsyncResponse = PatchContactGroupAsyncResponses[keyof PatchContactGroupAsyncResponses];
+export type ContactGroupsPatchContactGroupResponse = ContactGroupsPatchContactGroupResponses[keyof ContactGroupsPatchContactGroupResponses];
 
-export type UpdateContactGroupAsyncData = {
+export type ContactGroupsUpdateContactGroupData = {
     body?: ContactsGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1886,7 +1909,7 @@ export type UpdateContactGroupAsyncData = {
     url: '/api/v2/CrmService/ContactGroups/{id}';
 };
 
-export type UpdateContactGroupAsyncErrors = {
+export type ContactGroupsUpdateContactGroupErrors = {
     /**
      * Forbidden
      */
@@ -1897,16 +1920,16 @@ export type UpdateContactGroupAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactGroupAsyncError = UpdateContactGroupAsyncErrors[keyof UpdateContactGroupAsyncErrors];
+export type ContactGroupsUpdateContactGroupError = ContactGroupsUpdateContactGroupErrors[keyof ContactGroupsUpdateContactGroupErrors];
 
-export type UpdateContactGroupAsyncResponses = {
+export type ContactGroupsUpdateContactGroupResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactProfilesAsyncData = {
+export type ContactProfilesGetContactProfilesData = {
     body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1919,25 +1942,25 @@ export type GetContactProfilesAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles';
 };
 
-export type GetContactProfilesAsyncErrors = {
+export type ContactProfilesGetContactProfilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactProfilesAsyncError = GetContactProfilesAsyncErrors[keyof GetContactProfilesAsyncErrors];
+export type ContactProfilesGetContactProfilesError = ContactProfilesGetContactProfilesErrors[keyof ContactProfilesGetContactProfilesErrors];
 
-export type GetContactProfilesAsyncResponses = {
+export type ContactProfilesGetContactProfilesResponses = {
     /**
      * OK
      */
     200: ContactProfileDtoListEnvelopeReadable;
 };
 
-export type GetContactProfilesAsyncResponse = GetContactProfilesAsyncResponses[keyof GetContactProfilesAsyncResponses];
+export type ContactProfilesGetContactProfilesResponse = ContactProfilesGetContactProfilesResponses[keyof ContactProfilesGetContactProfilesResponses];
 
-export type CreateContactProfileAsyncData = {
+export type ContactProfilesCreateContactProfileData = {
     body?: ContactProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1950,7 +1973,7 @@ export type CreateContactProfileAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles';
 };
 
-export type CreateContactProfileAsyncErrors = {
+export type ContactProfilesCreateContactProfileErrors = {
     /**
      * Bad Request
      */
@@ -1961,16 +1984,16 @@ export type CreateContactProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactProfileAsyncError = CreateContactProfileAsyncErrors[keyof CreateContactProfileAsyncErrors];
+export type ContactProfilesCreateContactProfileError = ContactProfilesCreateContactProfileErrors[keyof ContactProfilesCreateContactProfileErrors];
 
-export type CreateContactProfileAsyncResponses = {
+export type ContactProfilesCreateContactProfileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactProfilesCountAsyncData = {
+export type ContactProfilesGetContactProfilesCountData = {
     body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1983,25 +2006,25 @@ export type GetContactProfilesCountAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/Count';
 };
 
-export type GetContactProfilesCountAsyncErrors = {
+export type ContactProfilesGetContactProfilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactProfilesCountAsyncError = GetContactProfilesCountAsyncErrors[keyof GetContactProfilesCountAsyncErrors];
+export type ContactProfilesGetContactProfilesCountError = ContactProfilesGetContactProfilesCountErrors[keyof ContactProfilesGetContactProfilesCountErrors];
 
-export type GetContactProfilesCountAsyncResponses = {
+export type ContactProfilesGetContactProfilesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactProfilesCountAsyncResponse = GetContactProfilesCountAsyncResponses[keyof GetContactProfilesCountAsyncResponses];
+export type ContactProfilesGetContactProfilesCountResponse = ContactProfilesGetContactProfilesCountResponses[keyof ContactProfilesGetContactProfilesCountResponses];
 
-export type GetPatientProfilesCountAsyncData = {
+export type ContactProfilesGetPatientProfilesCountData = {
     body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2014,25 +2037,25 @@ export type GetPatientProfilesCountAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/Patients/Count';
 };
 
-export type GetPatientProfilesCountAsyncErrors = {
+export type ContactProfilesGetPatientProfilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPatientProfilesCountAsyncError = GetPatientProfilesCountAsyncErrors[keyof GetPatientProfilesCountAsyncErrors];
+export type ContactProfilesGetPatientProfilesCountError = ContactProfilesGetPatientProfilesCountErrors[keyof ContactProfilesGetPatientProfilesCountErrors];
 
-export type GetPatientProfilesCountAsyncResponses = {
+export type ContactProfilesGetPatientProfilesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPatientProfilesCountAsyncResponse = GetPatientProfilesCountAsyncResponses[keyof GetPatientProfilesCountAsyncResponses];
+export type ContactProfilesGetPatientProfilesCountResponse = ContactProfilesGetPatientProfilesCountResponses[keyof ContactProfilesGetPatientProfilesCountResponses];
 
-export type GetPartnerProfilesCountAsyncData = {
+export type ContactProfilesGetPartnerProfilesCountData = {
     body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2045,25 +2068,25 @@ export type GetPartnerProfilesCountAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/Partners/Count';
 };
 
-export type GetPartnerProfilesCountAsyncErrors = {
+export type ContactProfilesGetPartnerProfilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPartnerProfilesCountAsyncError = GetPartnerProfilesCountAsyncErrors[keyof GetPartnerProfilesCountAsyncErrors];
+export type ContactProfilesGetPartnerProfilesCountError = ContactProfilesGetPartnerProfilesCountErrors[keyof ContactProfilesGetPartnerProfilesCountErrors];
 
-export type GetPartnerProfilesCountAsyncResponses = {
+export type ContactProfilesGetPartnerProfilesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPartnerProfilesCountAsyncResponse = GetPartnerProfilesCountAsyncResponses[keyof GetPartnerProfilesCountAsyncResponses];
+export type ContactProfilesGetPartnerProfilesCountResponse = ContactProfilesGetPartnerProfilesCountResponses[keyof ContactProfilesGetPartnerProfilesCountResponses];
 
-export type DeleteContactProfileAsyncData = {
+export type ContactProfilesDeleteContactProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2078,7 +2101,7 @@ export type DeleteContactProfileAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/{id}';
 };
 
-export type DeleteContactProfileAsyncErrors = {
+export type ContactProfilesDeleteContactProfileErrors = {
     /**
      * Forbidden
      */
@@ -2089,16 +2112,16 @@ export type DeleteContactProfileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactProfileAsyncError = DeleteContactProfileAsyncErrors[keyof DeleteContactProfileAsyncErrors];
+export type ContactProfilesDeleteContactProfileError = ContactProfilesDeleteContactProfileErrors[keyof ContactProfilesDeleteContactProfileErrors];
 
-export type DeleteContactProfileAsyncResponses = {
+export type ContactProfilesDeleteContactProfileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactProfileByIdAsyncData = {
+export type ContactProfilesGetContactProfileByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2113,7 +2136,7 @@ export type GetContactProfileByIdAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/{id}';
 };
 
-export type GetContactProfileByIdAsyncErrors = {
+export type ContactProfilesGetContactProfileByIdErrors = {
     /**
      * Forbidden
      */
@@ -2124,18 +2147,18 @@ export type GetContactProfileByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactProfileByIdAsyncError = GetContactProfileByIdAsyncErrors[keyof GetContactProfileByIdAsyncErrors];
+export type ContactProfilesGetContactProfileByIdError = ContactProfilesGetContactProfileByIdErrors[keyof ContactProfilesGetContactProfileByIdErrors];
 
-export type GetContactProfileByIdAsyncResponses = {
+export type ContactProfilesGetContactProfileByIdResponses = {
     /**
      * OK
      */
     200: ContactProfileDtoReadable;
 };
 
-export type GetContactProfileByIdAsyncResponse = GetContactProfileByIdAsyncResponses[keyof GetContactProfileByIdAsyncResponses];
+export type ContactProfilesGetContactProfileByIdResponse = ContactProfilesGetContactProfileByIdResponses[keyof ContactProfilesGetContactProfileByIdResponses];
 
-export type PatchContactProfileAsyncData = {
+export type ContactProfilesPatchContactProfileData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2150,7 +2173,7 @@ export type PatchContactProfileAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/{id}';
 };
 
-export type PatchContactProfileAsyncErrors = {
+export type ContactProfilesPatchContactProfileErrors = {
     /**
      * Unauthorized
      */
@@ -2161,18 +2184,18 @@ export type PatchContactProfileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactProfileAsyncError = PatchContactProfileAsyncErrors[keyof PatchContactProfileAsyncErrors];
+export type ContactProfilesPatchContactProfileError = ContactProfilesPatchContactProfileErrors[keyof ContactProfilesPatchContactProfileErrors];
 
-export type PatchContactProfileAsyncResponses = {
+export type ContactProfilesPatchContactProfileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactProfileAsyncResponse = PatchContactProfileAsyncResponses[keyof PatchContactProfileAsyncResponses];
+export type ContactProfilesPatchContactProfileResponse = ContactProfilesPatchContactProfileResponses[keyof ContactProfilesPatchContactProfileResponses];
 
-export type UpdateContactProfileAsyncData = {
+export type ContactProfilesUpdateContactProfileData = {
     body?: ContactProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2187,7 +2210,7 @@ export type UpdateContactProfileAsyncData = {
     url: '/api/v2/CrmService/ContactProfiles/{id}';
 };
 
-export type UpdateContactProfileAsyncErrors = {
+export type ContactProfilesUpdateContactProfileErrors = {
     /**
      * Forbidden
      */
@@ -2198,16 +2221,16 @@ export type UpdateContactProfileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactProfileAsyncError = UpdateContactProfileAsyncErrors[keyof UpdateContactProfileAsyncErrors];
+export type ContactProfilesUpdateContactProfileError = ContactProfilesUpdateContactProfileErrors[keyof ContactProfilesUpdateContactProfileErrors];
 
-export type UpdateContactProfileAsyncResponses = {
+export type ContactProfilesUpdateContactProfileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactRelationsAsyncData = {
+export type ContactRelationsGetContactRelationsData = {
     body?: ContactRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2220,25 +2243,25 @@ export type GetContactRelationsAsyncData = {
     url: '/api/v2/CrmService/ContactRelations';
 };
 
-export type GetContactRelationsAsyncErrors = {
+export type ContactRelationsGetContactRelationsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactRelationsAsyncError = GetContactRelationsAsyncErrors[keyof GetContactRelationsAsyncErrors];
+export type ContactRelationsGetContactRelationsError = ContactRelationsGetContactRelationsErrors[keyof ContactRelationsGetContactRelationsErrors];
 
-export type GetContactRelationsAsyncResponses = {
+export type ContactRelationsGetContactRelationsResponses = {
     /**
      * OK
      */
     200: ContactRelationDtoListEnvelopeReadable;
 };
 
-export type GetContactRelationsAsyncResponse = GetContactRelationsAsyncResponses[keyof GetContactRelationsAsyncResponses];
+export type ContactRelationsGetContactRelationsResponse = ContactRelationsGetContactRelationsResponses[keyof ContactRelationsGetContactRelationsResponses];
 
-export type CreateContactRelationAsyncData = {
+export type ContactRelationsCreateContactRelationData = {
     body?: ContactRelationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2251,7 +2274,7 @@ export type CreateContactRelationAsyncData = {
     url: '/api/v2/CrmService/ContactRelations';
 };
 
-export type CreateContactRelationAsyncErrors = {
+export type ContactRelationsCreateContactRelationErrors = {
     /**
      * Bad Request
      */
@@ -2262,16 +2285,16 @@ export type CreateContactRelationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactRelationAsyncError = CreateContactRelationAsyncErrors[keyof CreateContactRelationAsyncErrors];
+export type ContactRelationsCreateContactRelationError = ContactRelationsCreateContactRelationErrors[keyof ContactRelationsCreateContactRelationErrors];
 
-export type CreateContactRelationAsyncResponses = {
+export type ContactRelationsCreateContactRelationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactRelationsCountAsyncData = {
+export type ContactRelationsGetContactRelationsCountData = {
     body?: ContactRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2284,25 +2307,25 @@ export type GetContactRelationsCountAsyncData = {
     url: '/api/v2/CrmService/ContactRelations/Count';
 };
 
-export type GetContactRelationsCountAsyncErrors = {
+export type ContactRelationsGetContactRelationsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactRelationsCountAsyncError = GetContactRelationsCountAsyncErrors[keyof GetContactRelationsCountAsyncErrors];
+export type ContactRelationsGetContactRelationsCountError = ContactRelationsGetContactRelationsCountErrors[keyof ContactRelationsGetContactRelationsCountErrors];
 
-export type GetContactRelationsCountAsyncResponses = {
+export type ContactRelationsGetContactRelationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactRelationsCountAsyncResponse = GetContactRelationsCountAsyncResponses[keyof GetContactRelationsCountAsyncResponses];
+export type ContactRelationsGetContactRelationsCountResponse = ContactRelationsGetContactRelationsCountResponses[keyof ContactRelationsGetContactRelationsCountResponses];
 
-export type DeleteContactRelationAsyncData = {
+export type ContactRelationsDeleteContactRelationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2317,7 +2340,7 @@ export type DeleteContactRelationAsyncData = {
     url: '/api/v2/CrmService/ContactRelations/{id}';
 };
 
-export type DeleteContactRelationAsyncErrors = {
+export type ContactRelationsDeleteContactRelationErrors = {
     /**
      * Forbidden
      */
@@ -2328,16 +2351,16 @@ export type DeleteContactRelationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactRelationAsyncError = DeleteContactRelationAsyncErrors[keyof DeleteContactRelationAsyncErrors];
+export type ContactRelationsDeleteContactRelationError = ContactRelationsDeleteContactRelationErrors[keyof ContactRelationsDeleteContactRelationErrors];
 
-export type DeleteContactRelationAsyncResponses = {
+export type ContactRelationsDeleteContactRelationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactRelationByIdAsyncData = {
+export type ContactRelationsGetContactRelationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2352,7 +2375,7 @@ export type GetContactRelationByIdAsyncData = {
     url: '/api/v2/CrmService/ContactRelations/{id}';
 };
 
-export type GetContactRelationByIdAsyncErrors = {
+export type ContactRelationsGetContactRelationByIdErrors = {
     /**
      * Forbidden
      */
@@ -2363,18 +2386,18 @@ export type GetContactRelationByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactRelationByIdAsyncError = GetContactRelationByIdAsyncErrors[keyof GetContactRelationByIdAsyncErrors];
+export type ContactRelationsGetContactRelationByIdError = ContactRelationsGetContactRelationByIdErrors[keyof ContactRelationsGetContactRelationByIdErrors];
 
-export type GetContactRelationByIdAsyncResponses = {
+export type ContactRelationsGetContactRelationByIdResponses = {
     /**
      * OK
      */
     200: ContactRelationDto;
 };
 
-export type GetContactRelationByIdAsyncResponse = GetContactRelationByIdAsyncResponses[keyof GetContactRelationByIdAsyncResponses];
+export type ContactRelationsGetContactRelationByIdResponse = ContactRelationsGetContactRelationByIdResponses[keyof ContactRelationsGetContactRelationByIdResponses];
 
-export type PatchContactRelationAsyncData = {
+export type ContactRelationsPatchContactRelationData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2389,7 +2412,7 @@ export type PatchContactRelationAsyncData = {
     url: '/api/v2/CrmService/ContactRelations/{id}';
 };
 
-export type PatchContactRelationAsyncErrors = {
+export type ContactRelationsPatchContactRelationErrors = {
     /**
      * Unauthorized
      */
@@ -2400,18 +2423,18 @@ export type PatchContactRelationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactRelationAsyncError = PatchContactRelationAsyncErrors[keyof PatchContactRelationAsyncErrors];
+export type ContactRelationsPatchContactRelationError = ContactRelationsPatchContactRelationErrors[keyof ContactRelationsPatchContactRelationErrors];
 
-export type PatchContactRelationAsyncResponses = {
+export type ContactRelationsPatchContactRelationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactRelationAsyncResponse = PatchContactRelationAsyncResponses[keyof PatchContactRelationAsyncResponses];
+export type ContactRelationsPatchContactRelationResponse = ContactRelationsPatchContactRelationResponses[keyof ContactRelationsPatchContactRelationResponses];
 
-export type UpdateContactRelationAsyncData = {
+export type ContactRelationsUpdateContactRelationData = {
     body?: ContactRelationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2426,7 +2449,7 @@ export type UpdateContactRelationAsyncData = {
     url: '/api/v2/CrmService/ContactRelations/{id}';
 };
 
-export type UpdateContactRelationAsyncErrors = {
+export type ContactRelationsUpdateContactRelationErrors = {
     /**
      * Forbidden
      */
@@ -2437,16 +2460,16 @@ export type UpdateContactRelationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactRelationAsyncError = UpdateContactRelationAsyncErrors[keyof UpdateContactRelationAsyncErrors];
+export type ContactRelationsUpdateContactRelationError = ContactRelationsUpdateContactRelationErrors[keyof ContactRelationsUpdateContactRelationErrors];
 
-export type UpdateContactRelationAsyncResponses = {
+export type ContactRelationsUpdateContactRelationResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactRelationTypesAsyncData = {
+export type ContactRelationTypesGetContactRelationTypesData = {
     body?: ContactRelationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2459,25 +2482,25 @@ export type GetContactRelationTypesAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes';
 };
 
-export type GetContactRelationTypesAsyncErrors = {
+export type ContactRelationTypesGetContactRelationTypesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactRelationTypesAsyncError = GetContactRelationTypesAsyncErrors[keyof GetContactRelationTypesAsyncErrors];
+export type ContactRelationTypesGetContactRelationTypesError = ContactRelationTypesGetContactRelationTypesErrors[keyof ContactRelationTypesGetContactRelationTypesErrors];
 
-export type GetContactRelationTypesAsyncResponses = {
+export type ContactRelationTypesGetContactRelationTypesResponses = {
     /**
      * OK
      */
     200: ContactRelationTypeDtoListEnvelopeReadable;
 };
 
-export type GetContactRelationTypesAsyncResponse = GetContactRelationTypesAsyncResponses[keyof GetContactRelationTypesAsyncResponses];
+export type ContactRelationTypesGetContactRelationTypesResponse = ContactRelationTypesGetContactRelationTypesResponses[keyof ContactRelationTypesGetContactRelationTypesResponses];
 
-export type CreateContactRelationTypeAsyncData = {
+export type ContactRelationTypesCreateContactRelationTypeData = {
     body?: ContactRelationTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2490,7 +2513,7 @@ export type CreateContactRelationTypeAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes';
 };
 
-export type CreateContactRelationTypeAsyncErrors = {
+export type ContactRelationTypesCreateContactRelationTypeErrors = {
     /**
      * Bad Request
      */
@@ -2501,16 +2524,16 @@ export type CreateContactRelationTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactRelationTypeAsyncError = CreateContactRelationTypeAsyncErrors[keyof CreateContactRelationTypeAsyncErrors];
+export type ContactRelationTypesCreateContactRelationTypeError = ContactRelationTypesCreateContactRelationTypeErrors[keyof ContactRelationTypesCreateContactRelationTypeErrors];
 
-export type CreateContactRelationTypeAsyncResponses = {
+export type ContactRelationTypesCreateContactRelationTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactRelationTypesCountAsyncData = {
+export type ContactRelationTypesGetContactRelationTypesCountData = {
     body?: ContactRelationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2523,25 +2546,25 @@ export type GetContactRelationTypesCountAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes/Count';
 };
 
-export type GetContactRelationTypesCountAsyncErrors = {
+export type ContactRelationTypesGetContactRelationTypesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactRelationTypesCountAsyncError = GetContactRelationTypesCountAsyncErrors[keyof GetContactRelationTypesCountAsyncErrors];
+export type ContactRelationTypesGetContactRelationTypesCountError = ContactRelationTypesGetContactRelationTypesCountErrors[keyof ContactRelationTypesGetContactRelationTypesCountErrors];
 
-export type GetContactRelationTypesCountAsyncResponses = {
+export type ContactRelationTypesGetContactRelationTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactRelationTypesCountAsyncResponse = GetContactRelationTypesCountAsyncResponses[keyof GetContactRelationTypesCountAsyncResponses];
+export type ContactRelationTypesGetContactRelationTypesCountResponse = ContactRelationTypesGetContactRelationTypesCountResponses[keyof ContactRelationTypesGetContactRelationTypesCountResponses];
 
-export type DeleteContactRelationTypeAsyncData = {
+export type ContactRelationTypesDeleteContactRelationTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2556,7 +2579,7 @@ export type DeleteContactRelationTypeAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes/{id}';
 };
 
-export type DeleteContactRelationTypeAsyncErrors = {
+export type ContactRelationTypesDeleteContactRelationTypeErrors = {
     /**
      * Forbidden
      */
@@ -2567,16 +2590,16 @@ export type DeleteContactRelationTypeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactRelationTypeAsyncError = DeleteContactRelationTypeAsyncErrors[keyof DeleteContactRelationTypeAsyncErrors];
+export type ContactRelationTypesDeleteContactRelationTypeError = ContactRelationTypesDeleteContactRelationTypeErrors[keyof ContactRelationTypesDeleteContactRelationTypeErrors];
 
-export type DeleteContactRelationTypeAsyncResponses = {
+export type ContactRelationTypesDeleteContactRelationTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactRelationTypeByIdAsyncData = {
+export type ContactRelationTypesGetContactRelationTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2591,7 +2614,7 @@ export type GetContactRelationTypeByIdAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes/{id}';
 };
 
-export type GetContactRelationTypeByIdAsyncErrors = {
+export type ContactRelationTypesGetContactRelationTypeByIdErrors = {
     /**
      * Forbidden
      */
@@ -2602,18 +2625,18 @@ export type GetContactRelationTypeByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactRelationTypeByIdAsyncError = GetContactRelationTypeByIdAsyncErrors[keyof GetContactRelationTypeByIdAsyncErrors];
+export type ContactRelationTypesGetContactRelationTypeByIdError = ContactRelationTypesGetContactRelationTypeByIdErrors[keyof ContactRelationTypesGetContactRelationTypeByIdErrors];
 
-export type GetContactRelationTypeByIdAsyncResponses = {
+export type ContactRelationTypesGetContactRelationTypeByIdResponses = {
     /**
      * OK
      */
     200: ContactRelationTypeDto;
 };
 
-export type GetContactRelationTypeByIdAsyncResponse = GetContactRelationTypeByIdAsyncResponses[keyof GetContactRelationTypeByIdAsyncResponses];
+export type ContactRelationTypesGetContactRelationTypeByIdResponse = ContactRelationTypesGetContactRelationTypeByIdResponses[keyof ContactRelationTypesGetContactRelationTypeByIdResponses];
 
-export type PatchContactRelationTypeAsyncData = {
+export type ContactRelationTypesPatchContactRelationTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2628,7 +2651,7 @@ export type PatchContactRelationTypeAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes/{id}';
 };
 
-export type PatchContactRelationTypeAsyncErrors = {
+export type ContactRelationTypesPatchContactRelationTypeErrors = {
     /**
      * Unauthorized
      */
@@ -2639,18 +2662,18 @@ export type PatchContactRelationTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactRelationTypeAsyncError = PatchContactRelationTypeAsyncErrors[keyof PatchContactRelationTypeAsyncErrors];
+export type ContactRelationTypesPatchContactRelationTypeError = ContactRelationTypesPatchContactRelationTypeErrors[keyof ContactRelationTypesPatchContactRelationTypeErrors];
 
-export type PatchContactRelationTypeAsyncResponses = {
+export type ContactRelationTypesPatchContactRelationTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactRelationTypeAsyncResponse = PatchContactRelationTypeAsyncResponses[keyof PatchContactRelationTypeAsyncResponses];
+export type ContactRelationTypesPatchContactRelationTypeResponse = ContactRelationTypesPatchContactRelationTypeResponses[keyof ContactRelationTypesPatchContactRelationTypeResponses];
 
-export type UpdateContactRelationTypeAsyncData = {
+export type ContactRelationTypesUpdateContactRelationTypeData = {
     body?: ContactRelationTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2665,7 +2688,7 @@ export type UpdateContactRelationTypeAsyncData = {
     url: '/api/v2/CrmService/ContactRelationTypes/{id}';
 };
 
-export type UpdateContactRelationTypeAsyncErrors = {
+export type ContactRelationTypesUpdateContactRelationTypeErrors = {
     /**
      * Forbidden
      */
@@ -2676,16 +2699,16 @@ export type UpdateContactRelationTypeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactRelationTypeAsyncError = UpdateContactRelationTypeAsyncErrors[keyof UpdateContactRelationTypeAsyncErrors];
+export type ContactRelationTypesUpdateContactRelationTypeError = ContactRelationTypesUpdateContactRelationTypeErrors[keyof ContactRelationTypesUpdateContactRelationTypeErrors];
 
-export type UpdateContactRelationTypeAsyncResponses = {
+export type ContactRelationTypesUpdateContactRelationTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactsAsyncData = {
+export type ContactsGetContactsData = {
     body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2698,7 +2721,7 @@ export type GetContactsAsyncData = {
     url: '/api/v2/CrmService/Contacts';
 };
 
-export type GetContactsAsyncErrors = {
+export type ContactsGetContactsErrors = {
     /**
      * Unauthorized
      */
@@ -2709,31 +2732,31 @@ export type GetContactsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactsAsyncError = GetContactsAsyncErrors[keyof GetContactsAsyncErrors];
+export type ContactsGetContactsError = ContactsGetContactsErrors[keyof ContactsGetContactsErrors];
 
-export type GetContactsAsyncResponses = {
+export type ContactsGetContactsResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetContactsAsyncResponse = GetContactsAsyncResponses[keyof GetContactsAsyncResponses];
+export type ContactsGetContactsResponse = ContactsGetContactsResponses[keyof ContactsGetContactsResponses];
 
-export type CreateContactAsyncData = {
+export type ContactsCreateContactData = {
     body?: ContactCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
     };
     path?: never;
-    query?: {
-        tenantId?: string;
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/CrmService/Contacts';
 };
 
-export type CreateContactAsyncErrors = {
+export type ContactsCreateContactErrors = {
     /**
      * Unauthorized
      */
@@ -2744,18 +2767,18 @@ export type CreateContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactAsyncError = CreateContactAsyncErrors[keyof CreateContactAsyncErrors];
+export type ContactsCreateContactError = ContactsCreateContactErrors[keyof ContactsCreateContactErrors];
 
-export type CreateContactAsyncResponses = {
+export type ContactsCreateContactResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateContactAsyncResponse = CreateContactAsyncResponses[keyof CreateContactAsyncResponses];
+export type ContactsCreateContactResponse = ContactsCreateContactResponses[keyof ContactsCreateContactResponses];
 
-export type GetContactsCountAsyncData = {
+export type ContactsGetContactsCountData = {
     body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2768,7 +2791,7 @@ export type GetContactsCountAsyncData = {
     url: '/api/v2/CrmService/Contacts/Count';
 };
 
-export type GetContactsCountAsyncErrors = {
+export type ContactsGetContactsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2779,18 +2802,18 @@ export type GetContactsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactsCountAsyncError = GetContactsCountAsyncErrors[keyof GetContactsCountAsyncErrors];
+export type ContactsGetContactsCountError = ContactsGetContactsCountErrors[keyof ContactsGetContactsCountErrors];
 
-export type GetContactsCountAsyncResponses = {
+export type ContactsGetContactsCountResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetContactsCountAsyncResponse = GetContactsCountAsyncResponses[keyof GetContactsCountAsyncResponses];
+export type ContactsGetContactsCountResponse = ContactsGetContactsCountResponses[keyof ContactsGetContactsCountResponses];
 
-export type GetExtendedContactsAsyncData = {
+export type ContactsGetExtendedContactsData = {
     body?: ExtendedContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2803,7 +2826,7 @@ export type GetExtendedContactsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Extended';
 };
 
-export type GetExtendedContactsAsyncErrors = {
+export type ContactsGetExtendedContactsErrors = {
     /**
      * Unauthorized
      */
@@ -2814,18 +2837,18 @@ export type GetExtendedContactsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedContactsAsyncError = GetExtendedContactsAsyncErrors[keyof GetExtendedContactsAsyncErrors];
+export type ContactsGetExtendedContactsError = ContactsGetExtendedContactsErrors[keyof ContactsGetExtendedContactsErrors];
 
-export type GetExtendedContactsAsyncResponses = {
+export type ContactsGetExtendedContactsResponses = {
     /**
      * OK
      */
     200: ExtendedContactDtoListEnvelopeReadable;
 };
 
-export type GetExtendedContactsAsyncResponse = GetExtendedContactsAsyncResponses[keyof GetExtendedContactsAsyncResponses];
+export type ContactsGetExtendedContactsResponse = ContactsGetExtendedContactsResponses[keyof ContactsGetExtendedContactsResponses];
 
-export type DeleteContactAsyncData = {
+export type ContactsDeleteContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2840,7 +2863,7 @@ export type DeleteContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}';
 };
 
-export type DeleteContactAsyncErrors = {
+export type ContactsDeleteContactErrors = {
     /**
      * Unauthorized
      */
@@ -2851,18 +2874,18 @@ export type DeleteContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactAsyncError = DeleteContactAsyncErrors[keyof DeleteContactAsyncErrors];
+export type ContactsDeleteContactError = ContactsDeleteContactErrors[keyof ContactsDeleteContactErrors];
 
-export type DeleteContactAsyncResponses = {
+export type ContactsDeleteContactResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteContactAsyncResponse = DeleteContactAsyncResponses[keyof DeleteContactAsyncResponses];
+export type ContactsDeleteContactResponse = ContactsDeleteContactResponses[keyof ContactsDeleteContactResponses];
 
-export type GetContactAsyncData = {
+export type ContactsGetContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2877,7 +2900,7 @@ export type GetContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}';
 };
 
-export type GetContactAsyncErrors = {
+export type ContactsGetContactErrors = {
     /**
      * Unauthorized
      */
@@ -2888,18 +2911,18 @@ export type GetContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactAsyncError = GetContactAsyncErrors[keyof GetContactAsyncErrors];
+export type ContactsGetContactError = ContactsGetContactErrors[keyof ContactsGetContactErrors];
 
-export type GetContactAsyncResponses = {
+export type ContactsGetContactResponses = {
     /**
      * OK
      */
     200: ContactDtoEnvelopeReadable;
 };
 
-export type GetContactAsyncResponse = GetContactAsyncResponses[keyof GetContactAsyncResponses];
+export type ContactsGetContactResponse = ContactsGetContactResponses[keyof ContactsGetContactResponses];
 
-export type PatchContactAsyncData = {
+export type ContactsPatchContactData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2914,7 +2937,7 @@ export type PatchContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}';
 };
 
-export type PatchContactAsyncErrors = {
+export type ContactsPatchContactErrors = {
     /**
      * Unauthorized
      */
@@ -2925,18 +2948,18 @@ export type PatchContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactAsyncError = PatchContactAsyncErrors[keyof PatchContactAsyncErrors];
+export type ContactsPatchContactError = ContactsPatchContactErrors[keyof ContactsPatchContactErrors];
 
-export type PatchContactAsyncResponses = {
+export type ContactsPatchContactResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactAsyncResponse = PatchContactAsyncResponses[keyof PatchContactAsyncResponses];
+export type ContactsPatchContactResponse = ContactsPatchContactResponses[keyof ContactsPatchContactResponses];
 
-export type UpdateContactAsyncData = {
+export type ContactsUpdateContactData = {
     body?: ContactUpdateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2951,7 +2974,7 @@ export type UpdateContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}';
 };
 
-export type UpdateContactAsyncErrors = {
+export type ContactsUpdateContactErrors = {
     /**
      * Unauthorized
      */
@@ -2962,18 +2985,18 @@ export type UpdateContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactAsyncError = UpdateContactAsyncErrors[keyof UpdateContactAsyncErrors];
+export type ContactsUpdateContactError = ContactsUpdateContactErrors[keyof ContactsUpdateContactErrors];
 
-export type UpdateContactAsyncResponses = {
+export type ContactsUpdateContactResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateContactAsyncResponse = UpdateContactAsyncResponses[keyof UpdateContactAsyncResponses];
+export type ContactsUpdateContactResponse = ContactsUpdateContactResponses[keyof ContactsUpdateContactResponses];
 
-export type GetExtendedContactAsyncData = {
+export type ContactsGetExtendedContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2988,7 +3011,7 @@ export type GetExtendedContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Extended';
 };
 
-export type GetExtendedContactAsyncErrors = {
+export type ContactsGetExtendedContactErrors = {
     /**
      * Unauthorized
      */
@@ -2999,18 +3022,18 @@ export type GetExtendedContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedContactAsyncError = GetExtendedContactAsyncErrors[keyof GetExtendedContactAsyncErrors];
+export type ContactsGetExtendedContactError = ContactsGetExtendedContactErrors[keyof ContactsGetExtendedContactErrors];
 
-export type GetExtendedContactAsyncResponses = {
+export type ContactsGetExtendedContactResponses = {
     /**
      * OK
      */
     200: ExtendedContactDtoEnvelopeReadable;
 };
 
-export type GetExtendedContactAsyncResponse = GetExtendedContactAsyncResponses[keyof GetExtendedContactAsyncResponses];
+export type ContactsGetExtendedContactResponse = ContactsGetExtendedContactResponses[keyof ContactsGetExtendedContactResponses];
 
-export type GetBusinessOwnedIndividualsAsyncData = {
+export type ContactsGetBusinessOwnedIndividualsData = {
     body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3023,7 +3046,7 @@ export type GetBusinessOwnedIndividualsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals';
 };
 
-export type GetBusinessOwnedIndividualsAsyncErrors = {
+export type ContactsGetBusinessOwnedIndividualsErrors = {
     /**
      * Unauthorized
      */
@@ -3034,18 +3057,18 @@ export type GetBusinessOwnedIndividualsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessOwnedIndividualsAsyncError = GetBusinessOwnedIndividualsAsyncErrors[keyof GetBusinessOwnedIndividualsAsyncErrors];
+export type ContactsGetBusinessOwnedIndividualsError = ContactsGetBusinessOwnedIndividualsErrors[keyof ContactsGetBusinessOwnedIndividualsErrors];
 
-export type GetBusinessOwnedIndividualsAsyncResponses = {
+export type ContactsGetBusinessOwnedIndividualsResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetBusinessOwnedIndividualsAsyncResponse = GetBusinessOwnedIndividualsAsyncResponses[keyof GetBusinessOwnedIndividualsAsyncResponses];
+export type ContactsGetBusinessOwnedIndividualsResponse = ContactsGetBusinessOwnedIndividualsResponses[keyof ContactsGetBusinessOwnedIndividualsResponses];
 
-export type GetBusinessOwnedIndividualsCountAsyncData = {
+export type ContactsGetBusinessOwnedIndividualsCountData = {
     body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3058,7 +3081,7 @@ export type GetBusinessOwnedIndividualsCountAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals/Count';
 };
 
-export type GetBusinessOwnedIndividualsCountAsyncErrors = {
+export type ContactsGetBusinessOwnedIndividualsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3069,18 +3092,18 @@ export type GetBusinessOwnedIndividualsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessOwnedIndividualsCountAsyncError = GetBusinessOwnedIndividualsCountAsyncErrors[keyof GetBusinessOwnedIndividualsCountAsyncErrors];
+export type ContactsGetBusinessOwnedIndividualsCountError = ContactsGetBusinessOwnedIndividualsCountErrors[keyof ContactsGetBusinessOwnedIndividualsCountErrors];
 
-export type GetBusinessOwnedIndividualsCountAsyncResponses = {
+export type ContactsGetBusinessOwnedIndividualsCountResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetBusinessOwnedIndividualsCountAsyncResponse = GetBusinessOwnedIndividualsCountAsyncResponses[keyof GetBusinessOwnedIndividualsCountAsyncResponses];
+export type ContactsGetBusinessOwnedIndividualsCountResponse = ContactsGetBusinessOwnedIndividualsCountResponses[keyof ContactsGetBusinessOwnedIndividualsCountResponses];
 
-export type GetExtendedBusinessOwnedIndividualsAsyncData = {
+export type ContactsGetExtendedBusinessOwnedIndividualsData = {
     body?: ExtendedContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3093,7 +3116,7 @@ export type GetExtendedBusinessOwnedIndividualsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals/Extended';
 };
 
-export type GetExtendedBusinessOwnedIndividualsAsyncErrors = {
+export type ContactsGetExtendedBusinessOwnedIndividualsErrors = {
     /**
      * Unauthorized
      */
@@ -3104,18 +3127,18 @@ export type GetExtendedBusinessOwnedIndividualsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedBusinessOwnedIndividualsAsyncError = GetExtendedBusinessOwnedIndividualsAsyncErrors[keyof GetExtendedBusinessOwnedIndividualsAsyncErrors];
+export type ContactsGetExtendedBusinessOwnedIndividualsError = ContactsGetExtendedBusinessOwnedIndividualsErrors[keyof ContactsGetExtendedBusinessOwnedIndividualsErrors];
 
-export type GetExtendedBusinessOwnedIndividualsAsyncResponses = {
+export type ContactsGetExtendedBusinessOwnedIndividualsResponses = {
     /**
      * OK
      */
     200: ExtendedContactDtoListEnvelopeReadable;
 };
 
-export type GetExtendedBusinessOwnedIndividualsAsyncResponse = GetExtendedBusinessOwnedIndividualsAsyncResponses[keyof GetExtendedBusinessOwnedIndividualsAsyncResponses];
+export type ContactsGetExtendedBusinessOwnedIndividualsResponse = ContactsGetExtendedBusinessOwnedIndividualsResponses[keyof ContactsGetExtendedBusinessOwnedIndividualsResponses];
 
-export type GetBusinessOwnedIndividualAsyncData = {
+export type ContactsGetBusinessOwnedIndividualData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3130,7 +3153,7 @@ export type GetBusinessOwnedIndividualAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals/{contactId}';
 };
 
-export type GetBusinessOwnedIndividualAsyncErrors = {
+export type ContactsGetBusinessOwnedIndividualErrors = {
     /**
      * Unauthorized
      */
@@ -3145,18 +3168,18 @@ export type GetBusinessOwnedIndividualAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessOwnedIndividualAsyncError = GetBusinessOwnedIndividualAsyncErrors[keyof GetBusinessOwnedIndividualAsyncErrors];
+export type ContactsGetBusinessOwnedIndividualError = ContactsGetBusinessOwnedIndividualErrors[keyof ContactsGetBusinessOwnedIndividualErrors];
 
-export type GetBusinessOwnedIndividualAsyncResponses = {
+export type ContactsGetBusinessOwnedIndividualResponses = {
     /**
      * OK
      */
     200: ContactDtoEnvelopeReadable;
 };
 
-export type GetBusinessOwnedIndividualAsyncResponse = GetBusinessOwnedIndividualAsyncResponses[keyof GetBusinessOwnedIndividualAsyncResponses];
+export type ContactsGetBusinessOwnedIndividualResponse = ContactsGetBusinessOwnedIndividualResponses[keyof ContactsGetBusinessOwnedIndividualResponses];
 
-export type GetBusinessOwnedOrganizationsAsyncData = {
+export type ContactsGetBusinessOwnedOrganizationsData = {
     body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3169,7 +3192,7 @@ export type GetBusinessOwnedOrganizationsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations';
 };
 
-export type GetBusinessOwnedOrganizationsAsyncErrors = {
+export type ContactsGetBusinessOwnedOrganizationsErrors = {
     /**
      * Unauthorized
      */
@@ -3180,18 +3203,18 @@ export type GetBusinessOwnedOrganizationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessOwnedOrganizationsAsyncError = GetBusinessOwnedOrganizationsAsyncErrors[keyof GetBusinessOwnedOrganizationsAsyncErrors];
+export type ContactsGetBusinessOwnedOrganizationsError = ContactsGetBusinessOwnedOrganizationsErrors[keyof ContactsGetBusinessOwnedOrganizationsErrors];
 
-export type GetBusinessOwnedOrganizationsAsyncResponses = {
+export type ContactsGetBusinessOwnedOrganizationsResponses = {
     /**
      * OK
      */
     200: Array<ContactDtoReadable>;
 };
 
-export type GetBusinessOwnedOrganizationsAsyncResponse = GetBusinessOwnedOrganizationsAsyncResponses[keyof GetBusinessOwnedOrganizationsAsyncResponses];
+export type ContactsGetBusinessOwnedOrganizationsResponse = ContactsGetBusinessOwnedOrganizationsResponses[keyof ContactsGetBusinessOwnedOrganizationsResponses];
 
-export type GetBusinessOwnedOrganizationsCountAsyncData = {
+export type ContactsGetBusinessOwnedOrganizationsCountData = {
     body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3204,7 +3227,7 @@ export type GetBusinessOwnedOrganizationsCountAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations/Count';
 };
 
-export type GetBusinessOwnedOrganizationsCountAsyncErrors = {
+export type ContactsGetBusinessOwnedOrganizationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -3215,18 +3238,18 @@ export type GetBusinessOwnedOrganizationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessOwnedOrganizationsCountAsyncError = GetBusinessOwnedOrganizationsCountAsyncErrors[keyof GetBusinessOwnedOrganizationsCountAsyncErrors];
+export type ContactsGetBusinessOwnedOrganizationsCountError = ContactsGetBusinessOwnedOrganizationsCountErrors[keyof ContactsGetBusinessOwnedOrganizationsCountErrors];
 
-export type GetBusinessOwnedOrganizationsCountAsyncResponses = {
+export type ContactsGetBusinessOwnedOrganizationsCountResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetBusinessOwnedOrganizationsCountAsyncResponse = GetBusinessOwnedOrganizationsCountAsyncResponses[keyof GetBusinessOwnedOrganizationsCountAsyncResponses];
+export type ContactsGetBusinessOwnedOrganizationsCountResponse = ContactsGetBusinessOwnedOrganizationsCountResponses[keyof ContactsGetBusinessOwnedOrganizationsCountResponses];
 
-export type GetExtendedBusinessOwnedOrganizationsAsyncData = {
+export type ContactsGetExtendedBusinessOwnedOrganizationsData = {
     body?: ExtendedContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3239,7 +3262,7 @@ export type GetExtendedBusinessOwnedOrganizationsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations/Extended';
 };
 
-export type GetExtendedBusinessOwnedOrganizationsAsyncErrors = {
+export type ContactsGetExtendedBusinessOwnedOrganizationsErrors = {
     /**
      * Unauthorized
      */
@@ -3250,18 +3273,18 @@ export type GetExtendedBusinessOwnedOrganizationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedBusinessOwnedOrganizationsAsyncError = GetExtendedBusinessOwnedOrganizationsAsyncErrors[keyof GetExtendedBusinessOwnedOrganizationsAsyncErrors];
+export type ContactsGetExtendedBusinessOwnedOrganizationsError = ContactsGetExtendedBusinessOwnedOrganizationsErrors[keyof ContactsGetExtendedBusinessOwnedOrganizationsErrors];
 
-export type GetExtendedBusinessOwnedOrganizationsAsyncResponses = {
+export type ContactsGetExtendedBusinessOwnedOrganizationsResponses = {
     /**
      * OK
      */
     200: ExtendedContactDtoListEnvelopeReadable;
 };
 
-export type GetExtendedBusinessOwnedOrganizationsAsyncResponse = GetExtendedBusinessOwnedOrganizationsAsyncResponses[keyof GetExtendedBusinessOwnedOrganizationsAsyncResponses];
+export type ContactsGetExtendedBusinessOwnedOrganizationsResponse = ContactsGetExtendedBusinessOwnedOrganizationsResponses[keyof ContactsGetExtendedBusinessOwnedOrganizationsResponses];
 
-export type GetBusinessOwnedOrganizationAsyncData = {
+export type ContactsGetBusinessOwnedOrganizationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3276,7 +3299,7 @@ export type GetBusinessOwnedOrganizationAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations/{contactId}';
 };
 
-export type GetBusinessOwnedOrganizationAsyncErrors = {
+export type ContactsGetBusinessOwnedOrganizationErrors = {
     /**
      * Unauthorized
      */
@@ -3291,18 +3314,18 @@ export type GetBusinessOwnedOrganizationAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessOwnedOrganizationAsyncError = GetBusinessOwnedOrganizationAsyncErrors[keyof GetBusinessOwnedOrganizationAsyncErrors];
+export type ContactsGetBusinessOwnedOrganizationError = ContactsGetBusinessOwnedOrganizationErrors[keyof ContactsGetBusinessOwnedOrganizationErrors];
 
-export type GetBusinessOwnedOrganizationAsyncResponses = {
+export type ContactsGetBusinessOwnedOrganizationResponses = {
     /**
      * OK
      */
     200: ContactDtoEnvelopeReadable;
 };
 
-export type GetBusinessOwnedOrganizationAsyncResponse = GetBusinessOwnedOrganizationAsyncResponses[keyof GetBusinessOwnedOrganizationAsyncResponses];
+export type ContactsGetBusinessOwnedOrganizationResponse = ContactsGetBusinessOwnedOrganizationResponses[keyof ContactsGetBusinessOwnedOrganizationResponses];
 
-export type GetContactCartAsyncData = {
+export type ContactsGetContactCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3317,7 +3340,7 @@ export type GetContactCartAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Cart';
 };
 
-export type GetContactCartAsyncErrors = {
+export type ContactsGetContactCartErrors = {
     /**
      * Unauthorized
      */
@@ -3332,18 +3355,18 @@ export type GetContactCartAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactCartAsyncError = GetContactCartAsyncErrors[keyof GetContactCartAsyncErrors];
+export type ContactsGetContactCartError = ContactsGetContactCartErrors[keyof ContactsGetContactCartErrors];
 
-export type GetContactCartAsyncResponses = {
+export type ContactsGetContactCartResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetContactCartAsyncResponse = GetContactCartAsyncResponses[keyof GetContactCartAsyncResponses];
+export type ContactsGetContactCartResponse = ContactsGetContactCartResponses[keyof ContactsGetContactCartResponses];
 
-export type GetContactAvatarAsyncData = {
+export type ContactsGetContactAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3358,7 +3381,7 @@ export type GetContactAvatarAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Avatar';
 };
 
-export type GetContactAvatarAsyncErrors = {
+export type ContactsGetContactAvatarErrors = {
     /**
      * Unauthorized
      */
@@ -3369,18 +3392,18 @@ export type GetContactAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactAvatarAsyncError = GetContactAvatarAsyncErrors[keyof GetContactAvatarAsyncErrors];
+export type ContactsGetContactAvatarError = ContactsGetContactAvatarErrors[keyof ContactsGetContactAvatarErrors];
 
-export type GetContactAvatarAsyncResponses = {
+export type ContactsGetContactAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetContactAvatarAsyncResponse = GetContactAvatarAsyncResponses[keyof GetContactAvatarAsyncResponses];
+export type ContactsGetContactAvatarResponse = ContactsGetContactAvatarResponses[keyof ContactsGetContactAvatarResponses];
 
-export type UpdateContactAvatarAsyncData = {
+export type ContactsUpdateContactAvatarData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -3397,7 +3420,7 @@ export type UpdateContactAvatarAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Avatar';
 };
 
-export type UpdateContactAvatarAsyncErrors = {
+export type ContactsUpdateContactAvatarErrors = {
     /**
      * Unauthorized
      */
@@ -3408,18 +3431,18 @@ export type UpdateContactAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactAvatarAsyncError = UpdateContactAvatarAsyncErrors[keyof UpdateContactAvatarAsyncErrors];
+export type ContactsUpdateContactAvatarError = ContactsUpdateContactAvatarErrors[keyof ContactsUpdateContactAvatarErrors];
 
-export type UpdateContactAvatarAsyncResponses = {
+export type ContactsUpdateContactAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateContactAvatarAsyncResponse = UpdateContactAvatarAsyncResponses[keyof UpdateContactAvatarAsyncResponses];
+export type ContactsUpdateContactAvatarResponse = ContactsUpdateContactAvatarResponses[keyof ContactsUpdateContactAvatarResponses];
 
-export type GetContactWalletAsyncData = {
+export type ContactsGetContactWalletData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3434,7 +3457,7 @@ export type GetContactWalletAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Wallet';
 };
 
-export type GetContactWalletAsyncErrors = {
+export type ContactsGetContactWalletErrors = {
     /**
      * Unauthorized
      */
@@ -3449,18 +3472,18 @@ export type GetContactWalletAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactWalletAsyncError = GetContactWalletAsyncErrors[keyof GetContactWalletAsyncErrors];
+export type ContactsGetContactWalletError = ContactsGetContactWalletErrors[keyof ContactsGetContactWalletErrors];
 
-export type GetContactWalletAsyncResponses = {
+export type ContactsGetContactWalletResponses = {
     /**
      * OK
      */
     200: WalletDtoEnvelopeReadable;
 };
 
-export type GetContactWalletAsyncResponse = GetContactWalletAsyncResponses[keyof GetContactWalletAsyncResponses];
+export type ContactsGetContactWalletResponse = ContactsGetContactWalletResponses[keyof ContactsGetContactWalletResponses];
 
-export type GetProfilesForContactAsyncData = {
+export type ContactsGetProfilesForContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3475,7 +3498,7 @@ export type GetProfilesForContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Profiles';
 };
 
-export type GetProfilesForContactAsyncErrors = {
+export type ContactsGetProfilesForContactErrors = {
     /**
      * Unauthorized
      */
@@ -3490,18 +3513,18 @@ export type GetProfilesForContactAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetProfilesForContactAsyncError = GetProfilesForContactAsyncErrors[keyof GetProfilesForContactAsyncErrors];
+export type ContactsGetProfilesForContactError = ContactsGetProfilesForContactErrors[keyof ContactsGetProfilesForContactErrors];
 
-export type GetProfilesForContactAsyncResponses = {
+export type ContactsGetProfilesForContactResponses = {
     /**
      * OK
      */
     200: ContactProfileDtoListEnvelopeReadable;
 };
 
-export type GetProfilesForContactAsyncResponse = GetProfilesForContactAsyncResponses[keyof GetProfilesForContactAsyncResponses];
+export type ContactsGetProfilesForContactResponse = ContactsGetProfilesForContactResponses[keyof ContactsGetProfilesForContactResponses];
 
-export type CreateProfileForContactAsyncData = {
+export type ContactsCreateProfileForContactData = {
     body?: ContactProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3516,7 +3539,7 @@ export type CreateProfileForContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Profiles';
 };
 
-export type CreateProfileForContactAsyncErrors = {
+export type ContactsCreateProfileForContactErrors = {
     /**
      * Bad Request
      */
@@ -3527,16 +3550,16 @@ export type CreateProfileForContactAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateProfileForContactAsyncError = CreateProfileForContactAsyncErrors[keyof CreateProfileForContactAsyncErrors];
+export type ContactsCreateProfileForContactError = ContactsCreateProfileForContactErrors[keyof ContactsCreateProfileForContactErrors];
 
-export type CreateProfileForContactAsyncResponses = {
+export type ContactsCreateProfileForContactResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetProfilesForContactCountAsyncData = {
+export type ContactsGetProfilesForContactCountData = {
     body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3551,25 +3574,25 @@ export type GetProfilesForContactCountAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Profiles/Count';
 };
 
-export type GetProfilesForContactCountAsyncErrors = {
+export type ContactsGetProfilesForContactCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetProfilesForContactCountAsyncError = GetProfilesForContactCountAsyncErrors[keyof GetProfilesForContactCountAsyncErrors];
+export type ContactsGetProfilesForContactCountError = ContactsGetProfilesForContactCountErrors[keyof ContactsGetProfilesForContactCountErrors];
 
-export type GetProfilesForContactCountAsyncResponses = {
+export type ContactsGetProfilesForContactCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetProfilesForContactCountAsyncResponse = GetProfilesForContactCountAsyncResponses[keyof GetProfilesForContactCountAsyncResponses];
+export type ContactsGetProfilesForContactCountResponse = ContactsGetProfilesForContactCountResponses[keyof ContactsGetProfilesForContactCountResponses];
 
-export type DeleteProfileForContactAsyncData = {
+export type ContactsDeleteProfileForContactData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3585,7 +3608,7 @@ export type DeleteProfileForContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Profiles/{profileId}';
 };
 
-export type DeleteProfileForContactAsyncErrors = {
+export type ContactsDeleteProfileForContactErrors = {
     /**
      * Forbidden
      */
@@ -3596,16 +3619,16 @@ export type DeleteProfileForContactAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteProfileForContactAsyncError = DeleteProfileForContactAsyncErrors[keyof DeleteProfileForContactAsyncErrors];
+export type ContactsDeleteProfileForContactError = ContactsDeleteProfileForContactErrors[keyof ContactsDeleteProfileForContactErrors];
 
-export type DeleteProfileForContactAsyncResponses = {
+export type ContactsDeleteProfileForContactResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateProfileForContactAsyncData = {
+export type ContactsUpdateProfileForContactData = {
     body?: ContactProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3621,7 +3644,7 @@ export type UpdateProfileForContactAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Profiles/{profileId}';
 };
 
-export type UpdateProfileForContactAsyncErrors = {
+export type ContactsUpdateProfileForContactErrors = {
     /**
      * Forbidden
      */
@@ -3632,16 +3655,16 @@ export type UpdateProfileForContactAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateProfileForContactAsyncError = UpdateProfileForContactAsyncErrors[keyof UpdateProfileForContactAsyncErrors];
+export type ContactsUpdateProfileForContactError = ContactsUpdateProfileForContactErrors[keyof ContactsUpdateProfileForContactErrors];
 
-export type UpdateProfileForContactAsyncResponses = {
+export type ContactsUpdateProfileForContactResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactSocialProfileAsyncData = {
+export type ContactsGetContactSocialProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3656,7 +3679,7 @@ export type GetContactSocialProfileAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/SocialProfile';
 };
 
-export type GetContactSocialProfileAsyncErrors = {
+export type ContactsGetContactSocialProfileErrors = {
     /**
      * Unauthorized
      */
@@ -3671,18 +3694,18 @@ export type GetContactSocialProfileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactSocialProfileAsyncError = GetContactSocialProfileAsyncErrors[keyof GetContactSocialProfileAsyncErrors];
+export type ContactsGetContactSocialProfileError = ContactsGetContactSocialProfileErrors[keyof ContactsGetContactSocialProfileErrors];
 
-export type GetContactSocialProfileAsyncResponses = {
+export type ContactsGetContactSocialProfileResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoEnvelopeReadable;
 };
 
-export type GetContactSocialProfileAsyncResponse = GetContactSocialProfileAsyncResponses[keyof GetContactSocialProfileAsyncResponses];
+export type ContactsGetContactSocialProfileResponse = ContactsGetContactSocialProfileResponses[keyof ContactsGetContactSocialProfileResponses];
 
-export type GetIndividualRelatedOrganizationsAsyncData = {
+export type ContactsGetIndividualRelatedOrganizationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3697,7 +3720,7 @@ export type GetIndividualRelatedOrganizationsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals/{contactId}/Organizations';
 };
 
-export type GetIndividualRelatedOrganizationsAsyncErrors = {
+export type ContactsGetIndividualRelatedOrganizationsErrors = {
     /**
      * Unauthorized
      */
@@ -3708,18 +3731,18 @@ export type GetIndividualRelatedOrganizationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIndividualRelatedOrganizationsAsyncError = GetIndividualRelatedOrganizationsAsyncErrors[keyof GetIndividualRelatedOrganizationsAsyncErrors];
+export type ContactsGetIndividualRelatedOrganizationsError = ContactsGetIndividualRelatedOrganizationsErrors[keyof ContactsGetIndividualRelatedOrganizationsErrors];
 
-export type GetIndividualRelatedOrganizationsAsyncResponses = {
+export type ContactsGetIndividualRelatedOrganizationsResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetIndividualRelatedOrganizationsAsyncResponse = GetIndividualRelatedOrganizationsAsyncResponses[keyof GetIndividualRelatedOrganizationsAsyncResponses];
+export type ContactsGetIndividualRelatedOrganizationsResponse = ContactsGetIndividualRelatedOrganizationsResponses[keyof ContactsGetIndividualRelatedOrganizationsResponses];
 
-export type GetIndividualRelatedIndividualsAsyncData = {
+export type ContactsGetIndividualRelatedIndividualsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3734,7 +3757,7 @@ export type GetIndividualRelatedIndividualsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals/{contactId}/Individuals';
 };
 
-export type GetIndividualRelatedIndividualsAsyncErrors = {
+export type ContactsGetIndividualRelatedIndividualsErrors = {
     /**
      * Unauthorized
      */
@@ -3745,18 +3768,18 @@ export type GetIndividualRelatedIndividualsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetIndividualRelatedIndividualsAsyncError = GetIndividualRelatedIndividualsAsyncErrors[keyof GetIndividualRelatedIndividualsAsyncErrors];
+export type ContactsGetIndividualRelatedIndividualsError = ContactsGetIndividualRelatedIndividualsErrors[keyof ContactsGetIndividualRelatedIndividualsErrors];
 
-export type GetIndividualRelatedIndividualsAsyncResponses = {
+export type ContactsGetIndividualRelatedIndividualsResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetIndividualRelatedIndividualsAsyncResponse = GetIndividualRelatedIndividualsAsyncResponses[keyof GetIndividualRelatedIndividualsAsyncResponses];
+export type ContactsGetIndividualRelatedIndividualsResponse = ContactsGetIndividualRelatedIndividualsResponses[keyof ContactsGetIndividualRelatedIndividualsResponses];
 
-export type GetOrganizationRelatedIndividualsAsyncData = {
+export type ContactsGetOrganizationRelatedIndividualsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3771,7 +3794,7 @@ export type GetOrganizationRelatedIndividualsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations/{contactId}/Individuals';
 };
 
-export type GetOrganizationRelatedIndividualsAsyncErrors = {
+export type ContactsGetOrganizationRelatedIndividualsErrors = {
     /**
      * Unauthorized
      */
@@ -3782,18 +3805,18 @@ export type GetOrganizationRelatedIndividualsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOrganizationRelatedIndividualsAsyncError = GetOrganizationRelatedIndividualsAsyncErrors[keyof GetOrganizationRelatedIndividualsAsyncErrors];
+export type ContactsGetOrganizationRelatedIndividualsError = ContactsGetOrganizationRelatedIndividualsErrors[keyof ContactsGetOrganizationRelatedIndividualsErrors];
 
-export type GetOrganizationRelatedIndividualsAsyncResponses = {
+export type ContactsGetOrganizationRelatedIndividualsResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetOrganizationRelatedIndividualsAsyncResponse = GetOrganizationRelatedIndividualsAsyncResponses[keyof GetOrganizationRelatedIndividualsAsyncResponses];
+export type ContactsGetOrganizationRelatedIndividualsResponse = ContactsGetOrganizationRelatedIndividualsResponses[keyof ContactsGetOrganizationRelatedIndividualsResponses];
 
-export type GetOrganizationRelatedOrganizationsAsyncData = {
+export type ContactsGetOrganizationRelatedOrganizationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3808,7 +3831,7 @@ export type GetOrganizationRelatedOrganizationsAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations/{contactId}/Organizations';
 };
 
-export type GetOrganizationRelatedOrganizationsAsyncErrors = {
+export type ContactsGetOrganizationRelatedOrganizationsErrors = {
     /**
      * Unauthorized
      */
@@ -3819,18 +3842,18 @@ export type GetOrganizationRelatedOrganizationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOrganizationRelatedOrganizationsAsyncError = GetOrganizationRelatedOrganizationsAsyncErrors[keyof GetOrganizationRelatedOrganizationsAsyncErrors];
+export type ContactsGetOrganizationRelatedOrganizationsError = ContactsGetOrganizationRelatedOrganizationsErrors[keyof ContactsGetOrganizationRelatedOrganizationsErrors];
 
-export type GetOrganizationRelatedOrganizationsAsyncResponses = {
+export type ContactsGetOrganizationRelatedOrganizationsResponses = {
     /**
      * OK
      */
     200: ContactDtoListEnvelopeReadable;
 };
 
-export type GetOrganizationRelatedOrganizationsAsyncResponse = GetOrganizationRelatedOrganizationsAsyncResponses[keyof GetOrganizationRelatedOrganizationsAsyncResponses];
+export type ContactsGetOrganizationRelatedOrganizationsResponse = ContactsGetOrganizationRelatedOrganizationsResponses[keyof ContactsGetOrganizationRelatedOrganizationsResponses];
 
-export type UpsertTenantOntoAnotherTenantContactListAsyncData = {
+export type ContactsUpsertTenantOntoAnotherTenantContactListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3844,7 +3867,7 @@ export type UpsertTenantOntoAnotherTenantContactListAsyncData = {
     url: '/api/v2/CrmService/Contacts/Organizations/Upsert';
 };
 
-export type UpsertTenantOntoAnotherTenantContactListAsyncErrors = {
+export type ContactsUpsertTenantOntoAnotherTenantContactListErrors = {
     /**
      * Unauthorized
      */
@@ -3855,18 +3878,18 @@ export type UpsertTenantOntoAnotherTenantContactListAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpsertTenantOntoAnotherTenantContactListAsyncError = UpsertTenantOntoAnotherTenantContactListAsyncErrors[keyof UpsertTenantOntoAnotherTenantContactListAsyncErrors];
+export type ContactsUpsertTenantOntoAnotherTenantContactListError = ContactsUpsertTenantOntoAnotherTenantContactListErrors[keyof ContactsUpsertTenantOntoAnotherTenantContactListErrors];
 
-export type UpsertTenantOntoAnotherTenantContactListAsyncResponses = {
+export type ContactsUpsertTenantOntoAnotherTenantContactListResponses = {
     /**
      * OK
      */
     200: ContactDtoEnvelopeReadable;
 };
 
-export type UpsertTenantOntoAnotherTenantContactListAsyncResponse = UpsertTenantOntoAnotherTenantContactListAsyncResponses[keyof UpsertTenantOntoAnotherTenantContactListAsyncResponses];
+export type ContactsUpsertTenantOntoAnotherTenantContactListResponse = ContactsUpsertTenantOntoAnotherTenantContactListResponses[keyof ContactsUpsertTenantOntoAnotherTenantContactListResponses];
 
-export type UpsertUserOntoAnotherTenantContactListAsyncData = {
+export type ContactsUpsertUserOntoAnotherTenantContactListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3880,7 +3903,7 @@ export type UpsertUserOntoAnotherTenantContactListAsyncData = {
     url: '/api/v2/CrmService/Contacts/Individuals/Upsert';
 };
 
-export type UpsertUserOntoAnotherTenantContactListAsyncErrors = {
+export type ContactsUpsertUserOntoAnotherTenantContactListErrors = {
     /**
      * Unauthorized
      */
@@ -3891,18 +3914,53 @@ export type UpsertUserOntoAnotherTenantContactListAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpsertUserOntoAnotherTenantContactListAsyncError = UpsertUserOntoAnotherTenantContactListAsyncErrors[keyof UpsertUserOntoAnotherTenantContactListAsyncErrors];
+export type ContactsUpsertUserOntoAnotherTenantContactListError = ContactsUpsertUserOntoAnotherTenantContactListErrors[keyof ContactsUpsertUserOntoAnotherTenantContactListErrors];
 
-export type UpsertUserOntoAnotherTenantContactListAsyncResponses = {
+export type ContactsUpsertUserOntoAnotherTenantContactListResponses = {
     /**
      * OK
      */
     200: ContactDtoEnvelopeReadable;
 };
 
-export type UpsertUserOntoAnotherTenantContactListAsyncResponse = UpsertUserOntoAnotherTenantContactListAsyncResponses[keyof UpsertUserOntoAnotherTenantContactListAsyncResponses];
+export type ContactsUpsertUserOntoAnotherTenantContactListResponse = ContactsUpsertUserOntoAnotherTenantContactListResponses[keyof ContactsUpsertUserOntoAnotherTenantContactListResponses];
 
-export type PreviewContactEmailTemplateData = {
+export type ContactsUpsertCurrentUserRelatedContactData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CrmService/Contacts/Related';
+};
+
+export type ContactsUpsertCurrentUserRelatedContactErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ContactsUpsertCurrentUserRelatedContactError = ContactsUpsertCurrentUserRelatedContactErrors[keyof ContactsUpsertCurrentUserRelatedContactErrors];
+
+export type ContactsUpsertCurrentUserRelatedContactResponses = {
+    /**
+     * OK
+     */
+    200: ContactDtoEnvelopeReadable;
+};
+
+export type ContactsUpsertCurrentUserRelatedContactResponse = ContactsUpsertCurrentUserRelatedContactResponses[keyof ContactsUpsertCurrentUserRelatedContactResponses];
+
+export type ContactsPreviewContactEmailTemplateData = {
     body?: EmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -3916,14 +3974,14 @@ export type PreviewContactEmailTemplateData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/Preview';
 };
 
-export type PreviewContactEmailTemplateResponses = {
+export type ContactsPreviewContactEmailTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type SendContactEmailData = {
+export type ContactsSendContactEmailData = {
     body?: EmailDispatchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -3937,14 +3995,14 @@ export type SendContactEmailData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/Send';
 };
 
-export type SendContactEmailResponses = {
+export type ContactsSendContactEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactEmailsAsyncData = {
+export type ContactsGetContactEmailsData = {
     body?: ContactEmailDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3959,7 +4017,7 @@ export type GetContactEmailsAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails';
 };
 
-export type GetContactEmailsAsyncErrors = {
+export type ContactsGetContactEmailsErrors = {
     /**
      * Unauthorized
      */
@@ -3970,18 +4028,18 @@ export type GetContactEmailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactEmailsAsyncError = GetContactEmailsAsyncErrors[keyof GetContactEmailsAsyncErrors];
+export type ContactsGetContactEmailsError = ContactsGetContactEmailsErrors[keyof ContactsGetContactEmailsErrors];
 
-export type GetContactEmailsAsyncResponses = {
+export type ContactsGetContactEmailsResponses = {
     /**
      * OK
      */
     200: ContactEmailDtoListEnvelopeReadable;
 };
 
-export type GetContactEmailsAsyncResponse = GetContactEmailsAsyncResponses[keyof GetContactEmailsAsyncResponses];
+export type ContactsGetContactEmailsResponse = ContactsGetContactEmailsResponses[keyof ContactsGetContactEmailsResponses];
 
-export type GetContactEmailsCountAsyncData = {
+export type ContactsGetContactEmailsCountData = {
     body?: ContactEmailDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3996,25 +4054,25 @@ export type GetContactEmailsCountAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/Count';
 };
 
-export type GetContactEmailsCountAsyncErrors = {
+export type ContactsGetContactEmailsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactEmailsCountAsyncError = GetContactEmailsCountAsyncErrors[keyof GetContactEmailsCountAsyncErrors];
+export type ContactsGetContactEmailsCountError = ContactsGetContactEmailsCountErrors[keyof ContactsGetContactEmailsCountErrors];
 
-export type GetContactEmailsCountAsyncResponses = {
+export type ContactsGetContactEmailsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactEmailsCountAsyncResponse = GetContactEmailsCountAsyncResponses[keyof GetContactEmailsCountAsyncResponses];
+export type ContactsGetContactEmailsCountResponse = ContactsGetContactEmailsCountResponses[keyof ContactsGetContactEmailsCountResponses];
 
-export type CreateContactEmailAsyncData = {
+export type ContactsCreateContactEmailData = {
     body?: ContactEmailCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4029,7 +4087,7 @@ export type CreateContactEmailAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/Addresses';
 };
 
-export type CreateContactEmailAsyncErrors = {
+export type ContactsCreateContactEmailErrors = {
     /**
      * Bad Request
      */
@@ -4040,16 +4098,16 @@ export type CreateContactEmailAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactEmailAsyncError = CreateContactEmailAsyncErrors[keyof CreateContactEmailAsyncErrors];
+export type ContactsCreateContactEmailError = ContactsCreateContactEmailErrors[keyof ContactsCreateContactEmailErrors];
 
-export type CreateContactEmailAsyncResponses = {
+export type ContactsCreateContactEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type DeleteContactEmailAsyncData = {
+export type ContactsDeleteContactEmailData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4065,7 +4123,7 @@ export type DeleteContactEmailAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}';
 };
 
-export type DeleteContactEmailAsyncErrors = {
+export type ContactsDeleteContactEmailErrors = {
     /**
      * Forbidden
      */
@@ -4076,16 +4134,16 @@ export type DeleteContactEmailAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactEmailAsyncError = DeleteContactEmailAsyncErrors[keyof DeleteContactEmailAsyncErrors];
+export type ContactsDeleteContactEmailError = ContactsDeleteContactEmailErrors[keyof ContactsDeleteContactEmailErrors];
 
-export type DeleteContactEmailAsyncResponses = {
+export type ContactsDeleteContactEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PatchContactEmailAsyncData = {
+export type ContactsPatchContactEmailData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4101,7 +4159,7 @@ export type PatchContactEmailAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}';
 };
 
-export type PatchContactEmailAsyncErrors = {
+export type ContactsPatchContactEmailErrors = {
     /**
      * Forbidden
      */
@@ -4112,16 +4170,16 @@ export type PatchContactEmailAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchContactEmailAsyncError = PatchContactEmailAsyncErrors[keyof PatchContactEmailAsyncErrors];
+export type ContactsPatchContactEmailError = ContactsPatchContactEmailErrors[keyof ContactsPatchContactEmailErrors];
 
-export type PatchContactEmailAsyncResponses = {
+export type ContactsPatchContactEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateContactEmailAsyncData = {
+export type ContactsUpdateContactEmailData = {
     body?: ContactEmailUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4137,7 +4195,7 @@ export type UpdateContactEmailAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}';
 };
 
-export type UpdateContactEmailAsyncErrors = {
+export type ContactsUpdateContactEmailErrors = {
     /**
      * Forbidden
      */
@@ -4148,16 +4206,16 @@ export type UpdateContactEmailAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactEmailAsyncError = UpdateContactEmailAsyncErrors[keyof UpdateContactEmailAsyncErrors];
+export type ContactsUpdateContactEmailError = ContactsUpdateContactEmailErrors[keyof ContactsUpdateContactEmailErrors];
 
-export type UpdateContactEmailAsyncResponses = {
+export type ContactsUpdateContactEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type VerifyContactEmailAsyncData = {
+export type ContactsVerifyContactEmailData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4173,7 +4231,7 @@ export type VerifyContactEmailAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}/Verify';
 };
 
-export type VerifyContactEmailAsyncErrors = {
+export type ContactsVerifyContactEmailErrors = {
     /**
      * Forbidden
      */
@@ -4188,16 +4246,16 @@ export type VerifyContactEmailAsyncErrors = {
     409: ErrorEnvelopeReadable;
 };
 
-export type VerifyContactEmailAsyncError = VerifyContactEmailAsyncErrors[keyof VerifyContactEmailAsyncErrors];
+export type ContactsVerifyContactEmailError = ContactsVerifyContactEmailErrors[keyof ContactsVerifyContactEmailErrors];
 
-export type VerifyContactEmailAsyncResponses = {
+export type ContactsVerifyContactEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactSourcesAsyncData = {
+export type ContactSourcesGetContactSourcesData = {
     body?: ContactSourceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4210,25 +4268,25 @@ export type GetContactSourcesAsyncData = {
     url: '/api/v2/CrmService/ContactSources';
 };
 
-export type GetContactSourcesAsyncErrors = {
+export type ContactSourcesGetContactSourcesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactSourcesAsyncError = GetContactSourcesAsyncErrors[keyof GetContactSourcesAsyncErrors];
+export type ContactSourcesGetContactSourcesError = ContactSourcesGetContactSourcesErrors[keyof ContactSourcesGetContactSourcesErrors];
 
-export type GetContactSourcesAsyncResponses = {
+export type ContactSourcesGetContactSourcesResponses = {
     /**
      * OK
      */
     200: ContactSourceDtoListEnvelopeReadable;
 };
 
-export type GetContactSourcesAsyncResponse = GetContactSourcesAsyncResponses[keyof GetContactSourcesAsyncResponses];
+export type ContactSourcesGetContactSourcesResponse = ContactSourcesGetContactSourcesResponses[keyof ContactSourcesGetContactSourcesResponses];
 
-export type CreateContactSourceAsyncData = {
+export type ContactSourcesCreateContactSourceData = {
     body?: ContactSourceCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4241,7 +4299,7 @@ export type CreateContactSourceAsyncData = {
     url: '/api/v2/CrmService/ContactSources';
 };
 
-export type CreateContactSourceAsyncErrors = {
+export type ContactSourcesCreateContactSourceErrors = {
     /**
      * Bad Request
      */
@@ -4252,16 +4310,16 @@ export type CreateContactSourceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactSourceAsyncError = CreateContactSourceAsyncErrors[keyof CreateContactSourceAsyncErrors];
+export type ContactSourcesCreateContactSourceError = ContactSourcesCreateContactSourceErrors[keyof ContactSourcesCreateContactSourceErrors];
 
-export type CreateContactSourceAsyncResponses = {
+export type ContactSourcesCreateContactSourceResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactSourcesCountAsyncData = {
+export type ContactSourcesGetContactSourcesCountData = {
     body?: ContactSourceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4274,25 +4332,25 @@ export type GetContactSourcesCountAsyncData = {
     url: '/api/v2/CrmService/ContactSources/Count';
 };
 
-export type GetContactSourcesCountAsyncErrors = {
+export type ContactSourcesGetContactSourcesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactSourcesCountAsyncError = GetContactSourcesCountAsyncErrors[keyof GetContactSourcesCountAsyncErrors];
+export type ContactSourcesGetContactSourcesCountError = ContactSourcesGetContactSourcesCountErrors[keyof ContactSourcesGetContactSourcesCountErrors];
 
-export type GetContactSourcesCountAsyncResponses = {
+export type ContactSourcesGetContactSourcesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactSourcesCountAsyncResponse = GetContactSourcesCountAsyncResponses[keyof GetContactSourcesCountAsyncResponses];
+export type ContactSourcesGetContactSourcesCountResponse = ContactSourcesGetContactSourcesCountResponses[keyof ContactSourcesGetContactSourcesCountResponses];
 
-export type DeleteContactSourceAsyncData = {
+export type ContactSourcesDeleteContactSourceData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4307,7 +4365,7 @@ export type DeleteContactSourceAsyncData = {
     url: '/api/v2/CrmService/ContactSources/{id}';
 };
 
-export type DeleteContactSourceAsyncErrors = {
+export type ContactSourcesDeleteContactSourceErrors = {
     /**
      * Forbidden
      */
@@ -4318,16 +4376,16 @@ export type DeleteContactSourceAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactSourceAsyncError = DeleteContactSourceAsyncErrors[keyof DeleteContactSourceAsyncErrors];
+export type ContactSourcesDeleteContactSourceError = ContactSourcesDeleteContactSourceErrors[keyof ContactSourcesDeleteContactSourceErrors];
 
-export type DeleteContactSourceAsyncResponses = {
+export type ContactSourcesDeleteContactSourceResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactSourceByIdAsyncData = {
+export type ContactSourcesGetContactSourceByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4342,7 +4400,7 @@ export type GetContactSourceByIdAsyncData = {
     url: '/api/v2/CrmService/ContactSources/{id}';
 };
 
-export type GetContactSourceByIdAsyncErrors = {
+export type ContactSourcesGetContactSourceByIdErrors = {
     /**
      * Forbidden
      */
@@ -4353,18 +4411,18 @@ export type GetContactSourceByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetContactSourceByIdAsyncError = GetContactSourceByIdAsyncErrors[keyof GetContactSourceByIdAsyncErrors];
+export type ContactSourcesGetContactSourceByIdError = ContactSourcesGetContactSourceByIdErrors[keyof ContactSourcesGetContactSourceByIdErrors];
 
-export type GetContactSourceByIdAsyncResponses = {
+export type ContactSourcesGetContactSourceByIdResponses = {
     /**
      * OK
      */
     200: ContactSourceDto;
 };
 
-export type GetContactSourceByIdAsyncResponse = GetContactSourceByIdAsyncResponses[keyof GetContactSourceByIdAsyncResponses];
+export type ContactSourcesGetContactSourceByIdResponse = ContactSourcesGetContactSourceByIdResponses[keyof ContactSourcesGetContactSourceByIdResponses];
 
-export type PatchContactSourceAsyncData = {
+export type ContactSourcesPatchContactSourceData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4379,7 +4437,7 @@ export type PatchContactSourceAsyncData = {
     url: '/api/v2/CrmService/ContactSources/{id}';
 };
 
-export type PatchContactSourceAsyncErrors = {
+export type ContactSourcesPatchContactSourceErrors = {
     /**
      * Unauthorized
      */
@@ -4390,18 +4448,18 @@ export type PatchContactSourceAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactSourceAsyncError = PatchContactSourceAsyncErrors[keyof PatchContactSourceAsyncErrors];
+export type ContactSourcesPatchContactSourceError = ContactSourcesPatchContactSourceErrors[keyof ContactSourcesPatchContactSourceErrors];
 
-export type PatchContactSourceAsyncResponses = {
+export type ContactSourcesPatchContactSourceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactSourceAsyncResponse = PatchContactSourceAsyncResponses[keyof PatchContactSourceAsyncResponses];
+export type ContactSourcesPatchContactSourceResponse = ContactSourcesPatchContactSourceResponses[keyof ContactSourcesPatchContactSourceResponses];
 
-export type UpdateContactSourceAsyncData = {
+export type ContactSourcesUpdateContactSourceData = {
     body?: ContactSourceUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4416,7 +4474,7 @@ export type UpdateContactSourceAsyncData = {
     url: '/api/v2/CrmService/ContactSources/{id}';
 };
 
-export type UpdateContactSourceAsyncErrors = {
+export type ContactSourcesUpdateContactSourceErrors = {
     /**
      * Forbidden
      */
@@ -4427,81 +4485,81 @@ export type UpdateContactSourceAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactSourceAsyncError = UpdateContactSourceAsyncErrors[keyof UpdateContactSourceAsyncErrors];
+export type ContactSourcesUpdateContactSourceError = ContactSourcesUpdateContactSourceErrors[keyof ContactSourcesUpdateContactSourceErrors];
 
-export type UpdateContactSourceAsyncResponses = {
+export type ContactSourcesUpdateContactSourceResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -4511,32 +4569,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -4547,81 +4605,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -4632,25 +4690,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -4661,25 +4719,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -4690,18 +4748,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -4711,14 +4769,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -4727,14 +4785,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -4743,28 +4801,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetContactOptionsData = {
+export type OptionsGetContactOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4780,7 +4838,7 @@ export type GetContactOptionsData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options';
 };
 
-export type GetContactOptionsErrors = {
+export type OptionsGetContactOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -4791,18 +4849,18 @@ export type GetContactOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactOptionsError = GetContactOptionsErrors[keyof GetContactOptionsErrors];
+export type OptionsGetContactOptionsError = OptionsGetContactOptionsErrors[keyof OptionsGetContactOptionsErrors];
 
-export type GetContactOptionsResponses = {
+export type OptionsGetContactOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetContactOptionsResponse = GetContactOptionsResponses[keyof GetContactOptionsResponses];
+export type OptionsGetContactOptionsResponse = OptionsGetContactOptionsResponses[keyof OptionsGetContactOptionsResponses];
 
-export type CreateContactOptionData = {
+export type OptionsCreateContactOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4819,7 +4877,7 @@ export type CreateContactOptionData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options';
 };
 
-export type CreateContactOptionErrors = {
+export type OptionsCreateContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -4830,18 +4888,18 @@ export type CreateContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateContactOptionError = CreateContactOptionErrors[keyof CreateContactOptionErrors];
+export type OptionsCreateContactOptionError = OptionsCreateContactOptionErrors[keyof OptionsCreateContactOptionErrors];
 
-export type CreateContactOptionResponses = {
+export type OptionsCreateContactOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateContactOptionResponse = CreateContactOptionResponses[keyof CreateContactOptionResponses];
+export type OptionsCreateContactOptionResponse = OptionsCreateContactOptionResponses[keyof OptionsCreateContactOptionResponses];
 
-export type GetContactOptionsCountData = {
+export type OptionsGetContactOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4857,7 +4915,7 @@ export type GetContactOptionsCountData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/Count';
 };
 
-export type GetContactOptionsCountErrors = {
+export type OptionsGetContactOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4868,18 +4926,18 @@ export type GetContactOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactOptionsCountError = GetContactOptionsCountErrors[keyof GetContactOptionsCountErrors];
+export type OptionsGetContactOptionsCountError = OptionsGetContactOptionsCountErrors[keyof OptionsGetContactOptionsCountErrors];
 
-export type GetContactOptionsCountResponses = {
+export type OptionsGetContactOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetContactOptionsCountResponse = GetContactOptionsCountResponses[keyof GetContactOptionsCountResponses];
+export type OptionsGetContactOptionsCountResponse = OptionsGetContactOptionsCountResponses[keyof OptionsGetContactOptionsCountResponses];
 
-export type DeleteContactOptionData = {
+export type OptionsDeleteContactOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4895,7 +4953,7 @@ export type DeleteContactOptionData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type DeleteContactOptionErrors = {
+export type OptionsDeleteContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -4906,18 +4964,18 @@ export type DeleteContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteContactOptionError = DeleteContactOptionErrors[keyof DeleteContactOptionErrors];
+export type OptionsDeleteContactOptionError = OptionsDeleteContactOptionErrors[keyof OptionsDeleteContactOptionErrors];
 
-export type DeleteContactOptionResponses = {
+export type OptionsDeleteContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteContactOptionResponse = DeleteContactOptionResponses[keyof DeleteContactOptionResponses];
+export type OptionsDeleteContactOptionResponse = OptionsDeleteContactOptionResponses[keyof OptionsDeleteContactOptionResponses];
 
-export type GetContactOptionByIdData = {
+export type OptionsGetContactOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4933,7 +4991,7 @@ export type GetContactOptionByIdData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type GetContactOptionByIdErrors = {
+export type OptionsGetContactOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -4944,18 +5002,18 @@ export type GetContactOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactOptionByIdError = GetContactOptionByIdErrors[keyof GetContactOptionByIdErrors];
+export type OptionsGetContactOptionByIdError = OptionsGetContactOptionByIdErrors[keyof OptionsGetContactOptionByIdErrors];
 
-export type GetContactOptionByIdResponses = {
+export type OptionsGetContactOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetContactOptionByIdResponse = GetContactOptionByIdResponses[keyof GetContactOptionByIdResponses];
+export type OptionsGetContactOptionByIdResponse = OptionsGetContactOptionByIdResponses[keyof OptionsGetContactOptionByIdResponses];
 
-export type PatchContactOptionAsyncData = {
+export type OptionsPatchContactOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4971,7 +5029,7 @@ export type PatchContactOptionAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type PatchContactOptionAsyncErrors = {
+export type OptionsPatchContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -4982,18 +5040,18 @@ export type PatchContactOptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactOptionAsyncError = PatchContactOptionAsyncErrors[keyof PatchContactOptionAsyncErrors];
+export type OptionsPatchContactOptionError = OptionsPatchContactOptionErrors[keyof OptionsPatchContactOptionErrors];
 
-export type PatchContactOptionAsyncResponses = {
+export type OptionsPatchContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactOptionAsyncResponse = PatchContactOptionAsyncResponses[keyof PatchContactOptionAsyncResponses];
+export type OptionsPatchContactOptionResponse = OptionsPatchContactOptionResponses[keyof OptionsPatchContactOptionResponses];
 
-export type UpdateContactOptionData = {
+export type OptionsUpdateContactOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5009,7 +5067,7 @@ export type UpdateContactOptionData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/{optionId}';
 };
 
-export type UpdateContactOptionErrors = {
+export type OptionsUpdateContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5020,18 +5078,18 @@ export type UpdateContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactOptionError = UpdateContactOptionErrors[keyof UpdateContactOptionErrors];
+export type OptionsUpdateContactOptionError = OptionsUpdateContactOptionErrors[keyof OptionsUpdateContactOptionErrors];
 
-export type UpdateContactOptionResponses = {
+export type OptionsUpdateContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateContactOptionResponse = UpdateContactOptionResponses[keyof UpdateContactOptionResponses];
+export type OptionsUpdateContactOptionResponse = OptionsUpdateContactOptionResponses[keyof OptionsUpdateContactOptionResponses];
 
-export type GetContactOptionByKeyData = {
+export type OptionsGetContactOptionByKeyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5048,7 +5106,7 @@ export type GetContactOptionByKeyData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/Key/{key}';
 };
 
-export type GetContactOptionByKeyErrors = {
+export type OptionsGetContactOptionByKeyErrors = {
     /**
      * Unauthorized
      */
@@ -5059,18 +5117,18 @@ export type GetContactOptionByKeyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactOptionByKeyError = GetContactOptionByKeyErrors[keyof GetContactOptionByKeyErrors];
+export type OptionsGetContactOptionByKeyError = OptionsGetContactOptionByKeyErrors[keyof OptionsGetContactOptionByKeyErrors];
 
-export type GetContactOptionByKeyResponses = {
+export type OptionsGetContactOptionByKeyResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetContactOptionByKeyResponse = GetContactOptionByKeyResponses[keyof GetContactOptionByKeyResponses];
+export type OptionsGetContactOptionByKeyResponse = OptionsGetContactOptionByKeyResponses[keyof OptionsGetContactOptionByKeyResponses];
 
-export type PatchContactOptionByKeyAsyncData = {
+export type OptionsPatchContactOptionByKeyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5086,7 +5144,7 @@ export type PatchContactOptionByKeyAsyncData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/Key/{key}';
 };
 
-export type PatchContactOptionByKeyAsyncErrors = {
+export type OptionsPatchContactOptionByKeyErrors = {
     /**
      * Unauthorized
      */
@@ -5097,18 +5155,18 @@ export type PatchContactOptionByKeyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchContactOptionByKeyAsyncError = PatchContactOptionByKeyAsyncErrors[keyof PatchContactOptionByKeyAsyncErrors];
+export type OptionsPatchContactOptionByKeyError = OptionsPatchContactOptionByKeyErrors[keyof OptionsPatchContactOptionByKeyErrors];
 
-export type PatchContactOptionByKeyAsyncResponses = {
+export type OptionsPatchContactOptionByKeyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchContactOptionByKeyAsyncResponse = PatchContactOptionByKeyAsyncResponses[keyof PatchContactOptionByKeyAsyncResponses];
+export type OptionsPatchContactOptionByKeyResponse = OptionsPatchContactOptionByKeyResponses[keyof OptionsPatchContactOptionByKeyResponses];
 
-export type UpsertContactOptionData = {
+export type OptionsUpsertContactOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5125,7 +5183,7 @@ export type UpsertContactOptionData = {
     url: '/api/v2/CrmService/Contacts/{contactId}/Options/Upsert/{key}';
 };
 
-export type UpsertContactOptionErrors = {
+export type OptionsUpsertContactOptionErrors = {
     /**
      * Unauthorized
      */
@@ -5136,18 +5194,18 @@ export type UpsertContactOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpsertContactOptionError = UpsertContactOptionErrors[keyof UpsertContactOptionErrors];
+export type OptionsUpsertContactOptionError = OptionsUpsertContactOptionErrors[keyof OptionsUpsertContactOptionErrors];
 
-export type UpsertContactOptionResponses = {
+export type OptionsUpsertContactOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpsertContactOptionResponse = UpsertContactOptionResponses[keyof UpsertContactOptionResponses];
+export type OptionsUpsertContactOptionResponse = OptionsUpsertContactOptionResponses[keyof OptionsUpsertContactOptionResponses];
 
-export type SyncCurrentHolderToCurrentTenantCrmData = {
+export type SyncSyncCurrentHolderToCurrentTenantCrmData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5160,7 +5218,7 @@ export type SyncCurrentHolderToCurrentTenantCrmData = {
     url: '/api/v2/CrmService/Sync';
 };
 
-export type SyncCurrentHolderToCurrentTenantCrmErrors = {
+export type SyncSyncCurrentHolderToCurrentTenantCrmErrors = {
     /**
      * Unauthorized
      */
@@ -5171,18 +5229,18 @@ export type SyncCurrentHolderToCurrentTenantCrmErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SyncCurrentHolderToCurrentTenantCrmError = SyncCurrentHolderToCurrentTenantCrmErrors[keyof SyncCurrentHolderToCurrentTenantCrmErrors];
+export type SyncSyncCurrentHolderToCurrentTenantCrmError = SyncSyncCurrentHolderToCurrentTenantCrmErrors[keyof SyncSyncCurrentHolderToCurrentTenantCrmErrors];
 
-export type SyncCurrentHolderToCurrentTenantCrmResponses = {
+export type SyncSyncCurrentHolderToCurrentTenantCrmResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type SyncCurrentHolderToCurrentTenantCrmResponse = SyncCurrentHolderToCurrentTenantCrmResponses[keyof SyncCurrentHolderToCurrentTenantCrmResponses];
+export type SyncSyncCurrentHolderToCurrentTenantCrmResponse = SyncSyncCurrentHolderToCurrentTenantCrmResponses[keyof SyncSyncCurrentHolderToCurrentTenantCrmResponses];
 
-export type SyncCurrentHolderToTenantCrmData = {
+export type SyncSyncCurrentHolderToTenantCrmData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5195,7 +5253,7 @@ export type SyncCurrentHolderToTenantCrmData = {
     url: '/api/v2/CrmService/Sync/Me';
 };
 
-export type SyncCurrentHolderToTenantCrmErrors = {
+export type SyncSyncCurrentHolderToTenantCrmErrors = {
     /**
      * Unauthorized
      */
@@ -5206,18 +5264,18 @@ export type SyncCurrentHolderToTenantCrmErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SyncCurrentHolderToTenantCrmError = SyncCurrentHolderToTenantCrmErrors[keyof SyncCurrentHolderToTenantCrmErrors];
+export type SyncSyncCurrentHolderToTenantCrmError = SyncSyncCurrentHolderToTenantCrmErrors[keyof SyncSyncCurrentHolderToTenantCrmErrors];
 
-export type SyncCurrentHolderToTenantCrmResponses = {
+export type SyncSyncCurrentHolderToTenantCrmResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type SyncCurrentHolderToTenantCrmResponse = SyncCurrentHolderToTenantCrmResponses[keyof SyncCurrentHolderToTenantCrmResponses];
+export type SyncSyncCurrentHolderToTenantCrmResponse = SyncSyncCurrentHolderToTenantCrmResponses[keyof SyncSyncCurrentHolderToTenantCrmResponses];
 
-export type SyncHolderToTenantCrmAsyncData = {
+export type SyncSyncHolderToTenantCrmData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5231,7 +5289,7 @@ export type SyncHolderToTenantCrmAsyncData = {
     url: '/api/v2/CrmService/Sync/User';
 };
 
-export type SyncHolderToTenantCrmAsyncErrors = {
+export type SyncSyncHolderToTenantCrmErrors = {
     /**
      * Unauthorized
      */
@@ -5242,18 +5300,18 @@ export type SyncHolderToTenantCrmAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SyncHolderToTenantCrmAsyncError = SyncHolderToTenantCrmAsyncErrors[keyof SyncHolderToTenantCrmAsyncErrors];
+export type SyncSyncHolderToTenantCrmError = SyncSyncHolderToTenantCrmErrors[keyof SyncSyncHolderToTenantCrmErrors];
 
-export type SyncHolderToTenantCrmAsyncResponses = {
+export type SyncSyncHolderToTenantCrmResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type SyncHolderToTenantCrmAsyncResponse = SyncHolderToTenantCrmAsyncResponses[keyof SyncHolderToTenantCrmAsyncResponses];
+export type SyncSyncHolderToTenantCrmResponse = SyncSyncHolderToTenantCrmResponses[keyof SyncSyncHolderToTenantCrmResponses];
 
-export type SyncTenantToTenantCrmData = {
+export type SyncSyncTenantToTenantCrmData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5267,7 +5325,7 @@ export type SyncTenantToTenantCrmData = {
     url: '/api/v2/CrmService/Sync/Tenant';
 };
 
-export type SyncTenantToTenantCrmErrors = {
+export type SyncSyncTenantToTenantCrmErrors = {
     /**
      * Unauthorized
      */
@@ -5278,16 +5336,16 @@ export type SyncTenantToTenantCrmErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SyncTenantToTenantCrmError = SyncTenantToTenantCrmErrors[keyof SyncTenantToTenantCrmErrors];
+export type SyncSyncTenantToTenantCrmError = SyncSyncTenantToTenantCrmErrors[keyof SyncSyncTenantToTenantCrmErrors];
 
-export type SyncTenantToTenantCrmResponses = {
+export type SyncSyncTenantToTenantCrmResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SyncTenantToTenantCrmResponse = SyncTenantToTenantCrmResponses[keyof SyncTenantToTenantCrmResponses];
+export type SyncSyncTenantToTenantCrmResponse = SyncSyncTenantToTenantCrmResponses[keyof SyncSyncTenantToTenantCrmResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

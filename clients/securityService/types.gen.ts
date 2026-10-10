@@ -1153,7 +1153,7 @@ export type WebhookRequestDtoListEnvelopeWritable = {
     result?: Array<WebhookRequestDto> | null;
 };
 
-export type GetApplicationPrincipalsAsyncData = {
+export type ApplicationPrincipalsGetApplicationPrincipalsData = {
     body?: ApplicationPrincipalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1166,7 +1166,7 @@ export type GetApplicationPrincipalsAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals';
 };
 
-export type GetApplicationPrincipalsAsyncErrors = {
+export type ApplicationPrincipalsGetApplicationPrincipalsErrors = {
     /**
      * Unauthorized
      */
@@ -1177,18 +1177,18 @@ export type GetApplicationPrincipalsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApplicationPrincipalsAsyncError = GetApplicationPrincipalsAsyncErrors[keyof GetApplicationPrincipalsAsyncErrors];
+export type ApplicationPrincipalsGetApplicationPrincipalsError = ApplicationPrincipalsGetApplicationPrincipalsErrors[keyof ApplicationPrincipalsGetApplicationPrincipalsErrors];
 
-export type GetApplicationPrincipalsAsyncResponses = {
+export type ApplicationPrincipalsGetApplicationPrincipalsResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalDtoListEnvelopeReadable;
 };
 
-export type GetApplicationPrincipalsAsyncResponse = GetApplicationPrincipalsAsyncResponses[keyof GetApplicationPrincipalsAsyncResponses];
+export type ApplicationPrincipalsGetApplicationPrincipalsResponse = ApplicationPrincipalsGetApplicationPrincipalsResponses[keyof ApplicationPrincipalsGetApplicationPrincipalsResponses];
 
-export type GetApplicationPrincipalsCountAsyncData = {
+export type ApplicationPrincipalsGetApplicationPrincipalsCountData = {
     body?: ApplicationPrincipalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1201,7 +1201,7 @@ export type GetApplicationPrincipalsCountAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/Count';
 };
 
-export type GetApplicationPrincipalsCountAsyncErrors = {
+export type ApplicationPrincipalsGetApplicationPrincipalsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1212,18 +1212,18 @@ export type GetApplicationPrincipalsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApplicationPrincipalsCountAsyncError = GetApplicationPrincipalsCountAsyncErrors[keyof GetApplicationPrincipalsCountAsyncErrors];
+export type ApplicationPrincipalsGetApplicationPrincipalsCountError = ApplicationPrincipalsGetApplicationPrincipalsCountErrors[keyof ApplicationPrincipalsGetApplicationPrincipalsCountErrors];
 
-export type GetApplicationPrincipalsCountAsyncResponses = {
+export type ApplicationPrincipalsGetApplicationPrincipalsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetApplicationPrincipalsCountAsyncResponse = GetApplicationPrincipalsCountAsyncResponses[keyof GetApplicationPrincipalsCountAsyncResponses];
+export type ApplicationPrincipalsGetApplicationPrincipalsCountResponse = ApplicationPrincipalsGetApplicationPrincipalsCountResponses[keyof ApplicationPrincipalsGetApplicationPrincipalsCountResponses];
 
-export type GetApplicationPrincipalAsyncData = {
+export type ApplicationPrincipalsGetApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1238,7 +1238,7 @@ export type GetApplicationPrincipalAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/{principalId}';
 };
 
-export type GetApplicationPrincipalAsyncErrors = {
+export type ApplicationPrincipalsGetApplicationPrincipalErrors = {
     /**
      * Unauthorized
      */
@@ -1253,18 +1253,18 @@ export type GetApplicationPrincipalAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetApplicationPrincipalAsyncError = GetApplicationPrincipalAsyncErrors[keyof GetApplicationPrincipalAsyncErrors];
+export type ApplicationPrincipalsGetApplicationPrincipalError = ApplicationPrincipalsGetApplicationPrincipalErrors[keyof ApplicationPrincipalsGetApplicationPrincipalErrors];
 
-export type GetApplicationPrincipalAsyncResponses = {
+export type ApplicationPrincipalsGetApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalDetailDtoEnvelopeReadable;
 };
 
-export type GetApplicationPrincipalAsyncResponse = GetApplicationPrincipalAsyncResponses[keyof GetApplicationPrincipalAsyncResponses];
+export type ApplicationPrincipalsGetApplicationPrincipalResponse = ApplicationPrincipalsGetApplicationPrincipalResponses[keyof ApplicationPrincipalsGetApplicationPrincipalResponses];
 
-export type ProvisionApplicationPrincipalAsyncData = {
+export type ApplicationPrincipalsProvisionApplicationPrincipalData = {
     body: ApplicationPrincipalProvisionRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -1277,7 +1277,7 @@ export type ProvisionApplicationPrincipalAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/Provision';
 };
 
-export type ProvisionApplicationPrincipalAsyncErrors = {
+export type ApplicationPrincipalsProvisionApplicationPrincipalErrors = {
     /**
      * Bad Request
      */
@@ -1292,18 +1292,18 @@ export type ProvisionApplicationPrincipalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type ProvisionApplicationPrincipalAsyncError = ProvisionApplicationPrincipalAsyncErrors[keyof ProvisionApplicationPrincipalAsyncErrors];
+export type ApplicationPrincipalsProvisionApplicationPrincipalError = ApplicationPrincipalsProvisionApplicationPrincipalErrors[keyof ApplicationPrincipalsProvisionApplicationPrincipalErrors];
 
-export type ProvisionApplicationPrincipalAsyncResponses = {
+export type ApplicationPrincipalsProvisionApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: ApplicationPrincipalProvisioningResultDtoEnvelopeReadable;
 };
 
-export type ProvisionApplicationPrincipalAsyncResponse = ProvisionApplicationPrincipalAsyncResponses[keyof ProvisionApplicationPrincipalAsyncResponses];
+export type ApplicationPrincipalsProvisionApplicationPrincipalResponse = ApplicationPrincipalsProvisionApplicationPrincipalResponses[keyof ApplicationPrincipalsProvisionApplicationPrincipalResponses];
 
-export type GrantPermissionAsyncData = {
+export type ApplicationPrincipalsGrantPermissionData = {
     body: ApplicationPrincipalPermissionRequestDto;
     headers?: {
         'x-api-version'?: string;
@@ -1318,7 +1318,7 @@ export type GrantPermissionAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions';
 };
 
-export type GrantPermissionAsyncErrors = {
+export type ApplicationPrincipalsGrantPermissionErrors = {
     /**
      * Bad Request
      */
@@ -1333,18 +1333,18 @@ export type GrantPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GrantPermissionAsyncError = GrantPermissionAsyncErrors[keyof GrantPermissionAsyncErrors];
+export type ApplicationPrincipalsGrantPermissionError = ApplicationPrincipalsGrantPermissionErrors[keyof ApplicationPrincipalsGrantPermissionErrors];
 
-export type GrantPermissionAsyncResponses = {
+export type ApplicationPrincipalsGrantPermissionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type GrantPermissionAsyncResponse = GrantPermissionAsyncResponses[keyof GrantPermissionAsyncResponses];
+export type ApplicationPrincipalsGrantPermissionResponse = ApplicationPrincipalsGrantPermissionResponses[keyof ApplicationPrincipalsGrantPermissionResponses];
 
-export type RevokePermissionAsyncData = {
+export type ApplicationPrincipalsRevokePermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1360,7 +1360,7 @@ export type RevokePermissionAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions/{permission}';
 };
 
-export type RevokePermissionAsyncErrors = {
+export type ApplicationPrincipalsRevokePermissionErrors = {
     /**
      * Bad Request
      */
@@ -1375,18 +1375,18 @@ export type RevokePermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokePermissionAsyncError = RevokePermissionAsyncErrors[keyof RevokePermissionAsyncErrors];
+export type ApplicationPrincipalsRevokePermissionError = ApplicationPrincipalsRevokePermissionErrors[keyof ApplicationPrincipalsRevokePermissionErrors];
 
-export type RevokePermissionAsyncResponses = {
+export type ApplicationPrincipalsRevokePermissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RevokePermissionAsyncResponse = RevokePermissionAsyncResponses[keyof RevokePermissionAsyncResponses];
+export type ApplicationPrincipalsRevokePermissionResponse = ApplicationPrincipalsRevokePermissionResponses[keyof ApplicationPrincipalsRevokePermissionResponses];
 
-export type EnableApplicationPrincipalAsyncData = {
+export type ApplicationPrincipalsEnableApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1401,7 +1401,7 @@ export type EnableApplicationPrincipalAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Enable';
 };
 
-export type EnableApplicationPrincipalAsyncErrors = {
+export type ApplicationPrincipalsEnableApplicationPrincipalErrors = {
     /**
      * Bad Request
      */
@@ -1416,18 +1416,18 @@ export type EnableApplicationPrincipalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type EnableApplicationPrincipalAsyncError = EnableApplicationPrincipalAsyncErrors[keyof EnableApplicationPrincipalAsyncErrors];
+export type ApplicationPrincipalsEnableApplicationPrincipalError = ApplicationPrincipalsEnableApplicationPrincipalErrors[keyof ApplicationPrincipalsEnableApplicationPrincipalErrors];
 
-export type EnableApplicationPrincipalAsyncResponses = {
+export type ApplicationPrincipalsEnableApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type EnableApplicationPrincipalAsyncResponse = EnableApplicationPrincipalAsyncResponses[keyof EnableApplicationPrincipalAsyncResponses];
+export type ApplicationPrincipalsEnableApplicationPrincipalResponse = ApplicationPrincipalsEnableApplicationPrincipalResponses[keyof ApplicationPrincipalsEnableApplicationPrincipalResponses];
 
-export type SuspendApplicationPrincipalAsyncData = {
+export type ApplicationPrincipalsSuspendApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1442,7 +1442,7 @@ export type SuspendApplicationPrincipalAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Suspend';
 };
 
-export type SuspendApplicationPrincipalAsyncErrors = {
+export type ApplicationPrincipalsSuspendApplicationPrincipalErrors = {
     /**
      * Bad Request
      */
@@ -1457,18 +1457,18 @@ export type SuspendApplicationPrincipalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SuspendApplicationPrincipalAsyncError = SuspendApplicationPrincipalAsyncErrors[keyof SuspendApplicationPrincipalAsyncErrors];
+export type ApplicationPrincipalsSuspendApplicationPrincipalError = ApplicationPrincipalsSuspendApplicationPrincipalErrors[keyof ApplicationPrincipalsSuspendApplicationPrincipalErrors];
 
-export type SuspendApplicationPrincipalAsyncResponses = {
+export type ApplicationPrincipalsSuspendApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SuspendApplicationPrincipalAsyncResponse = SuspendApplicationPrincipalAsyncResponses[keyof SuspendApplicationPrincipalAsyncResponses];
+export type ApplicationPrincipalsSuspendApplicationPrincipalResponse = ApplicationPrincipalsSuspendApplicationPrincipalResponses[keyof ApplicationPrincipalsSuspendApplicationPrincipalResponses];
 
-export type DisableApplicationPrincipalAsyncData = {
+export type ApplicationPrincipalsDisableApplicationPrincipalData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1483,7 +1483,7 @@ export type DisableApplicationPrincipalAsyncData = {
     url: '/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Disable';
 };
 
-export type DisableApplicationPrincipalAsyncErrors = {
+export type ApplicationPrincipalsDisableApplicationPrincipalErrors = {
     /**
      * Bad Request
      */
@@ -1498,18 +1498,18 @@ export type DisableApplicationPrincipalAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DisableApplicationPrincipalAsyncError = DisableApplicationPrincipalAsyncErrors[keyof DisableApplicationPrincipalAsyncErrors];
+export type ApplicationPrincipalsDisableApplicationPrincipalError = ApplicationPrincipalsDisableApplicationPrincipalErrors[keyof ApplicationPrincipalsDisableApplicationPrincipalErrors];
 
-export type DisableApplicationPrincipalAsyncResponses = {
+export type ApplicationPrincipalsDisableApplicationPrincipalResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DisableApplicationPrincipalAsyncResponse = DisableApplicationPrincipalAsyncResponses[keyof DisableApplicationPrincipalAsyncResponses];
+export type ApplicationPrincipalsDisableApplicationPrincipalResponse = ApplicationPrincipalsDisableApplicationPrincipalResponses[keyof ApplicationPrincipalsDisableApplicationPrincipalResponses];
 
-export type GetBusinessApplicationsAsyncData = {
+export type ApplicationsGetBusinessApplicationsData = {
     body?: BusinessApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1522,7 +1522,7 @@ export type GetBusinessApplicationsAsyncData = {
     url: '/api/v2/SecurityService/Applications';
 };
 
-export type GetBusinessApplicationsAsyncErrors = {
+export type ApplicationsGetBusinessApplicationsErrors = {
     /**
      * Unauthorized
      */
@@ -1533,18 +1533,18 @@ export type GetBusinessApplicationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessApplicationsAsyncError = GetBusinessApplicationsAsyncErrors[keyof GetBusinessApplicationsAsyncErrors];
+export type ApplicationsGetBusinessApplicationsError = ApplicationsGetBusinessApplicationsErrors[keyof ApplicationsGetBusinessApplicationsErrors];
 
-export type GetBusinessApplicationsAsyncResponses = {
+export type ApplicationsGetBusinessApplicationsResponses = {
     /**
      * OK
      */
     200: BusinessApplicationDtoListEnvelopeReadable;
 };
 
-export type GetBusinessApplicationsAsyncResponse = GetBusinessApplicationsAsyncResponses[keyof GetBusinessApplicationsAsyncResponses];
+export type ApplicationsGetBusinessApplicationsResponse = ApplicationsGetBusinessApplicationsResponses[keyof ApplicationsGetBusinessApplicationsResponses];
 
-export type CreateBusinessApplicationAsyncData = {
+export type ApplicationsCreateBusinessApplicationData = {
     body: BusinessApplicationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1557,7 +1557,7 @@ export type CreateBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Applications';
 };
 
-export type CreateBusinessApplicationAsyncErrors = {
+export type ApplicationsCreateBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -1572,18 +1572,18 @@ export type CreateBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateBusinessApplicationAsyncError = CreateBusinessApplicationAsyncErrors[keyof CreateBusinessApplicationAsyncErrors];
+export type ApplicationsCreateBusinessApplicationError = ApplicationsCreateBusinessApplicationErrors[keyof ApplicationsCreateBusinessApplicationErrors];
 
-export type CreateBusinessApplicationAsyncResponses = {
+export type ApplicationsCreateBusinessApplicationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateBusinessApplicationAsyncResponse = CreateBusinessApplicationAsyncResponses[keyof CreateBusinessApplicationAsyncResponses];
+export type ApplicationsCreateBusinessApplicationResponse = ApplicationsCreateBusinessApplicationResponses[keyof ApplicationsCreateBusinessApplicationResponses];
 
-export type GetBusinessApplicationsCountAsyncData = {
+export type ApplicationsGetBusinessApplicationsCountData = {
     body?: BusinessApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1596,7 +1596,7 @@ export type GetBusinessApplicationsCountAsyncData = {
     url: '/api/v2/SecurityService/Applications/Count';
 };
 
-export type GetBusinessApplicationsCountAsyncErrors = {
+export type ApplicationsGetBusinessApplicationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1607,18 +1607,18 @@ export type GetBusinessApplicationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessApplicationsCountAsyncError = GetBusinessApplicationsCountAsyncErrors[keyof GetBusinessApplicationsCountAsyncErrors];
+export type ApplicationsGetBusinessApplicationsCountError = ApplicationsGetBusinessApplicationsCountErrors[keyof ApplicationsGetBusinessApplicationsCountErrors];
 
-export type GetBusinessApplicationsCountAsyncResponses = {
+export type ApplicationsGetBusinessApplicationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetBusinessApplicationsCountAsyncResponse = GetBusinessApplicationsCountAsyncResponses[keyof GetBusinessApplicationsCountAsyncResponses];
+export type ApplicationsGetBusinessApplicationsCountResponse = ApplicationsGetBusinessApplicationsCountResponses[keyof ApplicationsGetBusinessApplicationsCountResponses];
 
-export type DeleteBusinessApplicationAsyncData = {
+export type ApplicationsDeleteBusinessApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1633,7 +1633,7 @@ export type DeleteBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Applications/{applicationId}';
 };
 
-export type DeleteBusinessApplicationAsyncErrors = {
+export type ApplicationsDeleteBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -1648,18 +1648,18 @@ export type DeleteBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteBusinessApplicationAsyncError = DeleteBusinessApplicationAsyncErrors[keyof DeleteBusinessApplicationAsyncErrors];
+export type ApplicationsDeleteBusinessApplicationError = ApplicationsDeleteBusinessApplicationErrors[keyof ApplicationsDeleteBusinessApplicationErrors];
 
-export type DeleteBusinessApplicationAsyncResponses = {
+export type ApplicationsDeleteBusinessApplicationResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteBusinessApplicationAsyncResponse = DeleteBusinessApplicationAsyncResponses[keyof DeleteBusinessApplicationAsyncResponses];
+export type ApplicationsDeleteBusinessApplicationResponse = ApplicationsDeleteBusinessApplicationResponses[keyof ApplicationsDeleteBusinessApplicationResponses];
 
-export type GetBusinessApplicationByIdAsyncData = {
+export type ApplicationsGetBusinessApplicationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1674,7 +1674,7 @@ export type GetBusinessApplicationByIdAsyncData = {
     url: '/api/v2/SecurityService/Applications/{applicationId}';
 };
 
-export type GetBusinessApplicationByIdAsyncErrors = {
+export type ApplicationsGetBusinessApplicationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1685,18 +1685,18 @@ export type GetBusinessApplicationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBusinessApplicationByIdAsyncError = GetBusinessApplicationByIdAsyncErrors[keyof GetBusinessApplicationByIdAsyncErrors];
+export type ApplicationsGetBusinessApplicationByIdError = ApplicationsGetBusinessApplicationByIdErrors[keyof ApplicationsGetBusinessApplicationByIdErrors];
 
-export type GetBusinessApplicationByIdAsyncResponses = {
+export type ApplicationsGetBusinessApplicationByIdResponses = {
     /**
      * OK
      */
     200: BusinessApplicationDtoEnvelopeReadable;
 };
 
-export type GetBusinessApplicationByIdAsyncResponse = GetBusinessApplicationByIdAsyncResponses[keyof GetBusinessApplicationByIdAsyncResponses];
+export type ApplicationsGetBusinessApplicationByIdResponse = ApplicationsGetBusinessApplicationByIdResponses[keyof ApplicationsGetBusinessApplicationByIdResponses];
 
-export type PatchBusinessApplicationAsyncData = {
+export type ApplicationsPatchBusinessApplicationData = {
     body: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1711,7 +1711,7 @@ export type PatchBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Applications/{applicationId}';
 };
 
-export type PatchBusinessApplicationAsyncErrors = {
+export type ApplicationsPatchBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -1726,18 +1726,18 @@ export type PatchBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchBusinessApplicationAsyncError = PatchBusinessApplicationAsyncErrors[keyof PatchBusinessApplicationAsyncErrors];
+export type ApplicationsPatchBusinessApplicationError = ApplicationsPatchBusinessApplicationErrors[keyof ApplicationsPatchBusinessApplicationErrors];
 
-export type PatchBusinessApplicationAsyncResponses = {
+export type ApplicationsPatchBusinessApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchBusinessApplicationAsyncResponse = PatchBusinessApplicationAsyncResponses[keyof PatchBusinessApplicationAsyncResponses];
+export type ApplicationsPatchBusinessApplicationResponse = ApplicationsPatchBusinessApplicationResponses[keyof ApplicationsPatchBusinessApplicationResponses];
 
-export type UpdateBusinessApplicationAsyncData = {
+export type ApplicationsUpdateBusinessApplicationData = {
     body: BusinessApplicationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1752,7 +1752,7 @@ export type UpdateBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Applications/{applicationId}';
 };
 
-export type UpdateBusinessApplicationAsyncErrors = {
+export type ApplicationsUpdateBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -1767,18 +1767,18 @@ export type UpdateBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateBusinessApplicationAsyncError = UpdateBusinessApplicationAsyncErrors[keyof UpdateBusinessApplicationAsyncErrors];
+export type ApplicationsUpdateBusinessApplicationError = ApplicationsUpdateBusinessApplicationErrors[keyof ApplicationsUpdateBusinessApplicationErrors];
 
-export type UpdateBusinessApplicationAsyncResponses = {
+export type ApplicationsUpdateBusinessApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateBusinessApplicationAsyncResponse = UpdateBusinessApplicationAsyncResponses[keyof UpdateBusinessApplicationAsyncResponses];
+export type ApplicationsUpdateBusinessApplicationResponse = ApplicationsUpdateBusinessApplicationResponses[keyof ApplicationsUpdateBusinessApplicationResponses];
 
-export type GetPermissionsByApplicationAsyncData = {
+export type ApplicationsGetPermissionsByApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1793,7 +1793,7 @@ export type GetPermissionsByApplicationAsyncData = {
     url: '/api/v2/SecurityService/Applications/{applicationId}/Permissions';
 };
 
-export type GetPermissionsByApplicationAsyncErrors = {
+export type ApplicationsGetPermissionsByApplicationErrors = {
     /**
      * Unauthorized
      */
@@ -1804,18 +1804,18 @@ export type GetPermissionsByApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPermissionsByApplicationAsyncError = GetPermissionsByApplicationAsyncErrors[keyof GetPermissionsByApplicationAsyncErrors];
+export type ApplicationsGetPermissionsByApplicationError = ApplicationsGetPermissionsByApplicationErrors[keyof ApplicationsGetPermissionsByApplicationErrors];
 
-export type GetPermissionsByApplicationAsyncResponses = {
+export type ApplicationsGetPermissionsByApplicationResponses = {
     /**
      * OK
      */
     200: SecurityPermissionDtoListEnvelopeReadable;
 };
 
-export type GetPermissionsByApplicationAsyncResponse = GetPermissionsByApplicationAsyncResponses[keyof GetPermissionsByApplicationAsyncResponses];
+export type ApplicationsGetPermissionsByApplicationResponse = ApplicationsGetPermissionsByApplicationResponses[keyof ApplicationsGetPermissionsByApplicationResponses];
 
-export type GetRolesByApplicationAsyncData = {
+export type ApplicationsGetRolesByApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1830,7 +1830,7 @@ export type GetRolesByApplicationAsyncData = {
     url: '/api/v2/SecurityService/Applications/{applicationId}/Roles';
 };
 
-export type GetRolesByApplicationAsyncErrors = {
+export type ApplicationsGetRolesByApplicationErrors = {
     /**
      * Unauthorized
      */
@@ -1841,83 +1841,83 @@ export type GetRolesByApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRolesByApplicationAsyncError = GetRolesByApplicationAsyncErrors[keyof GetRolesByApplicationAsyncErrors];
+export type ApplicationsGetRolesByApplicationError = ApplicationsGetRolesByApplicationErrors[keyof ApplicationsGetRolesByApplicationErrors];
 
-export type GetRolesByApplicationAsyncResponses = {
+export type ApplicationsGetRolesByApplicationResponses = {
     /**
      * OK
      */
     200: SecurityRoleDtoListEnvelopeReadable;
 };
 
-export type GetRolesByApplicationAsyncResponse = GetRolesByApplicationAsyncResponses[keyof GetRolesByApplicationAsyncResponses];
+export type ApplicationsGetRolesByApplicationResponse = ApplicationsGetRolesByApplicationResponses[keyof ApplicationsGetRolesByApplicationResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1927,32 +1927,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1963,81 +1963,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2048,25 +2048,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2077,25 +2077,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2106,18 +2106,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2127,14 +2127,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2143,14 +2143,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2159,28 +2159,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLogsAsyncData = {
+export type LogsGetLogsData = {
     body?: LogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2193,7 +2193,7 @@ export type GetLogsAsyncData = {
     url: '/api/v2/SecurityService/Logs';
 };
 
-export type GetLogsAsyncErrors = {
+export type LogsGetLogsErrors = {
     /**
      * Unauthorized
      */
@@ -2204,18 +2204,18 @@ export type GetLogsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLogsAsyncError = GetLogsAsyncErrors[keyof GetLogsAsyncErrors];
+export type LogsGetLogsError = LogsGetLogsErrors[keyof LogsGetLogsErrors];
 
-export type GetLogsAsyncResponses = {
+export type LogsGetLogsResponses = {
     /**
      * OK
      */
     200: LogDtoListEnvelopeReadable;
 };
 
-export type GetLogsAsyncResponse = GetLogsAsyncResponses[keyof GetLogsAsyncResponses];
+export type LogsGetLogsResponse = LogsGetLogsResponses[keyof LogsGetLogsResponses];
 
-export type GetLogsCountAsyncData = {
+export type LogsGetLogsCountData = {
     body?: LogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2228,7 +2228,7 @@ export type GetLogsCountAsyncData = {
     url: '/api/v2/SecurityService/Logs/Count';
 };
 
-export type GetLogsCountAsyncErrors = {
+export type LogsGetLogsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2239,18 +2239,78 @@ export type GetLogsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLogsCountAsyncError = GetLogsCountAsyncErrors[keyof GetLogsCountAsyncErrors];
+export type LogsGetLogsCountError = LogsGetLogsCountErrors[keyof LogsGetLogsCountErrors];
 
-export type GetLogsCountAsyncResponses = {
+export type LogsGetLogsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLogsCountAsyncResponse = GetLogsCountAsyncResponses[keyof GetLogsCountAsyncResponses];
+export type LogsGetLogsCountResponse = LogsGetLogsCountResponses[keyof LogsGetLogsCountResponses];
 
-export type GetOAuthApplicationsAsyncData = {
+export type LogsGetMyLogsData = {
+    body?: LogDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Logs/Me';
+};
+
+export type LogsGetMyLogsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type LogsGetMyLogsError = LogsGetMyLogsErrors[keyof LogsGetMyLogsErrors];
+
+export type LogsGetMyLogsResponses = {
+    /**
+     * OK
+     */
+    200: LogDtoListEnvelopeReadable;
+};
+
+export type LogsGetMyLogsResponse = LogsGetMyLogsResponses[keyof LogsGetMyLogsResponses];
+
+export type LogsGetMyLogsCountData = {
+    body?: LogDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Logs/Me/Count';
+};
+
+export type LogsGetMyLogsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type LogsGetMyLogsCountError = LogsGetMyLogsCountErrors[keyof LogsGetMyLogsCountErrors];
+
+export type LogsGetMyLogsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type LogsGetMyLogsCountResponse = LogsGetMyLogsCountResponses[keyof LogsGetMyLogsCountResponses];
+
+export type OAuthApplicationsGetOAuthApplicationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2263,7 +2323,7 @@ export type GetOAuthApplicationsAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications';
 };
 
-export type GetOAuthApplicationsAsyncErrors = {
+export type OAuthApplicationsGetOAuthApplicationsErrors = {
     /**
      * Unauthorized
      */
@@ -2274,18 +2334,18 @@ export type GetOAuthApplicationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOAuthApplicationsAsyncError = GetOAuthApplicationsAsyncErrors[keyof GetOAuthApplicationsAsyncErrors];
+export type OAuthApplicationsGetOAuthApplicationsError = OAuthApplicationsGetOAuthApplicationsErrors[keyof OAuthApplicationsGetOAuthApplicationsErrors];
 
-export type GetOAuthApplicationsAsyncResponses = {
+export type OAuthApplicationsGetOAuthApplicationsResponses = {
     /**
      * OK
      */
     200: OAuthApplicationDtoListEnvelopeReadable;
 };
 
-export type GetOAuthApplicationsAsyncResponse = GetOAuthApplicationsAsyncResponses[keyof GetOAuthApplicationsAsyncResponses];
+export type OAuthApplicationsGetOAuthApplicationsResponse = OAuthApplicationsGetOAuthApplicationsResponses[keyof OAuthApplicationsGetOAuthApplicationsResponses];
 
-export type CreateOAuthApplicationAsyncData = {
+export type OAuthApplicationsCreateOAuthApplicationData = {
     body: OAuthApplicationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2298,7 +2358,7 @@ export type CreateOAuthApplicationAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications';
 };
 
-export type CreateOAuthApplicationAsyncErrors = {
+export type OAuthApplicationsCreateOAuthApplicationErrors = {
     /**
      * Bad Request
      */
@@ -2313,18 +2373,18 @@ export type CreateOAuthApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateOAuthApplicationAsyncError = CreateOAuthApplicationAsyncErrors[keyof CreateOAuthApplicationAsyncErrors];
+export type OAuthApplicationsCreateOAuthApplicationError = OAuthApplicationsCreateOAuthApplicationErrors[keyof OAuthApplicationsCreateOAuthApplicationErrors];
 
-export type CreateOAuthApplicationAsyncResponses = {
+export type OAuthApplicationsCreateOAuthApplicationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateOAuthApplicationAsyncResponse = CreateOAuthApplicationAsyncResponses[keyof CreateOAuthApplicationAsyncResponses];
+export type OAuthApplicationsCreateOAuthApplicationResponse = OAuthApplicationsCreateOAuthApplicationResponses[keyof OAuthApplicationsCreateOAuthApplicationResponses];
 
-export type GetOAuthApplicationsCountAsyncData = {
+export type OAuthApplicationsGetOAuthApplicationsCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2337,7 +2397,7 @@ export type GetOAuthApplicationsCountAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/Count';
 };
 
-export type GetOAuthApplicationsCountAsyncErrors = {
+export type OAuthApplicationsGetOAuthApplicationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2348,18 +2408,18 @@ export type GetOAuthApplicationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOAuthApplicationsCountAsyncError = GetOAuthApplicationsCountAsyncErrors[keyof GetOAuthApplicationsCountAsyncErrors];
+export type OAuthApplicationsGetOAuthApplicationsCountError = OAuthApplicationsGetOAuthApplicationsCountErrors[keyof OAuthApplicationsGetOAuthApplicationsCountErrors];
 
-export type GetOAuthApplicationsCountAsyncResponses = {
+export type OAuthApplicationsGetOAuthApplicationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOAuthApplicationsCountAsyncResponse = GetOAuthApplicationsCountAsyncResponses[keyof GetOAuthApplicationsCountAsyncResponses];
+export type OAuthApplicationsGetOAuthApplicationsCountResponse = OAuthApplicationsGetOAuthApplicationsCountResponses[keyof OAuthApplicationsGetOAuthApplicationsCountResponses];
 
-export type DeleteOAuthApplicationAsyncData = {
+export type OAuthApplicationsDeleteOAuthApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2374,7 +2434,7 @@ export type DeleteOAuthApplicationAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/{applicationId}';
 };
 
-export type DeleteOAuthApplicationAsyncErrors = {
+export type OAuthApplicationsDeleteOAuthApplicationErrors = {
     /**
      * Bad Request
      */
@@ -2389,18 +2449,18 @@ export type DeleteOAuthApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteOAuthApplicationAsyncError = DeleteOAuthApplicationAsyncErrors[keyof DeleteOAuthApplicationAsyncErrors];
+export type OAuthApplicationsDeleteOAuthApplicationError = OAuthApplicationsDeleteOAuthApplicationErrors[keyof OAuthApplicationsDeleteOAuthApplicationErrors];
 
-export type DeleteOAuthApplicationAsyncResponses = {
+export type OAuthApplicationsDeleteOAuthApplicationResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteOAuthApplicationAsyncResponse = DeleteOAuthApplicationAsyncResponses[keyof DeleteOAuthApplicationAsyncResponses];
+export type OAuthApplicationsDeleteOAuthApplicationResponse = OAuthApplicationsDeleteOAuthApplicationResponses[keyof OAuthApplicationsDeleteOAuthApplicationResponses];
 
-export type GetOAuthApplicationByIdAsyncData = {
+export type OAuthApplicationsGetOAuthApplicationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2415,7 +2475,7 @@ export type GetOAuthApplicationByIdAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/{applicationId}';
 };
 
-export type GetOAuthApplicationByIdAsyncErrors = {
+export type OAuthApplicationsGetOAuthApplicationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2426,18 +2486,18 @@ export type GetOAuthApplicationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOAuthApplicationByIdAsyncError = GetOAuthApplicationByIdAsyncErrors[keyof GetOAuthApplicationByIdAsyncErrors];
+export type OAuthApplicationsGetOAuthApplicationByIdError = OAuthApplicationsGetOAuthApplicationByIdErrors[keyof OAuthApplicationsGetOAuthApplicationByIdErrors];
 
-export type GetOAuthApplicationByIdAsyncResponses = {
+export type OAuthApplicationsGetOAuthApplicationByIdResponses = {
     /**
      * OK
      */
     200: OAuthApplicationDtoEnvelopeReadable;
 };
 
-export type GetOAuthApplicationByIdAsyncResponse = GetOAuthApplicationByIdAsyncResponses[keyof GetOAuthApplicationByIdAsyncResponses];
+export type OAuthApplicationsGetOAuthApplicationByIdResponse = OAuthApplicationsGetOAuthApplicationByIdResponses[keyof OAuthApplicationsGetOAuthApplicationByIdResponses];
 
-export type PatchOAuthApplicationAsyncData = {
+export type OAuthApplicationsPatchOAuthApplicationData = {
     body: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2452,7 +2512,7 @@ export type PatchOAuthApplicationAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/{applicationId}';
 };
 
-export type PatchOAuthApplicationAsyncErrors = {
+export type OAuthApplicationsPatchOAuthApplicationErrors = {
     /**
      * Bad Request
      */
@@ -2467,18 +2527,18 @@ export type PatchOAuthApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchOAuthApplicationAsyncError = PatchOAuthApplicationAsyncErrors[keyof PatchOAuthApplicationAsyncErrors];
+export type OAuthApplicationsPatchOAuthApplicationError = OAuthApplicationsPatchOAuthApplicationErrors[keyof OAuthApplicationsPatchOAuthApplicationErrors];
 
-export type PatchOAuthApplicationAsyncResponses = {
+export type OAuthApplicationsPatchOAuthApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchOAuthApplicationAsyncResponse = PatchOAuthApplicationAsyncResponses[keyof PatchOAuthApplicationAsyncResponses];
+export type OAuthApplicationsPatchOAuthApplicationResponse = OAuthApplicationsPatchOAuthApplicationResponses[keyof OAuthApplicationsPatchOAuthApplicationResponses];
 
-export type UpdateOAuthApplicationAsyncData = {
+export type OAuthApplicationsUpdateOAuthApplicationData = {
     body: OAuthApplicationUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2493,7 +2553,7 @@ export type UpdateOAuthApplicationAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/{applicationId}';
 };
 
-export type UpdateOAuthApplicationAsyncErrors = {
+export type OAuthApplicationsUpdateOAuthApplicationErrors = {
     /**
      * Bad Request
      */
@@ -2508,18 +2568,18 @@ export type UpdateOAuthApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateOAuthApplicationAsyncError = UpdateOAuthApplicationAsyncErrors[keyof UpdateOAuthApplicationAsyncErrors];
+export type OAuthApplicationsUpdateOAuthApplicationError = OAuthApplicationsUpdateOAuthApplicationErrors[keyof OAuthApplicationsUpdateOAuthApplicationErrors];
 
-export type UpdateOAuthApplicationAsyncResponses = {
+export type OAuthApplicationsUpdateOAuthApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateOAuthApplicationAsyncResponse = UpdateOAuthApplicationAsyncResponses[keyof UpdateOAuthApplicationAsyncResponses];
+export type OAuthApplicationsUpdateOAuthApplicationResponse = OAuthApplicationsUpdateOAuthApplicationResponses[keyof OAuthApplicationsUpdateOAuthApplicationResponses];
 
-export type GetOAuthAuthorizationsAsyncData = {
+export type OAuthApplicationsGetOAuthAuthorizationsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2533,7 +2593,7 @@ export type GetOAuthAuthorizationsAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/Authorizations';
 };
 
-export type GetOAuthAuthorizationsAsyncErrors = {
+export type OAuthApplicationsGetOAuthAuthorizationsErrors = {
     /**
      * Unauthorized
      */
@@ -2544,18 +2604,18 @@ export type GetOAuthAuthorizationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOAuthAuthorizationsAsyncError = GetOAuthAuthorizationsAsyncErrors[keyof GetOAuthAuthorizationsAsyncErrors];
+export type OAuthApplicationsGetOAuthAuthorizationsError = OAuthApplicationsGetOAuthAuthorizationsErrors[keyof OAuthApplicationsGetOAuthAuthorizationsErrors];
 
-export type GetOAuthAuthorizationsAsyncResponses = {
+export type OAuthApplicationsGetOAuthAuthorizationsResponses = {
     /**
      * OK
      */
     200: OAuthAuthorizationDtoListEnvelopeReadable;
 };
 
-export type GetOAuthAuthorizationsAsyncResponse = GetOAuthAuthorizationsAsyncResponses[keyof GetOAuthAuthorizationsAsyncResponses];
+export type OAuthApplicationsGetOAuthAuthorizationsResponse = OAuthApplicationsGetOAuthAuthorizationsResponses[keyof OAuthApplicationsGetOAuthAuthorizationsResponses];
 
-export type GetOAuthAuthorizationsCountAsyncData = {
+export type OAuthApplicationsGetOAuthAuthorizationsCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2569,7 +2629,7 @@ export type GetOAuthAuthorizationsCountAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/Authorizations/Count';
 };
 
-export type GetOAuthAuthorizationsCountAsyncErrors = {
+export type OAuthApplicationsGetOAuthAuthorizationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2580,18 +2640,18 @@ export type GetOAuthAuthorizationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOAuthAuthorizationsCountAsyncError = GetOAuthAuthorizationsCountAsyncErrors[keyof GetOAuthAuthorizationsCountAsyncErrors];
+export type OAuthApplicationsGetOAuthAuthorizationsCountError = OAuthApplicationsGetOAuthAuthorizationsCountErrors[keyof OAuthApplicationsGetOAuthAuthorizationsCountErrors];
 
-export type GetOAuthAuthorizationsCountAsyncResponses = {
+export type OAuthApplicationsGetOAuthAuthorizationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetOAuthAuthorizationsCountAsyncResponse = GetOAuthAuthorizationsCountAsyncResponses[keyof GetOAuthAuthorizationsCountAsyncResponses];
+export type OAuthApplicationsGetOAuthAuthorizationsCountResponse = OAuthApplicationsGetOAuthAuthorizationsCountResponses[keyof OAuthApplicationsGetOAuthAuthorizationsCountResponses];
 
-export type GetOAuthAuthorizationByIdAsyncData = {
+export type OAuthApplicationsGetOAuthAuthorizationByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2606,7 +2666,7 @@ export type GetOAuthAuthorizationByIdAsyncData = {
     url: '/api/v2/SecurityService/OAuthApplications/Authorizations/{authorizationId}';
 };
 
-export type GetOAuthAuthorizationByIdAsyncErrors = {
+export type OAuthApplicationsGetOAuthAuthorizationByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2617,18 +2677,18 @@ export type GetOAuthAuthorizationByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetOAuthAuthorizationByIdAsyncError = GetOAuthAuthorizationByIdAsyncErrors[keyof GetOAuthAuthorizationByIdAsyncErrors];
+export type OAuthApplicationsGetOAuthAuthorizationByIdError = OAuthApplicationsGetOAuthAuthorizationByIdErrors[keyof OAuthApplicationsGetOAuthAuthorizationByIdErrors];
 
-export type GetOAuthAuthorizationByIdAsyncResponses = {
+export type OAuthApplicationsGetOAuthAuthorizationByIdResponses = {
     /**
      * OK
      */
     200: OAuthAuthorizationDtoEnvelopeReadable;
 };
 
-export type GetOAuthAuthorizationByIdAsyncResponse = GetOAuthAuthorizationByIdAsyncResponses[keyof GetOAuthAuthorizationByIdAsyncResponses];
+export type OAuthApplicationsGetOAuthAuthorizationByIdResponse = OAuthApplicationsGetOAuthAuthorizationByIdResponses[keyof OAuthApplicationsGetOAuthAuthorizationByIdResponses];
 
-export type GetPermissionsAsyncData = {
+export type PermissionsGetPermissionsData = {
     body?: SecurityPermissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2641,7 +2701,7 @@ export type GetPermissionsAsyncData = {
     url: '/api/v2/SecurityService/Permissions';
 };
 
-export type GetPermissionsAsyncErrors = {
+export type PermissionsGetPermissionsErrors = {
     /**
      * Unauthorized
      */
@@ -2652,18 +2712,18 @@ export type GetPermissionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPermissionsAsyncError = GetPermissionsAsyncErrors[keyof GetPermissionsAsyncErrors];
+export type PermissionsGetPermissionsError = PermissionsGetPermissionsErrors[keyof PermissionsGetPermissionsErrors];
 
-export type GetPermissionsAsyncResponses = {
+export type PermissionsGetPermissionsResponses = {
     /**
      * OK
      */
     200: SecurityPermissionDtoListEnvelopeReadable;
 };
 
-export type GetPermissionsAsyncResponse = GetPermissionsAsyncResponses[keyof GetPermissionsAsyncResponses];
+export type PermissionsGetPermissionsResponse = PermissionsGetPermissionsResponses[keyof PermissionsGetPermissionsResponses];
 
-export type CreatePermissionAsyncData = {
+export type PermissionsCreatePermissionData = {
     body: SecurityPermissionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2676,7 +2736,7 @@ export type CreatePermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions';
 };
 
-export type CreatePermissionAsyncErrors = {
+export type PermissionsCreatePermissionErrors = {
     /**
      * Bad Request
      */
@@ -2691,18 +2751,18 @@ export type CreatePermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreatePermissionAsyncError = CreatePermissionAsyncErrors[keyof CreatePermissionAsyncErrors];
+export type PermissionsCreatePermissionError = PermissionsCreatePermissionErrors[keyof PermissionsCreatePermissionErrors];
 
-export type CreatePermissionAsyncResponses = {
+export type PermissionsCreatePermissionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreatePermissionAsyncResponse = CreatePermissionAsyncResponses[keyof CreatePermissionAsyncResponses];
+export type PermissionsCreatePermissionResponse = PermissionsCreatePermissionResponses[keyof PermissionsCreatePermissionResponses];
 
-export type GetPermissionsCountAsyncData = {
+export type PermissionsGetPermissionsCountData = {
     body?: SecurityPermissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2715,7 +2775,7 @@ export type GetPermissionsCountAsyncData = {
     url: '/api/v2/SecurityService/Permissions/Count';
 };
 
-export type GetPermissionsCountAsyncErrors = {
+export type PermissionsGetPermissionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -2726,18 +2786,18 @@ export type GetPermissionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPermissionsCountAsyncError = GetPermissionsCountAsyncErrors[keyof GetPermissionsCountAsyncErrors];
+export type PermissionsGetPermissionsCountError = PermissionsGetPermissionsCountErrors[keyof PermissionsGetPermissionsCountErrors];
 
-export type GetPermissionsCountAsyncResponses = {
+export type PermissionsGetPermissionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetPermissionsCountAsyncResponse = GetPermissionsCountAsyncResponses[keyof GetPermissionsCountAsyncResponses];
+export type PermissionsGetPermissionsCountResponse = PermissionsGetPermissionsCountResponses[keyof PermissionsGetPermissionsCountResponses];
 
-export type DeletePermissionAsyncData = {
+export type PermissionsDeletePermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2752,7 +2812,7 @@ export type DeletePermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}';
 };
 
-export type DeletePermissionAsyncErrors = {
+export type PermissionsDeletePermissionErrors = {
     /**
      * Bad Request
      */
@@ -2767,18 +2827,18 @@ export type DeletePermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeletePermissionAsyncError = DeletePermissionAsyncErrors[keyof DeletePermissionAsyncErrors];
+export type PermissionsDeletePermissionError = PermissionsDeletePermissionErrors[keyof PermissionsDeletePermissionErrors];
 
-export type DeletePermissionAsyncResponses = {
+export type PermissionsDeletePermissionResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeletePermissionAsyncResponse = DeletePermissionAsyncResponses[keyof DeletePermissionAsyncResponses];
+export type PermissionsDeletePermissionResponse = PermissionsDeletePermissionResponses[keyof PermissionsDeletePermissionResponses];
 
-export type GetPermissionAsyncData = {
+export type PermissionsGetPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2793,7 +2853,7 @@ export type GetPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}';
 };
 
-export type GetPermissionAsyncErrors = {
+export type PermissionsGetPermissionErrors = {
     /**
      * Unauthorized
      */
@@ -2804,18 +2864,18 @@ export type GetPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPermissionAsyncError = GetPermissionAsyncErrors[keyof GetPermissionAsyncErrors];
+export type PermissionsGetPermissionError = PermissionsGetPermissionErrors[keyof PermissionsGetPermissionErrors];
 
-export type GetPermissionAsyncResponses = {
+export type PermissionsGetPermissionResponses = {
     /**
      * OK
      */
     200: SecurityPermissionDtoEnvelopeReadable;
 };
 
-export type GetPermissionAsyncResponse = GetPermissionAsyncResponses[keyof GetPermissionAsyncResponses];
+export type PermissionsGetPermissionResponse = PermissionsGetPermissionResponses[keyof PermissionsGetPermissionResponses];
 
-export type PatchPermissionAsyncData = {
+export type PermissionsPatchPermissionData = {
     body: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2830,7 +2890,7 @@ export type PatchPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}';
 };
 
-export type PatchPermissionAsyncErrors = {
+export type PermissionsPatchPermissionErrors = {
     /**
      * Bad Request
      */
@@ -2845,18 +2905,18 @@ export type PatchPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchPermissionAsyncError = PatchPermissionAsyncErrors[keyof PatchPermissionAsyncErrors];
+export type PermissionsPatchPermissionError = PermissionsPatchPermissionErrors[keyof PermissionsPatchPermissionErrors];
 
-export type PatchPermissionAsyncResponses = {
+export type PermissionsPatchPermissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchPermissionAsyncResponse = PatchPermissionAsyncResponses[keyof PatchPermissionAsyncResponses];
+export type PermissionsPatchPermissionResponse = PermissionsPatchPermissionResponses[keyof PermissionsPatchPermissionResponses];
 
-export type UpdatePermissionAsyncData = {
+export type PermissionsUpdatePermissionData = {
     body: SecurityPermissionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2871,7 +2931,7 @@ export type UpdatePermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}';
 };
 
-export type UpdatePermissionAsyncErrors = {
+export type PermissionsUpdatePermissionErrors = {
     /**
      * Bad Request
      */
@@ -2886,18 +2946,18 @@ export type UpdatePermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdatePermissionAsyncError = UpdatePermissionAsyncErrors[keyof UpdatePermissionAsyncErrors];
+export type PermissionsUpdatePermissionError = PermissionsUpdatePermissionErrors[keyof PermissionsUpdatePermissionErrors];
 
-export type UpdatePermissionAsyncResponses = {
+export type PermissionsUpdatePermissionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdatePermissionAsyncResponse = UpdatePermissionAsyncResponses[keyof UpdatePermissionAsyncResponses];
+export type PermissionsUpdatePermissionResponse = PermissionsUpdatePermissionResponses[keyof PermissionsUpdatePermissionResponses];
 
-export type RevokeRoleFromPermissionAsyncData = {
+export type PermissionsRevokeRoleFromPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2913,7 +2973,7 @@ export type RevokeRoleFromPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Roles/{securityRoleId}';
 };
 
-export type RevokeRoleFromPermissionAsyncErrors = {
+export type PermissionsRevokeRoleFromPermissionErrors = {
     /**
      * Bad Request
      */
@@ -2928,18 +2988,18 @@ export type RevokeRoleFromPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokeRoleFromPermissionAsyncError = RevokeRoleFromPermissionAsyncErrors[keyof RevokeRoleFromPermissionAsyncErrors];
+export type PermissionsRevokeRoleFromPermissionError = PermissionsRevokeRoleFromPermissionErrors[keyof PermissionsRevokeRoleFromPermissionErrors];
 
-export type RevokeRoleFromPermissionAsyncResponses = {
+export type PermissionsRevokeRoleFromPermissionResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type RevokeRoleFromPermissionAsyncResponse = RevokeRoleFromPermissionAsyncResponses[keyof RevokeRoleFromPermissionAsyncResponses];
+export type PermissionsRevokeRoleFromPermissionResponse = PermissionsRevokeRoleFromPermissionResponses[keyof PermissionsRevokeRoleFromPermissionResponses];
 
-export type AssignRoleToPermissionAsyncData = {
+export type PermissionsAssignRoleToPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2955,7 +3015,7 @@ export type AssignRoleToPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Roles/{securityRoleId}';
 };
 
-export type AssignRoleToPermissionAsyncErrors = {
+export type PermissionsAssignRoleToPermissionErrors = {
     /**
      * Bad Request
      */
@@ -2970,18 +3030,18 @@ export type AssignRoleToPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignRoleToPermissionAsyncError = AssignRoleToPermissionAsyncErrors[keyof AssignRoleToPermissionAsyncErrors];
+export type PermissionsAssignRoleToPermissionError = PermissionsAssignRoleToPermissionErrors[keyof PermissionsAssignRoleToPermissionErrors];
 
-export type AssignRoleToPermissionAsyncResponses = {
+export type PermissionsAssignRoleToPermissionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type AssignRoleToPermissionAsyncResponse = AssignRoleToPermissionAsyncResponses[keyof AssignRoleToPermissionAsyncResponses];
+export type PermissionsAssignRoleToPermissionResponse = PermissionsAssignRoleToPermissionResponses[keyof PermissionsAssignRoleToPermissionResponses];
 
-export type GetRolesByPermissionAsyncData = {
+export type PermissionsGetRolesByPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2996,7 +3056,7 @@ export type GetRolesByPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Roles';
 };
 
-export type GetRolesByPermissionAsyncErrors = {
+export type PermissionsGetRolesByPermissionErrors = {
     /**
      * Unauthorized
      */
@@ -3007,18 +3067,18 @@ export type GetRolesByPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRolesByPermissionAsyncError = GetRolesByPermissionAsyncErrors[keyof GetRolesByPermissionAsyncErrors];
+export type PermissionsGetRolesByPermissionError = PermissionsGetRolesByPermissionErrors[keyof PermissionsGetRolesByPermissionErrors];
 
-export type GetRolesByPermissionAsyncResponses = {
+export type PermissionsGetRolesByPermissionResponses = {
     /**
      * OK
      */
     200: SecurityRoleDtoListEnvelopeReadable;
 };
 
-export type GetRolesByPermissionAsyncResponse = GetRolesByPermissionAsyncResponses[keyof GetRolesByPermissionAsyncResponses];
+export type PermissionsGetRolesByPermissionResponse = PermissionsGetRolesByPermissionResponses[keyof PermissionsGetRolesByPermissionResponses];
 
-export type GetApplicationsByPermissionAsyncData = {
+export type PermissionsGetApplicationsByPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3033,7 +3093,7 @@ export type GetApplicationsByPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Applications';
 };
 
-export type GetApplicationsByPermissionAsyncErrors = {
+export type PermissionsGetApplicationsByPermissionErrors = {
     /**
      * Unauthorized
      */
@@ -3044,18 +3104,18 @@ export type GetApplicationsByPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApplicationsByPermissionAsyncError = GetApplicationsByPermissionAsyncErrors[keyof GetApplicationsByPermissionAsyncErrors];
+export type PermissionsGetApplicationsByPermissionError = PermissionsGetApplicationsByPermissionErrors[keyof PermissionsGetApplicationsByPermissionErrors];
 
-export type GetApplicationsByPermissionAsyncResponses = {
+export type PermissionsGetApplicationsByPermissionResponses = {
     /**
      * OK
      */
     200: BusinessApplicationSimpleDtoListEnvelopeReadable;
 };
 
-export type GetApplicationsByPermissionAsyncResponse = GetApplicationsByPermissionAsyncResponses[keyof GetApplicationsByPermissionAsyncResponses];
+export type PermissionsGetApplicationsByPermissionResponse = PermissionsGetApplicationsByPermissionResponses[keyof PermissionsGetApplicationsByPermissionResponses];
 
-export type GetEnrollmentsByPermissionAsyncData = {
+export type PermissionsGetEnrollmentsByPermissionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3070,7 +3130,7 @@ export type GetEnrollmentsByPermissionAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Enrollments';
 };
 
-export type GetEnrollmentsByPermissionAsyncErrors = {
+export type PermissionsGetEnrollmentsByPermissionErrors = {
     /**
      * Unauthorized
      */
@@ -3081,18 +3141,18 @@ export type GetEnrollmentsByPermissionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentsByPermissionAsyncError = GetEnrollmentsByPermissionAsyncErrors[keyof GetEnrollmentsByPermissionAsyncErrors];
+export type PermissionsGetEnrollmentsByPermissionError = PermissionsGetEnrollmentsByPermissionErrors[keyof PermissionsGetEnrollmentsByPermissionErrors];
 
-export type GetEnrollmentsByPermissionAsyncResponses = {
+export type PermissionsGetEnrollmentsByPermissionResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetEnrollmentsByPermissionAsyncResponse = GetEnrollmentsByPermissionAsyncResponses[keyof GetEnrollmentsByPermissionAsyncResponses];
+export type PermissionsGetEnrollmentsByPermissionResponse = PermissionsGetEnrollmentsByPermissionResponses[keyof PermissionsGetEnrollmentsByPermissionResponses];
 
-export type RevokePermissionFromEnrollmentAsyncData = {
+export type PermissionsRevokePermissionFromEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3108,7 +3168,7 @@ export type RevokePermissionFromEnrollmentAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Enrollments/{enrollmentId}';
 };
 
-export type RevokePermissionFromEnrollmentAsyncErrors = {
+export type PermissionsRevokePermissionFromEnrollmentErrors = {
     /**
      * Bad Request
      */
@@ -3123,18 +3183,18 @@ export type RevokePermissionFromEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokePermissionFromEnrollmentAsyncError = RevokePermissionFromEnrollmentAsyncErrors[keyof RevokePermissionFromEnrollmentAsyncErrors];
+export type PermissionsRevokePermissionFromEnrollmentError = PermissionsRevokePermissionFromEnrollmentErrors[keyof PermissionsRevokePermissionFromEnrollmentErrors];
 
-export type RevokePermissionFromEnrollmentAsyncResponses = {
+export type PermissionsRevokePermissionFromEnrollmentResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type RevokePermissionFromEnrollmentAsyncResponse = RevokePermissionFromEnrollmentAsyncResponses[keyof RevokePermissionFromEnrollmentAsyncResponses];
+export type PermissionsRevokePermissionFromEnrollmentResponse = PermissionsRevokePermissionFromEnrollmentResponses[keyof PermissionsRevokePermissionFromEnrollmentResponses];
 
-export type AssignPermissionToEnrollmentAsyncData = {
+export type PermissionsAssignPermissionToEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3150,7 +3210,7 @@ export type AssignPermissionToEnrollmentAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Enrollments/{enrollmentId}';
 };
 
-export type AssignPermissionToEnrollmentAsyncErrors = {
+export type PermissionsAssignPermissionToEnrollmentErrors = {
     /**
      * Bad Request
      */
@@ -3165,18 +3225,18 @@ export type AssignPermissionToEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignPermissionToEnrollmentAsyncError = AssignPermissionToEnrollmentAsyncErrors[keyof AssignPermissionToEnrollmentAsyncErrors];
+export type PermissionsAssignPermissionToEnrollmentError = PermissionsAssignPermissionToEnrollmentErrors[keyof PermissionsAssignPermissionToEnrollmentErrors];
 
-export type AssignPermissionToEnrollmentAsyncResponses = {
+export type PermissionsAssignPermissionToEnrollmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type AssignPermissionToEnrollmentAsyncResponse = AssignPermissionToEnrollmentAsyncResponses[keyof AssignPermissionToEnrollmentAsyncResponses];
+export type PermissionsAssignPermissionToEnrollmentResponse = PermissionsAssignPermissionToEnrollmentResponses[keyof PermissionsAssignPermissionToEnrollmentResponses];
 
-export type RevokePermissionFromBusinessApplicationAsyncData = {
+export type PermissionsRevokePermissionFromBusinessApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3192,7 +3252,7 @@ export type RevokePermissionFromBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Applications/{applicationId}';
 };
 
-export type RevokePermissionFromBusinessApplicationAsyncErrors = {
+export type PermissionsRevokePermissionFromBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -3207,18 +3267,18 @@ export type RevokePermissionFromBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokePermissionFromBusinessApplicationAsyncError = RevokePermissionFromBusinessApplicationAsyncErrors[keyof RevokePermissionFromBusinessApplicationAsyncErrors];
+export type PermissionsRevokePermissionFromBusinessApplicationError = PermissionsRevokePermissionFromBusinessApplicationErrors[keyof PermissionsRevokePermissionFromBusinessApplicationErrors];
 
-export type RevokePermissionFromBusinessApplicationAsyncResponses = {
+export type PermissionsRevokePermissionFromBusinessApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RevokePermissionFromBusinessApplicationAsyncResponse = RevokePermissionFromBusinessApplicationAsyncResponses[keyof RevokePermissionFromBusinessApplicationAsyncResponses];
+export type PermissionsRevokePermissionFromBusinessApplicationResponse = PermissionsRevokePermissionFromBusinessApplicationResponses[keyof PermissionsRevokePermissionFromBusinessApplicationResponses];
 
-export type AssignPermissionToBusinessApplicationAsyncData = {
+export type PermissionsAssignPermissionToBusinessApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3234,7 +3294,7 @@ export type AssignPermissionToBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Permissions/{securityPermissionId}/Applications/{applicationId}';
 };
 
-export type AssignPermissionToBusinessApplicationAsyncErrors = {
+export type PermissionsAssignPermissionToBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -3249,18 +3309,18 @@ export type AssignPermissionToBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignPermissionToBusinessApplicationAsyncError = AssignPermissionToBusinessApplicationAsyncErrors[keyof AssignPermissionToBusinessApplicationAsyncErrors];
+export type PermissionsAssignPermissionToBusinessApplicationError = PermissionsAssignPermissionToBusinessApplicationErrors[keyof PermissionsAssignPermissionToBusinessApplicationErrors];
 
-export type AssignPermissionToBusinessApplicationAsyncResponses = {
+export type PermissionsAssignPermissionToBusinessApplicationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type AssignPermissionToBusinessApplicationAsyncResponse = AssignPermissionToBusinessApplicationAsyncResponses[keyof AssignPermissionToBusinessApplicationAsyncResponses];
+export type PermissionsAssignPermissionToBusinessApplicationResponse = PermissionsAssignPermissionToBusinessApplicationResponses[keyof PermissionsAssignPermissionToBusinessApplicationResponses];
 
-export type GetPermissionsByEnrollmentAsyncData = {
+export type PermissionsGetPermissionsByEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3275,7 +3335,7 @@ export type GetPermissionsByEnrollmentAsyncData = {
     url: '/api/v2/SecurityService/Permissions/ByEnrollment/{enrollmentId}';
 };
 
-export type GetPermissionsByEnrollmentAsyncErrors = {
+export type PermissionsGetPermissionsByEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3286,18 +3346,18 @@ export type GetPermissionsByEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetPermissionsByEnrollmentAsyncError = GetPermissionsByEnrollmentAsyncErrors[keyof GetPermissionsByEnrollmentAsyncErrors];
+export type PermissionsGetPermissionsByEnrollmentError = PermissionsGetPermissionsByEnrollmentErrors[keyof PermissionsGetPermissionsByEnrollmentErrors];
 
-export type GetPermissionsByEnrollmentAsyncResponses = {
+export type PermissionsGetPermissionsByEnrollmentResponses = {
     /**
      * OK
      */
     200: SecurityPermissionDtoListEnvelopeReadable;
 };
 
-export type GetPermissionsByEnrollmentAsyncResponse = GetPermissionsByEnrollmentAsyncResponses[keyof GetPermissionsByEnrollmentAsyncResponses];
+export type PermissionsGetPermissionsByEnrollmentResponse = PermissionsGetPermissionsByEnrollmentResponses[keyof PermissionsGetPermissionsByEnrollmentResponses];
 
-export type GetRolesAsyncData = {
+export type RolesGetRolesData = {
     body?: SecurityRoleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3310,7 +3370,7 @@ export type GetRolesAsyncData = {
     url: '/api/v2/SecurityService/Roles';
 };
 
-export type GetRolesAsyncErrors = {
+export type RolesGetRolesErrors = {
     /**
      * Unauthorized
      */
@@ -3321,18 +3381,18 @@ export type GetRolesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRolesAsyncError = GetRolesAsyncErrors[keyof GetRolesAsyncErrors];
+export type RolesGetRolesError = RolesGetRolesErrors[keyof RolesGetRolesErrors];
 
-export type GetRolesAsyncResponses = {
+export type RolesGetRolesResponses = {
     /**
      * OK
      */
     200: SecurityRoleDtoListEnvelopeReadable;
 };
 
-export type GetRolesAsyncResponse = GetRolesAsyncResponses[keyof GetRolesAsyncResponses];
+export type RolesGetRolesResponse = RolesGetRolesResponses[keyof RolesGetRolesResponses];
 
-export type CreateRoleAsyncData = {
+export type RolesCreateRoleData = {
     body: SecurityRoleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3345,7 +3405,7 @@ export type CreateRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles';
 };
 
-export type CreateRoleAsyncErrors = {
+export type RolesCreateRoleErrors = {
     /**
      * Bad Request
      */
@@ -3360,18 +3420,18 @@ export type CreateRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateRoleAsyncError = CreateRoleAsyncErrors[keyof CreateRoleAsyncErrors];
+export type RolesCreateRoleError = RolesCreateRoleErrors[keyof RolesCreateRoleErrors];
 
-export type CreateRoleAsyncResponses = {
+export type RolesCreateRoleResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateRoleAsyncResponse = CreateRoleAsyncResponses[keyof CreateRoleAsyncResponses];
+export type RolesCreateRoleResponse = RolesCreateRoleResponses[keyof RolesCreateRoleResponses];
 
-export type GetRolesCountAsyncData = {
+export type RolesGetRolesCountData = {
     body?: SecurityRoleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3384,7 +3444,7 @@ export type GetRolesCountAsyncData = {
     url: '/api/v2/SecurityService/Roles/Count';
 };
 
-export type GetRolesCountAsyncErrors = {
+export type RolesGetRolesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3395,18 +3455,18 @@ export type GetRolesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRolesCountAsyncError = GetRolesCountAsyncErrors[keyof GetRolesCountAsyncErrors];
+export type RolesGetRolesCountError = RolesGetRolesCountErrors[keyof RolesGetRolesCountErrors];
 
-export type GetRolesCountAsyncResponses = {
+export type RolesGetRolesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetRolesCountAsyncResponse = GetRolesCountAsyncResponses[keyof GetRolesCountAsyncResponses];
+export type RolesGetRolesCountResponse = RolesGetRolesCountResponses[keyof RolesGetRolesCountResponses];
 
-export type DeleteRoleAsyncData = {
+export type RolesDeleteRoleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3421,7 +3481,7 @@ export type DeleteRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}';
 };
 
-export type DeleteRoleAsyncErrors = {
+export type RolesDeleteRoleErrors = {
     /**
      * Bad Request
      */
@@ -3436,18 +3496,18 @@ export type DeleteRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteRoleAsyncError = DeleteRoleAsyncErrors[keyof DeleteRoleAsyncErrors];
+export type RolesDeleteRoleError = RolesDeleteRoleErrors[keyof RolesDeleteRoleErrors];
 
-export type DeleteRoleAsyncResponses = {
+export type RolesDeleteRoleResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteRoleAsyncResponse = DeleteRoleAsyncResponses[keyof DeleteRoleAsyncResponses];
+export type RolesDeleteRoleResponse = RolesDeleteRoleResponses[keyof RolesDeleteRoleResponses];
 
-export type GetRoleAsyncData = {
+export type RolesGetRoleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3462,7 +3522,7 @@ export type GetRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}';
 };
 
-export type GetRoleAsyncErrors = {
+export type RolesGetRoleErrors = {
     /**
      * Unauthorized
      */
@@ -3473,18 +3533,18 @@ export type GetRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRoleAsyncError = GetRoleAsyncErrors[keyof GetRoleAsyncErrors];
+export type RolesGetRoleError = RolesGetRoleErrors[keyof RolesGetRoleErrors];
 
-export type GetRoleAsyncResponses = {
+export type RolesGetRoleResponses = {
     /**
      * OK
      */
     200: SecurityRoleDtoEnvelopeReadable;
 };
 
-export type GetRoleAsyncResponse = GetRoleAsyncResponses[keyof GetRoleAsyncResponses];
+export type RolesGetRoleResponse = RolesGetRoleResponses[keyof RolesGetRoleResponses];
 
-export type PatchRoleAsyncData = {
+export type RolesPatchRoleData = {
     body: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3499,7 +3559,7 @@ export type PatchRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}';
 };
 
-export type PatchRoleAsyncErrors = {
+export type RolesPatchRoleErrors = {
     /**
      * Bad Request
      */
@@ -3514,18 +3574,18 @@ export type PatchRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchRoleAsyncError = PatchRoleAsyncErrors[keyof PatchRoleAsyncErrors];
+export type RolesPatchRoleError = RolesPatchRoleErrors[keyof RolesPatchRoleErrors];
 
-export type PatchRoleAsyncResponses = {
+export type RolesPatchRoleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchRoleAsyncResponse = PatchRoleAsyncResponses[keyof PatchRoleAsyncResponses];
+export type RolesPatchRoleResponse = RolesPatchRoleResponses[keyof RolesPatchRoleResponses];
 
-export type UpdateRoleAsyncData = {
+export type RolesUpdateRoleData = {
     body: SecurityRoleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3540,7 +3600,7 @@ export type UpdateRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}';
 };
 
-export type UpdateRoleAsyncErrors = {
+export type RolesUpdateRoleErrors = {
     /**
      * Bad Request
      */
@@ -3555,18 +3615,18 @@ export type UpdateRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateRoleAsyncError = UpdateRoleAsyncErrors[keyof UpdateRoleAsyncErrors];
+export type RolesUpdateRoleError = RolesUpdateRoleErrors[keyof RolesUpdateRoleErrors];
 
-export type UpdateRoleAsyncResponses = {
+export type RolesUpdateRoleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateRoleAsyncResponse = UpdateRoleAsyncResponses[keyof UpdateRoleAsyncResponses];
+export type RolesUpdateRoleResponse = RolesUpdateRoleResponses[keyof RolesUpdateRoleResponses];
 
-export type GetRolePermissionsAsyncData = {
+export type RolesGetRolePermissionsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3581,7 +3641,7 @@ export type GetRolePermissionsAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Permissions';
 };
 
-export type GetRolePermissionsAsyncErrors = {
+export type RolesGetRolePermissionsErrors = {
     /**
      * Unauthorized
      */
@@ -3592,18 +3652,18 @@ export type GetRolePermissionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRolePermissionsAsyncError = GetRolePermissionsAsyncErrors[keyof GetRolePermissionsAsyncErrors];
+export type RolesGetRolePermissionsError = RolesGetRolePermissionsErrors[keyof RolesGetRolePermissionsErrors];
 
-export type GetRolePermissionsAsyncResponses = {
+export type RolesGetRolePermissionsResponses = {
     /**
      * OK
      */
     200: SecurityPermissionDtoListEnvelopeReadable;
 };
 
-export type GetRolePermissionsAsyncResponse = GetRolePermissionsAsyncResponses[keyof GetRolePermissionsAsyncResponses];
+export type RolesGetRolePermissionsResponse = RolesGetRolePermissionsResponses[keyof RolesGetRolePermissionsResponses];
 
-export type RevokePermissionFromRoleAsyncData = {
+export type RolesRevokePermissionFromRoleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3619,7 +3679,7 @@ export type RevokePermissionFromRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Permissions/{securityPermissionId}';
 };
 
-export type RevokePermissionFromRoleAsyncErrors = {
+export type RolesRevokePermissionFromRoleErrors = {
     /**
      * Bad Request
      */
@@ -3634,18 +3694,18 @@ export type RevokePermissionFromRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokePermissionFromRoleAsyncError = RevokePermissionFromRoleAsyncErrors[keyof RevokePermissionFromRoleAsyncErrors];
+export type RolesRevokePermissionFromRoleError = RolesRevokePermissionFromRoleErrors[keyof RolesRevokePermissionFromRoleErrors];
 
-export type RevokePermissionFromRoleAsyncResponses = {
+export type RolesRevokePermissionFromRoleResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type RevokePermissionFromRoleAsyncResponse = RevokePermissionFromRoleAsyncResponses[keyof RevokePermissionFromRoleAsyncResponses];
+export type RolesRevokePermissionFromRoleResponse = RolesRevokePermissionFromRoleResponses[keyof RolesRevokePermissionFromRoleResponses];
 
-export type AssignPermissionToRoleAsyncData = {
+export type RolesAssignPermissionToRoleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3661,7 +3721,7 @@ export type AssignPermissionToRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Permissions/{securityPermissionId}';
 };
 
-export type AssignPermissionToRoleAsyncErrors = {
+export type RolesAssignPermissionToRoleErrors = {
     /**
      * Bad Request
      */
@@ -3676,18 +3736,18 @@ export type AssignPermissionToRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignPermissionToRoleAsyncError = AssignPermissionToRoleAsyncErrors[keyof AssignPermissionToRoleAsyncErrors];
+export type RolesAssignPermissionToRoleError = RolesAssignPermissionToRoleErrors[keyof RolesAssignPermissionToRoleErrors];
 
-export type AssignPermissionToRoleAsyncResponses = {
+export type RolesAssignPermissionToRoleResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type AssignPermissionToRoleAsyncResponse = AssignPermissionToRoleAsyncResponses[keyof AssignPermissionToRoleAsyncResponses];
+export type RolesAssignPermissionToRoleResponse = RolesAssignPermissionToRoleResponses[keyof RolesAssignPermissionToRoleResponses];
 
-export type GetEnrollmentsByRoleAsyncData = {
+export type RolesGetEnrollmentsByRoleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3702,7 +3762,7 @@ export type GetEnrollmentsByRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Enrollments';
 };
 
-export type GetEnrollmentsByRoleAsyncErrors = {
+export type RolesGetEnrollmentsByRoleErrors = {
     /**
      * Unauthorized
      */
@@ -3713,18 +3773,18 @@ export type GetEnrollmentsByRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentsByRoleAsyncError = GetEnrollmentsByRoleAsyncErrors[keyof GetEnrollmentsByRoleAsyncErrors];
+export type RolesGetEnrollmentsByRoleError = RolesGetEnrollmentsByRoleErrors[keyof RolesGetEnrollmentsByRoleErrors];
 
-export type GetEnrollmentsByRoleAsyncResponses = {
+export type RolesGetEnrollmentsByRoleResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetEnrollmentsByRoleAsyncResponse = GetEnrollmentsByRoleAsyncResponses[keyof GetEnrollmentsByRoleAsyncResponses];
+export type RolesGetEnrollmentsByRoleResponse = RolesGetEnrollmentsByRoleResponses[keyof RolesGetEnrollmentsByRoleResponses];
 
-export type GetApplicationsByRoleAsyncData = {
+export type RolesGetApplicationsByRoleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3739,7 +3799,7 @@ export type GetApplicationsByRoleAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Applications';
 };
 
-export type GetApplicationsByRoleAsyncErrors = {
+export type RolesGetApplicationsByRoleErrors = {
     /**
      * Unauthorized
      */
@@ -3750,18 +3810,18 @@ export type GetApplicationsByRoleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApplicationsByRoleAsyncError = GetApplicationsByRoleAsyncErrors[keyof GetApplicationsByRoleAsyncErrors];
+export type RolesGetApplicationsByRoleError = RolesGetApplicationsByRoleErrors[keyof RolesGetApplicationsByRoleErrors];
 
-export type GetApplicationsByRoleAsyncResponses = {
+export type RolesGetApplicationsByRoleResponses = {
     /**
      * OK
      */
     200: BusinessApplicationSimpleDtoListEnvelopeReadable;
 };
 
-export type GetApplicationsByRoleAsyncResponse = GetApplicationsByRoleAsyncResponses[keyof GetApplicationsByRoleAsyncResponses];
+export type RolesGetApplicationsByRoleResponse = RolesGetApplicationsByRoleResponses[keyof RolesGetApplicationsByRoleResponses];
 
-export type RevokeRoleFromEnrollmentAsyncData = {
+export type RolesRevokeRoleFromEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3777,7 +3837,7 @@ export type RevokeRoleFromEnrollmentAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Enrollments/{enrollmentId}';
 };
 
-export type RevokeRoleFromEnrollmentAsyncErrors = {
+export type RolesRevokeRoleFromEnrollmentErrors = {
     /**
      * Bad Request
      */
@@ -3792,18 +3852,18 @@ export type RevokeRoleFromEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokeRoleFromEnrollmentAsyncError = RevokeRoleFromEnrollmentAsyncErrors[keyof RevokeRoleFromEnrollmentAsyncErrors];
+export type RolesRevokeRoleFromEnrollmentError = RolesRevokeRoleFromEnrollmentErrors[keyof RolesRevokeRoleFromEnrollmentErrors];
 
-export type RevokeRoleFromEnrollmentAsyncResponses = {
+export type RolesRevokeRoleFromEnrollmentResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type RevokeRoleFromEnrollmentAsyncResponse = RevokeRoleFromEnrollmentAsyncResponses[keyof RevokeRoleFromEnrollmentAsyncResponses];
+export type RolesRevokeRoleFromEnrollmentResponse = RolesRevokeRoleFromEnrollmentResponses[keyof RolesRevokeRoleFromEnrollmentResponses];
 
-export type AssignRoleToEnrollmentAsyncData = {
+export type RolesAssignRoleToEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3819,7 +3879,7 @@ export type AssignRoleToEnrollmentAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Enrollments/{enrollmentId}';
 };
 
-export type AssignRoleToEnrollmentAsyncErrors = {
+export type RolesAssignRoleToEnrollmentErrors = {
     /**
      * Bad Request
      */
@@ -3834,18 +3894,18 @@ export type AssignRoleToEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignRoleToEnrollmentAsyncError = AssignRoleToEnrollmentAsyncErrors[keyof AssignRoleToEnrollmentAsyncErrors];
+export type RolesAssignRoleToEnrollmentError = RolesAssignRoleToEnrollmentErrors[keyof RolesAssignRoleToEnrollmentErrors];
 
-export type AssignRoleToEnrollmentAsyncResponses = {
+export type RolesAssignRoleToEnrollmentResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type AssignRoleToEnrollmentAsyncResponse = AssignRoleToEnrollmentAsyncResponses[keyof AssignRoleToEnrollmentAsyncResponses];
+export type RolesAssignRoleToEnrollmentResponse = RolesAssignRoleToEnrollmentResponses[keyof RolesAssignRoleToEnrollmentResponses];
 
-export type RevokeRoleFromBusinessApplicationAsyncData = {
+export type RolesRevokeRoleFromBusinessApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3861,7 +3921,7 @@ export type RevokeRoleFromBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Applications/{applicationId}';
 };
 
-export type RevokeRoleFromBusinessApplicationAsyncErrors = {
+export type RolesRevokeRoleFromBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -3876,18 +3936,18 @@ export type RevokeRoleFromBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RevokeRoleFromBusinessApplicationAsyncError = RevokeRoleFromBusinessApplicationAsyncErrors[keyof RevokeRoleFromBusinessApplicationAsyncErrors];
+export type RolesRevokeRoleFromBusinessApplicationError = RolesRevokeRoleFromBusinessApplicationErrors[keyof RolesRevokeRoleFromBusinessApplicationErrors];
 
-export type RevokeRoleFromBusinessApplicationAsyncResponses = {
+export type RolesRevokeRoleFromBusinessApplicationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RevokeRoleFromBusinessApplicationAsyncResponse = RevokeRoleFromBusinessApplicationAsyncResponses[keyof RevokeRoleFromBusinessApplicationAsyncResponses];
+export type RolesRevokeRoleFromBusinessApplicationResponse = RolesRevokeRoleFromBusinessApplicationResponses[keyof RolesRevokeRoleFromBusinessApplicationResponses];
 
-export type AssignRoleToBusinessApplicationAsyncData = {
+export type RolesAssignRoleToBusinessApplicationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3903,7 +3963,7 @@ export type AssignRoleToBusinessApplicationAsyncData = {
     url: '/api/v2/SecurityService/Roles/{securityRoleId}/Applications/{applicationId}';
 };
 
-export type AssignRoleToBusinessApplicationAsyncErrors = {
+export type RolesAssignRoleToBusinessApplicationErrors = {
     /**
      * Bad Request
      */
@@ -3918,18 +3978,18 @@ export type AssignRoleToBusinessApplicationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type AssignRoleToBusinessApplicationAsyncError = AssignRoleToBusinessApplicationAsyncErrors[keyof AssignRoleToBusinessApplicationAsyncErrors];
+export type RolesAssignRoleToBusinessApplicationError = RolesAssignRoleToBusinessApplicationErrors[keyof RolesAssignRoleToBusinessApplicationErrors];
 
-export type AssignRoleToBusinessApplicationAsyncResponses = {
+export type RolesAssignRoleToBusinessApplicationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type AssignRoleToBusinessApplicationAsyncResponse = AssignRoleToBusinessApplicationAsyncResponses[keyof AssignRoleToBusinessApplicationAsyncResponses];
+export type RolesAssignRoleToBusinessApplicationResponse = RolesAssignRoleToBusinessApplicationResponses[keyof RolesAssignRoleToBusinessApplicationResponses];
 
-export type GetRolesByEnrollmentAsyncData = {
+export type RolesGetRolesByEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3944,7 +4004,7 @@ export type GetRolesByEnrollmentAsyncData = {
     url: '/api/v2/SecurityService/Roles/ByEnrollment/{enrollmentId}';
 };
 
-export type GetRolesByEnrollmentAsyncErrors = {
+export type RolesGetRolesByEnrollmentErrors = {
     /**
      * Unauthorized
      */
@@ -3955,18 +4015,18 @@ export type GetRolesByEnrollmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRolesByEnrollmentAsyncError = GetRolesByEnrollmentAsyncErrors[keyof GetRolesByEnrollmentAsyncErrors];
+export type RolesGetRolesByEnrollmentError = RolesGetRolesByEnrollmentErrors[keyof RolesGetRolesByEnrollmentErrors];
 
-export type GetRolesByEnrollmentAsyncResponses = {
+export type RolesGetRolesByEnrollmentResponses = {
     /**
      * OK
      */
     200: SecurityRoleDtoListEnvelopeReadable;
 };
 
-export type GetRolesByEnrollmentAsyncResponse = GetRolesByEnrollmentAsyncResponses[keyof GetRolesByEnrollmentAsyncResponses];
+export type RolesGetRolesByEnrollmentResponse = RolesGetRolesByEnrollmentResponses[keyof RolesGetRolesByEnrollmentResponses];
 
-export type GetSecurityCertificatesAsyncData = {
+export type SecurityCertificatesGetSecurityCertificatesData = {
     body?: SecurityCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3979,7 +4039,7 @@ export type GetSecurityCertificatesAsyncData = {
     url: '/api/v2/SecurityService/SecurityCertificates';
 };
 
-export type GetSecurityCertificatesAsyncErrors = {
+export type SecurityCertificatesGetSecurityCertificatesErrors = {
     /**
      * Unauthorized
      */
@@ -3990,18 +4050,18 @@ export type GetSecurityCertificatesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSecurityCertificatesAsyncError = GetSecurityCertificatesAsyncErrors[keyof GetSecurityCertificatesAsyncErrors];
+export type SecurityCertificatesGetSecurityCertificatesError = SecurityCertificatesGetSecurityCertificatesErrors[keyof SecurityCertificatesGetSecurityCertificatesErrors];
 
-export type GetSecurityCertificatesAsyncResponses = {
+export type SecurityCertificatesGetSecurityCertificatesResponses = {
     /**
      * OK
      */
     200: SecurityCertificateDtoListEnvelopeReadable;
 };
 
-export type GetSecurityCertificatesAsyncResponse = GetSecurityCertificatesAsyncResponses[keyof GetSecurityCertificatesAsyncResponses];
+export type SecurityCertificatesGetSecurityCertificatesResponse = SecurityCertificatesGetSecurityCertificatesResponses[keyof SecurityCertificatesGetSecurityCertificatesResponses];
 
-export type GetSecurityCertificatesCountAsyncData = {
+export type SecurityCertificatesGetSecurityCertificatesCountData = {
     body?: SecurityCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4014,7 +4074,7 @@ export type GetSecurityCertificatesCountAsyncData = {
     url: '/api/v2/SecurityService/SecurityCertificates/Count';
 };
 
-export type GetSecurityCertificatesCountAsyncErrors = {
+export type SecurityCertificatesGetSecurityCertificatesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4025,18 +4085,18 @@ export type GetSecurityCertificatesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSecurityCertificatesCountAsyncError = GetSecurityCertificatesCountAsyncErrors[keyof GetSecurityCertificatesCountAsyncErrors];
+export type SecurityCertificatesGetSecurityCertificatesCountError = SecurityCertificatesGetSecurityCertificatesCountErrors[keyof SecurityCertificatesGetSecurityCertificatesCountErrors];
 
-export type GetSecurityCertificatesCountAsyncResponses = {
+export type SecurityCertificatesGetSecurityCertificatesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSecurityCertificatesCountAsyncResponse = GetSecurityCertificatesCountAsyncResponses[keyof GetSecurityCertificatesCountAsyncResponses];
+export type SecurityCertificatesGetSecurityCertificatesCountResponse = SecurityCertificatesGetSecurityCertificatesCountResponses[keyof SecurityCertificatesGetSecurityCertificatesCountResponses];
 
-export type GetSecurityLogsAsyncData = {
+export type SecurityLogsGetSecurityLogsData = {
     body?: BusinessSecurityLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4049,7 +4109,7 @@ export type GetSecurityLogsAsyncData = {
     url: '/api/v2/SecurityService/SecurityLogs';
 };
 
-export type GetSecurityLogsAsyncErrors = {
+export type SecurityLogsGetSecurityLogsErrors = {
     /**
      * Unauthorized
      */
@@ -4060,18 +4120,18 @@ export type GetSecurityLogsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSecurityLogsAsyncError = GetSecurityLogsAsyncErrors[keyof GetSecurityLogsAsyncErrors];
+export type SecurityLogsGetSecurityLogsError = SecurityLogsGetSecurityLogsErrors[keyof SecurityLogsGetSecurityLogsErrors];
 
-export type GetSecurityLogsAsyncResponses = {
+export type SecurityLogsGetSecurityLogsResponses = {
     /**
      * OK
      */
     200: BusinessSecurityLogDtoListEnvelopeReadable;
 };
 
-export type GetSecurityLogsAsyncResponse = GetSecurityLogsAsyncResponses[keyof GetSecurityLogsAsyncResponses];
+export type SecurityLogsGetSecurityLogsResponse = SecurityLogsGetSecurityLogsResponses[keyof SecurityLogsGetSecurityLogsResponses];
 
-export type GetSecurityLogsCountAsyncData = {
+export type SecurityLogsGetSecurityLogsCountData = {
     body?: BusinessSecurityLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4084,7 +4144,7 @@ export type GetSecurityLogsCountAsyncData = {
     url: '/api/v2/SecurityService/SecurityLogs/Count';
 };
 
-export type GetSecurityLogsCountAsyncErrors = {
+export type SecurityLogsGetSecurityLogsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4095,18 +4155,18 @@ export type GetSecurityLogsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSecurityLogsCountAsyncError = GetSecurityLogsCountAsyncErrors[keyof GetSecurityLogsCountAsyncErrors];
+export type SecurityLogsGetSecurityLogsCountError = SecurityLogsGetSecurityLogsCountErrors[keyof SecurityLogsGetSecurityLogsCountErrors];
 
-export type GetSecurityLogsCountAsyncResponses = {
+export type SecurityLogsGetSecurityLogsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSecurityLogsCountAsyncResponse = GetSecurityLogsCountAsyncResponses[keyof GetSecurityLogsCountAsyncResponses];
+export type SecurityLogsGetSecurityLogsCountResponse = SecurityLogsGetSecurityLogsCountResponses[keyof SecurityLogsGetSecurityLogsCountResponses];
 
-export type GetWebhookRequestsAsyncData = {
+export type WebhooksGetWebhookRequestsData = {
     body?: WebhookRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4119,7 +4179,7 @@ export type GetWebhookRequestsAsyncData = {
     url: '/api/v2/SecurityService/Webhooks';
 };
 
-export type GetWebhookRequestsAsyncErrors = {
+export type WebhooksGetWebhookRequestsErrors = {
     /**
      * Unauthorized
      */
@@ -4130,18 +4190,18 @@ export type GetWebhookRequestsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebhookRequestsAsyncError = GetWebhookRequestsAsyncErrors[keyof GetWebhookRequestsAsyncErrors];
+export type WebhooksGetWebhookRequestsError = WebhooksGetWebhookRequestsErrors[keyof WebhooksGetWebhookRequestsErrors];
 
-export type GetWebhookRequestsAsyncResponses = {
+export type WebhooksGetWebhookRequestsResponses = {
     /**
      * OK
      */
     200: WebhookRequestDtoListEnvelopeReadable;
 };
 
-export type GetWebhookRequestsAsyncResponse = GetWebhookRequestsAsyncResponses[keyof GetWebhookRequestsAsyncResponses];
+export type WebhooksGetWebhookRequestsResponse = WebhooksGetWebhookRequestsResponses[keyof WebhooksGetWebhookRequestsResponses];
 
-export type GetWebhookRequestsCountAsyncData = {
+export type WebhooksGetWebhookRequestsCountData = {
     body?: WebhookRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4154,7 +4214,7 @@ export type GetWebhookRequestsCountAsyncData = {
     url: '/api/v2/SecurityService/Webhooks/Count';
 };
 
-export type GetWebhookRequestsCountAsyncErrors = {
+export type WebhooksGetWebhookRequestsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4165,16 +4225,16 @@ export type GetWebhookRequestsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWebhookRequestsCountAsyncError = GetWebhookRequestsCountAsyncErrors[keyof GetWebhookRequestsCountAsyncErrors];
+export type WebhooksGetWebhookRequestsCountError = WebhooksGetWebhookRequestsCountErrors[keyof WebhooksGetWebhookRequestsCountErrors];
 
-export type GetWebhookRequestsCountAsyncResponses = {
+export type WebhooksGetWebhookRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWebhookRequestsCountAsyncResponse = GetWebhookRequestsCountAsyncResponses[keyof GetWebhookRequestsCountAsyncResponses];
+export type WebhooksGetWebhookRequestsCountResponse = WebhooksGetWebhookRequestsCountResponses[keyof WebhooksGetWebhookRequestsCountResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

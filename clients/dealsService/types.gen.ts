@@ -71,8 +71,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -132,8 +137,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type DealUnitCreateDto = {
@@ -1685,7 +1695,7 @@ export type UserDtoWritable = {
     siteTheme?: 'System' | 'Light' | 'Dark';
 };
 
-export type GetDealUnitFlowsAsyncData = {
+export type DealUnitFlowsGetDealUnitFlowsData = {
     body?: DealUnitFlowDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1694,25 +1704,25 @@ export type GetDealUnitFlowsAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows';
 };
 
-export type GetDealUnitFlowsAsyncErrors = {
+export type DealUnitFlowsGetDealUnitFlowsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitFlowsAsyncError = GetDealUnitFlowsAsyncErrors[keyof GetDealUnitFlowsAsyncErrors];
+export type DealUnitFlowsGetDealUnitFlowsError = DealUnitFlowsGetDealUnitFlowsErrors[keyof DealUnitFlowsGetDealUnitFlowsErrors];
 
-export type GetDealUnitFlowsAsyncResponses = {
+export type DealUnitFlowsGetDealUnitFlowsResponses = {
     /**
      * OK
      */
     200: DealUnitFlowDtoListEnvelopeReadable;
 };
 
-export type GetDealUnitFlowsAsyncResponse = GetDealUnitFlowsAsyncResponses[keyof GetDealUnitFlowsAsyncResponses];
+export type DealUnitFlowsGetDealUnitFlowsResponse = DealUnitFlowsGetDealUnitFlowsResponses[keyof DealUnitFlowsGetDealUnitFlowsResponses];
 
-export type CreateDealUnitFlowAsyncData = {
+export type DealUnitFlowsCreateDealUnitFlowData = {
     body?: DealUnitFlowCreateDto;
     path?: never;
     query: {
@@ -1721,25 +1731,25 @@ export type CreateDealUnitFlowAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows';
 };
 
-export type CreateDealUnitFlowAsyncErrors = {
+export type DealUnitFlowsCreateDealUnitFlowErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateDealUnitFlowAsyncError = CreateDealUnitFlowAsyncErrors[keyof CreateDealUnitFlowAsyncErrors];
+export type DealUnitFlowsCreateDealUnitFlowError = DealUnitFlowsCreateDealUnitFlowErrors[keyof DealUnitFlowsCreateDealUnitFlowErrors];
 
-export type CreateDealUnitFlowAsyncResponses = {
+export type DealUnitFlowsCreateDealUnitFlowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateDealUnitFlowAsyncResponse = CreateDealUnitFlowAsyncResponses[keyof CreateDealUnitFlowAsyncResponses];
+export type DealUnitFlowsCreateDealUnitFlowResponse = DealUnitFlowsCreateDealUnitFlowResponses[keyof DealUnitFlowsCreateDealUnitFlowResponses];
 
-export type GetDealUnitFlowsCountAsyncData = {
+export type DealUnitFlowsGetDealUnitFlowsCountData = {
     body?: DealUnitFlowDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -1748,25 +1758,25 @@ export type GetDealUnitFlowsCountAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/Count';
 };
 
-export type GetDealUnitFlowsCountAsyncErrors = {
+export type DealUnitFlowsGetDealUnitFlowsCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitFlowsCountAsyncError = GetDealUnitFlowsCountAsyncErrors[keyof GetDealUnitFlowsCountAsyncErrors];
+export type DealUnitFlowsGetDealUnitFlowsCountError = DealUnitFlowsGetDealUnitFlowsCountErrors[keyof DealUnitFlowsGetDealUnitFlowsCountErrors];
 
-export type GetDealUnitFlowsCountAsyncResponses = {
+export type DealUnitFlowsGetDealUnitFlowsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDealUnitFlowsCountAsyncResponse = GetDealUnitFlowsCountAsyncResponses[keyof GetDealUnitFlowsCountAsyncResponses];
+export type DealUnitFlowsGetDealUnitFlowsCountResponse = DealUnitFlowsGetDealUnitFlowsCountResponses[keyof DealUnitFlowsGetDealUnitFlowsCountResponses];
 
-export type DeleteDealUnitFlowAsyncData = {
+export type DealUnitFlowsDeleteDealUnitFlowData = {
     body?: never;
     path: {
         dealUnitFlowId: string;
@@ -1777,25 +1787,25 @@ export type DeleteDealUnitFlowAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}';
 };
 
-export type DeleteDealUnitFlowAsyncErrors = {
+export type DealUnitFlowsDeleteDealUnitFlowErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteDealUnitFlowAsyncError = DeleteDealUnitFlowAsyncErrors[keyof DeleteDealUnitFlowAsyncErrors];
+export type DealUnitFlowsDeleteDealUnitFlowError = DealUnitFlowsDeleteDealUnitFlowErrors[keyof DealUnitFlowsDeleteDealUnitFlowErrors];
 
-export type DeleteDealUnitFlowAsyncResponses = {
+export type DealUnitFlowsDeleteDealUnitFlowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteDealUnitFlowAsyncResponse = DeleteDealUnitFlowAsyncResponses[keyof DeleteDealUnitFlowAsyncResponses];
+export type DealUnitFlowsDeleteDealUnitFlowResponse = DealUnitFlowsDeleteDealUnitFlowResponses[keyof DealUnitFlowsDeleteDealUnitFlowResponses];
 
-export type GetDealUnitFlowAsyncData = {
+export type DealUnitFlowsGetDealUnitFlowData = {
     body?: never;
     path: {
         dealUnitFlowId: string;
@@ -1806,25 +1816,25 @@ export type GetDealUnitFlowAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}';
 };
 
-export type GetDealUnitFlowAsyncErrors = {
+export type DealUnitFlowsGetDealUnitFlowErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitFlowAsyncError = GetDealUnitFlowAsyncErrors[keyof GetDealUnitFlowAsyncErrors];
+export type DealUnitFlowsGetDealUnitFlowError = DealUnitFlowsGetDealUnitFlowErrors[keyof DealUnitFlowsGetDealUnitFlowErrors];
 
-export type GetDealUnitFlowAsyncResponses = {
+export type DealUnitFlowsGetDealUnitFlowResponses = {
     /**
      * OK
      */
     200: DealUnitFlowDtoEnvelopeReadable;
 };
 
-export type GetDealUnitFlowAsyncResponse = GetDealUnitFlowAsyncResponses[keyof GetDealUnitFlowAsyncResponses];
+export type DealUnitFlowsGetDealUnitFlowResponse = DealUnitFlowsGetDealUnitFlowResponses[keyof DealUnitFlowsGetDealUnitFlowResponses];
 
-export type PatchDealUnitFlowAsyncData = {
+export type DealUnitFlowsPatchDealUnitFlowData = {
     body?: Array<PatchOperation>;
     path: {
         dealUnitFlowId: string;
@@ -1835,25 +1845,25 @@ export type PatchDealUnitFlowAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}';
 };
 
-export type PatchDealUnitFlowAsyncErrors = {
+export type DealUnitFlowsPatchDealUnitFlowErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchDealUnitFlowAsyncError = PatchDealUnitFlowAsyncErrors[keyof PatchDealUnitFlowAsyncErrors];
+export type DealUnitFlowsPatchDealUnitFlowError = DealUnitFlowsPatchDealUnitFlowErrors[keyof DealUnitFlowsPatchDealUnitFlowErrors];
 
-export type PatchDealUnitFlowAsyncResponses = {
+export type DealUnitFlowsPatchDealUnitFlowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchDealUnitFlowAsyncResponse = PatchDealUnitFlowAsyncResponses[keyof PatchDealUnitFlowAsyncResponses];
+export type DealUnitFlowsPatchDealUnitFlowResponse = DealUnitFlowsPatchDealUnitFlowResponses[keyof DealUnitFlowsPatchDealUnitFlowResponses];
 
-export type UpdateDealUnitFlowAsyncData = {
+export type DealUnitFlowsUpdateDealUnitFlowData = {
     body?: DealUnitFlowUpdateDto;
     path: {
         dealUnitFlowId: string;
@@ -1864,25 +1874,25 @@ export type UpdateDealUnitFlowAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}';
 };
 
-export type UpdateDealUnitFlowAsyncErrors = {
+export type DealUnitFlowsUpdateDealUnitFlowErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateDealUnitFlowAsyncError = UpdateDealUnitFlowAsyncErrors[keyof UpdateDealUnitFlowAsyncErrors];
+export type DealUnitFlowsUpdateDealUnitFlowError = DealUnitFlowsUpdateDealUnitFlowErrors[keyof DealUnitFlowsUpdateDealUnitFlowErrors];
 
-export type UpdateDealUnitFlowAsyncResponses = {
+export type DealUnitFlowsUpdateDealUnitFlowResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateDealUnitFlowAsyncResponse = UpdateDealUnitFlowAsyncResponses[keyof UpdateDealUnitFlowAsyncResponses];
+export type DealUnitFlowsUpdateDealUnitFlowResponse = DealUnitFlowsUpdateDealUnitFlowResponses[keyof DealUnitFlowsUpdateDealUnitFlowResponses];
 
-export type GetDealUnitFlowStagesAsyncData = {
+export type DealUnitFlowsGetDealUnitFlowStagesData = {
     body?: DealUnitFlowStageDtoCollectionQueryParametersWritable;
     path: {
         dealUnitFlowId: string;
@@ -1893,25 +1903,25 @@ export type GetDealUnitFlowStagesAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages';
 };
 
-export type GetDealUnitFlowStagesAsyncErrors = {
+export type DealUnitFlowsGetDealUnitFlowStagesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitFlowStagesAsyncError = GetDealUnitFlowStagesAsyncErrors[keyof GetDealUnitFlowStagesAsyncErrors];
+export type DealUnitFlowsGetDealUnitFlowStagesError = DealUnitFlowsGetDealUnitFlowStagesErrors[keyof DealUnitFlowsGetDealUnitFlowStagesErrors];
 
-export type GetDealUnitFlowStagesAsyncResponses = {
+export type DealUnitFlowsGetDealUnitFlowStagesResponses = {
     /**
      * OK
      */
     200: DealUnitFlowStageDtoListEnvelopeReadable;
 };
 
-export type GetDealUnitFlowStagesAsyncResponse = GetDealUnitFlowStagesAsyncResponses[keyof GetDealUnitFlowStagesAsyncResponses];
+export type DealUnitFlowsGetDealUnitFlowStagesResponse = DealUnitFlowsGetDealUnitFlowStagesResponses[keyof DealUnitFlowsGetDealUnitFlowStagesResponses];
 
-export type CreateDealUnitFlowStageAsyncData = {
+export type DealUnitFlowsCreateDealUnitFlowStageData = {
     body?: DealUnitFlowStageCreateDto;
     path: {
         dealUnitFlowId: string;
@@ -1922,25 +1932,25 @@ export type CreateDealUnitFlowStageAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages';
 };
 
-export type CreateDealUnitFlowStageAsyncErrors = {
+export type DealUnitFlowsCreateDealUnitFlowStageErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateDealUnitFlowStageAsyncError = CreateDealUnitFlowStageAsyncErrors[keyof CreateDealUnitFlowStageAsyncErrors];
+export type DealUnitFlowsCreateDealUnitFlowStageError = DealUnitFlowsCreateDealUnitFlowStageErrors[keyof DealUnitFlowsCreateDealUnitFlowStageErrors];
 
-export type CreateDealUnitFlowStageAsyncResponses = {
+export type DealUnitFlowsCreateDealUnitFlowStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateDealUnitFlowStageAsyncResponse = CreateDealUnitFlowStageAsyncResponses[keyof CreateDealUnitFlowStageAsyncResponses];
+export type DealUnitFlowsCreateDealUnitFlowStageResponse = DealUnitFlowsCreateDealUnitFlowStageResponses[keyof DealUnitFlowsCreateDealUnitFlowStageResponses];
 
-export type GetDealUnitFlowStagesCountAsyncData = {
+export type DealUnitFlowsGetDealUnitFlowStagesCountData = {
     body?: DealUnitFlowStageDtoCollectionQueryParametersWritable;
     path: {
         dealUnitFlowId: string;
@@ -1951,25 +1961,25 @@ export type GetDealUnitFlowStagesCountAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/Count';
 };
 
-export type GetDealUnitFlowStagesCountAsyncErrors = {
+export type DealUnitFlowsGetDealUnitFlowStagesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitFlowStagesCountAsyncError = GetDealUnitFlowStagesCountAsyncErrors[keyof GetDealUnitFlowStagesCountAsyncErrors];
+export type DealUnitFlowsGetDealUnitFlowStagesCountError = DealUnitFlowsGetDealUnitFlowStagesCountErrors[keyof DealUnitFlowsGetDealUnitFlowStagesCountErrors];
 
-export type GetDealUnitFlowStagesCountAsyncResponses = {
+export type DealUnitFlowsGetDealUnitFlowStagesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDealUnitFlowStagesCountAsyncResponse = GetDealUnitFlowStagesCountAsyncResponses[keyof GetDealUnitFlowStagesCountAsyncResponses];
+export type DealUnitFlowsGetDealUnitFlowStagesCountResponse = DealUnitFlowsGetDealUnitFlowStagesCountResponses[keyof DealUnitFlowsGetDealUnitFlowStagesCountResponses];
 
-export type DeleteDealUnitFlowStageAsyncData = {
+export type DealUnitFlowsDeleteDealUnitFlowStageData = {
     body?: never;
     path: {
         dealUnitFlowId: string;
@@ -1981,25 +1991,25 @@ export type DeleteDealUnitFlowStageAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}';
 };
 
-export type DeleteDealUnitFlowStageAsyncErrors = {
+export type DealUnitFlowsDeleteDealUnitFlowStageErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteDealUnitFlowStageAsyncError = DeleteDealUnitFlowStageAsyncErrors[keyof DeleteDealUnitFlowStageAsyncErrors];
+export type DealUnitFlowsDeleteDealUnitFlowStageError = DealUnitFlowsDeleteDealUnitFlowStageErrors[keyof DealUnitFlowsDeleteDealUnitFlowStageErrors];
 
-export type DeleteDealUnitFlowStageAsyncResponses = {
+export type DealUnitFlowsDeleteDealUnitFlowStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteDealUnitFlowStageAsyncResponse = DeleteDealUnitFlowStageAsyncResponses[keyof DeleteDealUnitFlowStageAsyncResponses];
+export type DealUnitFlowsDeleteDealUnitFlowStageResponse = DealUnitFlowsDeleteDealUnitFlowStageResponses[keyof DealUnitFlowsDeleteDealUnitFlowStageResponses];
 
-export type GetDealUnitFlowStageAsyncData = {
+export type DealUnitFlowsGetDealUnitFlowStageData = {
     body?: never;
     path: {
         dealUnitFlowId: string;
@@ -2011,25 +2021,25 @@ export type GetDealUnitFlowStageAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}';
 };
 
-export type GetDealUnitFlowStageAsyncErrors = {
+export type DealUnitFlowsGetDealUnitFlowStageErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitFlowStageAsyncError = GetDealUnitFlowStageAsyncErrors[keyof GetDealUnitFlowStageAsyncErrors];
+export type DealUnitFlowsGetDealUnitFlowStageError = DealUnitFlowsGetDealUnitFlowStageErrors[keyof DealUnitFlowsGetDealUnitFlowStageErrors];
 
-export type GetDealUnitFlowStageAsyncResponses = {
+export type DealUnitFlowsGetDealUnitFlowStageResponses = {
     /**
      * OK
      */
     200: DealUnitFlowStageDtoEnvelopeReadable;
 };
 
-export type GetDealUnitFlowStageAsyncResponse = GetDealUnitFlowStageAsyncResponses[keyof GetDealUnitFlowStageAsyncResponses];
+export type DealUnitFlowsGetDealUnitFlowStageResponse = DealUnitFlowsGetDealUnitFlowStageResponses[keyof DealUnitFlowsGetDealUnitFlowStageResponses];
 
-export type PatchDealUnitFlowStageAsyncData = {
+export type DealUnitFlowsPatchDealUnitFlowStageData = {
     body?: Array<PatchOperation>;
     path: {
         dealUnitFlowId: string;
@@ -2041,25 +2051,25 @@ export type PatchDealUnitFlowStageAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}';
 };
 
-export type PatchDealUnitFlowStageAsyncErrors = {
+export type DealUnitFlowsPatchDealUnitFlowStageErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchDealUnitFlowStageAsyncError = PatchDealUnitFlowStageAsyncErrors[keyof PatchDealUnitFlowStageAsyncErrors];
+export type DealUnitFlowsPatchDealUnitFlowStageError = DealUnitFlowsPatchDealUnitFlowStageErrors[keyof DealUnitFlowsPatchDealUnitFlowStageErrors];
 
-export type PatchDealUnitFlowStageAsyncResponses = {
+export type DealUnitFlowsPatchDealUnitFlowStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchDealUnitFlowStageAsyncResponse = PatchDealUnitFlowStageAsyncResponses[keyof PatchDealUnitFlowStageAsyncResponses];
+export type DealUnitFlowsPatchDealUnitFlowStageResponse = DealUnitFlowsPatchDealUnitFlowStageResponses[keyof DealUnitFlowsPatchDealUnitFlowStageResponses];
 
-export type UpdateDealUnitFlowStageAsyncData = {
+export type DealUnitFlowsUpdateDealUnitFlowStageData = {
     body?: DealUnitFlowStageUpdateDto;
     path: {
         dealUnitFlowId: string;
@@ -2071,25 +2081,25 @@ export type UpdateDealUnitFlowStageAsyncData = {
     url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}';
 };
 
-export type UpdateDealUnitFlowStageAsyncErrors = {
+export type DealUnitFlowsUpdateDealUnitFlowStageErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateDealUnitFlowStageAsyncError = UpdateDealUnitFlowStageAsyncErrors[keyof UpdateDealUnitFlowStageAsyncErrors];
+export type DealUnitFlowsUpdateDealUnitFlowStageError = DealUnitFlowsUpdateDealUnitFlowStageErrors[keyof DealUnitFlowsUpdateDealUnitFlowStageErrors];
 
-export type UpdateDealUnitFlowStageAsyncResponses = {
+export type DealUnitFlowsUpdateDealUnitFlowStageResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateDealUnitFlowStageAsyncResponse = UpdateDealUnitFlowStageAsyncResponses[keyof UpdateDealUnitFlowStageAsyncResponses];
+export type DealUnitFlowsUpdateDealUnitFlowStageResponse = DealUnitFlowsUpdateDealUnitFlowStageResponses[keyof DealUnitFlowsUpdateDealUnitFlowStageResponses];
 
-export type GetDealUnitsAsyncData = {
+export type DealUnitsGetDealUnitsData = {
     body?: DealUnitDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2098,25 +2108,25 @@ export type GetDealUnitsAsyncData = {
     url: '/api/v2/DealsService/DealUnits';
 };
 
-export type GetDealUnitsAsyncErrors = {
+export type DealUnitsGetDealUnitsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitsAsyncError = GetDealUnitsAsyncErrors[keyof GetDealUnitsAsyncErrors];
+export type DealUnitsGetDealUnitsError = DealUnitsGetDealUnitsErrors[keyof DealUnitsGetDealUnitsErrors];
 
-export type GetDealUnitsAsyncResponses = {
+export type DealUnitsGetDealUnitsResponses = {
     /**
      * OK
      */
     200: DealUnitDtoListEnvelopeReadable;
 };
 
-export type GetDealUnitsAsyncResponse = GetDealUnitsAsyncResponses[keyof GetDealUnitsAsyncResponses];
+export type DealUnitsGetDealUnitsResponse = DealUnitsGetDealUnitsResponses[keyof DealUnitsGetDealUnitsResponses];
 
-export type CreateDealUnitAsyncData = {
+export type DealUnitsCreateDealUnitData = {
     body?: DealUnitCreateDto;
     path?: never;
     query: {
@@ -2125,25 +2135,25 @@ export type CreateDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits';
 };
 
-export type CreateDealUnitAsyncErrors = {
+export type DealUnitsCreateDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateDealUnitAsyncError = CreateDealUnitAsyncErrors[keyof CreateDealUnitAsyncErrors];
+export type DealUnitsCreateDealUnitError = DealUnitsCreateDealUnitErrors[keyof DealUnitsCreateDealUnitErrors];
 
-export type CreateDealUnitAsyncResponses = {
+export type DealUnitsCreateDealUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateDealUnitAsyncResponse = CreateDealUnitAsyncResponses[keyof CreateDealUnitAsyncResponses];
+export type DealUnitsCreateDealUnitResponse = DealUnitsCreateDealUnitResponses[keyof DealUnitsCreateDealUnitResponses];
 
-export type GetDealUnitsCountAsyncData = {
+export type DealUnitsGetDealUnitsCountData = {
     body?: DealUnitDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2152,25 +2162,25 @@ export type GetDealUnitsCountAsyncData = {
     url: '/api/v2/DealsService/DealUnits/Count';
 };
 
-export type GetDealUnitsCountAsyncErrors = {
+export type DealUnitsGetDealUnitsCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitsCountAsyncError = GetDealUnitsCountAsyncErrors[keyof GetDealUnitsCountAsyncErrors];
+export type DealUnitsGetDealUnitsCountError = DealUnitsGetDealUnitsCountErrors[keyof DealUnitsGetDealUnitsCountErrors];
 
-export type GetDealUnitsCountAsyncResponses = {
+export type DealUnitsGetDealUnitsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDealUnitsCountAsyncResponse = GetDealUnitsCountAsyncResponses[keyof GetDealUnitsCountAsyncResponses];
+export type DealUnitsGetDealUnitsCountResponse = DealUnitsGetDealUnitsCountResponses[keyof DealUnitsGetDealUnitsCountResponses];
 
-export type GetExtendedDealUnitsAsyncData = {
+export type DealUnitsGetExtendedDealUnitsData = {
     body?: ExtendedDealUnitDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -2179,25 +2189,25 @@ export type GetExtendedDealUnitsAsyncData = {
     url: '/api/v2/DealsService/DealUnits/Extended';
 };
 
-export type GetExtendedDealUnitsAsyncErrors = {
+export type DealUnitsGetExtendedDealUnitsErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedDealUnitsAsyncError = GetExtendedDealUnitsAsyncErrors[keyof GetExtendedDealUnitsAsyncErrors];
+export type DealUnitsGetExtendedDealUnitsError = DealUnitsGetExtendedDealUnitsErrors[keyof DealUnitsGetExtendedDealUnitsErrors];
 
-export type GetExtendedDealUnitsAsyncResponses = {
+export type DealUnitsGetExtendedDealUnitsResponses = {
     /**
      * OK
      */
     200: ExtendedDealUnitDtoListEnvelopeReadable;
 };
 
-export type GetExtendedDealUnitsAsyncResponse = GetExtendedDealUnitsAsyncResponses[keyof GetExtendedDealUnitsAsyncResponses];
+export type DealUnitsGetExtendedDealUnitsResponse = DealUnitsGetExtendedDealUnitsResponses[keyof DealUnitsGetExtendedDealUnitsResponses];
 
-export type DeleteDealUnitAsyncData = {
+export type DealUnitsDeleteDealUnitData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2208,25 +2218,25 @@ export type DeleteDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}';
 };
 
-export type DeleteDealUnitAsyncErrors = {
+export type DealUnitsDeleteDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteDealUnitAsyncError = DeleteDealUnitAsyncErrors[keyof DeleteDealUnitAsyncErrors];
+export type DealUnitsDeleteDealUnitError = DealUnitsDeleteDealUnitErrors[keyof DealUnitsDeleteDealUnitErrors];
 
-export type DeleteDealUnitAsyncResponses = {
+export type DealUnitsDeleteDealUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteDealUnitAsyncResponse = DeleteDealUnitAsyncResponses[keyof DeleteDealUnitAsyncResponses];
+export type DealUnitsDeleteDealUnitResponse = DealUnitsDeleteDealUnitResponses[keyof DealUnitsDeleteDealUnitResponses];
 
-export type GetDealUnitAsyncData = {
+export type DealUnitsGetDealUnitData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2237,25 +2247,25 @@ export type GetDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}';
 };
 
-export type GetDealUnitAsyncErrors = {
+export type DealUnitsGetDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitAsyncError = GetDealUnitAsyncErrors[keyof GetDealUnitAsyncErrors];
+export type DealUnitsGetDealUnitError = DealUnitsGetDealUnitErrors[keyof DealUnitsGetDealUnitErrors];
 
-export type GetDealUnitAsyncResponses = {
+export type DealUnitsGetDealUnitResponses = {
     /**
      * OK
      */
     200: DealUnitDtoEnvelopeReadable;
 };
 
-export type GetDealUnitAsyncResponse = GetDealUnitAsyncResponses[keyof GetDealUnitAsyncResponses];
+export type DealUnitsGetDealUnitResponse = DealUnitsGetDealUnitResponses[keyof DealUnitsGetDealUnitResponses];
 
-export type PatchDealUnitAsyncData = {
+export type DealUnitsPatchDealUnitData = {
     body?: Array<PatchOperation>;
     path: {
         dealUnitId: string;
@@ -2266,25 +2276,25 @@ export type PatchDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}';
 };
 
-export type PatchDealUnitAsyncErrors = {
+export type DealUnitsPatchDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchDealUnitAsyncError = PatchDealUnitAsyncErrors[keyof PatchDealUnitAsyncErrors];
+export type DealUnitsPatchDealUnitError = DealUnitsPatchDealUnitErrors[keyof DealUnitsPatchDealUnitErrors];
 
-export type PatchDealUnitAsyncResponses = {
+export type DealUnitsPatchDealUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchDealUnitAsyncResponse = PatchDealUnitAsyncResponses[keyof PatchDealUnitAsyncResponses];
+export type DealUnitsPatchDealUnitResponse = DealUnitsPatchDealUnitResponses[keyof DealUnitsPatchDealUnitResponses];
 
-export type UpdateDealUnitAsyncData = {
+export type DealUnitsUpdateDealUnitData = {
     body?: DealUnitUpdateDto;
     path: {
         dealUnitId: string;
@@ -2295,25 +2305,25 @@ export type UpdateDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}';
 };
 
-export type UpdateDealUnitAsyncErrors = {
+export type DealUnitsUpdateDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateDealUnitAsyncError = UpdateDealUnitAsyncErrors[keyof UpdateDealUnitAsyncErrors];
+export type DealUnitsUpdateDealUnitError = DealUnitsUpdateDealUnitErrors[keyof DealUnitsUpdateDealUnitErrors];
 
-export type UpdateDealUnitAsyncResponses = {
+export type DealUnitsUpdateDealUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateDealUnitAsyncResponse = UpdateDealUnitAsyncResponses[keyof UpdateDealUnitAsyncResponses];
+export type DealUnitsUpdateDealUnitResponse = DealUnitsUpdateDealUnitResponses[keyof DealUnitsUpdateDealUnitResponses];
 
-export type GetExtendedDealUnitAsyncData = {
+export type DealUnitsGetExtendedDealUnitData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2324,25 +2334,25 @@ export type GetExtendedDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Extended';
 };
 
-export type GetExtendedDealUnitAsyncErrors = {
+export type DealUnitsGetExtendedDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedDealUnitAsyncError = GetExtendedDealUnitAsyncErrors[keyof GetExtendedDealUnitAsyncErrors];
+export type DealUnitsGetExtendedDealUnitError = DealUnitsGetExtendedDealUnitErrors[keyof DealUnitsGetExtendedDealUnitErrors];
 
-export type GetExtendedDealUnitAsyncResponses = {
+export type DealUnitsGetExtendedDealUnitResponses = {
     /**
      * OK
      */
     200: ExtendedDealUnitDtoEnvelopeReadable;
 };
 
-export type GetExtendedDealUnitAsyncResponse = GetExtendedDealUnitAsyncResponses[keyof GetExtendedDealUnitAsyncResponses];
+export type DealUnitsGetExtendedDealUnitResponse = DealUnitsGetExtendedDealUnitResponses[keyof DealUnitsGetExtendedDealUnitResponses];
 
-export type CalculateDealUnitAsyncData = {
+export type DealUnitsCalculateDealUnitData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2353,25 +2363,25 @@ export type CalculateDealUnitAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Calculate';
 };
 
-export type CalculateDealUnitAsyncErrors = {
+export type DealUnitsCalculateDealUnitErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateDealUnitAsyncError = CalculateDealUnitAsyncErrors[keyof CalculateDealUnitAsyncErrors];
+export type DealUnitsCalculateDealUnitError = DealUnitsCalculateDealUnitErrors[keyof DealUnitsCalculateDealUnitErrors];
 
-export type CalculateDealUnitAsyncResponses = {
+export type DealUnitsCalculateDealUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateDealUnitAsyncResponse = CalculateDealUnitAsyncResponses[keyof CalculateDealUnitAsyncResponses];
+export type DealUnitsCalculateDealUnitResponse = DealUnitsCalculateDealUnitResponses[keyof DealUnitsCalculateDealUnitResponses];
 
-export type GetDealUnitLinesAsyncData = {
+export type DealUnitsGetDealUnitLinesData = {
     body?: DealUnitLineDtoCollectionQueryParametersWritable;
     path: {
         dealUnitId: string;
@@ -2383,25 +2393,25 @@ export type GetDealUnitLinesAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines';
 };
 
-export type GetDealUnitLinesAsyncErrors = {
+export type DealUnitsGetDealUnitLinesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitLinesAsyncError = GetDealUnitLinesAsyncErrors[keyof GetDealUnitLinesAsyncErrors];
+export type DealUnitsGetDealUnitLinesError = DealUnitsGetDealUnitLinesErrors[keyof DealUnitsGetDealUnitLinesErrors];
 
-export type GetDealUnitLinesAsyncResponses = {
+export type DealUnitsGetDealUnitLinesResponses = {
     /**
      * OK
      */
     200: DealUnitLineDtoListEnvelopeReadable;
 };
 
-export type GetDealUnitLinesAsyncResponse = GetDealUnitLinesAsyncResponses[keyof GetDealUnitLinesAsyncResponses];
+export type DealUnitsGetDealUnitLinesResponse = DealUnitsGetDealUnitLinesResponses[keyof DealUnitsGetDealUnitLinesResponses];
 
-export type CreateGetDealUnitLinesAsyncData = {
+export type DealUnitsCreateGetDealUnitLinesData = {
     body?: DealUnitLineCreateDto;
     path: {
         dealUnitId: string;
@@ -2412,25 +2422,25 @@ export type CreateGetDealUnitLinesAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines';
 };
 
-export type CreateGetDealUnitLinesAsyncErrors = {
+export type DealUnitsCreateGetDealUnitLinesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateGetDealUnitLinesAsyncError = CreateGetDealUnitLinesAsyncErrors[keyof CreateGetDealUnitLinesAsyncErrors];
+export type DealUnitsCreateGetDealUnitLinesError = DealUnitsCreateGetDealUnitLinesErrors[keyof DealUnitsCreateGetDealUnitLinesErrors];
 
-export type CreateGetDealUnitLinesAsyncResponses = {
+export type DealUnitsCreateGetDealUnitLinesResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateGetDealUnitLinesAsyncResponse = CreateGetDealUnitLinesAsyncResponses[keyof CreateGetDealUnitLinesAsyncResponses];
+export type DealUnitsCreateGetDealUnitLinesResponse = DealUnitsCreateGetDealUnitLinesResponses[keyof DealUnitsCreateGetDealUnitLinesResponses];
 
-export type GetDealUnitLinesCountAsyncData = {
+export type DealUnitsGetDealUnitLinesCountData = {
     body?: DealUnitLineDtoCollectionQueryParametersWritable;
     path: {
         dealUnitId: string;
@@ -2441,25 +2451,25 @@ export type GetDealUnitLinesCountAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/Count';
 };
 
-export type GetDealUnitLinesCountAsyncErrors = {
+export type DealUnitsGetDealUnitLinesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitLinesCountAsyncError = GetDealUnitLinesCountAsyncErrors[keyof GetDealUnitLinesCountAsyncErrors];
+export type DealUnitsGetDealUnitLinesCountError = DealUnitsGetDealUnitLinesCountErrors[keyof DealUnitsGetDealUnitLinesCountErrors];
 
-export type GetDealUnitLinesCountAsyncResponses = {
+export type DealUnitsGetDealUnitLinesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetDealUnitLinesCountAsyncResponse = GetDealUnitLinesCountAsyncResponses[keyof GetDealUnitLinesCountAsyncResponses];
+export type DealUnitsGetDealUnitLinesCountResponse = DealUnitsGetDealUnitLinesCountResponses[keyof DealUnitsGetDealUnitLinesCountResponses];
 
-export type DeleteDealUnitPriceAsyncData = {
+export type DealUnitsDeleteDealUnitPriceData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2471,25 +2481,25 @@ export type DeleteDealUnitPriceAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}';
 };
 
-export type DeleteDealUnitPriceAsyncErrors = {
+export type DealUnitsDeleteDealUnitPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteDealUnitPriceAsyncError = DeleteDealUnitPriceAsyncErrors[keyof DeleteDealUnitPriceAsyncErrors];
+export type DealUnitsDeleteDealUnitPriceError = DealUnitsDeleteDealUnitPriceErrors[keyof DealUnitsDeleteDealUnitPriceErrors];
 
-export type DeleteDealUnitPriceAsyncResponses = {
+export type DealUnitsDeleteDealUnitPriceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteDealUnitPriceAsyncResponse = DeleteDealUnitPriceAsyncResponses[keyof DeleteDealUnitPriceAsyncResponses];
+export type DealUnitsDeleteDealUnitPriceResponse = DealUnitsDeleteDealUnitPriceResponses[keyof DealUnitsDeleteDealUnitPriceResponses];
 
-export type GetDealUnitPriceAsyncData = {
+export type DealUnitsGetDealUnitPriceData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2501,25 +2511,25 @@ export type GetDealUnitPriceAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}';
 };
 
-export type GetDealUnitPriceAsyncErrors = {
+export type DealUnitsGetDealUnitPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetDealUnitPriceAsyncError = GetDealUnitPriceAsyncErrors[keyof GetDealUnitPriceAsyncErrors];
+export type DealUnitsGetDealUnitPriceError = DealUnitsGetDealUnitPriceErrors[keyof DealUnitsGetDealUnitPriceErrors];
 
-export type GetDealUnitPriceAsyncResponses = {
+export type DealUnitsGetDealUnitPriceResponses = {
     /**
      * OK
      */
     200: DealUnitLineDtoEnvelopeReadable;
 };
 
-export type GetDealUnitPriceAsyncResponse = GetDealUnitPriceAsyncResponses[keyof GetDealUnitPriceAsyncResponses];
+export type DealUnitsGetDealUnitPriceResponse = DealUnitsGetDealUnitPriceResponses[keyof DealUnitsGetDealUnitPriceResponses];
 
-export type PatchDealUnitLineAsyncData = {
+export type DealUnitsPatchDealUnitLineData = {
     body?: Array<PatchOperation>;
     path: {
         dealUnitId: string;
@@ -2531,25 +2541,25 @@ export type PatchDealUnitLineAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}';
 };
 
-export type PatchDealUnitLineAsyncErrors = {
+export type DealUnitsPatchDealUnitLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchDealUnitLineAsyncError = PatchDealUnitLineAsyncErrors[keyof PatchDealUnitLineAsyncErrors];
+export type DealUnitsPatchDealUnitLineError = DealUnitsPatchDealUnitLineErrors[keyof DealUnitsPatchDealUnitLineErrors];
 
-export type PatchDealUnitLineAsyncResponses = {
+export type DealUnitsPatchDealUnitLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchDealUnitLineAsyncResponse = PatchDealUnitLineAsyncResponses[keyof PatchDealUnitLineAsyncResponses];
+export type DealUnitsPatchDealUnitLineResponse = DealUnitsPatchDealUnitLineResponses[keyof DealUnitsPatchDealUnitLineResponses];
 
-export type UpdateDealUnitPriceAsyncData = {
+export type DealUnitsUpdateDealUnitPriceData = {
     body?: DealUnitLineUpdateDto;
     path: {
         dealUnitId: string;
@@ -2561,25 +2571,25 @@ export type UpdateDealUnitPriceAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}';
 };
 
-export type UpdateDealUnitPriceAsyncErrors = {
+export type DealUnitsUpdateDealUnitPriceErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateDealUnitPriceAsyncError = UpdateDealUnitPriceAsyncErrors[keyof UpdateDealUnitPriceAsyncErrors];
+export type DealUnitsUpdateDealUnitPriceError = DealUnitsUpdateDealUnitPriceErrors[keyof DealUnitsUpdateDealUnitPriceErrors];
 
-export type UpdateDealUnitPriceAsyncResponses = {
+export type DealUnitsUpdateDealUnitPriceResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateDealUnitPriceAsyncResponse = UpdateDealUnitPriceAsyncResponses[keyof UpdateDealUnitPriceAsyncResponses];
+export type DealUnitsUpdateDealUnitPriceResponse = DealUnitsUpdateDealUnitPriceResponses[keyof DealUnitsUpdateDealUnitPriceResponses];
 
-export type CalculateDealUnitLineAsyncData = {
+export type DealUnitsCalculateDealUnitLineData = {
     body?: never;
     path: {
         dealUnitId: string;
@@ -2591,90 +2601,90 @@ export type CalculateDealUnitLineAsyncData = {
     url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}/Calculate';
 };
 
-export type CalculateDealUnitLineAsyncErrors = {
+export type DealUnitsCalculateDealUnitLineErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type CalculateDealUnitLineAsyncError = CalculateDealUnitLineAsyncErrors[keyof CalculateDealUnitLineAsyncErrors];
+export type DealUnitsCalculateDealUnitLineError = DealUnitsCalculateDealUnitLineErrors[keyof DealUnitsCalculateDealUnitLineErrors];
 
-export type CalculateDealUnitLineAsyncResponses = {
+export type DealUnitsCalculateDealUnitLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CalculateDealUnitLineAsyncResponse = CalculateDealUnitLineAsyncResponses[keyof CalculateDealUnitLineAsyncResponses];
+export type DealUnitsCalculateDealUnitLineResponse = DealUnitsCalculateDealUnitLineResponses[keyof DealUnitsCalculateDealUnitLineResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2684,32 +2694,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2720,81 +2730,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2805,25 +2815,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2834,25 +2844,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2863,18 +2873,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2884,14 +2894,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2900,14 +2910,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2916,21 +2926,21 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */

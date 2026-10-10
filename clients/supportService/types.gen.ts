@@ -2225,72 +2225,72 @@ export type WarrantyRequestUpdateDto = {
     warrantyPolicyId?: string | null;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2300,32 +2300,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2336,81 +2336,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2421,25 +2421,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2450,25 +2450,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2479,18 +2479,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2500,14 +2500,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2516,14 +2516,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2532,28 +2532,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetInquiryRequestsAsyncData = {
+export type InquiryRequestsGetInquiryRequestsData = {
     body?: InquiryRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2566,16 +2566,16 @@ export type GetInquiryRequestsAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests';
 };
 
-export type GetInquiryRequestsAsyncResponses = {
+export type InquiryRequestsGetInquiryRequestsResponses = {
     /**
      * OK
      */
     200: InquiryRequestDtoListEnvelopeReadable;
 };
 
-export type GetInquiryRequestsAsyncResponse = GetInquiryRequestsAsyncResponses[keyof GetInquiryRequestsAsyncResponses];
+export type InquiryRequestsGetInquiryRequestsResponse = InquiryRequestsGetInquiryRequestsResponses[keyof InquiryRequestsGetInquiryRequestsResponses];
 
-export type CreateInquiryRequestAsyncData = {
+export type InquiryRequestsCreateInquiryRequestData = {
     body?: InquiryRequestCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2588,16 +2588,16 @@ export type CreateInquiryRequestAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests';
 };
 
-export type CreateInquiryRequestAsyncResponses = {
+export type InquiryRequestsCreateInquiryRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateInquiryRequestAsyncResponse = CreateInquiryRequestAsyncResponses[keyof CreateInquiryRequestAsyncResponses];
+export type InquiryRequestsCreateInquiryRequestResponse = InquiryRequestsCreateInquiryRequestResponses[keyof InquiryRequestsCreateInquiryRequestResponses];
 
-export type GetInquiryRequestsCountAsyncData = {
+export type InquiryRequestsGetInquiryRequestsCountData = {
     body?: InquiryRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2610,16 +2610,16 @@ export type GetInquiryRequestsCountAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests/Count';
 };
 
-export type GetInquiryRequestsCountAsyncResponses = {
+export type InquiryRequestsGetInquiryRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetInquiryRequestsCountAsyncResponse = GetInquiryRequestsCountAsyncResponses[keyof GetInquiryRequestsCountAsyncResponses];
+export type InquiryRequestsGetInquiryRequestsCountResponse = InquiryRequestsGetInquiryRequestsCountResponses[keyof InquiryRequestsGetInquiryRequestsCountResponses];
 
-export type DeleteInquiryRequestAsyncData = {
+export type InquiryRequestsDeleteInquiryRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2634,16 +2634,16 @@ export type DeleteInquiryRequestAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
 };
 
-export type DeleteInquiryRequestAsyncResponses = {
+export type InquiryRequestsDeleteInquiryRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteInquiryRequestAsyncResponse = DeleteInquiryRequestAsyncResponses[keyof DeleteInquiryRequestAsyncResponses];
+export type InquiryRequestsDeleteInquiryRequestResponse = InquiryRequestsDeleteInquiryRequestResponses[keyof InquiryRequestsDeleteInquiryRequestResponses];
 
-export type GetInquiryRequestAsyncData = {
+export type InquiryRequestsGetInquiryRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2658,16 +2658,16 @@ export type GetInquiryRequestAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
 };
 
-export type GetInquiryRequestAsyncResponses = {
+export type InquiryRequestsGetInquiryRequestResponses = {
     /**
      * OK
      */
     200: InquiryRequestDtoEnvelopeReadable;
 };
 
-export type GetInquiryRequestAsyncResponse = GetInquiryRequestAsyncResponses[keyof GetInquiryRequestAsyncResponses];
+export type InquiryRequestsGetInquiryRequestResponse = InquiryRequestsGetInquiryRequestResponses[keyof InquiryRequestsGetInquiryRequestResponses];
 
-export type PatchInquiryRequestAsyncData = {
+export type InquiryRequestsPatchInquiryRequestData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2682,7 +2682,7 @@ export type PatchInquiryRequestAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
 };
 
-export type PatchInquiryRequestAsyncErrors = {
+export type InquiryRequestsPatchInquiryRequestErrors = {
     /**
      * Unauthorized
      */
@@ -2693,18 +2693,18 @@ export type PatchInquiryRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchInquiryRequestAsyncError = PatchInquiryRequestAsyncErrors[keyof PatchInquiryRequestAsyncErrors];
+export type InquiryRequestsPatchInquiryRequestError = InquiryRequestsPatchInquiryRequestErrors[keyof InquiryRequestsPatchInquiryRequestErrors];
 
-export type PatchInquiryRequestAsyncResponses = {
+export type InquiryRequestsPatchInquiryRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchInquiryRequestAsyncResponse = PatchInquiryRequestAsyncResponses[keyof PatchInquiryRequestAsyncResponses];
+export type InquiryRequestsPatchInquiryRequestResponse = InquiryRequestsPatchInquiryRequestResponses[keyof InquiryRequestsPatchInquiryRequestResponses];
 
-export type UpdateInquiryRequestAsyncData = {
+export type InquiryRequestsUpdateInquiryRequestData = {
     body?: InquiryRequestUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2719,16 +2719,16 @@ export type UpdateInquiryRequestAsyncData = {
     url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
 };
 
-export type UpdateInquiryRequestAsyncResponses = {
+export type InquiryRequestsUpdateInquiryRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateInquiryRequestAsyncResponse = UpdateInquiryRequestAsyncResponses[keyof UpdateInquiryRequestAsyncResponses];
+export type InquiryRequestsUpdateInquiryRequestResponse = InquiryRequestsUpdateInquiryRequestResponses[keyof InquiryRequestsUpdateInquiryRequestResponses];
 
-export type GetKnowledgeArticlesAsyncData = {
+export type KnowledgeArticlesGetKnowledgeArticlesData = {
     body?: KnowledgeArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2741,16 +2741,16 @@ export type GetKnowledgeArticlesAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles';
 };
 
-export type GetKnowledgeArticlesAsyncResponses = {
+export type KnowledgeArticlesGetKnowledgeArticlesResponses = {
     /**
      * OK
      */
     200: KnowledgeArticleDtoListEnvelopeReadable;
 };
 
-export type GetKnowledgeArticlesAsyncResponse = GetKnowledgeArticlesAsyncResponses[keyof GetKnowledgeArticlesAsyncResponses];
+export type KnowledgeArticlesGetKnowledgeArticlesResponse = KnowledgeArticlesGetKnowledgeArticlesResponses[keyof KnowledgeArticlesGetKnowledgeArticlesResponses];
 
-export type CreateKnowledgeArticleAsyncData = {
+export type KnowledgeArticlesCreateKnowledgeArticleData = {
     body?: KnowledgeArticleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2763,16 +2763,16 @@ export type CreateKnowledgeArticleAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles';
 };
 
-export type CreateKnowledgeArticleAsyncResponses = {
+export type KnowledgeArticlesCreateKnowledgeArticleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateKnowledgeArticleAsyncResponse = CreateKnowledgeArticleAsyncResponses[keyof CreateKnowledgeArticleAsyncResponses];
+export type KnowledgeArticlesCreateKnowledgeArticleResponse = KnowledgeArticlesCreateKnowledgeArticleResponses[keyof KnowledgeArticlesCreateKnowledgeArticleResponses];
 
-export type GetKnowledgeArticlesCountAsyncData = {
+export type KnowledgeArticlesGetKnowledgeArticlesCountData = {
     body?: KnowledgeArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2785,16 +2785,16 @@ export type GetKnowledgeArticlesCountAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles/Count';
 };
 
-export type GetKnowledgeArticlesCountAsyncResponses = {
+export type KnowledgeArticlesGetKnowledgeArticlesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetKnowledgeArticlesCountAsyncResponse = GetKnowledgeArticlesCountAsyncResponses[keyof GetKnowledgeArticlesCountAsyncResponses];
+export type KnowledgeArticlesGetKnowledgeArticlesCountResponse = KnowledgeArticlesGetKnowledgeArticlesCountResponses[keyof KnowledgeArticlesGetKnowledgeArticlesCountResponses];
 
-export type DeleteKnowledgeArticleAsyncData = {
+export type KnowledgeArticlesDeleteKnowledgeArticleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2809,16 +2809,16 @@ export type DeleteKnowledgeArticleAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
 };
 
-export type DeleteKnowledgeArticleAsyncResponses = {
+export type KnowledgeArticlesDeleteKnowledgeArticleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteKnowledgeArticleAsyncResponse = DeleteKnowledgeArticleAsyncResponses[keyof DeleteKnowledgeArticleAsyncResponses];
+export type KnowledgeArticlesDeleteKnowledgeArticleResponse = KnowledgeArticlesDeleteKnowledgeArticleResponses[keyof KnowledgeArticlesDeleteKnowledgeArticleResponses];
 
-export type GetKnowledgeArticleAsyncData = {
+export type KnowledgeArticlesGetKnowledgeArticleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2833,16 +2833,16 @@ export type GetKnowledgeArticleAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
 };
 
-export type GetKnowledgeArticleAsyncResponses = {
+export type KnowledgeArticlesGetKnowledgeArticleResponses = {
     /**
      * OK
      */
     200: KnowledgeArticleDtoEnvelopeReadable;
 };
 
-export type GetKnowledgeArticleAsyncResponse = GetKnowledgeArticleAsyncResponses[keyof GetKnowledgeArticleAsyncResponses];
+export type KnowledgeArticlesGetKnowledgeArticleResponse = KnowledgeArticlesGetKnowledgeArticleResponses[keyof KnowledgeArticlesGetKnowledgeArticleResponses];
 
-export type PatchKnowledgeArticleAsyncData = {
+export type KnowledgeArticlesPatchKnowledgeArticleData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2857,7 +2857,7 @@ export type PatchKnowledgeArticleAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
 };
 
-export type PatchKnowledgeArticleAsyncErrors = {
+export type KnowledgeArticlesPatchKnowledgeArticleErrors = {
     /**
      * Unauthorized
      */
@@ -2868,18 +2868,18 @@ export type PatchKnowledgeArticleAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchKnowledgeArticleAsyncError = PatchKnowledgeArticleAsyncErrors[keyof PatchKnowledgeArticleAsyncErrors];
+export type KnowledgeArticlesPatchKnowledgeArticleError = KnowledgeArticlesPatchKnowledgeArticleErrors[keyof KnowledgeArticlesPatchKnowledgeArticleErrors];
 
-export type PatchKnowledgeArticleAsyncResponses = {
+export type KnowledgeArticlesPatchKnowledgeArticleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchKnowledgeArticleAsyncResponse = PatchKnowledgeArticleAsyncResponses[keyof PatchKnowledgeArticleAsyncResponses];
+export type KnowledgeArticlesPatchKnowledgeArticleResponse = KnowledgeArticlesPatchKnowledgeArticleResponses[keyof KnowledgeArticlesPatchKnowledgeArticleResponses];
 
-export type UpdateKnowledgeArticleAsyncData = {
+export type KnowledgeArticlesUpdateKnowledgeArticleData = {
     body?: KnowledgeArticleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2894,16 +2894,16 @@ export type UpdateKnowledgeArticleAsyncData = {
     url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
 };
 
-export type UpdateKnowledgeArticleAsyncResponses = {
+export type KnowledgeArticlesUpdateKnowledgeArticleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateKnowledgeArticleAsyncResponse = UpdateKnowledgeArticleAsyncResponses[keyof UpdateKnowledgeArticleAsyncResponses];
+export type KnowledgeArticlesUpdateKnowledgeArticleResponse = KnowledgeArticlesUpdateKnowledgeArticleResponses[keyof KnowledgeArticlesUpdateKnowledgeArticleResponses];
 
-export type GetMaintenanceVisitsAsyncData = {
+export type MaintenanceVisitsGetMaintenanceVisitsData = {
     body?: MaintenanceVisitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2916,16 +2916,16 @@ export type GetMaintenanceVisitsAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits';
 };
 
-export type GetMaintenanceVisitsAsyncResponses = {
+export type MaintenanceVisitsGetMaintenanceVisitsResponses = {
     /**
      * OK
      */
     200: MaintenanceVisitDtoListEnvelopeReadable;
 };
 
-export type GetMaintenanceVisitsAsyncResponse = GetMaintenanceVisitsAsyncResponses[keyof GetMaintenanceVisitsAsyncResponses];
+export type MaintenanceVisitsGetMaintenanceVisitsResponse = MaintenanceVisitsGetMaintenanceVisitsResponses[keyof MaintenanceVisitsGetMaintenanceVisitsResponses];
 
-export type CreateMaintenanceVisitAsyncData = {
+export type MaintenanceVisitsCreateMaintenanceVisitData = {
     body?: MaintenanceVisitCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2938,16 +2938,16 @@ export type CreateMaintenanceVisitAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits';
 };
 
-export type CreateMaintenanceVisitAsyncResponses = {
+export type MaintenanceVisitsCreateMaintenanceVisitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateMaintenanceVisitAsyncResponse = CreateMaintenanceVisitAsyncResponses[keyof CreateMaintenanceVisitAsyncResponses];
+export type MaintenanceVisitsCreateMaintenanceVisitResponse = MaintenanceVisitsCreateMaintenanceVisitResponses[keyof MaintenanceVisitsCreateMaintenanceVisitResponses];
 
-export type GetMaintenanceVisitsCountAsyncData = {
+export type MaintenanceVisitsGetMaintenanceVisitsCountData = {
     body?: MaintenanceVisitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2960,16 +2960,16 @@ export type GetMaintenanceVisitsCountAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits/Count';
 };
 
-export type GetMaintenanceVisitsCountAsyncResponses = {
+export type MaintenanceVisitsGetMaintenanceVisitsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetMaintenanceVisitsCountAsyncResponse = GetMaintenanceVisitsCountAsyncResponses[keyof GetMaintenanceVisitsCountAsyncResponses];
+export type MaintenanceVisitsGetMaintenanceVisitsCountResponse = MaintenanceVisitsGetMaintenanceVisitsCountResponses[keyof MaintenanceVisitsGetMaintenanceVisitsCountResponses];
 
-export type DeleteMaintenanceVisitAsyncData = {
+export type MaintenanceVisitsDeleteMaintenanceVisitData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2984,16 +2984,16 @@ export type DeleteMaintenanceVisitAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
 };
 
-export type DeleteMaintenanceVisitAsyncResponses = {
+export type MaintenanceVisitsDeleteMaintenanceVisitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMaintenanceVisitAsyncResponse = DeleteMaintenanceVisitAsyncResponses[keyof DeleteMaintenanceVisitAsyncResponses];
+export type MaintenanceVisitsDeleteMaintenanceVisitResponse = MaintenanceVisitsDeleteMaintenanceVisitResponses[keyof MaintenanceVisitsDeleteMaintenanceVisitResponses];
 
-export type GetMaintenanceVisitAsyncData = {
+export type MaintenanceVisitsGetMaintenanceVisitData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3008,16 +3008,16 @@ export type GetMaintenanceVisitAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
 };
 
-export type GetMaintenanceVisitAsyncResponses = {
+export type MaintenanceVisitsGetMaintenanceVisitResponses = {
     /**
      * OK
      */
     200: MaintenanceVisitDtoEnvelopeReadable;
 };
 
-export type GetMaintenanceVisitAsyncResponse = GetMaintenanceVisitAsyncResponses[keyof GetMaintenanceVisitAsyncResponses];
+export type MaintenanceVisitsGetMaintenanceVisitResponse = MaintenanceVisitsGetMaintenanceVisitResponses[keyof MaintenanceVisitsGetMaintenanceVisitResponses];
 
-export type PatchMaintenanceVisitAsyncData = {
+export type MaintenanceVisitsPatchMaintenanceVisitData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3032,7 +3032,7 @@ export type PatchMaintenanceVisitAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
 };
 
-export type PatchMaintenanceVisitAsyncErrors = {
+export type MaintenanceVisitsPatchMaintenanceVisitErrors = {
     /**
      * Unauthorized
      */
@@ -3043,18 +3043,18 @@ export type PatchMaintenanceVisitAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchMaintenanceVisitAsyncError = PatchMaintenanceVisitAsyncErrors[keyof PatchMaintenanceVisitAsyncErrors];
+export type MaintenanceVisitsPatchMaintenanceVisitError = MaintenanceVisitsPatchMaintenanceVisitErrors[keyof MaintenanceVisitsPatchMaintenanceVisitErrors];
 
-export type PatchMaintenanceVisitAsyncResponses = {
+export type MaintenanceVisitsPatchMaintenanceVisitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchMaintenanceVisitAsyncResponse = PatchMaintenanceVisitAsyncResponses[keyof PatchMaintenanceVisitAsyncResponses];
+export type MaintenanceVisitsPatchMaintenanceVisitResponse = MaintenanceVisitsPatchMaintenanceVisitResponses[keyof MaintenanceVisitsPatchMaintenanceVisitResponses];
 
-export type UpdateMaintenanceVisitAsyncData = {
+export type MaintenanceVisitsUpdateMaintenanceVisitData = {
     body?: MaintenanceVisitUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3069,16 +3069,16 @@ export type UpdateMaintenanceVisitAsyncData = {
     url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
 };
 
-export type UpdateMaintenanceVisitAsyncResponses = {
+export type MaintenanceVisitsUpdateMaintenanceVisitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMaintenanceVisitAsyncResponse = UpdateMaintenanceVisitAsyncResponses[keyof UpdateMaintenanceVisitAsyncResponses];
+export type MaintenanceVisitsUpdateMaintenanceVisitResponse = MaintenanceVisitsUpdateMaintenanceVisitResponses[keyof MaintenanceVisitsUpdateMaintenanceVisitResponses];
 
-export type GetRefundPoliciesAsyncData = {
+export type RefundPoliciesGetRefundPoliciesData = {
     body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3091,7 +3091,7 @@ export type GetRefundPoliciesAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies';
 };
 
-export type GetRefundPoliciesAsyncErrors = {
+export type RefundPoliciesGetRefundPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -3102,18 +3102,18 @@ export type GetRefundPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRefundPoliciesAsyncError = GetRefundPoliciesAsyncErrors[keyof GetRefundPoliciesAsyncErrors];
+export type RefundPoliciesGetRefundPoliciesError = RefundPoliciesGetRefundPoliciesErrors[keyof RefundPoliciesGetRefundPoliciesErrors];
 
-export type GetRefundPoliciesAsyncResponses = {
+export type RefundPoliciesGetRefundPoliciesResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoListEnvelopeReadable;
 };
 
-export type GetRefundPoliciesAsyncResponse = GetRefundPoliciesAsyncResponses[keyof GetRefundPoliciesAsyncResponses];
+export type RefundPoliciesGetRefundPoliciesResponse = RefundPoliciesGetRefundPoliciesResponses[keyof RefundPoliciesGetRefundPoliciesResponses];
 
-export type CreateRefundPolicyAsyncData = {
+export type RefundPoliciesCreateRefundPolicyData = {
     body?: ItemRefundPolicyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3126,7 +3126,7 @@ export type CreateRefundPolicyAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies';
 };
 
-export type CreateRefundPolicyAsyncErrors = {
+export type RefundPoliciesCreateRefundPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3137,18 +3137,18 @@ export type CreateRefundPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateRefundPolicyAsyncError = CreateRefundPolicyAsyncErrors[keyof CreateRefundPolicyAsyncErrors];
+export type RefundPoliciesCreateRefundPolicyError = RefundPoliciesCreateRefundPolicyErrors[keyof RefundPoliciesCreateRefundPolicyErrors];
 
-export type CreateRefundPolicyAsyncResponses = {
+export type RefundPoliciesCreateRefundPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateRefundPolicyAsyncResponse = CreateRefundPolicyAsyncResponses[keyof CreateRefundPolicyAsyncResponses];
+export type RefundPoliciesCreateRefundPolicyResponse = RefundPoliciesCreateRefundPolicyResponses[keyof RefundPoliciesCreateRefundPolicyResponses];
 
-export type GetRefundPoliciesCountAsyncData = {
+export type RefundPoliciesGetRefundPoliciesCountData = {
     body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3161,7 +3161,7 @@ export type GetRefundPoliciesCountAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies/Count';
 };
 
-export type GetRefundPoliciesCountAsyncErrors = {
+export type RefundPoliciesGetRefundPoliciesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3172,18 +3172,18 @@ export type GetRefundPoliciesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRefundPoliciesCountAsyncError = GetRefundPoliciesCountAsyncErrors[keyof GetRefundPoliciesCountAsyncErrors];
+export type RefundPoliciesGetRefundPoliciesCountError = RefundPoliciesGetRefundPoliciesCountErrors[keyof RefundPoliciesGetRefundPoliciesCountErrors];
 
-export type GetRefundPoliciesCountAsyncResponses = {
+export type RefundPoliciesGetRefundPoliciesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetRefundPoliciesCountAsyncResponse = GetRefundPoliciesCountAsyncResponses[keyof GetRefundPoliciesCountAsyncResponses];
+export type RefundPoliciesGetRefundPoliciesCountResponse = RefundPoliciesGetRefundPoliciesCountResponses[keyof RefundPoliciesGetRefundPoliciesCountResponses];
 
-export type DeleteRefundPolicyAsyncData = {
+export type RefundPoliciesDeleteRefundPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3198,7 +3198,7 @@ export type DeleteRefundPolicyAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
 };
 
-export type DeleteRefundPolicyAsyncErrors = {
+export type RefundPoliciesDeleteRefundPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3209,18 +3209,18 @@ export type DeleteRefundPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteRefundPolicyAsyncError = DeleteRefundPolicyAsyncErrors[keyof DeleteRefundPolicyAsyncErrors];
+export type RefundPoliciesDeleteRefundPolicyError = RefundPoliciesDeleteRefundPolicyErrors[keyof RefundPoliciesDeleteRefundPolicyErrors];
 
-export type DeleteRefundPolicyAsyncResponses = {
+export type RefundPoliciesDeleteRefundPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteRefundPolicyAsyncResponse = DeleteRefundPolicyAsyncResponses[keyof DeleteRefundPolicyAsyncResponses];
+export type RefundPoliciesDeleteRefundPolicyResponse = RefundPoliciesDeleteRefundPolicyResponses[keyof RefundPoliciesDeleteRefundPolicyResponses];
 
-export type GetRefundPolicyAsyncData = {
+export type RefundPoliciesGetRefundPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3235,7 +3235,7 @@ export type GetRefundPolicyAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
 };
 
-export type GetRefundPolicyAsyncErrors = {
+export type RefundPoliciesGetRefundPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3246,18 +3246,18 @@ export type GetRefundPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetRefundPolicyAsyncError = GetRefundPolicyAsyncErrors[keyof GetRefundPolicyAsyncErrors];
+export type RefundPoliciesGetRefundPolicyError = RefundPoliciesGetRefundPolicyErrors[keyof RefundPoliciesGetRefundPolicyErrors];
 
-export type GetRefundPolicyAsyncResponses = {
+export type RefundPoliciesGetRefundPolicyResponses = {
     /**
      * OK
      */
     200: ItemRefundPolicyDtoEnvelopeReadable;
 };
 
-export type GetRefundPolicyAsyncResponse = GetRefundPolicyAsyncResponses[keyof GetRefundPolicyAsyncResponses];
+export type RefundPoliciesGetRefundPolicyResponse = RefundPoliciesGetRefundPolicyResponses[keyof RefundPoliciesGetRefundPolicyResponses];
 
-export type PatchRefundPolicyAsyncData = {
+export type RefundPoliciesPatchRefundPolicyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3272,7 +3272,7 @@ export type PatchRefundPolicyAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
 };
 
-export type PatchRefundPolicyAsyncErrors = {
+export type RefundPoliciesPatchRefundPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3283,18 +3283,18 @@ export type PatchRefundPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchRefundPolicyAsyncError = PatchRefundPolicyAsyncErrors[keyof PatchRefundPolicyAsyncErrors];
+export type RefundPoliciesPatchRefundPolicyError = RefundPoliciesPatchRefundPolicyErrors[keyof RefundPoliciesPatchRefundPolicyErrors];
 
-export type PatchRefundPolicyAsyncResponses = {
+export type RefundPoliciesPatchRefundPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchRefundPolicyAsyncResponse = PatchRefundPolicyAsyncResponses[keyof PatchRefundPolicyAsyncResponses];
+export type RefundPoliciesPatchRefundPolicyResponse = RefundPoliciesPatchRefundPolicyResponses[keyof RefundPoliciesPatchRefundPolicyResponses];
 
-export type UpdateRefundPolicyAsyncData = {
+export type RefundPoliciesUpdateRefundPolicyData = {
     body?: ItemRefundPolicyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3309,7 +3309,7 @@ export type UpdateRefundPolicyAsyncData = {
     url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
 };
 
-export type UpdateRefundPolicyAsyncErrors = {
+export type RefundPoliciesUpdateRefundPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3320,18 +3320,18 @@ export type UpdateRefundPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateRefundPolicyAsyncError = UpdateRefundPolicyAsyncErrors[keyof UpdateRefundPolicyAsyncErrors];
+export type RefundPoliciesUpdateRefundPolicyError = RefundPoliciesUpdateRefundPolicyErrors[keyof RefundPoliciesUpdateRefundPolicyErrors];
 
-export type UpdateRefundPolicyAsyncResponses = {
+export type RefundPoliciesUpdateRefundPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateRefundPolicyAsyncResponse = UpdateRefundPolicyAsyncResponses[keyof UpdateRefundPolicyAsyncResponses];
+export type RefundPoliciesUpdateRefundPolicyResponse = RefundPoliciesUpdateRefundPolicyResponses[keyof RefundPoliciesUpdateRefundPolicyResponses];
 
-export type GetRefundRequestsAsyncData = {
+export type RefundRequestsGetRefundRequestsData = {
     body?: RefundRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3344,16 +3344,16 @@ export type GetRefundRequestsAsyncData = {
     url: '/api/v2/SupportService/RefundRequests';
 };
 
-export type GetRefundRequestsAsyncResponses = {
+export type RefundRequestsGetRefundRequestsResponses = {
     /**
      * OK
      */
     200: RefundRequestDtoListEnvelopeReadable;
 };
 
-export type GetRefundRequestsAsyncResponse = GetRefundRequestsAsyncResponses[keyof GetRefundRequestsAsyncResponses];
+export type RefundRequestsGetRefundRequestsResponse = RefundRequestsGetRefundRequestsResponses[keyof RefundRequestsGetRefundRequestsResponses];
 
-export type CreateRefundRequestAsyncData = {
+export type RefundRequestsCreateRefundRequestData = {
     body?: RefundRequestCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3366,16 +3366,16 @@ export type CreateRefundRequestAsyncData = {
     url: '/api/v2/SupportService/RefundRequests';
 };
 
-export type CreateRefundRequestAsyncResponses = {
+export type RefundRequestsCreateRefundRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateRefundRequestAsyncResponse = CreateRefundRequestAsyncResponses[keyof CreateRefundRequestAsyncResponses];
+export type RefundRequestsCreateRefundRequestResponse = RefundRequestsCreateRefundRequestResponses[keyof RefundRequestsCreateRefundRequestResponses];
 
-export type GetRefundRequestsCountAsyncData = {
+export type RefundRequestsGetRefundRequestsCountData = {
     body?: RefundRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3388,16 +3388,16 @@ export type GetRefundRequestsCountAsyncData = {
     url: '/api/v2/SupportService/RefundRequests/Count';
 };
 
-export type GetRefundRequestsCountAsyncResponses = {
+export type RefundRequestsGetRefundRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetRefundRequestsCountAsyncResponse = GetRefundRequestsCountAsyncResponses[keyof GetRefundRequestsCountAsyncResponses];
+export type RefundRequestsGetRefundRequestsCountResponse = RefundRequestsGetRefundRequestsCountResponses[keyof RefundRequestsGetRefundRequestsCountResponses];
 
-export type DeleteRefundRequestAsyncData = {
+export type RefundRequestsDeleteRefundRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3412,16 +3412,16 @@ export type DeleteRefundRequestAsyncData = {
     url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
 };
 
-export type DeleteRefundRequestAsyncResponses = {
+export type RefundRequestsDeleteRefundRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteRefundRequestAsyncResponse = DeleteRefundRequestAsyncResponses[keyof DeleteRefundRequestAsyncResponses];
+export type RefundRequestsDeleteRefundRequestResponse = RefundRequestsDeleteRefundRequestResponses[keyof RefundRequestsDeleteRefundRequestResponses];
 
-export type GetRefundRequestAsyncData = {
+export type RefundRequestsGetRefundRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3436,16 +3436,16 @@ export type GetRefundRequestAsyncData = {
     url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
 };
 
-export type GetRefundRequestAsyncResponses = {
+export type RefundRequestsGetRefundRequestResponses = {
     /**
      * OK
      */
     200: RefundRequestDtoEnvelopeReadable;
 };
 
-export type GetRefundRequestAsyncResponse = GetRefundRequestAsyncResponses[keyof GetRefundRequestAsyncResponses];
+export type RefundRequestsGetRefundRequestResponse = RefundRequestsGetRefundRequestResponses[keyof RefundRequestsGetRefundRequestResponses];
 
-export type PatchRefundRequestAsyncData = {
+export type RefundRequestsPatchRefundRequestData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3460,7 +3460,7 @@ export type PatchRefundRequestAsyncData = {
     url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
 };
 
-export type PatchRefundRequestAsyncErrors = {
+export type RefundRequestsPatchRefundRequestErrors = {
     /**
      * Unauthorized
      */
@@ -3471,18 +3471,18 @@ export type PatchRefundRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchRefundRequestAsyncError = PatchRefundRequestAsyncErrors[keyof PatchRefundRequestAsyncErrors];
+export type RefundRequestsPatchRefundRequestError = RefundRequestsPatchRefundRequestErrors[keyof RefundRequestsPatchRefundRequestErrors];
 
-export type PatchRefundRequestAsyncResponses = {
+export type RefundRequestsPatchRefundRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchRefundRequestAsyncResponse = PatchRefundRequestAsyncResponses[keyof PatchRefundRequestAsyncResponses];
+export type RefundRequestsPatchRefundRequestResponse = RefundRequestsPatchRefundRequestResponses[keyof RefundRequestsPatchRefundRequestResponses];
 
-export type UpdateRefundRequestAsyncData = {
+export type RefundRequestsUpdateRefundRequestData = {
     body?: RefundRequestUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3497,16 +3497,16 @@ export type UpdateRefundRequestAsyncData = {
     url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
 };
 
-export type UpdateRefundRequestAsyncResponses = {
+export type RefundRequestsUpdateRefundRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateRefundRequestAsyncResponse = UpdateRefundRequestAsyncResponses[keyof UpdateRefundRequestAsyncResponses];
+export type RefundRequestsUpdateRefundRequestResponse = RefundRequestsUpdateRefundRequestResponses[keyof RefundRequestsUpdateRefundRequestResponses];
 
-export type GetReturnPoliciesAsyncData = {
+export type ReturnPoliciesGetReturnPoliciesData = {
     body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3519,7 +3519,7 @@ export type GetReturnPoliciesAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies';
 };
 
-export type GetReturnPoliciesAsyncErrors = {
+export type ReturnPoliciesGetReturnPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -3530,18 +3530,18 @@ export type GetReturnPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetReturnPoliciesAsyncError = GetReturnPoliciesAsyncErrors[keyof GetReturnPoliciesAsyncErrors];
+export type ReturnPoliciesGetReturnPoliciesError = ReturnPoliciesGetReturnPoliciesErrors[keyof ReturnPoliciesGetReturnPoliciesErrors];
 
-export type GetReturnPoliciesAsyncResponses = {
+export type ReturnPoliciesGetReturnPoliciesResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoListEnvelopeReadable;
 };
 
-export type GetReturnPoliciesAsyncResponse = GetReturnPoliciesAsyncResponses[keyof GetReturnPoliciesAsyncResponses];
+export type ReturnPoliciesGetReturnPoliciesResponse = ReturnPoliciesGetReturnPoliciesResponses[keyof ReturnPoliciesGetReturnPoliciesResponses];
 
-export type CreateReturnPolicyAsyncData = {
+export type ReturnPoliciesCreateReturnPolicyData = {
     body?: ItemReturnPolicyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3554,7 +3554,7 @@ export type CreateReturnPolicyAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies';
 };
 
-export type CreateReturnPolicyAsyncErrors = {
+export type ReturnPoliciesCreateReturnPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3565,18 +3565,18 @@ export type CreateReturnPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateReturnPolicyAsyncError = CreateReturnPolicyAsyncErrors[keyof CreateReturnPolicyAsyncErrors];
+export type ReturnPoliciesCreateReturnPolicyError = ReturnPoliciesCreateReturnPolicyErrors[keyof ReturnPoliciesCreateReturnPolicyErrors];
 
-export type CreateReturnPolicyAsyncResponses = {
+export type ReturnPoliciesCreateReturnPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateReturnPolicyAsyncResponse = CreateReturnPolicyAsyncResponses[keyof CreateReturnPolicyAsyncResponses];
+export type ReturnPoliciesCreateReturnPolicyResponse = ReturnPoliciesCreateReturnPolicyResponses[keyof ReturnPoliciesCreateReturnPolicyResponses];
 
-export type GetReturnPoliciesCountAsyncData = {
+export type ReturnPoliciesGetReturnPoliciesCountData = {
     body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3589,7 +3589,7 @@ export type GetReturnPoliciesCountAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies/Count';
 };
 
-export type GetReturnPoliciesCountAsyncErrors = {
+export type ReturnPoliciesGetReturnPoliciesCountErrors = {
     /**
      * Unauthorized
      */
@@ -3600,18 +3600,18 @@ export type GetReturnPoliciesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetReturnPoliciesCountAsyncError = GetReturnPoliciesCountAsyncErrors[keyof GetReturnPoliciesCountAsyncErrors];
+export type ReturnPoliciesGetReturnPoliciesCountError = ReturnPoliciesGetReturnPoliciesCountErrors[keyof ReturnPoliciesGetReturnPoliciesCountErrors];
 
-export type GetReturnPoliciesCountAsyncResponses = {
+export type ReturnPoliciesGetReturnPoliciesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetReturnPoliciesCountAsyncResponse = GetReturnPoliciesCountAsyncResponses[keyof GetReturnPoliciesCountAsyncResponses];
+export type ReturnPoliciesGetReturnPoliciesCountResponse = ReturnPoliciesGetReturnPoliciesCountResponses[keyof ReturnPoliciesGetReturnPoliciesCountResponses];
 
-export type DeleteReturnPolicyAsyncData = {
+export type ReturnPoliciesDeleteReturnPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3626,7 +3626,7 @@ export type DeleteReturnPolicyAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
 };
 
-export type DeleteReturnPolicyAsyncErrors = {
+export type ReturnPoliciesDeleteReturnPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3637,18 +3637,18 @@ export type DeleteReturnPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteReturnPolicyAsyncError = DeleteReturnPolicyAsyncErrors[keyof DeleteReturnPolicyAsyncErrors];
+export type ReturnPoliciesDeleteReturnPolicyError = ReturnPoliciesDeleteReturnPolicyErrors[keyof ReturnPoliciesDeleteReturnPolicyErrors];
 
-export type DeleteReturnPolicyAsyncResponses = {
+export type ReturnPoliciesDeleteReturnPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteReturnPolicyAsyncResponse = DeleteReturnPolicyAsyncResponses[keyof DeleteReturnPolicyAsyncResponses];
+export type ReturnPoliciesDeleteReturnPolicyResponse = ReturnPoliciesDeleteReturnPolicyResponses[keyof ReturnPoliciesDeleteReturnPolicyResponses];
 
-export type GetReturnPolicyAsyncData = {
+export type ReturnPoliciesGetReturnPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3663,7 +3663,7 @@ export type GetReturnPolicyAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
 };
 
-export type GetReturnPolicyAsyncErrors = {
+export type ReturnPoliciesGetReturnPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3674,18 +3674,18 @@ export type GetReturnPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetReturnPolicyAsyncError = GetReturnPolicyAsyncErrors[keyof GetReturnPolicyAsyncErrors];
+export type ReturnPoliciesGetReturnPolicyError = ReturnPoliciesGetReturnPolicyErrors[keyof ReturnPoliciesGetReturnPolicyErrors];
 
-export type GetReturnPolicyAsyncResponses = {
+export type ReturnPoliciesGetReturnPolicyResponses = {
     /**
      * OK
      */
     200: ItemReturnPolicyDtoEnvelopeReadable;
 };
 
-export type GetReturnPolicyAsyncResponse = GetReturnPolicyAsyncResponses[keyof GetReturnPolicyAsyncResponses];
+export type ReturnPoliciesGetReturnPolicyResponse = ReturnPoliciesGetReturnPolicyResponses[keyof ReturnPoliciesGetReturnPolicyResponses];
 
-export type PatchReturnPolicyAsyncData = {
+export type ReturnPoliciesPatchReturnPolicyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3700,7 +3700,7 @@ export type PatchReturnPolicyAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
 };
 
-export type PatchReturnPolicyAsyncErrors = {
+export type ReturnPoliciesPatchReturnPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3711,18 +3711,18 @@ export type PatchReturnPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchReturnPolicyAsyncError = PatchReturnPolicyAsyncErrors[keyof PatchReturnPolicyAsyncErrors];
+export type ReturnPoliciesPatchReturnPolicyError = ReturnPoliciesPatchReturnPolicyErrors[keyof ReturnPoliciesPatchReturnPolicyErrors];
 
-export type PatchReturnPolicyAsyncResponses = {
+export type ReturnPoliciesPatchReturnPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchReturnPolicyAsyncResponse = PatchReturnPolicyAsyncResponses[keyof PatchReturnPolicyAsyncResponses];
+export type ReturnPoliciesPatchReturnPolicyResponse = ReturnPoliciesPatchReturnPolicyResponses[keyof ReturnPoliciesPatchReturnPolicyResponses];
 
-export type UpdateReturnPolicyAsyncData = {
+export type ReturnPoliciesUpdateReturnPolicyData = {
     body?: ItemReturnPolicyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3737,7 +3737,7 @@ export type UpdateReturnPolicyAsyncData = {
     url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
 };
 
-export type UpdateReturnPolicyAsyncErrors = {
+export type ReturnPoliciesUpdateReturnPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -3748,18 +3748,18 @@ export type UpdateReturnPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateReturnPolicyAsyncError = UpdateReturnPolicyAsyncErrors[keyof UpdateReturnPolicyAsyncErrors];
+export type ReturnPoliciesUpdateReturnPolicyError = ReturnPoliciesUpdateReturnPolicyErrors[keyof ReturnPoliciesUpdateReturnPolicyErrors];
 
-export type UpdateReturnPolicyAsyncResponses = {
+export type ReturnPoliciesUpdateReturnPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateReturnPolicyAsyncResponse = UpdateReturnPolicyAsyncResponses[keyof UpdateReturnPolicyAsyncResponses];
+export type ReturnPoliciesUpdateReturnPolicyResponse = ReturnPoliciesUpdateReturnPolicyResponses[keyof ReturnPoliciesUpdateReturnPolicyResponses];
 
-export type GetReturnRequestsAsyncData = {
+export type ReturnRequestsGetReturnRequestsData = {
     body?: ReturnRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3772,16 +3772,16 @@ export type GetReturnRequestsAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests';
 };
 
-export type GetReturnRequestsAsyncResponses = {
+export type ReturnRequestsGetReturnRequestsResponses = {
     /**
      * OK
      */
     200: ReturnRequestDtoListEnvelopeReadable;
 };
 
-export type GetReturnRequestsAsyncResponse = GetReturnRequestsAsyncResponses[keyof GetReturnRequestsAsyncResponses];
+export type ReturnRequestsGetReturnRequestsResponse = ReturnRequestsGetReturnRequestsResponses[keyof ReturnRequestsGetReturnRequestsResponses];
 
-export type CreateReturnRequestAsyncData = {
+export type ReturnRequestsCreateReturnRequestData = {
     body?: ReturnRequestCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3794,16 +3794,16 @@ export type CreateReturnRequestAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests';
 };
 
-export type CreateReturnRequestAsyncResponses = {
+export type ReturnRequestsCreateReturnRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateReturnRequestAsyncResponse = CreateReturnRequestAsyncResponses[keyof CreateReturnRequestAsyncResponses];
+export type ReturnRequestsCreateReturnRequestResponse = ReturnRequestsCreateReturnRequestResponses[keyof ReturnRequestsCreateReturnRequestResponses];
 
-export type GetReturnRequestsCountAsyncData = {
+export type ReturnRequestsGetReturnRequestsCountData = {
     body?: ReturnRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3816,16 +3816,16 @@ export type GetReturnRequestsCountAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests/Count';
 };
 
-export type GetReturnRequestsCountAsyncResponses = {
+export type ReturnRequestsGetReturnRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetReturnRequestsCountAsyncResponse = GetReturnRequestsCountAsyncResponses[keyof GetReturnRequestsCountAsyncResponses];
+export type ReturnRequestsGetReturnRequestsCountResponse = ReturnRequestsGetReturnRequestsCountResponses[keyof ReturnRequestsGetReturnRequestsCountResponses];
 
-export type DeleteReturnRequestAsyncData = {
+export type ReturnRequestsDeleteReturnRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3840,16 +3840,16 @@ export type DeleteReturnRequestAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
 };
 
-export type DeleteReturnRequestAsyncResponses = {
+export type ReturnRequestsDeleteReturnRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteReturnRequestAsyncResponse = DeleteReturnRequestAsyncResponses[keyof DeleteReturnRequestAsyncResponses];
+export type ReturnRequestsDeleteReturnRequestResponse = ReturnRequestsDeleteReturnRequestResponses[keyof ReturnRequestsDeleteReturnRequestResponses];
 
-export type GetReturnRequestAsyncData = {
+export type ReturnRequestsGetReturnRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3864,16 +3864,16 @@ export type GetReturnRequestAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
 };
 
-export type GetReturnRequestAsyncResponses = {
+export type ReturnRequestsGetReturnRequestResponses = {
     /**
      * OK
      */
     200: ReturnRequestDtoEnvelopeReadable;
 };
 
-export type GetReturnRequestAsyncResponse = GetReturnRequestAsyncResponses[keyof GetReturnRequestAsyncResponses];
+export type ReturnRequestsGetReturnRequestResponse = ReturnRequestsGetReturnRequestResponses[keyof ReturnRequestsGetReturnRequestResponses];
 
-export type PatchReturnRequestAsyncData = {
+export type ReturnRequestsPatchReturnRequestData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3888,7 +3888,7 @@ export type PatchReturnRequestAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
 };
 
-export type PatchReturnRequestAsyncErrors = {
+export type ReturnRequestsPatchReturnRequestErrors = {
     /**
      * Unauthorized
      */
@@ -3899,18 +3899,18 @@ export type PatchReturnRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchReturnRequestAsyncError = PatchReturnRequestAsyncErrors[keyof PatchReturnRequestAsyncErrors];
+export type ReturnRequestsPatchReturnRequestError = ReturnRequestsPatchReturnRequestErrors[keyof ReturnRequestsPatchReturnRequestErrors];
 
-export type PatchReturnRequestAsyncResponses = {
+export type ReturnRequestsPatchReturnRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchReturnRequestAsyncResponse = PatchReturnRequestAsyncResponses[keyof PatchReturnRequestAsyncResponses];
+export type ReturnRequestsPatchReturnRequestResponse = ReturnRequestsPatchReturnRequestResponses[keyof ReturnRequestsPatchReturnRequestResponses];
 
-export type UpdateReturnRequestAsyncData = {
+export type ReturnRequestsUpdateReturnRequestData = {
     body?: ReturnRequestUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3925,16 +3925,16 @@ export type UpdateReturnRequestAsyncData = {
     url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
 };
 
-export type UpdateReturnRequestAsyncResponses = {
+export type ReturnRequestsUpdateReturnRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateReturnRequestAsyncResponse = UpdateReturnRequestAsyncResponses[keyof UpdateReturnRequestAsyncResponses];
+export type ReturnRequestsUpdateReturnRequestResponse = ReturnRequestsUpdateReturnRequestResponses[keyof ReturnRequestsUpdateReturnRequestResponses];
 
-export type GetSupportEntitlementsAsyncData = {
+export type SupportEntitlementsGetSupportEntitlementsData = {
     body?: SupportEntitlementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3947,7 +3947,7 @@ export type GetSupportEntitlementsAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements';
 };
 
-export type GetSupportEntitlementsAsyncErrors = {
+export type SupportEntitlementsGetSupportEntitlementsErrors = {
     /**
      * Unauthorized
      */
@@ -3958,18 +3958,18 @@ export type GetSupportEntitlementsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportEntitlementsAsyncError = GetSupportEntitlementsAsyncErrors[keyof GetSupportEntitlementsAsyncErrors];
+export type SupportEntitlementsGetSupportEntitlementsError = SupportEntitlementsGetSupportEntitlementsErrors[keyof SupportEntitlementsGetSupportEntitlementsErrors];
 
-export type GetSupportEntitlementsAsyncResponses = {
+export type SupportEntitlementsGetSupportEntitlementsResponses = {
     /**
      * OK
      */
     200: SupportEntitlementDtoListEnvelopeReadable;
 };
 
-export type GetSupportEntitlementsAsyncResponse = GetSupportEntitlementsAsyncResponses[keyof GetSupportEntitlementsAsyncResponses];
+export type SupportEntitlementsGetSupportEntitlementsResponse = SupportEntitlementsGetSupportEntitlementsResponses[keyof SupportEntitlementsGetSupportEntitlementsResponses];
 
-export type CreateSupportEntitlementAsyncData = {
+export type SupportEntitlementsCreateSupportEntitlementData = {
     body?: SupportEntitlementCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3982,7 +3982,7 @@ export type CreateSupportEntitlementAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements';
 };
 
-export type CreateSupportEntitlementAsyncErrors = {
+export type SupportEntitlementsCreateSupportEntitlementErrors = {
     /**
      * Unauthorized
      */
@@ -3993,18 +3993,18 @@ export type CreateSupportEntitlementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSupportEntitlementAsyncError = CreateSupportEntitlementAsyncErrors[keyof CreateSupportEntitlementAsyncErrors];
+export type SupportEntitlementsCreateSupportEntitlementError = SupportEntitlementsCreateSupportEntitlementErrors[keyof SupportEntitlementsCreateSupportEntitlementErrors];
 
-export type CreateSupportEntitlementAsyncResponses = {
+export type SupportEntitlementsCreateSupportEntitlementResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSupportEntitlementAsyncResponse = CreateSupportEntitlementAsyncResponses[keyof CreateSupportEntitlementAsyncResponses];
+export type SupportEntitlementsCreateSupportEntitlementResponse = SupportEntitlementsCreateSupportEntitlementResponses[keyof SupportEntitlementsCreateSupportEntitlementResponses];
 
-export type GetSupportEntitlementsCountAsyncData = {
+export type SupportEntitlementsGetSupportEntitlementsCountData = {
     body?: SupportEntitlementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4017,7 +4017,7 @@ export type GetSupportEntitlementsCountAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements/Count';
 };
 
-export type GetSupportEntitlementsCountAsyncErrors = {
+export type SupportEntitlementsGetSupportEntitlementsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4028,18 +4028,18 @@ export type GetSupportEntitlementsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportEntitlementsCountAsyncError = GetSupportEntitlementsCountAsyncErrors[keyof GetSupportEntitlementsCountAsyncErrors];
+export type SupportEntitlementsGetSupportEntitlementsCountError = SupportEntitlementsGetSupportEntitlementsCountErrors[keyof SupportEntitlementsGetSupportEntitlementsCountErrors];
 
-export type GetSupportEntitlementsCountAsyncResponses = {
+export type SupportEntitlementsGetSupportEntitlementsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportEntitlementsCountAsyncResponse = GetSupportEntitlementsCountAsyncResponses[keyof GetSupportEntitlementsCountAsyncResponses];
+export type SupportEntitlementsGetSupportEntitlementsCountResponse = SupportEntitlementsGetSupportEntitlementsCountResponses[keyof SupportEntitlementsGetSupportEntitlementsCountResponses];
 
-export type DeleteSupportEntitlementAsyncData = {
+export type SupportEntitlementsDeleteSupportEntitlementData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4054,7 +4054,7 @@ export type DeleteSupportEntitlementAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}';
 };
 
-export type DeleteSupportEntitlementAsyncErrors = {
+export type SupportEntitlementsDeleteSupportEntitlementErrors = {
     /**
      * Unauthorized
      */
@@ -4065,18 +4065,18 @@ export type DeleteSupportEntitlementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportEntitlementAsyncError = DeleteSupportEntitlementAsyncErrors[keyof DeleteSupportEntitlementAsyncErrors];
+export type SupportEntitlementsDeleteSupportEntitlementError = SupportEntitlementsDeleteSupportEntitlementErrors[keyof SupportEntitlementsDeleteSupportEntitlementErrors];
 
-export type DeleteSupportEntitlementAsyncResponses = {
+export type SupportEntitlementsDeleteSupportEntitlementResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportEntitlementAsyncResponse = DeleteSupportEntitlementAsyncResponses[keyof DeleteSupportEntitlementAsyncResponses];
+export type SupportEntitlementsDeleteSupportEntitlementResponse = SupportEntitlementsDeleteSupportEntitlementResponses[keyof SupportEntitlementsDeleteSupportEntitlementResponses];
 
-export type GetSupportEntitlementAsyncData = {
+export type SupportEntitlementsGetSupportEntitlementData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4091,7 +4091,7 @@ export type GetSupportEntitlementAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}';
 };
 
-export type GetSupportEntitlementAsyncErrors = {
+export type SupportEntitlementsGetSupportEntitlementErrors = {
     /**
      * Unauthorized
      */
@@ -4102,18 +4102,18 @@ export type GetSupportEntitlementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportEntitlementAsyncError = GetSupportEntitlementAsyncErrors[keyof GetSupportEntitlementAsyncErrors];
+export type SupportEntitlementsGetSupportEntitlementError = SupportEntitlementsGetSupportEntitlementErrors[keyof SupportEntitlementsGetSupportEntitlementErrors];
 
-export type GetSupportEntitlementAsyncResponses = {
+export type SupportEntitlementsGetSupportEntitlementResponses = {
     /**
      * OK
      */
     200: SupportEntitlementDtoEnvelopeReadable;
 };
 
-export type GetSupportEntitlementAsyncResponse = GetSupportEntitlementAsyncResponses[keyof GetSupportEntitlementAsyncResponses];
+export type SupportEntitlementsGetSupportEntitlementResponse = SupportEntitlementsGetSupportEntitlementResponses[keyof SupportEntitlementsGetSupportEntitlementResponses];
 
-export type PatchSupportEntitlementAsyncData = {
+export type SupportEntitlementsPatchSupportEntitlementData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4128,7 +4128,7 @@ export type PatchSupportEntitlementAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}';
 };
 
-export type PatchSupportEntitlementAsyncErrors = {
+export type SupportEntitlementsPatchSupportEntitlementErrors = {
     /**
      * Unauthorized
      */
@@ -4139,18 +4139,18 @@ export type PatchSupportEntitlementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSupportEntitlementAsyncError = PatchSupportEntitlementAsyncErrors[keyof PatchSupportEntitlementAsyncErrors];
+export type SupportEntitlementsPatchSupportEntitlementError = SupportEntitlementsPatchSupportEntitlementErrors[keyof SupportEntitlementsPatchSupportEntitlementErrors];
 
-export type PatchSupportEntitlementAsyncResponses = {
+export type SupportEntitlementsPatchSupportEntitlementResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSupportEntitlementAsyncResponse = PatchSupportEntitlementAsyncResponses[keyof PatchSupportEntitlementAsyncResponses];
+export type SupportEntitlementsPatchSupportEntitlementResponse = SupportEntitlementsPatchSupportEntitlementResponses[keyof SupportEntitlementsPatchSupportEntitlementResponses];
 
-export type UpdateSupportEntitlementAsyncData = {
+export type SupportEntitlementsUpdateSupportEntitlementData = {
     body?: SupportEntitlementUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4165,7 +4165,7 @@ export type UpdateSupportEntitlementAsyncData = {
     url: '/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}';
 };
 
-export type UpdateSupportEntitlementAsyncErrors = {
+export type SupportEntitlementsUpdateSupportEntitlementErrors = {
     /**
      * Unauthorized
      */
@@ -4176,18 +4176,18 @@ export type UpdateSupportEntitlementAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSupportEntitlementAsyncError = UpdateSupportEntitlementAsyncErrors[keyof UpdateSupportEntitlementAsyncErrors];
+export type SupportEntitlementsUpdateSupportEntitlementError = SupportEntitlementsUpdateSupportEntitlementErrors[keyof SupportEntitlementsUpdateSupportEntitlementErrors];
 
-export type UpdateSupportEntitlementAsyncResponses = {
+export type SupportEntitlementsUpdateSupportEntitlementResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSupportEntitlementAsyncResponse = UpdateSupportEntitlementAsyncResponses[keyof UpdateSupportEntitlementAsyncResponses];
+export type SupportEntitlementsUpdateSupportEntitlementResponse = SupportEntitlementsUpdateSupportEntitlementResponses[keyof SupportEntitlementsUpdateSupportEntitlementResponses];
 
-export type GetSupportRequestAttachmentsAsyncData = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsData = {
     body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4200,7 +4200,7 @@ export type GetSupportRequestAttachmentsAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments';
 };
 
-export type GetSupportRequestAttachmentsAsyncErrors = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsErrors = {
     /**
      * Unauthorized
      */
@@ -4211,18 +4211,18 @@ export type GetSupportRequestAttachmentsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsAsyncError = GetSupportRequestAttachmentsAsyncErrors[keyof GetSupportRequestAttachmentsAsyncErrors];
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsError = SupportRequestAttachmentsGetSupportRequestAttachmentsErrors[keyof SupportRequestAttachmentsGetSupportRequestAttachmentsErrors];
 
-export type GetSupportRequestAttachmentsAsyncResponses = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsResponses = {
     /**
      * OK
      */
     200: SupportRequestAttachmentDtoListEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsAsyncResponse = GetSupportRequestAttachmentsAsyncResponses[keyof GetSupportRequestAttachmentsAsyncResponses];
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsResponse = SupportRequestAttachmentsGetSupportRequestAttachmentsResponses[keyof SupportRequestAttachmentsGetSupportRequestAttachmentsResponses];
 
-export type CreateSupportRequestAttachmentAsyncData = {
+export type SupportRequestAttachmentsCreateSupportRequestAttachmentData = {
     body?: SupportRequestAttachmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4235,7 +4235,7 @@ export type CreateSupportRequestAttachmentAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments';
 };
 
-export type CreateSupportRequestAttachmentAsyncErrors = {
+export type SupportRequestAttachmentsCreateSupportRequestAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4246,18 +4246,18 @@ export type CreateSupportRequestAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSupportRequestAttachmentAsyncError = CreateSupportRequestAttachmentAsyncErrors[keyof CreateSupportRequestAttachmentAsyncErrors];
+export type SupportRequestAttachmentsCreateSupportRequestAttachmentError = SupportRequestAttachmentsCreateSupportRequestAttachmentErrors[keyof SupportRequestAttachmentsCreateSupportRequestAttachmentErrors];
 
-export type CreateSupportRequestAttachmentAsyncResponses = {
+export type SupportRequestAttachmentsCreateSupportRequestAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSupportRequestAttachmentAsyncResponse = CreateSupportRequestAttachmentAsyncResponses[keyof CreateSupportRequestAttachmentAsyncResponses];
+export type SupportRequestAttachmentsCreateSupportRequestAttachmentResponse = SupportRequestAttachmentsCreateSupportRequestAttachmentResponses[keyof SupportRequestAttachmentsCreateSupportRequestAttachmentResponses];
 
-export type GetSupportRequestAttachmentsCountAsyncData = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsCountData = {
     body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4270,7 +4270,7 @@ export type GetSupportRequestAttachmentsCountAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments/Count';
 };
 
-export type GetSupportRequestAttachmentsCountAsyncErrors = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4281,18 +4281,18 @@ export type GetSupportRequestAttachmentsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsCountAsyncError = GetSupportRequestAttachmentsCountAsyncErrors[keyof GetSupportRequestAttachmentsCountAsyncErrors];
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsCountError = SupportRequestAttachmentsGetSupportRequestAttachmentsCountErrors[keyof SupportRequestAttachmentsGetSupportRequestAttachmentsCountErrors];
 
-export type GetSupportRequestAttachmentsCountAsyncResponses = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsCountAsyncResponse = GetSupportRequestAttachmentsCountAsyncResponses[keyof GetSupportRequestAttachmentsCountAsyncResponses];
+export type SupportRequestAttachmentsGetSupportRequestAttachmentsCountResponse = SupportRequestAttachmentsGetSupportRequestAttachmentsCountResponses[keyof SupportRequestAttachmentsGetSupportRequestAttachmentsCountResponses];
 
-export type DeleteSupportRequestAttachmentAsyncData = {
+export type SupportRequestAttachmentsDeleteSupportRequestAttachmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4307,7 +4307,7 @@ export type DeleteSupportRequestAttachmentAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}';
 };
 
-export type DeleteSupportRequestAttachmentAsyncErrors = {
+export type SupportRequestAttachmentsDeleteSupportRequestAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4318,18 +4318,18 @@ export type DeleteSupportRequestAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportRequestAttachmentAsyncError = DeleteSupportRequestAttachmentAsyncErrors[keyof DeleteSupportRequestAttachmentAsyncErrors];
+export type SupportRequestAttachmentsDeleteSupportRequestAttachmentError = SupportRequestAttachmentsDeleteSupportRequestAttachmentErrors[keyof SupportRequestAttachmentsDeleteSupportRequestAttachmentErrors];
 
-export type DeleteSupportRequestAttachmentAsyncResponses = {
+export type SupportRequestAttachmentsDeleteSupportRequestAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportRequestAttachmentAsyncResponse = DeleteSupportRequestAttachmentAsyncResponses[keyof DeleteSupportRequestAttachmentAsyncResponses];
+export type SupportRequestAttachmentsDeleteSupportRequestAttachmentResponse = SupportRequestAttachmentsDeleteSupportRequestAttachmentResponses[keyof SupportRequestAttachmentsDeleteSupportRequestAttachmentResponses];
 
-export type GetSupportRequestAttachmentAsyncData = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4344,7 +4344,7 @@ export type GetSupportRequestAttachmentAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}';
 };
 
-export type GetSupportRequestAttachmentAsyncErrors = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4355,18 +4355,18 @@ export type GetSupportRequestAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentAsyncError = GetSupportRequestAttachmentAsyncErrors[keyof GetSupportRequestAttachmentAsyncErrors];
+export type SupportRequestAttachmentsGetSupportRequestAttachmentError = SupportRequestAttachmentsGetSupportRequestAttachmentErrors[keyof SupportRequestAttachmentsGetSupportRequestAttachmentErrors];
 
-export type GetSupportRequestAttachmentAsyncResponses = {
+export type SupportRequestAttachmentsGetSupportRequestAttachmentResponses = {
     /**
      * OK
      */
     200: SupportRequestAttachmentDtoEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentAsyncResponse = GetSupportRequestAttachmentAsyncResponses[keyof GetSupportRequestAttachmentAsyncResponses];
+export type SupportRequestAttachmentsGetSupportRequestAttachmentResponse = SupportRequestAttachmentsGetSupportRequestAttachmentResponses[keyof SupportRequestAttachmentsGetSupportRequestAttachmentResponses];
 
-export type PatchSupportRequestAttachmentAsyncData = {
+export type SupportRequestAttachmentsPatchSupportRequestAttachmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4381,7 +4381,7 @@ export type PatchSupportRequestAttachmentAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}';
 };
 
-export type PatchSupportRequestAttachmentAsyncErrors = {
+export type SupportRequestAttachmentsPatchSupportRequestAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4392,18 +4392,18 @@ export type PatchSupportRequestAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSupportRequestAttachmentAsyncError = PatchSupportRequestAttachmentAsyncErrors[keyof PatchSupportRequestAttachmentAsyncErrors];
+export type SupportRequestAttachmentsPatchSupportRequestAttachmentError = SupportRequestAttachmentsPatchSupportRequestAttachmentErrors[keyof SupportRequestAttachmentsPatchSupportRequestAttachmentErrors];
 
-export type PatchSupportRequestAttachmentAsyncResponses = {
+export type SupportRequestAttachmentsPatchSupportRequestAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSupportRequestAttachmentAsyncResponse = PatchSupportRequestAttachmentAsyncResponses[keyof PatchSupportRequestAttachmentAsyncResponses];
+export type SupportRequestAttachmentsPatchSupportRequestAttachmentResponse = SupportRequestAttachmentsPatchSupportRequestAttachmentResponses[keyof SupportRequestAttachmentsPatchSupportRequestAttachmentResponses];
 
-export type UpdateSupportRequestAttachmentAsyncData = {
+export type SupportRequestAttachmentsUpdateSupportRequestAttachmentData = {
     body?: SupportRequestAttachmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4418,7 +4418,7 @@ export type UpdateSupportRequestAttachmentAsyncData = {
     url: '/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}';
 };
 
-export type UpdateSupportRequestAttachmentAsyncErrors = {
+export type SupportRequestAttachmentsUpdateSupportRequestAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4429,18 +4429,18 @@ export type UpdateSupportRequestAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSupportRequestAttachmentAsyncError = UpdateSupportRequestAttachmentAsyncErrors[keyof UpdateSupportRequestAttachmentAsyncErrors];
+export type SupportRequestAttachmentsUpdateSupportRequestAttachmentError = SupportRequestAttachmentsUpdateSupportRequestAttachmentErrors[keyof SupportRequestAttachmentsUpdateSupportRequestAttachmentErrors];
 
-export type UpdateSupportRequestAttachmentAsyncResponses = {
+export type SupportRequestAttachmentsUpdateSupportRequestAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSupportRequestAttachmentAsyncResponse = UpdateSupportRequestAttachmentAsyncResponses[keyof UpdateSupportRequestAttachmentAsyncResponses];
+export type SupportRequestAttachmentsUpdateSupportRequestAttachmentResponse = SupportRequestAttachmentsUpdateSupportRequestAttachmentResponses[keyof SupportRequestAttachmentsUpdateSupportRequestAttachmentResponses];
 
-export type GetSupportRequestsAsyncData = {
+export type SupportRequestsGetSupportRequestsData = {
     body?: SupportRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4453,7 +4453,7 @@ export type GetSupportRequestsAsyncData = {
     url: '/api/v2/SupportService/SupportRequests';
 };
 
-export type GetSupportRequestsAsyncErrors = {
+export type SupportRequestsGetSupportRequestsErrors = {
     /**
      * Unauthorized
      */
@@ -4464,18 +4464,18 @@ export type GetSupportRequestsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestsAsyncError = GetSupportRequestsAsyncErrors[keyof GetSupportRequestsAsyncErrors];
+export type SupportRequestsGetSupportRequestsError = SupportRequestsGetSupportRequestsErrors[keyof SupportRequestsGetSupportRequestsErrors];
 
-export type GetSupportRequestsAsyncResponses = {
+export type SupportRequestsGetSupportRequestsResponses = {
     /**
      * OK
      */
     200: SupportRequestDtoListEnvelopeReadable;
 };
 
-export type GetSupportRequestsAsyncResponse = GetSupportRequestsAsyncResponses[keyof GetSupportRequestsAsyncResponses];
+export type SupportRequestsGetSupportRequestsResponse = SupportRequestsGetSupportRequestsResponses[keyof SupportRequestsGetSupportRequestsResponses];
 
-export type CreateSupportRequestAsyncData = {
+export type SupportRequestsCreateSupportRequestData = {
     body?: SupportRequestCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4488,7 +4488,7 @@ export type CreateSupportRequestAsyncData = {
     url: '/api/v2/SupportService/SupportRequests';
 };
 
-export type CreateSupportRequestAsyncErrors = {
+export type SupportRequestsCreateSupportRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4499,18 +4499,18 @@ export type CreateSupportRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSupportRequestAsyncError = CreateSupportRequestAsyncErrors[keyof CreateSupportRequestAsyncErrors];
+export type SupportRequestsCreateSupportRequestError = SupportRequestsCreateSupportRequestErrors[keyof SupportRequestsCreateSupportRequestErrors];
 
-export type CreateSupportRequestAsyncResponses = {
+export type SupportRequestsCreateSupportRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSupportRequestAsyncResponse = CreateSupportRequestAsyncResponses[keyof CreateSupportRequestAsyncResponses];
+export type SupportRequestsCreateSupportRequestResponse = SupportRequestsCreateSupportRequestResponses[keyof SupportRequestsCreateSupportRequestResponses];
 
-export type GetSupportRequestsCountAsyncData = {
+export type SupportRequestsGetSupportRequestsCountData = {
     body?: SupportRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4523,7 +4523,7 @@ export type GetSupportRequestsCountAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/Count';
 };
 
-export type GetSupportRequestsCountAsyncErrors = {
+export type SupportRequestsGetSupportRequestsCountErrors = {
     /**
      * Unauthorized
      */
@@ -4534,18 +4534,18 @@ export type GetSupportRequestsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestsCountAsyncError = GetSupportRequestsCountAsyncErrors[keyof GetSupportRequestsCountAsyncErrors];
+export type SupportRequestsGetSupportRequestsCountError = SupportRequestsGetSupportRequestsCountErrors[keyof SupportRequestsGetSupportRequestsCountErrors];
 
-export type GetSupportRequestsCountAsyncResponses = {
+export type SupportRequestsGetSupportRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportRequestsCountAsyncResponse = GetSupportRequestsCountAsyncResponses[keyof GetSupportRequestsCountAsyncResponses];
+export type SupportRequestsGetSupportRequestsCountResponse = SupportRequestsGetSupportRequestsCountResponses[keyof SupportRequestsGetSupportRequestsCountResponses];
 
-export type DeleteSupportRequestAsyncData = {
+export type SupportRequestsDeleteSupportRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4560,7 +4560,7 @@ export type DeleteSupportRequestAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}';
 };
 
-export type DeleteSupportRequestAsyncErrors = {
+export type SupportRequestsDeleteSupportRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4571,18 +4571,18 @@ export type DeleteSupportRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportRequestAsyncError = DeleteSupportRequestAsyncErrors[keyof DeleteSupportRequestAsyncErrors];
+export type SupportRequestsDeleteSupportRequestError = SupportRequestsDeleteSupportRequestErrors[keyof SupportRequestsDeleteSupportRequestErrors];
 
-export type DeleteSupportRequestAsyncResponses = {
+export type SupportRequestsDeleteSupportRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportRequestAsyncResponse = DeleteSupportRequestAsyncResponses[keyof DeleteSupportRequestAsyncResponses];
+export type SupportRequestsDeleteSupportRequestResponse = SupportRequestsDeleteSupportRequestResponses[keyof SupportRequestsDeleteSupportRequestResponses];
 
-export type GetSupportRequestAsyncData = {
+export type SupportRequestsGetSupportRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4597,7 +4597,7 @@ export type GetSupportRequestAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}';
 };
 
-export type GetSupportRequestAsyncErrors = {
+export type SupportRequestsGetSupportRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4608,18 +4608,18 @@ export type GetSupportRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAsyncError = GetSupportRequestAsyncErrors[keyof GetSupportRequestAsyncErrors];
+export type SupportRequestsGetSupportRequestError = SupportRequestsGetSupportRequestErrors[keyof SupportRequestsGetSupportRequestErrors];
 
-export type GetSupportRequestAsyncResponses = {
+export type SupportRequestsGetSupportRequestResponses = {
     /**
      * OK
      */
     200: SupportRequestDtoEnvelopeReadable;
 };
 
-export type GetSupportRequestAsyncResponse = GetSupportRequestAsyncResponses[keyof GetSupportRequestAsyncResponses];
+export type SupportRequestsGetSupportRequestResponse = SupportRequestsGetSupportRequestResponses[keyof SupportRequestsGetSupportRequestResponses];
 
-export type PatchSupportRequestAsyncData = {
+export type SupportRequestsPatchSupportRequestData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4634,7 +4634,7 @@ export type PatchSupportRequestAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}';
 };
 
-export type PatchSupportRequestAsyncErrors = {
+export type SupportRequestsPatchSupportRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4645,18 +4645,18 @@ export type PatchSupportRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSupportRequestAsyncError = PatchSupportRequestAsyncErrors[keyof PatchSupportRequestAsyncErrors];
+export type SupportRequestsPatchSupportRequestError = SupportRequestsPatchSupportRequestErrors[keyof SupportRequestsPatchSupportRequestErrors];
 
-export type PatchSupportRequestAsyncResponses = {
+export type SupportRequestsPatchSupportRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSupportRequestAsyncResponse = PatchSupportRequestAsyncResponses[keyof PatchSupportRequestAsyncResponses];
+export type SupportRequestsPatchSupportRequestResponse = SupportRequestsPatchSupportRequestResponses[keyof SupportRequestsPatchSupportRequestResponses];
 
-export type UpdateSupportRequestAsyncData = {
+export type SupportRequestsUpdateSupportRequestData = {
     body?: SupportRequestUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4671,7 +4671,7 @@ export type UpdateSupportRequestAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}';
 };
 
-export type UpdateSupportRequestAsyncErrors = {
+export type SupportRequestsUpdateSupportRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4682,18 +4682,18 @@ export type UpdateSupportRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSupportRequestAsyncError = UpdateSupportRequestAsyncErrors[keyof UpdateSupportRequestAsyncErrors];
+export type SupportRequestsUpdateSupportRequestError = SupportRequestsUpdateSupportRequestErrors[keyof SupportRequestsUpdateSupportRequestErrors];
 
-export type UpdateSupportRequestAsyncResponses = {
+export type SupportRequestsUpdateSupportRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSupportRequestAsyncResponse = UpdateSupportRequestAsyncResponses[keyof UpdateSupportRequestAsyncResponses];
+export type SupportRequestsUpdateSupportRequestResponse = SupportRequestsUpdateSupportRequestResponses[keyof SupportRequestsUpdateSupportRequestResponses];
 
-export type GetSupportRequestTicketsAsyncData = {
+export type SupportRequestsGetSupportRequestTicketsData = {
     body?: SupportTicketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4708,7 +4708,7 @@ export type GetSupportRequestTicketsAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}/Tickets';
 };
 
-export type GetSupportRequestTicketsAsyncErrors = {
+export type SupportRequestsGetSupportRequestTicketsErrors = {
     /**
      * Unauthorized
      */
@@ -4719,18 +4719,18 @@ export type GetSupportRequestTicketsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestTicketsAsyncError = GetSupportRequestTicketsAsyncErrors[keyof GetSupportRequestTicketsAsyncErrors];
+export type SupportRequestsGetSupportRequestTicketsError = SupportRequestsGetSupportRequestTicketsErrors[keyof SupportRequestsGetSupportRequestTicketsErrors];
 
-export type GetSupportRequestTicketsAsyncResponses = {
+export type SupportRequestsGetSupportRequestTicketsResponses = {
     /**
      * OK
      */
     200: SupportTicketDtoListEnvelopeReadable;
 };
 
-export type GetSupportRequestTicketsAsyncResponse = GetSupportRequestTicketsAsyncResponses[keyof GetSupportRequestTicketsAsyncResponses];
+export type SupportRequestsGetSupportRequestTicketsResponse = SupportRequestsGetSupportRequestTicketsResponses[keyof SupportRequestsGetSupportRequestTicketsResponses];
 
-export type GetSupportRequestAttachmentsByRequestData = {
+export type SupportRequestsGetSupportRequestAttachmentsByRequestData = {
     body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4745,7 +4745,7 @@ export type GetSupportRequestAttachmentsByRequestData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments';
 };
 
-export type GetSupportRequestAttachmentsByRequestErrors = {
+export type SupportRequestsGetSupportRequestAttachmentsByRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4756,18 +4756,18 @@ export type GetSupportRequestAttachmentsByRequestErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsByRequestError = GetSupportRequestAttachmentsByRequestErrors[keyof GetSupportRequestAttachmentsByRequestErrors];
+export type SupportRequestsGetSupportRequestAttachmentsByRequestError = SupportRequestsGetSupportRequestAttachmentsByRequestErrors[keyof SupportRequestsGetSupportRequestAttachmentsByRequestErrors];
 
-export type GetSupportRequestAttachmentsByRequestResponses = {
+export type SupportRequestsGetSupportRequestAttachmentsByRequestResponses = {
     /**
      * OK
      */
     200: SupportRequestAttachmentDtoListEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsByRequestResponse = GetSupportRequestAttachmentsByRequestResponses[keyof GetSupportRequestAttachmentsByRequestResponses];
+export type SupportRequestsGetSupportRequestAttachmentsByRequestResponse = SupportRequestsGetSupportRequestAttachmentsByRequestResponses[keyof SupportRequestsGetSupportRequestAttachmentsByRequestResponses];
 
-export type RelateSupportRequestToAttachmentAsyncData = {
+export type SupportRequestsRelateSupportRequestToAttachmentData = {
     body?: SupportRequestAttachmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4782,7 +4782,7 @@ export type RelateSupportRequestToAttachmentAsyncData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments';
 };
 
-export type RelateSupportRequestToAttachmentAsyncErrors = {
+export type SupportRequestsRelateSupportRequestToAttachmentErrors = {
     /**
      * Unauthorized
      */
@@ -4793,18 +4793,18 @@ export type RelateSupportRequestToAttachmentAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateSupportRequestToAttachmentAsyncError = RelateSupportRequestToAttachmentAsyncErrors[keyof RelateSupportRequestToAttachmentAsyncErrors];
+export type SupportRequestsRelateSupportRequestToAttachmentError = SupportRequestsRelateSupportRequestToAttachmentErrors[keyof SupportRequestsRelateSupportRequestToAttachmentErrors];
 
-export type RelateSupportRequestToAttachmentAsyncResponses = {
+export type SupportRequestsRelateSupportRequestToAttachmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RelateSupportRequestToAttachmentAsyncResponse = RelateSupportRequestToAttachmentAsyncResponses[keyof RelateSupportRequestToAttachmentAsyncResponses];
+export type SupportRequestsRelateSupportRequestToAttachmentResponse = SupportRequestsRelateSupportRequestToAttachmentResponses[keyof SupportRequestsRelateSupportRequestToAttachmentResponses];
 
-export type GetSupportRequestAttachmentsCountByRequestData = {
+export type SupportRequestsGetSupportRequestAttachmentsCountByRequestData = {
     body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4819,7 +4819,7 @@ export type GetSupportRequestAttachmentsCountByRequestData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments/Count';
 };
 
-export type GetSupportRequestAttachmentsCountByRequestErrors = {
+export type SupportRequestsGetSupportRequestAttachmentsCountByRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4830,18 +4830,18 @@ export type GetSupportRequestAttachmentsCountByRequestErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsCountByRequestError = GetSupportRequestAttachmentsCountByRequestErrors[keyof GetSupportRequestAttachmentsCountByRequestErrors];
+export type SupportRequestsGetSupportRequestAttachmentsCountByRequestError = SupportRequestsGetSupportRequestAttachmentsCountByRequestErrors[keyof SupportRequestsGetSupportRequestAttachmentsCountByRequestErrors];
 
-export type GetSupportRequestAttachmentsCountByRequestResponses = {
+export type SupportRequestsGetSupportRequestAttachmentsCountByRequestResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentsCountByRequestResponse = GetSupportRequestAttachmentsCountByRequestResponses[keyof GetSupportRequestAttachmentsCountByRequestResponses];
+export type SupportRequestsGetSupportRequestAttachmentsCountByRequestResponse = SupportRequestsGetSupportRequestAttachmentsCountByRequestResponses[keyof SupportRequestsGetSupportRequestAttachmentsCountByRequestResponses];
 
-export type GetSupportRequestAttachmentByRequestData = {
+export type SupportRequestsGetSupportRequestAttachmentByRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4857,7 +4857,7 @@ export type GetSupportRequestAttachmentByRequestData = {
     url: '/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments/{attachmentId}';
 };
 
-export type GetSupportRequestAttachmentByRequestErrors = {
+export type SupportRequestsGetSupportRequestAttachmentByRequestErrors = {
     /**
      * Unauthorized
      */
@@ -4868,18 +4868,18 @@ export type GetSupportRequestAttachmentByRequestErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentByRequestError = GetSupportRequestAttachmentByRequestErrors[keyof GetSupportRequestAttachmentByRequestErrors];
+export type SupportRequestsGetSupportRequestAttachmentByRequestError = SupportRequestsGetSupportRequestAttachmentByRequestErrors[keyof SupportRequestsGetSupportRequestAttachmentByRequestErrors];
 
-export type GetSupportRequestAttachmentByRequestResponses = {
+export type SupportRequestsGetSupportRequestAttachmentByRequestResponses = {
     /**
      * OK
      */
     200: SupportRequestAttachmentDtoEnvelopeReadable;
 };
 
-export type GetSupportRequestAttachmentByRequestResponse = GetSupportRequestAttachmentByRequestResponses[keyof GetSupportRequestAttachmentByRequestResponses];
+export type SupportRequestsGetSupportRequestAttachmentByRequestResponse = SupportRequestsGetSupportRequestAttachmentByRequestResponses[keyof SupportRequestsGetSupportRequestAttachmentByRequestResponses];
 
-export type GetSupportTicketPrioritiesAsyncData = {
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesData = {
     body?: SupportTicketPriorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4892,7 +4892,7 @@ export type GetSupportTicketPrioritiesAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities';
 };
 
-export type GetSupportTicketPrioritiesAsyncErrors = {
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesErrors = {
     /**
      * Unauthorized
      */
@@ -4903,18 +4903,18 @@ export type GetSupportTicketPrioritiesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketPrioritiesAsyncError = GetSupportTicketPrioritiesAsyncErrors[keyof GetSupportTicketPrioritiesAsyncErrors];
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesError = SupportTicketPrioritiesGetSupportTicketPrioritiesErrors[keyof SupportTicketPrioritiesGetSupportTicketPrioritiesErrors];
 
-export type GetSupportTicketPrioritiesAsyncResponses = {
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesResponses = {
     /**
      * OK
      */
     200: SupportTicketPriorityDtoListEnvelopeReadable;
 };
 
-export type GetSupportTicketPrioritiesAsyncResponse = GetSupportTicketPrioritiesAsyncResponses[keyof GetSupportTicketPrioritiesAsyncResponses];
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesResponse = SupportTicketPrioritiesGetSupportTicketPrioritiesResponses[keyof SupportTicketPrioritiesGetSupportTicketPrioritiesResponses];
 
-export type CreateSupportTicketPriorityAsyncData = {
+export type SupportTicketPrioritiesCreateSupportTicketPriorityData = {
     body?: SupportTicketPriorityCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4927,7 +4927,7 @@ export type CreateSupportTicketPriorityAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities';
 };
 
-export type CreateSupportTicketPriorityAsyncErrors = {
+export type SupportTicketPrioritiesCreateSupportTicketPriorityErrors = {
     /**
      * Unauthorized
      */
@@ -4938,18 +4938,18 @@ export type CreateSupportTicketPriorityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSupportTicketPriorityAsyncError = CreateSupportTicketPriorityAsyncErrors[keyof CreateSupportTicketPriorityAsyncErrors];
+export type SupportTicketPrioritiesCreateSupportTicketPriorityError = SupportTicketPrioritiesCreateSupportTicketPriorityErrors[keyof SupportTicketPrioritiesCreateSupportTicketPriorityErrors];
 
-export type CreateSupportTicketPriorityAsyncResponses = {
+export type SupportTicketPrioritiesCreateSupportTicketPriorityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSupportTicketPriorityAsyncResponse = CreateSupportTicketPriorityAsyncResponses[keyof CreateSupportTicketPriorityAsyncResponses];
+export type SupportTicketPrioritiesCreateSupportTicketPriorityResponse = SupportTicketPrioritiesCreateSupportTicketPriorityResponses[keyof SupportTicketPrioritiesCreateSupportTicketPriorityResponses];
 
-export type GetSupportTicketPrioritiesCountAsyncData = {
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesCountData = {
     body?: SupportTicketPriorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4962,7 +4962,7 @@ export type GetSupportTicketPrioritiesCountAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities/Count';
 };
 
-export type GetSupportTicketPrioritiesCountAsyncErrors = {
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesCountErrors = {
     /**
      * Unauthorized
      */
@@ -4973,18 +4973,18 @@ export type GetSupportTicketPrioritiesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketPrioritiesCountAsyncError = GetSupportTicketPrioritiesCountAsyncErrors[keyof GetSupportTicketPrioritiesCountAsyncErrors];
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesCountError = SupportTicketPrioritiesGetSupportTicketPrioritiesCountErrors[keyof SupportTicketPrioritiesGetSupportTicketPrioritiesCountErrors];
 
-export type GetSupportTicketPrioritiesCountAsyncResponses = {
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportTicketPrioritiesCountAsyncResponse = GetSupportTicketPrioritiesCountAsyncResponses[keyof GetSupportTicketPrioritiesCountAsyncResponses];
+export type SupportTicketPrioritiesGetSupportTicketPrioritiesCountResponse = SupportTicketPrioritiesGetSupportTicketPrioritiesCountResponses[keyof SupportTicketPrioritiesGetSupportTicketPrioritiesCountResponses];
 
-export type DeleteSupportTicketPriorityAsyncData = {
+export type SupportTicketPrioritiesDeleteSupportTicketPriorityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4999,7 +4999,7 @@ export type DeleteSupportTicketPriorityAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}';
 };
 
-export type DeleteSupportTicketPriorityAsyncErrors = {
+export type SupportTicketPrioritiesDeleteSupportTicketPriorityErrors = {
     /**
      * Unauthorized
      */
@@ -5010,18 +5010,18 @@ export type DeleteSupportTicketPriorityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportTicketPriorityAsyncError = DeleteSupportTicketPriorityAsyncErrors[keyof DeleteSupportTicketPriorityAsyncErrors];
+export type SupportTicketPrioritiesDeleteSupportTicketPriorityError = SupportTicketPrioritiesDeleteSupportTicketPriorityErrors[keyof SupportTicketPrioritiesDeleteSupportTicketPriorityErrors];
 
-export type DeleteSupportTicketPriorityAsyncResponses = {
+export type SupportTicketPrioritiesDeleteSupportTicketPriorityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportTicketPriorityAsyncResponse = DeleteSupportTicketPriorityAsyncResponses[keyof DeleteSupportTicketPriorityAsyncResponses];
+export type SupportTicketPrioritiesDeleteSupportTicketPriorityResponse = SupportTicketPrioritiesDeleteSupportTicketPriorityResponses[keyof SupportTicketPrioritiesDeleteSupportTicketPriorityResponses];
 
-export type GetSupportTicketPriorityAsyncData = {
+export type SupportTicketPrioritiesGetSupportTicketPriorityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5036,7 +5036,7 @@ export type GetSupportTicketPriorityAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}';
 };
 
-export type GetSupportTicketPriorityAsyncErrors = {
+export type SupportTicketPrioritiesGetSupportTicketPriorityErrors = {
     /**
      * Unauthorized
      */
@@ -5047,18 +5047,18 @@ export type GetSupportTicketPriorityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketPriorityAsyncError = GetSupportTicketPriorityAsyncErrors[keyof GetSupportTicketPriorityAsyncErrors];
+export type SupportTicketPrioritiesGetSupportTicketPriorityError = SupportTicketPrioritiesGetSupportTicketPriorityErrors[keyof SupportTicketPrioritiesGetSupportTicketPriorityErrors];
 
-export type GetSupportTicketPriorityAsyncResponses = {
+export type SupportTicketPrioritiesGetSupportTicketPriorityResponses = {
     /**
      * OK
      */
     200: SupportTicketPriorityDtoEnvelopeReadable;
 };
 
-export type GetSupportTicketPriorityAsyncResponse = GetSupportTicketPriorityAsyncResponses[keyof GetSupportTicketPriorityAsyncResponses];
+export type SupportTicketPrioritiesGetSupportTicketPriorityResponse = SupportTicketPrioritiesGetSupportTicketPriorityResponses[keyof SupportTicketPrioritiesGetSupportTicketPriorityResponses];
 
-export type PatchSupportTicketPriorityAsyncData = {
+export type SupportTicketPrioritiesPatchSupportTicketPriorityData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5073,7 +5073,7 @@ export type PatchSupportTicketPriorityAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}';
 };
 
-export type PatchSupportTicketPriorityAsyncErrors = {
+export type SupportTicketPrioritiesPatchSupportTicketPriorityErrors = {
     /**
      * Unauthorized
      */
@@ -5084,18 +5084,18 @@ export type PatchSupportTicketPriorityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSupportTicketPriorityAsyncError = PatchSupportTicketPriorityAsyncErrors[keyof PatchSupportTicketPriorityAsyncErrors];
+export type SupportTicketPrioritiesPatchSupportTicketPriorityError = SupportTicketPrioritiesPatchSupportTicketPriorityErrors[keyof SupportTicketPrioritiesPatchSupportTicketPriorityErrors];
 
-export type PatchSupportTicketPriorityAsyncResponses = {
+export type SupportTicketPrioritiesPatchSupportTicketPriorityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSupportTicketPriorityAsyncResponse = PatchSupportTicketPriorityAsyncResponses[keyof PatchSupportTicketPriorityAsyncResponses];
+export type SupportTicketPrioritiesPatchSupportTicketPriorityResponse = SupportTicketPrioritiesPatchSupportTicketPriorityResponses[keyof SupportTicketPrioritiesPatchSupportTicketPriorityResponses];
 
-export type UpdateSupportTicketPriorityAsyncData = {
+export type SupportTicketPrioritiesUpdateSupportTicketPriorityData = {
     body?: SupportTicketPriorityUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5110,7 +5110,7 @@ export type UpdateSupportTicketPriorityAsyncData = {
     url: '/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}';
 };
 
-export type UpdateSupportTicketPriorityAsyncErrors = {
+export type SupportTicketPrioritiesUpdateSupportTicketPriorityErrors = {
     /**
      * Unauthorized
      */
@@ -5121,18 +5121,18 @@ export type UpdateSupportTicketPriorityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSupportTicketPriorityAsyncError = UpdateSupportTicketPriorityAsyncErrors[keyof UpdateSupportTicketPriorityAsyncErrors];
+export type SupportTicketPrioritiesUpdateSupportTicketPriorityError = SupportTicketPrioritiesUpdateSupportTicketPriorityErrors[keyof SupportTicketPrioritiesUpdateSupportTicketPriorityErrors];
 
-export type UpdateSupportTicketPriorityAsyncResponses = {
+export type SupportTicketPrioritiesUpdateSupportTicketPriorityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSupportTicketPriorityAsyncResponse = UpdateSupportTicketPriorityAsyncResponses[keyof UpdateSupportTicketPriorityAsyncResponses];
+export type SupportTicketPrioritiesUpdateSupportTicketPriorityResponse = SupportTicketPrioritiesUpdateSupportTicketPriorityResponses[keyof SupportTicketPrioritiesUpdateSupportTicketPriorityResponses];
 
-export type GetSupportTicketsAsyncData = {
+export type SupportTicketsGetSupportTicketsData = {
     body?: SupportTicketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5145,7 +5145,7 @@ export type GetSupportTicketsAsyncData = {
     url: '/api/v2/SupportService/SupportTickets';
 };
 
-export type GetSupportTicketsAsyncErrors = {
+export type SupportTicketsGetSupportTicketsErrors = {
     /**
      * Unauthorized
      */
@@ -5156,18 +5156,18 @@ export type GetSupportTicketsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketsAsyncError = GetSupportTicketsAsyncErrors[keyof GetSupportTicketsAsyncErrors];
+export type SupportTicketsGetSupportTicketsError = SupportTicketsGetSupportTicketsErrors[keyof SupportTicketsGetSupportTicketsErrors];
 
-export type GetSupportTicketsAsyncResponses = {
+export type SupportTicketsGetSupportTicketsResponses = {
     /**
      * OK
      */
     200: SupportTicketDtoListEnvelopeReadable;
 };
 
-export type GetSupportTicketsAsyncResponse = GetSupportTicketsAsyncResponses[keyof GetSupportTicketsAsyncResponses];
+export type SupportTicketsGetSupportTicketsResponse = SupportTicketsGetSupportTicketsResponses[keyof SupportTicketsGetSupportTicketsResponses];
 
-export type CreateSupportTicketAsyncData = {
+export type SupportTicketsCreateSupportTicketData = {
     body?: SupportTicketCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5180,7 +5180,7 @@ export type CreateSupportTicketAsyncData = {
     url: '/api/v2/SupportService/SupportTickets';
 };
 
-export type CreateSupportTicketAsyncErrors = {
+export type SupportTicketsCreateSupportTicketErrors = {
     /**
      * Unauthorized
      */
@@ -5191,18 +5191,18 @@ export type CreateSupportTicketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSupportTicketAsyncError = CreateSupportTicketAsyncErrors[keyof CreateSupportTicketAsyncErrors];
+export type SupportTicketsCreateSupportTicketError = SupportTicketsCreateSupportTicketErrors[keyof SupportTicketsCreateSupportTicketErrors];
 
-export type CreateSupportTicketAsyncResponses = {
+export type SupportTicketsCreateSupportTicketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSupportTicketAsyncResponse = CreateSupportTicketAsyncResponses[keyof CreateSupportTicketAsyncResponses];
+export type SupportTicketsCreateSupportTicketResponse = SupportTicketsCreateSupportTicketResponses[keyof SupportTicketsCreateSupportTicketResponses];
 
-export type GetSupportTicketsCountAsyncData = {
+export type SupportTicketsGetSupportTicketsCountData = {
     body?: SupportTicketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5215,7 +5215,7 @@ export type GetSupportTicketsCountAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/Count';
 };
 
-export type GetSupportTicketsCountAsyncErrors = {
+export type SupportTicketsGetSupportTicketsCountErrors = {
     /**
      * Unauthorized
      */
@@ -5226,18 +5226,18 @@ export type GetSupportTicketsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketsCountAsyncError = GetSupportTicketsCountAsyncErrors[keyof GetSupportTicketsCountAsyncErrors];
+export type SupportTicketsGetSupportTicketsCountError = SupportTicketsGetSupportTicketsCountErrors[keyof SupportTicketsGetSupportTicketsCountErrors];
 
-export type GetSupportTicketsCountAsyncResponses = {
+export type SupportTicketsGetSupportTicketsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportTicketsCountAsyncResponse = GetSupportTicketsCountAsyncResponses[keyof GetSupportTicketsCountAsyncResponses];
+export type SupportTicketsGetSupportTicketsCountResponse = SupportTicketsGetSupportTicketsCountResponses[keyof SupportTicketsGetSupportTicketsCountResponses];
 
-export type DeleteSupportTicketAsyncData = {
+export type SupportTicketsDeleteSupportTicketData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5252,7 +5252,7 @@ export type DeleteSupportTicketAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}';
 };
 
-export type DeleteSupportTicketAsyncErrors = {
+export type SupportTicketsDeleteSupportTicketErrors = {
     /**
      * Unauthorized
      */
@@ -5263,18 +5263,18 @@ export type DeleteSupportTicketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportTicketAsyncError = DeleteSupportTicketAsyncErrors[keyof DeleteSupportTicketAsyncErrors];
+export type SupportTicketsDeleteSupportTicketError = SupportTicketsDeleteSupportTicketErrors[keyof SupportTicketsDeleteSupportTicketErrors];
 
-export type DeleteSupportTicketAsyncResponses = {
+export type SupportTicketsDeleteSupportTicketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportTicketAsyncResponse = DeleteSupportTicketAsyncResponses[keyof DeleteSupportTicketAsyncResponses];
+export type SupportTicketsDeleteSupportTicketResponse = SupportTicketsDeleteSupportTicketResponses[keyof SupportTicketsDeleteSupportTicketResponses];
 
-export type GetSupportTicketAsyncData = {
+export type SupportTicketsGetSupportTicketData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5289,7 +5289,7 @@ export type GetSupportTicketAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}';
 };
 
-export type GetSupportTicketAsyncErrors = {
+export type SupportTicketsGetSupportTicketErrors = {
     /**
      * Unauthorized
      */
@@ -5300,18 +5300,18 @@ export type GetSupportTicketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketAsyncError = GetSupportTicketAsyncErrors[keyof GetSupportTicketAsyncErrors];
+export type SupportTicketsGetSupportTicketError = SupportTicketsGetSupportTicketErrors[keyof SupportTicketsGetSupportTicketErrors];
 
-export type GetSupportTicketAsyncResponses = {
+export type SupportTicketsGetSupportTicketResponses = {
     /**
      * OK
      */
     200: SupportTicketDtoEnvelopeReadable;
 };
 
-export type GetSupportTicketAsyncResponse = GetSupportTicketAsyncResponses[keyof GetSupportTicketAsyncResponses];
+export type SupportTicketsGetSupportTicketResponse = SupportTicketsGetSupportTicketResponses[keyof SupportTicketsGetSupportTicketResponses];
 
-export type PatchSupportTicketAsyncData = {
+export type SupportTicketsPatchSupportTicketData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5326,7 +5326,7 @@ export type PatchSupportTicketAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}';
 };
 
-export type PatchSupportTicketAsyncErrors = {
+export type SupportTicketsPatchSupportTicketErrors = {
     /**
      * Unauthorized
      */
@@ -5337,18 +5337,18 @@ export type PatchSupportTicketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSupportTicketAsyncError = PatchSupportTicketAsyncErrors[keyof PatchSupportTicketAsyncErrors];
+export type SupportTicketsPatchSupportTicketError = SupportTicketsPatchSupportTicketErrors[keyof SupportTicketsPatchSupportTicketErrors];
 
-export type PatchSupportTicketAsyncResponses = {
+export type SupportTicketsPatchSupportTicketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSupportTicketAsyncResponse = PatchSupportTicketAsyncResponses[keyof PatchSupportTicketAsyncResponses];
+export type SupportTicketsPatchSupportTicketResponse = SupportTicketsPatchSupportTicketResponses[keyof SupportTicketsPatchSupportTicketResponses];
 
-export type UpdateSupportTicketAsyncData = {
+export type SupportTicketsUpdateSupportTicketData = {
     body?: SupportTicketUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5363,7 +5363,7 @@ export type UpdateSupportTicketAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}';
 };
 
-export type UpdateSupportTicketAsyncErrors = {
+export type SupportTicketsUpdateSupportTicketErrors = {
     /**
      * Unauthorized
      */
@@ -5374,18 +5374,18 @@ export type UpdateSupportTicketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSupportTicketAsyncError = UpdateSupportTicketAsyncErrors[keyof UpdateSupportTicketAsyncErrors];
+export type SupportTicketsUpdateSupportTicketError = SupportTicketsUpdateSupportTicketErrors[keyof SupportTicketsUpdateSupportTicketErrors];
 
-export type UpdateSupportTicketAsyncResponses = {
+export type SupportTicketsUpdateSupportTicketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSupportTicketAsyncResponse = UpdateSupportTicketAsyncResponses[keyof UpdateSupportTicketAsyncResponses];
+export type SupportTicketsUpdateSupportTicketResponse = SupportTicketsUpdateSupportTicketResponses[keyof SupportTicketsUpdateSupportTicketResponses];
 
-export type GetSupportTicketConversationsAsyncData = {
+export type SupportTicketsGetSupportTicketConversationsData = {
     body?: SupportTicketConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5400,7 +5400,7 @@ export type GetSupportTicketConversationsAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations';
 };
 
-export type GetSupportTicketConversationsAsyncErrors = {
+export type SupportTicketsGetSupportTicketConversationsErrors = {
     /**
      * Unauthorized
      */
@@ -5411,18 +5411,18 @@ export type GetSupportTicketConversationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketConversationsAsyncError = GetSupportTicketConversationsAsyncErrors[keyof GetSupportTicketConversationsAsyncErrors];
+export type SupportTicketsGetSupportTicketConversationsError = SupportTicketsGetSupportTicketConversationsErrors[keyof SupportTicketsGetSupportTicketConversationsErrors];
 
-export type GetSupportTicketConversationsAsyncResponses = {
+export type SupportTicketsGetSupportTicketConversationsResponses = {
     /**
      * OK
      */
     200: SupportTicketConversationDtoListEnvelopeReadable;
 };
 
-export type GetSupportTicketConversationsAsyncResponse = GetSupportTicketConversationsAsyncResponses[keyof GetSupportTicketConversationsAsyncResponses];
+export type SupportTicketsGetSupportTicketConversationsResponse = SupportTicketsGetSupportTicketConversationsResponses[keyof SupportTicketsGetSupportTicketConversationsResponses];
 
-export type RelateSupportTicketToConversationAsyncData = {
+export type SupportTicketsRelateSupportTicketToConversationData = {
     body?: SupportTicketConversationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5437,7 +5437,7 @@ export type RelateSupportTicketToConversationAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations';
 };
 
-export type RelateSupportTicketToConversationAsyncErrors = {
+export type SupportTicketsRelateSupportTicketToConversationErrors = {
     /**
      * Unauthorized
      */
@@ -5448,18 +5448,18 @@ export type RelateSupportTicketToConversationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type RelateSupportTicketToConversationAsyncError = RelateSupportTicketToConversationAsyncErrors[keyof RelateSupportTicketToConversationAsyncErrors];
+export type SupportTicketsRelateSupportTicketToConversationError = SupportTicketsRelateSupportTicketToConversationErrors[keyof SupportTicketsRelateSupportTicketToConversationErrors];
 
-export type RelateSupportTicketToConversationAsyncResponses = {
+export type SupportTicketsRelateSupportTicketToConversationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RelateSupportTicketToConversationAsyncResponse = RelateSupportTicketToConversationAsyncResponses[keyof RelateSupportTicketToConversationAsyncResponses];
+export type SupportTicketsRelateSupportTicketToConversationResponse = SupportTicketsRelateSupportTicketToConversationResponses[keyof SupportTicketsRelateSupportTicketToConversationResponses];
 
-export type DeleteSupportTicketConversationAsyncData = {
+export type SupportTicketsDeleteSupportTicketConversationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5475,7 +5475,7 @@ export type DeleteSupportTicketConversationAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}';
 };
 
-export type DeleteSupportTicketConversationAsyncErrors = {
+export type SupportTicketsDeleteSupportTicketConversationErrors = {
     /**
      * Unauthorized
      */
@@ -5486,18 +5486,18 @@ export type DeleteSupportTicketConversationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportTicketConversationAsyncError = DeleteSupportTicketConversationAsyncErrors[keyof DeleteSupportTicketConversationAsyncErrors];
+export type SupportTicketsDeleteSupportTicketConversationError = SupportTicketsDeleteSupportTicketConversationErrors[keyof SupportTicketsDeleteSupportTicketConversationErrors];
 
-export type DeleteSupportTicketConversationAsyncResponses = {
+export type SupportTicketsDeleteSupportTicketConversationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportTicketConversationAsyncResponse = DeleteSupportTicketConversationAsyncResponses[keyof DeleteSupportTicketConversationAsyncResponses];
+export type SupportTicketsDeleteSupportTicketConversationResponse = SupportTicketsDeleteSupportTicketConversationResponses[keyof SupportTicketsDeleteSupportTicketConversationResponses];
 
-export type GetSupportTicketConversationAsyncData = {
+export type SupportTicketsGetSupportTicketConversationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5513,7 +5513,7 @@ export type GetSupportTicketConversationAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}';
 };
 
-export type GetSupportTicketConversationAsyncErrors = {
+export type SupportTicketsGetSupportTicketConversationErrors = {
     /**
      * Unauthorized
      */
@@ -5524,18 +5524,18 @@ export type GetSupportTicketConversationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketConversationAsyncError = GetSupportTicketConversationAsyncErrors[keyof GetSupportTicketConversationAsyncErrors];
+export type SupportTicketsGetSupportTicketConversationError = SupportTicketsGetSupportTicketConversationErrors[keyof SupportTicketsGetSupportTicketConversationErrors];
 
-export type GetSupportTicketConversationAsyncResponses = {
+export type SupportTicketsGetSupportTicketConversationResponses = {
     /**
      * OK
      */
     200: SupportTicketConversationDtoEnvelopeReadable;
 };
 
-export type GetSupportTicketConversationAsyncResponse = GetSupportTicketConversationAsyncResponses[keyof GetSupportTicketConversationAsyncResponses];
+export type SupportTicketsGetSupportTicketConversationResponse = SupportTicketsGetSupportTicketConversationResponses[keyof SupportTicketsGetSupportTicketConversationResponses];
 
-export type GetSupportTicketConversationMessagesAsyncData = {
+export type SupportTicketsGetSupportTicketConversationMessagesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5553,7 +5553,7 @@ export type GetSupportTicketConversationMessagesAsyncData = {
     url: '/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}/Messages';
 };
 
-export type GetSupportTicketConversationMessagesAsyncErrors = {
+export type SupportTicketsGetSupportTicketConversationMessagesErrors = {
     /**
      * Unauthorized
      */
@@ -5564,18 +5564,18 @@ export type GetSupportTicketConversationMessagesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketConversationMessagesAsyncError = GetSupportTicketConversationMessagesAsyncErrors[keyof GetSupportTicketConversationMessagesAsyncErrors];
+export type SupportTicketsGetSupportTicketConversationMessagesError = SupportTicketsGetSupportTicketConversationMessagesErrors[keyof SupportTicketsGetSupportTicketConversationMessagesErrors];
 
-export type GetSupportTicketConversationMessagesAsyncResponses = {
+export type SupportTicketsGetSupportTicketConversationMessagesResponses = {
     /**
      * OK
      */
     200: PrivateMessageDtoListEnvelopeReadable;
 };
 
-export type GetSupportTicketConversationMessagesAsyncResponse = GetSupportTicketConversationMessagesAsyncResponses[keyof GetSupportTicketConversationMessagesAsyncResponses];
+export type SupportTicketsGetSupportTicketConversationMessagesResponse = SupportTicketsGetSupportTicketConversationMessagesResponses[keyof SupportTicketsGetSupportTicketConversationMessagesResponses];
 
-export type GetSupportTicketTypesAsyncData = {
+export type SupportTicketTypesGetSupportTicketTypesData = {
     body?: SupportTicketTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5588,7 +5588,7 @@ export type GetSupportTicketTypesAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes';
 };
 
-export type GetSupportTicketTypesAsyncErrors = {
+export type SupportTicketTypesGetSupportTicketTypesErrors = {
     /**
      * Unauthorized
      */
@@ -5599,18 +5599,18 @@ export type GetSupportTicketTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketTypesAsyncError = GetSupportTicketTypesAsyncErrors[keyof GetSupportTicketTypesAsyncErrors];
+export type SupportTicketTypesGetSupportTicketTypesError = SupportTicketTypesGetSupportTicketTypesErrors[keyof SupportTicketTypesGetSupportTicketTypesErrors];
 
-export type GetSupportTicketTypesAsyncResponses = {
+export type SupportTicketTypesGetSupportTicketTypesResponses = {
     /**
      * OK
      */
     200: SupportTicketTypeDtoListEnvelopeReadable;
 };
 
-export type GetSupportTicketTypesAsyncResponse = GetSupportTicketTypesAsyncResponses[keyof GetSupportTicketTypesAsyncResponses];
+export type SupportTicketTypesGetSupportTicketTypesResponse = SupportTicketTypesGetSupportTicketTypesResponses[keyof SupportTicketTypesGetSupportTicketTypesResponses];
 
-export type CreateSupportTicketTypeAsyncData = {
+export type SupportTicketTypesCreateSupportTicketTypeData = {
     body?: SupportTicketTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5623,7 +5623,7 @@ export type CreateSupportTicketTypeAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes';
 };
 
-export type CreateSupportTicketTypeAsyncErrors = {
+export type SupportTicketTypesCreateSupportTicketTypeErrors = {
     /**
      * Unauthorized
      */
@@ -5634,18 +5634,18 @@ export type CreateSupportTicketTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSupportTicketTypeAsyncError = CreateSupportTicketTypeAsyncErrors[keyof CreateSupportTicketTypeAsyncErrors];
+export type SupportTicketTypesCreateSupportTicketTypeError = SupportTicketTypesCreateSupportTicketTypeErrors[keyof SupportTicketTypesCreateSupportTicketTypeErrors];
 
-export type CreateSupportTicketTypeAsyncResponses = {
+export type SupportTicketTypesCreateSupportTicketTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateSupportTicketTypeAsyncResponse = CreateSupportTicketTypeAsyncResponses[keyof CreateSupportTicketTypeAsyncResponses];
+export type SupportTicketTypesCreateSupportTicketTypeResponse = SupportTicketTypesCreateSupportTicketTypeResponses[keyof SupportTicketTypesCreateSupportTicketTypeResponses];
 
-export type GetSupportTicketTypesCountAsyncData = {
+export type SupportTicketTypesGetSupportTicketTypesCountData = {
     body?: SupportTicketTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5658,7 +5658,7 @@ export type GetSupportTicketTypesCountAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes/Count';
 };
 
-export type GetSupportTicketTypesCountAsyncErrors = {
+export type SupportTicketTypesGetSupportTicketTypesCountErrors = {
     /**
      * Unauthorized
      */
@@ -5669,18 +5669,18 @@ export type GetSupportTicketTypesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketTypesCountAsyncError = GetSupportTicketTypesCountAsyncErrors[keyof GetSupportTicketTypesCountAsyncErrors];
+export type SupportTicketTypesGetSupportTicketTypesCountError = SupportTicketTypesGetSupportTicketTypesCountErrors[keyof SupportTicketTypesGetSupportTicketTypesCountErrors];
 
-export type GetSupportTicketTypesCountAsyncResponses = {
+export type SupportTicketTypesGetSupportTicketTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSupportTicketTypesCountAsyncResponse = GetSupportTicketTypesCountAsyncResponses[keyof GetSupportTicketTypesCountAsyncResponses];
+export type SupportTicketTypesGetSupportTicketTypesCountResponse = SupportTicketTypesGetSupportTicketTypesCountResponses[keyof SupportTicketTypesGetSupportTicketTypesCountResponses];
 
-export type DeleteSupportTicketTypeAsyncData = {
+export type SupportTicketTypesDeleteSupportTicketTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5695,7 +5695,7 @@ export type DeleteSupportTicketTypeAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}';
 };
 
-export type DeleteSupportTicketTypeAsyncErrors = {
+export type SupportTicketTypesDeleteSupportTicketTypeErrors = {
     /**
      * Unauthorized
      */
@@ -5706,18 +5706,18 @@ export type DeleteSupportTicketTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSupportTicketTypeAsyncError = DeleteSupportTicketTypeAsyncErrors[keyof DeleteSupportTicketTypeAsyncErrors];
+export type SupportTicketTypesDeleteSupportTicketTypeError = SupportTicketTypesDeleteSupportTicketTypeErrors[keyof SupportTicketTypesDeleteSupportTicketTypeErrors];
 
-export type DeleteSupportTicketTypeAsyncResponses = {
+export type SupportTicketTypesDeleteSupportTicketTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSupportTicketTypeAsyncResponse = DeleteSupportTicketTypeAsyncResponses[keyof DeleteSupportTicketTypeAsyncResponses];
+export type SupportTicketTypesDeleteSupportTicketTypeResponse = SupportTicketTypesDeleteSupportTicketTypeResponses[keyof SupportTicketTypesDeleteSupportTicketTypeResponses];
 
-export type GetSupportTicketTypeAsyncData = {
+export type SupportTicketTypesGetSupportTicketTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5732,7 +5732,7 @@ export type GetSupportTicketTypeAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}';
 };
 
-export type GetSupportTicketTypeAsyncErrors = {
+export type SupportTicketTypesGetSupportTicketTypeErrors = {
     /**
      * Unauthorized
      */
@@ -5743,18 +5743,18 @@ export type GetSupportTicketTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSupportTicketTypeAsyncError = GetSupportTicketTypeAsyncErrors[keyof GetSupportTicketTypeAsyncErrors];
+export type SupportTicketTypesGetSupportTicketTypeError = SupportTicketTypesGetSupportTicketTypeErrors[keyof SupportTicketTypesGetSupportTicketTypeErrors];
 
-export type GetSupportTicketTypeAsyncResponses = {
+export type SupportTicketTypesGetSupportTicketTypeResponses = {
     /**
      * OK
      */
     200: SupportTicketTypeDtoEnvelopeReadable;
 };
 
-export type GetSupportTicketTypeAsyncResponse = GetSupportTicketTypeAsyncResponses[keyof GetSupportTicketTypeAsyncResponses];
+export type SupportTicketTypesGetSupportTicketTypeResponse = SupportTicketTypesGetSupportTicketTypeResponses[keyof SupportTicketTypesGetSupportTicketTypeResponses];
 
-export type PatchSupportTicketTypeAsyncData = {
+export type SupportTicketTypesPatchSupportTicketTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5769,7 +5769,7 @@ export type PatchSupportTicketTypeAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}';
 };
 
-export type PatchSupportTicketTypeAsyncErrors = {
+export type SupportTicketTypesPatchSupportTicketTypeErrors = {
     /**
      * Unauthorized
      */
@@ -5780,18 +5780,18 @@ export type PatchSupportTicketTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSupportTicketTypeAsyncError = PatchSupportTicketTypeAsyncErrors[keyof PatchSupportTicketTypeAsyncErrors];
+export type SupportTicketTypesPatchSupportTicketTypeError = SupportTicketTypesPatchSupportTicketTypeErrors[keyof SupportTicketTypesPatchSupportTicketTypeErrors];
 
-export type PatchSupportTicketTypeAsyncResponses = {
+export type SupportTicketTypesPatchSupportTicketTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSupportTicketTypeAsyncResponse = PatchSupportTicketTypeAsyncResponses[keyof PatchSupportTicketTypeAsyncResponses];
+export type SupportTicketTypesPatchSupportTicketTypeResponse = SupportTicketTypesPatchSupportTicketTypeResponses[keyof SupportTicketTypesPatchSupportTicketTypeResponses];
 
-export type UpdateSupportTicketTypeAsyncData = {
+export type SupportTicketTypesUpdateSupportTicketTypeData = {
     body?: SupportTicketTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5806,7 +5806,7 @@ export type UpdateSupportTicketTypeAsyncData = {
     url: '/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}';
 };
 
-export type UpdateSupportTicketTypeAsyncErrors = {
+export type SupportTicketTypesUpdateSupportTicketTypeErrors = {
     /**
      * Unauthorized
      */
@@ -5817,18 +5817,18 @@ export type UpdateSupportTicketTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSupportTicketTypeAsyncError = UpdateSupportTicketTypeAsyncErrors[keyof UpdateSupportTicketTypeAsyncErrors];
+export type SupportTicketTypesUpdateSupportTicketTypeError = SupportTicketTypesUpdateSupportTicketTypeErrors[keyof SupportTicketTypesUpdateSupportTicketTypeErrors];
 
-export type UpdateSupportTicketTypeAsyncResponses = {
+export type SupportTicketTypesUpdateSupportTicketTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSupportTicketTypeAsyncResponse = UpdateSupportTicketTypeAsyncResponses[keyof UpdateSupportTicketTypeAsyncResponses];
+export type SupportTicketTypesUpdateSupportTicketTypeResponse = SupportTicketTypesUpdateSupportTicketTypeResponses[keyof SupportTicketTypesUpdateSupportTicketTypeResponses];
 
-export type GetWarrantyPoliciesAsyncData = {
+export type WarrantyPoliciesGetWarrantyPoliciesData = {
     body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5841,7 +5841,7 @@ export type GetWarrantyPoliciesAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies';
 };
 
-export type GetWarrantyPoliciesAsyncErrors = {
+export type WarrantyPoliciesGetWarrantyPoliciesErrors = {
     /**
      * Unauthorized
      */
@@ -5852,18 +5852,18 @@ export type GetWarrantyPoliciesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWarrantyPoliciesAsyncError = GetWarrantyPoliciesAsyncErrors[keyof GetWarrantyPoliciesAsyncErrors];
+export type WarrantyPoliciesGetWarrantyPoliciesError = WarrantyPoliciesGetWarrantyPoliciesErrors[keyof WarrantyPoliciesGetWarrantyPoliciesErrors];
 
-export type GetWarrantyPoliciesAsyncResponses = {
+export type WarrantyPoliciesGetWarrantyPoliciesResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoListEnvelopeReadable;
 };
 
-export type GetWarrantyPoliciesAsyncResponse = GetWarrantyPoliciesAsyncResponses[keyof GetWarrantyPoliciesAsyncResponses];
+export type WarrantyPoliciesGetWarrantyPoliciesResponse = WarrantyPoliciesGetWarrantyPoliciesResponses[keyof WarrantyPoliciesGetWarrantyPoliciesResponses];
 
-export type CreateWarrantyPolicyAsyncData = {
+export type WarrantyPoliciesCreateWarrantyPolicyData = {
     body?: ItemWarrantyPolicyCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5876,7 +5876,7 @@ export type CreateWarrantyPolicyAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies';
 };
 
-export type CreateWarrantyPolicyAsyncErrors = {
+export type WarrantyPoliciesCreateWarrantyPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -5887,18 +5887,18 @@ export type CreateWarrantyPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWarrantyPolicyAsyncError = CreateWarrantyPolicyAsyncErrors[keyof CreateWarrantyPolicyAsyncErrors];
+export type WarrantyPoliciesCreateWarrantyPolicyError = WarrantyPoliciesCreateWarrantyPolicyErrors[keyof WarrantyPoliciesCreateWarrantyPolicyErrors];
 
-export type CreateWarrantyPolicyAsyncResponses = {
+export type WarrantyPoliciesCreateWarrantyPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateWarrantyPolicyAsyncResponse = CreateWarrantyPolicyAsyncResponses[keyof CreateWarrantyPolicyAsyncResponses];
+export type WarrantyPoliciesCreateWarrantyPolicyResponse = WarrantyPoliciesCreateWarrantyPolicyResponses[keyof WarrantyPoliciesCreateWarrantyPolicyResponses];
 
-export type GetWarrantyPoliciesCountAsyncData = {
+export type WarrantyPoliciesGetWarrantyPoliciesCountData = {
     body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5911,7 +5911,7 @@ export type GetWarrantyPoliciesCountAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies/Count';
 };
 
-export type GetWarrantyPoliciesCountAsyncErrors = {
+export type WarrantyPoliciesGetWarrantyPoliciesCountErrors = {
     /**
      * Unauthorized
      */
@@ -5922,18 +5922,18 @@ export type GetWarrantyPoliciesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWarrantyPoliciesCountAsyncError = GetWarrantyPoliciesCountAsyncErrors[keyof GetWarrantyPoliciesCountAsyncErrors];
+export type WarrantyPoliciesGetWarrantyPoliciesCountError = WarrantyPoliciesGetWarrantyPoliciesCountErrors[keyof WarrantyPoliciesGetWarrantyPoliciesCountErrors];
 
-export type GetWarrantyPoliciesCountAsyncResponses = {
+export type WarrantyPoliciesGetWarrantyPoliciesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWarrantyPoliciesCountAsyncResponse = GetWarrantyPoliciesCountAsyncResponses[keyof GetWarrantyPoliciesCountAsyncResponses];
+export type WarrantyPoliciesGetWarrantyPoliciesCountResponse = WarrantyPoliciesGetWarrantyPoliciesCountResponses[keyof WarrantyPoliciesGetWarrantyPoliciesCountResponses];
 
-export type DeleteWarrantyPolicyAsyncData = {
+export type WarrantyPoliciesDeleteWarrantyPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5948,7 +5948,7 @@ export type DeleteWarrantyPolicyAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
 };
 
-export type DeleteWarrantyPolicyAsyncErrors = {
+export type WarrantyPoliciesDeleteWarrantyPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -5959,18 +5959,18 @@ export type DeleteWarrantyPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWarrantyPolicyAsyncError = DeleteWarrantyPolicyAsyncErrors[keyof DeleteWarrantyPolicyAsyncErrors];
+export type WarrantyPoliciesDeleteWarrantyPolicyError = WarrantyPoliciesDeleteWarrantyPolicyErrors[keyof WarrantyPoliciesDeleteWarrantyPolicyErrors];
 
-export type DeleteWarrantyPolicyAsyncResponses = {
+export type WarrantyPoliciesDeleteWarrantyPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWarrantyPolicyAsyncResponse = DeleteWarrantyPolicyAsyncResponses[keyof DeleteWarrantyPolicyAsyncResponses];
+export type WarrantyPoliciesDeleteWarrantyPolicyResponse = WarrantyPoliciesDeleteWarrantyPolicyResponses[keyof WarrantyPoliciesDeleteWarrantyPolicyResponses];
 
-export type GetWarrantyPolicyAsyncData = {
+export type WarrantyPoliciesGetWarrantyPolicyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5985,7 +5985,7 @@ export type GetWarrantyPolicyAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
 };
 
-export type GetWarrantyPolicyAsyncErrors = {
+export type WarrantyPoliciesGetWarrantyPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -5996,18 +5996,18 @@ export type GetWarrantyPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWarrantyPolicyAsyncError = GetWarrantyPolicyAsyncErrors[keyof GetWarrantyPolicyAsyncErrors];
+export type WarrantyPoliciesGetWarrantyPolicyError = WarrantyPoliciesGetWarrantyPolicyErrors[keyof WarrantyPoliciesGetWarrantyPolicyErrors];
 
-export type GetWarrantyPolicyAsyncResponses = {
+export type WarrantyPoliciesGetWarrantyPolicyResponses = {
     /**
      * OK
      */
     200: ItemWarrantyPolicyDtoEnvelopeReadable;
 };
 
-export type GetWarrantyPolicyAsyncResponse = GetWarrantyPolicyAsyncResponses[keyof GetWarrantyPolicyAsyncResponses];
+export type WarrantyPoliciesGetWarrantyPolicyResponse = WarrantyPoliciesGetWarrantyPolicyResponses[keyof WarrantyPoliciesGetWarrantyPolicyResponses];
 
-export type PatchWarrantyPolicyAsyncData = {
+export type WarrantyPoliciesPatchWarrantyPolicyData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6022,7 +6022,7 @@ export type PatchWarrantyPolicyAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
 };
 
-export type PatchWarrantyPolicyAsyncErrors = {
+export type WarrantyPoliciesPatchWarrantyPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -6033,18 +6033,18 @@ export type PatchWarrantyPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWarrantyPolicyAsyncError = PatchWarrantyPolicyAsyncErrors[keyof PatchWarrantyPolicyAsyncErrors];
+export type WarrantyPoliciesPatchWarrantyPolicyError = WarrantyPoliciesPatchWarrantyPolicyErrors[keyof WarrantyPoliciesPatchWarrantyPolicyErrors];
 
-export type PatchWarrantyPolicyAsyncResponses = {
+export type WarrantyPoliciesPatchWarrantyPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWarrantyPolicyAsyncResponse = PatchWarrantyPolicyAsyncResponses[keyof PatchWarrantyPolicyAsyncResponses];
+export type WarrantyPoliciesPatchWarrantyPolicyResponse = WarrantyPoliciesPatchWarrantyPolicyResponses[keyof WarrantyPoliciesPatchWarrantyPolicyResponses];
 
-export type UpdateWarrantyPolicyAsyncData = {
+export type WarrantyPoliciesUpdateWarrantyPolicyData = {
     body?: ItemWarrantyPolicyUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6059,7 +6059,7 @@ export type UpdateWarrantyPolicyAsyncData = {
     url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
 };
 
-export type UpdateWarrantyPolicyAsyncErrors = {
+export type WarrantyPoliciesUpdateWarrantyPolicyErrors = {
     /**
      * Unauthorized
      */
@@ -6070,18 +6070,18 @@ export type UpdateWarrantyPolicyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWarrantyPolicyAsyncError = UpdateWarrantyPolicyAsyncErrors[keyof UpdateWarrantyPolicyAsyncErrors];
+export type WarrantyPoliciesUpdateWarrantyPolicyError = WarrantyPoliciesUpdateWarrantyPolicyErrors[keyof WarrantyPoliciesUpdateWarrantyPolicyErrors];
 
-export type UpdateWarrantyPolicyAsyncResponses = {
+export type WarrantyPoliciesUpdateWarrantyPolicyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWarrantyPolicyAsyncResponse = UpdateWarrantyPolicyAsyncResponses[keyof UpdateWarrantyPolicyAsyncResponses];
+export type WarrantyPoliciesUpdateWarrantyPolicyResponse = WarrantyPoliciesUpdateWarrantyPolicyResponses[keyof WarrantyPoliciesUpdateWarrantyPolicyResponses];
 
-export type GetWarrantyRequestsAsyncData = {
+export type WarrantyRequestsGetWarrantyRequestsData = {
     body?: WarrantyRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6094,16 +6094,16 @@ export type GetWarrantyRequestsAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests';
 };
 
-export type GetWarrantyRequestsAsyncResponses = {
+export type WarrantyRequestsGetWarrantyRequestsResponses = {
     /**
      * OK
      */
     200: WarrantyRequestDtoListEnvelopeReadable;
 };
 
-export type GetWarrantyRequestsAsyncResponse = GetWarrantyRequestsAsyncResponses[keyof GetWarrantyRequestsAsyncResponses];
+export type WarrantyRequestsGetWarrantyRequestsResponse = WarrantyRequestsGetWarrantyRequestsResponses[keyof WarrantyRequestsGetWarrantyRequestsResponses];
 
-export type CreateWarrantyRequestAsyncData = {
+export type WarrantyRequestsCreateWarrantyRequestData = {
     body?: WarrantyRequestCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6116,16 +6116,16 @@ export type CreateWarrantyRequestAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests';
 };
 
-export type CreateWarrantyRequestAsyncResponses = {
+export type WarrantyRequestsCreateWarrantyRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateWarrantyRequestAsyncResponse = CreateWarrantyRequestAsyncResponses[keyof CreateWarrantyRequestAsyncResponses];
+export type WarrantyRequestsCreateWarrantyRequestResponse = WarrantyRequestsCreateWarrantyRequestResponses[keyof WarrantyRequestsCreateWarrantyRequestResponses];
 
-export type GetWarrantyRequestsCountAsyncData = {
+export type WarrantyRequestsGetWarrantyRequestsCountData = {
     body?: WarrantyRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6138,16 +6138,16 @@ export type GetWarrantyRequestsCountAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests/Count';
 };
 
-export type GetWarrantyRequestsCountAsyncResponses = {
+export type WarrantyRequestsGetWarrantyRequestsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWarrantyRequestsCountAsyncResponse = GetWarrantyRequestsCountAsyncResponses[keyof GetWarrantyRequestsCountAsyncResponses];
+export type WarrantyRequestsGetWarrantyRequestsCountResponse = WarrantyRequestsGetWarrantyRequestsCountResponses[keyof WarrantyRequestsGetWarrantyRequestsCountResponses];
 
-export type DeleteWarrantyRequestAsyncData = {
+export type WarrantyRequestsDeleteWarrantyRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6162,16 +6162,16 @@ export type DeleteWarrantyRequestAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
 };
 
-export type DeleteWarrantyRequestAsyncResponses = {
+export type WarrantyRequestsDeleteWarrantyRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWarrantyRequestAsyncResponse = DeleteWarrantyRequestAsyncResponses[keyof DeleteWarrantyRequestAsyncResponses];
+export type WarrantyRequestsDeleteWarrantyRequestResponse = WarrantyRequestsDeleteWarrantyRequestResponses[keyof WarrantyRequestsDeleteWarrantyRequestResponses];
 
-export type GetWarrantyRequestAsyncData = {
+export type WarrantyRequestsGetWarrantyRequestData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6186,16 +6186,16 @@ export type GetWarrantyRequestAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
 };
 
-export type GetWarrantyRequestAsyncResponses = {
+export type WarrantyRequestsGetWarrantyRequestResponses = {
     /**
      * OK
      */
     200: WarrantyRequestDtoEnvelopeReadable;
 };
 
-export type GetWarrantyRequestAsyncResponse = GetWarrantyRequestAsyncResponses[keyof GetWarrantyRequestAsyncResponses];
+export type WarrantyRequestsGetWarrantyRequestResponse = WarrantyRequestsGetWarrantyRequestResponses[keyof WarrantyRequestsGetWarrantyRequestResponses];
 
-export type PatchWarrantyRequestAsyncData = {
+export type WarrantyRequestsPatchWarrantyRequestData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6210,7 +6210,7 @@ export type PatchWarrantyRequestAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
 };
 
-export type PatchWarrantyRequestAsyncErrors = {
+export type WarrantyRequestsPatchWarrantyRequestErrors = {
     /**
      * Unauthorized
      */
@@ -6221,18 +6221,18 @@ export type PatchWarrantyRequestAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWarrantyRequestAsyncError = PatchWarrantyRequestAsyncErrors[keyof PatchWarrantyRequestAsyncErrors];
+export type WarrantyRequestsPatchWarrantyRequestError = WarrantyRequestsPatchWarrantyRequestErrors[keyof WarrantyRequestsPatchWarrantyRequestErrors];
 
-export type PatchWarrantyRequestAsyncResponses = {
+export type WarrantyRequestsPatchWarrantyRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWarrantyRequestAsyncResponse = PatchWarrantyRequestAsyncResponses[keyof PatchWarrantyRequestAsyncResponses];
+export type WarrantyRequestsPatchWarrantyRequestResponse = WarrantyRequestsPatchWarrantyRequestResponses[keyof WarrantyRequestsPatchWarrantyRequestResponses];
 
-export type UpdateWarrantyRequestAsyncData = {
+export type WarrantyRequestsUpdateWarrantyRequestData = {
     body?: WarrantyRequestUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6247,14 +6247,14 @@ export type UpdateWarrantyRequestAsyncData = {
     url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
 };
 
-export type UpdateWarrantyRequestAsyncResponses = {
+export type WarrantyRequestsUpdateWarrantyRequestResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWarrantyRequestAsyncResponse = UpdateWarrantyRequestAsyncResponses[keyof UpdateWarrantyRequestAsyncResponses];
+export type WarrantyRequestsUpdateWarrantyRequestResponse = WarrantyRequestsUpdateWarrantyRequestResponses[keyof WarrantyRequestsUpdateWarrantyRequestResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

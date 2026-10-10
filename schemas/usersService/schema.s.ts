@@ -6,523 +6,296 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/Me/Options": {
     /**
      * Retrieve a list of user options
      * @description Retrieve a list of options for the current user
      */
-    get: operations["GetUserOptions"];
+    get: operations["Options_GetUserOptions"];
     /**
      * Create a new user option
      * @description Create a new option for the current user
      */
-    post: operations["CreateUserOption"];
+    post: operations["Options_CreateUserOption"];
   };
   "/api/v2/Me/Options/Count": {
     /**
      * Get the count of user options
      * @description Get the count of options for the current user
      */
-    get: operations["GetUserOptionsCount"];
+    get: operations["Options_GetUserOptionsCount"];
   };
   "/api/v2/Me/Options/{optionId}": {
     /**
      * Retrieve a single user option by its ID
      * @description Retrieve a single user option by its ID
      */
-    get: operations["GetUserOptionById"];
+    get: operations["Options_GetUserOptionById"];
     /**
      * Update a user option
      * @description Update a user option
      */
-    put: operations["UpdateUserOption"];
+    put: operations["Options_UpdateUserOption"];
     /**
      * Delete a user option
      * @description Delete a user option
      */
-    delete: operations["DeleteUserOption"];
+    delete: operations["Options_DeleteUserOption"];
     /**
      * Patch a user option
      * @description Partially updates a user option using a JSON Patch document
      */
-    patch: operations["PatchUserOption"];
+    patch: operations["Options_PatchUserOption"];
   };
   "/api/v2/Me/Options/Key/{key}": {
     /**
      * Retrieve a single user option by its key
      * @description Retrieve a single user option by its key
      */
-    get: operations["GetUserOptionByKey"];
+    get: operations["Options_GetUserOptionByKey"];
   };
   "/api/v2/Me/Options/Upsert/{key}": {
     /**
      * Create or update a user option by key
      * @description Create or update a user option by key
      */
-    put: operations["UpsertUserOption"];
+    put: operations["Options_UpsertUserOption"];
+  };
+  "/api/v2/Me/StudioAccess": {
+    /**
+     * Get the current user's Studio access
+     * @description Returns whether the current user may open Studio.
+     */
+    get: operations["Users_GetMyStudioAccess"];
+  };
+  "/api/v2/UsersService/Users/{userId}/PublicProfile": {
+    /**
+     * Get a user's public profile
+     * @description Returns the public profile of a user (id, public name and avatar URL) to any authenticated caller. Email, phone, roles, tenants and every other private field are never returned.
+     */
+    get: operations["Users_GetUserPublicProfile"];
   };
   "/api/v2/Me": {
     /**
      * Gets the current user
      * @description Get the currently acting user.
      */
-    get: operations["GetCurrentUserAsync"];
+    get: operations["Users_GetCurrentUser"];
     /**
      * Update the current user's profile
      * @description Update the current user's profile
      */
-    put: operations["UpdateCurrentUserAsync"];
+    put: operations["Users_UpdateCurrentUser"];
     /**
      * Partially update the current user's profile
      * @description Partially update the current user's profile
      */
-    patch: operations["PatchCurrentUserAsync"];
+    patch: operations["Users_PatchCurrentUser"];
   };
   "/api/v2/Me/Extended": {
     /**
      * Get the current user's extended profile
      * @description Get the current user's extended profile
      */
-    get: operations["GetExtendedCurrentUserAsync"];
+    get: operations["Users_GetExtendedCurrentUser"];
   };
   "/api/v2/Me/Avatar": {
     /**
      * Get the current user's avatar
      * @description Get the current user's avatar
      */
-    get: operations["GetCurrentUserAvatarAsync"];
+    get: operations["Users_GetCurrentUserAvatar"];
     /**
      * Update the current user's avatar
      * @description Update the current user's avatar
      */
-    post: operations["UpdateAvatarAsync"];
+    post: operations["Users_UpdateAvatar"];
   };
   "/api/v2/Me/Follows": {
     /**
      * Get the social profiles that the current user follows
      * @description Get the social profiles that the current user follows
      */
-    get: operations["GetCurrentUserFollowsAsync"];
+    get: operations["Users_GetCurrentUserFollows"];
   };
   "/api/v2/Me/Follows/Count": {
     /**
      * Count the social profiles that the current user follows
      * @description Count the social profiles that the current user follows
      */
-    get: operations["CountCurrentUserFollowsAsync"];
+    get: operations["Users_CountCurrentUserFollows"];
   };
   "/api/v2/Me/Followers": {
     /**
      * Get the social profiles that follow the current user
      * @description Get the social profiles that follow the current user
      */
-    get: operations["GetCurrentUserFollowersAsync"];
+    get: operations["Users_GetCurrentUserFollowers"];
   };
   "/api/v2/Me/Followers/Count": {
     /**
      * Count the social profiles that follow the current user
      * @description Count the social profiles that follow the current user
      */
-    get: operations["CountCurrentUserFollowersAsync"];
+    get: operations["Users_CountCurrentUserFollowers"];
   };
   "/api/v2/Me/Tenants": {
     /**
      * Get the tenants that the current user is enrolled in
      * @description Get the tenants that the current user is enrolled in
      */
-    get: operations["GetCurrentUserTenantsAsync"];
+    get: operations["Users_GetCurrentUserTenants"];
   };
   "/api/v2/Me/Tenants/Count": {
     /**
      * Count the tenants that the current user is enrolled in
      * @description Count the tenants that the current user is enrolled in
      */
-    get: operations["CountCurrentUserTenantsAsync"];
+    get: operations["Users_CountCurrentUserTenants"];
   };
   "/api/v2/Me/Tenants/Extended": {
     /**
      * Get the tenants that the current user is enrolled in
      * @description Get the tenants that the current user is enrolled in
      */
-    get: operations["GetCurrentUserTenantsExtendedAsync"];
+    get: operations["Users_GetCurrentUserTenantsExtended"];
   };
   "/api/v2/Me/Enrollments": {
     /**
      * Get the list of enrollments for the current user
      * @description Get the list of enrollments for the current user
      */
-    get: operations["GetCurrentUserEnrollmentsAsync"];
+    get: operations["Users_GetCurrentUserEnrollments"];
   };
   "/api/v2/Me/Enrollments/Extended": {
     /**
      * Get the list of enrollments for the current user
      * @description Get the list of enrollments for the current user
      */
-    get: operations["GetCurrentUserEnrollmentsExtendedAsync"];
+    get: operations["Users_GetCurrentUserEnrollmentsExtended"];
   };
   "/api/v2/Me/Enrollments/{enrollmentId}": {
     /**
      * Get a single TenantEnrollment by its ID
      * @description Get a single TenantEnrollment by its ID
      */
-    get: operations["GetEnrollmentAsync"];
+    get: operations["Users_GetEnrollment"];
   };
   "/api/v2/Me/SocialProfile": {
     /**
      * Get the current user's social profile
      * @description Get the current user's social profile
      */
-    get: operations["GetCurrentUserSocialProfileAsync"];
+    get: operations["Users_GetCurrentUserSocialProfile"];
   };
   "/api/v2/Me/Cart": {
     /**
      * Get the current user's cart
      * @description Get the current user's cart
      */
-    get: operations["GetCurrentUserCartAsync"];
+    get: operations["Users_GetCurrentUserCart"];
   };
   "/api/v2/Me/Wallet": {
     /**
      * Get the current user's billing profile
      * @description Get the current user's billing profile
      */
-    get: operations["GetCurrentUserWalletAsync"];
+    get: operations["Users_GetCurrentUserWallet"];
   };
   "/api/v2/Me/Notifications": {
     /**
      * Get the list of notifications for the current user
      * @description Get the list of notifications for the current user
      */
-    get: operations["GetCurrentUserNotificationsAsync"];
+    get: operations["Users_GetCurrentUserNotifications"];
   };
   "/api/v2/Me/Notifications/Count": {
     /**
      * Count the notifications for the current user
      * @description Count the notifications for the current user
      */
-    get: operations["CountCurrentUserNotificationsAsync"];
+    get: operations["Users_CountCurrentUserNotifications"];
   };
   "/api/v2/Me/Settings": {
     /**
      * Get the settings for the current user
      * @description Get the settings for the current user
      */
-    get: operations["GetCurrentUserSettingsAsync"];
+    get: operations["Users_GetCurrentUserSettings"];
     /**
      * Update the settings for the current user
      * @description Update the settings for the current user
      */
-    put: operations["UpdateCurrentUserSettingsAsync"];
+    put: operations["Users_UpdateCurrentUserSettings"];
   };
   "/api/v2/Me/Addresses": {
     /**
      * Get the list of addresses for the current user
      * @description Get the list of addresses for the current user
      */
-    get: operations["GetCurrentUserAddressesAsync"];
+    get: operations["Users_GetCurrentUserAddresses"];
   };
   "/api/v2/Me/Invitations": {
     /**
      * Get the list of tenant enrollment invitations for the current user
      * @description Get the list of tenant enrollment invitations for the current user
      */
-    get: operations["GetCurrentUserInvitationAsync"];
+    get: operations["Users_GetCurrentUserInvitation"];
+  };
+  "/api/v2/Me/Invitations/{invitationId}": {
+    /**
+     * Get one tenant enrollment invitation for the current user
+     * @description Returns the invitation only to its invitee (its bound account, or the holder of the emailed token)
+     */
+    get: operations["Users_GetCurrentUserInvitationById"];
   };
 }
 
@@ -808,6 +581,7 @@ export interface components {
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
       settings?: components["schemas"]["UserSettingsDto"];
+      twoFactorEnabled?: boolean;
     };
     ExtendedUserDtoEnvelope: {
       isSuccess?: boolean;
@@ -923,6 +697,8 @@ export interface components {
       readTimestamp?: string;
       /** Format: date-time */
       issuedTimestamp?: string;
+      tenantId?: string | null;
+      categoryKey?: string | null;
     };
     NotificationDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1104,6 +880,24 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
     };
+    StudioAccessDto: {
+      canAccessStudio?: boolean;
+    };
+    StudioAccessDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["StudioAccessDto"];
+    };
     TenantDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1221,6 +1015,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       tenantId?: string | null;
+      tenantName?: string | null;
       revoked?: boolean;
       redeemed?: boolean;
       /** Format: date-time */
@@ -1228,6 +1023,21 @@ export interface components {
       userEmail?: string | null;
       creatorEnrollmentId?: string | null;
       relatedEnrollmentId?: string | null;
+    };
+    TenantInvitationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantInvitationDto"];
     };
     TenantInvitationDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1330,6 +1140,26 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["UserDto"];
     };
+    UserPublicProfileDto: {
+      id?: string | null;
+      publicName?: string | null;
+      avatarUrl?: string | null;
+    };
+    UserPublicProfileDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["UserPublicProfileDto"];
+    };
     UserSettingsDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1417,6 +1247,7 @@ export interface components {
       mainNetEtherBalance?: number;
       ethereumAddress?: string | null;
       ethereumPublicKey?: string | null;
+      /** @deprecated */
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
@@ -1450,7 +1281,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1465,11 +1375,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Retrieve a list of user options
    * @description Retrieve a list of options for the current user
    */
-  GetUserOptions: {
+  Options_GetUserOptions: {
     parameters: {
       query?: {
         portalId?: string;
@@ -1513,7 +1608,7 @@ export interface operations {
    * Create a new user option
    * @description Create a new option for the current user
    */
-  CreateUserOption: {
+  Options_CreateUserOption: {
     parameters: {
       query: {
         key: string;
@@ -1558,7 +1653,7 @@ export interface operations {
    * Get the count of user options
    * @description Get the count of options for the current user
    */
-  GetUserOptionsCount: {
+  Options_GetUserOptionsCount: {
     parameters: {
       query?: {
         portalId?: string;
@@ -1602,7 +1697,7 @@ export interface operations {
    * Retrieve a single user option by its ID
    * @description Retrieve a single user option by its ID
    */
-  GetUserOptionById: {
+  Options_GetUserOptionById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1642,7 +1737,7 @@ export interface operations {
    * Update a user option
    * @description Update a user option
    */
-  UpdateUserOption: {
+  Options_UpdateUserOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1688,7 +1783,7 @@ export interface operations {
    * Delete a user option
    * @description Delete a user option
    */
-  DeleteUserOption: {
+  Options_DeleteUserOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1728,7 +1823,7 @@ export interface operations {
    * Patch a user option
    * @description Partially updates a user option using a JSON Patch document
    */
-  PatchUserOption: {
+  Options_PatchUserOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1774,7 +1869,7 @@ export interface operations {
    * Retrieve a single user option by its key
    * @description Retrieve a single user option by its key
    */
-  GetUserOptionByKey: {
+  Options_GetUserOptionByKey: {
     parameters: {
       query?: {
         portalId?: string;
@@ -1815,7 +1910,7 @@ export interface operations {
    * Create or update a user option by key
    * @description Create or update a user option by key
    */
-  UpsertUserOption: {
+  Options_UpsertUserOption: {
     parameters: {
       query?: {
         portalId?: string;
@@ -1859,10 +1954,80 @@ export interface operations {
     };
   };
   /**
+   * Get the current user's Studio access
+   * @description Returns whether the current user may open Studio.
+   */
+  Users_GetMyStudioAccess: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StudioAccessDtoEnvelope"];
+          "application/xml": components["schemas"]["StudioAccessDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a user's public profile
+   * @description Returns the public profile of a user (id, public name and avatar URL) to any authenticated caller. Email, phone, roles, tenants and every other private field are never returned.
+   */
+  Users_GetUserPublicProfile: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UserPublicProfileDtoEnvelope"];
+          "application/xml": components["schemas"]["UserPublicProfileDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets the current user
    * @description Get the currently acting user.
    */
-  GetCurrentUserAsync: {
+  Users_GetCurrentUser: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1894,7 +2059,7 @@ export interface operations {
    * Update the current user's profile
    * @description Update the current user's profile
    */
-  UpdateCurrentUserAsync: {
+  Users_UpdateCurrentUser: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1933,7 +2098,7 @@ export interface operations {
    * Partially update the current user's profile
    * @description Partially update the current user's profile
    */
-  PatchCurrentUserAsync: {
+  Users_PatchCurrentUser: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1972,7 +2137,7 @@ export interface operations {
    * Get the current user's extended profile
    * @description Get the current user's extended profile
    */
-  GetExtendedCurrentUserAsync: {
+  Users_GetExtendedCurrentUser: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2004,7 +2169,7 @@ export interface operations {
    * Get the current user's avatar
    * @description Get the current user's avatar
    */
-  GetCurrentUserAvatarAsync: {
+  Users_GetCurrentUserAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2044,7 +2209,7 @@ export interface operations {
    * Update the current user's avatar
    * @description Update the current user's avatar
    */
-  UpdateAvatarAsync: {
+  Users_UpdateAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2078,6 +2243,14 @@ export interface operations {
           "multipart/form-data": components["schemas"]["EmptyEnvelope"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "multipart/form-data": components["schemas"]["ErrorEnvelope"];
+        };
+      };
       /** @description Unauthorized */
       401: {
         content: {
@@ -2100,7 +2273,7 @@ export interface operations {
    * Get the social profiles that the current user follows
    * @description Get the social profiles that the current user follows
    */
-  GetCurrentUserFollowsAsync: {
+  Users_GetCurrentUserFollows: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2139,7 +2312,7 @@ export interface operations {
    * Count the social profiles that the current user follows
    * @description Count the social profiles that the current user follows
    */
-  CountCurrentUserFollowsAsync: {
+  Users_CountCurrentUserFollows: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2178,7 +2351,7 @@ export interface operations {
    * Get the social profiles that follow the current user
    * @description Get the social profiles that follow the current user
    */
-  GetCurrentUserFollowersAsync: {
+  Users_GetCurrentUserFollowers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2217,7 +2390,7 @@ export interface operations {
    * Count the social profiles that follow the current user
    * @description Count the social profiles that follow the current user
    */
-  CountCurrentUserFollowersAsync: {
+  Users_CountCurrentUserFollowers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2256,7 +2429,7 @@ export interface operations {
    * Get the tenants that the current user is enrolled in
    * @description Get the tenants that the current user is enrolled in
    */
-  GetCurrentUserTenantsAsync: {
+  Users_GetCurrentUserTenants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2303,7 +2476,7 @@ export interface operations {
    * Count the tenants that the current user is enrolled in
    * @description Count the tenants that the current user is enrolled in
    */
-  CountCurrentUserTenantsAsync: {
+  Users_CountCurrentUserTenants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2350,7 +2523,7 @@ export interface operations {
    * Get the tenants that the current user is enrolled in
    * @description Get the tenants that the current user is enrolled in
    */
-  GetCurrentUserTenantsExtendedAsync: {
+  Users_GetCurrentUserTenantsExtended: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2390,7 +2563,7 @@ export interface operations {
    * Get the list of enrollments for the current user
    * @description Get the list of enrollments for the current user
    */
-  GetCurrentUserEnrollmentsAsync: {
+  Users_GetCurrentUserEnrollments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2422,7 +2595,7 @@ export interface operations {
    * Get the list of enrollments for the current user
    * @description Get the list of enrollments for the current user
    */
-  GetCurrentUserEnrollmentsExtendedAsync: {
+  Users_GetCurrentUserEnrollmentsExtended: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2454,7 +2627,7 @@ export interface operations {
    * Get a single TenantEnrollment by its ID
    * @description Get a single TenantEnrollment by its ID
    */
-  GetEnrollmentAsync: {
+  Users_GetEnrollment: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2489,7 +2662,7 @@ export interface operations {
    * Get the current user's social profile
    * @description Get the current user's social profile
    */
-  GetCurrentUserSocialProfileAsync: {
+  Users_GetCurrentUserSocialProfile: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2521,7 +2694,7 @@ export interface operations {
    * Get the current user's cart
    * @description Get the current user's cart
    */
-  GetCurrentUserCartAsync: {
+  Users_GetCurrentUserCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2553,7 +2726,7 @@ export interface operations {
    * Get the current user's billing profile
    * @description Get the current user's billing profile
    */
-  GetCurrentUserWalletAsync: {
+  Users_GetCurrentUserWallet: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2585,7 +2758,7 @@ export interface operations {
    * Get the list of notifications for the current user
    * @description Get the list of notifications for the current user
    */
-  GetCurrentUserNotificationsAsync: {
+  Users_GetCurrentUserNotifications: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2624,7 +2797,7 @@ export interface operations {
    * Count the notifications for the current user
    * @description Count the notifications for the current user
    */
-  CountCurrentUserNotificationsAsync: {
+  Users_CountCurrentUserNotifications: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2663,7 +2836,7 @@ export interface operations {
    * Get the settings for the current user
    * @description Get the settings for the current user
    */
-  GetCurrentUserSettingsAsync: {
+  Users_GetCurrentUserSettings: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2695,7 +2868,7 @@ export interface operations {
    * Update the settings for the current user
    * @description Update the settings for the current user
    */
-  UpdateCurrentUserSettingsAsync: {
+  Users_UpdateCurrentUserSettings: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2734,7 +2907,7 @@ export interface operations {
    * Get the list of addresses for the current user
    * @description Get the list of addresses for the current user
    */
-  GetCurrentUserAddressesAsync: {
+  Users_GetCurrentUserAddresses: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2773,7 +2946,7 @@ export interface operations {
    * Get the list of tenant enrollment invitations for the current user
    * @description Get the list of tenant enrollment invitations for the current user
    */
-  GetCurrentUserInvitationAsync: {
+  Users_GetCurrentUserInvitation: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2793,6 +2966,50 @@ export interface operations {
       };
       /** @description Unauthorized */
       401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "multipart/form-data": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get one tenant enrollment invitation for the current user
+   * @description Returns the invitation only to its invitee (its bound account, or the holder of the emailed token)
+   */
+  Users_GetCurrentUserInvitationById: {
+    parameters: {
+      query?: {
+        token?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        invitationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantInvitationDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantInvitationDtoEnvelope"];
+          "multipart/form-data": components["schemas"]["TenantInvitationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "multipart/form-data": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

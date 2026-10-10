@@ -5,545 +5,549 @@
 
 
 export interface paths {
+  "/api/v2/IntelligenceService/AgentExecutionDiagnostics": {
+    /**
+     * Get agent execution diagnostics
+     * @description Retrieves the tenant's own agent runtime work orders classified into an operator anomaly code and a recommended recovery action (read-only, tenant-scoped).
+     */
+    get: operations["AgentExecutionDiagnostics_GetDiagnostics"];
+  };
+  "/api/v2/IntelligenceService/AgentExecutionDiagnostics/Count": {
+    /**
+     * Get agent execution diagnostics count
+     * @description Returns the count of the tenant's own agent runtime work orders.
+     */
+    get: operations["AgentExecutionDiagnostics_GetDiagnosticsCount"];
+  };
+  "/api/v2/IntelligenceService/AgentExecutionDiagnostics/{id}": {
+    /**
+     * Get agent execution diagnostic by ID
+     * @description Retrieves a specific agent runtime work order's diagnostic classification by id (tenant-scoped, fail-closed).
+     */
+    get: operations["AgentExecutionDiagnostics_GetDiagnosticById"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Pools": {
+    /**
+     * Provision an agent runtime pool
+     * @description Find-or-creates the operator's tenant-owned routing pool (the fabric-bootstrap coordinate a worker then registers into) and returns its id. The owning tenant is resolved server-side from the authorization context, never from the request body. Idempotent on the tenant + name coordinate. The pool is routing substrate only — it confers no capability authority. Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_CreatePool"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Register": {
+    /**
+     * Register an agent runtime worker
+     * @description Enrolls a worker (machine identity + declared capabilities + concurrency ceiling) into a pool; returns its id. Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Register"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Workers/{workerId}/Activate": {
+    /**
+     * Activate an agent runtime worker
+     * @description Transitions a registered/draining worker to Active (idempotent). Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Activate"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Workers/{workerId}/Heartbeat": {
+    /**
+     * Heartbeat an agent runtime worker
+     * @description Records a worker heartbeat — the liveness signal a stale worker's leases are reclaimed against. Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Heartbeat"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Claim": {
+    /**
+     * Claim the next eligible work order
+     * @description Atomically leases the next eligible work order for the worker under the generation fence, or returns null when nothing is claimable. Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Claim"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/WorkOrders/{workOrderId}/Cancelled": {
+    /**
+     * Read a work order's cancel state
+     * @description The worker's courtesy short-circuit — whether the order was cancelled server-side before the effect runs (the authoritative cancel guard is the effect boundary). Gated on bots_read.
+     */
+    get: operations["AgentRuntimeFabric_GetCancellation"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Execute": {
+    /**
+     * Request a work order's governed effect
+     * @description Runs the proposed governed capability at the server-authoritative effect boundary under the order's re-resolved executor identity. Returns the governed verdict (a denial/no-op/approval-suspend/in-doubt is a first-class outcome, never a silent success). Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Execute"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Complete": {
+    /**
+     * Complete a leased work order
+     * @description Records the fenced terminal completion of a leased order (stale-generation + ownership fenced). Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Complete"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeFabric/Fault": {
+    /**
+     * Fault a leased work order
+     * @description Records the fenced terminal failure of a leased order (stale-generation + ownership fenced). Gated on bots_manage.
+     */
+    post: operations["AgentRuntimeFabric_Fault"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders": {
+    /**
+     * Get agent runtime work orders
+     * @description Retrieves the tenant's own agent runtime work orders with their current-lease state (read-only, tenant-scoped).
+     */
+    get: operations["AgentRuntimeStatus_GetWorkOrders"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders/Count": {
+    /**
+     * Get agent runtime work orders count
+     * @description Returns the count of the tenant's own agent runtime work orders.
+     */
+    get: operations["AgentRuntimeStatus_GetWorkOrdersCount"];
+  };
+  "/api/v2/IntelligenceService/AgentRuntimeStatus/WorkOrders/{id}": {
+    /**
+     * Get agent runtime work order by ID
+     * @description Retrieves a specific agent runtime work order and its current lease by id (tenant-scoped, fail-closed).
+     */
+    get: operations["AgentRuntimeStatus_GetWorkOrderById"];
+  };
   "/api/v2/IntelligenceService/AiProviders": {
     /**
      * Get the available AI providers
      * @description Returns every AI provider key this instance has a registered adapter for. The set is a property of the deployment, so it is not tenant-scoped; what varies per tenant is the credential for a provider, which is never returned here.
      */
-    get: operations["GetAiProvidersAsync"];
+    get: operations["AiProviders_GetAiProviders"];
+  };
+  "/api/v2/IntelligenceService/AiProviders/Availability": {
+    /**
+     * Get AI provider/model availability for a tenant
+     * @description Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned.
+     */
+    get: operations["AiProviders_GetAiProviderAvailability"];
+  };
+  "/api/v2/IntelligenceService/AiRuns": {
+    /**
+     * Get all AI runs
+     * @description Retrieves the durable AI run evidence rows for the specified tenant (read-only, tenant-scoped).
+     */
+    get: operations["AiRuns_GetAiRuns"];
+  };
+  "/api/v2/IntelligenceService/AiRuns/Count": {
+    /**
+     * Get AI runs count
+     * @description Returns the count of durable AI run evidence rows for the specified tenant.
+     */
+    get: operations["AiRuns_GetAiRunsCount"];
+  };
+  "/api/v2/IntelligenceService/AiRuns/{id}": {
+    /**
+     * Get AI run by ID
+     * @description Retrieves a specific durable AI run evidence row by its identifier (tenant-scoped, fail-closed).
+     */
+    get: operations["AiRuns_GetAiRunById"];
+  };
+  "/api/v2/IntelligenceService/AiUsageObservations": {
+    /**
+     * Get all AI usage observations
+     * @description Retrieves the per-run AI consumption observations for the specified tenant (read-only, tenant-scoped).
+     */
+    get: operations["AiUsageObservations_GetAiUsageObservations"];
+  };
+  "/api/v2/IntelligenceService/AiUsageObservations/Count": {
+    /**
+     * Get AI usage observations count
+     * @description Returns the count of per-run AI consumption observations for the specified tenant.
+     */
+    get: operations["AiUsageObservations_GetAiUsageObservationsCount"];
+  };
+  "/api/v2/IntelligenceService/AiUsageObservations/{id}": {
+    /**
+     * Get AI usage observation by ID
+     * @description Retrieves a specific AI consumption observation by its identifier (tenant-scoped, fail-closed).
+     */
+    get: operations["AiUsageObservations_GetAiUsageObservationById"];
+  };
+  "/api/v2/IntelligenceService/ApprovalAdvice/Disclosure": {
+    /**
+     * Get the AI approval advice disclosure
+     * @description Returns what AI approval advice would do for the specified tenant, built from live configuration: the provider and model, the connection scope, each advisor's question and the exact fields sent, what is never sent, and the disclosure fingerprint an opt-in must confirm.
+     */
+    get: operations["ApprovalAdvice_GetApprovalAdviceDisclosure"];
+  };
+  "/api/v2/IntelligenceService/ApprovalAdvice/Consent": {
+    /**
+     * Get the tenant's AI approval advice consent
+     * @description Returns the tenant's consent (never decided, opted in or opted out) and whether the disclosure it named is still the current one. ReconfirmationRequired is true when it changed since.
+     */
+    get: operations["ApprovalAdvice_GetApprovalAdviceConsent"];
+  };
+  "/api/v2/IntelligenceService/ApprovalAdvice/OptIn": {
+    /**
+     * Opt the tenant in to AI approval advice
+     * @description Opts the tenant in to the CURRENT disclosure, named by the fingerprint the admin was shown. Refused when the instance switch is off (approval_advice.instance_disabled) or the disclosure changed since it was shown (approval_advice.disclosure_stale). Provisions the least-privilege advisor identity and writes a security-log audit entry.
+     */
+    post: operations["ApprovalAdvice_OptInApprovalAdvice"];
+  };
+  "/api/v2/IntelligenceService/ApprovalAdvice/OptOut": {
+    /**
+     * Opt the tenant out of AI approval advice
+     * @description Opts the tenant out: advice stops and stored advice is hidden at once. Writes a security-log audit entry.
+     */
+    post: operations["ApprovalAdvice_OptOutApprovalAdvice"];
   };
   "/api/v2/IntelligenceService/Capabilities": {
     /**
      * Get the annotated capability catalog
      * @description Retrieves the full governed-capability catalog for the specified tenant, optionally narrowed to a single execution surface. Every capability is returned with an Available flag (and a DeniedReason when not available) so callers render disabled-with-reason instead of hiding; entitlement is computed server-side.
      */
-    get: operations["GetCapabilitiesAsync"];
+    get: operations["Capabilities_GetCapabilities"];
   };
   "/api/v2/IntelligenceService/Capabilities/Count": {
     /**
      * Get the capability catalog count
      * @description Returns the number of governed capabilities in the catalog for the specified tenant — the surface-matching total that mirrors the list route's returned-set size (entitled or not), honouring the same optional surface narrowing.
      */
-    get: operations["GetCapabilitiesCountAsync"];
+    get: operations["Capabilities_GetCapabilitiesCount"];
   };
   "/api/v2/IntelligenceService/Capabilities/{key}": {
     /**
      * Get a capability by key
      * @description Retrieves a single governed capability by its stable, dotted key, stamped with the Available / DeniedReason entitlement flag. Returns 404 only when the capability does not exist; an existing capability the actor is not entitled to run is returned annotated as unavailable, not hidden.
      */
-    get: operations["GetCapabilityByKeyAsync"];
+    get: operations["Capabilities_GetCapabilityByKey"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Attachments": {
     /**
      * Upload an attachment to a cognitive agent conversation
      * @description Uploads a file into the acting user's OWN conversation attachment store, scanned and catalogued through the storage spine. A conversation the caller does not own returns 404. The response carries the new file's id, name, content type and length; the chat UI passes that id as an AttachmentFileIds entry when it sends the referencing user turn.
      */
-    post: operations["UploadCognitiveAgentConversationAttachmentAsync"];
+    post: operations["CognitiveAgentConversationAttachments_UploadCognitiveAgentConversationAttachment"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations": {
     /**
      * Get all conversations for a cognitive agent
-     * @description Retrieves all managed conversations for the specified cognitive agent and tenant.
+     * @description Retrieves the CALLER'S OWN conversations with the specified cognitive agent. Pass scope=AllUsers to list every user's conversations (oversight; requires bots_manage).
      */
-    get: operations["GetCognitiveAgentConversationsAsync"];
+    get: operations["CognitiveAgentConversations_GetCognitiveAgentConversations"];
     /**
      * Create a new cognitive agent conversation
      * @description Creates a new managed conversation for the specified cognitive agent and tenant.
      */
-    post: operations["CreateCognitiveAgentConversationAsync"];
+    post: operations["CognitiveAgentConversations_CreateCognitiveAgentConversation"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/Count": {
     /**
      * Get conversation count for a cognitive agent
      * @description Returns the count of managed conversations for the specified cognitive agent and tenant.
      */
-    get: operations["GetCognitiveAgentConversationsCountAsync"];
+    get: operations["CognitiveAgentConversations_GetCognitiveAgentConversationsCount"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}": {
     /**
      * Get a cognitive agent conversation by ID
      * @description Retrieves a specific managed conversation of a cognitive agent by its identifier.
      */
-    get: operations["GetCognitiveAgentConversationByIdAsync"];
+    get: operations["CognitiveAgentConversations_GetCognitiveAgentConversationById"];
     /**
      * Update a cognitive agent conversation
      * @description Updates an existing managed conversation for the specified cognitive agent and tenant.
      */
-    put: operations["UpdateCognitiveAgentConversationAsync"];
+    put: operations["CognitiveAgentConversations_UpdateCognitiveAgentConversation"];
     /**
      * Delete a cognitive agent conversation
      * @description Deletes a managed conversation for the specified cognitive agent and tenant.
      */
-    delete: operations["DeleteCognitiveAgentConversationAsync"];
+    delete: operations["CognitiveAgentConversations_DeleteCognitiveAgentConversation"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages": {
     /**
      * Get all messages for a cognitive agent conversation
      * @description Retrieves all durable messages for the specified conversation, agent and tenant.
      */
-    get: operations["GetCognitiveAgentMessagesAsync"];
+    get: operations["CognitiveAgentMessages_GetCognitiveAgentMessages"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages/Count": {
     /**
      * Get message count for a cognitive agent conversation
      * @description Returns the count of durable messages for the specified conversation, agent and tenant.
      */
-    get: operations["GetCognitiveAgentMessagesCountAsync"];
+    get: operations["CognitiveAgentMessages_GetCognitiveAgentMessagesCount"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages/{id}": {
     /**
      * Get a cognitive agent conversation message by ID
      * @description Retrieves a specific durable message of a conversation by its identifier.
      */
-    get: operations["GetCognitiveAgentMessageByIdAsync"];
+    get: operations["CognitiveAgentMessages_GetCognitiveAgentMessageById"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/PendingApprovals": {
+    /**
+     * Get unresolved approvals for a cognitive agent conversation
+     * @description Reconstructs the durable, unresolved (AwaitingApproval) approval cards for the specified conversation, agent and tenant from AiRun suspend-state — the durable counterpart to the live SSE approval frame. Read-only; empty when the conversation has no unresolved approvals.
+     */
+    get: operations["CognitiveAgentMessages_GetConversationPendingApprovals"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents": {
     /**
      * Get all cognitive agents
      * @description Retrieves all managed cognitive agents for the specified tenant.
      */
-    get: operations["GetCognitiveAgentsAsync"];
+    get: operations["CognitiveAgents_GetCognitiveAgents"];
     /**
      * Create a new cognitive agent
      * @description Creates a new managed cognitive agent for the specified tenant.
      */
-    post: operations["CreateCognitiveAgentAsync"];
+    post: operations["CognitiveAgents_CreateCognitiveAgent"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/Count": {
     /**
      * Get cognitive agents count
      * @description Returns the count of managed cognitive agents for the specified tenant.
      */
-    get: operations["GetCognitiveAgentsCountAsync"];
+    get: operations["CognitiveAgents_GetCognitiveAgentsCount"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{id}": {
     /**
      * Get cognitive agent by ID
      * @description Retrieves a specific managed cognitive agent by its identifier.
      */
-    get: operations["GetCognitiveAgentByIdAsync"];
+    get: operations["CognitiveAgents_GetCognitiveAgentById"];
     /**
      * Update a cognitive agent
      * @description Updates an existing managed cognitive agent for the specified tenant.
      */
-    put: operations["UpdateCognitiveAgentAsync"];
+    put: operations["CognitiveAgents_UpdateCognitiveAgent"];
     /**
      * Delete a cognitive agent
      * @description Deletes a managed cognitive agent for the specified tenant.
      */
-    delete: operations["DeleteCognitiveAgentAsync"];
+    delete: operations["CognitiveAgents_DeleteCognitiveAgent"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/PermissionReadiness": {
+    /**
+     * Get a cognitive agent's permission readiness
+     * @description Reports the permissions the agent's enabled skills' tools require, which its execution principal holds, and the missing gaps that would cause the governed tool executor to deny a tool at run time.
+     */
+    get: operations["CognitiveAgents_GetAgentPermissionReadiness"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/BuiltInCapabilities": {
+    /**
+     * Get the intrinsic built-in capabilities every agent possesses
+     * @description Returns the code-authoritative INTRINSIC baseline capability set every agent has by virtue of being an agent — durable memory plus the trusted current-conversation / current-project reads — composed the same way the runtime composes it, so the editor's read-only 'Built-in capabilities' section can never drift from the shipping set. Agent-independent (the same set for every agent in the environment); it grants nothing and is rendered read-only.
+     */
+    get: operations["CognitiveAgents_GetBuiltInAgentCapabilities"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Permissions/Grant": {
+    /**
+     * Grant required tool permissions to a cognitive agent
+     * @description Grants the supplied permissions to the agent's OWN execution enrollment, closing real tool gaps. Only permissions required by the agent's tools may be granted; already-held permissions are skipped. Returns the updated readiness.
+     */
+    post: operations["CognitiveAgents_GrantAgentToolPermissions"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Permissions/Revoke": {
+    /**
+     * Revoke orphaned tool permissions from a cognitive agent
+     * @description Revokes the supplied ORPHANED permissions from the agent's OWN execution enrollment - the symmetric inverse of the grant. Only permissions no remaining tool requires (after hierarchy expansion) that are direct, revocable grants may be revoked; still-required and role-derived permissions are rejected; already-removed grants are skipped. Returns the updated readiness.
+     */
+    post: operations["CognitiveAgents_RevokeAgentToolPermissions"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills": {
     /**
      * Get all skill assignments for a cognitive agent
      * @description Retrieves all skill assignments for the specified cognitive agent and tenant.
      */
-    get: operations["GetCognitiveAgentSkillsAsync"];
+    get: operations["CognitiveAgentSkills_GetCognitiveAgentSkills"];
     /**
      * Assign a skill to a cognitive agent
      * @description Assigns a reusable catalog skill to the specified cognitive agent and tenant.
      */
-    post: operations["CreateCognitiveAgentSkillAsync"];
+    post: operations["CognitiveAgentSkills_CreateCognitiveAgentSkill"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills/Count": {
     /**
      * Get skill assignment count for a cognitive agent
      * @description Returns the count of skill assignments for the specified cognitive agent and tenant.
      */
-    get: operations["GetCognitiveAgentSkillsCountAsync"];
+    get: operations["CognitiveAgentSkills_GetCognitiveAgentSkillsCount"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Skills/{id}": {
     /**
      * Get a cognitive agent skill assignment by ID
      * @description Retrieves a specific skill assignment of a cognitive agent by its identifier.
      */
-    get: operations["GetCognitiveAgentSkillByIdAsync"];
+    get: operations["CognitiveAgentSkills_GetCognitiveAgentSkillById"];
     /**
      * Update a cognitive agent skill assignment
      * @description Updates the per-assignment overrides of a skill assignment for the specified agent and tenant.
      */
-    put: operations["UpdateCognitiveAgentSkillAsync"];
+    put: operations["CognitiveAgentSkills_UpdateCognitiveAgentSkill"];
     /**
      * Remove a skill assignment from a cognitive agent
      * @description Removes a skill assignment from the specified cognitive agent and tenant.
      */
-    delete: operations["DeleteCognitiveAgentSkillAsync"];
+    delete: operations["CognitiveAgentSkills_DeleteCognitiveAgentSkill"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables": {
     /**
      * Get all variables for a cognitive agent
      * @description Retrieves all key/value variables for the specified cognitive agent and tenant.
      */
-    get: operations["GetCognitiveAgentVariablesAsync"];
+    get: operations["CognitiveAgentVariables_GetCognitiveAgentVariables"];
     /**
      * Add a variable to a cognitive agent
      * @description Adds a key/value variable to the specified cognitive agent and tenant.
      */
-    post: operations["CreateCognitiveAgentVariableAsync"];
+    post: operations["CognitiveAgentVariables_CreateCognitiveAgentVariable"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables/Count": {
     /**
      * Get variable count for a cognitive agent
      * @description Returns the count of variables for the specified cognitive agent and tenant.
      */
-    get: operations["GetCognitiveAgentVariablesCountAsync"];
+    get: operations["CognitiveAgentVariables_GetCognitiveAgentVariablesCount"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Variables/{id}": {
     /**
      * Get a cognitive agent variable by ID
      * @description Retrieves a specific variable of a cognitive agent by its identifier.
      */
-    get: operations["GetCognitiveAgentVariableByIdAsync"];
+    get: operations["CognitiveAgentVariables_GetCognitiveAgentVariableById"];
     /**
      * Update a cognitive agent variable
      * @description Updates the value of a variable for the specified agent and tenant.
      */
-    put: operations["UpdateCognitiveAgentVariableAsync"];
+    put: operations["CognitiveAgentVariables_UpdateCognitiveAgentVariable"];
     /**
      * Remove a variable from a cognitive agent
      * @description Removes a variable from the specified cognitive agent and tenant.
      */
-    delete: operations["DeleteCognitiveAgentVariableAsync"];
+    delete: operations["CognitiveAgentVariables_DeleteCognitiveAgentVariable"];
   };
   "/api/v2/IntelligenceService/CognitiveSkills": {
     /**
      * Get all cognitive skills
      * @description Retrieves all reusable cognitive skills for the specified tenant.
      */
-    get: operations["GetCognitiveSkillsAsync"];
+    get: operations["CognitiveSkills_GetCognitiveSkills"];
     /**
      * Create a new cognitive skill
      * @description Creates a new reusable cognitive skill for the specified tenant.
      */
-    post: operations["CreateCognitiveSkillAsync"];
+    post: operations["CognitiveSkills_CreateCognitiveSkill"];
   };
   "/api/v2/IntelligenceService/CognitiveSkills/Count": {
     /**
      * Get cognitive skills count
      * @description Returns the count of reusable cognitive skills for the specified tenant.
      */
-    get: operations["GetCognitiveSkillsCountAsync"];
+    get: operations["CognitiveSkills_GetCognitiveSkillsCount"];
   };
   "/api/v2/IntelligenceService/CognitiveSkills/{id}": {
     /**
      * Get cognitive skill by ID
      * @description Retrieves a specific reusable cognitive skill by its identifier.
      */
-    get: operations["GetCognitiveSkillByIdAsync"];
+    get: operations["CognitiveSkills_GetCognitiveSkillById"];
     /**
      * Update a cognitive skill
      * @description Updates an existing reusable cognitive skill for the specified tenant.
      */
-    put: operations["UpdateCognitiveSkillAsync"];
+    put: operations["CognitiveSkills_UpdateCognitiveSkill"];
     /**
      * Delete a cognitive skill
      * @description Deletes a reusable cognitive skill for the specified tenant.
      */
-    delete: operations["DeleteCognitiveSkillAsync"];
+    delete: operations["CognitiveSkills_DeleteCognitiveSkill"];
+  };
+  "/api/v2/IntelligenceService/DefinitionDistribution/Validate": {
+    /**
+     * Validate a repository-backed definition
+     * @description Re-fetches and re-verifies the exact content at the pinned coordinate, re-parses it, resolves its dependencies/capabilities, and enforces release immutability — without materializing anything. The server never trusts a client's parse.
+     */
+    post: operations["DefinitionDistribution_ValidateDefinition"];
+  };
+  "/api/v2/IntelligenceService/DefinitionDistribution/Install": {
+    /**
+     * Install a repository-backed definition
+     * @description Re-fetches and re-verifies the exact content at the pinned coordinate, re-validates, resolves dependencies/capabilities, then materializes the definition into its canonical owner and records pinned provenance. Idempotent by the deterministic canonical id.
+     */
+    post: operations["DefinitionDistribution_InstallDefinition"];
+  };
+  "/api/v2/IntelligenceService/DefinitionDistribution/Update": {
+    /**
+     * Update an installed repository-backed definition
+     * @description Re-fetches and re-verifies the exact content at the pinned coordinate, re-validates, enforces release immutability, then re-materializes an ALREADY-installed definition to the new content and reconciles its pinned provenance — for an agent, reconciling its declared skill assignments. A definition not installed in this tenant fails closed as NotFound. Same request/response shape as Install.
+     */
+    post: operations["DefinitionDistribution_UpdateDefinition"];
+  };
+  "/api/v2/IntelligenceService/DefinitionDistribution/Uninstall": {
+    /**
+     * Uninstall a Gallery-installed definition
+     * @description Explicitly removes an installed definition and its pinned provenance from the acting tenant, and — for an agent — revokes the lingering direct grants on its execution principal, in one commit. A REAL delete: distinct from the non-destructive MissingFromSource state-flip, nothing is ever auto-deleted. The reference is either the canonical id or the (sourceKey, kind, key) triple; an incomplete or not-installed reference fails closed.
+     */
+    post: operations["DefinitionDistribution_UninstallDefinition"];
+  };
+  "/api/v2/IntelligenceService/DefinitionDistribution/InstalledState": {
+    /**
+     * Get the installed-definition state for a tenant
+     * @description Returns the acting tenant's installed-definition provenance rows (Installed / UpdateAvailable / MissingFromSource), optionally narrowed to a single kind. Tenant-scoped and read-only: it never returns another tenant's provenance.
+     */
+    get: operations["DefinitionDistribution_GetInstalledDefinitionState"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/IntelligenceService/Agents/{agentId}/agui": {
     /**
      * Run a governed agent over the AG-UI protocol
      * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved. An optional ?projectId= binds the run to a project (resolved tenant-scoped): the project id + name are surfaced to the model as context so it can call the governed project-storage tools; it is never auto-filled into a tool's arguments.
      */
-    post: operations["InvokeAgentSurfaceAsync"];
+    post: operations["Platform_InvokeAgentSurface"];
   };
 }
 
@@ -557,6 +561,293 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    AgentExecutionDiagnosticDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      status?: "Pending" | "Claimed" | "Completed" | "Failed" | "Cancelled";
+      statusName?: string | null;
+      /** Format: date-time */
+      createdAt?: string;
+      /** Format: int32 */
+      currentLeaseGeneration?: number | null;
+      /** @enum {string|null} */
+      currentLeaseStatus?: "Claimed" | "Completed" | "Failed" | null;
+      currentLeaseStatusName?: string | null;
+      /** Format: date-time */
+      currentLeaseClaimedAtUtc?: string | null;
+      /** Format: int32 */
+      leaseCount?: number;
+      /** Format: date-time */
+      observedAtUtc?: string;
+      /** @enum {string} */
+      anomalyCode?: "None" | "WaitingForApproval" | "RetryableInfrastructure" | "StaleFence" | "OutcomeUnknown" | "AlreadyFinalized" | "ClaimNotFound" | "StuckOrphaned";
+      anomalyCodeName?: string | null;
+      /** @enum {string} */
+      recommendedAction?: "Wait" | "Retry" | "Reconcile" | "Completed" | "ManualAction";
+      recommendedActionName?: string | null;
+      diagnosticSummary?: string | null;
+      claimObserved?: boolean | null;
+      /** @enum {string|null} */
+      claimState?: "Pending" | "Claimed" | "Executing" | "Finalized" | "Failed" | "OutcomeUnknown" | null;
+      claimFingerprintRecorded?: boolean | null;
+    };
+    AgentExecutionDiagnosticDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    AgentExecutionDiagnosticDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentExecutionDiagnosticDto"];
+    };
+    AgentExecutionDiagnosticDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentExecutionDiagnosticDto"][] | null;
+    };
+    AgentPermissionReadinessDto: {
+      agentId?: string | null;
+      executionEnrollmentId?: string | null;
+      required?: components["schemas"]["AgentRequiredPermissionDto"][] | null;
+      missing?: string[] | null;
+      orphaned?: string[] | null;
+    };
+    AgentPermissionReadinessDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentPermissionReadinessDto"];
+    };
+    AgentRequiredPermissionDto: {
+      permission?: string | null;
+      toolKeys?: string[] | null;
+      skillNames?: string[] | null;
+      held?: boolean;
+    };
+    AgentRuntimePoolCreationDto: {
+      poolId?: string | null;
+    };
+    AgentRuntimePoolCreationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentRuntimePoolCreationDto"];
+    };
+    AgentRuntimeWorkerRegistrationDto: {
+      workerId?: string | null;
+    };
+    AgentRuntimeWorkerRegistrationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentRuntimeWorkerRegistrationDto"];
+    };
+    AgentWorkAssignmentDto: {
+      workOrderId?: string | null;
+      /** Format: int32 */
+      leaseGeneration?: number;
+      requiredCapabilities?: string | null;
+    };
+    AgentWorkAssignmentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentWorkAssignmentDto"];
+    };
+    AgentWorkOrderCancellationDto: {
+      cancelled?: boolean;
+    };
+    AgentWorkOrderCancellationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentWorkOrderCancellationDto"];
+    };
+    AgentWorkOrderStatusDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      requiredCapabilities?: string | null;
+      preferredPoolId?: string | null;
+      /** @enum {string} */
+      status?: "Pending" | "Claimed" | "Completed" | "Failed" | "Cancelled";
+      statusName?: string | null;
+      /** Format: date-time */
+      createdAt?: string;
+      tenantId?: string | null;
+      /** Format: int32 */
+      currentLeaseGeneration?: number | null;
+      /** @enum {string|null} */
+      currentLeaseStatus?: "Claimed" | "Completed" | "Failed" | null;
+      currentLeaseStatusName?: string | null;
+      /** Format: int32 */
+      leaseCount?: number;
+    };
+    AgentWorkOrderStatusDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    AgentWorkOrderStatusDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentWorkOrderStatusDto"];
+    };
+    AgentWorkOrderStatusDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentWorkOrderStatusDto"][] | null;
+    };
+    AiModelAvailabilityDto: {
+      modelId?: string | null;
+      key?: string | null;
+      displayName?: string | null;
+      family?: string | null;
+      category?: string | null;
+      supportsTools?: boolean;
+      supportsReasoning?: boolean;
+      supportsVision?: boolean;
+      supportsStreaming?: boolean;
+      profileKey?: string | null;
+      specialized?: boolean;
+      jurisdiction?: string | null;
+      available?: boolean;
+      /** @enum {string|null} */
+      connectionScope?: "Instance" | "Tenant" | null;
+    };
+    AiModelCategoryDto: {
+      key?: string | null;
+      displayName?: string | null;
+      models?: components["schemas"]["AiModelAvailabilityDto"][] | null;
+    };
+    AiProviderAvailabilityDto: {
+      providerKey?: string | null;
+      displayName?: string | null;
+      available?: boolean;
+      /** @enum {string|null} */
+      connectionScope?: "Instance" | "Tenant" | null;
+      categories?: components["schemas"]["AiModelCategoryDto"][] | null;
+    };
+    AiProviderAvailabilityDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiProviderAvailabilityDto"][] | null;
     };
     AiProviderDto: {
       providerKey?: string | null;
@@ -575,6 +866,269 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AiProviderDto"][] | null;
+    };
+    AiRunDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      correlationId?: string | null;
+      conversationId?: string | null;
+      agentKey?: string | null;
+      providerKey?: string | null;
+      modelId?: string | null;
+      engineKey?: string | null;
+      /** @enum {string|null} */
+      fundingScope?: "Instance" | "Tenant" | null;
+      fundingScopeName?: string | null;
+      remoteIdentifier?: string | null;
+      endpoint?: string | null;
+      credentialRef?: string | null;
+      /** @enum {string} */
+      status?: "Started" | "Succeeded" | "Failed" | "Rejected" | "AwaitingApproval" | "InDoubt";
+      statusName?: string | null;
+      /** @enum {string} */
+      kind?: "Chat" | "ToolAugmented";
+      /** Format: date-time */
+      startedAt?: string;
+      /** Format: date-time */
+      completedAt?: string | null;
+      summary?: string | null;
+      errorDetail?: string | null;
+      approvalGranted?: boolean | null;
+      resultMutationRef?: string | null;
+      pendingApprovalTicketId?: string | null;
+      pendingCallId?: string | null;
+      pendingToolKey?: string | null;
+      parentRunId?: string | null;
+      /** Format: int64 */
+      promptTokens?: number | null;
+      /** Format: int64 */
+      completionTokens?: number | null;
+      /** @enum {string} */
+      runAs?: "Invoker" | "Application" | "System" | "Service";
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      tenantId?: string | null;
+      userId?: string | null;
+      enrollmentId?: string | null;
+    };
+    AiRunDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    AiRunDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiRunDto"];
+    };
+    AiRunDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiRunDto"][] | null;
+    };
+    AiUsageObservationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      aiRunId?: string | null;
+      providerKey?: string | null;
+      modelKey?: string | null;
+      /** @enum {string|null} */
+      connectionScope?: "Instance" | "Tenant" | null;
+      connectionScopeName?: string | null;
+      /** Format: int64 */
+      promptUnits?: number | null;
+      /** Format: int64 */
+      completionUnits?: number | null;
+      /** Format: int64 */
+      reasoningUnits?: number | null;
+      /** Format: date-time */
+      observedAt?: string;
+      /** @enum {string} */
+      usageState?: "Measured" | "Unknown" | "LateMeasured";
+      usageStateName?: string | null;
+      /** Format: date-time */
+      unitsAttachedAt?: string | null;
+      source?: string | null;
+      tenantId?: string | null;
+    };
+    AiUsageObservationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    AiUsageObservationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiUsageObservationDto"];
+    };
+    AiUsageObservationDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiUsageObservationDto"][] | null;
+    };
+    ApprovalAdviceAdvisorDisclosureDto: {
+      templateId?: string | null;
+      templateVersion?: string | null;
+      displayName?: string | null;
+      purpose?: string | null;
+      questionKind?: string | null;
+      question?: string | null;
+      answers?: components["schemas"]["ApprovalAdviceAnswerDisclosureDto"][] | null;
+      inputSet?: string | null;
+      snapshotSchemaVersion?: string | null;
+      fields?: string[] | null;
+    };
+    ApprovalAdviceAnswerDisclosureDto: {
+      key?: string | null;
+      description?: string | null;
+    };
+    ApprovalAdviceConsentDto: {
+      tenantId?: string | null;
+      /** @enum {string|null} */
+      state?: "OptedIn" | "OptedOut" | null;
+      isOptedIn?: boolean;
+      disclosureFingerprint?: string | null;
+      currentDisclosureFingerprint?: string | null;
+      isDisclosureCurrent?: boolean;
+      reconfirmationRequired?: boolean;
+      instanceEnabled?: boolean;
+      adviceActive?: boolean;
+      providerKey?: string | null;
+      modelSelector?: string | null;
+      inputSetSchemaVersions?: string | null;
+      optedInByEnrollmentId?: string | null;
+      /** Format: date-time */
+      optedInAt?: string | null;
+      optedOutByEnrollmentId?: string | null;
+      /** Format: date-time */
+      optedOutAt?: string | null;
+    };
+    ApprovalAdviceConsentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApprovalAdviceConsentDto"];
+    };
+    ApprovalAdviceDisclosureDto: {
+      formatVersion?: string | null;
+      instanceEnabled?: boolean;
+      providerKey?: string | null;
+      providerDisplayName?: string | null;
+      modelSelector?: string | null;
+      connectionScope?: string | null;
+      advisors?: components["schemas"]["ApprovalAdviceAdvisorDisclosureDto"][] | null;
+      neverSent?: string[] | null;
+      assurances?: string[] | null;
+      recordKeeping?: string | null;
+      fingerprint?: string | null;
+    };
+    ApprovalAdviceDisclosureDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApprovalAdviceDisclosureDto"];
+    };
+    ApprovalAdviceOptInRequestDto: {
+      disclosureFingerprint?: string | null;
+    };
+    BuiltInAgentCapabilityDto: {
+      key?: string | null;
+      name?: string | null;
+      description?: string | null;
+      category?: string | null;
+      /** @enum {string} */
+      kind?: "SelfState" | "CurrentContext";
+    };
+    BuiltInAgentCapabilityDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BuiltInAgentCapabilityDto"][] | null;
     };
     CapabilityDto: {
       id?: string | null;
@@ -629,6 +1183,10 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CapabilityDto"][] | null;
+    };
+    ClaimNextAgentWorkerRequest: {
+      /** Format: uuid */
+      workerId?: string;
     };
     CognitiveAgentConversationCreateDto: {
       /** Format: uuid */
@@ -1071,6 +1629,14 @@ export interface components {
       enabled?: boolean;
       tools?: components["schemas"]["CognitiveSkillToolDto"][] | null;
     };
+    CompleteAgentWorkOrderRequest: {
+      /** Format: uuid */
+      workerId?: string;
+      /** Format: uuid */
+      workOrderId?: string;
+      /** Format: int32 */
+      leaseGeneration?: number;
+    };
     ConversationAttachmentUploadResultDto: {
       fileId?: string | null;
       name?: string | null;
@@ -1093,6 +1659,94 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ConversationAttachmentUploadResultDto"];
     };
+    ConversationPendingApprovalDto: {
+      approvalRequestId?: string | null;
+      toolKey?: string | null;
+      toolCallId?: string | null;
+      agentId?: string | null;
+      governedInvocationId?: string | null;
+      /** Format: date-time */
+      createdAt?: string;
+    };
+    ConversationPendingApprovalDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ConversationPendingApprovalDto"][] | null;
+    };
+    CreateAgentRuntimePoolRequest: {
+      name?: string | null;
+    };
+    DefinitionCoordinateRequest: {
+      sourceKey: string;
+      /** @enum {string} */
+      kind: "Agent" | "Skill" | "Workflow";
+      key: string;
+      commitSha?: string | null;
+      path: string;
+    };
+    DefinitionSkillReferenceDto: {
+      key?: string | null;
+      versionRange?: string | null;
+    };
+    DefinitionValidationDto: {
+      /** @enum {string} */
+      kind?: "Agent" | "Skill" | "Workflow";
+      key?: string | null;
+      name?: string | null;
+      description?: string | null;
+      version?: string | null;
+      sourceKey?: string | null;
+      sourcePath?: string | null;
+      commitSha?: string | null;
+      contentDigest?: string | null;
+      canonicalId?: string | null;
+      requiredCapabilities?: string[] | null;
+      optionalCapabilities?: string[] | null;
+      skills?: components["schemas"]["DefinitionSkillReferenceDto"][] | null;
+      alreadyInstalled?: boolean;
+      /** @enum {string|null} */
+      installedStatus?: "Installed" | "UpdateAvailable" | "MissingFromSource" | null;
+      message?: string | null;
+    };
+    DefinitionValidationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["DefinitionValidationDto"];
+    };
+    EmptyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+    };
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1107,8 +1761,51 @@ export interface components {
       }) | null;
       activityId?: string | null;
     };
+    ExecuteAgentWorkOrderEffectRequest: {
+      /** Format: uuid */
+      workerId?: string;
+      /** Format: uuid */
+      workOrderId?: string;
+      /** Format: int32 */
+      leaseGeneration?: number;
+      effectToolKey?: string | null;
+      effectArgumentsJson?: string | null;
+    };
+    FaultAgentWorkOrderRequest: {
+      /** Format: uuid */
+      workerId?: string;
+      /** Format: uuid */
+      workOrderId?: string;
+      /** Format: int32 */
+      leaseGeneration?: number;
+      reason?: string | null;
+    };
     ForgotPasswordRequest: {
       email: string | null;
+    };
+    GovernedAgentEffectDto: {
+      disposition?: string | null;
+      detail?: string | null;
+      effectContentJson?: string | null;
+      executionPrincipalId?: string | null;
+    };
+    GovernedAgentEffectDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["GovernedAgentEffectDto"];
+    };
+    GrantAgentToolPermissionsRequestDto: {
+      permissions?: string[] | null;
     };
     HttpValidationProblemDetails: {
       type?: string | null;
@@ -1130,6 +1827,54 @@ export interface components {
     InfoResponse: {
       email: string | null;
       isEmailConfirmed: boolean;
+    };
+    InstalledDefinitionDto: {
+      canonicalId?: string | null;
+      /** @enum {string} */
+      kind?: "Agent" | "Skill" | "Workflow";
+      definitionKey?: string | null;
+      name?: string | null;
+      version?: string | null;
+      sourceKey?: string | null;
+      sourcePath?: string | null;
+      commitSha?: string | null;
+      contentDigest?: string | null;
+      /** @enum {string} */
+      status?: "Installed" | "UpdateAvailable" | "MissingFromSource";
+      /** Format: date-time */
+      installedAt?: string;
+      executionIdentityProvisioned?: boolean;
+      note?: string | null;
+    };
+    InstalledDefinitionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InstalledDefinitionDto"];
+    };
+    InstalledDefinitionDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InstalledDefinitionDto"][] | null;
     };
     Int32Envelope: {
       isSuccess?: boolean;
@@ -1156,6 +1901,12 @@ export interface components {
     RefreshRequest: {
       refreshToken: string | null;
     };
+    RegisterAgentRuntimeWorkerRequest: {
+      poolId?: string | null;
+      capabilities?: string | null;
+      /** Format: int32 */
+      maxConcurrency?: number;
+    };
     RegisterRequest: {
       email: string | null;
       password: string | null;
@@ -1167,6 +1918,9 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    RevokeAgentToolPermissionsRequestDto: {
+      permissions?: string[] | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -1183,6 +1937,13 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    UninstallDefinitionRequestDto: {
+      canonicalId?: string | null;
+      sourceKey?: string | null;
+      /** @enum {string|null} */
+      kind?: "Agent" | "Skill" | "Workflow" | null;
+      key?: string | null;
+    };
   };
   responses: never;
   parameters: never;
@@ -1198,10 +1959,613 @@ export type external = Record<string, never>;
 export interface operations {
 
   /**
+   * Get agent execution diagnostics
+   * @description Retrieves the tenant's own agent runtime work orders classified into an operator anomaly code and a recommended recovery action (read-only, tenant-scoped).
+   */
+  AgentExecutionDiagnostics_GetDiagnostics: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AgentExecutionDiagnosticDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AgentExecutionDiagnosticDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentExecutionDiagnosticDtoListEnvelope"];
+          "application/xml": components["schemas"]["AgentExecutionDiagnosticDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get agent execution diagnostics count
+   * @description Returns the count of the tenant's own agent runtime work orders.
+   */
+  AgentExecutionDiagnostics_GetDiagnosticsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AgentExecutionDiagnosticDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AgentExecutionDiagnosticDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get agent execution diagnostic by ID
+   * @description Retrieves a specific agent runtime work order's diagnostic classification by id (tenant-scoped, fail-closed).
+   */
+  AgentExecutionDiagnostics_GetDiagnosticById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentExecutionDiagnosticDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentExecutionDiagnosticDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Provision an agent runtime pool
+   * @description Find-or-creates the operator's tenant-owned routing pool (the fabric-bootstrap coordinate a worker then registers into) and returns its id. The owning tenant is resolved server-side from the authorization context, never from the request body. Idempotent on the tenant + name coordinate. The pool is routing substrate only — it confers no capability authority. Gated on bots_manage.
+   */
+  AgentRuntimeFabric_CreatePool: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateAgentRuntimePoolRequest"];
+        "application/xml": components["schemas"]["CreateAgentRuntimePoolRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentRuntimePoolCreationDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentRuntimePoolCreationDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Register an agent runtime worker
+   * @description Enrolls a worker (machine identity + declared capabilities + concurrency ceiling) into a pool; returns its id. Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Register: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RegisterAgentRuntimeWorkerRequest"];
+        "application/xml": components["schemas"]["RegisterAgentRuntimeWorkerRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentRuntimeWorkerRegistrationDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentRuntimeWorkerRegistrationDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Activate an agent runtime worker
+   * @description Transitions a registered/draining worker to Active (idempotent). Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Activate: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        workerId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Heartbeat an agent runtime worker
+   * @description Records a worker heartbeat — the liveness signal a stale worker's leases are reclaimed against. Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Heartbeat: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        workerId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Claim the next eligible work order
+   * @description Atomically leases the next eligible work order for the worker under the generation fence, or returns null when nothing is claimable. Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Claim: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ClaimNextAgentWorkerRequest"];
+        "application/xml": components["schemas"]["ClaimNextAgentWorkerRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentWorkAssignmentDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentWorkAssignmentDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Read a work order's cancel state
+   * @description The worker's courtesy short-circuit — whether the order was cancelled server-side before the effect runs (the authoritative cancel guard is the effect boundary). Gated on bots_read.
+   */
+  AgentRuntimeFabric_GetCancellation: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        workOrderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentWorkOrderCancellationDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentWorkOrderCancellationDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Request a work order's governed effect
+   * @description Runs the proposed governed capability at the server-authoritative effect boundary under the order's re-resolved executor identity. Returns the governed verdict (a denial/no-op/approval-suspend/in-doubt is a first-class outcome, never a silent success). Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Execute: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExecuteAgentWorkOrderEffectRequest"];
+        "application/xml": components["schemas"]["ExecuteAgentWorkOrderEffectRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["GovernedAgentEffectDtoEnvelope"];
+          "application/xml": components["schemas"]["GovernedAgentEffectDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Complete a leased work order
+   * @description Records the fenced terminal completion of a leased order (stale-generation + ownership fenced). Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Complete: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CompleteAgentWorkOrderRequest"];
+        "application/xml": components["schemas"]["CompleteAgentWorkOrderRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Fault a leased work order
+   * @description Records the fenced terminal failure of a leased order (stale-generation + ownership fenced). Gated on bots_manage.
+   */
+  AgentRuntimeFabric_Fault: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FaultAgentWorkOrderRequest"];
+        "application/xml": components["schemas"]["FaultAgentWorkOrderRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get agent runtime work orders
+   * @description Retrieves the tenant's own agent runtime work orders with their current-lease state (read-only, tenant-scoped).
+   */
+  AgentRuntimeStatus_GetWorkOrders: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AgentWorkOrderStatusDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AgentWorkOrderStatusDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentWorkOrderStatusDtoListEnvelope"];
+          "application/xml": components["schemas"]["AgentWorkOrderStatusDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get agent runtime work orders count
+   * @description Returns the count of the tenant's own agent runtime work orders.
+   */
+  AgentRuntimeStatus_GetWorkOrdersCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AgentWorkOrderStatusDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AgentWorkOrderStatusDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get agent runtime work order by ID
+   * @description Retrieves a specific agent runtime work order and its current lease by id (tenant-scoped, fail-closed).
+   */
+  AgentRuntimeStatus_GetWorkOrderById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentWorkOrderStatusDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentWorkOrderStatusDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get the available AI providers
    * @description Returns every AI provider key this instance has a registered adapter for. The set is a property of the deployment, so it is not tenant-scoped; what varies per tenant is the credential for a provider, which is never returned here.
    */
-  GetAiProvidersAsync: {
+  AiProviders_GetAiProviders: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1228,10 +2592,415 @@ export interface operations {
     };
   };
   /**
+   * Get AI provider/model availability for a tenant
+   * @description Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned.
+   */
+  AiProviders_GetAiProviderAvailability: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiProviderAvailabilityDtoListEnvelope"];
+          "application/xml": components["schemas"]["AiProviderAvailabilityDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all AI runs
+   * @description Retrieves the durable AI run evidence rows for the specified tenant (read-only, tenant-scoped).
+   */
+  AiRuns_GetAiRuns: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiRunDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AiRunDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiRunDtoListEnvelope"];
+          "application/xml": components["schemas"]["AiRunDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get AI runs count
+   * @description Returns the count of durable AI run evidence rows for the specified tenant.
+   */
+  AiRuns_GetAiRunsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiRunDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AiRunDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get AI run by ID
+   * @description Retrieves a specific durable AI run evidence row by its identifier (tenant-scoped, fail-closed).
+   */
+  AiRuns_GetAiRunById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiRunDtoEnvelope"];
+          "application/xml": components["schemas"]["AiRunDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all AI usage observations
+   * @description Retrieves the per-run AI consumption observations for the specified tenant (read-only, tenant-scoped).
+   */
+  AiUsageObservations_GetAiUsageObservations: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiUsageObservationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AiUsageObservationDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiUsageObservationDtoListEnvelope"];
+          "application/xml": components["schemas"]["AiUsageObservationDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get AI usage observations count
+   * @description Returns the count of per-run AI consumption observations for the specified tenant.
+   */
+  AiUsageObservations_GetAiUsageObservationsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiUsageObservationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AiUsageObservationDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get AI usage observation by ID
+   * @description Retrieves a specific AI consumption observation by its identifier (tenant-scoped, fail-closed).
+   */
+  AiUsageObservations_GetAiUsageObservationById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiUsageObservationDtoEnvelope"];
+          "application/xml": components["schemas"]["AiUsageObservationDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the AI approval advice disclosure
+   * @description Returns what AI approval advice would do for the specified tenant, built from live configuration: the provider and model, the connection scope, each advisor's question and the exact fields sent, what is never sent, and the disclosure fingerprint an opt-in must confirm.
+   */
+  ApprovalAdvice_GetApprovalAdviceDisclosure: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApprovalAdviceDisclosureDtoEnvelope"];
+          "application/xml": components["schemas"]["ApprovalAdviceDisclosureDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the tenant's AI approval advice consent
+   * @description Returns the tenant's consent (never decided, opted in or opted out) and whether the disclosure it named is still the current one. ReconfirmationRequired is true when it changed since.
+   */
+  ApprovalAdvice_GetApprovalAdviceConsent: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApprovalAdviceConsentDtoEnvelope"];
+          "application/xml": components["schemas"]["ApprovalAdviceConsentDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Opt the tenant in to AI approval advice
+   * @description Opts the tenant in to the CURRENT disclosure, named by the fingerprint the admin was shown. Refused when the instance switch is off (approval_advice.instance_disabled) or the disclosure changed since it was shown (approval_advice.disclosure_stale). Provisions the least-privilege advisor identity and writes a security-log audit entry.
+   */
+  ApprovalAdvice_OptInApprovalAdvice: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ApprovalAdviceOptInRequestDto"];
+        "application/xml": components["schemas"]["ApprovalAdviceOptInRequestDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApprovalAdviceConsentDtoEnvelope"];
+          "application/xml": components["schemas"]["ApprovalAdviceConsentDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Opt the tenant out of AI approval advice
+   * @description Opts the tenant out: advice stops and stored advice is hidden at once. Writes a security-log audit entry.
+   */
+  ApprovalAdvice_OptOutApprovalAdvice: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApprovalAdviceConsentDtoEnvelope"];
+          "application/xml": components["schemas"]["ApprovalAdviceConsentDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get the annotated capability catalog
    * @description Retrieves the full governed-capability catalog for the specified tenant, optionally narrowed to a single execution surface. Every capability is returned with an Available flag (and a DeniedReason when not available) so callers render disabled-with-reason instead of hiding; entitlement is computed server-side.
    */
-  GetCapabilitiesAsync: {
+  Capabilities_GetCapabilities: {
     parameters: {
       query: {
         tenantId: string;
@@ -1263,7 +3032,7 @@ export interface operations {
    * Get the capability catalog count
    * @description Returns the number of governed capabilities in the catalog for the specified tenant — the surface-matching total that mirrors the list route's returned-set size (entitled or not), honouring the same optional surface narrowing.
    */
-  GetCapabilitiesCountAsync: {
+  Capabilities_GetCapabilitiesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1295,7 +3064,7 @@ export interface operations {
    * Get a capability by key
    * @description Retrieves a single governed capability by its stable, dotted key, stamped with the Available / DeniedReason entitlement flag. Returns 404 only when the capability does not exist; an existing capability the actor is not entitled to run is returned annotated as unavailable, not hidden.
    */
-  GetCapabilityByKeyAsync: {
+  Capabilities_GetCapabilityByKey: {
     parameters: {
       query: {
         tenantId: string;
@@ -1336,7 +3105,7 @@ export interface operations {
    * Upload an attachment to a cognitive agent conversation
    * @description Uploads a file into the acting user's OWN conversation attachment store, scanned and catalogued through the storage spine. A conversation the caller does not own returns 404. The response carries the new file's id, name, content type and length; the chat UI passes that id as an AttachmentFileIds entry when it sends the referencing user turn.
    */
-  UploadCognitiveAgentConversationAttachmentAsync: {
+  CognitiveAgentConversationAttachments_UploadCognitiveAgentConversationAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -1391,12 +3160,13 @@ export interface operations {
   };
   /**
    * Get all conversations for a cognitive agent
-   * @description Retrieves all managed conversations for the specified cognitive agent and tenant.
+   * @description Retrieves the CALLER'S OWN conversations with the specified cognitive agent. Pass scope=AllUsers to list every user's conversations (oversight; requires bots_manage).
    */
-  GetCognitiveAgentConversationsAsync: {
+  CognitiveAgentConversations_GetCognitiveAgentConversations: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1433,7 +3203,7 @@ export interface operations {
    * Create a new cognitive agent conversation
    * @description Creates a new managed conversation for the specified cognitive agent and tenant.
    */
-  CreateCognitiveAgentConversationAsync: {
+  CognitiveAgentConversations_CreateCognitiveAgentConversation: {
     parameters: {
       query: {
         tenantId: string;
@@ -1477,10 +3247,11 @@ export interface operations {
    * Get conversation count for a cognitive agent
    * @description Returns the count of managed conversations for the specified cognitive agent and tenant.
    */
-  GetCognitiveAgentConversationsCountAsync: {
+  CognitiveAgentConversations_GetCognitiveAgentConversationsCount: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1517,10 +3288,11 @@ export interface operations {
    * Get a cognitive agent conversation by ID
    * @description Retrieves a specific managed conversation of a cognitive agent by its identifier.
    */
-  GetCognitiveAgentConversationByIdAsync: {
+  CognitiveAgentConversations_GetCognitiveAgentConversationById: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1559,10 +3331,11 @@ export interface operations {
    * Update a cognitive agent conversation
    * @description Updates an existing managed conversation for the specified cognitive agent and tenant.
    */
-  UpdateCognitiveAgentConversationAsync: {
+  CognitiveAgentConversations_UpdateCognitiveAgentConversation: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1604,10 +3377,11 @@ export interface operations {
    * Delete a cognitive agent conversation
    * @description Deletes a managed conversation for the specified cognitive agent and tenant.
    */
-  DeleteCognitiveAgentConversationAsync: {
+  CognitiveAgentConversations_DeleteCognitiveAgentConversation: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1643,10 +3417,11 @@ export interface operations {
    * Get all messages for a cognitive agent conversation
    * @description Retrieves all durable messages for the specified conversation, agent and tenant.
    */
-  GetCognitiveAgentMessagesAsync: {
+  CognitiveAgentMessages_GetCognitiveAgentMessages: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1684,10 +3459,11 @@ export interface operations {
    * Get message count for a cognitive agent conversation
    * @description Returns the count of durable messages for the specified conversation, agent and tenant.
    */
-  GetCognitiveAgentMessagesCountAsync: {
+  CognitiveAgentMessages_GetCognitiveAgentMessagesCount: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1725,10 +3501,11 @@ export interface operations {
    * Get a cognitive agent conversation message by ID
    * @description Retrieves a specific durable message of a conversation by its identifier.
    */
-  GetCognitiveAgentMessageByIdAsync: {
+  CognitiveAgentMessages_GetCognitiveAgentMessageById: {
     parameters: {
       query: {
         tenantId: string;
+        scope?: "Mine" | "AllUsers";
         "api-version"?: string;
       };
       header?: {
@@ -1765,10 +3542,46 @@ export interface operations {
     };
   };
   /**
+   * Get unresolved approvals for a cognitive agent conversation
+   * @description Reconstructs the durable, unresolved (AwaitingApproval) approval cards for the specified conversation, agent and tenant from AiRun suspend-state — the durable counterpart to the live SSE approval frame. Read-only; empty when the conversation has no unresolved approvals.
+   */
+  CognitiveAgentMessages_GetConversationPendingApprovals: {
+    parameters: {
+      query: {
+        tenantId: string;
+        scope?: "Mine" | "AllUsers";
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+        conversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ConversationPendingApprovalDtoListEnvelope"];
+          "application/xml": components["schemas"]["ConversationPendingApprovalDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all cognitive agents
    * @description Retrieves all managed cognitive agents for the specified tenant.
    */
-  GetCognitiveAgentsAsync: {
+  CognitiveAgents_GetCognitiveAgents: {
     parameters: {
       query: {
         tenantId: string;
@@ -1805,7 +3618,7 @@ export interface operations {
    * Create a new cognitive agent
    * @description Creates a new managed cognitive agent for the specified tenant.
    */
-  CreateCognitiveAgentAsync: {
+  CognitiveAgents_CreateCognitiveAgent: {
     parameters: {
       query: {
         tenantId: string;
@@ -1846,7 +3659,7 @@ export interface operations {
    * Get cognitive agents count
    * @description Returns the count of managed cognitive agents for the specified tenant.
    */
-  GetCognitiveAgentsCountAsync: {
+  CognitiveAgents_GetCognitiveAgentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1883,7 +3696,7 @@ export interface operations {
    * Get cognitive agent by ID
    * @description Retrieves a specific managed cognitive agent by its identifier.
    */
-  GetCognitiveAgentByIdAsync: {
+  CognitiveAgents_GetCognitiveAgentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1924,7 +3737,7 @@ export interface operations {
    * Update a cognitive agent
    * @description Updates an existing managed cognitive agent for the specified tenant.
    */
-  UpdateCognitiveAgentAsync: {
+  CognitiveAgents_UpdateCognitiveAgent: {
     parameters: {
       query: {
         tenantId: string;
@@ -1968,7 +3781,7 @@ export interface operations {
    * Delete a cognitive agent
    * @description Deletes a managed cognitive agent for the specified tenant.
    */
-  DeleteCognitiveAgentAsync: {
+  CognitiveAgents_DeleteCognitiveAgent: {
     parameters: {
       query: {
         tenantId: string;
@@ -2003,10 +3816,190 @@ export interface operations {
     };
   };
   /**
+   * Get a cognitive agent's permission readiness
+   * @description Reports the permissions the agent's enabled skills' tools require, which its execution principal holds, and the missing gaps that would cause the governed tool executor to deny a tool at run time.
+   */
+  CognitiveAgents_GetAgentPermissionReadiness: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentPermissionReadinessDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentPermissionReadinessDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the intrinsic built-in capabilities every agent possesses
+   * @description Returns the code-authoritative INTRINSIC baseline capability set every agent has by virtue of being an agent — durable memory plus the trusted current-conversation / current-project reads — composed the same way the runtime composes it, so the editor's read-only 'Built-in capabilities' section can never drift from the shipping set. Agent-independent (the same set for every agent in the environment); it grants nothing and is rendered read-only.
+   */
+  CognitiveAgents_GetBuiltInAgentCapabilities: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BuiltInAgentCapabilityDtoListEnvelope"];
+          "application/xml": components["schemas"]["BuiltInAgentCapabilityDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Grant required tool permissions to a cognitive agent
+   * @description Grants the supplied permissions to the agent's OWN execution enrollment, closing real tool gaps. Only permissions required by the agent's tools may be granted; already-held permissions are skipped. Returns the updated readiness.
+   */
+  CognitiveAgents_GrantAgentToolPermissions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["GrantAgentToolPermissionsRequestDto"];
+        "application/xml": components["schemas"]["GrantAgentToolPermissionsRequestDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentPermissionReadinessDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentPermissionReadinessDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Revoke orphaned tool permissions from a cognitive agent
+   * @description Revokes the supplied ORPHANED permissions from the agent's OWN execution enrollment - the symmetric inverse of the grant. Only permissions no remaining tool requires (after hierarchy expansion) that are direct, revocable grants may be revoked; still-required and role-derived permissions are rejected; already-removed grants are skipped. Returns the updated readiness.
+   */
+  CognitiveAgents_RevokeAgentToolPermissions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RevokeAgentToolPermissionsRequestDto"];
+        "application/xml": components["schemas"]["RevokeAgentToolPermissionsRequestDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentPermissionReadinessDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentPermissionReadinessDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all skill assignments for a cognitive agent
    * @description Retrieves all skill assignments for the specified cognitive agent and tenant.
    */
-  GetCognitiveAgentSkillsAsync: {
+  CognitiveAgentSkills_GetCognitiveAgentSkills: {
     parameters: {
       query: {
         tenantId: string;
@@ -2046,7 +4039,7 @@ export interface operations {
    * Assign a skill to a cognitive agent
    * @description Assigns a reusable catalog skill to the specified cognitive agent and tenant.
    */
-  CreateCognitiveAgentSkillAsync: {
+  CognitiveAgentSkills_CreateCognitiveAgentSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -2090,7 +4083,7 @@ export interface operations {
    * Get skill assignment count for a cognitive agent
    * @description Returns the count of skill assignments for the specified cognitive agent and tenant.
    */
-  GetCognitiveAgentSkillsCountAsync: {
+  CognitiveAgentSkills_GetCognitiveAgentSkillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2130,7 +4123,7 @@ export interface operations {
    * Get a cognitive agent skill assignment by ID
    * @description Retrieves a specific skill assignment of a cognitive agent by its identifier.
    */
-  GetCognitiveAgentSkillByIdAsync: {
+  CognitiveAgentSkills_GetCognitiveAgentSkillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2172,7 +4165,7 @@ export interface operations {
    * Update a cognitive agent skill assignment
    * @description Updates the per-assignment overrides of a skill assignment for the specified agent and tenant.
    */
-  UpdateCognitiveAgentSkillAsync: {
+  CognitiveAgentSkills_UpdateCognitiveAgentSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -2217,7 +4210,7 @@ export interface operations {
    * Remove a skill assignment from a cognitive agent
    * @description Removes a skill assignment from the specified cognitive agent and tenant.
    */
-  DeleteCognitiveAgentSkillAsync: {
+  CognitiveAgentSkills_DeleteCognitiveAgentSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -2256,7 +4249,7 @@ export interface operations {
    * Get all variables for a cognitive agent
    * @description Retrieves all key/value variables for the specified cognitive agent and tenant.
    */
-  GetCognitiveAgentVariablesAsync: {
+  CognitiveAgentVariables_GetCognitiveAgentVariables: {
     parameters: {
       query: {
         tenantId: string;
@@ -2296,7 +4289,7 @@ export interface operations {
    * Add a variable to a cognitive agent
    * @description Adds a key/value variable to the specified cognitive agent and tenant.
    */
-  CreateCognitiveAgentVariableAsync: {
+  CognitiveAgentVariables_CreateCognitiveAgentVariable: {
     parameters: {
       query: {
         tenantId: string;
@@ -2340,7 +4333,7 @@ export interface operations {
    * Get variable count for a cognitive agent
    * @description Returns the count of variables for the specified cognitive agent and tenant.
    */
-  GetCognitiveAgentVariablesCountAsync: {
+  CognitiveAgentVariables_GetCognitiveAgentVariablesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2380,7 +4373,7 @@ export interface operations {
    * Get a cognitive agent variable by ID
    * @description Retrieves a specific variable of a cognitive agent by its identifier.
    */
-  GetCognitiveAgentVariableByIdAsync: {
+  CognitiveAgentVariables_GetCognitiveAgentVariableById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2422,7 +4415,7 @@ export interface operations {
    * Update a cognitive agent variable
    * @description Updates the value of a variable for the specified agent and tenant.
    */
-  UpdateCognitiveAgentVariableAsync: {
+  CognitiveAgentVariables_UpdateCognitiveAgentVariable: {
     parameters: {
       query: {
         tenantId: string;
@@ -2467,7 +4460,7 @@ export interface operations {
    * Remove a variable from a cognitive agent
    * @description Removes a variable from the specified cognitive agent and tenant.
    */
-  DeleteCognitiveAgentVariableAsync: {
+  CognitiveAgentVariables_DeleteCognitiveAgentVariable: {
     parameters: {
       query: {
         tenantId: string;
@@ -2506,7 +4499,7 @@ export interface operations {
    * Get all cognitive skills
    * @description Retrieves all reusable cognitive skills for the specified tenant.
    */
-  GetCognitiveSkillsAsync: {
+  CognitiveSkills_GetCognitiveSkills: {
     parameters: {
       query: {
         tenantId: string;
@@ -2543,7 +4536,7 @@ export interface operations {
    * Create a new cognitive skill
    * @description Creates a new reusable cognitive skill for the specified tenant.
    */
-  CreateCognitiveSkillAsync: {
+  CognitiveSkills_CreateCognitiveSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -2584,7 +4577,7 @@ export interface operations {
    * Get cognitive skills count
    * @description Returns the count of reusable cognitive skills for the specified tenant.
    */
-  GetCognitiveSkillsCountAsync: {
+  CognitiveSkills_GetCognitiveSkillsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2621,7 +4614,7 @@ export interface operations {
    * Get cognitive skill by ID
    * @description Retrieves a specific reusable cognitive skill by its identifier.
    */
-  GetCognitiveSkillByIdAsync: {
+  CognitiveSkills_GetCognitiveSkillById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2662,7 +4655,7 @@ export interface operations {
    * Update a cognitive skill
    * @description Updates an existing reusable cognitive skill for the specified tenant.
    */
-  UpdateCognitiveSkillAsync: {
+  CognitiveSkills_UpdateCognitiveSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -2706,7 +4699,7 @@ export interface operations {
    * Delete a cognitive skill
    * @description Deletes a reusable cognitive skill for the specified tenant.
    */
-  DeleteCognitiveSkillAsync: {
+  CognitiveSkills_DeleteCognitiveSkill: {
     parameters: {
       query: {
         tenantId: string;
@@ -2740,7 +4733,343 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  /**
+   * Validate a repository-backed definition
+   * @description Re-fetches and re-verifies the exact content at the pinned coordinate, re-parses it, resolves its dependencies/capabilities, and enforces release immutability — without materializing anything. The server never trusts a client's parse.
+   */
+  DefinitionDistribution_ValidateDefinition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DefinitionCoordinateRequest"];
+        "application/xml": components["schemas"]["DefinitionCoordinateRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DefinitionValidationDtoEnvelope"];
+          "application/xml": components["schemas"]["DefinitionValidationDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Install a repository-backed definition
+   * @description Re-fetches and re-verifies the exact content at the pinned coordinate, re-validates, resolves dependencies/capabilities, then materializes the definition into its canonical owner and records pinned provenance. Idempotent by the deterministic canonical id.
+   */
+  DefinitionDistribution_InstallDefinition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DefinitionCoordinateRequest"];
+        "application/xml": components["schemas"]["DefinitionCoordinateRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InstalledDefinitionDtoEnvelope"];
+          "application/xml": components["schemas"]["InstalledDefinitionDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an installed repository-backed definition
+   * @description Re-fetches and re-verifies the exact content at the pinned coordinate, re-validates, enforces release immutability, then re-materializes an ALREADY-installed definition to the new content and reconciles its pinned provenance — for an agent, reconciling its declared skill assignments. A definition not installed in this tenant fails closed as NotFound. Same request/response shape as Install.
+   */
+  DefinitionDistribution_UpdateDefinition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DefinitionCoordinateRequest"];
+        "application/xml": components["schemas"]["DefinitionCoordinateRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InstalledDefinitionDtoEnvelope"];
+          "application/xml": components["schemas"]["InstalledDefinitionDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Uninstall a Gallery-installed definition
+   * @description Explicitly removes an installed definition and its pinned provenance from the acting tenant, and — for an agent — revokes the lingering direct grants on its execution principal, in one commit. A REAL delete: distinct from the non-destructive MissingFromSource state-flip, nothing is ever auto-deleted. The reference is either the canonical id or the (sourceKey, kind, key) triple; an incomplete or not-installed reference fails closed.
+   */
+  DefinitionDistribution_UninstallDefinition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UninstallDefinitionRequestDto"];
+        "application/xml": components["schemas"]["UninstallDefinitionRequestDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the installed-definition state for a tenant
+   * @description Returns the acting tenant's installed-definition provenance rows (Installed / UpdateAvailable / MissingFromSource), optionally narrowed to a single kind. Tenant-scoped and read-only: it never returns another tenant's provenance.
+   */
+  DefinitionDistribution_GetInstalledDefinitionState: {
+    parameters: {
+      query: {
+        tenantId: string;
+        kind?: "Agent" | "Skill" | "Workflow";
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InstalledDefinitionDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InstalledDefinitionDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2755,11 +5084,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Run a governed agent over the AG-UI protocol
    * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved. An optional ?projectId= binds the run to a project (resolved tenant-scoped): the project id + name are surfaced to the model as context so it can call the governed project-storage tools; it is never auto-filled into a tool's arguments.
    */
-  InvokeAgentSurfaceAsync: {
+  Platform_InvokeAgentSurface: {
     parameters: {
       path: {
         agentId: string;

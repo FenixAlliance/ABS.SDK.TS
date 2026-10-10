@@ -294,6 +294,12 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type ResolveEditorAssetRequest = {
+    recordType?: string | null;
+    recordId?: string | null;
+    target?: string | null;
+};
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -310,7 +316,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetAvatarData = {
+export type AvatarsGetAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -324,16 +330,16 @@ export type GetAvatarData = {
     url: '/api/v2/StorageService/Avatars/{socialProfileId}';
 };
 
-export type GetAvatarResponses = {
+export type AvatarsGetAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetAvatarResponse = GetAvatarResponses[keyof GetAvatarResponses];
+export type AvatarsGetAvatarResponse = AvatarsGetAvatarResponses[keyof AvatarsGetAvatarResponses];
 
-export type GetCurrentUserAvatarData = {
+export type AvatarsGetCurrentUserAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -345,16 +351,16 @@ export type GetCurrentUserAvatarData = {
     url: '/api/v2/StorageService/Avatars/User';
 };
 
-export type GetCurrentUserAvatarResponses = {
+export type AvatarsGetCurrentUserAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetCurrentUserAvatarResponse = GetCurrentUserAvatarResponses[keyof GetCurrentUserAvatarResponses];
+export type AvatarsGetCurrentUserAvatarResponse = AvatarsGetCurrentUserAvatarResponses[keyof AvatarsGetCurrentUserAvatarResponses];
 
-export type UpdateUserAvatarData = {
+export type AvatarsUpdateUserAvatarData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -368,7 +374,7 @@ export type UpdateUserAvatarData = {
     url: '/api/v2/StorageService/Avatars/User';
 };
 
-export type UpdateUserAvatarErrors = {
+export type AvatarsUpdateUserAvatarErrors = {
     /**
      * Bad Request
      */
@@ -383,18 +389,18 @@ export type UpdateUserAvatarErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateUserAvatarError = UpdateUserAvatarErrors[keyof UpdateUserAvatarErrors];
+export type AvatarsUpdateUserAvatarError = AvatarsUpdateUserAvatarErrors[keyof AvatarsUpdateUserAvatarErrors];
 
-export type UpdateUserAvatarResponses = {
+export type AvatarsUpdateUserAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateUserAvatarResponse = UpdateUserAvatarResponses[keyof UpdateUserAvatarResponses];
+export type AvatarsUpdateUserAvatarResponse = AvatarsUpdateUserAvatarResponses[keyof AvatarsUpdateUserAvatarResponses];
 
-export type GetUserAvatarData = {
+export type AvatarsGetUserAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -408,16 +414,16 @@ export type GetUserAvatarData = {
     url: '/api/v2/StorageService/Avatars/User/{userId}';
 };
 
-export type GetUserAvatarResponses = {
+export type AvatarsGetUserAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetUserAvatarResponse = GetUserAvatarResponses[keyof GetUserAvatarResponses];
+export type AvatarsGetUserAvatarResponse = AvatarsGetUserAvatarResponses[keyof AvatarsGetUserAvatarResponses];
 
-export type GetTenantAvatarData = {
+export type AvatarsGetTenantAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -431,16 +437,16 @@ export type GetTenantAvatarData = {
     url: '/api/v2/StorageService/Avatars/Tenant/{tenantId}';
 };
 
-export type GetTenantAvatarResponses = {
+export type AvatarsGetTenantAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetTenantAvatarResponse = GetTenantAvatarResponses[keyof GetTenantAvatarResponses];
+export type AvatarsGetTenantAvatarResponse = AvatarsGetTenantAvatarResponses[keyof AvatarsGetTenantAvatarResponses];
 
-export type UpdateTenantAvatarData = {
+export type AvatarsUpdateTenantAvatarData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -456,7 +462,7 @@ export type UpdateTenantAvatarData = {
     url: '/api/v2/StorageService/Avatars/Tenant/{tenantId}';
 };
 
-export type UpdateTenantAvatarErrors = {
+export type AvatarsUpdateTenantAvatarErrors = {
     /**
      * Bad Request
      */
@@ -471,18 +477,18 @@ export type UpdateTenantAvatarErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateTenantAvatarError = UpdateTenantAvatarErrors[keyof UpdateTenantAvatarErrors];
+export type AvatarsUpdateTenantAvatarError = AvatarsUpdateTenantAvatarErrors[keyof AvatarsUpdateTenantAvatarErrors];
 
-export type UpdateTenantAvatarResponses = {
+export type AvatarsUpdateTenantAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateTenantAvatarResponse = UpdateTenantAvatarResponses[keyof UpdateTenantAvatarResponses];
+export type AvatarsUpdateTenantAvatarResponse = AvatarsUpdateTenantAvatarResponses[keyof AvatarsUpdateTenantAvatarResponses];
 
-export type GetContactAvatarData = {
+export type AvatarsGetContactAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -491,21 +497,22 @@ export type GetContactAvatarData = {
         contactId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/StorageService/Avatars/Contact/{contactId}';
 };
 
-export type GetContactAvatarResponses = {
+export type AvatarsGetContactAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetContactAvatarResponse = GetContactAvatarResponses[keyof GetContactAvatarResponses];
+export type AvatarsGetContactAvatarResponse = AvatarsGetContactAvatarResponses[keyof AvatarsGetContactAvatarResponses];
 
-export type UpdateContactAvatarData = {
+export type AvatarsUpdateContactAvatarData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -522,7 +529,7 @@ export type UpdateContactAvatarData = {
     url: '/api/v2/StorageService/Avatars/Contacts/{contactId}';
 };
 
-export type UpdateContactAvatarErrors = {
+export type AvatarsUpdateContactAvatarErrors = {
     /**
      * Bad Request
      */
@@ -537,18 +544,18 @@ export type UpdateContactAvatarErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateContactAvatarError = UpdateContactAvatarErrors[keyof UpdateContactAvatarErrors];
+export type AvatarsUpdateContactAvatarError = AvatarsUpdateContactAvatarErrors[keyof AvatarsUpdateContactAvatarErrors];
 
-export type UpdateContactAvatarResponses = {
+export type AvatarsUpdateContactAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateContactAvatarResponse = UpdateContactAvatarResponses[keyof UpdateContactAvatarResponses];
+export type AvatarsUpdateContactAvatarResponse = AvatarsUpdateContactAvatarResponses[keyof AvatarsUpdateContactAvatarResponses];
 
-export type GetBlobsAsyncData = {
+export type BlobsGetBlobsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -567,7 +574,7 @@ export type GetBlobsAsyncData = {
     url: '/api/v2/StorageService/Blobs';
 };
 
-export type GetBlobsAsyncErrors = {
+export type BlobsGetBlobsErrors = {
     /**
      * Unauthorized
      */
@@ -578,18 +585,18 @@ export type GetBlobsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlobsAsyncError = GetBlobsAsyncErrors[keyof GetBlobsAsyncErrors];
+export type BlobsGetBlobsError = BlobsGetBlobsErrors[keyof BlobsGetBlobsErrors];
 
-export type GetBlobsAsyncResponses = {
+export type BlobsGetBlobsResponses = {
     /**
      * OK
      */
     200: BlobEnvelopeReadable;
 };
 
-export type GetBlobsAsyncResponse = GetBlobsAsyncResponses[keyof GetBlobsAsyncResponses];
+export type BlobsGetBlobsResponse = BlobsGetBlobsResponses[keyof BlobsGetBlobsResponses];
 
-export type GetBlobAsyncData = {
+export type BlobsGetBlobData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -603,7 +610,7 @@ export type GetBlobAsyncData = {
     url: '/api/v2/StorageService/Blobs/Single';
 };
 
-export type GetBlobAsyncErrors = {
+export type BlobsGetBlobErrors = {
     /**
      * Unauthorized
      */
@@ -614,18 +621,18 @@ export type GetBlobAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetBlobAsyncError = GetBlobAsyncErrors[keyof GetBlobAsyncErrors];
+export type BlobsGetBlobError = BlobsGetBlobErrors[keyof BlobsGetBlobErrors];
 
-export type GetBlobAsyncResponses = {
+export type BlobsGetBlobResponses = {
     /**
      * OK
      */
     200: BlobEnvelopeReadable;
 };
 
-export type GetBlobAsyncResponse = GetBlobAsyncResponses[keyof GetBlobAsyncResponses];
+export type BlobsGetBlobResponse = BlobsGetBlobResponses[keyof BlobsGetBlobResponses];
 
-export type GetEditorAssetAsyncData = {
+export type EditorAssetsGetEditorAssetData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -639,90 +646,119 @@ export type GetEditorAssetAsyncData = {
     url: '/api/v2/StorageService/EditorAssets/{fileId}';
 };
 
-export type GetEditorAssetAsyncErrors = {
+export type EditorAssetsGetEditorAssetErrors = {
     /**
      * Not Found
      */
     404: ProblemDetails;
 };
 
-export type GetEditorAssetAsyncError = GetEditorAssetAsyncErrors[keyof GetEditorAssetAsyncErrors];
+export type EditorAssetsGetEditorAssetError = EditorAssetsGetEditorAssetErrors[keyof EditorAssetsGetEditorAssetErrors];
 
-export type GetEditorAssetAsyncResponses = {
+export type EditorAssetsGetEditorAssetResponses = {
     /**
      * OK
      */
     200: Blob | File;
 };
 
-export type GetEditorAssetAsyncResponse = GetEditorAssetAsyncResponses[keyof GetEditorAssetAsyncResponses];
+export type EditorAssetsGetEditorAssetResponse = EditorAssetsGetEditorAssetResponses[keyof EditorAssetsGetEditorAssetResponses];
 
-export type GetVersionData = {
+export type EditorAssetsPostEditorAssetsResolveData = {
+    body?: ResolveEditorAssetRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/StorageService/EditorAssets/resolve';
+};
+
+export type EditorAssetsPostEditorAssetsResolveErrors = {
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+};
+
+export type EditorAssetsPostEditorAssetsResolveError = EditorAssetsPostEditorAssetsResolveErrors[keyof EditorAssetsPostEditorAssetsResolveErrors];
+
+export type EditorAssetsPostEditorAssetsResolveResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -732,32 +768,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -768,81 +804,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -853,25 +889,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -882,25 +918,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -911,18 +947,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -932,14 +968,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -948,14 +984,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -964,28 +1000,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetFilesAsyncData = {
+export type FilesGetFilesData = {
     body?: FileUploadDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -998,7 +1034,7 @@ export type GetFilesAsyncData = {
     url: '/api/v2/StorageService/Files';
 };
 
-export type GetFilesAsyncErrors = {
+export type FilesGetFilesErrors = {
     /**
      * Unauthorized
      */
@@ -1009,18 +1045,18 @@ export type GetFilesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFilesAsyncError = GetFilesAsyncErrors[keyof GetFilesAsyncErrors];
+export type FilesGetFilesError = FilesGetFilesErrors[keyof FilesGetFilesErrors];
 
-export type GetFilesAsyncResponses = {
+export type FilesGetFilesResponses = {
     /**
      * OK
      */
     200: FileUploadDtoEnvelopeReadable;
 };
 
-export type GetFilesAsyncResponse = GetFilesAsyncResponses[keyof GetFilesAsyncResponses];
+export type FilesGetFilesResponse = FilesGetFilesResponses[keyof FilesGetFilesResponses];
 
-export type CreateFileAsyncData = {
+export type FilesCreateFileData = {
     body?: {
         file?: Blob | File;
         notes?: string;
@@ -1067,7 +1103,7 @@ export type CreateFileAsyncData = {
     url: '/api/v2/StorageService/Files';
 };
 
-export type CreateFileAsyncErrors = {
+export type FilesCreateFileErrors = {
     /**
      * Bad Request
      */
@@ -1082,18 +1118,18 @@ export type CreateFileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateFileAsyncError = CreateFileAsyncErrors[keyof CreateFileAsyncErrors];
+export type FilesCreateFileError = FilesCreateFileErrors[keyof FilesCreateFileErrors];
 
-export type CreateFileAsyncResponses = {
+export type FilesCreateFileResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateFileAsyncResponse = CreateFileAsyncResponses[keyof CreateFileAsyncResponses];
+export type FilesCreateFileResponse = FilesCreateFileResponses[keyof FilesCreateFileResponses];
 
-export type GetFilesCountAsyncData = {
+export type FilesGetFilesCountData = {
     body?: FileUploadDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1106,7 +1142,7 @@ export type GetFilesCountAsyncData = {
     url: '/api/v2/StorageService/Files/Count';
 };
 
-export type GetFilesCountAsyncErrors = {
+export type FilesGetFilesCountErrors = {
     /**
      * Unauthorized
      */
@@ -1117,18 +1153,18 @@ export type GetFilesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetFilesCountAsyncError = GetFilesCountAsyncErrors[keyof GetFilesCountAsyncErrors];
+export type FilesGetFilesCountError = FilesGetFilesCountErrors[keyof FilesGetFilesCountErrors];
 
-export type GetFilesCountAsyncResponses = {
+export type FilesGetFilesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetFilesCountAsyncResponse = GetFilesCountAsyncResponses[keyof GetFilesCountAsyncResponses];
+export type FilesGetFilesCountResponse = FilesGetFilesCountResponses[keyof FilesGetFilesCountResponses];
 
-export type DeleteFileAsyncData = {
+export type FilesDeleteFileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1143,7 +1179,7 @@ export type DeleteFileAsyncData = {
     url: '/api/v2/StorageService/Files/{fileId}';
 };
 
-export type DeleteFileAsyncErrors = {
+export type FilesDeleteFileErrors = {
     /**
      * Unauthorized
      */
@@ -1158,18 +1194,18 @@ export type DeleteFileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteFileAsyncError = DeleteFileAsyncErrors[keyof DeleteFileAsyncErrors];
+export type FilesDeleteFileError = FilesDeleteFileErrors[keyof FilesDeleteFileErrors];
 
-export type DeleteFileAsyncResponses = {
+export type FilesDeleteFileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteFileAsyncResponse = DeleteFileAsyncResponses[keyof DeleteFileAsyncResponses];
+export type FilesDeleteFileResponse = FilesDeleteFileResponses[keyof FilesDeleteFileResponses];
 
-export type GetFileAsyncData = {
+export type FilesGetFileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1184,7 +1220,7 @@ export type GetFileAsyncData = {
     url: '/api/v2/StorageService/Files/{fileId}';
 };
 
-export type GetFileAsyncErrors = {
+export type FilesGetFileErrors = {
     /**
      * Unauthorized
      */
@@ -1195,18 +1231,18 @@ export type GetFileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetFileAsyncError = GetFileAsyncErrors[keyof GetFileAsyncErrors];
+export type FilesGetFileError = FilesGetFileErrors[keyof FilesGetFileErrors];
 
-export type GetFileAsyncResponses = {
+export type FilesGetFileResponses = {
     /**
      * OK
      */
     200: FileUploadDtoEnvelopeReadable;
 };
 
-export type GetFileAsyncResponse = GetFileAsyncResponses[keyof GetFileAsyncResponses];
+export type FilesGetFileResponse = FilesGetFileResponses[keyof FilesGetFileResponses];
 
-export type UpdateFileAsyncData = {
+export type FilesUpdateFileData = {
     body?: {
         file?: Blob | File;
         notes?: string;
@@ -1251,7 +1287,7 @@ export type UpdateFileAsyncData = {
     url: '/api/v2/StorageService/Files/{fileId}';
 };
 
-export type UpdateFileAsyncErrors = {
+export type FilesUpdateFileErrors = {
     /**
      * Bad Request
      */
@@ -1266,18 +1302,18 @@ export type UpdateFileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateFileAsyncError = UpdateFileAsyncErrors[keyof UpdateFileAsyncErrors];
+export type FilesUpdateFileError = FilesUpdateFileErrors[keyof FilesUpdateFileErrors];
 
-export type UpdateFileAsyncResponses = {
+export type FilesUpdateFileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateFileAsyncResponse = UpdateFileAsyncResponses[keyof UpdateFileAsyncResponses];
+export type FilesUpdateFileResponse = FilesUpdateFileResponses[keyof FilesUpdateFileResponses];
 
-export type DownloadFileAsyncData = {
+export type FilesDownloadFileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1292,7 +1328,7 @@ export type DownloadFileAsyncData = {
     url: '/api/v2/StorageService/Files/{fileId}/Raw';
 };
 
-export type DownloadFileAsyncErrors = {
+export type FilesDownloadFileErrors = {
     /**
      * Unauthorized
      */
@@ -1303,18 +1339,18 @@ export type DownloadFileAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DownloadFileAsyncError = DownloadFileAsyncErrors[keyof DownloadFileAsyncErrors];
+export type FilesDownloadFileError = FilesDownloadFileErrors[keyof FilesDownloadFileErrors];
 
-export type DownloadFileAsyncResponses = {
+export type FilesDownloadFileResponses = {
     /**
      * OK
      */
     200: Blob | File;
 };
 
-export type DownloadFileAsyncResponse = DownloadFileAsyncResponses[keyof DownloadFileAsyncResponses];
+export type FilesDownloadFileResponse = FilesDownloadFileResponses[keyof FilesDownloadFileResponses];
 
-export type GetFileThumbnailAsyncData = {
+export type FilesGetFileThumbnailData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1329,7 +1365,7 @@ export type GetFileThumbnailAsyncData = {
     url: '/api/v2/StorageService/Files/{fileId}/Thumbnail';
 };
 
-export type GetFileThumbnailAsyncErrors = {
+export type FilesGetFileThumbnailErrors = {
     /**
      * Unauthorized
      */
@@ -1340,18 +1376,18 @@ export type GetFileThumbnailAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetFileThumbnailAsyncError = GetFileThumbnailAsyncErrors[keyof GetFileThumbnailAsyncErrors];
+export type FilesGetFileThumbnailError = FilesGetFileThumbnailErrors[keyof FilesGetFileThumbnailErrors];
 
-export type GetFileThumbnailAsyncResponses = {
+export type FilesGetFileThumbnailResponses = {
     /**
      * OK
      */
     200: Blob | File;
 };
 
-export type GetFileThumbnailAsyncResponse = GetFileThumbnailAsyncResponses[keyof GetFileThumbnailAsyncResponses];
+export type FilesGetFileThumbnailResponse = FilesGetFileThumbnailResponses[keyof FilesGetFileThumbnailResponses];
 
-export type RadzenUploadSingleData = {
+export type RadzenEditorRadzenUploadSingleData = {
     body?: {
         file?: Blob | File;
     };
@@ -1367,14 +1403,14 @@ export type RadzenUploadSingleData = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/upload/single';
 };
 
-export type RadzenUploadSingleResponses = {
+export type RadzenEditorRadzenUploadSingleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadSingleScopedData = {
+export type RadzenEditorRadzenUploadSingleScopedData = {
     body?: {
         file?: Blob | File;
     };
@@ -1392,14 +1428,14 @@ export type RadzenUploadSingleScopedData = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/single';
 };
 
-export type RadzenUploadSingleScopedResponses = {
+export type RadzenEditorRadzenUploadSingleScopedResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadImageData = {
+export type RadzenEditorRadzenUploadImageData = {
     body?: {
         file?: Blob | File;
     };
@@ -1418,14 +1454,14 @@ export type RadzenUploadImageData = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/upload/image';
 };
 
-export type RadzenUploadImageResponses = {
+export type RadzenEditorRadzenUploadImageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadImageScopedData = {
+export type RadzenEditorRadzenUploadImageScopedData = {
     body?: {
         file?: Blob | File;
     };
@@ -1446,14 +1482,14 @@ export type RadzenUploadImageScopedData = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/image';
 };
 
-export type RadzenUploadImageScopedResponses = {
+export type RadzenEditorRadzenUploadImageScopedResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadUserImageData = {
+export type RadzenEditorRadzenUploadUserImageData = {
     body?: {
         file?: Blob | File;
     };
@@ -1470,14 +1506,14 @@ export type RadzenUploadUserImageData = {
     url: '/api/v2/fs/radzen/users/upload/image';
 };
 
-export type RadzenUploadUserImageResponses = {
+export type RadzenEditorRadzenUploadUserImageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadUserImageScopedData = {
+export type RadzenEditorRadzenUploadUserImageScopedData = {
     body?: {
         file?: Blob | File;
     };
@@ -1497,14 +1533,14 @@ export type RadzenUploadUserImageScopedData = {
     url: '/api/v2/fs/radzen/users/{recordType}/{recordId}/upload/image';
 };
 
-export type RadzenUploadUserImageScopedResponses = {
+export type RadzenEditorRadzenUploadUserImageScopedResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadStreamData = {
+export type RadzenEditorRadzenUploadStreamData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1518,14 +1554,14 @@ export type RadzenUploadStreamData = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/upload/stream';
 };
 
-export type RadzenUploadStreamResponses = {
+export type RadzenEditorRadzenUploadStreamResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type RadzenUploadStreamScopedData = {
+export type RadzenEditorRadzenUploadStreamScopedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1541,14 +1577,14 @@ export type RadzenUploadStreamScopedData = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/stream';
 };
 
-export type RadzenUploadStreamScopedResponses = {
+export type RadzenEditorRadzenUploadStreamScopedResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type SaveFileAsyncData = {
+export type UploadsSaveFileData = {
     body?: {
         file?: Blob | File;
         notes?: string;
@@ -1595,7 +1631,7 @@ export type SaveFileAsyncData = {
     url: '/api/v2/StorageService/Uploads';
 };
 
-export type SaveFileAsyncErrors = {
+export type UploadsSaveFileErrors = {
     /**
      * Unauthorized
      */
@@ -1606,16 +1642,16 @@ export type SaveFileAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SaveFileAsyncError = SaveFileAsyncErrors[keyof SaveFileAsyncErrors];
+export type UploadsSaveFileError = UploadsSaveFileErrors[keyof UploadsSaveFileErrors];
 
-export type SaveFileAsyncResponses = {
+export type UploadsSaveFileResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SaveFileAsyncResponse = SaveFileAsyncResponses[keyof SaveFileAsyncResponses];
+export type UploadsSaveFileResponse = UploadsSaveFileResponses[keyof UploadsSaveFileResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

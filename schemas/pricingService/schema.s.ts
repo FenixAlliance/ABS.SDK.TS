@@ -10,573 +10,325 @@ export interface paths {
      * Retrieves all discount lists
      * @description Gets all discount lists for the current tenant with OData support.
      */
-    get: operations["GetDiscountLists"];
+    get: operations["DiscountLists_GetDiscountLists"];
     /**
      * Creates a new discount list
      * @description Creates a new discount list for the current tenant.
      */
-    post: operations["CreateDiscountList"];
+    post: operations["DiscountLists_CreateDiscountList"];
   };
   "/api/v2/PricingService/DiscountLists/Count": {
     /**
      * Counts discount lists
      * @description Gets the count of discount lists for the current tenant.
      */
-    get: operations["GetDiscountListsCount"];
+    get: operations["DiscountLists_GetDiscountListsCount"];
   };
   "/api/v2/PricingService/DiscountLists/{discountListId}": {
     /**
      * Gets a discount list by ID
      * @description Retrieves the details of a discount list using its unique identifier.
      */
-    get: operations["GetDiscountList"];
+    get: operations["DiscountLists_GetDiscountList"];
     /**
      * Updates a discount list
      * @description Updates the specified discount list.
      */
-    put: operations["UpdateDiscountList"];
+    put: operations["DiscountLists_UpdateDiscountList"];
     /**
      * Deletes a discount list
      * @description Deletes the specified discount list.
      */
-    delete: operations["DeleteDiscountList"];
+    delete: operations["DiscountLists_DeleteDiscountList"];
     /**
      * Patches a discount list
      * @description Partially updates the specified discount list using a JSON Patch document.
      */
-    patch: operations["PatchDiscountList"];
+    patch: operations["DiscountLists_PatchDiscountList"];
   };
   "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts": {
     /**
      * Retrieves discounts in a discount list
      * @description Gets all discount entries for a specific discount list with OData support.
      */
-    get: operations["GetDiscountListEntries"];
+    get: operations["DiscountLists_GetDiscountListEntries"];
     /**
      * Creates a discount list entry
      * @description Creates a new discount entry in the specified discount list.
      */
-    post: operations["CreateDiscountListEntry"];
+    post: operations["DiscountLists_CreateDiscountListEntry"];
   };
   "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/Count": {
     /**
      * Counts discounts in a discount list
      * @description Gets the count of discount entries for a specific discount list.
      */
-    get: operations["GetDiscountListEntriesCount"];
+    get: operations["DiscountLists_GetDiscountListEntriesCount"];
   };
   "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}": {
     /**
      * Gets a discount list entry by ID
      * @description Retrieves a specific discount entry from a discount list.
      */
-    get: operations["GetDiscountListEntry"];
+    get: operations["DiscountLists_GetDiscountListEntry"];
     /**
      * Updates a discount list entry
      * @description Updates the specified discount entry in a discount list.
      */
-    put: operations["UpdateDiscountListEntry"];
+    put: operations["DiscountLists_UpdateDiscountListEntry"];
     /**
      * Deletes a discount list entry
      * @description Deletes the specified discount entry from a discount list.
      */
-    delete: operations["DeleteDiscountListEntry"];
+    delete: operations["DiscountLists_DeleteDiscountListEntry"];
     /**
      * Patches a discount list entry
      * @description Partially updates the specified discount entry using a JSON Patch document.
      */
-    patch: operations["PatchDiscountListEntry"];
+    patch: operations["DiscountLists_PatchDiscountListEntry"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/PricingService/PriceLists": {
     /**
      * Retrieves all price lists
      * @description Gets all price lists for the current tenant with OData support.
      */
-    get: operations["GetPriceListsAsync"];
+    get: operations["PriceLists_GetPriceLists"];
     /**
      * Creates a new price list
      * @description Creates a new price list for the current tenant.
      */
-    post: operations["CreatePriceListAsync"];
+    post: operations["PriceLists_CreatePriceList"];
   };
   "/api/v2/PricingService/PriceLists/Count": {
     /**
      * Counts price lists
      * @description Gets the count of price lists for the current tenant.
      */
-    get: operations["GetPriceListsCountAsync"];
+    get: operations["PriceLists_GetPriceListsCount"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}": {
     /**
      * Gets a price list by ID
      * @description Retrieves the details of a price list using its unique identifier.
      */
-    get: operations["GetPriceListAsync"];
+    get: operations["PriceLists_GetPriceList"];
     /**
      * Updates a price list
      * @description Updates the specified price list.
      */
-    put: operations["UpdatePriceListAsync"];
+    put: operations["PriceLists_UpdatePriceList"];
     /**
      * Deletes a price list
      * @description Deletes the specified price list.
      */
-    delete: operations["DeletePriceListAsync"];
+    delete: operations["PriceLists_DeletePriceList"];
     /**
      * Patches a price list
      * @description Partially updates the specified price list using a JSON Patch document.
      */
-    patch: operations["PatchPriceListAsync"];
+    patch: operations["PriceLists_PatchPriceList"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}/Prices": {
     /**
      * Retrieves prices in a price list
      * @description Gets all price entries for a specific price list with OData support.
      */
-    get: operations["GetPriceListPricesAsync"];
+    get: operations["PriceLists_GetPriceListPrices"];
     /**
      * Creates a price list entry
      * @description Creates a new price entry in the specified price list.
      */
-    post: operations["CreatePriceListPricesAsync"];
+    post: operations["PriceLists_CreatePriceListPrices"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}/Prices/Count": {
     /**
      * Counts prices in a price list
      * @description Gets the count of price entries for a specific price list.
      */
-    get: operations["GetPriceListPricesCountAsync"];
+    get: operations["PriceLists_GetPriceListPricesCount"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}": {
     /**
      * Gets a price list entry by ID
      * @description Retrieves a specific price entry from a price list.
      */
-    get: operations["GetPriceListPriceAsync"];
+    get: operations["PriceLists_GetPriceListPrice"];
     /**
      * Updates a price list entry
      * @description Updates the specified price entry in a price list.
      */
-    put: operations["UpdatePriceListPriceAsync"];
+    put: operations["PriceLists_UpdatePriceListPrice"];
     /**
      * Deletes a price list entry
      * @description Deletes the specified price entry from a price list.
      */
-    delete: operations["DeletePriceListPriceAsync"];
+    delete: operations["PriceLists_DeletePriceListPrice"];
     /**
      * Patches a price list entry
      * @description Partially updates the specified price entry in a price list using a JSON Patch document.
      */
-    patch: operations["PatchPriceListPriceAsync"];
+    patch: operations["PriceLists_PatchPriceListPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/Price": {
     /**
      * Gets the calculated price for an item
      * @description Calculates the price for an item considering price list, discount list, quantity, and currency.
      */
-    get: operations["GetPrice"];
+    get: operations["Prices_GetPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/FinalPrice": {
     /**
      * Gets the final price for an item
      * @description Gets the final price for an item after all discounts and taxes in the specified currency.
      */
-    get: operations["GetFinalPrice"];
+    get: operations["Prices_GetFinalPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/TotalTaxes": {
     /**
      * Gets total taxes for an item
      * @description Gets the total tax amount for an item in the specified currency.
      */
-    get: operations["GetTotalTaxesInUsd"];
+    get: operations["Prices_GetTotalTaxesInUsd"];
   };
   "/api/v2/PricingService/Prices/{itemId}/TotalSavings": {
     /**
      * Gets total savings for an item
      * @description Gets the total savings amount for an item in the specified currency.
      */
-    get: operations["GetTotalSavingsInUsd"];
+    get: operations["Prices_GetTotalSavingsInUsd"];
   };
   "/api/v2/PricingService/PricingRules": {
     /**
      * Get all pricing rules
      * @description Retrieves all pricing rules for the specified tenant, with optional OData query options.
      */
-    get: operations["GetPricingRules"];
+    get: operations["PricingRules_GetPricingRules"];
     /**
      * Create a new pricing rule
      * @description Creates a new pricing rule for the specified tenant.
      */
-    post: operations["CreatePricingRule"];
+    post: operations["PricingRules_CreatePricingRule"];
   };
   "/api/v2/PricingService/PricingRules/{pricingRuleId}": {
     /**
      * Get pricing rule by ID
      * @description Retrieves a pricing rule by its unique identifier.
      */
-    get: operations["GetPricingRuleById"];
+    get: operations["PricingRules_GetPricingRuleById"];
     /**
      * Delete a pricing rule
      * @description Deletes a pricing rule for the specified tenant and rule ID.
      */
-    delete: operations["DeletePricingRule"];
+    delete: operations["PricingRules_DeletePricingRule"];
     /**
      * Patch a pricing rule
      * @description Partially updates a pricing rule using a JSON Patch document.
      */
-    patch: operations["PatchPricingRule"];
+    patch: operations["PricingRules_PatchPricingRule"];
   };
   "/api/v2/PricingService/PricingRules/Count": {
     /**
      * Counts pricing rules
      * @description Gets the count of pricing rules for the current tenant.
      */
-    get: operations["GetPricingRulesCountAsync"];
+    get: operations["PricingRules_GetPricingRulesCount"];
   };
   "/api/v2/PricingService/PricingRules/Update": {
     /**
      * Update a pricing rule
      * @description Updates an existing pricing rule for the specified tenant and rule ID.
      */
-    put: operations["UpdatePricingRule"];
+    put: operations["PricingRules_UpdatePricingRule"];
   };
   "/api/v2/PricingService/RoundingPolicies": {
     /**
      * Gets all rounding policies
      * @description Retrieves all rounding policies for the current tenant with OData support.
      */
-    get: operations["GetRoundingPoliciesAsync"];
+    get: operations["RoundingPolicies_GetRoundingPolicies"];
     /**
      * Creates a rounding policy
      * @description Creates a new rounding policy for the current tenant.
      */
-    post: operations["CreateRoundingPolicyAsync"];
+    post: operations["RoundingPolicies_CreateRoundingPolicy"];
   };
   "/api/v2/PricingService/RoundingPolicies/Count": {
     /**
      * Counts rounding policies
      * @description Gets the count of rounding policies for the current tenant.
      */
-    get: operations["GetRoundingPoliciesCountAsync"];
+    get: operations["RoundingPolicies_GetRoundingPoliciesCount"];
   };
   "/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}": {
     /**
      * Gets a rounding policy by ID
      * @description Retrieves the details of a rounding policy using its unique ID.
      */
-    get: operations["GetRoundingPolicyByIdAsync"];
+    get: operations["RoundingPolicies_GetRoundingPolicyById"];
     /**
      * Updates a rounding policy
      * @description Updates the specified rounding policy.
      */
-    put: operations["UpdateRoundingPolicyAsync"];
+    put: operations["RoundingPolicies_UpdateRoundingPolicy"];
     /**
      * Deletes a rounding policy
      * @description Deletes the specified rounding policy.
      */
-    delete: operations["DeleteRoundingPolicyAsync"];
+    delete: operations["RoundingPolicies_DeleteRoundingPolicy"];
     /**
      * Patches a rounding policy
      * @description Partially updates the specified rounding policy using a JSON Patch document.
      */
-    patch: operations["PatchRoundingPolicyAsync"];
+    patch: operations["RoundingPolicies_PatchRoundingPolicy"];
   };
 }
 
@@ -1425,7 +1177,7 @@ export interface operations {
    * Retrieves all discount lists
    * @description Gets all discount lists for the current tenant with OData support.
    */
-  GetDiscountLists: {
+  DiscountLists_GetDiscountLists: {
     parameters: {
       query: {
         tenantId: string;
@@ -1472,7 +1224,7 @@ export interface operations {
    * Creates a new discount list
    * @description Creates a new discount list for the current tenant.
    */
-  CreateDiscountList: {
+  DiscountLists_CreateDiscountList: {
     parameters: {
       query: {
         tenantId: string;
@@ -1519,7 +1271,7 @@ export interface operations {
    * Counts discount lists
    * @description Gets the count of discount lists for the current tenant.
    */
-  GetDiscountListsCount: {
+  DiscountLists_GetDiscountListsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1566,7 +1318,7 @@ export interface operations {
    * Gets a discount list by ID
    * @description Retrieves the details of a discount list using its unique identifier.
    */
-  GetDiscountList: {
+  DiscountLists_GetDiscountList: {
     parameters: {
       query: {
         tenantId: string;
@@ -1610,7 +1362,7 @@ export interface operations {
    * Updates a discount list
    * @description Updates the specified discount list.
    */
-  UpdateDiscountList: {
+  DiscountLists_UpdateDiscountList: {
     parameters: {
       query: {
         tenantId: string;
@@ -1660,7 +1412,7 @@ export interface operations {
    * Deletes a discount list
    * @description Deletes the specified discount list.
    */
-  DeleteDiscountList: {
+  DiscountLists_DeleteDiscountList: {
     parameters: {
       query: {
         tenantId: string;
@@ -1704,7 +1456,7 @@ export interface operations {
    * Patches a discount list
    * @description Partially updates the specified discount list using a JSON Patch document.
    */
-  PatchDiscountList: {
+  DiscountLists_PatchDiscountList: {
     parameters: {
       query: {
         tenantId: string;
@@ -1754,7 +1506,7 @@ export interface operations {
    * Retrieves discounts in a discount list
    * @description Gets all discount entries for a specific discount list with OData support.
    */
-  GetDiscountListEntries: {
+  DiscountLists_GetDiscountListEntries: {
     parameters: {
       query: {
         tenantId: string;
@@ -1804,7 +1556,7 @@ export interface operations {
    * Creates a discount list entry
    * @description Creates a new discount entry in the specified discount list.
    */
-  CreateDiscountListEntry: {
+  DiscountLists_CreateDiscountListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -1854,7 +1606,7 @@ export interface operations {
    * Counts discounts in a discount list
    * @description Gets the count of discount entries for a specific discount list.
    */
-  GetDiscountListEntriesCount: {
+  DiscountLists_GetDiscountListEntriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1904,7 +1656,7 @@ export interface operations {
    * Gets a discount list entry by ID
    * @description Retrieves a specific discount entry from a discount list.
    */
-  GetDiscountListEntry: {
+  DiscountLists_GetDiscountListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -1949,7 +1701,7 @@ export interface operations {
    * Updates a discount list entry
    * @description Updates the specified discount entry in a discount list.
    */
-  UpdateDiscountListEntry: {
+  DiscountLists_UpdateDiscountListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -2000,7 +1752,7 @@ export interface operations {
    * Deletes a discount list entry
    * @description Deletes the specified discount entry from a discount list.
    */
-  DeleteDiscountListEntry: {
+  DiscountLists_DeleteDiscountListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -2045,7 +1797,7 @@ export interface operations {
    * Patches a discount list entry
    * @description Partially updates the specified discount entry using a JSON Patch document.
    */
-  PatchDiscountListEntry: {
+  DiscountLists_PatchDiscountListEntry: {
     parameters: {
       query: {
         tenantId: string;
@@ -2092,7 +1844,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2107,11 +1938,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Retrieves all price lists
    * @description Gets all price lists for the current tenant with OData support.
    */
-  GetPriceListsAsync: {
+  PriceLists_GetPriceLists: {
     parameters: {
       query: {
         tenantId: string;
@@ -2144,7 +2160,7 @@ export interface operations {
    * Creates a new price list
    * @description Creates a new price list for the current tenant.
    */
-  CreatePriceListAsync: {
+  PriceLists_CreatePriceList: {
     parameters: {
       query: {
         tenantId: string;
@@ -2177,7 +2193,7 @@ export interface operations {
    * Counts price lists
    * @description Gets the count of price lists for the current tenant.
    */
-  GetPriceListsCountAsync: {
+  PriceLists_GetPriceListsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2210,7 +2226,7 @@ export interface operations {
    * Gets a price list by ID
    * @description Retrieves the details of a price list using its unique identifier.
    */
-  GetPriceListAsync: {
+  PriceLists_GetPriceList: {
     parameters: {
       query: {
         tenantId: string;
@@ -2240,7 +2256,7 @@ export interface operations {
    * Updates a price list
    * @description Updates the specified price list.
    */
-  UpdatePriceListAsync: {
+  PriceLists_UpdatePriceList: {
     parameters: {
       query: {
         tenantId: string;
@@ -2276,7 +2292,7 @@ export interface operations {
    * Deletes a price list
    * @description Deletes the specified price list.
    */
-  DeletePriceListAsync: {
+  PriceLists_DeletePriceList: {
     parameters: {
       query: {
         tenantId: string;
@@ -2306,7 +2322,7 @@ export interface operations {
    * Patches a price list
    * @description Partially updates the specified price list using a JSON Patch document.
    */
-  PatchPriceListAsync: {
+  PriceLists_PatchPriceList: {
     parameters: {
       query: {
         tenantId: string;
@@ -2342,7 +2358,7 @@ export interface operations {
    * Retrieves prices in a price list
    * @description Gets all price entries for a specific price list with OData support.
    */
-  GetPriceListPricesAsync: {
+  PriceLists_GetPriceListPrices: {
     parameters: {
       query: {
         tenantId: string;
@@ -2379,7 +2395,7 @@ export interface operations {
    * Creates a price list entry
    * @description Creates a new price entry in the specified price list.
    */
-  CreatePriceListPricesAsync: {
+  PriceLists_CreatePriceListPrices: {
     parameters: {
       query: {
         tenantId: string;
@@ -2415,7 +2431,7 @@ export interface operations {
    * Counts prices in a price list
    * @description Gets the count of price entries for a specific price list.
    */
-  GetPriceListPricesCountAsync: {
+  PriceLists_GetPriceListPricesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2451,7 +2467,7 @@ export interface operations {
    * Gets a price list entry by ID
    * @description Retrieves a specific price entry from a price list.
    */
-  GetPriceListPriceAsync: {
+  PriceLists_GetPriceListPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2482,7 +2498,7 @@ export interface operations {
    * Updates a price list entry
    * @description Updates the specified price entry in a price list.
    */
-  UpdatePriceListPriceAsync: {
+  PriceLists_UpdatePriceListPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2519,7 +2535,7 @@ export interface operations {
    * Deletes a price list entry
    * @description Deletes the specified price entry from a price list.
    */
-  DeletePriceListPriceAsync: {
+  PriceLists_DeletePriceListPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2550,7 +2566,7 @@ export interface operations {
    * Patches a price list entry
    * @description Partially updates the specified price entry in a price list using a JSON Patch document.
    */
-  PatchPriceListPriceAsync: {
+  PriceLists_PatchPriceListPrice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2587,7 +2603,7 @@ export interface operations {
    * Gets the calculated price for an item
    * @description Calculates the price for an item considering price list, discount list, quantity, and currency.
    */
-  GetPrice: {
+  Prices_GetPrice: {
     parameters: {
       query?: {
         priceListId?: string;
@@ -2624,7 +2640,7 @@ export interface operations {
    * Gets the final price for an item
    * @description Gets the final price for an item after all discounts and taxes in the specified currency.
    */
-  GetFinalPrice: {
+  Prices_GetFinalPrice: {
     parameters: {
       query?: {
         currencyId?: string;
@@ -2658,7 +2674,7 @@ export interface operations {
    * Gets total taxes for an item
    * @description Gets the total tax amount for an item in the specified currency.
    */
-  GetTotalTaxesInUsd: {
+  Prices_GetTotalTaxesInUsd: {
     parameters: {
       query?: {
         currencyId?: string;
@@ -2692,7 +2708,7 @@ export interface operations {
    * Gets total savings for an item
    * @description Gets the total savings amount for an item in the specified currency.
    */
-  GetTotalSavingsInUsd: {
+  Prices_GetTotalSavingsInUsd: {
     parameters: {
       query?: {
         currencyId?: string;
@@ -2726,7 +2742,7 @@ export interface operations {
    * Get all pricing rules
    * @description Retrieves all pricing rules for the specified tenant, with optional OData query options.
    */
-  GetPricingRules: {
+  PricingRules_GetPricingRules: {
     parameters: {
       query: {
         tenantId: string;
@@ -2770,7 +2786,7 @@ export interface operations {
    * Create a new pricing rule
    * @description Creates a new pricing rule for the specified tenant.
    */
-  CreatePricingRule: {
+  PricingRules_CreatePricingRule: {
     parameters: {
       query: {
         tenantId: string;
@@ -2814,7 +2830,7 @@ export interface operations {
    * Get pricing rule by ID
    * @description Retrieves a pricing rule by its unique identifier.
    */
-  GetPricingRuleById: {
+  PricingRules_GetPricingRuleById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2855,7 +2871,7 @@ export interface operations {
    * Delete a pricing rule
    * @description Deletes a pricing rule for the specified tenant and rule ID.
    */
-  DeletePricingRule: {
+  PricingRules_DeletePricingRule: {
     parameters: {
       query: {
         tenantId: string;
@@ -2893,7 +2909,7 @@ export interface operations {
    * Patch a pricing rule
    * @description Partially updates a pricing rule using a JSON Patch document.
    */
-  PatchPricingRule: {
+  PricingRules_PatchPricingRule: {
     parameters: {
       query: {
         tenantId: string;
@@ -2937,7 +2953,7 @@ export interface operations {
    * Counts pricing rules
    * @description Gets the count of pricing rules for the current tenant.
    */
-  GetPricingRulesCountAsync: {
+  PricingRules_GetPricingRulesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2974,7 +2990,7 @@ export interface operations {
    * Update a pricing rule
    * @description Updates an existing pricing rule for the specified tenant and rule ID.
    */
-  UpdatePricingRule: {
+  PricingRules_UpdatePricingRule: {
     parameters: {
       query: {
         tenantId: string;
@@ -3016,7 +3032,7 @@ export interface operations {
    * Gets all rounding policies
    * @description Retrieves all rounding policies for the current tenant with OData support.
    */
-  GetRoundingPoliciesAsync: {
+  RoundingPolicies_GetRoundingPolicies: {
     parameters: {
       query: {
         tenantId: string;
@@ -3060,7 +3076,7 @@ export interface operations {
    * Creates a rounding policy
    * @description Creates a new rounding policy for the current tenant.
    */
-  CreateRoundingPolicyAsync: {
+  RoundingPolicies_CreateRoundingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3104,7 +3120,7 @@ export interface operations {
    * Counts rounding policies
    * @description Gets the count of rounding policies for the current tenant.
    */
-  GetRoundingPoliciesCountAsync: {
+  RoundingPolicies_GetRoundingPoliciesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3148,7 +3164,7 @@ export interface operations {
    * Gets a rounding policy by ID
    * @description Retrieves the details of a rounding policy using its unique ID.
    */
-  GetRoundingPolicyByIdAsync: {
+  RoundingPolicies_GetRoundingPolicyById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3189,7 +3205,7 @@ export interface operations {
    * Updates a rounding policy
    * @description Updates the specified rounding policy.
    */
-  UpdateRoundingPolicyAsync: {
+  RoundingPolicies_UpdateRoundingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3236,7 +3252,7 @@ export interface operations {
    * Deletes a rounding policy
    * @description Deletes the specified rounding policy.
    */
-  DeleteRoundingPolicyAsync: {
+  RoundingPolicies_DeleteRoundingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -3277,7 +3293,7 @@ export interface operations {
    * Patches a rounding policy
    * @description Partially updates the specified rounding policy using a JSON Patch document.
    */
-  PatchRoundingPolicyAsync: {
+  RoundingPolicies_PatchRoundingPolicy: {
     parameters: {
       query: {
         tenantId: string;

@@ -10,707 +10,459 @@ export interface paths {
      * Get all bills of lading
      * @description Retrieves all bills of lading for the specified tenant.
      */
-    get: operations["GetBillsOfLadingAsync"];
+    get: operations["BillsOfLading_GetBillsOfLading"];
     /**
      * Create a bill of lading
      * @description Creates a new bill of lading for the specified tenant.
      */
-    post: operations["CreateBillOfLadingAsync"];
+    post: operations["BillsOfLading_CreateBillOfLading"];
   };
   "/api/v2/ShipmentsService/BillsOfLading/Count": {
     /**
      * Get bills of lading count
      * @description Returns the count of bills of lading for the specified tenant.
      */
-    get: operations["GetBillsOfLadingCountAsync"];
+    get: operations["BillsOfLading_GetBillsOfLadingCount"];
   };
   "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}": {
     /**
      * Get bill of lading by ID
      * @description Retrieves a specific bill of lading by its identifier.
      */
-    get: operations["GetBillOfLadingByIdAsync"];
+    get: operations["BillsOfLading_GetBillOfLadingById"];
     /**
      * Update a bill of lading
      * @description Updates an existing bill of lading.
      */
-    put: operations["UpdateBillOfLadingAsync"];
+    put: operations["BillsOfLading_UpdateBillOfLading"];
     /**
      * Delete a bill of lading
      * @description Deletes a bill of lading.
      */
-    delete: operations["DeleteBillOfLadingAsync"];
+    delete: operations["BillsOfLading_DeleteBillOfLading"];
     /**
      * Patch a bill of lading
      * @description Partially updates an existing bill of lading using JSON Patch.
      */
-    patch: operations["PatchBillOfLadingAsync"];
+    patch: operations["BillsOfLading_PatchBillOfLading"];
   };
   "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines": {
     /**
      * Get bill of lading lines
      * @description Retrieves all lines for a specific bill of lading.
      */
-    get: operations["GetBillOfLadingLinesAsync"];
+    get: operations["BillsOfLading_GetBillOfLadingLines"];
     /**
      * Create a bill of lading line
      * @description Creates a new line for a bill of lading.
      */
-    post: operations["CreateBillOfLadingLineAsync"];
+    post: operations["BillsOfLading_CreateBillOfLadingLine"];
   };
   "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/Count": {
     /**
      * Get bill of lading lines count
      * @description Returns the count of lines for a specific bill of lading.
      */
-    get: operations["GetBillOfLadingLinesCountAsync"];
+    get: operations["BillsOfLading_GetBillOfLadingLinesCount"];
   };
   "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}": {
     /**
      * Get bill of lading line by ID
      * @description Retrieves a specific line from a bill of lading.
      */
-    get: operations["GetBillOfLadingLineByIdAsync"];
+    get: operations["BillsOfLading_GetBillOfLadingLineById"];
     /**
      * Update a bill of lading line
      * @description Updates an existing line on a bill of lading.
      */
-    put: operations["UpdateBillOfLadingLineAsync"];
+    put: operations["BillsOfLading_UpdateBillOfLadingLine"];
     /**
      * Delete a bill of lading line
      * @description Deletes a line from a bill of lading.
      */
-    delete: operations["DeleteBillOfLadingLineAsync"];
+    delete: operations["BillsOfLading_DeleteBillOfLadingLine"];
     /**
      * Patch a bill of lading line
      * @description Partially updates an existing line on a bill of lading using JSON Patch.
      */
-    patch: operations["PatchBillOfLadingLineAsync"];
+    patch: operations["BillsOfLading_PatchBillOfLadingLine"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/ShipmentsService/ItemShippingPolicies": {
     /**
      * Get all item shipping policies
      * @description Retrieves all item shipping policies for the specified tenant.
      */
-    get: operations["GetItemShippingPoliciesAsync"];
+    get: operations["ItemShippingPolicies_GetItemShippingPolicies"];
     /**
      * Create an item shipping policy
      * @description Creates a new item shipping policy.
      */
-    post: operations["CreateItemShippingPolicyAsync"];
+    post: operations["ItemShippingPolicies_CreateItemShippingPolicy"];
   };
   "/api/v2/ShipmentsService/ItemShippingPolicies/Count": {
     /**
      * Get item shipping policies count
      * @description Returns the count of item shipping policies.
      */
-    get: operations["GetItemShippingPoliciesCountAsync"];
+    get: operations["ItemShippingPolicies_GetItemShippingPoliciesCount"];
   };
   "/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}": {
     /**
      * Get item shipping policy by ID
      * @description Retrieves a specific item shipping policy.
      */
-    get: operations["GetItemShippingPolicyByIdAsync"];
+    get: operations["ItemShippingPolicies_GetItemShippingPolicyById"];
     /**
      * Update an item shipping policy
      * @description Updates an existing item shipping policy.
      */
-    put: operations["UpdateItemShippingPolicyAsync"];
+    put: operations["ItemShippingPolicies_UpdateItemShippingPolicy"];
     /**
      * Delete an item shipping policy
      * @description Deletes an item shipping policy.
      */
-    delete: operations["DeleteItemShippingPolicyAsync"];
+    delete: operations["ItemShippingPolicies_DeleteItemShippingPolicy"];
     /**
      * Patch an item shipping policy
      * @description Partially updates an existing item shipping policy using JSON Patch.
      */
-    patch: operations["PatchItemShippingPolicyAsync"];
+    patch: operations["ItemShippingPolicies_PatchItemShippingPolicy"];
   };
   "/api/v2/ShipmentsService/Shipments": {
     /**
      * Get all shipments
      * @description Retrieves all shipments for the specified tenant.
      */
-    get: operations["GetShipmentsAsync"];
+    get: operations["Shipments_GetShipments"];
     /**
      * Create a shipment
      * @description Creates a new shipment for the specified tenant.
      */
-    post: operations["CreateShipmentAsync"];
+    post: operations["Shipments_CreateShipment"];
   };
   "/api/v2/ShipmentsService/Shipments/Count": {
     /**
      * Get shipments count
      * @description Returns the count of shipments for the specified tenant.
      */
-    get: operations["GetShipmentsCountAsync"];
+    get: operations["Shipments_GetShipmentsCount"];
   };
   "/api/v2/ShipmentsService/Shipments/{shipmentId}": {
     /**
      * Get shipment by ID
      * @description Retrieves a specific shipment by its ID.
      */
-    get: operations["GetShipmentByIdAsync"];
+    get: operations["Shipments_GetShipmentById"];
     /**
      * Update a shipment
      * @description Updates an existing shipment.
      */
-    put: operations["UpdateShipmentAsync"];
+    put: operations["Shipments_UpdateShipment"];
     /**
      * Delete a shipment
      * @description Deletes a shipment.
      */
-    delete: operations["DeleteShipmentAsync"];
+    delete: operations["Shipments_DeleteShipment"];
     /**
      * Patch a shipment
      * @description Partially updates an existing shipment using JSON Patch.
      */
-    patch: operations["PatchShipmentAsync"];
+    patch: operations["Shipments_PatchShipment"];
   };
   "/api/v2/ShipmentsService/ShippingClasses": {
     /**
      * Get all shipping classes
      * @description Retrieves all shipping classes for the specified tenant.
      */
-    get: operations["GetShippingClassesAsync"];
+    get: operations["ShippingClasses_GetShippingClasses"];
     /**
      * Create a shipping class
      * @description Creates a new shipping class.
      */
-    post: operations["CreateShippingClassAsync"];
+    post: operations["ShippingClasses_CreateShippingClass"];
   };
   "/api/v2/ShipmentsService/ShippingClasses/Count": {
     /**
      * Get shipping classes count
      * @description Returns the count of shipping classes.
      */
-    get: operations["GetShippingClassesCountAsync"];
+    get: operations["ShippingClasses_GetShippingClassesCount"];
   };
   "/api/v2/ShipmentsService/ShippingClasses/{classId}": {
     /**
      * Get shipping class by ID
      * @description Retrieves a specific shipping class.
      */
-    get: operations["GetShippingClassByIdAsync"];
+    get: operations["ShippingClasses_GetShippingClassById"];
     /**
      * Update a shipping class
      * @description Updates an existing shipping class.
      */
-    put: operations["UpdateShippingClassAsync"];
+    put: operations["ShippingClasses_UpdateShippingClass"];
     /**
      * Delete a shipping class
      * @description Deletes a shipping class.
      */
-    delete: operations["DeleteShippingClassAsync"];
+    delete: operations["ShippingClasses_DeleteShippingClass"];
     /**
      * Patch a shipping class
      * @description Partially updates an existing shipping class using JSON Patch.
      */
-    patch: operations["PatchShippingClassAsync"];
+    patch: operations["ShippingClasses_PatchShippingClass"];
   };
   "/api/v2/ShipmentsService/ShippingCouriers": {
     /**
      * Get all shipping couriers
      * @description Retrieves all shipping couriers for the specified tenant.
      */
-    get: operations["GetShippingCouriersAsync"];
+    get: operations["ShippingCouriers_GetShippingCouriers"];
     /**
      * Create a shipping courier
      * @description Creates a new shipping courier.
      */
-    post: operations["CreateShippingCourierAsync"];
+    post: operations["ShippingCouriers_CreateShippingCourier"];
   };
   "/api/v2/ShipmentsService/ShippingCouriers/Count": {
     /**
      * Get shipping couriers count
      * @description Returns the count of shipping couriers for the specified tenant.
      */
-    get: operations["GetShippingCouriersCountAsync"];
+    get: operations["ShippingCouriers_GetShippingCouriersCount"];
   };
   "/api/v2/ShipmentsService/ShippingCouriers/{courierId}": {
     /**
      * Get shipping courier by ID
      * @description Retrieves a specific shipping courier by its ID.
      */
-    get: operations["GetShippingCourierByIdAsync"];
+    get: operations["ShippingCouriers_GetShippingCourierById"];
     /**
      * Update a shipping courier
      * @description Updates an existing shipping courier.
      */
-    put: operations["UpdateShippingCourierAsync"];
+    put: operations["ShippingCouriers_UpdateShippingCourier"];
     /**
      * Delete a shipping courier
      * @description Deletes a shipping courier.
      */
-    delete: operations["DeleteShippingCourierAsync"];
+    delete: operations["ShippingCouriers_DeleteShippingCourier"];
     /**
      * Patch a shipping courier
      * @description Partially updates an existing shipping courier using JSON Patch.
      */
-    patch: operations["PatchShippingCourierAsync"];
+    patch: operations["ShippingCouriers_PatchShippingCourier"];
   };
   "/api/v2/ShipmentsService/ShippingLabels": {
     /**
      * Get all shipping labels
      * @description Retrieves all shipping labels for the specified tenant.
      */
-    get: operations["GetShippingLabelsAsync"];
+    get: operations["ShippingLabels_GetShippingLabels"];
     /**
      * Create a shipping label
      * @description Creates a new shipping label.
      */
-    post: operations["CreateShippingLabelAsync"];
+    post: operations["ShippingLabels_CreateShippingLabel"];
   };
   "/api/v2/ShipmentsService/ShippingLabels/Count": {
     /**
      * Get shipping labels count
      * @description Returns the count of shipping labels.
      */
-    get: operations["GetShippingLabelsCountAsync"];
+    get: operations["ShippingLabels_GetShippingLabelsCount"];
   };
   "/api/v2/ShipmentsService/ShippingLabels/{labelId}": {
     /**
      * Get shipping label by ID
      * @description Retrieves a specific shipping label.
      */
-    get: operations["GetShippingLabelByIdAsync"];
+    get: operations["ShippingLabels_GetShippingLabelById"];
     /**
      * Update a shipping label
      * @description Updates an existing shipping label.
      */
-    put: operations["UpdateShippingLabelAsync"];
+    put: operations["ShippingLabels_UpdateShippingLabel"];
     /**
      * Delete a shipping label
      * @description Deletes a shipping label.
      */
-    delete: operations["DeleteShippingLabelAsync"];
+    delete: operations["ShippingLabels_DeleteShippingLabel"];
     /**
      * Patch a shipping label
      * @description Partially updates an existing shipping label using JSON Patch.
      */
-    patch: operations["PatchShippingLabelAsync"];
+    patch: operations["ShippingLabels_PatchShippingLabel"];
   };
   "/api/v2/ShipmentsService/ShippingMethods": {
     /**
      * Get all shipping methods
      * @description Retrieves all shipping methods for the specified tenant.
      */
-    get: operations["GetShippingMethodsAsync"];
+    get: operations["ShippingMethods_GetShippingMethods"];
     /**
      * Create a shipping method
      * @description Creates a new shipping method.
      */
-    post: operations["CreateShippingMethodAsync"];
+    post: operations["ShippingMethods_CreateShippingMethod"];
   };
   "/api/v2/ShipmentsService/ShippingMethods/Count": {
     /**
      * Get shipping methods count
      * @description Returns the count of shipping methods.
      */
-    get: operations["GetShippingMethodsCountAsync"];
+    get: operations["ShippingMethods_GetShippingMethodsCount"];
   };
   "/api/v2/ShipmentsService/ShippingMethods/{methodId}": {
     /**
      * Get shipping method by ID
      * @description Retrieves a specific shipping method.
      */
-    get: operations["GetShippingMethodByIdAsync"];
+    get: operations["ShippingMethods_GetShippingMethodById"];
     /**
      * Update a shipping method
      * @description Updates an existing shipping method.
      */
-    put: operations["UpdateShippingMethodAsync"];
+    put: operations["ShippingMethods_UpdateShippingMethod"];
     /**
      * Delete a shipping method
      * @description Deletes a shipping method.
      */
-    delete: operations["DeleteShippingMethodAsync"];
+    delete: operations["ShippingMethods_DeleteShippingMethod"];
     /**
      * Patch a shipping method
      * @description Partially updates an existing shipping method using JSON Patch.
      */
-    patch: operations["PatchShippingMethodAsync"];
+    patch: operations["ShippingMethods_PatchShippingMethod"];
   };
   "/api/v2/ShipmentsService/ShippingRegions": {
     /**
      * Get all shipping regions
      * @description Retrieves all shipping regions for the specified tenant.
      */
-    get: operations["GetShippingRegionsAsync"];
+    get: operations["ShippingRegions_GetShippingRegions"];
     /**
      * Create a shipping region
      * @description Creates a new shipping region.
      */
-    post: operations["CreateShippingRegionAsync"];
+    post: operations["ShippingRegions_CreateShippingRegion"];
   };
   "/api/v2/ShipmentsService/ShippingRegions/Count": {
     /**
      * Get shipping regions count
      * @description Returns the count of shipping regions.
      */
-    get: operations["GetShippingRegionsCountAsync"];
+    get: operations["ShippingRegions_GetShippingRegionsCount"];
   };
   "/api/v2/ShipmentsService/ShippingRegions/{regionId}": {
     /**
      * Get shipping region by ID
      * @description Retrieves a specific shipping region.
      */
-    get: operations["GetShippingRegionByIdAsync"];
+    get: operations["ShippingRegions_GetShippingRegionById"];
     /**
      * Update a shipping region
      * @description Updates an existing shipping region.
      */
-    put: operations["UpdateShippingRegionAsync"];
+    put: operations["ShippingRegions_UpdateShippingRegion"];
     /**
      * Delete a shipping region
      * @description Deletes a shipping region.
      */
-    delete: operations["DeleteShippingRegionAsync"];
+    delete: operations["ShippingRegions_DeleteShippingRegion"];
     /**
      * Patch a shipping region
      * @description Partially updates an existing shipping region using JSON Patch.
      */
-    patch: operations["PatchShippingRegionAsync"];
+    patch: operations["ShippingRegions_PatchShippingRegion"];
   };
   "/api/v2/ShipmentsService/ShippingZones": {
     /**
      * Get all shipping zones
      * @description Retrieves all shipping zones for the specified tenant.
      */
-    get: operations["GetShippingZonesAsync"];
+    get: operations["ShippingZones_GetShippingZones"];
     /**
      * Create a shipping zone
      * @description Creates a new shipping zone.
      */
-    post: operations["CreateShippingZoneAsync"];
+    post: operations["ShippingZones_CreateShippingZone"];
   };
   "/api/v2/ShipmentsService/ShippingZones/Count": {
     /**
      * Get shipping zones count
      * @description Returns the count of shipping zones.
      */
-    get: operations["GetShippingZonesCountAsync"];
+    get: operations["ShippingZones_GetShippingZonesCount"];
   };
   "/api/v2/ShipmentsService/ShippingZones/{zoneId}": {
     /**
      * Get shipping zone by ID
      * @description Retrieves a specific shipping zone.
      */
-    get: operations["GetShippingZoneByIdAsync"];
+    get: operations["ShippingZones_GetShippingZoneById"];
     /**
      * Update a shipping zone
      * @description Updates an existing shipping zone.
      */
-    put: operations["UpdateShippingZoneAsync"];
+    put: operations["ShippingZones_UpdateShippingZone"];
     /**
      * Delete a shipping zone
      * @description Deletes a shipping zone.
      */
-    delete: operations["DeleteShippingZoneAsync"];
+    delete: operations["ShippingZones_DeleteShippingZone"];
     /**
      * Patch a shipping zone
      * @description Partially updates an existing shipping zone using JSON Patch.
      */
-    patch: operations["PatchShippingZoneAsync"];
+    patch: operations["ShippingZones_PatchShippingZone"];
   };
 }
 
@@ -1786,7 +1538,7 @@ export interface operations {
    * Get all bills of lading
    * @description Retrieves all bills of lading for the specified tenant.
    */
-  GetBillsOfLadingAsync: {
+  BillsOfLading_GetBillsOfLading: {
     parameters: {
       query: {
         tenantId: string;
@@ -1830,7 +1582,7 @@ export interface operations {
    * Create a bill of lading
    * @description Creates a new bill of lading for the specified tenant.
    */
-  CreateBillOfLadingAsync: {
+  BillsOfLading_CreateBillOfLading: {
     parameters: {
       query: {
         tenantId: string;
@@ -1867,7 +1619,7 @@ export interface operations {
    * Get bills of lading count
    * @description Returns the count of bills of lading for the specified tenant.
    */
-  GetBillsOfLadingCountAsync: {
+  BillsOfLading_GetBillsOfLadingCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -1904,7 +1656,7 @@ export interface operations {
    * Get bill of lading by ID
    * @description Retrieves a specific bill of lading by its identifier.
    */
-  GetBillOfLadingByIdAsync: {
+  BillsOfLading_GetBillOfLadingById: {
     parameters: {
       query: {
         tenantId: string;
@@ -1938,7 +1690,7 @@ export interface operations {
    * Update a bill of lading
    * @description Updates an existing bill of lading.
    */
-  UpdateBillOfLadingAsync: {
+  BillsOfLading_UpdateBillOfLading: {
     parameters: {
       query: {
         tenantId: string;
@@ -1978,7 +1730,7 @@ export interface operations {
    * Delete a bill of lading
    * @description Deletes a bill of lading.
    */
-  DeleteBillOfLadingAsync: {
+  BillsOfLading_DeleteBillOfLading: {
     parameters: {
       query: {
         tenantId: string;
@@ -2012,7 +1764,7 @@ export interface operations {
    * Patch a bill of lading
    * @description Partially updates an existing bill of lading using JSON Patch.
    */
-  PatchBillOfLadingAsync: {
+  BillsOfLading_PatchBillOfLading: {
     parameters: {
       query: {
         tenantId: string;
@@ -2066,7 +1818,7 @@ export interface operations {
    * Get bill of lading lines
    * @description Retrieves all lines for a specific bill of lading.
    */
-  GetBillOfLadingLinesAsync: {
+  BillsOfLading_GetBillOfLadingLines: {
     parameters: {
       query: {
         tenantId: string;
@@ -2106,7 +1858,7 @@ export interface operations {
    * Create a bill of lading line
    * @description Creates a new line for a bill of lading.
    */
-  CreateBillOfLadingLineAsync: {
+  BillsOfLading_CreateBillOfLadingLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2146,7 +1898,7 @@ export interface operations {
    * Get bill of lading lines count
    * @description Returns the count of lines for a specific bill of lading.
    */
-  GetBillOfLadingLinesCountAsync: {
+  BillsOfLading_GetBillOfLadingLinesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2179,7 +1931,7 @@ export interface operations {
    * Get bill of lading line by ID
    * @description Retrieves a specific line from a bill of lading.
    */
-  GetBillOfLadingLineByIdAsync: {
+  BillsOfLading_GetBillOfLadingLineById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2214,7 +1966,7 @@ export interface operations {
    * Update a bill of lading line
    * @description Updates an existing line on a bill of lading.
    */
-  UpdateBillOfLadingLineAsync: {
+  BillsOfLading_UpdateBillOfLadingLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2255,7 +2007,7 @@ export interface operations {
    * Delete a bill of lading line
    * @description Deletes a line from a bill of lading.
    */
-  DeleteBillOfLadingLineAsync: {
+  BillsOfLading_DeleteBillOfLadingLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2290,7 +2042,7 @@ export interface operations {
    * Patch a bill of lading line
    * @description Partially updates an existing line on a bill of lading using JSON Patch.
    */
-  PatchBillOfLadingLineAsync: {
+  BillsOfLading_PatchBillOfLadingLine: {
     parameters: {
       query: {
         tenantId: string;
@@ -2341,7 +2093,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2356,11 +2187,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all item shipping policies
    * @description Retrieves all item shipping policies for the specified tenant.
    */
-  GetItemShippingPoliciesAsync: {
+  ItemShippingPolicies_GetItemShippingPolicies: {
     parameters: {
       query: {
         tenantId: string;
@@ -2404,7 +2420,7 @@ export interface operations {
    * Create an item shipping policy
    * @description Creates a new item shipping policy.
    */
-  CreateItemShippingPolicyAsync: {
+  ItemShippingPolicies_CreateItemShippingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -2438,7 +2454,7 @@ export interface operations {
    * Get item shipping policies count
    * @description Returns the count of item shipping policies.
    */
-  GetItemShippingPoliciesCountAsync: {
+  ItemShippingPolicies_GetItemShippingPoliciesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2468,7 +2484,7 @@ export interface operations {
    * Get item shipping policy by ID
    * @description Retrieves a specific item shipping policy.
    */
-  GetItemShippingPolicyByIdAsync: {
+  ItemShippingPolicies_GetItemShippingPolicyById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2502,7 +2518,7 @@ export interface operations {
    * Update an item shipping policy
    * @description Updates an existing item shipping policy.
    */
-  UpdateItemShippingPolicyAsync: {
+  ItemShippingPolicies_UpdateItemShippingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -2539,7 +2555,7 @@ export interface operations {
    * Delete an item shipping policy
    * @description Deletes an item shipping policy.
    */
-  DeleteItemShippingPolicyAsync: {
+  ItemShippingPolicies_DeleteItemShippingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -2570,7 +2586,7 @@ export interface operations {
    * Patch an item shipping policy
    * @description Partially updates an existing item shipping policy using JSON Patch.
    */
-  PatchItemShippingPolicyAsync: {
+  ItemShippingPolicies_PatchItemShippingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -2624,7 +2640,7 @@ export interface operations {
    * Get all shipments
    * @description Retrieves all shipments for the specified tenant.
    */
-  GetShipmentsAsync: {
+  Shipments_GetShipments: {
     parameters: {
       query: {
         tenantId: string;
@@ -2668,7 +2684,7 @@ export interface operations {
    * Create a shipment
    * @description Creates a new shipment for the specified tenant.
    */
-  CreateShipmentAsync: {
+  Shipments_CreateShipment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2702,7 +2718,7 @@ export interface operations {
    * Get shipments count
    * @description Returns the count of shipments for the specified tenant.
    */
-  GetShipmentsCountAsync: {
+  Shipments_GetShipmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -2739,7 +2755,7 @@ export interface operations {
    * Get shipment by ID
    * @description Retrieves a specific shipment by its ID.
    */
-  GetShipmentByIdAsync: {
+  Shipments_GetShipmentById: {
     parameters: {
       query: {
         tenantId: string;
@@ -2773,7 +2789,7 @@ export interface operations {
    * Update a shipment
    * @description Updates an existing shipment.
    */
-  UpdateShipmentAsync: {
+  Shipments_UpdateShipment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2810,7 +2826,7 @@ export interface operations {
    * Delete a shipment
    * @description Deletes a shipment.
    */
-  DeleteShipmentAsync: {
+  Shipments_DeleteShipment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2841,7 +2857,7 @@ export interface operations {
    * Patch a shipment
    * @description Partially updates an existing shipment using JSON Patch.
    */
-  PatchShipmentAsync: {
+  Shipments_PatchShipment: {
     parameters: {
       query: {
         tenantId: string;
@@ -2895,7 +2911,7 @@ export interface operations {
    * Get all shipping classes
    * @description Retrieves all shipping classes for the specified tenant.
    */
-  GetShippingClassesAsync: {
+  ShippingClasses_GetShippingClasses: {
     parameters: {
       query: {
         tenantId: string;
@@ -2939,7 +2955,7 @@ export interface operations {
    * Create a shipping class
    * @description Creates a new shipping class.
    */
-  CreateShippingClassAsync: {
+  ShippingClasses_CreateShippingClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -2973,7 +2989,7 @@ export interface operations {
    * Get shipping classes count
    * @description Returns the count of shipping classes.
    */
-  GetShippingClassesCountAsync: {
+  ShippingClasses_GetShippingClassesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3003,7 +3019,7 @@ export interface operations {
    * Get shipping class by ID
    * @description Retrieves a specific shipping class.
    */
-  GetShippingClassByIdAsync: {
+  ShippingClasses_GetShippingClassById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3037,7 +3053,7 @@ export interface operations {
    * Update a shipping class
    * @description Updates an existing shipping class.
    */
-  UpdateShippingClassAsync: {
+  ShippingClasses_UpdateShippingClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -3074,7 +3090,7 @@ export interface operations {
    * Delete a shipping class
    * @description Deletes a shipping class.
    */
-  DeleteShippingClassAsync: {
+  ShippingClasses_DeleteShippingClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -3105,7 +3121,7 @@ export interface operations {
    * Patch a shipping class
    * @description Partially updates an existing shipping class using JSON Patch.
    */
-  PatchShippingClassAsync: {
+  ShippingClasses_PatchShippingClass: {
     parameters: {
       query: {
         tenantId: string;
@@ -3159,7 +3175,7 @@ export interface operations {
    * Get all shipping couriers
    * @description Retrieves all shipping couriers for the specified tenant.
    */
-  GetShippingCouriersAsync: {
+  ShippingCouriers_GetShippingCouriers: {
     parameters: {
       query: {
         tenantId: string;
@@ -3203,7 +3219,7 @@ export interface operations {
    * Create a shipping courier
    * @description Creates a new shipping courier.
    */
-  CreateShippingCourierAsync: {
+  ShippingCouriers_CreateShippingCourier: {
     parameters: {
       query: {
         tenantId: string;
@@ -3237,7 +3253,7 @@ export interface operations {
    * Get shipping couriers count
    * @description Returns the count of shipping couriers for the specified tenant.
    */
-  GetShippingCouriersCountAsync: {
+  ShippingCouriers_GetShippingCouriersCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3274,7 +3290,7 @@ export interface operations {
    * Get shipping courier by ID
    * @description Retrieves a specific shipping courier by its ID.
    */
-  GetShippingCourierByIdAsync: {
+  ShippingCouriers_GetShippingCourierById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3308,7 +3324,7 @@ export interface operations {
    * Update a shipping courier
    * @description Updates an existing shipping courier.
    */
-  UpdateShippingCourierAsync: {
+  ShippingCouriers_UpdateShippingCourier: {
     parameters: {
       query: {
         tenantId: string;
@@ -3345,7 +3361,7 @@ export interface operations {
    * Delete a shipping courier
    * @description Deletes a shipping courier.
    */
-  DeleteShippingCourierAsync: {
+  ShippingCouriers_DeleteShippingCourier: {
     parameters: {
       query: {
         tenantId: string;
@@ -3376,7 +3392,7 @@ export interface operations {
    * Patch a shipping courier
    * @description Partially updates an existing shipping courier using JSON Patch.
    */
-  PatchShippingCourierAsync: {
+  ShippingCouriers_PatchShippingCourier: {
     parameters: {
       query: {
         tenantId: string;
@@ -3430,7 +3446,7 @@ export interface operations {
    * Get all shipping labels
    * @description Retrieves all shipping labels for the specified tenant.
    */
-  GetShippingLabelsAsync: {
+  ShippingLabels_GetShippingLabels: {
     parameters: {
       query: {
         tenantId: string;
@@ -3474,7 +3490,7 @@ export interface operations {
    * Create a shipping label
    * @description Creates a new shipping label.
    */
-  CreateShippingLabelAsync: {
+  ShippingLabels_CreateShippingLabel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3508,7 +3524,7 @@ export interface operations {
    * Get shipping labels count
    * @description Returns the count of shipping labels.
    */
-  GetShippingLabelsCountAsync: {
+  ShippingLabels_GetShippingLabelsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3538,7 +3554,7 @@ export interface operations {
    * Get shipping label by ID
    * @description Retrieves a specific shipping label.
    */
-  GetShippingLabelByIdAsync: {
+  ShippingLabels_GetShippingLabelById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3572,7 +3588,7 @@ export interface operations {
    * Update a shipping label
    * @description Updates an existing shipping label.
    */
-  UpdateShippingLabelAsync: {
+  ShippingLabels_UpdateShippingLabel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3609,7 +3625,7 @@ export interface operations {
    * Delete a shipping label
    * @description Deletes a shipping label.
    */
-  DeleteShippingLabelAsync: {
+  ShippingLabels_DeleteShippingLabel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3640,7 +3656,7 @@ export interface operations {
    * Patch a shipping label
    * @description Partially updates an existing shipping label using JSON Patch.
    */
-  PatchShippingLabelAsync: {
+  ShippingLabels_PatchShippingLabel: {
     parameters: {
       query: {
         tenantId: string;
@@ -3694,7 +3710,7 @@ export interface operations {
    * Get all shipping methods
    * @description Retrieves all shipping methods for the specified tenant.
    */
-  GetShippingMethodsAsync: {
+  ShippingMethods_GetShippingMethods: {
     parameters: {
       query: {
         tenantId: string;
@@ -3738,7 +3754,7 @@ export interface operations {
    * Create a shipping method
    * @description Creates a new shipping method.
    */
-  CreateShippingMethodAsync: {
+  ShippingMethods_CreateShippingMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -3772,7 +3788,7 @@ export interface operations {
    * Get shipping methods count
    * @description Returns the count of shipping methods.
    */
-  GetShippingMethodsCountAsync: {
+  ShippingMethods_GetShippingMethodsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -3802,7 +3818,7 @@ export interface operations {
    * Get shipping method by ID
    * @description Retrieves a specific shipping method.
    */
-  GetShippingMethodByIdAsync: {
+  ShippingMethods_GetShippingMethodById: {
     parameters: {
       query: {
         tenantId: string;
@@ -3836,7 +3852,7 @@ export interface operations {
    * Update a shipping method
    * @description Updates an existing shipping method.
    */
-  UpdateShippingMethodAsync: {
+  ShippingMethods_UpdateShippingMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -3873,7 +3889,7 @@ export interface operations {
    * Delete a shipping method
    * @description Deletes a shipping method.
    */
-  DeleteShippingMethodAsync: {
+  ShippingMethods_DeleteShippingMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -3904,7 +3920,7 @@ export interface operations {
    * Patch a shipping method
    * @description Partially updates an existing shipping method using JSON Patch.
    */
-  PatchShippingMethodAsync: {
+  ShippingMethods_PatchShippingMethod: {
     parameters: {
       query: {
         tenantId: string;
@@ -3958,7 +3974,7 @@ export interface operations {
    * Get all shipping regions
    * @description Retrieves all shipping regions for the specified tenant.
    */
-  GetShippingRegionsAsync: {
+  ShippingRegions_GetShippingRegions: {
     parameters: {
       query: {
         tenantId: string;
@@ -4002,7 +4018,7 @@ export interface operations {
    * Create a shipping region
    * @description Creates a new shipping region.
    */
-  CreateShippingRegionAsync: {
+  ShippingRegions_CreateShippingRegion: {
     parameters: {
       query: {
         tenantId: string;
@@ -4036,7 +4052,7 @@ export interface operations {
    * Get shipping regions count
    * @description Returns the count of shipping regions.
    */
-  GetShippingRegionsCountAsync: {
+  ShippingRegions_GetShippingRegionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4066,7 +4082,7 @@ export interface operations {
    * Get shipping region by ID
    * @description Retrieves a specific shipping region.
    */
-  GetShippingRegionByIdAsync: {
+  ShippingRegions_GetShippingRegionById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4100,7 +4116,7 @@ export interface operations {
    * Update a shipping region
    * @description Updates an existing shipping region.
    */
-  UpdateShippingRegionAsync: {
+  ShippingRegions_UpdateShippingRegion: {
     parameters: {
       query: {
         tenantId: string;
@@ -4137,7 +4153,7 @@ export interface operations {
    * Delete a shipping region
    * @description Deletes a shipping region.
    */
-  DeleteShippingRegionAsync: {
+  ShippingRegions_DeleteShippingRegion: {
     parameters: {
       query: {
         tenantId: string;
@@ -4168,7 +4184,7 @@ export interface operations {
    * Patch a shipping region
    * @description Partially updates an existing shipping region using JSON Patch.
    */
-  PatchShippingRegionAsync: {
+  ShippingRegions_PatchShippingRegion: {
     parameters: {
       query: {
         tenantId: string;
@@ -4222,7 +4238,7 @@ export interface operations {
    * Get all shipping zones
    * @description Retrieves all shipping zones for the specified tenant.
    */
-  GetShippingZonesAsync: {
+  ShippingZones_GetShippingZones: {
     parameters: {
       query: {
         tenantId: string;
@@ -4266,7 +4282,7 @@ export interface operations {
    * Create a shipping zone
    * @description Creates a new shipping zone.
    */
-  CreateShippingZoneAsync: {
+  ShippingZones_CreateShippingZone: {
     parameters: {
       query: {
         tenantId: string;
@@ -4300,7 +4316,7 @@ export interface operations {
    * Get shipping zones count
    * @description Returns the count of shipping zones.
    */
-  GetShippingZonesCountAsync: {
+  ShippingZones_GetShippingZonesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4330,7 +4346,7 @@ export interface operations {
    * Get shipping zone by ID
    * @description Retrieves a specific shipping zone.
    */
-  GetShippingZoneByIdAsync: {
+  ShippingZones_GetShippingZoneById: {
     parameters: {
       query: {
         tenantId: string;
@@ -4364,7 +4380,7 @@ export interface operations {
    * Update a shipping zone
    * @description Updates an existing shipping zone.
    */
-  UpdateShippingZoneAsync: {
+  ShippingZones_UpdateShippingZone: {
     parameters: {
       query: {
         tenantId: string;
@@ -4401,7 +4417,7 @@ export interface operations {
    * Delete a shipping zone
    * @description Deletes a shipping zone.
    */
-  DeleteShippingZoneAsync: {
+  ShippingZones_DeleteShippingZone: {
     parameters: {
       query: {
         tenantId: string;
@@ -4432,7 +4448,7 @@ export interface operations {
    * Patch a shipping zone
    * @description Partially updates an existing shipping zone using JSON Patch.
    */
-  PatchShippingZoneAsync: {
+  ShippingZones_PatchShippingZone: {
     parameters: {
       query: {
         tenantId: string;

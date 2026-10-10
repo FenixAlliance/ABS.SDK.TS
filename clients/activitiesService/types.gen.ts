@@ -473,7 +473,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetActivityFeedsAsyncData = {
+export type ActivityFeedsGetActivityFeedsData = {
     body?: ActivityFeedDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -486,7 +486,7 @@ export type GetActivityFeedsAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds';
 };
 
-export type GetActivityFeedsAsyncErrors = {
+export type ActivityFeedsGetActivityFeedsErrors = {
     /**
      * Unauthorized
      */
@@ -497,18 +497,18 @@ export type GetActivityFeedsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityFeedsAsyncError = GetActivityFeedsAsyncErrors[keyof GetActivityFeedsAsyncErrors];
+export type ActivityFeedsGetActivityFeedsError = ActivityFeedsGetActivityFeedsErrors[keyof ActivityFeedsGetActivityFeedsErrors];
 
-export type GetActivityFeedsAsyncResponses = {
+export type ActivityFeedsGetActivityFeedsResponses = {
     /**
      * OK
      */
     200: ActivityFeedDtoListEnvelopeReadable;
 };
 
-export type GetActivityFeedsAsyncResponse = GetActivityFeedsAsyncResponses[keyof GetActivityFeedsAsyncResponses];
+export type ActivityFeedsGetActivityFeedsResponse = ActivityFeedsGetActivityFeedsResponses[keyof ActivityFeedsGetActivityFeedsResponses];
 
-export type GetActivityFeedsCountAsyncData = {
+export type ActivityFeedsGetActivityFeedsCountData = {
     body?: ActivityFeedDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -521,7 +521,7 @@ export type GetActivityFeedsCountAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/Count';
 };
 
-export type GetActivityFeedsCountAsyncErrors = {
+export type ActivityFeedsGetActivityFeedsCountErrors = {
     /**
      * Unauthorized
      */
@@ -532,18 +532,18 @@ export type GetActivityFeedsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityFeedsCountAsyncError = GetActivityFeedsCountAsyncErrors[keyof GetActivityFeedsCountAsyncErrors];
+export type ActivityFeedsGetActivityFeedsCountError = ActivityFeedsGetActivityFeedsCountErrors[keyof ActivityFeedsGetActivityFeedsCountErrors];
 
-export type GetActivityFeedsCountAsyncResponses = {
+export type ActivityFeedsGetActivityFeedsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetActivityFeedsCountAsyncResponse = GetActivityFeedsCountAsyncResponses[keyof GetActivityFeedsCountAsyncResponses];
+export type ActivityFeedsGetActivityFeedsCountResponse = ActivityFeedsGetActivityFeedsCountResponses[keyof ActivityFeedsGetActivityFeedsCountResponses];
 
-export type GetActivityFeedAsyncData = {
+export type ActivityFeedsGetActivityFeedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -558,7 +558,7 @@ export type GetActivityFeedAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}';
 };
 
-export type GetActivityFeedAsyncErrors = {
+export type ActivityFeedsGetActivityFeedErrors = {
     /**
      * Unauthorized
      */
@@ -569,18 +569,18 @@ export type GetActivityFeedAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityFeedAsyncError = GetActivityFeedAsyncErrors[keyof GetActivityFeedAsyncErrors];
+export type ActivityFeedsGetActivityFeedError = ActivityFeedsGetActivityFeedErrors[keyof ActivityFeedsGetActivityFeedErrors];
 
-export type GetActivityFeedAsyncResponses = {
+export type ActivityFeedsGetActivityFeedResponses = {
     /**
      * OK
      */
     200: ActivityFeedDtoEnvelopeReadable;
 };
 
-export type GetActivityFeedAsyncResponse = GetActivityFeedAsyncResponses[keyof GetActivityFeedAsyncResponses];
+export type ActivityFeedsGetActivityFeedResponse = ActivityFeedsGetActivityFeedResponses[keyof ActivityFeedsGetActivityFeedResponses];
 
-export type GetActivitiesAsyncData = {
+export type ActivityFeedsGetActivitiesData = {
     body?: ActivityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -595,7 +595,7 @@ export type GetActivitiesAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities';
 };
 
-export type GetActivitiesAsyncErrors = {
+export type ActivityFeedsGetActivitiesErrors = {
     /**
      * Unauthorized
      */
@@ -606,18 +606,18 @@ export type GetActivitiesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivitiesAsyncError = GetActivitiesAsyncErrors[keyof GetActivitiesAsyncErrors];
+export type ActivityFeedsGetActivitiesError = ActivityFeedsGetActivitiesErrors[keyof ActivityFeedsGetActivitiesErrors];
 
-export type GetActivitiesAsyncResponses = {
+export type ActivityFeedsGetActivitiesResponses = {
     /**
      * OK
      */
     200: ActivityRecordDtoListEnvelopeReadable;
 };
 
-export type GetActivitiesAsyncResponse = GetActivitiesAsyncResponses[keyof GetActivitiesAsyncResponses];
+export type ActivityFeedsGetActivitiesResponse = ActivityFeedsGetActivitiesResponses[keyof ActivityFeedsGetActivitiesResponses];
 
-export type CreateActivityAsyncData = {
+export type ActivityFeedsCreateActivityData = {
     body?: ActivityRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -632,7 +632,7 @@ export type CreateActivityAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities';
 };
 
-export type CreateActivityAsyncErrors = {
+export type ActivityFeedsCreateActivityErrors = {
     /**
      * Unauthorized
      */
@@ -643,18 +643,18 @@ export type CreateActivityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateActivityAsyncError = CreateActivityAsyncErrors[keyof CreateActivityAsyncErrors];
+export type ActivityFeedsCreateActivityError = ActivityFeedsCreateActivityErrors[keyof ActivityFeedsCreateActivityErrors];
 
-export type CreateActivityAsyncResponses = {
+export type ActivityFeedsCreateActivityResponses = {
     /**
      * Created
      */
     201: ActivityRecordDtoEnvelopeReadable;
 };
 
-export type CreateActivityAsyncResponse = CreateActivityAsyncResponses[keyof CreateActivityAsyncResponses];
+export type ActivityFeedsCreateActivityResponse = ActivityFeedsCreateActivityResponses[keyof ActivityFeedsCreateActivityResponses];
 
-export type GetActivitiesCountAsyncData = {
+export type ActivityFeedsGetActivitiesCountData = {
     body?: ActivityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -669,7 +669,7 @@ export type GetActivitiesCountAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/Count';
 };
 
-export type GetActivitiesCountAsyncErrors = {
+export type ActivityFeedsGetActivitiesCountErrors = {
     /**
      * Unauthorized
      */
@@ -680,18 +680,18 @@ export type GetActivitiesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivitiesCountAsyncError = GetActivitiesCountAsyncErrors[keyof GetActivitiesCountAsyncErrors];
+export type ActivityFeedsGetActivitiesCountError = ActivityFeedsGetActivitiesCountErrors[keyof ActivityFeedsGetActivitiesCountErrors];
 
-export type GetActivitiesCountAsyncResponses = {
+export type ActivityFeedsGetActivitiesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetActivitiesCountAsyncResponse = GetActivitiesCountAsyncResponses[keyof GetActivitiesCountAsyncResponses];
+export type ActivityFeedsGetActivitiesCountResponse = ActivityFeedsGetActivitiesCountResponses[keyof ActivityFeedsGetActivitiesCountResponses];
 
-export type DeleteActivityAsyncData = {
+export type ActivityFeedsDeleteActivityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -707,7 +707,7 @@ export type DeleteActivityAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/{activityId}';
 };
 
-export type DeleteActivityAsyncErrors = {
+export type ActivityFeedsDeleteActivityErrors = {
     /**
      * Unauthorized
      */
@@ -718,18 +718,18 @@ export type DeleteActivityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteActivityAsyncError = DeleteActivityAsyncErrors[keyof DeleteActivityAsyncErrors];
+export type ActivityFeedsDeleteActivityError = ActivityFeedsDeleteActivityErrors[keyof ActivityFeedsDeleteActivityErrors];
 
-export type DeleteActivityAsyncResponses = {
+export type ActivityFeedsDeleteActivityResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteActivityAsyncResponse = DeleteActivityAsyncResponses[keyof DeleteActivityAsyncResponses];
+export type ActivityFeedsDeleteActivityResponse = ActivityFeedsDeleteActivityResponses[keyof ActivityFeedsDeleteActivityResponses];
 
-export type GetActivityAsyncData = {
+export type ActivityFeedsGetActivityData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -745,7 +745,7 @@ export type GetActivityAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/{activityId}';
 };
 
-export type GetActivityAsyncErrors = {
+export type ActivityFeedsGetActivityErrors = {
     /**
      * Unauthorized
      */
@@ -756,18 +756,18 @@ export type GetActivityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityAsyncError = GetActivityAsyncErrors[keyof GetActivityAsyncErrors];
+export type ActivityFeedsGetActivityError = ActivityFeedsGetActivityErrors[keyof ActivityFeedsGetActivityErrors];
 
-export type GetActivityAsyncResponses = {
+export type ActivityFeedsGetActivityResponses = {
     /**
      * OK
      */
     200: ActivityRecordDtoEnvelopeReadable;
 };
 
-export type GetActivityAsyncResponse = GetActivityAsyncResponses[keyof GetActivityAsyncResponses];
+export type ActivityFeedsGetActivityResponse = ActivityFeedsGetActivityResponses[keyof ActivityFeedsGetActivityResponses];
 
-export type PatchActivityAsyncData = {
+export type ActivityFeedsPatchActivityData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -783,7 +783,7 @@ export type PatchActivityAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/{activityId}';
 };
 
-export type PatchActivityAsyncErrors = {
+export type ActivityFeedsPatchActivityErrors = {
     /**
      * Unauthorized
      */
@@ -794,18 +794,18 @@ export type PatchActivityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchActivityAsyncError = PatchActivityAsyncErrors[keyof PatchActivityAsyncErrors];
+export type ActivityFeedsPatchActivityError = ActivityFeedsPatchActivityErrors[keyof ActivityFeedsPatchActivityErrors];
 
-export type PatchActivityAsyncResponses = {
+export type ActivityFeedsPatchActivityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchActivityAsyncResponse = PatchActivityAsyncResponses[keyof PatchActivityAsyncResponses];
+export type ActivityFeedsPatchActivityResponse = ActivityFeedsPatchActivityResponses[keyof ActivityFeedsPatchActivityResponses];
 
-export type UpdateActivityAsyncData = {
+export type ActivityFeedsUpdateActivityData = {
     body?: ActivityRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -821,7 +821,7 @@ export type UpdateActivityAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/{activityId}';
 };
 
-export type UpdateActivityAsyncErrors = {
+export type ActivityFeedsUpdateActivityErrors = {
     /**
      * Unauthorized
      */
@@ -832,18 +832,18 @@ export type UpdateActivityAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateActivityAsyncError = UpdateActivityAsyncErrors[keyof UpdateActivityAsyncErrors];
+export type ActivityFeedsUpdateActivityError = ActivityFeedsUpdateActivityErrors[keyof ActivityFeedsUpdateActivityErrors];
 
-export type UpdateActivityAsyncResponses = {
+export type ActivityFeedsUpdateActivityResponses = {
     /**
      * OK
      */
     200: ActivityRecordDtoEnvelopeReadable;
 };
 
-export type UpdateActivityAsyncResponse = UpdateActivityAsyncResponses[keyof UpdateActivityAsyncResponses];
+export type ActivityFeedsUpdateActivityResponse = ActivityFeedsUpdateActivityResponses[keyof ActivityFeedsUpdateActivityResponses];
 
-export type GetActivityRecordsCountAsyncData = {
+export type ActivityFeedsGetActivityRecordsCountData = {
     body?: ActivityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -856,7 +856,7 @@ export type GetActivityRecordsCountAsyncData = {
     url: '/api/v2/ActivitiesService/Activities/Count';
 };
 
-export type GetActivityRecordsCountAsyncErrors = {
+export type ActivityFeedsGetActivityRecordsCountErrors = {
     /**
      * Unauthorized
      */
@@ -867,18 +867,18 @@ export type GetActivityRecordsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityRecordsCountAsyncError = GetActivityRecordsCountAsyncErrors[keyof GetActivityRecordsCountAsyncErrors];
+export type ActivityFeedsGetActivityRecordsCountError = ActivityFeedsGetActivityRecordsCountErrors[keyof ActivityFeedsGetActivityRecordsCountErrors];
 
-export type GetActivityRecordsCountAsyncResponses = {
+export type ActivityFeedsGetActivityRecordsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetActivityRecordsCountAsyncResponse = GetActivityRecordsCountAsyncResponses[keyof GetActivityRecordsCountAsyncResponses];
+export type ActivityFeedsGetActivityRecordsCountResponse = ActivityFeedsGetActivityRecordsCountResponses[keyof ActivityFeedsGetActivityRecordsCountResponses];
 
-export type GetActivityTypesAsyncData = {
+export type ActivityFeedsGetActivityTypesData = {
     body?: ActivityTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -891,7 +891,7 @@ export type GetActivityTypesAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes';
 };
 
-export type GetActivityTypesAsyncErrors = {
+export type ActivityFeedsGetActivityTypesErrors = {
     /**
      * Unauthorized
      */
@@ -902,18 +902,18 @@ export type GetActivityTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityTypesAsyncError = GetActivityTypesAsyncErrors[keyof GetActivityTypesAsyncErrors];
+export type ActivityFeedsGetActivityTypesError = ActivityFeedsGetActivityTypesErrors[keyof ActivityFeedsGetActivityTypesErrors];
 
-export type GetActivityTypesAsyncResponses = {
+export type ActivityFeedsGetActivityTypesResponses = {
     /**
      * OK
      */
     200: ActivityTypeDtoListEnvelopeReadable;
 };
 
-export type GetActivityTypesAsyncResponse = GetActivityTypesAsyncResponses[keyof GetActivityTypesAsyncResponses];
+export type ActivityFeedsGetActivityTypesResponse = ActivityFeedsGetActivityTypesResponses[keyof ActivityFeedsGetActivityTypesResponses];
 
-export type CreateActivityTypeAsyncData = {
+export type ActivityFeedsCreateActivityTypeData = {
     body?: ActivityTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -926,7 +926,7 @@ export type CreateActivityTypeAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes';
 };
 
-export type CreateActivityTypeAsyncErrors = {
+export type ActivityFeedsCreateActivityTypeErrors = {
     /**
      * Unauthorized
      */
@@ -937,18 +937,18 @@ export type CreateActivityTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateActivityTypeAsyncError = CreateActivityTypeAsyncErrors[keyof CreateActivityTypeAsyncErrors];
+export type ActivityFeedsCreateActivityTypeError = ActivityFeedsCreateActivityTypeErrors[keyof ActivityFeedsCreateActivityTypeErrors];
 
-export type CreateActivityTypeAsyncResponses = {
+export type ActivityFeedsCreateActivityTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type CreateActivityTypeAsyncResponse = CreateActivityTypeAsyncResponses[keyof CreateActivityTypeAsyncResponses];
+export type ActivityFeedsCreateActivityTypeResponse = ActivityFeedsCreateActivityTypeResponses[keyof ActivityFeedsCreateActivityTypeResponses];
 
-export type CountActivityTypesAsyncData = {
+export type ActivityFeedsCountActivityTypesData = {
     body?: ActivityTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -961,7 +961,7 @@ export type CountActivityTypesAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes/Count';
 };
 
-export type CountActivityTypesAsyncErrors = {
+export type ActivityFeedsCountActivityTypesErrors = {
     /**
      * Unauthorized
      */
@@ -972,18 +972,18 @@ export type CountActivityTypesAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountActivityTypesAsyncError = CountActivityTypesAsyncErrors[keyof CountActivityTypesAsyncErrors];
+export type ActivityFeedsCountActivityTypesError = ActivityFeedsCountActivityTypesErrors[keyof ActivityFeedsCountActivityTypesErrors];
 
-export type CountActivityTypesAsyncResponses = {
+export type ActivityFeedsCountActivityTypesResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountActivityTypesAsyncResponse = CountActivityTypesAsyncResponses[keyof CountActivityTypesAsyncResponses];
+export type ActivityFeedsCountActivityTypesResponse = ActivityFeedsCountActivityTypesResponses[keyof ActivityFeedsCountActivityTypesResponses];
 
-export type DeleteActivityTypeAsyncData = {
+export type ActivityFeedsDeleteActivityTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -998,7 +998,7 @@ export type DeleteActivityTypeAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes/{activityTypeId}';
 };
 
-export type DeleteActivityTypeAsyncErrors = {
+export type ActivityFeedsDeleteActivityTypeErrors = {
     /**
      * Unauthorized
      */
@@ -1009,18 +1009,18 @@ export type DeleteActivityTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteActivityTypeAsyncError = DeleteActivityTypeAsyncErrors[keyof DeleteActivityTypeAsyncErrors];
+export type ActivityFeedsDeleteActivityTypeError = ActivityFeedsDeleteActivityTypeErrors[keyof ActivityFeedsDeleteActivityTypeErrors];
 
-export type DeleteActivityTypeAsyncResponses = {
+export type ActivityFeedsDeleteActivityTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type DeleteActivityTypeAsyncResponse = DeleteActivityTypeAsyncResponses[keyof DeleteActivityTypeAsyncResponses];
+export type ActivityFeedsDeleteActivityTypeResponse = ActivityFeedsDeleteActivityTypeResponses[keyof ActivityFeedsDeleteActivityTypeResponses];
 
-export type GetActivityTypeByIdAsyncData = {
+export type ActivityFeedsGetActivityTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1035,7 +1035,7 @@ export type GetActivityTypeByIdAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes/{activityTypeId}';
 };
 
-export type GetActivityTypeByIdAsyncErrors = {
+export type ActivityFeedsGetActivityTypeByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1046,18 +1046,18 @@ export type GetActivityTypeByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActivityTypeByIdAsyncError = GetActivityTypeByIdAsyncErrors[keyof GetActivityTypeByIdAsyncErrors];
+export type ActivityFeedsGetActivityTypeByIdError = ActivityFeedsGetActivityTypeByIdErrors[keyof ActivityFeedsGetActivityTypeByIdErrors];
 
-export type GetActivityTypeByIdAsyncResponses = {
+export type ActivityFeedsGetActivityTypeByIdResponses = {
     /**
      * OK
      */
     200: ActivityTypeDtoEnvelopeReadable;
 };
 
-export type GetActivityTypeByIdAsyncResponse = GetActivityTypeByIdAsyncResponses[keyof GetActivityTypeByIdAsyncResponses];
+export type ActivityFeedsGetActivityTypeByIdResponse = ActivityFeedsGetActivityTypeByIdResponses[keyof ActivityFeedsGetActivityTypeByIdResponses];
 
-export type PatchActivityTypeAsyncData = {
+export type ActivityFeedsPatchActivityTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1072,7 +1072,7 @@ export type PatchActivityTypeAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes/{activityTypeId}';
 };
 
-export type PatchActivityTypeAsyncErrors = {
+export type ActivityFeedsPatchActivityTypeErrors = {
     /**
      * Unauthorized
      */
@@ -1083,18 +1083,18 @@ export type PatchActivityTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchActivityTypeAsyncError = PatchActivityTypeAsyncErrors[keyof PatchActivityTypeAsyncErrors];
+export type ActivityFeedsPatchActivityTypeError = ActivityFeedsPatchActivityTypeErrors[keyof ActivityFeedsPatchActivityTypeErrors];
 
-export type PatchActivityTypeAsyncResponses = {
+export type ActivityFeedsPatchActivityTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchActivityTypeAsyncResponse = PatchActivityTypeAsyncResponses[keyof PatchActivityTypeAsyncResponses];
+export type ActivityFeedsPatchActivityTypeResponse = ActivityFeedsPatchActivityTypeResponses[keyof ActivityFeedsPatchActivityTypeResponses];
 
-export type UpdateActivityTypeAsyncData = {
+export type ActivityFeedsUpdateActivityTypeData = {
     body?: ActivityTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1109,7 +1109,7 @@ export type UpdateActivityTypeAsyncData = {
     url: '/api/v2/ActivitiesService/ActivityTypes/{activityTypeId}';
 };
 
-export type UpdateActivityTypeAsyncErrors = {
+export type ActivityFeedsUpdateActivityTypeErrors = {
     /**
      * Unauthorized
      */
@@ -1120,83 +1120,83 @@ export type UpdateActivityTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateActivityTypeAsyncError = UpdateActivityTypeAsyncErrors[keyof UpdateActivityTypeAsyncErrors];
+export type ActivityFeedsUpdateActivityTypeError = ActivityFeedsUpdateActivityTypeErrors[keyof ActivityFeedsUpdateActivityTypeErrors];
 
-export type UpdateActivityTypeAsyncResponses = {
+export type ActivityFeedsUpdateActivityTypeResponses = {
     /**
      * OK
      */
     200: EnvelopeReadable;
 };
 
-export type UpdateActivityTypeAsyncResponse = UpdateActivityTypeAsyncResponses[keyof UpdateActivityTypeAsyncResponses];
+export type ActivityFeedsUpdateActivityTypeResponse = ActivityFeedsUpdateActivityTypeResponses[keyof ActivityFeedsUpdateActivityTypeResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1206,32 +1206,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1242,81 +1242,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1327,25 +1327,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1356,25 +1356,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1385,18 +1385,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1406,14 +1406,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1422,14 +1422,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1438,21 +1438,21 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */

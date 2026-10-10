@@ -7,394 +7,149 @@
 export interface paths {
   "/api/v2/StorageService/Avatars/{socialProfileId}": {
     /** Get the avatar for a given social profile. */
-    get: operations["GetAvatar"];
+    get: operations["Avatars_GetAvatar"];
   };
   "/api/v2/StorageService/Avatars/User": {
     /** Get the avatar for the current user. */
-    get: operations["GetCurrentUserAvatar"];
+    get: operations["Avatars_GetCurrentUserAvatar"];
     /** Update the avatar for the current user. */
-    post: operations["UpdateUserAvatar"];
+    post: operations["Avatars_UpdateUserAvatar"];
   };
   "/api/v2/StorageService/Avatars/User/{userId}": {
     /** Get the avatar for a given user. */
-    get: operations["GetUserAvatar"];
+    get: operations["Avatars_GetUserAvatar"];
   };
   "/api/v2/StorageService/Avatars/Tenant/{tenantId}": {
     /** Get the avatar for a given tenant. */
-    get: operations["GetTenantAvatar"];
+    get: operations["Avatars_GetTenantAvatar"];
     /** Update the avatar for a given tenant. */
-    post: operations["UpdateTenantAvatar"];
+    post: operations["Avatars_UpdateTenantAvatar"];
   };
   "/api/v2/StorageService/Avatars/Contact/{contactId}": {
     /** Get the avatar for a given contact. */
-    get: operations["GetContactAvatar"];
+    get: operations["Avatars_GetContactAvatar"];
   };
   "/api/v2/StorageService/Avatars/Contacts/{contactId}": {
     /** Update the avatar for a given contact. */
-    post: operations["UpdateContactAvatar"];
+    post: operations["Avatars_UpdateContactAvatar"];
   };
   "/api/v2/StorageService/Blobs": {
-    get: operations["GetBlobsAsync"];
+    get: operations["Blobs_GetBlobs"];
   };
   "/api/v2/StorageService/Blobs/Single": {
-    get: operations["GetBlobAsync"];
+    get: operations["Blobs_GetBlob"];
   };
   "/api/v2/StorageService/EditorAssets/{fileId}": {
-    get: operations["GetEditorAssetAsync"];
+    get: operations["EditorAssets_GetEditorAsset"];
+  };
+  "/api/v2/StorageService/EditorAssets/resolve": {
+    post: operations["EditorAssets_PostEditorAssetsResolve"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/StorageService/Files": {
-    get: operations["GetFilesAsync"];
-    post: operations["CreateFileAsync"];
+    get: operations["Files_GetFiles"];
+    post: operations["Files_CreateFile"];
   };
   "/api/v2/StorageService/Files/Count": {
-    get: operations["GetFilesCountAsync"];
+    get: operations["Files_GetFilesCount"];
   };
   "/api/v2/StorageService/Files/{fileId}": {
-    get: operations["GetFileAsync"];
-    put: operations["UpdateFileAsync"];
-    delete: operations["DeleteFileAsync"];
+    get: operations["Files_GetFile"];
+    put: operations["Files_UpdateFile"];
+    delete: operations["Files_DeleteFile"];
   };
   "/api/v2/StorageService/Files/{fileId}/Raw": {
-    get: operations["DownloadFileAsync"];
+    get: operations["Files_DownloadFile"];
   };
   "/api/v2/StorageService/Files/{fileId}/Thumbnail": {
-    get: operations["GetFileThumbnailAsync"];
+    get: operations["Files_GetFileThumbnail"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/upload/single": {
     /** Upload a single editor file to tenant storage. */
-    post: operations["RadzenUploadSingle"];
+    post: operations["RadzenEditor_RadzenUploadSingle"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/single": {
     /** Upload a single editor file scoped to a record. */
-    post: operations["RadzenUploadSingleScoped"];
+    post: operations["RadzenEditor_RadzenUploadSingleScoped"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/upload/image": {
     /** Upload an editor image to tenant storage. */
-    post: operations["RadzenUploadImage"];
+    post: operations["RadzenEditor_RadzenUploadImage"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/image": {
     /** Upload an editor image scoped to a record. */
-    post: operations["RadzenUploadImageScoped"];
+    post: operations["RadzenEditor_RadzenUploadImageScoped"];
   };
   "/api/v2/fs/radzen/users/upload/image": {
     /** Upload an editor image to user storage. */
-    post: operations["RadzenUploadUserImage"];
+    post: operations["RadzenEditor_RadzenUploadUserImage"];
   };
   "/api/v2/fs/radzen/users/{recordType}/{recordId}/upload/image": {
     /** Upload a user editor image scoped to a record. */
-    post: operations["RadzenUploadUserImageScoped"];
+    post: operations["RadzenEditor_RadzenUploadUserImageScoped"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/upload/stream": {
     /** Chunked editor upload (not implemented). */
-    put: operations["RadzenUploadStream"];
+    put: operations["RadzenEditor_RadzenUploadStream"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/stream": {
     /** Chunked editor upload scoped to a record (not implemented). */
-    put: operations["RadzenUploadStreamScoped"];
+    put: operations["RadzenEditor_RadzenUploadStreamScoped"];
   };
   "/api/v2/StorageService/Uploads": {
     /**
      * Upload a file
      * @description Uploads a file to tenant or user storage, scanned and catalogued through the storage spine.
      */
-    post: operations["SaveFileAsync"];
+    post: operations["Uploads_SaveFile"];
   };
 }
 
@@ -598,6 +353,11 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    ResolveEditorAssetRequest: {
+      recordType?: string | null;
+      recordId?: string | null;
+      target?: string | null;
+    };
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -628,7 +388,7 @@ export type external = Record<string, never>;
 export interface operations {
 
   /** Get the avatar for a given social profile. */
-  GetAvatar: {
+  Avatars_GetAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -651,7 +411,7 @@ export interface operations {
     };
   };
   /** Get the avatar for the current user. */
-  GetCurrentUserAvatar: {
+  Avatars_GetCurrentUserAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -671,7 +431,7 @@ export interface operations {
     };
   };
   /** Update the avatar for the current user. */
-  UpdateUserAvatar: {
+  Avatars_UpdateUserAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -720,7 +480,7 @@ export interface operations {
     };
   };
   /** Get the avatar for a given user. */
-  GetUserAvatar: {
+  Avatars_GetUserAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -743,7 +503,7 @@ export interface operations {
     };
   };
   /** Get the avatar for a given tenant. */
-  GetTenantAvatar: {
+  Avatars_GetTenantAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -766,7 +526,7 @@ export interface operations {
     };
   };
   /** Update the avatar for a given tenant. */
-  UpdateTenantAvatar: {
+  Avatars_UpdateTenantAvatar: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -818,9 +578,10 @@ export interface operations {
     };
   };
   /** Get the avatar for a given contact. */
-  GetContactAvatar: {
+  Avatars_GetContactAvatar: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -841,7 +602,7 @@ export interface operations {
     };
   };
   /** Update the avatar for a given contact. */
-  UpdateContactAvatar: {
+  Avatars_UpdateContactAvatar: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -893,7 +654,7 @@ export interface operations {
       };
     };
   };
-  GetBlobsAsync: {
+  Blobs_GetBlobs: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -933,7 +694,7 @@ export interface operations {
       };
     };
   };
-  GetBlobAsync: {
+  Blobs_GetBlob: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -968,7 +729,7 @@ export interface operations {
       };
     };
   };
-  GetEditorAssetAsync: {
+  EditorAssets_GetEditorAsset: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1073,7 +834,193 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  EditorAssets_PostEditorAssetsResolve: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.streaming=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.streaming=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;IEEE754Compatible=false": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json;IEEE754Compatible=true": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/xml": components["schemas"]["ResolveEditorAssetRequest"];
+        "text/plain": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/json-patch+json": components["schemas"]["ResolveEditorAssetRequest"];
+        "text/json": components["schemas"]["ResolveEditorAssetRequest"];
+        "application/*+json": components["schemas"]["ResolveEditorAssetRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none": components["schemas"]["ProblemDetails"];
+          "application/json;odata.streaming=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.streaming=false": components["schemas"]["ProblemDetails"];
+          "application/json": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ProblemDetails"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ProblemDetails"];
+          "application/xml": components["schemas"]["ProblemDetails"];
+          "text/plain": components["schemas"]["ProblemDetails"];
+          "application/octet-stream": components["schemas"]["ProblemDetails"];
+          "text/json": components["schemas"]["ProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -1088,7 +1035,192 @@ export interface operations {
       };
     };
   };
-  GetFilesAsync: {
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Files_GetFiles: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1127,7 +1259,7 @@ export interface operations {
       };
     };
   };
-  CreateFileAsync: {
+  Files_CreateFile: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1222,7 +1354,7 @@ export interface operations {
       };
     };
   };
-  GetFilesCountAsync: {
+  Files_GetFilesCount: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1261,7 +1393,7 @@ export interface operations {
       };
     };
   };
-  GetFileAsync: {
+  Files_GetFile: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1298,7 +1430,7 @@ export interface operations {
       };
     };
   };
-  UpdateFileAsync: {
+  Files_UpdateFile: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1387,7 +1519,7 @@ export interface operations {
       };
     };
   };
-  DeleteFileAsync: {
+  Files_DeleteFile: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1431,7 +1563,7 @@ export interface operations {
       };
     };
   };
-  DownloadFileAsync: {
+  Files_DownloadFile: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1468,7 +1600,7 @@ export interface operations {
       };
     };
   };
-  GetFileThumbnailAsync: {
+  Files_GetFileThumbnail: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1506,7 +1638,7 @@ export interface operations {
     };
   };
   /** Upload a single editor file to tenant storage. */
-  RadzenUploadSingle: {
+  RadzenEditor_RadzenUploadSingle: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1534,7 +1666,7 @@ export interface operations {
     };
   };
   /** Upload a single editor file scoped to a record. */
-  RadzenUploadSingleScoped: {
+  RadzenEditor_RadzenUploadSingleScoped: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1564,7 +1696,7 @@ export interface operations {
     };
   };
   /** Upload an editor image to tenant storage. */
-  RadzenUploadImage: {
+  RadzenEditor_RadzenUploadImage: {
     parameters: {
       query?: {
         visibility?: string;
@@ -1595,7 +1727,7 @@ export interface operations {
     };
   };
   /** Upload an editor image scoped to a record. */
-  RadzenUploadImageScoped: {
+  RadzenEditor_RadzenUploadImageScoped: {
     parameters: {
       query?: {
         visibility?: string;
@@ -1628,7 +1760,7 @@ export interface operations {
     };
   };
   /** Upload an editor image to user storage. */
-  RadzenUploadUserImage: {
+  RadzenEditor_RadzenUploadUserImage: {
     parameters: {
       query?: {
         visibility?: string;
@@ -1656,7 +1788,7 @@ export interface operations {
     };
   };
   /** Upload a user editor image scoped to a record. */
-  RadzenUploadUserImageScoped: {
+  RadzenEditor_RadzenUploadUserImageScoped: {
     parameters: {
       query?: {
         visibility?: string;
@@ -1688,7 +1820,7 @@ export interface operations {
     };
   };
   /** Chunked editor upload (not implemented). */
-  RadzenUploadStream: {
+  RadzenEditor_RadzenUploadStream: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1708,7 +1840,7 @@ export interface operations {
     };
   };
   /** Chunked editor upload scoped to a record (not implemented). */
-  RadzenUploadStreamScoped: {
+  RadzenEditor_RadzenUploadStreamScoped: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1733,7 +1865,7 @@ export interface operations {
    * Upload a file
    * @description Uploads a file to tenant or user storage, scanned and catalogued through the storage spine.
    */
-  SaveFileAsync: {
+  Uploads_SaveFile: {
     parameters: {
       query?: {
         tenantId?: string;

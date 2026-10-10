@@ -6,1467 +6,1240 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/CatalogService/ItemAttachments": {
     /**
      * Get all item attachments
      * @description Retrieves all item attachments for the specified tenant using OData query options.
      */
-    get: operations["GetItemAttachmentsAsync"];
+    get: operations["ItemAttachments_GetItemAttachments"];
     /**
      * Create a new item attachment
      * @description Creates a new item attachment for the specified tenant.
      */
-    post: operations["CreateItemAttachmentAsync"];
+    post: operations["ItemAttachments_CreateItemAttachment"];
   };
   "/api/v2/CatalogService/ItemAttachments/{itemAttachmentId}": {
     /**
      * Get item attachment by ID
      * @description Retrieves a specific item attachment by its ID.
      */
-    get: operations["GetItemAttachmentByIdAsync"];
+    get: operations["ItemAttachments_GetItemAttachmentById"];
     /**
      * Update an item attachment
      * @description Updates an existing item attachment for the specified tenant.
      */
-    put: operations["UpdateItemAttachmentAsync"];
+    put: operations["ItemAttachments_UpdateItemAttachment"];
     /**
      * Delete an item attachment
      * @description Deletes an item attachment for the specified tenant.
      */
-    delete: operations["DeleteItemAttachmentAsync"];
+    delete: operations["ItemAttachments_DeleteItemAttachment"];
     /**
      * Patch an item attachment
      * @description Partially updates an existing item attachment for the specified tenant using a JSON Patch document.
      */
-    patch: operations["PatchItemAttachmentAsync"];
+    patch: operations["ItemAttachments_PatchItemAttachment"];
   };
   "/api/v2/CatalogService/ItemAttributeOptions": {
     /**
      * Get all item attribute options
      * @description Retrieves all item attribute options for the specified tenant using OData query options.
      */
-    get: operations["GetItemAttributeOptionsAsync"];
+    get: operations["ItemAttributeOptions_GetItemAttributeOptions"];
     /**
      * Create a new item attribute option
      * @description Creates a new item attribute option for the specified tenant.
      */
-    post: operations["CreateItemAttributeOptionAsync"];
+    post: operations["ItemAttributeOptions_CreateItemAttributeOption"];
   };
   "/api/v2/CatalogService/ItemAttributeOptions/Count": {
     /**
      * Get item attribute options count
      * @description Returns the count of item attribute options for the specified tenant.
      */
-    get: operations["GetItemAttributeOptionsCountAsync"];
+    get: operations["ItemAttributeOptions_GetItemAttributeOptionsCount"];
   };
   "/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}": {
     /**
      * Get item attribute option by ID
      * @description Retrieves a specific item attribute option by its ID.
      */
-    get: operations["GetItemAttributeOptionByIdAsync"];
+    get: operations["ItemAttributeOptions_GetItemAttributeOptionById"];
     /**
      * Update an item attribute option
      * @description Updates an existing item attribute option for the specified tenant.
      */
-    put: operations["UpdateItemAttributeOptionAsync"];
+    put: operations["ItemAttributeOptions_UpdateItemAttributeOption"];
     /**
      * Delete an item attribute option
      * @description Deletes an item attribute option for the specified tenant.
      */
-    delete: operations["DeleteItemAttributeOptionAsync"];
+    delete: operations["ItemAttributeOptions_DeleteItemAttributeOption"];
     /**
      * Patch an item attribute option
      * @description Partially updates an existing item attribute option for the specified tenant using a JSON Patch document.
      */
-    patch: operations["PatchItemAttributeOptionAsync"];
+    patch: operations["ItemAttributeOptions_PatchItemAttributeOption"];
   };
   "/api/v2/CatalogService/ItemAttributes/Count": {
     /**
      * Count item attributes
      * @description Counts all item attributes for the specified tenant.
      */
-    get: operations["CountItemAttributesAsync"];
+    get: operations["ItemAttributes_CountItemAttributes"];
   };
   "/api/v2/CatalogService/ItemAttributes": {
     /**
      * Get all item attributes
      * @description Retrieves all item attributes for the specified tenant using OData query options.
      */
-    get: operations["GetItemAttributesAsync"];
+    get: operations["ItemAttributes_GetItemAttributes"];
     /**
      * Create a new item attribute
      * @description Creates a new item attribute for the specified tenant.
      */
-    post: operations["CreateItemAttributeAsync"];
+    post: operations["ItemAttributes_CreateItemAttribute"];
   };
   "/api/v2/CatalogService/ItemAttributes/{itemAttributeId}": {
     /**
      * Get item attribute by ID
      * @description Retrieves a specific item attribute by its ID.
      */
-    get: operations["GetItemAttributeByIdAsync"];
+    get: operations["ItemAttributes_GetItemAttributeById"];
     /**
      * Update an item attribute
      * @description Updates an existing item attribute for the specified tenant.
      */
-    put: operations["UpdateItemAttributeAsync"];
+    put: operations["ItemAttributes_UpdateItemAttribute"];
     /**
      * Delete an item attribute
      * @description Deletes an item attribute for the specified tenant.
      */
-    delete: operations["DeleteItemAttributeAsync"];
+    delete: operations["ItemAttributes_DeleteItemAttribute"];
     /**
      * Patch an item attribute
      * @description Partially updates an existing item attribute for the specified tenant.
      */
-    patch: operations["PatchItemAttributeAsync"];
+    patch: operations["ItemAttributes_PatchItemAttribute"];
   };
   "/api/v2/CatalogService/ItemBrands": {
     /**
      * Get all item brands
      * @description Retrieves all item brands for the specified tenant using OData query options.
      */
-    get: operations["GetItemBrandsAsync"];
+    get: operations["ItemBrands_GetItemBrands"];
     /**
      * Create a new item brand
      * @description Creates a new item brand for the specified tenant.
      */
-    post: operations["CreateItemBrandAsync"];
+    post: operations["ItemBrands_CreateItemBrand"];
   };
   "/api/v2/CatalogService/ItemBrands/{itemBrandId}": {
     /**
      * Get item brand by ID
      * @description Retrieves a specific item brand by its ID.
      */
-    get: operations["GetItemBrandByIdAsync"];
+    get: operations["ItemBrands_GetItemBrandById"];
     /**
      * Update an item brand
      * @description Updates an existing item brand for the specified tenant.
      */
-    put: operations["UpdateItemBrandAsync"];
+    put: operations["ItemBrands_UpdateItemBrand"];
     /**
      * Delete an item brand
      * @description Deletes an item brand for the specified tenant.
      */
-    delete: operations["DeleteItemBrandAsync"];
+    delete: operations["ItemBrands_DeleteItemBrand"];
     /**
      * Patch an item brand
      * @description Partially updates an existing item brand for the specified tenant.
      */
-    patch: operations["PatchItemBrandAsync"];
+    patch: operations["ItemBrands_PatchItemBrand"];
   };
   "/api/v2/CatalogService/ItemBundles": {
     /**
      * Get all item bundles
      * @description Retrieves all item bundles for the specified tenant using OData query options.
      */
-    get: operations["GetItemBundlesAsync"];
+    get: operations["ItemBundles_GetItemBundles"];
     /**
      * Create a new item bundle
      * @description Creates a new item bundle for the specified tenant.
      */
-    post: operations["CreateItemBundleAsync"];
+    post: operations["ItemBundles_CreateItemBundle"];
   };
   "/api/v2/CatalogService/ItemBundles/Count": {
     /**
      * Get item bundles count
      * @description Returns the count of item bundles for the specified tenant.
      */
-    get: operations["GetItemBundlesCountAsync"];
+    get: operations["ItemBundles_GetItemBundlesCount"];
   };
   "/api/v2/CatalogService/ItemBundles/{itemBundleId}": {
     /**
      * Get item bundle by ID
      * @description Retrieves a specific item bundle by its ID.
      */
-    get: operations["GetItemBundleByIdAsync"];
+    get: operations["ItemBundles_GetItemBundleById"];
     /**
      * Update an item bundle
      * @description Updates an existing item bundle for the specified tenant.
      */
-    put: operations["UpdateItemBundleAsync"];
+    put: operations["ItemBundles_UpdateItemBundle"];
     /**
      * Delete an item bundle
      * @description Deletes an item bundle for the specified tenant.
      */
-    delete: operations["DeleteItemBundleAsync"];
+    delete: operations["ItemBundles_DeleteItemBundle"];
     /**
      * Patch an item bundle
      * @description Partially updates an existing item bundle for the specified tenant using a JSON Patch document.
      */
-    patch: operations["PatchItemBundleAsync"];
+    patch: operations["ItemBundles_PatchItemBundle"];
   };
   "/api/v2/CatalogService/ItemCategories/Count": {
     /**
      * Count item categories
      * @description Counts all item categories for the specified tenant.
      */
-    get: operations["CountItemCategoriesAsync"];
+    get: operations["ItemCategories_CountItemCategories"];
   };
   "/api/v2/CatalogService/ItemCategories/{itemCategoryId}": {
     /**
      * Get item category by ID
      * @description Retrieves a specific item category by its ID.
      */
-    get: operations["GetItemCategoryByIdAsync"];
+    get: operations["ItemCategories_GetItemCategoryById"];
     /**
      * Update an item category
      * @description Updates an existing item category for the specified tenant.
      */
-    put: operations["UpdateItemCategoryAsync"];
+    put: operations["ItemCategories_UpdateItemCategory"];
     /**
      * Delete an item category
      * @description Deletes an item category for the specified tenant.
      */
-    delete: operations["DeleteItemCategoryAsync"];
+    delete: operations["ItemCategories_DeleteItemCategory"];
     /**
      * Patch an item category
      * @description Partially updates an existing item category for the specified tenant.
      */
-    patch: operations["PatchItemCategoryAsync"];
+    patch: operations["ItemCategories_PatchItemCategory"];
   };
   "/api/v2/CatalogService/ItemCategories": {
     /**
      * Get all item categories
      * @description Retrieves all item categories for the specified tenant using OData query options.
      */
-    get: operations["GetItemCategoriesAsync"];
+    get: operations["ItemCategories_GetItemCategories"];
     /**
      * Create a new item category
      * @description Creates a new item category for the specified tenant.
      */
-    post: operations["CreateItemCategoryAsync"];
+    post: operations["ItemCategories_CreateItemCategory"];
   };
   "/api/v2/CatalogService/ItemFamilies": {
     /**
      * Get all item families
      * @description Retrieves all item families for the specified tenant using OData query options.
      */
-    get: operations["GetItemFamiliesAsync"];
+    get: operations["ItemFamilies_GetItemFamilies"];
     /**
      * Create a new item family
      * @description Creates a new item family for the specified tenant.
      */
-    post: operations["CreateItemFamilyAsync"];
+    post: operations["ItemFamilies_CreateItemFamily"];
   };
   "/api/v2/CatalogService/ItemFamilies/Count": {
     /**
      * Get item families count
      * @description Returns the count of item families for the specified tenant.
      */
-    get: operations["GetItemFamiliesCountAsync"];
+    get: operations["ItemFamilies_GetItemFamiliesCount"];
   };
   "/api/v2/CatalogService/ItemFamilies/{itemFamilyId}": {
     /**
      * Get item family by ID
      * @description Retrieves a specific item family by its ID.
      */
-    get: operations["GetItemFamilyByIdAsync"];
+    get: operations["ItemFamilies_GetItemFamilyById"];
     /**
      * Update an item family
      * @description Updates an existing item family for the specified tenant.
      */
-    put: operations["UpdateItemFamilyAsync"];
+    put: operations["ItemFamilies_UpdateItemFamily"];
     /**
      * Delete an item family
      * @description Deletes an item family for the specified tenant.
      */
-    delete: operations["DeleteItemFamilyAsync"];
+    delete: operations["ItemFamilies_DeleteItemFamily"];
     /**
      * Patch an item family
      * @description Partially updates an existing item family for the specified tenant using a JSON Patch document.
      */
-    patch: operations["PatchItemFamilyAsync"];
+    patch: operations["ItemFamilies_PatchItemFamily"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories": {
     /**
      * Get all Google item categories
      * @description Retrieves all Google item categories using OData query options.
      */
-    get: operations["GetItemGoogleCategoriesAsync"];
+    get: operations["ItemGoogleCategories_GetItemGoogleCategories"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories/Count": {
     /**
      * Get Google item categories count
      * @description Retrieves the count of Google item categories using OData query options.
      */
-    get: operations["GetItemGoogleCategoriesCountAsync"];
+    get: operations["ItemGoogleCategories_GetItemGoogleCategoriesCount"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories/All": {
     /**
      * Get all Google item categories (all)
      * @description Retrieves all Google item categories (all) without OData query options.
      */
-    get: operations["GetAllItemGoogleCategoriesAsync"];
+    get: operations["ItemGoogleCategories_GetAllItemGoogleCategories"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories/Primary": {
     /**
      * Get root Google item categories
      * @description Retrieves root Google item categories.
      */
-    get: operations["GetRootItemGoogleCategoriesAsync"];
+    get: operations["ItemGoogleCategories_GetRootItemGoogleCategories"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories/{itemCategoryId}": {
     /**
      * Get Google item category by ID
      * @description Retrieves a specific Google item category by its ID.
      */
-    get: operations["GetItemGoogleCategoryByIdAsync"];
+    get: operations["ItemGoogleCategories_GetItemGoogleCategoryById"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories/{itemCategoryId}/Children": {
     /**
      * Get children Google item categories by ID
      * @description Retrieves children Google item categories for a given ID.
      */
-    get: operations["GetChildrenItemGoogleCategoriesByIdAsync"];
+    get: operations["ItemGoogleCategories_GetChildrenItemGoogleCategoriesById"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories/tree": {
     /**
      * Get Google item categories tree
      * @description Retrieves the Google item categories tree.
      */
-    get: operations["GetItemGoogleCategoriesTreeAsync"];
+    get: operations["ItemGoogleCategories_GetItemGoogleCategoriesTree"];
     /**
      * Map Google item categories tree
      * @description Maps the Google item categories tree.
      */
-    post: operations["MapItemGoogleCategoriesTreeAsync"];
+    post: operations["ItemGoogleCategories_MapItemGoogleCategoriesTree"];
   };
   "/api/v2/CatalogService/ItemImages": {
     /**
      * Get all item images
      * @description Retrieves all item images for the specified tenant using OData query options.
      */
-    get: operations["GetItemImagesAsync"];
+    get: operations["ItemImages_GetItemImages"];
     /**
      * Create a new item image
      * @description Creates a new item image for the specified tenant.
      */
-    post: operations["CreateItemImageAsync"];
+    post: operations["ItemImages_CreateItemImage"];
   };
   "/api/v2/CatalogService/ItemImages/{itemImageId}": {
     /**
      * Get item image by ID
      * @description Retrieves a specific item image by its ID.
      */
-    get: operations["GetItemImageByIdAsync"];
+    get: operations["ItemImages_GetItemImageById"];
     /**
      * Update an item image
      * @description Updates an existing item image for the specified tenant.
      */
-    put: operations["UpdateItemImageAsync"];
+    put: operations["ItemImages_UpdateItemImage"];
     /**
      * Delete an item image
      * @description Deletes an item image for the specified tenant.
      */
-    delete: operations["DeleteItemImageAsync"];
+    delete: operations["ItemImages_DeleteItemImage"];
     /**
      * Patch an item image
      * @description Partially updates an existing item image for the specified tenant using a JSON Patch document.
      */
-    patch: operations["PatchItemImageAsync"];
+    patch: operations["ItemImages_PatchItemImage"];
   };
   "/api/v2/CatalogService/ItemQuestions": {
     /**
      * Get all item questions
      * @description Retrieves all item questions for the specified tenant using OData query options.
      */
-    get: operations["GetItemQuestionsAsync"];
+    get: operations["ItemQuestions_GetItemQuestions"];
     /**
      * Create a new item question
      * @description Creates a new item question for the specified tenant.
      */
-    post: operations["CreateItemQuestionAsync"];
+    post: operations["ItemQuestions_CreateItemQuestion"];
   };
   "/api/v2/CatalogService/ItemQuestions/{itemQuestionId}": {
     /**
      * Get item question by ID
      * @description Retrieves a specific item question by its ID.
      */
-    get: operations["GetItemQuestionByIdAsync"];
+    get: operations["ItemQuestions_GetItemQuestionById"];
     /**
      * Update an item question
      * @description Updates an existing item question for the specified tenant.
      */
-    put: operations["UpdateItemQuestionAsync"];
+    put: operations["ItemQuestions_UpdateItemQuestion"];
     /**
      * Delete an item question
      * @description Deletes an item question for the specified tenant.
      */
-    delete: operations["DeleteItemQuestionAsync"];
+    delete: operations["ItemQuestions_DeleteItemQuestion"];
     /**
      * Patch an item question
      * @description Partially updates an existing item question for the specified tenant using a JSON Patch document.
      */
-    patch: operations["PatchItemQuestionAsync"];
+    patch: operations["ItemQuestions_PatchItemQuestion"];
   };
   "/api/v2/CatalogService/ItemRefundPolicies": {
     /**
      * Get item refund policies
      * @description Retrieves all refund policies for a specific item.
      */
-    get: operations["GetItemRefundPoliciesAsync"];
+    get: operations["ItemRefundPolicies_GetItemRefundPolicies"];
     /**
      * Relate item to refund policy
      * @description Relates an item to an existing refund policy.
      */
-    post: operations["RelateItemToRefundPolicyAsync"];
+    post: operations["ItemRefundPolicies_RelateItemToRefundPolicy"];
   };
   "/api/v2/CatalogService/ItemRefundPolicies/Count": {
     /**
      * Count item refund policies
      * @description Counts all refund policies for a specific item.
      */
-    get: operations["CountItemRefundPoliciesAsync"];
+    get: operations["ItemRefundPolicies_CountItemRefundPolicies"];
   };
   "/api/v2/CatalogService/ItemRefundPolicies/{itemRefundPolicyId}": {
     /**
      * Get item refund policy by ID
      * @description Retrieves a specific refund policy for an item.
      */
-    get: operations["GetItemRefundPolicyByIdAsync"];
+    get: operations["ItemRefundPolicies_GetItemRefundPolicyById"];
     /**
      * Remove refund policy from item
      * @description Removes a refund policy from an item.
      */
-    delete: operations["RemoveRefundPolicyFromItemAsync"];
+    delete: operations["ItemRefundPolicies_RemoveRefundPolicyFromItem"];
   };
   "/api/v2/CatalogService/ItemReturnPolicies": {
     /**
      * Get item return policies
      * @description Retrieves all return policies for a specific item.
      */
-    get: operations["GetItemReturnPoliciesAsync"];
+    get: operations["ItemReturnPolicies_GetItemReturnPolicies"];
     /**
      * Relate item to return policy
      * @description Relates an item to an existing return policy.
      */
-    post: operations["RelateItemToReturnPolicyAsync"];
+    post: operations["ItemReturnPolicies_RelateItemToReturnPolicy"];
   };
   "/api/v2/CatalogService/ItemReturnPolicies/Count": {
     /**
      * Count item return policies
      * @description Counts all return policies for a specific item.
      */
-    get: operations["CountItemReturnPoliciesAsync"];
+    get: operations["ItemReturnPolicies_CountItemReturnPolicies"];
   };
   "/api/v2/CatalogService/ItemReturnPolicies/{itemReturnPolicyId}": {
     /**
      * Get item return policy by ID
      * @description Retrieves a specific return policy for an item.
      */
-    get: operations["GetItemReturnPolicyByIdAsync"];
+    get: operations["ItemReturnPolicies_GetItemReturnPolicyById"];
     /**
      * Remove return policy from item
      * @description Removes a return policy from an item.
      */
-    delete: operations["RemoveReturnPolicyFromItemAsync"];
+    delete: operations["ItemReturnPolicies_RemoveReturnPolicyFromItem"];
   };
   "/api/v2/CatalogService/ItemReviews": {
     /**
      * Get all item reviews
      * @description Retrieves all item reviews for the specified item using OData query options.
      */
-    get: operations["GetItemReviewsAsync"];
+    get: operations["ItemReviews_GetItemReviews"];
     /**
      * Create a new item review
      * @description Creates a new item review for the specified tenant.
      */
-    post: operations["CreateItemReviewAsync"];
+    post: operations["ItemReviews_CreateItemReview"];
   };
   "/api/v2/CatalogService/ItemReviews/{itemReviewId}": {
     /**
      * Get item review by ID
      * @description Retrieves a specific item review by its ID.
      */
-    get: operations["GetItemReviewByIdAsync"];
+    get: operations["ItemReviews_GetItemReviewById"];
     /**
      * Update an item review
      * @description Updates an existing item review for the specified tenant.
      */
-    put: operations["UpdateItemReviewAsync"];
+    put: operations["ItemReviews_UpdateItemReview"];
     /**
      * Delete an item review
      * @description Deletes an item review for the specified tenant.
      */
-    delete: operations["DeleteItemReviewAsync"];
+    delete: operations["ItemReviews_DeleteItemReview"];
     /**
      * Patch an item review
      * @description Partially updates an existing item review for the specified tenant.
      */
-    patch: operations["PatchItemReviewAsync"];
+    patch: operations["ItemReviews_PatchItemReview"];
   };
   "/api/v2/CatalogService/Items": {
     /**
      * Get all stock items
      * @description Retrieves all stock items, optionally filtered by tenant and OData query options.
      */
-    get: operations["GetStockItemsQuery"];
+    get: operations["Items_GetStockItemsQuery"];
     /**
      * Create a new stock item
      * @description Creates a new stock item for the specified tenant.
      */
-    post: operations["CreateStockItem"];
+    post: operations["Items_CreateStockItem"];
   };
   "/api/v2/CatalogService/Items/MaxPrice": {
     /**
      * Get max price of stock items
      * @description Retrieves the maximum price among all stock items, optionally filtered by tenant and OData query options.
      */
-    get: operations["GetStockItemsOdataMaxPrice"];
+    get: operations["Items_GetStockItemsOdataMaxPrice"];
   };
   "/api/v2/CatalogService/Items/MinPrice": {
     /**
      * Get min price of stock items
      * @description Retrieves the minimum price among all stock items, optionally filtered by tenant and OData query options.
      */
-    get: operations["GetStockItemsOdataMinPrice"];
+    get: operations["Items_GetStockItemsOdataMinPrice"];
   };
   "/api/v2/CatalogService/Items/Count": {
     /**
      * Count stock items by business
      * @description Counts the number of stock items for a business, optionally filtered by tenant and OData query options.
      */
-    get: operations["CountStockItemsByBusiness"];
+    get: operations["Items_CountStockItemsByBusiness"];
   };
   "/api/v2/CatalogService/Items/{itemId}": {
     /**
      * Get stock item by ID
      * @description Retrieves a stock item by its unique identifier.
      */
-    get: operations["GetStockItemById"];
+    get: operations["Items_GetStockItemById"];
     /**
      * Update a stock item
      * @description Updates an existing stock item for the specified tenant and item ID.
      */
-    put: operations["UpdateStockItem"];
+    put: operations["Items_UpdateStockItem"];
     /**
      * Delete a stock item
      * @description Deletes a stock item for the specified tenant and item ID.
      */
-    delete: operations["DeleteStockItem"];
+    delete: operations["Items_DeleteStockItem"];
     /**
      * Patch a stock item
      * @description Partially updates an existing stock item for the specified tenant and item ID.
      */
-    patch: operations["PatchStockItem"];
+    patch: operations["Items_PatchStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Extended": {
     /**
      * Get extended stock item by ID
      * @description Retrieves extended information for a stock item by its unique identifier.
      */
-    get: operations["GetExtendedStockItemById"];
+    get: operations["Items_GetExtendedStockItemById"];
+  };
+  "/api/v2/CatalogService/Items/Public": {
+    /**
+     * Get public stock items
+     * @description Retrieves the publicly-visible catalog: published, non-deleted items. Anonymous.
+     */
+    get: operations["Items_GetPublicStockItems"];
+  };
+  "/api/v2/CatalogService/Items/Public/Count": {
+    /**
+     * Count public stock items
+     * @description Counts the publicly-visible catalog: published, non-deleted items. Anonymous.
+     */
+    get: operations["Items_GetPublicStockItemsCount"];
+  };
+  "/api/v2/CatalogService/Items/Public/{itemId}": {
+    /**
+     * Get public stock item by ID
+     * @description Retrieves a publicly-visible stock item by its identifier. An unpublished or deleted item is not found. Anonymous.
+     */
+    get: operations["Items_GetPublicStockItemById"];
   };
   "/api/v2/CatalogService/Items/Batch": {
     /**
      * Bulk-update stock items
      * @description Applies a targeted bulk operation (set flags, add/remove tax policies) to many items atomically.
      */
-    post: operations["BatchUpdateStockItems"];
+    post: operations["Items_BatchUpdateStockItems"];
   };
   "/api/v2/CatalogService/Items/BulkUpsert": {
     /**
      * Bulk upsert stock items from rows
      * @description Updates scalar fields of matching tenant-owned items or creates new ones, all in one transaction.
      */
-    post: operations["BulkUpsertStockItems"];
+    post: operations["Items_BulkUpsertStockItems"];
   };
   "/api/v2/CatalogService/Items/RecalculatePrices": {
     /**
      * Recalculate stock item prices
      * @description Recomputes derived prices for the given tenant-owned items via the pricing service, atomically.
      */
-    post: operations["RecalculateStockItemPrices"];
+    post: operations["Items_RecalculateStockItemPrices"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Tags": {
     /**
      * Get tags for a stock item
      * @description Retrieves all tags associated with a specific stock item.
      */
-    get: operations["GetStockItemTagsByItemId"];
+    get: operations["Items_GetStockItemTagsByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Tags/Count": {
     /**
      * Count tags for a stock item
      * @description Counts the number of tags associated with a specific stock item.
      */
-    get: operations["CountStockItemTagsByItemId"];
+    get: operations["Items_CountStockItemTagsByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Tags/{itemTagId}": {
     /**
      * Get tag by ID for a stock item
      * @description Retrieves a specific tag by ID for a stock item.
      */
-    get: operations["GetStockItemTagById"];
+    get: operations["Items_GetStockItemTagById"];
     /**
      * Relate tag to stock item
      * @description Associates a tag with a stock item.
      */
-    post: operations["RelateTagToStockItem"];
+    post: operations["Items_RelateTagToStockItem"];
     /**
      * Remove tag from stock item
      * @description Removes a tag association from a stock item.
      */
-    delete: operations["RemoveTagFromStockItem"];
+    delete: operations["Items_RemoveTagFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Types": {
     /**
      * Get types for a stock item
      * @description Retrieves all types associated with a specific stock item.
      */
-    get: operations["GetStockItemTypesByItemId"];
+    get: operations["Items_GetStockItemTypesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Types/{itemTypeId}": {
     /**
      * Get type by ID for a stock item
      * @description Retrieves a specific type by ID for a stock item.
      */
-    get: operations["GetStockItemTypeById"];
+    get: operations["Items_GetStockItemTypeById"];
     /**
      * Relate type to stock item
      * @description Associates a type with a stock item.
      */
-    post: operations["RelateTypeToStockItem"];
+    post: operations["Items_RelateTypeToStockItem"];
     /**
      * Remove type from stock item
      * @description Removes a type association from a stock item.
      */
-    delete: operations["RemoveTypeFromStockItem"];
+    delete: operations["Items_RemoveTypeFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Images/Primary": {
     /**
      * Get item primary image
      * @description Retrieves the primary image for a specific catalog item.
      */
-    get: operations["GetProductPrimaryImageAsync"];
+    get: operations["Items_GetProductPrimaryImage"];
     /**
      * Update item primary image
      * @description Updates the primary image for a specific catalog item.
      */
-    post: operations["UpdateProductPrimaryImageAsync"];
+    post: operations["Items_UpdateProductPrimaryImage"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Images": {
     /**
      * Get images for a stock item
      * @description Retrieves all images associated with a specific stock item.
      */
-    get: operations["GetStockItemImagesByItemId"];
+    get: operations["Items_GetStockItemImagesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Images/{itemImageId}": {
     /**
      * Get image by ID for a stock item
      * @description Retrieves a specific image by ID for a stock item.
      */
-    get: operations["GetStockItemImageById"];
+    get: operations["Items_GetStockItemImageById"];
     /**
      * Relate image to stock item
      * @description Associates an image with a stock item.
      */
-    post: operations["RelateImageToStockItem"];
+    post: operations["Items_RelateImageToStockItem"];
     /**
      * Remove image from stock item
      * @description Removes an image association from a stock item.
      */
-    delete: operations["RemoveImageFromStockItem"];
+    delete: operations["Items_RemoveImageFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Brands": {
     /**
      * Get brands for a stock item
      * @description Retrieves all brands associated with a specific stock item.
      */
-    get: operations["GetStockItemBrandsByItemId"];
+    get: operations["Items_GetStockItemBrandsByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Brands/{itemBrandId}": {
     /**
      * Get brand by ID for a stock item
      * @description Retrieves a specific brand by ID for a stock item.
      */
-    get: operations["GetStockItemBrandById"];
+    get: operations["Items_GetStockItemBrandById"];
     /**
      * Relate brand to stock item
      * @description Associates a brand with a stock item.
      */
-    post: operations["RelateBrandToStockItem"];
+    post: operations["Items_RelateBrandToStockItem"];
     /**
      * Remove brand from stock item
      * @description Removes a brand association from a stock item.
      */
-    delete: operations["RemoveBrandFromStockItem"];
+    delete: operations["Items_RemoveBrandFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Reviews": {
     /**
      * Get reviews for a stock item
      * @description Retrieves all reviews associated with a specific stock item.
      */
-    get: operations["GetStockItemReviewsByItemId"];
+    get: operations["Items_GetStockItemReviewsByItemId"];
     /**
      * Create review for stock item
      * @description Creates a new review for a stock item.
      */
-    post: operations["RelateReviewToStockItem"];
+    post: operations["Items_RelateReviewToStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Reviews/{itemReviewId}": {
     /**
      * Get review by ID for a stock item
      * @description Retrieves a specific review by ID for a stock item.
      */
-    get: operations["GetStockItemReviewById"];
+    get: operations["Items_GetStockItemReviewById"];
     /**
      * Remove review from stock item
      * @description Removes a review from a stock item.
      */
-    delete: operations["RemoveReviewFromStockItem"];
+    delete: operations["Items_RemoveReviewFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Questions": {
     /**
      * Get questions for a stock item
      * @description Retrieves all questions associated with a specific stock item.
      */
-    get: operations["GetStockItemQuestionsByItemId"];
+    get: operations["Items_GetStockItemQuestionsByItemId"];
     /**
      * Create question for stock item
      * @description Creates a new question for a stock item.
      */
-    post: operations["RelateQuestionToStockItem"];
+    post: operations["Items_RelateQuestionToStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Questions/{itemQuestionId}": {
     /**
      * Get question by ID for a stock item
      * @description Retrieves a specific question by ID for a stock item.
      */
-    get: operations["GetStockItemQuestionById"];
+    get: operations["Items_GetStockItemQuestionById"];
     /**
      * Remove question from stock item
      * @description Removes a question from a stock item.
      */
-    delete: operations["RemoveQuestionFromStockItem"];
+    delete: operations["Items_RemoveQuestionFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Categories": {
     /**
      * Get categories for a stock item
      * @description Retrieves all categories associated with a specific stock item.
      */
-    get: operations["GetStockItemCategoriesByItemId"];
+    get: operations["Items_GetStockItemCategoriesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Categories/{itemCategoryId}": {
     /**
      * Get category by ID for a stock item
      * @description Retrieves a specific category by ID for a stock item.
      */
-    get: operations["GetStockItemCategoryById"];
+    get: operations["Items_GetStockItemCategoryById"];
     /**
      * Relate category to stock item
      * @description Associates a category with a stock item.
      */
-    post: operations["RelateCategoryToStockItem"];
+    post: operations["Items_RelateCategoryToStockItem"];
     /**
      * Remove category from stock item
      * @description Removes a category association from a stock item.
      */
-    delete: operations["RemoveCategoryFromStockItem"];
+    delete: operations["Items_RemoveCategoryFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Attachments": {
     /**
      * Get attachments for a stock item
      * @description Retrieves all attachments associated with a specific stock item.
      */
-    get: operations["GetStockItemAttachmentsByItemId"];
+    get: operations["Items_GetStockItemAttachmentsByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Attachments/{itemAttachmentId}": {
     /**
      * Get attachment by ID for a stock item
      * @description Retrieves a specific attachment by ID for a stock item.
      */
-    get: operations["GetStockItemAttachmentById"];
+    get: operations["Items_GetStockItemAttachmentById"];
     /**
      * Relate attachment to stock item
      * @description Associates an attachment with a stock item.
      */
-    post: operations["RelateAttachmentToStockItem"];
+    post: operations["Items_RelateAttachmentToStockItem"];
     /**
      * Remove attachment from stock item
      * @description Removes an attachment from a stock item.
      */
-    delete: operations["RemoveAttachmentFromStockItem"];
+    delete: operations["Items_RemoveAttachmentFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/TaxPolicies": {
     /**
      * Get tax policies for a stock item
      * @description Retrieves all tax policies associated with a specific stock item.
      */
-    get: operations["GetStockItemTaxPoliciesByItemId"];
+    get: operations["Items_GetStockItemTaxPoliciesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/TaxPolicies/{itemTaxPolicyId}": {
     /**
      * Get tax policy by ID for a stock item
      * @description Retrieves a specific tax policy by ID for a stock item.
      */
-    get: operations["GetStockItemTaxPolicyById"];
+    get: operations["Items_GetStockItemTaxPolicyById"];
     /**
      * Relate tax policy to stock item
      * @description Associates a tax policy with a stock item.
      */
-    post: operations["RelateTaxPolicyToStockItem"];
+    post: operations["Items_RelateTaxPolicyToStockItem"];
     /**
      * Remove tax policy from stock item
      * @description Removes a tax policy from a stock item.
      */
-    delete: operations["RemoveTaxPolicyFromStockItem"];
+    delete: operations["Items_RemoveTaxPolicyFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/PriceRules": {
     /**
      * Get price rules for a stock item
      * @description Retrieves all pricing rules associated with a specific stock item.
      */
-    get: operations["GetStockItemPriceRulesByItemId"];
+    get: operations["Items_GetStockItemPriceRulesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/PriceRules/{itemPriceRuleId}": {
     /**
      * Get price rule by ID for a stock item
      * @description Retrieves a specific pricing rule by ID for a stock item.
      */
-    get: operations["GetStockItemPriceRuleById"];
+    get: operations["Items_GetStockItemPriceRuleById"];
     /**
      * Relate price rule to stock item
      * @description Associates a pricing rule with a stock item.
      */
-    post: operations["RelatePriceRuleToStockItem"];
+    post: operations["Items_RelatePriceRuleToStockItem"];
     /**
      * Remove price rule from stock item
      * @description Removes a pricing rule from a stock item.
      */
-    delete: operations["RemovePriceRuleFromStockItem"];
+    delete: operations["Items_RemovePriceRuleFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/ReturnPolicies": {
     /**
      * Get return policies for a stock item
      * @description Retrieves all return policies associated with a specific stock item.
      */
-    get: operations["GetStockItemReturnPoliciesByItemId"];
+    get: operations["Items_GetStockItemReturnPoliciesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/ReturnPolicies/{itemReturnPolicyId}": {
     /**
      * Get return policy by ID for a stock item
      * @description Retrieves a specific return policy by ID for a stock item.
      */
-    get: operations["GetStockItemReturnPolicyById"];
+    get: operations["Items_GetStockItemReturnPolicyById"];
     /**
      * Relate return policy to stock item
      * @description Associates a return policy with a stock item.
      */
-    post: operations["RelateReturnPolicyToStockItem"];
+    post: operations["Items_RelateReturnPolicyToStockItem"];
     /**
      * Remove return policy from stock item
      * @description Removes a return policy from a stock item.
      */
-    delete: operations["RemoveReturnPolicyFromStockItem"];
+    delete: operations["Items_RemoveReturnPolicyFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/RefundPolicies": {
     /**
      * Get refund policies for a stock item
      * @description Retrieves all refund policies associated with a specific stock item.
      */
-    get: operations["GetStockItemRefundPoliciesByItemId"];
+    get: operations["Items_GetStockItemRefundPoliciesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/RefundPolicies/{itemRefundPolicyId}": {
     /**
      * Get refund policy by ID for a stock item
      * @description Retrieves a specific refund policy by ID for a stock item.
      */
-    get: operations["GetStockItemRefundPolicyById"];
+    get: operations["Items_GetStockItemRefundPolicyById"];
     /**
      * Relate refund policy to stock item
      * @description Associates a refund policy with a stock item.
      */
-    post: operations["RelateRefundPolicyToStockItem"];
+    post: operations["Items_RelateRefundPolicyToStockItem"];
     /**
      * Remove refund policy from stock item
      * @description Removes a refund policy from a stock item.
      */
-    delete: operations["RemoveRefundPolicyFromStockItem"];
+    delete: operations["Items_RemoveRefundPolicyFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/ShippingPolicies": {
     /**
      * Get shipping policies for a stock item
      * @description Retrieves all shipping policies associated with a specific stock item.
      */
-    get: operations["GetStockItemShippingPoliciesByItemId"];
+    get: operations["Items_GetStockItemShippingPoliciesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/ShippingPolicies/{itemShippingPolicyId}": {
     /**
      * Get shipping policy by ID for a stock item
      * @description Retrieves a specific shipping policy by ID for a stock item.
      */
-    get: operations["GetStockItemShippingPolicyById"];
+    get: operations["Items_GetStockItemShippingPolicyById"];
     /**
      * Relate shipping policy to stock item
      * @description Associates a shipping policy with a stock item.
      */
-    post: operations["RelateShippingPolicyToStockItem"];
+    post: operations["Items_RelateShippingPolicyToStockItem"];
     /**
      * Remove shipping policy from stock item
      * @description Removes a shipping policy from a stock item.
      */
-    delete: operations["RemoveShippingPolicyFromStockItem"];
+    delete: operations["Items_RemoveShippingPolicyFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/WarrantyPolicies": {
     /**
      * Get warranty policies for a stock item
      * @description Retrieves all warranty policies associated with a specific stock item.
      */
-    get: operations["GetStockItemWarrantyPoliciesByItemId"];
+    get: operations["Items_GetStockItemWarrantyPoliciesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/WarrantyPolicies/{itemWarrantyPolicyId}": {
     /**
      * Get warranty policy by ID for a stock item
      * @description Retrieves a specific warranty policy by ID for a stock item.
      */
-    get: operations["GetStockItemWarrantyPolicyById"];
+    get: operations["Items_GetStockItemWarrantyPolicyById"];
     /**
      * Relate warranty policy to stock item
      * @description Associates a warranty policy with a stock item.
      */
-    post: operations["RelateWarrantyPolicyToStockItem"];
+    post: operations["Items_RelateWarrantyPolicyToStockItem"];
     /**
      * Remove warranty policy from stock item
      * @description Removes a warranty policy from a stock item.
      */
-    delete: operations["RemoveWarrantyPolicyFromStockItem"];
+    delete: operations["Items_RemoveWarrantyPolicyFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/AttributeOptions": {
     /**
      * Get attribute options for a stock item
      * @description Retrieves all attribute options associated with a specific stock item.
      */
-    get: operations["GetStockItemAttributeOptionsByItemId"];
+    get: operations["Items_GetStockItemAttributeOptionsByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/AttributeOptions/{itemAttributeOptionId}": {
     /**
      * Get attribute option by ID for a stock item
      * @description Retrieves a specific attribute option by ID for a stock item.
      */
-    get: operations["GetStockItemAttributeOptionById"];
+    get: operations["Items_GetStockItemAttributeOptionById"];
     /**
      * Relate attribute option to stock item
      * @description Associates an attribute option with a stock item.
      */
-    post: operations["RelateAttributeOptionToStockItem"];
+    post: operations["Items_RelateAttributeOptionToStockItem"];
     /**
      * Remove attribute option from stock item
      * @description Removes an attribute option from a stock item.
      */
-    delete: operations["RemoveAttributeOptionFromStockItem"];
+    delete: operations["Items_RemoveAttributeOptionFromStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/GoogleCategories": {
     /**
      * Get Google categories for a stock item
      * @description Retrieves all Google categories associated with a specific stock item.
      */
-    get: operations["GetStockItemGoogleCategoriesByItemId"];
+    get: operations["Items_GetStockItemGoogleCategoriesByItemId"];
   };
   "/api/v2/CatalogService/Items/{itemId}/GoogleCategories/{itemGoogleCategoryId}": {
     /**
      * Get Google category by ID for a stock item
      * @description Retrieves a specific Google category by ID for a stock item.
      */
-    get: operations["GetStockItemGoogleCategoryById"];
+    get: operations["Items_GetStockItemGoogleCategoryById"];
     /**
      * Relate Google category to stock item
      * @description Associates a Google category with a stock item.
      */
-    post: operations["RelateGoogleCategoryToStockItem"];
+    post: operations["Items_RelateGoogleCategoryToStockItem"];
     /**
      * Remove Google category from stock item
      * @description Removes a Google category from a stock item.
      */
-    delete: operations["RemoveGoogleCategoryFromStockItem"];
+    delete: operations["Items_RemoveGoogleCategoryFromStockItem"];
   };
   "/api/v2/CatalogService/ItemShippingPolicies": {
     /**
      * Get item shipping policies
      * @description Retrieves all shipping policies for a specific item.
      */
-    get: operations["GetCatalogItemShippingPoliciesAsync"];
+    get: operations["ItemShippingPolicies_GetCatalogItemShippingPolicies"];
     /**
      * Relate item to shipping policy
      * @description Relates an item to an existing shipping policy.
      */
-    post: operations["RelateItemToShippingPolicyAsync"];
+    post: operations["ItemShippingPolicies_RelateItemToShippingPolicy"];
   };
   "/api/v2/CatalogService/ItemShippingPolicies/Count": {
     /**
      * Count item shipping policies
      * @description Counts all shipping policies for a specific item.
      */
-    get: operations["CountItemShippingPoliciesAsync"];
+    get: operations["ItemShippingPolicies_CountItemShippingPolicies"];
   };
   "/api/v2/CatalogService/ItemShippingPolicies/{itemShippingPolicyId}": {
     /**
      * Get item shipping policy by ID
      * @description Retrieves a specific shipping policy for an item.
      */
-    get: operations["GetCatalogItemShippingPolicyByIdAsync"];
+    get: operations["ItemShippingPolicies_GetCatalogItemShippingPolicyById"];
     /**
      * Remove shipping policy from item
      * @description Removes a shipping policy from an item.
      */
-    delete: operations["RemoveShippingPolicyFromItemAsync"];
+    delete: operations["ItemShippingPolicies_RemoveShippingPolicyFromItem"];
   };
   "/api/v2/CatalogService/ItemTags": {
     /**
      * Get all item tags
      * @description Retrieves all item tags for the specified tenant using OData query options.
      */
-    get: operations["GetItemTagsAsync"];
+    get: operations["ItemTags_GetItemTags"];
     /**
      * Create a new item tag
      * @description Creates a new item tag for the specified tenant.
      */
-    post: operations["CreateItemTagAsync"];
+    post: operations["ItemTags_CreateItemTag"];
   };
   "/api/v2/CatalogService/ItemTags/{itemTagId}": {
     /**
      * Get item tag by ID
      * @description Retrieves a specific item tag by its ID.
      */
-    get: operations["GetItemTagByIdAsync"];
+    get: operations["ItemTags_GetItemTagById"];
     /**
      * Update an item tag
      * @description Updates an existing item tag for the specified tenant.
      */
-    put: operations["UpdateItemTagAsync"];
+    put: operations["ItemTags_UpdateItemTag"];
     /**
      * Delete an item tag
      * @description Deletes an item tag for the specified tenant.
      */
-    delete: operations["DeleteItemTagAsync"];
+    delete: operations["ItemTags_DeleteItemTag"];
     /**
      * Patch an item tag
      * @description Partially updates an existing item tag for the specified tenant.
      */
-    patch: operations["PatchItemTagAsync"];
+    patch: operations["ItemTags_PatchItemTag"];
   };
   "/api/v2/CatalogService/ItemTaxPolicies": {
     /**
      * Get item tax policies
      * @description Retrieves all tax policies for a specific item.
      */
-    get: operations["GetItemTaxPoliciesAsync"];
+    get: operations["ItemTaxPolicies_GetItemTaxPolicies"];
     /**
      * Relate item to tax policy
      * @description Relates an item to an existing tax policy.
      */
-    post: operations["RelateItemToTaxPolicyAsync"];
+    post: operations["ItemTaxPolicies_RelateItemToTaxPolicy"];
   };
   "/api/v2/CatalogService/ItemTaxPolicies/Count": {
     /**
      * Count item tax policies
      * @description Counts all tax policies for a specific item.
      */
-    get: operations["CountItemTaxPoliciesAsync"];
+    get: operations["ItemTaxPolicies_CountItemTaxPolicies"];
   };
   "/api/v2/CatalogService/ItemTaxPolicies/{itemTaxPolicyId}": {
     /**
      * Get item tax policy by ID
      * @description Retrieves a specific tax policy for an item.
      */
-    get: operations["GetItemTaxPolicyByIdAsync"];
+    get: operations["ItemTaxPolicies_GetItemTaxPolicyById"];
     /**
      * Remove tax policy from item
      * @description Removes a tax policy from an item.
      */
-    delete: operations["RemoveTaxPolicyFromItemAsync"];
+    delete: operations["ItemTaxPolicies_RemoveTaxPolicyFromItem"];
   };
   "/api/v2/CatalogService/ItemTypes/Count": {
     /**
      * Count item types
      * @description Counts all item types for the specified tenant.
      */
-    get: operations["CountItemTypesAsync"];
+    get: operations["ItemTypes_CountItemTypes"];
   };
   "/api/v2/CatalogService/ItemTypes": {
     /**
      * Get all item types
      * @description Retrieves all item types for the specified tenant using OData query options.
      */
-    get: operations["GetItemTypesAsync"];
+    get: operations["ItemTypes_GetItemTypes"];
     /**
      * Create a new item type
      * @description Creates a new item type for the specified tenant.
      */
-    post: operations["CreateItemTypeAsync"];
+    post: operations["ItemTypes_CreateItemType"];
   };
   "/api/v2/CatalogService/ItemTypes/{itemTypeID}": {
     /**
      * Get item type by ID
      * @description Retrieves a specific item type by its ID.
      */
-    get: operations["GetItemTypeByIdAsync"];
+    get: operations["ItemTypes_GetItemTypeById"];
     /**
      * Update an item type
      * @description Updates an existing item type for the specified tenant.
      */
-    put: operations["UpdateItemTypeAsync"];
+    put: operations["ItemTypes_UpdateItemType"];
     /**
      * Delete an item type
      * @description Deletes an item type for the specified tenant.
      */
-    delete: operations["DeleteItemTypeAsync"];
+    delete: operations["ItemTypes_DeleteItemType"];
     /**
      * Patch an item type
      * @description Partially updates an existing item type for the specified tenant.
      */
-    patch: operations["PatchItemTypeAsync"];
+    patch: operations["ItemTypes_PatchItemType"];
   };
   "/api/v2/CatalogService/ItemWarrantyPolicies": {
     /**
      * Get item warranty policies
      * @description Retrieves all warranty policies for a specific item.
      */
-    get: operations["GetItemWarrantyPoliciesAsync"];
+    get: operations["ItemWarrantyPolicies_GetItemWarrantyPolicies"];
     /**
      * Relate item to warranty policy
      * @description Relates an item to an existing warranty policy.
      */
-    post: operations["RelateItemToWarrantyPolicyAsync"];
+    post: operations["ItemWarrantyPolicies_RelateItemToWarrantyPolicy"];
   };
   "/api/v2/CatalogService/ItemWarrantyPolicies/Count": {
     /**
      * Count item warranty policies
      * @description Counts all warranty policies for a specific item.
      */
-    get: operations["CountItemWarrantyPoliciesAsync"];
+    get: operations["ItemWarrantyPolicies_CountItemWarrantyPolicies"];
   };
   "/api/v2/CatalogService/ItemWarrantyPolicies/{itemWarrantyPolicyId}": {
     /**
      * Get item warranty policy by ID
      * @description Retrieves a specific warranty policy for an item.
      */
-    get: operations["GetItemWarrantyPolicyByIdAsync"];
+    get: operations["ItemWarrantyPolicies_GetItemWarrantyPolicyById"];
     /**
      * Remove warranty policy from item
      * @description Removes a warranty policy from an item.
      */
-    delete: operations["RemoveWarrantyPolicyFromItemAsync"];
+    delete: operations["ItemWarrantyPolicies_RemoveWarrantyPolicyFromItem"];
   };
   "/api/v2/CatalogService/Merchants": {
     /**
      * Get all merchants
      * @description Retrieves all merchants, optionally filtered by OData query options.
      */
-    get: operations["GetMerchants"];
+    get: operations["Merchants_GetMerchants"];
   };
   "/api/v2/CatalogService/Merchants/Count": {
     /**
      * Count merchants
      * @description Counts the number of merchants, optionally filtered by OData query options.
      */
-    get: operations["GetMerchantsCount"];
+    get: operations["Merchants_GetMerchantsCount"];
   };
   "/api/v2/CatalogService/Merchants/{merchantId}": {
     /**
      * Get merchant by ID
      * @description Retrieves a merchant by its unique identifier.
      */
-    get: operations["GetMerchantById"];
+    get: operations["Merchants_GetMerchantById"];
   };
 }
 
@@ -3917,7 +3690,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -3932,11 +3784,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get all item attachments
    * @description Retrieves all item attachments for the specified tenant using OData query options.
    */
-  GetItemAttachmentsAsync: {
+  ItemAttachments_GetItemAttachments: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -3980,7 +4017,7 @@ export interface operations {
    * Create a new item attachment
    * @description Creates a new item attachment for the specified tenant.
    */
-  CreateItemAttachmentAsync: {
+  ItemAttachments_CreateItemAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4024,7 +4061,7 @@ export interface operations {
    * Get item attachment by ID
    * @description Retrieves a specific item attachment by its ID.
    */
-  GetItemAttachmentByIdAsync: {
+  ItemAttachments_GetItemAttachmentById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4065,7 +4102,7 @@ export interface operations {
    * Update an item attachment
    * @description Updates an existing item attachment for the specified tenant.
    */
-  UpdateItemAttachmentAsync: {
+  ItemAttachments_UpdateItemAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4112,7 +4149,7 @@ export interface operations {
    * Delete an item attachment
    * @description Deletes an item attachment for the specified tenant.
    */
-  DeleteItemAttachmentAsync: {
+  ItemAttachments_DeleteItemAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4153,7 +4190,7 @@ export interface operations {
    * Patch an item attachment
    * @description Partially updates an existing item attachment for the specified tenant using a JSON Patch document.
    */
-  PatchItemAttachmentAsync: {
+  ItemAttachments_PatchItemAttachment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4200,7 +4237,7 @@ export interface operations {
    * Get all item attribute options
    * @description Retrieves all item attribute options for the specified tenant using OData query options.
    */
-  GetItemAttributeOptionsAsync: {
+  ItemAttributeOptions_GetItemAttributeOptions: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4244,7 +4281,7 @@ export interface operations {
    * Create a new item attribute option
    * @description Creates a new item attribute option for the specified tenant.
    */
-  CreateItemAttributeOptionAsync: {
+  ItemAttributeOptions_CreateItemAttributeOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -4288,7 +4325,7 @@ export interface operations {
    * Get item attribute options count
    * @description Returns the count of item attribute options for the specified tenant.
    */
-  GetItemAttributeOptionsCountAsync: {
+  ItemAttributeOptions_GetItemAttributeOptionsCount: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4332,7 +4369,7 @@ export interface operations {
    * Get item attribute option by ID
    * @description Retrieves a specific item attribute option by its ID.
    */
-  GetItemAttributeOptionByIdAsync: {
+  ItemAttributeOptions_GetItemAttributeOptionById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4373,7 +4410,7 @@ export interface operations {
    * Update an item attribute option
    * @description Updates an existing item attribute option for the specified tenant.
    */
-  UpdateItemAttributeOptionAsync: {
+  ItemAttributeOptions_UpdateItemAttributeOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -4420,7 +4457,7 @@ export interface operations {
    * Delete an item attribute option
    * @description Deletes an item attribute option for the specified tenant.
    */
-  DeleteItemAttributeOptionAsync: {
+  ItemAttributeOptions_DeleteItemAttributeOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -4458,7 +4495,7 @@ export interface operations {
    * Patch an item attribute option
    * @description Partially updates an existing item attribute option for the specified tenant using a JSON Patch document.
    */
-  PatchItemAttributeOptionAsync: {
+  ItemAttributeOptions_PatchItemAttributeOption: {
     parameters: {
       query: {
         tenantId: string;
@@ -4505,7 +4542,7 @@ export interface operations {
    * Count item attributes
    * @description Counts all item attributes for the specified tenant.
    */
-  CountItemAttributesAsync: {
+  ItemAttributes_CountItemAttributes: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4549,7 +4586,7 @@ export interface operations {
    * Get all item attributes
    * @description Retrieves all item attributes for the specified tenant using OData query options.
    */
-  GetItemAttributesAsync: {
+  ItemAttributes_GetItemAttributes: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4593,7 +4630,7 @@ export interface operations {
    * Create a new item attribute
    * @description Creates a new item attribute for the specified tenant.
    */
-  CreateItemAttributeAsync: {
+  ItemAttributes_CreateItemAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -4637,7 +4674,7 @@ export interface operations {
    * Get item attribute by ID
    * @description Retrieves a specific item attribute by its ID.
    */
-  GetItemAttributeByIdAsync: {
+  ItemAttributes_GetItemAttributeById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4678,7 +4715,7 @@ export interface operations {
    * Update an item attribute
    * @description Updates an existing item attribute for the specified tenant.
    */
-  UpdateItemAttributeAsync: {
+  ItemAttributes_UpdateItemAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -4722,7 +4759,7 @@ export interface operations {
    * Delete an item attribute
    * @description Deletes an item attribute for the specified tenant.
    */
-  DeleteItemAttributeAsync: {
+  ItemAttributes_DeleteItemAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -4760,7 +4797,7 @@ export interface operations {
    * Patch an item attribute
    * @description Partially updates an existing item attribute for the specified tenant.
    */
-  PatchItemAttributeAsync: {
+  ItemAttributes_PatchItemAttribute: {
     parameters: {
       query: {
         tenantId: string;
@@ -4804,7 +4841,7 @@ export interface operations {
    * Get all item brands
    * @description Retrieves all item brands for the specified tenant using OData query options.
    */
-  GetItemBrandsAsync: {
+  ItemBrands_GetItemBrands: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4848,7 +4885,7 @@ export interface operations {
    * Create a new item brand
    * @description Creates a new item brand for the specified tenant.
    */
-  CreateItemBrandAsync: {
+  ItemBrands_CreateItemBrand: {
     parameters: {
       query: {
         tenantId: string;
@@ -4892,7 +4929,7 @@ export interface operations {
    * Get item brand by ID
    * @description Retrieves a specific item brand by its ID.
    */
-  GetItemBrandByIdAsync: {
+  ItemBrands_GetItemBrandById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -4933,7 +4970,7 @@ export interface operations {
    * Update an item brand
    * @description Updates an existing item brand for the specified tenant.
    */
-  UpdateItemBrandAsync: {
+  ItemBrands_UpdateItemBrand: {
     parameters: {
       query: {
         tenantId: string;
@@ -4980,7 +5017,7 @@ export interface operations {
    * Delete an item brand
    * @description Deletes an item brand for the specified tenant.
    */
-  DeleteItemBrandAsync: {
+  ItemBrands_DeleteItemBrand: {
     parameters: {
       query: {
         tenantId: string;
@@ -5018,7 +5055,7 @@ export interface operations {
    * Patch an item brand
    * @description Partially updates an existing item brand for the specified tenant.
    */
-  PatchItemBrandAsync: {
+  ItemBrands_PatchItemBrand: {
     parameters: {
       query: {
         tenantId: string;
@@ -5062,7 +5099,7 @@ export interface operations {
    * Get all item bundles
    * @description Retrieves all item bundles for the specified tenant using OData query options.
    */
-  GetItemBundlesAsync: {
+  ItemBundles_GetItemBundles: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5106,7 +5143,7 @@ export interface operations {
    * Create a new item bundle
    * @description Creates a new item bundle for the specified tenant.
    */
-  CreateItemBundleAsync: {
+  ItemBundles_CreateItemBundle: {
     parameters: {
       query: {
         tenantId: string;
@@ -5150,7 +5187,7 @@ export interface operations {
    * Get item bundles count
    * @description Returns the count of item bundles for the specified tenant.
    */
-  GetItemBundlesCountAsync: {
+  ItemBundles_GetItemBundlesCount: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5194,7 +5231,7 @@ export interface operations {
    * Get item bundle by ID
    * @description Retrieves a specific item bundle by its ID.
    */
-  GetItemBundleByIdAsync: {
+  ItemBundles_GetItemBundleById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5235,7 +5272,7 @@ export interface operations {
    * Update an item bundle
    * @description Updates an existing item bundle for the specified tenant.
    */
-  UpdateItemBundleAsync: {
+  ItemBundles_UpdateItemBundle: {
     parameters: {
       query: {
         tenantId: string;
@@ -5282,7 +5319,7 @@ export interface operations {
    * Delete an item bundle
    * @description Deletes an item bundle for the specified tenant.
    */
-  DeleteItemBundleAsync: {
+  ItemBundles_DeleteItemBundle: {
     parameters: {
       query: {
         tenantId: string;
@@ -5320,7 +5357,7 @@ export interface operations {
    * Patch an item bundle
    * @description Partially updates an existing item bundle for the specified tenant using a JSON Patch document.
    */
-  PatchItemBundleAsync: {
+  ItemBundles_PatchItemBundle: {
     parameters: {
       query: {
         tenantId: string;
@@ -5367,7 +5404,7 @@ export interface operations {
    * Count item categories
    * @description Counts all item categories for the specified tenant.
    */
-  CountItemCategoriesAsync: {
+  ItemCategories_CountItemCategories: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5411,7 +5448,7 @@ export interface operations {
    * Get item category by ID
    * @description Retrieves a specific item category by its ID.
    */
-  GetItemCategoryByIdAsync: {
+  ItemCategories_GetItemCategoryById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5452,7 +5489,7 @@ export interface operations {
    * Update an item category
    * @description Updates an existing item category for the specified tenant.
    */
-  UpdateItemCategoryAsync: {
+  ItemCategories_UpdateItemCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5496,7 +5533,7 @@ export interface operations {
    * Delete an item category
    * @description Deletes an item category for the specified tenant.
    */
-  DeleteItemCategoryAsync: {
+  ItemCategories_DeleteItemCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5534,7 +5571,7 @@ export interface operations {
    * Patch an item category
    * @description Partially updates an existing item category for the specified tenant.
    */
-  PatchItemCategoryAsync: {
+  ItemCategories_PatchItemCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5578,7 +5615,7 @@ export interface operations {
    * Get all item categories
    * @description Retrieves all item categories for the specified tenant using OData query options.
    */
-  GetItemCategoriesAsync: {
+  ItemCategories_GetItemCategories: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5622,7 +5659,7 @@ export interface operations {
    * Create a new item category
    * @description Creates a new item category for the specified tenant.
    */
-  CreateItemCategoryAsync: {
+  ItemCategories_CreateItemCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5666,7 +5703,7 @@ export interface operations {
    * Get all item families
    * @description Retrieves all item families for the specified tenant using OData query options.
    */
-  GetItemFamiliesAsync: {
+  ItemFamilies_GetItemFamilies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5710,7 +5747,7 @@ export interface operations {
    * Create a new item family
    * @description Creates a new item family for the specified tenant.
    */
-  CreateItemFamilyAsync: {
+  ItemFamilies_CreateItemFamily: {
     parameters: {
       query: {
         tenantId: string;
@@ -5754,7 +5791,7 @@ export interface operations {
    * Get item families count
    * @description Returns the count of item families for the specified tenant.
    */
-  GetItemFamiliesCountAsync: {
+  ItemFamilies_GetItemFamiliesCount: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5798,7 +5835,7 @@ export interface operations {
    * Get item family by ID
    * @description Retrieves a specific item family by its ID.
    */
-  GetItemFamilyByIdAsync: {
+  ItemFamilies_GetItemFamilyById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -5839,7 +5876,7 @@ export interface operations {
    * Update an item family
    * @description Updates an existing item family for the specified tenant.
    */
-  UpdateItemFamilyAsync: {
+  ItemFamilies_UpdateItemFamily: {
     parameters: {
       query: {
         tenantId: string;
@@ -5886,7 +5923,7 @@ export interface operations {
    * Delete an item family
    * @description Deletes an item family for the specified tenant.
    */
-  DeleteItemFamilyAsync: {
+  ItemFamilies_DeleteItemFamily: {
     parameters: {
       query: {
         tenantId: string;
@@ -5924,7 +5961,7 @@ export interface operations {
    * Patch an item family
    * @description Partially updates an existing item family for the specified tenant using a JSON Patch document.
    */
-  PatchItemFamilyAsync: {
+  ItemFamilies_PatchItemFamily: {
     parameters: {
       query: {
         tenantId: string;
@@ -5971,7 +6008,7 @@ export interface operations {
    * Get all Google item categories
    * @description Retrieves all Google item categories using OData query options.
    */
-  GetItemGoogleCategoriesAsync: {
+  ItemGoogleCategories_GetItemGoogleCategories: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6014,7 +6051,7 @@ export interface operations {
    * Get Google item categories count
    * @description Retrieves the count of Google item categories using OData query options.
    */
-  GetItemGoogleCategoriesCountAsync: {
+  ItemGoogleCategories_GetItemGoogleCategoriesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6057,7 +6094,7 @@ export interface operations {
    * Get all Google item categories (all)
    * @description Retrieves all Google item categories (all) without OData query options.
    */
-  GetAllItemGoogleCategoriesAsync: {
+  ItemGoogleCategories_GetAllItemGoogleCategories: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6094,7 +6131,7 @@ export interface operations {
    * Get root Google item categories
    * @description Retrieves root Google item categories.
    */
-  GetRootItemGoogleCategoriesAsync: {
+  ItemGoogleCategories_GetRootItemGoogleCategories: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6131,7 +6168,7 @@ export interface operations {
    * Get Google item category by ID
    * @description Retrieves a specific Google item category by its ID.
    */
-  GetItemGoogleCategoryByIdAsync: {
+  ItemGoogleCategories_GetItemGoogleCategoryById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6171,7 +6208,7 @@ export interface operations {
    * Get children Google item categories by ID
    * @description Retrieves children Google item categories for a given ID.
    */
-  GetChildrenItemGoogleCategoriesByIdAsync: {
+  ItemGoogleCategories_GetChildrenItemGoogleCategoriesById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6211,7 +6248,7 @@ export interface operations {
    * Get Google item categories tree
    * @description Retrieves the Google item categories tree.
    */
-  GetItemGoogleCategoriesTreeAsync: {
+  ItemGoogleCategories_GetItemGoogleCategoriesTree: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6248,7 +6285,7 @@ export interface operations {
    * Map Google item categories tree
    * @description Maps the Google item categories tree.
    */
-  MapItemGoogleCategoriesTreeAsync: {
+  ItemGoogleCategories_MapItemGoogleCategoriesTree: {
     parameters: {
       query: {
         tenantId: string;
@@ -6286,7 +6323,7 @@ export interface operations {
    * Get all item images
    * @description Retrieves all item images for the specified tenant using OData query options.
    */
-  GetItemImagesAsync: {
+  ItemImages_GetItemImages: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6330,7 +6367,7 @@ export interface operations {
    * Create a new item image
    * @description Creates a new item image for the specified tenant.
    */
-  CreateItemImageAsync: {
+  ItemImages_CreateItemImage: {
     parameters: {
       query: {
         tenantId: string;
@@ -6374,7 +6411,7 @@ export interface operations {
    * Get item image by ID
    * @description Retrieves a specific item image by its ID.
    */
-  GetItemImageByIdAsync: {
+  ItemImages_GetItemImageById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6415,7 +6452,7 @@ export interface operations {
    * Update an item image
    * @description Updates an existing item image for the specified tenant.
    */
-  UpdateItemImageAsync: {
+  ItemImages_UpdateItemImage: {
     parameters: {
       query: {
         tenantId: string;
@@ -6459,7 +6496,7 @@ export interface operations {
    * Delete an item image
    * @description Deletes an item image for the specified tenant.
    */
-  DeleteItemImageAsync: {
+  ItemImages_DeleteItemImage: {
     parameters: {
       query: {
         tenantId: string;
@@ -6497,7 +6534,7 @@ export interface operations {
    * Patch an item image
    * @description Partially updates an existing item image for the specified tenant using a JSON Patch document.
    */
-  PatchItemImageAsync: {
+  ItemImages_PatchItemImage: {
     parameters: {
       query: {
         tenantId: string;
@@ -6541,7 +6578,7 @@ export interface operations {
    * Get all item questions
    * @description Retrieves all item questions for the specified tenant using OData query options.
    */
-  GetItemQuestionsAsync: {
+  ItemQuestions_GetItemQuestions: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6585,7 +6622,7 @@ export interface operations {
    * Create a new item question
    * @description Creates a new item question for the specified tenant.
    */
-  CreateItemQuestionAsync: {
+  ItemQuestions_CreateItemQuestion: {
     parameters: {
       query: {
         tenantId: string;
@@ -6629,7 +6666,7 @@ export interface operations {
    * Get item question by ID
    * @description Retrieves a specific item question by its ID.
    */
-  GetItemQuestionByIdAsync: {
+  ItemQuestions_GetItemQuestionById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6670,7 +6707,7 @@ export interface operations {
    * Update an item question
    * @description Updates an existing item question for the specified tenant.
    */
-  UpdateItemQuestionAsync: {
+  ItemQuestions_UpdateItemQuestion: {
     parameters: {
       query: {
         tenantId: string;
@@ -6714,7 +6751,7 @@ export interface operations {
    * Delete an item question
    * @description Deletes an item question for the specified tenant.
    */
-  DeleteItemQuestionAsync: {
+  ItemQuestions_DeleteItemQuestion: {
     parameters: {
       query: {
         tenantId: string;
@@ -6752,7 +6789,7 @@ export interface operations {
    * Patch an item question
    * @description Partially updates an existing item question for the specified tenant using a JSON Patch document.
    */
-  PatchItemQuestionAsync: {
+  ItemQuestions_PatchItemQuestion: {
     parameters: {
       query: {
         tenantId: string;
@@ -6796,7 +6833,7 @@ export interface operations {
    * Get item refund policies
    * @description Retrieves all refund policies for a specific item.
    */
-  GetItemRefundPoliciesAsync: {
+  ItemRefundPolicies_GetItemRefundPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6841,7 +6878,7 @@ export interface operations {
    * Relate item to refund policy
    * @description Relates an item to an existing refund policy.
    */
-  RelateItemToRefundPolicyAsync: {
+  ItemRefundPolicies_RelateItemToRefundPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -6878,7 +6915,7 @@ export interface operations {
    * Count item refund policies
    * @description Counts all refund policies for a specific item.
    */
-  CountItemRefundPoliciesAsync: {
+  ItemRefundPolicies_CountItemRefundPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6923,7 +6960,7 @@ export interface operations {
    * Get item refund policy by ID
    * @description Retrieves a specific refund policy for an item.
    */
-  GetItemRefundPolicyByIdAsync: {
+  ItemRefundPolicies_GetItemRefundPolicyById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6965,7 +7002,7 @@ export interface operations {
    * Remove refund policy from item
    * @description Removes a refund policy from an item.
    */
-  RemoveRefundPolicyFromItemAsync: {
+  ItemRefundPolicies_RemoveRefundPolicyFromItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -7004,7 +7041,7 @@ export interface operations {
    * Get item return policies
    * @description Retrieves all return policies for a specific item.
    */
-  GetItemReturnPoliciesAsync: {
+  ItemReturnPolicies_GetItemReturnPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7049,7 +7086,7 @@ export interface operations {
    * Relate item to return policy
    * @description Relates an item to an existing return policy.
    */
-  RelateItemToReturnPolicyAsync: {
+  ItemReturnPolicies_RelateItemToReturnPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -7086,7 +7123,7 @@ export interface operations {
    * Count item return policies
    * @description Counts all return policies for a specific item.
    */
-  CountItemReturnPoliciesAsync: {
+  ItemReturnPolicies_CountItemReturnPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7131,7 +7168,7 @@ export interface operations {
    * Get item return policy by ID
    * @description Retrieves a specific return policy for an item.
    */
-  GetItemReturnPolicyByIdAsync: {
+  ItemReturnPolicies_GetItemReturnPolicyById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7173,7 +7210,7 @@ export interface operations {
    * Remove return policy from item
    * @description Removes a return policy from an item.
    */
-  RemoveReturnPolicyFromItemAsync: {
+  ItemReturnPolicies_RemoveReturnPolicyFromItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -7212,7 +7249,7 @@ export interface operations {
    * Get all item reviews
    * @description Retrieves all item reviews for the specified item using OData query options.
    */
-  GetItemReviewsAsync: {
+  ItemReviews_GetItemReviews: {
     parameters: {
       query: {
         itemId: string;
@@ -7256,7 +7293,7 @@ export interface operations {
    * Create a new item review
    * @description Creates a new item review for the specified tenant.
    */
-  CreateItemReviewAsync: {
+  ItemReviews_CreateItemReview: {
     parameters: {
       query: {
         tenantId: string;
@@ -7300,7 +7337,7 @@ export interface operations {
    * Get item review by ID
    * @description Retrieves a specific item review by its ID.
    */
-  GetItemReviewByIdAsync: {
+  ItemReviews_GetItemReviewById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7341,7 +7378,7 @@ export interface operations {
    * Update an item review
    * @description Updates an existing item review for the specified tenant.
    */
-  UpdateItemReviewAsync: {
+  ItemReviews_UpdateItemReview: {
     parameters: {
       query: {
         tenantId: string;
@@ -7385,7 +7422,7 @@ export interface operations {
    * Delete an item review
    * @description Deletes an item review for the specified tenant.
    */
-  DeleteItemReviewAsync: {
+  ItemReviews_DeleteItemReview: {
     parameters: {
       query: {
         tenantId: string;
@@ -7423,7 +7460,7 @@ export interface operations {
    * Patch an item review
    * @description Partially updates an existing item review for the specified tenant.
    */
-  PatchItemReviewAsync: {
+  ItemReviews_PatchItemReview: {
     parameters: {
       query: {
         tenantId: string;
@@ -7467,7 +7504,7 @@ export interface operations {
    * Get all stock items
    * @description Retrieves all stock items, optionally filtered by tenant and OData query options.
    */
-  GetStockItemsQuery: {
+  Items_GetStockItemsQuery: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7511,7 +7548,7 @@ export interface operations {
    * Create a new stock item
    * @description Creates a new stock item for the specified tenant.
    */
-  CreateStockItem: {
+  Items_CreateStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -7552,7 +7589,7 @@ export interface operations {
    * Get max price of stock items
    * @description Retrieves the maximum price among all stock items, optionally filtered by tenant and OData query options.
    */
-  GetStockItemsOdataMaxPrice: {
+  Items_GetStockItemsOdataMaxPrice: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7596,7 +7633,7 @@ export interface operations {
    * Get min price of stock items
    * @description Retrieves the minimum price among all stock items, optionally filtered by tenant and OData query options.
    */
-  GetStockItemsOdataMinPrice: {
+  Items_GetStockItemsOdataMinPrice: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7640,7 +7677,7 @@ export interface operations {
    * Count stock items by business
    * @description Counts the number of stock items for a business, optionally filtered by tenant and OData query options.
    */
-  CountStockItemsByBusiness: {
+  Items_CountStockItemsByBusiness: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -7684,9 +7721,10 @@ export interface operations {
    * Get stock item by ID
    * @description Retrieves a stock item by its unique identifier.
    */
-  GetStockItemById: {
+  Items_GetStockItemById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7718,13 +7756,20 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
     };
   };
   /**
    * Update a stock item
    * @description Updates an existing stock item for the specified tenant and item ID.
    */
-  UpdateStockItem: {
+  Items_UpdateStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -7768,7 +7813,7 @@ export interface operations {
    * Delete a stock item
    * @description Deletes a stock item for the specified tenant and item ID.
    */
-  DeleteStockItem: {
+  Items_DeleteStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -7806,7 +7851,7 @@ export interface operations {
    * Patch a stock item
    * @description Partially updates an existing stock item for the specified tenant and item ID.
    */
-  PatchStockItem: {
+  Items_PatchStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -7850,9 +7895,10 @@ export interface operations {
    * Get extended stock item by ID
    * @description Retrieves extended information for a stock item by its unique identifier.
    */
-  GetExtendedStockItemById: {
+  Items_GetExtendedStockItemById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7884,13 +7930,132 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get public stock items
+   * @description Retrieves the publicly-visible catalog: published, non-deleted items. Anonymous.
+   */
+  Items_GetPublicStockItems: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CatalogItemDtoListEnvelope"];
+          "application/xml": components["schemas"]["CatalogItemDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count public stock items
+   * @description Counts the publicly-visible catalog: published, non-deleted items. Anonymous.
+   */
+  Items_GetPublicStockItemsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get public stock item by ID
+   * @description Retrieves a publicly-visible stock item by its identifier. An unpublished or deleted item is not found. Anonymous.
+   */
+  Items_GetPublicStockItemById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CatalogItemDtoEnvelope"];
+          "application/xml": components["schemas"]["CatalogItemDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
     };
   };
   /**
    * Bulk-update stock items
    * @description Applies a targeted bulk operation (set flags, add/remove tax policies) to many items atomically.
    */
-  BatchUpdateStockItems: {
+  Items_BatchUpdateStockItems: {
     parameters: {
       query: {
         tenantId: string;
@@ -7931,7 +8096,7 @@ export interface operations {
    * Bulk upsert stock items from rows
    * @description Updates scalar fields of matching tenant-owned items or creates new ones, all in one transaction.
    */
-  BulkUpsertStockItems: {
+  Items_BulkUpsertStockItems: {
     parameters: {
       query: {
         tenantId: string;
@@ -7972,7 +8137,7 @@ export interface operations {
    * Recalculate stock item prices
    * @description Recomputes derived prices for the given tenant-owned items via the pricing service, atomically.
    */
-  RecalculateStockItemPrices: {
+  Items_RecalculateStockItemPrices: {
     parameters: {
       query: {
         tenantId: string;
@@ -8013,10 +8178,10 @@ export interface operations {
    * Get tags for a stock item
    * @description Retrieves all tags associated with a specific stock item.
    */
-  GetStockItemTagsByItemId: {
+  Items_GetStockItemTagsByItemId: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8060,10 +8225,10 @@ export interface operations {
    * Count tags for a stock item
    * @description Counts the number of tags associated with a specific stock item.
    */
-  CountStockItemTagsByItemId: {
+  Items_CountStockItemTagsByItemId: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8107,10 +8272,10 @@ export interface operations {
    * Get tag by ID for a stock item
    * @description Retrieves a specific tag by ID for a stock item.
    */
-  GetStockItemTagById: {
+  Items_GetStockItemTagById: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8149,7 +8314,7 @@ export interface operations {
    * Relate tag to stock item
    * @description Associates a tag with a stock item.
    */
-  RelateTagToStockItem: {
+  Items_RelateTagToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8191,7 +8356,7 @@ export interface operations {
    * Remove tag from stock item
    * @description Removes a tag association from a stock item.
    */
-  RemoveTagFromStockItem: {
+  Items_RemoveTagFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8233,10 +8398,10 @@ export interface operations {
    * Get types for a stock item
    * @description Retrieves all types associated with a specific stock item.
    */
-  GetStockItemTypesByItemId: {
+  Items_GetStockItemTypesByItemId: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8280,10 +8445,10 @@ export interface operations {
    * Get type by ID for a stock item
    * @description Retrieves a specific type by ID for a stock item.
    */
-  GetStockItemTypeById: {
+  Items_GetStockItemTypeById: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8322,7 +8487,7 @@ export interface operations {
    * Relate type to stock item
    * @description Associates a type with a stock item.
    */
-  RelateTypeToStockItem: {
+  Items_RelateTypeToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8364,7 +8529,7 @@ export interface operations {
    * Remove type from stock item
    * @description Removes a type association from a stock item.
    */
-  RemoveTypeFromStockItem: {
+  Items_RemoveTypeFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8406,9 +8571,10 @@ export interface operations {
    * Get item primary image
    * @description Retrieves the primary image for a specific catalog item.
    */
-  GetProductPrimaryImageAsync: {
+  Items_GetProductPrimaryImage: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8439,7 +8605,7 @@ export interface operations {
    * Update item primary image
    * @description Updates the primary image for a specific catalog item.
    */
-  UpdateProductPrimaryImageAsync: {
+  Items_UpdateProductPrimaryImage: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -8496,9 +8662,10 @@ export interface operations {
    * Get images for a stock item
    * @description Retrieves all images associated with a specific stock item.
    */
-  GetStockItemImagesByItemId: {
+  Items_GetStockItemImagesByItemId: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8542,9 +8709,10 @@ export interface operations {
    * Get image by ID for a stock item
    * @description Retrieves a specific image by ID for a stock item.
    */
-  GetStockItemImageById: {
+  Items_GetStockItemImageById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8583,7 +8751,7 @@ export interface operations {
    * Relate image to stock item
    * @description Associates an image with a stock item.
    */
-  RelateImageToStockItem: {
+  Items_RelateImageToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8625,7 +8793,7 @@ export interface operations {
    * Remove image from stock item
    * @description Removes an image association from a stock item.
    */
-  RemoveImageFromStockItem: {
+  Items_RemoveImageFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8667,9 +8835,10 @@ export interface operations {
    * Get brands for a stock item
    * @description Retrieves all brands associated with a specific stock item.
    */
-  GetStockItemBrandsByItemId: {
+  Items_GetStockItemBrandsByItemId: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8713,9 +8882,10 @@ export interface operations {
    * Get brand by ID for a stock item
    * @description Retrieves a specific brand by ID for a stock item.
    */
-  GetStockItemBrandById: {
+  Items_GetStockItemBrandById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8754,7 +8924,7 @@ export interface operations {
    * Relate brand to stock item
    * @description Associates a brand with a stock item.
    */
-  RelateBrandToStockItem: {
+  Items_RelateBrandToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8796,7 +8966,7 @@ export interface operations {
    * Remove brand from stock item
    * @description Removes a brand association from a stock item.
    */
-  RemoveBrandFromStockItem: {
+  Items_RemoveBrandFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8838,7 +9008,7 @@ export interface operations {
    * Get reviews for a stock item
    * @description Retrieves all reviews associated with a specific stock item.
    */
-  GetStockItemReviewsByItemId: {
+  Items_GetStockItemReviewsByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8884,7 +9054,7 @@ export interface operations {
    * Create review for stock item
    * @description Creates a new review for a stock item.
    */
-  RelateReviewToStockItem: {
+  Items_RelateReviewToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -8931,7 +9101,7 @@ export interface operations {
    * Get review by ID for a stock item
    * @description Retrieves a specific review by ID for a stock item.
    */
-  GetStockItemReviewById: {
+  Items_GetStockItemReviewById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8972,7 +9142,7 @@ export interface operations {
    * Remove review from stock item
    * @description Removes a review from a stock item.
    */
-  RemoveReviewFromStockItem: {
+  Items_RemoveReviewFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9014,9 +9184,10 @@ export interface operations {
    * Get questions for a stock item
    * @description Retrieves all questions associated with a specific stock item.
    */
-  GetStockItemQuestionsByItemId: {
+  Items_GetStockItemQuestionsByItemId: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9060,7 +9231,7 @@ export interface operations {
    * Create question for stock item
    * @description Creates a new question for a stock item.
    */
-  RelateQuestionToStockItem: {
+  Items_RelateQuestionToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9107,9 +9278,10 @@ export interface operations {
    * Get question by ID for a stock item
    * @description Retrieves a specific question by ID for a stock item.
    */
-  GetStockItemQuestionById: {
+  Items_GetStockItemQuestionById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9148,7 +9320,7 @@ export interface operations {
    * Remove question from stock item
    * @description Removes a question from a stock item.
    */
-  RemoveQuestionFromStockItem: {
+  Items_RemoveQuestionFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9190,7 +9362,7 @@ export interface operations {
    * Get categories for a stock item
    * @description Retrieves all categories associated with a specific stock item.
    */
-  GetStockItemCategoriesByItemId: {
+  Items_GetStockItemCategoriesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9236,9 +9408,10 @@ export interface operations {
    * Get category by ID for a stock item
    * @description Retrieves a specific category by ID for a stock item.
    */
-  GetStockItemCategoryById: {
+  Items_GetStockItemCategoryById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9277,7 +9450,7 @@ export interface operations {
    * Relate category to stock item
    * @description Associates a category with a stock item.
    */
-  RelateCategoryToStockItem: {
+  Items_RelateCategoryToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9319,7 +9492,7 @@ export interface operations {
    * Remove category from stock item
    * @description Removes a category association from a stock item.
    */
-  RemoveCategoryFromStockItem: {
+  Items_RemoveCategoryFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9361,9 +9534,10 @@ export interface operations {
    * Get attachments for a stock item
    * @description Retrieves all attachments associated with a specific stock item.
    */
-  GetStockItemAttachmentsByItemId: {
+  Items_GetStockItemAttachmentsByItemId: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9407,9 +9581,10 @@ export interface operations {
    * Get attachment by ID for a stock item
    * @description Retrieves a specific attachment by ID for a stock item.
    */
-  GetStockItemAttachmentById: {
+  Items_GetStockItemAttachmentById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9448,7 +9623,7 @@ export interface operations {
    * Relate attachment to stock item
    * @description Associates an attachment with a stock item.
    */
-  RelateAttachmentToStockItem: {
+  Items_RelateAttachmentToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9496,7 +9671,7 @@ export interface operations {
    * Remove attachment from stock item
    * @description Removes an attachment from a stock item.
    */
-  RemoveAttachmentFromStockItem: {
+  Items_RemoveAttachmentFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9538,7 +9713,7 @@ export interface operations {
    * Get tax policies for a stock item
    * @description Retrieves all tax policies associated with a specific stock item.
    */
-  GetStockItemTaxPoliciesByItemId: {
+  Items_GetStockItemTaxPoliciesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9584,7 +9759,7 @@ export interface operations {
    * Get tax policy by ID for a stock item
    * @description Retrieves a specific tax policy by ID for a stock item.
    */
-  GetStockItemTaxPolicyById: {
+  Items_GetStockItemTaxPolicyById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9625,7 +9800,7 @@ export interface operations {
    * Relate tax policy to stock item
    * @description Associates a tax policy with a stock item.
    */
-  RelateTaxPolicyToStockItem: {
+  Items_RelateTaxPolicyToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9667,7 +9842,7 @@ export interface operations {
    * Remove tax policy from stock item
    * @description Removes a tax policy from a stock item.
    */
-  RemoveTaxPolicyFromStockItem: {
+  Items_RemoveTaxPolicyFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -9709,7 +9884,7 @@ export interface operations {
    * Get price rules for a stock item
    * @description Retrieves all pricing rules associated with a specific stock item.
    */
-  GetStockItemPriceRulesByItemId: {
+  Items_GetStockItemPriceRulesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9749,7 +9924,7 @@ export interface operations {
    * Get price rule by ID for a stock item
    * @description Retrieves a specific pricing rule by ID for a stock item.
    */
-  GetStockItemPriceRuleById: {
+  Items_GetStockItemPriceRuleById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9790,7 +9965,7 @@ export interface operations {
    * Relate price rule to stock item
    * @description Associates a pricing rule with a stock item.
    */
-  RelatePriceRuleToStockItem: {
+  Items_RelatePriceRuleToStockItem: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9831,7 +10006,7 @@ export interface operations {
    * Remove price rule from stock item
    * @description Removes a pricing rule from a stock item.
    */
-  RemovePriceRuleFromStockItem: {
+  Items_RemovePriceRuleFromStockItem: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9872,7 +10047,7 @@ export interface operations {
    * Get return policies for a stock item
    * @description Retrieves all return policies associated with a specific stock item.
    */
-  GetStockItemReturnPoliciesByItemId: {
+  Items_GetStockItemReturnPoliciesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9918,7 +10093,7 @@ export interface operations {
    * Get return policy by ID for a stock item
    * @description Retrieves a specific return policy by ID for a stock item.
    */
-  GetStockItemReturnPolicyById: {
+  Items_GetStockItemReturnPolicyById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9959,7 +10134,7 @@ export interface operations {
    * Relate return policy to stock item
    * @description Associates a return policy with a stock item.
    */
-  RelateReturnPolicyToStockItem: {
+  Items_RelateReturnPolicyToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10001,7 +10176,7 @@ export interface operations {
    * Remove return policy from stock item
    * @description Removes a return policy from a stock item.
    */
-  RemoveReturnPolicyFromStockItem: {
+  Items_RemoveReturnPolicyFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10043,7 +10218,7 @@ export interface operations {
    * Get refund policies for a stock item
    * @description Retrieves all refund policies associated with a specific stock item.
    */
-  GetStockItemRefundPoliciesByItemId: {
+  Items_GetStockItemRefundPoliciesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10089,7 +10264,7 @@ export interface operations {
    * Get refund policy by ID for a stock item
    * @description Retrieves a specific refund policy by ID for a stock item.
    */
-  GetStockItemRefundPolicyById: {
+  Items_GetStockItemRefundPolicyById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10130,7 +10305,7 @@ export interface operations {
    * Relate refund policy to stock item
    * @description Associates a refund policy with a stock item.
    */
-  RelateRefundPolicyToStockItem: {
+  Items_RelateRefundPolicyToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10172,7 +10347,7 @@ export interface operations {
    * Remove refund policy from stock item
    * @description Removes a refund policy from a stock item.
    */
-  RemoveRefundPolicyFromStockItem: {
+  Items_RemoveRefundPolicyFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10214,7 +10389,7 @@ export interface operations {
    * Get shipping policies for a stock item
    * @description Retrieves all shipping policies associated with a specific stock item.
    */
-  GetStockItemShippingPoliciesByItemId: {
+  Items_GetStockItemShippingPoliciesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10260,7 +10435,7 @@ export interface operations {
    * Get shipping policy by ID for a stock item
    * @description Retrieves a specific shipping policy by ID for a stock item.
    */
-  GetStockItemShippingPolicyById: {
+  Items_GetStockItemShippingPolicyById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10301,7 +10476,7 @@ export interface operations {
    * Relate shipping policy to stock item
    * @description Associates a shipping policy with a stock item.
    */
-  RelateShippingPolicyToStockItem: {
+  Items_RelateShippingPolicyToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10343,7 +10518,7 @@ export interface operations {
    * Remove shipping policy from stock item
    * @description Removes a shipping policy from a stock item.
    */
-  RemoveShippingPolicyFromStockItem: {
+  Items_RemoveShippingPolicyFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10385,7 +10560,7 @@ export interface operations {
    * Get warranty policies for a stock item
    * @description Retrieves all warranty policies associated with a specific stock item.
    */
-  GetStockItemWarrantyPoliciesByItemId: {
+  Items_GetStockItemWarrantyPoliciesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10431,7 +10606,7 @@ export interface operations {
    * Get warranty policy by ID for a stock item
    * @description Retrieves a specific warranty policy by ID for a stock item.
    */
-  GetStockItemWarrantyPolicyById: {
+  Items_GetStockItemWarrantyPolicyById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10472,7 +10647,7 @@ export interface operations {
    * Relate warranty policy to stock item
    * @description Associates a warranty policy with a stock item.
    */
-  RelateWarrantyPolicyToStockItem: {
+  Items_RelateWarrantyPolicyToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10514,7 +10689,7 @@ export interface operations {
    * Remove warranty policy from stock item
    * @description Removes a warranty policy from a stock item.
    */
-  RemoveWarrantyPolicyFromStockItem: {
+  Items_RemoveWarrantyPolicyFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10556,7 +10731,7 @@ export interface operations {
    * Get attribute options for a stock item
    * @description Retrieves all attribute options associated with a specific stock item.
    */
-  GetStockItemAttributeOptionsByItemId: {
+  Items_GetStockItemAttributeOptionsByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10596,7 +10771,7 @@ export interface operations {
    * Get attribute option by ID for a stock item
    * @description Retrieves a specific attribute option by ID for a stock item.
    */
-  GetStockItemAttributeOptionById: {
+  Items_GetStockItemAttributeOptionById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10637,7 +10812,7 @@ export interface operations {
    * Relate attribute option to stock item
    * @description Associates an attribute option with a stock item.
    */
-  RelateAttributeOptionToStockItem: {
+  Items_RelateAttributeOptionToStockItem: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10678,7 +10853,7 @@ export interface operations {
    * Remove attribute option from stock item
    * @description Removes an attribute option from a stock item.
    */
-  RemoveAttributeOptionFromStockItem: {
+  Items_RemoveAttributeOptionFromStockItem: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10719,7 +10894,7 @@ export interface operations {
    * Get Google categories for a stock item
    * @description Retrieves all Google categories associated with a specific stock item.
    */
-  GetStockItemGoogleCategoriesByItemId: {
+  Items_GetStockItemGoogleCategoriesByItemId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10765,7 +10940,7 @@ export interface operations {
    * Get Google category by ID for a stock item
    * @description Retrieves a specific Google category by ID for a stock item.
    */
-  GetStockItemGoogleCategoryById: {
+  Items_GetStockItemGoogleCategoryById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -10806,7 +10981,7 @@ export interface operations {
    * Relate Google category to stock item
    * @description Associates a Google category with a stock item.
    */
-  RelateGoogleCategoryToStockItem: {
+  Items_RelateGoogleCategoryToStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10848,7 +11023,7 @@ export interface operations {
    * Remove Google category from stock item
    * @description Removes a Google category from a stock item.
    */
-  RemoveGoogleCategoryFromStockItem: {
+  Items_RemoveGoogleCategoryFromStockItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -10890,7 +11065,7 @@ export interface operations {
    * Get item shipping policies
    * @description Retrieves all shipping policies for a specific item.
    */
-  GetCatalogItemShippingPoliciesAsync: {
+  ItemShippingPolicies_GetCatalogItemShippingPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -10935,7 +11110,7 @@ export interface operations {
    * Relate item to shipping policy
    * @description Relates an item to an existing shipping policy.
    */
-  RelateItemToShippingPolicyAsync: {
+  ItemShippingPolicies_RelateItemToShippingPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -10972,7 +11147,7 @@ export interface operations {
    * Count item shipping policies
    * @description Counts all shipping policies for a specific item.
    */
-  CountItemShippingPoliciesAsync: {
+  ItemShippingPolicies_CountItemShippingPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11017,7 +11192,7 @@ export interface operations {
    * Get item shipping policy by ID
    * @description Retrieves a specific shipping policy for an item.
    */
-  GetCatalogItemShippingPolicyByIdAsync: {
+  ItemShippingPolicies_GetCatalogItemShippingPolicyById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11059,7 +11234,7 @@ export interface operations {
    * Remove shipping policy from item
    * @description Removes a shipping policy from an item.
    */
-  RemoveShippingPolicyFromItemAsync: {
+  ItemShippingPolicies_RemoveShippingPolicyFromItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -11098,7 +11273,7 @@ export interface operations {
    * Get all item tags
    * @description Retrieves all item tags for the specified tenant using OData query options.
    */
-  GetItemTagsAsync: {
+  ItemTags_GetItemTags: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11142,7 +11317,7 @@ export interface operations {
    * Create a new item tag
    * @description Creates a new item tag for the specified tenant.
    */
-  CreateItemTagAsync: {
+  ItemTags_CreateItemTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -11186,7 +11361,7 @@ export interface operations {
    * Get item tag by ID
    * @description Retrieves a specific item tag by its ID.
    */
-  GetItemTagByIdAsync: {
+  ItemTags_GetItemTagById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11227,7 +11402,7 @@ export interface operations {
    * Update an item tag
    * @description Updates an existing item tag for the specified tenant.
    */
-  UpdateItemTagAsync: {
+  ItemTags_UpdateItemTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -11271,7 +11446,7 @@ export interface operations {
    * Delete an item tag
    * @description Deletes an item tag for the specified tenant.
    */
-  DeleteItemTagAsync: {
+  ItemTags_DeleteItemTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -11309,7 +11484,7 @@ export interface operations {
    * Patch an item tag
    * @description Partially updates an existing item tag for the specified tenant.
    */
-  PatchItemTagAsync: {
+  ItemTags_PatchItemTag: {
     parameters: {
       query: {
         tenantId: string;
@@ -11353,7 +11528,7 @@ export interface operations {
    * Get item tax policies
    * @description Retrieves all tax policies for a specific item.
    */
-  GetItemTaxPoliciesAsync: {
+  ItemTaxPolicies_GetItemTaxPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11398,7 +11573,7 @@ export interface operations {
    * Relate item to tax policy
    * @description Relates an item to an existing tax policy.
    */
-  RelateItemToTaxPolicyAsync: {
+  ItemTaxPolicies_RelateItemToTaxPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -11435,7 +11610,7 @@ export interface operations {
    * Count item tax policies
    * @description Counts all tax policies for a specific item.
    */
-  CountItemTaxPoliciesAsync: {
+  ItemTaxPolicies_CountItemTaxPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11480,7 +11655,7 @@ export interface operations {
    * Get item tax policy by ID
    * @description Retrieves a specific tax policy for an item.
    */
-  GetItemTaxPolicyByIdAsync: {
+  ItemTaxPolicies_GetItemTaxPolicyById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11522,7 +11697,7 @@ export interface operations {
    * Remove tax policy from item
    * @description Removes a tax policy from an item.
    */
-  RemoveTaxPolicyFromItemAsync: {
+  ItemTaxPolicies_RemoveTaxPolicyFromItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -11561,7 +11736,7 @@ export interface operations {
    * Count item types
    * @description Counts all item types for the specified tenant.
    */
-  CountItemTypesAsync: {
+  ItemTypes_CountItemTypes: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11605,7 +11780,7 @@ export interface operations {
    * Get all item types
    * @description Retrieves all item types for the specified tenant using OData query options.
    */
-  GetItemTypesAsync: {
+  ItemTypes_GetItemTypes: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11649,7 +11824,7 @@ export interface operations {
    * Create a new item type
    * @description Creates a new item type for the specified tenant.
    */
-  CreateItemTypeAsync: {
+  ItemTypes_CreateItemType: {
     parameters: {
       query: {
         tenantId: string;
@@ -11693,7 +11868,7 @@ export interface operations {
    * Get item type by ID
    * @description Retrieves a specific item type by its ID.
    */
-  GetItemTypeByIdAsync: {
+  ItemTypes_GetItemTypeById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11734,7 +11909,7 @@ export interface operations {
    * Update an item type
    * @description Updates an existing item type for the specified tenant.
    */
-  UpdateItemTypeAsync: {
+  ItemTypes_UpdateItemType: {
     parameters: {
       query: {
         tenantId: string;
@@ -11778,7 +11953,7 @@ export interface operations {
    * Delete an item type
    * @description Deletes an item type for the specified tenant.
    */
-  DeleteItemTypeAsync: {
+  ItemTypes_DeleteItemType: {
     parameters: {
       query: {
         tenantId: string;
@@ -11819,7 +11994,7 @@ export interface operations {
    * Patch an item type
    * @description Partially updates an existing item type for the specified tenant.
    */
-  PatchItemTypeAsync: {
+  ItemTypes_PatchItemType: {
     parameters: {
       query: {
         tenantId: string;
@@ -11863,7 +12038,7 @@ export interface operations {
    * Get item warranty policies
    * @description Retrieves all warranty policies for a specific item.
    */
-  GetItemWarrantyPoliciesAsync: {
+  ItemWarrantyPolicies_GetItemWarrantyPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11908,7 +12083,7 @@ export interface operations {
    * Relate item to warranty policy
    * @description Relates an item to an existing warranty policy.
    */
-  RelateItemToWarrantyPolicyAsync: {
+  ItemWarrantyPolicies_RelateItemToWarrantyPolicy: {
     parameters: {
       query: {
         tenantId: string;
@@ -11945,7 +12120,7 @@ export interface operations {
    * Count item warranty policies
    * @description Counts all warranty policies for a specific item.
    */
-  CountItemWarrantyPoliciesAsync: {
+  ItemWarrantyPolicies_CountItemWarrantyPolicies: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -11990,7 +12165,7 @@ export interface operations {
    * Get item warranty policy by ID
    * @description Retrieves a specific warranty policy for an item.
    */
-  GetItemWarrantyPolicyByIdAsync: {
+  ItemWarrantyPolicies_GetItemWarrantyPolicyById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -12032,7 +12207,7 @@ export interface operations {
    * Remove warranty policy from item
    * @description Removes a warranty policy from an item.
    */
-  RemoveWarrantyPolicyFromItemAsync: {
+  ItemWarrantyPolicies_RemoveWarrantyPolicyFromItem: {
     parameters: {
       query: {
         tenantId: string;
@@ -12071,7 +12246,7 @@ export interface operations {
    * Get all merchants
    * @description Retrieves all merchants, optionally filtered by OData query options.
    */
-  GetMerchants: {
+  Merchants_GetMerchants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -12114,7 +12289,7 @@ export interface operations {
    * Count merchants
    * @description Counts the number of merchants, optionally filtered by OData query options.
    */
-  GetMerchantsCount: {
+  Merchants_GetMerchantsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -12157,7 +12332,7 @@ export interface operations {
    * Get merchant by ID
    * @description Retrieves a merchant by its unique identifier.
    */
-  GetMerchantById: {
+  Merchants_GetMerchantById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -12186,6 +12361,13 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

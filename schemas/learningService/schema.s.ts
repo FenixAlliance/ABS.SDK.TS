@@ -10,2103 +10,1469 @@ export interface paths {
      * Get all course articles
      * @description Retrieves all course articles for the specified tenant.
      */
-    get: operations["GetCourseArticlesAsync"];
+    get: operations["CourseArticles_GetCourseArticles"];
     /**
      * Create a new course article
      * @description Creates a new course article for the specified tenant.
      */
-    post: operations["CreateCourseArticleAsync"];
+    post: operations["CourseArticles_CreateCourseArticle"];
   };
   "/api/v2/LearningService/CourseArticles/Count": {
     /**
      * Get course articles count
      * @description Returns the count of course articles for the specified tenant.
      */
-    get: operations["GetCourseArticlesCountAsync"];
+    get: operations["CourseArticles_GetCourseArticlesCount"];
   };
   "/api/v2/LearningService/CourseArticles/{articleId}": {
     /**
      * Get course article by ID
      * @description Retrieves a specific course article by its ID.
      */
-    get: operations["GetCourseArticleByIdAsync"];
+    get: operations["CourseArticles_GetCourseArticleById"];
     /**
      * Update a course article
      * @description Updates an existing course article for the specified tenant.
      */
-    put: operations["UpdateCourseArticleAsync"];
+    put: operations["CourseArticles_UpdateCourseArticle"];
     /**
      * Delete a course article
      * @description Deletes a course article for the specified tenant.
      */
-    delete: operations["DeleteCourseArticleAsync"];
+    delete: operations["CourseArticles_DeleteCourseArticle"];
     /**
      * Patch a course article
      * @description Partially updates a course article for the specified tenant.
      */
-    patch: operations["PatchCourseArticleAsync"];
+    patch: operations["CourseArticles_PatchCourseArticle"];
   };
   "/api/v2/LearningService/CourseAssignmentComponents": {
     /**
      * Get all course assignment components
      * @description Retrieves all course assignment components for the specified tenant.
      */
-    get: operations["GetCourseAssignmentComponentsAsync"];
+    get: operations["CourseAssignmentComponents_GetCourseAssignmentComponents"];
     /**
      * Create a course assignment component
      * @description Creates a new course assignment component for the specified tenant.
      */
-    post: operations["CreateCourseAssignmentComponentAsync"];
+    post: operations["CourseAssignmentComponents_CreateCourseAssignmentComponent"];
   };
   "/api/v2/LearningService/CourseAssignmentComponents/Count": {
     /**
      * Get course assignment components count
      * @description Returns the count of course assignment components for the specified tenant.
      */
-    get: operations["GetCourseAssignmentComponentsCountAsync"];
+    get: operations["CourseAssignmentComponents_GetCourseAssignmentComponentsCount"];
   };
   "/api/v2/LearningService/CourseAssignmentComponents/{componentId}": {
     /**
      * Get course assignment component by ID
      * @description Retrieves a specific course assignment component by its ID.
      */
-    get: operations["GetCourseAssignmentComponentByIdAsync"];
+    get: operations["CourseAssignmentComponents_GetCourseAssignmentComponentById"];
     /**
      * Update a course assignment component
      * @description Updates an existing course assignment component.
      */
-    put: operations["UpdateCourseAssignmentComponentAsync"];
+    put: operations["CourseAssignmentComponents_UpdateCourseAssignmentComponent"];
     /**
      * Delete a course assignment component
      * @description Deletes a course assignment component by its ID.
      */
-    delete: operations["DeleteCourseAssignmentComponentAsync"];
+    delete: operations["CourseAssignmentComponents_DeleteCourseAssignmentComponent"];
     /**
      * Patch a course assignment component
      * @description Partially updates a course assignment component for the specified tenant.
      */
-    patch: operations["PatchCourseAssignmentComponentAsync"];
+    patch: operations["CourseAssignmentComponents_PatchCourseAssignmentComponent"];
   };
   "/api/v2/LearningService/CourseAssignments": {
     /**
      * Get all course assignments
      * @description Retrieves all course assignments for the specified tenant.
      */
-    get: operations["GetCourseAssignmentsAsync"];
+    get: operations["CourseAssignments_GetCourseAssignments"];
     /**
      * Create a new course assignment
      * @description Creates a new course assignment for the specified tenant.
      */
-    post: operations["CreateCourseAssignmentAsync"];
+    post: operations["CourseAssignments_CreateCourseAssignment"];
   };
   "/api/v2/LearningService/CourseAssignments/Count": {
     /**
      * Get course assignments count
      * @description Returns the count of course assignments for the specified tenant.
      */
-    get: operations["GetCourseAssignmentsCountAsync"];
+    get: operations["CourseAssignments_GetCourseAssignmentsCount"];
   };
   "/api/v2/LearningService/CourseAssignments/{assignmentId}": {
     /**
      * Get course assignment by ID
      * @description Retrieves a specific course assignment by its ID.
      */
-    get: operations["GetCourseAssignmentByIdAsync"];
+    get: operations["CourseAssignments_GetCourseAssignmentById"];
     /**
      * Update a course assignment
      * @description Updates an existing course assignment for the specified tenant.
      */
-    put: operations["UpdateCourseAssignmentAsync"];
+    put: operations["CourseAssignments_UpdateCourseAssignment"];
     /**
      * Delete a course assignment
      * @description Deletes a course assignment for the specified tenant.
      */
-    delete: operations["DeleteCourseAssignmentAsync"];
+    delete: operations["CourseAssignments_DeleteCourseAssignment"];
     /**
      * Patch a course assignment
      * @description Partially updates a course assignment for the specified tenant.
      */
-    patch: operations["PatchCourseAssignmentAsync"];
+    patch: operations["CourseAssignments_PatchCourseAssignment"];
   };
   "/api/v2/LearningService/CourseAssignmentTypes": {
     /**
      * Get all course assignment types
      * @description Retrieves all course assignment types for the specified tenant.
      */
-    get: operations["GetCourseAssignmentTypesAsync"];
+    get: operations["CourseAssignmentTypes_GetCourseAssignmentTypes"];
     /**
      * Create a course assignment type
      * @description Creates a new course assignment type for the specified tenant.
      */
-    post: operations["CreateCourseAssignmentTypeAsync"];
+    post: operations["CourseAssignmentTypes_CreateCourseAssignmentType"];
   };
   "/api/v2/LearningService/CourseAssignmentTypes/Count": {
     /**
      * Get course assignment types count
      * @description Returns the count of course assignment types for the specified tenant.
      */
-    get: operations["GetCourseAssignmentTypesCountAsync"];
+    get: operations["CourseAssignmentTypes_GetCourseAssignmentTypesCount"];
   };
   "/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}": {
     /**
      * Get course assignment type by ID
      * @description Retrieves a specific course assignment type by its ID.
      */
-    get: operations["GetCourseAssignmentTypeByIdAsync"];
+    get: operations["CourseAssignmentTypes_GetCourseAssignmentTypeById"];
     /**
      * Update a course assignment type
      * @description Updates an existing course assignment type.
      */
-    put: operations["UpdateCourseAssignmentTypeAsync"];
+    put: operations["CourseAssignmentTypes_UpdateCourseAssignmentType"];
     /**
      * Delete a course assignment type
      * @description Deletes a course assignment type by its ID.
      */
-    delete: operations["DeleteCourseAssignmentTypeAsync"];
+    delete: operations["CourseAssignmentTypes_DeleteCourseAssignmentType"];
     /**
      * Patch a course assignment type
      * @description Partially updates a course assignment type for the specified tenant.
      */
-    patch: operations["PatchCourseAssignmentTypeAsync"];
+    patch: operations["CourseAssignmentTypes_PatchCourseAssignmentType"];
   };
   "/api/v2/LearningService/CourseCategories": {
     /**
      * Get all course categories
      * @description Retrieves all course categories for the specified tenant.
      */
-    get: operations["GetCourseCategoriesAsync"];
+    get: operations["CourseCategories_GetCourseCategories"];
     /**
      * Create a new course category
      * @description Creates a new course category for the specified tenant.
      */
-    post: operations["CreateCourseCategoryAsync"];
+    post: operations["CourseCategories_CreateCourseCategory"];
   };
   "/api/v2/LearningService/CourseCategories/Count": {
     /**
      * Get course categories count
      * @description Returns the count of course categories for the specified tenant.
      */
-    get: operations["GetCourseCategoriesCountAsync"];
+    get: operations["CourseCategories_GetCourseCategoriesCount"];
   };
   "/api/v2/LearningService/CourseCategories/{categoryId}": {
     /**
      * Get course category by ID
      * @description Retrieves a specific course category by its ID.
      */
-    get: operations["GetCourseCategoryByIdAsync"];
+    get: operations["CourseCategories_GetCourseCategoryById"];
     /**
      * Update a course category
      * @description Updates an existing course category for the specified tenant.
      */
-    put: operations["UpdateCourseCategoryAsync"];
+    put: operations["CourseCategories_UpdateCourseCategory"];
     /**
      * Delete a course category
      * @description Deletes a course category for the specified tenant.
      */
-    delete: operations["DeleteCourseCategoryAsync"];
+    delete: operations["CourseCategories_DeleteCourseCategory"];
     /**
      * Patch a course category
      * @description Partially updates a course category for the specified tenant.
      */
-    patch: operations["PatchCourseCategoryAsync"];
+    patch: operations["CourseCategories_PatchCourseCategory"];
   };
   "/api/v2/LearningService/CourseCertificates": {
     /**
      * Get all course certificates
      * @description Retrieves all course certificates for the specified tenant.
      */
-    get: operations["GetCourseCertificatesAsync"];
+    get: operations["CourseCertificates_GetCourseCertificates"];
     /**
      * Create a course certificate
      * @description Creates a new course certificate for the specified tenant.
      */
-    post: operations["CreateCourseCertificateAsync"];
+    post: operations["CourseCertificates_CreateCourseCertificate"];
   };
   "/api/v2/LearningService/CourseCertificates/Count": {
     /**
      * Get course certificates count
      * @description Returns the count of course certificates for the specified tenant.
      */
-    get: operations["GetCourseCertificatesCountAsync"];
+    get: operations["CourseCertificates_GetCourseCertificatesCount"];
   };
   "/api/v2/LearningService/CourseCertificates/{courseCertificateId}": {
     /**
      * Get course certificate by ID
      * @description Retrieves a specific course certificate by its ID.
      */
-    get: operations["GetCourseCertificateAsync"];
+    get: operations["CourseCertificates_GetCourseCertificate"];
     /**
      * Update a course certificate
      * @description Updates an existing course certificate for the specified tenant.
      */
-    put: operations["UpdateCourseCertificateAsync"];
+    put: operations["CourseCertificates_UpdateCourseCertificate"];
     /**
      * Delete a course certificate
      * @description Deletes a course certificate for the specified tenant.
      */
-    delete: operations["DeleteCourseCertificateAsync"];
+    delete: operations["CourseCertificates_DeleteCourseCertificate"];
     /**
      * Patch a course certificate
      * @description Partially updates a course certificate for the specified tenant.
      */
-    patch: operations["PatchCourseCertificateAsync"];
+    patch: operations["CourseCertificates_PatchCourseCertificate"];
   };
   "/api/v2/LearningService/CourseCertificates/Template": {
     /**
      * Get all certificate templates
      * @description Retrieves all course certificate templates for the specified tenant.
      */
-    get: operations["GetCourseCertificateTemplatesAsync"];
+    get: operations["CourseCertificates_GetCourseCertificateTemplates"];
     /**
      * Create a certificate template
      * @description Creates a new course certificate template for the specified tenant.
      */
-    post: operations["CreateCourseCertificateTemplateAsync"];
+    post: operations["CourseCertificates_CreateCourseCertificateTemplate"];
   };
   "/api/v2/LearningService/CourseCertificates/Template/{courseCertificateTemplateId}": {
     /**
      * Get certificate template by ID
      * @description Retrieves a specific course certificate template by its ID.
      */
-    get: operations["GetCourseCertificateTemplateAsync"];
+    get: operations["CourseCertificates_GetCourseCertificateTemplate"];
     /**
      * Update a certificate template
      * @description Updates an existing course certificate template for the specified tenant.
      */
-    put: operations["UpdateCourseCertificateTemplateAsync"];
+    put: operations["CourseCertificates_UpdateCourseCertificateTemplate"];
     /**
      * Delete a certificate template
      * @description Deletes a course certificate template for the specified tenant.
      */
-    delete: operations["DeleteCourseCertificateTemplateAsync"];
+    delete: operations["CourseCertificates_DeleteCourseCertificateTemplate"];
     /**
      * Patch a certificate template
      * @description Partially updates a course certificate template for the specified tenant.
      */
-    patch: operations["PatchCourseCertificateTemplateAsync"];
+    patch: operations["CourseCertificates_PatchCourseCertificateTemplate"];
   };
   "/api/v2/LearningService/CourseCertificates/Template/Count": {
     /**
      * Get certificate templates count
      * @description Returns the count of course certificate templates for the specified tenant.
      */
-    get: operations["GetCourseCertificateTemplatesCountAsync"];
+    get: operations["CourseCertificates_GetCourseCertificateTemplatesCount"];
   };
   "/api/v2/LearningService/CourseCohorts": {
     /**
      * Get all course cohorts
      * @description Retrieves all course cohorts for the specified tenant.
      */
-    get: operations["GetCourseCohortsAsync"];
+    get: operations["CourseCohorts_GetCourseCohorts"];
     /**
      * Create a new course cohort
      * @description Creates a new course cohort for the specified tenant.
      */
-    post: operations["CreateCourseCohortAsync"];
+    post: operations["CourseCohorts_CreateCourseCohort"];
   };
   "/api/v2/LearningService/CourseCohorts/Count": {
     /**
      * Get course cohorts count
      * @description Returns the count of course cohorts for the specified tenant.
      */
-    get: operations["GetCourseCohortsCountAsync"];
+    get: operations["CourseCohorts_GetCourseCohortsCount"];
   };
   "/api/v2/LearningService/CourseCohorts/{cohortId}": {
     /**
      * Get course cohort by ID
      * @description Retrieves a specific course cohort by its ID.
      */
-    get: operations["GetCourseCohortByIdAsync"];
+    get: operations["CourseCohorts_GetCourseCohortById"];
     /**
      * Update a course cohort
      * @description Updates an existing course cohort for the specified tenant.
      */
-    put: operations["UpdateCourseCohortAsync"];
+    put: operations["CourseCohorts_UpdateCourseCohort"];
     /**
      * Delete a course cohort
      * @description Deletes a course cohort for the specified tenant.
      */
-    delete: operations["DeleteCourseCohortAsync"];
+    delete: operations["CourseCohorts_DeleteCourseCohort"];
     /**
      * Patch a course cohort
      * @description Partially updates a course cohort for the specified tenant.
      */
-    patch: operations["PatchCourseCohortAsync"];
+    patch: operations["CourseCohorts_PatchCourseCohort"];
+  };
+  "/api/v2/LearningService/CourseCollections": {
+    /**
+     * Get all course collections
+     * @description Retrieves all course collections for the specified tenant.
+     */
+    get: operations["CourseCollections_GetCourseCollections"];
+    /**
+     * Create a new course collection
+     * @description Creates a new course collection for the specified tenant.
+     */
+    post: operations["CourseCollections_CreateCourseCollection"];
+  };
+  "/api/v2/LearningService/CourseCollections/Count": {
+    /**
+     * Get course collections count
+     * @description Returns the count of course collections for the specified tenant.
+     */
+    get: operations["CourseCollections_GetCourseCollectionsCount"];
+  };
+  "/api/v2/LearningService/CourseCollections/{collectionId}": {
+    /**
+     * Get course collection by ID
+     * @description Retrieves a specific course collection of the specified tenant by its ID.
+     */
+    get: operations["CourseCollections_GetCourseCollectionById"];
+    /**
+     * Update a course collection
+     * @description Updates an existing course collection for the specified tenant.
+     */
+    put: operations["CourseCollections_UpdateCourseCollection"];
+    /**
+     * Delete a course collection
+     * @description Deletes a course collection for the specified tenant.
+     */
+    delete: operations["CourseCollections_DeleteCourseCollection"];
   };
   "/api/v2/LearningService/CourseContentGroups": {
     /**
      * Get all course content groups
      * @description Retrieves all course content groups for the specified tenant.
      */
-    get: operations["GetCourseContentGroupsAsync"];
+    get: operations["CourseContentGroups_GetCourseContentGroups"];
     /**
      * Create a new course content group
      * @description Creates a new course content group for the specified tenant.
      */
-    post: operations["CreateCourseContentGroupAsync"];
+    post: operations["CourseContentGroups_CreateCourseContentGroup"];
   };
   "/api/v2/LearningService/CourseContentGroups/Count": {
     /**
      * Get course content groups count
      * @description Returns the count of course content groups for the specified tenant.
      */
-    get: operations["GetCourseContentGroupsCountAsync"];
+    get: operations["CourseContentGroups_GetCourseContentGroupsCount"];
   };
   "/api/v2/LearningService/CourseContentGroups/{groupId}": {
     /**
      * Get course content group by ID
      * @description Retrieves a specific course content group by its ID.
      */
-    get: operations["GetCourseContentGroupByIdAsync"];
+    get: operations["CourseContentGroups_GetCourseContentGroupById"];
     /**
      * Update a course content group
      * @description Updates an existing course content group for the specified tenant.
      */
-    put: operations["UpdateCourseContentGroupAsync"];
+    put: operations["CourseContentGroups_UpdateCourseContentGroup"];
     /**
      * Delete a course content group
      * @description Deletes a course content group for the specified tenant.
      */
-    delete: operations["DeleteCourseContentGroupAsync"];
+    delete: operations["CourseContentGroups_DeleteCourseContentGroup"];
     /**
      * Patch a course content group
      * @description Partially updates a course content group for the specified tenant.
      */
-    patch: operations["PatchCourseContentGroupAsync"];
+    patch: operations["CourseContentGroups_PatchCourseContentGroup"];
   };
   "/api/v2/LearningService/Courses/{courseId}/ContentGroups": {
     /**
      * Get course content groups by course
      * @description Retrieves all course content groups for a specific course.
      */
-    get: operations["GetCourseContentGroupsByCourseAsync"];
+    get: operations["CourseContentGroups_GetCourseContentGroupsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/ContentGroups/Count": {
     /**
      * Get course content groups count by course
      * @description Returns the count of course content groups for a specific course.
      */
-    get: operations["GetCourseContentGroupsByCourseCountAsync"];
+    get: operations["CourseContentGroups_GetCourseContentGroupsByCourseCount"];
   };
   "/api/v2/LearningService/CourseEnrollments": {
     /**
      * Get all course enrollments
      * @description Retrieves all course enrollments for the specified tenant.
      */
-    get: operations["GetEnrollmentsAsync"];
+    get: operations["CourseEnrollments_GetEnrollments"];
     /**
      * Create a new course enrollment
      * @description Creates a new course enrollment for the specified tenant.
      */
-    post: operations["CreateCourseEnrollmentAsync"];
+    post: operations["CourseEnrollments_CreateCourseEnrollment"];
   };
   "/api/v2/LearningService/CourseEnrollments/Count": {
     /**
      * Get course enrollments count
      * @description Returns the count of course enrollments for the specified tenant.
      */
-    get: operations["GetEnrollmentsCountAsync"];
+    get: operations["CourseEnrollments_GetEnrollmentsCount"];
   };
   "/api/v2/LearningService/CourseEnrollments/{courseEnrollmentId}": {
     /**
      * Get course enrollment by ID
      * @description Retrieves a specific course enrollment by its ID.
      */
-    get: operations["GetCourseEnrollmentAsync"];
+    get: operations["CourseEnrollments_GetCourseEnrollment"];
     /**
      * Update a course enrollment
      * @description Updates an existing course enrollment for the specified tenant.
      */
-    put: operations["UpdateCourseEnrollmentAsync"];
+    put: operations["CourseEnrollments_UpdateCourseEnrollment"];
     /**
      * Delete a course enrollment
      * @description Deletes a course enrollment for the specified tenant.
      */
-    delete: operations["DeleteCourseEnrollmentAsync"];
+    delete: operations["CourseEnrollments_DeleteCourseEnrollment"];
     /**
      * Patch a course enrollment
      * @description Partially updates an existing course enrollment for the specified tenant.
      */
-    patch: operations["PatchCourseEnrollmentAsync"];
+    patch: operations["CourseEnrollments_PatchCourseEnrollment"];
   };
   "/api/v2/LearningService/CourseEnrollments/Student/{studentProfileId}": {
     /**
      * Get enrollments by student
      * @description Retrieves all enrollments for a specific student.
      */
-    get: operations["GetStudentCourseEnrollmentsAsync"];
+    get: operations["CourseEnrollments_GetStudentCourseEnrollments"];
   };
   "/api/v2/LearningService/CourseFiles": {
     /**
      * Get all course files
      * @description Retrieves all course files for the specified tenant.
      */
-    get: operations["GetCourseFilesAsync"];
+    get: operations["CourseFiles_GetCourseFiles"];
     /**
      * Create a new course file
      * @description Creates a new course file for the specified tenant.
      */
-    post: operations["CreateCourseFileAsync"];
+    post: operations["CourseFiles_CreateCourseFile"];
   };
   "/api/v2/LearningService/CourseFiles/Count": {
     /**
      * Get course files count
      * @description Returns the count of course files for the specified tenant.
      */
-    get: operations["GetCourseFilesCountAsync"];
+    get: operations["CourseFiles_GetCourseFilesCount"];
   };
   "/api/v2/LearningService/CourseFiles/{fileId}": {
     /**
      * Get course file by ID
      * @description Retrieves a specific course file by its ID.
      */
-    get: operations["GetCourseFileByIdAsync"];
+    get: operations["CourseFiles_GetCourseFileById"];
     /**
      * Update a course file
      * @description Updates an existing course file for the specified tenant.
      */
-    put: operations["UpdateCourseFileAsync"];
+    put: operations["CourseFiles_UpdateCourseFile"];
     /**
      * Delete a course file
      * @description Deletes a course file for the specified tenant.
      */
-    delete: operations["DeleteCourseFileAsync"];
+    delete: operations["CourseFiles_DeleteCourseFile"];
     /**
      * Patch a course file
      * @description Partially updates an existing course file for the specified tenant.
      */
-    patch: operations["PatchCourseFileAsync"];
+    patch: operations["CourseFiles_PatchCourseFile"];
   };
   "/api/v2/LearningService/CourseForums": {
     /**
      * Get all course forums
      * @description Retrieves all course forums for the specified tenant.
      */
-    get: operations["GetCourseForumsAsync"];
+    get: operations["CourseForums_GetCourseForums"];
     /**
      * Create a course forum
      * @description Creates a new course forum for the specified tenant.
      */
-    post: operations["CreateCourseForumAsync"];
+    post: operations["CourseForums_CreateCourseForum"];
   };
   "/api/v2/LearningService/CourseForums/Count": {
     /**
      * Get course forums count
      * @description Returns the count of course forums for the specified tenant.
      */
-    get: operations["GetCourseForumsCountAsync"];
+    get: operations["CourseForums_GetCourseForumsCount"];
   };
   "/api/v2/LearningService/CourseForums/{forumId}": {
     /**
      * Get course forum by ID
      * @description Retrieves a specific course forum by its ID.
      */
-    get: operations["GetCourseForumByIdAsync"];
+    get: operations["CourseForums_GetCourseForumById"];
     /**
      * Update a course forum
      * @description Updates an existing course forum.
      */
-    put: operations["UpdateCourseForumAsync"];
+    put: operations["CourseForums_UpdateCourseForum"];
     /**
      * Delete a course forum
      * @description Deletes a course forum by its ID.
      */
-    delete: operations["DeleteCourseForumAsync"];
+    delete: operations["CourseForums_DeleteCourseForum"];
     /**
      * Patch a course forum
      * @description Partially updates an existing course forum.
      */
-    patch: operations["PatchCourseForumAsync"];
+    patch: operations["CourseForums_PatchCourseForum"];
   };
   "/api/v2/LearningService/CourseGradingRubrics": {
     /**
      * Get all course grading rubrics
      * @description Retrieves all course grading rubrics for the specified tenant.
      */
-    get: operations["GetCourseGradingRubricsAsync"];
+    get: operations["CourseGradingRubrics_GetCourseGradingRubrics"];
     /**
      * Create a course grading rubric
      * @description Creates a new course grading rubric for the specified tenant.
      */
-    post: operations["CreateCourseGradingRubricAsync"];
+    post: operations["CourseGradingRubrics_CreateCourseGradingRubric"];
   };
   "/api/v2/LearningService/CourseGradingRubrics/Count": {
     /**
      * Get course grading rubrics count
      * @description Returns the count of course grading rubrics for the specified tenant.
      */
-    get: operations["GetCourseGradingRubricsCountAsync"];
+    get: operations["CourseGradingRubrics_GetCourseGradingRubricsCount"];
   };
   "/api/v2/LearningService/CourseGradingRubrics/{rubricId}": {
     /**
      * Get course grading rubric by ID
      * @description Retrieves a specific course grading rubric by its ID.
      */
-    get: operations["GetCourseGradingRubricByIdAsync"];
+    get: operations["CourseGradingRubrics_GetCourseGradingRubricById"];
     /**
      * Update a course grading rubric
      * @description Updates an existing course grading rubric.
      */
-    put: operations["UpdateCourseGradingRubricAsync"];
+    put: operations["CourseGradingRubrics_UpdateCourseGradingRubric"];
     /**
      * Delete a course grading rubric
      * @description Deletes a course grading rubric by its ID.
      */
-    delete: operations["DeleteCourseGradingRubricAsync"];
+    delete: operations["CourseGradingRubrics_DeleteCourseGradingRubric"];
     /**
      * Patch a course grading rubric
      * @description Partially updates an existing course grading rubric.
      */
-    patch: operations["PatchCourseGradingRubricAsync"];
+    patch: operations["CourseGradingRubrics_PatchCourseGradingRubric"];
   };
   "/api/v2/LearningService/CourseHandouts": {
     /**
      * Get all course handouts
      * @description Retrieves all course handouts for the specified tenant.
      */
-    get: operations["GetCourseHandoutsAsync"];
+    get: operations["CourseHandouts_GetCourseHandouts"];
     /**
      * Create a course handout
      * @description Creates a new course handout for the specified tenant.
      */
-    post: operations["CreateCourseHandoutAsync"];
+    post: operations["CourseHandouts_CreateCourseHandout"];
   };
   "/api/v2/LearningService/CourseHandouts/Count": {
     /**
      * Get course handouts count
      * @description Returns the count of course handouts for the specified tenant.
      */
-    get: operations["GetCourseHandoutsCountAsync"];
+    get: operations["CourseHandouts_GetCourseHandoutsCount"];
   };
   "/api/v2/LearningService/CourseHandouts/{handoutId}": {
     /**
      * Get course handout by ID
      * @description Retrieves a specific course handout by its ID.
      */
-    get: operations["GetCourseHandoutByIdAsync"];
+    get: operations["CourseHandouts_GetCourseHandoutById"];
     /**
      * Update a course handout
      * @description Updates an existing course handout.
      */
-    put: operations["UpdateCourseHandoutAsync"];
+    put: operations["CourseHandouts_UpdateCourseHandout"];
     /**
      * Delete a course handout
      * @description Deletes a course handout by its ID.
      */
-    delete: operations["DeleteCourseHandoutAsync"];
+    delete: operations["CourseHandouts_DeleteCourseHandout"];
     /**
      * Patch a course handout
      * @description Partially updates an existing course handout.
      */
-    patch: operations["PatchCourseHandoutAsync"];
+    patch: operations["CourseHandouts_PatchCourseHandout"];
   };
   "/api/v2/LearningService/CourseLibraries": {
     /**
      * Get all course libraries
      * @description Retrieves all course libraries for the specified tenant.
      */
-    get: operations["GetCourseLibrariesAsync"];
+    get: operations["CourseLibraries_GetCourseLibraries"];
     /**
      * Create a course library
      * @description Creates a new course library for the specified tenant.
      */
-    post: operations["CreateCourseLibraryAsync"];
+    post: operations["CourseLibraries_CreateCourseLibrary"];
   };
   "/api/v2/LearningService/CourseLibraries/Count": {
     /**
      * Get course libraries count
      * @description Returns the count of course libraries for the specified tenant.
      */
-    get: operations["GetCourseLibrariesCountAsync"];
+    get: operations["CourseLibraries_GetCourseLibrariesCount"];
   };
   "/api/v2/LearningService/CourseLibraries/{libraryId}": {
     /**
      * Get course library by ID
      * @description Retrieves a specific course library by its ID.
      */
-    get: operations["GetCourseLibraryByIdAsync"];
+    get: operations["CourseLibraries_GetCourseLibraryById"];
     /**
      * Update a course library
      * @description Updates an existing course library.
      */
-    put: operations["UpdateCourseLibraryAsync"];
+    put: operations["CourseLibraries_UpdateCourseLibrary"];
     /**
      * Delete a course library
      * @description Deletes a course library by its ID.
      */
-    delete: operations["DeleteCourseLibraryAsync"];
+    delete: operations["CourseLibraries_DeleteCourseLibrary"];
     /**
      * Patch a course library
      * @description Partially updates an existing course library.
      */
-    patch: operations["PatchCourseLibraryAsync"];
+    patch: operations["CourseLibraries_PatchCourseLibrary"];
   };
   "/api/v2/LearningService/CoursePages": {
     /**
      * Get all course pages
      * @description Retrieves all course pages for the specified tenant.
      */
-    get: operations["GetCoursePagesAsync"];
+    get: operations["CoursePages_GetCoursePages"];
     /**
      * Create a new course page
      * @description Creates a new course page for the specified tenant.
      */
-    post: operations["CreateCoursePageAsync"];
+    post: operations["CoursePages_CreateCoursePage"];
   };
   "/api/v2/LearningService/CoursePages/Count": {
     /**
      * Get course pages count
      * @description Returns the count of course pages for the specified tenant.
      */
-    get: operations["GetCoursePagesCountAsync"];
+    get: operations["CoursePages_GetCoursePagesCount"];
   };
   "/api/v2/LearningService/CoursePages/{pageId}": {
     /**
      * Get course page by ID
      * @description Retrieves a specific course page by its ID.
      */
-    get: operations["GetCoursePageByIdAsync"];
+    get: operations["CoursePages_GetCoursePageById"];
     /**
      * Update a course page
      * @description Updates an existing course page for the specified tenant.
      */
-    put: operations["UpdateCoursePageAsync"];
+    put: operations["CoursePages_UpdateCoursePage"];
     /**
      * Delete a course page
      * @description Deletes a course page for the specified tenant.
      */
-    delete: operations["DeleteCoursePageAsync"];
+    delete: operations["CoursePages_DeleteCoursePage"];
     /**
      * Patch a course page
      * @description Partially updates an existing course page for the specified tenant.
      */
-    patch: operations["PatchCoursePageAsync"];
+    patch: operations["CoursePages_PatchCoursePage"];
   };
   "/api/v2/LearningService/CourseProblemSets": {
     /**
      * Get all course problem sets
      * @description Retrieves all course problem sets for the specified tenant.
      */
-    get: operations["GetCourseProblemSetsAsync"];
+    get: operations["CourseProblemSets_GetCourseProblemSets"];
     /**
      * Create a new course problem set
      * @description Creates a new course problem set for the specified tenant.
      */
-    post: operations["CreateCourseProblemSetAsync"];
+    post: operations["CourseProblemSets_CreateCourseProblemSet"];
   };
   "/api/v2/LearningService/CourseProblemSets/Count": {
     /**
      * Get course problem sets count
      * @description Returns the count of course problem sets for the specified tenant.
      */
-    get: operations["GetCourseProblemSetsCountAsync"];
+    get: operations["CourseProblemSets_GetCourseProblemSetsCount"];
   };
   "/api/v2/LearningService/CourseProblemSets/{problemSetId}": {
     /**
      * Get course problem set by ID
      * @description Retrieves a specific course problem set by its ID.
      */
-    get: operations["GetCourseProblemSetByIdAsync"];
+    get: operations["CourseProblemSets_GetCourseProblemSetById"];
     /**
      * Update a course problem set
      * @description Updates an existing course problem set for the specified tenant.
      */
-    put: operations["UpdateCourseProblemSetAsync"];
+    put: operations["CourseProblemSets_UpdateCourseProblemSet"];
     /**
      * Delete a course problem set
      * @description Deletes a course problem set for the specified tenant.
      */
-    delete: operations["DeleteCourseProblemSetAsync"];
+    delete: operations["CourseProblemSets_DeleteCourseProblemSet"];
     /**
      * Patch a course problem set
      * @description Partially updates a course problem set for the specified tenant.
      */
-    patch: operations["PatchCourseProblemSetAsync"];
+    patch: operations["CourseProblemSets_PatchCourseProblemSet"];
   };
   "/api/v2/LearningService/Courses": {
     /**
      * Get courses
      * @description Retrieves courses. When tenantId is provided, returns tenant-scoped courses; otherwise returns all courses.
      */
-    get: operations["GetCoursesAsync"];
+    get: operations["Courses_GetCourses"];
     /**
      * Create a new course
      * @description Creates a new course for the specified tenant.
      */
-    post: operations["CreateCourseAsync"];
+    post: operations["Courses_CreateCourse"];
   };
   "/api/v2/LearningService/Courses/Count": {
     /**
      * Get courses count
      * @description Returns the count of courses. When tenantId is provided, returns tenant-scoped count; otherwise returns global count.
      */
-    get: operations["GetCoursesCountAsync"];
+    get: operations["Courses_GetCoursesCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}": {
     /**
      * Get course by ID
      * @description Retrieves a specific course by its ID.
      */
-    get: operations["GetCourseByIdAsync"];
+    get: operations["Courses_GetCourseById"];
     /**
      * Update a course
      * @description Updates an existing course for the specified tenant.
      */
-    put: operations["UpdateCourseAsync"];
+    put: operations["Courses_UpdateCourse"];
     /**
      * Delete a course
      * @description Deletes a course for the specified tenant.
      */
-    delete: operations["DeleteCourseAsync"];
+    delete: operations["Courses_DeleteCourse"];
     /**
      * Patch a course
      * @description Partially updates a course for the specified tenant.
      */
-    patch: operations["PatchCourseAsync"];
+    patch: operations["Courses_PatchCourse"];
+  };
+  "/api/v2/LearningService/Courses/Public": {
+    /**
+     * Get public courses
+     * @description Retrieves the publicly-visible course catalog: published, non-deleted courses. Anonymous.
+     */
+    get: operations["Courses_GetPublicCourses"];
+  };
+  "/api/v2/LearningService/Courses/Public/Count": {
+    /**
+     * Count public courses
+     * @description Counts the publicly-visible course catalog: published, non-deleted courses. Anonymous.
+     */
+    get: operations["Courses_GetPublicCoursesCount"];
+  };
+  "/api/v2/LearningService/Courses/Public/{courseId}": {
+    /**
+     * Get public course by ID
+     * @description Retrieves a publicly-visible course by its ID. An unpublished, deleted or absent course is not found, identically. Anonymous.
+     */
+    get: operations["Courses_GetPublicCourseById"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Wikis": {
     /**
      * Get course wikis by course
      * @description Retrieves all course wikis for a specific course.
      */
-    get: operations["GetCourseWikisByCourseAsync"];
+    get: operations["Courses_GetCourseWikisByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Wikis/Count": {
     /**
      * Get course wikis by course count
      * @description Returns the count of course wikis for a specific course.
      */
-    get: operations["GetCourseWikisByCourseCountAsync"];
+    get: operations["Courses_GetCourseWikisByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Articles/{wikiId}": {
     /**
      * Get course articles by course wiki
      * @description Retrieves all course articles for a specific course wiki.
      */
-    get: operations["GetCourseArticlesByCourseWikiAsync"];
+    get: operations["Courses_GetCourseArticlesByCourseWiki"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Articles/{wikiId}/Count": {
     /**
      * Get course articles by course wiki count
      * @description Returns the count of course articles for a specific course wiki.
      */
-    get: operations["GetCourseArticlesByCourseWikiCountAsync"];
+    get: operations["Courses_GetCourseArticlesByCourseWikiCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Updates": {
     /**
      * Get course updates by course
      * @description Retrieves all course updates for a specific course.
      */
-    get: operations["GetCourseUpdatesByCourseAsync"];
+    get: operations["Courses_GetCourseUpdatesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Updates/Count": {
     /**
      * Get course updates by course count
      * @description Returns the count of course updates for a specific course.
      */
-    get: operations["GetCourseUpdatesByCourseCountAsync"];
+    get: operations["Courses_GetCourseUpdatesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Sections": {
     /**
      * Get course sections by course
      * @description Retrieves all course sections for a specific course.
      */
-    get: operations["GetCourseSectionsByCourseAsync"];
+    get: operations["Courses_GetCourseSectionsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Sections/Count": {
     /**
      * Get course sections by course count
      * @description Returns the count of course sections for a specific course.
      */
-    get: operations["GetCourseSectionsByCourseCountAsync"];
+    get: operations["Courses_GetCourseSectionsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Units/{sectionId}": {
     /**
      * Get course units by section
      * @description Retrieves all course units for a specific course section.
      */
-    get: operations["GetCourseUnitsBySectionAsync"];
+    get: operations["Courses_GetCourseUnitsBySection"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Units/{sectionId}/Count": {
     /**
      * Get course units by section count
      * @description Returns the count of course units for a specific course section.
      */
-    get: operations["GetCourseUnitsBySectionCountAsync"];
+    get: operations["Courses_GetCourseUnitsBySectionCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Assignments": {
     /**
      * Get course assignments by course
      * @description Retrieves all course assignments for a specific course.
      */
-    get: operations["GetCourseAssignmentsByCourseAsync"];
+    get: operations["Courses_GetCourseAssignmentsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Assignments/Count": {
     /**
      * Get course assignments by course count
      * @description Returns the count of course assignments for a specific course.
      */
-    get: operations["GetCourseAssignmentsByCourseCountAsync"];
+    get: operations["Courses_GetCourseAssignmentsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Categories": {
     /**
      * Get course categories by course
      * @description Retrieves all course categories for a specific course.
      */
-    get: operations["GetCourseCategoriesByCourseAsync"];
+    get: operations["Courses_GetCourseCategoriesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Categories/Count": {
     /**
      * Get course categories by course count
      * @description Returns the count of course categories for a specific course.
      */
-    get: operations["GetCourseCategoriesByCourseCountAsync"];
+    get: operations["Courses_GetCourseCategoriesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Cohorts": {
     /**
      * Get course cohorts by course
      * @description Retrieves all course cohorts for a specific course.
      */
-    get: operations["GetCourseCohortsByCourseAsync"];
+    get: operations["Courses_GetCourseCohortsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Cohorts/Count": {
     /**
      * Get course cohorts by course count
      * @description Returns the count of course cohorts for a specific course.
      */
-    get: operations["GetCourseCohortsByCourseCountAsync"];
+    get: operations["Courses_GetCourseCohortsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Files": {
     /**
      * Get course files by course
      * @description Retrieves all course files for a specific course.
      */
-    get: operations["GetCourseFilesByCourseAsync"];
+    get: operations["Courses_GetCourseFilesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Files/Count": {
     /**
      * Get course files by course count
      * @description Returns the count of course files for a specific course.
      */
-    get: operations["GetCourseFilesByCourseCountAsync"];
+    get: operations["Courses_GetCourseFilesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Forums": {
     /**
      * Get course forums by course
      * @description Retrieves all course forums for a specific course.
      */
-    get: operations["GetCourseForumsByCourseAsync"];
+    get: operations["Courses_GetCourseForumsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Forums/Count": {
     /**
      * Get course forums by course count
      * @description Returns the count of course forums for a specific course.
      */
-    get: operations["GetCourseForumsByCourseCountAsync"];
+    get: operations["Courses_GetCourseForumsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Libraries": {
     /**
      * Get course libraries by course
      * @description Retrieves all course libraries for a specific course.
      */
-    get: operations["GetCourseLibrariesByCourseAsync"];
+    get: operations["Courses_GetCourseLibrariesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Libraries/Count": {
     /**
      * Get course libraries by course count
      * @description Returns the count of course libraries for a specific course.
      */
-    get: operations["GetCourseLibrariesByCourseCountAsync"];
+    get: operations["Courses_GetCourseLibrariesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Pages": {
     /**
      * Get course pages by course
      * @description Retrieves all course pages for a specific course.
      */
-    get: operations["GetCoursePagesByCourseAsync"];
+    get: operations["Courses_GetCoursePagesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Pages/Count": {
     /**
      * Get course pages by course count
      * @description Returns the count of course pages for a specific course.
      */
-    get: operations["GetCoursePagesByCourseCountAsync"];
+    get: operations["Courses_GetCoursePagesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/ProblemSets": {
     /**
      * Get course problem sets by course
      * @description Retrieves all course problem sets for a specific course.
      */
-    get: operations["GetCourseProblemSetsByCourseAsync"];
+    get: operations["Courses_GetCourseProblemSetsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/ProblemSets/Count": {
     /**
      * Get course problem sets by course count
      * @description Returns the count of course problem sets for a specific course.
      */
-    get: operations["GetCourseProblemSetsByCourseCountAsync"];
+    get: operations["Courses_GetCourseProblemSetsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Handouts": {
     /**
      * Get course handouts by course
      * @description Retrieves all course handouts for a specific course.
      */
-    get: operations["GetCourseHandoutsByCourseAsync"];
+    get: operations["Courses_GetCourseHandoutsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Handouts/Count": {
     /**
      * Get course handouts by course count
      * @description Returns the count of course handouts for a specific course.
      */
-    get: operations["GetCourseHandoutsByCourseCountAsync"];
+    get: operations["Courses_GetCourseHandoutsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/UnitComponents": {
     /**
      * Get course unit components by course
      * @description Retrieves all course unit components for a specific course.
      */
-    get: operations["GetCourseUnitComponentsByCourseAsync"];
+    get: operations["Courses_GetCourseUnitComponentsByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/UnitComponents/Count": {
     /**
      * Get course unit components by course count
      * @description Returns the count of course unit components for a specific course.
      */
-    get: operations["GetCourseUnitComponentsByCourseCountAsync"];
+    get: operations["Courses_GetCourseUnitComponentsByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Students": {
     /**
      * Get student profiles by course
      * @description Retrieves all student profiles enrolled in a specific course.
      */
-    get: operations["GetStudentProfilesByCourseAsync"];
+    get: operations["Courses_GetStudentProfilesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Students/Count": {
     /**
      * Get student profiles by course count
      * @description Returns the count of student profiles enrolled in a specific course.
      */
-    get: operations["GetStudentProfilesByCourseCountAsync"];
+    get: operations["Courses_GetStudentProfilesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Instructors": {
     /**
      * Get instructor profiles by course
      * @description Retrieves all instructor profiles teaching a specific course.
      */
-    get: operations["GetInstructorProfilesByCourseAsync"];
+    get: operations["Courses_GetInstructorProfilesByCourse"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Instructors/Count": {
     /**
      * Get instructor profiles by course count
      * @description Returns the count of instructor profiles teaching a specific course.
      */
-    get: operations["GetInstructorProfilesByCourseCountAsync"];
+    get: operations["Courses_GetInstructorProfilesByCourseCount"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Enrollments": {
     /**
      * Get enrollments by course
      * @description Retrieves all enrollments for a specific course.
      */
-    get: operations["GetCourseEnrollmentsByCourseAsync"];
+    get: operations["Courses_GetCourseEnrollmentsByCourse"];
   };
   "/api/v2/LearningService/CourseSections": {
     /**
      * Get all course sections
      * @description Retrieves all course sections for the specified tenant.
      */
-    get: operations["GetCourseSectionsAsync"];
+    get: operations["CourseSections_GetCourseSections"];
     /**
      * Create a new course section
      * @description Creates a new course section for the specified tenant.
      */
-    post: operations["CreateCourseSectionAsync"];
+    post: operations["CourseSections_CreateCourseSection"];
   };
   "/api/v2/LearningService/CourseSections/Count": {
     /**
      * Get course sections count
      * @description Returns the count of course sections for the specified tenant.
      */
-    get: operations["GetCourseSectionsCountAsync"];
+    get: operations["CourseSections_GetCourseSectionsCount"];
   };
   "/api/v2/LearningService/CourseSections/{sectionId}": {
     /**
      * Get course section by ID
      * @description Retrieves a specific course section by its ID.
      */
-    get: operations["GetCourseSectionByIdAsync"];
+    get: operations["CourseSections_GetCourseSectionById"];
     /**
      * Update a course section
      * @description Updates an existing course section for the specified tenant.
      */
-    put: operations["UpdateCourseSectionAsync"];
+    put: operations["CourseSections_UpdateCourseSection"];
     /**
      * Delete a course section
      * @description Deletes a course section for the specified tenant.
      */
-    delete: operations["DeleteCourseSectionAsync"];
+    delete: operations["CourseSections_DeleteCourseSection"];
     /**
      * Patch a course section
      * @description Partially updates a course section for the specified tenant.
      */
-    patch: operations["PatchCourseSectionAsync"];
+    patch: operations["CourseSections_PatchCourseSection"];
   };
   "/api/v2/LearningService/CourseTeamMemberships": {
     /**
      * Get all course team memberships
      * @description Retrieves all course team memberships for the specified tenant.
      */
-    get: operations["GetCourseTeamMembershipsAsync"];
+    get: operations["CourseTeamMemberships_GetCourseTeamMemberships"];
     /**
      * Create a course team membership
      * @description Creates a new course team membership for the specified tenant.
      */
-    post: operations["CreateCourseTeamMembershipAsync"];
+    post: operations["CourseTeamMemberships_CreateCourseTeamMembership"];
   };
   "/api/v2/LearningService/CourseTeamMemberships/Count": {
     /**
      * Get course team memberships count
      * @description Returns the count of course team memberships for the specified tenant.
      */
-    get: operations["GetCourseTeamMembershipsCountAsync"];
+    get: operations["CourseTeamMemberships_GetCourseTeamMembershipsCount"];
   };
   "/api/v2/LearningService/CourseTeamMemberships/{membershipId}": {
     /**
      * Get course team membership by ID
      * @description Retrieves a specific course team membership by its ID.
      */
-    get: operations["GetCourseTeamMembershipByIdAsync"];
+    get: operations["CourseTeamMemberships_GetCourseTeamMembershipById"];
     /**
      * Update a course team membership
      * @description Updates an existing course team membership.
      */
-    put: operations["UpdateCourseTeamMembershipAsync"];
+    put: operations["CourseTeamMemberships_UpdateCourseTeamMembership"];
     /**
      * Delete a course team membership
      * @description Deletes a course team membership by its ID.
      */
-    delete: operations["DeleteCourseTeamMembershipAsync"];
+    delete: operations["CourseTeamMemberships_DeleteCourseTeamMembership"];
     /**
      * Patch a course team membership
      * @description Partially updates a course team membership for the specified tenant.
      */
-    patch: operations["PatchCourseTeamMembershipAsync"];
+    patch: operations["CourseTeamMemberships_PatchCourseTeamMembership"];
   };
   "/api/v2/LearningService/CourseUnitComponents": {
     /**
      * Get all course unit components
      * @description Retrieves all course unit components for the specified tenant.
      */
-    get: operations["GetCourseUnitComponentsAsync"];
+    get: operations["CourseUnitComponents_GetCourseUnitComponents"];
     /**
      * Create a new course unit component
      * @description Creates a new course unit component for the specified tenant.
      */
-    post: operations["CreateCourseUnitComponentAsync"];
+    post: operations["CourseUnitComponents_CreateCourseUnitComponent"];
   };
   "/api/v2/LearningService/CourseUnitComponents/Count": {
     /**
      * Get course unit components count
      * @description Returns the count of course unit components for the specified tenant.
      */
-    get: operations["GetCourseUnitComponentsCountAsync"];
+    get: operations["CourseUnitComponents_GetCourseUnitComponentsCount"];
   };
   "/api/v2/LearningService/CourseUnitComponents/{componentId}": {
     /**
      * Get course unit component by ID
      * @description Retrieves a specific course unit component by its ID.
      */
-    get: operations["GetCourseUnitComponentByIdAsync"];
+    get: operations["CourseUnitComponents_GetCourseUnitComponentById"];
     /**
      * Update a course unit component
      * @description Updates an existing course unit component for the specified tenant.
      */
-    put: operations["UpdateCourseUnitComponentAsync"];
+    put: operations["CourseUnitComponents_UpdateCourseUnitComponent"];
     /**
      * Delete a course unit component
      * @description Deletes a course unit component for the specified tenant.
      */
-    delete: operations["DeleteCourseUnitComponentAsync"];
+    delete: operations["CourseUnitComponents_DeleteCourseUnitComponent"];
     /**
      * Patch a course unit component
      * @description Partially updates a course unit component for the specified tenant.
      */
-    patch: operations["PatchCourseUnitComponentAsync"];
+    patch: operations["CourseUnitComponents_PatchCourseUnitComponent"];
   };
   "/api/v2/LearningService/CourseUnits": {
     /**
      * Get all course units
      * @description Retrieves all course units for the specified tenant.
      */
-    get: operations["GetCourseUnitsAsync"];
+    get: operations["CourseUnits_GetCourseUnits"];
     /**
      * Create a new course unit
      * @description Creates a new course unit for the specified tenant.
      */
-    post: operations["CreateCourseUnitAsync"];
+    post: operations["CourseUnits_CreateCourseUnit"];
   };
   "/api/v2/LearningService/CourseUnits/Count": {
     /**
      * Get course units count
      * @description Returns the count of course units for the specified tenant.
      */
-    get: operations["GetCourseUnitsCountAsync"];
+    get: operations["CourseUnits_GetCourseUnitsCount"];
   };
   "/api/v2/LearningService/CourseUnits/{unitId}": {
     /**
      * Get course unit by ID
      * @description Retrieves a specific course unit by its ID.
      */
-    get: operations["GetCourseUnitByIdAsync"];
+    get: operations["CourseUnits_GetCourseUnitById"];
     /**
      * Update a course unit
      * @description Updates an existing course unit for the specified tenant.
      */
-    put: operations["UpdateCourseUnitAsync"];
+    put: operations["CourseUnits_UpdateCourseUnit"];
     /**
      * Delete a course unit
      * @description Deletes a course unit for the specified tenant.
      */
-    delete: operations["DeleteCourseUnitAsync"];
+    delete: operations["CourseUnits_DeleteCourseUnit"];
     /**
      * Patch a course unit
      * @description Partially updates a course unit for the specified tenant.
      */
-    patch: operations["PatchCourseUnitAsync"];
+    patch: operations["CourseUnits_PatchCourseUnit"];
   };
   "/api/v2/LearningService/CourseUpdates": {
     /**
      * Get all course updates
      * @description Retrieves all course updates for the specified tenant.
      */
-    get: operations["GetCourseUpdatesAsync"];
+    get: operations["CourseUpdates_GetCourseUpdates"];
     /**
      * Create a new course update
      * @description Creates a new course update for the specified tenant.
      */
-    post: operations["CreateCourseUpdateAsync"];
+    post: operations["CourseUpdates_CreateCourseUpdate"];
   };
   "/api/v2/LearningService/CourseUpdates/Count": {
     /**
      * Get course updates count
      * @description Returns the count of course updates for the specified tenant.
      */
-    get: operations["GetCourseUpdatesCountAsync"];
+    get: operations["CourseUpdates_GetCourseUpdatesCount"];
   };
   "/api/v2/LearningService/CourseUpdates/{updateId}": {
     /**
      * Get course update by ID
      * @description Retrieves a specific course update by its ID.
      */
-    get: operations["GetCourseUpdateByIdAsync"];
+    get: operations["CourseUpdates_GetCourseUpdateById"];
     /**
      * Update a course update
      * @description Updates an existing course update for the specified tenant.
      */
-    put: operations["UpdateCourseUpdateAsync"];
+    put: operations["CourseUpdates_UpdateCourseUpdate"];
     /**
      * Delete a course update
      * @description Deletes a course update for the specified tenant.
      */
-    delete: operations["DeleteCourseUpdateAsync"];
+    delete: operations["CourseUpdates_DeleteCourseUpdate"];
     /**
      * Patch a course update
      * @description Partially updates a course update for the specified tenant.
      */
-    patch: operations["PatchCourseUpdateAsync"];
+    patch: operations["CourseUpdates_PatchCourseUpdate"];
   };
   "/api/v2/LearningService/CourseWikis": {
     /**
      * Get all course wikis
      * @description Retrieves all course wikis for the specified tenant.
      */
-    get: operations["GetCourseWikisAsync"];
+    get: operations["CourseWikis_GetCourseWikis"];
     /**
      * Create a new course wiki
      * @description Creates a new course wiki for the specified tenant.
      */
-    post: operations["CreateCourseWikiAsync"];
+    post: operations["CourseWikis_CreateCourseWiki"];
   };
   "/api/v2/LearningService/CourseWikis/Count": {
     /**
      * Get course wikis count
      * @description Returns the count of course wikis for the specified tenant.
      */
-    get: operations["GetCourseWikisCountAsync"];
+    get: operations["CourseWikis_GetCourseWikisCount"];
   };
   "/api/v2/LearningService/CourseWikis/{wikiId}": {
     /**
      * Get course wiki by ID
      * @description Retrieves a specific course wiki by its ID.
      */
-    get: operations["GetCourseWikiByIdAsync"];
+    get: operations["CourseWikis_GetCourseWikiById"];
     /**
      * Update a course wiki
      * @description Updates an existing course wiki for the specified tenant.
      */
-    put: operations["UpdateCourseWikiAsync"];
+    put: operations["CourseWikis_UpdateCourseWiki"];
     /**
      * Delete a course wiki
      * @description Deletes a course wiki for the specified tenant.
      */
-    delete: operations["DeleteCourseWikiAsync"];
+    delete: operations["CourseWikis_DeleteCourseWiki"];
     /**
      * Patch a course wiki
      * @description Partially updates a course wiki for the specified tenant.
      */
-    patch: operations["PatchCourseWikiAsync"];
+    patch: operations["CourseWikis_PatchCourseWiki"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/LearningService/InstructorProfiles": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InstructorProfileDto"][];
-            "application/xml": components["schemas"]["InstructorProfileDto"][];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InstructorProfileCreateDto"];
-          "application/xml": components["schemas"]["InstructorProfileCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["InstructorProfiles_GetInstructorProfiles"];
+    post: operations["InstructorProfiles_PostInstructorProfiles"];
   };
   "/api/v2/LearningService/InstructorProfiles/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": number;
-            "application/xml": number;
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["InstructorProfiles_GetInstructorProfilesCount"];
   };
   "/api/v2/LearningService/InstructorProfiles/{instructorProfileId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          instructorProfileId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InstructorProfileDto"];
-            "application/xml": components["schemas"]["InstructorProfileDto"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          instructorProfileId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InstructorProfileUpdateDto"];
-          "application/xml": components["schemas"]["InstructorProfileUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          instructorProfileId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          instructorProfileId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["PatchOperation"][];
-          "application/xml": components["schemas"]["PatchOperation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["InstructorProfiles_GetInstructorProfilesByInstructorProfileId"];
+    put: operations["InstructorProfiles_PutInstructorProfilesByInstructorProfileId"];
+    delete: operations["InstructorProfiles_DeleteInstructorProfilesByInstructorProfileId"];
+    patch: operations["InstructorProfiles_PatchInstructorProfilesByInstructorProfileId"];
   };
   "/api/v2/LearningService/Me/StudentProfiles": {
     /** Get current user's student profiles */
-    get: operations["GetMyStudentProfilesAsync"];
+    get: operations["Me_GetMyStudentProfiles"];
   };
   "/api/v2/LearningService/Me/StudentProfiles/Count": {
     /** Get current user's student profiles count */
-    get: operations["GetMyStudentProfilesCountAsync"];
+    get: operations["Me_GetMyStudentProfilesCount"];
   };
   "/api/v2/LearningService/Me/InstructorProfiles": {
     /** Get current user's instructor profiles */
-    get: operations["GetMyInstructorProfilesAsync"];
+    get: operations["Me_GetMyInstructorProfiles"];
   };
   "/api/v2/LearningService/Me/InstructorProfiles/Count": {
     /** Get current user's instructor profiles count */
-    get: operations["GetMyInstructorProfilesCountAsync"];
+    get: operations["Me_GetMyInstructorProfilesCount"];
   };
   "/api/v2/LearningService/Me/Enrollments": {
     /** Get current user's course enrollments */
-    get: operations["GetMyEnrollmentsAsync"];
+    get: operations["Me_GetMyEnrollments"];
   };
   "/api/v2/LearningService/Me/Enrollments/Count": {
     /** Get current user's enrollment count */
-    get: operations["GetMyEnrollmentsCountAsync"];
+    get: operations["Me_GetMyEnrollmentsCount"];
   };
   "/api/v2/LearningService/Me/Courses": {
     /** Get current user's enrolled courses */
-    get: operations["GetMyStudentCoursesAsync"];
+    get: operations["Me_GetMyStudentCourses"];
   };
   "/api/v2/LearningService/Me/Courses/Count": {
     /** Get current user's enrolled courses count */
-    get: operations["GetMyStudentCoursesCountAsync"];
+    get: operations["Me_GetMyStudentCoursesCount"];
   };
   "/api/v2/LearningService/Me/InstructorCourses": {
     /** Get current user's instructor courses */
-    get: operations["GetMyInstructorCoursesAsync"];
+    get: operations["Me_GetMyInstructorCourses"];
   };
   "/api/v2/LearningService/Me/InstructorCourses/Count": {
     /** Get current user's instructor courses count */
-    get: operations["GetMyInstructorCoursesCountAsync"];
+    get: operations["Me_GetMyInstructorCoursesCount"];
   };
   "/api/v2/LearningService/Me/Certificates": {
     /** Get current user's completion certificates */
-    get: operations["GetMyCertificatesAsync"];
+    get: operations["Me_GetMyCertificates"];
+  };
+  "/api/v2/LearningService/Me/Certificates/{courseCertificateId}": {
+    /**
+     * Get one of the current user's completion certificates by ID
+     * @description Reads one issued course completion certificate HELD BY the current user. Scoped by the holder relationship, not by tenant, because a certificate may be issued by any tenant. A certificate held by anyone else and an id that addresses nothing answer identically.
+     */
+    get: operations["Me_GetMyCertificate"];
+  };
+  "/api/v2/LearningService/Me/Assignments/{courseAssignmentId}": {
+    /**
+     * Get one assignment of a course the current user is enrolled in
+     * @description Reads one course assignment of a course the CURRENT USER IS ENROLLED IN. Scoped by the enrollment, not by tenant. An assignment of any other course and an id that addresses nothing answer identically.
+     */
+    get: operations["Me_GetMyCourseAssignment"];
+  };
+  "/api/v2/LearningService/Me/ProblemSets/{courseProblemSetId}": {
+    /**
+     * Get one problem set of a course the current user is enrolled in
+     * @description Reads one course problem set of a course the CURRENT USER IS ENROLLED IN. Scoped by the enrollment, not by tenant. A problem set of any other course and an id that addresses nothing answer identically.
+     */
+    get: operations["Me_GetMyCourseProblemSet"];
   };
   "/api/v2/LearningService/Me/Certificates/Count": {
     /** Get current user's certificates count */
-    get: operations["GetMyCertificatesCountAsync"];
+    get: operations["Me_GetMyCertificatesCount"];
   };
   "/api/v2/LearningService/Me/AverageScore": {
     /** Get current user's average score */
-    get: operations["GetMyAverageScoreAsync"];
+    get: operations["Me_GetMyAverageScore"];
   };
   "/api/v2/LearningService/Me/HoursCompleted": {
     /** Get current user's completed hours */
-    get: operations["GetMyHoursCompletedAsync"];
+    get: operations["Me_GetMyHoursCompleted"];
   };
   "/api/v2/LearningService/Me/PendingTasks": {
     /** Get current user's pending task count */
-    get: operations["GetMyPendingTaskCountAsync"];
+    get: operations["Me_GetMyPendingTaskCount"];
   };
   "/api/v2/LearningService/StudentProfiles": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["StudentProfileDto"][];
-            "application/xml": components["schemas"]["StudentProfileDto"][];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["StudentProfileCreateDto"];
-          "application/xml": components["schemas"]["StudentProfileCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["StudentProfiles_GetStudentProfiles"];
+    post: operations["StudentProfiles_PostStudentProfiles"];
   };
   "/api/v2/LearningService/StudentProfiles/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": number;
-            "application/xml": number;
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["StudentProfiles_GetStudentProfilesCount"];
   };
   "/api/v2/LearningService/StudentProfiles/{studentProfileId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          studentProfileId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["StudentProfileDto"];
-            "application/xml": components["schemas"]["StudentProfileDto"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          studentProfileId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["StudentProfileUpdateDto"];
-          "application/xml": components["schemas"]["StudentProfileUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          studentProfileId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          studentProfileId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["PatchOperation"][];
-          "application/xml": components["schemas"]["PatchOperation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["StudentProfiles_GetStudentProfilesByStudentProfileId"];
+    put: operations["StudentProfiles_PutStudentProfilesByStudentProfileId"];
+    delete: operations["StudentProfiles_DeleteStudentProfilesByStudentProfileId"];
+    patch: operations["StudentProfiles_PatchStudentProfilesByStudentProfileId"];
   };
   "/api/v2/LearningService/StudentProfiles/{studentProfileId}/Average": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          studentProfileId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AverageDto"];
-            "application/xml": components["schemas"]["AverageDto"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["StudentProfiles_GetStudentProfilesByStudentProfileIdAverage"];
   };
   "/api/v2/LearningService/StudentProfiles/{studentProfileId}/HoursCompleted": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          studentProfileId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["CountDto"];
-            "application/xml": components["schemas"]["CountDto"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    get: operations["StudentProfiles_GetStudentProfilesByStudentProfileIdHoursCompleted"];
   };
 }
 
@@ -2267,9 +1633,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     CountDto: {
       id?: string | null;
@@ -2434,6 +1803,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    CourseAssignmentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CourseAssignmentDto"];
     };
     CourseAssignmentTypeCreateDto: {
       /** Format: uuid */
@@ -2632,6 +2016,39 @@ export interface components {
       /** Format: date-time */
       expectedEndDateTime?: string | null;
     };
+    CourseCollectionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+    };
+    CourseCollectionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      businessID?: string | null;
+    };
+    CourseCollectionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    CourseCollectionUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
     CourseCompletionCertificateCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2672,6 +2089,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    CourseCompletionCertificateDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CourseCompletionCertificateDto"];
     };
     CourseCompletionCertificateDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -3413,6 +2845,21 @@ export interface components {
       expand?: string | null;
       isEmpty?: boolean;
     };
+    CourseProblemSetDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CourseProblemSetDto"];
+    };
     CourseProblemSetUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -4045,7 +3492,7 @@ export interface operations {
    * Get all course articles
    * @description Retrieves all course articles for the specified tenant.
    */
-  GetCourseArticlesAsync: {
+  CourseArticles_GetCourseArticles: {
     parameters: {
       query: {
         tenantId: string;
@@ -4082,7 +3529,7 @@ export interface operations {
    * Create a new course article
    * @description Creates a new course article for the specified tenant.
    */
-  CreateCourseArticleAsync: {
+  CourseArticles_CreateCourseArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -4116,7 +3563,7 @@ export interface operations {
    * Get course articles count
    * @description Returns the count of course articles for the specified tenant.
    */
-  GetCourseArticlesCountAsync: {
+  CourseArticles_GetCourseArticlesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4153,9 +3600,10 @@ export interface operations {
    * Get course article by ID
    * @description Retrieves a specific course article by its ID.
    */
-  GetCourseArticleByIdAsync: {
+  CourseArticles_GetCourseArticleById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4186,7 +3634,7 @@ export interface operations {
    * Update a course article
    * @description Updates an existing course article for the specified tenant.
    */
-  UpdateCourseArticleAsync: {
+  CourseArticles_UpdateCourseArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -4223,7 +3671,7 @@ export interface operations {
    * Delete a course article
    * @description Deletes a course article for the specified tenant.
    */
-  DeleteCourseArticleAsync: {
+  CourseArticles_DeleteCourseArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -4254,7 +3702,7 @@ export interface operations {
    * Patch a course article
    * @description Partially updates a course article for the specified tenant.
    */
-  PatchCourseArticleAsync: {
+  CourseArticles_PatchCourseArticle: {
     parameters: {
       query: {
         tenantId: string;
@@ -4294,7 +3742,7 @@ export interface operations {
    * Get all course assignment components
    * @description Retrieves all course assignment components for the specified tenant.
    */
-  GetCourseAssignmentComponentsAsync: {
+  CourseAssignmentComponents_GetCourseAssignmentComponents: {
     parameters: {
       query: {
         tenantId: string;
@@ -4331,7 +3779,7 @@ export interface operations {
    * Create a course assignment component
    * @description Creates a new course assignment component for the specified tenant.
    */
-  CreateCourseAssignmentComponentAsync: {
+  CourseAssignmentComponents_CreateCourseAssignmentComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -4365,7 +3813,7 @@ export interface operations {
    * Get course assignment components count
    * @description Returns the count of course assignment components for the specified tenant.
    */
-  GetCourseAssignmentComponentsCountAsync: {
+  CourseAssignmentComponents_GetCourseAssignmentComponentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4402,9 +3850,10 @@ export interface operations {
    * Get course assignment component by ID
    * @description Retrieves a specific course assignment component by its ID.
    */
-  GetCourseAssignmentComponentByIdAsync: {
+  CourseAssignmentComponents_GetCourseAssignmentComponentById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4435,7 +3884,7 @@ export interface operations {
    * Update a course assignment component
    * @description Updates an existing course assignment component.
    */
-  UpdateCourseAssignmentComponentAsync: {
+  CourseAssignmentComponents_UpdateCourseAssignmentComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -4472,7 +3921,7 @@ export interface operations {
    * Delete a course assignment component
    * @description Deletes a course assignment component by its ID.
    */
-  DeleteCourseAssignmentComponentAsync: {
+  CourseAssignmentComponents_DeleteCourseAssignmentComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -4503,7 +3952,7 @@ export interface operations {
    * Patch a course assignment component
    * @description Partially updates a course assignment component for the specified tenant.
    */
-  PatchCourseAssignmentComponentAsync: {
+  CourseAssignmentComponents_PatchCourseAssignmentComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -4543,7 +3992,7 @@ export interface operations {
    * Get all course assignments
    * @description Retrieves all course assignments for the specified tenant.
    */
-  GetCourseAssignmentsAsync: {
+  CourseAssignments_GetCourseAssignments: {
     parameters: {
       query: {
         tenantId: string;
@@ -4580,7 +4029,7 @@ export interface operations {
    * Create a new course assignment
    * @description Creates a new course assignment for the specified tenant.
    */
-  CreateCourseAssignmentAsync: {
+  CourseAssignments_CreateCourseAssignment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4614,7 +4063,7 @@ export interface operations {
    * Get course assignments count
    * @description Returns the count of course assignments for the specified tenant.
    */
-  GetCourseAssignmentsCountAsync: {
+  CourseAssignments_GetCourseAssignmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4651,9 +4100,10 @@ export interface operations {
    * Get course assignment by ID
    * @description Retrieves a specific course assignment by its ID.
    */
-  GetCourseAssignmentByIdAsync: {
+  CourseAssignments_GetCourseAssignmentById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4684,7 +4134,7 @@ export interface operations {
    * Update a course assignment
    * @description Updates an existing course assignment for the specified tenant.
    */
-  UpdateCourseAssignmentAsync: {
+  CourseAssignments_UpdateCourseAssignment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4721,7 +4171,7 @@ export interface operations {
    * Delete a course assignment
    * @description Deletes a course assignment for the specified tenant.
    */
-  DeleteCourseAssignmentAsync: {
+  CourseAssignments_DeleteCourseAssignment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4752,7 +4202,7 @@ export interface operations {
    * Patch a course assignment
    * @description Partially updates a course assignment for the specified tenant.
    */
-  PatchCourseAssignmentAsync: {
+  CourseAssignments_PatchCourseAssignment: {
     parameters: {
       query: {
         tenantId: string;
@@ -4792,7 +4242,7 @@ export interface operations {
    * Get all course assignment types
    * @description Retrieves all course assignment types for the specified tenant.
    */
-  GetCourseAssignmentTypesAsync: {
+  CourseAssignmentTypes_GetCourseAssignmentTypes: {
     parameters: {
       query: {
         tenantId: string;
@@ -4829,7 +4279,7 @@ export interface operations {
    * Create a course assignment type
    * @description Creates a new course assignment type for the specified tenant.
    */
-  CreateCourseAssignmentTypeAsync: {
+  CourseAssignmentTypes_CreateCourseAssignmentType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4863,7 +4313,7 @@ export interface operations {
    * Get course assignment types count
    * @description Returns the count of course assignment types for the specified tenant.
    */
-  GetCourseAssignmentTypesCountAsync: {
+  CourseAssignmentTypes_GetCourseAssignmentTypesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -4900,9 +4350,10 @@ export interface operations {
    * Get course assignment type by ID
    * @description Retrieves a specific course assignment type by its ID.
    */
-  GetCourseAssignmentTypeByIdAsync: {
+  CourseAssignmentTypes_GetCourseAssignmentTypeById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4933,7 +4384,7 @@ export interface operations {
    * Update a course assignment type
    * @description Updates an existing course assignment type.
    */
-  UpdateCourseAssignmentTypeAsync: {
+  CourseAssignmentTypes_UpdateCourseAssignmentType: {
     parameters: {
       query: {
         tenantId: string;
@@ -4970,7 +4421,7 @@ export interface operations {
    * Delete a course assignment type
    * @description Deletes a course assignment type by its ID.
    */
-  DeleteCourseAssignmentTypeAsync: {
+  CourseAssignmentTypes_DeleteCourseAssignmentType: {
     parameters: {
       query: {
         tenantId: string;
@@ -5001,7 +4452,7 @@ export interface operations {
    * Patch a course assignment type
    * @description Partially updates a course assignment type for the specified tenant.
    */
-  PatchCourseAssignmentTypeAsync: {
+  CourseAssignmentTypes_PatchCourseAssignmentType: {
     parameters: {
       query: {
         tenantId: string;
@@ -5041,7 +4492,7 @@ export interface operations {
    * Get all course categories
    * @description Retrieves all course categories for the specified tenant.
    */
-  GetCourseCategoriesAsync: {
+  CourseCategories_GetCourseCategories: {
     parameters: {
       query: {
         tenantId: string;
@@ -5078,7 +4529,7 @@ export interface operations {
    * Create a new course category
    * @description Creates a new course category for the specified tenant.
    */
-  CreateCourseCategoryAsync: {
+  CourseCategories_CreateCourseCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5112,7 +4563,7 @@ export interface operations {
    * Get course categories count
    * @description Returns the count of course categories for the specified tenant.
    */
-  GetCourseCategoriesCountAsync: {
+  CourseCategories_GetCourseCategoriesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5149,9 +4600,10 @@ export interface operations {
    * Get course category by ID
    * @description Retrieves a specific course category by its ID.
    */
-  GetCourseCategoryByIdAsync: {
+  CourseCategories_GetCourseCategoryById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -5182,7 +4634,7 @@ export interface operations {
    * Update a course category
    * @description Updates an existing course category for the specified tenant.
    */
-  UpdateCourseCategoryAsync: {
+  CourseCategories_UpdateCourseCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5219,7 +4671,7 @@ export interface operations {
    * Delete a course category
    * @description Deletes a course category for the specified tenant.
    */
-  DeleteCourseCategoryAsync: {
+  CourseCategories_DeleteCourseCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5250,7 +4702,7 @@ export interface operations {
    * Patch a course category
    * @description Partially updates a course category for the specified tenant.
    */
-  PatchCourseCategoryAsync: {
+  CourseCategories_PatchCourseCategory: {
     parameters: {
       query: {
         tenantId: string;
@@ -5290,7 +4742,7 @@ export interface operations {
    * Get all course certificates
    * @description Retrieves all course certificates for the specified tenant.
    */
-  GetCourseCertificatesAsync: {
+  CourseCertificates_GetCourseCertificates: {
     parameters: {
       query: {
         tenantId: string;
@@ -5321,7 +4773,7 @@ export interface operations {
    * Create a course certificate
    * @description Creates a new course certificate for the specified tenant.
    */
-  CreateCourseCertificateAsync: {
+  CourseCertificates_CreateCourseCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5355,7 +4807,7 @@ export interface operations {
    * Get course certificates count
    * @description Returns the count of course certificates for the specified tenant.
    */
-  GetCourseCertificatesCountAsync: {
+  CourseCertificates_GetCourseCertificatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5386,7 +4838,7 @@ export interface operations {
    * Get course certificate by ID
    * @description Retrieves a specific course certificate by its ID.
    */
-  GetCourseCertificateAsync: {
+  CourseCertificates_GetCourseCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5420,7 +4872,7 @@ export interface operations {
    * Update a course certificate
    * @description Updates an existing course certificate for the specified tenant.
    */
-  UpdateCourseCertificateAsync: {
+  CourseCertificates_UpdateCourseCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5457,7 +4909,7 @@ export interface operations {
    * Delete a course certificate
    * @description Deletes a course certificate for the specified tenant.
    */
-  DeleteCourseCertificateAsync: {
+  CourseCertificates_DeleteCourseCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5488,7 +4940,7 @@ export interface operations {
    * Patch a course certificate
    * @description Partially updates a course certificate for the specified tenant.
    */
-  PatchCourseCertificateAsync: {
+  CourseCertificates_PatchCourseCertificate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5528,7 +4980,7 @@ export interface operations {
    * Get all certificate templates
    * @description Retrieves all course certificate templates for the specified tenant.
    */
-  GetCourseCertificateTemplatesAsync: {
+  CourseCertificates_GetCourseCertificateTemplates: {
     parameters: {
       query: {
         tenantId: string;
@@ -5559,7 +5011,7 @@ export interface operations {
    * Create a certificate template
    * @description Creates a new course certificate template for the specified tenant.
    */
-  CreateCourseCertificateTemplateAsync: {
+  CourseCertificates_CreateCourseCertificateTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5593,7 +5045,7 @@ export interface operations {
    * Get certificate template by ID
    * @description Retrieves a specific course certificate template by its ID.
    */
-  GetCourseCertificateTemplateAsync: {
+  CourseCertificates_GetCourseCertificateTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5627,7 +5079,7 @@ export interface operations {
    * Update a certificate template
    * @description Updates an existing course certificate template for the specified tenant.
    */
-  UpdateCourseCertificateTemplateAsync: {
+  CourseCertificates_UpdateCourseCertificateTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5664,7 +5116,7 @@ export interface operations {
    * Delete a certificate template
    * @description Deletes a course certificate template for the specified tenant.
    */
-  DeleteCourseCertificateTemplateAsync: {
+  CourseCertificates_DeleteCourseCertificateTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5695,7 +5147,7 @@ export interface operations {
    * Patch a certificate template
    * @description Partially updates a course certificate template for the specified tenant.
    */
-  PatchCourseCertificateTemplateAsync: {
+  CourseCertificates_PatchCourseCertificateTemplate: {
     parameters: {
       query: {
         tenantId: string;
@@ -5735,7 +5187,7 @@ export interface operations {
    * Get certificate templates count
    * @description Returns the count of course certificate templates for the specified tenant.
    */
-  GetCourseCertificateTemplatesCountAsync: {
+  CourseCertificates_GetCourseCertificateTemplatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5766,7 +5218,7 @@ export interface operations {
    * Get all course cohorts
    * @description Retrieves all course cohorts for the specified tenant.
    */
-  GetCourseCohortsAsync: {
+  CourseCohorts_GetCourseCohorts: {
     parameters: {
       query: {
         tenantId: string;
@@ -5803,7 +5255,7 @@ export interface operations {
    * Create a new course cohort
    * @description Creates a new course cohort for the specified tenant.
    */
-  CreateCourseCohortAsync: {
+  CourseCohorts_CreateCourseCohort: {
     parameters: {
       query: {
         tenantId: string;
@@ -5837,7 +5289,7 @@ export interface operations {
    * Get course cohorts count
    * @description Returns the count of course cohorts for the specified tenant.
    */
-  GetCourseCohortsCountAsync: {
+  CourseCohorts_GetCourseCohortsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -5874,9 +5326,10 @@ export interface operations {
    * Get course cohort by ID
    * @description Retrieves a specific course cohort by its ID.
    */
-  GetCourseCohortByIdAsync: {
+  CourseCohorts_GetCourseCohortById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -5907,7 +5360,7 @@ export interface operations {
    * Update a course cohort
    * @description Updates an existing course cohort for the specified tenant.
    */
-  UpdateCourseCohortAsync: {
+  CourseCohorts_UpdateCourseCohort: {
     parameters: {
       query: {
         tenantId: string;
@@ -5944,7 +5397,7 @@ export interface operations {
    * Delete a course cohort
    * @description Deletes a course cohort for the specified tenant.
    */
-  DeleteCourseCohortAsync: {
+  CourseCohorts_DeleteCourseCohort: {
     parameters: {
       query: {
         tenantId: string;
@@ -5975,7 +5428,7 @@ export interface operations {
    * Patch a course cohort
    * @description Partially updates a course cohort for the specified tenant.
    */
-  PatchCourseCohortAsync: {
+  CourseCohorts_PatchCourseCohort: {
     parameters: {
       query: {
         tenantId: string;
@@ -6012,10 +5465,248 @@ export interface operations {
     };
   };
   /**
+   * Get all course collections
+   * @description Retrieves all course collections for the specified tenant.
+   */
+  CourseCollections_GetCourseCollections: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCollectionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCollectionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseCollectionDto"][];
+          "application/xml": components["schemas"]["CourseCollectionDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new course collection
+   * @description Creates a new course collection for the specified tenant.
+   */
+  CourseCollections_CreateCourseCollection: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCollectionCreateDto"];
+        "application/xml": components["schemas"]["CourseCollectionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course collections count
+   * @description Returns the count of course collections for the specified tenant.
+   */
+  CourseCollections_GetCourseCollectionsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCollectionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCollectionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course collection by ID
+   * @description Retrieves a specific course collection of the specified tenant by its ID.
+   */
+  CourseCollections_GetCourseCollectionById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        collectionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseCollectionDto"];
+          "application/xml": components["schemas"]["CourseCollectionDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a course collection
+   * @description Updates an existing course collection for the specified tenant.
+   */
+  CourseCollections_UpdateCourseCollection: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        collectionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCollectionUpdateDto"];
+        "application/xml": components["schemas"]["CourseCollectionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a course collection
+   * @description Deletes a course collection for the specified tenant.
+   */
+  CourseCollections_DeleteCourseCollection: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        collectionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course content groups
    * @description Retrieves all course content groups for the specified tenant.
    */
-  GetCourseContentGroupsAsync: {
+  CourseContentGroups_GetCourseContentGroups: {
     parameters: {
       query: {
         tenantId: string;
@@ -6052,7 +5743,7 @@ export interface operations {
    * Create a new course content group
    * @description Creates a new course content group for the specified tenant.
    */
-  CreateCourseContentGroupAsync: {
+  CourseContentGroups_CreateCourseContentGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -6086,7 +5777,7 @@ export interface operations {
    * Get course content groups count
    * @description Returns the count of course content groups for the specified tenant.
    */
-  GetCourseContentGroupsCountAsync: {
+  CourseContentGroups_GetCourseContentGroupsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6123,9 +5814,10 @@ export interface operations {
    * Get course content group by ID
    * @description Retrieves a specific course content group by its ID.
    */
-  GetCourseContentGroupByIdAsync: {
+  CourseContentGroups_GetCourseContentGroupById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -6156,7 +5848,7 @@ export interface operations {
    * Update a course content group
    * @description Updates an existing course content group for the specified tenant.
    */
-  UpdateCourseContentGroupAsync: {
+  CourseContentGroups_UpdateCourseContentGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -6193,7 +5885,7 @@ export interface operations {
    * Delete a course content group
    * @description Deletes a course content group for the specified tenant.
    */
-  DeleteCourseContentGroupAsync: {
+  CourseContentGroups_DeleteCourseContentGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -6224,7 +5916,7 @@ export interface operations {
    * Patch a course content group
    * @description Partially updates a course content group for the specified tenant.
    */
-  PatchCourseContentGroupAsync: {
+  CourseContentGroups_PatchCourseContentGroup: {
     parameters: {
       query: {
         tenantId: string;
@@ -6264,9 +5956,10 @@ export interface operations {
    * Get course content groups by course
    * @description Retrieves all course content groups for a specific course.
    */
-  GetCourseContentGroupsByCourseAsync: {
+  CourseContentGroups_GetCourseContentGroupsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -6303,9 +5996,10 @@ export interface operations {
    * Get course content groups count by course
    * @description Returns the count of course content groups for a specific course.
    */
-  GetCourseContentGroupsByCourseCountAsync: {
+  CourseContentGroups_GetCourseContentGroupsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -6342,7 +6036,7 @@ export interface operations {
    * Get all course enrollments
    * @description Retrieves all course enrollments for the specified tenant.
    */
-  GetEnrollmentsAsync: {
+  CourseEnrollments_GetEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -6379,7 +6073,7 @@ export interface operations {
    * Create a new course enrollment
    * @description Creates a new course enrollment for the specified tenant.
    */
-  CreateCourseEnrollmentAsync: {
+  CourseEnrollments_CreateCourseEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6413,7 +6107,7 @@ export interface operations {
    * Get course enrollments count
    * @description Returns the count of course enrollments for the specified tenant.
    */
-  GetEnrollmentsCountAsync: {
+  CourseEnrollments_GetEnrollmentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6450,7 +6144,7 @@ export interface operations {
    * Get course enrollment by ID
    * @description Retrieves a specific course enrollment by its ID.
    */
-  GetCourseEnrollmentAsync: {
+  CourseEnrollments_GetCourseEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6484,7 +6178,7 @@ export interface operations {
    * Update a course enrollment
    * @description Updates an existing course enrollment for the specified tenant.
    */
-  UpdateCourseEnrollmentAsync: {
+  CourseEnrollments_UpdateCourseEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6521,7 +6215,7 @@ export interface operations {
    * Delete a course enrollment
    * @description Deletes a course enrollment for the specified tenant.
    */
-  DeleteCourseEnrollmentAsync: {
+  CourseEnrollments_DeleteCourseEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6552,7 +6246,7 @@ export interface operations {
    * Patch a course enrollment
    * @description Partially updates an existing course enrollment for the specified tenant.
    */
-  PatchCourseEnrollmentAsync: {
+  CourseEnrollments_PatchCourseEnrollment: {
     parameters: {
       query: {
         tenantId: string;
@@ -6589,7 +6283,7 @@ export interface operations {
    * Get enrollments by student
    * @description Retrieves all enrollments for a specific student.
    */
-  GetStudentCourseEnrollmentsAsync: {
+  CourseEnrollments_GetStudentCourseEnrollments: {
     parameters: {
       query: {
         tenantId: string;
@@ -6629,7 +6323,7 @@ export interface operations {
    * Get all course files
    * @description Retrieves all course files for the specified tenant.
    */
-  GetCourseFilesAsync: {
+  CourseFiles_GetCourseFiles: {
     parameters: {
       query: {
         tenantId: string;
@@ -6666,7 +6360,7 @@ export interface operations {
    * Create a new course file
    * @description Creates a new course file for the specified tenant.
    */
-  CreateCourseFileAsync: {
+  CourseFiles_CreateCourseFile: {
     parameters: {
       query: {
         tenantId: string;
@@ -6700,7 +6394,7 @@ export interface operations {
    * Get course files count
    * @description Returns the count of course files for the specified tenant.
    */
-  GetCourseFilesCountAsync: {
+  CourseFiles_GetCourseFilesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6737,9 +6431,10 @@ export interface operations {
    * Get course file by ID
    * @description Retrieves a specific course file by its ID.
    */
-  GetCourseFileByIdAsync: {
+  CourseFiles_GetCourseFileById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -6770,7 +6465,7 @@ export interface operations {
    * Update a course file
    * @description Updates an existing course file for the specified tenant.
    */
-  UpdateCourseFileAsync: {
+  CourseFiles_UpdateCourseFile: {
     parameters: {
       query: {
         tenantId: string;
@@ -6807,7 +6502,7 @@ export interface operations {
    * Delete a course file
    * @description Deletes a course file for the specified tenant.
    */
-  DeleteCourseFileAsync: {
+  CourseFiles_DeleteCourseFile: {
     parameters: {
       query: {
         tenantId: string;
@@ -6838,7 +6533,7 @@ export interface operations {
    * Patch a course file
    * @description Partially updates an existing course file for the specified tenant.
    */
-  PatchCourseFileAsync: {
+  CourseFiles_PatchCourseFile: {
     parameters: {
       query: {
         tenantId: string;
@@ -6875,7 +6570,7 @@ export interface operations {
    * Get all course forums
    * @description Retrieves all course forums for the specified tenant.
    */
-  GetCourseForumsAsync: {
+  CourseForums_GetCourseForums: {
     parameters: {
       query: {
         tenantId: string;
@@ -6912,7 +6607,7 @@ export interface operations {
    * Create a course forum
    * @description Creates a new course forum for the specified tenant.
    */
-  CreateCourseForumAsync: {
+  CourseForums_CreateCourseForum: {
     parameters: {
       query: {
         tenantId: string;
@@ -6949,7 +6644,7 @@ export interface operations {
    * Get course forums count
    * @description Returns the count of course forums for the specified tenant.
    */
-  GetCourseForumsCountAsync: {
+  CourseForums_GetCourseForumsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -6986,9 +6681,10 @@ export interface operations {
    * Get course forum by ID
    * @description Retrieves a specific course forum by its ID.
    */
-  GetCourseForumByIdAsync: {
+  CourseForums_GetCourseForumById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7019,7 +6715,7 @@ export interface operations {
    * Update a course forum
    * @description Updates an existing course forum.
    */
-  UpdateCourseForumAsync: {
+  CourseForums_UpdateCourseForum: {
     parameters: {
       query: {
         tenantId: string;
@@ -7059,7 +6755,7 @@ export interface operations {
    * Delete a course forum
    * @description Deletes a course forum by its ID.
    */
-  DeleteCourseForumAsync: {
+  CourseForums_DeleteCourseForum: {
     parameters: {
       query: {
         tenantId: string;
@@ -7090,7 +6786,7 @@ export interface operations {
    * Patch a course forum
    * @description Partially updates an existing course forum.
    */
-  PatchCourseForumAsync: {
+  CourseForums_PatchCourseForum: {
     parameters: {
       query: {
         tenantId: string;
@@ -7127,7 +6823,7 @@ export interface operations {
    * Get all course grading rubrics
    * @description Retrieves all course grading rubrics for the specified tenant.
    */
-  GetCourseGradingRubricsAsync: {
+  CourseGradingRubrics_GetCourseGradingRubrics: {
     parameters: {
       query: {
         tenantId: string;
@@ -7164,7 +6860,7 @@ export interface operations {
    * Create a course grading rubric
    * @description Creates a new course grading rubric for the specified tenant.
    */
-  CreateCourseGradingRubricAsync: {
+  CourseGradingRubrics_CreateCourseGradingRubric: {
     parameters: {
       query: {
         tenantId: string;
@@ -7198,7 +6894,7 @@ export interface operations {
    * Get course grading rubrics count
    * @description Returns the count of course grading rubrics for the specified tenant.
    */
-  GetCourseGradingRubricsCountAsync: {
+  CourseGradingRubrics_GetCourseGradingRubricsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7235,9 +6931,10 @@ export interface operations {
    * Get course grading rubric by ID
    * @description Retrieves a specific course grading rubric by its ID.
    */
-  GetCourseGradingRubricByIdAsync: {
+  CourseGradingRubrics_GetCourseGradingRubricById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7268,7 +6965,7 @@ export interface operations {
    * Update a course grading rubric
    * @description Updates an existing course grading rubric.
    */
-  UpdateCourseGradingRubricAsync: {
+  CourseGradingRubrics_UpdateCourseGradingRubric: {
     parameters: {
       query: {
         tenantId: string;
@@ -7305,7 +7002,7 @@ export interface operations {
    * Delete a course grading rubric
    * @description Deletes a course grading rubric by its ID.
    */
-  DeleteCourseGradingRubricAsync: {
+  CourseGradingRubrics_DeleteCourseGradingRubric: {
     parameters: {
       query: {
         tenantId: string;
@@ -7336,7 +7033,7 @@ export interface operations {
    * Patch a course grading rubric
    * @description Partially updates an existing course grading rubric.
    */
-  PatchCourseGradingRubricAsync: {
+  CourseGradingRubrics_PatchCourseGradingRubric: {
     parameters: {
       query: {
         tenantId: string;
@@ -7373,7 +7070,7 @@ export interface operations {
    * Get all course handouts
    * @description Retrieves all course handouts for the specified tenant.
    */
-  GetCourseHandoutsAsync: {
+  CourseHandouts_GetCourseHandouts: {
     parameters: {
       query: {
         tenantId: string;
@@ -7410,7 +7107,7 @@ export interface operations {
    * Create a course handout
    * @description Creates a new course handout for the specified tenant.
    */
-  CreateCourseHandoutAsync: {
+  CourseHandouts_CreateCourseHandout: {
     parameters: {
       query: {
         tenantId: string;
@@ -7447,7 +7144,7 @@ export interface operations {
    * Get course handouts count
    * @description Returns the count of course handouts for the specified tenant.
    */
-  GetCourseHandoutsCountAsync: {
+  CourseHandouts_GetCourseHandoutsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7484,9 +7181,10 @@ export interface operations {
    * Get course handout by ID
    * @description Retrieves a specific course handout by its ID.
    */
-  GetCourseHandoutByIdAsync: {
+  CourseHandouts_GetCourseHandoutById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7517,7 +7215,7 @@ export interface operations {
    * Update a course handout
    * @description Updates an existing course handout.
    */
-  UpdateCourseHandoutAsync: {
+  CourseHandouts_UpdateCourseHandout: {
     parameters: {
       query: {
         tenantId: string;
@@ -7557,7 +7255,7 @@ export interface operations {
    * Delete a course handout
    * @description Deletes a course handout by its ID.
    */
-  DeleteCourseHandoutAsync: {
+  CourseHandouts_DeleteCourseHandout: {
     parameters: {
       query: {
         tenantId: string;
@@ -7588,7 +7286,7 @@ export interface operations {
    * Patch a course handout
    * @description Partially updates an existing course handout.
    */
-  PatchCourseHandoutAsync: {
+  CourseHandouts_PatchCourseHandout: {
     parameters: {
       query: {
         tenantId: string;
@@ -7625,7 +7323,7 @@ export interface operations {
    * Get all course libraries
    * @description Retrieves all course libraries for the specified tenant.
    */
-  GetCourseLibrariesAsync: {
+  CourseLibraries_GetCourseLibraries: {
     parameters: {
       query: {
         tenantId: string;
@@ -7662,7 +7360,7 @@ export interface operations {
    * Create a course library
    * @description Creates a new course library for the specified tenant.
    */
-  CreateCourseLibraryAsync: {
+  CourseLibraries_CreateCourseLibrary: {
     parameters: {
       query: {
         tenantId: string;
@@ -7699,7 +7397,7 @@ export interface operations {
    * Get course libraries count
    * @description Returns the count of course libraries for the specified tenant.
    */
-  GetCourseLibrariesCountAsync: {
+  CourseLibraries_GetCourseLibrariesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7736,9 +7434,10 @@ export interface operations {
    * Get course library by ID
    * @description Retrieves a specific course library by its ID.
    */
-  GetCourseLibraryByIdAsync: {
+  CourseLibraries_GetCourseLibraryById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7769,7 +7468,7 @@ export interface operations {
    * Update a course library
    * @description Updates an existing course library.
    */
-  UpdateCourseLibraryAsync: {
+  CourseLibraries_UpdateCourseLibrary: {
     parameters: {
       query: {
         tenantId: string;
@@ -7809,7 +7508,7 @@ export interface operations {
    * Delete a course library
    * @description Deletes a course library by its ID.
    */
-  DeleteCourseLibraryAsync: {
+  CourseLibraries_DeleteCourseLibrary: {
     parameters: {
       query: {
         tenantId: string;
@@ -7840,7 +7539,7 @@ export interface operations {
    * Patch a course library
    * @description Partially updates an existing course library.
    */
-  PatchCourseLibraryAsync: {
+  CourseLibraries_PatchCourseLibrary: {
     parameters: {
       query: {
         tenantId: string;
@@ -7877,7 +7576,7 @@ export interface operations {
    * Get all course pages
    * @description Retrieves all course pages for the specified tenant.
    */
-  GetCoursePagesAsync: {
+  CoursePages_GetCoursePages: {
     parameters: {
       query: {
         tenantId: string;
@@ -7914,7 +7613,7 @@ export interface operations {
    * Create a new course page
    * @description Creates a new course page for the specified tenant.
    */
-  CreateCoursePageAsync: {
+  CoursePages_CreateCoursePage: {
     parameters: {
       query: {
         tenantId: string;
@@ -7948,7 +7647,7 @@ export interface operations {
    * Get course pages count
    * @description Returns the count of course pages for the specified tenant.
    */
-  GetCoursePagesCountAsync: {
+  CoursePages_GetCoursePagesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -7985,9 +7684,10 @@ export interface operations {
    * Get course page by ID
    * @description Retrieves a specific course page by its ID.
    */
-  GetCoursePageByIdAsync: {
+  CoursePages_GetCoursePageById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8018,7 +7718,7 @@ export interface operations {
    * Update a course page
    * @description Updates an existing course page for the specified tenant.
    */
-  UpdateCoursePageAsync: {
+  CoursePages_UpdateCoursePage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8055,7 +7755,7 @@ export interface operations {
    * Delete a course page
    * @description Deletes a course page for the specified tenant.
    */
-  DeleteCoursePageAsync: {
+  CoursePages_DeleteCoursePage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8086,7 +7786,7 @@ export interface operations {
    * Patch a course page
    * @description Partially updates an existing course page for the specified tenant.
    */
-  PatchCoursePageAsync: {
+  CoursePages_PatchCoursePage: {
     parameters: {
       query: {
         tenantId: string;
@@ -8123,7 +7823,7 @@ export interface operations {
    * Get all course problem sets
    * @description Retrieves all course problem sets for the specified tenant.
    */
-  GetCourseProblemSetsAsync: {
+  CourseProblemSets_GetCourseProblemSets: {
     parameters: {
       query: {
         tenantId: string;
@@ -8160,7 +7860,7 @@ export interface operations {
    * Create a new course problem set
    * @description Creates a new course problem set for the specified tenant.
    */
-  CreateCourseProblemSetAsync: {
+  CourseProblemSets_CreateCourseProblemSet: {
     parameters: {
       query: {
         tenantId: string;
@@ -8194,7 +7894,7 @@ export interface operations {
    * Get course problem sets count
    * @description Returns the count of course problem sets for the specified tenant.
    */
-  GetCourseProblemSetsCountAsync: {
+  CourseProblemSets_GetCourseProblemSetsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8231,9 +7931,10 @@ export interface operations {
    * Get course problem set by ID
    * @description Retrieves a specific course problem set by its ID.
    */
-  GetCourseProblemSetByIdAsync: {
+  CourseProblemSets_GetCourseProblemSetById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8264,7 +7965,7 @@ export interface operations {
    * Update a course problem set
    * @description Updates an existing course problem set for the specified tenant.
    */
-  UpdateCourseProblemSetAsync: {
+  CourseProblemSets_UpdateCourseProblemSet: {
     parameters: {
       query: {
         tenantId: string;
@@ -8301,7 +8002,7 @@ export interface operations {
    * Delete a course problem set
    * @description Deletes a course problem set for the specified tenant.
    */
-  DeleteCourseProblemSetAsync: {
+  CourseProblemSets_DeleteCourseProblemSet: {
     parameters: {
       query: {
         tenantId: string;
@@ -8332,7 +8033,7 @@ export interface operations {
    * Patch a course problem set
    * @description Partially updates a course problem set for the specified tenant.
    */
-  PatchCourseProblemSetAsync: {
+  CourseProblemSets_PatchCourseProblemSet: {
     parameters: {
       query: {
         tenantId: string;
@@ -8372,7 +8073,7 @@ export interface operations {
    * Get courses
    * @description Retrieves courses. When tenantId is provided, returns tenant-scoped courses; otherwise returns all courses.
    */
-  GetCoursesAsync: {
+  Courses_GetCourses: {
     parameters: {
       query: {
         tenantId: string;
@@ -8409,7 +8110,7 @@ export interface operations {
    * Create a new course
    * @description Creates a new course for the specified tenant.
    */
-  CreateCourseAsync: {
+  Courses_CreateCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -8443,7 +8144,7 @@ export interface operations {
    * Get courses count
    * @description Returns the count of courses. When tenantId is provided, returns tenant-scoped count; otherwise returns global count.
    */
-  GetCoursesCountAsync: {
+  Courses_GetCoursesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -8480,7 +8181,7 @@ export interface operations {
    * Get course by ID
    * @description Retrieves a specific course by its ID.
    */
-  GetCourseByIdAsync: {
+  Courses_GetCourseById: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -8514,7 +8215,7 @@ export interface operations {
    * Update a course
    * @description Updates an existing course for the specified tenant.
    */
-  UpdateCourseAsync: {
+  Courses_UpdateCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -8551,7 +8252,7 @@ export interface operations {
    * Delete a course
    * @description Deletes a course for the specified tenant.
    */
-  DeleteCourseAsync: {
+  Courses_DeleteCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -8582,7 +8283,7 @@ export interface operations {
    * Patch a course
    * @description Partially updates a course for the specified tenant.
    */
-  PatchCourseAsync: {
+  Courses_PatchCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -8619,12 +8320,125 @@ export interface operations {
     };
   };
   /**
+   * Get public courses
+   * @description Retrieves the publicly-visible course catalog: published, non-deleted courses. Anonymous.
+   */
+  Courses_GetPublicCourses: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseDto"][];
+          "application/xml": components["schemas"]["CourseDto"][];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count public courses
+   * @description Counts the publicly-visible course catalog: published, non-deleted courses. Anonymous.
+   */
+  Courses_GetPublicCoursesCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get public course by ID
+   * @description Retrieves a publicly-visible course by its ID. An unpublished, deleted or absent course is not found, identically. Anonymous.
+   */
+  Courses_GetPublicCourseById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseDto"];
+          "application/xml": components["schemas"]["CourseDto"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get course wikis by course
    * @description Retrieves all course wikis for a specific course.
    */
-  GetCourseWikisByCourseAsync: {
+  Courses_GetCourseWikisByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8661,9 +8475,10 @@ export interface operations {
    * Get course wikis by course count
    * @description Returns the count of course wikis for a specific course.
    */
-  GetCourseWikisByCourseCountAsync: {
+  Courses_GetCourseWikisByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8700,9 +8515,10 @@ export interface operations {
    * Get course articles by course wiki
    * @description Retrieves all course articles for a specific course wiki.
    */
-  GetCourseArticlesByCourseWikiAsync: {
+  Courses_GetCourseArticlesByCourseWiki: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8740,9 +8556,10 @@ export interface operations {
    * Get course articles by course wiki count
    * @description Returns the count of course articles for a specific course wiki.
    */
-  GetCourseArticlesByCourseWikiCountAsync: {
+  Courses_GetCourseArticlesByCourseWikiCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8780,9 +8597,10 @@ export interface operations {
    * Get course updates by course
    * @description Retrieves all course updates for a specific course.
    */
-  GetCourseUpdatesByCourseAsync: {
+  Courses_GetCourseUpdatesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8819,9 +8637,10 @@ export interface operations {
    * Get course updates by course count
    * @description Returns the count of course updates for a specific course.
    */
-  GetCourseUpdatesByCourseCountAsync: {
+  Courses_GetCourseUpdatesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8858,9 +8677,10 @@ export interface operations {
    * Get course sections by course
    * @description Retrieves all course sections for a specific course.
    */
-  GetCourseSectionsByCourseAsync: {
+  Courses_GetCourseSectionsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8897,9 +8717,10 @@ export interface operations {
    * Get course sections by course count
    * @description Returns the count of course sections for a specific course.
    */
-  GetCourseSectionsByCourseCountAsync: {
+  Courses_GetCourseSectionsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8936,9 +8757,10 @@ export interface operations {
    * Get course units by section
    * @description Retrieves all course units for a specific course section.
    */
-  GetCourseUnitsBySectionAsync: {
+  Courses_GetCourseUnitsBySection: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8976,9 +8798,10 @@ export interface operations {
    * Get course units by section count
    * @description Returns the count of course units for a specific course section.
    */
-  GetCourseUnitsBySectionCountAsync: {
+  Courses_GetCourseUnitsBySectionCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9016,9 +8839,10 @@ export interface operations {
    * Get course assignments by course
    * @description Retrieves all course assignments for a specific course.
    */
-  GetCourseAssignmentsByCourseAsync: {
+  Courses_GetCourseAssignmentsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9055,9 +8879,10 @@ export interface operations {
    * Get course assignments by course count
    * @description Returns the count of course assignments for a specific course.
    */
-  GetCourseAssignmentsByCourseCountAsync: {
+  Courses_GetCourseAssignmentsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9094,9 +8919,10 @@ export interface operations {
    * Get course categories by course
    * @description Retrieves all course categories for a specific course.
    */
-  GetCourseCategoriesByCourseAsync: {
+  Courses_GetCourseCategoriesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9133,9 +8959,10 @@ export interface operations {
    * Get course categories by course count
    * @description Returns the count of course categories for a specific course.
    */
-  GetCourseCategoriesByCourseCountAsync: {
+  Courses_GetCourseCategoriesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9172,9 +8999,10 @@ export interface operations {
    * Get course cohorts by course
    * @description Retrieves all course cohorts for a specific course.
    */
-  GetCourseCohortsByCourseAsync: {
+  Courses_GetCourseCohortsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9211,9 +9039,10 @@ export interface operations {
    * Get course cohorts by course count
    * @description Returns the count of course cohorts for a specific course.
    */
-  GetCourseCohortsByCourseCountAsync: {
+  Courses_GetCourseCohortsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9250,9 +9079,10 @@ export interface operations {
    * Get course files by course
    * @description Retrieves all course files for a specific course.
    */
-  GetCourseFilesByCourseAsync: {
+  Courses_GetCourseFilesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9289,9 +9119,10 @@ export interface operations {
    * Get course files by course count
    * @description Returns the count of course files for a specific course.
    */
-  GetCourseFilesByCourseCountAsync: {
+  Courses_GetCourseFilesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9328,9 +9159,10 @@ export interface operations {
    * Get course forums by course
    * @description Retrieves all course forums for a specific course.
    */
-  GetCourseForumsByCourseAsync: {
+  Courses_GetCourseForumsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9367,9 +9199,10 @@ export interface operations {
    * Get course forums by course count
    * @description Returns the count of course forums for a specific course.
    */
-  GetCourseForumsByCourseCountAsync: {
+  Courses_GetCourseForumsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9406,9 +9239,10 @@ export interface operations {
    * Get course libraries by course
    * @description Retrieves all course libraries for a specific course.
    */
-  GetCourseLibrariesByCourseAsync: {
+  Courses_GetCourseLibrariesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9445,9 +9279,10 @@ export interface operations {
    * Get course libraries by course count
    * @description Returns the count of course libraries for a specific course.
    */
-  GetCourseLibrariesByCourseCountAsync: {
+  Courses_GetCourseLibrariesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9484,9 +9319,10 @@ export interface operations {
    * Get course pages by course
    * @description Retrieves all course pages for a specific course.
    */
-  GetCoursePagesByCourseAsync: {
+  Courses_GetCoursePagesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9523,9 +9359,10 @@ export interface operations {
    * Get course pages by course count
    * @description Returns the count of course pages for a specific course.
    */
-  GetCoursePagesByCourseCountAsync: {
+  Courses_GetCoursePagesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9562,9 +9399,10 @@ export interface operations {
    * Get course problem sets by course
    * @description Retrieves all course problem sets for a specific course.
    */
-  GetCourseProblemSetsByCourseAsync: {
+  Courses_GetCourseProblemSetsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9601,9 +9439,10 @@ export interface operations {
    * Get course problem sets by course count
    * @description Returns the count of course problem sets for a specific course.
    */
-  GetCourseProblemSetsByCourseCountAsync: {
+  Courses_GetCourseProblemSetsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9640,9 +9479,10 @@ export interface operations {
    * Get course handouts by course
    * @description Retrieves all course handouts for a specific course.
    */
-  GetCourseHandoutsByCourseAsync: {
+  Courses_GetCourseHandoutsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9679,9 +9519,10 @@ export interface operations {
    * Get course handouts by course count
    * @description Returns the count of course handouts for a specific course.
    */
-  GetCourseHandoutsByCourseCountAsync: {
+  Courses_GetCourseHandoutsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9718,9 +9559,10 @@ export interface operations {
    * Get course unit components by course
    * @description Retrieves all course unit components for a specific course.
    */
-  GetCourseUnitComponentsByCourseAsync: {
+  Courses_GetCourseUnitComponentsByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9757,9 +9599,10 @@ export interface operations {
    * Get course unit components by course count
    * @description Returns the count of course unit components for a specific course.
    */
-  GetCourseUnitComponentsByCourseCountAsync: {
+  Courses_GetCourseUnitComponentsByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9796,9 +9639,10 @@ export interface operations {
    * Get student profiles by course
    * @description Retrieves all student profiles enrolled in a specific course.
    */
-  GetStudentProfilesByCourseAsync: {
+  Courses_GetStudentProfilesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9829,9 +9673,10 @@ export interface operations {
    * Get student profiles by course count
    * @description Returns the count of student profiles enrolled in a specific course.
    */
-  GetStudentProfilesByCourseCountAsync: {
+  Courses_GetStudentProfilesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9862,9 +9707,10 @@ export interface operations {
    * Get instructor profiles by course
    * @description Retrieves all instructor profiles teaching a specific course.
    */
-  GetInstructorProfilesByCourseAsync: {
+  Courses_GetInstructorProfilesByCourse: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9895,9 +9741,10 @@ export interface operations {
    * Get instructor profiles by course count
    * @description Returns the count of instructor profiles teaching a specific course.
    */
-  GetInstructorProfilesByCourseCountAsync: {
+  Courses_GetInstructorProfilesByCourseCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9928,7 +9775,7 @@ export interface operations {
    * Get enrollments by course
    * @description Retrieves all enrollments for a specific course.
    */
-  GetCourseEnrollmentsByCourseAsync: {
+  Courses_GetCourseEnrollmentsByCourse: {
     parameters: {
       query: {
         tenantId: string;
@@ -9968,7 +9815,7 @@ export interface operations {
    * Get all course sections
    * @description Retrieves all course sections for the specified tenant.
    */
-  GetCourseSectionsAsync: {
+  CourseSections_GetCourseSections: {
     parameters: {
       query: {
         tenantId: string;
@@ -10005,7 +9852,7 @@ export interface operations {
    * Create a new course section
    * @description Creates a new course section for the specified tenant.
    */
-  CreateCourseSectionAsync: {
+  CourseSections_CreateCourseSection: {
     parameters: {
       query: {
         tenantId: string;
@@ -10039,7 +9886,7 @@ export interface operations {
    * Get course sections count
    * @description Returns the count of course sections for the specified tenant.
    */
-  GetCourseSectionsCountAsync: {
+  CourseSections_GetCourseSectionsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10076,9 +9923,10 @@ export interface operations {
    * Get course section by ID
    * @description Retrieves a specific course section by its ID.
    */
-  GetCourseSectionByIdAsync: {
+  CourseSections_GetCourseSectionById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -10109,7 +9957,7 @@ export interface operations {
    * Update a course section
    * @description Updates an existing course section for the specified tenant.
    */
-  UpdateCourseSectionAsync: {
+  CourseSections_UpdateCourseSection: {
     parameters: {
       query: {
         tenantId: string;
@@ -10146,7 +9994,7 @@ export interface operations {
    * Delete a course section
    * @description Deletes a course section for the specified tenant.
    */
-  DeleteCourseSectionAsync: {
+  CourseSections_DeleteCourseSection: {
     parameters: {
       query: {
         tenantId: string;
@@ -10177,7 +10025,7 @@ export interface operations {
    * Patch a course section
    * @description Partially updates a course section for the specified tenant.
    */
-  PatchCourseSectionAsync: {
+  CourseSections_PatchCourseSection: {
     parameters: {
       query: {
         tenantId: string;
@@ -10217,7 +10065,7 @@ export interface operations {
    * Get all course team memberships
    * @description Retrieves all course team memberships for the specified tenant.
    */
-  GetCourseTeamMembershipsAsync: {
+  CourseTeamMemberships_GetCourseTeamMemberships: {
     parameters: {
       query: {
         tenantId: string;
@@ -10254,7 +10102,7 @@ export interface operations {
    * Create a course team membership
    * @description Creates a new course team membership for the specified tenant.
    */
-  CreateCourseTeamMembershipAsync: {
+  CourseTeamMemberships_CreateCourseTeamMembership: {
     parameters: {
       query: {
         tenantId: string;
@@ -10288,7 +10136,7 @@ export interface operations {
    * Get course team memberships count
    * @description Returns the count of course team memberships for the specified tenant.
    */
-  GetCourseTeamMembershipsCountAsync: {
+  CourseTeamMemberships_GetCourseTeamMembershipsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10325,9 +10173,10 @@ export interface operations {
    * Get course team membership by ID
    * @description Retrieves a specific course team membership by its ID.
    */
-  GetCourseTeamMembershipByIdAsync: {
+  CourseTeamMemberships_GetCourseTeamMembershipById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -10358,7 +10207,7 @@ export interface operations {
    * Update a course team membership
    * @description Updates an existing course team membership.
    */
-  UpdateCourseTeamMembershipAsync: {
+  CourseTeamMemberships_UpdateCourseTeamMembership: {
     parameters: {
       query: {
         tenantId: string;
@@ -10395,7 +10244,7 @@ export interface operations {
    * Delete a course team membership
    * @description Deletes a course team membership by its ID.
    */
-  DeleteCourseTeamMembershipAsync: {
+  CourseTeamMemberships_DeleteCourseTeamMembership: {
     parameters: {
       query: {
         tenantId: string;
@@ -10426,7 +10275,7 @@ export interface operations {
    * Patch a course team membership
    * @description Partially updates a course team membership for the specified tenant.
    */
-  PatchCourseTeamMembershipAsync: {
+  CourseTeamMemberships_PatchCourseTeamMembership: {
     parameters: {
       query: {
         tenantId: string;
@@ -10466,7 +10315,7 @@ export interface operations {
    * Get all course unit components
    * @description Retrieves all course unit components for the specified tenant.
    */
-  GetCourseUnitComponentsAsync: {
+  CourseUnitComponents_GetCourseUnitComponents: {
     parameters: {
       query: {
         tenantId: string;
@@ -10503,7 +10352,7 @@ export interface operations {
    * Create a new course unit component
    * @description Creates a new course unit component for the specified tenant.
    */
-  CreateCourseUnitComponentAsync: {
+  CourseUnitComponents_CreateCourseUnitComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -10537,7 +10386,7 @@ export interface operations {
    * Get course unit components count
    * @description Returns the count of course unit components for the specified tenant.
    */
-  GetCourseUnitComponentsCountAsync: {
+  CourseUnitComponents_GetCourseUnitComponentsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10574,9 +10423,10 @@ export interface operations {
    * Get course unit component by ID
    * @description Retrieves a specific course unit component by its ID.
    */
-  GetCourseUnitComponentByIdAsync: {
+  CourseUnitComponents_GetCourseUnitComponentById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -10607,7 +10457,7 @@ export interface operations {
    * Update a course unit component
    * @description Updates an existing course unit component for the specified tenant.
    */
-  UpdateCourseUnitComponentAsync: {
+  CourseUnitComponents_UpdateCourseUnitComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -10644,7 +10494,7 @@ export interface operations {
    * Delete a course unit component
    * @description Deletes a course unit component for the specified tenant.
    */
-  DeleteCourseUnitComponentAsync: {
+  CourseUnitComponents_DeleteCourseUnitComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -10675,7 +10525,7 @@ export interface operations {
    * Patch a course unit component
    * @description Partially updates a course unit component for the specified tenant.
    */
-  PatchCourseUnitComponentAsync: {
+  CourseUnitComponents_PatchCourseUnitComponent: {
     parameters: {
       query: {
         tenantId: string;
@@ -10715,7 +10565,7 @@ export interface operations {
    * Get all course units
    * @description Retrieves all course units for the specified tenant.
    */
-  GetCourseUnitsAsync: {
+  CourseUnits_GetCourseUnits: {
     parameters: {
       query: {
         tenantId: string;
@@ -10752,7 +10602,7 @@ export interface operations {
    * Create a new course unit
    * @description Creates a new course unit for the specified tenant.
    */
-  CreateCourseUnitAsync: {
+  CourseUnits_CreateCourseUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10786,7 +10636,7 @@ export interface operations {
    * Get course units count
    * @description Returns the count of course units for the specified tenant.
    */
-  GetCourseUnitsCountAsync: {
+  CourseUnits_GetCourseUnitsCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -10823,9 +10673,10 @@ export interface operations {
    * Get course unit by ID
    * @description Retrieves a specific course unit by its ID.
    */
-  GetCourseUnitByIdAsync: {
+  CourseUnits_GetCourseUnitById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -10856,7 +10707,7 @@ export interface operations {
    * Update a course unit
    * @description Updates an existing course unit for the specified tenant.
    */
-  UpdateCourseUnitAsync: {
+  CourseUnits_UpdateCourseUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10893,7 +10744,7 @@ export interface operations {
    * Delete a course unit
    * @description Deletes a course unit for the specified tenant.
    */
-  DeleteCourseUnitAsync: {
+  CourseUnits_DeleteCourseUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10924,7 +10775,7 @@ export interface operations {
    * Patch a course unit
    * @description Partially updates a course unit for the specified tenant.
    */
-  PatchCourseUnitAsync: {
+  CourseUnits_PatchCourseUnit: {
     parameters: {
       query: {
         tenantId: string;
@@ -10964,7 +10815,7 @@ export interface operations {
    * Get all course updates
    * @description Retrieves all course updates for the specified tenant.
    */
-  GetCourseUpdatesAsync: {
+  CourseUpdates_GetCourseUpdates: {
     parameters: {
       query: {
         tenantId: string;
@@ -11001,7 +10852,7 @@ export interface operations {
    * Create a new course update
    * @description Creates a new course update for the specified tenant.
    */
-  CreateCourseUpdateAsync: {
+  CourseUpdates_CreateCourseUpdate: {
     parameters: {
       query: {
         tenantId: string;
@@ -11035,7 +10886,7 @@ export interface operations {
    * Get course updates count
    * @description Returns the count of course updates for the specified tenant.
    */
-  GetCourseUpdatesCountAsync: {
+  CourseUpdates_GetCourseUpdatesCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11072,9 +10923,10 @@ export interface operations {
    * Get course update by ID
    * @description Retrieves a specific course update by its ID.
    */
-  GetCourseUpdateByIdAsync: {
+  CourseUpdates_GetCourseUpdateById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -11105,7 +10957,7 @@ export interface operations {
    * Update a course update
    * @description Updates an existing course update for the specified tenant.
    */
-  UpdateCourseUpdateAsync: {
+  CourseUpdates_UpdateCourseUpdate: {
     parameters: {
       query: {
         tenantId: string;
@@ -11142,7 +10994,7 @@ export interface operations {
    * Delete a course update
    * @description Deletes a course update for the specified tenant.
    */
-  DeleteCourseUpdateAsync: {
+  CourseUpdates_DeleteCourseUpdate: {
     parameters: {
       query: {
         tenantId: string;
@@ -11173,7 +11025,7 @@ export interface operations {
    * Patch a course update
    * @description Partially updates a course update for the specified tenant.
    */
-  PatchCourseUpdateAsync: {
+  CourseUpdates_PatchCourseUpdate: {
     parameters: {
       query: {
         tenantId: string;
@@ -11213,7 +11065,7 @@ export interface operations {
    * Get all course wikis
    * @description Retrieves all course wikis for the specified tenant.
    */
-  GetCourseWikisAsync: {
+  CourseWikis_GetCourseWikis: {
     parameters: {
       query: {
         tenantId: string;
@@ -11250,7 +11102,7 @@ export interface operations {
    * Create a new course wiki
    * @description Creates a new course wiki for the specified tenant.
    */
-  CreateCourseWikiAsync: {
+  CourseWikis_CreateCourseWiki: {
     parameters: {
       query: {
         tenantId: string;
@@ -11284,7 +11136,7 @@ export interface operations {
    * Get course wikis count
    * @description Returns the count of course wikis for the specified tenant.
    */
-  GetCourseWikisCountAsync: {
+  CourseWikis_GetCourseWikisCount: {
     parameters: {
       query: {
         tenantId: string;
@@ -11321,9 +11173,10 @@ export interface operations {
    * Get course wiki by ID
    * @description Retrieves a specific course wiki by its ID.
    */
-  GetCourseWikiByIdAsync: {
+  CourseWikis_GetCourseWikiById: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -11354,7 +11207,7 @@ export interface operations {
    * Update a course wiki
    * @description Updates an existing course wiki for the specified tenant.
    */
-  UpdateCourseWikiAsync: {
+  CourseWikis_UpdateCourseWiki: {
     parameters: {
       query: {
         tenantId: string;
@@ -11391,7 +11244,7 @@ export interface operations {
    * Delete a course wiki
    * @description Deletes a course wiki for the specified tenant.
    */
-  DeleteCourseWikiAsync: {
+  CourseWikis_DeleteCourseWiki: {
     parameters: {
       query: {
         tenantId: string;
@@ -11422,7 +11275,7 @@ export interface operations {
    * Patch a course wiki
    * @description Partially updates a course wiki for the specified tenant.
    */
-  PatchCourseWikiAsync: {
+  CourseWikis_PatchCourseWiki: {
     parameters: {
       query: {
         tenantId: string;
@@ -11458,7 +11311,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -11473,8 +11405,403 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  InstructorProfiles_GetInstructorProfiles: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InstructorProfileDto"][];
+          "application/xml": components["schemas"]["InstructorProfileDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  InstructorProfiles_PostInstructorProfiles: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InstructorProfileCreateDto"];
+        "application/xml": components["schemas"]["InstructorProfileCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  InstructorProfiles_GetInstructorProfilesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  InstructorProfiles_GetInstructorProfilesByInstructorProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        instructorProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InstructorProfileDto"];
+          "application/xml": components["schemas"]["InstructorProfileDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  InstructorProfiles_PutInstructorProfilesByInstructorProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        instructorProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InstructorProfileUpdateDto"];
+        "application/xml": components["schemas"]["InstructorProfileUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  InstructorProfiles_DeleteInstructorProfilesByInstructorProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        instructorProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  InstructorProfiles_PatchInstructorProfilesByInstructorProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        instructorProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Get current user's student profiles */
-  GetMyStudentProfilesAsync: {
+  Me_GetMyStudentProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11507,7 +11834,7 @@ export interface operations {
     };
   };
   /** Get current user's student profiles count */
-  GetMyStudentProfilesCountAsync: {
+  Me_GetMyStudentProfilesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11540,7 +11867,7 @@ export interface operations {
     };
   };
   /** Get current user's instructor profiles */
-  GetMyInstructorProfilesAsync: {
+  Me_GetMyInstructorProfiles: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11573,7 +11900,7 @@ export interface operations {
     };
   };
   /** Get current user's instructor profiles count */
-  GetMyInstructorProfilesCountAsync: {
+  Me_GetMyInstructorProfilesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11606,7 +11933,7 @@ export interface operations {
     };
   };
   /** Get current user's course enrollments */
-  GetMyEnrollmentsAsync: {
+  Me_GetMyEnrollments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11639,7 +11966,7 @@ export interface operations {
     };
   };
   /** Get current user's enrollment count */
-  GetMyEnrollmentsCountAsync: {
+  Me_GetMyEnrollmentsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11672,7 +11999,7 @@ export interface operations {
     };
   };
   /** Get current user's enrolled courses */
-  GetMyStudentCoursesAsync: {
+  Me_GetMyStudentCourses: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11705,7 +12032,7 @@ export interface operations {
     };
   };
   /** Get current user's enrolled courses count */
-  GetMyStudentCoursesCountAsync: {
+  Me_GetMyStudentCoursesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11738,7 +12065,7 @@ export interface operations {
     };
   };
   /** Get current user's instructor courses */
-  GetMyInstructorCoursesAsync: {
+  Me_GetMyInstructorCourses: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11771,7 +12098,7 @@ export interface operations {
     };
   };
   /** Get current user's instructor courses count */
-  GetMyInstructorCoursesCountAsync: {
+  Me_GetMyInstructorCoursesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11804,7 +12131,7 @@ export interface operations {
     };
   };
   /** Get current user's completion certificates */
-  GetMyCertificatesAsync: {
+  Me_GetMyCertificates: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11836,8 +12163,128 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get one of the current user's completion certificates by ID
+   * @description Reads one issued course completion certificate HELD BY the current user. Scoped by the holder relationship, not by tenant, because a certificate may be issued by any tenant. A certificate held by anyone else and an id that addresses nothing answer identically.
+   */
+  Me_GetMyCertificate: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseCertificateId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseCompletionCertificateDtoEnvelope"];
+          "application/xml": components["schemas"]["CourseCompletionCertificateDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get one assignment of a course the current user is enrolled in
+   * @description Reads one course assignment of a course the CURRENT USER IS ENROLLED IN. Scoped by the enrollment, not by tenant. An assignment of any other course and an id that addresses nothing answer identically.
+   */
+  Me_GetMyCourseAssignment: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseAssignmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseAssignmentDtoEnvelope"];
+          "application/xml": components["schemas"]["CourseAssignmentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get one problem set of a course the current user is enrolled in
+   * @description Reads one course problem set of a course the CURRENT USER IS ENROLLED IN. Scoped by the enrollment, not by tenant. A problem set of any other course and an id that addresses nothing answer identically.
+   */
+  Me_GetMyCourseProblemSet: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseProblemSetId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseProblemSetDtoEnvelope"];
+          "application/xml": components["schemas"]["CourseProblemSetDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Get current user's certificates count */
-  GetMyCertificatesCountAsync: {
+  Me_GetMyCertificatesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11870,7 +12317,7 @@ export interface operations {
     };
   };
   /** Get current user's average score */
-  GetMyAverageScoreAsync: {
+  Me_GetMyAverageScore: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11897,7 +12344,7 @@ export interface operations {
     };
   };
   /** Get current user's completed hours */
-  GetMyHoursCompletedAsync: {
+  Me_GetMyHoursCompleted: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11924,7 +12371,7 @@ export interface operations {
     };
   };
   /** Get current user's pending task count */
-  GetMyPendingTaskCountAsync: {
+  Me_GetMyPendingTaskCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -11943,6 +12390,276 @@ export interface operations {
       };
       /** @description Unauthorized */
       401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_GetStudentProfiles: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StudentProfileDto"][];
+          "application/xml": components["schemas"]["StudentProfileDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_PostStudentProfiles: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StudentProfileCreateDto"];
+        "application/xml": components["schemas"]["StudentProfileCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_GetStudentProfilesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_GetStudentProfilesByStudentProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        studentProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StudentProfileDto"];
+          "application/xml": components["schemas"]["StudentProfileDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_PutStudentProfilesByStudentProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        studentProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StudentProfileUpdateDto"];
+        "application/xml": components["schemas"]["StudentProfileUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_DeleteStudentProfilesByStudentProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        studentProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_PatchStudentProfilesByStudentProfileId: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        studentProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_GetStudentProfilesByStudentProfileIdAverage: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        studentProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AverageDto"];
+          "application/xml": components["schemas"]["AverageDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  StudentProfiles_GetStudentProfilesByStudentProfileIdHoursCompleted: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        studentProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CountDto"];
+          "application/xml": components["schemas"]["CountDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

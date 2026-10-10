@@ -434,6 +434,8 @@ export type ItemToCompareCartRecordDto = {
     itemTitle?: string | null;
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
+    itemInStock?: boolean | null;
+    itemRatingAverage?: number | null;
     brandId?: string | null;
     brandName?: string | null;
     categoryName?: string | null;
@@ -522,6 +524,43 @@ export type ProductToWishListRequest = {
     itemId?: string | null;
 };
 
+export type RecentlyViewedItemRecordDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    cartId?: string | null;
+    itemId?: string | null;
+    itemTitle?: string | null;
+    itemPrimaryImageUrl?: string | null;
+    totalPriceInUsd?: number;
+    itemInStock?: boolean | null;
+    itemRatingAverage?: number | null;
+};
+
+export type RecentlyViewedItemRecordDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<RecentlyViewedItemRecordDto> | null;
+};
+
+export type RecentlyViewedItemRecordDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<RecentlyViewedItemRecordDto> | null;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -604,7 +643,7 @@ export type WishListUpdateDto = {
     public?: boolean;
 };
 
-export type GetCartByIdAsyncData = {
+export type CartsGetCartByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -618,7 +657,7 @@ export type GetCartByIdAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}';
 };
 
-export type GetCartByIdAsyncErrors = {
+export type CartsGetCartByIdErrors = {
     /**
      * Unauthorized
      */
@@ -629,18 +668,18 @@ export type GetCartByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCartByIdAsyncError = GetCartByIdAsyncErrors[keyof GetCartByIdAsyncErrors];
+export type CartsGetCartByIdError = CartsGetCartByIdErrors[keyof CartsGetCartByIdErrors];
 
-export type GetCartByIdAsyncResponses = {
+export type CartsGetCartByIdResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetCartByIdAsyncResponse = GetCartByIdAsyncResponses[keyof GetCartByIdAsyncResponses];
+export type CartsGetCartByIdResponse = CartsGetCartByIdResponses[keyof CartsGetCartByIdResponses];
 
-export type PatchCartAsyncData = {
+export type CartsPatchCartData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -654,7 +693,7 @@ export type PatchCartAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}';
 };
 
-export type PatchCartAsyncErrors = {
+export type CartsPatchCartErrors = {
     /**
      * Unauthorized
      */
@@ -665,18 +704,18 @@ export type PatchCartAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCartAsyncError = PatchCartAsyncErrors[keyof PatchCartAsyncErrors];
+export type CartsPatchCartError = CartsPatchCartErrors[keyof CartsPatchCartErrors];
 
-export type PatchCartAsyncResponses = {
+export type CartsPatchCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCartAsyncResponse = PatchCartAsyncResponses[keyof PatchCartAsyncResponses];
+export type CartsPatchCartResponse = CartsPatchCartResponses[keyof CartsPatchCartResponses];
 
-export type UpdateCartAsyncData = {
+export type CartsUpdateCartData = {
     body?: CartUpdateRequest;
     headers?: {
         'x-api-version'?: string;
@@ -690,7 +729,7 @@ export type UpdateCartAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}';
 };
 
-export type UpdateCartAsyncErrors = {
+export type CartsUpdateCartErrors = {
     /**
      * Unauthorized
      */
@@ -701,18 +740,18 @@ export type UpdateCartAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCartAsyncError = UpdateCartAsyncErrors[keyof UpdateCartAsyncErrors];
+export type CartsUpdateCartError = CartsUpdateCartErrors[keyof CartsUpdateCartErrors];
 
-export type UpdateCartAsyncResponses = {
+export type CartsUpdateCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCartAsyncResponse = UpdateCartAsyncResponses[keyof UpdateCartAsyncResponses];
+export type CartsUpdateCartResponse = CartsUpdateCartResponses[keyof CartsUpdateCartResponses];
 
-export type GetCartCurrencyAsyncData = {
+export type CartsGetCartCurrencyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -726,7 +765,7 @@ export type GetCartCurrencyAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Currency';
 };
 
-export type GetCartCurrencyAsyncErrors = {
+export type CartsGetCartCurrencyErrors = {
     /**
      * Unauthorized
      */
@@ -737,18 +776,18 @@ export type GetCartCurrencyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCartCurrencyAsyncError = GetCartCurrencyAsyncErrors[keyof GetCartCurrencyAsyncErrors];
+export type CartsGetCartCurrencyError = CartsGetCartCurrencyErrors[keyof CartsGetCartCurrencyErrors];
 
-export type GetCartCurrencyAsyncResponses = {
+export type CartsGetCartCurrencyResponses = {
     /**
      * OK
      */
     200: CurrencyDtoEnvelopeReadable;
 };
 
-export type GetCartCurrencyAsyncResponse = GetCartCurrencyAsyncResponses[keyof GetCartCurrencyAsyncResponses];
+export type CartsGetCartCurrencyResponse = CartsGetCartCurrencyResponses[keyof CartsGetCartCurrencyResponses];
 
-export type SetCartCurrencyAsyncData = {
+export type CartsSetCartCurrencyData = {
     body?: CurrencySwitchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -762,7 +801,7 @@ export type SetCartCurrencyAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Currency';
 };
 
-export type SetCartCurrencyAsyncErrors = {
+export type CartsSetCartCurrencyErrors = {
     /**
      * Unauthorized
      */
@@ -773,18 +812,18 @@ export type SetCartCurrencyAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SetCartCurrencyAsyncError = SetCartCurrencyAsyncErrors[keyof SetCartCurrencyAsyncErrors];
+export type CartsSetCartCurrencyError = CartsSetCartCurrencyErrors[keyof CartsSetCartCurrencyErrors];
 
-export type SetCartCurrencyAsyncResponses = {
+export type CartsSetCartCurrencyResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SetCartCurrencyAsyncResponse = SetCartCurrencyAsyncResponses[keyof SetCartCurrencyAsyncResponses];
+export type CartsSetCartCurrencyResponse = CartsSetCartCurrencyResponses[keyof CartsSetCartCurrencyResponses];
 
-export type GetCartCountryAsyncData = {
+export type CartsGetCartCountryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -798,7 +837,7 @@ export type GetCartCountryAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Country';
 };
 
-export type GetCartCountryAsyncErrors = {
+export type CartsGetCartCountryErrors = {
     /**
      * Unauthorized
      */
@@ -809,18 +848,18 @@ export type GetCartCountryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCartCountryAsyncError = GetCartCountryAsyncErrors[keyof GetCartCountryAsyncErrors];
+export type CartsGetCartCountryError = CartsGetCartCountryErrors[keyof CartsGetCartCountryErrors];
 
-export type GetCartCountryAsyncResponses = {
+export type CartsGetCartCountryResponses = {
     /**
      * OK
      */
     200: CountryDtoEnvelopeReadable;
 };
 
-export type GetCartCountryAsyncResponse = GetCartCountryAsyncResponses[keyof GetCartCountryAsyncResponses];
+export type CartsGetCartCountryResponse = CartsGetCartCountryResponses[keyof CartsGetCartCountryResponses];
 
-export type SetCartCountryAsyncData = {
+export type CartsSetCartCountryData = {
     body?: CountrySwitchRequest;
     headers?: {
         'x-api-version'?: string;
@@ -834,7 +873,7 @@ export type SetCartCountryAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Country';
 };
 
-export type SetCartCountryAsyncErrors = {
+export type CartsSetCartCountryErrors = {
     /**
      * Unauthorized
      */
@@ -845,18 +884,18 @@ export type SetCartCountryAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SetCartCountryAsyncError = SetCartCountryAsyncErrors[keyof SetCartCountryAsyncErrors];
+export type CartsSetCartCountryError = CartsSetCartCountryErrors[keyof CartsSetCartCountryErrors];
 
-export type SetCartCountryAsyncResponses = {
+export type CartsSetCartCountryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SetCartCountryAsyncResponse = SetCartCountryAsyncResponses[keyof SetCartCountryAsyncResponses];
+export type CartsSetCartCountryResponse = CartsSetCartCountryResponses[keyof CartsSetCartCountryResponses];
 
-export type SubmitCartAsyncData = {
+export type CartsSubmitCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -871,7 +910,7 @@ export type SubmitCartAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Submit';
 };
 
-export type SubmitCartAsyncErrors = {
+export type CartsSubmitCartErrors = {
     /**
      * Unauthorized
      */
@@ -882,18 +921,18 @@ export type SubmitCartAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type SubmitCartAsyncError = SubmitCartAsyncErrors[keyof SubmitCartAsyncErrors];
+export type CartsSubmitCartError = CartsSubmitCartErrors[keyof CartsSubmitCartErrors];
 
-export type SubmitCartAsyncResponses = {
+export type CartsSubmitCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type SubmitCartAsyncResponse = SubmitCartAsyncResponses[keyof SubmitCartAsyncResponses];
+export type CartsSubmitCartResponse = CartsSubmitCartResponses[keyof CartsSubmitCartResponses];
 
-export type GetActingCartData = {
+export type CartsGetActingCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -905,7 +944,7 @@ export type GetActingCartData = {
     url: '/api/v2/CartService/Carts/ActingCart';
 };
 
-export type GetActingCartErrors = {
+export type CartsGetActingCartErrors = {
     /**
      * Unauthorized
      */
@@ -916,18 +955,18 @@ export type GetActingCartErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetActingCartError = GetActingCartErrors[keyof GetActingCartErrors];
+export type CartsGetActingCartError = CartsGetActingCartErrors[keyof CartsGetActingCartErrors];
 
-export type GetActingCartResponses = {
+export type CartsGetActingCartResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetActingCartResponse = GetActingCartResponses[keyof GetActingCartResponses];
+export type CartsGetActingCartResponse = CartsGetActingCartResponses[keyof CartsGetActingCartResponses];
 
-export type GetGuestCartAsyncData = {
+export type CartsGetGuestCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -939,7 +978,7 @@ export type GetGuestCartAsyncData = {
     url: '/api/v2/CartService/Carts/GuestCart';
 };
 
-export type GetGuestCartAsyncErrors = {
+export type CartsGetGuestCartErrors = {
     /**
      * Unauthorized
      */
@@ -950,18 +989,18 @@ export type GetGuestCartAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetGuestCartAsyncError = GetGuestCartAsyncErrors[keyof GetGuestCartAsyncErrors];
+export type CartsGetGuestCartError = CartsGetGuestCartErrors[keyof CartsGetGuestCartErrors];
 
-export type GetGuestCartAsyncResponses = {
+export type CartsGetGuestCartResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetGuestCartAsyncResponse = GetGuestCartAsyncResponses[keyof GetGuestCartAsyncResponses];
+export type CartsGetGuestCartResponse = CartsGetGuestCartResponses[keyof CartsGetGuestCartResponses];
 
-export type GetUserCartData = {
+export type CartsGetUserCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -973,7 +1012,7 @@ export type GetUserCartData = {
     url: '/api/v2/CartService/Carts/UserCart';
 };
 
-export type GetUserCartErrors = {
+export type CartsGetUserCartErrors = {
     /**
      * Unauthorized
      */
@@ -984,18 +1023,18 @@ export type GetUserCartErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserCartError = GetUserCartErrors[keyof GetUserCartErrors];
+export type CartsGetUserCartError = CartsGetUserCartErrors[keyof CartsGetUserCartErrors];
 
-export type GetUserCartResponses = {
+export type CartsGetUserCartResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetUserCartResponse = GetUserCartResponses[keyof GetUserCartResponses];
+export type CartsGetUserCartResponse = CartsGetUserCartResponses[keyof CartsGetUserCartResponses];
 
-export type GetTenantCartAsyncData = {
+export type CartsGetTenantCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1009,7 +1048,7 @@ export type GetTenantCartAsyncData = {
     url: '/api/v2/CartService/Carts/BusinessCart/{tenantId}';
 };
 
-export type GetTenantCartAsyncErrors = {
+export type CartsGetTenantCartErrors = {
     /**
      * Unauthorized
      */
@@ -1020,18 +1059,18 @@ export type GetTenantCartAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantCartAsyncError = GetTenantCartAsyncErrors[keyof GetTenantCartAsyncErrors];
+export type CartsGetTenantCartError = CartsGetTenantCartErrors[keyof CartsGetTenantCartErrors];
 
-export type GetTenantCartAsyncResponses = {
+export type CartsGetTenantCartResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetTenantCartAsyncResponse = GetTenantCartAsyncResponses[keyof GetTenantCartAsyncResponses];
+export type CartsGetTenantCartResponse = CartsGetTenantCartResponses[keyof CartsGetTenantCartResponses];
 
-export type ClearCartRecordsData = {
+export type CartsClearCartRecordsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1045,7 +1084,7 @@ export type ClearCartRecordsData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items';
 };
 
-export type ClearCartRecordsErrors = {
+export type CartsClearCartRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -1056,18 +1095,18 @@ export type ClearCartRecordsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type ClearCartRecordsError = ClearCartRecordsErrors[keyof ClearCartRecordsErrors];
+export type CartsClearCartRecordsError = CartsClearCartRecordsErrors[keyof CartsClearCartRecordsErrors];
 
-export type ClearCartRecordsResponses = {
+export type CartsClearCartRecordsResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type ClearCartRecordsResponse = ClearCartRecordsResponses[keyof ClearCartRecordsResponses];
+export type CartsClearCartRecordsResponse = CartsClearCartRecordsResponses[keyof CartsClearCartRecordsResponses];
 
-export type GetCartItemsData = {
+export type CartsGetCartItemsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1081,7 +1120,7 @@ export type GetCartItemsData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items';
 };
 
-export type GetCartItemsErrors = {
+export type CartsGetCartItemsErrors = {
     /**
      * Unauthorized
      */
@@ -1092,18 +1131,18 @@ export type GetCartItemsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartItemsError = GetCartItemsErrors[keyof GetCartItemsErrors];
+export type CartsGetCartItemsError = CartsGetCartItemsErrors[keyof CartsGetCartItemsErrors];
 
-export type GetCartItemsResponses = {
+export type CartsGetCartItemsResponses = {
     /**
      * OK
      */
     200: ItemCartRecordDtoListEnvelopeReadable;
 };
 
-export type GetCartItemsResponse = GetCartItemsResponses[keyof GetCartItemsResponses];
+export type CartsGetCartItemsResponse = CartsGetCartItemsResponses[keyof CartsGetCartItemsResponses];
 
-export type RemoveItemFromCartAsyncData = {
+export type CartsRemoveItemFromCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1118,7 +1157,7 @@ export type RemoveItemFromCartAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items/{itemId}';
 };
 
-export type RemoveItemFromCartAsyncErrors = {
+export type CartsRemoveItemFromCartErrors = {
     /**
      * Unauthorized
      */
@@ -1129,18 +1168,18 @@ export type RemoveItemFromCartAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type RemoveItemFromCartAsyncError = RemoveItemFromCartAsyncErrors[keyof RemoveItemFromCartAsyncErrors];
+export type CartsRemoveItemFromCartError = CartsRemoveItemFromCartErrors[keyof CartsRemoveItemFromCartErrors];
 
-export type RemoveItemFromCartAsyncResponses = {
+export type CartsRemoveItemFromCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RemoveItemFromCartAsyncResponse = RemoveItemFromCartAsyncResponses[keyof RemoveItemFromCartAsyncResponses];
+export type CartsRemoveItemFromCartResponse = CartsRemoveItemFromCartResponses[keyof CartsRemoveItemFromCartResponses];
 
-export type AddItemToCartAsyncData = {
+export type CartsAddItemToCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1156,7 +1195,7 @@ export type AddItemToCartAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items/{itemId}';
 };
 
-export type AddItemToCartAsyncErrors = {
+export type CartsAddItemToCartErrors = {
     /**
      * Unauthorized
      */
@@ -1167,18 +1206,18 @@ export type AddItemToCartAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type AddItemToCartAsyncError = AddItemToCartAsyncErrors[keyof AddItemToCartAsyncErrors];
+export type CartsAddItemToCartError = CartsAddItemToCartErrors[keyof CartsAddItemToCartErrors];
 
-export type AddItemToCartAsyncResponses = {
+export type CartsAddItemToCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AddItemToCartAsyncResponse = AddItemToCartAsyncResponses[keyof AddItemToCartAsyncResponses];
+export type CartsAddItemToCartResponse = CartsAddItemToCartResponses[keyof CartsAddItemToCartResponses];
 
-export type UpdateItemCartRecordAsyncData = {
+export type CartsUpdateItemCartRecordData = {
     body?: ItemCartRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1193,7 +1232,7 @@ export type UpdateItemCartRecordAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items/{itemId}';
 };
 
-export type UpdateItemCartRecordAsyncErrors = {
+export type CartsUpdateItemCartRecordErrors = {
     /**
      * Unauthorized
      */
@@ -1204,18 +1243,18 @@ export type UpdateItemCartRecordAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemCartRecordAsyncError = UpdateItemCartRecordAsyncErrors[keyof UpdateItemCartRecordAsyncErrors];
+export type CartsUpdateItemCartRecordError = CartsUpdateItemCartRecordErrors[keyof CartsUpdateItemCartRecordErrors];
 
-export type UpdateItemCartRecordAsyncResponses = {
+export type CartsUpdateItemCartRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateItemCartRecordAsyncResponse = UpdateItemCartRecordAsyncResponses[keyof UpdateItemCartRecordAsyncResponses];
+export type CartsUpdateItemCartRecordResponse = CartsUpdateItemCartRecordResponses[keyof CartsUpdateItemCartRecordResponses];
 
-export type IsItemAlreadyInCartAsyncData = {
+export type CartsIsItemAlreadyInCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1230,7 +1269,7 @@ export type IsItemAlreadyInCartAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Contains/{itemId}';
 };
 
-export type IsItemAlreadyInCartAsyncErrors = {
+export type CartsIsItemAlreadyInCartErrors = {
     /**
      * Unauthorized
      */
@@ -1241,18 +1280,18 @@ export type IsItemAlreadyInCartAsyncErrors = {
     404: EmptyEnvelopeReadable;
 };
 
-export type IsItemAlreadyInCartAsyncError = IsItemAlreadyInCartAsyncErrors[keyof IsItemAlreadyInCartAsyncErrors];
+export type CartsIsItemAlreadyInCartError = CartsIsItemAlreadyInCartErrors[keyof CartsIsItemAlreadyInCartErrors];
 
-export type IsItemAlreadyInCartAsyncResponses = {
+export type CartsIsItemAlreadyInCartResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type IsItemAlreadyInCartAsyncResponse = IsItemAlreadyInCartAsyncResponses[keyof IsItemAlreadyInCartAsyncResponses];
+export type CartsIsItemAlreadyInCartResponse = CartsIsItemAlreadyInCartResponses[keyof CartsIsItemAlreadyInCartResponses];
 
-export type IncreaseItemCartRecordQuantityAsyncData = {
+export type CartsIncreaseItemCartRecordQuantityData = {
     body?: ItemCartRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1267,7 +1306,7 @@ export type IncreaseItemCartRecordQuantityAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items/{itemId}/Increase';
 };
 
-export type IncreaseItemCartRecordQuantityAsyncErrors = {
+export type CartsIncreaseItemCartRecordQuantityErrors = {
     /**
      * Unauthorized
      */
@@ -1278,18 +1317,18 @@ export type IncreaseItemCartRecordQuantityAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type IncreaseItemCartRecordQuantityAsyncError = IncreaseItemCartRecordQuantityAsyncErrors[keyof IncreaseItemCartRecordQuantityAsyncErrors];
+export type CartsIncreaseItemCartRecordQuantityError = CartsIncreaseItemCartRecordQuantityErrors[keyof CartsIncreaseItemCartRecordQuantityErrors];
 
-export type IncreaseItemCartRecordQuantityAsyncResponses = {
+export type CartsIncreaseItemCartRecordQuantityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type IncreaseItemCartRecordQuantityAsyncResponse = IncreaseItemCartRecordQuantityAsyncResponses[keyof IncreaseItemCartRecordQuantityAsyncResponses];
+export type CartsIncreaseItemCartRecordQuantityResponse = CartsIncreaseItemCartRecordQuantityResponses[keyof CartsIncreaseItemCartRecordQuantityResponses];
 
-export type DecreaseCartItemQuantityData = {
+export type CartsDecreaseCartItemQuantityData = {
     body?: ItemCartRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1304,7 +1343,7 @@ export type DecreaseCartItemQuantityData = {
     url: '/api/v2/CartService/Carts/{cartId}/Items/{itemId}/Decrease';
 };
 
-export type DecreaseCartItemQuantityErrors = {
+export type CartsDecreaseCartItemQuantityErrors = {
     /**
      * Unauthorized
      */
@@ -1315,18 +1354,18 @@ export type DecreaseCartItemQuantityErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DecreaseCartItemQuantityError = DecreaseCartItemQuantityErrors[keyof DecreaseCartItemQuantityErrors];
+export type CartsDecreaseCartItemQuantityError = CartsDecreaseCartItemQuantityErrors[keyof CartsDecreaseCartItemQuantityErrors];
 
-export type DecreaseCartItemQuantityResponses = {
+export type CartsDecreaseCartItemQuantityResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DecreaseCartItemQuantityResponse = DecreaseCartItemQuantityResponses[keyof DecreaseCartItemQuantityResponses];
+export type CartsDecreaseCartItemQuantityResponse = CartsDecreaseCartItemQuantityResponses[keyof CartsDecreaseCartItemQuantityResponses];
 
-export type GetCartLinesAsyncData = {
+export type CartsGetCartLinesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1340,7 +1379,7 @@ export type GetCartLinesAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Lines';
 };
 
-export type GetCartLinesAsyncErrors = {
+export type CartsGetCartLinesErrors = {
     /**
      * Unauthorized
      */
@@ -1351,18 +1390,18 @@ export type GetCartLinesAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartLinesAsyncError = GetCartLinesAsyncErrors[keyof GetCartLinesAsyncErrors];
+export type CartsGetCartLinesError = CartsGetCartLinesErrors[keyof CartsGetCartLinesErrors];
 
-export type GetCartLinesAsyncResponses = {
+export type CartsGetCartLinesResponses = {
     /**
      * OK
      */
     200: ItemCartRecordDtoListEnvelopeReadable;
 };
 
-export type GetCartLinesAsyncResponse = GetCartLinesAsyncResponses[keyof GetCartLinesAsyncResponses];
+export type CartsGetCartLinesResponse = CartsGetCartLinesResponses[keyof CartsGetCartLinesResponses];
 
-export type RemoveCartLineAsyncData = {
+export type CartsRemoveCartLineData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1377,7 +1416,7 @@ export type RemoveCartLineAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Lines/{lineId}';
 };
 
-export type RemoveCartLineAsyncErrors = {
+export type CartsRemoveCartLineErrors = {
     /**
      * Unauthorized
      */
@@ -1388,18 +1427,18 @@ export type RemoveCartLineAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type RemoveCartLineAsyncError = RemoveCartLineAsyncErrors[keyof RemoveCartLineAsyncErrors];
+export type CartsRemoveCartLineError = CartsRemoveCartLineErrors[keyof CartsRemoveCartLineErrors];
 
-export type RemoveCartLineAsyncResponses = {
+export type CartsRemoveCartLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RemoveCartLineAsyncResponse = RemoveCartLineAsyncResponses[keyof RemoveCartLineAsyncResponses];
+export type CartsRemoveCartLineResponse = CartsRemoveCartLineResponses[keyof CartsRemoveCartLineResponses];
 
-export type GetCartLineAsyncData = {
+export type CartsGetCartLineData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1414,7 +1453,7 @@ export type GetCartLineAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Lines/{lineId}';
 };
 
-export type GetCartLineAsyncErrors = {
+export type CartsGetCartLineErrors = {
     /**
      * Unauthorized
      */
@@ -1425,18 +1464,18 @@ export type GetCartLineAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartLineAsyncError = GetCartLineAsyncErrors[keyof GetCartLineAsyncErrors];
+export type CartsGetCartLineError = CartsGetCartLineErrors[keyof CartsGetCartLineErrors];
 
-export type GetCartLineAsyncResponses = {
+export type CartsGetCartLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetCartLineAsyncResponse = GetCartLineAsyncResponses[keyof GetCartLineAsyncResponses];
+export type CartsGetCartLineResponse = CartsGetCartLineResponses[keyof CartsGetCartLineResponses];
 
-export type UpdateCartLineAsyncData = {
+export type CartsUpdateCartLineData = {
     body?: ItemCartRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1451,7 +1490,7 @@ export type UpdateCartLineAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Lines/{lineId}';
 };
 
-export type UpdateCartLineAsyncErrors = {
+export type CartsUpdateCartLineErrors = {
     /**
      * Unauthorized
      */
@@ -1462,18 +1501,18 @@ export type UpdateCartLineAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateCartLineAsyncError = UpdateCartLineAsyncErrors[keyof UpdateCartLineAsyncErrors];
+export type CartsUpdateCartLineError = CartsUpdateCartLineErrors[keyof CartsUpdateCartLineErrors];
 
-export type UpdateCartLineAsyncResponses = {
+export type CartsUpdateCartLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCartLineAsyncResponse = UpdateCartLineAsyncResponses[keyof UpdateCartLineAsyncResponses];
+export type CartsUpdateCartLineResponse = CartsUpdateCartLineResponses[keyof CartsUpdateCartLineResponses];
 
-export type IncreaseCartLineAsyncData = {
+export type CartsIncreaseCartLineData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1489,7 +1528,7 @@ export type IncreaseCartLineAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Lines/{lineId}/Increase';
 };
 
-export type IncreaseCartLineAsyncErrors = {
+export type CartsIncreaseCartLineErrors = {
     /**
      * Unauthorized
      */
@@ -1500,18 +1539,18 @@ export type IncreaseCartLineAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type IncreaseCartLineAsyncError = IncreaseCartLineAsyncErrors[keyof IncreaseCartLineAsyncErrors];
+export type CartsIncreaseCartLineError = CartsIncreaseCartLineErrors[keyof CartsIncreaseCartLineErrors];
 
-export type IncreaseCartLineAsyncResponses = {
+export type CartsIncreaseCartLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type IncreaseCartLineAsyncResponse = IncreaseCartLineAsyncResponses[keyof IncreaseCartLineAsyncResponses];
+export type CartsIncreaseCartLineResponse = CartsIncreaseCartLineResponses[keyof CartsIncreaseCartLineResponses];
 
-export type DecreaseCartLineAsyncData = {
+export type CartsDecreaseCartLineData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1527,7 +1566,7 @@ export type DecreaseCartLineAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Lines/{lineId}/Decrease';
 };
 
-export type DecreaseCartLineAsyncErrors = {
+export type CartsDecreaseCartLineErrors = {
     /**
      * Unauthorized
      */
@@ -1538,18 +1577,18 @@ export type DecreaseCartLineAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DecreaseCartLineAsyncError = DecreaseCartLineAsyncErrors[keyof DecreaseCartLineAsyncErrors];
+export type CartsDecreaseCartLineError = CartsDecreaseCartLineErrors[keyof CartsDecreaseCartLineErrors];
 
-export type DecreaseCartLineAsyncResponses = {
+export type CartsDecreaseCartLineResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DecreaseCartLineAsyncResponse = DecreaseCartLineAsyncResponses[keyof DecreaseCartLineAsyncResponses];
+export type CartsDecreaseCartLineResponse = CartsDecreaseCartLineResponses[keyof CartsDecreaseCartLineResponses];
 
-export type GetCartWishListData = {
+export type CartsGetCartWishListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1563,7 +1602,7 @@ export type GetCartWishListData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists';
 };
 
-export type GetCartWishListErrors = {
+export type CartsGetCartWishListErrors = {
     /**
      * Unauthorized
      */
@@ -1574,18 +1613,18 @@ export type GetCartWishListErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartWishListError = GetCartWishListErrors[keyof GetCartWishListErrors];
+export type CartsGetCartWishListError = CartsGetCartWishListErrors[keyof CartsGetCartWishListErrors];
 
-export type GetCartWishListResponses = {
+export type CartsGetCartWishListResponses = {
     /**
      * OK
      */
     200: Array<WishListDto>;
 };
 
-export type GetCartWishListResponse = GetCartWishListResponses[keyof GetCartWishListResponses];
+export type CartsGetCartWishListResponse = CartsGetCartWishListResponses[keyof CartsGetCartWishListResponses];
 
-export type CreateWishListAsyncData = {
+export type CartsCreateWishListData = {
     body?: NewWishListRequest;
     headers?: {
         'x-api-version'?: string;
@@ -1599,7 +1638,7 @@ export type CreateWishListAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists';
 };
 
-export type CreateWishListAsyncErrors = {
+export type CartsCreateWishListErrors = {
     /**
      * Unauthorized
      */
@@ -1610,18 +1649,18 @@ export type CreateWishListAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type CreateWishListAsyncError = CreateWishListAsyncErrors[keyof CreateWishListAsyncErrors];
+export type CartsCreateWishListError = CartsCreateWishListErrors[keyof CartsCreateWishListErrors];
 
-export type CreateWishListAsyncResponses = {
+export type CartsCreateWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateWishListAsyncResponse = CreateWishListAsyncResponses[keyof CreateWishListAsyncResponses];
+export type CartsCreateWishListResponse = CartsCreateWishListResponses[keyof CartsCreateWishListResponses];
 
-export type IsItemInWishListsData = {
+export type CartsIsItemInWishListsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1636,7 +1675,7 @@ export type IsItemInWishListsData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/Contains/{itemId}';
 };
 
-export type IsItemInWishListsErrors = {
+export type CartsIsItemInWishListsErrors = {
     /**
      * Unauthorized
      */
@@ -1647,18 +1686,18 @@ export type IsItemInWishListsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type IsItemInWishListsError = IsItemInWishListsErrors[keyof IsItemInWishListsErrors];
+export type CartsIsItemInWishListsError = CartsIsItemInWishListsErrors[keyof CartsIsItemInWishListsErrors];
 
-export type IsItemInWishListsResponses = {
+export type CartsIsItemInWishListsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type IsItemInWishListsResponse = IsItemInWishListsResponses[keyof IsItemInWishListsResponses];
+export type CartsIsItemInWishListsResponse = CartsIsItemInWishListsResponses[keyof CartsIsItemInWishListsResponses];
 
-export type WishListExistsAsyncData = {
+export type CartsWishListExistsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1673,7 +1712,7 @@ export type WishListExistsAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Exists';
 };
 
-export type WishListExistsAsyncErrors = {
+export type CartsWishListExistsErrors = {
     /**
      * Unauthorized
      */
@@ -1684,18 +1723,18 @@ export type WishListExistsAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type WishListExistsAsyncError = WishListExistsAsyncErrors[keyof WishListExistsAsyncErrors];
+export type CartsWishListExistsError = CartsWishListExistsErrors[keyof CartsWishListExistsErrors];
 
-export type WishListExistsAsyncResponses = {
+export type CartsWishListExistsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type WishListExistsAsyncResponse = WishListExistsAsyncResponses[keyof WishListExistsAsyncResponses];
+export type CartsWishListExistsResponse = CartsWishListExistsResponses[keyof CartsWishListExistsResponses];
 
-export type CartWishListExistsHeadData = {
+export type CartsCartWishListExistsHeadData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1710,7 +1749,7 @@ export type CartWishListExistsHeadData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Exists';
 };
 
-export type CartWishListExistsHeadErrors = {
+export type CartsCartWishListExistsHeadErrors = {
     /**
      * Unauthorized
      */
@@ -1721,18 +1760,18 @@ export type CartWishListExistsHeadErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type CartWishListExistsHeadError = CartWishListExistsHeadErrors[keyof CartWishListExistsHeadErrors];
+export type CartsCartWishListExistsHeadError = CartsCartWishListExistsHeadErrors[keyof CartsCartWishListExistsHeadErrors];
 
-export type CartWishListExistsHeadResponses = {
+export type CartsCartWishListExistsHeadResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CartWishListExistsHeadResponse = CartWishListExistsHeadResponses[keyof CartWishListExistsHeadResponses];
+export type CartsCartWishListExistsHeadResponse = CartsCartWishListExistsHeadResponses[keyof CartsCartWishListExistsHeadResponses];
 
-export type DeleteCartWishListData = {
+export type CartsDeleteCartWishListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1747,7 +1786,7 @@ export type DeleteCartWishListData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}';
 };
 
-export type DeleteCartWishListErrors = {
+export type CartsDeleteCartWishListErrors = {
     /**
      * Unauthorized
      */
@@ -1758,18 +1797,18 @@ export type DeleteCartWishListErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCartWishListError = DeleteCartWishListErrors[keyof DeleteCartWishListErrors];
+export type CartsDeleteCartWishListError = CartsDeleteCartWishListErrors[keyof CartsDeleteCartWishListErrors];
 
-export type DeleteCartWishListResponses = {
+export type CartsDeleteCartWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCartWishListResponse = DeleteCartWishListResponses[keyof DeleteCartWishListResponses];
+export type CartsDeleteCartWishListResponse = CartsDeleteCartWishListResponses[keyof CartsDeleteCartWishListResponses];
 
-export type GetCartWishListDetailsData = {
+export type CartsGetCartWishListDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1784,7 +1823,7 @@ export type GetCartWishListDetailsData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}';
 };
 
-export type GetCartWishListDetailsErrors = {
+export type CartsGetCartWishListDetailsErrors = {
     /**
      * Unauthorized
      */
@@ -1795,18 +1834,18 @@ export type GetCartWishListDetailsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartWishListDetailsError = GetCartWishListDetailsErrors[keyof GetCartWishListDetailsErrors];
+export type CartsGetCartWishListDetailsError = CartsGetCartWishListDetailsErrors[keyof CartsGetCartWishListDetailsErrors];
 
-export type GetCartWishListDetailsResponses = {
+export type CartsGetCartWishListDetailsResponses = {
     /**
      * OK
      */
     200: WishListDtoEnvelopeReadable;
 };
 
-export type GetCartWishListDetailsResponse = GetCartWishListDetailsResponses[keyof GetCartWishListDetailsResponses];
+export type CartsGetCartWishListDetailsResponse = CartsGetCartWishListDetailsResponses[keyof CartsGetCartWishListDetailsResponses];
 
-export type UpdateItemToWishListData = {
+export type CartsUpdateItemToWishListData = {
     body?: WishListUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1821,7 +1860,7 @@ export type UpdateItemToWishListData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}';
 };
 
-export type UpdateItemToWishListErrors = {
+export type CartsUpdateItemToWishListErrors = {
     /**
      * Unauthorized
      */
@@ -1832,18 +1871,18 @@ export type UpdateItemToWishListErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemToWishListError = UpdateItemToWishListErrors[keyof UpdateItemToWishListErrors];
+export type CartsUpdateItemToWishListError = CartsUpdateItemToWishListErrors[keyof CartsUpdateItemToWishListErrors];
 
-export type UpdateItemToWishListResponses = {
+export type CartsUpdateItemToWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateItemToWishListResponse = UpdateItemToWishListResponses[keyof UpdateItemToWishListResponses];
+export type CartsUpdateItemToWishListResponse = CartsUpdateItemToWishListResponses[keyof CartsUpdateItemToWishListResponses];
 
-export type GetCartWishListItemsData = {
+export type CartsGetCartWishListItemsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1858,7 +1897,7 @@ export type GetCartWishListItemsData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records';
 };
 
-export type GetCartWishListItemsErrors = {
+export type CartsGetCartWishListItemsErrors = {
     /**
      * Unauthorized
      */
@@ -1869,18 +1908,18 @@ export type GetCartWishListItemsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartWishListItemsError = GetCartWishListItemsErrors[keyof GetCartWishListItemsErrors];
+export type CartsGetCartWishListItemsError = CartsGetCartWishListItemsErrors[keyof CartsGetCartWishListItemsErrors];
 
-export type GetCartWishListItemsResponses = {
+export type CartsGetCartWishListItemsResponses = {
     /**
      * OK
      */
     200: Array<WishListItemRecordDto>;
 };
 
-export type GetCartWishListItemsResponse = GetCartWishListItemsResponses[keyof GetCartWishListItemsResponses];
+export type CartsGetCartWishListItemsResponse = CartsGetCartWishListItemsResponses[keyof CartsGetCartWishListItemsResponses];
 
-export type AddItemToWishListData = {
+export type CartsAddItemToWishListData = {
     body?: ProductToWishListRequest;
     headers?: {
         'x-api-version'?: string;
@@ -1895,7 +1934,7 @@ export type AddItemToWishListData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records';
 };
 
-export type AddItemToWishListErrors = {
+export type CartsAddItemToWishListErrors = {
     /**
      * Unauthorized
      */
@@ -1906,18 +1945,18 @@ export type AddItemToWishListErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type AddItemToWishListError = AddItemToWishListErrors[keyof AddItemToWishListErrors];
+export type CartsAddItemToWishListError = CartsAddItemToWishListErrors[keyof CartsAddItemToWishListErrors];
 
-export type AddItemToWishListResponses = {
+export type CartsAddItemToWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AddItemToWishListResponse = AddItemToWishListResponses[keyof AddItemToWishListResponses];
+export type CartsAddItemToWishListResponse = CartsAddItemToWishListResponses[keyof CartsAddItemToWishListResponses];
 
-export type DeleteCartWishListRecordData = {
+export type CartsDeleteCartWishListRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1933,7 +1972,7 @@ export type DeleteCartWishListRecordData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records/{recordId}';
 };
 
-export type DeleteCartWishListRecordErrors = {
+export type CartsDeleteCartWishListRecordErrors = {
     /**
      * Unauthorized
      */
@@ -1944,18 +1983,18 @@ export type DeleteCartWishListRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteCartWishListRecordError = DeleteCartWishListRecordErrors[keyof DeleteCartWishListRecordErrors];
+export type CartsDeleteCartWishListRecordError = CartsDeleteCartWishListRecordErrors[keyof CartsDeleteCartWishListRecordErrors];
 
-export type DeleteCartWishListRecordResponses = {
+export type CartsDeleteCartWishListRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteCartWishListRecordResponse = DeleteCartWishListRecordResponses[keyof DeleteCartWishListRecordResponses];
+export type CartsDeleteCartWishListRecordResponse = CartsDeleteCartWishListRecordResponses[keyof CartsDeleteCartWishListRecordResponses];
 
-export type GetCartWishListItemAsyncData = {
+export type CartsGetCartWishListItemData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1971,7 +2010,7 @@ export type GetCartWishListItemAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records/{recordId}';
 };
 
-export type GetCartWishListItemAsyncErrors = {
+export type CartsGetCartWishListItemErrors = {
     /**
      * Unauthorized
      */
@@ -1982,18 +2021,18 @@ export type GetCartWishListItemAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartWishListItemAsyncError = GetCartWishListItemAsyncErrors[keyof GetCartWishListItemAsyncErrors];
+export type CartsGetCartWishListItemError = CartsGetCartWishListItemErrors[keyof CartsGetCartWishListItemErrors];
 
-export type GetCartWishListItemAsyncResponses = {
+export type CartsGetCartWishListItemResponses = {
     /**
      * OK
      */
     200: Array<WishListItemRecordDto>;
 };
 
-export type GetCartWishListItemAsyncResponse = GetCartWishListItemAsyncResponses[keyof GetCartWishListItemAsyncResponses];
+export type CartsGetCartWishListItemResponse = CartsGetCartWishListItemResponses[keyof CartsGetCartWishListItemResponses];
 
-export type GetCartCompareRecordsData = {
+export type CartsGetCartCompareRecordsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2007,7 +2046,7 @@ export type GetCartCompareRecordsData = {
     url: '/api/v2/CartService/Carts/{cartId}/Compare';
 };
 
-export type GetCartCompareRecordsErrors = {
+export type CartsGetCartCompareRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -2018,18 +2057,54 @@ export type GetCartCompareRecordsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartCompareRecordsError = GetCartCompareRecordsErrors[keyof GetCartCompareRecordsErrors];
+export type CartsGetCartCompareRecordsError = CartsGetCartCompareRecordsErrors[keyof CartsGetCartCompareRecordsErrors];
 
-export type GetCartCompareRecordsResponses = {
+export type CartsGetCartCompareRecordsResponses = {
     /**
      * OK
      */
     200: ItemToCompareCartRecordDtoListEnvelopeReadable;
 };
 
-export type GetCartCompareRecordsResponse = GetCartCompareRecordsResponses[keyof GetCartCompareRecordsResponses];
+export type CartsGetCartCompareRecordsResponse = CartsGetCartCompareRecordsResponses[keyof CartsGetCartCompareRecordsResponses];
 
-export type RemoveItemFromCompareTableAsyncData = {
+export type CartsGetCartRecentlyViewedRecordsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        cartId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/CartService/Carts/{cartId}/RecentlyViewed';
+};
+
+export type CartsGetCartRecentlyViewedRecordsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CartsGetCartRecentlyViewedRecordsError = CartsGetCartRecentlyViewedRecordsErrors[keyof CartsGetCartRecentlyViewedRecordsErrors];
+
+export type CartsGetCartRecentlyViewedRecordsResponses = {
+    /**
+     * OK
+     */
+    200: RecentlyViewedItemRecordDtoListEnvelopeReadable;
+};
+
+export type CartsGetCartRecentlyViewedRecordsResponse = CartsGetCartRecentlyViewedRecordsResponses[keyof CartsGetCartRecentlyViewedRecordsResponses];
+
+export type CartsRemoveItemFromCompareTableData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2044,7 +2119,7 @@ export type RemoveItemFromCompareTableAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Compare/{itemId}';
 };
 
-export type RemoveItemFromCompareTableAsyncErrors = {
+export type CartsRemoveItemFromCompareTableErrors = {
     /**
      * Unauthorized
      */
@@ -2055,18 +2130,18 @@ export type RemoveItemFromCompareTableAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type RemoveItemFromCompareTableAsyncError = RemoveItemFromCompareTableAsyncErrors[keyof RemoveItemFromCompareTableAsyncErrors];
+export type CartsRemoveItemFromCompareTableError = CartsRemoveItemFromCompareTableErrors[keyof CartsRemoveItemFromCompareTableErrors];
 
-export type RemoveItemFromCompareTableAsyncResponses = {
+export type CartsRemoveItemFromCompareTableResponses = {
     /**
      * OK
      */
     200: ItemToCompareCartRecordDto;
 };
 
-export type RemoveItemFromCompareTableAsyncResponse = RemoveItemFromCompareTableAsyncResponses[keyof RemoveItemFromCompareTableAsyncResponses];
+export type CartsRemoveItemFromCompareTableResponse = CartsRemoveItemFromCompareTableResponses[keyof CartsRemoveItemFromCompareTableResponses];
 
-export type GetCartCompareRecordData = {
+export type CartsGetCartCompareRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2081,7 +2156,7 @@ export type GetCartCompareRecordData = {
     url: '/api/v2/CartService/Carts/{cartId}/Compare/{itemId}';
 };
 
-export type GetCartCompareRecordErrors = {
+export type CartsGetCartCompareRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2092,18 +2167,18 @@ export type GetCartCompareRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCartCompareRecordError = GetCartCompareRecordErrors[keyof GetCartCompareRecordErrors];
+export type CartsGetCartCompareRecordError = CartsGetCartCompareRecordErrors[keyof CartsGetCartCompareRecordErrors];
 
-export type GetCartCompareRecordResponses = {
+export type CartsGetCartCompareRecordResponses = {
     /**
      * OK
      */
     200: ItemToCompareCartRecordDtoEnvelopeReadable;
 };
 
-export type GetCartCompareRecordResponse = GetCartCompareRecordResponses[keyof GetCartCompareRecordResponses];
+export type CartsGetCartCompareRecordResponse = CartsGetCartCompareRecordResponses[keyof CartsGetCartCompareRecordResponses];
 
-export type AddItemToCartCompareTableData = {
+export type CartsAddItemToCartCompareTableData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2118,7 +2193,7 @@ export type AddItemToCartCompareTableData = {
     url: '/api/v2/CartService/Carts/{cartId}/Compare/{itemId}';
 };
 
-export type AddItemToCartCompareTableErrors = {
+export type CartsAddItemToCartCompareTableErrors = {
     /**
      * Unauthorized
      */
@@ -2129,18 +2204,18 @@ export type AddItemToCartCompareTableErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type AddItemToCartCompareTableError = AddItemToCartCompareTableErrors[keyof AddItemToCartCompareTableErrors];
+export type CartsAddItemToCartCompareTableError = CartsAddItemToCartCompareTableErrors[keyof CartsAddItemToCartCompareTableErrors];
 
-export type AddItemToCartCompareTableResponses = {
+export type CartsAddItemToCartCompareTableResponses = {
     /**
      * OK
      */
     200: ItemCartRecordDto;
 };
 
-export type AddItemToCartCompareTableResponse = AddItemToCartCompareTableResponses[keyof AddItemToCartCompareTableResponses];
+export type CartsAddItemToCartCompareTableResponse = CartsAddItemToCartCompareTableResponses[keyof CartsAddItemToCartCompareTableResponses];
 
-export type IsItemInCompareTableAsyncData = {
+export type CartsIsItemInCompareTableData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2155,7 +2230,7 @@ export type IsItemInCompareTableAsyncData = {
     url: '/api/v2/CartService/Carts/{cartId}/Compare/Contains/{itemId}';
 };
 
-export type IsItemInCompareTableAsyncErrors = {
+export type CartsIsItemInCompareTableErrors = {
     /**
      * Unauthorized
      */
@@ -2166,18 +2241,18 @@ export type IsItemInCompareTableAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type IsItemInCompareTableAsyncError = IsItemInCompareTableAsyncErrors[keyof IsItemInCompareTableAsyncErrors];
+export type CartsIsItemInCompareTableError = CartsIsItemInCompareTableErrors[keyof CartsIsItemInCompareTableErrors];
 
-export type IsItemInCompareTableAsyncResponses = {
+export type CartsIsItemInCompareTableResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type IsItemInCompareTableAsyncResponse = IsItemInCompareTableAsyncResponses[keyof IsItemInCompareTableAsyncResponses];
+export type CartsIsItemInCompareTableResponse = CartsIsItemInCompareTableResponses[keyof CartsIsItemInCompareTableResponses];
 
-export type GetItemToCompareRecordsData = {
+export type CompareGetItemToCompareRecordsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2191,7 +2266,7 @@ export type GetItemToCompareRecordsData = {
     url: '/api/v2/CartService/Compare/{cartId}';
 };
 
-export type GetItemToCompareRecordsErrors = {
+export type CompareGetItemToCompareRecordsErrors = {
     /**
      * Unauthorized
      */
@@ -2202,18 +2277,18 @@ export type GetItemToCompareRecordsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetItemToCompareRecordsError = GetItemToCompareRecordsErrors[keyof GetItemToCompareRecordsErrors];
+export type CompareGetItemToCompareRecordsError = CompareGetItemToCompareRecordsErrors[keyof CompareGetItemToCompareRecordsErrors];
 
-export type GetItemToCompareRecordsResponses = {
+export type CompareGetItemToCompareRecordsResponses = {
     /**
      * OK
      */
     200: ItemToCompareCartRecordDtoListEnvelopeReadable;
 };
 
-export type GetItemToCompareRecordsResponse = GetItemToCompareRecordsResponses[keyof GetItemToCompareRecordsResponses];
+export type CompareGetItemToCompareRecordsResponse = CompareGetItemToCompareRecordsResponses[keyof CompareGetItemToCompareRecordsResponses];
 
-export type GetItemToCompareRecordData = {
+export type CompareGetItemToCompareRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2227,25 +2302,25 @@ export type GetItemToCompareRecordData = {
     url: '/api/v2/CartService/Compare/{recordId}/Details';
 };
 
-export type GetItemToCompareRecordErrors = {
+export type CompareGetItemToCompareRecordErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetItemToCompareRecordError = GetItemToCompareRecordErrors[keyof GetItemToCompareRecordErrors];
+export type CompareGetItemToCompareRecordError = CompareGetItemToCompareRecordErrors[keyof CompareGetItemToCompareRecordErrors];
 
-export type GetItemToCompareRecordResponses = {
+export type CompareGetItemToCompareRecordResponses = {
     /**
      * OK
      */
     200: ItemToCompareCartRecordDtoEnvelopeReadable;
 };
 
-export type GetItemToCompareRecordResponse = GetItemToCompareRecordResponses[keyof GetItemToCompareRecordResponses];
+export type CompareGetItemToCompareRecordResponse = CompareGetItemToCompareRecordResponses[keyof CompareGetItemToCompareRecordResponses];
 
-export type AddItemToCompareTableAsyncData = {
+export type CompareAddItemToCompareTableData = {
     body?: AddProductToCompareRequestWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2257,25 +2332,25 @@ export type AddItemToCompareTableAsyncData = {
     url: '/api/v2/CartService/Compare';
 };
 
-export type AddItemToCompareTableAsyncErrors = {
+export type CompareAddItemToCompareTableErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type AddItemToCompareTableAsyncError = AddItemToCompareTableAsyncErrors[keyof AddItemToCompareTableAsyncErrors];
+export type CompareAddItemToCompareTableError = CompareAddItemToCompareTableErrors[keyof CompareAddItemToCompareTableErrors];
 
-export type AddItemToCompareTableAsyncResponses = {
+export type CompareAddItemToCompareTableResponses = {
     /**
      * OK
      */
     200: ItemCartRecordDto;
 };
 
-export type AddItemToCompareTableAsyncResponse = AddItemToCompareTableAsyncResponses[keyof AddItemToCompareTableAsyncResponses];
+export type CompareAddItemToCompareTableResponse = CompareAddItemToCompareTableResponses[keyof CompareAddItemToCompareTableResponses];
 
-export type RemoveItemFromCompareTableData = {
+export type CompareRemoveItemFromCompareTableData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2289,90 +2364,90 @@ export type RemoveItemFromCompareTableData = {
     url: '/api/v2/CartService/Compare/{recordId}';
 };
 
-export type RemoveItemFromCompareTableErrors = {
+export type CompareRemoveItemFromCompareTableErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type RemoveItemFromCompareTableError = RemoveItemFromCompareTableErrors[keyof RemoveItemFromCompareTableErrors];
+export type CompareRemoveItemFromCompareTableError = CompareRemoveItemFromCompareTableErrors[keyof CompareRemoveItemFromCompareTableErrors];
 
-export type RemoveItemFromCompareTableResponses = {
+export type CompareRemoveItemFromCompareTableResponses = {
     /**
      * OK
      */
     200: ItemToCompareCartRecordDto;
 };
 
-export type RemoveItemFromCompareTableResponse = RemoveItemFromCompareTableResponses[keyof RemoveItemFromCompareTableResponses];
+export type CompareRemoveItemFromCompareTableResponse = CompareRemoveItemFromCompareTableResponses[keyof CompareRemoveItemFromCompareTableResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2382,32 +2457,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2418,81 +2493,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2503,25 +2578,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2532,25 +2607,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2561,18 +2636,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2582,14 +2657,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2598,14 +2673,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2614,28 +2689,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type AddItemToCartData = {
+export type RecordsAddItemToCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2650,7 +2725,7 @@ export type AddItemToCartData = {
     url: '/api/v2/CartService/Records/AddItem';
 };
 
-export type AddItemToCartErrors = {
+export type RecordsAddItemToCartErrors = {
     /**
      * Unauthorized
      */
@@ -2661,18 +2736,18 @@ export type AddItemToCartErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type AddItemToCartError = AddItemToCartErrors[keyof AddItemToCartErrors];
+export type RecordsAddItemToCartError = RecordsAddItemToCartErrors[keyof RecordsAddItemToCartErrors];
 
-export type AddItemToCartResponses = {
+export type RecordsAddItemToCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AddItemToCartResponse = AddItemToCartResponses[keyof AddItemToCartResponses];
+export type RecordsAddItemToCartResponse = RecordsAddItemToCartResponses[keyof RecordsAddItemToCartResponses];
 
-export type GetItemsInCartAsyncData = {
+export type RecordsGetItemsInCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2686,7 +2761,7 @@ export type GetItemsInCartAsyncData = {
     url: '/api/v2/CartService/Records/{cartId}';
 };
 
-export type GetItemsInCartAsyncErrors = {
+export type RecordsGetItemsInCartErrors = {
     /**
      * Unauthorized
      */
@@ -2697,18 +2772,18 @@ export type GetItemsInCartAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetItemsInCartAsyncError = GetItemsInCartAsyncErrors[keyof GetItemsInCartAsyncErrors];
+export type RecordsGetItemsInCartError = RecordsGetItemsInCartErrors[keyof RecordsGetItemsInCartErrors];
 
-export type GetItemsInCartAsyncResponses = {
+export type RecordsGetItemsInCartResponses = {
     /**
      * OK
      */
     200: ItemCartRecordDtoListEnvelopeReadable;
 };
 
-export type GetItemsInCartAsyncResponse = GetItemsInCartAsyncResponses[keyof GetItemsInCartAsyncResponses];
+export type RecordsGetItemsInCartResponse = RecordsGetItemsInCartResponses[keyof RecordsGetItemsInCartResponses];
 
-export type RemoveProductFromCartByParamsData = {
+export type RecordsRemoveProductFromCartByParamsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2722,7 +2797,7 @@ export type RemoveProductFromCartByParamsData = {
     url: '/api/v2/CartService/Records';
 };
 
-export type RemoveProductFromCartByParamsErrors = {
+export type RecordsRemoveProductFromCartByParamsErrors = {
     /**
      * Unauthorized
      */
@@ -2733,18 +2808,18 @@ export type RemoveProductFromCartByParamsErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type RemoveProductFromCartByParamsError = RemoveProductFromCartByParamsErrors[keyof RemoveProductFromCartByParamsErrors];
+export type RecordsRemoveProductFromCartByParamsError = RecordsRemoveProductFromCartByParamsErrors[keyof RecordsRemoveProductFromCartByParamsErrors];
 
-export type RemoveProductFromCartByParamsResponses = {
+export type RecordsRemoveProductFromCartByParamsResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RemoveProductFromCartByParamsResponse = RemoveProductFromCartByParamsResponses[keyof RemoveProductFromCartByParamsResponses];
+export type RecordsRemoveProductFromCartByParamsResponse = RecordsRemoveProductFromCartByParamsResponses[keyof RecordsRemoveProductFromCartByParamsResponses];
 
-export type AddProductToCartAsyncData = {
+export type RecordsAddProductToCartData = {
     body?: ItemCartRecordCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2756,7 +2831,7 @@ export type AddProductToCartAsyncData = {
     url: '/api/v2/CartService/Records';
 };
 
-export type AddProductToCartAsyncErrors = {
+export type RecordsAddProductToCartErrors = {
     /**
      * Unauthorized
      */
@@ -2767,18 +2842,18 @@ export type AddProductToCartAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type AddProductToCartAsyncError = AddProductToCartAsyncErrors[keyof AddProductToCartAsyncErrors];
+export type RecordsAddProductToCartError = RecordsAddProductToCartErrors[keyof RecordsAddProductToCartErrors];
 
-export type AddProductToCartAsyncResponses = {
+export type RecordsAddProductToCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AddProductToCartAsyncResponse = AddProductToCartAsyncResponses[keyof AddProductToCartAsyncResponses];
+export type RecordsAddProductToCartResponse = RecordsAddProductToCartResponses[keyof RecordsAddProductToCartResponses];
 
-export type IsItemAlreadyInCartData = {
+export type RecordsIsItemAlreadyInCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2792,7 +2867,7 @@ export type IsItemAlreadyInCartData = {
     url: '/api/v2/CartService/Records/IsInCart';
 };
 
-export type IsItemAlreadyInCartErrors = {
+export type RecordsIsItemAlreadyInCartErrors = {
     /**
      * Unauthorized
      */
@@ -2803,18 +2878,18 @@ export type IsItemAlreadyInCartErrors = {
     404: EmptyEnvelopeReadable;
 };
 
-export type IsItemAlreadyInCartError = IsItemAlreadyInCartErrors[keyof IsItemAlreadyInCartErrors];
+export type RecordsIsItemAlreadyInCartError = RecordsIsItemAlreadyInCartErrors[keyof RecordsIsItemAlreadyInCartErrors];
 
-export type IsItemAlreadyInCartResponses = {
+export type RecordsIsItemAlreadyInCartResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type IsItemAlreadyInCartResponse = IsItemAlreadyInCartResponses[keyof IsItemAlreadyInCartResponses];
+export type RecordsIsItemAlreadyInCartResponse = RecordsIsItemAlreadyInCartResponses[keyof RecordsIsItemAlreadyInCartResponses];
 
-export type ClearCartAsyncData = {
+export type RecordsClearCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2827,7 +2902,7 @@ export type ClearCartAsyncData = {
     url: '/api/v2/CartService/Records/ClearCart';
 };
 
-export type ClearCartAsyncErrors = {
+export type RecordsClearCartErrors = {
     /**
      * Unauthorized
      */
@@ -2838,18 +2913,18 @@ export type ClearCartAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type ClearCartAsyncError = ClearCartAsyncErrors[keyof ClearCartAsyncErrors];
+export type RecordsClearCartError = RecordsClearCartErrors[keyof RecordsClearCartErrors];
 
-export type ClearCartAsyncResponses = {
+export type RecordsClearCartResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type ClearCartAsyncResponse = ClearCartAsyncResponses[keyof ClearCartAsyncResponses];
+export type RecordsClearCartResponse = RecordsClearCartResponses[keyof RecordsClearCartResponses];
 
-export type GetItemCartRecordData = {
+export type RecordsGetItemCartRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2863,7 +2938,7 @@ export type GetItemCartRecordData = {
     url: '/api/v2/CartService/Records/{recordId}/Details';
 };
 
-export type GetItemCartRecordErrors = {
+export type RecordsGetItemCartRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2874,18 +2949,18 @@ export type GetItemCartRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetItemCartRecordError = GetItemCartRecordErrors[keyof GetItemCartRecordErrors];
+export type RecordsGetItemCartRecordError = RecordsGetItemCartRecordErrors[keyof RecordsGetItemCartRecordErrors];
 
-export type GetItemCartRecordResponses = {
+export type RecordsGetItemCartRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type GetItemCartRecordResponse = GetItemCartRecordResponses[keyof GetItemCartRecordResponses];
+export type RecordsGetItemCartRecordResponse = RecordsGetItemCartRecordResponses[keyof RecordsGetItemCartRecordResponses];
 
-export type RemoveProductFromCartByRecordIdData = {
+export type RecordsRemoveProductFromCartByRecordIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2899,7 +2974,7 @@ export type RemoveProductFromCartByRecordIdData = {
     url: '/api/v2/CartService/Records/{recordId}';
 };
 
-export type RemoveProductFromCartByRecordIdErrors = {
+export type RecordsRemoveProductFromCartByRecordIdErrors = {
     /**
      * Unauthorized
      */
@@ -2910,18 +2985,18 @@ export type RemoveProductFromCartByRecordIdErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type RemoveProductFromCartByRecordIdError = RemoveProductFromCartByRecordIdErrors[keyof RemoveProductFromCartByRecordIdErrors];
+export type RecordsRemoveProductFromCartByRecordIdError = RecordsRemoveProductFromCartByRecordIdErrors[keyof RecordsRemoveProductFromCartByRecordIdErrors];
 
-export type RemoveProductFromCartByRecordIdResponses = {
+export type RecordsRemoveProductFromCartByRecordIdResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type RemoveProductFromCartByRecordIdResponse = RemoveProductFromCartByRecordIdResponses[keyof RemoveProductFromCartByRecordIdResponses];
+export type RecordsRemoveProductFromCartByRecordIdResponse = RecordsRemoveProductFromCartByRecordIdResponses[keyof RecordsRemoveProductFromCartByRecordIdResponses];
 
-export type PatchItemCartRecordData = {
+export type RecordsPatchItemCartRecordData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2935,7 +3010,7 @@ export type PatchItemCartRecordData = {
     url: '/api/v2/CartService/Records/{recordId}';
 };
 
-export type PatchItemCartRecordErrors = {
+export type RecordsPatchItemCartRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2946,18 +3021,18 @@ export type PatchItemCartRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type PatchItemCartRecordError = PatchItemCartRecordErrors[keyof PatchItemCartRecordErrors];
+export type RecordsPatchItemCartRecordError = RecordsPatchItemCartRecordErrors[keyof RecordsPatchItemCartRecordErrors];
 
-export type PatchItemCartRecordResponses = {
+export type RecordsPatchItemCartRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchItemCartRecordResponse = PatchItemCartRecordResponses[keyof PatchItemCartRecordResponses];
+export type RecordsPatchItemCartRecordResponse = RecordsPatchItemCartRecordResponses[keyof RecordsPatchItemCartRecordResponses];
 
-export type UpdateItemCartRecordData = {
+export type RecordsUpdateItemCartRecordData = {
     body?: ItemCartRecordUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2971,7 +3046,7 @@ export type UpdateItemCartRecordData = {
     url: '/api/v2/CartService/Records/{recordId}';
 };
 
-export type UpdateItemCartRecordErrors = {
+export type RecordsUpdateItemCartRecordErrors = {
     /**
      * Unauthorized
      */
@@ -2982,18 +3057,18 @@ export type UpdateItemCartRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateItemCartRecordError = UpdateItemCartRecordErrors[keyof UpdateItemCartRecordErrors];
+export type RecordsUpdateItemCartRecordError = RecordsUpdateItemCartRecordErrors[keyof RecordsUpdateItemCartRecordErrors];
 
-export type UpdateItemCartRecordResponses = {
+export type RecordsUpdateItemCartRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateItemCartRecordResponse = UpdateItemCartRecordResponses[keyof UpdateItemCartRecordResponses];
+export type RecordsUpdateItemCartRecordResponse = RecordsUpdateItemCartRecordResponses[keyof RecordsUpdateItemCartRecordResponses];
 
-export type IncreaseItemCartRecordData = {
+export type RecordsIncreaseItemCartRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3008,7 +3083,7 @@ export type IncreaseItemCartRecordData = {
     url: '/api/v2/CartService/Records/{recordId}/Increase';
 };
 
-export type IncreaseItemCartRecordErrors = {
+export type RecordsIncreaseItemCartRecordErrors = {
     /**
      * Unauthorized
      */
@@ -3019,18 +3094,18 @@ export type IncreaseItemCartRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type IncreaseItemCartRecordError = IncreaseItemCartRecordErrors[keyof IncreaseItemCartRecordErrors];
+export type RecordsIncreaseItemCartRecordError = RecordsIncreaseItemCartRecordErrors[keyof RecordsIncreaseItemCartRecordErrors];
 
-export type IncreaseItemCartRecordResponses = {
+export type RecordsIncreaseItemCartRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type IncreaseItemCartRecordResponse = IncreaseItemCartRecordResponses[keyof IncreaseItemCartRecordResponses];
+export type RecordsIncreaseItemCartRecordResponse = RecordsIncreaseItemCartRecordResponses[keyof RecordsIncreaseItemCartRecordResponses];
 
-export type DecreaseItemCartRecordData = {
+export type RecordsDecreaseItemCartRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3045,7 +3120,7 @@ export type DecreaseItemCartRecordData = {
     url: '/api/v2/CartService/Records/{recordId}/Decrease';
 };
 
-export type DecreaseItemCartRecordErrors = {
+export type RecordsDecreaseItemCartRecordErrors = {
     /**
      * Unauthorized
      */
@@ -3056,18 +3131,18 @@ export type DecreaseItemCartRecordErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DecreaseItemCartRecordError = DecreaseItemCartRecordErrors[keyof DecreaseItemCartRecordErrors];
+export type RecordsDecreaseItemCartRecordError = RecordsDecreaseItemCartRecordErrors[keyof RecordsDecreaseItemCartRecordErrors];
 
-export type DecreaseItemCartRecordResponses = {
+export type RecordsDecreaseItemCartRecordResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DecreaseItemCartRecordResponse = DecreaseItemCartRecordResponses[keyof DecreaseItemCartRecordResponses];
+export type RecordsDecreaseItemCartRecordResponse = RecordsDecreaseItemCartRecordResponses[keyof RecordsDecreaseItemCartRecordResponses];
 
-export type IsProductInWishListsData = {
+export type WishListsIsProductInWishListsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3081,16 +3156,16 @@ export type IsProductInWishListsData = {
     url: '/api/v2/CartService/WishLists/Contains';
 };
 
-export type IsProductInWishListsResponses = {
+export type WishListsIsProductInWishListsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type IsProductInWishListsResponse = IsProductInWishListsResponses[keyof IsProductInWishListsResponses];
+export type WishListsIsProductInWishListsResponse = WishListsIsProductInWishListsResponses[keyof WishListsIsProductInWishListsResponses];
 
-export type WishListExistsData = {
+export type WishListsWishListExistsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3103,16 +3178,16 @@ export type WishListExistsData = {
     url: '/api/v2/CartService/WishLists/Exists';
 };
 
-export type WishListExistsResponses = {
+export type WishListsWishListExistsResponses = {
     /**
      * OK
      */
     200: BooleanEnvelopeReadable;
 };
 
-export type WishListExistsResponse = WishListExistsResponses[keyof WishListExistsResponses];
+export type WishListsWishListExistsResponse = WishListsWishListExistsResponses[keyof WishListsWishListExistsResponses];
 
-export type WishListExistsHeadAsyncData = {
+export type WishListsWishListExistsHeadData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3125,16 +3200,16 @@ export type WishListExistsHeadAsyncData = {
     url: '/api/v2/CartService/WishLists/Exists';
 };
 
-export type WishListExistsHeadAsyncResponses = {
+export type WishListsWishListExistsHeadResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type WishListExistsHeadAsyncResponse = WishListExistsHeadAsyncResponses[keyof WishListExistsHeadAsyncResponses];
+export type WishListsWishListExistsHeadResponse = WishListsWishListExistsHeadResponses[keyof WishListsWishListExistsHeadResponses];
 
-export type CreateWishListData = {
+export type WishListsCreateWishListData = {
     body?: NewWishListRequest;
     headers?: {
         'x-api-version'?: string;
@@ -3146,16 +3221,16 @@ export type CreateWishListData = {
     url: '/api/v2/CartService/WishLists';
 };
 
-export type CreateWishListResponses = {
+export type WishListsCreateWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateWishListResponse = CreateWishListResponses[keyof CreateWishListResponses];
+export type WishListsCreateWishListResponse = WishListsCreateWishListResponses[keyof WishListsCreateWishListResponses];
 
-export type DeleteWishListData = {
+export type WishListsDeleteWishListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3169,16 +3244,16 @@ export type DeleteWishListData = {
     url: '/api/v2/CartService/WishLists/{wishListId}';
 };
 
-export type DeleteWishListResponses = {
+export type WishListsDeleteWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteWishListResponse = DeleteWishListResponses[keyof DeleteWishListResponses];
+export type WishListsDeleteWishListResponse = WishListsDeleteWishListResponses[keyof WishListsDeleteWishListResponses];
 
-export type PatchWishListData = {
+export type WishListsPatchWishListData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3192,16 +3267,16 @@ export type PatchWishListData = {
     url: '/api/v2/CartService/WishLists/{wishListId}';
 };
 
-export type PatchWishListResponses = {
+export type WishListsPatchWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWishListResponse = PatchWishListResponses[keyof PatchWishListResponses];
+export type WishListsPatchWishListResponse = WishListsPatchWishListResponses[keyof WishListsPatchWishListResponses];
 
-export type UpdateProductToWishListData = {
+export type WishListsUpdateProductToWishListData = {
     body?: WishListUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3215,16 +3290,16 @@ export type UpdateProductToWishListData = {
     url: '/api/v2/CartService/WishLists/{wishListId}';
 };
 
-export type UpdateProductToWishListResponses = {
+export type WishListsUpdateProductToWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateProductToWishListResponse = UpdateProductToWishListResponses[keyof UpdateProductToWishListResponses];
+export type WishListsUpdateProductToWishListResponse = WishListsUpdateProductToWishListResponses[keyof WishListsUpdateProductToWishListResponses];
 
-export type GetWishListAsyncData = {
+export type WishListsGetWishListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3238,16 +3313,16 @@ export type GetWishListAsyncData = {
     url: '/api/v2/CartService/WishLists/{cartId}';
 };
 
-export type GetWishListAsyncResponses = {
+export type WishListsGetWishListResponses = {
     /**
      * OK
      */
     200: Array<WishListDto>;
 };
 
-export type GetWishListAsyncResponse = GetWishListAsyncResponses[keyof GetWishListAsyncResponses];
+export type WishListsGetWishListResponse = WishListsGetWishListResponses[keyof WishListsGetWishListResponses];
 
-export type GetCartWishListItemsAsyncData = {
+export type WishListsGetCartWishListItemsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3261,16 +3336,16 @@ export type GetCartWishListItemsAsyncData = {
     url: '/api/v2/CartService/WishLists/{wishListId}/Records';
 };
 
-export type GetCartWishListItemsAsyncResponses = {
+export type WishListsGetCartWishListItemsResponses = {
     /**
      * OK
      */
     200: Array<WishListItemRecordDto>;
 };
 
-export type GetCartWishListItemsAsyncResponse = GetCartWishListItemsAsyncResponses[keyof GetCartWishListItemsAsyncResponses];
+export type WishListsGetCartWishListItemsResponse = WishListsGetCartWishListItemsResponses[keyof WishListsGetCartWishListItemsResponses];
 
-export type GetCartWishListDetailsAsyncData = {
+export type WishListsGetCartWishListDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3284,16 +3359,16 @@ export type GetCartWishListDetailsAsyncData = {
     url: '/api/v2/CartService/WishLists/{wishListId}/Details';
 };
 
-export type GetCartWishListDetailsAsyncResponses = {
+export type WishListsGetCartWishListDetailsResponses = {
     /**
      * OK
      */
     200: WishListDto;
 };
 
-export type GetCartWishListDetailsAsyncResponse = GetCartWishListDetailsAsyncResponses[keyof GetCartWishListDetailsAsyncResponses];
+export type WishListsGetCartWishListDetailsResponse = WishListsGetCartWishListDetailsResponses[keyof WishListsGetCartWishListDetailsResponses];
 
-export type AddProductToWishListData = {
+export type WishListsAddProductToWishListData = {
     body?: ProductToWishListRequest;
     headers?: {
         'x-api-version'?: string;
@@ -3305,16 +3380,16 @@ export type AddProductToWishListData = {
     url: '/api/v2/CartService/WishLists/Records';
 };
 
-export type AddProductToWishListResponses = {
+export type WishListsAddProductToWishListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type AddProductToWishListResponse = AddProductToWishListResponses[keyof AddProductToWishListResponses];
+export type WishListsAddProductToWishListResponse = WishListsAddProductToWishListResponses[keyof WishListsAddProductToWishListResponses];
 
-export type DeleteWishListRecordData = {
+export type WishListsDeleteWishListRecordData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3328,7 +3403,7 @@ export type DeleteWishListRecordData = {
     url: '/api/v2/CartService/WishLists/Records/{recordId}';
 };
 
-export type DeleteWishListRecordResponses = {
+export type WishListsDeleteWishListRecordResponses = {
     /**
      * OK
      */

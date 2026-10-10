@@ -314,72 +314,72 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -389,32 +389,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -425,81 +425,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -510,25 +510,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -539,25 +539,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -568,18 +568,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -589,14 +589,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -605,14 +605,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -621,28 +621,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLocationsAsyncData = {
+export type LocationsGetLocationsData = {
     body?: LocationDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -651,7 +651,7 @@ export type GetLocationsAsyncData = {
     url: '/api/v2/LocationsService/Locations';
 };
 
-export type GetLocationsAsyncErrors = {
+export type LocationsGetLocationsErrors = {
     /**
      * Unauthorized
      */
@@ -662,18 +662,18 @@ export type GetLocationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocationsAsyncError = GetLocationsAsyncErrors[keyof GetLocationsAsyncErrors];
+export type LocationsGetLocationsError = LocationsGetLocationsErrors[keyof LocationsGetLocationsErrors];
 
-export type GetLocationsAsyncResponses = {
+export type LocationsGetLocationsResponses = {
     /**
      * OK
      */
     200: LocationDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetLocationsAsyncResponse = GetLocationsAsyncResponses[keyof GetLocationsAsyncResponses];
+export type LocationsGetLocationsResponse = LocationsGetLocationsResponses[keyof LocationsGetLocationsResponses];
 
-export type CreateLocationAsyncData = {
+export type LocationsCreateLocationData = {
     body?: LocationCreateDto;
     path?: never;
     query: {
@@ -682,7 +682,7 @@ export type CreateLocationAsyncData = {
     url: '/api/v2/LocationsService/Locations';
 };
 
-export type CreateLocationAsyncErrors = {
+export type LocationsCreateLocationErrors = {
     /**
      * Unauthorized
      */
@@ -693,18 +693,18 @@ export type CreateLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLocationAsyncError = CreateLocationAsyncErrors[keyof CreateLocationAsyncErrors];
+export type LocationsCreateLocationError = LocationsCreateLocationErrors[keyof LocationsCreateLocationErrors];
 
-export type CreateLocationAsyncResponses = {
+export type LocationsCreateLocationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateLocationAsyncResponse = CreateLocationAsyncResponses[keyof CreateLocationAsyncResponses];
+export type LocationsCreateLocationResponse = LocationsCreateLocationResponses[keyof LocationsCreateLocationResponses];
 
-export type GetLocationsCountAsyncData = {
+export type LocationsGetLocationsCountData = {
     body?: LocationDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
@@ -713,7 +713,7 @@ export type GetLocationsCountAsyncData = {
     url: '/api/v2/LocationsService/Locations/count';
 };
 
-export type GetLocationsCountAsyncErrors = {
+export type LocationsGetLocationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -724,18 +724,18 @@ export type GetLocationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocationsCountAsyncError = GetLocationsCountAsyncErrors[keyof GetLocationsCountAsyncErrors];
+export type LocationsGetLocationsCountError = LocationsGetLocationsCountErrors[keyof LocationsGetLocationsCountErrors];
 
-export type GetLocationsCountAsyncResponses = {
+export type LocationsGetLocationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLocationsCountAsyncResponse = GetLocationsCountAsyncResponses[keyof GetLocationsCountAsyncResponses];
+export type LocationsGetLocationsCountResponse = LocationsGetLocationsCountResponses[keyof LocationsGetLocationsCountResponses];
 
-export type DeleteLocationAsyncData = {
+export type LocationsDeleteLocationData = {
     body?: never;
     path: {
         locationId: string;
@@ -746,7 +746,7 @@ export type DeleteLocationAsyncData = {
     url: '/api/v2/LocationsService/Locations/{locationId}';
 };
 
-export type DeleteLocationAsyncErrors = {
+export type LocationsDeleteLocationErrors = {
     /**
      * Unauthorized
      */
@@ -757,18 +757,18 @@ export type DeleteLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteLocationAsyncError = DeleteLocationAsyncErrors[keyof DeleteLocationAsyncErrors];
+export type LocationsDeleteLocationError = LocationsDeleteLocationErrors[keyof LocationsDeleteLocationErrors];
 
-export type DeleteLocationAsyncResponses = {
+export type LocationsDeleteLocationResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteLocationAsyncResponse = DeleteLocationAsyncResponses[keyof DeleteLocationAsyncResponses];
+export type LocationsDeleteLocationResponse = LocationsDeleteLocationResponses[keyof LocationsDeleteLocationResponses];
 
-export type GetLocationAsyncData = {
+export type LocationsGetLocationData = {
     body?: never;
     path: {
         locationId: string;
@@ -779,7 +779,7 @@ export type GetLocationAsyncData = {
     url: '/api/v2/LocationsService/Locations/{locationId}';
 };
 
-export type GetLocationAsyncErrors = {
+export type LocationsGetLocationErrors = {
     /**
      * Unauthorized
      */
@@ -790,18 +790,18 @@ export type GetLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLocationAsyncError = GetLocationAsyncErrors[keyof GetLocationAsyncErrors];
+export type LocationsGetLocationError = LocationsGetLocationErrors[keyof LocationsGetLocationErrors];
 
-export type GetLocationAsyncResponses = {
+export type LocationsGetLocationResponses = {
     /**
      * OK
      */
     200: LocationDtoEnvelopeReadable;
 };
 
-export type GetLocationAsyncResponse = GetLocationAsyncResponses[keyof GetLocationAsyncResponses];
+export type LocationsGetLocationResponse = LocationsGetLocationResponses[keyof LocationsGetLocationResponses];
 
-export type PatchLocationAsyncData = {
+export type LocationsPatchLocationData = {
     body?: Array<PatchOperation>;
     path: {
         locationId: string;
@@ -812,7 +812,7 @@ export type PatchLocationAsyncData = {
     url: '/api/v2/LocationsService/Locations/{locationId}';
 };
 
-export type PatchLocationAsyncErrors = {
+export type LocationsPatchLocationErrors = {
     /**
      * Unauthorized
      */
@@ -823,18 +823,18 @@ export type PatchLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLocationAsyncError = PatchLocationAsyncErrors[keyof PatchLocationAsyncErrors];
+export type LocationsPatchLocationError = LocationsPatchLocationErrors[keyof LocationsPatchLocationErrors];
 
-export type PatchLocationAsyncResponses = {
+export type LocationsPatchLocationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLocationAsyncResponse = PatchLocationAsyncResponses[keyof PatchLocationAsyncResponses];
+export type LocationsPatchLocationResponse = LocationsPatchLocationResponses[keyof LocationsPatchLocationResponses];
 
-export type UpdateLocationAsyncData = {
+export type LocationsUpdateLocationData = {
     body?: LocationUpdateDto;
     path: {
         locationId: string;
@@ -845,7 +845,7 @@ export type UpdateLocationAsyncData = {
     url: '/api/v2/LocationsService/Locations/{locationId}';
 };
 
-export type UpdateLocationAsyncErrors = {
+export type LocationsUpdateLocationErrors = {
     /**
      * Unauthorized
      */
@@ -856,27 +856,29 @@ export type UpdateLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateLocationAsyncError = UpdateLocationAsyncErrors[keyof UpdateLocationAsyncErrors];
+export type LocationsUpdateLocationError = LocationsUpdateLocationErrors[keyof LocationsUpdateLocationErrors];
 
-export type UpdateLocationAsyncResponses = {
+export type LocationsUpdateLocationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateLocationAsyncResponse = UpdateLocationAsyncResponses[keyof UpdateLocationAsyncResponses];
+export type LocationsUpdateLocationResponse = LocationsUpdateLocationResponses[keyof LocationsUpdateLocationResponses];
 
-export type GetWalletLocationsAsyncData = {
+export type LocationsGetWalletLocationsData = {
     body?: LocationDtoCollectionQueryParametersWritable;
     path: {
         walletId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}';
 };
 
-export type GetWalletLocationsAsyncErrors = {
+export type LocationsGetWalletLocationsErrors = {
     /**
      * Unauthorized
      */
@@ -887,27 +889,29 @@ export type GetWalletLocationsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletLocationsAsyncError = GetWalletLocationsAsyncErrors[keyof GetWalletLocationsAsyncErrors];
+export type LocationsGetWalletLocationsError = LocationsGetWalletLocationsErrors[keyof LocationsGetWalletLocationsErrors];
 
-export type GetWalletLocationsAsyncResponses = {
+export type LocationsGetWalletLocationsResponses = {
     /**
      * OK
      */
     200: LocationDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetWalletLocationsAsyncResponse = GetWalletLocationsAsyncResponses[keyof GetWalletLocationsAsyncResponses];
+export type LocationsGetWalletLocationsResponse = LocationsGetWalletLocationsResponses[keyof LocationsGetWalletLocationsResponses];
 
-export type CreateWalletLocationAsyncData = {
+export type LocationsCreateWalletLocationData = {
     body?: LocationCreateDto;
     path: {
         walletId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}';
 };
 
-export type CreateWalletLocationAsyncErrors = {
+export type LocationsCreateWalletLocationErrors = {
     /**
      * Unauthorized
      */
@@ -918,27 +922,29 @@ export type CreateWalletLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWalletLocationAsyncError = CreateWalletLocationAsyncErrors[keyof CreateWalletLocationAsyncErrors];
+export type LocationsCreateWalletLocationError = LocationsCreateWalletLocationErrors[keyof LocationsCreateWalletLocationErrors];
 
-export type CreateWalletLocationAsyncResponses = {
+export type LocationsCreateWalletLocationResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWalletLocationAsyncResponse = CreateWalletLocationAsyncResponses[keyof CreateWalletLocationAsyncResponses];
+export type LocationsCreateWalletLocationResponse = LocationsCreateWalletLocationResponses[keyof LocationsCreateWalletLocationResponses];
 
-export type GetWalletLocationsCountAsyncData = {
+export type LocationsGetWalletLocationsCountData = {
     body?: LocationDtoCollectionQueryParametersWritable;
     path: {
         walletId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}/count';
 };
 
-export type GetWalletLocationsCountAsyncErrors = {
+export type LocationsGetWalletLocationsCountErrors = {
     /**
      * Unauthorized
      */
@@ -949,28 +955,30 @@ export type GetWalletLocationsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletLocationsCountAsyncError = GetWalletLocationsCountAsyncErrors[keyof GetWalletLocationsCountAsyncErrors];
+export type LocationsGetWalletLocationsCountError = LocationsGetWalletLocationsCountErrors[keyof LocationsGetWalletLocationsCountErrors];
 
-export type GetWalletLocationsCountAsyncResponses = {
+export type LocationsGetWalletLocationsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetWalletLocationsCountAsyncResponse = GetWalletLocationsCountAsyncResponses[keyof GetWalletLocationsCountAsyncResponses];
+export type LocationsGetWalletLocationsCountResponse = LocationsGetWalletLocationsCountResponses[keyof LocationsGetWalletLocationsCountResponses];
 
-export type DeleteWalletLocationAsyncData = {
+export type LocationsDeleteWalletLocationData = {
     body?: never;
     path: {
         walletId: string;
         locationId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}';
 };
 
-export type DeleteWalletLocationAsyncErrors = {
+export type LocationsDeleteWalletLocationErrors = {
     /**
      * Unauthorized
      */
@@ -981,28 +989,30 @@ export type DeleteWalletLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteWalletLocationAsyncError = DeleteWalletLocationAsyncErrors[keyof DeleteWalletLocationAsyncErrors];
+export type LocationsDeleteWalletLocationError = LocationsDeleteWalletLocationErrors[keyof LocationsDeleteWalletLocationErrors];
 
-export type DeleteWalletLocationAsyncResponses = {
+export type LocationsDeleteWalletLocationResponses = {
     /**
      * No Content
      */
     204: EmptyEnvelopeReadable;
 };
 
-export type DeleteWalletLocationAsyncResponse = DeleteWalletLocationAsyncResponses[keyof DeleteWalletLocationAsyncResponses];
+export type LocationsDeleteWalletLocationResponse = LocationsDeleteWalletLocationResponses[keyof LocationsDeleteWalletLocationResponses];
 
-export type GetWalletLocationAsyncData = {
+export type LocationsGetWalletLocationData = {
     body?: never;
     path: {
         walletId: string;
         locationId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}';
 };
 
-export type GetWalletLocationAsyncErrors = {
+export type LocationsGetWalletLocationErrors = {
     /**
      * Unauthorized
      */
@@ -1013,28 +1023,30 @@ export type GetWalletLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetWalletLocationAsyncError = GetWalletLocationAsyncErrors[keyof GetWalletLocationAsyncErrors];
+export type LocationsGetWalletLocationError = LocationsGetWalletLocationErrors[keyof LocationsGetWalletLocationErrors];
 
-export type GetWalletLocationAsyncResponses = {
+export type LocationsGetWalletLocationResponses = {
     /**
      * OK
      */
     200: LocationDtoEnvelopeReadable;
 };
 
-export type GetWalletLocationAsyncResponse = GetWalletLocationAsyncResponses[keyof GetWalletLocationAsyncResponses];
+export type LocationsGetWalletLocationResponse = LocationsGetWalletLocationResponses[keyof LocationsGetWalletLocationResponses];
 
-export type PatchWalletLocationAsyncData = {
+export type LocationsPatchWalletLocationData = {
     body?: Array<PatchOperation>;
     path: {
         walletId: string;
         locationId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}';
 };
 
-export type PatchWalletLocationAsyncErrors = {
+export type LocationsPatchWalletLocationErrors = {
     /**
      * Unauthorized
      */
@@ -1045,28 +1057,30 @@ export type PatchWalletLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchWalletLocationAsyncError = PatchWalletLocationAsyncErrors[keyof PatchWalletLocationAsyncErrors];
+export type LocationsPatchWalletLocationError = LocationsPatchWalletLocationErrors[keyof LocationsPatchWalletLocationErrors];
 
-export type PatchWalletLocationAsyncResponses = {
+export type LocationsPatchWalletLocationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchWalletLocationAsyncResponse = PatchWalletLocationAsyncResponses[keyof PatchWalletLocationAsyncResponses];
+export type LocationsPatchWalletLocationResponse = LocationsPatchWalletLocationResponses[keyof LocationsPatchWalletLocationResponses];
 
-export type UpdateWalletLocationAsyncData = {
+export type LocationsUpdateWalletLocationData = {
     body?: LocationUpdateDto;
     path: {
         walletId: string;
         locationId: string;
     };
-    query?: never;
+    query?: {
+        tenantId?: string;
+    };
     url: '/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}';
 };
 
-export type UpdateWalletLocationAsyncErrors = {
+export type LocationsUpdateWalletLocationErrors = {
     /**
      * Unauthorized
      */
@@ -1077,16 +1091,16 @@ export type UpdateWalletLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateWalletLocationAsyncError = UpdateWalletLocationAsyncErrors[keyof UpdateWalletLocationAsyncErrors];
+export type LocationsUpdateWalletLocationError = LocationsUpdateWalletLocationErrors[keyof LocationsUpdateWalletLocationErrors];
 
-export type UpdateWalletLocationAsyncResponses = {
+export type LocationsUpdateWalletLocationResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateWalletLocationAsyncResponse = UpdateWalletLocationAsyncResponses[keyof UpdateWalletLocationAsyncResponses];
+export type LocationsUpdateWalletLocationResponse = LocationsUpdateWalletLocationResponses[keyof LocationsUpdateWalletLocationResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

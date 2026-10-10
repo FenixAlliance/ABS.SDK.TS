@@ -10,1130 +10,938 @@ export interface paths {
      * Get and store antiforgery tokens
      * @description Generates antiforgery tokens and stores them in the current HTTP context.
      */
-    get: operations["GetAndStoreTokens"];
+    get: operations["Antiforgery_GetAndStoreTokens"];
   };
   "/api/v2/SystemService/Antiforgery/IsRequestValid": {
     /**
      * Validate antiforgery request
      * @description Validates whether the current HTTP request contains a valid antiforgery token.
      */
-    get: operations["IsRequestValidAsync"];
+    get: operations["Antiforgery_IsRequestValid"];
   };
   "/api/v2/SystemService/ApplicationPrincipals": {
     /**
      * List application principals across all tenants
      * @description Lists every non-human application principal enrollment across ALL tenants (payload-safe fields only), including the platform-managed (system-locked) connectors. Use OData to scope — e.g. $filter=SystemLocked eq true for the platform connectors or TenantId eq '{guid}' for one tenant — and to page/order. Global-administrator only.
      */
-    get: operations["GetGlobalApplicationPrincipals"];
+    get: operations["ApplicationPrincipals_GetGlobalApplicationPrincipals"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/Count": {
     /**
      * Count application principals across all tenants
      * @description Returns the count of application principal enrollments across ALL tenants under the same OData shaping as the list read (e.g. $filter=SystemLocked eq true). Global-administrator only.
      */
-    get: operations["GetGlobalApplicationPrincipalsCount"];
+    get: operations["ApplicationPrincipals_GetGlobalApplicationPrincipalsCount"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/{principalId}": {
     /**
      * Get one application principal (any tenant)
      * @description Returns one application principal's detail by id: owning application, an enrollment, the system-locked flag, lifecycle status, and that enrollment's explicit least-privilege grants. Pass tenantId to select the enrollment for a multi-tenant principal; when omitted the principal's first enrollment is used. Global-administrator only.
      */
-    get: operations["GetGlobalApplicationPrincipal"];
+    get: operations["ApplicationPrincipals_GetGlobalApplicationPrincipal"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/Provision": {
     /**
      * Provision an application principal (any tenant, incl. system-locked)
      * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application. tenantId selects the target tenant (defaults to the platform/root tenant). Unlike the per-tenant lane, a system-locked platform application is provisionable here. Global-administrator only.
      */
-    post: operations["ProvisionGlobalApplicationPrincipal"];
+    post: operations["ApplicationPrincipals_ProvisionGlobalApplicationPrincipal"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/PaymentsConnector": {
     /**
      * Provision the platform payments-connector identity
      * @description Idempotently stands up the platform payments-connector identity — its well-known business application, its application principal, and its own least-privilege enrollment (payments_create/payments_update/journals_post). tenantId selects the target tenant (defaults to the platform/root tenant). The provisioned connector then appears in this global list and (for its tenant) the per-tenant list. Global-administrator only.
      */
-    post: operations["ProvisionPaymentsConnector"];
+    post: operations["ApplicationPrincipals_ProvisionPaymentsConnector"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions": {
     /**
      * Grant a permission to an application principal (any tenant)
      * @description Grants a single least-privilege permission to the application principal's enrollment in the tenantId tenant (grants are per-tenant, so tenantId is required). Owner/admin/wildcard/*_manage permissions are rejected even for a global admin (least-privilege by construction). Global-administrator only.
      */
-    post: operations["GrantGlobalApplicationPrincipalPermission"];
+    post: operations["ApplicationPrincipals_GrantGlobalApplicationPrincipalPermission"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions/{permission}": {
     /**
      * Revoke a permission from an application principal (any tenant)
      * @description Revokes a direct permission grant from the application principal's enrollment in the tenantId tenant (required). Idempotent. Global-administrator only.
      */
-    delete: operations["RevokeGlobalApplicationPrincipalPermission"];
+    delete: operations["ApplicationPrincipals_RevokeGlobalApplicationPrincipalPermission"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Enable": {
     /**
      * Enable an application principal (global)
      * @description Reinstates the application principal to the Active lifecycle state (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
      */
-    post: operations["EnableGlobalApplicationPrincipal"];
+    post: operations["ApplicationPrincipals_EnableGlobalApplicationPrincipal"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Suspend": {
     /**
      * Suspend an application principal (global)
      * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
      */
-    post: operations["SuspendGlobalApplicationPrincipal"];
+    post: operations["ApplicationPrincipals_SuspendGlobalApplicationPrincipal"];
   };
   "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Disable": {
     /**
      * Disable an application principal (global)
      * @description Disables the application principal; dependent unattended execution fails closed (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
      */
-    post: operations["DisableGlobalApplicationPrincipal"];
+    post: operations["ApplicationPrincipals_DisableGlobalApplicationPrincipal"];
   };
   "/api/v2/SystemService/BusinessDomains": {
     /**
      * Retrieve all business domains in the system
      * @description Retrieve all registered business domains across every tenant (global administrators only).
      */
-    get: operations["GetSystemBusinessDomains"];
+    get: operations["BusinessDomains_GetSystemBusinessDomains"];
   };
   "/api/v2/SystemService/BusinessDomains/Count": {
     /**
      * Get the count of all business domains in the system
      * @description Get the count of all registered business domains across every tenant.
      */
-    get: operations["GetSystemBusinessDomainsCount"];
+    get: operations["BusinessDomains_GetSystemBusinessDomainsCount"];
   };
   "/api/v2/SystemService/BusinessDomains/{businessDomainId}": {
     /**
      * Retrieve a business domain by its ID
      * @description Retrieve any business domain by its ID, regardless of owning tenant.
      */
-    get: operations["GetSystemBusinessDomainById"];
+    get: operations["BusinessDomains_GetSystemBusinessDomainById"];
     /**
      * Delete a business domain
      * @description Removes any business domain from the system, regardless of owning tenant.
      */
-    delete: operations["DeleteSystemBusinessDomain"];
+    delete: operations["BusinessDomains_DeleteSystemBusinessDomain"];
   };
   "/api/v2/SystemService/BusinessDomains/{businessDomainId}/Verify": {
     /**
      * Verify a business domain
      * @description Checks the domain's DNS TXT records for the verification token and marks it verified.
      */
-    post: operations["VerifySystemBusinessDomain"];
+    post: operations["BusinessDomains_VerifySystemBusinessDomain"];
   };
   "/api/v2/SystemService/Carts": {
     /**
      * Retrieve a list of system carts
      * @description Retrieve a list of all carts in the system
      */
-    get: operations["GetSystemCarts"];
+    get: operations["Carts_GetSystemCarts"];
   };
   "/api/v2/SystemService/Carts/Count": {
     /**
      * Get the count of system carts
      * @description Get the count of all carts in the system
      */
-    get: operations["GetSystemCartsCount"];
+    get: operations["Carts_GetSystemCartsCount"];
   };
   "/api/v2/SystemService/Carts/{cartId}": {
     /**
      * Retrieve a single system cart by its ID
      * @description Retrieve a single system cart by its ID
      */
-    get: operations["GetSystemCartById"];
+    get: operations["Carts_GetSystemCartById"];
     /**
      * Delete a system cart
      * @description Delete a system cart by its ID
      */
-    delete: operations["DeleteSystemCart"];
+    delete: operations["Carts_DeleteSystemCart"];
   };
   "/api/v2/SystemService/Carts/Guests": {
     /**
      * Purge all guest carts
      * @description Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.
      */
-    delete: operations["PurgeSystemGuestCarts"];
+    delete: operations["Carts_PurgeSystemGuestCarts"];
   };
   "/api/v2/SystemService/Contacts/{contactId}/Options": {
     /**
      * Retrieve a list of contact options (admin)
      * @description Admin endpoint to retrieve options for any contact
      */
-    get: operations["GetSystemContactOptions"];
+    get: operations["ContactOptions_GetSystemContactOptions"];
     /**
      * Create a new contact option (admin)
      * @description Admin endpoint to create an option for any contact
      */
-    post: operations["CreateSystemContactOption"];
+    post: operations["ContactOptions_CreateSystemContactOption"];
   };
   "/api/v2/SystemService/Contacts/{contactId}/Options/Count": {
     /**
      * Get the count of contact options (admin)
      * @description Admin endpoint to get the count of options for any contact
      */
-    get: operations["GetSystemContactOptionsCount"];
+    get: operations["ContactOptions_GetSystemContactOptionsCount"];
   };
   "/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}": {
     /**
      * Retrieve a single contact option by its ID (admin)
      * @description Admin endpoint to retrieve a single option for any contact
      */
-    get: operations["GetSystemContactOptionById"];
+    get: operations["ContactOptions_GetSystemContactOptionById"];
     /**
      * Update a contact option (admin)
      * @description Admin endpoint to update an option for any contact
      */
-    put: operations["UpdateSystemContactOption"];
+    put: operations["ContactOptions_UpdateSystemContactOption"];
     /**
      * Delete a contact option (admin)
      * @description Admin endpoint to delete an option for any contact
      */
-    delete: operations["DeleteSystemContactOption"];
+    delete: operations["ContactOptions_DeleteSystemContactOption"];
     /**
      * Partially update a contact option (admin)
      * @description Admin endpoint to partially update an option for any contact using a JSON Patch document
      */
-    patch: operations["PatchSystemContactOption"];
+    patch: operations["ContactOptions_PatchSystemContactOption"];
   };
   "/api/v2/SystemService/Emails/SendBasic": {
     /**
      * Send a basic transactional email to recipients.
      * @description This action is only available for global administrators (business_owner role).
      */
-    post: operations["AdminSendBasicEmail"];
+    post: operations["Emails_AdminSendBasicEmail"];
   };
   "/api/v2/SystemService/Emails/Preview": {
     /**
      * Preview a rendered basic email template.
      * @description This action is only available for global administrators (business_owner role).
      */
-    post: operations["AdminPreviewBasicEmailTemplate"];
+    post: operations["Emails_AdminPreviewBasicEmailTemplate"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/SystemService/Inbox/Health": {
     /**
      * Get durable-inbox processor health
      * @description Returns a single snapshot of the durable-inbox processor: whether it is enabled, the per-status counts (received/accepted/processing/retry-scheduled/rejected/quarantined/dead-lettered/cancelled), the age of the oldest accepted message, and the last successful processing instant. Global-administrator only.
      */
-    get: operations["GetInboxHealth"];
+    get: operations["Inbox_GetInboxHealth"];
   };
   "/api/v2/SystemService/Inbox/Messages": {
     /**
      * List inbox messages
      * @description Lists durable-inbox messages (payload-safe fields only). Use OData to scope by any projected field — e.g. $filter=Status eq 'Quarantined' for the quarantine review, Status eq 'DeadLettered' for terminal failures, VerificationStatus eq 'Failed' for forged/untrusted callbacks, SourceSystem eq 'stripe', or a ReceivedAtUtc range — and to page/order. Global-administrator only.
      */
-    get: operations["GetInboxMessages"];
+    get: operations["Inbox_GetInboxMessages"];
   };
   "/api/v2/SystemService/Inbox/Messages/Count": {
     /**
      * Count inbox messages
      * @description Returns the count of durable-inbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'Quarantined'). Global-administrator only.
      */
-    get: operations["GetInboxMessagesCount"];
+    get: operations["Inbox_GetInboxMessagesCount"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}": {
     /**
      * Get one inbox message
      * @description Returns one inbox message's payload-safe detail by id — both lifecycle axes (processing status + independent verification status), the dedup lineage, attempt/generation counters, the recorded failure, and the timestamps. Global-administrator only.
      */
-    get: operations["GetInboxMessage"];
+    get: operations["Inbox_GetInboxMessage"];
   };
   "/api/v2/SystemService/Inbox/Correlations/{correlationId}": {
     /**
      * Get an inbox correlation chain
      * @description Returns every inbox message that shares a correlation id — one logical inbound interaction end-to-end, including its replay generations — oldest-received first. Global-administrator only.
      */
-    get: operations["GetInboxCorrelationChain"];
+    get: operations["Inbox_GetInboxCorrelationChain"];
   };
   "/api/v2/SystemService/Inbox/Duplicates": {
     /**
      * List duplicate-bearing inbox messages
      * @description Lists inbox messages that have observed a re-delivery (DeliveryCount > 1) — durable evidence that a source is re-sending, surfaced with DeliveryCount / LastDuplicateReceivedAtUtc. Further OData filtering/paging applies. Global-administrator only.
      */
-    get: operations["GetDuplicateInboxMessages"];
+    get: operations["Inbox_GetDuplicateInboxMessages"];
   };
   "/api/v2/SystemService/Inbox/Duplicates/Count": {
     /**
      * Count duplicate-bearing inbox messages
      * @description Returns the count of duplicate-bearing inbox messages under the same OData shaping as the duplicates list. Global-administrator only.
      */
-    get: operations["GetDuplicateInboxMessagesCount"];
+    get: operations["Inbox_GetDuplicateInboxMessagesCount"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}/Expedite": {
     /**
      * Expedite a retry-scheduled inbox message
      * @description Pulls a RetryScheduled message's scheduled instant forward to now so the processor claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched. Only a RetryScheduled message can be expedited. Global-administrator only.
      */
-    post: operations["ExpediteInboxMessage"];
+    post: operations["Inbox_ExpediteInboxMessage"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}/CancelRetry": {
     /**
      * Cancel a scheduled inbox retry
      * @description Stops a RetryScheduled message from retrying by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. Only a RetryScheduled message can be cancelled. Global-administrator only.
      */
-    post: operations["CancelInboxMessageRetry"];
+    post: operations["Inbox_CancelInboxMessageRetry"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}/ReleaseLease": {
     /**
      * Release a stuck inbox lease
      * @description Force-releases the lease on a message wedged in Processing (a crashed/hung processor) and returns it to the claimable Accepted state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. Only a Processing message can have its lease released. Global-administrator only.
      */
-    post: operations["ReleaseInboxMessageLease"];
+    post: operations["Inbox_ReleaseInboxMessageLease"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}/DeadLetter": {
     /**
      * Manually dead-letter an inbox message
      * @description Manually moves a non-terminal message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
      */
-    post: operations["DeadLetterInboxMessage"];
+    post: operations["Inbox_DeadLetterInboxMessage"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}/Quarantine": {
     /**
      * Manually quarantine an inbox message
      * @description Manually holds a non-terminal message for review in the terminal Quarantined state (e.g. an operator judges it suspicious). The reason is audit-critical. Global-administrator only.
      */
-    post: operations["QuarantineInboxMessage"];
+    post: operations["Inbox_QuarantineInboxMessage"];
   };
   "/api/v2/SystemService/Inbox/Messages/{id}/Replay": {
     /**
      * Replay a terminal inbox message as a new generation
      * @description Replays a terminal message as a NEW processing generation over its immutable received evidence — the inbox's recovery lever (distinct from the outbox's same-row requeue). A selected replay-generation row is resolved back to its lineage root before replaying, so numbering stays global and collision-free; the new row is claimable at once with a fresh retry budget, and the root's evidence and budget are never mutated. Legal only from a terminal state whose authenticity passed. Returns the new generation's identity. The reason is audit-critical. Global-administrator only.
      */
-    post: operations["ReplayInboxMessage"];
+    post: operations["Inbox_ReplayInboxMessage"];
   };
   "/api/v2/SystemService/IPLookups": {
     /**
      * Retrieve a list of system IP lookups
      * @description Retrieve a list of all IP lookups in the system
      */
-    get: operations["GetSystemIPLookups"];
+    get: operations["IPLookups_GetSystemIPLookups"];
   };
   "/api/v2/SystemService/IPLookups/Count": {
     /**
      * Get the count of system IP lookups
      * @description Get the count of all IP lookups in the system
      */
-    get: operations["GetSystemIPLookupsCount"];
+    get: operations["IPLookups_GetSystemIPLookupsCount"];
   };
   "/api/v2/SystemService/IPLookups/{ipLookupId}": {
     /**
      * Retrieve a single system IP lookup by its ID
      * @description Retrieve a single system IP lookup by its ID
      */
-    get: operations["GetSystemIPLookupById"];
+    get: operations["IPLookups_GetSystemIPLookupById"];
     /**
      * Delete a system IP lookup
      * @description Delete a system IP lookup by its ID
      */
-    delete: operations["DeleteSystemIPLookup"];
+    delete: operations["IPLookups_DeleteSystemIPLookup"];
+  };
+  "/api/v2/SystemService/LicenseAssignments/{licenseId}": {
+    /**
+     * List license seat assignments
+     * @description Lists the seats currently assigned on a pooled suite license for the acting tenant.
+     */
+    get: operations["LicenseAssignments_GetLicenseAssignments"];
+  };
+  "/api/v2/SystemService/LicenseAssignments": {
+    /**
+     * Assign a license seat
+     * @description Assigns a seat on a pooled suite license to a current member of the acting tenant. Idempotent.
+     */
+    post: operations["LicenseAssignments_AssignLicense"];
+  };
+  "/api/v2/SystemService/LicenseAssignments/{licenseId}/{enrollmentId}": {
+    /**
+     * Revoke a license seat
+     * @description Revokes a member's seat on a pooled suite license owned by the acting tenant. Idempotent.
+     */
+    delete: operations["LicenseAssignments_RevokeLicense"];
   };
   "/api/v2/SystemService/Licensing/Licenses": {
     /**
      * Retrieve a list of licenses
-     * @description Retrieves a list of suite licenses, optionally filtered by tenant.
+     * @description Retrieves the suite licenses owned by the acting tenant.
      */
-    get: operations["GetLicensesAsync"];
+    get: operations["Licensing_GetLicenses"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}": {
     /**
      * Retrieve a license by ID
      * @description Retrieves a single suite license by its unique identifier.
      */
-    get: operations["GetLicenseByIdAsync"];
+    get: operations["Licensing_GetLicenseById"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Assignments": {
     /**
      * Retrieve license assignments
      * @description Retrieves all license assignments for a given license.
      */
-    get: operations["GetLicenseAssignmentsAsync"];
+    get: operations["Licensing_GetLicenseAssignments"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Attributes": {
     /**
      * Retrieve license attributes
      * @description Retrieves all additional attributes for a given license.
      */
-    get: operations["GetAttributesForLicenseAsync"];
+    get: operations["Licensing_GetAttributesForLicense"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features": {
     /**
      * Retrieve license features
      * @description Retrieves all features for a given license.
      */
-    get: operations["GetFeaturesForLicenseAsync"];
+    get: operations["Licensing_GetFeaturesForLicense"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Quota": {
     /**
      * Retrieve license record quota
      * @description Retrieves the record quota for a given license.
      */
-    get: operations["GetLicenseRecordsQuotaAsync"];
+    get: operations["Licensing_GetLicenseRecordsQuota"];
   };
   "/api/v2/SystemService/Licensing/Licenses/Redeem": {
     /**
      * Redeem a license
      * @description Redeems a license for the current tenant user.
      */
-    post: operations["RedeemLicenseAsync"];
+    post: operations["Licensing_RedeemLicense"];
   };
   "/api/v2/SystemService/Licensing/Licenses/Validate": {
     /**
      * Validate a license
      * @description Validates a license key and returns validation failures if any.
      */
-    post: operations["ValidateLicenseAsync"];
+    post: operations["Licensing_ValidateLicense"];
   };
   "/api/v2/SystemService/Migrations": {
     /**
      * Retrieve database migrations
-     * @description Retrieves the list of applied or pending database migrations.
+     * @description Retrieves the list of applied or pending database migrations. This action is only available for instance administrators.
      */
-    get: operations["Migrations"];
+    get: operations["Migrations_Migrations"];
   };
   "/api/v2/SystemService/Migrations/Migrate": {
     /**
      * Apply pending database migrations
-     * @description Applies all pending database migrations and returns the list of migrations that were applied.
+     * @description Applies all pending database migrations and returns the list of migrations that were applied. This action is only available for instance administrators.
      */
-    post: operations["Migrate"];
+    post: operations["Migrations_Migrate"];
   };
   "/api/v2/StudioService/Modules": {
     /** Get all modules available on this suite server instance. */
-    get: operations["GetAllModules"];
+    get: operations["Modules_GetAllModules"];
   };
   "/api/v2/StudioService/Modules/Data": {
     /** Get all modules available to a tenant user. */
-    get: operations["GetAvailableModules"];
+    get: operations["Modules_GetAvailableModules"];
   };
   "/api/v2/SystemService/Options": {
     /**
      * Retrieve a list of system options
      * @description Retrieve a list of system options for a portal
      */
-    get: operations["GetSystemOptions"];
+    get: operations["Options_GetSystemOptions"];
     /**
      * Create a new system option
      * @description Create a new system option
      */
-    post: operations["CreateSystemOption"];
+    post: operations["Options_CreateSystemOption"];
   };
   "/api/v2/SystemService/Options/Count": {
     /**
      * Get the count of system options
      * @description Get the count of system options for a portal
      */
-    get: operations["GetSystemOptionsCount"];
+    get: operations["Options_GetSystemOptionsCount"];
   };
   "/api/v2/SystemService/Options/{optionId}": {
     /**
      * Retrieve a single system option by its ID
      * @description Retrieve a single system option by its ID
      */
-    get: operations["GetSystemOptionById"];
+    get: operations["Options_GetSystemOptionById"];
     /**
      * Update a system option
      * @description Update a system option
      */
-    put: operations["UpdateSystemOption"];
+    put: operations["Options_UpdateSystemOption"];
     /**
      * Delete a system option
      * @description Delete a system option
      */
-    delete: operations["DeleteSystemOption"];
+    delete: operations["Options_DeleteSystemOption"];
     /**
      * Partially update a system option
      * @description Partially update a system option using a JSON Patch document
      */
-    patch: operations["PatchSystemOption"];
+    patch: operations["Options_PatchSystemOption"];
   };
   "/api/v2/SystemService/Options/Key/{key}": {
     /**
      * Retrieve a single system option by its key
      * @description Retrieve a single system option by its key
      */
-    get: operations["GetSystemOptionByKey"];
+    get: operations["Options_GetSystemOptionByKey"];
   };
   "/api/v2/SystemService/Options/Upsert/{key}": {
     /**
      * Create or update a system option by key
      * @description Create or update a system option by key
      */
-    put: operations["UpsertSystemOption"];
+    put: operations["Options_UpsertSystemOption"];
   };
   "/api/v2/SystemService/Outbox/Health": {
     /**
      * Get durable-outbox relay health
      * @description Returns a single snapshot of the durable-outbox relay: whether it is enabled, the per-status counts (pending/processing/failed/dead-lettered), the age of the oldest pending message, and the last successful dispatch instant. Global-administrator only.
      */
-    get: operations["GetOutboxHealth"];
+    get: operations["Outbox_GetOutboxHealth"];
   };
   "/api/v2/SystemService/Outbox/Messages": {
     /**
      * List outbox messages
      * @description Lists durable-outbox messages (payload-safe fields only). Use OData to scope to a state — e.g. $filter=Status eq 'DeadLettered' for the dead-letter set or Status eq 'Failed' for retry-eligible rows — and to page/order. Global-administrator only.
      */
-    get: operations["GetOutboxMessages"];
+    get: operations["Outbox_GetOutboxMessages"];
   };
   "/api/v2/SystemService/Outbox/Messages/Count": {
     /**
      * Count outbox messages
      * @description Returns the count of durable-outbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'DeadLettered'). Global-administrator only.
      */
-    get: operations["GetOutboxMessagesCount"];
+    get: operations["Outbox_GetOutboxMessagesCount"];
   };
   "/api/v2/SystemService/Outbox/Messages/{id}": {
     /**
      * Get one outbox message
      * @description Returns one outbox message's payload-safe detail by id — its lifecycle status, the two classification axes (kind + message type), the attempt/ceiling budget, the recorded failure, the idempotency + correlation lineage, and the timestamps. Global-administrator only.
      */
-    get: operations["GetOutboxMessage"];
+    get: operations["Outbox_GetOutboxMessage"];
   };
   "/api/v2/SystemService/Outbox/Correlations/{correlationId}": {
     /**
      * Get an outbox correlation chain
      * @description Returns every outbox message that shares a correlation id — one logical unit of async work end-to-end (e.g. a command and the events its handler in turn staged) — oldest-created first. Global-administrator only.
      */
-    get: operations["GetOutboxCorrelationChain"];
+    get: operations["Outbox_GetOutboxCorrelationChain"];
   };
   "/api/v2/SystemService/Outbox/Messages/{id}/Replay": {
     /**
      * Replay a dead-lettered or failed outbox message
      * @description Requeues a DeadLettered or Failed message back to Pending so the relay re-drives it immediately (clearing the lease and recorded error, and bypassing the remaining backoff). The attempt budget is preserved — a replay grants one more pass, not a fresh budget. Replaying a message that is already Pending/Processing or is Succeeded/Cancelled is rejected. Global-administrator only.
      */
-    post: operations["ReplayOutboxMessage"];
+    post: operations["Outbox_ReplayOutboxMessage"];
   };
   "/api/v2/SystemService/Outbox/Messages/{id}/Expedite": {
     /**
      * Expedite a failed (retry-eligible) outbox message
      * @description Pulls a Failed message's scheduled instant forward to now so the relay claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched (the lighter-touch counterpart to Replay, which also clears the recorded error). Only a Failed message can be expedited. Global-administrator only.
      */
-    post: operations["ExpediteOutboxMessage"];
+    post: operations["Outbox_ExpediteOutboxMessage"];
   };
   "/api/v2/SystemService/Outbox/Messages/{id}/Cancel": {
     /**
      * Cancel an outbox message
      * @description Stops a Pending or Failed message by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. An in-flight (Processing) or already-terminal message is rejected. Global-administrator only.
      */
-    post: operations["CancelOutboxMessage"];
+    post: operations["Outbox_CancelOutboxMessage"];
   };
   "/api/v2/SystemService/Outbox/Messages/{id}/DeadLetter": {
     /**
      * Manually dead-letter an outbox message
      * @description Manually moves a Processing or Failed message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
      */
-    post: operations["DeadLetterOutboxMessage"];
+    post: operations["Outbox_DeadLetterOutboxMessage"];
   };
   "/api/v2/SystemService/Outbox/Messages/{id}/ReleaseLease": {
     /**
      * Release a stuck outbox lease
      * @description Force-releases the lease on a message wedged in Processing (a crashed/hung relay) and returns it to the claimable Pending state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. The relay auto-reclaims a crashed row once its lease expires; this manual lever forces the release immediately. Only a Processing message can have its lease released. Global-administrator only.
      */
-    post: operations["ReleaseOutboxMessageLease"];
+    post: operations["Outbox_ReleaseOutboxMessageLease"];
+  };
+  "/api/v2/SystemService/Outbox/Poison": {
+    /**
+     * List unresolved consumer poison on a partition
+     * @description Returns the unresolved dead-lettered (poison) positions consumers hold on one partition, ordered by sequence, each with its evidence: the consumer, the message id and type, when and why it was dead-lettered, and the outbox message's error, correlation and causation ids while that message is still retained (MessageRetained=false once retention has purged it). consumerKey and throughSequence are optional. Global-administrator only.
+     */
+    get: operations["Outbox_GetOutboxPoisonPositions"];
+  };
+  "/api/v2/SystemService/Outbox/Poison/Resolve": {
+    /**
+     * Resolve a consumer poison position
+     * @description Records a governed resolution of one dead-lettered (poison) position so it stops blocking certification. The dead-lettered receipt is never altered. Superseded records that the position will never be applied. Replayed is accepted only when replacementSequence names a later position on the same partition at which the consumer already holds an Applied receipt. An omitted consumerKey resolves the position for every consumer holding poison there. Idempotent, and audited. Global-administrator only.
+     */
+    post: operations["Outbox_ResolveOutboxPoison"];
+  };
+  "/api/v2/SystemService/Outbox/Tenants/{tenantId}/Poison": {
+    /**
+     * List unresolved consumer poison on a tenant's own partition
+     * @description Returns the unresolved poison positions, with evidence, that one consumer holds on the tenant's own partition. partitionKey must be the tenant's own partition and consumerKey is required and must be a consumer a tenant may resolve. Any other partition reads as not found. Tenant business owner only.
+     */
+    get: operations["Outbox_GetTenantOutboxPoisonPositions"];
+  };
+  "/api/v2/SystemService/Outbox/Tenants/{tenantId}/Poison/Resolve": {
+    /**
+     * Resolve a consumer poison position on a tenant's own partition
+     * @description Records a governed resolution of one poison position on the tenant's own partition, for one consumer a tenant may resolve (derived-state consumers such as Search). consumerKey is required. Money and effect consumers are resolved by the platform operator only. Any other partition reads as not found. Same Superseded and Replayed rules as the platform route. Idempotent, and audited. Tenant business owner only.
+     */
+    post: operations["Outbox_ResolveTenantOutboxPoison"];
   };
   "/api/v2/SystemService/Overview": {
     /**
      * Get system overview information
      * @description Returns runtime, memory, and entity count information for the system
      */
-    get: operations["GetSystemOverview"];
+    get: operations["Overview_GetSystemOverview"];
   };
   "/api/v2/SystemService/Portals": {
     /**
      * Retrieve a list of system portals
      * @description Retrieve a list of all web portals in the system
      */
-    get: operations["GetSystemPortals"];
+    get: operations["Portals_GetSystemPortals"];
     /**
      * Create a new system portal
      * @description Create a new web portal in the system
      */
-    post: operations["CreateSystemPortal"];
+    post: operations["Portals_CreateSystemPortal"];
   };
   "/api/v2/SystemService/Portals/Count": {
     /**
      * Get the count of system portals
      * @description Get the count of all web portals in the system
      */
-    get: operations["GetSystemPortalsCount"];
+    get: operations["Portals_GetSystemPortalsCount"];
   };
   "/api/v2/SystemService/Portals/{portalId}": {
     /**
      * Retrieve a single system portal by its ID
      * @description Retrieve a single system portal by its ID
      */
-    get: operations["GetSystemPortalById"];
+    get: operations["Portals_GetSystemPortalById"];
     /**
      * Update a system portal
      * @description Update an existing web portal in the system
      */
-    put: operations["UpdateSystemPortal"];
+    put: operations["Portals_UpdateSystemPortal"];
     /**
      * Delete a system portal
      * @description Delete a web portal from the system
      */
-    delete: operations["DeleteSystemPortal"];
+    delete: operations["Portals_DeleteSystemPortal"];
     /**
      * Partially update a system portal
      * @description Partially update an existing web portal in the system using a JSON Patch document
      */
-    patch: operations["PatchSystemPortal"];
+    patch: operations["Portals_PatchSystemPortal"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Options": {
     /**
      * Retrieve a list of tenant options (admin)
      * @description Admin endpoint to retrieve options for any tenant
      */
-    get: operations["GetSystemTenantOptions"];
+    get: operations["TenantOptions_GetSystemTenantOptions"];
     /**
      * Create a new tenant option (admin)
      * @description Admin endpoint to create an option for any tenant
      */
-    post: operations["CreateSystemTenantOption"];
+    post: operations["TenantOptions_CreateSystemTenantOption"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Options/Count": {
     /**
      * Get the count of tenant options (admin)
      * @description Admin endpoint to get the count of options for any tenant
      */
-    get: operations["GetSystemTenantOptionsCount"];
+    get: operations["TenantOptions_GetSystemTenantOptionsCount"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}": {
     /**
      * Retrieve a single tenant option by its ID (admin)
      * @description Admin endpoint to retrieve a single option for any tenant
      */
-    get: operations["GetSystemTenantOptionById"];
+    get: operations["TenantOptions_GetSystemTenantOptionById"];
     /**
      * Update a tenant option (admin)
      * @description Admin endpoint to update an option for any tenant
      */
-    put: operations["UpdateSystemTenantOption"];
+    put: operations["TenantOptions_UpdateSystemTenantOption"];
     /**
      * Delete a tenant option (admin)
      * @description Admin endpoint to delete an option for any tenant
      */
-    delete: operations["DeleteSystemTenantOption"];
+    delete: operations["TenantOptions_DeleteSystemTenantOption"];
     /**
      * Partially update a tenant option (admin)
      * @description Admin endpoint to partially update an option for any tenant using a JSON Patch document
      */
-    patch: operations["PatchSystemTenantOption"];
+    patch: operations["TenantOptions_PatchSystemTenantOption"];
   };
   "/api/v2/SystemService/Tenants": {
     /**
      * Get all tenants available on this suite server instance.
      * @description This action is only available for global administrators.
      */
-    get: operations["GetAllTenants"];
+    get: operations["Tenants_GetAllTenants"];
     /**
      * Create a new tenant.
      * @description This action is only available for global administrators.
      */
-    post: operations["CreateTenant"];
+    post: operations["Tenants_CreateTenant"];
   };
   "/api/v2/SystemService/Tenants/Count": {
     /**
      * Get the total count of tenants available on this suite server instance.
      * @description This action is only available for global administrators.
      */
-    get: operations["GetTenantsCount"];
+    get: operations["Tenants_GetTenantsCount"];
   };
   "/api/v2/SystemService/Tenants/Extended": {
     /**
      * Get all extended tenants available on this suite server instance.
      * @description This action is only available for global administrators.
      */
-    get: operations["GetAllExtendedTenants"];
+    get: operations["Tenants_GetAllExtendedTenants"];
   };
   "/api/v2/SystemService/Tenants/Extended/Count": {
     /**
      * Get the total count of extended tenants available on this suite server instance.
      * @description This action is only available for global administrators.
      */
-    get: operations["GetExtendedTenantsCount"];
+    get: operations["Tenants_GetExtendedTenantsCount"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}": {
     /**
      * Get a specific tenant by ID.
      * @description This action is only available for global administrators.
      */
-    get: operations["GetTenant"];
+    get: operations["Tenants_GetTenant"];
     /**
      * Update a specific tenant by ID.
      * @description This action is only available for global administrators.
      */
-    put: operations["UpdateTenant"];
+    put: operations["Tenants_UpdateTenant"];
     /**
      * Delete a specific tenant by ID.
      * @description This action is only available for global administrators.
      */
-    delete: operations["DeleteTenant"];
+    delete: operations["Tenants_DeleteTenant"];
     /**
      * Partially update a specific tenant by ID.
      * @description This action is only available for global administrators.
      */
-    patch: operations["PatchTenant"];
+    patch: operations["Tenants_PatchTenant"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants": {
     /**
      * Get the per-tenant admin module grants for a specific tenant.
      * @description This action is only available for global administrators.
      */
-    get: operations["GetTenantModuleGrants"];
+    get: operations["Tenants_GetTenantModuleGrants"];
     /**
      * Replace the per-tenant admin module grants for a specific tenant.
      * @description This action is only available for global administrators. Grants supplement licensing.
      */
-    put: operations["SetTenantModuleGrants"];
+    put: operations["Tenants_SetTenantModuleGrants"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview": {
     /**
      * Preview the rendered email for a tenant.
      * @description This action is only available for global administrators.
      */
-    post: operations["AdminPreviewTenantEmail"];
+    post: operations["Tenants_AdminPreviewTenantEmail"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Send": {
     /**
      * Send an email to a tenant.
      * @description This action is only available for global administrators.
      */
-    post: operations["AdminSendTenantEmail"];
+    post: operations["Tenants_AdminSendTenantEmail"];
   };
   "/api/v2/SystemService/Users/{userId}/Options": {
     /**
      * Retrieve a list of user options (admin)
      * @description Admin endpoint to retrieve options for any user
      */
-    get: operations["GetSystemUserOptions"];
+    get: operations["UserOptions_GetSystemUserOptions"];
     /**
      * Create a new user option (admin)
      * @description Admin endpoint to create an option for any user
      */
-    post: operations["CreateSystemUserOption"];
+    post: operations["UserOptions_CreateSystemUserOption"];
   };
   "/api/v2/SystemService/Users/{userId}/Options/Count": {
     /**
      * Get the count of user options (admin)
      * @description Admin endpoint to get the count of options for any user
      */
-    get: operations["GetSystemUserOptionsCount"];
+    get: operations["UserOptions_GetSystemUserOptionsCount"];
   };
   "/api/v2/SystemService/Users/{userId}/Options/{optionId}": {
     /**
      * Retrieve a single user option by its ID (admin)
      * @description Admin endpoint to retrieve a single option for any user
      */
-    get: operations["GetSystemUserOptionById"];
+    get: operations["UserOptions_GetSystemUserOptionById"];
     /**
      * Update a user option (admin)
      * @description Admin endpoint to update an option for any user
      */
-    put: operations["UpdateSystemUserOption"];
+    put: operations["UserOptions_UpdateSystemUserOption"];
     /**
      * Delete a user option (admin)
      * @description Admin endpoint to delete an option for any user
      */
-    delete: operations["DeleteSystemUserOption"];
+    delete: operations["UserOptions_DeleteSystemUserOption"];
     /**
      * Partially update a user option (admin)
      * @description Admin endpoint to partially update an option for any user using a JSON Patch document
      */
-    patch: operations["PatchSystemUserOption"];
+    patch: operations["UserOptions_PatchSystemUserOption"];
   };
   "/api/v2/SystemService/Users": {
     /**
      * Retrieve a list of users
      * @description This action is only available for global administrators.
      */
-    get: operations["GetUsersAsync"];
+    get: operations["Users_GetUsers"];
     /**
      * Create a new user
      * @description This action is only available for global administrators.
      */
-    post: operations["CreateAccountHolderAsync"];
+    post: operations["Users_CreateAccountHolder"];
   };
   "/api/v2/SystemService/Users/Count": {
     /**
      * Get the count of users
      * @description This action is only available for global administrators.
      */
-    get: operations["GetUsersCountAsync"];
+    get: operations["Users_GetUsersCount"];
   };
   "/api/v2/SystemService/Users/Extended": {
     /**
      * Retrieve a list of extended users
      * @description This action is only available for global administrators.
      */
-    get: operations["GetExtendedUsersAsync"];
+    get: operations["Users_GetExtendedUsers"];
   };
   "/api/v2/SystemService/Users/Extended/Count": {
     /**
      * Get the count of extended users
      * @description This action is only available for global administrators.
      */
-    get: operations["GetExtendedUsersCountAsync"];
+    get: operations["Users_GetExtendedUsersCount"];
   };
   "/api/v2/SystemService/Users/{userId}": {
     /**
      * Retrieve a user by ID
      * @description This action is only available for global administrators.
      */
-    get: operations["GetUserAsync"];
+    get: operations["Users_GetUser"];
     /**
      * Update a user
      * @description This action is only available for global administrators.
      */
-    put: operations["UpdateAccountHolderAsync"];
+    put: operations["Users_UpdateAccountHolder"];
     /**
      * Delete a user
      * @description This action is only available for global administrators.
      */
-    delete: operations["DeleteAccountHolderAsync"];
+    delete: operations["Users_DeleteAccountHolder"];
     /**
      * Partially update a user
      * @description This action is only available for global administrators.
      */
-    patch: operations["PatchAccountHolderAsync"];
+    patch: operations["Users_PatchAccountHolder"];
   };
   "/api/v2/SystemService/Users/{userId}/Extended": {
     /**
      * Retrieve an extended user by ID
      * @description This action is only available for global administrators.
      */
-    get: operations["GetExtendedAccountHolderAsync"];
+    get: operations["Users_GetExtendedAccountHolder"];
   };
   "/api/v2/SystemService/Users/{userId}/AdminDetail": {
     /**
      * Retrieve the admin detail aggregate for a user
      * @description Returns the user's orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.
      */
-    get: operations["GetUserAdminDetailAsync"];
+    get: operations["Users_GetUserAdminDetail"];
   };
   "/api/v2/SystemService/Users/{userId}/Password": {
     /**
      * Set a user's password
      * @description Replaces the user's password with the supplied value. Global administrators only.
      */
-    post: operations["SetUserPasswordAsync"];
+    post: operations["Users_SetUserPassword"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Email/Confirm": {
+    /**
+     * Confirm a user's email
+     * @description Marks the user's email as confirmed without the emailed verification token, and records the action in the security log. Idempotent. Global administrators only.
+     */
+    post: operations["Users_ConfirmUserEmail"];
   };
   "/api/v2/SystemService/Users/{userId}/AdminProfile": {
     /**
      * Update a user's admin-managed profile
      * @description Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.
      */
-    put: operations["UpdateAccountHolderAdminProfileAsync"];
+    put: operations["Users_UpdateAccountHolderAdminProfile"];
   };
   "/api/v2/SystemService/Users/{userId}/Emails/Preview": {
     /**
      * Preview the rendered email for a user.
      * @description This action is only available for global administrators.
      */
-    post: operations["AdminPreviewUserEmailTemplate"];
+    post: operations["Users_AdminPreviewUserEmailTemplate"];
   };
   "/api/v2/SystemService/Users/{userId}/Emails/Send": {
     /**
      * Send an email to a user.
      * @description This action is only available for global administrators.
      */
-    post: operations["AdminSendUserEmail"];
+    post: operations["Users_AdminSendUserEmail"];
   };
 }
 
@@ -1582,6 +1390,7 @@ export interface components {
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
       settings?: components["schemas"]["UserSettingsDto"];
+      twoFactorEnabled?: boolean;
     };
     ExtendedUserDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1767,6 +1576,8 @@ export interface components {
       /** Format: int32 */
       receivedCount?: number;
       /** Format: int32 */
+      authenticityPendingCount?: number;
+      /** Format: int32 */
       acceptedCount?: number;
       /** Format: int32 */
       processingCount?: number;
@@ -1785,6 +1596,9 @@ export interface components {
       /** Format: date-time */
       lastSuccessfulProcessingUtc?: string | null;
       successfulProcessingTracked?: boolean;
+      verificationAdvancerComposed?: boolean;
+      ready?: boolean;
+      readinessIssues?: string[] | null;
     };
     InboxHealthDtoEnvelope: {
       isSuccess?: boolean;
@@ -2096,6 +1910,8 @@ export interface components {
       /** Format: date-time */
       lastSuccessfulDispatchUtc?: string | null;
       successfulDispatchTracked?: boolean;
+      /** Format: int32 */
+      unresolvedPoisonCount?: number | null;
     };
     OutboxHealthDtoEnvelope: {
       isSuccess?: boolean;
@@ -2187,6 +2003,37 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["OutboxMessageDto"][] | null;
     };
+    OutboxPoisonPositionDto: {
+      consumerKey?: string | null;
+      partitionKey?: string | null;
+      /** Format: int64 */
+      sequence?: number;
+      messageId?: string | null;
+      messageType?: string | null;
+      /** Format: date-time */
+      deadLetteredAtUtc?: string;
+      deadLetterDetail?: string | null;
+      messageRetained?: boolean;
+      errorCode?: string | null;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      causationId?: string | null;
+    };
+    OutboxPoisonPositionDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["OutboxPoisonPositionDto"][] | null;
+    };
     PatchOperation: {
       op?: string | null;
       path?: string | null;
@@ -2207,6 +2054,17 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    ResolveOutboxPoisonRequest: {
+      consumerKey?: string | null;
+      partitionKey: string;
+      /** Format: int64 */
+      sequence?: number;
+      /** @enum {string} */
+      kind: "Replayed" | "Superseded";
+      reason: string;
+      /** Format: int64 */
+      replacementSequence?: number | null;
     };
     SecurityPermissionDto: {
       id?: string | null;
@@ -2299,6 +2157,14 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["StudioModule"][] | null;
+    };
+    SuiteLicenseAssignmentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      suiteLicenseId?: string | null;
+      enrollmentId?: string | null;
     };
     SuiteLicenseAssignmentDto: {
       id?: string | null;
@@ -2484,7 +2350,7 @@ export interface components {
       handler?: string | null;
       about?: string | null;
       slogan?: string | null;
-      currencyId: string;
+      currencyId?: string | null;
       duns?: string | null;
       taxId?: string | null;
       /** Format: uri */
@@ -2677,8 +2543,8 @@ export interface components {
       lastName?: string | null;
       publicName?: string | null;
       about?: string | null;
-      twoFactorEnabled?: boolean;
-      lockoutEnabled?: boolean;
+      twoFactorEnabled?: boolean | null;
+      lockoutEnabled?: boolean | null;
       /** Format: date-time */
       lockoutEnd?: string | null;
     };
@@ -2825,6 +2691,13 @@ export interface components {
       orderType?: "SalesOrder" | "PurchaseOrder";
       /** @enum {string} */
       orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      tenantId?: string | null;
+      receiverTenantId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
     };
     UserSettingsDto: {
       id?: string | null;
@@ -2889,6 +2762,7 @@ export interface components {
       mainNetEtherBalance?: number;
       ethereumAddress?: string | null;
       ethereumPublicKey?: string | null;
+      /** @deprecated */
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
@@ -2993,7 +2867,7 @@ export interface operations {
    * Get and store antiforgery tokens
    * @description Generates antiforgery tokens and stores them in the current HTTP context.
    */
-  GetAndStoreTokens: {
+  Antiforgery_GetAndStoreTokens: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3013,7 +2887,7 @@ export interface operations {
    * Validate antiforgery request
    * @description Validates whether the current HTTP request contains a valid antiforgery token.
    */
-  IsRequestValidAsync: {
+  Antiforgery_IsRequestValid: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3033,7 +2907,7 @@ export interface operations {
    * List application principals across all tenants
    * @description Lists every non-human application principal enrollment across ALL tenants (payload-safe fields only), including the platform-managed (system-locked) connectors. Use OData to scope — e.g. $filter=SystemLocked eq true for the platform connectors or TenantId eq '{guid}' for one tenant — and to page/order. Global-administrator only.
    */
-  GetGlobalApplicationPrincipals: {
+  ApplicationPrincipals_GetGlobalApplicationPrincipals: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3076,7 +2950,7 @@ export interface operations {
    * Count application principals across all tenants
    * @description Returns the count of application principal enrollments across ALL tenants under the same OData shaping as the list read (e.g. $filter=SystemLocked eq true). Global-administrator only.
    */
-  GetGlobalApplicationPrincipalsCount: {
+  ApplicationPrincipals_GetGlobalApplicationPrincipalsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3119,7 +2993,7 @@ export interface operations {
    * Get one application principal (any tenant)
    * @description Returns one application principal's detail by id: owning application, an enrollment, the system-locked flag, lifecycle status, and that enrollment's explicit least-privilege grants. Pass tenantId to select the enrollment for a multi-tenant principal; when omitted the principal's first enrollment is used. Global-administrator only.
    */
-  GetGlobalApplicationPrincipal: {
+  ApplicationPrincipals_GetGlobalApplicationPrincipal: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -3167,7 +3041,7 @@ export interface operations {
    * Provision an application principal (any tenant, incl. system-locked)
    * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application. tenantId selects the target tenant (defaults to the platform/root tenant). Unlike the per-tenant lane, a system-locked platform application is provisionable here. Global-administrator only.
    */
-  ProvisionGlobalApplicationPrincipal: {
+  ApplicationPrincipals_ProvisionGlobalApplicationPrincipal: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -3225,7 +3099,7 @@ export interface operations {
    * Provision the platform payments-connector identity
    * @description Idempotently stands up the platform payments-connector identity — its well-known business application, its application principal, and its own least-privilege enrollment (payments_create/payments_update/journals_post). tenantId selects the target tenant (defaults to the platform/root tenant). The provisioned connector then appears in this global list and (for its tenant) the per-tenant list. Global-administrator only.
    */
-  ProvisionPaymentsConnector: {
+  ApplicationPrincipals_ProvisionPaymentsConnector: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -3270,7 +3144,7 @@ export interface operations {
    * Grant a permission to an application principal (any tenant)
    * @description Grants a single least-privilege permission to the application principal's enrollment in the tenantId tenant (grants are per-tenant, so tenantId is required). Owner/admin/wildcard/*_manage permissions are rejected even for a global admin (least-privilege by construction). Global-administrator only.
    */
-  GrantGlobalApplicationPrincipalPermission: {
+  ApplicationPrincipals_GrantGlobalApplicationPrincipalPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3331,7 +3205,7 @@ export interface operations {
    * Revoke a permission from an application principal (any tenant)
    * @description Revokes a direct permission grant from the application principal's enrollment in the tenantId tenant (required). Idempotent. Global-administrator only.
    */
-  RevokeGlobalApplicationPrincipalPermission: {
+  ApplicationPrincipals_RevokeGlobalApplicationPrincipalPermission: {
     parameters: {
       query: {
         tenantId: string;
@@ -3380,7 +3254,7 @@ export interface operations {
    * Enable an application principal (global)
    * @description Reinstates the application principal to the Active lifecycle state (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
    */
-  EnableGlobalApplicationPrincipal: {
+  ApplicationPrincipals_EnableGlobalApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -3428,7 +3302,7 @@ export interface operations {
    * Suspend an application principal (global)
    * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
    */
-  SuspendGlobalApplicationPrincipal: {
+  ApplicationPrincipals_SuspendGlobalApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -3476,7 +3350,7 @@ export interface operations {
    * Disable an application principal (global)
    * @description Disables the application principal; dependent unattended execution fails closed (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
    */
-  DisableGlobalApplicationPrincipal: {
+  ApplicationPrincipals_DisableGlobalApplicationPrincipal: {
     parameters: {
       query: {
         tenantId: string;
@@ -3524,7 +3398,7 @@ export interface operations {
    * Retrieve all business domains in the system
    * @description Retrieve all registered business domains across every tenant (global administrators only).
    */
-  GetSystemBusinessDomains: {
+  BusinessDomains_GetSystemBusinessDomains: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3567,7 +3441,7 @@ export interface operations {
    * Get the count of all business domains in the system
    * @description Get the count of all registered business domains across every tenant.
    */
-  GetSystemBusinessDomainsCount: {
+  BusinessDomains_GetSystemBusinessDomainsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3610,7 +3484,7 @@ export interface operations {
    * Retrieve a business domain by its ID
    * @description Retrieve any business domain by its ID, regardless of owning tenant.
    */
-  GetSystemBusinessDomainById: {
+  BusinessDomains_GetSystemBusinessDomainById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3650,7 +3524,7 @@ export interface operations {
    * Delete a business domain
    * @description Removes any business domain from the system, regardless of owning tenant.
    */
-  DeleteSystemBusinessDomain: {
+  BusinessDomains_DeleteSystemBusinessDomain: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3690,7 +3564,7 @@ export interface operations {
    * Verify a business domain
    * @description Checks the domain's DNS TXT records for the verification token and marks it verified.
    */
-  VerifySystemBusinessDomain: {
+  BusinessDomains_VerifySystemBusinessDomain: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3737,7 +3611,7 @@ export interface operations {
    * Retrieve a list of system carts
    * @description Retrieve a list of all carts in the system
    */
-  GetSystemCarts: {
+  Carts_GetSystemCarts: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3780,7 +3654,7 @@ export interface operations {
    * Get the count of system carts
    * @description Get the count of all carts in the system
    */
-  GetSystemCartsCount: {
+  Carts_GetSystemCartsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3823,7 +3697,7 @@ export interface operations {
    * Retrieve a single system cart by its ID
    * @description Retrieve a single system cart by its ID
    */
-  GetSystemCartById: {
+  Carts_GetSystemCartById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3863,7 +3737,7 @@ export interface operations {
    * Delete a system cart
    * @description Delete a system cart by its ID
    */
-  DeleteSystemCart: {
+  Carts_DeleteSystemCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3903,7 +3777,7 @@ export interface operations {
    * Purge all guest carts
    * @description Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.
    */
-  PurgeSystemGuestCarts: {
+  Carts_PurgeSystemGuestCarts: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3940,7 +3814,7 @@ export interface operations {
    * Retrieve a list of contact options (admin)
    * @description Admin endpoint to retrieve options for any contact
    */
-  GetSystemContactOptions: {
+  ContactOptions_GetSystemContactOptions: {
     parameters: {
       query?: {
         portalId?: string;
@@ -3987,7 +3861,7 @@ export interface operations {
    * Create a new contact option (admin)
    * @description Admin endpoint to create an option for any contact
    */
-  CreateSystemContactOption: {
+  ContactOptions_CreateSystemContactOption: {
     parameters: {
       query: {
         key: string;
@@ -4035,7 +3909,7 @@ export interface operations {
    * Get the count of contact options (admin)
    * @description Admin endpoint to get the count of options for any contact
    */
-  GetSystemContactOptionsCount: {
+  ContactOptions_GetSystemContactOptionsCount: {
     parameters: {
       query?: {
         portalId?: string;
@@ -4082,7 +3956,7 @@ export interface operations {
    * Retrieve a single contact option by its ID (admin)
    * @description Admin endpoint to retrieve a single option for any contact
    */
-  GetSystemContactOptionById: {
+  ContactOptions_GetSystemContactOptionById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4123,7 +3997,7 @@ export interface operations {
    * Update a contact option (admin)
    * @description Admin endpoint to update an option for any contact
    */
-  UpdateSystemContactOption: {
+  ContactOptions_UpdateSystemContactOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4170,7 +4044,7 @@ export interface operations {
    * Delete a contact option (admin)
    * @description Admin endpoint to delete an option for any contact
    */
-  DeleteSystemContactOption: {
+  ContactOptions_DeleteSystemContactOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4211,7 +4085,7 @@ export interface operations {
    * Partially update a contact option (admin)
    * @description Admin endpoint to partially update an option for any contact using a JSON Patch document
    */
-  PatchSystemContactOption: {
+  ContactOptions_PatchSystemContactOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4258,7 +4132,7 @@ export interface operations {
    * Send a basic transactional email to recipients.
    * @description This action is only available for global administrators (business_owner role).
    */
-  AdminSendBasicEmail: {
+  Emails_AdminSendBasicEmail: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4301,7 +4175,7 @@ export interface operations {
    * Preview a rendered basic email template.
    * @description This action is only available for global administrators (business_owner role).
    */
-  AdminPreviewBasicEmailTemplate: {
+  Emails_AdminPreviewBasicEmailTemplate: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4323,7 +4197,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -4338,11 +4291,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get durable-inbox processor health
    * @description Returns a single snapshot of the durable-inbox processor: whether it is enabled, the per-status counts (received/accepted/processing/retry-scheduled/rejected/quarantined/dead-lettered/cancelled), the age of the oldest accepted message, and the last successful processing instant. Global-administrator only.
    */
-  GetInboxHealth: {
+  Inbox_GetInboxHealth: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4379,7 +4517,7 @@ export interface operations {
    * List inbox messages
    * @description Lists durable-inbox messages (payload-safe fields only). Use OData to scope by any projected field — e.g. $filter=Status eq 'Quarantined' for the quarantine review, Status eq 'DeadLettered' for terminal failures, VerificationStatus eq 'Failed' for forged/untrusted callbacks, SourceSystem eq 'stripe', or a ReceivedAtUtc range — and to page/order. Global-administrator only.
    */
-  GetInboxMessages: {
+  Inbox_GetInboxMessages: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4422,7 +4560,7 @@ export interface operations {
    * Count inbox messages
    * @description Returns the count of durable-inbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'Quarantined'). Global-administrator only.
    */
-  GetInboxMessagesCount: {
+  Inbox_GetInboxMessagesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4465,7 +4603,7 @@ export interface operations {
    * Get one inbox message
    * @description Returns one inbox message's payload-safe detail by id — both lifecycle axes (processing status + independent verification status), the dedup lineage, attempt/generation counters, the recorded failure, and the timestamps. Global-administrator only.
    */
-  GetInboxMessage: {
+  Inbox_GetInboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4512,7 +4650,7 @@ export interface operations {
    * Get an inbox correlation chain
    * @description Returns every inbox message that shares a correlation id — one logical inbound interaction end-to-end, including its replay generations — oldest-received first. Global-administrator only.
    */
-  GetInboxCorrelationChain: {
+  Inbox_GetInboxCorrelationChain: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4559,7 +4697,7 @@ export interface operations {
    * List duplicate-bearing inbox messages
    * @description Lists inbox messages that have observed a re-delivery (DeliveryCount > 1) — durable evidence that a source is re-sending, surfaced with DeliveryCount / LastDuplicateReceivedAtUtc. Further OData filtering/paging applies. Global-administrator only.
    */
-  GetDuplicateInboxMessages: {
+  Inbox_GetDuplicateInboxMessages: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4602,7 +4740,7 @@ export interface operations {
    * Count duplicate-bearing inbox messages
    * @description Returns the count of duplicate-bearing inbox messages under the same OData shaping as the duplicates list. Global-administrator only.
    */
-  GetDuplicateInboxMessagesCount: {
+  Inbox_GetDuplicateInboxMessagesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4645,7 +4783,7 @@ export interface operations {
    * Expedite a retry-scheduled inbox message
    * @description Pulls a RetryScheduled message's scheduled instant forward to now so the processor claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched. Only a RetryScheduled message can be expedited. Global-administrator only.
    */
-  ExpediteInboxMessage: {
+  Inbox_ExpediteInboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4699,7 +4837,7 @@ export interface operations {
    * Cancel a scheduled inbox retry
    * @description Stops a RetryScheduled message from retrying by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. Only a RetryScheduled message can be cancelled. Global-administrator only.
    */
-  CancelInboxMessageRetry: {
+  Inbox_CancelInboxMessageRetry: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4759,7 +4897,7 @@ export interface operations {
    * Release a stuck inbox lease
    * @description Force-releases the lease on a message wedged in Processing (a crashed/hung processor) and returns it to the claimable Accepted state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. Only a Processing message can have its lease released. Global-administrator only.
    */
-  ReleaseInboxMessageLease: {
+  Inbox_ReleaseInboxMessageLease: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4813,7 +4951,7 @@ export interface operations {
    * Manually dead-letter an inbox message
    * @description Manually moves a non-terminal message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
    */
-  DeadLetterInboxMessage: {
+  Inbox_DeadLetterInboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4873,7 +5011,7 @@ export interface operations {
    * Manually quarantine an inbox message
    * @description Manually holds a non-terminal message for review in the terminal Quarantined state (e.g. an operator judges it suspicious). The reason is audit-critical. Global-administrator only.
    */
-  QuarantineInboxMessage: {
+  Inbox_QuarantineInboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4933,7 +5071,7 @@ export interface operations {
    * Replay a terminal inbox message as a new generation
    * @description Replays a terminal message as a NEW processing generation over its immutable received evidence — the inbox's recovery lever (distinct from the outbox's same-row requeue). A selected replay-generation row is resolved back to its lineage root before replaying, so numbering stays global and collision-free; the new row is claimable at once with a fresh retry budget, and the root's evidence and budget are never mutated. Legal only from a terminal state whose authenticity passed. Returns the new generation's identity. The reason is audit-critical. Global-administrator only.
    */
-  ReplayInboxMessage: {
+  Inbox_ReplayInboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4993,7 +5131,7 @@ export interface operations {
    * Retrieve a list of system IP lookups
    * @description Retrieve a list of all IP lookups in the system
    */
-  GetSystemIPLookups: {
+  IPLookups_GetSystemIPLookups: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5036,7 +5174,7 @@ export interface operations {
    * Get the count of system IP lookups
    * @description Get the count of all IP lookups in the system
    */
-  GetSystemIPLookupsCount: {
+  IPLookups_GetSystemIPLookupsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5079,7 +5217,7 @@ export interface operations {
    * Retrieve a single system IP lookup by its ID
    * @description Retrieve a single system IP lookup by its ID
    */
-  GetSystemIPLookupById: {
+  IPLookups_GetSystemIPLookupById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5119,7 +5257,7 @@ export interface operations {
    * Delete a system IP lookup
    * @description Delete a system IP lookup by its ID
    */
-  DeleteSystemIPLookup: {
+  IPLookups_DeleteSystemIPLookup: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -5156,13 +5294,486 @@ export interface operations {
     };
   };
   /**
-   * Retrieve a list of licenses
-   * @description Retrieves a list of suite licenses, optionally filtered by tenant.
+   * List license seat assignments
+   * @description Lists the seats currently assigned on a pooled suite license for the acting tenant.
    */
-  GetLicensesAsync: {
+  LicenseAssignments_GetLicenseAssignments: {
     parameters: {
-      query?: {
-        tenantId?: string;
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Assign a license seat
+   * @description Assigns a seat on a pooled suite license to a current member of the acting tenant. Idempotent.
+   */
+  LicenseAssignments_AssignLicense: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/xml": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "text/plain": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "text/xml": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/*+xml": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/json-patch+json": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "text/json": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+        "application/*+json": components["schemas"]["SuiteLicenseAssignmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/xml": components["schemas"]["BooleanEnvelope"];
+          "text/plain": components["schemas"]["BooleanEnvelope"];
+          "application/octet-stream": components["schemas"]["BooleanEnvelope"];
+          "text/json": components["schemas"]["BooleanEnvelope"];
+          "text/xml": components["schemas"]["BooleanEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Revoke a license seat
+   * @description Revokes a member's seat on a pooled suite license owned by the acting tenant. Idempotent.
+   */
+  LicenseAssignments_RevokeLicense: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+        enrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/xml": components["schemas"]["BooleanEnvelope"];
+          "text/plain": components["schemas"]["BooleanEnvelope"];
+          "application/octet-stream": components["schemas"]["BooleanEnvelope"];
+          "text/json": components["schemas"]["BooleanEnvelope"];
+          "text/xml": components["schemas"]["BooleanEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of licenses
+   * @description Retrieves the suite licenses owned by the acting tenant.
+   */
+  Licensing_GetLicenses: {
+    parameters: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -5268,7 +5879,7 @@ export interface operations {
    * Retrieve a license by ID
    * @description Retrieves a single suite license by its unique identifier.
    */
-  GetLicenseByIdAsync: {
+  Licensing_GetLicenseById: {
     parameters: {
       query: {
         tenantId: string;
@@ -5380,7 +5991,7 @@ export interface operations {
    * Retrieve license assignments
    * @description Retrieves all license assignments for a given license.
    */
-  GetLicenseAssignmentsAsync: {
+  Licensing_GetLicenseAssignments: {
     parameters: {
       query: {
         tenantId: string;
@@ -5492,7 +6103,7 @@ export interface operations {
    * Retrieve license attributes
    * @description Retrieves all additional attributes for a given license.
    */
-  GetAttributesForLicenseAsync: {
+  Licensing_GetAttributesForLicense: {
     parameters: {
       query: {
         tenantId: string;
@@ -5604,7 +6215,7 @@ export interface operations {
    * Retrieve license features
    * @description Retrieves all features for a given license.
    */
-  GetFeaturesForLicenseAsync: {
+  Licensing_GetFeaturesForLicense: {
     parameters: {
       query: {
         tenantId: string;
@@ -5716,7 +6327,7 @@ export interface operations {
    * Retrieve license record quota
    * @description Retrieves the record quota for a given license.
    */
-  GetLicenseRecordsQuotaAsync: {
+  Licensing_GetLicenseRecordsQuota: {
     parameters: {
       query: {
         tenantId: string;
@@ -5828,7 +6439,7 @@ export interface operations {
    * Redeem a license
    * @description Redeems a license for the current tenant user.
    */
-  RedeemLicenseAsync: {
+  Licensing_RedeemLicense: {
     parameters: {
       query: {
         tenantId: string;
@@ -5984,7 +6595,7 @@ export interface operations {
    * Validate a license
    * @description Validates a license key and returns validation failures if any.
    */
-  ValidateLicenseAsync: {
+  Licensing_ValidateLicense: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6136,9 +6747,9 @@ export interface operations {
   };
   /**
    * Retrieve database migrations
-   * @description Retrieves the list of applied or pending database migrations.
+   * @description Retrieves the list of applied or pending database migrations. This action is only available for instance administrators.
    */
-  Migrations: {
+  Migrations_Migrations: {
     parameters: {
       query?: {
         pending?: boolean;
@@ -6174,9 +6785,9 @@ export interface operations {
   };
   /**
    * Apply pending database migrations
-   * @description Applies all pending database migrations and returns the list of migrations that were applied.
+   * @description Applies all pending database migrations and returns the list of migrations that were applied. This action is only available for instance administrators.
    */
-  Migrate: {
+  Migrations_Migrate: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6210,7 +6821,7 @@ export interface operations {
     };
   };
   /** Get all modules available on this suite server instance. */
-  GetAllModules: {
+  Modules_GetAllModules: {
     parameters: {
       query: {
         tenantId: string;
@@ -6245,7 +6856,7 @@ export interface operations {
     };
   };
   /** Get all modules available to a tenant user. */
-  GetAvailableModules: {
+  Modules_GetAvailableModules: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -6283,7 +6894,7 @@ export interface operations {
    * Retrieve a list of system options
    * @description Retrieve a list of system options for a portal
    */
-  GetSystemOptions: {
+  Options_GetSystemOptions: {
     parameters: {
       query: {
         portalId: string;
@@ -6327,7 +6938,7 @@ export interface operations {
    * Create a new system option
    * @description Create a new system option
    */
-  CreateSystemOption: {
+  Options_CreateSystemOption: {
     parameters: {
       query: {
         key: string;
@@ -6372,7 +6983,7 @@ export interface operations {
    * Get the count of system options
    * @description Get the count of system options for a portal
    */
-  GetSystemOptionsCount: {
+  Options_GetSystemOptionsCount: {
     parameters: {
       query: {
         portalId: string;
@@ -6416,7 +7027,7 @@ export interface operations {
    * Retrieve a single system option by its ID
    * @description Retrieve a single system option by its ID
    */
-  GetSystemOptionById: {
+  Options_GetSystemOptionById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6456,7 +7067,7 @@ export interface operations {
    * Update a system option
    * @description Update a system option
    */
-  UpdateSystemOption: {
+  Options_UpdateSystemOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6502,7 +7113,7 @@ export interface operations {
    * Delete a system option
    * @description Delete a system option
    */
-  DeleteSystemOption: {
+  Options_DeleteSystemOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6542,7 +7153,7 @@ export interface operations {
    * Partially update a system option
    * @description Partially update a system option using a JSON Patch document
    */
-  PatchSystemOption: {
+  Options_PatchSystemOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6588,7 +7199,7 @@ export interface operations {
    * Retrieve a single system option by its key
    * @description Retrieve a single system option by its key
    */
-  GetSystemOptionByKey: {
+  Options_GetSystemOptionByKey: {
     parameters: {
       query: {
         portalId: string;
@@ -6629,7 +7240,7 @@ export interface operations {
    * Create or update a system option by key
    * @description Create or update a system option by key
    */
-  UpsertSystemOption: {
+  Options_UpsertSystemOption: {
     parameters: {
       query?: {
         portalId?: string;
@@ -6676,7 +7287,7 @@ export interface operations {
    * Get durable-outbox relay health
    * @description Returns a single snapshot of the durable-outbox relay: whether it is enabled, the per-status counts (pending/processing/failed/dead-lettered), the age of the oldest pending message, and the last successful dispatch instant. Global-administrator only.
    */
-  GetOutboxHealth: {
+  Outbox_GetOutboxHealth: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6713,7 +7324,7 @@ export interface operations {
    * List outbox messages
    * @description Lists durable-outbox messages (payload-safe fields only). Use OData to scope to a state — e.g. $filter=Status eq 'DeadLettered' for the dead-letter set or Status eq 'Failed' for retry-eligible rows — and to page/order. Global-administrator only.
    */
-  GetOutboxMessages: {
+  Outbox_GetOutboxMessages: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6756,7 +7367,7 @@ export interface operations {
    * Count outbox messages
    * @description Returns the count of durable-outbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'DeadLettered'). Global-administrator only.
    */
-  GetOutboxMessagesCount: {
+  Outbox_GetOutboxMessagesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6799,7 +7410,7 @@ export interface operations {
    * Get one outbox message
    * @description Returns one outbox message's payload-safe detail by id — its lifecycle status, the two classification axes (kind + message type), the attempt/ceiling budget, the recorded failure, the idempotency + correlation lineage, and the timestamps. Global-administrator only.
    */
-  GetOutboxMessage: {
+  Outbox_GetOutboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6846,7 +7457,7 @@ export interface operations {
    * Get an outbox correlation chain
    * @description Returns every outbox message that shares a correlation id — one logical unit of async work end-to-end (e.g. a command and the events its handler in turn staged) — oldest-created first. Global-administrator only.
    */
-  GetOutboxCorrelationChain: {
+  Outbox_GetOutboxCorrelationChain: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6893,7 +7504,7 @@ export interface operations {
    * Replay a dead-lettered or failed outbox message
    * @description Requeues a DeadLettered or Failed message back to Pending so the relay re-drives it immediately (clearing the lease and recorded error, and bypassing the remaining backoff). The attempt budget is preserved — a replay grants one more pass, not a fresh budget. Replaying a message that is already Pending/Processing or is Succeeded/Cancelled is rejected. Global-administrator only.
    */
-  ReplayOutboxMessage: {
+  Outbox_ReplayOutboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6947,7 +7558,7 @@ export interface operations {
    * Expedite a failed (retry-eligible) outbox message
    * @description Pulls a Failed message's scheduled instant forward to now so the relay claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched (the lighter-touch counterpart to Replay, which also clears the recorded error). Only a Failed message can be expedited. Global-administrator only.
    */
-  ExpediteOutboxMessage: {
+  Outbox_ExpediteOutboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7001,7 +7612,7 @@ export interface operations {
    * Cancel an outbox message
    * @description Stops a Pending or Failed message by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. An in-flight (Processing) or already-terminal message is rejected. Global-administrator only.
    */
-  CancelOutboxMessage: {
+  Outbox_CancelOutboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7061,7 +7672,7 @@ export interface operations {
    * Manually dead-letter an outbox message
    * @description Manually moves a Processing or Failed message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
    */
-  DeadLetterOutboxMessage: {
+  Outbox_DeadLetterOutboxMessage: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7121,7 +7732,7 @@ export interface operations {
    * Release a stuck outbox lease
    * @description Force-releases the lease on a message wedged in Processing (a crashed/hung relay) and returns it to the claimable Pending state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. The relay auto-reclaims a crashed row once its lease expires; this manual lever forces the release immediately. Only a Processing message can have its lease released. Global-administrator only.
    */
-  ReleaseOutboxMessageLease: {
+  Outbox_ReleaseOutboxMessageLease: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7172,10 +7783,231 @@ export interface operations {
     };
   };
   /**
+   * List unresolved consumer poison on a partition
+   * @description Returns the unresolved dead-lettered (poison) positions consumers hold on one partition, ordered by sequence, each with its evidence: the consumer, the message id and type, when and why it was dead-lettered, and the outbox message's error, correlation and causation ids while that message is still retained (MessageRetained=false once retention has purged it). consumerKey and throughSequence are optional. Global-administrator only.
+   */
+  Outbox_GetOutboxPoisonPositions: {
+    parameters: {
+      query: {
+        partitionKey: string;
+        consumerKey?: string;
+        throughSequence?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OutboxPoisonPositionDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["OutboxPoisonPositionDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Resolve a consumer poison position
+   * @description Records a governed resolution of one dead-lettered (poison) position so it stops blocking certification. The dead-lettered receipt is never altered. Superseded records that the position will never be applied. Replayed is accepted only when replacementSequence names a later position on the same partition at which the consumer already holds an Applied receipt. An omitted consumerKey resolves the position for every consumer holding poison there. Idempotent, and audited. Global-administrator only.
+   */
+  Outbox_ResolveOutboxPoison: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ResolveOutboxPoisonRequest"];
+        "application/xml": components["schemas"]["ResolveOutboxPoisonRequest"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List unresolved consumer poison on a tenant's own partition
+   * @description Returns the unresolved poison positions, with evidence, that one consumer holds on the tenant's own partition. partitionKey must be the tenant's own partition and consumerKey is required and must be a consumer a tenant may resolve. Any other partition reads as not found. Tenant business owner only.
+   */
+  Outbox_GetTenantOutboxPoisonPositions: {
+    parameters: {
+      query: {
+        partitionKey: string;
+        consumerKey?: string;
+        throughSequence?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OutboxPoisonPositionDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["OutboxPoisonPositionDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Resolve a consumer poison position on a tenant's own partition
+   * @description Records a governed resolution of one poison position on the tenant's own partition, for one consumer a tenant may resolve (derived-state consumers such as Search). consumerKey is required. Money and effect consumers are resolved by the platform operator only. Any other partition reads as not found. Same Superseded and Replayed rules as the platform route. Idempotent, and audited. Tenant business owner only.
+   */
+  Outbox_ResolveTenantOutboxPoison: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ResolveOutboxPoisonRequest"];
+        "application/xml": components["schemas"]["ResolveOutboxPoisonRequest"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get system overview information
    * @description Returns runtime, memory, and entity count information for the system
    */
-  GetSystemOverview: {
+  Overview_GetSystemOverview: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7212,7 +8044,7 @@ export interface operations {
    * Retrieve a list of system portals
    * @description Retrieve a list of all web portals in the system
    */
-  GetSystemPortals: {
+  Portals_GetSystemPortals: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7255,7 +8087,7 @@ export interface operations {
    * Create a new system portal
    * @description Create a new web portal in the system
    */
-  CreateSystemPortal: {
+  Portals_CreateSystemPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7298,7 +8130,7 @@ export interface operations {
    * Get the count of system portals
    * @description Get the count of all web portals in the system
    */
-  GetSystemPortalsCount: {
+  Portals_GetSystemPortalsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7341,7 +8173,7 @@ export interface operations {
    * Retrieve a single system portal by its ID
    * @description Retrieve a single system portal by its ID
    */
-  GetSystemPortalById: {
+  Portals_GetSystemPortalById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7381,7 +8213,7 @@ export interface operations {
    * Update a system portal
    * @description Update an existing web portal in the system
    */
-  UpdateSystemPortal: {
+  Portals_UpdateSystemPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7427,7 +8259,7 @@ export interface operations {
    * Delete a system portal
    * @description Delete a web portal from the system
    */
-  DeleteSystemPortal: {
+  Portals_DeleteSystemPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7467,7 +8299,7 @@ export interface operations {
    * Partially update a system portal
    * @description Partially update an existing web portal in the system using a JSON Patch document
    */
-  PatchSystemPortal: {
+  Portals_PatchSystemPortal: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7513,7 +8345,7 @@ export interface operations {
    * Retrieve a list of tenant options (admin)
    * @description Admin endpoint to retrieve options for any tenant
    */
-  GetSystemTenantOptions: {
+  TenantOptions_GetSystemTenantOptions: {
     parameters: {
       query?: {
         portalId?: string;
@@ -7560,7 +8392,7 @@ export interface operations {
    * Create a new tenant option (admin)
    * @description Admin endpoint to create an option for any tenant
    */
-  CreateSystemTenantOption: {
+  TenantOptions_CreateSystemTenantOption: {
     parameters: {
       query: {
         key: string;
@@ -7608,7 +8440,7 @@ export interface operations {
    * Get the count of tenant options (admin)
    * @description Admin endpoint to get the count of options for any tenant
    */
-  GetSystemTenantOptionsCount: {
+  TenantOptions_GetSystemTenantOptionsCount: {
     parameters: {
       query?: {
         portalId?: string;
@@ -7655,7 +8487,7 @@ export interface operations {
    * Retrieve a single tenant option by its ID (admin)
    * @description Admin endpoint to retrieve a single option for any tenant
    */
-  GetSystemTenantOptionById: {
+  TenantOptions_GetSystemTenantOptionById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7696,7 +8528,7 @@ export interface operations {
    * Update a tenant option (admin)
    * @description Admin endpoint to update an option for any tenant
    */
-  UpdateSystemTenantOption: {
+  TenantOptions_UpdateSystemTenantOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7743,7 +8575,7 @@ export interface operations {
    * Delete a tenant option (admin)
    * @description Admin endpoint to delete an option for any tenant
    */
-  DeleteSystemTenantOption: {
+  TenantOptions_DeleteSystemTenantOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7784,7 +8616,7 @@ export interface operations {
    * Partially update a tenant option (admin)
    * @description Admin endpoint to partially update an option for any tenant using a JSON Patch document
    */
-  PatchSystemTenantOption: {
+  TenantOptions_PatchSystemTenantOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7831,7 +8663,7 @@ export interface operations {
    * Get all tenants available on this suite server instance.
    * @description This action is only available for global administrators.
    */
-  GetAllTenants: {
+  Tenants_GetAllTenants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7874,7 +8706,7 @@ export interface operations {
    * Create a new tenant.
    * @description This action is only available for global administrators.
    */
-  CreateTenant: {
+  Tenants_CreateTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7917,7 +8749,7 @@ export interface operations {
    * Get the total count of tenants available on this suite server instance.
    * @description This action is only available for global administrators.
    */
-  GetTenantsCount: {
+  Tenants_GetTenantsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -7960,7 +8792,7 @@ export interface operations {
    * Get all extended tenants available on this suite server instance.
    * @description This action is only available for global administrators.
    */
-  GetAllExtendedTenants: {
+  Tenants_GetAllExtendedTenants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8003,7 +8835,7 @@ export interface operations {
    * Get the total count of extended tenants available on this suite server instance.
    * @description This action is only available for global administrators.
    */
-  GetExtendedTenantsCount: {
+  Tenants_GetExtendedTenantsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8046,7 +8878,7 @@ export interface operations {
    * Get a specific tenant by ID.
    * @description This action is only available for global administrators.
    */
-  GetTenant: {
+  Tenants_GetTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8086,7 +8918,7 @@ export interface operations {
    * Update a specific tenant by ID.
    * @description This action is only available for global administrators.
    */
-  UpdateTenant: {
+  Tenants_UpdateTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8132,7 +8964,7 @@ export interface operations {
    * Delete a specific tenant by ID.
    * @description This action is only available for global administrators.
    */
-  DeleteTenant: {
+  Tenants_DeleteTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8172,7 +9004,7 @@ export interface operations {
    * Partially update a specific tenant by ID.
    * @description This action is only available for global administrators.
    */
-  PatchTenant: {
+  Tenants_PatchTenant: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8218,7 +9050,7 @@ export interface operations {
    * Get the per-tenant admin module grants for a specific tenant.
    * @description This action is only available for global administrators.
    */
-  GetTenantModuleGrants: {
+  Tenants_GetTenantModuleGrants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8258,7 +9090,7 @@ export interface operations {
    * Replace the per-tenant admin module grants for a specific tenant.
    * @description This action is only available for global administrators. Grants supplement licensing.
    */
-  SetTenantModuleGrants: {
+  Tenants_SetTenantModuleGrants: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8304,7 +9136,7 @@ export interface operations {
    * Preview the rendered email for a tenant.
    * @description This action is only available for global administrators.
    */
-  AdminPreviewTenantEmail: {
+  Tenants_AdminPreviewTenantEmail: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8333,7 +9165,7 @@ export interface operations {
    * Send an email to a tenant.
    * @description This action is only available for global administrators.
    */
-  AdminSendTenantEmail: {
+  Tenants_AdminSendTenantEmail: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8362,7 +9194,7 @@ export interface operations {
    * Retrieve a list of user options (admin)
    * @description Admin endpoint to retrieve options for any user
    */
-  GetSystemUserOptions: {
+  UserOptions_GetSystemUserOptions: {
     parameters: {
       query?: {
         portalId?: string;
@@ -8409,7 +9241,7 @@ export interface operations {
    * Create a new user option (admin)
    * @description Admin endpoint to create an option for any user
    */
-  CreateSystemUserOption: {
+  UserOptions_CreateSystemUserOption: {
     parameters: {
       query: {
         key: string;
@@ -8457,7 +9289,7 @@ export interface operations {
    * Get the count of user options (admin)
    * @description Admin endpoint to get the count of options for any user
    */
-  GetSystemUserOptionsCount: {
+  UserOptions_GetSystemUserOptionsCount: {
     parameters: {
       query?: {
         portalId?: string;
@@ -8504,7 +9336,7 @@ export interface operations {
    * Retrieve a single user option by its ID (admin)
    * @description Admin endpoint to retrieve a single option for any user
    */
-  GetSystemUserOptionById: {
+  UserOptions_GetSystemUserOptionById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8545,7 +9377,7 @@ export interface operations {
    * Update a user option (admin)
    * @description Admin endpoint to update an option for any user
    */
-  UpdateSystemUserOption: {
+  UserOptions_UpdateSystemUserOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8592,7 +9424,7 @@ export interface operations {
    * Delete a user option (admin)
    * @description Admin endpoint to delete an option for any user
    */
-  DeleteSystemUserOption: {
+  UserOptions_DeleteSystemUserOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8633,7 +9465,7 @@ export interface operations {
    * Partially update a user option (admin)
    * @description Admin endpoint to partially update an option for any user using a JSON Patch document
    */
-  PatchSystemUserOption: {
+  UserOptions_PatchSystemUserOption: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8680,7 +9512,7 @@ export interface operations {
    * Retrieve a list of users
    * @description This action is only available for global administrators.
    */
-  GetUsersAsync: {
+  Users_GetUsers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8723,7 +9555,7 @@ export interface operations {
    * Create a new user
    * @description This action is only available for global administrators.
    */
-  CreateAccountHolderAsync: {
+  Users_CreateAccountHolder: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8766,7 +9598,7 @@ export interface operations {
    * Get the count of users
    * @description This action is only available for global administrators.
    */
-  GetUsersCountAsync: {
+  Users_GetUsersCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8809,7 +9641,7 @@ export interface operations {
    * Retrieve a list of extended users
    * @description This action is only available for global administrators.
    */
-  GetExtendedUsersAsync: {
+  Users_GetExtendedUsers: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8852,7 +9684,7 @@ export interface operations {
    * Get the count of extended users
    * @description This action is only available for global administrators.
    */
-  GetExtendedUsersCountAsync: {
+  Users_GetExtendedUsersCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8895,7 +9727,7 @@ export interface operations {
    * Retrieve a user by ID
    * @description This action is only available for global administrators.
    */
-  GetUserAsync: {
+  Users_GetUser: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8935,7 +9767,7 @@ export interface operations {
    * Update a user
    * @description This action is only available for global administrators.
    */
-  UpdateAccountHolderAsync: {
+  Users_UpdateAccountHolder: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -8981,7 +9813,7 @@ export interface operations {
    * Delete a user
    * @description This action is only available for global administrators.
    */
-  DeleteAccountHolderAsync: {
+  Users_DeleteAccountHolder: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9021,7 +9853,7 @@ export interface operations {
    * Partially update a user
    * @description This action is only available for global administrators.
    */
-  PatchAccountHolderAsync: {
+  Users_PatchAccountHolder: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9067,7 +9899,7 @@ export interface operations {
    * Retrieve an extended user by ID
    * @description This action is only available for global administrators.
    */
-  GetExtendedAccountHolderAsync: {
+  Users_GetExtendedAccountHolder: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9107,7 +9939,7 @@ export interface operations {
    * Retrieve the admin detail aggregate for a user
    * @description Returns the user's orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.
    */
-  GetUserAdminDetailAsync: {
+  Users_GetUserAdminDetail: {
     parameters: {
       query: {
         tenantId: string;
@@ -9148,7 +9980,7 @@ export interface operations {
    * Set a user's password
    * @description Replaces the user's password with the supplied value. Global administrators only.
    */
-  SetUserPasswordAsync: {
+  Users_SetUserPassword: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9198,10 +10030,57 @@ export interface operations {
     };
   };
   /**
+   * Confirm a user's email
+   * @description Marks the user's email as confirmed without the emailed verification token, and records the action in the security log. Idempotent. Global administrators only.
+   */
+  Users_ConfirmUserEmail: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Update a user's admin-managed profile
    * @description Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.
    */
-  UpdateAccountHolderAdminProfileAsync: {
+  Users_UpdateAccountHolderAdminProfile: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9247,7 +10126,7 @@ export interface operations {
    * Preview the rendered email for a user.
    * @description This action is only available for global administrators.
    */
-  AdminPreviewUserEmailTemplate: {
+  Users_AdminPreviewUserEmailTemplate: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -9286,7 +10165,7 @@ export interface operations {
    * Send an email to a user.
    * @description This action is only available for global administrators.
    */
-  AdminSendUserEmail: {
+  Users_AdminSendUserEmail: {
     parameters: {
       query?: {
         "api-version"?: string;

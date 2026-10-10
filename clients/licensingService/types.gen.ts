@@ -539,6 +539,107 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type TenantUsageDto = {
+    tenantId?: string | null;
+    tenantName?: string | null;
+    currencyId?: string | null;
+    measurementWindow?: UsagePeriodDto;
+    licenses?: Array<UsageLicenseDto> | null;
+    unlicensedMeters?: Array<UsageMeterDto> | null;
+    overageBudget?: UsageBudgetDto;
+    projectedPeriodCost?: UsageMoneyDto;
+    activeOverrides?: Array<TenantUsageLimitOverrideDto> | null;
+    generatedAtUtc?: string;
+    capabilities?: UsageCapabilitiesDto;
+};
+
+export type TenantUsageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantUsageDto;
+};
+
+export type TenantUsageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantUsageDto;
+};
+
+export type TenantUsageLimitOverrideDto = {
+    id?: string | null;
+    tenantId?: string | null;
+    licenseId?: string | null;
+    meterKey?: string | null;
+    entitlementKey?: string | null;
+    kind?: 'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop';
+    quantity?: number | null;
+    createdAtUtc?: string;
+    expiresAtUtc?: string | null;
+    reason?: string | null;
+    createdByUserId?: string | null;
+    effectiveAllowanceBefore?: number | null;
+    effectiveAllowanceAfter?: number | null;
+    pooledAllowanceBefore?: number | null;
+    pooledAllowanceAfter?: number | null;
+    periodStartUtc?: string;
+    stoppedBefore?: boolean;
+    stoppedAfter?: boolean;
+    active?: boolean;
+};
+
+export type TenantUsageSummaryDto = {
+    tenantId?: string | null;
+    tenantName?: string | null;
+    offeringKey?: string | null;
+    planName?: string | null;
+    periodEndUtc?: string | null;
+    maxPercentUsed?: number | null;
+    maxPercentMeterKey?: string | null;
+    worstStatus?: 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
+    metersNear?: number;
+    metersAtOrOver?: number;
+    hardStopActive?: boolean;
+    activeOverrides?: number;
+};
+
+export type TenantUsageSummaryDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantUsageSummaryDto> | null;
+};
+
+export type TenantUsageSummaryDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantUsageSummaryDto> | null;
+};
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -555,72 +656,209 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetVersionData = {
+export type UsageBudgetDto = {
+    budget?: UsageMoneyDto;
+    used?: UsageMoneyDto;
+    percentUsed?: number | null;
+    enforced?: boolean | null;
+};
+
+export type UsageCapabilitiesDto = {
+    canChangePlan?: boolean;
+    canManageBudget?: boolean;
+    canOverrideLimits?: boolean;
+};
+
+export type UsageGrantDto = {
+    licenseId?: string | null;
+    allowanceKind?: 'Finite' | 'Unlimited' | 'NotIncluded' | 'Unknown' | 'Unlicensed';
+    planAllowance?: number | null;
+    allowance?: number | null;
+    overridden?: boolean;
+    overrideExpiresAtUtc?: string | null;
+    revision?: string | null;
+};
+
+export type UsageLicenseDto = {
+    licenseId?: string | null;
+    state?: string | null;
+    plan?: UsagePlanDto;
+    period?: UsagePeriodDto;
+    entitlements?: Array<UsageMeterDto> | null;
+    pooledEntitlementKeys?: Array<string> | null;
+};
+
+export type UsageMeterDefinitionDto = {
+    key?: string | null;
+    labelKey?: string | null;
+    label?: string | null;
+    unit?: string | null;
+    aggregation?: 'PeriodCumulative' | 'Gauge' | 'TimeIntegral';
+    entitlementKey?: string | null;
+    sourceService?: string | null;
+    rated?: boolean;
+};
+
+export type UsageMeterDefinitionDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<UsageMeterDefinitionDto> | null;
+};
+
+export type UsageMeterDefinitionDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<UsageMeterDefinitionDto> | null;
+};
+
+export type UsageMeterDto = {
+    key?: string | null;
+    entitlementKey?: string | null;
+    licenseId?: string | null;
+    grantingLicenseIds?: Array<string> | null;
+    grants?: Array<UsageGrantDto> | null;
+    labelKey?: string | null;
+    label?: string | null;
+    unit?: string | null;
+    aggregation?: 'PeriodCumulative' | 'Gauge' | 'TimeIntegral';
+    allowanceKind?: 'Finite' | 'Unlimited' | 'NotIncluded' | 'Unknown' | 'Unlicensed';
+    allowance?: number | null;
+    planAllowance?: number | null;
+    overridden?: boolean;
+    nearThresholdPercent?: number;
+    allowedOverrides?: Array<'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop'> | null;
+    overrideNote?: string | null;
+    dataState?: 'Measured' | 'Partial' | 'Delayed' | 'Unavailable';
+    consumed?: number | null;
+    peak?: number | null;
+    unmeasuredEvents?: number;
+    remaining?: number | null;
+    percentUsed?: number | null;
+    projectedAtPeriodEnd?: number | null;
+    projectionBasis?: string | null;
+    status?: 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
+    limitBehavior?: 'None' | 'HardStop' | 'Overage';
+    stopped?: boolean;
+    includedQuantity?: number | null;
+    overageQuantity?: number | null;
+    costStatus?: 'NotRated' | 'Estimated' | 'Invoiced';
+    overageCost?: UsageMoneyDto;
+    costBasis?: string | null;
+    trend?: Array<UsageTrendPointDto> | null;
+    source?: string | null;
+    asOfUtc?: string | null;
+    note?: string | null;
+};
+
+export type UsageMoneyDto = {
+    amount?: number;
+    currencyId?: string | null;
+};
+
+export type UsagePeriodDto = {
+    startUtc?: string;
+    endUtc?: string;
+    timezoneId?: string | null;
+    daysElapsed?: number;
+    daysTotal?: number;
+};
+
+export type UsagePlanDto = {
+    subscriptionId?: string | null;
+    offeringKey?: string | null;
+    planSku?: string | null;
+    name?: string | null;
+    billingCycle?: 'Monthly' | 'Annual';
+    periodPrice?: UsageMoneyDto;
+    hardStop?: boolean;
+};
+
+export type UsageTrendPointDto = {
+    dateUtc?: string;
+    consumed?: number;
+    cumulative?: number;
+    missing?: boolean;
+};
+
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -630,32 +868,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -666,81 +904,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -751,25 +989,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -780,25 +1018,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -809,18 +1047,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -830,14 +1068,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -846,14 +1084,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -862,28 +1100,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseAttributesAsyncData = {
+export type LicenseAttributesGetLicenseAttributesData = {
     body?: LicenseAttributeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -896,25 +1134,25 @@ export type GetLicenseAttributesAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes';
 };
 
-export type GetLicenseAttributesAsyncErrors = {
+export type LicenseAttributesGetLicenseAttributesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseAttributesAsyncError = GetLicenseAttributesAsyncErrors[keyof GetLicenseAttributesAsyncErrors];
+export type LicenseAttributesGetLicenseAttributesError = LicenseAttributesGetLicenseAttributesErrors[keyof LicenseAttributesGetLicenseAttributesErrors];
 
-export type GetLicenseAttributesAsyncResponses = {
+export type LicenseAttributesGetLicenseAttributesResponses = {
     /**
      * OK
      */
     200: LicenseAttributeDtoListEnvelopeReadable;
 };
 
-export type GetLicenseAttributesAsyncResponse = GetLicenseAttributesAsyncResponses[keyof GetLicenseAttributesAsyncResponses];
+export type LicenseAttributesGetLicenseAttributesResponse = LicenseAttributesGetLicenseAttributesResponses[keyof LicenseAttributesGetLicenseAttributesResponses];
 
-export type CreateLicenseAttributeAsyncData = {
+export type LicenseAttributesCreateLicenseAttributeData = {
     body?: LicenseAttributeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -927,7 +1165,7 @@ export type CreateLicenseAttributeAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes';
 };
 
-export type CreateLicenseAttributeAsyncErrors = {
+export type LicenseAttributesCreateLicenseAttributeErrors = {
     /**
      * Bad Request
      */
@@ -938,16 +1176,16 @@ export type CreateLicenseAttributeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLicenseAttributeAsyncError = CreateLicenseAttributeAsyncErrors[keyof CreateLicenseAttributeAsyncErrors];
+export type LicenseAttributesCreateLicenseAttributeError = LicenseAttributesCreateLicenseAttributeErrors[keyof LicenseAttributesCreateLicenseAttributeErrors];
 
-export type CreateLicenseAttributeAsyncResponses = {
+export type LicenseAttributesCreateLicenseAttributeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseAttributesCountAsyncData = {
+export type LicenseAttributesGetLicenseAttributesCountData = {
     body?: LicenseAttributeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -960,25 +1198,25 @@ export type GetLicenseAttributesCountAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes/Count';
 };
 
-export type GetLicenseAttributesCountAsyncErrors = {
+export type LicenseAttributesGetLicenseAttributesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseAttributesCountAsyncError = GetLicenseAttributesCountAsyncErrors[keyof GetLicenseAttributesCountAsyncErrors];
+export type LicenseAttributesGetLicenseAttributesCountError = LicenseAttributesGetLicenseAttributesCountErrors[keyof LicenseAttributesGetLicenseAttributesCountErrors];
 
-export type GetLicenseAttributesCountAsyncResponses = {
+export type LicenseAttributesGetLicenseAttributesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLicenseAttributesCountAsyncResponse = GetLicenseAttributesCountAsyncResponses[keyof GetLicenseAttributesCountAsyncResponses];
+export type LicenseAttributesGetLicenseAttributesCountResponse = LicenseAttributesGetLicenseAttributesCountResponses[keyof LicenseAttributesGetLicenseAttributesCountResponses];
 
-export type DeleteLicenseAttributeAsyncData = {
+export type LicenseAttributesDeleteLicenseAttributeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -993,7 +1231,7 @@ export type DeleteLicenseAttributeAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes/{id}';
 };
 
-export type DeleteLicenseAttributeAsyncErrors = {
+export type LicenseAttributesDeleteLicenseAttributeErrors = {
     /**
      * Forbidden
      */
@@ -1004,16 +1242,16 @@ export type DeleteLicenseAttributeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteLicenseAttributeAsyncError = DeleteLicenseAttributeAsyncErrors[keyof DeleteLicenseAttributeAsyncErrors];
+export type LicenseAttributesDeleteLicenseAttributeError = LicenseAttributesDeleteLicenseAttributeErrors[keyof LicenseAttributesDeleteLicenseAttributeErrors];
 
-export type DeleteLicenseAttributeAsyncResponses = {
+export type LicenseAttributesDeleteLicenseAttributeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseAttributeByIdAsyncData = {
+export type LicenseAttributesGetLicenseAttributeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1028,7 +1266,7 @@ export type GetLicenseAttributeByIdAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes/{id}';
 };
 
-export type GetLicenseAttributeByIdAsyncErrors = {
+export type LicenseAttributesGetLicenseAttributeByIdErrors = {
     /**
      * Forbidden
      */
@@ -1039,18 +1277,18 @@ export type GetLicenseAttributeByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseAttributeByIdAsyncError = GetLicenseAttributeByIdAsyncErrors[keyof GetLicenseAttributeByIdAsyncErrors];
+export type LicenseAttributesGetLicenseAttributeByIdError = LicenseAttributesGetLicenseAttributeByIdErrors[keyof LicenseAttributesGetLicenseAttributeByIdErrors];
 
-export type GetLicenseAttributeByIdAsyncResponses = {
+export type LicenseAttributesGetLicenseAttributeByIdResponses = {
     /**
      * OK
      */
     200: LicenseAttributeDto;
 };
 
-export type GetLicenseAttributeByIdAsyncResponse = GetLicenseAttributeByIdAsyncResponses[keyof GetLicenseAttributeByIdAsyncResponses];
+export type LicenseAttributesGetLicenseAttributeByIdResponse = LicenseAttributesGetLicenseAttributeByIdResponses[keyof LicenseAttributesGetLicenseAttributeByIdResponses];
 
-export type PatchLicenseAttributeAsyncData = {
+export type LicenseAttributesPatchLicenseAttributeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1065,7 +1303,7 @@ export type PatchLicenseAttributeAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes/{id}';
 };
 
-export type PatchLicenseAttributeAsyncErrors = {
+export type LicenseAttributesPatchLicenseAttributeErrors = {
     /**
      * Unauthorized
      */
@@ -1076,18 +1314,18 @@ export type PatchLicenseAttributeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLicenseAttributeAsyncError = PatchLicenseAttributeAsyncErrors[keyof PatchLicenseAttributeAsyncErrors];
+export type LicenseAttributesPatchLicenseAttributeError = LicenseAttributesPatchLicenseAttributeErrors[keyof LicenseAttributesPatchLicenseAttributeErrors];
 
-export type PatchLicenseAttributeAsyncResponses = {
+export type LicenseAttributesPatchLicenseAttributeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLicenseAttributeAsyncResponse = PatchLicenseAttributeAsyncResponses[keyof PatchLicenseAttributeAsyncResponses];
+export type LicenseAttributesPatchLicenseAttributeResponse = LicenseAttributesPatchLicenseAttributeResponses[keyof LicenseAttributesPatchLicenseAttributeResponses];
 
-export type UpdateLicenseAttributeAsyncData = {
+export type LicenseAttributesUpdateLicenseAttributeData = {
     body?: LicenseAttributeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1102,7 +1340,7 @@ export type UpdateLicenseAttributeAsyncData = {
     url: '/api/v2/LicensingService/LicenseAttributes/{id}';
 };
 
-export type UpdateLicenseAttributeAsyncErrors = {
+export type LicenseAttributesUpdateLicenseAttributeErrors = {
     /**
      * Forbidden
      */
@@ -1113,16 +1351,16 @@ export type UpdateLicenseAttributeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateLicenseAttributeAsyncError = UpdateLicenseAttributeAsyncErrors[keyof UpdateLicenseAttributeAsyncErrors];
+export type LicenseAttributesUpdateLicenseAttributeError = LicenseAttributesUpdateLicenseAttributeErrors[keyof LicenseAttributesUpdateLicenseAttributeErrors];
 
-export type UpdateLicenseAttributeAsyncResponses = {
+export type LicenseAttributesUpdateLicenseAttributeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseFeaturesAsyncData = {
+export type LicenseFeaturesGetLicenseFeaturesData = {
     body?: LicenseFeatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1135,25 +1373,25 @@ export type GetLicenseFeaturesAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures';
 };
 
-export type GetLicenseFeaturesAsyncErrors = {
+export type LicenseFeaturesGetLicenseFeaturesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseFeaturesAsyncError = GetLicenseFeaturesAsyncErrors[keyof GetLicenseFeaturesAsyncErrors];
+export type LicenseFeaturesGetLicenseFeaturesError = LicenseFeaturesGetLicenseFeaturesErrors[keyof LicenseFeaturesGetLicenseFeaturesErrors];
 
-export type GetLicenseFeaturesAsyncResponses = {
+export type LicenseFeaturesGetLicenseFeaturesResponses = {
     /**
      * OK
      */
     200: LicenseFeatureDtoListEnvelopeReadable;
 };
 
-export type GetLicenseFeaturesAsyncResponse = GetLicenseFeaturesAsyncResponses[keyof GetLicenseFeaturesAsyncResponses];
+export type LicenseFeaturesGetLicenseFeaturesResponse = LicenseFeaturesGetLicenseFeaturesResponses[keyof LicenseFeaturesGetLicenseFeaturesResponses];
 
-export type CreateLicenseFeatureAsyncData = {
+export type LicenseFeaturesCreateLicenseFeatureData = {
     body?: LicenseFeatureCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1166,7 +1404,7 @@ export type CreateLicenseFeatureAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures';
 };
 
-export type CreateLicenseFeatureAsyncErrors = {
+export type LicenseFeaturesCreateLicenseFeatureErrors = {
     /**
      * Bad Request
      */
@@ -1177,16 +1415,16 @@ export type CreateLicenseFeatureAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLicenseFeatureAsyncError = CreateLicenseFeatureAsyncErrors[keyof CreateLicenseFeatureAsyncErrors];
+export type LicenseFeaturesCreateLicenseFeatureError = LicenseFeaturesCreateLicenseFeatureErrors[keyof LicenseFeaturesCreateLicenseFeatureErrors];
 
-export type CreateLicenseFeatureAsyncResponses = {
+export type LicenseFeaturesCreateLicenseFeatureResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseFeaturesCountAsyncData = {
+export type LicenseFeaturesGetLicenseFeaturesCountData = {
     body?: LicenseFeatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1199,25 +1437,25 @@ export type GetLicenseFeaturesCountAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures/Count';
 };
 
-export type GetLicenseFeaturesCountAsyncErrors = {
+export type LicenseFeaturesGetLicenseFeaturesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseFeaturesCountAsyncError = GetLicenseFeaturesCountAsyncErrors[keyof GetLicenseFeaturesCountAsyncErrors];
+export type LicenseFeaturesGetLicenseFeaturesCountError = LicenseFeaturesGetLicenseFeaturesCountErrors[keyof LicenseFeaturesGetLicenseFeaturesCountErrors];
 
-export type GetLicenseFeaturesCountAsyncResponses = {
+export type LicenseFeaturesGetLicenseFeaturesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLicenseFeaturesCountAsyncResponse = GetLicenseFeaturesCountAsyncResponses[keyof GetLicenseFeaturesCountAsyncResponses];
+export type LicenseFeaturesGetLicenseFeaturesCountResponse = LicenseFeaturesGetLicenseFeaturesCountResponses[keyof LicenseFeaturesGetLicenseFeaturesCountResponses];
 
-export type DeleteLicenseFeatureAsyncData = {
+export type LicenseFeaturesDeleteLicenseFeatureData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1232,7 +1470,7 @@ export type DeleteLicenseFeatureAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures/{id}';
 };
 
-export type DeleteLicenseFeatureAsyncErrors = {
+export type LicenseFeaturesDeleteLicenseFeatureErrors = {
     /**
      * Forbidden
      */
@@ -1243,16 +1481,16 @@ export type DeleteLicenseFeatureAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteLicenseFeatureAsyncError = DeleteLicenseFeatureAsyncErrors[keyof DeleteLicenseFeatureAsyncErrors];
+export type LicenseFeaturesDeleteLicenseFeatureError = LicenseFeaturesDeleteLicenseFeatureErrors[keyof LicenseFeaturesDeleteLicenseFeatureErrors];
 
-export type DeleteLicenseFeatureAsyncResponses = {
+export type LicenseFeaturesDeleteLicenseFeatureResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseFeatureByIdAsyncData = {
+export type LicenseFeaturesGetLicenseFeatureByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1267,7 +1505,7 @@ export type GetLicenseFeatureByIdAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures/{id}';
 };
 
-export type GetLicenseFeatureByIdAsyncErrors = {
+export type LicenseFeaturesGetLicenseFeatureByIdErrors = {
     /**
      * Forbidden
      */
@@ -1278,18 +1516,18 @@ export type GetLicenseFeatureByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseFeatureByIdAsyncError = GetLicenseFeatureByIdAsyncErrors[keyof GetLicenseFeatureByIdAsyncErrors];
+export type LicenseFeaturesGetLicenseFeatureByIdError = LicenseFeaturesGetLicenseFeatureByIdErrors[keyof LicenseFeaturesGetLicenseFeatureByIdErrors];
 
-export type GetLicenseFeatureByIdAsyncResponses = {
+export type LicenseFeaturesGetLicenseFeatureByIdResponses = {
     /**
      * OK
      */
     200: LicenseFeatureDto;
 };
 
-export type GetLicenseFeatureByIdAsyncResponse = GetLicenseFeatureByIdAsyncResponses[keyof GetLicenseFeatureByIdAsyncResponses];
+export type LicenseFeaturesGetLicenseFeatureByIdResponse = LicenseFeaturesGetLicenseFeatureByIdResponses[keyof LicenseFeaturesGetLicenseFeatureByIdResponses];
 
-export type PatchLicenseFeatureAsyncData = {
+export type LicenseFeaturesPatchLicenseFeatureData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1304,7 +1542,7 @@ export type PatchLicenseFeatureAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures/{id}';
 };
 
-export type PatchLicenseFeatureAsyncErrors = {
+export type LicenseFeaturesPatchLicenseFeatureErrors = {
     /**
      * Unauthorized
      */
@@ -1315,18 +1553,18 @@ export type PatchLicenseFeatureAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLicenseFeatureAsyncError = PatchLicenseFeatureAsyncErrors[keyof PatchLicenseFeatureAsyncErrors];
+export type LicenseFeaturesPatchLicenseFeatureError = LicenseFeaturesPatchLicenseFeatureErrors[keyof LicenseFeaturesPatchLicenseFeatureErrors];
 
-export type PatchLicenseFeatureAsyncResponses = {
+export type LicenseFeaturesPatchLicenseFeatureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLicenseFeatureAsyncResponse = PatchLicenseFeatureAsyncResponses[keyof PatchLicenseFeatureAsyncResponses];
+export type LicenseFeaturesPatchLicenseFeatureResponse = LicenseFeaturesPatchLicenseFeatureResponses[keyof LicenseFeaturesPatchLicenseFeatureResponses];
 
-export type UpdateLicenseFeatureAsyncData = {
+export type LicenseFeaturesUpdateLicenseFeatureData = {
     body?: LicenseFeatureUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1341,7 +1579,7 @@ export type UpdateLicenseFeatureAsyncData = {
     url: '/api/v2/LicensingService/LicenseFeatures/{id}';
 };
 
-export type UpdateLicenseFeatureAsyncErrors = {
+export type LicenseFeaturesUpdateLicenseFeatureErrors = {
     /**
      * Forbidden
      */
@@ -1352,16 +1590,16 @@ export type UpdateLicenseFeatureAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateLicenseFeatureAsyncError = UpdateLicenseFeatureAsyncErrors[keyof UpdateLicenseFeatureAsyncErrors];
+export type LicenseFeaturesUpdateLicenseFeatureError = LicenseFeaturesUpdateLicenseFeatureErrors[keyof LicenseFeaturesUpdateLicenseFeatureErrors];
 
-export type UpdateLicenseFeatureAsyncResponses = {
+export type LicenseFeaturesUpdateLicenseFeatureResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicensesAsyncData = {
+export type LicensesGetLicensesData = {
     body?: LicenseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1374,25 +1612,25 @@ export type GetLicensesAsyncData = {
     url: '/api/v2/LicensingService/Licenses';
 };
 
-export type GetLicensesAsyncErrors = {
+export type LicensesGetLicensesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicensesAsyncError = GetLicensesAsyncErrors[keyof GetLicensesAsyncErrors];
+export type LicensesGetLicensesError = LicensesGetLicensesErrors[keyof LicensesGetLicensesErrors];
 
-export type GetLicensesAsyncResponses = {
+export type LicensesGetLicensesResponses = {
     /**
      * OK
      */
     200: LicenseDtoListEnvelopeReadable;
 };
 
-export type GetLicensesAsyncResponse = GetLicensesAsyncResponses[keyof GetLicensesAsyncResponses];
+export type LicensesGetLicensesResponse = LicensesGetLicensesResponses[keyof LicensesGetLicensesResponses];
 
-export type CreateLicenseAsyncData = {
+export type LicensesCreateLicenseData = {
     body?: LicenseCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1405,7 +1643,7 @@ export type CreateLicenseAsyncData = {
     url: '/api/v2/LicensingService/Licenses';
 };
 
-export type CreateLicenseAsyncErrors = {
+export type LicensesCreateLicenseErrors = {
     /**
      * Bad Request
      */
@@ -1416,16 +1654,16 @@ export type CreateLicenseAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLicenseAsyncError = CreateLicenseAsyncErrors[keyof CreateLicenseAsyncErrors];
+export type LicensesCreateLicenseError = LicensesCreateLicenseErrors[keyof LicensesCreateLicenseErrors];
 
-export type CreateLicenseAsyncResponses = {
+export type LicensesCreateLicenseResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetLicensesCountAsyncData = {
+export type LicensesGetLicensesCountData = {
     body?: LicenseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1438,25 +1676,25 @@ export type GetLicensesCountAsyncData = {
     url: '/api/v2/LicensingService/Licenses/Count';
 };
 
-export type GetLicensesCountAsyncErrors = {
+export type LicensesGetLicensesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicensesCountAsyncError = GetLicensesCountAsyncErrors[keyof GetLicensesCountAsyncErrors];
+export type LicensesGetLicensesCountError = LicensesGetLicensesCountErrors[keyof LicensesGetLicensesCountErrors];
 
-export type GetLicensesCountAsyncResponses = {
+export type LicensesGetLicensesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLicensesCountAsyncResponse = GetLicensesCountAsyncResponses[keyof GetLicensesCountAsyncResponses];
+export type LicensesGetLicensesCountResponse = LicensesGetLicensesCountResponses[keyof LicensesGetLicensesCountResponses];
 
-export type DeleteLicenseAsyncData = {
+export type LicensesDeleteLicenseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1471,7 +1709,7 @@ export type DeleteLicenseAsyncData = {
     url: '/api/v2/LicensingService/Licenses/{licenseId}';
 };
 
-export type DeleteLicenseAsyncErrors = {
+export type LicensesDeleteLicenseErrors = {
     /**
      * Forbidden
      */
@@ -1482,16 +1720,16 @@ export type DeleteLicenseAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteLicenseAsyncError = DeleteLicenseAsyncErrors[keyof DeleteLicenseAsyncErrors];
+export type LicensesDeleteLicenseError = LicensesDeleteLicenseErrors[keyof LicensesDeleteLicenseErrors];
 
-export type DeleteLicenseAsyncResponses = {
+export type LicensesDeleteLicenseResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseByIdAsyncData = {
+export type LicensesGetLicenseByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1506,7 +1744,7 @@ export type GetLicenseByIdAsyncData = {
     url: '/api/v2/LicensingService/Licenses/{licenseId}';
 };
 
-export type GetLicenseByIdAsyncErrors = {
+export type LicensesGetLicenseByIdErrors = {
     /**
      * Forbidden
      */
@@ -1517,18 +1755,18 @@ export type GetLicenseByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseByIdAsyncError = GetLicenseByIdAsyncErrors[keyof GetLicenseByIdAsyncErrors];
+export type LicensesGetLicenseByIdError = LicensesGetLicenseByIdErrors[keyof LicensesGetLicenseByIdErrors];
 
-export type GetLicenseByIdAsyncResponses = {
+export type LicensesGetLicenseByIdResponses = {
     /**
      * OK
      */
     200: LicenseDto;
 };
 
-export type GetLicenseByIdAsyncResponse = GetLicenseByIdAsyncResponses[keyof GetLicenseByIdAsyncResponses];
+export type LicensesGetLicenseByIdResponse = LicensesGetLicenseByIdResponses[keyof LicensesGetLicenseByIdResponses];
 
-export type UpdateLicenseAsyncData = {
+export type LicensesUpdateLicenseData = {
     body?: LicenseUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1543,7 +1781,7 @@ export type UpdateLicenseAsyncData = {
     url: '/api/v2/LicensingService/Licenses/{licenseId}';
 };
 
-export type UpdateLicenseAsyncErrors = {
+export type LicensesUpdateLicenseErrors = {
     /**
      * Forbidden
      */
@@ -1554,16 +1792,16 @@ export type UpdateLicenseAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateLicenseAsyncError = UpdateLicenseAsyncErrors[keyof UpdateLicenseAsyncErrors];
+export type LicensesUpdateLicenseError = LicensesUpdateLicenseErrors[keyof LicensesUpdateLicenseErrors];
 
-export type UpdateLicenseAsyncResponses = {
+export type LicensesUpdateLicenseResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseTypesAsyncData = {
+export type LicenseTypesGetLicenseTypesData = {
     body?: LicenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1576,25 +1814,25 @@ export type GetLicenseTypesAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes';
 };
 
-export type GetLicenseTypesAsyncErrors = {
+export type LicenseTypesGetLicenseTypesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseTypesAsyncError = GetLicenseTypesAsyncErrors[keyof GetLicenseTypesAsyncErrors];
+export type LicenseTypesGetLicenseTypesError = LicenseTypesGetLicenseTypesErrors[keyof LicenseTypesGetLicenseTypesErrors];
 
-export type GetLicenseTypesAsyncResponses = {
+export type LicenseTypesGetLicenseTypesResponses = {
     /**
      * OK
      */
     200: LicenseTypeDtoListEnvelopeReadable;
 };
 
-export type GetLicenseTypesAsyncResponse = GetLicenseTypesAsyncResponses[keyof GetLicenseTypesAsyncResponses];
+export type LicenseTypesGetLicenseTypesResponse = LicenseTypesGetLicenseTypesResponses[keyof LicenseTypesGetLicenseTypesResponses];
 
-export type CreateLicenseTypeAsyncData = {
+export type LicenseTypesCreateLicenseTypeData = {
     body?: LicenseTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1607,7 +1845,7 @@ export type CreateLicenseTypeAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes';
 };
 
-export type CreateLicenseTypeAsyncErrors = {
+export type LicenseTypesCreateLicenseTypeErrors = {
     /**
      * Bad Request
      */
@@ -1618,16 +1856,16 @@ export type CreateLicenseTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLicenseTypeAsyncError = CreateLicenseTypeAsyncErrors[keyof CreateLicenseTypeAsyncErrors];
+export type LicenseTypesCreateLicenseTypeError = LicenseTypesCreateLicenseTypeErrors[keyof LicenseTypesCreateLicenseTypeErrors];
 
-export type CreateLicenseTypeAsyncResponses = {
+export type LicenseTypesCreateLicenseTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseTypesCountAsyncData = {
+export type LicenseTypesGetLicenseTypesCountData = {
     body?: LicenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1640,25 +1878,25 @@ export type GetLicenseTypesCountAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes/Count';
 };
 
-export type GetLicenseTypesCountAsyncErrors = {
+export type LicenseTypesGetLicenseTypesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseTypesCountAsyncError = GetLicenseTypesCountAsyncErrors[keyof GetLicenseTypesCountAsyncErrors];
+export type LicenseTypesGetLicenseTypesCountError = LicenseTypesGetLicenseTypesCountErrors[keyof LicenseTypesGetLicenseTypesCountErrors];
 
-export type GetLicenseTypesCountAsyncResponses = {
+export type LicenseTypesGetLicenseTypesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLicenseTypesCountAsyncResponse = GetLicenseTypesCountAsyncResponses[keyof GetLicenseTypesCountAsyncResponses];
+export type LicenseTypesGetLicenseTypesCountResponse = LicenseTypesGetLicenseTypesCountResponses[keyof LicenseTypesGetLicenseTypesCountResponses];
 
-export type DeleteLicenseTypeAsyncData = {
+export type LicenseTypesDeleteLicenseTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1673,7 +1911,7 @@ export type DeleteLicenseTypeAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes/{id}';
 };
 
-export type DeleteLicenseTypeAsyncErrors = {
+export type LicenseTypesDeleteLicenseTypeErrors = {
     /**
      * Forbidden
      */
@@ -1684,16 +1922,16 @@ export type DeleteLicenseTypeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteLicenseTypeAsyncError = DeleteLicenseTypeAsyncErrors[keyof DeleteLicenseTypeAsyncErrors];
+export type LicenseTypesDeleteLicenseTypeError = LicenseTypesDeleteLicenseTypeErrors[keyof LicenseTypesDeleteLicenseTypeErrors];
 
-export type DeleteLicenseTypeAsyncResponses = {
+export type LicenseTypesDeleteLicenseTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicenseTypeByIdAsyncData = {
+export type LicenseTypesGetLicenseTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1708,7 +1946,7 @@ export type GetLicenseTypeByIdAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes/{id}';
 };
 
-export type GetLicenseTypeByIdAsyncErrors = {
+export type LicenseTypesGetLicenseTypeByIdErrors = {
     /**
      * Forbidden
      */
@@ -1719,18 +1957,18 @@ export type GetLicenseTypeByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseTypeByIdAsyncError = GetLicenseTypeByIdAsyncErrors[keyof GetLicenseTypeByIdAsyncErrors];
+export type LicenseTypesGetLicenseTypeByIdError = LicenseTypesGetLicenseTypeByIdErrors[keyof LicenseTypesGetLicenseTypeByIdErrors];
 
-export type GetLicenseTypeByIdAsyncResponses = {
+export type LicenseTypesGetLicenseTypeByIdResponses = {
     /**
      * OK
      */
     200: LicenseTypeDto;
 };
 
-export type GetLicenseTypeByIdAsyncResponse = GetLicenseTypeByIdAsyncResponses[keyof GetLicenseTypeByIdAsyncResponses];
+export type LicenseTypesGetLicenseTypeByIdResponse = LicenseTypesGetLicenseTypeByIdResponses[keyof LicenseTypesGetLicenseTypeByIdResponses];
 
-export type PatchLicenseTypeAsyncData = {
+export type LicenseTypesPatchLicenseTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1745,7 +1983,7 @@ export type PatchLicenseTypeAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes/{id}';
 };
 
-export type PatchLicenseTypeAsyncErrors = {
+export type LicenseTypesPatchLicenseTypeErrors = {
     /**
      * Unauthorized
      */
@@ -1756,18 +1994,18 @@ export type PatchLicenseTypeAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLicenseTypeAsyncError = PatchLicenseTypeAsyncErrors[keyof PatchLicenseTypeAsyncErrors];
+export type LicenseTypesPatchLicenseTypeError = LicenseTypesPatchLicenseTypeErrors[keyof LicenseTypesPatchLicenseTypeErrors];
 
-export type PatchLicenseTypeAsyncResponses = {
+export type LicenseTypesPatchLicenseTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLicenseTypeAsyncResponse = PatchLicenseTypeAsyncResponses[keyof PatchLicenseTypeAsyncResponses];
+export type LicenseTypesPatchLicenseTypeResponse = LicenseTypesPatchLicenseTypeResponses[keyof LicenseTypesPatchLicenseTypeResponses];
 
-export type UpdateLicenseTypeAsyncData = {
+export type LicenseTypesUpdateLicenseTypeData = {
     body?: LicenseTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1782,7 +2020,7 @@ export type UpdateLicenseTypeAsyncData = {
     url: '/api/v2/LicensingService/LicenseTypes/{id}';
 };
 
-export type UpdateLicenseTypeAsyncErrors = {
+export type LicenseTypesUpdateLicenseTypeErrors = {
     /**
      * Forbidden
      */
@@ -1793,16 +2031,16 @@ export type UpdateLicenseTypeAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateLicenseTypeAsyncError = UpdateLicenseTypeAsyncErrors[keyof UpdateLicenseTypeAsyncErrors];
+export type LicenseTypesUpdateLicenseTypeError = LicenseTypesUpdateLicenseTypeErrors[keyof LicenseTypesUpdateLicenseTypeErrors];
 
-export type UpdateLicenseTypeAsyncResponses = {
+export type LicenseTypesUpdateLicenseTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicensingCertificatesAsyncData = {
+export type LicensingCertificatesGetLicensingCertificatesData = {
     body?: LicensingCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1815,25 +2053,25 @@ export type GetLicensingCertificatesAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates';
 };
 
-export type GetLicensingCertificatesAsyncErrors = {
+export type LicensingCertificatesGetLicensingCertificatesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicensingCertificatesAsyncError = GetLicensingCertificatesAsyncErrors[keyof GetLicensingCertificatesAsyncErrors];
+export type LicensingCertificatesGetLicensingCertificatesError = LicensingCertificatesGetLicensingCertificatesErrors[keyof LicensingCertificatesGetLicensingCertificatesErrors];
 
-export type GetLicensingCertificatesAsyncResponses = {
+export type LicensingCertificatesGetLicensingCertificatesResponses = {
     /**
      * OK
      */
     200: LicensingCertificateDtoListEnvelopeReadable;
 };
 
-export type GetLicensingCertificatesAsyncResponse = GetLicensingCertificatesAsyncResponses[keyof GetLicensingCertificatesAsyncResponses];
+export type LicensingCertificatesGetLicensingCertificatesResponse = LicensingCertificatesGetLicensingCertificatesResponses[keyof LicensingCertificatesGetLicensingCertificatesResponses];
 
-export type CreateLicensingCertificateAsyncData = {
+export type LicensingCertificatesCreateLicensingCertificateData = {
     body?: LicensingCertificateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1846,7 +2084,7 @@ export type CreateLicensingCertificateAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates';
 };
 
-export type CreateLicensingCertificateAsyncErrors = {
+export type LicensingCertificatesCreateLicensingCertificateErrors = {
     /**
      * Bad Request
      */
@@ -1857,16 +2095,16 @@ export type CreateLicensingCertificateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateLicensingCertificateAsyncError = CreateLicensingCertificateAsyncErrors[keyof CreateLicensingCertificateAsyncErrors];
+export type LicensingCertificatesCreateLicensingCertificateError = LicensingCertificatesCreateLicensingCertificateErrors[keyof LicensingCertificatesCreateLicensingCertificateErrors];
 
-export type CreateLicensingCertificateAsyncResponses = {
+export type LicensingCertificatesCreateLicensingCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicensingCertificatesCountAsyncData = {
+export type LicensingCertificatesGetLicensingCertificatesCountData = {
     body?: LicensingCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1879,25 +2117,25 @@ export type GetLicensingCertificatesCountAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates/Count';
 };
 
-export type GetLicensingCertificatesCountAsyncErrors = {
+export type LicensingCertificatesGetLicensingCertificatesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicensingCertificatesCountAsyncError = GetLicensingCertificatesCountAsyncErrors[keyof GetLicensingCertificatesCountAsyncErrors];
+export type LicensingCertificatesGetLicensingCertificatesCountError = LicensingCertificatesGetLicensingCertificatesCountErrors[keyof LicensingCertificatesGetLicensingCertificatesCountErrors];
 
-export type GetLicensingCertificatesCountAsyncResponses = {
+export type LicensingCertificatesGetLicensingCertificatesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetLicensingCertificatesCountAsyncResponse = GetLicensingCertificatesCountAsyncResponses[keyof GetLicensingCertificatesCountAsyncResponses];
+export type LicensingCertificatesGetLicensingCertificatesCountResponse = LicensingCertificatesGetLicensingCertificatesCountResponses[keyof LicensingCertificatesGetLicensingCertificatesCountResponses];
 
-export type DeleteLicensingCertificateAsyncData = {
+export type LicensingCertificatesDeleteLicensingCertificateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1912,7 +2150,7 @@ export type DeleteLicensingCertificateAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates/{id}';
 };
 
-export type DeleteLicensingCertificateAsyncErrors = {
+export type LicensingCertificatesDeleteLicensingCertificateErrors = {
     /**
      * Forbidden
      */
@@ -1923,16 +2161,16 @@ export type DeleteLicensingCertificateAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type DeleteLicensingCertificateAsyncError = DeleteLicensingCertificateAsyncErrors[keyof DeleteLicensingCertificateAsyncErrors];
+export type LicensingCertificatesDeleteLicensingCertificateError = LicensingCertificatesDeleteLicensingCertificateErrors[keyof LicensingCertificatesDeleteLicensingCertificateErrors];
 
-export type DeleteLicensingCertificateAsyncResponses = {
+export type LicensingCertificatesDeleteLicensingCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetLicensingCertificateByIdAsyncData = {
+export type LicensingCertificatesGetLicensingCertificateByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1947,7 +2185,7 @@ export type GetLicensingCertificateByIdAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates/{id}';
 };
 
-export type GetLicensingCertificateByIdAsyncErrors = {
+export type LicensingCertificatesGetLicensingCertificateByIdErrors = {
     /**
      * Forbidden
      */
@@ -1958,18 +2196,18 @@ export type GetLicensingCertificateByIdAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type GetLicensingCertificateByIdAsyncError = GetLicensingCertificateByIdAsyncErrors[keyof GetLicensingCertificateByIdAsyncErrors];
+export type LicensingCertificatesGetLicensingCertificateByIdError = LicensingCertificatesGetLicensingCertificateByIdErrors[keyof LicensingCertificatesGetLicensingCertificateByIdErrors];
 
-export type GetLicensingCertificateByIdAsyncResponses = {
+export type LicensingCertificatesGetLicensingCertificateByIdResponses = {
     /**
      * OK
      */
     200: LicensingCertificateDto;
 };
 
-export type GetLicensingCertificateByIdAsyncResponse = GetLicensingCertificateByIdAsyncResponses[keyof GetLicensingCertificateByIdAsyncResponses];
+export type LicensingCertificatesGetLicensingCertificateByIdResponse = LicensingCertificatesGetLicensingCertificateByIdResponses[keyof LicensingCertificatesGetLicensingCertificateByIdResponses];
 
-export type PatchLicensingCertificateAsyncData = {
+export type LicensingCertificatesPatchLicensingCertificateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1984,7 +2222,7 @@ export type PatchLicensingCertificateAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates/{id}';
 };
 
-export type PatchLicensingCertificateAsyncErrors = {
+export type LicensingCertificatesPatchLicensingCertificateErrors = {
     /**
      * Unauthorized
      */
@@ -1995,18 +2233,18 @@ export type PatchLicensingCertificateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchLicensingCertificateAsyncError = PatchLicensingCertificateAsyncErrors[keyof PatchLicensingCertificateAsyncErrors];
+export type LicensingCertificatesPatchLicensingCertificateError = LicensingCertificatesPatchLicensingCertificateErrors[keyof LicensingCertificatesPatchLicensingCertificateErrors];
 
-export type PatchLicensingCertificateAsyncResponses = {
+export type LicensingCertificatesPatchLicensingCertificateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchLicensingCertificateAsyncResponse = PatchLicensingCertificateAsyncResponses[keyof PatchLicensingCertificateAsyncResponses];
+export type LicensingCertificatesPatchLicensingCertificateResponse = LicensingCertificatesPatchLicensingCertificateResponses[keyof LicensingCertificatesPatchLicensingCertificateResponses];
 
-export type UpdateLicensingCertificateAsyncData = {
+export type LicensingCertificatesUpdateLicensingCertificateData = {
     body?: LicensingCertificateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2021,7 +2259,7 @@ export type UpdateLicensingCertificateAsyncData = {
     url: '/api/v2/LicensingService/LicensingCertificates/{id}';
 };
 
-export type UpdateLicensingCertificateAsyncErrors = {
+export type LicensingCertificatesUpdateLicensingCertificateErrors = {
     /**
      * Forbidden
      */
@@ -2032,14 +2270,146 @@ export type UpdateLicensingCertificateAsyncErrors = {
     404: ErrorEnvelopeReadable;
 };
 
-export type UpdateLicensingCertificateAsyncError = UpdateLicensingCertificateAsyncErrors[keyof UpdateLicensingCertificateAsyncErrors];
+export type LicensingCertificatesUpdateLicensingCertificateError = LicensingCertificatesUpdateLicensingCertificateErrors[keyof LicensingCertificatesUpdateLicensingCertificateErrors];
 
-export type UpdateLicensingCertificateAsyncResponses = {
+export type LicensingCertificatesUpdateLicensingCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
+
+export type UsageGetTenantUsageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Usage';
+};
+
+export type UsageGetTenantUsageErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UsageGetTenantUsageError = UsageGetTenantUsageErrors[keyof UsageGetTenantUsageErrors];
+
+export type UsageGetTenantUsageResponses = {
+    /**
+     * OK
+     */
+    200: TenantUsageDtoEnvelopeReadable;
+};
+
+export type UsageGetTenantUsageResponse = UsageGetTenantUsageResponses[keyof UsageGetTenantUsageResponses];
+
+export type UsageGetUsageMetersData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Usage/Meters';
+};
+
+export type UsageGetUsageMetersErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UsageGetUsageMetersError = UsageGetUsageMetersErrors[keyof UsageGetUsageMetersErrors];
+
+export type UsageGetUsageMetersResponses = {
+    /**
+     * OK
+     */
+    200: UsageMeterDefinitionDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type UsageGetUsageMetersResponse = UsageGetUsageMetersResponses[keyof UsageGetUsageMetersResponses];
+
+export type UsageGetTenantsUsageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        minimumStatus?: 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
+        search?: string;
+        sortBy?: string;
+        descending?: boolean;
+        skip?: number;
+        top?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Admin/Usage';
+};
+
+export type UsageGetTenantsUsageErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UsageGetTenantsUsageError = UsageGetTenantsUsageErrors[keyof UsageGetTenantsUsageErrors];
+
+export type UsageGetTenantsUsageResponses = {
+    /**
+     * OK
+     */
+    200: TenantUsageSummaryDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type UsageGetTenantsUsageResponse = UsageGetTenantsUsageResponses[keyof UsageGetTenantsUsageResponses];
+
+export type UsageGetTenantUsageAsAdminData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        targetTenantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Admin/Usage/{targetTenantId}';
+};
+
+export type UsageGetTenantUsageAsAdminErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UsageGetTenantUsageAsAdminError = UsageGetTenantUsageAsAdminErrors[keyof UsageGetTenantUsageAsAdminErrors];
+
+export type UsageGetTenantUsageAsAdminResponses = {
+    /**
+     * OK
+     */
+    200: TenantUsageDtoEnvelopeReadable;
+};
+
+export type UsageGetTenantUsageAsAdminResponse = UsageGetTenantUsageAsAdminResponses[keyof UsageGetTenantUsageAsAdminResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

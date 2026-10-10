@@ -6,611 +6,370 @@
 
 export interface paths {
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
+  };
+  "/api/v2/WalletsService/Me/Ethereum/Balance": {
+    /**
+     * Get the current user's Ether balance
+     * @description Reads the Ether balance of the current user's own wallet from the configured Ethereum node. The network follows the wallet's test mode. No key material is returned.
+     */
+    get: operations["Me_GetMyEthereumBalance"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}": {
     /**
      * Get Wallet Details
      * @description Get details of a specific wallet by ID.
      */
-    get: operations["GetWalletDetailsAsync"];
+    get: operations["Wallets_GetWalletDetails"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Orders": {
     /**
      * Get Wallet Orders
      * @description Get orders of a specific wallet by ID.
      */
-    get: operations["GetWalletOrdersAsync"];
+    get: operations["Wallets_GetWalletOrders"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Orders/Extended": {
     /**
      * Get Wallet Extended Orders
      * @description Get extended orders of a specific wallet by ID.
      */
-    get: operations["GetWalletExtendedOrdersAsync"];
+    get: operations["Wallets_GetWalletExtendedOrders"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Orders/Count": {
     /**
      * Get Wallet Orders Count
      * @description Get orders count of a specific wallet by ID.
      */
-    get: operations["GetWalletOrdersCountAsync"];
+    get: operations["Wallets_GetWalletOrdersCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices": {
     /**
      * Get Wallet Invoices
      * @description Get invoices of a specific wallet by ID.
      */
-    get: operations["GetWalletInvoicesAsync"];
+    get: operations["Wallets_GetWalletInvoices"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Count": {
     /**
      * Get Wallet Invoices Count
      * @description Get invoices count of a specific wallet by ID.
      */
-    get: operations["GetWalletInvoicesCountAsync"];
+    get: operations["Wallets_GetWalletInvoicesCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments": {
     /**
      * Get Wallet Payments
      * @description Get payments of a specific wallet by ID.
      */
-    get: operations["GetWalletPaymentsAsync"];
+    get: operations["Wallets_GetWalletPayments"];
     /**
      * Create Wallet Payment
      * @description Create a new payment for a specific wallet by ID.
      */
-    post: operations["CreateWalletPaymentAsync"];
+    post: operations["Wallets_CreateWalletPayment"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments/Count": {
     /**
      * Get Wallet Payments Count
      * @description Get payments count of a specific wallet by ID.
      */
-    get: operations["GetWalletPaymentsCountAsync"];
+    get: operations["Wallets_GetWalletPaymentsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Locations": {
     /**
      * Get Wallet Locations
      * @description Get locations of a specific wallet by ID.
      */
-    get: operations["GetLocationsForWalletAsync"];
+    get: operations["Wallets_GetLocationsForWallet"];
     /**
      * Create Wallet Location
      * @description Create a new location for a specific wallet by ID.
      */
-    post: operations["CreateLocationForWalletAsync"];
+    post: operations["Wallets_CreateLocationForWallet"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Locations/Count": {
     /**
      * Get Wallet Locations Count
      * @description Get locations count of a specific wallet by ID.
      */
-    get: operations["GetLocationsForWalletCountAsync"];
+    get: operations["Wallets_GetLocationsForWalletCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}": {
     /**
      * Get Wallet Location
      * @description Get a specific location of a specific wallet by ID.
      */
-    get: operations["GetLocationForWalletAsync"];
+    get: operations["Wallets_GetLocationForWallet"];
     /**
      * Update Wallet Location
      * @description Update a specific location of a specific wallet by ID.
      */
-    put: operations["UpdateLocationForWalletAsync"];
+    put: operations["Wallets_UpdateLocationForWallet"];
     /**
      * Delete Wallet Location
      * @description Delete a specific location of a specific wallet by ID.
      */
-    delete: operations["DeleteLocationForWalletAsync"];
+    delete: operations["Wallets_DeleteLocationForWallet"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Incoming": {
     /**
      * Get Incoming Wallet Invoices
      * @description Get incoming invoices of a specific wallet by ID.
      */
-    get: operations["GetIncomingWalletInvoicesAsync"];
+    get: operations["Wallets_GetIncomingWalletInvoices"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Incoming/Count": {
     /**
      * Get Incoming Wallet Invoices Count
      * @description Get incoming invoices count of a specific wallet by ID.
      */
-    get: operations["GetIncomingWalletInvoicesCountAsync"];
+    get: operations["Wallets_GetIncomingWalletInvoicesCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Outgoing": {
     /**
      * Get Outgoing Wallet Invoices
      * @description Get outgoing invoices of a specific wallet by ID.
      */
-    get: operations["GetOutgoingWalletInvoicesAsync"];
+    get: operations["Wallets_GetOutgoingWalletInvoices"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Outgoing/Count": {
     /**
      * Get Outgoing Wallet Invoices Count
      * @description Get outgoing invoices count of a specific wallet by ID.
      */
-    get: operations["GetOutgoingWalletInvoicesCountAsync"];
+    get: operations["Wallets_GetOutgoingWalletInvoicesCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments/Incoming": {
     /**
      * Get Incoming Payments
      * @description Get incoming payments of a specific wallet by ID.
      */
-    get: operations["GetIncomingPaymentsAsync"];
+    get: operations["Wallets_GetIncomingPayments"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments/Incoming/Count": {
     /**
      * Get Incoming Payments Count
      * @description Get incoming payments count of a specific wallet by ID.
      */
-    get: operations["GetIncomingPaymentsCountAsync"];
+    get: operations["Wallets_GetIncomingPaymentsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments/Outgoing": {
     /**
      * Get Outgoing Payments
      * @description Get outgoing payments of a specific wallet by ID.
      */
-    get: operations["GetOutgoingPaymentsAsync"];
+    get: operations["Wallets_GetOutgoingPayments"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments/Outgoing/Count": {
     /**
      * Get Outgoing Payments Count
      * @description Get outgoing payments count of a specific wallet by ID.
      */
-    get: operations["GetOutgoingPaymentsCountAsync"];
+    get: operations["Wallets_GetOutgoingPaymentsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Quotes": {
     /**
      * Get Wallet Quotes
      * @description Get quotes of a specific wallet by ID.
      */
-    get: operations["GetWalletQuotesAsync"];
+    get: operations["Wallets_GetWalletQuotes"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Quotes/Count": {
     /**
      * Get Wallet Quotes Count
      * @description Get quotes count of a specific wallet by ID.
      */
-    get: operations["GetWalletQuotesCountAsync"];
+    get: operations["Wallets_GetWalletQuotesCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/BankAccounts": {
     /**
      * Get Wallet Bank Accounts
      * @description Get bank accounts of a specific wallet by ID.
      */
-    get: operations["GetWalletBankAccountsAsync"];
+    get: operations["Wallets_GetWalletBankAccounts"];
     /**
      * Create Wallet Bank Account
      * @description Create a new bank account for a specific wallet by ID.
      */
-    post: operations["CreateWalletBankAccountAsync"];
+    post: operations["Wallets_CreateWalletBankAccount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/Count": {
     /**
      * Get Wallet Bank Accounts Count
      * @description Get bank accounts count of a specific wallet by ID.
      */
-    get: operations["GetWalletBankAccountsCountAsync"];
+    get: operations["Wallets_GetWalletBankAccountsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}": {
     /**
      * Get Wallet Bank Account
      * @description Get a specific bank account of a specific wallet by ID.
      */
-    get: operations["GetWalletBankAccountAsync"];
+    get: operations["Wallets_GetWalletBankAccount"];
     /**
      * Update Wallet Bank Account
      * @description Update a specific bank account of a specific wallet by ID.
      */
-    put: operations["UpdateWalletBankAccountAsync"];
+    put: operations["Wallets_UpdateWalletBankAccount"];
     /**
      * Delete Wallet Bank Account
      * @description Delete a specific bank account of a specific wallet by ID.
      */
-    delete: operations["DeleteWalletBankAccountAsync"];
+    delete: operations["Wallets_DeleteWalletBankAccount"];
     /**
      * Patch Wallet Bank Account
      * @description Partially update a specific bank account of a specific wallet by ID.
      */
-    patch: operations["PatchWalletBankAccountAsync"];
+    patch: operations["Wallets_PatchWalletBankAccount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Withdraws": {
     /**
      * Get Wallet Withdraws
      * @description Get withdraws of a specific wallet by ID.
      */
-    get: operations["GetWalletWithdrawsAsync"];
+    get: operations["Wallets_GetWalletWithdraws"];
     /**
      * Create Wallet Withdraw Request
      * @description Create a new withdraw request for a specific wallet by ID.
      */
-    post: operations["CreateWalletWithdrawRequestAsync"];
+    post: operations["Wallets_CreateWalletWithdrawRequest"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Withdraws/Count": {
     /**
      * Get Wallet Withdraws Count
      * @description Get withdraws count of a specific wallet by ID.
      */
-    get: operations["GetWalletWithdrawsCountAsync"];
+    get: operations["Wallets_GetWalletWithdrawsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests": {
     /**
      * Get Wallet Withdraw Requests
      * @description Get withdraw requests of a specific wallet by ID.
      */
-    get: operations["GetWalletWithdrawRequestsAsync"];
+    get: operations["Wallets_GetWalletWithdrawRequests"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests/Count": {
     /**
      * Get Wallet Withdraw Requests Count
      * @description Get withdraw requests count of a specific wallet by ID.
      */
-    get: operations["GetWalletWithdrawRequestsCountAsync"];
+    get: operations["Wallets_GetWalletWithdrawRequestsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Chargebacks": {
     /**
      * Get Wallet Chargebacks
      * @description Get chargebacks of a specific wallet by ID.
      */
-    get: operations["GetWalletChargebacksAsync"];
+    get: operations["Wallets_GetWalletChargebacks"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Chargebacks/Count": {
     /**
      * Get Wallet Chargebacks Count
      * @description Get chargebacks count of a specific wallet by ID.
      */
-    get: operations["GetWalletChargebacksCountAsync"];
+    get: operations["Wallets_GetWalletChargebacksCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Refunds": {
     /**
      * Get Wallet Refunds
      * @description Get refunds of a specific wallet by ID.
      */
-    get: operations["GetWalletRefundsAsync"];
+    get: operations["Wallets_GetWalletRefunds"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Refunds/Count": {
     /**
      * Get Wallet Refunds Count
      * @description Get refunds count of a specific wallet by ID.
      */
-    get: operations["GetWalletRefundsCountAsync"];
+    get: operations["Wallets_GetWalletRefundsCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Tokens": {
     /**
      * Get Wallet Tokens
      * @description Get payment tokens of a specific wallet by ID.
      */
-    get: operations["GetWalletTokensAsync"];
+    get: operations["Wallets_GetWalletTokens"];
     /**
      * Create Wallet Token
      * @description Create a new payment token for a specific wallet by ID.
      */
-    post: operations["CreateWalletTokenAsync"];
+    post: operations["Wallets_CreateWalletToken"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Tokens/Count": {
     /**
      * Get Wallet Tokens Count
      * @description Get payment tokens count of a specific wallet by ID.
      */
-    get: operations["GetWalletTokensCountAsync"];
+    get: operations["Wallets_GetWalletTokensCount"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}": {
     /**
      * Get Wallet Token
      * @description Get a specific payment token of a specific wallet by ID.
      */
-    get: operations["GetWalletTokenAsync"];
+    get: operations["Wallets_GetWalletToken"];
     /**
      * Update Wallet Token
      * @description Update a specific payment token of a specific wallet by ID.
      */
-    put: operations["UpdateWalletTokenAsync"];
+    put: operations["Wallets_UpdateWalletToken"];
     /**
      * Delete Wallet Token
      * @description Delete a specific payment token of a specific wallet by ID.
      */
-    delete: operations["DeleteWalletTokenAsync"];
+    delete: operations["Wallets_DeleteWalletToken"];
     /**
      * Patch Wallet Token
      * @description Partially update a specific payment token of a specific wallet by ID.
      */
-    patch: operations["PatchWalletTokenAsync"];
+    patch: operations["Wallets_PatchWalletToken"];
   };
 }
 
@@ -781,9 +540,12 @@ export interface components {
       partnerProfileId?: string | null;
       primaryContactId?: string | null;
       activeDirectoryId?: string | null;
+      /** @deprecated */
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      tikTokUsername?: string | null;
+      instagramUsername?: string | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -812,6 +574,27 @@ export interface components {
         [key: string]: string[] | null;
       }) | null;
       activityId?: string | null;
+    };
+    EthereumBalanceDto: {
+      address?: string | null;
+      /** Format: double */
+      balanceInEther?: number;
+      testNet?: boolean;
+    };
+    EthereumBalanceDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["EthereumBalanceDto"];
     };
     ExtendedOrderDto: {
       id?: string | null;
@@ -2091,6 +1874,7 @@ export interface components {
       mainNetEtherBalance?: number;
       ethereumAddress?: string | null;
       ethereumPublicKey?: string | null;
+      /** @deprecated */
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
@@ -2220,7 +2004,86 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -2235,11 +2098,254 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get the current user's Ether balance
+   * @description Reads the Ether balance of the current user's own wallet from the configured Ethereum node. The network follows the wallet's test mode. No key material is returned.
+   */
+  Me_GetMyEthereumBalance: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EthereumBalanceDtoEnvelope"];
+          "application/xml": components["schemas"]["EthereumBalanceDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Bad Gateway */
+      502: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Service Unavailable */
+      503: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /**
    * Get Wallet Details
    * @description Get details of a specific wallet by ID.
    */
-  GetWalletDetailsAsync: {
+  Wallets_GetWalletDetails: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2279,7 +2385,7 @@ export interface operations {
    * Get Wallet Orders
    * @description Get orders of a specific wallet by ID.
    */
-  GetWalletOrdersAsync: {
+  Wallets_GetWalletOrders: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2325,7 +2431,7 @@ export interface operations {
    * Get Wallet Extended Orders
    * @description Get extended orders of a specific wallet by ID.
    */
-  GetWalletExtendedOrdersAsync: {
+  Wallets_GetWalletExtendedOrders: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2371,7 +2477,7 @@ export interface operations {
    * Get Wallet Orders Count
    * @description Get orders count of a specific wallet by ID.
    */
-  GetWalletOrdersCountAsync: {
+  Wallets_GetWalletOrdersCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2417,7 +2523,7 @@ export interface operations {
    * Get Wallet Invoices
    * @description Get invoices of a specific wallet by ID.
    */
-  GetWalletInvoicesAsync: {
+  Wallets_GetWalletInvoices: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2463,7 +2569,7 @@ export interface operations {
    * Get Wallet Invoices Count
    * @description Get invoices count of a specific wallet by ID.
    */
-  GetWalletInvoicesCountAsync: {
+  Wallets_GetWalletInvoicesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2509,7 +2615,7 @@ export interface operations {
    * Get Wallet Payments
    * @description Get payments of a specific wallet by ID.
    */
-  GetWalletPaymentsAsync: {
+  Wallets_GetWalletPayments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2555,7 +2661,7 @@ export interface operations {
    * Create Wallet Payment
    * @description Create a new payment for a specific wallet by ID.
    */
-  CreateWalletPaymentAsync: {
+  Wallets_CreateWalletPayment: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2601,7 +2707,7 @@ export interface operations {
    * Get Wallet Payments Count
    * @description Get payments count of a specific wallet by ID.
    */
-  GetWalletPaymentsCountAsync: {
+  Wallets_GetWalletPaymentsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2647,9 +2753,10 @@ export interface operations {
    * Get Wallet Locations
    * @description Get locations of a specific wallet by ID.
    */
-  GetLocationsForWalletAsync: {
+  Wallets_GetLocationsForWallet: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2693,9 +2800,10 @@ export interface operations {
    * Create Wallet Location
    * @description Create a new location for a specific wallet by ID.
    */
-  CreateLocationForWalletAsync: {
+  Wallets_CreateLocationForWallet: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2739,9 +2847,10 @@ export interface operations {
    * Get Wallet Locations Count
    * @description Get locations count of a specific wallet by ID.
    */
-  GetLocationsForWalletCountAsync: {
+  Wallets_GetLocationsForWalletCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2785,9 +2894,10 @@ export interface operations {
    * Get Wallet Location
    * @description Get a specific location of a specific wallet by ID.
    */
-  GetLocationForWalletAsync: {
+  Wallets_GetLocationForWallet: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2826,9 +2936,10 @@ export interface operations {
    * Update Wallet Location
    * @description Update a specific location of a specific wallet by ID.
    */
-  UpdateLocationForWalletAsync: {
+  Wallets_UpdateLocationForWallet: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2873,9 +2984,10 @@ export interface operations {
    * Delete Wallet Location
    * @description Delete a specific location of a specific wallet by ID.
    */
-  DeleteLocationForWalletAsync: {
+  Wallets_DeleteLocationForWallet: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2914,7 +3026,7 @@ export interface operations {
    * Get Incoming Wallet Invoices
    * @description Get incoming invoices of a specific wallet by ID.
    */
-  GetIncomingWalletInvoicesAsync: {
+  Wallets_GetIncomingWalletInvoices: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2960,7 +3072,7 @@ export interface operations {
    * Get Incoming Wallet Invoices Count
    * @description Get incoming invoices count of a specific wallet by ID.
    */
-  GetIncomingWalletInvoicesCountAsync: {
+  Wallets_GetIncomingWalletInvoicesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3006,7 +3118,7 @@ export interface operations {
    * Get Outgoing Wallet Invoices
    * @description Get outgoing invoices of a specific wallet by ID.
    */
-  GetOutgoingWalletInvoicesAsync: {
+  Wallets_GetOutgoingWalletInvoices: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3052,7 +3164,7 @@ export interface operations {
    * Get Outgoing Wallet Invoices Count
    * @description Get outgoing invoices count of a specific wallet by ID.
    */
-  GetOutgoingWalletInvoicesCountAsync: {
+  Wallets_GetOutgoingWalletInvoicesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3098,7 +3210,7 @@ export interface operations {
    * Get Incoming Payments
    * @description Get incoming payments of a specific wallet by ID.
    */
-  GetIncomingPaymentsAsync: {
+  Wallets_GetIncomingPayments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3144,7 +3256,7 @@ export interface operations {
    * Get Incoming Payments Count
    * @description Get incoming payments count of a specific wallet by ID.
    */
-  GetIncomingPaymentsCountAsync: {
+  Wallets_GetIncomingPaymentsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3190,7 +3302,7 @@ export interface operations {
    * Get Outgoing Payments
    * @description Get outgoing payments of a specific wallet by ID.
    */
-  GetOutgoingPaymentsAsync: {
+  Wallets_GetOutgoingPayments: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3236,7 +3348,7 @@ export interface operations {
    * Get Outgoing Payments Count
    * @description Get outgoing payments count of a specific wallet by ID.
    */
-  GetOutgoingPaymentsCountAsync: {
+  Wallets_GetOutgoingPaymentsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3282,7 +3394,7 @@ export interface operations {
    * Get Wallet Quotes
    * @description Get quotes of a specific wallet by ID.
    */
-  GetWalletQuotesAsync: {
+  Wallets_GetWalletQuotes: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3328,7 +3440,7 @@ export interface operations {
    * Get Wallet Quotes Count
    * @description Get quotes count of a specific wallet by ID.
    */
-  GetWalletQuotesCountAsync: {
+  Wallets_GetWalletQuotesCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3374,9 +3486,10 @@ export interface operations {
    * Get Wallet Bank Accounts
    * @description Get bank accounts of a specific wallet by ID.
    */
-  GetWalletBankAccountsAsync: {
+  Wallets_GetWalletBankAccounts: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3420,9 +3533,10 @@ export interface operations {
    * Create Wallet Bank Account
    * @description Create a new bank account for a specific wallet by ID.
    */
-  CreateWalletBankAccountAsync: {
+  Wallets_CreateWalletBankAccount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3466,9 +3580,10 @@ export interface operations {
    * Get Wallet Bank Accounts Count
    * @description Get bank accounts count of a specific wallet by ID.
    */
-  GetWalletBankAccountsCountAsync: {
+  Wallets_GetWalletBankAccountsCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3512,9 +3627,10 @@ export interface operations {
    * Get Wallet Bank Account
    * @description Get a specific bank account of a specific wallet by ID.
    */
-  GetWalletBankAccountAsync: {
+  Wallets_GetWalletBankAccount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3553,9 +3669,10 @@ export interface operations {
    * Update Wallet Bank Account
    * @description Update a specific bank account of a specific wallet by ID.
    */
-  UpdateWalletBankAccountAsync: {
+  Wallets_UpdateWalletBankAccount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3600,9 +3717,10 @@ export interface operations {
    * Delete Wallet Bank Account
    * @description Delete a specific bank account of a specific wallet by ID.
    */
-  DeleteWalletBankAccountAsync: {
+  Wallets_DeleteWalletBankAccount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3641,9 +3759,10 @@ export interface operations {
    * Patch Wallet Bank Account
    * @description Partially update a specific bank account of a specific wallet by ID.
    */
-  PatchWalletBankAccountAsync: {
+  Wallets_PatchWalletBankAccount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3688,7 +3807,7 @@ export interface operations {
    * Get Wallet Withdraws
    * @description Get withdraws of a specific wallet by ID.
    */
-  GetWalletWithdrawsAsync: {
+  Wallets_GetWalletWithdraws: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3734,7 +3853,7 @@ export interface operations {
    * Create Wallet Withdraw Request
    * @description Create a new withdraw request for a specific wallet by ID.
    */
-  CreateWalletWithdrawRequestAsync: {
+  Wallets_CreateWalletWithdrawRequest: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3780,7 +3899,7 @@ export interface operations {
    * Get Wallet Withdraws Count
    * @description Get withdraws count of a specific wallet by ID.
    */
-  GetWalletWithdrawsCountAsync: {
+  Wallets_GetWalletWithdrawsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3826,7 +3945,7 @@ export interface operations {
    * Get Wallet Withdraw Requests
    * @description Get withdraw requests of a specific wallet by ID.
    */
-  GetWalletWithdrawRequestsAsync: {
+  Wallets_GetWalletWithdrawRequests: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3872,7 +3991,7 @@ export interface operations {
    * Get Wallet Withdraw Requests Count
    * @description Get withdraw requests count of a specific wallet by ID.
    */
-  GetWalletWithdrawRequestsCountAsync: {
+  Wallets_GetWalletWithdrawRequestsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3918,7 +4037,7 @@ export interface operations {
    * Get Wallet Chargebacks
    * @description Get chargebacks of a specific wallet by ID.
    */
-  GetWalletChargebacksAsync: {
+  Wallets_GetWalletChargebacks: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3964,7 +4083,7 @@ export interface operations {
    * Get Wallet Chargebacks Count
    * @description Get chargebacks count of a specific wallet by ID.
    */
-  GetWalletChargebacksCountAsync: {
+  Wallets_GetWalletChargebacksCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4010,7 +4129,7 @@ export interface operations {
    * Get Wallet Refunds
    * @description Get refunds of a specific wallet by ID.
    */
-  GetWalletRefundsAsync: {
+  Wallets_GetWalletRefunds: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4056,7 +4175,7 @@ export interface operations {
    * Get Wallet Refunds Count
    * @description Get refunds count of a specific wallet by ID.
    */
-  GetWalletRefundsCountAsync: {
+  Wallets_GetWalletRefundsCount: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4102,9 +4221,10 @@ export interface operations {
    * Get Wallet Tokens
    * @description Get payment tokens of a specific wallet by ID.
    */
-  GetWalletTokensAsync: {
+  Wallets_GetWalletTokens: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4148,9 +4268,10 @@ export interface operations {
    * Create Wallet Token
    * @description Create a new payment token for a specific wallet by ID.
    */
-  CreateWalletTokenAsync: {
+  Wallets_CreateWalletToken: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4194,9 +4315,10 @@ export interface operations {
    * Get Wallet Tokens Count
    * @description Get payment tokens count of a specific wallet by ID.
    */
-  GetWalletTokensCountAsync: {
+  Wallets_GetWalletTokensCount: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4240,9 +4362,10 @@ export interface operations {
    * Get Wallet Token
    * @description Get a specific payment token of a specific wallet by ID.
    */
-  GetWalletTokenAsync: {
+  Wallets_GetWalletToken: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4281,9 +4404,10 @@ export interface operations {
    * Update Wallet Token
    * @description Update a specific payment token of a specific wallet by ID.
    */
-  UpdateWalletTokenAsync: {
+  Wallets_UpdateWalletToken: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4328,9 +4452,10 @@ export interface operations {
    * Delete Wallet Token
    * @description Delete a specific payment token of a specific wallet by ID.
    */
-  DeleteWalletTokenAsync: {
+  Wallets_DeleteWalletToken: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4369,9 +4494,10 @@ export interface operations {
    * Patch Wallet Token
    * @description Partially update a specific payment token of a specific wallet by ID.
    */
-  PatchWalletTokenAsync: {
+  Wallets_PatchWalletToken: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {

@@ -1588,7 +1588,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetEmailGroupsODataAsyncData = {
+export type EmailGroupsGetEmailGroupsODataData = {
     body?: EmailGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1601,7 +1601,7 @@ export type GetEmailGroupsODataAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups';
 };
 
-export type GetEmailGroupsODataAsyncErrors = {
+export type EmailGroupsGetEmailGroupsODataErrors = {
     /**
      * Unauthorized
      */
@@ -1612,18 +1612,18 @@ export type GetEmailGroupsODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailGroupsODataAsyncError = GetEmailGroupsODataAsyncErrors[keyof GetEmailGroupsODataAsyncErrors];
+export type EmailGroupsGetEmailGroupsODataError = EmailGroupsGetEmailGroupsODataErrors[keyof EmailGroupsGetEmailGroupsODataErrors];
 
-export type GetEmailGroupsODataAsyncResponses = {
+export type EmailGroupsGetEmailGroupsODataResponses = {
     /**
      * OK
      */
     200: EmailGroupDtoListEnvelopeReadable;
 };
 
-export type GetEmailGroupsODataAsyncResponse = GetEmailGroupsODataAsyncResponses[keyof GetEmailGroupsODataAsyncResponses];
+export type EmailGroupsGetEmailGroupsODataResponse = EmailGroupsGetEmailGroupsODataResponses[keyof EmailGroupsGetEmailGroupsODataResponses];
 
-export type CreateEmailGroupAsyncData = {
+export type EmailGroupsCreateEmailGroupData = {
     body: EmailGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1636,7 +1636,7 @@ export type CreateEmailGroupAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups';
 };
 
-export type CreateEmailGroupAsyncErrors = {
+export type EmailGroupsCreateEmailGroupErrors = {
     /**
      * Bad Request
      */
@@ -1651,18 +1651,18 @@ export type CreateEmailGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmailGroupAsyncError = CreateEmailGroupAsyncErrors[keyof CreateEmailGroupAsyncErrors];
+export type EmailGroupsCreateEmailGroupError = EmailGroupsCreateEmailGroupErrors[keyof EmailGroupsCreateEmailGroupErrors];
 
-export type CreateEmailGroupAsyncResponses = {
+export type EmailGroupsCreateEmailGroupResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateEmailGroupAsyncResponse = CreateEmailGroupAsyncResponses[keyof CreateEmailGroupAsyncResponses];
+export type EmailGroupsCreateEmailGroupResponse = EmailGroupsCreateEmailGroupResponses[keyof EmailGroupsCreateEmailGroupResponses];
 
-export type GetEmailGroupsCountAsyncData = {
+export type EmailGroupsGetEmailGroupsCountData = {
     body?: EmailGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1675,7 +1675,7 @@ export type GetEmailGroupsCountAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups/Count';
 };
 
-export type GetEmailGroupsCountAsyncErrors = {
+export type EmailGroupsGetEmailGroupsCountErrors = {
     /**
      * Bad Request
      */
@@ -1690,18 +1690,18 @@ export type GetEmailGroupsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailGroupsCountAsyncError = GetEmailGroupsCountAsyncErrors[keyof GetEmailGroupsCountAsyncErrors];
+export type EmailGroupsGetEmailGroupsCountError = EmailGroupsGetEmailGroupsCountErrors[keyof EmailGroupsGetEmailGroupsCountErrors];
 
-export type GetEmailGroupsCountAsyncResponses = {
+export type EmailGroupsGetEmailGroupsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmailGroupsCountAsyncResponse = GetEmailGroupsCountAsyncResponses[keyof GetEmailGroupsCountAsyncResponses];
+export type EmailGroupsGetEmailGroupsCountResponse = EmailGroupsGetEmailGroupsCountResponses[keyof EmailGroupsGetEmailGroupsCountResponses];
 
-export type DeleteEmailGroupAsyncData = {
+export type EmailGroupsDeleteEmailGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1716,7 +1716,7 @@ export type DeleteEmailGroupAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups/{emailgroupId}';
 };
 
-export type DeleteEmailGroupAsyncErrors = {
+export type EmailGroupsDeleteEmailGroupErrors = {
     /**
      * Bad Request
      */
@@ -1731,18 +1731,18 @@ export type DeleteEmailGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmailGroupAsyncError = DeleteEmailGroupAsyncErrors[keyof DeleteEmailGroupAsyncErrors];
+export type EmailGroupsDeleteEmailGroupError = EmailGroupsDeleteEmailGroupErrors[keyof EmailGroupsDeleteEmailGroupErrors];
 
-export type DeleteEmailGroupAsyncResponses = {
+export type EmailGroupsDeleteEmailGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmailGroupAsyncResponse = DeleteEmailGroupAsyncResponses[keyof DeleteEmailGroupAsyncResponses];
+export type EmailGroupsDeleteEmailGroupResponse = EmailGroupsDeleteEmailGroupResponses[keyof EmailGroupsDeleteEmailGroupResponses];
 
-export type GetEmailGroupDetailsAsyncData = {
+export type EmailGroupsGetEmailGroupDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1757,7 +1757,7 @@ export type GetEmailGroupDetailsAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups/{emailgroupId}';
 };
 
-export type GetEmailGroupDetailsAsyncErrors = {
+export type EmailGroupsGetEmailGroupDetailsErrors = {
     /**
      * Bad Request
      */
@@ -1772,18 +1772,18 @@ export type GetEmailGroupDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailGroupDetailsAsyncError = GetEmailGroupDetailsAsyncErrors[keyof GetEmailGroupDetailsAsyncErrors];
+export type EmailGroupsGetEmailGroupDetailsError = EmailGroupsGetEmailGroupDetailsErrors[keyof EmailGroupsGetEmailGroupDetailsErrors];
 
-export type GetEmailGroupDetailsAsyncResponses = {
+export type EmailGroupsGetEmailGroupDetailsResponses = {
     /**
      * OK
      */
     200: EmailGroupDtoEnvelopeReadable;
 };
 
-export type GetEmailGroupDetailsAsyncResponse = GetEmailGroupDetailsAsyncResponses[keyof GetEmailGroupDetailsAsyncResponses];
+export type EmailGroupsGetEmailGroupDetailsResponse = EmailGroupsGetEmailGroupDetailsResponses[keyof EmailGroupsGetEmailGroupDetailsResponses];
 
-export type PatchEmailGroupAsyncData = {
+export type EmailGroupsPatchEmailGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1798,7 +1798,7 @@ export type PatchEmailGroupAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups/{emailgroupId}';
 };
 
-export type PatchEmailGroupAsyncErrors = {
+export type EmailGroupsPatchEmailGroupErrors = {
     /**
      * Unauthorized
      */
@@ -1809,18 +1809,18 @@ export type PatchEmailGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmailGroupAsyncError = PatchEmailGroupAsyncErrors[keyof PatchEmailGroupAsyncErrors];
+export type EmailGroupsPatchEmailGroupError = EmailGroupsPatchEmailGroupErrors[keyof EmailGroupsPatchEmailGroupErrors];
 
-export type PatchEmailGroupAsyncResponses = {
+export type EmailGroupsPatchEmailGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmailGroupAsyncResponse = PatchEmailGroupAsyncResponses[keyof PatchEmailGroupAsyncResponses];
+export type EmailGroupsPatchEmailGroupResponse = EmailGroupsPatchEmailGroupResponses[keyof EmailGroupsPatchEmailGroupResponses];
 
-export type UpdateEmailGroupAsyncData = {
+export type EmailGroupsUpdateEmailGroupData = {
     body: EmailGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1835,7 +1835,7 @@ export type UpdateEmailGroupAsyncData = {
     url: '/api/v2/MarketingService/EmailGroups/{emailgroupId}';
 };
 
-export type UpdateEmailGroupAsyncErrors = {
+export type EmailGroupsUpdateEmailGroupErrors = {
     /**
      * Bad Request
      */
@@ -1850,18 +1850,18 @@ export type UpdateEmailGroupAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmailGroupAsyncError = UpdateEmailGroupAsyncErrors[keyof UpdateEmailGroupAsyncErrors];
+export type EmailGroupsUpdateEmailGroupError = EmailGroupsUpdateEmailGroupErrors[keyof EmailGroupsUpdateEmailGroupErrors];
 
-export type UpdateEmailGroupAsyncResponses = {
+export type EmailGroupsUpdateEmailGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmailGroupAsyncResponse = UpdateEmailGroupAsyncResponses[keyof UpdateEmailGroupAsyncResponses];
+export type EmailGroupsUpdateEmailGroupResponse = EmailGroupsUpdateEmailGroupResponses[keyof EmailGroupsUpdateEmailGroupResponses];
 
-export type GetEmailSignaturesODataAsyncData = {
+export type EmailSignaturesGetEmailSignaturesODataData = {
     body?: EmailSignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1874,7 +1874,7 @@ export type GetEmailSignaturesODataAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures';
 };
 
-export type GetEmailSignaturesODataAsyncErrors = {
+export type EmailSignaturesGetEmailSignaturesODataErrors = {
     /**
      * Unauthorized
      */
@@ -1885,18 +1885,18 @@ export type GetEmailSignaturesODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailSignaturesODataAsyncError = GetEmailSignaturesODataAsyncErrors[keyof GetEmailSignaturesODataAsyncErrors];
+export type EmailSignaturesGetEmailSignaturesODataError = EmailSignaturesGetEmailSignaturesODataErrors[keyof EmailSignaturesGetEmailSignaturesODataErrors];
 
-export type GetEmailSignaturesODataAsyncResponses = {
+export type EmailSignaturesGetEmailSignaturesODataResponses = {
     /**
      * OK
      */
     200: EmailSignatureDtoListEnvelopeReadable;
 };
 
-export type GetEmailSignaturesODataAsyncResponse = GetEmailSignaturesODataAsyncResponses[keyof GetEmailSignaturesODataAsyncResponses];
+export type EmailSignaturesGetEmailSignaturesODataResponse = EmailSignaturesGetEmailSignaturesODataResponses[keyof EmailSignaturesGetEmailSignaturesODataResponses];
 
-export type CreateEmailSignatureAsyncData = {
+export type EmailSignaturesCreateEmailSignatureData = {
     body: EmailSignatureCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1909,7 +1909,7 @@ export type CreateEmailSignatureAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures';
 };
 
-export type CreateEmailSignatureAsyncErrors = {
+export type EmailSignaturesCreateEmailSignatureErrors = {
     /**
      * Bad Request
      */
@@ -1924,18 +1924,18 @@ export type CreateEmailSignatureAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmailSignatureAsyncError = CreateEmailSignatureAsyncErrors[keyof CreateEmailSignatureAsyncErrors];
+export type EmailSignaturesCreateEmailSignatureError = EmailSignaturesCreateEmailSignatureErrors[keyof EmailSignaturesCreateEmailSignatureErrors];
 
-export type CreateEmailSignatureAsyncResponses = {
+export type EmailSignaturesCreateEmailSignatureResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateEmailSignatureAsyncResponse = CreateEmailSignatureAsyncResponses[keyof CreateEmailSignatureAsyncResponses];
+export type EmailSignaturesCreateEmailSignatureResponse = EmailSignaturesCreateEmailSignatureResponses[keyof EmailSignaturesCreateEmailSignatureResponses];
 
-export type GetEmailSignaturesCountAsyncData = {
+export type EmailSignaturesGetEmailSignaturesCountData = {
     body?: EmailSignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1948,7 +1948,7 @@ export type GetEmailSignaturesCountAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures/Count';
 };
 
-export type GetEmailSignaturesCountAsyncErrors = {
+export type EmailSignaturesGetEmailSignaturesCountErrors = {
     /**
      * Bad Request
      */
@@ -1963,18 +1963,18 @@ export type GetEmailSignaturesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailSignaturesCountAsyncError = GetEmailSignaturesCountAsyncErrors[keyof GetEmailSignaturesCountAsyncErrors];
+export type EmailSignaturesGetEmailSignaturesCountError = EmailSignaturesGetEmailSignaturesCountErrors[keyof EmailSignaturesGetEmailSignaturesCountErrors];
 
-export type GetEmailSignaturesCountAsyncResponses = {
+export type EmailSignaturesGetEmailSignaturesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmailSignaturesCountAsyncResponse = GetEmailSignaturesCountAsyncResponses[keyof GetEmailSignaturesCountAsyncResponses];
+export type EmailSignaturesGetEmailSignaturesCountResponse = EmailSignaturesGetEmailSignaturesCountResponses[keyof EmailSignaturesGetEmailSignaturesCountResponses];
 
-export type DeleteEmailSignatureAsyncData = {
+export type EmailSignaturesDeleteEmailSignatureData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1989,7 +1989,7 @@ export type DeleteEmailSignatureAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures/{emailsignatureId}';
 };
 
-export type DeleteEmailSignatureAsyncErrors = {
+export type EmailSignaturesDeleteEmailSignatureErrors = {
     /**
      * Bad Request
      */
@@ -2004,18 +2004,18 @@ export type DeleteEmailSignatureAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmailSignatureAsyncError = DeleteEmailSignatureAsyncErrors[keyof DeleteEmailSignatureAsyncErrors];
+export type EmailSignaturesDeleteEmailSignatureError = EmailSignaturesDeleteEmailSignatureErrors[keyof EmailSignaturesDeleteEmailSignatureErrors];
 
-export type DeleteEmailSignatureAsyncResponses = {
+export type EmailSignaturesDeleteEmailSignatureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmailSignatureAsyncResponse = DeleteEmailSignatureAsyncResponses[keyof DeleteEmailSignatureAsyncResponses];
+export type EmailSignaturesDeleteEmailSignatureResponse = EmailSignaturesDeleteEmailSignatureResponses[keyof EmailSignaturesDeleteEmailSignatureResponses];
 
-export type GetEmailSignatureDetailsAsyncData = {
+export type EmailSignaturesGetEmailSignatureDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2030,7 +2030,7 @@ export type GetEmailSignatureDetailsAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures/{emailsignatureId}';
 };
 
-export type GetEmailSignatureDetailsAsyncErrors = {
+export type EmailSignaturesGetEmailSignatureDetailsErrors = {
     /**
      * Bad Request
      */
@@ -2045,18 +2045,18 @@ export type GetEmailSignatureDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailSignatureDetailsAsyncError = GetEmailSignatureDetailsAsyncErrors[keyof GetEmailSignatureDetailsAsyncErrors];
+export type EmailSignaturesGetEmailSignatureDetailsError = EmailSignaturesGetEmailSignatureDetailsErrors[keyof EmailSignaturesGetEmailSignatureDetailsErrors];
 
-export type GetEmailSignatureDetailsAsyncResponses = {
+export type EmailSignaturesGetEmailSignatureDetailsResponses = {
     /**
      * OK
      */
     200: EmailSignatureDtoEnvelopeReadable;
 };
 
-export type GetEmailSignatureDetailsAsyncResponse = GetEmailSignatureDetailsAsyncResponses[keyof GetEmailSignatureDetailsAsyncResponses];
+export type EmailSignaturesGetEmailSignatureDetailsResponse = EmailSignaturesGetEmailSignatureDetailsResponses[keyof EmailSignaturesGetEmailSignatureDetailsResponses];
 
-export type PatchEmailSignatureAsyncData = {
+export type EmailSignaturesPatchEmailSignatureData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2071,7 +2071,7 @@ export type PatchEmailSignatureAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures/{emailsignatureId}';
 };
 
-export type PatchEmailSignatureAsyncErrors = {
+export type EmailSignaturesPatchEmailSignatureErrors = {
     /**
      * Unauthorized
      */
@@ -2082,18 +2082,18 @@ export type PatchEmailSignatureAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmailSignatureAsyncError = PatchEmailSignatureAsyncErrors[keyof PatchEmailSignatureAsyncErrors];
+export type EmailSignaturesPatchEmailSignatureError = EmailSignaturesPatchEmailSignatureErrors[keyof EmailSignaturesPatchEmailSignatureErrors];
 
-export type PatchEmailSignatureAsyncResponses = {
+export type EmailSignaturesPatchEmailSignatureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmailSignatureAsyncResponse = PatchEmailSignatureAsyncResponses[keyof PatchEmailSignatureAsyncResponses];
+export type EmailSignaturesPatchEmailSignatureResponse = EmailSignaturesPatchEmailSignatureResponses[keyof EmailSignaturesPatchEmailSignatureResponses];
 
-export type UpdateEmailSignatureAsyncData = {
+export type EmailSignaturesUpdateEmailSignatureData = {
     body: EmailSignatureUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2108,7 +2108,7 @@ export type UpdateEmailSignatureAsyncData = {
     url: '/api/v2/MarketingService/EmailSignatures/{emailsignatureId}';
 };
 
-export type UpdateEmailSignatureAsyncErrors = {
+export type EmailSignaturesUpdateEmailSignatureErrors = {
     /**
      * Bad Request
      */
@@ -2123,18 +2123,18 @@ export type UpdateEmailSignatureAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmailSignatureAsyncError = UpdateEmailSignatureAsyncErrors[keyof UpdateEmailSignatureAsyncErrors];
+export type EmailSignaturesUpdateEmailSignatureError = EmailSignaturesUpdateEmailSignatureErrors[keyof EmailSignaturesUpdateEmailSignatureErrors];
 
-export type UpdateEmailSignatureAsyncResponses = {
+export type EmailSignaturesUpdateEmailSignatureResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmailSignatureAsyncResponse = UpdateEmailSignatureAsyncResponses[keyof UpdateEmailSignatureAsyncResponses];
+export type EmailSignaturesUpdateEmailSignatureResponse = EmailSignaturesUpdateEmailSignatureResponses[keyof EmailSignaturesUpdateEmailSignatureResponses];
 
-export type GetEmailTemplatesODataAsyncData = {
+export type EmailTemplatesGetEmailTemplatesODataData = {
     body?: EmailTemplateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2147,7 +2147,7 @@ export type GetEmailTemplatesODataAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates';
 };
 
-export type GetEmailTemplatesODataAsyncErrors = {
+export type EmailTemplatesGetEmailTemplatesODataErrors = {
     /**
      * Unauthorized
      */
@@ -2158,18 +2158,18 @@ export type GetEmailTemplatesODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailTemplatesODataAsyncError = GetEmailTemplatesODataAsyncErrors[keyof GetEmailTemplatesODataAsyncErrors];
+export type EmailTemplatesGetEmailTemplatesODataError = EmailTemplatesGetEmailTemplatesODataErrors[keyof EmailTemplatesGetEmailTemplatesODataErrors];
 
-export type GetEmailTemplatesODataAsyncResponses = {
+export type EmailTemplatesGetEmailTemplatesODataResponses = {
     /**
      * OK
      */
     200: EmailTemplateDtoListEnvelopeReadable;
 };
 
-export type GetEmailTemplatesODataAsyncResponse = GetEmailTemplatesODataAsyncResponses[keyof GetEmailTemplatesODataAsyncResponses];
+export type EmailTemplatesGetEmailTemplatesODataResponse = EmailTemplatesGetEmailTemplatesODataResponses[keyof EmailTemplatesGetEmailTemplatesODataResponses];
 
-export type CreateEmailTemplateAsyncData = {
+export type EmailTemplatesCreateEmailTemplateData = {
     body: EmailTemplateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2182,7 +2182,7 @@ export type CreateEmailTemplateAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates';
 };
 
-export type CreateEmailTemplateAsyncErrors = {
+export type EmailTemplatesCreateEmailTemplateErrors = {
     /**
      * Bad Request
      */
@@ -2197,18 +2197,18 @@ export type CreateEmailTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateEmailTemplateAsyncError = CreateEmailTemplateAsyncErrors[keyof CreateEmailTemplateAsyncErrors];
+export type EmailTemplatesCreateEmailTemplateError = EmailTemplatesCreateEmailTemplateErrors[keyof EmailTemplatesCreateEmailTemplateErrors];
 
-export type CreateEmailTemplateAsyncResponses = {
+export type EmailTemplatesCreateEmailTemplateResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateEmailTemplateAsyncResponse = CreateEmailTemplateAsyncResponses[keyof CreateEmailTemplateAsyncResponses];
+export type EmailTemplatesCreateEmailTemplateResponse = EmailTemplatesCreateEmailTemplateResponses[keyof EmailTemplatesCreateEmailTemplateResponses];
 
-export type GetEmailTemplatesCountAsyncData = {
+export type EmailTemplatesGetEmailTemplatesCountData = {
     body?: EmailTemplateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2221,7 +2221,7 @@ export type GetEmailTemplatesCountAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates/Count';
 };
 
-export type GetEmailTemplatesCountAsyncErrors = {
+export type EmailTemplatesGetEmailTemplatesCountErrors = {
     /**
      * Bad Request
      */
@@ -2236,18 +2236,18 @@ export type GetEmailTemplatesCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailTemplatesCountAsyncError = GetEmailTemplatesCountAsyncErrors[keyof GetEmailTemplatesCountAsyncErrors];
+export type EmailTemplatesGetEmailTemplatesCountError = EmailTemplatesGetEmailTemplatesCountErrors[keyof EmailTemplatesGetEmailTemplatesCountErrors];
 
-export type GetEmailTemplatesCountAsyncResponses = {
+export type EmailTemplatesGetEmailTemplatesCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetEmailTemplatesCountAsyncResponse = GetEmailTemplatesCountAsyncResponses[keyof GetEmailTemplatesCountAsyncResponses];
+export type EmailTemplatesGetEmailTemplatesCountResponse = EmailTemplatesGetEmailTemplatesCountResponses[keyof EmailTemplatesGetEmailTemplatesCountResponses];
 
-export type DeleteEmailTemplateAsyncData = {
+export type EmailTemplatesDeleteEmailTemplateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2262,7 +2262,7 @@ export type DeleteEmailTemplateAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates/{emailTemplateId}';
 };
 
-export type DeleteEmailTemplateAsyncErrors = {
+export type EmailTemplatesDeleteEmailTemplateErrors = {
     /**
      * Bad Request
      */
@@ -2277,18 +2277,18 @@ export type DeleteEmailTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteEmailTemplateAsyncError = DeleteEmailTemplateAsyncErrors[keyof DeleteEmailTemplateAsyncErrors];
+export type EmailTemplatesDeleteEmailTemplateError = EmailTemplatesDeleteEmailTemplateErrors[keyof EmailTemplatesDeleteEmailTemplateErrors];
 
-export type DeleteEmailTemplateAsyncResponses = {
+export type EmailTemplatesDeleteEmailTemplateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteEmailTemplateAsyncResponse = DeleteEmailTemplateAsyncResponses[keyof DeleteEmailTemplateAsyncResponses];
+export type EmailTemplatesDeleteEmailTemplateResponse = EmailTemplatesDeleteEmailTemplateResponses[keyof EmailTemplatesDeleteEmailTemplateResponses];
 
-export type GetEmailTemplateDetailsAsyncData = {
+export type EmailTemplatesGetEmailTemplateDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2303,7 +2303,7 @@ export type GetEmailTemplateDetailsAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates/{emailTemplateId}';
 };
 
-export type GetEmailTemplateDetailsAsyncErrors = {
+export type EmailTemplatesGetEmailTemplateDetailsErrors = {
     /**
      * Bad Request
      */
@@ -2318,18 +2318,18 @@ export type GetEmailTemplateDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEmailTemplateDetailsAsyncError = GetEmailTemplateDetailsAsyncErrors[keyof GetEmailTemplateDetailsAsyncErrors];
+export type EmailTemplatesGetEmailTemplateDetailsError = EmailTemplatesGetEmailTemplateDetailsErrors[keyof EmailTemplatesGetEmailTemplateDetailsErrors];
 
-export type GetEmailTemplateDetailsAsyncResponses = {
+export type EmailTemplatesGetEmailTemplateDetailsResponses = {
     /**
      * OK
      */
     200: EmailTemplateDtoEnvelopeReadable;
 };
 
-export type GetEmailTemplateDetailsAsyncResponse = GetEmailTemplateDetailsAsyncResponses[keyof GetEmailTemplateDetailsAsyncResponses];
+export type EmailTemplatesGetEmailTemplateDetailsResponse = EmailTemplatesGetEmailTemplateDetailsResponses[keyof EmailTemplatesGetEmailTemplateDetailsResponses];
 
-export type PatchEmailTemplateAsyncData = {
+export type EmailTemplatesPatchEmailTemplateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2344,7 +2344,7 @@ export type PatchEmailTemplateAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates/{emailTemplateId}';
 };
 
-export type PatchEmailTemplateAsyncErrors = {
+export type EmailTemplatesPatchEmailTemplateErrors = {
     /**
      * Unauthorized
      */
@@ -2355,18 +2355,18 @@ export type PatchEmailTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchEmailTemplateAsyncError = PatchEmailTemplateAsyncErrors[keyof PatchEmailTemplateAsyncErrors];
+export type EmailTemplatesPatchEmailTemplateError = EmailTemplatesPatchEmailTemplateErrors[keyof EmailTemplatesPatchEmailTemplateErrors];
 
-export type PatchEmailTemplateAsyncResponses = {
+export type EmailTemplatesPatchEmailTemplateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchEmailTemplateAsyncResponse = PatchEmailTemplateAsyncResponses[keyof PatchEmailTemplateAsyncResponses];
+export type EmailTemplatesPatchEmailTemplateResponse = EmailTemplatesPatchEmailTemplateResponses[keyof EmailTemplatesPatchEmailTemplateResponses];
 
-export type UpdateEmailTemplateAsyncData = {
+export type EmailTemplatesUpdateEmailTemplateData = {
     body: EmailTemplateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2381,7 +2381,7 @@ export type UpdateEmailTemplateAsyncData = {
     url: '/api/v2/MarketingService/EmailTemplates/{emailTemplateId}';
 };
 
-export type UpdateEmailTemplateAsyncErrors = {
+export type EmailTemplatesUpdateEmailTemplateErrors = {
     /**
      * Bad Request
      */
@@ -2396,83 +2396,83 @@ export type UpdateEmailTemplateAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateEmailTemplateAsyncError = UpdateEmailTemplateAsyncErrors[keyof UpdateEmailTemplateAsyncErrors];
+export type EmailTemplatesUpdateEmailTemplateError = EmailTemplatesUpdateEmailTemplateErrors[keyof EmailTemplatesUpdateEmailTemplateErrors];
 
-export type UpdateEmailTemplateAsyncResponses = {
+export type EmailTemplatesUpdateEmailTemplateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateEmailTemplateAsyncResponse = UpdateEmailTemplateAsyncResponses[keyof UpdateEmailTemplateAsyncResponses];
+export type EmailTemplatesUpdateEmailTemplateResponse = EmailTemplatesUpdateEmailTemplateResponses[keyof EmailTemplatesUpdateEmailTemplateResponses];
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -2482,32 +2482,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -2518,81 +2518,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -2603,25 +2603,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2632,25 +2632,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -2661,18 +2661,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -2682,14 +2682,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -2698,14 +2698,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -2714,28 +2714,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetMarketingAreasAsyncData = {
+export type MarketingAreasGetMarketingAreasData = {
     body?: MarketingAreaDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2748,7 +2748,7 @@ export type GetMarketingAreasAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas';
 };
 
-export type GetMarketingAreasAsyncErrors = {
+export type MarketingAreasGetMarketingAreasErrors = {
     /**
      * Unauthorized
      */
@@ -2759,18 +2759,18 @@ export type GetMarketingAreasAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingAreasAsyncError = GetMarketingAreasAsyncErrors[keyof GetMarketingAreasAsyncErrors];
+export type MarketingAreasGetMarketingAreasError = MarketingAreasGetMarketingAreasErrors[keyof MarketingAreasGetMarketingAreasErrors];
 
-export type GetMarketingAreasAsyncResponses = {
+export type MarketingAreasGetMarketingAreasResponses = {
     /**
      * OK
      */
     200: MarketingAreaDtoListEnvelopeReadable;
 };
 
-export type GetMarketingAreasAsyncResponse = GetMarketingAreasAsyncResponses[keyof GetMarketingAreasAsyncResponses];
+export type MarketingAreasGetMarketingAreasResponse = MarketingAreasGetMarketingAreasResponses[keyof MarketingAreasGetMarketingAreasResponses];
 
-export type CreateMarketingAreaAsyncData = {
+export type MarketingAreasCreateMarketingAreaData = {
     body?: MarketingAreaCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2783,7 +2783,7 @@ export type CreateMarketingAreaAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas';
 };
 
-export type CreateMarketingAreaAsyncErrors = {
+export type MarketingAreasCreateMarketingAreaErrors = {
     /**
      * Bad Request
      */
@@ -2798,18 +2798,18 @@ export type CreateMarketingAreaAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateMarketingAreaAsyncError = CreateMarketingAreaAsyncErrors[keyof CreateMarketingAreaAsyncErrors];
+export type MarketingAreasCreateMarketingAreaError = MarketingAreasCreateMarketingAreaErrors[keyof MarketingAreasCreateMarketingAreaErrors];
 
-export type CreateMarketingAreaAsyncResponses = {
+export type MarketingAreasCreateMarketingAreaResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateMarketingAreaAsyncResponse = CreateMarketingAreaAsyncResponses[keyof CreateMarketingAreaAsyncResponses];
+export type MarketingAreasCreateMarketingAreaResponse = MarketingAreasCreateMarketingAreaResponses[keyof MarketingAreasCreateMarketingAreaResponses];
 
-export type GetMarketingAreasCountAsyncData = {
+export type MarketingAreasGetMarketingAreasCountData = {
     body?: MarketingAreaDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2822,7 +2822,7 @@ export type GetMarketingAreasCountAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas/Count';
 };
 
-export type GetMarketingAreasCountAsyncErrors = {
+export type MarketingAreasGetMarketingAreasCountErrors = {
     /**
      * Unauthorized
      */
@@ -2833,18 +2833,18 @@ export type GetMarketingAreasCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingAreasCountAsyncError = GetMarketingAreasCountAsyncErrors[keyof GetMarketingAreasCountAsyncErrors];
+export type MarketingAreasGetMarketingAreasCountError = MarketingAreasGetMarketingAreasCountErrors[keyof MarketingAreasGetMarketingAreasCountErrors];
 
-export type GetMarketingAreasCountAsyncResponses = {
+export type MarketingAreasGetMarketingAreasCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetMarketingAreasCountAsyncResponse = GetMarketingAreasCountAsyncResponses[keyof GetMarketingAreasCountAsyncResponses];
+export type MarketingAreasGetMarketingAreasCountResponse = MarketingAreasGetMarketingAreasCountResponses[keyof MarketingAreasGetMarketingAreasCountResponses];
 
-export type DeleteMarketingAreaAsyncData = {
+export type MarketingAreasDeleteMarketingAreaData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2859,7 +2859,7 @@ export type DeleteMarketingAreaAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
 };
 
-export type DeleteMarketingAreaAsyncErrors = {
+export type MarketingAreasDeleteMarketingAreaErrors = {
     /**
      * Bad Request
      */
@@ -2874,18 +2874,18 @@ export type DeleteMarketingAreaAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteMarketingAreaAsyncError = DeleteMarketingAreaAsyncErrors[keyof DeleteMarketingAreaAsyncErrors];
+export type MarketingAreasDeleteMarketingAreaError = MarketingAreasDeleteMarketingAreaErrors[keyof MarketingAreasDeleteMarketingAreaErrors];
 
-export type DeleteMarketingAreaAsyncResponses = {
+export type MarketingAreasDeleteMarketingAreaResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMarketingAreaAsyncResponse = DeleteMarketingAreaAsyncResponses[keyof DeleteMarketingAreaAsyncResponses];
+export type MarketingAreasDeleteMarketingAreaResponse = MarketingAreasDeleteMarketingAreaResponses[keyof MarketingAreasDeleteMarketingAreaResponses];
 
-export type GetMarketingAreaByIdAsyncData = {
+export type MarketingAreasGetMarketingAreaByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2900,7 +2900,7 @@ export type GetMarketingAreaByIdAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
 };
 
-export type GetMarketingAreaByIdAsyncErrors = {
+export type MarketingAreasGetMarketingAreaByIdErrors = {
     /**
      * Unauthorized
      */
@@ -2911,18 +2911,18 @@ export type GetMarketingAreaByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingAreaByIdAsyncError = GetMarketingAreaByIdAsyncErrors[keyof GetMarketingAreaByIdAsyncErrors];
+export type MarketingAreasGetMarketingAreaByIdError = MarketingAreasGetMarketingAreaByIdErrors[keyof MarketingAreasGetMarketingAreaByIdErrors];
 
-export type GetMarketingAreaByIdAsyncResponses = {
+export type MarketingAreasGetMarketingAreaByIdResponses = {
     /**
      * OK
      */
     200: MarketingAreaDtoEnvelopeReadable;
 };
 
-export type GetMarketingAreaByIdAsyncResponse = GetMarketingAreaByIdAsyncResponses[keyof GetMarketingAreaByIdAsyncResponses];
+export type MarketingAreasGetMarketingAreaByIdResponse = MarketingAreasGetMarketingAreaByIdResponses[keyof MarketingAreasGetMarketingAreaByIdResponses];
 
-export type PatchMarketingAreaAsyncData = {
+export type MarketingAreasPatchMarketingAreaData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2937,7 +2937,7 @@ export type PatchMarketingAreaAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
 };
 
-export type PatchMarketingAreaAsyncErrors = {
+export type MarketingAreasPatchMarketingAreaErrors = {
     /**
      * Unauthorized
      */
@@ -2948,18 +2948,18 @@ export type PatchMarketingAreaAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchMarketingAreaAsyncError = PatchMarketingAreaAsyncErrors[keyof PatchMarketingAreaAsyncErrors];
+export type MarketingAreasPatchMarketingAreaError = MarketingAreasPatchMarketingAreaErrors[keyof MarketingAreasPatchMarketingAreaErrors];
 
-export type PatchMarketingAreaAsyncResponses = {
+export type MarketingAreasPatchMarketingAreaResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchMarketingAreaAsyncResponse = PatchMarketingAreaAsyncResponses[keyof PatchMarketingAreaAsyncResponses];
+export type MarketingAreasPatchMarketingAreaResponse = MarketingAreasPatchMarketingAreaResponses[keyof MarketingAreasPatchMarketingAreaResponses];
 
-export type UpdateMarketingAreaAsyncData = {
+export type MarketingAreasUpdateMarketingAreaData = {
     body?: MarketingAreaUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2974,7 +2974,7 @@ export type UpdateMarketingAreaAsyncData = {
     url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
 };
 
-export type UpdateMarketingAreaAsyncErrors = {
+export type MarketingAreasUpdateMarketingAreaErrors = {
     /**
      * Bad Request
      */
@@ -2989,18 +2989,18 @@ export type UpdateMarketingAreaAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateMarketingAreaAsyncError = UpdateMarketingAreaAsyncErrors[keyof UpdateMarketingAreaAsyncErrors];
+export type MarketingAreasUpdateMarketingAreaError = MarketingAreasUpdateMarketingAreaErrors[keyof MarketingAreasUpdateMarketingAreaErrors];
 
-export type UpdateMarketingAreaAsyncResponses = {
+export type MarketingAreasUpdateMarketingAreaResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMarketingAreaAsyncResponse = UpdateMarketingAreaAsyncResponses[keyof UpdateMarketingAreaAsyncResponses];
+export type MarketingAreasUpdateMarketingAreaResponse = MarketingAreasUpdateMarketingAreaResponses[keyof MarketingAreasUpdateMarketingAreaResponses];
 
-export type GetMarketingCampaignODataAsyncData = {
+export type MarketingCampaignsGetMarketingCampaignODataData = {
     body?: MarketingCampaignDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3013,7 +3013,7 @@ export type GetMarketingCampaignODataAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns';
 };
 
-export type GetMarketingCampaignODataAsyncErrors = {
+export type MarketingCampaignsGetMarketingCampaignODataErrors = {
     /**
      * Bad Request
      */
@@ -3028,9 +3028,9 @@ export type GetMarketingCampaignODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingCampaignODataAsyncError = GetMarketingCampaignODataAsyncErrors[keyof GetMarketingCampaignODataAsyncErrors];
+export type MarketingCampaignsGetMarketingCampaignODataError = MarketingCampaignsGetMarketingCampaignODataErrors[keyof MarketingCampaignsGetMarketingCampaignODataErrors];
 
-export type CreateMarketingCampaignAsyncData = {
+export type MarketingCampaignsCreateMarketingCampaignData = {
     body: MarketingCampaignCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3043,7 +3043,7 @@ export type CreateMarketingCampaignAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns';
 };
 
-export type CreateMarketingCampaignAsyncErrors = {
+export type MarketingCampaignsCreateMarketingCampaignErrors = {
     /**
      * Bad Request
      */
@@ -3058,18 +3058,18 @@ export type CreateMarketingCampaignAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateMarketingCampaignAsyncError = CreateMarketingCampaignAsyncErrors[keyof CreateMarketingCampaignAsyncErrors];
+export type MarketingCampaignsCreateMarketingCampaignError = MarketingCampaignsCreateMarketingCampaignErrors[keyof MarketingCampaignsCreateMarketingCampaignErrors];
 
-export type CreateMarketingCampaignAsyncResponses = {
+export type MarketingCampaignsCreateMarketingCampaignResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateMarketingCampaignAsyncResponse = CreateMarketingCampaignAsyncResponses[keyof CreateMarketingCampaignAsyncResponses];
+export type MarketingCampaignsCreateMarketingCampaignResponse = MarketingCampaignsCreateMarketingCampaignResponses[keyof MarketingCampaignsCreateMarketingCampaignResponses];
 
-export type GetMarketingCampaignsCountAsyncData = {
+export type MarketingCampaignsGetMarketingCampaignsCountData = {
     body?: MarketingCampaignDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3082,7 +3082,7 @@ export type GetMarketingCampaignsCountAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns/Count';
 };
 
-export type GetMarketingCampaignsCountAsyncErrors = {
+export type MarketingCampaignsGetMarketingCampaignsCountErrors = {
     /**
      * Bad Request
      */
@@ -3097,18 +3097,18 @@ export type GetMarketingCampaignsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingCampaignsCountAsyncError = GetMarketingCampaignsCountAsyncErrors[keyof GetMarketingCampaignsCountAsyncErrors];
+export type MarketingCampaignsGetMarketingCampaignsCountError = MarketingCampaignsGetMarketingCampaignsCountErrors[keyof MarketingCampaignsGetMarketingCampaignsCountErrors];
 
-export type GetMarketingCampaignsCountAsyncResponses = {
+export type MarketingCampaignsGetMarketingCampaignsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetMarketingCampaignsCountAsyncResponse = GetMarketingCampaignsCountAsyncResponses[keyof GetMarketingCampaignsCountAsyncResponses];
+export type MarketingCampaignsGetMarketingCampaignsCountResponse = MarketingCampaignsGetMarketingCampaignsCountResponses[keyof MarketingCampaignsGetMarketingCampaignsCountResponses];
 
-export type DeleteMarketingCampaignAsyncData = {
+export type MarketingCampaignsDeleteMarketingCampaignData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3123,7 +3123,7 @@ export type DeleteMarketingCampaignAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns/{marketingcampaignId}';
 };
 
-export type DeleteMarketingCampaignAsyncErrors = {
+export type MarketingCampaignsDeleteMarketingCampaignErrors = {
     /**
      * Bad Request
      */
@@ -3138,18 +3138,18 @@ export type DeleteMarketingCampaignAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteMarketingCampaignAsyncError = DeleteMarketingCampaignAsyncErrors[keyof DeleteMarketingCampaignAsyncErrors];
+export type MarketingCampaignsDeleteMarketingCampaignError = MarketingCampaignsDeleteMarketingCampaignErrors[keyof MarketingCampaignsDeleteMarketingCampaignErrors];
 
-export type DeleteMarketingCampaignAsyncResponses = {
+export type MarketingCampaignsDeleteMarketingCampaignResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMarketingCampaignAsyncResponse = DeleteMarketingCampaignAsyncResponses[keyof DeleteMarketingCampaignAsyncResponses];
+export type MarketingCampaignsDeleteMarketingCampaignResponse = MarketingCampaignsDeleteMarketingCampaignResponses[keyof MarketingCampaignsDeleteMarketingCampaignResponses];
 
-export type GetMarketingCampaignDetailsAsyncData = {
+export type MarketingCampaignsGetMarketingCampaignDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3164,7 +3164,7 @@ export type GetMarketingCampaignDetailsAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns/{marketingcampaignId}';
 };
 
-export type GetMarketingCampaignDetailsAsyncErrors = {
+export type MarketingCampaignsGetMarketingCampaignDetailsErrors = {
     /**
      * Bad Request
      */
@@ -3179,18 +3179,18 @@ export type GetMarketingCampaignDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingCampaignDetailsAsyncError = GetMarketingCampaignDetailsAsyncErrors[keyof GetMarketingCampaignDetailsAsyncErrors];
+export type MarketingCampaignsGetMarketingCampaignDetailsError = MarketingCampaignsGetMarketingCampaignDetailsErrors[keyof MarketingCampaignsGetMarketingCampaignDetailsErrors];
 
-export type GetMarketingCampaignDetailsAsyncResponses = {
+export type MarketingCampaignsGetMarketingCampaignDetailsResponses = {
     /**
      * OK
      */
     200: MarketingCampaignDtoEnvelopeReadable;
 };
 
-export type GetMarketingCampaignDetailsAsyncResponse = GetMarketingCampaignDetailsAsyncResponses[keyof GetMarketingCampaignDetailsAsyncResponses];
+export type MarketingCampaignsGetMarketingCampaignDetailsResponse = MarketingCampaignsGetMarketingCampaignDetailsResponses[keyof MarketingCampaignsGetMarketingCampaignDetailsResponses];
 
-export type PatchMarketingCampaignAsyncData = {
+export type MarketingCampaignsPatchMarketingCampaignData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3205,7 +3205,7 @@ export type PatchMarketingCampaignAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns/{marketingcampaignId}';
 };
 
-export type PatchMarketingCampaignAsyncErrors = {
+export type MarketingCampaignsPatchMarketingCampaignErrors = {
     /**
      * Unauthorized
      */
@@ -3216,18 +3216,18 @@ export type PatchMarketingCampaignAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchMarketingCampaignAsyncError = PatchMarketingCampaignAsyncErrors[keyof PatchMarketingCampaignAsyncErrors];
+export type MarketingCampaignsPatchMarketingCampaignError = MarketingCampaignsPatchMarketingCampaignErrors[keyof MarketingCampaignsPatchMarketingCampaignErrors];
 
-export type PatchMarketingCampaignAsyncResponses = {
+export type MarketingCampaignsPatchMarketingCampaignResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchMarketingCampaignAsyncResponse = PatchMarketingCampaignAsyncResponses[keyof PatchMarketingCampaignAsyncResponses];
+export type MarketingCampaignsPatchMarketingCampaignResponse = MarketingCampaignsPatchMarketingCampaignResponses[keyof MarketingCampaignsPatchMarketingCampaignResponses];
 
-export type UpdateMarketingCampaignAsyncData = {
+export type MarketingCampaignsUpdateMarketingCampaignData = {
     body: MarketingCampaignUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3242,7 +3242,7 @@ export type UpdateMarketingCampaignAsyncData = {
     url: '/api/v2/MarketingService/MarketingCampaigns/{marketingcampaignId}';
 };
 
-export type UpdateMarketingCampaignAsyncErrors = {
+export type MarketingCampaignsUpdateMarketingCampaignErrors = {
     /**
      * Bad Request
      */
@@ -3257,18 +3257,18 @@ export type UpdateMarketingCampaignAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateMarketingCampaignAsyncError = UpdateMarketingCampaignAsyncErrors[keyof UpdateMarketingCampaignAsyncErrors];
+export type MarketingCampaignsUpdateMarketingCampaignError = MarketingCampaignsUpdateMarketingCampaignErrors[keyof MarketingCampaignsUpdateMarketingCampaignErrors];
 
-export type UpdateMarketingCampaignAsyncResponses = {
+export type MarketingCampaignsUpdateMarketingCampaignResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMarketingCampaignAsyncResponse = UpdateMarketingCampaignAsyncResponses[keyof UpdateMarketingCampaignAsyncResponses];
+export type MarketingCampaignsUpdateMarketingCampaignResponse = MarketingCampaignsUpdateMarketingCampaignResponses[keyof MarketingCampaignsUpdateMarketingCampaignResponses];
 
-export type GetMarketingLeadsODataAsyncData = {
+export type MarketingLeadsGetMarketingLeadsODataData = {
     body?: MarketingLeadDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3281,16 +3281,16 @@ export type GetMarketingLeadsODataAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads';
 };
 
-export type GetMarketingLeadsODataAsyncResponses = {
+export type MarketingLeadsGetMarketingLeadsODataResponses = {
     /**
      * OK
      */
     200: MarketingLeadDtoListEnvelopeReadable;
 };
 
-export type GetMarketingLeadsODataAsyncResponse = GetMarketingLeadsODataAsyncResponses[keyof GetMarketingLeadsODataAsyncResponses];
+export type MarketingLeadsGetMarketingLeadsODataResponse = MarketingLeadsGetMarketingLeadsODataResponses[keyof MarketingLeadsGetMarketingLeadsODataResponses];
 
-export type CreateMarketingLeadAsyncData = {
+export type MarketingLeadsCreateMarketingLeadData = {
     body: MarketingLeadCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3303,16 +3303,16 @@ export type CreateMarketingLeadAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads';
 };
 
-export type CreateMarketingLeadAsyncResponses = {
+export type MarketingLeadsCreateMarketingLeadResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type CreateMarketingLeadAsyncResponse = CreateMarketingLeadAsyncResponses[keyof CreateMarketingLeadAsyncResponses];
+export type MarketingLeadsCreateMarketingLeadResponse = MarketingLeadsCreateMarketingLeadResponses[keyof MarketingLeadsCreateMarketingLeadResponses];
 
-export type GetMarketingLeadsCountAsyncData = {
+export type MarketingLeadsGetMarketingLeadsCountData = {
     body?: MarketingLeadDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3325,16 +3325,16 @@ export type GetMarketingLeadsCountAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads/Count';
 };
 
-export type GetMarketingLeadsCountAsyncResponses = {
+export type MarketingLeadsGetMarketingLeadsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetMarketingLeadsCountAsyncResponse = GetMarketingLeadsCountAsyncResponses[keyof GetMarketingLeadsCountAsyncResponses];
+export type MarketingLeadsGetMarketingLeadsCountResponse = MarketingLeadsGetMarketingLeadsCountResponses[keyof MarketingLeadsGetMarketingLeadsCountResponses];
 
-export type DeleteMarketingLeadAsyncData = {
+export type MarketingLeadsDeleteMarketingLeadData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3349,16 +3349,16 @@ export type DeleteMarketingLeadAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
 };
 
-export type DeleteMarketingLeadAsyncResponses = {
+export type MarketingLeadsDeleteMarketingLeadResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMarketingLeadAsyncResponse = DeleteMarketingLeadAsyncResponses[keyof DeleteMarketingLeadAsyncResponses];
+export type MarketingLeadsDeleteMarketingLeadResponse = MarketingLeadsDeleteMarketingLeadResponses[keyof MarketingLeadsDeleteMarketingLeadResponses];
 
-export type GetMarketingLeadDetailsAsyncData = {
+export type MarketingLeadsGetMarketingLeadDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3373,16 +3373,16 @@ export type GetMarketingLeadDetailsAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
 };
 
-export type GetMarketingLeadDetailsAsyncResponses = {
+export type MarketingLeadsGetMarketingLeadDetailsResponses = {
     /**
      * OK
      */
     200: MarketingLeadDtoEnvelopeReadable;
 };
 
-export type GetMarketingLeadDetailsAsyncResponse = GetMarketingLeadDetailsAsyncResponses[keyof GetMarketingLeadDetailsAsyncResponses];
+export type MarketingLeadsGetMarketingLeadDetailsResponse = MarketingLeadsGetMarketingLeadDetailsResponses[keyof MarketingLeadsGetMarketingLeadDetailsResponses];
 
-export type PatchMarketingLeadAsyncData = {
+export type MarketingLeadsPatchMarketingLeadData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3397,7 +3397,7 @@ export type PatchMarketingLeadAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
 };
 
-export type PatchMarketingLeadAsyncErrors = {
+export type MarketingLeadsPatchMarketingLeadErrors = {
     /**
      * Unauthorized
      */
@@ -3408,18 +3408,18 @@ export type PatchMarketingLeadAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchMarketingLeadAsyncError = PatchMarketingLeadAsyncErrors[keyof PatchMarketingLeadAsyncErrors];
+export type MarketingLeadsPatchMarketingLeadError = MarketingLeadsPatchMarketingLeadErrors[keyof MarketingLeadsPatchMarketingLeadErrors];
 
-export type PatchMarketingLeadAsyncResponses = {
+export type MarketingLeadsPatchMarketingLeadResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchMarketingLeadAsyncResponse = PatchMarketingLeadAsyncResponses[keyof PatchMarketingLeadAsyncResponses];
+export type MarketingLeadsPatchMarketingLeadResponse = MarketingLeadsPatchMarketingLeadResponses[keyof MarketingLeadsPatchMarketingLeadResponses];
 
-export type UpdateMarketingLeadAsyncData = {
+export type MarketingLeadsUpdateMarketingLeadData = {
     body: MarketingLeadUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3434,16 +3434,16 @@ export type UpdateMarketingLeadAsyncData = {
     url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
 };
 
-export type UpdateMarketingLeadAsyncResponses = {
+export type MarketingLeadsUpdateMarketingLeadResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMarketingLeadAsyncResponse = UpdateMarketingLeadAsyncResponses[keyof UpdateMarketingLeadAsyncResponses];
+export type MarketingLeadsUpdateMarketingLeadResponse = MarketingLeadsUpdateMarketingLeadResponses[keyof MarketingLeadsUpdateMarketingLeadResponses];
 
-export type GetMarketingListODataAsyncData = {
+export type MarketingListsGetMarketingListODataData = {
     body?: MarketingListDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3456,7 +3456,7 @@ export type GetMarketingListODataAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists';
 };
 
-export type GetMarketingListODataAsyncErrors = {
+export type MarketingListsGetMarketingListODataErrors = {
     /**
      * Unauthorized
      */
@@ -3467,18 +3467,18 @@ export type GetMarketingListODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingListODataAsyncError = GetMarketingListODataAsyncErrors[keyof GetMarketingListODataAsyncErrors];
+export type MarketingListsGetMarketingListODataError = MarketingListsGetMarketingListODataErrors[keyof MarketingListsGetMarketingListODataErrors];
 
-export type GetMarketingListODataAsyncResponses = {
+export type MarketingListsGetMarketingListODataResponses = {
     /**
      * OK
      */
     200: MarketingListDtoListEnvelopeReadable;
 };
 
-export type GetMarketingListODataAsyncResponse = GetMarketingListODataAsyncResponses[keyof GetMarketingListODataAsyncResponses];
+export type MarketingListsGetMarketingListODataResponse = MarketingListsGetMarketingListODataResponses[keyof MarketingListsGetMarketingListODataResponses];
 
-export type CreateMarketingListAsyncData = {
+export type MarketingListsCreateMarketingListData = {
     body: MarketingListCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3491,7 +3491,7 @@ export type CreateMarketingListAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists';
 };
 
-export type CreateMarketingListAsyncErrors = {
+export type MarketingListsCreateMarketingListErrors = {
     /**
      * Bad Request
      */
@@ -3506,18 +3506,18 @@ export type CreateMarketingListAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateMarketingListAsyncError = CreateMarketingListAsyncErrors[keyof CreateMarketingListAsyncErrors];
+export type MarketingListsCreateMarketingListError = MarketingListsCreateMarketingListErrors[keyof MarketingListsCreateMarketingListErrors];
 
-export type CreateMarketingListAsyncResponses = {
+export type MarketingListsCreateMarketingListResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateMarketingListAsyncResponse = CreateMarketingListAsyncResponses[keyof CreateMarketingListAsyncResponses];
+export type MarketingListsCreateMarketingListResponse = MarketingListsCreateMarketingListResponses[keyof MarketingListsCreateMarketingListResponses];
 
-export type GetMarketingListsCountAsyncData = {
+export type MarketingListsGetMarketingListsCountData = {
     body?: MarketingListDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3530,7 +3530,7 @@ export type GetMarketingListsCountAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists/Count';
 };
 
-export type GetMarketingListsCountAsyncErrors = {
+export type MarketingListsGetMarketingListsCountErrors = {
     /**
      * Bad Request
      */
@@ -3545,18 +3545,18 @@ export type GetMarketingListsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingListsCountAsyncError = GetMarketingListsCountAsyncErrors[keyof GetMarketingListsCountAsyncErrors];
+export type MarketingListsGetMarketingListsCountError = MarketingListsGetMarketingListsCountErrors[keyof MarketingListsGetMarketingListsCountErrors];
 
-export type GetMarketingListsCountAsyncResponses = {
+export type MarketingListsGetMarketingListsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetMarketingListsCountAsyncResponse = GetMarketingListsCountAsyncResponses[keyof GetMarketingListsCountAsyncResponses];
+export type MarketingListsGetMarketingListsCountResponse = MarketingListsGetMarketingListsCountResponses[keyof MarketingListsGetMarketingListsCountResponses];
 
-export type DeleteMarketingListAsyncData = {
+export type MarketingListsDeleteMarketingListData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3571,7 +3571,7 @@ export type DeleteMarketingListAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists/{marketinglistId}';
 };
 
-export type DeleteMarketingListAsyncErrors = {
+export type MarketingListsDeleteMarketingListErrors = {
     /**
      * Bad Request
      */
@@ -3586,18 +3586,18 @@ export type DeleteMarketingListAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteMarketingListAsyncError = DeleteMarketingListAsyncErrors[keyof DeleteMarketingListAsyncErrors];
+export type MarketingListsDeleteMarketingListError = MarketingListsDeleteMarketingListErrors[keyof MarketingListsDeleteMarketingListErrors];
 
-export type DeleteMarketingListAsyncResponses = {
+export type MarketingListsDeleteMarketingListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteMarketingListAsyncResponse = DeleteMarketingListAsyncResponses[keyof DeleteMarketingListAsyncResponses];
+export type MarketingListsDeleteMarketingListResponse = MarketingListsDeleteMarketingListResponses[keyof MarketingListsDeleteMarketingListResponses];
 
-export type GetMarketingListDetailsAsyncData = {
+export type MarketingListsGetMarketingListDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3612,7 +3612,7 @@ export type GetMarketingListDetailsAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists/{marketinglistId}';
 };
 
-export type GetMarketingListDetailsAsyncErrors = {
+export type MarketingListsGetMarketingListDetailsErrors = {
     /**
      * Bad Request
      */
@@ -3627,18 +3627,18 @@ export type GetMarketingListDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetMarketingListDetailsAsyncError = GetMarketingListDetailsAsyncErrors[keyof GetMarketingListDetailsAsyncErrors];
+export type MarketingListsGetMarketingListDetailsError = MarketingListsGetMarketingListDetailsErrors[keyof MarketingListsGetMarketingListDetailsErrors];
 
-export type GetMarketingListDetailsAsyncResponses = {
+export type MarketingListsGetMarketingListDetailsResponses = {
     /**
      * OK
      */
     200: MarketingListDtoEnvelopeReadable;
 };
 
-export type GetMarketingListDetailsAsyncResponse = GetMarketingListDetailsAsyncResponses[keyof GetMarketingListDetailsAsyncResponses];
+export type MarketingListsGetMarketingListDetailsResponse = MarketingListsGetMarketingListDetailsResponses[keyof MarketingListsGetMarketingListDetailsResponses];
 
-export type PatchMarketingListAsyncData = {
+export type MarketingListsPatchMarketingListData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3653,7 +3653,7 @@ export type PatchMarketingListAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists/{marketinglistId}';
 };
 
-export type PatchMarketingListAsyncErrors = {
+export type MarketingListsPatchMarketingListErrors = {
     /**
      * Unauthorized
      */
@@ -3664,18 +3664,18 @@ export type PatchMarketingListAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchMarketingListAsyncError = PatchMarketingListAsyncErrors[keyof PatchMarketingListAsyncErrors];
+export type MarketingListsPatchMarketingListError = MarketingListsPatchMarketingListErrors[keyof MarketingListsPatchMarketingListErrors];
 
-export type PatchMarketingListAsyncResponses = {
+export type MarketingListsPatchMarketingListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchMarketingListAsyncResponse = PatchMarketingListAsyncResponses[keyof PatchMarketingListAsyncResponses];
+export type MarketingListsPatchMarketingListResponse = MarketingListsPatchMarketingListResponses[keyof MarketingListsPatchMarketingListResponses];
 
-export type UpdateMarketingListAsyncData = {
+export type MarketingListsUpdateMarketingListData = {
     body: MarketingListUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3690,7 +3690,7 @@ export type UpdateMarketingListAsyncData = {
     url: '/api/v2/MarketingService/MarketingLists/{marketinglistId}';
 };
 
-export type UpdateMarketingListAsyncErrors = {
+export type MarketingListsUpdateMarketingListErrors = {
     /**
      * Bad Request
      */
@@ -3705,18 +3705,18 @@ export type UpdateMarketingListAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateMarketingListAsyncError = UpdateMarketingListAsyncErrors[keyof UpdateMarketingListAsyncErrors];
+export type MarketingListsUpdateMarketingListError = MarketingListsUpdateMarketingListErrors[keyof MarketingListsUpdateMarketingListErrors];
 
-export type UpdateMarketingListAsyncResponses = {
+export type MarketingListsUpdateMarketingListResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateMarketingListAsyncResponse = UpdateMarketingListAsyncResponses[keyof UpdateMarketingListAsyncResponses];
+export type MarketingListsUpdateMarketingListResponse = MarketingListsUpdateMarketingListResponses[keyof MarketingListsUpdateMarketingListResponses];
 
-export type GetNewsletterODataAsyncData = {
+export type NewslettersGetNewsletterODataData = {
     body?: NewsletterDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3729,7 +3729,7 @@ export type GetNewsletterODataAsyncData = {
     url: '/api/v2/MarketingService/Newsletters';
 };
 
-export type GetNewsletterODataAsyncErrors = {
+export type NewslettersGetNewsletterODataErrors = {
     /**
      * Bad Request
      */
@@ -3744,9 +3744,9 @@ export type GetNewsletterODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNewsletterODataAsyncError = GetNewsletterODataAsyncErrors[keyof GetNewsletterODataAsyncErrors];
+export type NewslettersGetNewsletterODataError = NewslettersGetNewsletterODataErrors[keyof NewslettersGetNewsletterODataErrors];
 
-export type CreateNewsletterAsyncData = {
+export type NewslettersCreateNewsletterData = {
     body: NewsletterCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3759,7 +3759,7 @@ export type CreateNewsletterAsyncData = {
     url: '/api/v2/MarketingService/Newsletters';
 };
 
-export type CreateNewsletterAsyncErrors = {
+export type NewslettersCreateNewsletterErrors = {
     /**
      * Bad Request
      */
@@ -3774,18 +3774,18 @@ export type CreateNewsletterAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateNewsletterAsyncError = CreateNewsletterAsyncErrors[keyof CreateNewsletterAsyncErrors];
+export type NewslettersCreateNewsletterError = NewslettersCreateNewsletterErrors[keyof NewslettersCreateNewsletterErrors];
 
-export type CreateNewsletterAsyncResponses = {
+export type NewslettersCreateNewsletterResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateNewsletterAsyncResponse = CreateNewsletterAsyncResponses[keyof CreateNewsletterAsyncResponses];
+export type NewslettersCreateNewsletterResponse = NewslettersCreateNewsletterResponses[keyof NewslettersCreateNewsletterResponses];
 
-export type GetNewslettersCountAsyncData = {
+export type NewslettersGetNewslettersCountData = {
     body?: NewsletterDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3798,7 +3798,7 @@ export type GetNewslettersCountAsyncData = {
     url: '/api/v2/MarketingService/Newsletters/Count';
 };
 
-export type GetNewslettersCountAsyncErrors = {
+export type NewslettersGetNewslettersCountErrors = {
     /**
      * Bad Request
      */
@@ -3813,18 +3813,18 @@ export type GetNewslettersCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNewslettersCountAsyncError = GetNewslettersCountAsyncErrors[keyof GetNewslettersCountAsyncErrors];
+export type NewslettersGetNewslettersCountError = NewslettersGetNewslettersCountErrors[keyof NewslettersGetNewslettersCountErrors];
 
-export type GetNewslettersCountAsyncResponses = {
+export type NewslettersGetNewslettersCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetNewslettersCountAsyncResponse = GetNewslettersCountAsyncResponses[keyof GetNewslettersCountAsyncResponses];
+export type NewslettersGetNewslettersCountResponse = NewslettersGetNewslettersCountResponses[keyof NewslettersGetNewslettersCountResponses];
 
-export type DeleteNewsletterAsyncData = {
+export type NewslettersDeleteNewsletterData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3839,7 +3839,7 @@ export type DeleteNewsletterAsyncData = {
     url: '/api/v2/MarketingService/Newsletters/{newsletterId}';
 };
 
-export type DeleteNewsletterAsyncErrors = {
+export type NewslettersDeleteNewsletterErrors = {
     /**
      * Bad Request
      */
@@ -3854,18 +3854,18 @@ export type DeleteNewsletterAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteNewsletterAsyncError = DeleteNewsletterAsyncErrors[keyof DeleteNewsletterAsyncErrors];
+export type NewslettersDeleteNewsletterError = NewslettersDeleteNewsletterErrors[keyof NewslettersDeleteNewsletterErrors];
 
-export type DeleteNewsletterAsyncResponses = {
+export type NewslettersDeleteNewsletterResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteNewsletterAsyncResponse = DeleteNewsletterAsyncResponses[keyof DeleteNewsletterAsyncResponses];
+export type NewslettersDeleteNewsletterResponse = NewslettersDeleteNewsletterResponses[keyof NewslettersDeleteNewsletterResponses];
 
-export type GetNewsletterDetailsAsyncData = {
+export type NewslettersGetNewsletterDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3880,7 +3880,7 @@ export type GetNewsletterDetailsAsyncData = {
     url: '/api/v2/MarketingService/Newsletters/{newsletterId}';
 };
 
-export type GetNewsletterDetailsAsyncErrors = {
+export type NewslettersGetNewsletterDetailsErrors = {
     /**
      * Bad Request
      */
@@ -3895,18 +3895,18 @@ export type GetNewsletterDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNewsletterDetailsAsyncError = GetNewsletterDetailsAsyncErrors[keyof GetNewsletterDetailsAsyncErrors];
+export type NewslettersGetNewsletterDetailsError = NewslettersGetNewsletterDetailsErrors[keyof NewslettersGetNewsletterDetailsErrors];
 
-export type GetNewsletterDetailsAsyncResponses = {
+export type NewslettersGetNewsletterDetailsResponses = {
     /**
      * OK
      */
     200: NewsletterDtoEnvelopeReadable;
 };
 
-export type GetNewsletterDetailsAsyncResponse = GetNewsletterDetailsAsyncResponses[keyof GetNewsletterDetailsAsyncResponses];
+export type NewslettersGetNewsletterDetailsResponse = NewslettersGetNewsletterDetailsResponses[keyof NewslettersGetNewsletterDetailsResponses];
 
-export type PatchNewsletterAsyncData = {
+export type NewslettersPatchNewsletterData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3921,7 +3921,7 @@ export type PatchNewsletterAsyncData = {
     url: '/api/v2/MarketingService/Newsletters/{newsletterId}';
 };
 
-export type PatchNewsletterAsyncErrors = {
+export type NewslettersPatchNewsletterErrors = {
     /**
      * Unauthorized
      */
@@ -3932,18 +3932,18 @@ export type PatchNewsletterAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchNewsletterAsyncError = PatchNewsletterAsyncErrors[keyof PatchNewsletterAsyncErrors];
+export type NewslettersPatchNewsletterError = NewslettersPatchNewsletterErrors[keyof NewslettersPatchNewsletterErrors];
 
-export type PatchNewsletterAsyncResponses = {
+export type NewslettersPatchNewsletterResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchNewsletterAsyncResponse = PatchNewsletterAsyncResponses[keyof PatchNewsletterAsyncResponses];
+export type NewslettersPatchNewsletterResponse = NewslettersPatchNewsletterResponses[keyof NewslettersPatchNewsletterResponses];
 
-export type UpdateNewsletterAsyncData = {
+export type NewslettersUpdateNewsletterData = {
     body: NewsletterUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3958,7 +3958,7 @@ export type UpdateNewsletterAsyncData = {
     url: '/api/v2/MarketingService/Newsletters/{newsletterId}';
 };
 
-export type UpdateNewsletterAsyncErrors = {
+export type NewslettersUpdateNewsletterErrors = {
     /**
      * Bad Request
      */
@@ -3973,18 +3973,18 @@ export type UpdateNewsletterAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateNewsletterAsyncError = UpdateNewsletterAsyncErrors[keyof UpdateNewsletterAsyncErrors];
+export type NewslettersUpdateNewsletterError = NewslettersUpdateNewsletterErrors[keyof NewslettersUpdateNewsletterErrors];
 
-export type UpdateNewsletterAsyncResponses = {
+export type NewslettersUpdateNewsletterResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateNewsletterAsyncResponse = UpdateNewsletterAsyncResponses[keyof UpdateNewsletterAsyncResponses];
+export type NewslettersUpdateNewsletterResponse = NewslettersUpdateNewsletterResponses[keyof NewslettersUpdateNewsletterResponses];
 
-export type GetNewsletterSubscriptionsAsyncData = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsData = {
     body?: NewsletterSubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3997,7 +3997,7 @@ export type GetNewsletterSubscriptionsAsyncData = {
     url: '/api/v2/MarketingService/NewsletterSubscriptions';
 };
 
-export type GetNewsletterSubscriptionsAsyncErrors = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsErrors = {
     /**
      * Bad Request
      */
@@ -4012,18 +4012,18 @@ export type GetNewsletterSubscriptionsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNewsletterSubscriptionsAsyncError = GetNewsletterSubscriptionsAsyncErrors[keyof GetNewsletterSubscriptionsAsyncErrors];
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsError = NewsletterSubscriptionsGetNewsletterSubscriptionsErrors[keyof NewsletterSubscriptionsGetNewsletterSubscriptionsErrors];
 
-export type GetNewsletterSubscriptionsAsyncResponses = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsResponses = {
     /**
      * OK
      */
     200: NewsletterSubscriptionDtoListEnvelopeReadable;
 };
 
-export type GetNewsletterSubscriptionsAsyncResponse = GetNewsletterSubscriptionsAsyncResponses[keyof GetNewsletterSubscriptionsAsyncResponses];
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsResponse = NewsletterSubscriptionsGetNewsletterSubscriptionsResponses[keyof NewsletterSubscriptionsGetNewsletterSubscriptionsResponses];
 
-export type CreateNewsletterSubscriptionAsyncData = {
+export type NewsletterSubscriptionsCreateNewsletterSubscriptionData = {
     body: NewsletterSubscriptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4036,7 +4036,7 @@ export type CreateNewsletterSubscriptionAsyncData = {
     url: '/api/v2/MarketingService/NewsletterSubscriptions';
 };
 
-export type CreateNewsletterSubscriptionAsyncErrors = {
+export type NewsletterSubscriptionsCreateNewsletterSubscriptionErrors = {
     /**
      * Bad Request
      */
@@ -4051,18 +4051,18 @@ export type CreateNewsletterSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateNewsletterSubscriptionAsyncError = CreateNewsletterSubscriptionAsyncErrors[keyof CreateNewsletterSubscriptionAsyncErrors];
+export type NewsletterSubscriptionsCreateNewsletterSubscriptionError = NewsletterSubscriptionsCreateNewsletterSubscriptionErrors[keyof NewsletterSubscriptionsCreateNewsletterSubscriptionErrors];
 
-export type CreateNewsletterSubscriptionAsyncResponses = {
+export type NewsletterSubscriptionsCreateNewsletterSubscriptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateNewsletterSubscriptionAsyncResponse = CreateNewsletterSubscriptionAsyncResponses[keyof CreateNewsletterSubscriptionAsyncResponses];
+export type NewsletterSubscriptionsCreateNewsletterSubscriptionResponse = NewsletterSubscriptionsCreateNewsletterSubscriptionResponses[keyof NewsletterSubscriptionsCreateNewsletterSubscriptionResponses];
 
-export type GetNewsletterSubscriptionsCountAsyncData = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsCountData = {
     body?: NewsletterSubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4075,7 +4075,7 @@ export type GetNewsletterSubscriptionsCountAsyncData = {
     url: '/api/v2/MarketingService/NewsletterSubscriptions/Count';
 };
 
-export type GetNewsletterSubscriptionsCountAsyncErrors = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsCountErrors = {
     /**
      * Bad Request
      */
@@ -4090,18 +4090,18 @@ export type GetNewsletterSubscriptionsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNewsletterSubscriptionsCountAsyncError = GetNewsletterSubscriptionsCountAsyncErrors[keyof GetNewsletterSubscriptionsCountAsyncErrors];
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsCountError = NewsletterSubscriptionsGetNewsletterSubscriptionsCountErrors[keyof NewsletterSubscriptionsGetNewsletterSubscriptionsCountErrors];
 
-export type GetNewsletterSubscriptionsCountAsyncResponses = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetNewsletterSubscriptionsCountAsyncResponse = GetNewsletterSubscriptionsCountAsyncResponses[keyof GetNewsletterSubscriptionsCountAsyncResponses];
+export type NewsletterSubscriptionsGetNewsletterSubscriptionsCountResponse = NewsletterSubscriptionsGetNewsletterSubscriptionsCountResponses[keyof NewsletterSubscriptionsGetNewsletterSubscriptionsCountResponses];
 
-export type DeleteNewsletterSubscriptionAsyncData = {
+export type NewsletterSubscriptionsDeleteNewsletterSubscriptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4116,7 +4116,7 @@ export type DeleteNewsletterSubscriptionAsyncData = {
     url: '/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}';
 };
 
-export type DeleteNewsletterSubscriptionAsyncErrors = {
+export type NewsletterSubscriptionsDeleteNewsletterSubscriptionErrors = {
     /**
      * Bad Request
      */
@@ -4131,18 +4131,18 @@ export type DeleteNewsletterSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteNewsletterSubscriptionAsyncError = DeleteNewsletterSubscriptionAsyncErrors[keyof DeleteNewsletterSubscriptionAsyncErrors];
+export type NewsletterSubscriptionsDeleteNewsletterSubscriptionError = NewsletterSubscriptionsDeleteNewsletterSubscriptionErrors[keyof NewsletterSubscriptionsDeleteNewsletterSubscriptionErrors];
 
-export type DeleteNewsletterSubscriptionAsyncResponses = {
+export type NewsletterSubscriptionsDeleteNewsletterSubscriptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteNewsletterSubscriptionAsyncResponse = DeleteNewsletterSubscriptionAsyncResponses[keyof DeleteNewsletterSubscriptionAsyncResponses];
+export type NewsletterSubscriptionsDeleteNewsletterSubscriptionResponse = NewsletterSubscriptionsDeleteNewsletterSubscriptionResponses[keyof NewsletterSubscriptionsDeleteNewsletterSubscriptionResponses];
 
-export type GetNewsletterSubscriptionByIdAsyncData = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4157,7 +4157,7 @@ export type GetNewsletterSubscriptionByIdAsyncData = {
     url: '/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}';
 };
 
-export type GetNewsletterSubscriptionByIdAsyncErrors = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionByIdErrors = {
     /**
      * Bad Request
      */
@@ -4172,18 +4172,18 @@ export type GetNewsletterSubscriptionByIdAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetNewsletterSubscriptionByIdAsyncError = GetNewsletterSubscriptionByIdAsyncErrors[keyof GetNewsletterSubscriptionByIdAsyncErrors];
+export type NewsletterSubscriptionsGetNewsletterSubscriptionByIdError = NewsletterSubscriptionsGetNewsletterSubscriptionByIdErrors[keyof NewsletterSubscriptionsGetNewsletterSubscriptionByIdErrors];
 
-export type GetNewsletterSubscriptionByIdAsyncResponses = {
+export type NewsletterSubscriptionsGetNewsletterSubscriptionByIdResponses = {
     /**
      * OK
      */
     200: NewsletterSubscriptionDtoEnvelopeReadable;
 };
 
-export type GetNewsletterSubscriptionByIdAsyncResponse = GetNewsletterSubscriptionByIdAsyncResponses[keyof GetNewsletterSubscriptionByIdAsyncResponses];
+export type NewsletterSubscriptionsGetNewsletterSubscriptionByIdResponse = NewsletterSubscriptionsGetNewsletterSubscriptionByIdResponses[keyof NewsletterSubscriptionsGetNewsletterSubscriptionByIdResponses];
 
-export type UpdateNewsletterSubscriptionAsyncData = {
+export type NewsletterSubscriptionsUpdateNewsletterSubscriptionData = {
     body: NewsletterSubscriptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4198,7 +4198,7 @@ export type UpdateNewsletterSubscriptionAsyncData = {
     url: '/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}';
 };
 
-export type UpdateNewsletterSubscriptionAsyncErrors = {
+export type NewsletterSubscriptionsUpdateNewsletterSubscriptionErrors = {
     /**
      * Bad Request
      */
@@ -4213,18 +4213,18 @@ export type UpdateNewsletterSubscriptionAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateNewsletterSubscriptionAsyncError = UpdateNewsletterSubscriptionAsyncErrors[keyof UpdateNewsletterSubscriptionAsyncErrors];
+export type NewsletterSubscriptionsUpdateNewsletterSubscriptionError = NewsletterSubscriptionsUpdateNewsletterSubscriptionErrors[keyof NewsletterSubscriptionsUpdateNewsletterSubscriptionErrors];
 
-export type UpdateNewsletterSubscriptionAsyncResponses = {
+export type NewsletterSubscriptionsUpdateNewsletterSubscriptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateNewsletterSubscriptionAsyncResponse = UpdateNewsletterSubscriptionAsyncResponses[keyof UpdateNewsletterSubscriptionAsyncResponses];
+export type NewsletterSubscriptionsUpdateNewsletterSubscriptionResponse = NewsletterSubscriptionsUpdateNewsletterSubscriptionResponses[keyof NewsletterSubscriptionsUpdateNewsletterSubscriptionResponses];
 
-export type GetSocialMediaPostsODataAsyncData = {
+export type SocialMediaPostsGetSocialMediaPostsODataData = {
     body?: SocialMediaPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4237,7 +4237,7 @@ export type GetSocialMediaPostsODataAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts';
 };
 
-export type GetSocialMediaPostsODataAsyncErrors = {
+export type SocialMediaPostsGetSocialMediaPostsODataErrors = {
     /**
      * Unauthorized
      */
@@ -4248,18 +4248,18 @@ export type GetSocialMediaPostsODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialMediaPostsODataAsyncError = GetSocialMediaPostsODataAsyncErrors[keyof GetSocialMediaPostsODataAsyncErrors];
+export type SocialMediaPostsGetSocialMediaPostsODataError = SocialMediaPostsGetSocialMediaPostsODataErrors[keyof SocialMediaPostsGetSocialMediaPostsODataErrors];
 
-export type GetSocialMediaPostsODataAsyncResponses = {
+export type SocialMediaPostsGetSocialMediaPostsODataResponses = {
     /**
      * OK
      */
     200: SocialMediaPostDtoListEnvelopeReadable;
 };
 
-export type GetSocialMediaPostsODataAsyncResponse = GetSocialMediaPostsODataAsyncResponses[keyof GetSocialMediaPostsODataAsyncResponses];
+export type SocialMediaPostsGetSocialMediaPostsODataResponse = SocialMediaPostsGetSocialMediaPostsODataResponses[keyof SocialMediaPostsGetSocialMediaPostsODataResponses];
 
-export type CreateSocialMediaPostAsyncData = {
+export type SocialMediaPostsCreateSocialMediaPostData = {
     body: SocialMediaPostCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4272,7 +4272,7 @@ export type CreateSocialMediaPostAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts';
 };
 
-export type CreateSocialMediaPostAsyncErrors = {
+export type SocialMediaPostsCreateSocialMediaPostErrors = {
     /**
      * Bad Request
      */
@@ -4287,18 +4287,18 @@ export type CreateSocialMediaPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialMediaPostAsyncError = CreateSocialMediaPostAsyncErrors[keyof CreateSocialMediaPostAsyncErrors];
+export type SocialMediaPostsCreateSocialMediaPostError = SocialMediaPostsCreateSocialMediaPostErrors[keyof SocialMediaPostsCreateSocialMediaPostErrors];
 
-export type CreateSocialMediaPostAsyncResponses = {
+export type SocialMediaPostsCreateSocialMediaPostResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSocialMediaPostAsyncResponse = CreateSocialMediaPostAsyncResponses[keyof CreateSocialMediaPostAsyncResponses];
+export type SocialMediaPostsCreateSocialMediaPostResponse = SocialMediaPostsCreateSocialMediaPostResponses[keyof SocialMediaPostsCreateSocialMediaPostResponses];
 
-export type GetSocialMediaPostsCountAsyncData = {
+export type SocialMediaPostsGetSocialMediaPostsCountData = {
     body?: SocialMediaPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4311,7 +4311,7 @@ export type GetSocialMediaPostsCountAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts/Count';
 };
 
-export type GetSocialMediaPostsCountAsyncErrors = {
+export type SocialMediaPostsGetSocialMediaPostsCountErrors = {
     /**
      * Bad Request
      */
@@ -4326,18 +4326,18 @@ export type GetSocialMediaPostsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialMediaPostsCountAsyncError = GetSocialMediaPostsCountAsyncErrors[keyof GetSocialMediaPostsCountAsyncErrors];
+export type SocialMediaPostsGetSocialMediaPostsCountError = SocialMediaPostsGetSocialMediaPostsCountErrors[keyof SocialMediaPostsGetSocialMediaPostsCountErrors];
 
-export type GetSocialMediaPostsCountAsyncResponses = {
+export type SocialMediaPostsGetSocialMediaPostsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialMediaPostsCountAsyncResponse = GetSocialMediaPostsCountAsyncResponses[keyof GetSocialMediaPostsCountAsyncResponses];
+export type SocialMediaPostsGetSocialMediaPostsCountResponse = SocialMediaPostsGetSocialMediaPostsCountResponses[keyof SocialMediaPostsGetSocialMediaPostsCountResponses];
 
-export type DeleteSocialMediaPostAsyncData = {
+export type SocialMediaPostsDeleteSocialMediaPostData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4352,7 +4352,7 @@ export type DeleteSocialMediaPostAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts/{socialmediapostId}';
 };
 
-export type DeleteSocialMediaPostAsyncErrors = {
+export type SocialMediaPostsDeleteSocialMediaPostErrors = {
     /**
      * Bad Request
      */
@@ -4367,18 +4367,18 @@ export type DeleteSocialMediaPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialMediaPostAsyncError = DeleteSocialMediaPostAsyncErrors[keyof DeleteSocialMediaPostAsyncErrors];
+export type SocialMediaPostsDeleteSocialMediaPostError = SocialMediaPostsDeleteSocialMediaPostErrors[keyof SocialMediaPostsDeleteSocialMediaPostErrors];
 
-export type DeleteSocialMediaPostAsyncResponses = {
+export type SocialMediaPostsDeleteSocialMediaPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialMediaPostAsyncResponse = DeleteSocialMediaPostAsyncResponses[keyof DeleteSocialMediaPostAsyncResponses];
+export type SocialMediaPostsDeleteSocialMediaPostResponse = SocialMediaPostsDeleteSocialMediaPostResponses[keyof SocialMediaPostsDeleteSocialMediaPostResponses];
 
-export type GetSocialMediaPostDetailsAsyncData = {
+export type SocialMediaPostsGetSocialMediaPostDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4393,7 +4393,7 @@ export type GetSocialMediaPostDetailsAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts/{socialmediapostId}';
 };
 
-export type GetSocialMediaPostDetailsAsyncErrors = {
+export type SocialMediaPostsGetSocialMediaPostDetailsErrors = {
     /**
      * Bad Request
      */
@@ -4408,18 +4408,18 @@ export type GetSocialMediaPostDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialMediaPostDetailsAsyncError = GetSocialMediaPostDetailsAsyncErrors[keyof GetSocialMediaPostDetailsAsyncErrors];
+export type SocialMediaPostsGetSocialMediaPostDetailsError = SocialMediaPostsGetSocialMediaPostDetailsErrors[keyof SocialMediaPostsGetSocialMediaPostDetailsErrors];
 
-export type GetSocialMediaPostDetailsAsyncResponses = {
+export type SocialMediaPostsGetSocialMediaPostDetailsResponses = {
     /**
      * OK
      */
     200: SocialMediaPostDtoEnvelopeReadable;
 };
 
-export type GetSocialMediaPostDetailsAsyncResponse = GetSocialMediaPostDetailsAsyncResponses[keyof GetSocialMediaPostDetailsAsyncResponses];
+export type SocialMediaPostsGetSocialMediaPostDetailsResponse = SocialMediaPostsGetSocialMediaPostDetailsResponses[keyof SocialMediaPostsGetSocialMediaPostDetailsResponses];
 
-export type PatchSocialMediaPostAsyncData = {
+export type SocialMediaPostsPatchSocialMediaPostData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4434,7 +4434,7 @@ export type PatchSocialMediaPostAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts/{socialmediapostId}';
 };
 
-export type PatchSocialMediaPostAsyncErrors = {
+export type SocialMediaPostsPatchSocialMediaPostErrors = {
     /**
      * Unauthorized
      */
@@ -4445,18 +4445,18 @@ export type PatchSocialMediaPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSocialMediaPostAsyncError = PatchSocialMediaPostAsyncErrors[keyof PatchSocialMediaPostAsyncErrors];
+export type SocialMediaPostsPatchSocialMediaPostError = SocialMediaPostsPatchSocialMediaPostErrors[keyof SocialMediaPostsPatchSocialMediaPostErrors];
 
-export type PatchSocialMediaPostAsyncResponses = {
+export type SocialMediaPostsPatchSocialMediaPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSocialMediaPostAsyncResponse = PatchSocialMediaPostAsyncResponses[keyof PatchSocialMediaPostAsyncResponses];
+export type SocialMediaPostsPatchSocialMediaPostResponse = SocialMediaPostsPatchSocialMediaPostResponses[keyof SocialMediaPostsPatchSocialMediaPostResponses];
 
-export type UpdateSocialMediaPostAsyncData = {
+export type SocialMediaPostsUpdateSocialMediaPostData = {
     body: SocialMediaPostUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4471,7 +4471,7 @@ export type UpdateSocialMediaPostAsyncData = {
     url: '/api/v2/MarketingService/SocialMediaPosts/{socialmediapostId}';
 };
 
-export type UpdateSocialMediaPostAsyncErrors = {
+export type SocialMediaPostsUpdateSocialMediaPostErrors = {
     /**
      * Bad Request
      */
@@ -4486,18 +4486,18 @@ export type UpdateSocialMediaPostAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialMediaPostAsyncError = UpdateSocialMediaPostAsyncErrors[keyof UpdateSocialMediaPostAsyncErrors];
+export type SocialMediaPostsUpdateSocialMediaPostError = SocialMediaPostsUpdateSocialMediaPostErrors[keyof SocialMediaPostsUpdateSocialMediaPostErrors];
 
-export type UpdateSocialMediaPostAsyncResponses = {
+export type SocialMediaPostsUpdateSocialMediaPostResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSocialMediaPostAsyncResponse = UpdateSocialMediaPostAsyncResponses[keyof UpdateSocialMediaPostAsyncResponses];
+export type SocialMediaPostsUpdateSocialMediaPostResponse = SocialMediaPostsUpdateSocialMediaPostResponses[keyof SocialMediaPostsUpdateSocialMediaPostResponses];
 
-export type GetSocialPostBucketsODataAsyncData = {
+export type SocialPostBucketsGetSocialPostBucketsODataData = {
     body?: SocialPostBucketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4510,7 +4510,7 @@ export type GetSocialPostBucketsODataAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets';
 };
 
-export type GetSocialPostBucketsODataAsyncErrors = {
+export type SocialPostBucketsGetSocialPostBucketsODataErrors = {
     /**
      * Unauthorized
      */
@@ -4521,18 +4521,18 @@ export type GetSocialPostBucketsODataAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostBucketsODataAsyncError = GetSocialPostBucketsODataAsyncErrors[keyof GetSocialPostBucketsODataAsyncErrors];
+export type SocialPostBucketsGetSocialPostBucketsODataError = SocialPostBucketsGetSocialPostBucketsODataErrors[keyof SocialPostBucketsGetSocialPostBucketsODataErrors];
 
-export type GetSocialPostBucketsODataAsyncResponses = {
+export type SocialPostBucketsGetSocialPostBucketsODataResponses = {
     /**
      * OK
      */
     200: SocialPostBucketDtoListEnvelopeReadable;
 };
 
-export type GetSocialPostBucketsODataAsyncResponse = GetSocialPostBucketsODataAsyncResponses[keyof GetSocialPostBucketsODataAsyncResponses];
+export type SocialPostBucketsGetSocialPostBucketsODataResponse = SocialPostBucketsGetSocialPostBucketsODataResponses[keyof SocialPostBucketsGetSocialPostBucketsODataResponses];
 
-export type CreateSocialPostBucketAsyncData = {
+export type SocialPostBucketsCreateSocialPostBucketData = {
     body: SocialPostBucketCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4545,7 +4545,7 @@ export type CreateSocialPostBucketAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets';
 };
 
-export type CreateSocialPostBucketAsyncErrors = {
+export type SocialPostBucketsCreateSocialPostBucketErrors = {
     /**
      * Bad Request
      */
@@ -4560,18 +4560,18 @@ export type CreateSocialPostBucketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateSocialPostBucketAsyncError = CreateSocialPostBucketAsyncErrors[keyof CreateSocialPostBucketAsyncErrors];
+export type SocialPostBucketsCreateSocialPostBucketError = SocialPostBucketsCreateSocialPostBucketErrors[keyof SocialPostBucketsCreateSocialPostBucketErrors];
 
-export type CreateSocialPostBucketAsyncResponses = {
+export type SocialPostBucketsCreateSocialPostBucketResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateSocialPostBucketAsyncResponse = CreateSocialPostBucketAsyncResponses[keyof CreateSocialPostBucketAsyncResponses];
+export type SocialPostBucketsCreateSocialPostBucketResponse = SocialPostBucketsCreateSocialPostBucketResponses[keyof SocialPostBucketsCreateSocialPostBucketResponses];
 
-export type GetSocialPostBucketsCountAsyncData = {
+export type SocialPostBucketsGetSocialPostBucketsCountData = {
     body?: SocialPostBucketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4584,7 +4584,7 @@ export type GetSocialPostBucketsCountAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets/Count';
 };
 
-export type GetSocialPostBucketsCountAsyncErrors = {
+export type SocialPostBucketsGetSocialPostBucketsCountErrors = {
     /**
      * Bad Request
      */
@@ -4599,18 +4599,18 @@ export type GetSocialPostBucketsCountAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostBucketsCountAsyncError = GetSocialPostBucketsCountAsyncErrors[keyof GetSocialPostBucketsCountAsyncErrors];
+export type SocialPostBucketsGetSocialPostBucketsCountError = SocialPostBucketsGetSocialPostBucketsCountErrors[keyof SocialPostBucketsGetSocialPostBucketsCountErrors];
 
-export type GetSocialPostBucketsCountAsyncResponses = {
+export type SocialPostBucketsGetSocialPostBucketsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetSocialPostBucketsCountAsyncResponse = GetSocialPostBucketsCountAsyncResponses[keyof GetSocialPostBucketsCountAsyncResponses];
+export type SocialPostBucketsGetSocialPostBucketsCountResponse = SocialPostBucketsGetSocialPostBucketsCountResponses[keyof SocialPostBucketsGetSocialPostBucketsCountResponses];
 
-export type DeleteSocialPostBucketAsyncData = {
+export type SocialPostBucketsDeleteSocialPostBucketData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4625,7 +4625,7 @@ export type DeleteSocialPostBucketAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets/{socialpostbucketId}';
 };
 
-export type DeleteSocialPostBucketAsyncErrors = {
+export type SocialPostBucketsDeleteSocialPostBucketErrors = {
     /**
      * Bad Request
      */
@@ -4640,18 +4640,18 @@ export type DeleteSocialPostBucketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteSocialPostBucketAsyncError = DeleteSocialPostBucketAsyncErrors[keyof DeleteSocialPostBucketAsyncErrors];
+export type SocialPostBucketsDeleteSocialPostBucketError = SocialPostBucketsDeleteSocialPostBucketErrors[keyof SocialPostBucketsDeleteSocialPostBucketErrors];
 
-export type DeleteSocialPostBucketAsyncResponses = {
+export type SocialPostBucketsDeleteSocialPostBucketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteSocialPostBucketAsyncResponse = DeleteSocialPostBucketAsyncResponses[keyof DeleteSocialPostBucketAsyncResponses];
+export type SocialPostBucketsDeleteSocialPostBucketResponse = SocialPostBucketsDeleteSocialPostBucketResponses[keyof SocialPostBucketsDeleteSocialPostBucketResponses];
 
-export type GetSocialPostBucketDetailsAsyncData = {
+export type SocialPostBucketsGetSocialPostBucketDetailsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4666,7 +4666,7 @@ export type GetSocialPostBucketDetailsAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets/{socialpostbucketId}';
 };
 
-export type GetSocialPostBucketDetailsAsyncErrors = {
+export type SocialPostBucketsGetSocialPostBucketDetailsErrors = {
     /**
      * Bad Request
      */
@@ -4681,18 +4681,18 @@ export type GetSocialPostBucketDetailsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetSocialPostBucketDetailsAsyncError = GetSocialPostBucketDetailsAsyncErrors[keyof GetSocialPostBucketDetailsAsyncErrors];
+export type SocialPostBucketsGetSocialPostBucketDetailsError = SocialPostBucketsGetSocialPostBucketDetailsErrors[keyof SocialPostBucketsGetSocialPostBucketDetailsErrors];
 
-export type GetSocialPostBucketDetailsAsyncResponses = {
+export type SocialPostBucketsGetSocialPostBucketDetailsResponses = {
     /**
      * OK
      */
     200: SocialPostBucketDtoEnvelopeReadable;
 };
 
-export type GetSocialPostBucketDetailsAsyncResponse = GetSocialPostBucketDetailsAsyncResponses[keyof GetSocialPostBucketDetailsAsyncResponses];
+export type SocialPostBucketsGetSocialPostBucketDetailsResponse = SocialPostBucketsGetSocialPostBucketDetailsResponses[keyof SocialPostBucketsGetSocialPostBucketDetailsResponses];
 
-export type PatchSocialPostBucketAsyncData = {
+export type SocialPostBucketsPatchSocialPostBucketData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4707,7 +4707,7 @@ export type PatchSocialPostBucketAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets/{socialpostbucketId}';
 };
 
-export type PatchSocialPostBucketAsyncErrors = {
+export type SocialPostBucketsPatchSocialPostBucketErrors = {
     /**
      * Unauthorized
      */
@@ -4718,18 +4718,18 @@ export type PatchSocialPostBucketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchSocialPostBucketAsyncError = PatchSocialPostBucketAsyncErrors[keyof PatchSocialPostBucketAsyncErrors];
+export type SocialPostBucketsPatchSocialPostBucketError = SocialPostBucketsPatchSocialPostBucketErrors[keyof SocialPostBucketsPatchSocialPostBucketErrors];
 
-export type PatchSocialPostBucketAsyncResponses = {
+export type SocialPostBucketsPatchSocialPostBucketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchSocialPostBucketAsyncResponse = PatchSocialPostBucketAsyncResponses[keyof PatchSocialPostBucketAsyncResponses];
+export type SocialPostBucketsPatchSocialPostBucketResponse = SocialPostBucketsPatchSocialPostBucketResponses[keyof SocialPostBucketsPatchSocialPostBucketResponses];
 
-export type UpdateSocialPostBucketAsyncData = {
+export type SocialPostBucketsUpdateSocialPostBucketData = {
     body: SocialPostBucketUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4744,7 +4744,7 @@ export type UpdateSocialPostBucketAsyncData = {
     url: '/api/v2/MarketingService/SocialPostBuckets/{socialpostbucketId}';
 };
 
-export type UpdateSocialPostBucketAsyncErrors = {
+export type SocialPostBucketsUpdateSocialPostBucketErrors = {
     /**
      * Bad Request
      */
@@ -4759,18 +4759,18 @@ export type UpdateSocialPostBucketAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateSocialPostBucketAsyncError = UpdateSocialPostBucketAsyncErrors[keyof UpdateSocialPostBucketAsyncErrors];
+export type SocialPostBucketsUpdateSocialPostBucketError = SocialPostBucketsUpdateSocialPostBucketErrors[keyof SocialPostBucketsUpdateSocialPostBucketErrors];
 
-export type UpdateSocialPostBucketAsyncResponses = {
+export type SocialPostBucketsUpdateSocialPostBucketResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateSocialPostBucketAsyncResponse = UpdateSocialPostBucketAsyncResponses[keyof UpdateSocialPostBucketAsyncResponses];
+export type SocialPostBucketsUpdateSocialPostBucketResponse = SocialPostBucketsUpdateSocialPostBucketResponses[keyof SocialPostBucketsUpdateSocialPostBucketResponses];
 
-export type GetTrackingPixelAsyncData = {
+export type TrackingPixelsGetTrackingPixelData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4784,14 +4784,14 @@ export type GetTrackingPixelAsyncData = {
     url: '/api/v2/MarketingService/TrackingPixels/{pixelId}';
 };
 
-export type GetTrackingPixelAsyncResponses = {
+export type TrackingPixelsGetTrackingPixelResponses = {
     /**
      * OK
      */
     200: OrderDtoEnvelopeReadable;
 };
 
-export type GetTrackingPixelAsyncResponse = GetTrackingPixelAsyncResponses[keyof GetTrackingPixelAsyncResponses];
+export type TrackingPixelsGetTrackingPixelResponse = TrackingPixelsGetTrackingPixelResponses[keyof TrackingPixelsGetTrackingPixelResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

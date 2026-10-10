@@ -391,6 +391,7 @@ export type ExtendedUserDtoReadable = {
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
     settings?: UserSettingsDto;
+    twoFactorEnabled?: boolean;
 };
 
 export type ExtendedUserDtoWritable = {
@@ -444,6 +445,7 @@ export type ExtendedUserDtoWritable = {
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
     settings?: UserSettingsDto;
+    twoFactorEnabled?: boolean;
 };
 
 export type ExtendedUserDtoEnvelopeReadable = {
@@ -601,6 +603,8 @@ export type NotificationDto = {
     socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
+    tenantId?: string | null;
+    categoryKey?: string | null;
 };
 
 export type NotificationDtoCollectionQueryParametersReadable = {
@@ -838,6 +842,35 @@ export type SocialProfileDtoEnvelopeWritable = {
     result?: SocialProfileDto;
 };
 
+export type StudioAccessDto = {
+    canAccessStudio?: boolean;
+};
+
+export type StudioAccessDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: StudioAccessDto;
+};
+
+export type StudioAccessDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: StudioAccessDto;
+};
+
 export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1032,12 +1065,38 @@ export type TenantInvitationDto = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
+    tenantName?: string | null;
     revoked?: boolean;
     redeemed?: boolean;
     redeemedTimestamp?: string | null;
     userEmail?: string | null;
     creatorEnrollmentId?: string | null;
     relatedEnrollmentId?: string | null;
+};
+
+export type TenantInvitationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantInvitationDto;
+};
+
+export type TenantInvitationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantInvitationDto;
 };
 
 export type TenantInvitationDtoListEnvelopeReadable = {
@@ -1205,6 +1264,37 @@ export type UserDtoEnvelopeWritable = {
     result?: UserDtoWritable;
 };
 
+export type UserPublicProfileDto = {
+    id?: string | null;
+    publicName?: string | null;
+    avatarUrl?: string | null;
+};
+
+export type UserPublicProfileDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: UserPublicProfileDto;
+};
+
+export type UserPublicProfileDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: UserPublicProfileDto;
+};
+
 export type UserSettingsDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -1291,6 +1381,9 @@ export type WalletDto = {
     mainNetEtherBalance?: number;
     ethereumAddress?: string | null;
     ethereumPublicKey?: string | null;
+    /**
+     * @deprecated
+     */
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
 };
@@ -1320,72 +1413,72 @@ export type WalletDtoEnvelopeWritable = {
     result?: WalletDto;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -1395,32 +1488,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -1431,81 +1524,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -1516,25 +1609,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1545,25 +1638,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -1574,18 +1667,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -1595,14 +1688,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -1611,14 +1704,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -1627,28 +1720,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetUserOptionsData = {
+export type OptionsGetUserOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1661,7 +1754,7 @@ export type GetUserOptionsData = {
     url: '/api/v2/Me/Options';
 };
 
-export type GetUserOptionsErrors = {
+export type OptionsGetUserOptionsErrors = {
     /**
      * Unauthorized
      */
@@ -1672,18 +1765,18 @@ export type GetUserOptionsErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserOptionsError = GetUserOptionsErrors[keyof GetUserOptionsErrors];
+export type OptionsGetUserOptionsError = OptionsGetUserOptionsErrors[keyof OptionsGetUserOptionsErrors];
 
-export type GetUserOptionsResponses = {
+export type OptionsGetUserOptionsResponses = {
     /**
      * OK
      */
     200: OptionDtoListEnvelopeReadable;
 };
 
-export type GetUserOptionsResponse = GetUserOptionsResponses[keyof GetUserOptionsResponses];
+export type OptionsGetUserOptionsResponse = OptionsGetUserOptionsResponses[keyof OptionsGetUserOptionsResponses];
 
-export type CreateUserOptionData = {
+export type OptionsCreateUserOptionData = {
     body?: OptionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1697,7 +1790,7 @@ export type CreateUserOptionData = {
     url: '/api/v2/Me/Options';
 };
 
-export type CreateUserOptionErrors = {
+export type OptionsCreateUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -1708,18 +1801,18 @@ export type CreateUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateUserOptionError = CreateUserOptionErrors[keyof CreateUserOptionErrors];
+export type OptionsCreateUserOptionError = OptionsCreateUserOptionErrors[keyof OptionsCreateUserOptionErrors];
 
-export type CreateUserOptionResponses = {
+export type OptionsCreateUserOptionResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateUserOptionResponse = CreateUserOptionResponses[keyof CreateUserOptionResponses];
+export type OptionsCreateUserOptionResponse = OptionsCreateUserOptionResponses[keyof OptionsCreateUserOptionResponses];
 
-export type GetUserOptionsCountData = {
+export type OptionsGetUserOptionsCountData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -1732,7 +1825,7 @@ export type GetUserOptionsCountData = {
     url: '/api/v2/Me/Options/Count';
 };
 
-export type GetUserOptionsCountErrors = {
+export type OptionsGetUserOptionsCountErrors = {
     /**
      * Unauthorized
      */
@@ -1743,18 +1836,18 @@ export type GetUserOptionsCountErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserOptionsCountError = GetUserOptionsCountErrors[keyof GetUserOptionsCountErrors];
+export type OptionsGetUserOptionsCountError = OptionsGetUserOptionsCountErrors[keyof OptionsGetUserOptionsCountErrors];
 
-export type GetUserOptionsCountResponses = {
+export type OptionsGetUserOptionsCountResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type GetUserOptionsCountResponse = GetUserOptionsCountResponses[keyof GetUserOptionsCountResponses];
+export type OptionsGetUserOptionsCountResponse = OptionsGetUserOptionsCountResponses[keyof OptionsGetUserOptionsCountResponses];
 
-export type DeleteUserOptionData = {
+export type OptionsDeleteUserOptionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1768,7 +1861,7 @@ export type DeleteUserOptionData = {
     url: '/api/v2/Me/Options/{optionId}';
 };
 
-export type DeleteUserOptionErrors = {
+export type OptionsDeleteUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -1779,18 +1872,18 @@ export type DeleteUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteUserOptionError = DeleteUserOptionErrors[keyof DeleteUserOptionErrors];
+export type OptionsDeleteUserOptionError = OptionsDeleteUserOptionErrors[keyof OptionsDeleteUserOptionErrors];
 
-export type DeleteUserOptionResponses = {
+export type OptionsDeleteUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type DeleteUserOptionResponse = DeleteUserOptionResponses[keyof DeleteUserOptionResponses];
+export type OptionsDeleteUserOptionResponse = OptionsDeleteUserOptionResponses[keyof OptionsDeleteUserOptionResponses];
 
-export type GetUserOptionByIdData = {
+export type OptionsGetUserOptionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1804,7 +1897,7 @@ export type GetUserOptionByIdData = {
     url: '/api/v2/Me/Options/{optionId}';
 };
 
-export type GetUserOptionByIdErrors = {
+export type OptionsGetUserOptionByIdErrors = {
     /**
      * Unauthorized
      */
@@ -1815,18 +1908,18 @@ export type GetUserOptionByIdErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserOptionByIdError = GetUserOptionByIdErrors[keyof GetUserOptionByIdErrors];
+export type OptionsGetUserOptionByIdError = OptionsGetUserOptionByIdErrors[keyof OptionsGetUserOptionByIdErrors];
 
-export type GetUserOptionByIdResponses = {
+export type OptionsGetUserOptionByIdResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetUserOptionByIdResponse = GetUserOptionByIdResponses[keyof GetUserOptionByIdResponses];
+export type OptionsGetUserOptionByIdResponse = OptionsGetUserOptionByIdResponses[keyof OptionsGetUserOptionByIdResponses];
 
-export type PatchUserOptionData = {
+export type OptionsPatchUserOptionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -1840,7 +1933,7 @@ export type PatchUserOptionData = {
     url: '/api/v2/Me/Options/{optionId}';
 };
 
-export type PatchUserOptionErrors = {
+export type OptionsPatchUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -1851,18 +1944,18 @@ export type PatchUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchUserOptionError = PatchUserOptionErrors[keyof PatchUserOptionErrors];
+export type OptionsPatchUserOptionError = OptionsPatchUserOptionErrors[keyof OptionsPatchUserOptionErrors];
 
-export type PatchUserOptionResponses = {
+export type OptionsPatchUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchUserOptionResponse = PatchUserOptionResponses[keyof PatchUserOptionResponses];
+export type OptionsPatchUserOptionResponse = OptionsPatchUserOptionResponses[keyof OptionsPatchUserOptionResponses];
 
-export type UpdateUserOptionData = {
+export type OptionsUpdateUserOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1876,7 +1969,7 @@ export type UpdateUserOptionData = {
     url: '/api/v2/Me/Options/{optionId}';
 };
 
-export type UpdateUserOptionErrors = {
+export type OptionsUpdateUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -1887,18 +1980,18 @@ export type UpdateUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateUserOptionError = UpdateUserOptionErrors[keyof UpdateUserOptionErrors];
+export type OptionsUpdateUserOptionError = OptionsUpdateUserOptionErrors[keyof OptionsUpdateUserOptionErrors];
 
-export type UpdateUserOptionResponses = {
+export type OptionsUpdateUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateUserOptionResponse = UpdateUserOptionResponses[keyof UpdateUserOptionResponses];
+export type OptionsUpdateUserOptionResponse = OptionsUpdateUserOptionResponses[keyof OptionsUpdateUserOptionResponses];
 
-export type GetUserOptionByKeyData = {
+export type OptionsGetUserOptionByKeyData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1913,7 +2006,7 @@ export type GetUserOptionByKeyData = {
     url: '/api/v2/Me/Options/Key/{key}';
 };
 
-export type GetUserOptionByKeyErrors = {
+export type OptionsGetUserOptionByKeyErrors = {
     /**
      * Unauthorized
      */
@@ -1924,18 +2017,18 @@ export type GetUserOptionByKeyErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetUserOptionByKeyError = GetUserOptionByKeyErrors[keyof GetUserOptionByKeyErrors];
+export type OptionsGetUserOptionByKeyError = OptionsGetUserOptionByKeyErrors[keyof OptionsGetUserOptionByKeyErrors];
 
-export type GetUserOptionByKeyResponses = {
+export type OptionsGetUserOptionByKeyResponses = {
     /**
      * OK
      */
     200: OptionDtoEnvelopeReadable;
 };
 
-export type GetUserOptionByKeyResponse = GetUserOptionByKeyResponses[keyof GetUserOptionByKeyResponses];
+export type OptionsGetUserOptionByKeyResponse = OptionsGetUserOptionByKeyResponses[keyof OptionsGetUserOptionByKeyResponses];
 
-export type UpsertUserOptionData = {
+export type OptionsUpsertUserOptionData = {
     body?: OptionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -1950,7 +2043,7 @@ export type UpsertUserOptionData = {
     url: '/api/v2/Me/Options/Upsert/{key}';
 };
 
-export type UpsertUserOptionErrors = {
+export type OptionsUpsertUserOptionErrors = {
     /**
      * Unauthorized
      */
@@ -1961,18 +2054,84 @@ export type UpsertUserOptionErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpsertUserOptionError = UpsertUserOptionErrors[keyof UpsertUserOptionErrors];
+export type OptionsUpsertUserOptionError = OptionsUpsertUserOptionErrors[keyof OptionsUpsertUserOptionErrors];
 
-export type UpsertUserOptionResponses = {
+export type OptionsUpsertUserOptionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpsertUserOptionResponse = UpsertUserOptionResponses[keyof UpsertUserOptionResponses];
+export type OptionsUpsertUserOptionResponse = OptionsUpsertUserOptionResponses[keyof OptionsUpsertUserOptionResponses];
 
-export type GetCurrentUserAsyncData = {
+export type UsersGetMyStudioAccessData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/Me/StudioAccess';
+};
+
+export type UsersGetMyStudioAccessErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type UsersGetMyStudioAccessError = UsersGetMyStudioAccessErrors[keyof UsersGetMyStudioAccessErrors];
+
+export type UsersGetMyStudioAccessResponses = {
+    /**
+     * OK
+     */
+    200: StudioAccessDtoEnvelopeReadable;
+};
+
+export type UsersGetMyStudioAccessResponse = UsersGetMyStudioAccessResponses[keyof UsersGetMyStudioAccessResponses];
+
+export type UsersGetUserPublicProfileData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/UsersService/Users/{userId}/PublicProfile';
+};
+
+export type UsersGetUserPublicProfileErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UsersGetUserPublicProfileError = UsersGetUserPublicProfileErrors[keyof UsersGetUserPublicProfileErrors];
+
+export type UsersGetUserPublicProfileResponses = {
+    /**
+     * OK
+     */
+    200: UserPublicProfileDtoEnvelopeReadable;
+};
+
+export type UsersGetUserPublicProfileResponse = UsersGetUserPublicProfileResponses[keyof UsersGetUserPublicProfileResponses];
+
+export type UsersGetCurrentUserData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1984,25 +2143,25 @@ export type GetCurrentUserAsyncData = {
     url: '/api/v2/Me';
 };
 
-export type GetCurrentUserAsyncErrors = {
+export type UsersGetCurrentUserErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserAsyncError = GetCurrentUserAsyncErrors[keyof GetCurrentUserAsyncErrors];
+export type UsersGetCurrentUserError = UsersGetCurrentUserErrors[keyof UsersGetCurrentUserErrors];
 
-export type GetCurrentUserAsyncResponses = {
+export type UsersGetCurrentUserResponses = {
     /**
      * OK
      */
     200: UserDtoEnvelopeReadable;
 };
 
-export type GetCurrentUserAsyncResponse = GetCurrentUserAsyncResponses[keyof GetCurrentUserAsyncResponses];
+export type UsersGetCurrentUserResponse = UsersGetCurrentUserResponses[keyof UsersGetCurrentUserResponses];
 
-export type PatchCurrentUserAsyncData = {
+export type UsersPatchCurrentUserData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2014,25 +2173,25 @@ export type PatchCurrentUserAsyncData = {
     url: '/api/v2/Me';
 };
 
-export type PatchCurrentUserAsyncErrors = {
+export type UsersPatchCurrentUserErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type PatchCurrentUserAsyncError = PatchCurrentUserAsyncErrors[keyof PatchCurrentUserAsyncErrors];
+export type UsersPatchCurrentUserError = UsersPatchCurrentUserErrors[keyof UsersPatchCurrentUserErrors];
 
-export type PatchCurrentUserAsyncResponses = {
+export type UsersPatchCurrentUserResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCurrentUserAsyncResponse = PatchCurrentUserAsyncResponses[keyof PatchCurrentUserAsyncResponses];
+export type UsersPatchCurrentUserResponse = UsersPatchCurrentUserResponses[keyof UsersPatchCurrentUserResponses];
 
-export type UpdateCurrentUserAsyncData = {
+export type UsersUpdateCurrentUserData = {
     body?: UserUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2044,25 +2203,25 @@ export type UpdateCurrentUserAsyncData = {
     url: '/api/v2/Me';
 };
 
-export type UpdateCurrentUserAsyncErrors = {
+export type UsersUpdateCurrentUserErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type UpdateCurrentUserAsyncError = UpdateCurrentUserAsyncErrors[keyof UpdateCurrentUserAsyncErrors];
+export type UsersUpdateCurrentUserError = UsersUpdateCurrentUserErrors[keyof UsersUpdateCurrentUserErrors];
 
-export type UpdateCurrentUserAsyncResponses = {
+export type UsersUpdateCurrentUserResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateCurrentUserAsyncResponse = UpdateCurrentUserAsyncResponses[keyof UpdateCurrentUserAsyncResponses];
+export type UsersUpdateCurrentUserResponse = UsersUpdateCurrentUserResponses[keyof UsersUpdateCurrentUserResponses];
 
-export type GetExtendedCurrentUserAsyncData = {
+export type UsersGetExtendedCurrentUserData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2074,25 +2233,25 @@ export type GetExtendedCurrentUserAsyncData = {
     url: '/api/v2/Me/Extended';
 };
 
-export type GetExtendedCurrentUserAsyncErrors = {
+export type UsersGetExtendedCurrentUserErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetExtendedCurrentUserAsyncError = GetExtendedCurrentUserAsyncErrors[keyof GetExtendedCurrentUserAsyncErrors];
+export type UsersGetExtendedCurrentUserError = UsersGetExtendedCurrentUserErrors[keyof UsersGetExtendedCurrentUserErrors];
 
-export type GetExtendedCurrentUserAsyncResponses = {
+export type UsersGetExtendedCurrentUserResponses = {
     /**
      * OK
      */
     200: ExtendedUserDtoEnvelopeReadable;
 };
 
-export type GetExtendedCurrentUserAsyncResponse = GetExtendedCurrentUserAsyncResponses[keyof GetExtendedCurrentUserAsyncResponses];
+export type UsersGetExtendedCurrentUserResponse = UsersGetExtendedCurrentUserResponses[keyof UsersGetExtendedCurrentUserResponses];
 
-export type GetCurrentUserAvatarAsyncData = {
+export type UsersGetCurrentUserAvatarData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2104,7 +2263,7 @@ export type GetCurrentUserAvatarAsyncData = {
     url: '/api/v2/Me/Avatar';
 };
 
-export type GetCurrentUserAvatarAsyncErrors = {
+export type UsersGetCurrentUserAvatarErrors = {
     /**
      * Unauthorized
      */
@@ -2115,18 +2274,18 @@ export type GetCurrentUserAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserAvatarAsyncError = GetCurrentUserAvatarAsyncErrors[keyof GetCurrentUserAvatarAsyncErrors];
+export type UsersGetCurrentUserAvatarError = UsersGetCurrentUserAvatarErrors[keyof UsersGetCurrentUserAvatarErrors];
 
-export type GetCurrentUserAvatarAsyncResponses = {
+export type UsersGetCurrentUserAvatarResponses = {
     /**
      * OK
      */
     200: Blob | File;
 };
 
-export type GetCurrentUserAvatarAsyncResponse = GetCurrentUserAvatarAsyncResponses[keyof GetCurrentUserAvatarAsyncResponses];
+export type UsersGetCurrentUserAvatarResponse = UsersGetCurrentUserAvatarResponses[keyof UsersGetCurrentUserAvatarResponses];
 
-export type UpdateAvatarAsyncData = {
+export type UsersUpdateAvatarData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -2140,7 +2299,11 @@ export type UpdateAvatarAsyncData = {
     url: '/api/v2/Me/Avatar';
 };
 
-export type UpdateAvatarAsyncErrors = {
+export type UsersUpdateAvatarErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
     /**
      * Unauthorized
      */
@@ -2151,18 +2314,18 @@ export type UpdateAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAvatarAsyncError = UpdateAvatarAsyncErrors[keyof UpdateAvatarAsyncErrors];
+export type UsersUpdateAvatarError = UsersUpdateAvatarErrors[keyof UsersUpdateAvatarErrors];
 
-export type UpdateAvatarAsyncResponses = {
+export type UsersUpdateAvatarResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAvatarAsyncResponse = UpdateAvatarAsyncResponses[keyof UpdateAvatarAsyncResponses];
+export type UsersUpdateAvatarResponse = UsersUpdateAvatarResponses[keyof UsersUpdateAvatarResponses];
 
-export type GetCurrentUserFollowsAsyncData = {
+export type UsersGetCurrentUserFollowsData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2174,25 +2337,25 @@ export type GetCurrentUserFollowsAsyncData = {
     url: '/api/v2/Me/Follows';
 };
 
-export type GetCurrentUserFollowsAsyncErrors = {
+export type UsersGetCurrentUserFollowsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserFollowsAsyncError = GetCurrentUserFollowsAsyncErrors[keyof GetCurrentUserFollowsAsyncErrors];
+export type UsersGetCurrentUserFollowsError = UsersGetCurrentUserFollowsErrors[keyof UsersGetCurrentUserFollowsErrors];
 
-export type GetCurrentUserFollowsAsyncResponses = {
+export type UsersGetCurrentUserFollowsResponses = {
     /**
      * OK
      */
     200: FollowRecordDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserFollowsAsyncResponse = GetCurrentUserFollowsAsyncResponses[keyof GetCurrentUserFollowsAsyncResponses];
+export type UsersGetCurrentUserFollowsResponse = UsersGetCurrentUserFollowsResponses[keyof UsersGetCurrentUserFollowsResponses];
 
-export type CountCurrentUserFollowsAsyncData = {
+export type UsersCountCurrentUserFollowsData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2204,25 +2367,25 @@ export type CountCurrentUserFollowsAsyncData = {
     url: '/api/v2/Me/Follows/Count';
 };
 
-export type CountCurrentUserFollowsAsyncErrors = {
+export type UsersCountCurrentUserFollowsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type CountCurrentUserFollowsAsyncError = CountCurrentUserFollowsAsyncErrors[keyof CountCurrentUserFollowsAsyncErrors];
+export type UsersCountCurrentUserFollowsError = UsersCountCurrentUserFollowsErrors[keyof UsersCountCurrentUserFollowsErrors];
 
-export type CountCurrentUserFollowsAsyncResponses = {
+export type UsersCountCurrentUserFollowsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCurrentUserFollowsAsyncResponse = CountCurrentUserFollowsAsyncResponses[keyof CountCurrentUserFollowsAsyncResponses];
+export type UsersCountCurrentUserFollowsResponse = UsersCountCurrentUserFollowsResponses[keyof UsersCountCurrentUserFollowsResponses];
 
-export type GetCurrentUserFollowersAsyncData = {
+export type UsersGetCurrentUserFollowersData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2234,25 +2397,25 @@ export type GetCurrentUserFollowersAsyncData = {
     url: '/api/v2/Me/Followers';
 };
 
-export type GetCurrentUserFollowersAsyncErrors = {
+export type UsersGetCurrentUserFollowersErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserFollowersAsyncError = GetCurrentUserFollowersAsyncErrors[keyof GetCurrentUserFollowersAsyncErrors];
+export type UsersGetCurrentUserFollowersError = UsersGetCurrentUserFollowersErrors[keyof UsersGetCurrentUserFollowersErrors];
 
-export type GetCurrentUserFollowersAsyncResponses = {
+export type UsersGetCurrentUserFollowersResponses = {
     /**
      * OK
      */
     200: FollowRecordDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserFollowersAsyncResponse = GetCurrentUserFollowersAsyncResponses[keyof GetCurrentUserFollowersAsyncResponses];
+export type UsersGetCurrentUserFollowersResponse = UsersGetCurrentUserFollowersResponses[keyof UsersGetCurrentUserFollowersResponses];
 
-export type CountCurrentUserFollowersAsyncData = {
+export type UsersCountCurrentUserFollowersData = {
     body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2264,25 +2427,25 @@ export type CountCurrentUserFollowersAsyncData = {
     url: '/api/v2/Me/Followers/Count';
 };
 
-export type CountCurrentUserFollowersAsyncErrors = {
+export type UsersCountCurrentUserFollowersErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type CountCurrentUserFollowersAsyncError = CountCurrentUserFollowersAsyncErrors[keyof CountCurrentUserFollowersAsyncErrors];
+export type UsersCountCurrentUserFollowersError = UsersCountCurrentUserFollowersErrors[keyof UsersCountCurrentUserFollowersErrors];
 
-export type CountCurrentUserFollowersAsyncResponses = {
+export type UsersCountCurrentUserFollowersResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCurrentUserFollowersAsyncResponse = CountCurrentUserFollowersAsyncResponses[keyof CountCurrentUserFollowersAsyncResponses];
+export type UsersCountCurrentUserFollowersResponse = UsersCountCurrentUserFollowersResponses[keyof UsersCountCurrentUserFollowersResponses];
 
-export type GetCurrentUserTenantsAsyncData = {
+export type UsersGetCurrentUserTenantsData = {
     body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2294,7 +2457,7 @@ export type GetCurrentUserTenantsAsyncData = {
     url: '/api/v2/Me/Tenants';
 };
 
-export type GetCurrentUserTenantsAsyncErrors = {
+export type UsersGetCurrentUserTenantsErrors = {
     /**
      * Unauthorized
      */
@@ -2305,18 +2468,18 @@ export type GetCurrentUserTenantsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserTenantsAsyncError = GetCurrentUserTenantsAsyncErrors[keyof GetCurrentUserTenantsAsyncErrors];
+export type UsersGetCurrentUserTenantsError = UsersGetCurrentUserTenantsErrors[keyof UsersGetCurrentUserTenantsErrors];
 
-export type GetCurrentUserTenantsAsyncResponses = {
+export type UsersGetCurrentUserTenantsResponses = {
     /**
      * OK
      */
     200: TenantDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserTenantsAsyncResponse = GetCurrentUserTenantsAsyncResponses[keyof GetCurrentUserTenantsAsyncResponses];
+export type UsersGetCurrentUserTenantsResponse = UsersGetCurrentUserTenantsResponses[keyof UsersGetCurrentUserTenantsResponses];
 
-export type CountCurrentUserTenantsAsyncData = {
+export type UsersCountCurrentUserTenantsData = {
     body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2328,7 +2491,7 @@ export type CountCurrentUserTenantsAsyncData = {
     url: '/api/v2/Me/Tenants/Count';
 };
 
-export type CountCurrentUserTenantsAsyncErrors = {
+export type UsersCountCurrentUserTenantsErrors = {
     /**
      * Unauthorized
      */
@@ -2339,18 +2502,18 @@ export type CountCurrentUserTenantsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CountCurrentUserTenantsAsyncError = CountCurrentUserTenantsAsyncErrors[keyof CountCurrentUserTenantsAsyncErrors];
+export type UsersCountCurrentUserTenantsError = UsersCountCurrentUserTenantsErrors[keyof UsersCountCurrentUserTenantsErrors];
 
-export type CountCurrentUserTenantsAsyncResponses = {
+export type UsersCountCurrentUserTenantsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCurrentUserTenantsAsyncResponse = CountCurrentUserTenantsAsyncResponses[keyof CountCurrentUserTenantsAsyncResponses];
+export type UsersCountCurrentUserTenantsResponse = UsersCountCurrentUserTenantsResponses[keyof UsersCountCurrentUserTenantsResponses];
 
-export type GetCurrentUserTenantsExtendedAsyncData = {
+export type UsersGetCurrentUserTenantsExtendedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2362,7 +2525,7 @@ export type GetCurrentUserTenantsExtendedAsyncData = {
     url: '/api/v2/Me/Tenants/Extended';
 };
 
-export type GetCurrentUserTenantsExtendedAsyncErrors = {
+export type UsersGetCurrentUserTenantsExtendedErrors = {
     /**
      * Unauthorized
      */
@@ -2373,18 +2536,18 @@ export type GetCurrentUserTenantsExtendedAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserTenantsExtendedAsyncError = GetCurrentUserTenantsExtendedAsyncErrors[keyof GetCurrentUserTenantsExtendedAsyncErrors];
+export type UsersGetCurrentUserTenantsExtendedError = UsersGetCurrentUserTenantsExtendedErrors[keyof UsersGetCurrentUserTenantsExtendedErrors];
 
-export type GetCurrentUserTenantsExtendedAsyncResponses = {
+export type UsersGetCurrentUserTenantsExtendedResponses = {
     /**
      * OK
      */
     200: ExtendedTenantDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserTenantsExtendedAsyncResponse = GetCurrentUserTenantsExtendedAsyncResponses[keyof GetCurrentUserTenantsExtendedAsyncResponses];
+export type UsersGetCurrentUserTenantsExtendedResponse = UsersGetCurrentUserTenantsExtendedResponses[keyof UsersGetCurrentUserTenantsExtendedResponses];
 
-export type GetCurrentUserEnrollmentsAsyncData = {
+export type UsersGetCurrentUserEnrollmentsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2396,25 +2559,25 @@ export type GetCurrentUserEnrollmentsAsyncData = {
     url: '/api/v2/Me/Enrollments';
 };
 
-export type GetCurrentUserEnrollmentsAsyncErrors = {
+export type UsersGetCurrentUserEnrollmentsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserEnrollmentsAsyncError = GetCurrentUserEnrollmentsAsyncErrors[keyof GetCurrentUserEnrollmentsAsyncErrors];
+export type UsersGetCurrentUserEnrollmentsError = UsersGetCurrentUserEnrollmentsErrors[keyof UsersGetCurrentUserEnrollmentsErrors];
 
-export type GetCurrentUserEnrollmentsAsyncResponses = {
+export type UsersGetCurrentUserEnrollmentsResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserEnrollmentsAsyncResponse = GetCurrentUserEnrollmentsAsyncResponses[keyof GetCurrentUserEnrollmentsAsyncResponses];
+export type UsersGetCurrentUserEnrollmentsResponse = UsersGetCurrentUserEnrollmentsResponses[keyof UsersGetCurrentUserEnrollmentsResponses];
 
-export type GetCurrentUserEnrollmentsExtendedAsyncData = {
+export type UsersGetCurrentUserEnrollmentsExtendedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2426,25 +2589,25 @@ export type GetCurrentUserEnrollmentsExtendedAsyncData = {
     url: '/api/v2/Me/Enrollments/Extended';
 };
 
-export type GetCurrentUserEnrollmentsExtendedAsyncErrors = {
+export type UsersGetCurrentUserEnrollmentsExtendedErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserEnrollmentsExtendedAsyncError = GetCurrentUserEnrollmentsExtendedAsyncErrors[keyof GetCurrentUserEnrollmentsExtendedAsyncErrors];
+export type UsersGetCurrentUserEnrollmentsExtendedError = UsersGetCurrentUserEnrollmentsExtendedErrors[keyof UsersGetCurrentUserEnrollmentsExtendedErrors];
 
-export type GetCurrentUserEnrollmentsExtendedAsyncResponses = {
+export type UsersGetCurrentUserEnrollmentsExtendedResponses = {
     /**
      * OK
      */
     200: ExtendedTenantEnrollmentDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserEnrollmentsExtendedAsyncResponse = GetCurrentUserEnrollmentsExtendedAsyncResponses[keyof GetCurrentUserEnrollmentsExtendedAsyncResponses];
+export type UsersGetCurrentUserEnrollmentsExtendedResponse = UsersGetCurrentUserEnrollmentsExtendedResponses[keyof UsersGetCurrentUserEnrollmentsExtendedResponses];
 
-export type GetEnrollmentAsyncData = {
+export type UsersGetEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2458,25 +2621,25 @@ export type GetEnrollmentAsyncData = {
     url: '/api/v2/Me/Enrollments/{enrollmentId}';
 };
 
-export type GetEnrollmentAsyncErrors = {
+export type UsersGetEnrollmentErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentAsyncError = GetEnrollmentAsyncErrors[keyof GetEnrollmentAsyncErrors];
+export type UsersGetEnrollmentError = UsersGetEnrollmentErrors[keyof UsersGetEnrollmentErrors];
 
-export type GetEnrollmentAsyncResponses = {
+export type UsersGetEnrollmentResponses = {
     /**
      * OK
      */
     200: TenantEnrollmentDtoEnvelopeReadable;
 };
 
-export type GetEnrollmentAsyncResponse = GetEnrollmentAsyncResponses[keyof GetEnrollmentAsyncResponses];
+export type UsersGetEnrollmentResponse = UsersGetEnrollmentResponses[keyof UsersGetEnrollmentResponses];
 
-export type GetCurrentUserSocialProfileAsyncData = {
+export type UsersGetCurrentUserSocialProfileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2488,25 +2651,25 @@ export type GetCurrentUserSocialProfileAsyncData = {
     url: '/api/v2/Me/SocialProfile';
 };
 
-export type GetCurrentUserSocialProfileAsyncErrors = {
+export type UsersGetCurrentUserSocialProfileErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserSocialProfileAsyncError = GetCurrentUserSocialProfileAsyncErrors[keyof GetCurrentUserSocialProfileAsyncErrors];
+export type UsersGetCurrentUserSocialProfileError = UsersGetCurrentUserSocialProfileErrors[keyof UsersGetCurrentUserSocialProfileErrors];
 
-export type GetCurrentUserSocialProfileAsyncResponses = {
+export type UsersGetCurrentUserSocialProfileResponses = {
     /**
      * OK
      */
     200: SocialProfileDtoEnvelopeReadable;
 };
 
-export type GetCurrentUserSocialProfileAsyncResponse = GetCurrentUserSocialProfileAsyncResponses[keyof GetCurrentUserSocialProfileAsyncResponses];
+export type UsersGetCurrentUserSocialProfileResponse = UsersGetCurrentUserSocialProfileResponses[keyof UsersGetCurrentUserSocialProfileResponses];
 
-export type GetCurrentUserCartAsyncData = {
+export type UsersGetCurrentUserCartData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2518,25 +2681,25 @@ export type GetCurrentUserCartAsyncData = {
     url: '/api/v2/Me/Cart';
 };
 
-export type GetCurrentUserCartAsyncErrors = {
+export type UsersGetCurrentUserCartErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserCartAsyncError = GetCurrentUserCartAsyncErrors[keyof GetCurrentUserCartAsyncErrors];
+export type UsersGetCurrentUserCartError = UsersGetCurrentUserCartErrors[keyof UsersGetCurrentUserCartErrors];
 
-export type GetCurrentUserCartAsyncResponses = {
+export type UsersGetCurrentUserCartResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetCurrentUserCartAsyncResponse = GetCurrentUserCartAsyncResponses[keyof GetCurrentUserCartAsyncResponses];
+export type UsersGetCurrentUserCartResponse = UsersGetCurrentUserCartResponses[keyof UsersGetCurrentUserCartResponses];
 
-export type GetCurrentUserWalletAsyncData = {
+export type UsersGetCurrentUserWalletData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2548,25 +2711,25 @@ export type GetCurrentUserWalletAsyncData = {
     url: '/api/v2/Me/Wallet';
 };
 
-export type GetCurrentUserWalletAsyncErrors = {
+export type UsersGetCurrentUserWalletErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserWalletAsyncError = GetCurrentUserWalletAsyncErrors[keyof GetCurrentUserWalletAsyncErrors];
+export type UsersGetCurrentUserWalletError = UsersGetCurrentUserWalletErrors[keyof UsersGetCurrentUserWalletErrors];
 
-export type GetCurrentUserWalletAsyncResponses = {
+export type UsersGetCurrentUserWalletResponses = {
     /**
      * OK
      */
     200: WalletDtoEnvelopeReadable;
 };
 
-export type GetCurrentUserWalletAsyncResponse = GetCurrentUserWalletAsyncResponses[keyof GetCurrentUserWalletAsyncResponses];
+export type UsersGetCurrentUserWalletResponse = UsersGetCurrentUserWalletResponses[keyof UsersGetCurrentUserWalletResponses];
 
-export type GetCurrentUserNotificationsAsyncData = {
+export type UsersGetCurrentUserNotificationsData = {
     body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2578,25 +2741,25 @@ export type GetCurrentUserNotificationsAsyncData = {
     url: '/api/v2/Me/Notifications';
 };
 
-export type GetCurrentUserNotificationsAsyncErrors = {
+export type UsersGetCurrentUserNotificationsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserNotificationsAsyncError = GetCurrentUserNotificationsAsyncErrors[keyof GetCurrentUserNotificationsAsyncErrors];
+export type UsersGetCurrentUserNotificationsError = UsersGetCurrentUserNotificationsErrors[keyof UsersGetCurrentUserNotificationsErrors];
 
-export type GetCurrentUserNotificationsAsyncResponses = {
+export type UsersGetCurrentUserNotificationsResponses = {
     /**
      * OK
      */
     200: NotificationDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserNotificationsAsyncResponse = GetCurrentUserNotificationsAsyncResponses[keyof GetCurrentUserNotificationsAsyncResponses];
+export type UsersGetCurrentUserNotificationsResponse = UsersGetCurrentUserNotificationsResponses[keyof UsersGetCurrentUserNotificationsResponses];
 
-export type CountCurrentUserNotificationsAsyncData = {
+export type UsersCountCurrentUserNotificationsData = {
     body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2608,25 +2771,25 @@ export type CountCurrentUserNotificationsAsyncData = {
     url: '/api/v2/Me/Notifications/Count';
 };
 
-export type CountCurrentUserNotificationsAsyncErrors = {
+export type UsersCountCurrentUserNotificationsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type CountCurrentUserNotificationsAsyncError = CountCurrentUserNotificationsAsyncErrors[keyof CountCurrentUserNotificationsAsyncErrors];
+export type UsersCountCurrentUserNotificationsError = UsersCountCurrentUserNotificationsErrors[keyof UsersCountCurrentUserNotificationsErrors];
 
-export type CountCurrentUserNotificationsAsyncResponses = {
+export type UsersCountCurrentUserNotificationsResponses = {
     /**
      * OK
      */
     200: Int32EnvelopeReadable;
 };
 
-export type CountCurrentUserNotificationsAsyncResponse = CountCurrentUserNotificationsAsyncResponses[keyof CountCurrentUserNotificationsAsyncResponses];
+export type UsersCountCurrentUserNotificationsResponse = UsersCountCurrentUserNotificationsResponses[keyof UsersCountCurrentUserNotificationsResponses];
 
-export type GetCurrentUserSettingsAsyncData = {
+export type UsersGetCurrentUserSettingsData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2638,25 +2801,25 @@ export type GetCurrentUserSettingsAsyncData = {
     url: '/api/v2/Me/Settings';
 };
 
-export type GetCurrentUserSettingsAsyncErrors = {
+export type UsersGetCurrentUserSettingsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserSettingsAsyncError = GetCurrentUserSettingsAsyncErrors[keyof GetCurrentUserSettingsAsyncErrors];
+export type UsersGetCurrentUserSettingsError = UsersGetCurrentUserSettingsErrors[keyof UsersGetCurrentUserSettingsErrors];
 
-export type GetCurrentUserSettingsAsyncResponses = {
+export type UsersGetCurrentUserSettingsResponses = {
     /**
      * OK
      */
     200: UserSettingsDtoEnvelopeReadable;
 };
 
-export type GetCurrentUserSettingsAsyncResponse = GetCurrentUserSettingsAsyncResponses[keyof GetCurrentUserSettingsAsyncResponses];
+export type UsersGetCurrentUserSettingsResponse = UsersGetCurrentUserSettingsResponses[keyof UsersGetCurrentUserSettingsResponses];
 
-export type UpdateCurrentUserSettingsAsyncData = {
+export type UsersUpdateCurrentUserSettingsData = {
     body?: UserSettingsUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2668,25 +2831,25 @@ export type UpdateCurrentUserSettingsAsyncData = {
     url: '/api/v2/Me/Settings';
 };
 
-export type UpdateCurrentUserSettingsAsyncErrors = {
+export type UsersUpdateCurrentUserSettingsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type UpdateCurrentUserSettingsAsyncError = UpdateCurrentUserSettingsAsyncErrors[keyof UpdateCurrentUserSettingsAsyncErrors];
+export type UsersUpdateCurrentUserSettingsError = UsersUpdateCurrentUserSettingsErrors[keyof UsersUpdateCurrentUserSettingsErrors];
 
-export type UpdateCurrentUserSettingsAsyncResponses = {
+export type UsersUpdateCurrentUserSettingsResponses = {
     /**
      * OK
      */
     200: UserSettingsDtoEnvelopeReadable;
 };
 
-export type UpdateCurrentUserSettingsAsyncResponse = UpdateCurrentUserSettingsAsyncResponses[keyof UpdateCurrentUserSettingsAsyncResponses];
+export type UsersUpdateCurrentUserSettingsResponse = UsersUpdateCurrentUserSettingsResponses[keyof UsersUpdateCurrentUserSettingsResponses];
 
-export type GetCurrentUserAddressesAsyncData = {
+export type UsersGetCurrentUserAddressesData = {
     body?: AddressDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2698,25 +2861,25 @@ export type GetCurrentUserAddressesAsyncData = {
     url: '/api/v2/Me/Addresses';
 };
 
-export type GetCurrentUserAddressesAsyncErrors = {
+export type UsersGetCurrentUserAddressesErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserAddressesAsyncError = GetCurrentUserAddressesAsyncErrors[keyof GetCurrentUserAddressesAsyncErrors];
+export type UsersGetCurrentUserAddressesError = UsersGetCurrentUserAddressesErrors[keyof UsersGetCurrentUserAddressesErrors];
 
-export type GetCurrentUserAddressesAsyncResponses = {
+export type UsersGetCurrentUserAddressesResponses = {
     /**
      * OK
      */
     200: AddressDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserAddressesAsyncResponse = GetCurrentUserAddressesAsyncResponses[keyof GetCurrentUserAddressesAsyncResponses];
+export type UsersGetCurrentUserAddressesResponse = UsersGetCurrentUserAddressesResponses[keyof UsersGetCurrentUserAddressesResponses];
 
-export type GetCurrentUserInvitationAsyncData = {
+export type UsersGetCurrentUserInvitationData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2728,23 +2891,60 @@ export type GetCurrentUserInvitationAsyncData = {
     url: '/api/v2/Me/Invitations';
 };
 
-export type GetCurrentUserInvitationAsyncErrors = {
+export type UsersGetCurrentUserInvitationErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetCurrentUserInvitationAsyncError = GetCurrentUserInvitationAsyncErrors[keyof GetCurrentUserInvitationAsyncErrors];
+export type UsersGetCurrentUserInvitationError = UsersGetCurrentUserInvitationErrors[keyof UsersGetCurrentUserInvitationErrors];
 
-export type GetCurrentUserInvitationAsyncResponses = {
+export type UsersGetCurrentUserInvitationResponses = {
     /**
      * OK
      */
     200: TenantInvitationDtoListEnvelopeReadable;
 };
 
-export type GetCurrentUserInvitationAsyncResponse = GetCurrentUserInvitationAsyncResponses[keyof GetCurrentUserInvitationAsyncResponses];
+export type UsersGetCurrentUserInvitationResponse = UsersGetCurrentUserInvitationResponses[keyof UsersGetCurrentUserInvitationResponses];
+
+export type UsersGetCurrentUserInvitationByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        invitationId: string;
+    };
+    query?: {
+        token?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/Me/Invitations/{invitationId}';
+};
+
+export type UsersGetCurrentUserInvitationByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UsersGetCurrentUserInvitationByIdError = UsersGetCurrentUserInvitationByIdErrors[keyof UsersGetCurrentUserInvitationByIdErrors];
+
+export type UsersGetCurrentUserInvitationByIdResponses = {
+    /**
+     * OK
+     */
+    200: TenantInvitationDtoEnvelopeReadable;
+};
+
+export type UsersGetCurrentUserInvitationByIdResponse = UsersGetCurrentUserInvitationByIdResponses[keyof UsersGetCurrentUserInvitationByIdResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

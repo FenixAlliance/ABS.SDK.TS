@@ -10,748 +10,507 @@ export interface paths {
      * Get all business owned contacts
      * @description Get all business owned contacts
      */
-    get: operations["GetCartByIdAsync"];
+    get: operations["Carts_GetCartById"];
     /**
      * Update a cart
      * @description Update a cart
      */
-    put: operations["UpdateCartAsync"];
+    put: operations["Carts_UpdateCart"];
     /**
      * Patch a cart
      * @description Partially updates a cart using a JSON Patch document.
      */
-    patch: operations["PatchCartAsync"];
+    patch: operations["Carts_PatchCart"];
   };
   "/api/v2/CartService/Carts/{cartId}/Currency": {
     /**
      * Get the currency of a cart
      * @description The currency of a cart used for display purposes
      */
-    get: operations["GetCartCurrencyAsync"];
+    get: operations["Carts_GetCartCurrency"];
     /**
      * Set the currency of a cart
      * @description Set the currency of a cart
      */
-    put: operations["SetCartCurrencyAsync"];
+    put: operations["Carts_SetCartCurrency"];
   };
   "/api/v2/CartService/Carts/{cartId}/Country": {
     /**
      * Get the country of a cart
      * @description The country of a cart is used to calculate taxes and shipping costs
      */
-    get: operations["GetCartCountryAsync"];
+    get: operations["Carts_GetCartCountry"];
     /**
      * Set the country of a cart
      * @description Set the country of a cart
      */
-    put: operations["SetCartCountryAsync"];
+    put: operations["Carts_SetCartCountry"];
   };
   "/api/v2/CartService/Carts/{cartId}/Submit": {
     /**
      * Submit a cart for processing
      * @description Submit a cart for processing
      */
-    post: operations["SubmitCartAsync"];
+    post: operations["Carts_SubmitCart"];
   };
   "/api/v2/CartService/Carts/ActingCart": {
     /**
      * Get the acting cart
      * @description Get the acting cart
      */
-    get: operations["GetActingCart"];
+    get: operations["Carts_GetActingCart"];
   };
   "/api/v2/CartService/Carts/GuestCart": {
     /**
      * Get the guest cart
      * @description Get the guest cart
      */
-    get: operations["GetGuestCartAsync"];
+    get: operations["Carts_GetGuestCart"];
   };
   "/api/v2/CartService/Carts/UserCart": {
     /**
      * Get the current user's cart
      * @description Get the current user's cart
      */
-    get: operations["GetUserCart"];
+    get: operations["Carts_GetUserCart"];
   };
   "/api/v2/CartService/Carts/BusinessCart/{tenantId}": {
     /**
      * Get the business cart
      * @description Get the business cart
      */
-    get: operations["GetTenantCartAsync"];
+    get: operations["Carts_GetTenantCart"];
   };
   "/api/v2/CartService/Carts/{cartId}/Items": {
     /**
      * Get all cart lines
      * @description Get all cart lines
      */
-    get: operations["GetCartItems"];
+    get: operations["Carts_GetCartItems"];
     /**
      * Clear all items from a cart
      * @description Clear all items from a cart
      */
-    delete: operations["ClearCartRecords"];
+    delete: operations["Carts_ClearCartRecords"];
   };
   "/api/v2/CartService/Carts/{cartId}/Items/{itemId}": {
     /**
      * Update an Item in a cart
      * @description Update an Item in a cart
      */
-    put: operations["UpdateItemCartRecordAsync"];
+    put: operations["Carts_UpdateItemCartRecord"];
     /**
      * Add an Item to a cart
      * @description Add an Item to a cart
      */
-    post: operations["AddItemToCartAsync"];
+    post: operations["Carts_AddItemToCart"];
     /**
      * Remove an Item from a cart
      * @description Remove an Item from a cart
      */
-    delete: operations["RemoveItemFromCartAsync"];
+    delete: operations["Carts_RemoveItemFromCart"];
   };
   "/api/v2/CartService/Carts/{cartId}/Contains/{itemId}": {
     /**
      * Assesses if an Item is already in a cart
      * @description Assesses if an Item is already in a cart
      */
-    get: operations["IsItemAlreadyInCartAsync"];
+    get: operations["Carts_IsItemAlreadyInCart"];
   };
   "/api/v2/CartService/Carts/{cartId}/Items/{itemId}/Increase": {
     /**
      * Increase an Item in a cart
      * @description Increase an Item in a cart
      */
-    put: operations["IncreaseItemCartRecordQuantityAsync"];
+    put: operations["Carts_IncreaseItemCartRecordQuantity"];
   };
   "/api/v2/CartService/Carts/{cartId}/Items/{itemId}/Decrease": {
     /**
      * Decrease an Item in a cart
      * @description Decrease an Item in a cart
      */
-    put: operations["DecreaseCartItemQuantity"];
+    put: operations["Carts_DecreaseCartItemQuantity"];
   };
   "/api/v2/CartService/Carts/{cartId}/Lines": {
     /**
      * Get all cart lines
      * @description Get all cart lines
      */
-    get: operations["GetCartLinesAsync"];
+    get: operations["Carts_GetCartLines"];
   };
   "/api/v2/CartService/Carts/{cartId}/Lines/{lineId}": {
     /**
      * Get a cart line by ID
      * @description Get a cart line by ID
      */
-    get: operations["GetCartLineAsync"];
+    get: operations["Carts_GetCartLine"];
     /**
      * Update a cart line
      * @description Update a cart line
      */
-    put: operations["UpdateCartLineAsync"];
+    put: operations["Carts_UpdateCartLine"];
     /**
      * Remove a cart line
      * @description Remove a cart line
      */
-    delete: operations["RemoveCartLineAsync"];
+    delete: operations["Carts_RemoveCartLine"];
   };
   "/api/v2/CartService/Carts/{cartId}/Lines/{lineId}/Increase": {
     /**
      * Increase the quantity of a cart line
      * @description Increase the quantity of a cart line
      */
-    put: operations["IncreaseCartLineAsync"];
+    put: operations["Carts_IncreaseCartLine"];
   };
   "/api/v2/CartService/Carts/{cartId}/Lines/{lineId}/Decrease": {
     /**
      * Decrease the quantity of a cart line
      * @description Decrease the quantity of a cart line
      */
-    put: operations["DecreaseCartLineAsync"];
+    put: operations["Carts_DecreaseCartLine"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists": {
     /**
      * Get all wishlists in a cart
      * @description Get all wishlists in a cart
      */
-    get: operations["GetCartWishList"];
+    get: operations["Carts_GetCartWishList"];
     /**
      * Create a new wish list
      * @description Create a new wish list
      */
-    post: operations["CreateWishListAsync"];
+    post: operations["Carts_CreateWishList"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/Contains/{itemId}": {
     /**
      * Assesses if an Item is already in any of the cart's wishlists
      * @description Assesses if an Item is already in any of the cart's wishlists
      */
-    get: operations["IsItemInWishLists"];
+    get: operations["Carts_IsItemInWishLists"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Exists": {
     /**
      * Assesses if a WishList exists
      * @description Assesses if a WishList exists
      */
-    get: operations["WishListExistsAsync"];
+    get: operations["Carts_WishListExists"];
     /**
      * Assesses if a WishList exists
      * @description Assesses if a WishList exists but does not return the content
      */
-    head: operations["CartWishListExistsHead"];
+    head: operations["Carts_CartWishListExistsHead"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}": {
     /**
      * Get a wish list by ID
      * @description Get a wish list by ID
      */
-    get: operations["GetCartWishListDetails"];
+    get: operations["Carts_GetCartWishListDetails"];
     /**
      * Update a wish list
      * @description Update a wish list
      */
-    put: operations["UpdateItemToWishList"];
+    put: operations["Carts_UpdateItemToWishList"];
     /**
      * Delete a wish list
      * @description Delete a wish list
      */
-    delete: operations["DeleteCartWishList"];
+    delete: operations["Carts_DeleteCartWishList"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records": {
     /**
      * Get all records in a wish list
      * @description Get all records in a wish list
      */
-    get: operations["GetCartWishListItems"];
+    get: operations["Carts_GetCartWishListItems"];
     /**
      * Add a record to a wish list
      * @description Add a record to a wish list
      */
-    post: operations["AddItemToWishList"];
+    post: operations["Carts_AddItemToWishList"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records/{recordId}": {
     /**
      * Get a record in a wish list
      * @description Get a record in a wish list
      */
-    get: operations["GetCartWishListItemAsync"];
+    get: operations["Carts_GetCartWishListItem"];
     /**
      * Remove a record from a wish list
      * @description Remove a record from a wish list
      */
-    delete: operations["DeleteCartWishListRecord"];
+    delete: operations["Carts_DeleteCartWishListRecord"];
   };
   "/api/v2/CartService/Carts/{cartId}/Compare": {
     /**
      * Get all items in the compare table
      * @description Get all items in the compare table
      */
-    get: operations["GetCartCompareRecords"];
+    get: operations["Carts_GetCartCompareRecords"];
+  };
+  "/api/v2/CartService/Carts/{cartId}/RecentlyViewed": {
+    /**
+     * Get the cart's recently viewed items
+     * @description Get the cart's recently viewed items, newest first
+     */
+    get: operations["Carts_GetCartRecentlyViewedRecords"];
   };
   "/api/v2/CartService/Carts/{cartId}/Compare/{itemId}": {
     /**
      * Get an item from the compare table
      * @description Get an item from the compare table
      */
-    get: operations["GetCartCompareRecord"];
+    get: operations["Carts_GetCartCompareRecord"];
     /**
      * Add an item to the compare table
      * @description Add an item to the compare table
      */
-    post: operations["AddItemToCartCompareTable"];
+    post: operations["Carts_AddItemToCartCompareTable"];
     /**
      * Remove an item from the compare table
      * @description Remove an item from the compare table
      */
-    delete: operations["RemoveItemFromCompareTableAsync"];
+    delete: operations["Carts_RemoveItemFromCompareTable"];
   };
   "/api/v2/CartService/Carts/{cartId}/Compare/Contains/{itemId}": {
     /**
      * Assesses if an Item is already in the compare table
      * @description Assesses if an Item is already in the compare table
      */
-    get: operations["IsItemInCompareTableAsync"];
+    get: operations["Carts_IsItemInCompareTable"];
   };
   "/api/v2/CartService/Compare/{cartId}": {
     /**
      * Get items to compare in a cart
      * @description Retrieves all items added to the compare table for the specified cart.
      */
-    get: operations["GetItemToCompareRecords"];
+    get: operations["Compare_GetItemToCompareRecords"];
   };
   "/api/v2/CartService/Compare/{recordId}/Details": {
     /**
      * Get compare record details
      * @description Retrieves the details of a specific item-to-compare cart record.
      */
-    get: operations["GetItemToCompareRecord"];
+    get: operations["Compare_GetItemToCompareRecord"];
   };
   "/api/v2/CartService/Compare": {
     /**
      * Add an item to the compare table
      * @description Adds a product to the compare table for the specified cart with tracking.
      */
-    post: operations["AddItemToCompareTableAsync"];
+    post: operations["Compare_AddItemToCompareTable"];
   };
   "/api/v2/CartService/Compare/{recordId}": {
     /**
      * Remove an item from the compare table
      * @description Removes a specific record from the compare table by its record ID.
      */
-    delete: operations["RemoveItemFromCompareTable"];
+    delete: operations["Compare_RemoveItemFromCompareTable"];
   };
   "/version": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetVersion"];
   };
   "/health": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHealth"];
   };
   "/hello": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetHello"];
   };
   "/register": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RegisterRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRegister"];
   };
   "/login": {
-    post: {
-      parameters: {
-        query?: {
-          useCookies?: boolean;
-          useSessionCookies?: boolean;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["LoginRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostLogin"];
   };
   "/refresh": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["RefreshRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccessTokenResponse"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostRefresh"];
   };
   "/confirmEmail": {
-    get: operations["MapIdentityApi-/confirmEmail"];
+    get: operations["Platform_MapIdentityApiConfirmEmail"];
   };
   "/resendConfirmationEmail": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostResendConfirmationEmail"];
   };
   "/forgotPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ForgotPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostForgotPassword"];
   };
   "/resetPassword": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["ResetPasswordRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-      };
-    };
+    post: operations["Platform_PostResetPassword"];
   };
   "/manage/2fa": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["TwoFactorRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["TwoFactorResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostManage2fa"];
   };
   "/manage/info": {
-    get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["InfoRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InfoResponse"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: never;
-        };
-      };
-    };
+    get: operations["Platform_GetManageInfo"];
+    post: operations["Platform_PostManageInfo"];
   };
   "/Account/PerformExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountPerformExternalLogin"];
   };
   "/Account/Logout": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            returnUrl?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            returnUrl?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountLogout"];
   };
   "/Account/Manage/LinkExternalLogin": {
-    post: {
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            provider?: string;
-          };
-          "application/x-www-form-urlencoded": {
-            provider?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageLinkExternalLogin"];
   };
   "/Account/Manage/DownloadPersonalData": {
-    post: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
   "/api/v2/CartService/Records/AddItem": {
     /**
      * Add an item to a cart
      * @description Adds an item with the specified quantity to the given cart.
      */
-    post: operations["AddItemToCart"];
+    post: operations["Records_AddItemToCart"];
   };
   "/api/v2/CartService/Records/{cartId}": {
     /**
      * Get all items in a cart
      * @description Retrieves all item cart records for the specified cart.
      */
-    get: operations["GetItemsInCartAsync"];
+    get: operations["Records_GetItemsInCart"];
   };
   "/api/v2/CartService/Records": {
     /**
      * Add a product to a cart with tracking
      * @description Adds a product to the cart using a request body with cart ID, product ID, and quantity.
      */
-    post: operations["AddProductToCartAsync"];
+    post: operations["Records_AddProductToCart"];
     /**
      * Remove a product from a cart
      * @description Removes a product from the cart using cart ID and product ID query parameters.
      */
-    delete: operations["RemoveProductFromCartByParams"];
+    delete: operations["Records_RemoveProductFromCartByParams"];
   };
   "/api/v2/CartService/Records/IsInCart": {
     /**
      * Check if an item is in a cart
      * @description Returns a boolean indicating whether the specified item is already in the given cart.
      */
-    get: operations["IsItemAlreadyInCart"];
+    get: operations["Records_IsItemAlreadyInCart"];
   };
   "/api/v2/CartService/Records/ClearCart": {
     /**
      * Clear all items from a cart
      * @description Removes all item records from the specified cart.
      */
-    post: operations["ClearCartAsync"];
+    post: operations["Records_ClearCart"];
   };
   "/api/v2/CartService/Records/{recordId}/Details": {
     /**
      * Get a cart record by ID
      * @description Retrieves the details of a specific item cart record.
      */
-    get: operations["GetItemCartRecord"];
+    get: operations["Records_GetItemCartRecord"];
   };
   "/api/v2/CartService/Records/{recordId}": {
     /**
      * Update a cart record
      * @description Updates the specified item cart record with the provided data.
      */
-    put: operations["UpdateItemCartRecord"];
+    put: operations["Records_UpdateItemCartRecord"];
     /**
      * Remove a product from a cart by record ID
      * @description Removes a specific item record from the cart by its record ID.
      */
-    delete: operations["RemoveProductFromCartByRecordId"];
+    delete: operations["Records_RemoveProductFromCartByRecordId"];
     /**
      * Patch a cart record
      * @description Partially updates the specified item cart record using a JSON Patch document.
      */
-    patch: operations["PatchItemCartRecord"];
+    patch: operations["Records_PatchItemCartRecord"];
   };
   "/api/v2/CartService/Records/{recordId}/Increase": {
     /**
      * Increase cart record quantity
      * @description Increases the quantity of the specified item cart record by the given amount.
      */
-    put: operations["IncreaseItemCartRecord"];
+    put: operations["Records_IncreaseItemCartRecord"];
   };
   "/api/v2/CartService/Records/{recordId}/Decrease": {
     /**
      * Decrease cart record quantity
      * @description Decreases the quantity of the specified item cart record by the given amount.
      */
-    put: operations["DecreaseItemCartRecord"];
+    put: operations["Records_DecreaseItemCartRecord"];
   };
   "/api/v2/CartService/WishLists/Contains": {
     /**
      * Check if a product is in any wish list
      * @description Returns a boolean indicating whether the specified product exists in any wish list of the given cart.
      */
-    get: operations["IsProductInWishLists"];
+    get: operations["WishLists_IsProductInWishLists"];
   };
   "/api/v2/CartService/WishLists/Exists": {
     /**
      * Check if a wish list exists
      * @description Returns a boolean indicating whether the specified wish list exists.
      */
-    get: operations["WishListExists"];
+    get: operations["WishLists_WishListExists"];
     /**
      * Check if a wish list exists (HEAD)
      * @description HEAD request to check whether the specified wish list exists without returning a response body.
      */
-    head: operations["WishListExistsHeadAsync"];
+    head: operations["WishLists_WishListExistsHead"];
   };
   "/api/v2/CartService/WishLists": {
     /**
      * Create a wish list
      * @description Creates a new wish list from the provided request data.
      */
-    post: operations["CreateWishList"];
+    post: operations["WishLists_CreateWishList"];
   };
   "/api/v2/CartService/WishLists/{wishListId}": {
     /**
      * Update a wish list
      * @description Updates the specified wish list with the provided data.
      */
-    put: operations["UpdateProductToWishList"];
+    put: operations["WishLists_UpdateProductToWishList"];
     /**
      * Delete a wish list
      * @description Deletes the specified wish list.
      */
-    delete: operations["DeleteWishList"];
+    delete: operations["WishLists_DeleteWishList"];
     /**
      * Patch a wish list
      * @description Partially updates the specified wish list using a JSON Patch document.
      */
-    patch: operations["PatchWishList"];
+    patch: operations["WishLists_PatchWishList"];
   };
   "/api/v2/CartService/WishLists/{cartId}": {
     /**
      * Get wish lists for a cart
      * @description Retrieves all wish lists associated with the specified cart.
      */
-    get: operations["GetWishListAsync"];
+    get: operations["WishLists_GetWishList"];
   };
   "/api/v2/CartService/WishLists/{wishListId}/Records": {
     /**
      * Get wish list item records
      * @description Retrieves all item records in the specified wish list.
      */
-    get: operations["GetCartWishListItemsAsync"];
+    get: operations["WishLists_GetCartWishListItems"];
   };
   "/api/v2/CartService/WishLists/{wishListId}/Details": {
     /**
      * Get wish list details
      * @description Retrieves the full details of the specified wish list.
      */
-    get: operations["GetCartWishListDetailsAsync"];
+    get: operations["WishLists_GetCartWishListDetails"];
   };
   "/api/v2/CartService/WishLists/Records": {
     /**
      * Add a product to a wish list
      * @description Adds the specified product to the given wish list.
      */
-    post: operations["AddProductToWishList"];
+    post: operations["WishLists_AddProductToWishList"];
   };
   "/api/v2/CartService/WishLists/Records/{recordId}": {
     /**
      * Delete a wish list record
      * @description Removes a specific item record from a wish list by its record ID.
      */
-    delete: operations["DeleteWishListRecord"];
+    delete: operations["WishLists_DeleteWishListRecord"];
   };
 }
 
@@ -1137,6 +896,9 @@ export interface components {
       itemTitle?: string | null;
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
+      itemInStock?: boolean | null;
+      /** Format: double */
+      itemRatingAverage?: number | null;
       brandId?: string | null;
       brandName?: string | null;
       categoryName?: string | null;
@@ -1202,6 +964,35 @@ export interface components {
     ProductToWishListRequest: {
       wishListId?: string | null;
       itemId?: string | null;
+    };
+    RecentlyViewedItemRecordDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      cartId?: string | null;
+      itemId?: string | null;
+      itemTitle?: string | null;
+      itemPrimaryImageUrl?: string | null;
+      /** Format: double */
+      totalPriceInUsd?: number;
+      itemInStock?: boolean | null;
+      /** Format: double */
+      itemRatingAverage?: number | null;
+    };
+    RecentlyViewedItemRecordDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["RecentlyViewedItemRecordDto"][] | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1287,7 +1078,7 @@ export interface operations {
    * Get all business owned contacts
    * @description Get all business owned contacts
    */
-  GetCartByIdAsync: {
+  Carts_GetCartById: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1327,7 +1118,7 @@ export interface operations {
    * Update a cart
    * @description Update a cart
    */
-  UpdateCartAsync: {
+  Carts_UpdateCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1373,7 +1164,7 @@ export interface operations {
    * Patch a cart
    * @description Partially updates a cart using a JSON Patch document.
    */
-  PatchCartAsync: {
+  Carts_PatchCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1419,7 +1210,7 @@ export interface operations {
    * Get the currency of a cart
    * @description The currency of a cart used for display purposes
    */
-  GetCartCurrencyAsync: {
+  Carts_GetCartCurrency: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1459,7 +1250,7 @@ export interface operations {
    * Set the currency of a cart
    * @description Set the currency of a cart
    */
-  SetCartCurrencyAsync: {
+  Carts_SetCartCurrency: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1505,7 +1296,7 @@ export interface operations {
    * Get the country of a cart
    * @description The country of a cart is used to calculate taxes and shipping costs
    */
-  GetCartCountryAsync: {
+  Carts_GetCartCountry: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1545,7 +1336,7 @@ export interface operations {
    * Set the country of a cart
    * @description Set the country of a cart
    */
-  SetCartCountryAsync: {
+  Carts_SetCartCountry: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1591,7 +1382,7 @@ export interface operations {
    * Submit a cart for processing
    * @description Submit a cart for processing
    */
-  SubmitCartAsync: {
+  Carts_SubmitCart: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -1632,7 +1423,7 @@ export interface operations {
    * Get the acting cart
    * @description Get the acting cart
    */
-  GetActingCart: {
+  Carts_GetActingCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1669,7 +1460,7 @@ export interface operations {
    * Get the guest cart
    * @description Get the guest cart
    */
-  GetGuestCartAsync: {
+  Carts_GetGuestCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1706,7 +1497,7 @@ export interface operations {
    * Get the current user's cart
    * @description Get the current user's cart
    */
-  GetUserCart: {
+  Carts_GetUserCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1743,7 +1534,7 @@ export interface operations {
    * Get the business cart
    * @description Get the business cart
    */
-  GetTenantCartAsync: {
+  Carts_GetTenantCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1783,7 +1574,7 @@ export interface operations {
    * Get all cart lines
    * @description Get all cart lines
    */
-  GetCartItems: {
+  Carts_GetCartItems: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1823,7 +1614,7 @@ export interface operations {
    * Clear all items from a cart
    * @description Clear all items from a cart
    */
-  ClearCartRecords: {
+  Carts_ClearCartRecords: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1863,7 +1654,7 @@ export interface operations {
    * Update an Item in a cart
    * @description Update an Item in a cart
    */
-  UpdateItemCartRecordAsync: {
+  Carts_UpdateItemCartRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1910,7 +1701,7 @@ export interface operations {
    * Add an Item to a cart
    * @description Add an Item to a cart
    */
-  AddItemToCartAsync: {
+  Carts_AddItemToCart: {
     parameters: {
       query?: {
         quantity?: number;
@@ -1952,7 +1743,7 @@ export interface operations {
    * Remove an Item from a cart
    * @description Remove an Item from a cart
    */
-  RemoveItemFromCartAsync: {
+  Carts_RemoveItemFromCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1993,7 +1784,7 @@ export interface operations {
    * Assesses if an Item is already in a cart
    * @description Assesses if an Item is already in a cart
    */
-  IsItemAlreadyInCartAsync: {
+  Carts_IsItemAlreadyInCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2034,7 +1825,7 @@ export interface operations {
    * Increase an Item in a cart
    * @description Increase an Item in a cart
    */
-  IncreaseItemCartRecordQuantityAsync: {
+  Carts_IncreaseItemCartRecordQuantity: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2081,7 +1872,7 @@ export interface operations {
    * Decrease an Item in a cart
    * @description Decrease an Item in a cart
    */
-  DecreaseCartItemQuantity: {
+  Carts_DecreaseCartItemQuantity: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2128,7 +1919,7 @@ export interface operations {
    * Get all cart lines
    * @description Get all cart lines
    */
-  GetCartLinesAsync: {
+  Carts_GetCartLines: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2168,7 +1959,7 @@ export interface operations {
    * Get a cart line by ID
    * @description Get a cart line by ID
    */
-  GetCartLineAsync: {
+  Carts_GetCartLine: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2209,7 +2000,7 @@ export interface operations {
    * Update a cart line
    * @description Update a cart line
    */
-  UpdateCartLineAsync: {
+  Carts_UpdateCartLine: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2256,7 +2047,7 @@ export interface operations {
    * Remove a cart line
    * @description Remove a cart line
    */
-  RemoveCartLineAsync: {
+  Carts_RemoveCartLine: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2297,7 +2088,7 @@ export interface operations {
    * Increase the quantity of a cart line
    * @description Increase the quantity of a cart line
    */
-  IncreaseCartLineAsync: {
+  Carts_IncreaseCartLine: {
     parameters: {
       query?: {
         quantity?: number;
@@ -2339,7 +2130,7 @@ export interface operations {
    * Decrease the quantity of a cart line
    * @description Decrease the quantity of a cart line
    */
-  DecreaseCartLineAsync: {
+  Carts_DecreaseCartLine: {
     parameters: {
       query?: {
         quantity?: number;
@@ -2381,7 +2172,7 @@ export interface operations {
    * Get all wishlists in a cart
    * @description Get all wishlists in a cart
    */
-  GetCartWishList: {
+  Carts_GetCartWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2421,7 +2212,7 @@ export interface operations {
    * Create a new wish list
    * @description Create a new wish list
    */
-  CreateWishListAsync: {
+  Carts_CreateWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2467,7 +2258,7 @@ export interface operations {
    * Assesses if an Item is already in any of the cart's wishlists
    * @description Assesses if an Item is already in any of the cart's wishlists
    */
-  IsItemInWishLists: {
+  Carts_IsItemInWishLists: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2508,7 +2299,7 @@ export interface operations {
    * Assesses if a WishList exists
    * @description Assesses if a WishList exists
    */
-  WishListExistsAsync: {
+  Carts_WishListExists: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2549,7 +2340,7 @@ export interface operations {
    * Assesses if a WishList exists
    * @description Assesses if a WishList exists but does not return the content
    */
-  CartWishListExistsHead: {
+  Carts_CartWishListExistsHead: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2590,7 +2381,7 @@ export interface operations {
    * Get a wish list by ID
    * @description Get a wish list by ID
    */
-  GetCartWishListDetails: {
+  Carts_GetCartWishListDetails: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2631,7 +2422,7 @@ export interface operations {
    * Update a wish list
    * @description Update a wish list
    */
-  UpdateItemToWishList: {
+  Carts_UpdateItemToWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2678,7 +2469,7 @@ export interface operations {
    * Delete a wish list
    * @description Delete a wish list
    */
-  DeleteCartWishList: {
+  Carts_DeleteCartWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2719,7 +2510,7 @@ export interface operations {
    * Get all records in a wish list
    * @description Get all records in a wish list
    */
-  GetCartWishListItems: {
+  Carts_GetCartWishListItems: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2760,7 +2551,7 @@ export interface operations {
    * Add a record to a wish list
    * @description Add a record to a wish list
    */
-  AddItemToWishList: {
+  Carts_AddItemToWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2807,7 +2598,7 @@ export interface operations {
    * Get a record in a wish list
    * @description Get a record in a wish list
    */
-  GetCartWishListItemAsync: {
+  Carts_GetCartWishListItem: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2849,7 +2640,7 @@ export interface operations {
    * Remove a record from a wish list
    * @description Remove a record from a wish list
    */
-  DeleteCartWishListRecord: {
+  Carts_DeleteCartWishListRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2891,7 +2682,7 @@ export interface operations {
    * Get all items in the compare table
    * @description Get all items in the compare table
    */
-  GetCartCompareRecords: {
+  Carts_GetCartCompareRecords: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2928,10 +2719,50 @@ export interface operations {
     };
   };
   /**
+   * Get the cart's recently viewed items
+   * @description Get the cart's recently viewed items, newest first
+   */
+  Carts_GetCartRecentlyViewedRecords: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RecentlyViewedItemRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["RecentlyViewedItemRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get an item from the compare table
    * @description Get an item from the compare table
    */
-  GetCartCompareRecord: {
+  Carts_GetCartCompareRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2972,7 +2803,7 @@ export interface operations {
    * Add an item to the compare table
    * @description Add an item to the compare table
    */
-  AddItemToCartCompareTable: {
+  Carts_AddItemToCartCompareTable: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3013,7 +2844,7 @@ export interface operations {
    * Remove an item from the compare table
    * @description Remove an item from the compare table
    */
-  RemoveItemFromCompareTableAsync: {
+  Carts_RemoveItemFromCompareTable: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3054,7 +2885,7 @@ export interface operations {
    * Assesses if an Item is already in the compare table
    * @description Assesses if an Item is already in the compare table
    */
-  IsItemInCompareTableAsync: {
+  Carts_IsItemInCompareTable: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3095,7 +2926,7 @@ export interface operations {
    * Get items to compare in a cart
    * @description Retrieves all items added to the compare table for the specified cart.
    */
-  GetItemToCompareRecords: {
+  Compare_GetItemToCompareRecords: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3135,7 +2966,7 @@ export interface operations {
    * Get compare record details
    * @description Retrieves the details of a specific item-to-compare cart record.
    */
-  GetItemToCompareRecord: {
+  Compare_GetItemToCompareRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3168,7 +2999,7 @@ export interface operations {
    * Add an item to the compare table
    * @description Adds a product to the compare table for the specified cart with tracking.
    */
-  AddItemToCompareTableAsync: {
+  Compare_AddItemToCompareTable: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3204,7 +3035,7 @@ export interface operations {
    * Remove an item from the compare table
    * @description Removes a specific record from the compare table by its record ID.
    */
-  RemoveItemFromCompareTable: {
+  Compare_RemoveItemFromCompareTable: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3233,7 +3064,86 @@ export interface operations {
       };
     };
   };
-  "MapIdentityApi-/confirmEmail": {
+  Platform_GetVersion: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHealth: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetHello: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostRegister: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostLogin: {
+    parameters: {
+      query?: {
+        useCookies?: boolean;
+        useSessionCookies?: boolean;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_PostRefresh: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RefreshRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccessTokenResponse"];
+        };
+      };
+    };
+  };
+  Platform_MapIdentityApiConfirmEmail: {
     parameters: {
       query: {
         userId: string;
@@ -3248,11 +3158,196 @@ export interface operations {
       };
     };
   };
+  Platform_PostResendConfirmationEmail: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostForgotPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ForgotPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostResetPassword: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+    };
+  };
+  Platform_PostManage2fa: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TwoFactorRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_GetManageInfo: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostManageInfo: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InfoRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InfoResponse"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountPerformExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountLogout: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          returnUrl?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          returnUrl?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageLinkExternalLogin: {
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          provider?: string;
+        };
+        "application/x-www-form-urlencoded": {
+          provider?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  Platform_PostAccountManageDownloadPersonalData: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Add an item to a cart
    * @description Adds an item with the specified quantity to the given cart.
    */
-  AddItemToCart: {
+  Records_AddItemToCart: {
     parameters: {
       query?: {
         cartId?: string;
@@ -3292,7 +3387,7 @@ export interface operations {
    * Get all items in a cart
    * @description Retrieves all item cart records for the specified cart.
    */
-  GetItemsInCartAsync: {
+  Records_GetItemsInCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3332,7 +3427,7 @@ export interface operations {
    * Add a product to a cart with tracking
    * @description Adds a product to the cart using a request body with cart ID, product ID, and quantity.
    */
-  AddProductToCartAsync: {
+  Records_AddProductToCart: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3375,7 +3470,7 @@ export interface operations {
    * Remove a product from a cart
    * @description Removes a product from the cart using cart ID and product ID query parameters.
    */
-  RemoveProductFromCartByParams: {
+  Records_RemoveProductFromCartByParams: {
     parameters: {
       query?: {
         cartId?: string;
@@ -3414,7 +3509,7 @@ export interface operations {
    * Check if an item is in a cart
    * @description Returns a boolean indicating whether the specified item is already in the given cart.
    */
-  IsItemAlreadyInCart: {
+  Records_IsItemAlreadyInCart: {
     parameters: {
       query: {
         itemID: string;
@@ -3453,7 +3548,7 @@ export interface operations {
    * Clear all items from a cart
    * @description Removes all item records from the specified cart.
    */
-  ClearCartAsync: {
+  Records_ClearCart: {
     parameters: {
       query: {
         cartID: string;
@@ -3491,7 +3586,7 @@ export interface operations {
    * Get a cart record by ID
    * @description Retrieves the details of a specific item cart record.
    */
-  GetItemCartRecord: {
+  Records_GetItemCartRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3531,7 +3626,7 @@ export interface operations {
    * Update a cart record
    * @description Updates the specified item cart record with the provided data.
    */
-  UpdateItemCartRecord: {
+  Records_UpdateItemCartRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3577,7 +3672,7 @@ export interface operations {
    * Remove a product from a cart by record ID
    * @description Removes a specific item record from the cart by its record ID.
    */
-  RemoveProductFromCartByRecordId: {
+  Records_RemoveProductFromCartByRecordId: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3617,7 +3712,7 @@ export interface operations {
    * Patch a cart record
    * @description Partially updates the specified item cart record using a JSON Patch document.
    */
-  PatchItemCartRecord: {
+  Records_PatchItemCartRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3663,7 +3758,7 @@ export interface operations {
    * Increase cart record quantity
    * @description Increases the quantity of the specified item cart record by the given amount.
    */
-  IncreaseItemCartRecord: {
+  Records_IncreaseItemCartRecord: {
     parameters: {
       query?: {
         quantity?: number;
@@ -3704,7 +3799,7 @@ export interface operations {
    * Decrease cart record quantity
    * @description Decreases the quantity of the specified item cart record by the given amount.
    */
-  DecreaseItemCartRecord: {
+  Records_DecreaseItemCartRecord: {
     parameters: {
       query?: {
         quantity?: number;
@@ -3745,7 +3840,7 @@ export interface operations {
    * Check if a product is in any wish list
    * @description Returns a boolean indicating whether the specified product exists in any wish list of the given cart.
    */
-  IsProductInWishLists: {
+  WishLists_IsProductInWishLists: {
     parameters: {
       query?: {
         cartId?: string;
@@ -3770,7 +3865,7 @@ export interface operations {
    * Check if a wish list exists
    * @description Returns a boolean indicating whether the specified wish list exists.
    */
-  WishListExists: {
+  WishLists_WishListExists: {
     parameters: {
       query?: {
         wishListId?: string;
@@ -3794,7 +3889,7 @@ export interface operations {
    * Check if a wish list exists (HEAD)
    * @description HEAD request to check whether the specified wish list exists without returning a response body.
    */
-  WishListExistsHeadAsync: {
+  WishLists_WishListExistsHead: {
     parameters: {
       query?: {
         wishListId?: string;
@@ -3818,7 +3913,7 @@ export interface operations {
    * Create a wish list
    * @description Creates a new wish list from the provided request data.
    */
-  CreateWishList: {
+  WishLists_CreateWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3847,7 +3942,7 @@ export interface operations {
    * Update a wish list
    * @description Updates the specified wish list with the provided data.
    */
-  UpdateProductToWishList: {
+  WishLists_UpdateProductToWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3879,7 +3974,7 @@ export interface operations {
    * Delete a wish list
    * @description Deletes the specified wish list.
    */
-  DeleteWishList: {
+  WishLists_DeleteWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3905,7 +4000,7 @@ export interface operations {
    * Patch a wish list
    * @description Partially updates the specified wish list using a JSON Patch document.
    */
-  PatchWishList: {
+  WishLists_PatchWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3937,7 +4032,7 @@ export interface operations {
    * Get wish lists for a cart
    * @description Retrieves all wish lists associated with the specified cart.
    */
-  GetWishListAsync: {
+  WishLists_GetWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3963,7 +4058,7 @@ export interface operations {
    * Get wish list item records
    * @description Retrieves all item records in the specified wish list.
    */
-  GetCartWishListItemsAsync: {
+  WishLists_GetCartWishListItems: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3989,7 +4084,7 @@ export interface operations {
    * Get wish list details
    * @description Retrieves the full details of the specified wish list.
    */
-  GetCartWishListDetailsAsync: {
+  WishLists_GetCartWishListDetails: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4015,7 +4110,7 @@ export interface operations {
    * Add a product to a wish list
    * @description Adds the specified product to the given wish list.
    */
-  AddProductToWishList: {
+  WishLists_AddProductToWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -4044,7 +4139,7 @@ export interface operations {
    * Delete a wish list record
    * @description Removes a specific item record from a wish list by its record ID.
    */
-  DeleteWishListRecord: {
+  WishLists_DeleteWishListRecord: {
     parameters: {
       query?: {
         "api-version"?: string;

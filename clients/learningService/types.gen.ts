@@ -191,8 +191,13 @@ export type ContactDtoReadable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type ContactDtoWritable = {
@@ -252,8 +257,13 @@ export type ContactDtoWritable = {
     partnerProfileId?: string | null;
     primaryContactId?: string | null;
     activeDirectoryId?: string | null;
+    /**
+     * @deprecated
+     */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    tikTokUsername?: string | null;
+    instagramUsername?: string | null;
 };
 
 export type CountDto = {
@@ -449,6 +459,31 @@ export type CourseAssignmentDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CourseAssignmentDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CourseAssignmentDto;
+};
+
+export type CourseAssignmentDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CourseAssignmentDto;
 };
 
 export type CourseAssignmentTypeCreateDto = {
@@ -656,6 +691,49 @@ export type CourseCohortUpdateDto = {
     expectedEndDateTime?: string | null;
 };
 
+export type CourseCollectionCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    description?: string | null;
+};
+
+export type CourseCollectionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    description?: string | null;
+    businessID?: string | null;
+};
+
+export type CourseCollectionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseCollectionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type CourseCollectionUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+};
+
 export type CourseCompletionCertificateCreateDto = {
     id?: string;
     timestamp?: string;
@@ -703,6 +781,31 @@ export type CourseCompletionCertificateDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CourseCompletionCertificateDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CourseCompletionCertificateDto;
+};
+
+export type CourseCompletionCertificateDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CourseCompletionCertificateDto;
 };
 
 export type CourseCompletionCertificateDtoIReadOnlyListEnvelopeReadable = {
@@ -1513,6 +1616,31 @@ export type CourseProblemSetDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CourseProblemSetDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CourseProblemSetDto;
+};
+
+export type CourseProblemSetDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CourseProblemSetDto;
 };
 
 export type CourseProblemSetUpdateDto = {
@@ -2355,7 +2483,7 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetCourseArticlesAsyncData = {
+export type CourseArticlesGetCourseArticlesData = {
     body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2368,25 +2496,25 @@ export type GetCourseArticlesAsyncData = {
     url: '/api/v2/LearningService/CourseArticles';
 };
 
-export type GetCourseArticlesAsyncErrors = {
+export type CourseArticlesGetCourseArticlesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseArticlesAsyncError = GetCourseArticlesAsyncErrors[keyof GetCourseArticlesAsyncErrors];
+export type CourseArticlesGetCourseArticlesError = CourseArticlesGetCourseArticlesErrors[keyof CourseArticlesGetCourseArticlesErrors];
 
-export type GetCourseArticlesAsyncResponses = {
+export type CourseArticlesGetCourseArticlesResponses = {
     /**
      * OK
      */
     200: Array<CourseArticleDto>;
 };
 
-export type GetCourseArticlesAsyncResponse = GetCourseArticlesAsyncResponses[keyof GetCourseArticlesAsyncResponses];
+export type CourseArticlesGetCourseArticlesResponse = CourseArticlesGetCourseArticlesResponses[keyof CourseArticlesGetCourseArticlesResponses];
 
-export type CreateCourseArticleAsyncData = {
+export type CourseArticlesCreateCourseArticleData = {
     body?: CourseArticleCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2399,23 +2527,23 @@ export type CreateCourseArticleAsyncData = {
     url: '/api/v2/LearningService/CourseArticles';
 };
 
-export type CreateCourseArticleAsyncErrors = {
+export type CourseArticlesCreateCourseArticleErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseArticleAsyncError = CreateCourseArticleAsyncErrors[keyof CreateCourseArticleAsyncErrors];
+export type CourseArticlesCreateCourseArticleError = CourseArticlesCreateCourseArticleErrors[keyof CourseArticlesCreateCourseArticleErrors];
 
-export type CreateCourseArticleAsyncResponses = {
+export type CourseArticlesCreateCourseArticleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseArticlesCountAsyncData = {
+export type CourseArticlesGetCourseArticlesCountData = {
     body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2428,25 +2556,25 @@ export type GetCourseArticlesCountAsyncData = {
     url: '/api/v2/LearningService/CourseArticles/Count';
 };
 
-export type GetCourseArticlesCountAsyncErrors = {
+export type CourseArticlesGetCourseArticlesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseArticlesCountAsyncError = GetCourseArticlesCountAsyncErrors[keyof GetCourseArticlesCountAsyncErrors];
+export type CourseArticlesGetCourseArticlesCountError = CourseArticlesGetCourseArticlesCountErrors[keyof CourseArticlesGetCourseArticlesCountErrors];
 
-export type GetCourseArticlesCountAsyncResponses = {
+export type CourseArticlesGetCourseArticlesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseArticlesCountAsyncResponse = GetCourseArticlesCountAsyncResponses[keyof GetCourseArticlesCountAsyncResponses];
+export type CourseArticlesGetCourseArticlesCountResponse = CourseArticlesGetCourseArticlesCountResponses[keyof CourseArticlesGetCourseArticlesCountResponses];
 
-export type DeleteCourseArticleAsyncData = {
+export type CourseArticlesDeleteCourseArticleData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2461,23 +2589,23 @@ export type DeleteCourseArticleAsyncData = {
     url: '/api/v2/LearningService/CourseArticles/{articleId}';
 };
 
-export type DeleteCourseArticleAsyncErrors = {
+export type CourseArticlesDeleteCourseArticleErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseArticleAsyncError = DeleteCourseArticleAsyncErrors[keyof DeleteCourseArticleAsyncErrors];
+export type CourseArticlesDeleteCourseArticleError = CourseArticlesDeleteCourseArticleErrors[keyof CourseArticlesDeleteCourseArticleErrors];
 
-export type DeleteCourseArticleAsyncResponses = {
+export type CourseArticlesDeleteCourseArticleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseArticleByIdAsyncData = {
+export type CourseArticlesGetCourseArticleByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2486,30 +2614,31 @@ export type GetCourseArticleByIdAsyncData = {
         articleId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseArticles/{articleId}';
 };
 
-export type GetCourseArticleByIdAsyncErrors = {
+export type CourseArticlesGetCourseArticleByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseArticleByIdAsyncError = GetCourseArticleByIdAsyncErrors[keyof GetCourseArticleByIdAsyncErrors];
+export type CourseArticlesGetCourseArticleByIdError = CourseArticlesGetCourseArticleByIdErrors[keyof CourseArticlesGetCourseArticleByIdErrors];
 
-export type GetCourseArticleByIdAsyncResponses = {
+export type CourseArticlesGetCourseArticleByIdResponses = {
     /**
      * OK
      */
     200: CourseArticleDto;
 };
 
-export type GetCourseArticleByIdAsyncResponse = GetCourseArticleByIdAsyncResponses[keyof GetCourseArticleByIdAsyncResponses];
+export type CourseArticlesGetCourseArticleByIdResponse = CourseArticlesGetCourseArticleByIdResponses[keyof CourseArticlesGetCourseArticleByIdResponses];
 
-export type PatchCourseArticleAsyncData = {
+export type CourseArticlesPatchCourseArticleData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2524,25 +2653,25 @@ export type PatchCourseArticleAsyncData = {
     url: '/api/v2/LearningService/CourseArticles/{articleId}';
 };
 
-export type PatchCourseArticleAsyncErrors = {
+export type CourseArticlesPatchCourseArticleErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseArticleAsyncError = PatchCourseArticleAsyncErrors[keyof PatchCourseArticleAsyncErrors];
+export type CourseArticlesPatchCourseArticleError = CourseArticlesPatchCourseArticleErrors[keyof CourseArticlesPatchCourseArticleErrors];
 
-export type PatchCourseArticleAsyncResponses = {
+export type CourseArticlesPatchCourseArticleResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseArticleAsyncResponse = PatchCourseArticleAsyncResponses[keyof PatchCourseArticleAsyncResponses];
+export type CourseArticlesPatchCourseArticleResponse = CourseArticlesPatchCourseArticleResponses[keyof CourseArticlesPatchCourseArticleResponses];
 
-export type UpdateCourseArticleAsyncData = {
+export type CourseArticlesUpdateCourseArticleData = {
     body?: CourseArticleUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2557,23 +2686,23 @@ export type UpdateCourseArticleAsyncData = {
     url: '/api/v2/LearningService/CourseArticles/{articleId}';
 };
 
-export type UpdateCourseArticleAsyncErrors = {
+export type CourseArticlesUpdateCourseArticleErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseArticleAsyncError = UpdateCourseArticleAsyncErrors[keyof UpdateCourseArticleAsyncErrors];
+export type CourseArticlesUpdateCourseArticleError = CourseArticlesUpdateCourseArticleErrors[keyof CourseArticlesUpdateCourseArticleErrors];
 
-export type UpdateCourseArticleAsyncResponses = {
+export type CourseArticlesUpdateCourseArticleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentComponentsAsyncData = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsData = {
     body?: CourseAssignmentComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2586,25 +2715,25 @@ export type GetCourseAssignmentComponentsAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentComponents';
 };
 
-export type GetCourseAssignmentComponentsAsyncErrors = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentComponentsAsyncError = GetCourseAssignmentComponentsAsyncErrors[keyof GetCourseAssignmentComponentsAsyncErrors];
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsError = CourseAssignmentComponentsGetCourseAssignmentComponentsErrors[keyof CourseAssignmentComponentsGetCourseAssignmentComponentsErrors];
 
-export type GetCourseAssignmentComponentsAsyncResponses = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsResponses = {
     /**
      * OK
      */
     200: Array<CourseAssignmentComponentDto>;
 };
 
-export type GetCourseAssignmentComponentsAsyncResponse = GetCourseAssignmentComponentsAsyncResponses[keyof GetCourseAssignmentComponentsAsyncResponses];
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsResponse = CourseAssignmentComponentsGetCourseAssignmentComponentsResponses[keyof CourseAssignmentComponentsGetCourseAssignmentComponentsResponses];
 
-export type CreateCourseAssignmentComponentAsyncData = {
+export type CourseAssignmentComponentsCreateCourseAssignmentComponentData = {
     body?: CourseAssignmentComponentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2617,23 +2746,23 @@ export type CreateCourseAssignmentComponentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentComponents';
 };
 
-export type CreateCourseAssignmentComponentAsyncErrors = {
+export type CourseAssignmentComponentsCreateCourseAssignmentComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseAssignmentComponentAsyncError = CreateCourseAssignmentComponentAsyncErrors[keyof CreateCourseAssignmentComponentAsyncErrors];
+export type CourseAssignmentComponentsCreateCourseAssignmentComponentError = CourseAssignmentComponentsCreateCourseAssignmentComponentErrors[keyof CourseAssignmentComponentsCreateCourseAssignmentComponentErrors];
 
-export type CreateCourseAssignmentComponentAsyncResponses = {
+export type CourseAssignmentComponentsCreateCourseAssignmentComponentResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetCourseAssignmentComponentsCountAsyncData = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsCountData = {
     body?: CourseAssignmentComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2646,25 +2775,25 @@ export type GetCourseAssignmentComponentsCountAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentComponents/Count';
 };
 
-export type GetCourseAssignmentComponentsCountAsyncErrors = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentComponentsCountAsyncError = GetCourseAssignmentComponentsCountAsyncErrors[keyof GetCourseAssignmentComponentsCountAsyncErrors];
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsCountError = CourseAssignmentComponentsGetCourseAssignmentComponentsCountErrors[keyof CourseAssignmentComponentsGetCourseAssignmentComponentsCountErrors];
 
-export type GetCourseAssignmentComponentsCountAsyncResponses = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseAssignmentComponentsCountAsyncResponse = GetCourseAssignmentComponentsCountAsyncResponses[keyof GetCourseAssignmentComponentsCountAsyncResponses];
+export type CourseAssignmentComponentsGetCourseAssignmentComponentsCountResponse = CourseAssignmentComponentsGetCourseAssignmentComponentsCountResponses[keyof CourseAssignmentComponentsGetCourseAssignmentComponentsCountResponses];
 
-export type DeleteCourseAssignmentComponentAsyncData = {
+export type CourseAssignmentComponentsDeleteCourseAssignmentComponentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2679,23 +2808,23 @@ export type DeleteCourseAssignmentComponentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentComponents/{componentId}';
 };
 
-export type DeleteCourseAssignmentComponentAsyncErrors = {
+export type CourseAssignmentComponentsDeleteCourseAssignmentComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseAssignmentComponentAsyncError = DeleteCourseAssignmentComponentAsyncErrors[keyof DeleteCourseAssignmentComponentAsyncErrors];
+export type CourseAssignmentComponentsDeleteCourseAssignmentComponentError = CourseAssignmentComponentsDeleteCourseAssignmentComponentErrors[keyof CourseAssignmentComponentsDeleteCourseAssignmentComponentErrors];
 
-export type DeleteCourseAssignmentComponentAsyncResponses = {
+export type CourseAssignmentComponentsDeleteCourseAssignmentComponentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentComponentByIdAsyncData = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2704,30 +2833,31 @@ export type GetCourseAssignmentComponentByIdAsyncData = {
         componentId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseAssignmentComponents/{componentId}';
 };
 
-export type GetCourseAssignmentComponentByIdAsyncErrors = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentComponentByIdAsyncError = GetCourseAssignmentComponentByIdAsyncErrors[keyof GetCourseAssignmentComponentByIdAsyncErrors];
+export type CourseAssignmentComponentsGetCourseAssignmentComponentByIdError = CourseAssignmentComponentsGetCourseAssignmentComponentByIdErrors[keyof CourseAssignmentComponentsGetCourseAssignmentComponentByIdErrors];
 
-export type GetCourseAssignmentComponentByIdAsyncResponses = {
+export type CourseAssignmentComponentsGetCourseAssignmentComponentByIdResponses = {
     /**
      * OK
      */
     200: CourseAssignmentComponentDto;
 };
 
-export type GetCourseAssignmentComponentByIdAsyncResponse = GetCourseAssignmentComponentByIdAsyncResponses[keyof GetCourseAssignmentComponentByIdAsyncResponses];
+export type CourseAssignmentComponentsGetCourseAssignmentComponentByIdResponse = CourseAssignmentComponentsGetCourseAssignmentComponentByIdResponses[keyof CourseAssignmentComponentsGetCourseAssignmentComponentByIdResponses];
 
-export type PatchCourseAssignmentComponentAsyncData = {
+export type CourseAssignmentComponentsPatchCourseAssignmentComponentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2742,25 +2872,25 @@ export type PatchCourseAssignmentComponentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentComponents/{componentId}';
 };
 
-export type PatchCourseAssignmentComponentAsyncErrors = {
+export type CourseAssignmentComponentsPatchCourseAssignmentComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseAssignmentComponentAsyncError = PatchCourseAssignmentComponentAsyncErrors[keyof PatchCourseAssignmentComponentAsyncErrors];
+export type CourseAssignmentComponentsPatchCourseAssignmentComponentError = CourseAssignmentComponentsPatchCourseAssignmentComponentErrors[keyof CourseAssignmentComponentsPatchCourseAssignmentComponentErrors];
 
-export type PatchCourseAssignmentComponentAsyncResponses = {
+export type CourseAssignmentComponentsPatchCourseAssignmentComponentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseAssignmentComponentAsyncResponse = PatchCourseAssignmentComponentAsyncResponses[keyof PatchCourseAssignmentComponentAsyncResponses];
+export type CourseAssignmentComponentsPatchCourseAssignmentComponentResponse = CourseAssignmentComponentsPatchCourseAssignmentComponentResponses[keyof CourseAssignmentComponentsPatchCourseAssignmentComponentResponses];
 
-export type UpdateCourseAssignmentComponentAsyncData = {
+export type CourseAssignmentComponentsUpdateCourseAssignmentComponentData = {
     body?: CourseAssignmentComponentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2775,23 +2905,23 @@ export type UpdateCourseAssignmentComponentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentComponents/{componentId}';
 };
 
-export type UpdateCourseAssignmentComponentAsyncErrors = {
+export type CourseAssignmentComponentsUpdateCourseAssignmentComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseAssignmentComponentAsyncError = UpdateCourseAssignmentComponentAsyncErrors[keyof UpdateCourseAssignmentComponentAsyncErrors];
+export type CourseAssignmentComponentsUpdateCourseAssignmentComponentError = CourseAssignmentComponentsUpdateCourseAssignmentComponentErrors[keyof CourseAssignmentComponentsUpdateCourseAssignmentComponentErrors];
 
-export type UpdateCourseAssignmentComponentAsyncResponses = {
+export type CourseAssignmentComponentsUpdateCourseAssignmentComponentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentsAsyncData = {
+export type CourseAssignmentsGetCourseAssignmentsData = {
     body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2804,25 +2934,25 @@ export type GetCourseAssignmentsAsyncData = {
     url: '/api/v2/LearningService/CourseAssignments';
 };
 
-export type GetCourseAssignmentsAsyncErrors = {
+export type CourseAssignmentsGetCourseAssignmentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentsAsyncError = GetCourseAssignmentsAsyncErrors[keyof GetCourseAssignmentsAsyncErrors];
+export type CourseAssignmentsGetCourseAssignmentsError = CourseAssignmentsGetCourseAssignmentsErrors[keyof CourseAssignmentsGetCourseAssignmentsErrors];
 
-export type GetCourseAssignmentsAsyncResponses = {
+export type CourseAssignmentsGetCourseAssignmentsResponses = {
     /**
      * OK
      */
     200: Array<CourseAssignmentDto>;
 };
 
-export type GetCourseAssignmentsAsyncResponse = GetCourseAssignmentsAsyncResponses[keyof GetCourseAssignmentsAsyncResponses];
+export type CourseAssignmentsGetCourseAssignmentsResponse = CourseAssignmentsGetCourseAssignmentsResponses[keyof CourseAssignmentsGetCourseAssignmentsResponses];
 
-export type CreateCourseAssignmentAsyncData = {
+export type CourseAssignmentsCreateCourseAssignmentData = {
     body?: CourseAssignmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2835,23 +2965,23 @@ export type CreateCourseAssignmentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignments';
 };
 
-export type CreateCourseAssignmentAsyncErrors = {
+export type CourseAssignmentsCreateCourseAssignmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseAssignmentAsyncError = CreateCourseAssignmentAsyncErrors[keyof CreateCourseAssignmentAsyncErrors];
+export type CourseAssignmentsCreateCourseAssignmentError = CourseAssignmentsCreateCourseAssignmentErrors[keyof CourseAssignmentsCreateCourseAssignmentErrors];
 
-export type CreateCourseAssignmentAsyncResponses = {
+export type CourseAssignmentsCreateCourseAssignmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentsCountAsyncData = {
+export type CourseAssignmentsGetCourseAssignmentsCountData = {
     body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -2864,25 +2994,25 @@ export type GetCourseAssignmentsCountAsyncData = {
     url: '/api/v2/LearningService/CourseAssignments/Count';
 };
 
-export type GetCourseAssignmentsCountAsyncErrors = {
+export type CourseAssignmentsGetCourseAssignmentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentsCountAsyncError = GetCourseAssignmentsCountAsyncErrors[keyof GetCourseAssignmentsCountAsyncErrors];
+export type CourseAssignmentsGetCourseAssignmentsCountError = CourseAssignmentsGetCourseAssignmentsCountErrors[keyof CourseAssignmentsGetCourseAssignmentsCountErrors];
 
-export type GetCourseAssignmentsCountAsyncResponses = {
+export type CourseAssignmentsGetCourseAssignmentsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseAssignmentsCountAsyncResponse = GetCourseAssignmentsCountAsyncResponses[keyof GetCourseAssignmentsCountAsyncResponses];
+export type CourseAssignmentsGetCourseAssignmentsCountResponse = CourseAssignmentsGetCourseAssignmentsCountResponses[keyof CourseAssignmentsGetCourseAssignmentsCountResponses];
 
-export type DeleteCourseAssignmentAsyncData = {
+export type CourseAssignmentsDeleteCourseAssignmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2897,23 +3027,23 @@ export type DeleteCourseAssignmentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignments/{assignmentId}';
 };
 
-export type DeleteCourseAssignmentAsyncErrors = {
+export type CourseAssignmentsDeleteCourseAssignmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseAssignmentAsyncError = DeleteCourseAssignmentAsyncErrors[keyof DeleteCourseAssignmentAsyncErrors];
+export type CourseAssignmentsDeleteCourseAssignmentError = CourseAssignmentsDeleteCourseAssignmentErrors[keyof CourseAssignmentsDeleteCourseAssignmentErrors];
 
-export type DeleteCourseAssignmentAsyncResponses = {
+export type CourseAssignmentsDeleteCourseAssignmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentByIdAsyncData = {
+export type CourseAssignmentsGetCourseAssignmentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2922,30 +3052,31 @@ export type GetCourseAssignmentByIdAsyncData = {
         assignmentId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseAssignments/{assignmentId}';
 };
 
-export type GetCourseAssignmentByIdAsyncErrors = {
+export type CourseAssignmentsGetCourseAssignmentByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentByIdAsyncError = GetCourseAssignmentByIdAsyncErrors[keyof GetCourseAssignmentByIdAsyncErrors];
+export type CourseAssignmentsGetCourseAssignmentByIdError = CourseAssignmentsGetCourseAssignmentByIdErrors[keyof CourseAssignmentsGetCourseAssignmentByIdErrors];
 
-export type GetCourseAssignmentByIdAsyncResponses = {
+export type CourseAssignmentsGetCourseAssignmentByIdResponses = {
     /**
      * OK
      */
     200: CourseAssignmentDto;
 };
 
-export type GetCourseAssignmentByIdAsyncResponse = GetCourseAssignmentByIdAsyncResponses[keyof GetCourseAssignmentByIdAsyncResponses];
+export type CourseAssignmentsGetCourseAssignmentByIdResponse = CourseAssignmentsGetCourseAssignmentByIdResponses[keyof CourseAssignmentsGetCourseAssignmentByIdResponses];
 
-export type PatchCourseAssignmentAsyncData = {
+export type CourseAssignmentsPatchCourseAssignmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -2960,25 +3091,25 @@ export type PatchCourseAssignmentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignments/{assignmentId}';
 };
 
-export type PatchCourseAssignmentAsyncErrors = {
+export type CourseAssignmentsPatchCourseAssignmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseAssignmentAsyncError = PatchCourseAssignmentAsyncErrors[keyof PatchCourseAssignmentAsyncErrors];
+export type CourseAssignmentsPatchCourseAssignmentError = CourseAssignmentsPatchCourseAssignmentErrors[keyof CourseAssignmentsPatchCourseAssignmentErrors];
 
-export type PatchCourseAssignmentAsyncResponses = {
+export type CourseAssignmentsPatchCourseAssignmentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseAssignmentAsyncResponse = PatchCourseAssignmentAsyncResponses[keyof PatchCourseAssignmentAsyncResponses];
+export type CourseAssignmentsPatchCourseAssignmentResponse = CourseAssignmentsPatchCourseAssignmentResponses[keyof CourseAssignmentsPatchCourseAssignmentResponses];
 
-export type UpdateCourseAssignmentAsyncData = {
+export type CourseAssignmentsUpdateCourseAssignmentData = {
     body?: CourseAssignmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2993,23 +3124,23 @@ export type UpdateCourseAssignmentAsyncData = {
     url: '/api/v2/LearningService/CourseAssignments/{assignmentId}';
 };
 
-export type UpdateCourseAssignmentAsyncErrors = {
+export type CourseAssignmentsUpdateCourseAssignmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseAssignmentAsyncError = UpdateCourseAssignmentAsyncErrors[keyof UpdateCourseAssignmentAsyncErrors];
+export type CourseAssignmentsUpdateCourseAssignmentError = CourseAssignmentsUpdateCourseAssignmentErrors[keyof CourseAssignmentsUpdateCourseAssignmentErrors];
 
-export type UpdateCourseAssignmentAsyncResponses = {
+export type CourseAssignmentsUpdateCourseAssignmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentTypesAsyncData = {
+export type CourseAssignmentTypesGetCourseAssignmentTypesData = {
     body?: CourseAssignmentTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3022,25 +3153,25 @@ export type GetCourseAssignmentTypesAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentTypes';
 };
 
-export type GetCourseAssignmentTypesAsyncErrors = {
+export type CourseAssignmentTypesGetCourseAssignmentTypesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentTypesAsyncError = GetCourseAssignmentTypesAsyncErrors[keyof GetCourseAssignmentTypesAsyncErrors];
+export type CourseAssignmentTypesGetCourseAssignmentTypesError = CourseAssignmentTypesGetCourseAssignmentTypesErrors[keyof CourseAssignmentTypesGetCourseAssignmentTypesErrors];
 
-export type GetCourseAssignmentTypesAsyncResponses = {
+export type CourseAssignmentTypesGetCourseAssignmentTypesResponses = {
     /**
      * OK
      */
     200: Array<CourseAssignmentTypeDto>;
 };
 
-export type GetCourseAssignmentTypesAsyncResponse = GetCourseAssignmentTypesAsyncResponses[keyof GetCourseAssignmentTypesAsyncResponses];
+export type CourseAssignmentTypesGetCourseAssignmentTypesResponse = CourseAssignmentTypesGetCourseAssignmentTypesResponses[keyof CourseAssignmentTypesGetCourseAssignmentTypesResponses];
 
-export type CreateCourseAssignmentTypeAsyncData = {
+export type CourseAssignmentTypesCreateCourseAssignmentTypeData = {
     body?: CourseAssignmentTypeCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3053,23 +3184,23 @@ export type CreateCourseAssignmentTypeAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentTypes';
 };
 
-export type CreateCourseAssignmentTypeAsyncErrors = {
+export type CourseAssignmentTypesCreateCourseAssignmentTypeErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseAssignmentTypeAsyncError = CreateCourseAssignmentTypeAsyncErrors[keyof CreateCourseAssignmentTypeAsyncErrors];
+export type CourseAssignmentTypesCreateCourseAssignmentTypeError = CourseAssignmentTypesCreateCourseAssignmentTypeErrors[keyof CourseAssignmentTypesCreateCourseAssignmentTypeErrors];
 
-export type CreateCourseAssignmentTypeAsyncResponses = {
+export type CourseAssignmentTypesCreateCourseAssignmentTypeResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetCourseAssignmentTypesCountAsyncData = {
+export type CourseAssignmentTypesGetCourseAssignmentTypesCountData = {
     body?: CourseAssignmentTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3082,25 +3213,25 @@ export type GetCourseAssignmentTypesCountAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentTypes/Count';
 };
 
-export type GetCourseAssignmentTypesCountAsyncErrors = {
+export type CourseAssignmentTypesGetCourseAssignmentTypesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentTypesCountAsyncError = GetCourseAssignmentTypesCountAsyncErrors[keyof GetCourseAssignmentTypesCountAsyncErrors];
+export type CourseAssignmentTypesGetCourseAssignmentTypesCountError = CourseAssignmentTypesGetCourseAssignmentTypesCountErrors[keyof CourseAssignmentTypesGetCourseAssignmentTypesCountErrors];
 
-export type GetCourseAssignmentTypesCountAsyncResponses = {
+export type CourseAssignmentTypesGetCourseAssignmentTypesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseAssignmentTypesCountAsyncResponse = GetCourseAssignmentTypesCountAsyncResponses[keyof GetCourseAssignmentTypesCountAsyncResponses];
+export type CourseAssignmentTypesGetCourseAssignmentTypesCountResponse = CourseAssignmentTypesGetCourseAssignmentTypesCountResponses[keyof CourseAssignmentTypesGetCourseAssignmentTypesCountResponses];
 
-export type DeleteCourseAssignmentTypeAsyncData = {
+export type CourseAssignmentTypesDeleteCourseAssignmentTypeData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3115,23 +3246,23 @@ export type DeleteCourseAssignmentTypeAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}';
 };
 
-export type DeleteCourseAssignmentTypeAsyncErrors = {
+export type CourseAssignmentTypesDeleteCourseAssignmentTypeErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseAssignmentTypeAsyncError = DeleteCourseAssignmentTypeAsyncErrors[keyof DeleteCourseAssignmentTypeAsyncErrors];
+export type CourseAssignmentTypesDeleteCourseAssignmentTypeError = CourseAssignmentTypesDeleteCourseAssignmentTypeErrors[keyof CourseAssignmentTypesDeleteCourseAssignmentTypeErrors];
 
-export type DeleteCourseAssignmentTypeAsyncResponses = {
+export type CourseAssignmentTypesDeleteCourseAssignmentTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseAssignmentTypeByIdAsyncData = {
+export type CourseAssignmentTypesGetCourseAssignmentTypeByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3140,30 +3271,31 @@ export type GetCourseAssignmentTypeByIdAsyncData = {
         assignmentTypeId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}';
 };
 
-export type GetCourseAssignmentTypeByIdAsyncErrors = {
+export type CourseAssignmentTypesGetCourseAssignmentTypeByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentTypeByIdAsyncError = GetCourseAssignmentTypeByIdAsyncErrors[keyof GetCourseAssignmentTypeByIdAsyncErrors];
+export type CourseAssignmentTypesGetCourseAssignmentTypeByIdError = CourseAssignmentTypesGetCourseAssignmentTypeByIdErrors[keyof CourseAssignmentTypesGetCourseAssignmentTypeByIdErrors];
 
-export type GetCourseAssignmentTypeByIdAsyncResponses = {
+export type CourseAssignmentTypesGetCourseAssignmentTypeByIdResponses = {
     /**
      * OK
      */
     200: CourseAssignmentTypeDto;
 };
 
-export type GetCourseAssignmentTypeByIdAsyncResponse = GetCourseAssignmentTypeByIdAsyncResponses[keyof GetCourseAssignmentTypeByIdAsyncResponses];
+export type CourseAssignmentTypesGetCourseAssignmentTypeByIdResponse = CourseAssignmentTypesGetCourseAssignmentTypeByIdResponses[keyof CourseAssignmentTypesGetCourseAssignmentTypeByIdResponses];
 
-export type PatchCourseAssignmentTypeAsyncData = {
+export type CourseAssignmentTypesPatchCourseAssignmentTypeData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3178,25 +3310,25 @@ export type PatchCourseAssignmentTypeAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}';
 };
 
-export type PatchCourseAssignmentTypeAsyncErrors = {
+export type CourseAssignmentTypesPatchCourseAssignmentTypeErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseAssignmentTypeAsyncError = PatchCourseAssignmentTypeAsyncErrors[keyof PatchCourseAssignmentTypeAsyncErrors];
+export type CourseAssignmentTypesPatchCourseAssignmentTypeError = CourseAssignmentTypesPatchCourseAssignmentTypeErrors[keyof CourseAssignmentTypesPatchCourseAssignmentTypeErrors];
 
-export type PatchCourseAssignmentTypeAsyncResponses = {
+export type CourseAssignmentTypesPatchCourseAssignmentTypeResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseAssignmentTypeAsyncResponse = PatchCourseAssignmentTypeAsyncResponses[keyof PatchCourseAssignmentTypeAsyncResponses];
+export type CourseAssignmentTypesPatchCourseAssignmentTypeResponse = CourseAssignmentTypesPatchCourseAssignmentTypeResponses[keyof CourseAssignmentTypesPatchCourseAssignmentTypeResponses];
 
-export type UpdateCourseAssignmentTypeAsyncData = {
+export type CourseAssignmentTypesUpdateCourseAssignmentTypeData = {
     body?: CourseAssignmentTypeUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3211,23 +3343,23 @@ export type UpdateCourseAssignmentTypeAsyncData = {
     url: '/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}';
 };
 
-export type UpdateCourseAssignmentTypeAsyncErrors = {
+export type CourseAssignmentTypesUpdateCourseAssignmentTypeErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseAssignmentTypeAsyncError = UpdateCourseAssignmentTypeAsyncErrors[keyof UpdateCourseAssignmentTypeAsyncErrors];
+export type CourseAssignmentTypesUpdateCourseAssignmentTypeError = CourseAssignmentTypesUpdateCourseAssignmentTypeErrors[keyof CourseAssignmentTypesUpdateCourseAssignmentTypeErrors];
 
-export type UpdateCourseAssignmentTypeAsyncResponses = {
+export type CourseAssignmentTypesUpdateCourseAssignmentTypeResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCategoriesAsyncData = {
+export type CourseCategoriesGetCourseCategoriesData = {
     body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3240,25 +3372,25 @@ export type GetCourseCategoriesAsyncData = {
     url: '/api/v2/LearningService/CourseCategories';
 };
 
-export type GetCourseCategoriesAsyncErrors = {
+export type CourseCategoriesGetCourseCategoriesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCategoriesAsyncError = GetCourseCategoriesAsyncErrors[keyof GetCourseCategoriesAsyncErrors];
+export type CourseCategoriesGetCourseCategoriesError = CourseCategoriesGetCourseCategoriesErrors[keyof CourseCategoriesGetCourseCategoriesErrors];
 
-export type GetCourseCategoriesAsyncResponses = {
+export type CourseCategoriesGetCourseCategoriesResponses = {
     /**
      * OK
      */
     200: Array<CourseCategoryDto>;
 };
 
-export type GetCourseCategoriesAsyncResponse = GetCourseCategoriesAsyncResponses[keyof GetCourseCategoriesAsyncResponses];
+export type CourseCategoriesGetCourseCategoriesResponse = CourseCategoriesGetCourseCategoriesResponses[keyof CourseCategoriesGetCourseCategoriesResponses];
 
-export type CreateCourseCategoryAsyncData = {
+export type CourseCategoriesCreateCourseCategoryData = {
     body?: CourseCategoryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3271,23 +3403,23 @@ export type CreateCourseCategoryAsyncData = {
     url: '/api/v2/LearningService/CourseCategories';
 };
 
-export type CreateCourseCategoryAsyncErrors = {
+export type CourseCategoriesCreateCourseCategoryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseCategoryAsyncError = CreateCourseCategoryAsyncErrors[keyof CreateCourseCategoryAsyncErrors];
+export type CourseCategoriesCreateCourseCategoryError = CourseCategoriesCreateCourseCategoryErrors[keyof CourseCategoriesCreateCourseCategoryErrors];
 
-export type CreateCourseCategoryAsyncResponses = {
+export type CourseCategoriesCreateCourseCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCategoriesCountAsyncData = {
+export type CourseCategoriesGetCourseCategoriesCountData = {
     body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3300,25 +3432,25 @@ export type GetCourseCategoriesCountAsyncData = {
     url: '/api/v2/LearningService/CourseCategories/Count';
 };
 
-export type GetCourseCategoriesCountAsyncErrors = {
+export type CourseCategoriesGetCourseCategoriesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCategoriesCountAsyncError = GetCourseCategoriesCountAsyncErrors[keyof GetCourseCategoriesCountAsyncErrors];
+export type CourseCategoriesGetCourseCategoriesCountError = CourseCategoriesGetCourseCategoriesCountErrors[keyof CourseCategoriesGetCourseCategoriesCountErrors];
 
-export type GetCourseCategoriesCountAsyncResponses = {
+export type CourseCategoriesGetCourseCategoriesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseCategoriesCountAsyncResponse = GetCourseCategoriesCountAsyncResponses[keyof GetCourseCategoriesCountAsyncResponses];
+export type CourseCategoriesGetCourseCategoriesCountResponse = CourseCategoriesGetCourseCategoriesCountResponses[keyof CourseCategoriesGetCourseCategoriesCountResponses];
 
-export type DeleteCourseCategoryAsyncData = {
+export type CourseCategoriesDeleteCourseCategoryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3333,23 +3465,23 @@ export type DeleteCourseCategoryAsyncData = {
     url: '/api/v2/LearningService/CourseCategories/{categoryId}';
 };
 
-export type DeleteCourseCategoryAsyncErrors = {
+export type CourseCategoriesDeleteCourseCategoryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseCategoryAsyncError = DeleteCourseCategoryAsyncErrors[keyof DeleteCourseCategoryAsyncErrors];
+export type CourseCategoriesDeleteCourseCategoryError = CourseCategoriesDeleteCourseCategoryErrors[keyof CourseCategoriesDeleteCourseCategoryErrors];
 
-export type DeleteCourseCategoryAsyncResponses = {
+export type CourseCategoriesDeleteCourseCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCategoryByIdAsyncData = {
+export type CourseCategoriesGetCourseCategoryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3358,30 +3490,31 @@ export type GetCourseCategoryByIdAsyncData = {
         categoryId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseCategories/{categoryId}';
 };
 
-export type GetCourseCategoryByIdAsyncErrors = {
+export type CourseCategoriesGetCourseCategoryByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCategoryByIdAsyncError = GetCourseCategoryByIdAsyncErrors[keyof GetCourseCategoryByIdAsyncErrors];
+export type CourseCategoriesGetCourseCategoryByIdError = CourseCategoriesGetCourseCategoryByIdErrors[keyof CourseCategoriesGetCourseCategoryByIdErrors];
 
-export type GetCourseCategoryByIdAsyncResponses = {
+export type CourseCategoriesGetCourseCategoryByIdResponses = {
     /**
      * OK
      */
     200: CourseCategoryDto;
 };
 
-export type GetCourseCategoryByIdAsyncResponse = GetCourseCategoryByIdAsyncResponses[keyof GetCourseCategoryByIdAsyncResponses];
+export type CourseCategoriesGetCourseCategoryByIdResponse = CourseCategoriesGetCourseCategoryByIdResponses[keyof CourseCategoriesGetCourseCategoryByIdResponses];
 
-export type PatchCourseCategoryAsyncData = {
+export type CourseCategoriesPatchCourseCategoryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3396,25 +3529,25 @@ export type PatchCourseCategoryAsyncData = {
     url: '/api/v2/LearningService/CourseCategories/{categoryId}';
 };
 
-export type PatchCourseCategoryAsyncErrors = {
+export type CourseCategoriesPatchCourseCategoryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseCategoryAsyncError = PatchCourseCategoryAsyncErrors[keyof PatchCourseCategoryAsyncErrors];
+export type CourseCategoriesPatchCourseCategoryError = CourseCategoriesPatchCourseCategoryErrors[keyof CourseCategoriesPatchCourseCategoryErrors];
 
-export type PatchCourseCategoryAsyncResponses = {
+export type CourseCategoriesPatchCourseCategoryResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseCategoryAsyncResponse = PatchCourseCategoryAsyncResponses[keyof PatchCourseCategoryAsyncResponses];
+export type CourseCategoriesPatchCourseCategoryResponse = CourseCategoriesPatchCourseCategoryResponses[keyof CourseCategoriesPatchCourseCategoryResponses];
 
-export type UpdateCourseCategoryAsyncData = {
+export type CourseCategoriesUpdateCourseCategoryData = {
     body?: CourseCategoryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3429,23 +3562,23 @@ export type UpdateCourseCategoryAsyncData = {
     url: '/api/v2/LearningService/CourseCategories/{categoryId}';
 };
 
-export type UpdateCourseCategoryAsyncErrors = {
+export type CourseCategoriesUpdateCourseCategoryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseCategoryAsyncError = UpdateCourseCategoryAsyncErrors[keyof UpdateCourseCategoryAsyncErrors];
+export type CourseCategoriesUpdateCourseCategoryError = CourseCategoriesUpdateCourseCategoryErrors[keyof CourseCategoriesUpdateCourseCategoryErrors];
 
-export type UpdateCourseCategoryAsyncResponses = {
+export type CourseCategoriesUpdateCourseCategoryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCertificatesAsyncData = {
+export type CourseCertificatesGetCourseCertificatesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3458,25 +3591,25 @@ export type GetCourseCertificatesAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates';
 };
 
-export type GetCourseCertificatesAsyncErrors = {
+export type CourseCertificatesGetCourseCertificatesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCertificatesAsyncError = GetCourseCertificatesAsyncErrors[keyof GetCourseCertificatesAsyncErrors];
+export type CourseCertificatesGetCourseCertificatesError = CourseCertificatesGetCourseCertificatesErrors[keyof CourseCertificatesGetCourseCertificatesErrors];
 
-export type GetCourseCertificatesAsyncResponses = {
+export type CourseCertificatesGetCourseCertificatesResponses = {
     /**
      * OK
      */
     200: Array<CourseCompletionCertificateDto>;
 };
 
-export type GetCourseCertificatesAsyncResponse = GetCourseCertificatesAsyncResponses[keyof GetCourseCertificatesAsyncResponses];
+export type CourseCertificatesGetCourseCertificatesResponse = CourseCertificatesGetCourseCertificatesResponses[keyof CourseCertificatesGetCourseCertificatesResponses];
 
-export type CreateCourseCertificateAsyncData = {
+export type CourseCertificatesCreateCourseCertificateData = {
     body?: CourseCompletionCertificateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3489,23 +3622,23 @@ export type CreateCourseCertificateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates';
 };
 
-export type CreateCourseCertificateAsyncErrors = {
+export type CourseCertificatesCreateCourseCertificateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseCertificateAsyncError = CreateCourseCertificateAsyncErrors[keyof CreateCourseCertificateAsyncErrors];
+export type CourseCertificatesCreateCourseCertificateError = CourseCertificatesCreateCourseCertificateErrors[keyof CourseCertificatesCreateCourseCertificateErrors];
 
-export type CreateCourseCertificateAsyncResponses = {
+export type CourseCertificatesCreateCourseCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCertificatesCountAsyncData = {
+export type CourseCertificatesGetCourseCertificatesCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3518,25 +3651,25 @@ export type GetCourseCertificatesCountAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Count';
 };
 
-export type GetCourseCertificatesCountAsyncErrors = {
+export type CourseCertificatesGetCourseCertificatesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCertificatesCountAsyncError = GetCourseCertificatesCountAsyncErrors[keyof GetCourseCertificatesCountAsyncErrors];
+export type CourseCertificatesGetCourseCertificatesCountError = CourseCertificatesGetCourseCertificatesCountErrors[keyof CourseCertificatesGetCourseCertificatesCountErrors];
 
-export type GetCourseCertificatesCountAsyncResponses = {
+export type CourseCertificatesGetCourseCertificatesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseCertificatesCountAsyncResponse = GetCourseCertificatesCountAsyncResponses[keyof GetCourseCertificatesCountAsyncResponses];
+export type CourseCertificatesGetCourseCertificatesCountResponse = CourseCertificatesGetCourseCertificatesCountResponses[keyof CourseCertificatesGetCourseCertificatesCountResponses];
 
-export type DeleteCourseCertificateAsyncData = {
+export type CourseCertificatesDeleteCourseCertificateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3551,23 +3684,23 @@ export type DeleteCourseCertificateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/{courseCertificateId}';
 };
 
-export type DeleteCourseCertificateAsyncErrors = {
+export type CourseCertificatesDeleteCourseCertificateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseCertificateAsyncError = DeleteCourseCertificateAsyncErrors[keyof DeleteCourseCertificateAsyncErrors];
+export type CourseCertificatesDeleteCourseCertificateError = CourseCertificatesDeleteCourseCertificateErrors[keyof CourseCertificatesDeleteCourseCertificateErrors];
 
-export type DeleteCourseCertificateAsyncResponses = {
+export type CourseCertificatesDeleteCourseCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCertificateAsyncData = {
+export type CourseCertificatesGetCourseCertificateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3582,25 +3715,25 @@ export type GetCourseCertificateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/{courseCertificateId}';
 };
 
-export type GetCourseCertificateAsyncErrors = {
+export type CourseCertificatesGetCourseCertificateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCertificateAsyncError = GetCourseCertificateAsyncErrors[keyof GetCourseCertificateAsyncErrors];
+export type CourseCertificatesGetCourseCertificateError = CourseCertificatesGetCourseCertificateErrors[keyof CourseCertificatesGetCourseCertificateErrors];
 
-export type GetCourseCertificateAsyncResponses = {
+export type CourseCertificatesGetCourseCertificateResponses = {
     /**
      * OK
      */
     200: CourseCompletionCertificateDto;
 };
 
-export type GetCourseCertificateAsyncResponse = GetCourseCertificateAsyncResponses[keyof GetCourseCertificateAsyncResponses];
+export type CourseCertificatesGetCourseCertificateResponse = CourseCertificatesGetCourseCertificateResponses[keyof CourseCertificatesGetCourseCertificateResponses];
 
-export type PatchCourseCertificateAsyncData = {
+export type CourseCertificatesPatchCourseCertificateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3615,25 +3748,25 @@ export type PatchCourseCertificateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/{courseCertificateId}';
 };
 
-export type PatchCourseCertificateAsyncErrors = {
+export type CourseCertificatesPatchCourseCertificateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseCertificateAsyncError = PatchCourseCertificateAsyncErrors[keyof PatchCourseCertificateAsyncErrors];
+export type CourseCertificatesPatchCourseCertificateError = CourseCertificatesPatchCourseCertificateErrors[keyof CourseCertificatesPatchCourseCertificateErrors];
 
-export type PatchCourseCertificateAsyncResponses = {
+export type CourseCertificatesPatchCourseCertificateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseCertificateAsyncResponse = PatchCourseCertificateAsyncResponses[keyof PatchCourseCertificateAsyncResponses];
+export type CourseCertificatesPatchCourseCertificateResponse = CourseCertificatesPatchCourseCertificateResponses[keyof CourseCertificatesPatchCourseCertificateResponses];
 
-export type UpdateCourseCertificateAsyncData = {
+export type CourseCertificatesUpdateCourseCertificateData = {
     body?: CourseCompletionCertificateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3648,23 +3781,23 @@ export type UpdateCourseCertificateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/{courseCertificateId}';
 };
 
-export type UpdateCourseCertificateAsyncErrors = {
+export type CourseCertificatesUpdateCourseCertificateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseCertificateAsyncError = UpdateCourseCertificateAsyncErrors[keyof UpdateCourseCertificateAsyncErrors];
+export type CourseCertificatesUpdateCourseCertificateError = CourseCertificatesUpdateCourseCertificateErrors[keyof CourseCertificatesUpdateCourseCertificateErrors];
 
-export type UpdateCourseCertificateAsyncResponses = {
+export type CourseCertificatesUpdateCourseCertificateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCertificateTemplatesAsyncData = {
+export type CourseCertificatesGetCourseCertificateTemplatesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3677,25 +3810,25 @@ export type GetCourseCertificateTemplatesAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template';
 };
 
-export type GetCourseCertificateTemplatesAsyncErrors = {
+export type CourseCertificatesGetCourseCertificateTemplatesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCertificateTemplatesAsyncError = GetCourseCertificateTemplatesAsyncErrors[keyof GetCourseCertificateTemplatesAsyncErrors];
+export type CourseCertificatesGetCourseCertificateTemplatesError = CourseCertificatesGetCourseCertificateTemplatesErrors[keyof CourseCertificatesGetCourseCertificateTemplatesErrors];
 
-export type GetCourseCertificateTemplatesAsyncResponses = {
+export type CourseCertificatesGetCourseCertificateTemplatesResponses = {
     /**
      * OK
      */
     200: Array<CourseCertificateTemplateDto>;
 };
 
-export type GetCourseCertificateTemplatesAsyncResponse = GetCourseCertificateTemplatesAsyncResponses[keyof GetCourseCertificateTemplatesAsyncResponses];
+export type CourseCertificatesGetCourseCertificateTemplatesResponse = CourseCertificatesGetCourseCertificateTemplatesResponses[keyof CourseCertificatesGetCourseCertificateTemplatesResponses];
 
-export type CreateCourseCertificateTemplateAsyncData = {
+export type CourseCertificatesCreateCourseCertificateTemplateData = {
     body?: CourseCertificateTemplateCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3708,23 +3841,23 @@ export type CreateCourseCertificateTemplateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template';
 };
 
-export type CreateCourseCertificateTemplateAsyncErrors = {
+export type CourseCertificatesCreateCourseCertificateTemplateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseCertificateTemplateAsyncError = CreateCourseCertificateTemplateAsyncErrors[keyof CreateCourseCertificateTemplateAsyncErrors];
+export type CourseCertificatesCreateCourseCertificateTemplateError = CourseCertificatesCreateCourseCertificateTemplateErrors[keyof CourseCertificatesCreateCourseCertificateTemplateErrors];
 
-export type CreateCourseCertificateTemplateAsyncResponses = {
+export type CourseCertificatesCreateCourseCertificateTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type DeleteCourseCertificateTemplateAsyncData = {
+export type CourseCertificatesDeleteCourseCertificateTemplateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3739,23 +3872,23 @@ export type DeleteCourseCertificateTemplateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template/{courseCertificateTemplateId}';
 };
 
-export type DeleteCourseCertificateTemplateAsyncErrors = {
+export type CourseCertificatesDeleteCourseCertificateTemplateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseCertificateTemplateAsyncError = DeleteCourseCertificateTemplateAsyncErrors[keyof DeleteCourseCertificateTemplateAsyncErrors];
+export type CourseCertificatesDeleteCourseCertificateTemplateError = CourseCertificatesDeleteCourseCertificateTemplateErrors[keyof CourseCertificatesDeleteCourseCertificateTemplateErrors];
 
-export type DeleteCourseCertificateTemplateAsyncResponses = {
+export type CourseCertificatesDeleteCourseCertificateTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCertificateTemplateAsyncData = {
+export type CourseCertificatesGetCourseCertificateTemplateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3770,25 +3903,25 @@ export type GetCourseCertificateTemplateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template/{courseCertificateTemplateId}';
 };
 
-export type GetCourseCertificateTemplateAsyncErrors = {
+export type CourseCertificatesGetCourseCertificateTemplateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCertificateTemplateAsyncError = GetCourseCertificateTemplateAsyncErrors[keyof GetCourseCertificateTemplateAsyncErrors];
+export type CourseCertificatesGetCourseCertificateTemplateError = CourseCertificatesGetCourseCertificateTemplateErrors[keyof CourseCertificatesGetCourseCertificateTemplateErrors];
 
-export type GetCourseCertificateTemplateAsyncResponses = {
+export type CourseCertificatesGetCourseCertificateTemplateResponses = {
     /**
      * OK
      */
     200: CourseCertificateTemplateDto;
 };
 
-export type GetCourseCertificateTemplateAsyncResponse = GetCourseCertificateTemplateAsyncResponses[keyof GetCourseCertificateTemplateAsyncResponses];
+export type CourseCertificatesGetCourseCertificateTemplateResponse = CourseCertificatesGetCourseCertificateTemplateResponses[keyof CourseCertificatesGetCourseCertificateTemplateResponses];
 
-export type PatchCourseCertificateTemplateAsyncData = {
+export type CourseCertificatesPatchCourseCertificateTemplateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -3803,25 +3936,25 @@ export type PatchCourseCertificateTemplateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template/{courseCertificateTemplateId}';
 };
 
-export type PatchCourseCertificateTemplateAsyncErrors = {
+export type CourseCertificatesPatchCourseCertificateTemplateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseCertificateTemplateAsyncError = PatchCourseCertificateTemplateAsyncErrors[keyof PatchCourseCertificateTemplateAsyncErrors];
+export type CourseCertificatesPatchCourseCertificateTemplateError = CourseCertificatesPatchCourseCertificateTemplateErrors[keyof CourseCertificatesPatchCourseCertificateTemplateErrors];
 
-export type PatchCourseCertificateTemplateAsyncResponses = {
+export type CourseCertificatesPatchCourseCertificateTemplateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseCertificateTemplateAsyncResponse = PatchCourseCertificateTemplateAsyncResponses[keyof PatchCourseCertificateTemplateAsyncResponses];
+export type CourseCertificatesPatchCourseCertificateTemplateResponse = CourseCertificatesPatchCourseCertificateTemplateResponses[keyof CourseCertificatesPatchCourseCertificateTemplateResponses];
 
-export type UpdateCourseCertificateTemplateAsyncData = {
+export type CourseCertificatesUpdateCourseCertificateTemplateData = {
     body?: CourseCertificateTemplateUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3836,23 +3969,23 @@ export type UpdateCourseCertificateTemplateAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template/{courseCertificateTemplateId}';
 };
 
-export type UpdateCourseCertificateTemplateAsyncErrors = {
+export type CourseCertificatesUpdateCourseCertificateTemplateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseCertificateTemplateAsyncError = UpdateCourseCertificateTemplateAsyncErrors[keyof UpdateCourseCertificateTemplateAsyncErrors];
+export type CourseCertificatesUpdateCourseCertificateTemplateError = CourseCertificatesUpdateCourseCertificateTemplateErrors[keyof CourseCertificatesUpdateCourseCertificateTemplateErrors];
 
-export type UpdateCourseCertificateTemplateAsyncResponses = {
+export type CourseCertificatesUpdateCourseCertificateTemplateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCertificateTemplatesCountAsyncData = {
+export type CourseCertificatesGetCourseCertificateTemplatesCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3865,25 +3998,25 @@ export type GetCourseCertificateTemplatesCountAsyncData = {
     url: '/api/v2/LearningService/CourseCertificates/Template/Count';
 };
 
-export type GetCourseCertificateTemplatesCountAsyncErrors = {
+export type CourseCertificatesGetCourseCertificateTemplatesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCertificateTemplatesCountAsyncError = GetCourseCertificateTemplatesCountAsyncErrors[keyof GetCourseCertificateTemplatesCountAsyncErrors];
+export type CourseCertificatesGetCourseCertificateTemplatesCountError = CourseCertificatesGetCourseCertificateTemplatesCountErrors[keyof CourseCertificatesGetCourseCertificateTemplatesCountErrors];
 
-export type GetCourseCertificateTemplatesCountAsyncResponses = {
+export type CourseCertificatesGetCourseCertificateTemplatesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseCertificateTemplatesCountAsyncResponse = GetCourseCertificateTemplatesCountAsyncResponses[keyof GetCourseCertificateTemplatesCountAsyncResponses];
+export type CourseCertificatesGetCourseCertificateTemplatesCountResponse = CourseCertificatesGetCourseCertificateTemplatesCountResponses[keyof CourseCertificatesGetCourseCertificateTemplatesCountResponses];
 
-export type GetCourseCohortsAsyncData = {
+export type CourseCohortsGetCourseCohortsData = {
     body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3896,25 +4029,25 @@ export type GetCourseCohortsAsyncData = {
     url: '/api/v2/LearningService/CourseCohorts';
 };
 
-export type GetCourseCohortsAsyncErrors = {
+export type CourseCohortsGetCourseCohortsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCohortsAsyncError = GetCourseCohortsAsyncErrors[keyof GetCourseCohortsAsyncErrors];
+export type CourseCohortsGetCourseCohortsError = CourseCohortsGetCourseCohortsErrors[keyof CourseCohortsGetCourseCohortsErrors];
 
-export type GetCourseCohortsAsyncResponses = {
+export type CourseCohortsGetCourseCohortsResponses = {
     /**
      * OK
      */
     200: Array<CourseCohortDto>;
 };
 
-export type GetCourseCohortsAsyncResponse = GetCourseCohortsAsyncResponses[keyof GetCourseCohortsAsyncResponses];
+export type CourseCohortsGetCourseCohortsResponse = CourseCohortsGetCourseCohortsResponses[keyof CourseCohortsGetCourseCohortsResponses];
 
-export type CreateCourseCohortAsyncData = {
+export type CourseCohortsCreateCourseCohortData = {
     body?: CourseCohortCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -3927,23 +4060,23 @@ export type CreateCourseCohortAsyncData = {
     url: '/api/v2/LearningService/CourseCohorts';
 };
 
-export type CreateCourseCohortAsyncErrors = {
+export type CourseCohortsCreateCourseCohortErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseCohortAsyncError = CreateCourseCohortAsyncErrors[keyof CreateCourseCohortAsyncErrors];
+export type CourseCohortsCreateCourseCohortError = CourseCohortsCreateCourseCohortErrors[keyof CourseCohortsCreateCourseCohortErrors];
 
-export type CreateCourseCohortAsyncResponses = {
+export type CourseCohortsCreateCourseCohortResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCohortsCountAsyncData = {
+export type CourseCohortsGetCourseCohortsCountData = {
     body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -3956,25 +4089,25 @@ export type GetCourseCohortsCountAsyncData = {
     url: '/api/v2/LearningService/CourseCohorts/Count';
 };
 
-export type GetCourseCohortsCountAsyncErrors = {
+export type CourseCohortsGetCourseCohortsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCohortsCountAsyncError = GetCourseCohortsCountAsyncErrors[keyof GetCourseCohortsCountAsyncErrors];
+export type CourseCohortsGetCourseCohortsCountError = CourseCohortsGetCourseCohortsCountErrors[keyof CourseCohortsGetCourseCohortsCountErrors];
 
-export type GetCourseCohortsCountAsyncResponses = {
+export type CourseCohortsGetCourseCohortsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseCohortsCountAsyncResponse = GetCourseCohortsCountAsyncResponses[keyof GetCourseCohortsCountAsyncResponses];
+export type CourseCohortsGetCourseCohortsCountResponse = CourseCohortsGetCourseCohortsCountResponses[keyof CourseCohortsGetCourseCohortsCountResponses];
 
-export type DeleteCourseCohortAsyncData = {
+export type CourseCohortsDeleteCourseCohortData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -3989,23 +4122,23 @@ export type DeleteCourseCohortAsyncData = {
     url: '/api/v2/LearningService/CourseCohorts/{cohortId}';
 };
 
-export type DeleteCourseCohortAsyncErrors = {
+export type CourseCohortsDeleteCourseCohortErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseCohortAsyncError = DeleteCourseCohortAsyncErrors[keyof DeleteCourseCohortAsyncErrors];
+export type CourseCohortsDeleteCourseCohortError = CourseCohortsDeleteCourseCohortErrors[keyof CourseCohortsDeleteCourseCohortErrors];
 
-export type DeleteCourseCohortAsyncResponses = {
+export type CourseCohortsDeleteCourseCohortResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseCohortByIdAsyncData = {
+export type CourseCohortsGetCourseCohortByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4014,30 +4147,31 @@ export type GetCourseCohortByIdAsyncData = {
         cohortId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseCohorts/{cohortId}';
 };
 
-export type GetCourseCohortByIdAsyncErrors = {
+export type CourseCohortsGetCourseCohortByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCohortByIdAsyncError = GetCourseCohortByIdAsyncErrors[keyof GetCourseCohortByIdAsyncErrors];
+export type CourseCohortsGetCourseCohortByIdError = CourseCohortsGetCourseCohortByIdErrors[keyof CourseCohortsGetCourseCohortByIdErrors];
 
-export type GetCourseCohortByIdAsyncResponses = {
+export type CourseCohortsGetCourseCohortByIdResponses = {
     /**
      * OK
      */
     200: CourseCohortDto;
 };
 
-export type GetCourseCohortByIdAsyncResponse = GetCourseCohortByIdAsyncResponses[keyof GetCourseCohortByIdAsyncResponses];
+export type CourseCohortsGetCourseCohortByIdResponse = CourseCohortsGetCourseCohortByIdResponses[keyof CourseCohortsGetCourseCohortByIdResponses];
 
-export type PatchCourseCohortAsyncData = {
+export type CourseCohortsPatchCourseCohortData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4052,25 +4186,25 @@ export type PatchCourseCohortAsyncData = {
     url: '/api/v2/LearningService/CourseCohorts/{cohortId}';
 };
 
-export type PatchCourseCohortAsyncErrors = {
+export type CourseCohortsPatchCourseCohortErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseCohortAsyncError = PatchCourseCohortAsyncErrors[keyof PatchCourseCohortAsyncErrors];
+export type CourseCohortsPatchCourseCohortError = CourseCohortsPatchCourseCohortErrors[keyof CourseCohortsPatchCourseCohortErrors];
 
-export type PatchCourseCohortAsyncResponses = {
+export type CourseCohortsPatchCourseCohortResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseCohortAsyncResponse = PatchCourseCohortAsyncResponses[keyof PatchCourseCohortAsyncResponses];
+export type CourseCohortsPatchCourseCohortResponse = CourseCohortsPatchCourseCohortResponses[keyof CourseCohortsPatchCourseCohortResponses];
 
-export type UpdateCourseCohortAsyncData = {
+export type CourseCohortsUpdateCourseCohortData = {
     body?: CourseCohortUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4085,23 +4219,225 @@ export type UpdateCourseCohortAsyncData = {
     url: '/api/v2/LearningService/CourseCohorts/{cohortId}';
 };
 
-export type UpdateCourseCohortAsyncErrors = {
+export type CourseCohortsUpdateCourseCohortErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseCohortAsyncError = UpdateCourseCohortAsyncErrors[keyof UpdateCourseCohortAsyncErrors];
+export type CourseCohortsUpdateCourseCohortError = CourseCohortsUpdateCourseCohortErrors[keyof CourseCohortsUpdateCourseCohortErrors];
 
-export type UpdateCourseCohortAsyncResponses = {
+export type CourseCohortsUpdateCourseCohortResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseContentGroupsAsyncData = {
+export type CourseCollectionsGetCourseCollectionsData = {
+    body?: CourseCollectionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCollections';
+};
+
+export type CourseCollectionsGetCourseCollectionsErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CourseCollectionsGetCourseCollectionsError = CourseCollectionsGetCourseCollectionsErrors[keyof CourseCollectionsGetCourseCollectionsErrors];
+
+export type CourseCollectionsGetCourseCollectionsResponses = {
+    /**
+     * OK
+     */
+    200: Array<CourseCollectionDto>;
+};
+
+export type CourseCollectionsGetCourseCollectionsResponse = CourseCollectionsGetCourseCollectionsResponses[keyof CourseCollectionsGetCourseCollectionsResponses];
+
+export type CourseCollectionsCreateCourseCollectionData = {
+    body?: CourseCollectionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCollections';
+};
+
+export type CourseCollectionsCreateCourseCollectionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CourseCollectionsCreateCourseCollectionError = CourseCollectionsCreateCourseCollectionErrors[keyof CourseCollectionsCreateCourseCollectionErrors];
+
+export type CourseCollectionsCreateCourseCollectionResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type CourseCollectionsGetCourseCollectionsCountData = {
+    body?: CourseCollectionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCollections/Count';
+};
+
+export type CourseCollectionsGetCourseCollectionsCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CourseCollectionsGetCourseCollectionsCountError = CourseCollectionsGetCourseCollectionsCountErrors[keyof CourseCollectionsGetCourseCollectionsCountErrors];
+
+export type CourseCollectionsGetCourseCollectionsCountResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type CourseCollectionsGetCourseCollectionsCountResponse = CourseCollectionsGetCourseCollectionsCountResponses[keyof CourseCollectionsGetCourseCollectionsCountResponses];
+
+export type CourseCollectionsDeleteCourseCollectionData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        collectionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCollections/{collectionId}';
+};
+
+export type CourseCollectionsDeleteCourseCollectionErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CourseCollectionsDeleteCourseCollectionError = CourseCollectionsDeleteCourseCollectionErrors[keyof CourseCollectionsDeleteCourseCollectionErrors];
+
+export type CourseCollectionsDeleteCourseCollectionResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type CourseCollectionsGetCourseCollectionByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        collectionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCollections/{collectionId}';
+};
+
+export type CourseCollectionsGetCourseCollectionByIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CourseCollectionsGetCourseCollectionByIdError = CourseCollectionsGetCourseCollectionByIdErrors[keyof CourseCollectionsGetCourseCollectionByIdErrors];
+
+export type CourseCollectionsGetCourseCollectionByIdResponses = {
+    /**
+     * OK
+     */
+    200: CourseCollectionDto;
+};
+
+export type CourseCollectionsGetCourseCollectionByIdResponse = CourseCollectionsGetCourseCollectionByIdResponses[keyof CourseCollectionsGetCourseCollectionByIdResponses];
+
+export type CourseCollectionsUpdateCourseCollectionData = {
+    body?: CourseCollectionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        collectionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCollections/{collectionId}';
+};
+
+export type CourseCollectionsUpdateCourseCollectionErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CourseCollectionsUpdateCourseCollectionError = CourseCollectionsUpdateCourseCollectionErrors[keyof CourseCollectionsUpdateCourseCollectionErrors];
+
+export type CourseCollectionsUpdateCourseCollectionResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type CourseContentGroupsGetCourseContentGroupsData = {
     body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4114,25 +4450,25 @@ export type GetCourseContentGroupsAsyncData = {
     url: '/api/v2/LearningService/CourseContentGroups';
 };
 
-export type GetCourseContentGroupsAsyncErrors = {
+export type CourseContentGroupsGetCourseContentGroupsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseContentGroupsAsyncError = GetCourseContentGroupsAsyncErrors[keyof GetCourseContentGroupsAsyncErrors];
+export type CourseContentGroupsGetCourseContentGroupsError = CourseContentGroupsGetCourseContentGroupsErrors[keyof CourseContentGroupsGetCourseContentGroupsErrors];
 
-export type GetCourseContentGroupsAsyncResponses = {
+export type CourseContentGroupsGetCourseContentGroupsResponses = {
     /**
      * OK
      */
     200: Array<CourseContentGroupDto>;
 };
 
-export type GetCourseContentGroupsAsyncResponse = GetCourseContentGroupsAsyncResponses[keyof GetCourseContentGroupsAsyncResponses];
+export type CourseContentGroupsGetCourseContentGroupsResponse = CourseContentGroupsGetCourseContentGroupsResponses[keyof CourseContentGroupsGetCourseContentGroupsResponses];
 
-export type CreateCourseContentGroupAsyncData = {
+export type CourseContentGroupsCreateCourseContentGroupData = {
     body?: CourseContentGroupCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4145,23 +4481,23 @@ export type CreateCourseContentGroupAsyncData = {
     url: '/api/v2/LearningService/CourseContentGroups';
 };
 
-export type CreateCourseContentGroupAsyncErrors = {
+export type CourseContentGroupsCreateCourseContentGroupErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseContentGroupAsyncError = CreateCourseContentGroupAsyncErrors[keyof CreateCourseContentGroupAsyncErrors];
+export type CourseContentGroupsCreateCourseContentGroupError = CourseContentGroupsCreateCourseContentGroupErrors[keyof CourseContentGroupsCreateCourseContentGroupErrors];
 
-export type CreateCourseContentGroupAsyncResponses = {
+export type CourseContentGroupsCreateCourseContentGroupResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetCourseContentGroupsCountAsyncData = {
+export type CourseContentGroupsGetCourseContentGroupsCountData = {
     body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4174,25 +4510,25 @@ export type GetCourseContentGroupsCountAsyncData = {
     url: '/api/v2/LearningService/CourseContentGroups/Count';
 };
 
-export type GetCourseContentGroupsCountAsyncErrors = {
+export type CourseContentGroupsGetCourseContentGroupsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseContentGroupsCountAsyncError = GetCourseContentGroupsCountAsyncErrors[keyof GetCourseContentGroupsCountAsyncErrors];
+export type CourseContentGroupsGetCourseContentGroupsCountError = CourseContentGroupsGetCourseContentGroupsCountErrors[keyof CourseContentGroupsGetCourseContentGroupsCountErrors];
 
-export type GetCourseContentGroupsCountAsyncResponses = {
+export type CourseContentGroupsGetCourseContentGroupsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseContentGroupsCountAsyncResponse = GetCourseContentGroupsCountAsyncResponses[keyof GetCourseContentGroupsCountAsyncResponses];
+export type CourseContentGroupsGetCourseContentGroupsCountResponse = CourseContentGroupsGetCourseContentGroupsCountResponses[keyof CourseContentGroupsGetCourseContentGroupsCountResponses];
 
-export type DeleteCourseContentGroupAsyncData = {
+export type CourseContentGroupsDeleteCourseContentGroupData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4207,23 +4543,23 @@ export type DeleteCourseContentGroupAsyncData = {
     url: '/api/v2/LearningService/CourseContentGroups/{groupId}';
 };
 
-export type DeleteCourseContentGroupAsyncErrors = {
+export type CourseContentGroupsDeleteCourseContentGroupErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseContentGroupAsyncError = DeleteCourseContentGroupAsyncErrors[keyof DeleteCourseContentGroupAsyncErrors];
+export type CourseContentGroupsDeleteCourseContentGroupError = CourseContentGroupsDeleteCourseContentGroupErrors[keyof CourseContentGroupsDeleteCourseContentGroupErrors];
 
-export type DeleteCourseContentGroupAsyncResponses = {
+export type CourseContentGroupsDeleteCourseContentGroupResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseContentGroupByIdAsyncData = {
+export type CourseContentGroupsGetCourseContentGroupByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4232,30 +4568,31 @@ export type GetCourseContentGroupByIdAsyncData = {
         groupId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseContentGroups/{groupId}';
 };
 
-export type GetCourseContentGroupByIdAsyncErrors = {
+export type CourseContentGroupsGetCourseContentGroupByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseContentGroupByIdAsyncError = GetCourseContentGroupByIdAsyncErrors[keyof GetCourseContentGroupByIdAsyncErrors];
+export type CourseContentGroupsGetCourseContentGroupByIdError = CourseContentGroupsGetCourseContentGroupByIdErrors[keyof CourseContentGroupsGetCourseContentGroupByIdErrors];
 
-export type GetCourseContentGroupByIdAsyncResponses = {
+export type CourseContentGroupsGetCourseContentGroupByIdResponses = {
     /**
      * OK
      */
     200: CourseContentGroupDto;
 };
 
-export type GetCourseContentGroupByIdAsyncResponse = GetCourseContentGroupByIdAsyncResponses[keyof GetCourseContentGroupByIdAsyncResponses];
+export type CourseContentGroupsGetCourseContentGroupByIdResponse = CourseContentGroupsGetCourseContentGroupByIdResponses[keyof CourseContentGroupsGetCourseContentGroupByIdResponses];
 
-export type PatchCourseContentGroupAsyncData = {
+export type CourseContentGroupsPatchCourseContentGroupData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4270,25 +4607,25 @@ export type PatchCourseContentGroupAsyncData = {
     url: '/api/v2/LearningService/CourseContentGroups/{groupId}';
 };
 
-export type PatchCourseContentGroupAsyncErrors = {
+export type CourseContentGroupsPatchCourseContentGroupErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseContentGroupAsyncError = PatchCourseContentGroupAsyncErrors[keyof PatchCourseContentGroupAsyncErrors];
+export type CourseContentGroupsPatchCourseContentGroupError = CourseContentGroupsPatchCourseContentGroupErrors[keyof CourseContentGroupsPatchCourseContentGroupErrors];
 
-export type PatchCourseContentGroupAsyncResponses = {
+export type CourseContentGroupsPatchCourseContentGroupResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseContentGroupAsyncResponse = PatchCourseContentGroupAsyncResponses[keyof PatchCourseContentGroupAsyncResponses];
+export type CourseContentGroupsPatchCourseContentGroupResponse = CourseContentGroupsPatchCourseContentGroupResponses[keyof CourseContentGroupsPatchCourseContentGroupResponses];
 
-export type UpdateCourseContentGroupAsyncData = {
+export type CourseContentGroupsUpdateCourseContentGroupData = {
     body?: CourseContentGroupUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4303,23 +4640,23 @@ export type UpdateCourseContentGroupAsyncData = {
     url: '/api/v2/LearningService/CourseContentGroups/{groupId}';
 };
 
-export type UpdateCourseContentGroupAsyncErrors = {
+export type CourseContentGroupsUpdateCourseContentGroupErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseContentGroupAsyncError = UpdateCourseContentGroupAsyncErrors[keyof UpdateCourseContentGroupAsyncErrors];
+export type CourseContentGroupsUpdateCourseContentGroupError = CourseContentGroupsUpdateCourseContentGroupErrors[keyof CourseContentGroupsUpdateCourseContentGroupErrors];
 
-export type UpdateCourseContentGroupAsyncResponses = {
+export type CourseContentGroupsUpdateCourseContentGroupResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseContentGroupsByCourseAsyncData = {
+export type CourseContentGroupsGetCourseContentGroupsByCourseData = {
     body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4328,30 +4665,31 @@ export type GetCourseContentGroupsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/ContentGroups';
 };
 
-export type GetCourseContentGroupsByCourseAsyncErrors = {
+export type CourseContentGroupsGetCourseContentGroupsByCourseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseContentGroupsByCourseAsyncError = GetCourseContentGroupsByCourseAsyncErrors[keyof GetCourseContentGroupsByCourseAsyncErrors];
+export type CourseContentGroupsGetCourseContentGroupsByCourseError = CourseContentGroupsGetCourseContentGroupsByCourseErrors[keyof CourseContentGroupsGetCourseContentGroupsByCourseErrors];
 
-export type GetCourseContentGroupsByCourseAsyncResponses = {
+export type CourseContentGroupsGetCourseContentGroupsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseContentGroupDto>;
 };
 
-export type GetCourseContentGroupsByCourseAsyncResponse = GetCourseContentGroupsByCourseAsyncResponses[keyof GetCourseContentGroupsByCourseAsyncResponses];
+export type CourseContentGroupsGetCourseContentGroupsByCourseResponse = CourseContentGroupsGetCourseContentGroupsByCourseResponses[keyof CourseContentGroupsGetCourseContentGroupsByCourseResponses];
 
-export type GetCourseContentGroupsByCourseCountAsyncData = {
+export type CourseContentGroupsGetCourseContentGroupsByCourseCountData = {
     body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4360,30 +4698,31 @@ export type GetCourseContentGroupsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/ContentGroups/Count';
 };
 
-export type GetCourseContentGroupsByCourseCountAsyncErrors = {
+export type CourseContentGroupsGetCourseContentGroupsByCourseCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseContentGroupsByCourseCountAsyncError = GetCourseContentGroupsByCourseCountAsyncErrors[keyof GetCourseContentGroupsByCourseCountAsyncErrors];
+export type CourseContentGroupsGetCourseContentGroupsByCourseCountError = CourseContentGroupsGetCourseContentGroupsByCourseCountErrors[keyof CourseContentGroupsGetCourseContentGroupsByCourseCountErrors];
 
-export type GetCourseContentGroupsByCourseCountAsyncResponses = {
+export type CourseContentGroupsGetCourseContentGroupsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseContentGroupsByCourseCountAsyncResponse = GetCourseContentGroupsByCourseCountAsyncResponses[keyof GetCourseContentGroupsByCourseCountAsyncResponses];
+export type CourseContentGroupsGetCourseContentGroupsByCourseCountResponse = CourseContentGroupsGetCourseContentGroupsByCourseCountResponses[keyof CourseContentGroupsGetCourseContentGroupsByCourseCountResponses];
 
-export type GetEnrollmentsAsyncData = {
+export type CourseEnrollmentsGetEnrollmentsData = {
     body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4396,25 +4735,25 @@ export type GetEnrollmentsAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments';
 };
 
-export type GetEnrollmentsAsyncErrors = {
+export type CourseEnrollmentsGetEnrollmentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentsAsyncError = GetEnrollmentsAsyncErrors[keyof GetEnrollmentsAsyncErrors];
+export type CourseEnrollmentsGetEnrollmentsError = CourseEnrollmentsGetEnrollmentsErrors[keyof CourseEnrollmentsGetEnrollmentsErrors];
 
-export type GetEnrollmentsAsyncResponses = {
+export type CourseEnrollmentsGetEnrollmentsResponses = {
     /**
      * OK
      */
     200: Array<CourseEnrollmentDto>;
 };
 
-export type GetEnrollmentsAsyncResponse = GetEnrollmentsAsyncResponses[keyof GetEnrollmentsAsyncResponses];
+export type CourseEnrollmentsGetEnrollmentsResponse = CourseEnrollmentsGetEnrollmentsResponses[keyof CourseEnrollmentsGetEnrollmentsResponses];
 
-export type CreateCourseEnrollmentAsyncData = {
+export type CourseEnrollmentsCreateCourseEnrollmentData = {
     body?: CourseEnrollmentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4427,23 +4766,23 @@ export type CreateCourseEnrollmentAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments';
 };
 
-export type CreateCourseEnrollmentAsyncErrors = {
+export type CourseEnrollmentsCreateCourseEnrollmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseEnrollmentAsyncError = CreateCourseEnrollmentAsyncErrors[keyof CreateCourseEnrollmentAsyncErrors];
+export type CourseEnrollmentsCreateCourseEnrollmentError = CourseEnrollmentsCreateCourseEnrollmentErrors[keyof CourseEnrollmentsCreateCourseEnrollmentErrors];
 
-export type CreateCourseEnrollmentAsyncResponses = {
+export type CourseEnrollmentsCreateCourseEnrollmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetEnrollmentsCountAsyncData = {
+export type CourseEnrollmentsGetEnrollmentsCountData = {
     body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4456,25 +4795,25 @@ export type GetEnrollmentsCountAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments/Count';
 };
 
-export type GetEnrollmentsCountAsyncErrors = {
+export type CourseEnrollmentsGetEnrollmentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetEnrollmentsCountAsyncError = GetEnrollmentsCountAsyncErrors[keyof GetEnrollmentsCountAsyncErrors];
+export type CourseEnrollmentsGetEnrollmentsCountError = CourseEnrollmentsGetEnrollmentsCountErrors[keyof CourseEnrollmentsGetEnrollmentsCountErrors];
 
-export type GetEnrollmentsCountAsyncResponses = {
+export type CourseEnrollmentsGetEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetEnrollmentsCountAsyncResponse = GetEnrollmentsCountAsyncResponses[keyof GetEnrollmentsCountAsyncResponses];
+export type CourseEnrollmentsGetEnrollmentsCountResponse = CourseEnrollmentsGetEnrollmentsCountResponses[keyof CourseEnrollmentsGetEnrollmentsCountResponses];
 
-export type DeleteCourseEnrollmentAsyncData = {
+export type CourseEnrollmentsDeleteCourseEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4489,23 +4828,23 @@ export type DeleteCourseEnrollmentAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments/{courseEnrollmentId}';
 };
 
-export type DeleteCourseEnrollmentAsyncErrors = {
+export type CourseEnrollmentsDeleteCourseEnrollmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseEnrollmentAsyncError = DeleteCourseEnrollmentAsyncErrors[keyof DeleteCourseEnrollmentAsyncErrors];
+export type CourseEnrollmentsDeleteCourseEnrollmentError = CourseEnrollmentsDeleteCourseEnrollmentErrors[keyof CourseEnrollmentsDeleteCourseEnrollmentErrors];
 
-export type DeleteCourseEnrollmentAsyncResponses = {
+export type CourseEnrollmentsDeleteCourseEnrollmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseEnrollmentAsyncData = {
+export type CourseEnrollmentsGetCourseEnrollmentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4520,25 +4859,25 @@ export type GetCourseEnrollmentAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments/{courseEnrollmentId}';
 };
 
-export type GetCourseEnrollmentAsyncErrors = {
+export type CourseEnrollmentsGetCourseEnrollmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseEnrollmentAsyncError = GetCourseEnrollmentAsyncErrors[keyof GetCourseEnrollmentAsyncErrors];
+export type CourseEnrollmentsGetCourseEnrollmentError = CourseEnrollmentsGetCourseEnrollmentErrors[keyof CourseEnrollmentsGetCourseEnrollmentErrors];
 
-export type GetCourseEnrollmentAsyncResponses = {
+export type CourseEnrollmentsGetCourseEnrollmentResponses = {
     /**
      * OK
      */
     200: CourseEnrollmentDto;
 };
 
-export type GetCourseEnrollmentAsyncResponse = GetCourseEnrollmentAsyncResponses[keyof GetCourseEnrollmentAsyncResponses];
+export type CourseEnrollmentsGetCourseEnrollmentResponse = CourseEnrollmentsGetCourseEnrollmentResponses[keyof CourseEnrollmentsGetCourseEnrollmentResponses];
 
-export type PatchCourseEnrollmentAsyncData = {
+export type CourseEnrollmentsPatchCourseEnrollmentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4553,23 +4892,23 @@ export type PatchCourseEnrollmentAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments/{courseEnrollmentId}';
 };
 
-export type PatchCourseEnrollmentAsyncErrors = {
+export type CourseEnrollmentsPatchCourseEnrollmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseEnrollmentAsyncError = PatchCourseEnrollmentAsyncErrors[keyof PatchCourseEnrollmentAsyncErrors];
+export type CourseEnrollmentsPatchCourseEnrollmentError = CourseEnrollmentsPatchCourseEnrollmentErrors[keyof CourseEnrollmentsPatchCourseEnrollmentErrors];
 
-export type PatchCourseEnrollmentAsyncResponses = {
+export type CourseEnrollmentsPatchCourseEnrollmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCourseEnrollmentAsyncData = {
+export type CourseEnrollmentsUpdateCourseEnrollmentData = {
     body?: CourseEnrollmentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4584,23 +4923,23 @@ export type UpdateCourseEnrollmentAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments/{courseEnrollmentId}';
 };
 
-export type UpdateCourseEnrollmentAsyncErrors = {
+export type CourseEnrollmentsUpdateCourseEnrollmentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseEnrollmentAsyncError = UpdateCourseEnrollmentAsyncErrors[keyof UpdateCourseEnrollmentAsyncErrors];
+export type CourseEnrollmentsUpdateCourseEnrollmentError = CourseEnrollmentsUpdateCourseEnrollmentErrors[keyof CourseEnrollmentsUpdateCourseEnrollmentErrors];
 
-export type UpdateCourseEnrollmentAsyncResponses = {
+export type CourseEnrollmentsUpdateCourseEnrollmentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetStudentCourseEnrollmentsAsyncData = {
+export type CourseEnrollmentsGetStudentCourseEnrollmentsData = {
     body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4615,25 +4954,25 @@ export type GetStudentCourseEnrollmentsAsyncData = {
     url: '/api/v2/LearningService/CourseEnrollments/Student/{studentProfileId}';
 };
 
-export type GetStudentCourseEnrollmentsAsyncErrors = {
+export type CourseEnrollmentsGetStudentCourseEnrollmentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetStudentCourseEnrollmentsAsyncError = GetStudentCourseEnrollmentsAsyncErrors[keyof GetStudentCourseEnrollmentsAsyncErrors];
+export type CourseEnrollmentsGetStudentCourseEnrollmentsError = CourseEnrollmentsGetStudentCourseEnrollmentsErrors[keyof CourseEnrollmentsGetStudentCourseEnrollmentsErrors];
 
-export type GetStudentCourseEnrollmentsAsyncResponses = {
+export type CourseEnrollmentsGetStudentCourseEnrollmentsResponses = {
     /**
      * OK
      */
     200: Array<CourseEnrollmentDto>;
 };
 
-export type GetStudentCourseEnrollmentsAsyncResponse = GetStudentCourseEnrollmentsAsyncResponses[keyof GetStudentCourseEnrollmentsAsyncResponses];
+export type CourseEnrollmentsGetStudentCourseEnrollmentsResponse = CourseEnrollmentsGetStudentCourseEnrollmentsResponses[keyof CourseEnrollmentsGetStudentCourseEnrollmentsResponses];
 
-export type GetCourseFilesAsyncData = {
+export type CourseFilesGetCourseFilesData = {
     body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4646,25 +4985,25 @@ export type GetCourseFilesAsyncData = {
     url: '/api/v2/LearningService/CourseFiles';
 };
 
-export type GetCourseFilesAsyncErrors = {
+export type CourseFilesGetCourseFilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseFilesAsyncError = GetCourseFilesAsyncErrors[keyof GetCourseFilesAsyncErrors];
+export type CourseFilesGetCourseFilesError = CourseFilesGetCourseFilesErrors[keyof CourseFilesGetCourseFilesErrors];
 
-export type GetCourseFilesAsyncResponses = {
+export type CourseFilesGetCourseFilesResponses = {
     /**
      * OK
      */
     200: Array<CourseFileDto>;
 };
 
-export type GetCourseFilesAsyncResponse = GetCourseFilesAsyncResponses[keyof GetCourseFilesAsyncResponses];
+export type CourseFilesGetCourseFilesResponse = CourseFilesGetCourseFilesResponses[keyof CourseFilesGetCourseFilesResponses];
 
-export type CreateCourseFileAsyncData = {
+export type CourseFilesCreateCourseFileData = {
     body?: CourseFileCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4677,23 +5016,23 @@ export type CreateCourseFileAsyncData = {
     url: '/api/v2/LearningService/CourseFiles';
 };
 
-export type CreateCourseFileAsyncErrors = {
+export type CourseFilesCreateCourseFileErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseFileAsyncError = CreateCourseFileAsyncErrors[keyof CreateCourseFileAsyncErrors];
+export type CourseFilesCreateCourseFileError = CourseFilesCreateCourseFileErrors[keyof CourseFilesCreateCourseFileErrors];
 
-export type CreateCourseFileAsyncResponses = {
+export type CourseFilesCreateCourseFileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseFilesCountAsyncData = {
+export type CourseFilesGetCourseFilesCountData = {
     body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4706,25 +5045,25 @@ export type GetCourseFilesCountAsyncData = {
     url: '/api/v2/LearningService/CourseFiles/Count';
 };
 
-export type GetCourseFilesCountAsyncErrors = {
+export type CourseFilesGetCourseFilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseFilesCountAsyncError = GetCourseFilesCountAsyncErrors[keyof GetCourseFilesCountAsyncErrors];
+export type CourseFilesGetCourseFilesCountError = CourseFilesGetCourseFilesCountErrors[keyof CourseFilesGetCourseFilesCountErrors];
 
-export type GetCourseFilesCountAsyncResponses = {
+export type CourseFilesGetCourseFilesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseFilesCountAsyncResponse = GetCourseFilesCountAsyncResponses[keyof GetCourseFilesCountAsyncResponses];
+export type CourseFilesGetCourseFilesCountResponse = CourseFilesGetCourseFilesCountResponses[keyof CourseFilesGetCourseFilesCountResponses];
 
-export type DeleteCourseFileAsyncData = {
+export type CourseFilesDeleteCourseFileData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4739,23 +5078,23 @@ export type DeleteCourseFileAsyncData = {
     url: '/api/v2/LearningService/CourseFiles/{fileId}';
 };
 
-export type DeleteCourseFileAsyncErrors = {
+export type CourseFilesDeleteCourseFileErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseFileAsyncError = DeleteCourseFileAsyncErrors[keyof DeleteCourseFileAsyncErrors];
+export type CourseFilesDeleteCourseFileError = CourseFilesDeleteCourseFileErrors[keyof CourseFilesDeleteCourseFileErrors];
 
-export type DeleteCourseFileAsyncResponses = {
+export type CourseFilesDeleteCourseFileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseFileByIdAsyncData = {
+export type CourseFilesGetCourseFileByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4764,30 +5103,31 @@ export type GetCourseFileByIdAsyncData = {
         fileId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseFiles/{fileId}';
 };
 
-export type GetCourseFileByIdAsyncErrors = {
+export type CourseFilesGetCourseFileByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseFileByIdAsyncError = GetCourseFileByIdAsyncErrors[keyof GetCourseFileByIdAsyncErrors];
+export type CourseFilesGetCourseFileByIdError = CourseFilesGetCourseFileByIdErrors[keyof CourseFilesGetCourseFileByIdErrors];
 
-export type GetCourseFileByIdAsyncResponses = {
+export type CourseFilesGetCourseFileByIdResponses = {
     /**
      * OK
      */
     200: CourseFileDto;
 };
 
-export type GetCourseFileByIdAsyncResponse = GetCourseFileByIdAsyncResponses[keyof GetCourseFileByIdAsyncResponses];
+export type CourseFilesGetCourseFileByIdResponse = CourseFilesGetCourseFileByIdResponses[keyof CourseFilesGetCourseFileByIdResponses];
 
-export type PatchCourseFileAsyncData = {
+export type CourseFilesPatchCourseFileData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -4802,23 +5142,23 @@ export type PatchCourseFileAsyncData = {
     url: '/api/v2/LearningService/CourseFiles/{fileId}';
 };
 
-export type PatchCourseFileAsyncErrors = {
+export type CourseFilesPatchCourseFileErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseFileAsyncError = PatchCourseFileAsyncErrors[keyof PatchCourseFileAsyncErrors];
+export type CourseFilesPatchCourseFileError = CourseFilesPatchCourseFileErrors[keyof CourseFilesPatchCourseFileErrors];
 
-export type PatchCourseFileAsyncResponses = {
+export type CourseFilesPatchCourseFileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCourseFileAsyncData = {
+export type CourseFilesUpdateCourseFileData = {
     body?: CourseFileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4833,23 +5173,23 @@ export type UpdateCourseFileAsyncData = {
     url: '/api/v2/LearningService/CourseFiles/{fileId}';
 };
 
-export type UpdateCourseFileAsyncErrors = {
+export type CourseFilesUpdateCourseFileErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseFileAsyncError = UpdateCourseFileAsyncErrors[keyof UpdateCourseFileAsyncErrors];
+export type CourseFilesUpdateCourseFileError = CourseFilesUpdateCourseFileErrors[keyof CourseFilesUpdateCourseFileErrors];
 
-export type UpdateCourseFileAsyncResponses = {
+export type CourseFilesUpdateCourseFileResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseForumsAsyncData = {
+export type CourseForumsGetCourseForumsData = {
     body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4862,25 +5202,25 @@ export type GetCourseForumsAsyncData = {
     url: '/api/v2/LearningService/CourseForums';
 };
 
-export type GetCourseForumsAsyncErrors = {
+export type CourseForumsGetCourseForumsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseForumsAsyncError = GetCourseForumsAsyncErrors[keyof GetCourseForumsAsyncErrors];
+export type CourseForumsGetCourseForumsError = CourseForumsGetCourseForumsErrors[keyof CourseForumsGetCourseForumsErrors];
 
-export type GetCourseForumsAsyncResponses = {
+export type CourseForumsGetCourseForumsResponses = {
     /**
      * OK
      */
     200: Array<CourseForumDto>;
 };
 
-export type GetCourseForumsAsyncResponse = GetCourseForumsAsyncResponses[keyof GetCourseForumsAsyncResponses];
+export type CourseForumsGetCourseForumsResponse = CourseForumsGetCourseForumsResponses[keyof CourseForumsGetCourseForumsResponses];
 
-export type CreateCourseForumAsyncData = {
+export type CourseForumsCreateCourseForumData = {
     body?: CourseForumCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -4893,25 +5233,25 @@ export type CreateCourseForumAsyncData = {
     url: '/api/v2/LearningService/CourseForums';
 };
 
-export type CreateCourseForumAsyncErrors = {
+export type CourseForumsCreateCourseForumErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseForumAsyncError = CreateCourseForumAsyncErrors[keyof CreateCourseForumAsyncErrors];
+export type CourseForumsCreateCourseForumError = CourseForumsCreateCourseForumErrors[keyof CourseForumsCreateCourseForumErrors];
 
-export type CreateCourseForumAsyncResponses = {
+export type CourseForumsCreateCourseForumResponses = {
     /**
      * OK
      */
     200: CourseForumDto;
 };
 
-export type CreateCourseForumAsyncResponse = CreateCourseForumAsyncResponses[keyof CreateCourseForumAsyncResponses];
+export type CourseForumsCreateCourseForumResponse = CourseForumsCreateCourseForumResponses[keyof CourseForumsCreateCourseForumResponses];
 
-export type GetCourseForumsCountAsyncData = {
+export type CourseForumsGetCourseForumsCountData = {
     body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -4924,25 +5264,25 @@ export type GetCourseForumsCountAsyncData = {
     url: '/api/v2/LearningService/CourseForums/Count';
 };
 
-export type GetCourseForumsCountAsyncErrors = {
+export type CourseForumsGetCourseForumsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseForumsCountAsyncError = GetCourseForumsCountAsyncErrors[keyof GetCourseForumsCountAsyncErrors];
+export type CourseForumsGetCourseForumsCountError = CourseForumsGetCourseForumsCountErrors[keyof CourseForumsGetCourseForumsCountErrors];
 
-export type GetCourseForumsCountAsyncResponses = {
+export type CourseForumsGetCourseForumsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseForumsCountAsyncResponse = GetCourseForumsCountAsyncResponses[keyof GetCourseForumsCountAsyncResponses];
+export type CourseForumsGetCourseForumsCountResponse = CourseForumsGetCourseForumsCountResponses[keyof CourseForumsGetCourseForumsCountResponses];
 
-export type DeleteCourseForumAsyncData = {
+export type CourseForumsDeleteCourseForumData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4957,23 +5297,23 @@ export type DeleteCourseForumAsyncData = {
     url: '/api/v2/LearningService/CourseForums/{forumId}';
 };
 
-export type DeleteCourseForumAsyncErrors = {
+export type CourseForumsDeleteCourseForumErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseForumAsyncError = DeleteCourseForumAsyncErrors[keyof DeleteCourseForumAsyncErrors];
+export type CourseForumsDeleteCourseForumError = CourseForumsDeleteCourseForumErrors[keyof CourseForumsDeleteCourseForumErrors];
 
-export type DeleteCourseForumAsyncResponses = {
+export type CourseForumsDeleteCourseForumResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseForumByIdAsyncData = {
+export type CourseForumsGetCourseForumByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -4982,30 +5322,31 @@ export type GetCourseForumByIdAsyncData = {
         forumId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseForums/{forumId}';
 };
 
-export type GetCourseForumByIdAsyncErrors = {
+export type CourseForumsGetCourseForumByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseForumByIdAsyncError = GetCourseForumByIdAsyncErrors[keyof GetCourseForumByIdAsyncErrors];
+export type CourseForumsGetCourseForumByIdError = CourseForumsGetCourseForumByIdErrors[keyof CourseForumsGetCourseForumByIdErrors];
 
-export type GetCourseForumByIdAsyncResponses = {
+export type CourseForumsGetCourseForumByIdResponses = {
     /**
      * OK
      */
     200: CourseForumDto;
 };
 
-export type GetCourseForumByIdAsyncResponse = GetCourseForumByIdAsyncResponses[keyof GetCourseForumByIdAsyncResponses];
+export type CourseForumsGetCourseForumByIdResponse = CourseForumsGetCourseForumByIdResponses[keyof CourseForumsGetCourseForumByIdResponses];
 
-export type PatchCourseForumAsyncData = {
+export type CourseForumsPatchCourseForumData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5020,23 +5361,23 @@ export type PatchCourseForumAsyncData = {
     url: '/api/v2/LearningService/CourseForums/{forumId}';
 };
 
-export type PatchCourseForumAsyncErrors = {
+export type CourseForumsPatchCourseForumErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseForumAsyncError = PatchCourseForumAsyncErrors[keyof PatchCourseForumAsyncErrors];
+export type CourseForumsPatchCourseForumError = CourseForumsPatchCourseForumErrors[keyof CourseForumsPatchCourseForumErrors];
 
-export type PatchCourseForumAsyncResponses = {
+export type CourseForumsPatchCourseForumResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCourseForumAsyncData = {
+export type CourseForumsUpdateCourseForumData = {
     body?: CourseForumUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5051,25 +5392,25 @@ export type UpdateCourseForumAsyncData = {
     url: '/api/v2/LearningService/CourseForums/{forumId}';
 };
 
-export type UpdateCourseForumAsyncErrors = {
+export type CourseForumsUpdateCourseForumErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseForumAsyncError = UpdateCourseForumAsyncErrors[keyof UpdateCourseForumAsyncErrors];
+export type CourseForumsUpdateCourseForumError = CourseForumsUpdateCourseForumErrors[keyof CourseForumsUpdateCourseForumErrors];
 
-export type UpdateCourseForumAsyncResponses = {
+export type CourseForumsUpdateCourseForumResponses = {
     /**
      * OK
      */
     200: CourseForumDto;
 };
 
-export type UpdateCourseForumAsyncResponse = UpdateCourseForumAsyncResponses[keyof UpdateCourseForumAsyncResponses];
+export type CourseForumsUpdateCourseForumResponse = CourseForumsUpdateCourseForumResponses[keyof CourseForumsUpdateCourseForumResponses];
 
-export type GetCourseGradingRubricsAsyncData = {
+export type CourseGradingRubricsGetCourseGradingRubricsData = {
     body?: CourseGradingRubricDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5082,25 +5423,25 @@ export type GetCourseGradingRubricsAsyncData = {
     url: '/api/v2/LearningService/CourseGradingRubrics';
 };
 
-export type GetCourseGradingRubricsAsyncErrors = {
+export type CourseGradingRubricsGetCourseGradingRubricsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseGradingRubricsAsyncError = GetCourseGradingRubricsAsyncErrors[keyof GetCourseGradingRubricsAsyncErrors];
+export type CourseGradingRubricsGetCourseGradingRubricsError = CourseGradingRubricsGetCourseGradingRubricsErrors[keyof CourseGradingRubricsGetCourseGradingRubricsErrors];
 
-export type GetCourseGradingRubricsAsyncResponses = {
+export type CourseGradingRubricsGetCourseGradingRubricsResponses = {
     /**
      * OK
      */
     200: Array<CourseGradingRubricDto>;
 };
 
-export type GetCourseGradingRubricsAsyncResponse = GetCourseGradingRubricsAsyncResponses[keyof GetCourseGradingRubricsAsyncResponses];
+export type CourseGradingRubricsGetCourseGradingRubricsResponse = CourseGradingRubricsGetCourseGradingRubricsResponses[keyof CourseGradingRubricsGetCourseGradingRubricsResponses];
 
-export type CreateCourseGradingRubricAsyncData = {
+export type CourseGradingRubricsCreateCourseGradingRubricData = {
     body?: CourseGradingRubricCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5113,23 +5454,23 @@ export type CreateCourseGradingRubricAsyncData = {
     url: '/api/v2/LearningService/CourseGradingRubrics';
 };
 
-export type CreateCourseGradingRubricAsyncErrors = {
+export type CourseGradingRubricsCreateCourseGradingRubricErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseGradingRubricAsyncError = CreateCourseGradingRubricAsyncErrors[keyof CreateCourseGradingRubricAsyncErrors];
+export type CourseGradingRubricsCreateCourseGradingRubricError = CourseGradingRubricsCreateCourseGradingRubricErrors[keyof CourseGradingRubricsCreateCourseGradingRubricErrors];
 
-export type CreateCourseGradingRubricAsyncResponses = {
+export type CourseGradingRubricsCreateCourseGradingRubricResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetCourseGradingRubricsCountAsyncData = {
+export type CourseGradingRubricsGetCourseGradingRubricsCountData = {
     body?: CourseGradingRubricDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5142,25 +5483,25 @@ export type GetCourseGradingRubricsCountAsyncData = {
     url: '/api/v2/LearningService/CourseGradingRubrics/Count';
 };
 
-export type GetCourseGradingRubricsCountAsyncErrors = {
+export type CourseGradingRubricsGetCourseGradingRubricsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseGradingRubricsCountAsyncError = GetCourseGradingRubricsCountAsyncErrors[keyof GetCourseGradingRubricsCountAsyncErrors];
+export type CourseGradingRubricsGetCourseGradingRubricsCountError = CourseGradingRubricsGetCourseGradingRubricsCountErrors[keyof CourseGradingRubricsGetCourseGradingRubricsCountErrors];
 
-export type GetCourseGradingRubricsCountAsyncResponses = {
+export type CourseGradingRubricsGetCourseGradingRubricsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseGradingRubricsCountAsyncResponse = GetCourseGradingRubricsCountAsyncResponses[keyof GetCourseGradingRubricsCountAsyncResponses];
+export type CourseGradingRubricsGetCourseGradingRubricsCountResponse = CourseGradingRubricsGetCourseGradingRubricsCountResponses[keyof CourseGradingRubricsGetCourseGradingRubricsCountResponses];
 
-export type DeleteCourseGradingRubricAsyncData = {
+export type CourseGradingRubricsDeleteCourseGradingRubricData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5175,23 +5516,23 @@ export type DeleteCourseGradingRubricAsyncData = {
     url: '/api/v2/LearningService/CourseGradingRubrics/{rubricId}';
 };
 
-export type DeleteCourseGradingRubricAsyncErrors = {
+export type CourseGradingRubricsDeleteCourseGradingRubricErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseGradingRubricAsyncError = DeleteCourseGradingRubricAsyncErrors[keyof DeleteCourseGradingRubricAsyncErrors];
+export type CourseGradingRubricsDeleteCourseGradingRubricError = CourseGradingRubricsDeleteCourseGradingRubricErrors[keyof CourseGradingRubricsDeleteCourseGradingRubricErrors];
 
-export type DeleteCourseGradingRubricAsyncResponses = {
+export type CourseGradingRubricsDeleteCourseGradingRubricResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseGradingRubricByIdAsyncData = {
+export type CourseGradingRubricsGetCourseGradingRubricByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5200,30 +5541,31 @@ export type GetCourseGradingRubricByIdAsyncData = {
         rubricId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseGradingRubrics/{rubricId}';
 };
 
-export type GetCourseGradingRubricByIdAsyncErrors = {
+export type CourseGradingRubricsGetCourseGradingRubricByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseGradingRubricByIdAsyncError = GetCourseGradingRubricByIdAsyncErrors[keyof GetCourseGradingRubricByIdAsyncErrors];
+export type CourseGradingRubricsGetCourseGradingRubricByIdError = CourseGradingRubricsGetCourseGradingRubricByIdErrors[keyof CourseGradingRubricsGetCourseGradingRubricByIdErrors];
 
-export type GetCourseGradingRubricByIdAsyncResponses = {
+export type CourseGradingRubricsGetCourseGradingRubricByIdResponses = {
     /**
      * OK
      */
     200: CourseGradingRubricDto;
 };
 
-export type GetCourseGradingRubricByIdAsyncResponse = GetCourseGradingRubricByIdAsyncResponses[keyof GetCourseGradingRubricByIdAsyncResponses];
+export type CourseGradingRubricsGetCourseGradingRubricByIdResponse = CourseGradingRubricsGetCourseGradingRubricByIdResponses[keyof CourseGradingRubricsGetCourseGradingRubricByIdResponses];
 
-export type PatchCourseGradingRubricAsyncData = {
+export type CourseGradingRubricsPatchCourseGradingRubricData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5238,23 +5580,23 @@ export type PatchCourseGradingRubricAsyncData = {
     url: '/api/v2/LearningService/CourseGradingRubrics/{rubricId}';
 };
 
-export type PatchCourseGradingRubricAsyncErrors = {
+export type CourseGradingRubricsPatchCourseGradingRubricErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseGradingRubricAsyncError = PatchCourseGradingRubricAsyncErrors[keyof PatchCourseGradingRubricAsyncErrors];
+export type CourseGradingRubricsPatchCourseGradingRubricError = CourseGradingRubricsPatchCourseGradingRubricErrors[keyof CourseGradingRubricsPatchCourseGradingRubricErrors];
 
-export type PatchCourseGradingRubricAsyncResponses = {
+export type CourseGradingRubricsPatchCourseGradingRubricResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCourseGradingRubricAsyncData = {
+export type CourseGradingRubricsUpdateCourseGradingRubricData = {
     body?: CourseGradingRubricUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5269,23 +5611,23 @@ export type UpdateCourseGradingRubricAsyncData = {
     url: '/api/v2/LearningService/CourseGradingRubrics/{rubricId}';
 };
 
-export type UpdateCourseGradingRubricAsyncErrors = {
+export type CourseGradingRubricsUpdateCourseGradingRubricErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseGradingRubricAsyncError = UpdateCourseGradingRubricAsyncErrors[keyof UpdateCourseGradingRubricAsyncErrors];
+export type CourseGradingRubricsUpdateCourseGradingRubricError = CourseGradingRubricsUpdateCourseGradingRubricErrors[keyof CourseGradingRubricsUpdateCourseGradingRubricErrors];
 
-export type UpdateCourseGradingRubricAsyncResponses = {
+export type CourseGradingRubricsUpdateCourseGradingRubricResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseHandoutsAsyncData = {
+export type CourseHandoutsGetCourseHandoutsData = {
     body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5298,25 +5640,25 @@ export type GetCourseHandoutsAsyncData = {
     url: '/api/v2/LearningService/CourseHandouts';
 };
 
-export type GetCourseHandoutsAsyncErrors = {
+export type CourseHandoutsGetCourseHandoutsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseHandoutsAsyncError = GetCourseHandoutsAsyncErrors[keyof GetCourseHandoutsAsyncErrors];
+export type CourseHandoutsGetCourseHandoutsError = CourseHandoutsGetCourseHandoutsErrors[keyof CourseHandoutsGetCourseHandoutsErrors];
 
-export type GetCourseHandoutsAsyncResponses = {
+export type CourseHandoutsGetCourseHandoutsResponses = {
     /**
      * OK
      */
     200: Array<CourseHandoutDto>;
 };
 
-export type GetCourseHandoutsAsyncResponse = GetCourseHandoutsAsyncResponses[keyof GetCourseHandoutsAsyncResponses];
+export type CourseHandoutsGetCourseHandoutsResponse = CourseHandoutsGetCourseHandoutsResponses[keyof CourseHandoutsGetCourseHandoutsResponses];
 
-export type CreateCourseHandoutAsyncData = {
+export type CourseHandoutsCreateCourseHandoutData = {
     body?: CourseHandoutCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5329,25 +5671,25 @@ export type CreateCourseHandoutAsyncData = {
     url: '/api/v2/LearningService/CourseHandouts';
 };
 
-export type CreateCourseHandoutAsyncErrors = {
+export type CourseHandoutsCreateCourseHandoutErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseHandoutAsyncError = CreateCourseHandoutAsyncErrors[keyof CreateCourseHandoutAsyncErrors];
+export type CourseHandoutsCreateCourseHandoutError = CourseHandoutsCreateCourseHandoutErrors[keyof CourseHandoutsCreateCourseHandoutErrors];
 
-export type CreateCourseHandoutAsyncResponses = {
+export type CourseHandoutsCreateCourseHandoutResponses = {
     /**
      * OK
      */
     200: CourseHandoutDto;
 };
 
-export type CreateCourseHandoutAsyncResponse = CreateCourseHandoutAsyncResponses[keyof CreateCourseHandoutAsyncResponses];
+export type CourseHandoutsCreateCourseHandoutResponse = CourseHandoutsCreateCourseHandoutResponses[keyof CourseHandoutsCreateCourseHandoutResponses];
 
-export type GetCourseHandoutsCountAsyncData = {
+export type CourseHandoutsGetCourseHandoutsCountData = {
     body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5360,25 +5702,25 @@ export type GetCourseHandoutsCountAsyncData = {
     url: '/api/v2/LearningService/CourseHandouts/Count';
 };
 
-export type GetCourseHandoutsCountAsyncErrors = {
+export type CourseHandoutsGetCourseHandoutsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseHandoutsCountAsyncError = GetCourseHandoutsCountAsyncErrors[keyof GetCourseHandoutsCountAsyncErrors];
+export type CourseHandoutsGetCourseHandoutsCountError = CourseHandoutsGetCourseHandoutsCountErrors[keyof CourseHandoutsGetCourseHandoutsCountErrors];
 
-export type GetCourseHandoutsCountAsyncResponses = {
+export type CourseHandoutsGetCourseHandoutsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseHandoutsCountAsyncResponse = GetCourseHandoutsCountAsyncResponses[keyof GetCourseHandoutsCountAsyncResponses];
+export type CourseHandoutsGetCourseHandoutsCountResponse = CourseHandoutsGetCourseHandoutsCountResponses[keyof CourseHandoutsGetCourseHandoutsCountResponses];
 
-export type DeleteCourseHandoutAsyncData = {
+export type CourseHandoutsDeleteCourseHandoutData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5393,23 +5735,23 @@ export type DeleteCourseHandoutAsyncData = {
     url: '/api/v2/LearningService/CourseHandouts/{handoutId}';
 };
 
-export type DeleteCourseHandoutAsyncErrors = {
+export type CourseHandoutsDeleteCourseHandoutErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseHandoutAsyncError = DeleteCourseHandoutAsyncErrors[keyof DeleteCourseHandoutAsyncErrors];
+export type CourseHandoutsDeleteCourseHandoutError = CourseHandoutsDeleteCourseHandoutErrors[keyof CourseHandoutsDeleteCourseHandoutErrors];
 
-export type DeleteCourseHandoutAsyncResponses = {
+export type CourseHandoutsDeleteCourseHandoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseHandoutByIdAsyncData = {
+export type CourseHandoutsGetCourseHandoutByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5418,30 +5760,31 @@ export type GetCourseHandoutByIdAsyncData = {
         handoutId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseHandouts/{handoutId}';
 };
 
-export type GetCourseHandoutByIdAsyncErrors = {
+export type CourseHandoutsGetCourseHandoutByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseHandoutByIdAsyncError = GetCourseHandoutByIdAsyncErrors[keyof GetCourseHandoutByIdAsyncErrors];
+export type CourseHandoutsGetCourseHandoutByIdError = CourseHandoutsGetCourseHandoutByIdErrors[keyof CourseHandoutsGetCourseHandoutByIdErrors];
 
-export type GetCourseHandoutByIdAsyncResponses = {
+export type CourseHandoutsGetCourseHandoutByIdResponses = {
     /**
      * OK
      */
     200: CourseHandoutDto;
 };
 
-export type GetCourseHandoutByIdAsyncResponse = GetCourseHandoutByIdAsyncResponses[keyof GetCourseHandoutByIdAsyncResponses];
+export type CourseHandoutsGetCourseHandoutByIdResponse = CourseHandoutsGetCourseHandoutByIdResponses[keyof CourseHandoutsGetCourseHandoutByIdResponses];
 
-export type PatchCourseHandoutAsyncData = {
+export type CourseHandoutsPatchCourseHandoutData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5456,23 +5799,23 @@ export type PatchCourseHandoutAsyncData = {
     url: '/api/v2/LearningService/CourseHandouts/{handoutId}';
 };
 
-export type PatchCourseHandoutAsyncErrors = {
+export type CourseHandoutsPatchCourseHandoutErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseHandoutAsyncError = PatchCourseHandoutAsyncErrors[keyof PatchCourseHandoutAsyncErrors];
+export type CourseHandoutsPatchCourseHandoutError = CourseHandoutsPatchCourseHandoutErrors[keyof CourseHandoutsPatchCourseHandoutErrors];
 
-export type PatchCourseHandoutAsyncResponses = {
+export type CourseHandoutsPatchCourseHandoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCourseHandoutAsyncData = {
+export type CourseHandoutsUpdateCourseHandoutData = {
     body?: CourseHandoutUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5487,25 +5830,25 @@ export type UpdateCourseHandoutAsyncData = {
     url: '/api/v2/LearningService/CourseHandouts/{handoutId}';
 };
 
-export type UpdateCourseHandoutAsyncErrors = {
+export type CourseHandoutsUpdateCourseHandoutErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseHandoutAsyncError = UpdateCourseHandoutAsyncErrors[keyof UpdateCourseHandoutAsyncErrors];
+export type CourseHandoutsUpdateCourseHandoutError = CourseHandoutsUpdateCourseHandoutErrors[keyof CourseHandoutsUpdateCourseHandoutErrors];
 
-export type UpdateCourseHandoutAsyncResponses = {
+export type CourseHandoutsUpdateCourseHandoutResponses = {
     /**
      * OK
      */
     200: CourseHandoutDto;
 };
 
-export type UpdateCourseHandoutAsyncResponse = UpdateCourseHandoutAsyncResponses[keyof UpdateCourseHandoutAsyncResponses];
+export type CourseHandoutsUpdateCourseHandoutResponse = CourseHandoutsUpdateCourseHandoutResponses[keyof CourseHandoutsUpdateCourseHandoutResponses];
 
-export type GetCourseLibrariesAsyncData = {
+export type CourseLibrariesGetCourseLibrariesData = {
     body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5518,25 +5861,25 @@ export type GetCourseLibrariesAsyncData = {
     url: '/api/v2/LearningService/CourseLibraries';
 };
 
-export type GetCourseLibrariesAsyncErrors = {
+export type CourseLibrariesGetCourseLibrariesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseLibrariesAsyncError = GetCourseLibrariesAsyncErrors[keyof GetCourseLibrariesAsyncErrors];
+export type CourseLibrariesGetCourseLibrariesError = CourseLibrariesGetCourseLibrariesErrors[keyof CourseLibrariesGetCourseLibrariesErrors];
 
-export type GetCourseLibrariesAsyncResponses = {
+export type CourseLibrariesGetCourseLibrariesResponses = {
     /**
      * OK
      */
     200: Array<CourseLibraryDto>;
 };
 
-export type GetCourseLibrariesAsyncResponse = GetCourseLibrariesAsyncResponses[keyof GetCourseLibrariesAsyncResponses];
+export type CourseLibrariesGetCourseLibrariesResponse = CourseLibrariesGetCourseLibrariesResponses[keyof CourseLibrariesGetCourseLibrariesResponses];
 
-export type CreateCourseLibraryAsyncData = {
+export type CourseLibrariesCreateCourseLibraryData = {
     body?: CourseLibraryCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5549,25 +5892,25 @@ export type CreateCourseLibraryAsyncData = {
     url: '/api/v2/LearningService/CourseLibraries';
 };
 
-export type CreateCourseLibraryAsyncErrors = {
+export type CourseLibrariesCreateCourseLibraryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseLibraryAsyncError = CreateCourseLibraryAsyncErrors[keyof CreateCourseLibraryAsyncErrors];
+export type CourseLibrariesCreateCourseLibraryError = CourseLibrariesCreateCourseLibraryErrors[keyof CourseLibrariesCreateCourseLibraryErrors];
 
-export type CreateCourseLibraryAsyncResponses = {
+export type CourseLibrariesCreateCourseLibraryResponses = {
     /**
      * OK
      */
     200: CourseLibraryDto;
 };
 
-export type CreateCourseLibraryAsyncResponse = CreateCourseLibraryAsyncResponses[keyof CreateCourseLibraryAsyncResponses];
+export type CourseLibrariesCreateCourseLibraryResponse = CourseLibrariesCreateCourseLibraryResponses[keyof CourseLibrariesCreateCourseLibraryResponses];
 
-export type GetCourseLibrariesCountAsyncData = {
+export type CourseLibrariesGetCourseLibrariesCountData = {
     body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5580,25 +5923,25 @@ export type GetCourseLibrariesCountAsyncData = {
     url: '/api/v2/LearningService/CourseLibraries/Count';
 };
 
-export type GetCourseLibrariesCountAsyncErrors = {
+export type CourseLibrariesGetCourseLibrariesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseLibrariesCountAsyncError = GetCourseLibrariesCountAsyncErrors[keyof GetCourseLibrariesCountAsyncErrors];
+export type CourseLibrariesGetCourseLibrariesCountError = CourseLibrariesGetCourseLibrariesCountErrors[keyof CourseLibrariesGetCourseLibrariesCountErrors];
 
-export type GetCourseLibrariesCountAsyncResponses = {
+export type CourseLibrariesGetCourseLibrariesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseLibrariesCountAsyncResponse = GetCourseLibrariesCountAsyncResponses[keyof GetCourseLibrariesCountAsyncResponses];
+export type CourseLibrariesGetCourseLibrariesCountResponse = CourseLibrariesGetCourseLibrariesCountResponses[keyof CourseLibrariesGetCourseLibrariesCountResponses];
 
-export type DeleteCourseLibraryAsyncData = {
+export type CourseLibrariesDeleteCourseLibraryData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5613,23 +5956,23 @@ export type DeleteCourseLibraryAsyncData = {
     url: '/api/v2/LearningService/CourseLibraries/{libraryId}';
 };
 
-export type DeleteCourseLibraryAsyncErrors = {
+export type CourseLibrariesDeleteCourseLibraryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseLibraryAsyncError = DeleteCourseLibraryAsyncErrors[keyof DeleteCourseLibraryAsyncErrors];
+export type CourseLibrariesDeleteCourseLibraryError = CourseLibrariesDeleteCourseLibraryErrors[keyof CourseLibrariesDeleteCourseLibraryErrors];
 
-export type DeleteCourseLibraryAsyncResponses = {
+export type CourseLibrariesDeleteCourseLibraryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseLibraryByIdAsyncData = {
+export type CourseLibrariesGetCourseLibraryByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5638,30 +5981,31 @@ export type GetCourseLibraryByIdAsyncData = {
         libraryId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseLibraries/{libraryId}';
 };
 
-export type GetCourseLibraryByIdAsyncErrors = {
+export type CourseLibrariesGetCourseLibraryByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseLibraryByIdAsyncError = GetCourseLibraryByIdAsyncErrors[keyof GetCourseLibraryByIdAsyncErrors];
+export type CourseLibrariesGetCourseLibraryByIdError = CourseLibrariesGetCourseLibraryByIdErrors[keyof CourseLibrariesGetCourseLibraryByIdErrors];
 
-export type GetCourseLibraryByIdAsyncResponses = {
+export type CourseLibrariesGetCourseLibraryByIdResponses = {
     /**
      * OK
      */
     200: CourseLibraryDto;
 };
 
-export type GetCourseLibraryByIdAsyncResponse = GetCourseLibraryByIdAsyncResponses[keyof GetCourseLibraryByIdAsyncResponses];
+export type CourseLibrariesGetCourseLibraryByIdResponse = CourseLibrariesGetCourseLibraryByIdResponses[keyof CourseLibrariesGetCourseLibraryByIdResponses];
 
-export type PatchCourseLibraryAsyncData = {
+export type CourseLibrariesPatchCourseLibraryData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5676,23 +6020,23 @@ export type PatchCourseLibraryAsyncData = {
     url: '/api/v2/LearningService/CourseLibraries/{libraryId}';
 };
 
-export type PatchCourseLibraryAsyncErrors = {
+export type CourseLibrariesPatchCourseLibraryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseLibraryAsyncError = PatchCourseLibraryAsyncErrors[keyof PatchCourseLibraryAsyncErrors];
+export type CourseLibrariesPatchCourseLibraryError = CourseLibrariesPatchCourseLibraryErrors[keyof CourseLibrariesPatchCourseLibraryErrors];
 
-export type PatchCourseLibraryAsyncResponses = {
+export type CourseLibrariesPatchCourseLibraryResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCourseLibraryAsyncData = {
+export type CourseLibrariesUpdateCourseLibraryData = {
     body?: CourseLibraryUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5707,25 +6051,25 @@ export type UpdateCourseLibraryAsyncData = {
     url: '/api/v2/LearningService/CourseLibraries/{libraryId}';
 };
 
-export type UpdateCourseLibraryAsyncErrors = {
+export type CourseLibrariesUpdateCourseLibraryErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseLibraryAsyncError = UpdateCourseLibraryAsyncErrors[keyof UpdateCourseLibraryAsyncErrors];
+export type CourseLibrariesUpdateCourseLibraryError = CourseLibrariesUpdateCourseLibraryErrors[keyof CourseLibrariesUpdateCourseLibraryErrors];
 
-export type UpdateCourseLibraryAsyncResponses = {
+export type CourseLibrariesUpdateCourseLibraryResponses = {
     /**
      * OK
      */
     200: CourseLibraryDto;
 };
 
-export type UpdateCourseLibraryAsyncResponse = UpdateCourseLibraryAsyncResponses[keyof UpdateCourseLibraryAsyncResponses];
+export type CourseLibrariesUpdateCourseLibraryResponse = CourseLibrariesUpdateCourseLibraryResponses[keyof CourseLibrariesUpdateCourseLibraryResponses];
 
-export type GetCoursePagesAsyncData = {
+export type CoursePagesGetCoursePagesData = {
     body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5738,25 +6082,25 @@ export type GetCoursePagesAsyncData = {
     url: '/api/v2/LearningService/CoursePages';
 };
 
-export type GetCoursePagesAsyncErrors = {
+export type CoursePagesGetCoursePagesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCoursePagesAsyncError = GetCoursePagesAsyncErrors[keyof GetCoursePagesAsyncErrors];
+export type CoursePagesGetCoursePagesError = CoursePagesGetCoursePagesErrors[keyof CoursePagesGetCoursePagesErrors];
 
-export type GetCoursePagesAsyncResponses = {
+export type CoursePagesGetCoursePagesResponses = {
     /**
      * OK
      */
     200: Array<CoursePageDto>;
 };
 
-export type GetCoursePagesAsyncResponse = GetCoursePagesAsyncResponses[keyof GetCoursePagesAsyncResponses];
+export type CoursePagesGetCoursePagesResponse = CoursePagesGetCoursePagesResponses[keyof CoursePagesGetCoursePagesResponses];
 
-export type CreateCoursePageAsyncData = {
+export type CoursePagesCreateCoursePageData = {
     body?: CoursePageCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5769,23 +6113,23 @@ export type CreateCoursePageAsyncData = {
     url: '/api/v2/LearningService/CoursePages';
 };
 
-export type CreateCoursePageAsyncErrors = {
+export type CoursePagesCreateCoursePageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCoursePageAsyncError = CreateCoursePageAsyncErrors[keyof CreateCoursePageAsyncErrors];
+export type CoursePagesCreateCoursePageError = CoursePagesCreateCoursePageErrors[keyof CoursePagesCreateCoursePageErrors];
 
-export type CreateCoursePageAsyncResponses = {
+export type CoursePagesCreateCoursePageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCoursePagesCountAsyncData = {
+export type CoursePagesGetCoursePagesCountData = {
     body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5798,25 +6142,25 @@ export type GetCoursePagesCountAsyncData = {
     url: '/api/v2/LearningService/CoursePages/Count';
 };
 
-export type GetCoursePagesCountAsyncErrors = {
+export type CoursePagesGetCoursePagesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCoursePagesCountAsyncError = GetCoursePagesCountAsyncErrors[keyof GetCoursePagesCountAsyncErrors];
+export type CoursePagesGetCoursePagesCountError = CoursePagesGetCoursePagesCountErrors[keyof CoursePagesGetCoursePagesCountErrors];
 
-export type GetCoursePagesCountAsyncResponses = {
+export type CoursePagesGetCoursePagesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCoursePagesCountAsyncResponse = GetCoursePagesCountAsyncResponses[keyof GetCoursePagesCountAsyncResponses];
+export type CoursePagesGetCoursePagesCountResponse = CoursePagesGetCoursePagesCountResponses[keyof CoursePagesGetCoursePagesCountResponses];
 
-export type DeleteCoursePageAsyncData = {
+export type CoursePagesDeleteCoursePageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5831,23 +6175,23 @@ export type DeleteCoursePageAsyncData = {
     url: '/api/v2/LearningService/CoursePages/{pageId}';
 };
 
-export type DeleteCoursePageAsyncErrors = {
+export type CoursePagesDeleteCoursePageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCoursePageAsyncError = DeleteCoursePageAsyncErrors[keyof DeleteCoursePageAsyncErrors];
+export type CoursePagesDeleteCoursePageError = CoursePagesDeleteCoursePageErrors[keyof CoursePagesDeleteCoursePageErrors];
 
-export type DeleteCoursePageAsyncResponses = {
+export type CoursePagesDeleteCoursePageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCoursePageByIdAsyncData = {
+export type CoursePagesGetCoursePageByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5856,30 +6200,31 @@ export type GetCoursePageByIdAsyncData = {
         pageId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CoursePages/{pageId}';
 };
 
-export type GetCoursePageByIdAsyncErrors = {
+export type CoursePagesGetCoursePageByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCoursePageByIdAsyncError = GetCoursePageByIdAsyncErrors[keyof GetCoursePageByIdAsyncErrors];
+export type CoursePagesGetCoursePageByIdError = CoursePagesGetCoursePageByIdErrors[keyof CoursePagesGetCoursePageByIdErrors];
 
-export type GetCoursePageByIdAsyncResponses = {
+export type CoursePagesGetCoursePageByIdResponses = {
     /**
      * OK
      */
     200: CoursePageDto;
 };
 
-export type GetCoursePageByIdAsyncResponse = GetCoursePageByIdAsyncResponses[keyof GetCoursePageByIdAsyncResponses];
+export type CoursePagesGetCoursePageByIdResponse = CoursePagesGetCoursePageByIdResponses[keyof CoursePagesGetCoursePageByIdResponses];
 
-export type PatchCoursePageAsyncData = {
+export type CoursePagesPatchCoursePageData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -5894,23 +6239,23 @@ export type PatchCoursePageAsyncData = {
     url: '/api/v2/LearningService/CoursePages/{pageId}';
 };
 
-export type PatchCoursePageAsyncErrors = {
+export type CoursePagesPatchCoursePageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCoursePageAsyncError = PatchCoursePageAsyncErrors[keyof PatchCoursePageAsyncErrors];
+export type CoursePagesPatchCoursePageError = CoursePagesPatchCoursePageErrors[keyof CoursePagesPatchCoursePageErrors];
 
-export type PatchCoursePageAsyncResponses = {
+export type CoursePagesPatchCoursePageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type UpdateCoursePageAsyncData = {
+export type CoursePagesUpdateCoursePageData = {
     body?: CoursePageUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5925,23 +6270,23 @@ export type UpdateCoursePageAsyncData = {
     url: '/api/v2/LearningService/CoursePages/{pageId}';
 };
 
-export type UpdateCoursePageAsyncErrors = {
+export type CoursePagesUpdateCoursePageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCoursePageAsyncError = UpdateCoursePageAsyncErrors[keyof UpdateCoursePageAsyncErrors];
+export type CoursePagesUpdateCoursePageError = CoursePagesUpdateCoursePageErrors[keyof CoursePagesUpdateCoursePageErrors];
 
-export type UpdateCoursePageAsyncResponses = {
+export type CoursePagesUpdateCoursePageResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseProblemSetsAsyncData = {
+export type CourseProblemSetsGetCourseProblemSetsData = {
     body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -5954,25 +6299,25 @@ export type GetCourseProblemSetsAsyncData = {
     url: '/api/v2/LearningService/CourseProblemSets';
 };
 
-export type GetCourseProblemSetsAsyncErrors = {
+export type CourseProblemSetsGetCourseProblemSetsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseProblemSetsAsyncError = GetCourseProblemSetsAsyncErrors[keyof GetCourseProblemSetsAsyncErrors];
+export type CourseProblemSetsGetCourseProblemSetsError = CourseProblemSetsGetCourseProblemSetsErrors[keyof CourseProblemSetsGetCourseProblemSetsErrors];
 
-export type GetCourseProblemSetsAsyncResponses = {
+export type CourseProblemSetsGetCourseProblemSetsResponses = {
     /**
      * OK
      */
     200: Array<CourseProblemSetDto>;
 };
 
-export type GetCourseProblemSetsAsyncResponse = GetCourseProblemSetsAsyncResponses[keyof GetCourseProblemSetsAsyncResponses];
+export type CourseProblemSetsGetCourseProblemSetsResponse = CourseProblemSetsGetCourseProblemSetsResponses[keyof CourseProblemSetsGetCourseProblemSetsResponses];
 
-export type CreateCourseProblemSetAsyncData = {
+export type CourseProblemSetsCreateCourseProblemSetData = {
     body?: CourseProblemSetCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -5985,23 +6330,23 @@ export type CreateCourseProblemSetAsyncData = {
     url: '/api/v2/LearningService/CourseProblemSets';
 };
 
-export type CreateCourseProblemSetAsyncErrors = {
+export type CourseProblemSetsCreateCourseProblemSetErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseProblemSetAsyncError = CreateCourseProblemSetAsyncErrors[keyof CreateCourseProblemSetAsyncErrors];
+export type CourseProblemSetsCreateCourseProblemSetError = CourseProblemSetsCreateCourseProblemSetErrors[keyof CourseProblemSetsCreateCourseProblemSetErrors];
 
-export type CreateCourseProblemSetAsyncResponses = {
+export type CourseProblemSetsCreateCourseProblemSetResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseProblemSetsCountAsyncData = {
+export type CourseProblemSetsGetCourseProblemSetsCountData = {
     body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6014,25 +6359,25 @@ export type GetCourseProblemSetsCountAsyncData = {
     url: '/api/v2/LearningService/CourseProblemSets/Count';
 };
 
-export type GetCourseProblemSetsCountAsyncErrors = {
+export type CourseProblemSetsGetCourseProblemSetsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseProblemSetsCountAsyncError = GetCourseProblemSetsCountAsyncErrors[keyof GetCourseProblemSetsCountAsyncErrors];
+export type CourseProblemSetsGetCourseProblemSetsCountError = CourseProblemSetsGetCourseProblemSetsCountErrors[keyof CourseProblemSetsGetCourseProblemSetsCountErrors];
 
-export type GetCourseProblemSetsCountAsyncResponses = {
+export type CourseProblemSetsGetCourseProblemSetsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseProblemSetsCountAsyncResponse = GetCourseProblemSetsCountAsyncResponses[keyof GetCourseProblemSetsCountAsyncResponses];
+export type CourseProblemSetsGetCourseProblemSetsCountResponse = CourseProblemSetsGetCourseProblemSetsCountResponses[keyof CourseProblemSetsGetCourseProblemSetsCountResponses];
 
-export type DeleteCourseProblemSetAsyncData = {
+export type CourseProblemSetsDeleteCourseProblemSetData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6047,23 +6392,23 @@ export type DeleteCourseProblemSetAsyncData = {
     url: '/api/v2/LearningService/CourseProblemSets/{problemSetId}';
 };
 
-export type DeleteCourseProblemSetAsyncErrors = {
+export type CourseProblemSetsDeleteCourseProblemSetErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseProblemSetAsyncError = DeleteCourseProblemSetAsyncErrors[keyof DeleteCourseProblemSetAsyncErrors];
+export type CourseProblemSetsDeleteCourseProblemSetError = CourseProblemSetsDeleteCourseProblemSetErrors[keyof CourseProblemSetsDeleteCourseProblemSetErrors];
 
-export type DeleteCourseProblemSetAsyncResponses = {
+export type CourseProblemSetsDeleteCourseProblemSetResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseProblemSetByIdAsyncData = {
+export type CourseProblemSetsGetCourseProblemSetByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6072,30 +6417,31 @@ export type GetCourseProblemSetByIdAsyncData = {
         problemSetId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseProblemSets/{problemSetId}';
 };
 
-export type GetCourseProblemSetByIdAsyncErrors = {
+export type CourseProblemSetsGetCourseProblemSetByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseProblemSetByIdAsyncError = GetCourseProblemSetByIdAsyncErrors[keyof GetCourseProblemSetByIdAsyncErrors];
+export type CourseProblemSetsGetCourseProblemSetByIdError = CourseProblemSetsGetCourseProblemSetByIdErrors[keyof CourseProblemSetsGetCourseProblemSetByIdErrors];
 
-export type GetCourseProblemSetByIdAsyncResponses = {
+export type CourseProblemSetsGetCourseProblemSetByIdResponses = {
     /**
      * OK
      */
     200: CourseProblemSetDto;
 };
 
-export type GetCourseProblemSetByIdAsyncResponse = GetCourseProblemSetByIdAsyncResponses[keyof GetCourseProblemSetByIdAsyncResponses];
+export type CourseProblemSetsGetCourseProblemSetByIdResponse = CourseProblemSetsGetCourseProblemSetByIdResponses[keyof CourseProblemSetsGetCourseProblemSetByIdResponses];
 
-export type PatchCourseProblemSetAsyncData = {
+export type CourseProblemSetsPatchCourseProblemSetData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6110,25 +6456,25 @@ export type PatchCourseProblemSetAsyncData = {
     url: '/api/v2/LearningService/CourseProblemSets/{problemSetId}';
 };
 
-export type PatchCourseProblemSetAsyncErrors = {
+export type CourseProblemSetsPatchCourseProblemSetErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseProblemSetAsyncError = PatchCourseProblemSetAsyncErrors[keyof PatchCourseProblemSetAsyncErrors];
+export type CourseProblemSetsPatchCourseProblemSetError = CourseProblemSetsPatchCourseProblemSetErrors[keyof CourseProblemSetsPatchCourseProblemSetErrors];
 
-export type PatchCourseProblemSetAsyncResponses = {
+export type CourseProblemSetsPatchCourseProblemSetResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseProblemSetAsyncResponse = PatchCourseProblemSetAsyncResponses[keyof PatchCourseProblemSetAsyncResponses];
+export type CourseProblemSetsPatchCourseProblemSetResponse = CourseProblemSetsPatchCourseProblemSetResponses[keyof CourseProblemSetsPatchCourseProblemSetResponses];
 
-export type UpdateCourseProblemSetAsyncData = {
+export type CourseProblemSetsUpdateCourseProblemSetData = {
     body?: CourseProblemSetUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6143,23 +6489,23 @@ export type UpdateCourseProblemSetAsyncData = {
     url: '/api/v2/LearningService/CourseProblemSets/{problemSetId}';
 };
 
-export type UpdateCourseProblemSetAsyncErrors = {
+export type CourseProblemSetsUpdateCourseProblemSetErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseProblemSetAsyncError = UpdateCourseProblemSetAsyncErrors[keyof UpdateCourseProblemSetAsyncErrors];
+export type CourseProblemSetsUpdateCourseProblemSetError = CourseProblemSetsUpdateCourseProblemSetErrors[keyof CourseProblemSetsUpdateCourseProblemSetErrors];
 
-export type UpdateCourseProblemSetAsyncResponses = {
+export type CourseProblemSetsUpdateCourseProblemSetResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCoursesAsyncData = {
+export type CoursesGetCoursesData = {
     body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6172,25 +6518,25 @@ export type GetCoursesAsyncData = {
     url: '/api/v2/LearningService/Courses';
 };
 
-export type GetCoursesAsyncErrors = {
+export type CoursesGetCoursesErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCoursesAsyncError = GetCoursesAsyncErrors[keyof GetCoursesAsyncErrors];
+export type CoursesGetCoursesError = CoursesGetCoursesErrors[keyof CoursesGetCoursesErrors];
 
-export type GetCoursesAsyncResponses = {
+export type CoursesGetCoursesResponses = {
     /**
      * OK
      */
     200: Array<CourseDto>;
 };
 
-export type GetCoursesAsyncResponse = GetCoursesAsyncResponses[keyof GetCoursesAsyncResponses];
+export type CoursesGetCoursesResponse = CoursesGetCoursesResponses[keyof CoursesGetCoursesResponses];
 
-export type CreateCourseAsyncData = {
+export type CoursesCreateCourseData = {
     body?: CourseCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6203,23 +6549,23 @@ export type CreateCourseAsyncData = {
     url: '/api/v2/LearningService/Courses';
 };
 
-export type CreateCourseAsyncErrors = {
+export type CoursesCreateCourseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseAsyncError = CreateCourseAsyncErrors[keyof CreateCourseAsyncErrors];
+export type CoursesCreateCourseError = CoursesCreateCourseErrors[keyof CoursesCreateCourseErrors];
 
-export type CreateCourseAsyncResponses = {
+export type CoursesCreateCourseResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCoursesCountAsyncData = {
+export type CoursesGetCoursesCountData = {
     body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6232,25 +6578,25 @@ export type GetCoursesCountAsyncData = {
     url: '/api/v2/LearningService/Courses/Count';
 };
 
-export type GetCoursesCountAsyncErrors = {
+export type CoursesGetCoursesCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCoursesCountAsyncError = GetCoursesCountAsyncErrors[keyof GetCoursesCountAsyncErrors];
+export type CoursesGetCoursesCountError = CoursesGetCoursesCountErrors[keyof CoursesGetCoursesCountErrors];
 
-export type GetCoursesCountAsyncResponses = {
+export type CoursesGetCoursesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCoursesCountAsyncResponse = GetCoursesCountAsyncResponses[keyof GetCoursesCountAsyncResponses];
+export type CoursesGetCoursesCountResponse = CoursesGetCoursesCountResponses[keyof CoursesGetCoursesCountResponses];
 
-export type DeleteCourseAsyncData = {
+export type CoursesDeleteCourseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6265,23 +6611,23 @@ export type DeleteCourseAsyncData = {
     url: '/api/v2/LearningService/Courses/{courseId}';
 };
 
-export type DeleteCourseAsyncErrors = {
+export type CoursesDeleteCourseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseAsyncError = DeleteCourseAsyncErrors[keyof DeleteCourseAsyncErrors];
+export type CoursesDeleteCourseError = CoursesDeleteCourseErrors[keyof CoursesDeleteCourseErrors];
 
-export type DeleteCourseAsyncResponses = {
+export type CoursesDeleteCourseResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseByIdAsyncData = {
+export type CoursesGetCourseByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -6296,25 +6642,25 @@ export type GetCourseByIdAsyncData = {
     url: '/api/v2/LearningService/Courses/{courseId}';
 };
 
-export type GetCourseByIdAsyncErrors = {
+export type CoursesGetCourseByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseByIdAsyncError = GetCourseByIdAsyncErrors[keyof GetCourseByIdAsyncErrors];
+export type CoursesGetCourseByIdError = CoursesGetCourseByIdErrors[keyof CoursesGetCourseByIdErrors];
 
-export type GetCourseByIdAsyncResponses = {
+export type CoursesGetCourseByIdResponses = {
     /**
      * OK
      */
     200: CourseDto;
 };
 
-export type GetCourseByIdAsyncResponse = GetCourseByIdAsyncResponses[keyof GetCourseByIdAsyncResponses];
+export type CoursesGetCourseByIdResponse = CoursesGetCourseByIdResponses[keyof CoursesGetCourseByIdResponses];
 
-export type PatchCourseAsyncData = {
+export type CoursesPatchCourseData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -6329,25 +6675,25 @@ export type PatchCourseAsyncData = {
     url: '/api/v2/LearningService/Courses/{courseId}';
 };
 
-export type PatchCourseAsyncErrors = {
+export type CoursesPatchCourseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseAsyncError = PatchCourseAsyncErrors[keyof PatchCourseAsyncErrors];
+export type CoursesPatchCourseError = CoursesPatchCourseErrors[keyof CoursesPatchCourseErrors];
 
-export type PatchCourseAsyncResponses = {
+export type CoursesPatchCourseResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseAsyncResponse = PatchCourseAsyncResponses[keyof PatchCourseAsyncResponses];
+export type CoursesPatchCourseResponse = CoursesPatchCourseResponses[keyof CoursesPatchCourseResponses];
 
-export type UpdateCourseAsyncData = {
+export type CoursesUpdateCourseData = {
     body?: CourseUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -6362,24 +6708,84 @@ export type UpdateCourseAsyncData = {
     url: '/api/v2/LearningService/Courses/{courseId}';
 };
 
-export type UpdateCourseAsyncErrors = {
+export type CoursesUpdateCourseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseAsyncError = UpdateCourseAsyncErrors[keyof UpdateCourseAsyncErrors];
+export type CoursesUpdateCourseError = CoursesUpdateCourseErrors[keyof CoursesUpdateCourseErrors];
 
-export type UpdateCourseAsyncResponses = {
+export type CoursesUpdateCourseResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseWikisByCourseAsyncData = {
-    body?: CourseWikiDtoCollectionQueryParametersWritable;
+export type CoursesGetPublicCoursesData = {
+    body?: CourseDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Courses/Public';
+};
+
+export type CoursesGetPublicCoursesErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CoursesGetPublicCoursesError = CoursesGetPublicCoursesErrors[keyof CoursesGetPublicCoursesErrors];
+
+export type CoursesGetPublicCoursesResponses = {
+    /**
+     * OK
+     */
+    200: Array<CourseDto>;
+};
+
+export type CoursesGetPublicCoursesResponse = CoursesGetPublicCoursesResponses[keyof CoursesGetPublicCoursesResponses];
+
+export type CoursesGetPublicCoursesCountData = {
+    body?: CourseDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Courses/Public/Count';
+};
+
+export type CoursesGetPublicCoursesCountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CoursesGetPublicCoursesCountError = CoursesGetPublicCoursesCountErrors[keyof CoursesGetPublicCoursesCountErrors];
+
+export type CoursesGetPublicCoursesCountResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type CoursesGetPublicCoursesCountResponse = CoursesGetPublicCoursesCountResponses[keyof CoursesGetPublicCoursesCountResponses];
+
+export type CoursesGetPublicCourseByIdData = {
+    body?: never;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6389,28 +6795,65 @@ export type GetCourseWikisByCourseAsyncData = {
     query?: {
         'api-version'?: string;
     };
-    url: '/api/v2/LearningService/Courses/{courseId}/Wikis';
+    url: '/api/v2/LearningService/Courses/Public/{courseId}';
 };
 
-export type GetCourseWikisByCourseAsyncErrors = {
+export type CoursesGetPublicCourseByIdErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseWikisByCourseAsyncError = GetCourseWikisByCourseAsyncErrors[keyof GetCourseWikisByCourseAsyncErrors];
+export type CoursesGetPublicCourseByIdError = CoursesGetPublicCourseByIdErrors[keyof CoursesGetPublicCourseByIdErrors];
 
-export type GetCourseWikisByCourseAsyncResponses = {
+export type CoursesGetPublicCourseByIdResponses = {
+    /**
+     * OK
+     */
+    200: CourseDto;
+};
+
+export type CoursesGetPublicCourseByIdResponse = CoursesGetPublicCourseByIdResponses[keyof CoursesGetPublicCourseByIdResponses];
+
+export type CoursesGetCourseWikisByCourseData = {
+    body?: CourseWikiDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Courses/{courseId}/Wikis';
+};
+
+export type CoursesGetCourseWikisByCourseErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CoursesGetCourseWikisByCourseError = CoursesGetCourseWikisByCourseErrors[keyof CoursesGetCourseWikisByCourseErrors];
+
+export type CoursesGetCourseWikisByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseWikiDto>;
 };
 
-export type GetCourseWikisByCourseAsyncResponse = GetCourseWikisByCourseAsyncResponses[keyof GetCourseWikisByCourseAsyncResponses];
+export type CoursesGetCourseWikisByCourseResponse = CoursesGetCourseWikisByCourseResponses[keyof CoursesGetCourseWikisByCourseResponses];
 
-export type GetCourseWikisByCourseCountAsyncData = {
+export type CoursesGetCourseWikisByCourseCountData = {
     body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6419,30 +6862,31 @@ export type GetCourseWikisByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Wikis/Count';
 };
 
-export type GetCourseWikisByCourseCountAsyncErrors = {
+export type CoursesGetCourseWikisByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseWikisByCourseCountAsyncError = GetCourseWikisByCourseCountAsyncErrors[keyof GetCourseWikisByCourseCountAsyncErrors];
+export type CoursesGetCourseWikisByCourseCountError = CoursesGetCourseWikisByCourseCountErrors[keyof CoursesGetCourseWikisByCourseCountErrors];
 
-export type GetCourseWikisByCourseCountAsyncResponses = {
+export type CoursesGetCourseWikisByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseWikisByCourseCountAsyncResponse = GetCourseWikisByCourseCountAsyncResponses[keyof GetCourseWikisByCourseCountAsyncResponses];
+export type CoursesGetCourseWikisByCourseCountResponse = CoursesGetCourseWikisByCourseCountResponses[keyof CoursesGetCourseWikisByCourseCountResponses];
 
-export type GetCourseArticlesByCourseWikiAsyncData = {
+export type CoursesGetCourseArticlesByCourseWikiData = {
     body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6452,30 +6896,31 @@ export type GetCourseArticlesByCourseWikiAsyncData = {
         wikiId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Articles/{wikiId}';
 };
 
-export type GetCourseArticlesByCourseWikiAsyncErrors = {
+export type CoursesGetCourseArticlesByCourseWikiErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseArticlesByCourseWikiAsyncError = GetCourseArticlesByCourseWikiAsyncErrors[keyof GetCourseArticlesByCourseWikiAsyncErrors];
+export type CoursesGetCourseArticlesByCourseWikiError = CoursesGetCourseArticlesByCourseWikiErrors[keyof CoursesGetCourseArticlesByCourseWikiErrors];
 
-export type GetCourseArticlesByCourseWikiAsyncResponses = {
+export type CoursesGetCourseArticlesByCourseWikiResponses = {
     /**
      * OK
      */
     200: Array<CourseArticleDto>;
 };
 
-export type GetCourseArticlesByCourseWikiAsyncResponse = GetCourseArticlesByCourseWikiAsyncResponses[keyof GetCourseArticlesByCourseWikiAsyncResponses];
+export type CoursesGetCourseArticlesByCourseWikiResponse = CoursesGetCourseArticlesByCourseWikiResponses[keyof CoursesGetCourseArticlesByCourseWikiResponses];
 
-export type GetCourseArticlesByCourseWikiCountAsyncData = {
+export type CoursesGetCourseArticlesByCourseWikiCountData = {
     body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6485,30 +6930,31 @@ export type GetCourseArticlesByCourseWikiCountAsyncData = {
         wikiId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Articles/{wikiId}/Count';
 };
 
-export type GetCourseArticlesByCourseWikiCountAsyncErrors = {
+export type CoursesGetCourseArticlesByCourseWikiCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseArticlesByCourseWikiCountAsyncError = GetCourseArticlesByCourseWikiCountAsyncErrors[keyof GetCourseArticlesByCourseWikiCountAsyncErrors];
+export type CoursesGetCourseArticlesByCourseWikiCountError = CoursesGetCourseArticlesByCourseWikiCountErrors[keyof CoursesGetCourseArticlesByCourseWikiCountErrors];
 
-export type GetCourseArticlesByCourseWikiCountAsyncResponses = {
+export type CoursesGetCourseArticlesByCourseWikiCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseArticlesByCourseWikiCountAsyncResponse = GetCourseArticlesByCourseWikiCountAsyncResponses[keyof GetCourseArticlesByCourseWikiCountAsyncResponses];
+export type CoursesGetCourseArticlesByCourseWikiCountResponse = CoursesGetCourseArticlesByCourseWikiCountResponses[keyof CoursesGetCourseArticlesByCourseWikiCountResponses];
 
-export type GetCourseUpdatesByCourseAsyncData = {
+export type CoursesGetCourseUpdatesByCourseData = {
     body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6517,30 +6963,31 @@ export type GetCourseUpdatesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Updates';
 };
 
-export type GetCourseUpdatesByCourseAsyncErrors = {
+export type CoursesGetCourseUpdatesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUpdatesByCourseAsyncError = GetCourseUpdatesByCourseAsyncErrors[keyof GetCourseUpdatesByCourseAsyncErrors];
+export type CoursesGetCourseUpdatesByCourseError = CoursesGetCourseUpdatesByCourseErrors[keyof CoursesGetCourseUpdatesByCourseErrors];
 
-export type GetCourseUpdatesByCourseAsyncResponses = {
+export type CoursesGetCourseUpdatesByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseNewsDto>;
 };
 
-export type GetCourseUpdatesByCourseAsyncResponse = GetCourseUpdatesByCourseAsyncResponses[keyof GetCourseUpdatesByCourseAsyncResponses];
+export type CoursesGetCourseUpdatesByCourseResponse = CoursesGetCourseUpdatesByCourseResponses[keyof CoursesGetCourseUpdatesByCourseResponses];
 
-export type GetCourseUpdatesByCourseCountAsyncData = {
+export type CoursesGetCourseUpdatesByCourseCountData = {
     body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6549,30 +6996,31 @@ export type GetCourseUpdatesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Updates/Count';
 };
 
-export type GetCourseUpdatesByCourseCountAsyncErrors = {
+export type CoursesGetCourseUpdatesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUpdatesByCourseCountAsyncError = GetCourseUpdatesByCourseCountAsyncErrors[keyof GetCourseUpdatesByCourseCountAsyncErrors];
+export type CoursesGetCourseUpdatesByCourseCountError = CoursesGetCourseUpdatesByCourseCountErrors[keyof CoursesGetCourseUpdatesByCourseCountErrors];
 
-export type GetCourseUpdatesByCourseCountAsyncResponses = {
+export type CoursesGetCourseUpdatesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseUpdatesByCourseCountAsyncResponse = GetCourseUpdatesByCourseCountAsyncResponses[keyof GetCourseUpdatesByCourseCountAsyncResponses];
+export type CoursesGetCourseUpdatesByCourseCountResponse = CoursesGetCourseUpdatesByCourseCountResponses[keyof CoursesGetCourseUpdatesByCourseCountResponses];
 
-export type GetCourseSectionsByCourseAsyncData = {
+export type CoursesGetCourseSectionsByCourseData = {
     body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6581,30 +7029,31 @@ export type GetCourseSectionsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Sections';
 };
 
-export type GetCourseSectionsByCourseAsyncErrors = {
+export type CoursesGetCourseSectionsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseSectionsByCourseAsyncError = GetCourseSectionsByCourseAsyncErrors[keyof GetCourseSectionsByCourseAsyncErrors];
+export type CoursesGetCourseSectionsByCourseError = CoursesGetCourseSectionsByCourseErrors[keyof CoursesGetCourseSectionsByCourseErrors];
 
-export type GetCourseSectionsByCourseAsyncResponses = {
+export type CoursesGetCourseSectionsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseSectionDto>;
 };
 
-export type GetCourseSectionsByCourseAsyncResponse = GetCourseSectionsByCourseAsyncResponses[keyof GetCourseSectionsByCourseAsyncResponses];
+export type CoursesGetCourseSectionsByCourseResponse = CoursesGetCourseSectionsByCourseResponses[keyof CoursesGetCourseSectionsByCourseResponses];
 
-export type GetCourseSectionsByCourseCountAsyncData = {
+export type CoursesGetCourseSectionsByCourseCountData = {
     body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6613,30 +7062,31 @@ export type GetCourseSectionsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Sections/Count';
 };
 
-export type GetCourseSectionsByCourseCountAsyncErrors = {
+export type CoursesGetCourseSectionsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseSectionsByCourseCountAsyncError = GetCourseSectionsByCourseCountAsyncErrors[keyof GetCourseSectionsByCourseCountAsyncErrors];
+export type CoursesGetCourseSectionsByCourseCountError = CoursesGetCourseSectionsByCourseCountErrors[keyof CoursesGetCourseSectionsByCourseCountErrors];
 
-export type GetCourseSectionsByCourseCountAsyncResponses = {
+export type CoursesGetCourseSectionsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseSectionsByCourseCountAsyncResponse = GetCourseSectionsByCourseCountAsyncResponses[keyof GetCourseSectionsByCourseCountAsyncResponses];
+export type CoursesGetCourseSectionsByCourseCountResponse = CoursesGetCourseSectionsByCourseCountResponses[keyof CoursesGetCourseSectionsByCourseCountResponses];
 
-export type GetCourseUnitsBySectionAsyncData = {
+export type CoursesGetCourseUnitsBySectionData = {
     body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6646,30 +7096,31 @@ export type GetCourseUnitsBySectionAsyncData = {
         sectionId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Units/{sectionId}';
 };
 
-export type GetCourseUnitsBySectionAsyncErrors = {
+export type CoursesGetCourseUnitsBySectionErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitsBySectionAsyncError = GetCourseUnitsBySectionAsyncErrors[keyof GetCourseUnitsBySectionAsyncErrors];
+export type CoursesGetCourseUnitsBySectionError = CoursesGetCourseUnitsBySectionErrors[keyof CoursesGetCourseUnitsBySectionErrors];
 
-export type GetCourseUnitsBySectionAsyncResponses = {
+export type CoursesGetCourseUnitsBySectionResponses = {
     /**
      * OK
      */
     200: Array<CourseUnitDto>;
 };
 
-export type GetCourseUnitsBySectionAsyncResponse = GetCourseUnitsBySectionAsyncResponses[keyof GetCourseUnitsBySectionAsyncResponses];
+export type CoursesGetCourseUnitsBySectionResponse = CoursesGetCourseUnitsBySectionResponses[keyof CoursesGetCourseUnitsBySectionResponses];
 
-export type GetCourseUnitsBySectionCountAsyncData = {
+export type CoursesGetCourseUnitsBySectionCountData = {
     body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6679,30 +7130,31 @@ export type GetCourseUnitsBySectionCountAsyncData = {
         sectionId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Units/{sectionId}/Count';
 };
 
-export type GetCourseUnitsBySectionCountAsyncErrors = {
+export type CoursesGetCourseUnitsBySectionCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitsBySectionCountAsyncError = GetCourseUnitsBySectionCountAsyncErrors[keyof GetCourseUnitsBySectionCountAsyncErrors];
+export type CoursesGetCourseUnitsBySectionCountError = CoursesGetCourseUnitsBySectionCountErrors[keyof CoursesGetCourseUnitsBySectionCountErrors];
 
-export type GetCourseUnitsBySectionCountAsyncResponses = {
+export type CoursesGetCourseUnitsBySectionCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseUnitsBySectionCountAsyncResponse = GetCourseUnitsBySectionCountAsyncResponses[keyof GetCourseUnitsBySectionCountAsyncResponses];
+export type CoursesGetCourseUnitsBySectionCountResponse = CoursesGetCourseUnitsBySectionCountResponses[keyof CoursesGetCourseUnitsBySectionCountResponses];
 
-export type GetCourseAssignmentsByCourseAsyncData = {
+export type CoursesGetCourseAssignmentsByCourseData = {
     body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6711,30 +7163,31 @@ export type GetCourseAssignmentsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Assignments';
 };
 
-export type GetCourseAssignmentsByCourseAsyncErrors = {
+export type CoursesGetCourseAssignmentsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentsByCourseAsyncError = GetCourseAssignmentsByCourseAsyncErrors[keyof GetCourseAssignmentsByCourseAsyncErrors];
+export type CoursesGetCourseAssignmentsByCourseError = CoursesGetCourseAssignmentsByCourseErrors[keyof CoursesGetCourseAssignmentsByCourseErrors];
 
-export type GetCourseAssignmentsByCourseAsyncResponses = {
+export type CoursesGetCourseAssignmentsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseAssignmentDto>;
 };
 
-export type GetCourseAssignmentsByCourseAsyncResponse = GetCourseAssignmentsByCourseAsyncResponses[keyof GetCourseAssignmentsByCourseAsyncResponses];
+export type CoursesGetCourseAssignmentsByCourseResponse = CoursesGetCourseAssignmentsByCourseResponses[keyof CoursesGetCourseAssignmentsByCourseResponses];
 
-export type GetCourseAssignmentsByCourseCountAsyncData = {
+export type CoursesGetCourseAssignmentsByCourseCountData = {
     body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6743,30 +7196,31 @@ export type GetCourseAssignmentsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Assignments/Count';
 };
 
-export type GetCourseAssignmentsByCourseCountAsyncErrors = {
+export type CoursesGetCourseAssignmentsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseAssignmentsByCourseCountAsyncError = GetCourseAssignmentsByCourseCountAsyncErrors[keyof GetCourseAssignmentsByCourseCountAsyncErrors];
+export type CoursesGetCourseAssignmentsByCourseCountError = CoursesGetCourseAssignmentsByCourseCountErrors[keyof CoursesGetCourseAssignmentsByCourseCountErrors];
 
-export type GetCourseAssignmentsByCourseCountAsyncResponses = {
+export type CoursesGetCourseAssignmentsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseAssignmentsByCourseCountAsyncResponse = GetCourseAssignmentsByCourseCountAsyncResponses[keyof GetCourseAssignmentsByCourseCountAsyncResponses];
+export type CoursesGetCourseAssignmentsByCourseCountResponse = CoursesGetCourseAssignmentsByCourseCountResponses[keyof CoursesGetCourseAssignmentsByCourseCountResponses];
 
-export type GetCourseCategoriesByCourseAsyncData = {
+export type CoursesGetCourseCategoriesByCourseData = {
     body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6775,30 +7229,31 @@ export type GetCourseCategoriesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Categories';
 };
 
-export type GetCourseCategoriesByCourseAsyncErrors = {
+export type CoursesGetCourseCategoriesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCategoriesByCourseAsyncError = GetCourseCategoriesByCourseAsyncErrors[keyof GetCourseCategoriesByCourseAsyncErrors];
+export type CoursesGetCourseCategoriesByCourseError = CoursesGetCourseCategoriesByCourseErrors[keyof CoursesGetCourseCategoriesByCourseErrors];
 
-export type GetCourseCategoriesByCourseAsyncResponses = {
+export type CoursesGetCourseCategoriesByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseCategoryDto>;
 };
 
-export type GetCourseCategoriesByCourseAsyncResponse = GetCourseCategoriesByCourseAsyncResponses[keyof GetCourseCategoriesByCourseAsyncResponses];
+export type CoursesGetCourseCategoriesByCourseResponse = CoursesGetCourseCategoriesByCourseResponses[keyof CoursesGetCourseCategoriesByCourseResponses];
 
-export type GetCourseCategoriesByCourseCountAsyncData = {
+export type CoursesGetCourseCategoriesByCourseCountData = {
     body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6807,30 +7262,31 @@ export type GetCourseCategoriesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Categories/Count';
 };
 
-export type GetCourseCategoriesByCourseCountAsyncErrors = {
+export type CoursesGetCourseCategoriesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCategoriesByCourseCountAsyncError = GetCourseCategoriesByCourseCountAsyncErrors[keyof GetCourseCategoriesByCourseCountAsyncErrors];
+export type CoursesGetCourseCategoriesByCourseCountError = CoursesGetCourseCategoriesByCourseCountErrors[keyof CoursesGetCourseCategoriesByCourseCountErrors];
 
-export type GetCourseCategoriesByCourseCountAsyncResponses = {
+export type CoursesGetCourseCategoriesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseCategoriesByCourseCountAsyncResponse = GetCourseCategoriesByCourseCountAsyncResponses[keyof GetCourseCategoriesByCourseCountAsyncResponses];
+export type CoursesGetCourseCategoriesByCourseCountResponse = CoursesGetCourseCategoriesByCourseCountResponses[keyof CoursesGetCourseCategoriesByCourseCountResponses];
 
-export type GetCourseCohortsByCourseAsyncData = {
+export type CoursesGetCourseCohortsByCourseData = {
     body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6839,30 +7295,31 @@ export type GetCourseCohortsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Cohorts';
 };
 
-export type GetCourseCohortsByCourseAsyncErrors = {
+export type CoursesGetCourseCohortsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCohortsByCourseAsyncError = GetCourseCohortsByCourseAsyncErrors[keyof GetCourseCohortsByCourseAsyncErrors];
+export type CoursesGetCourseCohortsByCourseError = CoursesGetCourseCohortsByCourseErrors[keyof CoursesGetCourseCohortsByCourseErrors];
 
-export type GetCourseCohortsByCourseAsyncResponses = {
+export type CoursesGetCourseCohortsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseCohortDto>;
 };
 
-export type GetCourseCohortsByCourseAsyncResponse = GetCourseCohortsByCourseAsyncResponses[keyof GetCourseCohortsByCourseAsyncResponses];
+export type CoursesGetCourseCohortsByCourseResponse = CoursesGetCourseCohortsByCourseResponses[keyof CoursesGetCourseCohortsByCourseResponses];
 
-export type GetCourseCohortsByCourseCountAsyncData = {
+export type CoursesGetCourseCohortsByCourseCountData = {
     body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6871,30 +7328,31 @@ export type GetCourseCohortsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Cohorts/Count';
 };
 
-export type GetCourseCohortsByCourseCountAsyncErrors = {
+export type CoursesGetCourseCohortsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseCohortsByCourseCountAsyncError = GetCourseCohortsByCourseCountAsyncErrors[keyof GetCourseCohortsByCourseCountAsyncErrors];
+export type CoursesGetCourseCohortsByCourseCountError = CoursesGetCourseCohortsByCourseCountErrors[keyof CoursesGetCourseCohortsByCourseCountErrors];
 
-export type GetCourseCohortsByCourseCountAsyncResponses = {
+export type CoursesGetCourseCohortsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseCohortsByCourseCountAsyncResponse = GetCourseCohortsByCourseCountAsyncResponses[keyof GetCourseCohortsByCourseCountAsyncResponses];
+export type CoursesGetCourseCohortsByCourseCountResponse = CoursesGetCourseCohortsByCourseCountResponses[keyof CoursesGetCourseCohortsByCourseCountResponses];
 
-export type GetCourseFilesByCourseAsyncData = {
+export type CoursesGetCourseFilesByCourseData = {
     body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6903,30 +7361,31 @@ export type GetCourseFilesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Files';
 };
 
-export type GetCourseFilesByCourseAsyncErrors = {
+export type CoursesGetCourseFilesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseFilesByCourseAsyncError = GetCourseFilesByCourseAsyncErrors[keyof GetCourseFilesByCourseAsyncErrors];
+export type CoursesGetCourseFilesByCourseError = CoursesGetCourseFilesByCourseErrors[keyof CoursesGetCourseFilesByCourseErrors];
 
-export type GetCourseFilesByCourseAsyncResponses = {
+export type CoursesGetCourseFilesByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseFileDto>;
 };
 
-export type GetCourseFilesByCourseAsyncResponse = GetCourseFilesByCourseAsyncResponses[keyof GetCourseFilesByCourseAsyncResponses];
+export type CoursesGetCourseFilesByCourseResponse = CoursesGetCourseFilesByCourseResponses[keyof CoursesGetCourseFilesByCourseResponses];
 
-export type GetCourseFilesByCourseCountAsyncData = {
+export type CoursesGetCourseFilesByCourseCountData = {
     body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6935,30 +7394,31 @@ export type GetCourseFilesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Files/Count';
 };
 
-export type GetCourseFilesByCourseCountAsyncErrors = {
+export type CoursesGetCourseFilesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseFilesByCourseCountAsyncError = GetCourseFilesByCourseCountAsyncErrors[keyof GetCourseFilesByCourseCountAsyncErrors];
+export type CoursesGetCourseFilesByCourseCountError = CoursesGetCourseFilesByCourseCountErrors[keyof CoursesGetCourseFilesByCourseCountErrors];
 
-export type GetCourseFilesByCourseCountAsyncResponses = {
+export type CoursesGetCourseFilesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseFilesByCourseCountAsyncResponse = GetCourseFilesByCourseCountAsyncResponses[keyof GetCourseFilesByCourseCountAsyncResponses];
+export type CoursesGetCourseFilesByCourseCountResponse = CoursesGetCourseFilesByCourseCountResponses[keyof CoursesGetCourseFilesByCourseCountResponses];
 
-export type GetCourseForumsByCourseAsyncData = {
+export type CoursesGetCourseForumsByCourseData = {
     body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6967,30 +7427,31 @@ export type GetCourseForumsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Forums';
 };
 
-export type GetCourseForumsByCourseAsyncErrors = {
+export type CoursesGetCourseForumsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseForumsByCourseAsyncError = GetCourseForumsByCourseAsyncErrors[keyof GetCourseForumsByCourseAsyncErrors];
+export type CoursesGetCourseForumsByCourseError = CoursesGetCourseForumsByCourseErrors[keyof CoursesGetCourseForumsByCourseErrors];
 
-export type GetCourseForumsByCourseAsyncResponses = {
+export type CoursesGetCourseForumsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseForumDto>;
 };
 
-export type GetCourseForumsByCourseAsyncResponse = GetCourseForumsByCourseAsyncResponses[keyof GetCourseForumsByCourseAsyncResponses];
+export type CoursesGetCourseForumsByCourseResponse = CoursesGetCourseForumsByCourseResponses[keyof CoursesGetCourseForumsByCourseResponses];
 
-export type GetCourseForumsByCourseCountAsyncData = {
+export type CoursesGetCourseForumsByCourseCountData = {
     body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -6999,30 +7460,31 @@ export type GetCourseForumsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Forums/Count';
 };
 
-export type GetCourseForumsByCourseCountAsyncErrors = {
+export type CoursesGetCourseForumsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseForumsByCourseCountAsyncError = GetCourseForumsByCourseCountAsyncErrors[keyof GetCourseForumsByCourseCountAsyncErrors];
+export type CoursesGetCourseForumsByCourseCountError = CoursesGetCourseForumsByCourseCountErrors[keyof CoursesGetCourseForumsByCourseCountErrors];
 
-export type GetCourseForumsByCourseCountAsyncResponses = {
+export type CoursesGetCourseForumsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseForumsByCourseCountAsyncResponse = GetCourseForumsByCourseCountAsyncResponses[keyof GetCourseForumsByCourseCountAsyncResponses];
+export type CoursesGetCourseForumsByCourseCountResponse = CoursesGetCourseForumsByCourseCountResponses[keyof CoursesGetCourseForumsByCourseCountResponses];
 
-export type GetCourseLibrariesByCourseAsyncData = {
+export type CoursesGetCourseLibrariesByCourseData = {
     body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7031,30 +7493,31 @@ export type GetCourseLibrariesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Libraries';
 };
 
-export type GetCourseLibrariesByCourseAsyncErrors = {
+export type CoursesGetCourseLibrariesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseLibrariesByCourseAsyncError = GetCourseLibrariesByCourseAsyncErrors[keyof GetCourseLibrariesByCourseAsyncErrors];
+export type CoursesGetCourseLibrariesByCourseError = CoursesGetCourseLibrariesByCourseErrors[keyof CoursesGetCourseLibrariesByCourseErrors];
 
-export type GetCourseLibrariesByCourseAsyncResponses = {
+export type CoursesGetCourseLibrariesByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseLibraryDto>;
 };
 
-export type GetCourseLibrariesByCourseAsyncResponse = GetCourseLibrariesByCourseAsyncResponses[keyof GetCourseLibrariesByCourseAsyncResponses];
+export type CoursesGetCourseLibrariesByCourseResponse = CoursesGetCourseLibrariesByCourseResponses[keyof CoursesGetCourseLibrariesByCourseResponses];
 
-export type GetCourseLibrariesByCourseCountAsyncData = {
+export type CoursesGetCourseLibrariesByCourseCountData = {
     body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7063,30 +7526,31 @@ export type GetCourseLibrariesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Libraries/Count';
 };
 
-export type GetCourseLibrariesByCourseCountAsyncErrors = {
+export type CoursesGetCourseLibrariesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseLibrariesByCourseCountAsyncError = GetCourseLibrariesByCourseCountAsyncErrors[keyof GetCourseLibrariesByCourseCountAsyncErrors];
+export type CoursesGetCourseLibrariesByCourseCountError = CoursesGetCourseLibrariesByCourseCountErrors[keyof CoursesGetCourseLibrariesByCourseCountErrors];
 
-export type GetCourseLibrariesByCourseCountAsyncResponses = {
+export type CoursesGetCourseLibrariesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseLibrariesByCourseCountAsyncResponse = GetCourseLibrariesByCourseCountAsyncResponses[keyof GetCourseLibrariesByCourseCountAsyncResponses];
+export type CoursesGetCourseLibrariesByCourseCountResponse = CoursesGetCourseLibrariesByCourseCountResponses[keyof CoursesGetCourseLibrariesByCourseCountResponses];
 
-export type GetCoursePagesByCourseAsyncData = {
+export type CoursesGetCoursePagesByCourseData = {
     body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7095,30 +7559,31 @@ export type GetCoursePagesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Pages';
 };
 
-export type GetCoursePagesByCourseAsyncErrors = {
+export type CoursesGetCoursePagesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCoursePagesByCourseAsyncError = GetCoursePagesByCourseAsyncErrors[keyof GetCoursePagesByCourseAsyncErrors];
+export type CoursesGetCoursePagesByCourseError = CoursesGetCoursePagesByCourseErrors[keyof CoursesGetCoursePagesByCourseErrors];
 
-export type GetCoursePagesByCourseAsyncResponses = {
+export type CoursesGetCoursePagesByCourseResponses = {
     /**
      * OK
      */
     200: Array<CoursePageDto>;
 };
 
-export type GetCoursePagesByCourseAsyncResponse = GetCoursePagesByCourseAsyncResponses[keyof GetCoursePagesByCourseAsyncResponses];
+export type CoursesGetCoursePagesByCourseResponse = CoursesGetCoursePagesByCourseResponses[keyof CoursesGetCoursePagesByCourseResponses];
 
-export type GetCoursePagesByCourseCountAsyncData = {
+export type CoursesGetCoursePagesByCourseCountData = {
     body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7127,30 +7592,31 @@ export type GetCoursePagesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Pages/Count';
 };
 
-export type GetCoursePagesByCourseCountAsyncErrors = {
+export type CoursesGetCoursePagesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCoursePagesByCourseCountAsyncError = GetCoursePagesByCourseCountAsyncErrors[keyof GetCoursePagesByCourseCountAsyncErrors];
+export type CoursesGetCoursePagesByCourseCountError = CoursesGetCoursePagesByCourseCountErrors[keyof CoursesGetCoursePagesByCourseCountErrors];
 
-export type GetCoursePagesByCourseCountAsyncResponses = {
+export type CoursesGetCoursePagesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCoursePagesByCourseCountAsyncResponse = GetCoursePagesByCourseCountAsyncResponses[keyof GetCoursePagesByCourseCountAsyncResponses];
+export type CoursesGetCoursePagesByCourseCountResponse = CoursesGetCoursePagesByCourseCountResponses[keyof CoursesGetCoursePagesByCourseCountResponses];
 
-export type GetCourseProblemSetsByCourseAsyncData = {
+export type CoursesGetCourseProblemSetsByCourseData = {
     body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7159,30 +7625,31 @@ export type GetCourseProblemSetsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/ProblemSets';
 };
 
-export type GetCourseProblemSetsByCourseAsyncErrors = {
+export type CoursesGetCourseProblemSetsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseProblemSetsByCourseAsyncError = GetCourseProblemSetsByCourseAsyncErrors[keyof GetCourseProblemSetsByCourseAsyncErrors];
+export type CoursesGetCourseProblemSetsByCourseError = CoursesGetCourseProblemSetsByCourseErrors[keyof CoursesGetCourseProblemSetsByCourseErrors];
 
-export type GetCourseProblemSetsByCourseAsyncResponses = {
+export type CoursesGetCourseProblemSetsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseProblemSetDto>;
 };
 
-export type GetCourseProblemSetsByCourseAsyncResponse = GetCourseProblemSetsByCourseAsyncResponses[keyof GetCourseProblemSetsByCourseAsyncResponses];
+export type CoursesGetCourseProblemSetsByCourseResponse = CoursesGetCourseProblemSetsByCourseResponses[keyof CoursesGetCourseProblemSetsByCourseResponses];
 
-export type GetCourseProblemSetsByCourseCountAsyncData = {
+export type CoursesGetCourseProblemSetsByCourseCountData = {
     body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7191,30 +7658,31 @@ export type GetCourseProblemSetsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/ProblemSets/Count';
 };
 
-export type GetCourseProblemSetsByCourseCountAsyncErrors = {
+export type CoursesGetCourseProblemSetsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseProblemSetsByCourseCountAsyncError = GetCourseProblemSetsByCourseCountAsyncErrors[keyof GetCourseProblemSetsByCourseCountAsyncErrors];
+export type CoursesGetCourseProblemSetsByCourseCountError = CoursesGetCourseProblemSetsByCourseCountErrors[keyof CoursesGetCourseProblemSetsByCourseCountErrors];
 
-export type GetCourseProblemSetsByCourseCountAsyncResponses = {
+export type CoursesGetCourseProblemSetsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseProblemSetsByCourseCountAsyncResponse = GetCourseProblemSetsByCourseCountAsyncResponses[keyof GetCourseProblemSetsByCourseCountAsyncResponses];
+export type CoursesGetCourseProblemSetsByCourseCountResponse = CoursesGetCourseProblemSetsByCourseCountResponses[keyof CoursesGetCourseProblemSetsByCourseCountResponses];
 
-export type GetCourseHandoutsByCourseAsyncData = {
+export type CoursesGetCourseHandoutsByCourseData = {
     body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7223,30 +7691,31 @@ export type GetCourseHandoutsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Handouts';
 };
 
-export type GetCourseHandoutsByCourseAsyncErrors = {
+export type CoursesGetCourseHandoutsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseHandoutsByCourseAsyncError = GetCourseHandoutsByCourseAsyncErrors[keyof GetCourseHandoutsByCourseAsyncErrors];
+export type CoursesGetCourseHandoutsByCourseError = CoursesGetCourseHandoutsByCourseErrors[keyof CoursesGetCourseHandoutsByCourseErrors];
 
-export type GetCourseHandoutsByCourseAsyncResponses = {
+export type CoursesGetCourseHandoutsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseHandoutDto>;
 };
 
-export type GetCourseHandoutsByCourseAsyncResponse = GetCourseHandoutsByCourseAsyncResponses[keyof GetCourseHandoutsByCourseAsyncResponses];
+export type CoursesGetCourseHandoutsByCourseResponse = CoursesGetCourseHandoutsByCourseResponses[keyof CoursesGetCourseHandoutsByCourseResponses];
 
-export type GetCourseHandoutsByCourseCountAsyncData = {
+export type CoursesGetCourseHandoutsByCourseCountData = {
     body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7255,30 +7724,31 @@ export type GetCourseHandoutsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Handouts/Count';
 };
 
-export type GetCourseHandoutsByCourseCountAsyncErrors = {
+export type CoursesGetCourseHandoutsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseHandoutsByCourseCountAsyncError = GetCourseHandoutsByCourseCountAsyncErrors[keyof GetCourseHandoutsByCourseCountAsyncErrors];
+export type CoursesGetCourseHandoutsByCourseCountError = CoursesGetCourseHandoutsByCourseCountErrors[keyof CoursesGetCourseHandoutsByCourseCountErrors];
 
-export type GetCourseHandoutsByCourseCountAsyncResponses = {
+export type CoursesGetCourseHandoutsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseHandoutsByCourseCountAsyncResponse = GetCourseHandoutsByCourseCountAsyncResponses[keyof GetCourseHandoutsByCourseCountAsyncResponses];
+export type CoursesGetCourseHandoutsByCourseCountResponse = CoursesGetCourseHandoutsByCourseCountResponses[keyof CoursesGetCourseHandoutsByCourseCountResponses];
 
-export type GetCourseUnitComponentsByCourseAsyncData = {
+export type CoursesGetCourseUnitComponentsByCourseData = {
     body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7287,30 +7757,31 @@ export type GetCourseUnitComponentsByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/UnitComponents';
 };
 
-export type GetCourseUnitComponentsByCourseAsyncErrors = {
+export type CoursesGetCourseUnitComponentsByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitComponentsByCourseAsyncError = GetCourseUnitComponentsByCourseAsyncErrors[keyof GetCourseUnitComponentsByCourseAsyncErrors];
+export type CoursesGetCourseUnitComponentsByCourseError = CoursesGetCourseUnitComponentsByCourseErrors[keyof CoursesGetCourseUnitComponentsByCourseErrors];
 
-export type GetCourseUnitComponentsByCourseAsyncResponses = {
+export type CoursesGetCourseUnitComponentsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseUnitComponentDto>;
 };
 
-export type GetCourseUnitComponentsByCourseAsyncResponse = GetCourseUnitComponentsByCourseAsyncResponses[keyof GetCourseUnitComponentsByCourseAsyncResponses];
+export type CoursesGetCourseUnitComponentsByCourseResponse = CoursesGetCourseUnitComponentsByCourseResponses[keyof CoursesGetCourseUnitComponentsByCourseResponses];
 
-export type GetCourseUnitComponentsByCourseCountAsyncData = {
+export type CoursesGetCourseUnitComponentsByCourseCountData = {
     body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7319,30 +7790,31 @@ export type GetCourseUnitComponentsByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/UnitComponents/Count';
 };
 
-export type GetCourseUnitComponentsByCourseCountAsyncErrors = {
+export type CoursesGetCourseUnitComponentsByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitComponentsByCourseCountAsyncError = GetCourseUnitComponentsByCourseCountAsyncErrors[keyof GetCourseUnitComponentsByCourseCountAsyncErrors];
+export type CoursesGetCourseUnitComponentsByCourseCountError = CoursesGetCourseUnitComponentsByCourseCountErrors[keyof CoursesGetCourseUnitComponentsByCourseCountErrors];
 
-export type GetCourseUnitComponentsByCourseCountAsyncResponses = {
+export type CoursesGetCourseUnitComponentsByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseUnitComponentsByCourseCountAsyncResponse = GetCourseUnitComponentsByCourseCountAsyncResponses[keyof GetCourseUnitComponentsByCourseCountAsyncResponses];
+export type CoursesGetCourseUnitComponentsByCourseCountResponse = CoursesGetCourseUnitComponentsByCourseCountResponses[keyof CoursesGetCourseUnitComponentsByCourseCountResponses];
 
-export type GetStudentProfilesByCourseAsyncData = {
+export type CoursesGetStudentProfilesByCourseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7351,30 +7823,31 @@ export type GetStudentProfilesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Students';
 };
 
-export type GetStudentProfilesByCourseAsyncErrors = {
+export type CoursesGetStudentProfilesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetStudentProfilesByCourseAsyncError = GetStudentProfilesByCourseAsyncErrors[keyof GetStudentProfilesByCourseAsyncErrors];
+export type CoursesGetStudentProfilesByCourseError = CoursesGetStudentProfilesByCourseErrors[keyof CoursesGetStudentProfilesByCourseErrors];
 
-export type GetStudentProfilesByCourseAsyncResponses = {
+export type CoursesGetStudentProfilesByCourseResponses = {
     /**
      * OK
      */
     200: Array<StudentProfileDtoReadable>;
 };
 
-export type GetStudentProfilesByCourseAsyncResponse = GetStudentProfilesByCourseAsyncResponses[keyof GetStudentProfilesByCourseAsyncResponses];
+export type CoursesGetStudentProfilesByCourseResponse = CoursesGetStudentProfilesByCourseResponses[keyof CoursesGetStudentProfilesByCourseResponses];
 
-export type GetStudentProfilesByCourseCountAsyncData = {
+export type CoursesGetStudentProfilesByCourseCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7383,30 +7856,31 @@ export type GetStudentProfilesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Students/Count';
 };
 
-export type GetStudentProfilesByCourseCountAsyncErrors = {
+export type CoursesGetStudentProfilesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetStudentProfilesByCourseCountAsyncError = GetStudentProfilesByCourseCountAsyncErrors[keyof GetStudentProfilesByCourseCountAsyncErrors];
+export type CoursesGetStudentProfilesByCourseCountError = CoursesGetStudentProfilesByCourseCountErrors[keyof CoursesGetStudentProfilesByCourseCountErrors];
 
-export type GetStudentProfilesByCourseCountAsyncResponses = {
+export type CoursesGetStudentProfilesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetStudentProfilesByCourseCountAsyncResponse = GetStudentProfilesByCourseCountAsyncResponses[keyof GetStudentProfilesByCourseCountAsyncResponses];
+export type CoursesGetStudentProfilesByCourseCountResponse = CoursesGetStudentProfilesByCourseCountResponses[keyof CoursesGetStudentProfilesByCourseCountResponses];
 
-export type GetInstructorProfilesByCourseAsyncData = {
+export type CoursesGetInstructorProfilesByCourseData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7415,30 +7889,31 @@ export type GetInstructorProfilesByCourseAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Instructors';
 };
 
-export type GetInstructorProfilesByCourseAsyncErrors = {
+export type CoursesGetInstructorProfilesByCourseErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetInstructorProfilesByCourseAsyncError = GetInstructorProfilesByCourseAsyncErrors[keyof GetInstructorProfilesByCourseAsyncErrors];
+export type CoursesGetInstructorProfilesByCourseError = CoursesGetInstructorProfilesByCourseErrors[keyof CoursesGetInstructorProfilesByCourseErrors];
 
-export type GetInstructorProfilesByCourseAsyncResponses = {
+export type CoursesGetInstructorProfilesByCourseResponses = {
     /**
      * OK
      */
     200: Array<InstructorProfileDtoReadable>;
 };
 
-export type GetInstructorProfilesByCourseAsyncResponse = GetInstructorProfilesByCourseAsyncResponses[keyof GetInstructorProfilesByCourseAsyncResponses];
+export type CoursesGetInstructorProfilesByCourseResponse = CoursesGetInstructorProfilesByCourseResponses[keyof CoursesGetInstructorProfilesByCourseResponses];
 
-export type GetInstructorProfilesByCourseCountAsyncData = {
+export type CoursesGetInstructorProfilesByCourseCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7447,30 +7922,31 @@ export type GetInstructorProfilesByCourseCountAsyncData = {
         courseId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/Courses/{courseId}/Instructors/Count';
 };
 
-export type GetInstructorProfilesByCourseCountAsyncErrors = {
+export type CoursesGetInstructorProfilesByCourseCountErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetInstructorProfilesByCourseCountAsyncError = GetInstructorProfilesByCourseCountAsyncErrors[keyof GetInstructorProfilesByCourseCountAsyncErrors];
+export type CoursesGetInstructorProfilesByCourseCountError = CoursesGetInstructorProfilesByCourseCountErrors[keyof CoursesGetInstructorProfilesByCourseCountErrors];
 
-export type GetInstructorProfilesByCourseCountAsyncResponses = {
+export type CoursesGetInstructorProfilesByCourseCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetInstructorProfilesByCourseCountAsyncResponse = GetInstructorProfilesByCourseCountAsyncResponses[keyof GetInstructorProfilesByCourseCountAsyncResponses];
+export type CoursesGetInstructorProfilesByCourseCountResponse = CoursesGetInstructorProfilesByCourseCountResponses[keyof CoursesGetInstructorProfilesByCourseCountResponses];
 
-export type GetCourseEnrollmentsByCourseAsyncData = {
+export type CoursesGetCourseEnrollmentsByCourseData = {
     body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7485,25 +7961,25 @@ export type GetCourseEnrollmentsByCourseAsyncData = {
     url: '/api/v2/LearningService/Courses/{courseId}/Enrollments';
 };
 
-export type GetCourseEnrollmentsByCourseAsyncErrors = {
+export type CoursesGetCourseEnrollmentsByCourseErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseEnrollmentsByCourseAsyncError = GetCourseEnrollmentsByCourseAsyncErrors[keyof GetCourseEnrollmentsByCourseAsyncErrors];
+export type CoursesGetCourseEnrollmentsByCourseError = CoursesGetCourseEnrollmentsByCourseErrors[keyof CoursesGetCourseEnrollmentsByCourseErrors];
 
-export type GetCourseEnrollmentsByCourseAsyncResponses = {
+export type CoursesGetCourseEnrollmentsByCourseResponses = {
     /**
      * OK
      */
     200: Array<CourseEnrollmentDto>;
 };
 
-export type GetCourseEnrollmentsByCourseAsyncResponse = GetCourseEnrollmentsByCourseAsyncResponses[keyof GetCourseEnrollmentsByCourseAsyncResponses];
+export type CoursesGetCourseEnrollmentsByCourseResponse = CoursesGetCourseEnrollmentsByCourseResponses[keyof CoursesGetCourseEnrollmentsByCourseResponses];
 
-export type GetCourseSectionsAsyncData = {
+export type CourseSectionsGetCourseSectionsData = {
     body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7516,25 +7992,25 @@ export type GetCourseSectionsAsyncData = {
     url: '/api/v2/LearningService/CourseSections';
 };
 
-export type GetCourseSectionsAsyncErrors = {
+export type CourseSectionsGetCourseSectionsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseSectionsAsyncError = GetCourseSectionsAsyncErrors[keyof GetCourseSectionsAsyncErrors];
+export type CourseSectionsGetCourseSectionsError = CourseSectionsGetCourseSectionsErrors[keyof CourseSectionsGetCourseSectionsErrors];
 
-export type GetCourseSectionsAsyncResponses = {
+export type CourseSectionsGetCourseSectionsResponses = {
     /**
      * OK
      */
     200: Array<CourseSectionDto>;
 };
 
-export type GetCourseSectionsAsyncResponse = GetCourseSectionsAsyncResponses[keyof GetCourseSectionsAsyncResponses];
+export type CourseSectionsGetCourseSectionsResponse = CourseSectionsGetCourseSectionsResponses[keyof CourseSectionsGetCourseSectionsResponses];
 
-export type CreateCourseSectionAsyncData = {
+export type CourseSectionsCreateCourseSectionData = {
     body?: CourseSectionCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7547,23 +8023,23 @@ export type CreateCourseSectionAsyncData = {
     url: '/api/v2/LearningService/CourseSections';
 };
 
-export type CreateCourseSectionAsyncErrors = {
+export type CourseSectionsCreateCourseSectionErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseSectionAsyncError = CreateCourseSectionAsyncErrors[keyof CreateCourseSectionAsyncErrors];
+export type CourseSectionsCreateCourseSectionError = CourseSectionsCreateCourseSectionErrors[keyof CourseSectionsCreateCourseSectionErrors];
 
-export type CreateCourseSectionAsyncResponses = {
+export type CourseSectionsCreateCourseSectionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseSectionsCountAsyncData = {
+export type CourseSectionsGetCourseSectionsCountData = {
     body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7576,25 +8052,25 @@ export type GetCourseSectionsCountAsyncData = {
     url: '/api/v2/LearningService/CourseSections/Count';
 };
 
-export type GetCourseSectionsCountAsyncErrors = {
+export type CourseSectionsGetCourseSectionsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseSectionsCountAsyncError = GetCourseSectionsCountAsyncErrors[keyof GetCourseSectionsCountAsyncErrors];
+export type CourseSectionsGetCourseSectionsCountError = CourseSectionsGetCourseSectionsCountErrors[keyof CourseSectionsGetCourseSectionsCountErrors];
 
-export type GetCourseSectionsCountAsyncResponses = {
+export type CourseSectionsGetCourseSectionsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseSectionsCountAsyncResponse = GetCourseSectionsCountAsyncResponses[keyof GetCourseSectionsCountAsyncResponses];
+export type CourseSectionsGetCourseSectionsCountResponse = CourseSectionsGetCourseSectionsCountResponses[keyof CourseSectionsGetCourseSectionsCountResponses];
 
-export type DeleteCourseSectionAsyncData = {
+export type CourseSectionsDeleteCourseSectionData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7609,23 +8085,23 @@ export type DeleteCourseSectionAsyncData = {
     url: '/api/v2/LearningService/CourseSections/{sectionId}';
 };
 
-export type DeleteCourseSectionAsyncErrors = {
+export type CourseSectionsDeleteCourseSectionErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseSectionAsyncError = DeleteCourseSectionAsyncErrors[keyof DeleteCourseSectionAsyncErrors];
+export type CourseSectionsDeleteCourseSectionError = CourseSectionsDeleteCourseSectionErrors[keyof CourseSectionsDeleteCourseSectionErrors];
 
-export type DeleteCourseSectionAsyncResponses = {
+export type CourseSectionsDeleteCourseSectionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseSectionByIdAsyncData = {
+export type CourseSectionsGetCourseSectionByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7634,30 +8110,31 @@ export type GetCourseSectionByIdAsyncData = {
         sectionId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseSections/{sectionId}';
 };
 
-export type GetCourseSectionByIdAsyncErrors = {
+export type CourseSectionsGetCourseSectionByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseSectionByIdAsyncError = GetCourseSectionByIdAsyncErrors[keyof GetCourseSectionByIdAsyncErrors];
+export type CourseSectionsGetCourseSectionByIdError = CourseSectionsGetCourseSectionByIdErrors[keyof CourseSectionsGetCourseSectionByIdErrors];
 
-export type GetCourseSectionByIdAsyncResponses = {
+export type CourseSectionsGetCourseSectionByIdResponses = {
     /**
      * OK
      */
     200: CourseSectionDto;
 };
 
-export type GetCourseSectionByIdAsyncResponse = GetCourseSectionByIdAsyncResponses[keyof GetCourseSectionByIdAsyncResponses];
+export type CourseSectionsGetCourseSectionByIdResponse = CourseSectionsGetCourseSectionByIdResponses[keyof CourseSectionsGetCourseSectionByIdResponses];
 
-export type PatchCourseSectionAsyncData = {
+export type CourseSectionsPatchCourseSectionData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7672,25 +8149,25 @@ export type PatchCourseSectionAsyncData = {
     url: '/api/v2/LearningService/CourseSections/{sectionId}';
 };
 
-export type PatchCourseSectionAsyncErrors = {
+export type CourseSectionsPatchCourseSectionErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseSectionAsyncError = PatchCourseSectionAsyncErrors[keyof PatchCourseSectionAsyncErrors];
+export type CourseSectionsPatchCourseSectionError = CourseSectionsPatchCourseSectionErrors[keyof CourseSectionsPatchCourseSectionErrors];
 
-export type PatchCourseSectionAsyncResponses = {
+export type CourseSectionsPatchCourseSectionResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseSectionAsyncResponse = PatchCourseSectionAsyncResponses[keyof PatchCourseSectionAsyncResponses];
+export type CourseSectionsPatchCourseSectionResponse = CourseSectionsPatchCourseSectionResponses[keyof CourseSectionsPatchCourseSectionResponses];
 
-export type UpdateCourseSectionAsyncData = {
+export type CourseSectionsUpdateCourseSectionData = {
     body?: CourseSectionUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7705,23 +8182,23 @@ export type UpdateCourseSectionAsyncData = {
     url: '/api/v2/LearningService/CourseSections/{sectionId}';
 };
 
-export type UpdateCourseSectionAsyncErrors = {
+export type CourseSectionsUpdateCourseSectionErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseSectionAsyncError = UpdateCourseSectionAsyncErrors[keyof UpdateCourseSectionAsyncErrors];
+export type CourseSectionsUpdateCourseSectionError = CourseSectionsUpdateCourseSectionErrors[keyof CourseSectionsUpdateCourseSectionErrors];
 
-export type UpdateCourseSectionAsyncResponses = {
+export type CourseSectionsUpdateCourseSectionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseTeamMembershipsAsyncData = {
+export type CourseTeamMembershipsGetCourseTeamMembershipsData = {
     body?: CourseTeamMembershipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7734,25 +8211,25 @@ export type GetCourseTeamMembershipsAsyncData = {
     url: '/api/v2/LearningService/CourseTeamMemberships';
 };
 
-export type GetCourseTeamMembershipsAsyncErrors = {
+export type CourseTeamMembershipsGetCourseTeamMembershipsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseTeamMembershipsAsyncError = GetCourseTeamMembershipsAsyncErrors[keyof GetCourseTeamMembershipsAsyncErrors];
+export type CourseTeamMembershipsGetCourseTeamMembershipsError = CourseTeamMembershipsGetCourseTeamMembershipsErrors[keyof CourseTeamMembershipsGetCourseTeamMembershipsErrors];
 
-export type GetCourseTeamMembershipsAsyncResponses = {
+export type CourseTeamMembershipsGetCourseTeamMembershipsResponses = {
     /**
      * OK
      */
     200: Array<CourseTeamMembershipDto>;
 };
 
-export type GetCourseTeamMembershipsAsyncResponse = GetCourseTeamMembershipsAsyncResponses[keyof GetCourseTeamMembershipsAsyncResponses];
+export type CourseTeamMembershipsGetCourseTeamMembershipsResponse = CourseTeamMembershipsGetCourseTeamMembershipsResponses[keyof CourseTeamMembershipsGetCourseTeamMembershipsResponses];
 
-export type CreateCourseTeamMembershipAsyncData = {
+export type CourseTeamMembershipsCreateCourseTeamMembershipData = {
     body?: CourseTeamMembershipCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7765,23 +8242,23 @@ export type CreateCourseTeamMembershipAsyncData = {
     url: '/api/v2/LearningService/CourseTeamMemberships';
 };
 
-export type CreateCourseTeamMembershipAsyncErrors = {
+export type CourseTeamMembershipsCreateCourseTeamMembershipErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseTeamMembershipAsyncError = CreateCourseTeamMembershipAsyncErrors[keyof CreateCourseTeamMembershipAsyncErrors];
+export type CourseTeamMembershipsCreateCourseTeamMembershipError = CourseTeamMembershipsCreateCourseTeamMembershipErrors[keyof CourseTeamMembershipsCreateCourseTeamMembershipErrors];
 
-export type CreateCourseTeamMembershipAsyncResponses = {
+export type CourseTeamMembershipsCreateCourseTeamMembershipResponses = {
     /**
      * Created
      */
     201: unknown;
 };
 
-export type GetCourseTeamMembershipsCountAsyncData = {
+export type CourseTeamMembershipsGetCourseTeamMembershipsCountData = {
     body?: CourseTeamMembershipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7794,25 +8271,25 @@ export type GetCourseTeamMembershipsCountAsyncData = {
     url: '/api/v2/LearningService/CourseTeamMemberships/Count';
 };
 
-export type GetCourseTeamMembershipsCountAsyncErrors = {
+export type CourseTeamMembershipsGetCourseTeamMembershipsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseTeamMembershipsCountAsyncError = GetCourseTeamMembershipsCountAsyncErrors[keyof GetCourseTeamMembershipsCountAsyncErrors];
+export type CourseTeamMembershipsGetCourseTeamMembershipsCountError = CourseTeamMembershipsGetCourseTeamMembershipsCountErrors[keyof CourseTeamMembershipsGetCourseTeamMembershipsCountErrors];
 
-export type GetCourseTeamMembershipsCountAsyncResponses = {
+export type CourseTeamMembershipsGetCourseTeamMembershipsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseTeamMembershipsCountAsyncResponse = GetCourseTeamMembershipsCountAsyncResponses[keyof GetCourseTeamMembershipsCountAsyncResponses];
+export type CourseTeamMembershipsGetCourseTeamMembershipsCountResponse = CourseTeamMembershipsGetCourseTeamMembershipsCountResponses[keyof CourseTeamMembershipsGetCourseTeamMembershipsCountResponses];
 
-export type DeleteCourseTeamMembershipAsyncData = {
+export type CourseTeamMembershipsDeleteCourseTeamMembershipData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7827,23 +8304,23 @@ export type DeleteCourseTeamMembershipAsyncData = {
     url: '/api/v2/LearningService/CourseTeamMemberships/{membershipId}';
 };
 
-export type DeleteCourseTeamMembershipAsyncErrors = {
+export type CourseTeamMembershipsDeleteCourseTeamMembershipErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseTeamMembershipAsyncError = DeleteCourseTeamMembershipAsyncErrors[keyof DeleteCourseTeamMembershipAsyncErrors];
+export type CourseTeamMembershipsDeleteCourseTeamMembershipError = CourseTeamMembershipsDeleteCourseTeamMembershipErrors[keyof CourseTeamMembershipsDeleteCourseTeamMembershipErrors];
 
-export type DeleteCourseTeamMembershipAsyncResponses = {
+export type CourseTeamMembershipsDeleteCourseTeamMembershipResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseTeamMembershipByIdAsyncData = {
+export type CourseTeamMembershipsGetCourseTeamMembershipByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -7852,30 +8329,31 @@ export type GetCourseTeamMembershipByIdAsyncData = {
         membershipId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseTeamMemberships/{membershipId}';
 };
 
-export type GetCourseTeamMembershipByIdAsyncErrors = {
+export type CourseTeamMembershipsGetCourseTeamMembershipByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseTeamMembershipByIdAsyncError = GetCourseTeamMembershipByIdAsyncErrors[keyof GetCourseTeamMembershipByIdAsyncErrors];
+export type CourseTeamMembershipsGetCourseTeamMembershipByIdError = CourseTeamMembershipsGetCourseTeamMembershipByIdErrors[keyof CourseTeamMembershipsGetCourseTeamMembershipByIdErrors];
 
-export type GetCourseTeamMembershipByIdAsyncResponses = {
+export type CourseTeamMembershipsGetCourseTeamMembershipByIdResponses = {
     /**
      * OK
      */
     200: CourseTeamMembershipDto;
 };
 
-export type GetCourseTeamMembershipByIdAsyncResponse = GetCourseTeamMembershipByIdAsyncResponses[keyof GetCourseTeamMembershipByIdAsyncResponses];
+export type CourseTeamMembershipsGetCourseTeamMembershipByIdResponse = CourseTeamMembershipsGetCourseTeamMembershipByIdResponses[keyof CourseTeamMembershipsGetCourseTeamMembershipByIdResponses];
 
-export type PatchCourseTeamMembershipAsyncData = {
+export type CourseTeamMembershipsPatchCourseTeamMembershipData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -7890,25 +8368,25 @@ export type PatchCourseTeamMembershipAsyncData = {
     url: '/api/v2/LearningService/CourseTeamMemberships/{membershipId}';
 };
 
-export type PatchCourseTeamMembershipAsyncErrors = {
+export type CourseTeamMembershipsPatchCourseTeamMembershipErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseTeamMembershipAsyncError = PatchCourseTeamMembershipAsyncErrors[keyof PatchCourseTeamMembershipAsyncErrors];
+export type CourseTeamMembershipsPatchCourseTeamMembershipError = CourseTeamMembershipsPatchCourseTeamMembershipErrors[keyof CourseTeamMembershipsPatchCourseTeamMembershipErrors];
 
-export type PatchCourseTeamMembershipAsyncResponses = {
+export type CourseTeamMembershipsPatchCourseTeamMembershipResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseTeamMembershipAsyncResponse = PatchCourseTeamMembershipAsyncResponses[keyof PatchCourseTeamMembershipAsyncResponses];
+export type CourseTeamMembershipsPatchCourseTeamMembershipResponse = CourseTeamMembershipsPatchCourseTeamMembershipResponses[keyof CourseTeamMembershipsPatchCourseTeamMembershipResponses];
 
-export type UpdateCourseTeamMembershipAsyncData = {
+export type CourseTeamMembershipsUpdateCourseTeamMembershipData = {
     body?: CourseTeamMembershipUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7923,23 +8401,23 @@ export type UpdateCourseTeamMembershipAsyncData = {
     url: '/api/v2/LearningService/CourseTeamMemberships/{membershipId}';
 };
 
-export type UpdateCourseTeamMembershipAsyncErrors = {
+export type CourseTeamMembershipsUpdateCourseTeamMembershipErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseTeamMembershipAsyncError = UpdateCourseTeamMembershipAsyncErrors[keyof UpdateCourseTeamMembershipAsyncErrors];
+export type CourseTeamMembershipsUpdateCourseTeamMembershipError = CourseTeamMembershipsUpdateCourseTeamMembershipErrors[keyof CourseTeamMembershipsUpdateCourseTeamMembershipErrors];
 
-export type UpdateCourseTeamMembershipAsyncResponses = {
+export type CourseTeamMembershipsUpdateCourseTeamMembershipResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUnitComponentsAsyncData = {
+export type CourseUnitComponentsGetCourseUnitComponentsData = {
     body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -7952,25 +8430,25 @@ export type GetCourseUnitComponentsAsyncData = {
     url: '/api/v2/LearningService/CourseUnitComponents';
 };
 
-export type GetCourseUnitComponentsAsyncErrors = {
+export type CourseUnitComponentsGetCourseUnitComponentsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitComponentsAsyncError = GetCourseUnitComponentsAsyncErrors[keyof GetCourseUnitComponentsAsyncErrors];
+export type CourseUnitComponentsGetCourseUnitComponentsError = CourseUnitComponentsGetCourseUnitComponentsErrors[keyof CourseUnitComponentsGetCourseUnitComponentsErrors];
 
-export type GetCourseUnitComponentsAsyncResponses = {
+export type CourseUnitComponentsGetCourseUnitComponentsResponses = {
     /**
      * OK
      */
     200: Array<CourseUnitComponentDto>;
 };
 
-export type GetCourseUnitComponentsAsyncResponse = GetCourseUnitComponentsAsyncResponses[keyof GetCourseUnitComponentsAsyncResponses];
+export type CourseUnitComponentsGetCourseUnitComponentsResponse = CourseUnitComponentsGetCourseUnitComponentsResponses[keyof CourseUnitComponentsGetCourseUnitComponentsResponses];
 
-export type CreateCourseUnitComponentAsyncData = {
+export type CourseUnitComponentsCreateCourseUnitComponentData = {
     body?: CourseUnitComponentCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -7983,23 +8461,23 @@ export type CreateCourseUnitComponentAsyncData = {
     url: '/api/v2/LearningService/CourseUnitComponents';
 };
 
-export type CreateCourseUnitComponentAsyncErrors = {
+export type CourseUnitComponentsCreateCourseUnitComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseUnitComponentAsyncError = CreateCourseUnitComponentAsyncErrors[keyof CreateCourseUnitComponentAsyncErrors];
+export type CourseUnitComponentsCreateCourseUnitComponentError = CourseUnitComponentsCreateCourseUnitComponentErrors[keyof CourseUnitComponentsCreateCourseUnitComponentErrors];
 
-export type CreateCourseUnitComponentAsyncResponses = {
+export type CourseUnitComponentsCreateCourseUnitComponentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUnitComponentsCountAsyncData = {
+export type CourseUnitComponentsGetCourseUnitComponentsCountData = {
     body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8012,25 +8490,25 @@ export type GetCourseUnitComponentsCountAsyncData = {
     url: '/api/v2/LearningService/CourseUnitComponents/Count';
 };
 
-export type GetCourseUnitComponentsCountAsyncErrors = {
+export type CourseUnitComponentsGetCourseUnitComponentsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitComponentsCountAsyncError = GetCourseUnitComponentsCountAsyncErrors[keyof GetCourseUnitComponentsCountAsyncErrors];
+export type CourseUnitComponentsGetCourseUnitComponentsCountError = CourseUnitComponentsGetCourseUnitComponentsCountErrors[keyof CourseUnitComponentsGetCourseUnitComponentsCountErrors];
 
-export type GetCourseUnitComponentsCountAsyncResponses = {
+export type CourseUnitComponentsGetCourseUnitComponentsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseUnitComponentsCountAsyncResponse = GetCourseUnitComponentsCountAsyncResponses[keyof GetCourseUnitComponentsCountAsyncResponses];
+export type CourseUnitComponentsGetCourseUnitComponentsCountResponse = CourseUnitComponentsGetCourseUnitComponentsCountResponses[keyof CourseUnitComponentsGetCourseUnitComponentsCountResponses];
 
-export type DeleteCourseUnitComponentAsyncData = {
+export type CourseUnitComponentsDeleteCourseUnitComponentData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8045,23 +8523,23 @@ export type DeleteCourseUnitComponentAsyncData = {
     url: '/api/v2/LearningService/CourseUnitComponents/{componentId}';
 };
 
-export type DeleteCourseUnitComponentAsyncErrors = {
+export type CourseUnitComponentsDeleteCourseUnitComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseUnitComponentAsyncError = DeleteCourseUnitComponentAsyncErrors[keyof DeleteCourseUnitComponentAsyncErrors];
+export type CourseUnitComponentsDeleteCourseUnitComponentError = CourseUnitComponentsDeleteCourseUnitComponentErrors[keyof CourseUnitComponentsDeleteCourseUnitComponentErrors];
 
-export type DeleteCourseUnitComponentAsyncResponses = {
+export type CourseUnitComponentsDeleteCourseUnitComponentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUnitComponentByIdAsyncData = {
+export type CourseUnitComponentsGetCourseUnitComponentByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8070,30 +8548,31 @@ export type GetCourseUnitComponentByIdAsyncData = {
         componentId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseUnitComponents/{componentId}';
 };
 
-export type GetCourseUnitComponentByIdAsyncErrors = {
+export type CourseUnitComponentsGetCourseUnitComponentByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitComponentByIdAsyncError = GetCourseUnitComponentByIdAsyncErrors[keyof GetCourseUnitComponentByIdAsyncErrors];
+export type CourseUnitComponentsGetCourseUnitComponentByIdError = CourseUnitComponentsGetCourseUnitComponentByIdErrors[keyof CourseUnitComponentsGetCourseUnitComponentByIdErrors];
 
-export type GetCourseUnitComponentByIdAsyncResponses = {
+export type CourseUnitComponentsGetCourseUnitComponentByIdResponses = {
     /**
      * OK
      */
     200: CourseUnitComponentDto;
 };
 
-export type GetCourseUnitComponentByIdAsyncResponse = GetCourseUnitComponentByIdAsyncResponses[keyof GetCourseUnitComponentByIdAsyncResponses];
+export type CourseUnitComponentsGetCourseUnitComponentByIdResponse = CourseUnitComponentsGetCourseUnitComponentByIdResponses[keyof CourseUnitComponentsGetCourseUnitComponentByIdResponses];
 
-export type PatchCourseUnitComponentAsyncData = {
+export type CourseUnitComponentsPatchCourseUnitComponentData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8108,25 +8587,25 @@ export type PatchCourseUnitComponentAsyncData = {
     url: '/api/v2/LearningService/CourseUnitComponents/{componentId}';
 };
 
-export type PatchCourseUnitComponentAsyncErrors = {
+export type CourseUnitComponentsPatchCourseUnitComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseUnitComponentAsyncError = PatchCourseUnitComponentAsyncErrors[keyof PatchCourseUnitComponentAsyncErrors];
+export type CourseUnitComponentsPatchCourseUnitComponentError = CourseUnitComponentsPatchCourseUnitComponentErrors[keyof CourseUnitComponentsPatchCourseUnitComponentErrors];
 
-export type PatchCourseUnitComponentAsyncResponses = {
+export type CourseUnitComponentsPatchCourseUnitComponentResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseUnitComponentAsyncResponse = PatchCourseUnitComponentAsyncResponses[keyof PatchCourseUnitComponentAsyncResponses];
+export type CourseUnitComponentsPatchCourseUnitComponentResponse = CourseUnitComponentsPatchCourseUnitComponentResponses[keyof CourseUnitComponentsPatchCourseUnitComponentResponses];
 
-export type UpdateCourseUnitComponentAsyncData = {
+export type CourseUnitComponentsUpdateCourseUnitComponentData = {
     body?: CourseUnitComponentUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8141,23 +8620,23 @@ export type UpdateCourseUnitComponentAsyncData = {
     url: '/api/v2/LearningService/CourseUnitComponents/{componentId}';
 };
 
-export type UpdateCourseUnitComponentAsyncErrors = {
+export type CourseUnitComponentsUpdateCourseUnitComponentErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseUnitComponentAsyncError = UpdateCourseUnitComponentAsyncErrors[keyof UpdateCourseUnitComponentAsyncErrors];
+export type CourseUnitComponentsUpdateCourseUnitComponentError = CourseUnitComponentsUpdateCourseUnitComponentErrors[keyof CourseUnitComponentsUpdateCourseUnitComponentErrors];
 
-export type UpdateCourseUnitComponentAsyncResponses = {
+export type CourseUnitComponentsUpdateCourseUnitComponentResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUnitsAsyncData = {
+export type CourseUnitsGetCourseUnitsData = {
     body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8170,25 +8649,25 @@ export type GetCourseUnitsAsyncData = {
     url: '/api/v2/LearningService/CourseUnits';
 };
 
-export type GetCourseUnitsAsyncErrors = {
+export type CourseUnitsGetCourseUnitsErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitsAsyncError = GetCourseUnitsAsyncErrors[keyof GetCourseUnitsAsyncErrors];
+export type CourseUnitsGetCourseUnitsError = CourseUnitsGetCourseUnitsErrors[keyof CourseUnitsGetCourseUnitsErrors];
 
-export type GetCourseUnitsAsyncResponses = {
+export type CourseUnitsGetCourseUnitsResponses = {
     /**
      * OK
      */
     200: Array<CourseUnitDto>;
 };
 
-export type GetCourseUnitsAsyncResponse = GetCourseUnitsAsyncResponses[keyof GetCourseUnitsAsyncResponses];
+export type CourseUnitsGetCourseUnitsResponse = CourseUnitsGetCourseUnitsResponses[keyof CourseUnitsGetCourseUnitsResponses];
 
-export type CreateCourseUnitAsyncData = {
+export type CourseUnitsCreateCourseUnitData = {
     body?: CourseUnitCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8201,23 +8680,23 @@ export type CreateCourseUnitAsyncData = {
     url: '/api/v2/LearningService/CourseUnits';
 };
 
-export type CreateCourseUnitAsyncErrors = {
+export type CourseUnitsCreateCourseUnitErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseUnitAsyncError = CreateCourseUnitAsyncErrors[keyof CreateCourseUnitAsyncErrors];
+export type CourseUnitsCreateCourseUnitError = CourseUnitsCreateCourseUnitErrors[keyof CourseUnitsCreateCourseUnitErrors];
 
-export type CreateCourseUnitAsyncResponses = {
+export type CourseUnitsCreateCourseUnitResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUnitsCountAsyncData = {
+export type CourseUnitsGetCourseUnitsCountData = {
     body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8230,25 +8709,25 @@ export type GetCourseUnitsCountAsyncData = {
     url: '/api/v2/LearningService/CourseUnits/Count';
 };
 
-export type GetCourseUnitsCountAsyncErrors = {
+export type CourseUnitsGetCourseUnitsCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitsCountAsyncError = GetCourseUnitsCountAsyncErrors[keyof GetCourseUnitsCountAsyncErrors];
+export type CourseUnitsGetCourseUnitsCountError = CourseUnitsGetCourseUnitsCountErrors[keyof CourseUnitsGetCourseUnitsCountErrors];
 
-export type GetCourseUnitsCountAsyncResponses = {
+export type CourseUnitsGetCourseUnitsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseUnitsCountAsyncResponse = GetCourseUnitsCountAsyncResponses[keyof GetCourseUnitsCountAsyncResponses];
+export type CourseUnitsGetCourseUnitsCountResponse = CourseUnitsGetCourseUnitsCountResponses[keyof CourseUnitsGetCourseUnitsCountResponses];
 
-export type DeleteCourseUnitAsyncData = {
+export type CourseUnitsDeleteCourseUnitData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8263,23 +8742,23 @@ export type DeleteCourseUnitAsyncData = {
     url: '/api/v2/LearningService/CourseUnits/{unitId}';
 };
 
-export type DeleteCourseUnitAsyncErrors = {
+export type CourseUnitsDeleteCourseUnitErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseUnitAsyncError = DeleteCourseUnitAsyncErrors[keyof DeleteCourseUnitAsyncErrors];
+export type CourseUnitsDeleteCourseUnitError = CourseUnitsDeleteCourseUnitErrors[keyof CourseUnitsDeleteCourseUnitErrors];
 
-export type DeleteCourseUnitAsyncResponses = {
+export type CourseUnitsDeleteCourseUnitResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUnitByIdAsyncData = {
+export type CourseUnitsGetCourseUnitByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8288,30 +8767,31 @@ export type GetCourseUnitByIdAsyncData = {
         unitId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseUnits/{unitId}';
 };
 
-export type GetCourseUnitByIdAsyncErrors = {
+export type CourseUnitsGetCourseUnitByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUnitByIdAsyncError = GetCourseUnitByIdAsyncErrors[keyof GetCourseUnitByIdAsyncErrors];
+export type CourseUnitsGetCourseUnitByIdError = CourseUnitsGetCourseUnitByIdErrors[keyof CourseUnitsGetCourseUnitByIdErrors];
 
-export type GetCourseUnitByIdAsyncResponses = {
+export type CourseUnitsGetCourseUnitByIdResponses = {
     /**
      * OK
      */
     200: CourseUnitDto;
 };
 
-export type GetCourseUnitByIdAsyncResponse = GetCourseUnitByIdAsyncResponses[keyof GetCourseUnitByIdAsyncResponses];
+export type CourseUnitsGetCourseUnitByIdResponse = CourseUnitsGetCourseUnitByIdResponses[keyof CourseUnitsGetCourseUnitByIdResponses];
 
-export type PatchCourseUnitAsyncData = {
+export type CourseUnitsPatchCourseUnitData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8326,25 +8806,25 @@ export type PatchCourseUnitAsyncData = {
     url: '/api/v2/LearningService/CourseUnits/{unitId}';
 };
 
-export type PatchCourseUnitAsyncErrors = {
+export type CourseUnitsPatchCourseUnitErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseUnitAsyncError = PatchCourseUnitAsyncErrors[keyof PatchCourseUnitAsyncErrors];
+export type CourseUnitsPatchCourseUnitError = CourseUnitsPatchCourseUnitErrors[keyof CourseUnitsPatchCourseUnitErrors];
 
-export type PatchCourseUnitAsyncResponses = {
+export type CourseUnitsPatchCourseUnitResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseUnitAsyncResponse = PatchCourseUnitAsyncResponses[keyof PatchCourseUnitAsyncResponses];
+export type CourseUnitsPatchCourseUnitResponse = CourseUnitsPatchCourseUnitResponses[keyof CourseUnitsPatchCourseUnitResponses];
 
-export type UpdateCourseUnitAsyncData = {
+export type CourseUnitsUpdateCourseUnitData = {
     body?: CourseUnitUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8359,23 +8839,23 @@ export type UpdateCourseUnitAsyncData = {
     url: '/api/v2/LearningService/CourseUnits/{unitId}';
 };
 
-export type UpdateCourseUnitAsyncErrors = {
+export type CourseUnitsUpdateCourseUnitErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseUnitAsyncError = UpdateCourseUnitAsyncErrors[keyof UpdateCourseUnitAsyncErrors];
+export type CourseUnitsUpdateCourseUnitError = CourseUnitsUpdateCourseUnitErrors[keyof CourseUnitsUpdateCourseUnitErrors];
 
-export type UpdateCourseUnitAsyncResponses = {
+export type CourseUnitsUpdateCourseUnitResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUpdatesAsyncData = {
+export type CourseUpdatesGetCourseUpdatesData = {
     body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8388,25 +8868,25 @@ export type GetCourseUpdatesAsyncData = {
     url: '/api/v2/LearningService/CourseUpdates';
 };
 
-export type GetCourseUpdatesAsyncErrors = {
+export type CourseUpdatesGetCourseUpdatesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUpdatesAsyncError = GetCourseUpdatesAsyncErrors[keyof GetCourseUpdatesAsyncErrors];
+export type CourseUpdatesGetCourseUpdatesError = CourseUpdatesGetCourseUpdatesErrors[keyof CourseUpdatesGetCourseUpdatesErrors];
 
-export type GetCourseUpdatesAsyncResponses = {
+export type CourseUpdatesGetCourseUpdatesResponses = {
     /**
      * OK
      */
     200: Array<CourseNewsDto>;
 };
 
-export type GetCourseUpdatesAsyncResponse = GetCourseUpdatesAsyncResponses[keyof GetCourseUpdatesAsyncResponses];
+export type CourseUpdatesGetCourseUpdatesResponse = CourseUpdatesGetCourseUpdatesResponses[keyof CourseUpdatesGetCourseUpdatesResponses];
 
-export type CreateCourseUpdateAsyncData = {
+export type CourseUpdatesCreateCourseUpdateData = {
     body?: CourseNewsCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8419,23 +8899,23 @@ export type CreateCourseUpdateAsyncData = {
     url: '/api/v2/LearningService/CourseUpdates';
 };
 
-export type CreateCourseUpdateAsyncErrors = {
+export type CourseUpdatesCreateCourseUpdateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseUpdateAsyncError = CreateCourseUpdateAsyncErrors[keyof CreateCourseUpdateAsyncErrors];
+export type CourseUpdatesCreateCourseUpdateError = CourseUpdatesCreateCourseUpdateErrors[keyof CourseUpdatesCreateCourseUpdateErrors];
 
-export type CreateCourseUpdateAsyncResponses = {
+export type CourseUpdatesCreateCourseUpdateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUpdatesCountAsyncData = {
+export type CourseUpdatesGetCourseUpdatesCountData = {
     body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8448,25 +8928,25 @@ export type GetCourseUpdatesCountAsyncData = {
     url: '/api/v2/LearningService/CourseUpdates/Count';
 };
 
-export type GetCourseUpdatesCountAsyncErrors = {
+export type CourseUpdatesGetCourseUpdatesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUpdatesCountAsyncError = GetCourseUpdatesCountAsyncErrors[keyof GetCourseUpdatesCountAsyncErrors];
+export type CourseUpdatesGetCourseUpdatesCountError = CourseUpdatesGetCourseUpdatesCountErrors[keyof CourseUpdatesGetCourseUpdatesCountErrors];
 
-export type GetCourseUpdatesCountAsyncResponses = {
+export type CourseUpdatesGetCourseUpdatesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseUpdatesCountAsyncResponse = GetCourseUpdatesCountAsyncResponses[keyof GetCourseUpdatesCountAsyncResponses];
+export type CourseUpdatesGetCourseUpdatesCountResponse = CourseUpdatesGetCourseUpdatesCountResponses[keyof CourseUpdatesGetCourseUpdatesCountResponses];
 
-export type DeleteCourseUpdateAsyncData = {
+export type CourseUpdatesDeleteCourseUpdateData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8481,23 +8961,23 @@ export type DeleteCourseUpdateAsyncData = {
     url: '/api/v2/LearningService/CourseUpdates/{updateId}';
 };
 
-export type DeleteCourseUpdateAsyncErrors = {
+export type CourseUpdatesDeleteCourseUpdateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseUpdateAsyncError = DeleteCourseUpdateAsyncErrors[keyof DeleteCourseUpdateAsyncErrors];
+export type CourseUpdatesDeleteCourseUpdateError = CourseUpdatesDeleteCourseUpdateErrors[keyof CourseUpdatesDeleteCourseUpdateErrors];
 
-export type DeleteCourseUpdateAsyncResponses = {
+export type CourseUpdatesDeleteCourseUpdateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseUpdateByIdAsyncData = {
+export type CourseUpdatesGetCourseUpdateByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8506,30 +8986,31 @@ export type GetCourseUpdateByIdAsyncData = {
         updateId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseUpdates/{updateId}';
 };
 
-export type GetCourseUpdateByIdAsyncErrors = {
+export type CourseUpdatesGetCourseUpdateByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseUpdateByIdAsyncError = GetCourseUpdateByIdAsyncErrors[keyof GetCourseUpdateByIdAsyncErrors];
+export type CourseUpdatesGetCourseUpdateByIdError = CourseUpdatesGetCourseUpdateByIdErrors[keyof CourseUpdatesGetCourseUpdateByIdErrors];
 
-export type GetCourseUpdateByIdAsyncResponses = {
+export type CourseUpdatesGetCourseUpdateByIdResponses = {
     /**
      * OK
      */
     200: CourseNewsDto;
 };
 
-export type GetCourseUpdateByIdAsyncResponse = GetCourseUpdateByIdAsyncResponses[keyof GetCourseUpdateByIdAsyncResponses];
+export type CourseUpdatesGetCourseUpdateByIdResponse = CourseUpdatesGetCourseUpdateByIdResponses[keyof CourseUpdatesGetCourseUpdateByIdResponses];
 
-export type PatchCourseUpdateAsyncData = {
+export type CourseUpdatesPatchCourseUpdateData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8544,25 +9025,25 @@ export type PatchCourseUpdateAsyncData = {
     url: '/api/v2/LearningService/CourseUpdates/{updateId}';
 };
 
-export type PatchCourseUpdateAsyncErrors = {
+export type CourseUpdatesPatchCourseUpdateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseUpdateAsyncError = PatchCourseUpdateAsyncErrors[keyof PatchCourseUpdateAsyncErrors];
+export type CourseUpdatesPatchCourseUpdateError = CourseUpdatesPatchCourseUpdateErrors[keyof CourseUpdatesPatchCourseUpdateErrors];
 
-export type PatchCourseUpdateAsyncResponses = {
+export type CourseUpdatesPatchCourseUpdateResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseUpdateAsyncResponse = PatchCourseUpdateAsyncResponses[keyof PatchCourseUpdateAsyncResponses];
+export type CourseUpdatesPatchCourseUpdateResponse = CourseUpdatesPatchCourseUpdateResponses[keyof CourseUpdatesPatchCourseUpdateResponses];
 
-export type UpdateCourseUpdateAsyncData = {
+export type CourseUpdatesUpdateCourseUpdateData = {
     body?: CourseNewsUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8577,23 +9058,23 @@ export type UpdateCourseUpdateAsyncData = {
     url: '/api/v2/LearningService/CourseUpdates/{updateId}';
 };
 
-export type UpdateCourseUpdateAsyncErrors = {
+export type CourseUpdatesUpdateCourseUpdateErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseUpdateAsyncError = UpdateCourseUpdateAsyncErrors[keyof UpdateCourseUpdateAsyncErrors];
+export type CourseUpdatesUpdateCourseUpdateError = CourseUpdatesUpdateCourseUpdateErrors[keyof CourseUpdatesUpdateCourseUpdateErrors];
 
-export type UpdateCourseUpdateAsyncResponses = {
+export type CourseUpdatesUpdateCourseUpdateResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseWikisAsyncData = {
+export type CourseWikisGetCourseWikisData = {
     body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8606,25 +9087,25 @@ export type GetCourseWikisAsyncData = {
     url: '/api/v2/LearningService/CourseWikis';
 };
 
-export type GetCourseWikisAsyncErrors = {
+export type CourseWikisGetCourseWikisErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseWikisAsyncError = GetCourseWikisAsyncErrors[keyof GetCourseWikisAsyncErrors];
+export type CourseWikisGetCourseWikisError = CourseWikisGetCourseWikisErrors[keyof CourseWikisGetCourseWikisErrors];
 
-export type GetCourseWikisAsyncResponses = {
+export type CourseWikisGetCourseWikisResponses = {
     /**
      * OK
      */
     200: Array<CourseWikiDto>;
 };
 
-export type GetCourseWikisAsyncResponse = GetCourseWikisAsyncResponses[keyof GetCourseWikisAsyncResponses];
+export type CourseWikisGetCourseWikisResponse = CourseWikisGetCourseWikisResponses[keyof CourseWikisGetCourseWikisResponses];
 
-export type CreateCourseWikiAsyncData = {
+export type CourseWikisCreateCourseWikiData = {
     body?: CourseWikiCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8637,23 +9118,23 @@ export type CreateCourseWikiAsyncData = {
     url: '/api/v2/LearningService/CourseWikis';
 };
 
-export type CreateCourseWikiAsyncErrors = {
+export type CourseWikisCreateCourseWikiErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateCourseWikiAsyncError = CreateCourseWikiAsyncErrors[keyof CreateCourseWikiAsyncErrors];
+export type CourseWikisCreateCourseWikiError = CourseWikisCreateCourseWikiErrors[keyof CourseWikisCreateCourseWikiErrors];
 
-export type CreateCourseWikiAsyncResponses = {
+export type CourseWikisCreateCourseWikiResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseWikisCountAsyncData = {
+export type CourseWikisGetCourseWikisCountData = {
     body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -8666,25 +9147,25 @@ export type GetCourseWikisCountAsyncData = {
     url: '/api/v2/LearningService/CourseWikis/Count';
 };
 
-export type GetCourseWikisCountAsyncErrors = {
+export type CourseWikisGetCourseWikisCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetCourseWikisCountAsyncError = GetCourseWikisCountAsyncErrors[keyof GetCourseWikisCountAsyncErrors];
+export type CourseWikisGetCourseWikisCountError = CourseWikisGetCourseWikisCountErrors[keyof CourseWikisGetCourseWikisCountErrors];
 
-export type GetCourseWikisCountAsyncResponses = {
+export type CourseWikisGetCourseWikisCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetCourseWikisCountAsyncResponse = GetCourseWikisCountAsyncResponses[keyof GetCourseWikisCountAsyncResponses];
+export type CourseWikisGetCourseWikisCountResponse = CourseWikisGetCourseWikisCountResponses[keyof CourseWikisGetCourseWikisCountResponses];
 
-export type DeleteCourseWikiAsyncData = {
+export type CourseWikisDeleteCourseWikiData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8699,23 +9180,23 @@ export type DeleteCourseWikiAsyncData = {
     url: '/api/v2/LearningService/CourseWikis/{wikiId}';
 };
 
-export type DeleteCourseWikiAsyncErrors = {
+export type CourseWikisDeleteCourseWikiErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteCourseWikiAsyncError = DeleteCourseWikiAsyncErrors[keyof DeleteCourseWikiAsyncErrors];
+export type CourseWikisDeleteCourseWikiError = CourseWikisDeleteCourseWikiErrors[keyof CourseWikisDeleteCourseWikiErrors];
 
-export type DeleteCourseWikiAsyncResponses = {
+export type CourseWikisDeleteCourseWikiResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetCourseWikiByIdAsyncData = {
+export type CourseWikisGetCourseWikiByIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -8724,30 +9205,31 @@ export type GetCourseWikiByIdAsyncData = {
         wikiId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/LearningService/CourseWikis/{wikiId}';
 };
 
-export type GetCourseWikiByIdAsyncErrors = {
+export type CourseWikisGetCourseWikiByIdErrors = {
     /**
      * Not Found
      */
     404: ErrorEnvelopeReadable;
 };
 
-export type GetCourseWikiByIdAsyncError = GetCourseWikiByIdAsyncErrors[keyof GetCourseWikiByIdAsyncErrors];
+export type CourseWikisGetCourseWikiByIdError = CourseWikisGetCourseWikiByIdErrors[keyof CourseWikisGetCourseWikiByIdErrors];
 
-export type GetCourseWikiByIdAsyncResponses = {
+export type CourseWikisGetCourseWikiByIdResponses = {
     /**
      * OK
      */
     200: CourseWikiDto;
 };
 
-export type GetCourseWikiByIdAsyncResponse = GetCourseWikiByIdAsyncResponses[keyof GetCourseWikiByIdAsyncResponses];
+export type CourseWikisGetCourseWikiByIdResponse = CourseWikisGetCourseWikiByIdResponses[keyof CourseWikisGetCourseWikiByIdResponses];
 
-export type PatchCourseWikiAsyncData = {
+export type CourseWikisPatchCourseWikiData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -8762,25 +9244,25 @@ export type PatchCourseWikiAsyncData = {
     url: '/api/v2/LearningService/CourseWikis/{wikiId}';
 };
 
-export type PatchCourseWikiAsyncErrors = {
+export type CourseWikisPatchCourseWikiErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchCourseWikiAsyncError = PatchCourseWikiAsyncErrors[keyof PatchCourseWikiAsyncErrors];
+export type CourseWikisPatchCourseWikiError = CourseWikisPatchCourseWikiErrors[keyof CourseWikisPatchCourseWikiErrors];
 
-export type PatchCourseWikiAsyncResponses = {
+export type CourseWikisPatchCourseWikiResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchCourseWikiAsyncResponse = PatchCourseWikiAsyncResponses[keyof PatchCourseWikiAsyncResponses];
+export type CourseWikisPatchCourseWikiResponse = CourseWikisPatchCourseWikiResponses[keyof CourseWikisPatchCourseWikiResponses];
 
-export type UpdateCourseWikiAsyncData = {
+export type CourseWikisUpdateCourseWikiData = {
     body?: CourseWikiUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -8795,88 +9277,88 @@ export type UpdateCourseWikiAsyncData = {
     url: '/api/v2/LearningService/CourseWikis/{wikiId}';
 };
 
-export type UpdateCourseWikiAsyncErrors = {
+export type CourseWikisUpdateCourseWikiErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateCourseWikiAsyncError = UpdateCourseWikiAsyncErrors[keyof UpdateCourseWikiAsyncErrors];
+export type CourseWikisUpdateCourseWikiError = CourseWikisUpdateCourseWikiErrors[keyof CourseWikisUpdateCourseWikiErrors];
 
-export type UpdateCourseWikiAsyncResponses = {
+export type CourseWikisUpdateCourseWikiResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetVersionData = {
+export type PlatformGetVersionData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/version';
 };
 
-export type GetVersionResponses = {
+export type PlatformGetVersionResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHealthData = {
+export type PlatformGetHealthData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/health';
 };
 
-export type GetHealthResponses = {
+export type PlatformGetHealthResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetHelloData = {
+export type PlatformGetHelloData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/hello';
 };
 
-export type GetHelloResponses = {
+export type PlatformGetHelloResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostRegisterData = {
+export type PlatformPostRegisterData = {
     body: RegisterRequest;
     path?: never;
     query?: never;
     url: '/register';
 };
 
-export type PostRegisterErrors = {
+export type PlatformPostRegisterErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostRegisterError = PostRegisterErrors[keyof PostRegisterErrors];
+export type PlatformPostRegisterError = PlatformPostRegisterErrors[keyof PlatformPostRegisterErrors];
 
-export type PostRegisterResponses = {
+export type PlatformPostRegisterResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostLoginData = {
+export type PlatformPostLoginData = {
     body: LoginRequest;
     path?: never;
     query?: {
@@ -8886,32 +9368,32 @@ export type PostLoginData = {
     url: '/login';
 };
 
-export type PostLoginResponses = {
+export type PlatformPostLoginResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostLoginResponse = PostLoginResponses[keyof PostLoginResponses];
+export type PlatformPostLoginResponse = PlatformPostLoginResponses[keyof PlatformPostLoginResponses];
 
-export type PostRefreshData = {
+export type PlatformPostRefreshData = {
     body: RefreshRequest;
     path?: never;
     query?: never;
     url: '/refresh';
 };
 
-export type PostRefreshResponses = {
+export type PlatformPostRefreshResponses = {
     /**
      * OK
      */
     200: AccessTokenResponseReadable;
 };
 
-export type PostRefreshResponse = PostRefreshResponses[keyof PostRefreshResponses];
+export type PlatformPostRefreshResponse = PlatformPostRefreshResponses[keyof PlatformPostRefreshResponses];
 
-export type MapIdentityApiConfirmEmailData = {
+export type PlatformMapIdentityApiConfirmEmailData = {
     body?: never;
     path?: never;
     query: {
@@ -8922,81 +9404,81 @@ export type MapIdentityApiConfirmEmailData = {
     url: '/confirmEmail';
 };
 
-export type MapIdentityApiConfirmEmailResponses = {
+export type PlatformMapIdentityApiConfirmEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResendConfirmationEmailData = {
+export type PlatformPostResendConfirmationEmailData = {
     body: ResendConfirmationEmailRequest;
     path?: never;
     query?: never;
     url: '/resendConfirmationEmail';
 };
 
-export type PostResendConfirmationEmailResponses = {
+export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostForgotPasswordData = {
+export type PlatformPostForgotPasswordData = {
     body: ForgotPasswordRequest;
     path?: never;
     query?: never;
     url: '/forgotPassword';
 };
 
-export type PostForgotPasswordErrors = {
+export type PlatformPostForgotPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostForgotPasswordError = PostForgotPasswordErrors[keyof PostForgotPasswordErrors];
+export type PlatformPostForgotPasswordError = PlatformPostForgotPasswordErrors[keyof PlatformPostForgotPasswordErrors];
 
-export type PostForgotPasswordResponses = {
+export type PlatformPostForgotPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostResetPasswordData = {
+export type PlatformPostResetPasswordData = {
     body: ResetPasswordRequest;
     path?: never;
     query?: never;
     url: '/resetPassword';
 };
 
-export type PostResetPasswordErrors = {
+export type PlatformPostResetPasswordErrors = {
     /**
      * Bad Request
      */
     400: HttpValidationProblemDetails;
 };
 
-export type PostResetPasswordError = PostResetPasswordErrors[keyof PostResetPasswordErrors];
+export type PlatformPostResetPasswordError = PlatformPostResetPasswordErrors[keyof PlatformPostResetPasswordErrors];
 
-export type PostResetPasswordResponses = {
+export type PlatformPostResetPasswordResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostManage2FaData = {
+export type PlatformPostManage2FaData = {
     body: TwoFactorRequest;
     path?: never;
     query?: never;
     url: '/manage/2fa';
 };
 
-export type PostManage2FaErrors = {
+export type PlatformPostManage2FaErrors = {
     /**
      * Bad Request
      */
@@ -9007,25 +9489,25 @@ export type PostManage2FaErrors = {
     404: unknown;
 };
 
-export type PostManage2FaError = PostManage2FaErrors[keyof PostManage2FaErrors];
+export type PlatformPostManage2FaError = PlatformPostManage2FaErrors[keyof PlatformPostManage2FaErrors];
 
-export type PostManage2FaResponses = {
+export type PlatformPostManage2FaResponses = {
     /**
      * OK
      */
     200: TwoFactorResponse;
 };
 
-export type PostManage2FaResponse = PostManage2FaResponses[keyof PostManage2FaResponses];
+export type PlatformPostManage2FaResponse = PlatformPostManage2FaResponses[keyof PlatformPostManage2FaResponses];
 
-export type GetManageInfoData = {
+export type PlatformGetManageInfoData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type GetManageInfoErrors = {
+export type PlatformGetManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -9036,25 +9518,25 @@ export type GetManageInfoErrors = {
     404: unknown;
 };
 
-export type GetManageInfoError = GetManageInfoErrors[keyof GetManageInfoErrors];
+export type PlatformGetManageInfoError = PlatformGetManageInfoErrors[keyof PlatformGetManageInfoErrors];
 
-export type GetManageInfoResponses = {
+export type PlatformGetManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type GetManageInfoResponse = GetManageInfoResponses[keyof GetManageInfoResponses];
+export type PlatformGetManageInfoResponse = PlatformGetManageInfoResponses[keyof PlatformGetManageInfoResponses];
 
-export type PostManageInfoData = {
+export type PlatformPostManageInfoData = {
     body: InfoRequest;
     path?: never;
     query?: never;
     url: '/manage/info';
 };
 
-export type PostManageInfoErrors = {
+export type PlatformPostManageInfoErrors = {
     /**
      * Bad Request
      */
@@ -9065,18 +9547,18 @@ export type PostManageInfoErrors = {
     404: unknown;
 };
 
-export type PostManageInfoError = PostManageInfoErrors[keyof PostManageInfoErrors];
+export type PlatformPostManageInfoError = PlatformPostManageInfoErrors[keyof PlatformPostManageInfoErrors];
 
-export type PostManageInfoResponses = {
+export type PlatformPostManageInfoResponses = {
     /**
      * OK
      */
     200: InfoResponse;
 };
 
-export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
+export type PlatformPostManageInfoResponse = PlatformPostManageInfoResponses[keyof PlatformPostManageInfoResponses];
 
-export type PostAccountPerformExternalLoginData = {
+export type PlatformPostAccountPerformExternalLoginData = {
     body?: {
         provider?: string;
         returnUrl?: string;
@@ -9086,14 +9568,14 @@ export type PostAccountPerformExternalLoginData = {
     url: '/Account/PerformExternalLogin';
 };
 
-export type PostAccountPerformExternalLoginResponses = {
+export type PlatformPostAccountPerformExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountLogoutData = {
+export type PlatformPostAccountLogoutData = {
     body?: {
         returnUrl?: string;
     };
@@ -9102,14 +9584,14 @@ export type PostAccountLogoutData = {
     url: '/Account/Logout';
 };
 
-export type PostAccountLogoutResponses = {
+export type PlatformPostAccountLogoutResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageLinkExternalLoginData = {
+export type PlatformPostAccountManageLinkExternalLoginData = {
     body?: {
         provider?: string;
     };
@@ -9118,28 +9600,28 @@ export type PostAccountManageLinkExternalLoginData = {
     url: '/Account/Manage/LinkExternalLogin';
 };
 
-export type PostAccountManageLinkExternalLoginResponses = {
+export type PlatformPostAccountManageLinkExternalLoginResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type PostAccountManageDownloadPersonalDataData = {
+export type PlatformPostAccountManageDownloadPersonalDataData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/Account/Manage/DownloadPersonalData';
 };
 
-export type PostAccountManageDownloadPersonalDataResponses = {
+export type PlatformPostAccountManageDownloadPersonalDataResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesData = {
+export type InstructorProfilesGetInstructorProfilesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9152,25 +9634,25 @@ export type GetApiV2LearningServiceInstructorProfilesData = {
     url: '/api/v2/LearningService/InstructorProfiles';
 };
 
-export type GetApiV2LearningServiceInstructorProfilesErrors = {
+export type InstructorProfilesGetInstructorProfilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesError = GetApiV2LearningServiceInstructorProfilesErrors[keyof GetApiV2LearningServiceInstructorProfilesErrors];
+export type InstructorProfilesGetInstructorProfilesError = InstructorProfilesGetInstructorProfilesErrors[keyof InstructorProfilesGetInstructorProfilesErrors];
 
-export type GetApiV2LearningServiceInstructorProfilesResponses = {
+export type InstructorProfilesGetInstructorProfilesResponses = {
     /**
      * OK
      */
     200: Array<InstructorProfileDtoReadable>;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesResponse = GetApiV2LearningServiceInstructorProfilesResponses[keyof GetApiV2LearningServiceInstructorProfilesResponses];
+export type InstructorProfilesGetInstructorProfilesResponse = InstructorProfilesGetInstructorProfilesResponses[keyof InstructorProfilesGetInstructorProfilesResponses];
 
-export type PostApiV2LearningServiceInstructorProfilesData = {
+export type InstructorProfilesPostInstructorProfilesData = {
     body?: InstructorProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9183,23 +9665,23 @@ export type PostApiV2LearningServiceInstructorProfilesData = {
     url: '/api/v2/LearningService/InstructorProfiles';
 };
 
-export type PostApiV2LearningServiceInstructorProfilesErrors = {
+export type InstructorProfilesPostInstructorProfilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PostApiV2LearningServiceInstructorProfilesError = PostApiV2LearningServiceInstructorProfilesErrors[keyof PostApiV2LearningServiceInstructorProfilesErrors];
+export type InstructorProfilesPostInstructorProfilesError = InstructorProfilesPostInstructorProfilesErrors[keyof InstructorProfilesPostInstructorProfilesErrors];
 
-export type PostApiV2LearningServiceInstructorProfilesResponses = {
+export type InstructorProfilesPostInstructorProfilesResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesCountData = {
+export type InstructorProfilesGetInstructorProfilesCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9212,25 +9694,25 @@ export type GetApiV2LearningServiceInstructorProfilesCountData = {
     url: '/api/v2/LearningService/InstructorProfiles/Count';
 };
 
-export type GetApiV2LearningServiceInstructorProfilesCountErrors = {
+export type InstructorProfilesGetInstructorProfilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesCountError = GetApiV2LearningServiceInstructorProfilesCountErrors[keyof GetApiV2LearningServiceInstructorProfilesCountErrors];
+export type InstructorProfilesGetInstructorProfilesCountError = InstructorProfilesGetInstructorProfilesCountErrors[keyof InstructorProfilesGetInstructorProfilesCountErrors];
 
-export type GetApiV2LearningServiceInstructorProfilesCountResponses = {
+export type InstructorProfilesGetInstructorProfilesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesCountResponse = GetApiV2LearningServiceInstructorProfilesCountResponses[keyof GetApiV2LearningServiceInstructorProfilesCountResponses];
+export type InstructorProfilesGetInstructorProfilesCountResponse = InstructorProfilesGetInstructorProfilesCountResponses[keyof InstructorProfilesGetInstructorProfilesCountResponses];
 
-export type DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
+export type InstructorProfilesDeleteInstructorProfilesByInstructorProfileIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9245,23 +9727,23 @@ export type DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdDat
     url: '/api/v2/LearningService/InstructorProfiles/{instructorProfileId}';
 };
 
-export type DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors = {
+export type InstructorProfilesDeleteInstructorProfilesByInstructorProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdError = DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors[keyof DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors];
+export type InstructorProfilesDeleteInstructorProfilesByInstructorProfileIdError = InstructorProfilesDeleteInstructorProfilesByInstructorProfileIdErrors[keyof InstructorProfilesDeleteInstructorProfilesByInstructorProfileIdErrors];
 
-export type DeleteApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses = {
+export type InstructorProfilesDeleteInstructorProfilesByInstructorProfileIdResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
+export type InstructorProfilesGetInstructorProfilesByInstructorProfileIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9276,25 +9758,25 @@ export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdData =
     url: '/api/v2/LearningService/InstructorProfiles/{instructorProfileId}';
 };
 
-export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors = {
+export type InstructorProfilesGetInstructorProfilesByInstructorProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdError = GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors[keyof GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors];
+export type InstructorProfilesGetInstructorProfilesByInstructorProfileIdError = InstructorProfilesGetInstructorProfilesByInstructorProfileIdErrors[keyof InstructorProfilesGetInstructorProfilesByInstructorProfileIdErrors];
 
-export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses = {
+export type InstructorProfilesGetInstructorProfilesByInstructorProfileIdResponses = {
     /**
      * OK
      */
     200: InstructorProfileDtoReadable;
 };
 
-export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponse = GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses[keyof GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses];
+export type InstructorProfilesGetInstructorProfilesByInstructorProfileIdResponse = InstructorProfilesGetInstructorProfilesByInstructorProfileIdResponses[keyof InstructorProfilesGetInstructorProfilesByInstructorProfileIdResponses];
 
-export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
+export type InstructorProfilesPatchInstructorProfilesByInstructorProfileIdData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9309,25 +9791,25 @@ export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdData
     url: '/api/v2/LearningService/InstructorProfiles/{instructorProfileId}';
 };
 
-export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors = {
+export type InstructorProfilesPatchInstructorProfilesByInstructorProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdError = PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors[keyof PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors];
+export type InstructorProfilesPatchInstructorProfilesByInstructorProfileIdError = InstructorProfilesPatchInstructorProfilesByInstructorProfileIdErrors[keyof InstructorProfilesPatchInstructorProfilesByInstructorProfileIdErrors];
 
-export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses = {
+export type InstructorProfilesPatchInstructorProfilesByInstructorProfileIdResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponse = PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses[keyof PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses];
+export type InstructorProfilesPatchInstructorProfilesByInstructorProfileIdResponse = InstructorProfilesPatchInstructorProfilesByInstructorProfileIdResponses[keyof InstructorProfilesPatchInstructorProfilesByInstructorProfileIdResponses];
 
-export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
+export type InstructorProfilesPutInstructorProfilesByInstructorProfileIdData = {
     body?: InstructorProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -9342,23 +9824,23 @@ export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdData =
     url: '/api/v2/LearningService/InstructorProfiles/{instructorProfileId}';
 };
 
-export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors = {
+export type InstructorProfilesPutInstructorProfilesByInstructorProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdError = PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors[keyof PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors];
+export type InstructorProfilesPutInstructorProfilesByInstructorProfileIdError = InstructorProfilesPutInstructorProfilesByInstructorProfileIdErrors[keyof InstructorProfilesPutInstructorProfilesByInstructorProfileIdErrors];
 
-export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses = {
+export type InstructorProfilesPutInstructorProfilesByInstructorProfileIdResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetMyStudentProfilesAsyncData = {
+export type MeGetMyStudentProfilesData = {
     body?: StudentProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9370,25 +9852,25 @@ export type GetMyStudentProfilesAsyncData = {
     url: '/api/v2/LearningService/Me/StudentProfiles';
 };
 
-export type GetMyStudentProfilesAsyncErrors = {
+export type MeGetMyStudentProfilesErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyStudentProfilesAsyncError = GetMyStudentProfilesAsyncErrors[keyof GetMyStudentProfilesAsyncErrors];
+export type MeGetMyStudentProfilesError = MeGetMyStudentProfilesErrors[keyof MeGetMyStudentProfilesErrors];
 
-export type GetMyStudentProfilesAsyncResponses = {
+export type MeGetMyStudentProfilesResponses = {
     /**
      * OK
      */
     200: StudentProfileDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetMyStudentProfilesAsyncResponse = GetMyStudentProfilesAsyncResponses[keyof GetMyStudentProfilesAsyncResponses];
+export type MeGetMyStudentProfilesResponse = MeGetMyStudentProfilesResponses[keyof MeGetMyStudentProfilesResponses];
 
-export type GetMyStudentProfilesCountAsyncData = {
+export type MeGetMyStudentProfilesCountData = {
     body?: StudentProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9400,25 +9882,25 @@ export type GetMyStudentProfilesCountAsyncData = {
     url: '/api/v2/LearningService/Me/StudentProfiles/Count';
 };
 
-export type GetMyStudentProfilesCountAsyncErrors = {
+export type MeGetMyStudentProfilesCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyStudentProfilesCountAsyncError = GetMyStudentProfilesCountAsyncErrors[keyof GetMyStudentProfilesCountAsyncErrors];
+export type MeGetMyStudentProfilesCountError = MeGetMyStudentProfilesCountErrors[keyof MeGetMyStudentProfilesCountErrors];
 
-export type GetMyStudentProfilesCountAsyncResponses = {
+export type MeGetMyStudentProfilesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetMyStudentProfilesCountAsyncResponse = GetMyStudentProfilesCountAsyncResponses[keyof GetMyStudentProfilesCountAsyncResponses];
+export type MeGetMyStudentProfilesCountResponse = MeGetMyStudentProfilesCountResponses[keyof MeGetMyStudentProfilesCountResponses];
 
-export type GetMyInstructorProfilesAsyncData = {
+export type MeGetMyInstructorProfilesData = {
     body?: InstructorProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9430,25 +9912,25 @@ export type GetMyInstructorProfilesAsyncData = {
     url: '/api/v2/LearningService/Me/InstructorProfiles';
 };
 
-export type GetMyInstructorProfilesAsyncErrors = {
+export type MeGetMyInstructorProfilesErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyInstructorProfilesAsyncError = GetMyInstructorProfilesAsyncErrors[keyof GetMyInstructorProfilesAsyncErrors];
+export type MeGetMyInstructorProfilesError = MeGetMyInstructorProfilesErrors[keyof MeGetMyInstructorProfilesErrors];
 
-export type GetMyInstructorProfilesAsyncResponses = {
+export type MeGetMyInstructorProfilesResponses = {
     /**
      * OK
      */
     200: InstructorProfileDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetMyInstructorProfilesAsyncResponse = GetMyInstructorProfilesAsyncResponses[keyof GetMyInstructorProfilesAsyncResponses];
+export type MeGetMyInstructorProfilesResponse = MeGetMyInstructorProfilesResponses[keyof MeGetMyInstructorProfilesResponses];
 
-export type GetMyInstructorProfilesCountAsyncData = {
+export type MeGetMyInstructorProfilesCountData = {
     body?: InstructorProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9460,25 +9942,25 @@ export type GetMyInstructorProfilesCountAsyncData = {
     url: '/api/v2/LearningService/Me/InstructorProfiles/Count';
 };
 
-export type GetMyInstructorProfilesCountAsyncErrors = {
+export type MeGetMyInstructorProfilesCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyInstructorProfilesCountAsyncError = GetMyInstructorProfilesCountAsyncErrors[keyof GetMyInstructorProfilesCountAsyncErrors];
+export type MeGetMyInstructorProfilesCountError = MeGetMyInstructorProfilesCountErrors[keyof MeGetMyInstructorProfilesCountErrors];
 
-export type GetMyInstructorProfilesCountAsyncResponses = {
+export type MeGetMyInstructorProfilesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetMyInstructorProfilesCountAsyncResponse = GetMyInstructorProfilesCountAsyncResponses[keyof GetMyInstructorProfilesCountAsyncResponses];
+export type MeGetMyInstructorProfilesCountResponse = MeGetMyInstructorProfilesCountResponses[keyof MeGetMyInstructorProfilesCountResponses];
 
-export type GetMyEnrollmentsAsyncData = {
+export type MeGetMyEnrollmentsData = {
     body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9490,25 +9972,25 @@ export type GetMyEnrollmentsAsyncData = {
     url: '/api/v2/LearningService/Me/Enrollments';
 };
 
-export type GetMyEnrollmentsAsyncErrors = {
+export type MeGetMyEnrollmentsErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyEnrollmentsAsyncError = GetMyEnrollmentsAsyncErrors[keyof GetMyEnrollmentsAsyncErrors];
+export type MeGetMyEnrollmentsError = MeGetMyEnrollmentsErrors[keyof MeGetMyEnrollmentsErrors];
 
-export type GetMyEnrollmentsAsyncResponses = {
+export type MeGetMyEnrollmentsResponses = {
     /**
      * OK
      */
     200: CourseEnrollmentDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetMyEnrollmentsAsyncResponse = GetMyEnrollmentsAsyncResponses[keyof GetMyEnrollmentsAsyncResponses];
+export type MeGetMyEnrollmentsResponse = MeGetMyEnrollmentsResponses[keyof MeGetMyEnrollmentsResponses];
 
-export type GetMyEnrollmentsCountAsyncData = {
+export type MeGetMyEnrollmentsCountData = {
     body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9520,25 +10002,25 @@ export type GetMyEnrollmentsCountAsyncData = {
     url: '/api/v2/LearningService/Me/Enrollments/Count';
 };
 
-export type GetMyEnrollmentsCountAsyncErrors = {
+export type MeGetMyEnrollmentsCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyEnrollmentsCountAsyncError = GetMyEnrollmentsCountAsyncErrors[keyof GetMyEnrollmentsCountAsyncErrors];
+export type MeGetMyEnrollmentsCountError = MeGetMyEnrollmentsCountErrors[keyof MeGetMyEnrollmentsCountErrors];
 
-export type GetMyEnrollmentsCountAsyncResponses = {
+export type MeGetMyEnrollmentsCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetMyEnrollmentsCountAsyncResponse = GetMyEnrollmentsCountAsyncResponses[keyof GetMyEnrollmentsCountAsyncResponses];
+export type MeGetMyEnrollmentsCountResponse = MeGetMyEnrollmentsCountResponses[keyof MeGetMyEnrollmentsCountResponses];
 
-export type GetMyStudentCoursesAsyncData = {
+export type MeGetMyStudentCoursesData = {
     body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9550,25 +10032,25 @@ export type GetMyStudentCoursesAsyncData = {
     url: '/api/v2/LearningService/Me/Courses';
 };
 
-export type GetMyStudentCoursesAsyncErrors = {
+export type MeGetMyStudentCoursesErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyStudentCoursesAsyncError = GetMyStudentCoursesAsyncErrors[keyof GetMyStudentCoursesAsyncErrors];
+export type MeGetMyStudentCoursesError = MeGetMyStudentCoursesErrors[keyof MeGetMyStudentCoursesErrors];
 
-export type GetMyStudentCoursesAsyncResponses = {
+export type MeGetMyStudentCoursesResponses = {
     /**
      * OK
      */
     200: CourseDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetMyStudentCoursesAsyncResponse = GetMyStudentCoursesAsyncResponses[keyof GetMyStudentCoursesAsyncResponses];
+export type MeGetMyStudentCoursesResponse = MeGetMyStudentCoursesResponses[keyof MeGetMyStudentCoursesResponses];
 
-export type GetMyStudentCoursesCountAsyncData = {
+export type MeGetMyStudentCoursesCountData = {
     body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9580,25 +10062,25 @@ export type GetMyStudentCoursesCountAsyncData = {
     url: '/api/v2/LearningService/Me/Courses/Count';
 };
 
-export type GetMyStudentCoursesCountAsyncErrors = {
+export type MeGetMyStudentCoursesCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyStudentCoursesCountAsyncError = GetMyStudentCoursesCountAsyncErrors[keyof GetMyStudentCoursesCountAsyncErrors];
+export type MeGetMyStudentCoursesCountError = MeGetMyStudentCoursesCountErrors[keyof MeGetMyStudentCoursesCountErrors];
 
-export type GetMyStudentCoursesCountAsyncResponses = {
+export type MeGetMyStudentCoursesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetMyStudentCoursesCountAsyncResponse = GetMyStudentCoursesCountAsyncResponses[keyof GetMyStudentCoursesCountAsyncResponses];
+export type MeGetMyStudentCoursesCountResponse = MeGetMyStudentCoursesCountResponses[keyof MeGetMyStudentCoursesCountResponses];
 
-export type GetMyInstructorCoursesAsyncData = {
+export type MeGetMyInstructorCoursesData = {
     body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9610,25 +10092,25 @@ export type GetMyInstructorCoursesAsyncData = {
     url: '/api/v2/LearningService/Me/InstructorCourses';
 };
 
-export type GetMyInstructorCoursesAsyncErrors = {
+export type MeGetMyInstructorCoursesErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyInstructorCoursesAsyncError = GetMyInstructorCoursesAsyncErrors[keyof GetMyInstructorCoursesAsyncErrors];
+export type MeGetMyInstructorCoursesError = MeGetMyInstructorCoursesErrors[keyof MeGetMyInstructorCoursesErrors];
 
-export type GetMyInstructorCoursesAsyncResponses = {
+export type MeGetMyInstructorCoursesResponses = {
     /**
      * OK
      */
     200: CourseDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetMyInstructorCoursesAsyncResponse = GetMyInstructorCoursesAsyncResponses[keyof GetMyInstructorCoursesAsyncResponses];
+export type MeGetMyInstructorCoursesResponse = MeGetMyInstructorCoursesResponses[keyof MeGetMyInstructorCoursesResponses];
 
-export type GetMyInstructorCoursesCountAsyncData = {
+export type MeGetMyInstructorCoursesCountData = {
     body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9640,25 +10122,25 @@ export type GetMyInstructorCoursesCountAsyncData = {
     url: '/api/v2/LearningService/Me/InstructorCourses/Count';
 };
 
-export type GetMyInstructorCoursesCountAsyncErrors = {
+export type MeGetMyInstructorCoursesCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyInstructorCoursesCountAsyncError = GetMyInstructorCoursesCountAsyncErrors[keyof GetMyInstructorCoursesCountAsyncErrors];
+export type MeGetMyInstructorCoursesCountError = MeGetMyInstructorCoursesCountErrors[keyof MeGetMyInstructorCoursesCountErrors];
 
-export type GetMyInstructorCoursesCountAsyncResponses = {
+export type MeGetMyInstructorCoursesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetMyInstructorCoursesCountAsyncResponse = GetMyInstructorCoursesCountAsyncResponses[keyof GetMyInstructorCoursesCountAsyncResponses];
+export type MeGetMyInstructorCoursesCountResponse = MeGetMyInstructorCoursesCountResponses[keyof MeGetMyInstructorCoursesCountResponses];
 
-export type GetMyCertificatesAsyncData = {
+export type MeGetMyCertificatesData = {
     body?: CourseCompletionCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9670,25 +10152,133 @@ export type GetMyCertificatesAsyncData = {
     url: '/api/v2/LearningService/Me/Certificates';
 };
 
-export type GetMyCertificatesAsyncErrors = {
+export type MeGetMyCertificatesErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyCertificatesAsyncError = GetMyCertificatesAsyncErrors[keyof GetMyCertificatesAsyncErrors];
+export type MeGetMyCertificatesError = MeGetMyCertificatesErrors[keyof MeGetMyCertificatesErrors];
 
-export type GetMyCertificatesAsyncResponses = {
+export type MeGetMyCertificatesResponses = {
     /**
      * OK
      */
     200: CourseCompletionCertificateDtoIReadOnlyListEnvelopeReadable;
 };
 
-export type GetMyCertificatesAsyncResponse = GetMyCertificatesAsyncResponses[keyof GetMyCertificatesAsyncResponses];
+export type MeGetMyCertificatesResponse = MeGetMyCertificatesResponses[keyof MeGetMyCertificatesResponses];
 
-export type GetMyCertificatesCountAsyncData = {
+export type MeGetMyCertificateData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseCertificateId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Me/Certificates/{courseCertificateId}';
+};
+
+export type MeGetMyCertificateErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type MeGetMyCertificateError = MeGetMyCertificateErrors[keyof MeGetMyCertificateErrors];
+
+export type MeGetMyCertificateResponses = {
+    /**
+     * OK
+     */
+    200: CourseCompletionCertificateDtoEnvelopeReadable;
+};
+
+export type MeGetMyCertificateResponse = MeGetMyCertificateResponses[keyof MeGetMyCertificateResponses];
+
+export type MeGetMyCourseAssignmentData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseAssignmentId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Me/Assignments/{courseAssignmentId}';
+};
+
+export type MeGetMyCourseAssignmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type MeGetMyCourseAssignmentError = MeGetMyCourseAssignmentErrors[keyof MeGetMyCourseAssignmentErrors];
+
+export type MeGetMyCourseAssignmentResponses = {
+    /**
+     * OK
+     */
+    200: CourseAssignmentDtoEnvelopeReadable;
+};
+
+export type MeGetMyCourseAssignmentResponse = MeGetMyCourseAssignmentResponses[keyof MeGetMyCourseAssignmentResponses];
+
+export type MeGetMyCourseProblemSetData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseProblemSetId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Me/ProblemSets/{courseProblemSetId}';
+};
+
+export type MeGetMyCourseProblemSetErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type MeGetMyCourseProblemSetError = MeGetMyCourseProblemSetErrors[keyof MeGetMyCourseProblemSetErrors];
+
+export type MeGetMyCourseProblemSetResponses = {
+    /**
+     * OK
+     */
+    200: CourseProblemSetDtoEnvelopeReadable;
+};
+
+export type MeGetMyCourseProblemSetResponse = MeGetMyCourseProblemSetResponses[keyof MeGetMyCourseProblemSetResponses];
+
+export type MeGetMyCertificatesCountData = {
     body?: CourseCompletionCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9700,25 +10290,25 @@ export type GetMyCertificatesCountAsyncData = {
     url: '/api/v2/LearningService/Me/Certificates/Count';
 };
 
-export type GetMyCertificatesCountAsyncErrors = {
+export type MeGetMyCertificatesCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyCertificatesCountAsyncError = GetMyCertificatesCountAsyncErrors[keyof GetMyCertificatesCountAsyncErrors];
+export type MeGetMyCertificatesCountError = MeGetMyCertificatesCountErrors[keyof MeGetMyCertificatesCountErrors];
 
-export type GetMyCertificatesCountAsyncResponses = {
+export type MeGetMyCertificatesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetMyCertificatesCountAsyncResponse = GetMyCertificatesCountAsyncResponses[keyof GetMyCertificatesCountAsyncResponses];
+export type MeGetMyCertificatesCountResponse = MeGetMyCertificatesCountResponses[keyof MeGetMyCertificatesCountResponses];
 
-export type GetMyAverageScoreAsyncData = {
+export type MeGetMyAverageScoreData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9730,25 +10320,25 @@ export type GetMyAverageScoreAsyncData = {
     url: '/api/v2/LearningService/Me/AverageScore';
 };
 
-export type GetMyAverageScoreAsyncErrors = {
+export type MeGetMyAverageScoreErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyAverageScoreAsyncError = GetMyAverageScoreAsyncErrors[keyof GetMyAverageScoreAsyncErrors];
+export type MeGetMyAverageScoreError = MeGetMyAverageScoreErrors[keyof MeGetMyAverageScoreErrors];
 
-export type GetMyAverageScoreAsyncResponses = {
+export type MeGetMyAverageScoreResponses = {
     /**
      * OK
      */
     200: AverageDtoEnvelopeReadable;
 };
 
-export type GetMyAverageScoreAsyncResponse = GetMyAverageScoreAsyncResponses[keyof GetMyAverageScoreAsyncResponses];
+export type MeGetMyAverageScoreResponse = MeGetMyAverageScoreResponses[keyof MeGetMyAverageScoreResponses];
 
-export type GetMyHoursCompletedAsyncData = {
+export type MeGetMyHoursCompletedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9760,25 +10350,25 @@ export type GetMyHoursCompletedAsyncData = {
     url: '/api/v2/LearningService/Me/HoursCompleted';
 };
 
-export type GetMyHoursCompletedAsyncErrors = {
+export type MeGetMyHoursCompletedErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyHoursCompletedAsyncError = GetMyHoursCompletedAsyncErrors[keyof GetMyHoursCompletedAsyncErrors];
+export type MeGetMyHoursCompletedError = MeGetMyHoursCompletedErrors[keyof MeGetMyHoursCompletedErrors];
 
-export type GetMyHoursCompletedAsyncResponses = {
+export type MeGetMyHoursCompletedResponses = {
     /**
      * OK
      */
     200: CountDtoEnvelopeReadable;
 };
 
-export type GetMyHoursCompletedAsyncResponse = GetMyHoursCompletedAsyncResponses[keyof GetMyHoursCompletedAsyncResponses];
+export type MeGetMyHoursCompletedResponse = MeGetMyHoursCompletedResponses[keyof MeGetMyHoursCompletedResponses];
 
-export type GetMyPendingTaskCountAsyncData = {
+export type MeGetMyPendingTaskCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9790,25 +10380,25 @@ export type GetMyPendingTaskCountAsyncData = {
     url: '/api/v2/LearningService/Me/PendingTasks';
 };
 
-export type GetMyPendingTaskCountAsyncErrors = {
+export type MeGetMyPendingTaskCountErrors = {
     /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
 };
 
-export type GetMyPendingTaskCountAsyncError = GetMyPendingTaskCountAsyncErrors[keyof GetMyPendingTaskCountAsyncErrors];
+export type MeGetMyPendingTaskCountError = MeGetMyPendingTaskCountErrors[keyof MeGetMyPendingTaskCountErrors];
 
-export type GetMyPendingTaskCountAsyncResponses = {
+export type MeGetMyPendingTaskCountResponses = {
     /**
      * OK
      */
     200: CountDtoEnvelopeReadable;
 };
 
-export type GetMyPendingTaskCountAsyncResponse = GetMyPendingTaskCountAsyncResponses[keyof GetMyPendingTaskCountAsyncResponses];
+export type MeGetMyPendingTaskCountResponse = MeGetMyPendingTaskCountResponses[keyof MeGetMyPendingTaskCountResponses];
 
-export type GetApiV2LearningServiceStudentProfilesData = {
+export type StudentProfilesGetStudentProfilesData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9821,25 +10411,25 @@ export type GetApiV2LearningServiceStudentProfilesData = {
     url: '/api/v2/LearningService/StudentProfiles';
 };
 
-export type GetApiV2LearningServiceStudentProfilesErrors = {
+export type StudentProfilesGetStudentProfilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceStudentProfilesError = GetApiV2LearningServiceStudentProfilesErrors[keyof GetApiV2LearningServiceStudentProfilesErrors];
+export type StudentProfilesGetStudentProfilesError = StudentProfilesGetStudentProfilesErrors[keyof StudentProfilesGetStudentProfilesErrors];
 
-export type GetApiV2LearningServiceStudentProfilesResponses = {
+export type StudentProfilesGetStudentProfilesResponses = {
     /**
      * OK
      */
     200: Array<StudentProfileDtoReadable>;
 };
 
-export type GetApiV2LearningServiceStudentProfilesResponse = GetApiV2LearningServiceStudentProfilesResponses[keyof GetApiV2LearningServiceStudentProfilesResponses];
+export type StudentProfilesGetStudentProfilesResponse = StudentProfilesGetStudentProfilesResponses[keyof StudentProfilesGetStudentProfilesResponses];
 
-export type PostApiV2LearningServiceStudentProfilesData = {
+export type StudentProfilesPostStudentProfilesData = {
     body?: StudentProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
@@ -9852,23 +10442,23 @@ export type PostApiV2LearningServiceStudentProfilesData = {
     url: '/api/v2/LearningService/StudentProfiles';
 };
 
-export type PostApiV2LearningServiceStudentProfilesErrors = {
+export type StudentProfilesPostStudentProfilesErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PostApiV2LearningServiceStudentProfilesError = PostApiV2LearningServiceStudentProfilesErrors[keyof PostApiV2LearningServiceStudentProfilesErrors];
+export type StudentProfilesPostStudentProfilesError = StudentProfilesPostStudentProfilesErrors[keyof StudentProfilesPostStudentProfilesErrors];
 
-export type PostApiV2LearningServiceStudentProfilesResponses = {
+export type StudentProfilesPostStudentProfilesResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetApiV2LearningServiceStudentProfilesCountData = {
+export type StudentProfilesGetStudentProfilesCountData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9881,25 +10471,25 @@ export type GetApiV2LearningServiceStudentProfilesCountData = {
     url: '/api/v2/LearningService/StudentProfiles/Count';
 };
 
-export type GetApiV2LearningServiceStudentProfilesCountErrors = {
+export type StudentProfilesGetStudentProfilesCountErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceStudentProfilesCountError = GetApiV2LearningServiceStudentProfilesCountErrors[keyof GetApiV2LearningServiceStudentProfilesCountErrors];
+export type StudentProfilesGetStudentProfilesCountError = StudentProfilesGetStudentProfilesCountErrors[keyof StudentProfilesGetStudentProfilesCountErrors];
 
-export type GetApiV2LearningServiceStudentProfilesCountResponses = {
+export type StudentProfilesGetStudentProfilesCountResponses = {
     /**
      * OK
      */
     200: number;
 };
 
-export type GetApiV2LearningServiceStudentProfilesCountResponse = GetApiV2LearningServiceStudentProfilesCountResponses[keyof GetApiV2LearningServiceStudentProfilesCountResponses];
+export type StudentProfilesGetStudentProfilesCountResponse = StudentProfilesGetStudentProfilesCountResponses[keyof StudentProfilesGetStudentProfilesCountResponses];
 
-export type DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
+export type StudentProfilesDeleteStudentProfilesByStudentProfileIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9914,23 +10504,23 @@ export type DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
     url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}';
 };
 
-export type DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdErrors = {
+export type StudentProfilesDeleteStudentProfilesByStudentProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdError = DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdErrors[keyof DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdErrors];
+export type StudentProfilesDeleteStudentProfilesByStudentProfileIdError = StudentProfilesDeleteStudentProfilesByStudentProfileIdErrors[keyof StudentProfilesDeleteStudentProfilesByStudentProfileIdErrors];
 
-export type DeleteApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = {
+export type StudentProfilesDeleteStudentProfilesByStudentProfileIdResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -9945,25 +10535,25 @@ export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
     url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}';
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdErrors = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdError = GetApiV2LearningServiceStudentProfilesByStudentProfileIdErrors[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdErrors];
+export type StudentProfilesGetStudentProfilesByStudentProfileIdError = StudentProfilesGetStudentProfilesByStudentProfileIdErrors[keyof StudentProfilesGetStudentProfilesByStudentProfileIdErrors];
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdResponses = {
     /**
      * OK
      */
     200: StudentProfileDtoReadable;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponse = GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses];
+export type StudentProfilesGetStudentProfilesByStudentProfileIdResponse = StudentProfilesGetStudentProfilesByStudentProfileIdResponses[keyof StudentProfilesGetStudentProfilesByStudentProfileIdResponses];
 
-export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
+export type StudentProfilesPatchStudentProfilesByStudentProfileIdData = {
     body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
@@ -9978,25 +10568,25 @@ export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
     url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}';
 };
 
-export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdErrors = {
+export type StudentProfilesPatchStudentProfilesByStudentProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdError = PatchApiV2LearningServiceStudentProfilesByStudentProfileIdErrors[keyof PatchApiV2LearningServiceStudentProfilesByStudentProfileIdErrors];
+export type StudentProfilesPatchStudentProfilesByStudentProfileIdError = StudentProfilesPatchStudentProfilesByStudentProfileIdErrors[keyof StudentProfilesPatchStudentProfilesByStudentProfileIdErrors];
 
-export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = {
+export type StudentProfilesPatchStudentProfilesByStudentProfileIdResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponse = PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponses[keyof PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponses];
+export type StudentProfilesPatchStudentProfilesByStudentProfileIdResponse = StudentProfilesPatchStudentProfilesByStudentProfileIdResponses[keyof StudentProfilesPatchStudentProfilesByStudentProfileIdResponses];
 
-export type PutApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
+export type StudentProfilesPutStudentProfilesByStudentProfileIdData = {
     body?: StudentProfileUpdateDto;
     headers?: {
         'x-api-version'?: string;
@@ -10011,23 +10601,23 @@ export type PutApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
     url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}';
 };
 
-export type PutApiV2LearningServiceStudentProfilesByStudentProfileIdErrors = {
+export type StudentProfilesPutStudentProfilesByStudentProfileIdErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type PutApiV2LearningServiceStudentProfilesByStudentProfileIdError = PutApiV2LearningServiceStudentProfilesByStudentProfileIdErrors[keyof PutApiV2LearningServiceStudentProfilesByStudentProfileIdErrors];
+export type StudentProfilesPutStudentProfilesByStudentProfileIdError = StudentProfilesPutStudentProfilesByStudentProfileIdErrors[keyof StudentProfilesPutStudentProfilesByStudentProfileIdErrors];
 
-export type PutApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = {
+export type StudentProfilesPutStudentProfilesByStudentProfileIdResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageData = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdAverageData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10042,25 +10632,25 @@ export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageData 
     url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}/Average';
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageErrors = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdAverageErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageError = GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageErrors[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageErrors];
+export type StudentProfilesGetStudentProfilesByStudentProfileIdAverageError = StudentProfilesGetStudentProfilesByStudentProfileIdAverageErrors[keyof StudentProfilesGetStudentProfilesByStudentProfileIdAverageErrors];
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageResponses = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdAverageResponses = {
     /**
      * OK
      */
     200: AverageDto;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageResponse = GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageResponses[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdAverageResponses];
+export type StudentProfilesGetStudentProfilesByStudentProfileIdAverageResponse = StudentProfilesGetStudentProfilesByStudentProfileIdAverageResponses[keyof StudentProfilesGetStudentProfilesByStudentProfileIdAverageResponses];
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedData = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -10075,23 +10665,23 @@ export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursComplet
     url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}/HoursCompleted';
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedErrors = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedError = GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedErrors[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedErrors];
+export type StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedError = StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedErrors[keyof StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedErrors];
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponses = {
+export type StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedResponses = {
     /**
      * OK
      */
     200: CountDto;
 };
 
-export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponse = GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponses[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponses];
+export type StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedResponse = StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedResponses[keyof StudentProfilesGetStudentProfilesByStudentProfileIdHoursCompletedResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});
