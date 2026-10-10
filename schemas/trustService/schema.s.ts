@@ -282,6 +282,20 @@ export interface paths {
      */
     post: operations["SigningKeys_GeneratePlatformSigningKey"];
   };
+  "/api/v2/TrustService/SigningKeys": {
+    /**
+     * Generate a tenant signing key in custody
+     * @description Generates a signing key owned by the acting tenant inside the configured signing custody and records its descriptor. The key's authority is always the acting tenant's own id. The key id must be lowercase letters and digits, then '.', '_' or '-'. The private key never leaves custody; the response carries public data only.
+     */
+    post: operations["SigningKeys_GenerateTenantSigningKey"];
+  };
+  "/api/v2/TrustService/SigningKeys/Platform/{authorityId}/{keyId}": {
+    /**
+     * Read the recorded state of a platform authority signing key
+     * @description Read-only recovery for an interrupted key ceremony: returns the key's descriptor (public data) and its generation attempt, with a status of provisioned, attempt-open (the attempt needs reconciliation under its custody reference) or attempt-closed-without-key. Only the instance root tenant may call it, and only for a configured platform authority. Answers 404 when neither a descriptor nor an attempt exists.
+     */
+    get: operations["SigningKeys_GetPlatformSigningKeyRecord"];
+  };
   "/api/v2/TrustService/SigningLogs": {
     /**
      * Get all signing logs
@@ -501,13 +515,16 @@ export interface components {
       activityId?: string | null;
       result?: boolean;
     };
+    /** @enum {string} */
+    CertificateStatus: "Unknown" | "Active" | "Expiring" | "Expired" | "Revoked" | "Disabled";
+    /** @enum {string} */
+    CertificateType: "AuthSignedCertificate" | "SelfSignedCertificate" | "AllianceSignedCertificate";
     ContactCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      type: "Individual" | "Organization";
+      type: components["schemas"]["ContactType"];
       firstName: string;
       lastName?: string | null;
       /** Format: email */
@@ -558,8 +575,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -629,26 +645,36 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
     CreateSigningParticipantDto: {
       contactId: string;
-      /** @enum {string} */
-      role?: "Signer" | "Approver" | "Viewer" | "Witness" | "CarbonCopy" | "System";
+      role?: components["schemas"]["SigningParticipantRole"];
       /** Format: int32 */
       routingOrder?: number;
       externalReference?: string | null;
     };
     CreateSigningRequestDto: {
-      /** @enum {string} */
-      routingMode?: "Parallel" | "Sequential";
+      routingMode?: components["schemas"]["SigningRoutingMode"];
       /** Format: date-time */
       expiresAtUtc?: string | null;
       message?: string | null;
       correlationId?: string | null;
       externalReference?: string | null;
     };
+    /** @enum {string} */
+    DocumentStandard: "None" | "Ubl" | "Pdf" | "Xml" | "Email" | "Json" | "Other";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -693,6 +719,8 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    HttpStatusCode: "Continue" | "SwitchingProtocols" | "Processing" | "EarlyHints" | "OK" | "Created" | "Accepted" | "NonAuthoritativeInformation" | "NoContent" | "ResetContent" | "PartialContent" | "MultiStatus" | "AlreadyReported" | "IMUsed" | "MultipleChoices" | "MovedPermanently" | "Found" | "SeeOther" | "NotModified" | "UseProxy" | "Unused" | "TemporaryRedirect" | "PermanentRedirect" | "BadRequest" | "Unauthorized" | "PaymentRequired" | "Forbidden" | "NotFound" | "MethodNotAllowed" | "NotAcceptable" | "ProxyAuthenticationRequired" | "RequestTimeout" | "Conflict" | "Gone" | "LengthRequired" | "PreconditionFailed" | "RequestEntityTooLarge" | "RequestUriTooLong" | "UnsupportedMediaType" | "RequestedRangeNotSatisfiable" | "ExpectationFailed" | "MisdirectedRequest" | "UnprocessableEntity" | "Locked" | "FailedDependency" | "UpgradeRequired" | "PreconditionRequired" | "TooManyRequests" | "RequestHeaderFieldsTooLarge" | "UnavailableForLegalReasons" | "InternalServerError" | "NotImplemented" | "BadGateway" | "ServiceUnavailable" | "GatewayTimeout" | "HttpVersionNotSupported" | "VariantAlsoNegotiates" | "InsufficientStorage" | "LoopDetected" | "NotExtended" | "NetworkAuthenticationRequired";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -742,6 +770,17 @@ export interface components {
       from?: string | null;
       value?: unknown;
     };
+    PlatformSigningKeyAttemptDto: {
+      attemptId?: string | null;
+      state?: string | null;
+      knownOutcome?: string | null;
+      unknownOutcome?: string | null;
+      custodyKeyRef?: string | null;
+      /** Format: date-time */
+      createdAtUtc?: string;
+      /** Format: date-time */
+      resolvedAtUtc?: string | null;
+    };
     PlatformSigningKeyDto: {
       id?: string | null;
       /** Format: date-time */
@@ -774,6 +813,38 @@ export interface components {
     PlatformSigningKeyGenerateDto: {
       authorityId?: string | null;
       keyId?: string | null;
+      /** Format: date-time */
+      validUntilUtc?: string;
+    };
+    PlatformSigningKeyRecordDto: {
+      authorityId?: string | null;
+      keyId?: string | null;
+      status?: string | null;
+      key?: components["schemas"]["PlatformSigningKeyRecordKeyDto"];
+      attempt?: components["schemas"]["PlatformSigningKeyAttemptDto"];
+    };
+    PlatformSigningKeyRecordDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PlatformSigningKeyRecordDto"];
+    };
+    PlatformSigningKeyRecordKeyDto: {
+      descriptorId?: string | null;
+      algorithm?: string | null;
+      publicKey?: string | null;
+      custodyKeyRef?: string | null;
+      /** Format: date-time */
+      validFromUtc?: string;
       /** Format: date-time */
       validUntilUtc?: string;
     };
@@ -816,8 +887,7 @@ export interface components {
       signingProfileId?: string | null;
     };
     RecordSigningParticipantOutcomeDto: {
-      /** @enum {string} */
-      outcome: "Pending" | "Sent" | "Viewed" | "Signed" | "Approved" | "Declined" | "Skipped" | "Expired" | "Failed";
+      outcome: components["schemas"]["SigningParticipantStatus"];
       /** Format: date-time */
       outcomeAtUtc?: string | null;
       declineReason?: string | null;
@@ -859,12 +929,9 @@ export interface components {
       signedDocumentId?: string | null;
       /** Format: date-time */
       signedAtUtc?: string | null;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
+      signingStatus?: components["schemas"]["SigningStatus"];
+      verificationStatus?: components["schemas"]["VerificationStatus"];
+      signatureFormat?: components["schemas"]["SignatureFormat"];
       digestAlgorithm?: string | null;
       signatureAlgorithm?: string | null;
       canonicalizationAlgorithm?: string | null;
@@ -905,6 +972,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SignatureDto"][] | null;
     };
+    /** @enum {string} */
+    SignatureFormat: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other";
+    /** @enum {string} */
+    SignaturePurpose: "Unknown" | "RegulatorySubmission" | "ContractExecution" | "EmailSigning" | "InternalApproval" | "EvidenceSealing" | "AgentCredential" | "Other";
     SignatureVerificationDto: {
       isValid?: boolean;
       method?: string | null;
@@ -912,6 +983,8 @@ export interface components {
       signerThumbprint?: string | null;
       issues?: string[] | null;
     };
+    /** @enum {string} */
+    SignedArtifactRole: "Unknown" | "Source" | "SupportingEvidence" | "AuthorityResponse" | "HumanReadablePdf" | "XmlPayload" | "ValidationReport" | "Other";
     SignedDocumentAttachmentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -927,8 +1000,7 @@ export interface components {
       fileUploadUrl?: string | null;
       storageKey: string;
       storageProviderKey?: string | null;
-      /** @enum {string|null} */
-      attachmentRole?: "Unknown" | "Source" | "SupportingEvidence" | "AuthorityResponse" | "HumanReadablePdf" | "XmlPayload" | "ValidationReport" | "Other" | null;
+      attachmentRole?: components["schemas"]["SignedArtifactRole"];
     };
     SignedDocumentAttachmentDto: {
       id?: string | null;
@@ -944,12 +1016,9 @@ export interface components {
       fileUploadUrl?: string | null;
       storageKey?: string | null;
       storageProviderKey?: string | null;
-      /** @enum {string} */
-      scanStatus?: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
-      /** @enum {string} */
-      mutability?: "Editable" | "Managed" | "SealedEvidence";
-      /** @enum {string|null} */
-      attachmentRole?: "Unknown" | "Source" | "SupportingEvidence" | "AuthorityResponse" | "HumanReadablePdf" | "XmlPayload" | "ValidationReport" | "Other" | null;
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+      mutability?: components["schemas"]["StorageObjectMutability"];
+      attachmentRole?: components["schemas"]["SignedArtifactRole"];
       tenantId?: string | null;
       userId?: string | null;
       enrollmentId?: string | null;
@@ -985,8 +1054,7 @@ export interface components {
     };
     SignedDocumentAttachmentUpdateDto: {
       title: string;
-      /** @enum {string|null} */
-      attachmentRole?: "Unknown" | "Source" | "SupportingEvidence" | "AuthorityResponse" | "HumanReadablePdf" | "XmlPayload" | "ValidationReport" | "Other" | null;
+      attachmentRole?: components["schemas"]["SignedArtifactRole"];
     };
     SignedDocumentCreateDto: {
       /** Format: uuid */
@@ -998,10 +1066,8 @@ export interface components {
       title: string;
       contentType?: string | null;
       contactId: string;
-      /** @enum {string|null} */
-      documentStandard?: "None" | "Ubl" | "Pdf" | "Xml" | "Email" | "Json" | "Other" | null;
-      /** @enum {string|null} */
-      trustDocumentType?: "Unknown" | "Invoice" | "CreditNote" | "DebitNote" | "Contract" | "Certificate" | "Email" | "AuthorityResponse" | "Other" | null;
+      documentStandard?: components["schemas"]["DocumentStandard"];
+      trustDocumentType?: components["schemas"]["TrustDocumentType"];
       correlationId?: string | null;
       externalReference?: string | null;
     };
@@ -1020,14 +1086,10 @@ export interface components {
       contactId?: string | null;
       userId?: string | null;
       enrollmentId?: string | null;
-      /** @enum {string|null} */
-      documentStandard?: "None" | "Ubl" | "Pdf" | "Xml" | "Email" | "Json" | "Other" | null;
-      /** @enum {string|null} */
-      trustDocumentType?: "Unknown" | "Invoice" | "CreditNote" | "DebitNote" | "Contract" | "Certificate" | "Email" | "AuthorityResponse" | "Other" | null;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
+      documentStandard?: components["schemas"]["DocumentStandard"];
+      trustDocumentType?: components["schemas"]["TrustDocumentType"];
+      signingStatus?: components["schemas"]["SigningStatus"];
+      verificationStatus?: components["schemas"]["VerificationStatus"];
       /** Format: date-time */
       signedAtUtc?: string | null;
       correlationId?: string | null;
@@ -1042,8 +1104,7 @@ export interface components {
       frozenSourceFileUploadId?: string | null;
       signedFileUploadId?: string | null;
       evidenceFileUploadId?: string | null;
-      /** @enum {string|null} */
-      lockState?: "Draft" | "Editable" | "FrozenForSignature" | "SigningInProgress" | "Sealed" | "Voided" | "Superseded" | null;
+      lockState?: components["schemas"]["SignedDocumentLockState"];
       graphicalRepresentationFileUploadId?: string | null;
       graphicalRepresentationStorageObjectId?: string | null;
       graphicalRepresentationSha256?: string | null;
@@ -1080,16 +1141,16 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SignedDocumentDto"][] | null;
     };
+    /** @enum {string} */
+    SignedDocumentLockState: "Draft" | "Editable" | "FrozenForSignature" | "SigningInProgress" | "Sealed" | "Voided" | "Superseded";
     SignedDocumentUpdateDto: {
       url?: string | null;
       type?: string | null;
       title: string;
       contentType?: string | null;
       contactId: string;
-      /** @enum {string|null} */
-      documentStandard?: "None" | "Ubl" | "Pdf" | "Xml" | "Email" | "Json" | "Other" | null;
-      /** @enum {string|null} */
-      trustDocumentType?: "Unknown" | "Invoice" | "CreditNote" | "DebitNote" | "Contract" | "Certificate" | "Email" | "AuthorityResponse" | "Other" | null;
+      documentStandard?: components["schemas"]["DocumentStandard"];
+      trustDocumentType?: components["schemas"]["TrustDocumentType"];
       correlationId?: string | null;
       externalReference?: string | null;
     };
@@ -1103,8 +1164,7 @@ export interface components {
       url?: string | null;
       csr?: string | null;
       publicKey?: string | null;
-      /** @enum {string} */
-      certificateType?: "AuthSignedCertificate" | "SelfSignedCertificate" | "AllianceSignedCertificate";
+      certificateType?: components["schemas"]["CertificateType"];
       contactId: string;
       securityCertificateId?: string | null;
     };
@@ -1120,15 +1180,13 @@ export interface components {
       signature?: string | null;
       /** Format: int64 */
       fileLengthInBits?: number;
-      /** @enum {string} */
-      certificateType?: "AuthSignedCertificate" | "SelfSignedCertificate" | "AllianceSignedCertificate";
+      certificateType?: components["schemas"]["CertificateType"];
       contactId?: string | null;
       tenantId?: string | null;
       userId?: string | null;
       enrollmentId?: string | null;
       securityCertificateId?: string | null;
-      /** @enum {string|null} */
-      certificateStatus?: "Unknown" | "Active" | "Expiring" | "Expired" | "Revoked" | "Disabled" | null;
+      certificateStatus?: components["schemas"]["CertificateStatus"];
       thumbprint?: string | null;
       subjectName?: string | null;
       issuerName?: string | null;
@@ -1173,19 +1231,19 @@ export interface components {
       url?: string | null;
       csr?: string | null;
       publicKey?: string | null;
-      /** @enum {string} */
-      certificateType?: "AuthSignedCertificate" | "SelfSignedCertificate" | "AllianceSignedCertificate";
+      certificateType?: components["schemas"]["CertificateType"];
       contactId: string;
       securityCertificateId?: string | null;
     };
+    /** @enum {string} */
+    SigningExecutionBindingReadiness: "Unbound" | "Ready" | "NotReady";
     SigningLogDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       type?: string | null;
       message?: string | null;
-      /** @enum {string} */
-      logType?: "Continue" | "SwitchingProtocols" | "Processing" | "EarlyHints" | "OK" | "Created" | "Accepted" | "NonAuthoritativeInformation" | "NoContent" | "ResetContent" | "PartialContent" | "MultiStatus" | "AlreadyReported" | "IMUsed" | "MultipleChoices" | "MovedPermanently" | "Found" | "SeeOther" | "NotModified" | "UseProxy" | "Unused" | "TemporaryRedirect" | "PermanentRedirect" | "BadRequest" | "Unauthorized" | "PaymentRequired" | "Forbidden" | "NotFound" | "MethodNotAllowed" | "NotAcceptable" | "ProxyAuthenticationRequired" | "RequestTimeout" | "Conflict" | "Gone" | "LengthRequired" | "PreconditionFailed" | "RequestEntityTooLarge" | "RequestUriTooLong" | "UnsupportedMediaType" | "RequestedRangeNotSatisfiable" | "ExpectationFailed" | "MisdirectedRequest" | "UnprocessableEntity" | "Locked" | "FailedDependency" | "UpgradeRequired" | "PreconditionRequired" | "TooManyRequests" | "RequestHeaderFieldsTooLarge" | "UnavailableForLegalReasons" | "InternalServerError" | "NotImplemented" | "BadGateway" | "ServiceUnavailable" | "GatewayTimeout" | "HttpVersionNotSupported" | "VariantAlsoNegotiates" | "InsufficientStorage" | "LoopDetected" | "NotExtended" | "NetworkAuthenticationRequired";
+      logType?: components["schemas"]["HttpStatusCode"];
       securityEvent?: string | null;
       requiresAttention?: boolean;
       tenantId?: string | null;
@@ -1195,8 +1253,7 @@ export interface components {
       signingProfileId?: string | null;
       signingCertificateId?: string | null;
       signedDocumentId?: string | null;
-      /** @enum {string|null} */
-      operationType?: "Unknown" | "Sign" | "Verify" | "Seal" | "RotateCredential" | "ResolveCredential" | "SubmitToAuthority" | "ReceiveAuthorityResponse" | "Freeze" | "ConfigureSigningBinding" | null;
+      operationType?: components["schemas"]["TrustOperationType"];
       correlationId?: string | null;
       inputHash?: string | null;
       outputHash?: string | null;
@@ -1240,10 +1297,8 @@ export interface components {
       signingRequestId?: string | null;
       contactId?: string | null;
       contactName?: string | null;
-      /** @enum {string} */
-      role?: "Signer" | "Approver" | "Viewer" | "Witness" | "CarbonCopy" | "System";
-      /** @enum {string} */
-      status?: "Pending" | "Sent" | "Viewed" | "Signed" | "Approved" | "Declined" | "Skipped" | "Expired" | "Failed";
+      role?: components["schemas"]["SigningParticipantRole"];
+      status?: components["schemas"]["SigningParticipantStatus"];
       /** Format: int32 */
       routingOrder?: number;
       /** Format: date-time */
@@ -1291,6 +1346,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SigningParticipantDto"][] | null;
     };
+    /** @enum {string} */
+    SigningParticipantRole: "Signer" | "Approver" | "Viewer" | "Witness" | "CarbonCopy" | "System";
+    /** @enum {string} */
+    SigningParticipantStatus: "Pending" | "Sent" | "Viewed" | "Signed" | "Approved" | "Declined" | "Skipped" | "Expired" | "Failed";
     SigningProfileCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1321,10 +1380,8 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      /** @enum {string|null} */
-      signaturePurpose?: "Unknown" | "RegulatorySubmission" | "ContractExecution" | "EmailSigning" | "InternalApproval" | "EvidenceSealing" | "AgentCredential" | "Other" | null;
+      signatureFormat?: components["schemas"]["SignatureFormat"];
+      signaturePurpose?: components["schemas"]["SignaturePurpose"];
       digestAlgorithm?: string | null;
       signatureAlgorithm?: string | null;
       canonicalizationAlgorithm?: string | null;
@@ -1371,10 +1428,8 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       contactName?: string | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      /** @enum {string|null} */
-      signaturePurpose?: "Unknown" | "RegulatorySubmission" | "ContractExecution" | "EmailSigning" | "InternalApproval" | "EvidenceSealing" | "AgentCredential" | "Other" | null;
+      signatureFormat?: components["schemas"]["SignatureFormat"];
+      signaturePurpose?: components["schemas"]["SignaturePurpose"];
       digestAlgorithm?: string | null;
       signatureAlgorithm?: string | null;
       canonicalizationAlgorithm?: string | null;
@@ -1419,8 +1474,7 @@ export interface components {
       /** Format: uuid */
       signingCertificateId?: string | null;
       isBound?: boolean;
-      /** @enum {string} */
-      custodyReadiness?: "Unbound" | "Ready" | "NotReady";
+      custodyReadiness?: components["schemas"]["SigningExecutionBindingReadiness"];
       readinessDetail?: string | null;
     };
     SigningProfileExecutionBindingDtoEnvelope: {
@@ -1444,8 +1498,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       signingProfileId: string;
-      /** @enum {string} */
-      kind: "Drawn" | "UploadedImage" | "Typed" | "Initials" | "Seal" | "Stamp";
+      kind: components["schemas"]["SigningProfileGraphicalRepresentationKind"];
       displayName?: string | null;
       fileUploadId?: string | null;
       sha256?: string | null;
@@ -1460,8 +1513,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       signingProfileId?: string | null;
-      /** @enum {string} */
-      kind?: "Drawn" | "UploadedImage" | "Typed" | "Initials" | "Seal" | "Stamp";
+      kind?: components["schemas"]["SigningProfileGraphicalRepresentationKind"];
       displayName?: string | null;
       fileUploadId?: string | null;
       sha256?: string | null;
@@ -1505,9 +1557,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SigningProfileGraphicalRepresentationDto"][] | null;
     };
+    /** @enum {string} */
+    SigningProfileGraphicalRepresentationKind: "Drawn" | "UploadedImage" | "Typed" | "Initials" | "Seal" | "Stamp";
     SigningProfileGraphicalRepresentationUpdateDto: {
-      /** @enum {string} */
-      kind?: "Drawn" | "UploadedImage" | "Typed" | "Initials" | "Seal" | "Stamp";
+      kind?: components["schemas"]["SigningProfileGraphicalRepresentationKind"];
       displayName?: string | null;
       fileUploadId?: string | null;
       sha256?: string | null;
@@ -1542,10 +1595,8 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      /** @enum {string|null} */
-      signaturePurpose?: "Unknown" | "RegulatorySubmission" | "ContractExecution" | "EmailSigning" | "InternalApproval" | "EvidenceSealing" | "AgentCredential" | "Other" | null;
+      signatureFormat?: components["schemas"]["SignatureFormat"];
+      signaturePurpose?: components["schemas"]["SignaturePurpose"];
       digestAlgorithm?: string | null;
       signatureAlgorithm?: string | null;
       canonicalizationAlgorithm?: string | null;
@@ -1562,10 +1613,8 @@ export interface components {
       signedDocumentTitle?: string | null;
       frozenSourceFileUploadId?: string | null;
       sourceSha256?: string | null;
-      /** @enum {string} */
-      status?: "Draft" | "Ready" | "Sent" | "InProgress" | "Completed" | "Declined" | "Voided" | "Expired" | "Failed";
-      /** @enum {string} */
-      routingMode?: "Parallel" | "Sequential";
+      status?: components["schemas"]["SigningRequestStatus"];
+      routingMode?: components["schemas"]["SigningRoutingMode"];
       /** Format: date-time */
       createdAtUtc?: string;
       /** Format: date-time */
@@ -1609,6 +1658,50 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SigningRequestDto"][] | null;
     };
+    /** @enum {string} */
+    SigningRequestStatus: "Draft" | "Ready" | "Sent" | "InProgress" | "Completed" | "Declined" | "Voided" | "Expired" | "Failed";
+    /** @enum {string} */
+    SigningRoutingMode: "Parallel" | "Sequential";
+    /** @enum {string} */
+    SigningStatus: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked";
+    /** @enum {string} */
+    StorageObjectMutability: "Editable" | "Managed" | "SealedEvidence";
+    /** @enum {string} */
+    StorageScanStatus: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
+    TenantSigningKeyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      authorityId?: string | null;
+      keyId?: string | null;
+      algorithm?: string | null;
+      publicKey?: string | null;
+      custodyKeyRef?: string | null;
+      /** Format: date-time */
+      validFromUtc?: string;
+      /** Format: date-time */
+      validUntilUtc?: string;
+    };
+    TenantSigningKeyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantSigningKeyDto"];
+    };
+    TenantSigningKeyGenerateDto: {
+      keyId?: string | null;
+      /** Format: date-time */
+      validUntilUtc?: string;
+    };
     TrustArtifactReferenceDto: {
       storageObjectId?: string | null;
       storageKey?: string | null;
@@ -1634,6 +1727,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TrustArtifactReferenceDto"];
     };
+    /** @enum {string} */
+    TrustDocumentType: "Unknown" | "Invoice" | "CreditNote" | "DebitNote" | "Contract" | "Certificate" | "Email" | "AuthorityResponse" | "Other";
+    /** @enum {string} */
+    TrustOperationType: "Unknown" | "Sign" | "Verify" | "Seal" | "RotateCredential" | "ResolveCredential" | "SubmitToAuthority" | "ReceiveAuthorityResponse" | "Freeze" | "ConfigureSigningBinding";
     TrustSigningProviderDescriptorDto: {
       name?: string | null;
       displayName?: string | null;
@@ -1676,10 +1773,8 @@ export interface components {
       resolvedDocumentTitle?: string | null;
       resolvedProfileDisplayName?: string | null;
       resolvedCertificateTitle?: string | null;
-      /** @enum {string|null} */
-      expectedSignatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      /** @enum {string|null} */
-      expectedSignaturePurpose?: "Unknown" | "RegulatorySubmission" | "ContractExecution" | "EmailSigning" | "InternalApproval" | "EvidenceSealing" | "AgentCredential" | "Other" | null;
+      expectedSignatureFormat?: components["schemas"]["SignatureFormat"];
+      expectedSignaturePurpose?: components["schemas"]["SignaturePurpose"];
       expectedDigestAlgorithm?: string | null;
       expectedSignatureAlgorithm?: string | null;
       expectedCanonicalizationAlgorithm?: string | null;
@@ -1710,10 +1805,8 @@ export interface components {
       signingProfileId?: string | null;
       signingCertificateId?: string | null;
       contactId?: string | null;
-      /** @enum {string|null} */
-      requestedFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      /** @enum {string|null} */
-      requestedPurpose?: "Unknown" | "RegulatorySubmission" | "ContractExecution" | "EmailSigning" | "InternalApproval" | "EvidenceSealing" | "AgentCredential" | "Other" | null;
+      requestedFormat?: components["schemas"]["SignatureFormat"];
+      requestedPurpose?: components["schemas"]["SignaturePurpose"];
       correlationId?: string | null;
       sourceStorageObjectId?: string | null;
       sourceSha256?: string | null;
@@ -1735,6 +1828,8 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    VerificationStatus: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired";
     VoidSigningRequestDto: {
       voidedReason?: string | null;
     };
@@ -3580,6 +3675,106 @@ export interface operations {
     };
   };
   /**
+   * Generate a tenant signing key in custody
+   * @description Generates a signing key owned by the acting tenant inside the configured signing custody and records its descriptor. The key's authority is always the acting tenant's own id. The key id must be lowercase letters and digits, then '.', '_' or '-'. The private key never leaves custody; the response carries public data only.
+   */
+  SigningKeys_GenerateTenantSigningKey: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantSigningKeyGenerateDto"];
+        "application/xml": components["schemas"]["TenantSigningKeyGenerateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantSigningKeyDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantSigningKeyDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Read the recorded state of a platform authority signing key
+   * @description Read-only recovery for an interrupted key ceremony: returns the key's descriptor (public data) and its generation attempt, with a status of provisioned, attempt-open (the attempt needs reconciliation under its custody reference) or attempt-closed-without-key. Only the instance root tenant may call it, and only for a configured platform authority. Answers 404 when neither a descriptor nor an attempt exists.
+   */
+  SigningKeys_GetPlatformSigningKeyRecord: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        authorityId: string;
+        keyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PlatformSigningKeyRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["PlatformSigningKeyRecordDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all signing logs
    * @description Retrieves all signing logs for the specified tenant.
    */
@@ -4717,8 +4912,7 @@ export interface operations {
           file?: string;
           title?: string;
           contactId?: string;
-          /** @enum {string} */
-          routingMode?: "Parallel" | "Sequential";
+          routingMode?: components["schemas"]["SigningRoutingMode"];
           /** Format: date-time */
           expiresAtUtc?: string;
           message?: string;
@@ -4731,8 +4925,7 @@ export interface operations {
           file?: string;
           title?: string;
           contactId?: string;
-          /** @enum {string} */
-          routingMode?: "Parallel" | "Sequential";
+          routingMode?: components["schemas"]["SigningRoutingMode"];
           /** Format: date-time */
           expiresAtUtc?: string;
           message?: string;
@@ -4745,8 +4938,7 @@ export interface operations {
           file?: string;
           title?: string;
           contactId?: string;
-          /** @enum {string} */
-          routingMode?: "Parallel" | "Sequential";
+          routingMode?: components["schemas"]["SigningRoutingMode"];
           /** Format: date-time */
           expiresAtUtc?: string;
           message?: string;

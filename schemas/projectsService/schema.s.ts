@@ -402,6 +402,8 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    ApprovalStatus: "Pending" | "Approved" | "Rejected";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -568,8 +570,7 @@ export interface components {
       comments?: string | null;
     };
     ProjectHoursApprovalStatusUpdateDto: {
-      /** @enum {string} */
-      approvalStatus?: "Pending" | "Approved" | "Rejected";
+      approvalStatus?: components["schemas"]["ApprovalStatus"];
       comments?: string | null;
     };
     ProjectPeriodCreateDto: {
@@ -707,8 +708,7 @@ export interface components {
       comments?: string | null;
       projectTaskId: string;
       projectPeriodId: string;
-      /** @enum {string} */
-      projectTimeLogRecordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
+      projectTimeLogRecordType?: components["schemas"]["ProjectTimeLogRecordType"];
       projectId?: string | null;
     };
     ProjectTimeLogDto: {
@@ -721,8 +721,7 @@ export interface components {
       projectPeriodId?: string | null;
       responsibleContactId?: string | null;
       creatorContactId?: string | null;
-      /** @enum {string} */
-      recordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
+      recordType?: components["schemas"]["ProjectTimeLogRecordType"];
       /** Format: date-span */
       timeSpan?: string;
       /** Format: date-time */
@@ -773,6 +772,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ProjectTimeLogDto"][] | null;
     };
+    /** @enum {string} */
+    ProjectTimeLogRecordType: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
     ProjectTimeLogUpdateDto: {
       /** Format: date-time */
       logDate?: string;
@@ -781,8 +782,7 @@ export interface components {
       comments?: string | null;
       projectTaskId?: string | null;
       projectPeriodId?: string | null;
-      /** @enum {string} */
-      projectTimeLogRecordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
+      projectTimeLogRecordType?: components["schemas"]["ProjectTimeLogRecordType"];
     };
     ProjectUpdateDto: {
       title?: string | null;

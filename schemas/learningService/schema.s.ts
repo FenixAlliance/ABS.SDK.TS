@@ -1406,6 +1406,13 @@ export interface paths {
     /** Get current user's enrolled courses count */
     get: operations["Me_GetMyStudentCoursesCount"];
   };
+  "/api/v2/LearningService/Me/Courses/{courseId}/Enrollment": {
+    /**
+     * Get whether the current user is enrolled in a course
+     * @description Answers whether the CURRENT USER holds an enrollment in the course. Scoped by the caller's own identity, not by tenant. A course the caller is not enrolled in and an id that addresses nothing both answer false.
+     */
+    get: operations["Me_GetMyCourseEnrollmentStatus"];
+  };
   "/api/v2/LearningService/Me/InstructorCourses": {
     /** Get current user's instructor courses */
     get: operations["Me_GetMyInstructorCourses"];
@@ -1514,8 +1521,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      type: "Individual" | "Organization";
+      type: components["schemas"]["ContactType"];
       firstName: string;
       lastName?: string | null;
       /** Format: email */
@@ -1566,8 +1572,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -1637,9 +1642,19 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
     CountDto: {
       id?: string | null;
       /** Format: date-time */
@@ -2031,6 +2046,7 @@ export interface components {
       name?: string | null;
       description?: string | null;
       businessID?: string | null;
+      tenantId?: string | null;
     };
     CourseCollectionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2468,6 +2484,11 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
       courseCompletionCertificateId?: string | null;
+      status?: components["schemas"]["CourseEnrollmentStatus"];
+      /** Format: date-time */
+      completedAtUtc?: string | null;
+      /** Format: date-time */
+      revokedAtUtc?: string | null;
     };
     CourseEnrollmentDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2497,6 +2518,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["CourseEnrollmentDto"][] | null;
     };
+    /** @enum {string} */
+    CourseEnrollmentStatus: "Active" | "Completed" | "Revoked";
     CourseEnrollmentUpdateDto: {
       courseCohortId?: string | null;
       courseCompletionCertificateId?: string | null;
@@ -2925,8 +2948,7 @@ export interface components {
       timestamp?: string;
       courseId: string;
       instructorProfileId: string;
-      /** @enum {string} */
-      courseTeamMembershipType?: "Admin" | "Staff";
+      courseTeamMembershipType?: components["schemas"]["CourseTeamMembershipType"];
     };
     CourseTeamMembershipDto: {
       id?: string | null;
@@ -2934,8 +2956,7 @@ export interface components {
       timestamp?: string | null;
       courseId?: string | null;
       instructorProfileId?: string | null;
-      /** @enum {string} */
-      courseTeamMembershipType?: "Admin" | "Staff";
+      courseTeamMembershipType?: components["schemas"]["CourseTeamMembershipType"];
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -2952,10 +2973,11 @@ export interface components {
       expand?: string | null;
       isEmpty?: boolean;
     };
+    /** @enum {string} */
+    CourseTeamMembershipType: "Admin" | "Staff";
     CourseTeamMembershipUpdateDto: {
       instructorProfileId?: string | null;
-      /** @enum {string|null} */
-      courseTeamMembershipType?: "Admin" | "Staff" | null;
+      courseTeamMembershipType?: components["schemas"]["CourseTeamMembershipType"];
     };
     CourseUnitComponentCreateDto: {
       /** Format: uuid */
@@ -3315,6 +3337,28 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    MyCourseEnrollmentStatusDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      courseId?: string | null;
+      isEnrolled?: boolean;
+    };
+    MyCourseEnrollmentStatusDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["MyCourseEnrollmentStatusDto"];
     };
     PatchOperation: {
       op?: string | null;
@@ -12053,6 +12097,39 @@ export interface operations {
         content: {
           "application/json": number;
           "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get whether the current user is enrolled in a course
+   * @description Answers whether the CURRENT USER holds an enrollment in the course. Scoped by the caller's own identity, not by tenant. A course the caller is not enrolled in and an id that addresses nothing both answer false.
+   */
+  Me_GetMyCourseEnrollmentStatus: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MyCourseEnrollmentStatusDtoEnvelope"];
+          "application/xml": components["schemas"]["MyCourseEnrollmentStatusDtoEnvelope"];
         };
       };
       /** @description Unauthorized */

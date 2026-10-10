@@ -87,6 +87,62 @@ export interface paths {
      */
     get: operations["Orders_GetOrdersCount"];
   };
+  "/api/v2/OrdersService/Orders/Received": {
+    /**
+     * List the orders the tenant received.
+     * @description Orders whose receiver is the tenant and which it did not sell, supporting OData query options.
+     */
+    get: operations["Orders_GetReceivedOrders"];
+  };
+  "/api/v2/OrdersService/Orders/Received/Count": {
+    /**
+     * Count the orders the tenant received.
+     * @description The count companion of GetReceivedOrders, supporting OData query options.
+     */
+    get: operations["Orders_GetReceivedOrdersCount"];
+  };
+  "/api/v2/OrdersService/Orders/Received/{orderId}": {
+    /**
+     * Get an order the tenant received.
+     * @description An order the tenant did not receive (one it sold included) is not found.
+     */
+    get: operations["Orders_GetReceivedOrder"];
+  };
+  "/api/v2/OrdersService/Orders/Me/Received": {
+    /**
+     * List the orders the current user received.
+     * @description Orders whose account holder is the current user and that name no receiving tenant.
+     */
+    get: operations["Orders_GetMyReceivedOrders"];
+  };
+  "/api/v2/OrdersService/Orders/Me/Received/Count": {
+    /**
+     * Count the orders the current user received.
+     * @description The count companion of GetMyReceivedOrders, supporting OData query options.
+     */
+    get: operations["Orders_GetMyReceivedOrdersCount"];
+  };
+  "/api/v2/OrdersService/Orders/Me/Received/{orderId}": {
+    /**
+     * Get an order the current user received.
+     * @description An order the current user did not receive is not found.
+     */
+    get: operations["Orders_GetMyReceivedOrder"];
+  };
+  "/api/v2/OrdersService/Orders/Received/{orderId}/Lines": {
+    /**
+     * List the lines of an order the tenant received.
+     * @description An order the tenant did not receive is not found. Supports OData query options.
+     */
+    get: operations["Orders_GetReceivedOrderLines"];
+  };
+  "/api/v2/OrdersService/Orders/Me/Received/{orderId}/Lines": {
+    /**
+     * List the lines of an order the current user received.
+     * @description An order the current user did not receive is not found. Supports OData query options.
+     */
+    get: operations["Orders_GetMyReceivedOrderLines"];
+  };
   "/api/v2/OrdersService/Orders/{orderId}": {
     /**
      * Gets a specific order by ID.
@@ -191,14 +247,15 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -268,9 +325,23 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
+    /** @enum {string} */
+    EmailAlertType: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
     EmailDispatchRequest: {
       title: string;
       message: string;
@@ -278,8 +349,7 @@ export interface components {
       buttonLink?: string | null;
       buttonText?: string | null;
       alertMessage?: string | null;
-      /** @enum {string} */
-      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      alertType?: components["schemas"]["EmailAlertType"];
       culture: string;
       uiCulture: string;
       recipients: string[];
@@ -344,10 +414,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -424,10 +492,12 @@ export interface components {
       qualifiedIdentifier?: string | null;
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
-      /** @enum {string} */
-      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      freightTerms?: components["schemas"]["FreightTerms"];
+      orderStatus?: components["schemas"]["OrderStatus"];
+      /** Format: int64 */
+      number?: number | null;
+      numberLabel?: string | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -454,6 +524,16 @@ export interface components {
       organization?: components["schemas"]["ContactDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
       enrollment?: components["schemas"]["TenantEnrollmentDto"];
+      /** Format: double */
+      effectiveDiscountPercent?: number;
+      /** Format: double */
+      effectiveSurchargePercent?: number;
+      /** Format: double */
+      effectiveTaxesPercent?: number;
+      /** Format: double */
+      effectiveGlobalDiscountPercent?: number;
+      /** Format: double */
+      effectiveGlobalSurchargePercent?: number;
     };
     ExtendedOrderDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -467,6 +547,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    ExtendedOrderDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ExtendedOrderDto"];
     };
     ExtendedOrderDtoListEnvelope: {
       isSuccess?: boolean;
@@ -486,6 +581,10 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    FreightTerms: "FOB" | "NoCharge";
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -591,10 +690,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       cartId?: string | null;
       quoteId?: string | null;
       walletId?: string | null;
@@ -602,12 +699,9 @@ export interface components {
       shippingMethodId?: string | null;
       billingLocationId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
-      /** @enum {string} */
-      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
+      orderStatus?: components["schemas"]["OrderStatus"];
+      quoteStatus?: components["schemas"]["QuoteStatus"];
+      freightTerms?: components["schemas"]["FreightTerms"];
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
       /** Format: double */
@@ -654,10 +748,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -734,10 +826,12 @@ export interface components {
       qualifiedIdentifier?: string | null;
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
-      /** @enum {string} */
-      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      freightTerms?: components["schemas"]["FreightTerms"];
+      orderStatus?: components["schemas"]["OrderStatus"];
+      /** Format: int64 */
+      number?: number | null;
+      numberLabel?: string | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -864,10 +958,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -976,10 +1068,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1051,6 +1141,8 @@ export interface components {
       shippingPolicyId?: string | null;
       /** Format: double */
       quantity?: number;
+      /** Format: double */
+      unitPrice?: number;
       free?: boolean;
       freeReason?: string | null;
       freeReasonCode?: string | null;
@@ -1204,10 +1296,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -1288,6 +1378,8 @@ export interface components {
       quoteItemRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
     };
+    /** @enum {string} */
+    OrderStatus: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
     OrderUpdateDto: {
       closed?: boolean;
       title?: string | null;
@@ -1350,10 +1442,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       cartId?: string | null;
       /** Format: double */
       totalAmountInUsd?: number;
@@ -1371,6 +1461,8 @@ export interface components {
       from?: string | null;
       value?: unknown;
     };
+    /** @enum {string} */
+    QuoteStatus: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1386,13 +1478,18 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
+    /** @enum {string} */
+    SiteTheme: "System" | "Light" | "Dark";
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TenantDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1455,6 +1552,8 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    UserAvailability: "DND" | "Busy" | "Away" | "Offline" | "Available";
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1481,8 +1580,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -1501,15 +1599,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
   };
   responses: never;
@@ -1952,6 +2048,254 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["Int32Envelope"];
           "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the orders the tenant received.
+   * @description Orders whose receiver is the tenant and which it did not sell, supporting OData query options.
+   */
+  Orders_GetReceivedOrders: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedOrderDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedOrderDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count the orders the tenant received.
+   * @description The count companion of GetReceivedOrders, supporting OData query options.
+   */
+  Orders_GetReceivedOrdersCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an order the tenant received.
+   * @description An order the tenant did not receive (one it sold included) is not found.
+   */
+  Orders_GetReceivedOrder: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedOrderDtoEnvelope"];
+          "application/xml": components["schemas"]["ExtendedOrderDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the orders the current user received.
+   * @description Orders whose account holder is the current user and that name no receiving tenant.
+   */
+  Orders_GetMyReceivedOrders: {
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedOrderDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedOrderDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count the orders the current user received.
+   * @description The count companion of GetMyReceivedOrders, supporting OData query options.
+   */
+  Orders_GetMyReceivedOrdersCount: {
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an order the current user received.
+   * @description An order the current user did not receive is not found.
+   */
+  Orders_GetMyReceivedOrder: {
+    parameters: {
+      path: {
+        orderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedOrderDtoEnvelope"];
+          "application/xml": components["schemas"]["ExtendedOrderDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the lines of an order the tenant received.
+   * @description An order the tenant did not receive is not found. Supports OData query options.
+   */
+  Orders_GetReceivedOrderLines: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["OrderLineDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the lines of an order the current user received.
+   * @description An order the current user did not receive is not found. Supports OData query options.
+   */
+  Orders_GetMyReceivedOrderLines: {
+    parameters: {
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["OrderLineDtoListEnvelope"];
         };
       };
       /** @description Not Found */

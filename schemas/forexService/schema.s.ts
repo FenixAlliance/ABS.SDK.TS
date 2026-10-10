@@ -291,11 +291,12 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ForexRatesDto"];
     };
+    /** @enum {string} */
+    ForexSetRepairAction: "Create" | "Replace" | "Unchanged" | "NoSnapshot";
     ForexSetRepairDay: {
       /** Format: date-time */
       date?: string;
-      /** @enum {string} */
-      action?: "Create" | "Replace" | "Unchanged" | "NoSnapshot";
+      action?: components["schemas"]["ForexSetRepairAction"];
       snapshotRevision?: string | null;
       /** Format: date-time */
       snapshotCommittedAtUtc?: string | null;

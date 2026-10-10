@@ -265,10 +265,12 @@ export type BusinessPositionAssignmentDtoListEnvelopeWritable = {
     result?: Array<BusinessPositionAssignmentDto> | null;
 };
 
+export type CareerLevel = 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -313,7 +315,7 @@ export type ContactCreateDtoReadable = {
 export type ContactCreateDtoWritable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -359,7 +361,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -417,6 +419,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -425,7 +430,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -483,9 +488,20 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type DayOfTheWeek = 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
 
 export type EmployeeAppraisalSessionCreateDto = {
     id?: string;
@@ -1033,6 +1049,7 @@ export type EmployerProfileDtoReadable = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
+    isPublicProfile?: boolean;
 };
 
 export type EmployerProfileDtoWritable = {
@@ -1068,6 +1085,7 @@ export type EmployerProfileDtoWritable = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
+    isPublicProfile?: boolean;
 };
 
 export type EmployerProfileDtoCollectionQueryParametersReadable = {
@@ -1399,6 +1417,7 @@ export type GigDto = {
     data9?: string | null;
     data9Label?: string | null;
     externalUrl?: string | null;
+    status?: GigStatus;
     tenantId?: string | null;
     enrollmentId?: string | null;
     employerProfileId?: string | null;
@@ -1480,6 +1499,8 @@ export type GigDtoListEnvelopeWritable = {
     } | null;
     result?: Array<GigDto> | null;
 };
+
+export type GigStatus = 'Draft' | 'Published' | 'Awarded' | 'Completed' | 'Cancelled';
 
 export type GigUpdateDto = {
     remote?: boolean;
@@ -1597,7 +1618,7 @@ export type JobApplicantProfileCreateDtoReadable = {
     data9?: string | null;
     data9Label?: string | null;
     availableForHire?: boolean;
-    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    careerLevel?: CareerLevel;
     experienceInYears?: number;
     currentSalary?: number;
     minSalaryExpectation?: number;
@@ -1634,7 +1655,7 @@ export type JobApplicantProfileCreateDtoWritable = {
     data9?: string | null;
     data9Label?: string | null;
     availableForHire?: boolean;
-    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    careerLevel?: CareerLevel;
     experienceInYears?: number;
     currentSalary?: number;
     minSalaryExpectation?: number;
@@ -1677,7 +1698,7 @@ export type JobApplicantProfileDtoReadable = {
     data9?: string | null;
     data9Label?: string | null;
     availableForHire?: boolean;
-    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    careerLevel?: CareerLevel;
     experienceInYears?: number;
     currentSalary?: number;
     minSalaryExpectation?: number;
@@ -1719,7 +1740,7 @@ export type JobApplicantProfileDtoWritable = {
     data9?: string | null;
     data9Label?: string | null;
     availableForHire?: boolean;
-    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    careerLevel?: CareerLevel;
     experienceInYears?: number;
     currentSalary?: number;
     minSalaryExpectation?: number;
@@ -1826,13 +1847,15 @@ export type JobApplicantProfileUpdateDto = {
     data9?: string | null;
     data9Label?: string | null;
     availableForHire?: boolean;
-    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    careerLevel?: CareerLevel;
     experienceInYears?: number;
     currentSalary?: number;
     minSalaryExpectation?: number;
     maxSalaryExpectation?: number;
     currencyId?: string | null;
 };
+
+export type JobApplicationStatus = 'Submitted' | 'UnderReview' | 'Interviewing' | 'Offered' | 'Hired' | 'Rejected' | 'Withdrawn';
 
 export type JobFieldCreateDto = {
     id?: string;
@@ -1948,7 +1971,7 @@ export type JobOfferApplicationCreateDto = {
 export type JobOfferApplicationDto = {
     id?: string | null;
     timestamp?: string | null;
-    status?: 'Submitted' | 'UnderReview' | 'Interviewing' | 'Offered' | 'Hired' | 'Rejected' | 'Withdrawn';
+    status?: JobApplicationStatus;
     start?: string;
     end?: string;
     salaryExpectation?: number;
@@ -2098,7 +2121,7 @@ export type JobOfferCreateDto = {
 export type JobOfferDto = {
     id?: string | null;
     timestamp?: string | null;
-    status?: 'Draft' | 'Published' | 'Closed' | 'Filled';
+    status?: JobOfferStatus;
     remote?: boolean;
     expectedHireDate?: string;
     title?: string | null;
@@ -2422,6 +2445,8 @@ export type JobOfferPublicDtoListEnvelopeWritable = {
     } | null;
     result?: Array<JobOfferPublicDto> | null;
 };
+
+export type JobOfferStatus = 'Draft' | 'Published' | 'Closed' | 'Filled';
 
 export type JobOfferUpdateDto = {
     remote?: boolean;
@@ -2898,7 +2923,7 @@ export type PayrollPeriodDto = {
     description?: string | null;
     start?: string | null;
     end?: string | null;
-    status?: 'Open' | 'Closed';
+    status?: PayrollPeriodStatus;
 };
 
 export type PayrollPeriodDtoCollectionQueryParametersReadable = {
@@ -2974,6 +2999,8 @@ export type PayrollPeriodDtoListEnvelopeWritable = {
     result?: Array<PayrollPeriodDto> | null;
 };
 
+export type PayrollPeriodStatus = 'Open' | 'Closed';
+
 export type PayrollPeriodUpdateDto = {
     title?: string | null;
     description?: string | null;
@@ -3009,6 +3036,8 @@ export type RegisterRequest = {
     password: string | null;
 };
 
+export type RepetitionCriteria = 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+
 export type RequiredSkillRecordCreateDto = {
     id?: string;
     timestamp?: string;
@@ -3017,7 +3046,7 @@ export type RequiredSkillRecordCreateDto = {
     employerProfileId?: string | null;
     experienceInYears?: number;
     priority?: number;
-    requiredSkillRecordType?: 'MustHave' | 'Optional';
+    requiredSkillRecordType?: RequiredSkillRecordType;
 };
 
 export type RequiredSkillRecordDto = {
@@ -3025,7 +3054,7 @@ export type RequiredSkillRecordDto = {
     timestamp?: string | null;
     experienceInYears?: number;
     priority?: number;
-    requiredSkillRecordType?: 'MustHave' | 'Optional';
+    requiredSkillRecordType?: RequiredSkillRecordType;
     skillId?: string | null;
     jobOfferId?: string | null;
     employerProfileId?: string | null;
@@ -3106,13 +3135,15 @@ export type RequiredSkillRecordDtoListEnvelopeWritable = {
     result?: Array<RequiredSkillRecordDto> | null;
 };
 
+export type RequiredSkillRecordType = 'MustHave' | 'Optional';
+
 export type RequiredSkillRecordUpdateDto = {
     skillId?: string | null;
     jobOfferId?: string | null;
     employerProfileId?: string | null;
     experienceInYears?: number;
     priority?: number;
-    requiredSkillRecordType?: 'MustHave' | 'Optional';
+    requiredSkillRecordType?: RequiredSkillRecordType;
 };
 
 export type ResendConfirmationEmailRequest = {
@@ -3376,10 +3407,10 @@ export type ShiftCreateDto = {
     occustOnSaturday?: boolean;
     occustOnSunday?: boolean;
     repeatEvery?: number;
-    repetitionCriteria?: 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+    repetitionCriteria?: RepetitionCriteria;
     recurrenceStart?: string | null;
     recurrenceEnd?: string | null;
-    dayOfTheWeek?: 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    dayOfTheWeek?: DayOfTheWeek;
     scheduleId?: string | null;
     parentTimeIntervalId?: string | null;
     employeeProfileId: string;
@@ -3401,10 +3432,10 @@ export type ShiftDto = {
     occustOnSaturday?: boolean;
     occustOnSunday?: boolean;
     repeatEvery?: number;
-    repetitionCriteria?: 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+    repetitionCriteria?: RepetitionCriteria;
     recurrenceStart?: string | null;
     recurrenceEnd?: string | null;
-    dayOfTheWeek?: 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    dayOfTheWeek?: DayOfTheWeek;
     scheduleId?: string | null;
     parentTimeIntervalId?: string | null;
     tenantId?: string | null;
@@ -3498,10 +3529,10 @@ export type ShiftUpdateDto = {
     occustOnSaturday?: boolean | null;
     occustOnSunday?: boolean | null;
     repeatEvery?: number | null;
-    repetitionCriteria?: 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+    repetitionCriteria?: RepetitionCriteria;
     recurrenceStart?: string | null;
     recurrenceEnd?: string | null;
-    dayOfTheWeek?: 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    dayOfTheWeek?: DayOfTheWeek;
     scheduleId?: string | null;
     parentTimeIntervalId?: string | null;
     employeeProfileId?: string | null;
@@ -3835,10 +3866,10 @@ export type TrainingProgramEventCreateDto = {
     occustOnSaturday?: boolean;
     occustOnSunday?: boolean;
     repeatEvery?: number;
-    repetitionCriteria?: 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+    repetitionCriteria?: RepetitionCriteria;
     recurrenceStart?: string | null;
     recurrenceEnd?: string | null;
-    dayOfTheWeek?: 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    dayOfTheWeek?: DayOfTheWeek;
     scheduleId?: string | null;
     parentTimeIntervalId?: string | null;
     trainingProgramId: string;
@@ -3860,10 +3891,10 @@ export type TrainingProgramEventDto = {
     occustOnSaturday?: boolean;
     occustOnSunday?: boolean;
     repeatEvery?: number;
-    repetitionCriteria?: 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+    repetitionCriteria?: RepetitionCriteria;
     recurrenceStart?: string | null;
     recurrenceEnd?: string | null;
-    dayOfTheWeek?: 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    dayOfTheWeek?: DayOfTheWeek;
     scheduleId?: string | null;
     parentTimeIntervalId?: string | null;
     tenantId?: string | null;
@@ -3958,10 +3989,10 @@ export type TrainingProgramEventUpdateDto = {
     occustOnSaturday?: boolean | null;
     occustOnSunday?: boolean | null;
     repeatEvery?: number | null;
-    repetitionCriteria?: 'NotRepeat' | 'WorkWeek' | 'Day' | 'Month' | 'Year';
+    repetitionCriteria?: RepetitionCriteria;
     recurrenceStart?: string | null;
     recurrenceEnd?: string | null;
-    dayOfTheWeek?: 'All' | 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday';
+    dayOfTheWeek?: DayOfTheWeek;
     scheduleId?: string | null;
     parentTimeIntervalId?: string | null;
     trainingProgramId?: string | null;
@@ -5520,6 +5551,88 @@ export type EmployersUpdateEmployerResponses = {
 
 export type EmployersUpdateEmployerResponse = EmployersUpdateEmployerResponses[keyof EmployersUpdateEmployerResponses];
 
+export type EmployersPublishEmployerProfileData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        employerId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Employers/{employerId}/Publish';
+};
+
+export type EmployersPublishEmployerProfileErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type EmployersPublishEmployerProfileError = EmployersPublishEmployerProfileErrors[keyof EmployersPublishEmployerProfileErrors];
+
+export type EmployersPublishEmployerProfileResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type EmployersPublishEmployerProfileResponse = EmployersPublishEmployerProfileResponses[keyof EmployersPublishEmployerProfileResponses];
+
+export type EmployersUnpublishEmployerProfileData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        employerId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Employers/{employerId}/Unpublish';
+};
+
+export type EmployersUnpublishEmployerProfileErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type EmployersUnpublishEmployerProfileError = EmployersUnpublishEmployerProfileErrors[keyof EmployersUnpublishEmployerProfileErrors];
+
+export type EmployersUnpublishEmployerProfileResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type EmployersUnpublishEmployerProfileResponse = EmployersUnpublishEmployerProfileResponses[keyof EmployersUnpublishEmployerProfileResponses];
+
 export type PlatformGetVersionData = {
     body?: never;
     path?: never;
@@ -6423,6 +6536,170 @@ export type GigsUpdateGigResponses = {
 
 export type GigsUpdateGigResponse = GigsUpdateGigResponses[keyof GigsUpdateGigResponses];
 
+export type GigsPublishGigData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Gigs/{gigId}/Publish';
+};
+
+export type GigsPublishGigErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type GigsPublishGigError = GigsPublishGigErrors[keyof GigsPublishGigErrors];
+
+export type GigsPublishGigResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type GigsPublishGigResponse = GigsPublishGigResponses[keyof GigsPublishGigResponses];
+
+export type GigsAwardGigData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Gigs/{gigId}/Award';
+};
+
+export type GigsAwardGigErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type GigsAwardGigError = GigsAwardGigErrors[keyof GigsAwardGigErrors];
+
+export type GigsAwardGigResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type GigsAwardGigResponse = GigsAwardGigResponses[keyof GigsAwardGigResponses];
+
+export type GigsCompleteGigData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Gigs/{gigId}/Complete';
+};
+
+export type GigsCompleteGigErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type GigsCompleteGigError = GigsCompleteGigErrors[keyof GigsCompleteGigErrors];
+
+export type GigsCompleteGigResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type GigsCompleteGigResponse = GigsCompleteGigResponses[keyof GigsCompleteGigResponses];
+
+export type GigsCancelGigData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Gigs/{gigId}/Cancel';
+};
+
+export type GigsCancelGigErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type GigsCancelGigError = GigsCancelGigErrors[keyof GigsCancelGigErrors];
+
+export type GigsCancelGigResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type GigsCancelGigResponse = GigsCancelGigResponses[keyof GigsCancelGigResponses];
+
 export type JobApplicantsGetJobApplicantsData = {
     body?: JobApplicantProfileDtoCollectionQueryParametersWritable;
     headers?: {
@@ -6971,7 +7248,7 @@ export type JobApplicationsChangeJobApplicationStatusData = {
     };
     query: {
         tenantId: string;
-        status: 'Submitted' | 'UnderReview' | 'Interviewing' | 'Offered' | 'Hired' | 'Rejected' | 'Withdrawn';
+        status: JobApplicationStatus;
         'api-version'?: string;
     };
     url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}/Status';

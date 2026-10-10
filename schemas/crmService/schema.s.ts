@@ -677,6 +677,8 @@ export interface components {
       itemCartRecordsCount?: number | null;
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
+      directSellerTenantId?: string | null;
     };
     CartDtoEnvelope: {
       isSuccess?: boolean;
@@ -698,8 +700,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      type: "Individual" | "Organization";
+      type: components["schemas"]["ContactType"];
       firstName: string;
       lastName?: string | null;
       /** Format: email */
@@ -750,8 +751,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -821,6 +821,10 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
@@ -1201,9 +1205,14 @@ export interface components {
       name: string;
       description?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
     ContactUpdateDto: {
-      /** @enum {string} */
-      type: "Individual" | "Organization";
+      type: components["schemas"]["ContactType"];
       /** Format: date-time */
       birthday?: string | null;
       duns?: string | null;
@@ -1297,6 +1306,8 @@ export interface components {
       name: string;
       description?: string | null;
     };
+    /** @enum {string} */
+    EmailAlertType: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
     EmailDispatchRequest: {
       title: string;
       message: string;
@@ -1304,8 +1315,7 @@ export interface components {
       buttonLink?: string | null;
       buttonText?: string | null;
       alertMessage?: string | null;
-      /** @enum {string} */
-      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      alertType?: components["schemas"]["EmailAlertType"];
       culture: string;
       uiCulture: string;
       recipients: string[];
@@ -1365,8 +1375,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -1436,6 +1445,10 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
       cart?: components["schemas"]["CartDto"];
@@ -1634,14 +1647,15 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
     SimpleContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -1703,8 +1717,7 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /** @enum {string|null} */
-      type?: "User" | "Tenant" | "Contact" | null;
+      type?: components["schemas"]["SocialProfileType"];
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -1731,6 +1744,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
     };
+    /** @enum {string} */
+    SocialProfileType: "User" | "Tenant" | "Contact";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;

@@ -165,8 +165,7 @@ export interface components {
       refreshToken: string | null;
     };
     Blob: {
-      /** @enum {string} */
-      kind?: "File" | "Folder";
+      kind?: components["schemas"]["BlobItemKind"];
       isFolder?: boolean;
       isFile?: boolean;
       folderPath?: string | null;
@@ -202,6 +201,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Blob"];
     };
+    /** @enum {string} */
+    BlobItemKind: "File" | "Folder";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -230,6 +231,8 @@ export interface components {
       }) | null;
       activityId?: string | null;
     };
+    /** @enum {string} */
+    FileSource: "Unknown" | "HttpUpload" | "Integration" | "InternalProcess" | "ApiClient" | "WorkflowEngine";
     FileUploadDto: {
       id?: string | null;
       /** Format: date-time */
@@ -257,10 +260,8 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
-      /** @enum {string} */
-      scanStatus?: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
-      /** @enum {string} */
-      thumbnailStatus?: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+      thumbnailStatus?: components["schemas"]["StorageThumbnailStatus"];
       hasThumbnail?: boolean;
       thumbnailStorageKey?: string | null;
       thumbnailContentType?: string | null;
@@ -268,8 +269,7 @@ export interface components {
       thumbnailWidth?: number;
       /** Format: int32 */
       thumbnailHeight?: number;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
     };
     FileUploadDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -299,6 +299,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["FileUploadDto"];
     };
+    /** @enum {string} */
+    FileUploadPublicAccessType: "Off" | "Container" | "Blob" | "Unknown";
     ForgotPasswordRequest: {
       email: string | null;
     };
@@ -358,6 +360,12 @@ export interface components {
       recordId?: string | null;
       target?: string | null;
     };
+    /** @enum {string} */
+    StoragePurpose: "Unknown" | "IdentityAvatar" | "IdentityBanner" | "ProfileAsset" | "EngagementInline" | "EngagementAttachment" | "MessageAttachment" | "SocialPost" | "RecordAttachment" | "AiGenerated" | "SystemArtifact" | "Temporary";
+    /** @enum {string} */
+    StorageScanStatus: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
+    /** @enum {string} */
+    StorageThumbnailStatus: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -1284,10 +1292,8 @@ export interface operations {
           validResponse?: boolean;
           parentFileUploadId?: string;
           filePath?: string;
-          /** @enum {string} */
-          publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
-          /** @enum {string} */
-          purpose?: "Unknown" | "IdentityAvatar" | "IdentityBanner" | "ProfileAsset" | "EngagementInline" | "EngagementAttachment" | "MessageAttachment" | "SocialPost" | "RecordAttachment" | "AiGenerated" | "SystemArtifact" | "Temporary";
+          publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
+          purpose?: components["schemas"]["StoragePurpose"];
           /** Format: uuid */
           "socialProfileId.value"?: string;
           /** Format: byte */
@@ -1301,8 +1307,7 @@ export interface operations {
           "appFile.tenantId.value"?: string;
           /** Format: uuid */
           "appFile.enrollmentId.value"?: string;
-          /** @enum {string} */
-          "appFile.source"?: "Unknown" | "HttpUpload" | "Integration" | "InternalProcess" | "ApiClient" | "WorkflowEngine";
+          "appFile.source"?: components["schemas"]["FileSource"];
           /** Format: int64 */
           "appFile.length"?: number;
           "appFile.name"?: string;
@@ -1470,8 +1475,7 @@ export interface operations {
           "appFile.tenantId.value"?: string;
           /** Format: uuid */
           "appFile.enrollmentId.value"?: string;
-          /** @enum {string} */
-          "appFile.source"?: "Unknown" | "HttpUpload" | "Integration" | "InternalProcess" | "ApiClient" | "WorkflowEngine";
+          "appFile.source"?: components["schemas"]["FileSource"];
           /** Format: int64 */
           "appFile.length"?: number;
           "appFile.name"?: string;
@@ -1890,10 +1894,8 @@ export interface operations {
           validResponse?: boolean;
           parentFileUploadId?: string;
           filePath?: string;
-          /** @enum {string} */
-          publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
-          /** @enum {string} */
-          purpose?: "Unknown" | "IdentityAvatar" | "IdentityBanner" | "ProfileAsset" | "EngagementInline" | "EngagementAttachment" | "MessageAttachment" | "SocialPost" | "RecordAttachment" | "AiGenerated" | "SystemArtifact" | "Temporary";
+          publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
+          purpose?: components["schemas"]["StoragePurpose"];
           /** Format: uuid */
           "socialProfileId.value"?: string;
           /** Format: byte */
@@ -1907,8 +1909,7 @@ export interface operations {
           "appFile.tenantId.value"?: string;
           /** Format: uuid */
           "appFile.enrollmentId.value"?: string;
-          /** @enum {string} */
-          "appFile.source"?: "Unknown" | "HttpUpload" | "Integration" | "InternalProcess" | "ApiClient" | "WorkflowEngine";
+          "appFile.source"?: components["schemas"]["FileSource"];
           /** Format: int64 */
           "appFile.length"?: number;
           "appFile.name"?: string;

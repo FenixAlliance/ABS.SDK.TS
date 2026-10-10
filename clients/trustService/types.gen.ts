@@ -38,10 +38,14 @@ export type BooleanEnvelopeWritable = {
     result?: boolean;
 };
 
+export type CertificateStatus = 'Unknown' | 'Active' | 'Expiring' | 'Expired' | 'Revoked' | 'Disabled';
+
+export type CertificateType = 'AuthSignedCertificate' | 'SelfSignedCertificate' | 'AllianceSignedCertificate';
+
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -86,7 +90,7 @@ export type ContactCreateDtoReadable = {
 export type ContactCreateDtoWritable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -132,7 +136,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -190,6 +194,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -198,7 +205,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -256,24 +263,35 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
 
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
 export type CreateSigningParticipantDto = {
     contactId: string;
-    role?: 'Signer' | 'Approver' | 'Viewer' | 'Witness' | 'CarbonCopy' | 'System';
+    role?: SigningParticipantRole;
     routingOrder?: number;
     externalReference?: string | null;
 };
 
 export type CreateSigningRequestDto = {
-    routingMode?: 'Parallel' | 'Sequential';
+    routingMode?: SigningRoutingMode;
     expiresAtUtc?: string | null;
     message?: string | null;
     correlationId?: string | null;
     externalReference?: string | null;
 };
+
+export type DocumentStandard = 'None' | 'Ubl' | 'Pdf' | 'Xml' | 'Email' | 'Json' | 'Other';
 
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -340,6 +358,8 @@ export type ForgotPasswordRequest = {
     email: string | null;
 };
 
+export type HttpStatusCode = 'Continue' | 'SwitchingProtocols' | 'Processing' | 'EarlyHints' | 'OK' | 'Created' | 'Accepted' | 'NonAuthoritativeInformation' | 'NoContent' | 'ResetContent' | 'PartialContent' | 'MultiStatus' | 'AlreadyReported' | 'IMUsed' | 'MultipleChoices' | 'MovedPermanently' | 'Found' | 'SeeOther' | 'NotModified' | 'UseProxy' | 'Unused' | 'TemporaryRedirect' | 'PermanentRedirect' | 'BadRequest' | 'Unauthorized' | 'PaymentRequired' | 'Forbidden' | 'NotFound' | 'MethodNotAllowed' | 'NotAcceptable' | 'ProxyAuthenticationRequired' | 'RequestTimeout' | 'Conflict' | 'Gone' | 'LengthRequired' | 'PreconditionFailed' | 'RequestEntityTooLarge' | 'RequestUriTooLong' | 'UnsupportedMediaType' | 'RequestedRangeNotSatisfiable' | 'ExpectationFailed' | 'MisdirectedRequest' | 'UnprocessableEntity' | 'Locked' | 'FailedDependency' | 'UpgradeRequired' | 'PreconditionRequired' | 'TooManyRequests' | 'RequestHeaderFieldsTooLarge' | 'UnavailableForLegalReasons' | 'InternalServerError' | 'NotImplemented' | 'BadGateway' | 'ServiceUnavailable' | 'GatewayTimeout' | 'HttpVersionNotSupported' | 'VariantAlsoNegotiates' | 'InsufficientStorage' | 'LoopDetected' | 'NotExtended' | 'NetworkAuthenticationRequired';
+
 export type HttpValidationProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -404,6 +424,16 @@ export type PatchOperation = {
     value?: unknown;
 };
 
+export type PlatformSigningKeyAttemptDto = {
+    attemptId?: string | null;
+    state?: string | null;
+    knownOutcome?: string | null;
+    unknownOutcome?: string | null;
+    custodyKeyRef?: string | null;
+    createdAtUtc?: string;
+    resolvedAtUtc?: string | null;
+};
+
 export type PlatformSigningKeyDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -444,6 +474,48 @@ export type PlatformSigningKeyDtoEnvelopeWritable = {
 export type PlatformSigningKeyGenerateDto = {
     authorityId?: string | null;
     keyId?: string | null;
+    validUntilUtc?: string;
+};
+
+export type PlatformSigningKeyRecordDto = {
+    authorityId?: string | null;
+    keyId?: string | null;
+    status?: string | null;
+    key?: PlatformSigningKeyRecordKeyDto;
+    attempt?: PlatformSigningKeyAttemptDto;
+};
+
+export type PlatformSigningKeyRecordDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PlatformSigningKeyRecordDto;
+};
+
+export type PlatformSigningKeyRecordDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PlatformSigningKeyRecordDto;
+};
+
+export type PlatformSigningKeyRecordKeyDto = {
+    descriptorId?: string | null;
+    algorithm?: string | null;
+    publicKey?: string | null;
+    custodyKeyRef?: string | null;
+    validFromUtc?: string;
     validUntilUtc?: string;
 };
 
@@ -496,7 +568,7 @@ export type QuickSignSignedDocumentDto = {
 };
 
 export type RecordSigningParticipantOutcomeDto = {
-    outcome: 'Pending' | 'Sent' | 'Viewed' | 'Signed' | 'Approved' | 'Declined' | 'Skipped' | 'Expired' | 'Failed';
+    outcome: SigningParticipantStatus;
     outcomeAtUtc?: string | null;
     declineReason?: string | null;
     externalReference?: string | null;
@@ -540,9 +612,9 @@ export type SignatureDto = {
     signingCertificateId?: string | null;
     signedDocumentId?: string | null;
     signedAtUtc?: string | null;
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
+    signingStatus?: SigningStatus;
+    verificationStatus?: VerificationStatus;
+    signatureFormat?: SignatureFormat;
     digestAlgorithm?: string | null;
     signatureAlgorithm?: string | null;
     canonicalizationAlgorithm?: string | null;
@@ -604,6 +676,10 @@ export type SignatureDtoListEnvelopeWritable = {
     result?: Array<SignatureDto> | null;
 };
 
+export type SignatureFormat = 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
+
+export type SignaturePurpose = 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+
 export type SignatureVerificationDto = {
     isValid?: boolean;
     method?: string | null;
@@ -611,6 +687,8 @@ export type SignatureVerificationDto = {
     signerThumbprint?: string | null;
     issues?: Array<string> | null;
 };
+
+export type SignedArtifactRole = 'Unknown' | 'Source' | 'SupportingEvidence' | 'AuthorityResponse' | 'HumanReadablePdf' | 'XmlPayload' | 'ValidationReport' | 'Other';
 
 export type SignedDocumentAttachmentCreateDto = {
     id?: string;
@@ -624,7 +702,7 @@ export type SignedDocumentAttachmentCreateDto = {
     fileUploadUrl?: string | null;
     storageKey: string;
     storageProviderKey?: string | null;
-    attachmentRole?: 'Unknown' | 'Source' | 'SupportingEvidence' | 'AuthorityResponse' | 'HumanReadablePdf' | 'XmlPayload' | 'ValidationReport' | 'Other';
+    attachmentRole?: SignedArtifactRole;
 };
 
 export type SignedDocumentAttachmentDto = {
@@ -639,9 +717,9 @@ export type SignedDocumentAttachmentDto = {
     fileUploadUrl?: string | null;
     storageKey?: string | null;
     storageProviderKey?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    mutability?: 'Editable' | 'Managed' | 'SealedEvidence';
-    attachmentRole?: 'Unknown' | 'Source' | 'SupportingEvidence' | 'AuthorityResponse' | 'HumanReadablePdf' | 'XmlPayload' | 'ValidationReport' | 'Other';
+    scanStatus?: StorageScanStatus;
+    mutability?: StorageObjectMutability;
+    attachmentRole?: SignedArtifactRole;
     tenantId?: string | null;
     userId?: string | null;
     enrollmentId?: string | null;
@@ -698,7 +776,7 @@ export type SignedDocumentAttachmentDtoListEnvelopeWritable = {
 
 export type SignedDocumentAttachmentUpdateDto = {
     title: string;
-    attachmentRole?: 'Unknown' | 'Source' | 'SupportingEvidence' | 'AuthorityResponse' | 'HumanReadablePdf' | 'XmlPayload' | 'ValidationReport' | 'Other';
+    attachmentRole?: SignedArtifactRole;
 };
 
 export type SignedDocumentCreateDto = {
@@ -709,8 +787,8 @@ export type SignedDocumentCreateDto = {
     title: string;
     contentType?: string | null;
     contactId: string;
-    documentStandard?: 'None' | 'Ubl' | 'Pdf' | 'Xml' | 'Email' | 'Json' | 'Other';
-    trustDocumentType?: 'Unknown' | 'Invoice' | 'CreditNote' | 'DebitNote' | 'Contract' | 'Certificate' | 'Email' | 'AuthorityResponse' | 'Other';
+    documentStandard?: DocumentStandard;
+    trustDocumentType?: TrustDocumentType;
     correlationId?: string | null;
     externalReference?: string | null;
 };
@@ -728,10 +806,10 @@ export type SignedDocumentDto = {
     contactId?: string | null;
     userId?: string | null;
     enrollmentId?: string | null;
-    documentStandard?: 'None' | 'Ubl' | 'Pdf' | 'Xml' | 'Email' | 'Json' | 'Other';
-    trustDocumentType?: 'Unknown' | 'Invoice' | 'CreditNote' | 'DebitNote' | 'Contract' | 'Certificate' | 'Email' | 'AuthorityResponse' | 'Other';
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
+    documentStandard?: DocumentStandard;
+    trustDocumentType?: TrustDocumentType;
+    signingStatus?: SigningStatus;
+    verificationStatus?: VerificationStatus;
     signedAtUtc?: string | null;
     correlationId?: string | null;
     externalReference?: string | null;
@@ -745,7 +823,7 @@ export type SignedDocumentDto = {
     frozenSourceFileUploadId?: string | null;
     signedFileUploadId?: string | null;
     evidenceFileUploadId?: string | null;
-    lockState?: 'Draft' | 'Editable' | 'FrozenForSignature' | 'SigningInProgress' | 'Sealed' | 'Voided' | 'Superseded';
+    lockState?: SignedDocumentLockState;
     graphicalRepresentationFileUploadId?: string | null;
     graphicalRepresentationStorageObjectId?: string | null;
     graphicalRepresentationSha256?: string | null;
@@ -802,14 +880,16 @@ export type SignedDocumentDtoListEnvelopeWritable = {
     result?: Array<SignedDocumentDto> | null;
 };
 
+export type SignedDocumentLockState = 'Draft' | 'Editable' | 'FrozenForSignature' | 'SigningInProgress' | 'Sealed' | 'Voided' | 'Superseded';
+
 export type SignedDocumentUpdateDto = {
     url?: string | null;
     type?: string | null;
     title: string;
     contentType?: string | null;
     contactId: string;
-    documentStandard?: 'None' | 'Ubl' | 'Pdf' | 'Xml' | 'Email' | 'Json' | 'Other';
-    trustDocumentType?: 'Unknown' | 'Invoice' | 'CreditNote' | 'DebitNote' | 'Contract' | 'Certificate' | 'Email' | 'AuthorityResponse' | 'Other';
+    documentStandard?: DocumentStandard;
+    trustDocumentType?: TrustDocumentType;
     correlationId?: string | null;
     externalReference?: string | null;
 };
@@ -822,7 +902,7 @@ export type SigningCertificateCreateDto = {
     url?: string | null;
     csr?: string | null;
     publicKey?: string | null;
-    certificateType?: 'AuthSignedCertificate' | 'SelfSignedCertificate' | 'AllianceSignedCertificate';
+    certificateType?: CertificateType;
     contactId: string;
     securityCertificateId?: string | null;
 };
@@ -837,13 +917,13 @@ export type SigningCertificateDto = {
     publicKey?: string | null;
     signature?: string | null;
     fileLengthInBits?: number;
-    certificateType?: 'AuthSignedCertificate' | 'SelfSignedCertificate' | 'AllianceSignedCertificate';
+    certificateType?: CertificateType;
     contactId?: string | null;
     tenantId?: string | null;
     userId?: string | null;
     enrollmentId?: string | null;
     securityCertificateId?: string | null;
-    certificateStatus?: 'Unknown' | 'Active' | 'Expiring' | 'Expired' | 'Revoked' | 'Disabled';
+    certificateStatus?: CertificateStatus;
     thumbprint?: string | null;
     subjectName?: string | null;
     issuerName?: string | null;
@@ -907,17 +987,19 @@ export type SigningCertificateUpdateDto = {
     url?: string | null;
     csr?: string | null;
     publicKey?: string | null;
-    certificateType?: 'AuthSignedCertificate' | 'SelfSignedCertificate' | 'AllianceSignedCertificate';
+    certificateType?: CertificateType;
     contactId: string;
     securityCertificateId?: string | null;
 };
+
+export type SigningExecutionBindingReadiness = 'Unbound' | 'Ready' | 'NotReady';
 
 export type SigningLogDto = {
     id?: string | null;
     timestamp?: string | null;
     type?: string | null;
     message?: string | null;
-    logType?: 'Continue' | 'SwitchingProtocols' | 'Processing' | 'EarlyHints' | 'OK' | 'Created' | 'Accepted' | 'NonAuthoritativeInformation' | 'NoContent' | 'ResetContent' | 'PartialContent' | 'MultiStatus' | 'AlreadyReported' | 'IMUsed' | 'MultipleChoices' | 'MovedPermanently' | 'Found' | 'SeeOther' | 'NotModified' | 'UseProxy' | 'Unused' | 'TemporaryRedirect' | 'PermanentRedirect' | 'BadRequest' | 'Unauthorized' | 'PaymentRequired' | 'Forbidden' | 'NotFound' | 'MethodNotAllowed' | 'NotAcceptable' | 'ProxyAuthenticationRequired' | 'RequestTimeout' | 'Conflict' | 'Gone' | 'LengthRequired' | 'PreconditionFailed' | 'RequestEntityTooLarge' | 'RequestUriTooLong' | 'UnsupportedMediaType' | 'RequestedRangeNotSatisfiable' | 'ExpectationFailed' | 'MisdirectedRequest' | 'UnprocessableEntity' | 'Locked' | 'FailedDependency' | 'UpgradeRequired' | 'PreconditionRequired' | 'TooManyRequests' | 'RequestHeaderFieldsTooLarge' | 'UnavailableForLegalReasons' | 'InternalServerError' | 'NotImplemented' | 'BadGateway' | 'ServiceUnavailable' | 'GatewayTimeout' | 'HttpVersionNotSupported' | 'VariantAlsoNegotiates' | 'InsufficientStorage' | 'LoopDetected' | 'NotExtended' | 'NetworkAuthenticationRequired';
+    logType?: HttpStatusCode;
     securityEvent?: string | null;
     requiresAttention?: boolean;
     tenantId?: string | null;
@@ -927,7 +1009,7 @@ export type SigningLogDto = {
     signingProfileId?: string | null;
     signingCertificateId?: string | null;
     signedDocumentId?: string | null;
-    operationType?: 'Unknown' | 'Sign' | 'Verify' | 'Seal' | 'RotateCredential' | 'ResolveCredential' | 'SubmitToAuthority' | 'ReceiveAuthorityResponse' | 'Freeze' | 'ConfigureSigningBinding';
+    operationType?: TrustOperationType;
     correlationId?: string | null;
     inputHash?: string | null;
     outputHash?: string | null;
@@ -992,8 +1074,8 @@ export type SigningParticipantDto = {
     signingRequestId?: string | null;
     contactId?: string | null;
     contactName?: string | null;
-    role?: 'Signer' | 'Approver' | 'Viewer' | 'Witness' | 'CarbonCopy' | 'System';
-    status?: 'Pending' | 'Sent' | 'Viewed' | 'Signed' | 'Approved' | 'Declined' | 'Skipped' | 'Expired' | 'Failed';
+    role?: SigningParticipantRole;
+    status?: SigningParticipantStatus;
     routingOrder?: number;
     sentAtUtc?: string | null;
     viewedAtUtc?: string | null;
@@ -1055,6 +1137,10 @@ export type SigningParticipantDtoListEnvelopeWritable = {
     result?: Array<SigningParticipantDto> | null;
 };
 
+export type SigningParticipantRole = 'Signer' | 'Approver' | 'Viewer' | 'Witness' | 'CarbonCopy' | 'System';
+
+export type SigningParticipantStatus = 'Pending' | 'Sent' | 'Viewed' | 'Signed' | 'Approved' | 'Declined' | 'Skipped' | 'Expired' | 'Failed';
+
 export type SigningProfileCreateDtoReadable = {
     id?: string;
     timestamp?: string;
@@ -1083,8 +1169,8 @@ export type SigningProfileCreateDtoReadable = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    signaturePurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    signatureFormat?: SignatureFormat;
+    signaturePurpose?: SignaturePurpose;
     digestAlgorithm?: string | null;
     signatureAlgorithm?: string | null;
     canonicalizationAlgorithm?: string | null;
@@ -1123,8 +1209,8 @@ export type SigningProfileCreateDtoWritable = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    signaturePurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    signatureFormat?: SignatureFormat;
+    signaturePurpose?: SignaturePurpose;
     digestAlgorithm?: string | null;
     signatureAlgorithm?: string | null;
     canonicalizationAlgorithm?: string | null;
@@ -1170,8 +1256,8 @@ export type SigningProfileDtoReadable = {
     data9?: string | null;
     data9Label?: string | null;
     contactName?: string | null;
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    signaturePurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    signatureFormat?: SignatureFormat;
+    signaturePurpose?: SignaturePurpose;
     digestAlgorithm?: string | null;
     signatureAlgorithm?: string | null;
     canonicalizationAlgorithm?: string | null;
@@ -1216,8 +1302,8 @@ export type SigningProfileDtoWritable = {
     data9?: string | null;
     data9Label?: string | null;
     contactName?: string | null;
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    signaturePurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    signatureFormat?: SignatureFormat;
+    signaturePurpose?: SignaturePurpose;
     digestAlgorithm?: string | null;
     signatureAlgorithm?: string | null;
     canonicalizationAlgorithm?: string | null;
@@ -1281,7 +1367,7 @@ export type SigningProfileExecutionBindingDto = {
     signingProviderKey?: string | null;
     signingCertificateId?: string | null;
     isBound?: boolean;
-    custodyReadiness?: 'Unbound' | 'Ready' | 'NotReady';
+    custodyReadiness?: SigningExecutionBindingReadiness;
     readinessDetail?: string | null;
 };
 
@@ -1314,7 +1400,7 @@ export type SigningProfileGraphicalRepresentationCreateDto = {
     id?: string;
     timestamp?: string;
     signingProfileId: string;
-    kind: 'Drawn' | 'UploadedImage' | 'Typed' | 'Initials' | 'Seal' | 'Stamp';
+    kind: SigningProfileGraphicalRepresentationKind;
     displayName?: string | null;
     fileUploadId?: string | null;
     sha256?: string | null;
@@ -1329,7 +1415,7 @@ export type SigningProfileGraphicalRepresentationDto = {
     id?: string | null;
     timestamp?: string | null;
     signingProfileId?: string | null;
-    kind?: 'Drawn' | 'UploadedImage' | 'Typed' | 'Initials' | 'Seal' | 'Stamp';
+    kind?: SigningProfileGraphicalRepresentationKind;
     displayName?: string | null;
     fileUploadId?: string | null;
     sha256?: string | null;
@@ -1393,8 +1479,10 @@ export type SigningProfileGraphicalRepresentationDtoListEnvelopeWritable = {
     result?: Array<SigningProfileGraphicalRepresentationDto> | null;
 };
 
+export type SigningProfileGraphicalRepresentationKind = 'Drawn' | 'UploadedImage' | 'Typed' | 'Initials' | 'Seal' | 'Stamp';
+
 export type SigningProfileGraphicalRepresentationUpdateDto = {
-    kind?: 'Drawn' | 'UploadedImage' | 'Typed' | 'Initials' | 'Seal' | 'Stamp';
+    kind?: SigningProfileGraphicalRepresentationKind;
     displayName?: string | null;
     fileUploadId?: string | null;
     sha256?: string | null;
@@ -1430,8 +1518,8 @@ export type SigningProfileUpdateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    signaturePurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    signatureFormat?: SignatureFormat;
+    signaturePurpose?: SignaturePurpose;
     digestAlgorithm?: string | null;
     signatureAlgorithm?: string | null;
     canonicalizationAlgorithm?: string | null;
@@ -1449,8 +1537,8 @@ export type SigningRequestDto = {
     signedDocumentTitle?: string | null;
     frozenSourceFileUploadId?: string | null;
     sourceSha256?: string | null;
-    status?: 'Draft' | 'Ready' | 'Sent' | 'InProgress' | 'Completed' | 'Declined' | 'Voided' | 'Expired' | 'Failed';
-    routingMode?: 'Parallel' | 'Sequential';
+    status?: SigningRequestStatus;
+    routingMode?: SigningRoutingMode;
     createdAtUtc?: string;
     sentAtUtc?: string | null;
     completedAtUtc?: string | null;
@@ -1510,6 +1598,58 @@ export type SigningRequestDtoListEnvelopeWritable = {
     result?: Array<SigningRequestDto> | null;
 };
 
+export type SigningRequestStatus = 'Draft' | 'Ready' | 'Sent' | 'InProgress' | 'Completed' | 'Declined' | 'Voided' | 'Expired' | 'Failed';
+
+export type SigningRoutingMode = 'Parallel' | 'Sequential';
+
+export type SigningStatus = 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
+
+export type StorageObjectMutability = 'Editable' | 'Managed' | 'SealedEvidence';
+
+export type StorageScanStatus = 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+
+export type TenantSigningKeyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    authorityId?: string | null;
+    keyId?: string | null;
+    algorithm?: string | null;
+    publicKey?: string | null;
+    custodyKeyRef?: string | null;
+    validFromUtc?: string;
+    validUntilUtc?: string;
+};
+
+export type TenantSigningKeyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantSigningKeyDto;
+};
+
+export type TenantSigningKeyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantSigningKeyDto;
+};
+
+export type TenantSigningKeyGenerateDto = {
+    keyId?: string | null;
+    validUntilUtc?: string;
+};
+
 export type TrustArtifactReferenceDto = {
     storageObjectId?: string | null;
     storageKey?: string | null;
@@ -1544,6 +1684,10 @@ export type TrustArtifactReferenceDtoEnvelopeWritable = {
     } | null;
     result?: TrustArtifactReferenceDto;
 };
+
+export type TrustDocumentType = 'Unknown' | 'Invoice' | 'CreditNote' | 'DebitNote' | 'Contract' | 'Certificate' | 'Email' | 'AuthorityResponse' | 'Other';
+
+export type TrustOperationType = 'Unknown' | 'Sign' | 'Verify' | 'Seal' | 'RotateCredential' | 'ResolveCredential' | 'SubmitToAuthority' | 'ReceiveAuthorityResponse' | 'Freeze' | 'ConfigureSigningBinding';
 
 export type TrustSigningProviderDescriptorDto = {
     name?: string | null;
@@ -1608,8 +1752,8 @@ export type TrustSigningReadinessDto = {
     resolvedDocumentTitle?: string | null;
     resolvedProfileDisplayName?: string | null;
     resolvedCertificateTitle?: string | null;
-    expectedSignatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    expectedSignaturePurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    expectedSignatureFormat?: SignatureFormat;
+    expectedSignaturePurpose?: SignaturePurpose;
     expectedDigestAlgorithm?: string | null;
     expectedSignatureAlgorithm?: string | null;
     expectedCanonicalizationAlgorithm?: string | null;
@@ -1651,8 +1795,8 @@ export type TrustSigningRequestDto = {
     signingProfileId?: string | null;
     signingCertificateId?: string | null;
     contactId?: string | null;
-    requestedFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    requestedPurpose?: 'Unknown' | 'RegulatorySubmission' | 'ContractExecution' | 'EmailSigning' | 'InternalApproval' | 'EvidenceSealing' | 'AgentCredential' | 'Other';
+    requestedFormat?: SignatureFormat;
+    requestedPurpose?: SignaturePurpose;
     correlationId?: string | null;
     sourceStorageObjectId?: string | null;
     sourceSha256?: string | null;
@@ -1675,6 +1819,8 @@ export type TwoFactorResponse = {
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
 };
+
+export type VerificationStatus = 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
 
 export type VoidSigningRequestDto = {
     voidedReason?: string | null;
@@ -3273,6 +3419,87 @@ export type SigningKeysGeneratePlatformSigningKeyResponses = {
 
 export type SigningKeysGeneratePlatformSigningKeyResponse = SigningKeysGeneratePlatformSigningKeyResponses[keyof SigningKeysGeneratePlatformSigningKeyResponses];
 
+export type SigningKeysGenerateTenantSigningKeyData = {
+    body?: TenantSigningKeyGenerateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningKeys';
+};
+
+export type SigningKeysGenerateTenantSigningKeyErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type SigningKeysGenerateTenantSigningKeyError = SigningKeysGenerateTenantSigningKeyErrors[keyof SigningKeysGenerateTenantSigningKeyErrors];
+
+export type SigningKeysGenerateTenantSigningKeyResponses = {
+    /**
+     * OK
+     */
+    200: TenantSigningKeyDtoEnvelopeReadable;
+};
+
+export type SigningKeysGenerateTenantSigningKeyResponse = SigningKeysGenerateTenantSigningKeyResponses[keyof SigningKeysGenerateTenantSigningKeyResponses];
+
+export type SigningKeysGetPlatformSigningKeyRecordData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        authorityId: string;
+        keyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningKeys/Platform/{authorityId}/{keyId}';
+};
+
+export type SigningKeysGetPlatformSigningKeyRecordErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SigningKeysGetPlatformSigningKeyRecordError = SigningKeysGetPlatformSigningKeyRecordErrors[keyof SigningKeysGetPlatformSigningKeyRecordErrors];
+
+export type SigningKeysGetPlatformSigningKeyRecordResponses = {
+    /**
+     * OK
+     */
+    200: PlatformSigningKeyRecordDtoEnvelopeReadable;
+};
+
+export type SigningKeysGetPlatformSigningKeyRecordResponse = SigningKeysGetPlatformSigningKeyRecordResponses[keyof SigningKeysGetPlatformSigningKeyRecordResponses];
+
 export type SigningLogsGetSigningLogsData = {
     body?: SigningLogDtoCollectionQueryParametersWritable;
     headers?: {
@@ -4248,7 +4475,7 @@ export type SigningRequestsPrepareAndCreateData = {
         file?: Blob | File;
         title?: string;
         contactId?: string;
-        routingMode?: 'Parallel' | 'Sequential';
+        routingMode?: SigningRoutingMode;
         expiresAtUtc?: string;
         message?: string;
         correlationId?: string;

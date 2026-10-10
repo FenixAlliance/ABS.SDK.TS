@@ -245,6 +245,8 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -687,8 +689,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;

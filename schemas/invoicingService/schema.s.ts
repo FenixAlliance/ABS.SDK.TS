@@ -61,6 +61,13 @@ export interface paths {
   "/Account/Manage/DownloadPersonalData": {
     post: operations["Platform_PostAccountManageDownloadPersonalData"];
   };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/EstablishmentRepost": {
+    /**
+     * Re-post an issued invoice's establishment.
+     * @description Re-delivers the establishment posting of an issued invoice whose posting ended pending (for example a missing account mapping), after the cause is fixed. The posting is rebuilt from the issued invoice and checked against the total pinned when it was issued; an invoice already established posts nothing. Requires journals_post in the invoice's tenant and a reason in the body, and records an audit entry. At most 3 re-posts per invoice in 24 hours.
+     */
+    post: operations["InvoiceEstablishmentRepost_RepostInvoiceEstablishment"];
+  };
   "/api/v2/InvoicingService/Invoices": {
     /**
      * Get a list of invoices.
@@ -448,11 +455,18 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["BillingCouponRecognitionDto"];
     };
+    /** @enum {string} */
+    BillingNoteReason: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange";
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
     CreditNoteCreateDto: {
       /** Format: double */
       amount?: number;
-      /** @enum {string} */
-      reason?: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange";
+      reason?: components["schemas"]["BillingNoteReason"];
       reasonDescription?: string | null;
     };
     CurrencyId: {
@@ -463,10 +477,13 @@ export interface components {
     DebitNoteCreateDto: {
       /** Format: double */
       amount?: number;
-      /** @enum {string} */
-      reason?: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange";
+      reason?: components["schemas"]["BillingNoteReason"];
       reasonDescription?: string | null;
     };
+    /** @enum {string} */
+    DocumentType: "Standard" | "DebitNote" | "CreditNote";
+    /** @enum {string} */
+    EmailAlertType: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
     EmailDispatchRequest: {
       title: string;
       message: string;
@@ -474,8 +491,7 @@ export interface components {
       buttonLink?: string | null;
       buttonText?: string | null;
       alertMessage?: string | null;
-      /** @enum {string} */
-      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      alertType?: components["schemas"]["EmailAlertType"];
       culture: string;
       uiCulture: string;
       recipients: string[];
@@ -555,10 +571,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -624,6 +638,8 @@ export interface components {
       /** Format: double */
       totalInUsd?: number;
       paid?: boolean;
+      /** Format: date-time */
+      issuedAtUtc?: string | null;
       /** Format: int64 */
       number?: number;
       notes?: string | null;
@@ -637,12 +653,9 @@ export interface components {
       receiverWalletAccountId?: string | null;
       /** Format: date-time */
       paymentDue?: string | null;
-      /** @enum {string} */
-      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
-      /** @enum {string} */
-      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+      invoiceType?: components["schemas"]["InvoiceType"];
+      documentType?: components["schemas"]["DocumentType"];
+      invoiceStatus?: components["schemas"]["InvoiceStatus"];
       tenant?: components["schemas"]["TenantDto"];
       user?: components["schemas"]["SimpleUserDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
@@ -758,8 +771,7 @@ export interface components {
       totalSurcharge?: number;
       /** Format: double */
       totalDiscount?: number;
-      /** @enum {string} */
-      type?: "Discount" | "Surcharge";
+      type?: components["schemas"]["InvoiceAdjustmentType"];
     };
     InvoiceAdjustmentDto: {
       id?: string | null;
@@ -785,8 +797,7 @@ export interface components {
       totalSurcharge?: number;
       /** Format: double */
       totalDiscount?: number;
-      /** @enum {string} */
-      type?: "Discount" | "Surcharge";
+      type?: components["schemas"]["InvoiceAdjustmentType"];
     };
     InvoiceAdjustmentDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -831,6 +842,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["InvoiceAdjustmentDto"][] | null;
     };
+    /** @enum {string} */
+    InvoiceAdjustmentType: "Discount" | "Surcharge";
     InvoiceAdjustmentUpdateDto: {
       currencyId?: string | null;
       /** Format: int32 */
@@ -849,8 +862,7 @@ export interface components {
       totalSurcharge?: number;
       /** Format: double */
       totalDiscount?: number;
-      /** @enum {string} */
-      type?: "Discount" | "Surcharge";
+      type?: components["schemas"]["InvoiceAdjustmentType"];
     };
     InvoiceCreateDto: {
       /** Format: uuid */
@@ -914,10 +926,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       paid?: boolean;
       /** Format: int32 */
       number?: number;
@@ -931,12 +941,9 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
-      /** @enum {string} */
-      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+      invoiceType?: components["schemas"]["InvoiceType"];
+      documentType?: components["schemas"]["DocumentType"];
+      invoiceStatus?: components["schemas"]["InvoiceStatus"];
       /** Format: date-time */
       paymentDue?: string | null;
       /** Format: date-time */
@@ -994,10 +1001,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1063,6 +1068,8 @@ export interface components {
       /** Format: double */
       totalInUsd?: number;
       paid?: boolean;
+      /** Format: date-time */
+      issuedAtUtc?: string | null;
       /** Format: int64 */
       number?: number;
       notes?: string | null;
@@ -1076,12 +1083,9 @@ export interface components {
       receiverWalletAccountId?: string | null;
       /** Format: date-time */
       paymentDue?: string | null;
-      /** @enum {string} */
-      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
-      /** @enum {string} */
-      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+      invoiceType?: components["schemas"]["InvoiceType"];
+      documentType?: components["schemas"]["DocumentType"];
+      invoiceStatus?: components["schemas"]["InvoiceStatus"];
     };
     InvoiceDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1147,9 +1151,40 @@ export interface components {
       fiscalAuthorityId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      documentType?: components["schemas"]["DocumentType"];
+      /** Format: int64 */
+      remainingNumbers?: number;
+      health?: components["schemas"]["InvoiceEnumerationRangeHealth"];
     };
+    /** @enum {string} */
+    InvoiceEnumerationRangeHealth: "Active" | "ExpiringSoon" | "NearlyExhausted" | "Exhausted" | "Expired" | "NotYetValid";
+    InvoiceEstablishmentRepostRequest: {
+      reason?: string | null;
+    };
+    InvoiceEstablishmentRepostResultDto: {
+      invoiceId?: components["schemas"]["InvoiceId"];
+      /** Format: int32 */
+      repostNumber?: number;
+      idempotencyKey?: string | null;
+      originalOutboxMessageId?: components["schemas"]["OutboxMessageId"];
+    };
+    InvoiceEstablishmentRepostResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InvoiceEstablishmentRepostResultDto"];
+    };
+    /** Format: uuid */
+    InvoiceId: string;
     InvoiceIssuedAtBackfillResultDto: {
       /** Format: int32 */
       invoicesStamped?: number;
@@ -1289,10 +1324,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       /** Format: int32 */
       quantity?: number;
       itemId?: string | null;
@@ -1325,10 +1358,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1400,6 +1431,8 @@ export interface components {
       shippingPolicyId?: string | null;
       /** Format: double */
       quantity?: number;
+      /** Format: double */
+      unitPrice?: number;
       free?: boolean;
       freeReason?: string | null;
       freeReasonCode?: string | null;
@@ -1568,10 +1601,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       /** Format: int32 */
       quantity?: number;
       itemId?: string | null;
@@ -1585,10 +1616,8 @@ export interface components {
     InvoiceNoteDto: {
       id?: string | null;
       parentInvoiceId?: string | null;
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
-      /** @enum {string|null} */
-      reason?: "Return" | "Annulment" | "Discount" | "PriceAdjustment" | "Other" | "Interest" | "Charges" | "ValueChange" | null;
+      documentType?: components["schemas"]["DocumentType"];
+      reason?: components["schemas"]["BillingNoteReason"];
       reasonDescription?: string | null;
       enumeration?: string | null;
       /** Format: double */
@@ -1689,6 +1718,10 @@ export interface components {
     InvoiceReferenceUpdateDto: {
       referencedInvoiceId?: string | null;
     };
+    /** @enum {string} */
+    InvoiceStatus: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+    /** @enum {string} */
+    InvoiceType: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
     InvoiceUpdateDto: {
       closed?: boolean;
       title?: string | null;
@@ -1751,10 +1784,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       paid?: boolean;
       /** Format: int32 */
       number?: number;
@@ -1768,12 +1799,9 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
-      /** @enum {string} */
-      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+      invoiceType?: components["schemas"]["InvoiceType"];
+      documentType?: components["schemas"]["DocumentType"];
+      invoiceStatus?: components["schemas"]["InvoiceStatus"];
       /** Format: date-time */
       paymentDue?: string | null;
       /** Format: date-time */
@@ -1810,6 +1838,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
+    /** @enum {string} */
+    OnBehalfOf: "Self" | "Tenant" | "Individual" | "Organization";
+    /** Format: uuid */
+    OutboxMessageId: string;
     PatchOperation: {
       op?: string | null;
       path?: string | null;
@@ -1843,12 +1875,9 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /** @enum {string} */
-      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
-      /** @enum {string} */
-      paymentType?: "Paid" | "Received" | "Internal";
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      onBehalfOf?: components["schemas"]["OnBehalfOf"];
+      paymentType?: components["schemas"]["PaymentType"];
+      paymentStatus?: components["schemas"]["PaymentStatus"];
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -1918,6 +1947,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
     };
+    /** @enum {string} */
+    PaymentStatus: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+    /** @enum {string} */
+    PaymentType: "Paid" | "Received" | "Internal";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1939,8 +1972,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -2009,13 +2041,14 @@ export interface components {
       instagramUrl?: string | null;
       socialProfileId?: string | null;
     };
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TenantDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -2408,6 +2441,70 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Re-post an issued invoice's establishment.
+   * @description Re-delivers the establishment posting of an issued invoice whose posting ended pending (for example a missing account mapping), after the cause is fixed. The posting is rebuilt from the issued invoice and checked against the total pinned when it was issued; an invoice already established posts nothing. Requires journals_post in the invoice's tenant and a reason in the body, and records an audit entry. At most 3 re-posts per invoice in 24 hours.
+   */
+  InvoiceEstablishmentRepost_RepostInvoiceEstablishment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceEstablishmentRepostRequest"];
+        "application/xml": components["schemas"]["InvoiceEstablishmentRepostRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceEstablishmentRepostResultDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceEstablishmentRepostResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Too Many Requests */
+      429: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };

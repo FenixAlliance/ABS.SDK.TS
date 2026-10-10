@@ -532,10 +532,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       displayName?: string | null;
-      /** @enum {string} */
-      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
-      /** @enum {string} */
-      principalStatus?: "Active" | "Suspended" | "Disabled";
+      principalKind?: components["schemas"]["PrincipalKind"];
+      principalStatus?: components["schemas"]["PrincipalStatus"];
       businessApplicationId?: string | null;
       businessApplicationName?: string | null;
       businessApplicationNamespace?: string | null;
@@ -566,10 +564,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       displayName?: string | null;
-      /** @enum {string} */
-      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
-      /** @enum {string} */
-      principalStatus?: "Active" | "Suspended" | "Disabled";
+      principalKind?: components["schemas"]["PrincipalKind"];
+      principalStatus?: components["schemas"]["PrincipalStatus"];
       businessApplicationId?: string | null;
       businessApplicationName?: string | null;
       systemLocked?: boolean;
@@ -890,6 +886,8 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    HttpStatusCode: "Continue" | "SwitchingProtocols" | "Processing" | "EarlyHints" | "OK" | "Created" | "Accepted" | "NonAuthoritativeInformation" | "NoContent" | "ResetContent" | "PartialContent" | "MultiStatus" | "AlreadyReported" | "IMUsed" | "MultipleChoices" | "MovedPermanently" | "Found" | "SeeOther" | "NotModified" | "UseProxy" | "Unused" | "TemporaryRedirect" | "PermanentRedirect" | "BadRequest" | "Unauthorized" | "PaymentRequired" | "Forbidden" | "NotFound" | "MethodNotAllowed" | "NotAcceptable" | "ProxyAuthenticationRequired" | "RequestTimeout" | "Conflict" | "Gone" | "LengthRequired" | "PreconditionFailed" | "RequestEntityTooLarge" | "RequestUriTooLong" | "UnsupportedMediaType" | "RequestedRangeNotSatisfiable" | "ExpectationFailed" | "MisdirectedRequest" | "UnprocessableEntity" | "Locked" | "FailedDependency" | "UpgradeRequired" | "PreconditionRequired" | "TooManyRequests" | "RequestHeaderFieldsTooLarge" | "UnavailableForLegalReasons" | "InternalServerError" | "NotImplemented" | "BadGateway" | "ServiceUnavailable" | "GatewayTimeout" | "HttpVersionNotSupported" | "VariantAlsoNegotiates" | "InsufficientStorage" | "LoopDetected" | "NotExtended" | "NetworkAuthenticationRequired";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -933,8 +931,7 @@ export interface components {
       timestamp?: string | null;
       type?: string | null;
       message?: string | null;
-      /** @enum {string} */
-      logType?: "Continue" | "SwitchingProtocols" | "Processing" | "EarlyHints" | "OK" | "Created" | "Accepted" | "NonAuthoritativeInformation" | "NoContent" | "ResetContent" | "PartialContent" | "MultiStatus" | "AlreadyReported" | "IMUsed" | "MultipleChoices" | "MovedPermanently" | "Found" | "SeeOther" | "NotModified" | "UseProxy" | "Unused" | "TemporaryRedirect" | "PermanentRedirect" | "BadRequest" | "Unauthorized" | "PaymentRequired" | "Forbidden" | "NotFound" | "MethodNotAllowed" | "NotAcceptable" | "ProxyAuthenticationRequired" | "RequestTimeout" | "Conflict" | "Gone" | "LengthRequired" | "PreconditionFailed" | "RequestEntityTooLarge" | "RequestUriTooLong" | "UnsupportedMediaType" | "RequestedRangeNotSatisfiable" | "ExpectationFailed" | "MisdirectedRequest" | "UnprocessableEntity" | "Locked" | "FailedDependency" | "UpgradeRequired" | "PreconditionRequired" | "TooManyRequests" | "RequestHeaderFieldsTooLarge" | "UnavailableForLegalReasons" | "InternalServerError" | "NotImplemented" | "BadGateway" | "ServiceUnavailable" | "GatewayTimeout" | "HttpVersionNotSupported" | "VariantAlsoNegotiates" | "InsufficientStorage" | "LoopDetected" | "NotExtended" | "NetworkAuthenticationRequired";
+      logType?: components["schemas"]["HttpStatusCode"];
       businessID?: string | null;
     };
     LogDtoCollectionQueryParameters: {
@@ -1104,6 +1101,10 @@ export interface components {
       from?: string | null;
       value?: unknown;
     };
+    /** @enum {string} */
+    PrincipalKind: "Human" | "Agent" | "Application" | "Service" | "System";
+    /** @enum {string} */
+    PrincipalStatus: "Active" | "Suspended" | "Disabled";
     RefreshRequest: {
       refreshToken: string | null;
     };

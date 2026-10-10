@@ -13,15 +13,17 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type CanonicalPaymentStatus = 'Pending' | 'RequiresAction' | 'Authorized' | 'Succeeded' | 'Failed' | 'Cancelled';
+
 export type CreateProviderWebhookRegistrationRequest = {
     providerCode?: string | null;
     externalAccountId?: string | null;
     webhookSigningSecret?: string | null;
-    environment?: 'Unknown' | 'Test' | 'Live';
+    environment?: PaymentEnvironment;
 };
 
 export type DeclarePaymentProviderEnvironmentRequest = {
-    environment?: 'Unknown' | 'Test' | 'Live';
+    environment?: PaymentEnvironment;
 };
 
 export type EmptyEnvelopeReadable = {
@@ -125,19 +127,19 @@ export type Int32EnvelopeWritable = {
 };
 
 export type IssuePaymentLinkCreateDto = {
-    obligationType?: 'Invoice';
+    obligationType?: PaymentObligationType;
     obligationId?: string;
     expiresAt?: string | null;
 };
 
 export type IssuePublicPaymentReferenceCreateDto = {
-    obligationType?: 'Invoice';
+    obligationType?: PaymentObligationType;
     obligationId?: string;
 };
 
 export type IssuedPaymentLinkDto = {
     id?: string | null;
-    obligationType?: 'Invoice';
+    obligationType?: PaymentObligationType;
     obligationId?: string | null;
     tenantId?: string | null;
     token?: string | null;
@@ -177,6 +179,12 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type OnBehalfOf = 'Self' | 'Tenant' | 'Individual' | 'Organization';
+
+export type OperationOutcomeCertainty = 'Unknown' | 'KnownNoEffect' | 'KnownSucceeded' | 'KnownFailed';
+
+export type OutcomeReconciliationAvailability = 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
@@ -204,9 +212,9 @@ export type PaymentCreateDto = {
     referenceCode?: string | null;
     correlationCode?: string | null;
     lastUpdated?: string;
-    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
-    paymentType?: 'Paid' | 'Received' | 'Internal';
-    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    onBehalfOf?: OnBehalfOf;
+    paymentType?: PaymentType;
+    paymentStatus?: PaymentStatus;
     baseCost?: number;
     signature?: string | null;
     signatureMismatch?: boolean;
@@ -267,9 +275,9 @@ export type PaymentDto = {
     referenceCode?: string | null;
     correlationCode?: string | null;
     lastUpdated?: string;
-    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
-    paymentType?: 'Paid' | 'Received' | 'Internal';
-    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    onBehalfOf?: OnBehalfOf;
+    paymentType?: PaymentType;
+    paymentStatus?: PaymentStatus;
     baseCost?: number;
     signature?: string | null;
     signatureMismatch?: boolean;
@@ -356,6 +364,8 @@ export type PaymentDtoListEnvelopeWritable = {
     } | null;
     result?: Array<PaymentDto> | null;
 };
+
+export type PaymentEnvironment = 'Unknown' | 'Test' | 'Live';
 
 export type PaymentMethodCreateDto = {
     id?: string;
@@ -548,6 +558,12 @@ export type PaymentModeUpdateDto = {
     paymentMeansCode?: string | null;
 };
 
+export type PaymentObligationType = 'Invoice';
+
+export type PaymentProviderCapability = 'None' | 'Collection' | 'Authorization' | 'Capture' | 'Refund' | 'Void' | 'SplitPayment' | 'Transfer' | 'Payout' | 'RecipientOnboarding' | 'BalanceInquiry';
+
+export type PaymentProviderCredentialMode = 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+
 export type PaymentProviderRegistrationDto = {
     id?: string | null;
     createdAtUtc?: string;
@@ -557,11 +573,11 @@ export type PaymentProviderRegistrationDto = {
     providerCode?: string | null;
     credentialSetReference?: string | null;
     hasCredential?: boolean;
-    credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
-    environment?: 'Unknown' | 'Test' | 'Live';
+    credentialMode?: PaymentProviderCredentialMode;
+    environment?: PaymentEnvironment;
     externalAccountId?: string | null;
-    enabledCapabilities?: 'None' | 'Collection' | 'Authorization' | 'Capture' | 'Refund' | 'Void' | 'SplitPayment' | 'Transfer' | 'Payout' | 'RecipientOnboarding' | 'BalanceInquiry';
-    status?: 'Draft' | 'Active' | 'Disabled' | 'Suspended';
+    enabledCapabilities?: PaymentProviderCapability;
+    status?: PaymentProviderRegistrationStatus;
 };
 
 export type PaymentProviderRegistrationDtoCollectionQueryParametersReadable = {
@@ -612,10 +628,14 @@ export type PaymentProviderRegistrationDtoListEnvelopeWritable = {
     result?: Array<PaymentProviderRegistrationDto> | null;
 };
 
+export type PaymentProviderRegistrationStatus = 'Draft' | 'Active' | 'Disabled' | 'Suspended';
+
 export type PaymentProviderRegistrationUpdateDto = {
-    enabledCapabilities?: 'None' | 'Collection' | 'Authorization' | 'Capture' | 'Refund' | 'Void' | 'SplitPayment' | 'Transfer' | 'Payout' | 'RecipientOnboarding' | 'BalanceInquiry';
+    enabledCapabilities?: PaymentProviderCapability;
     externalAccountId?: string | null;
 };
+
+export type PaymentStatus = 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
 
 export type PaymentTermCreateDto = {
     id?: string;
@@ -732,6 +752,8 @@ export type PaymentTermUpdateDto = {
     paymentModeId?: string | null;
 };
 
+export type PaymentType = 'Paid' | 'Received' | 'Internal';
+
 export type PaymentUpdateDto = {
     invoiceId?: string | null;
     emisorWalletId?: string | null;
@@ -750,9 +772,9 @@ export type PaymentUpdateDto = {
     referenceCode?: string | null;
     correlationCode?: string | null;
     lastUpdated?: string;
-    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
-    paymentType?: 'Paid' | 'Received' | 'Internal';
-    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    onBehalfOf?: OnBehalfOf;
+    paymentType?: PaymentType;
+    paymentStatus?: PaymentStatus;
     baseCost?: number;
     signature?: string | null;
     signatureMismatch?: boolean;
@@ -793,10 +815,10 @@ export type PaymentUpdateDto = {
 
 export type ProviderOperationOutcomeReconciliationReadable = {
     providerOperationId?: string | null;
-    operationKind?: 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
+    operationKind?: ProviderOperationType;
     providerCode?: string | null;
-    certainty?: 'Unknown' | 'KnownNoEffect' | 'KnownSucceeded' | 'KnownFailed';
-    availability?: 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+    certainty?: OperationOutcomeCertainty;
+    availability?: OutcomeReconciliationAvailability;
     disposition?: string | null;
     readonly requiresReconciliation?: boolean;
     readonly requiresOperatorResolution?: boolean;
@@ -804,10 +826,10 @@ export type ProviderOperationOutcomeReconciliationReadable = {
 
 export type ProviderOperationOutcomeReconciliationWritable = {
     providerOperationId?: string | null;
-    operationKind?: 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
+    operationKind?: ProviderOperationType;
     providerCode?: string | null;
-    certainty?: 'Unknown' | 'KnownNoEffect' | 'KnownSucceeded' | 'KnownFailed';
-    availability?: 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+    certainty?: OperationOutcomeCertainty;
+    availability?: OutcomeReconciliationAvailability;
     disposition?: string | null;
 };
 
@@ -841,10 +863,10 @@ export type ProviderOperationOutcomeReviewDto = {
     tenantId?: string | null;
     paymentAttemptId?: string | null;
     providerCode?: string | null;
-    operationKind?: 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
-    environment?: 'Unknown' | 'Test' | 'Live';
-    state?: 'Prepared' | 'Dispatched' | 'Observed' | 'Settled' | 'Failed' | 'Discontinued';
-    canonicalStatus?: 'Pending' | 'RequiresAction' | 'Authorized' | 'Succeeded' | 'Failed' | 'Cancelled';
+    operationKind?: ProviderOperationType;
+    environment?: PaymentEnvironment;
+    state?: ProviderOperationState;
+    canonicalStatus?: CanonicalPaymentStatus;
     requestedAmount?: number;
     requestedCurrencyId?: string | null;
     providerResourceId?: string | null;
@@ -852,7 +874,7 @@ export type ProviderOperationOutcomeReviewDto = {
     subjectId?: string | null;
     createdAtUtc?: string;
     lastModifiedUtc?: string | null;
-    outcomeReconciliation?: 'Unknown' | 'Unavailable' | 'Available' | 'AlreadyEstablished';
+    outcomeReconciliation?: OutcomeReconciliationAvailability;
     reconciliationDisposition?: string | null;
 };
 
@@ -904,10 +926,58 @@ export type ProviderOperationOutcomeReviewDtoListEnvelopeWritable = {
     result?: Array<ProviderOperationOutcomeReviewDto> | null;
 };
 
+export type ProviderOperationRefundOutcomeReadable = {
+    providerOperationId?: string | null;
+    refundedProviderOperationId?: string | null;
+    providerResourceId?: string | null;
+    canonicalStatus?: CanonicalPaymentStatus;
+    certainty?: OperationOutcomeCertainty;
+    message?: string | null;
+    readonly requiresReconciliation?: boolean;
+};
+
+export type ProviderOperationRefundOutcomeWritable = {
+    providerOperationId?: string | null;
+    refundedProviderOperationId?: string | null;
+    providerResourceId?: string | null;
+    canonicalStatus?: CanonicalPaymentStatus;
+    certainty?: OperationOutcomeCertainty;
+    message?: string | null;
+};
+
+export type ProviderOperationRefundOutcomeEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ProviderOperationRefundOutcomeReadable;
+};
+
+export type ProviderOperationRefundOutcomeEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ProviderOperationRefundOutcomeWritable;
+};
+
+export type ProviderOperationState = 'Prepared' | 'Dispatched' | 'Observed' | 'Settled' | 'Failed' | 'Discontinued';
+
+export type ProviderOperationType = 'Collection' | 'Refund' | 'Payout' | 'FxQuote' | 'Tokenization' | 'VirtualAccountIssuance' | 'Void';
+
 export type ProviderWebhookRegistrationCreatedDto = {
     id?: string | null;
     providerCode?: string | null;
-    status?: 'Draft' | 'Active' | 'Disabled' | 'Suspended';
+    status?: PaymentProviderRegistrationStatus;
     webhookRegistrationKey?: string | null;
     webhookUrl?: string | null;
 };
@@ -940,11 +1010,11 @@ export type ProviderWebhookRegistrationCreatedDtoEnvelopeWritable = {
 export type PublicPaymentReferenceDto = {
     id?: string | null;
     tenantId?: string | null;
-    obligationType?: 'Invoice';
+    obligationType?: PaymentObligationType;
     obligationId?: string | null;
     reference?: string | null;
     displayReference?: string | null;
-    state?: 'Unminted' | 'Active' | 'Revoked' | 'Rotated';
+    state?: PublicPaymentReferenceState;
     mintedAt?: string | null;
 };
 
@@ -973,6 +1043,8 @@ export type PublicPaymentReferenceDtoEnvelopeWritable = {
     result?: PublicPaymentReferenceDto;
 };
 
+export type PublicPaymentReferenceState = 'Unminted' | 'Active' | 'Revoked' | 'Rotated';
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -993,7 +1065,7 @@ export type ResetPasswordRequest = {
 };
 
 export type SetPaymentProviderRegistrationCredentialRequest = {
-    credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+    credentialMode?: PaymentProviderCredentialMode;
 };
 
 export type TwoFactorRequest = {
@@ -2689,6 +2761,47 @@ export type ProviderOperationsReconcileOutcomeResponses = {
 };
 
 export type ProviderOperationsReconcileOutcomeResponse = ProviderOperationsReconcileOutcomeResponses[keyof ProviderOperationsReconcileOutcomeResponses];
+
+export type ProviderOperationsRefundCollectionData = {
+    body?: never;
+    path: {
+        providerOperationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/ProviderOperations/{providerOperationId}/Refund';
+};
+
+export type ProviderOperationsRefundCollectionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type ProviderOperationsRefundCollectionError = ProviderOperationsRefundCollectionErrors[keyof ProviderOperationsRefundCollectionErrors];
+
+export type ProviderOperationsRefundCollectionResponses = {
+    /**
+     * OK
+     */
+    200: ProviderOperationRefundOutcomeEnvelopeReadable;
+};
+
+export type ProviderOperationsRefundCollectionResponse = ProviderOperationsRefundCollectionResponses[keyof ProviderOperationsRefundCollectionResponses];
 
 export type PublicPaymentLinksIssueData = {
     body?: IssuePaymentLinkCreateDto;

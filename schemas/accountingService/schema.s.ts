@@ -2463,6 +2463,10 @@ export interface components {
       childs?: components["schemas"]["Account"][] | null;
       type?: string | null;
     };
+    /** @enum {string} */
+    AccountBalanceCriteria: "Debit" | "Credit";
+    /** @enum {string} */
+    AccountCategory: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
     AccountCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2478,12 +2482,10 @@ export interface components {
       contactId?: string | null;
       accountTypeId?: string | null;
       parentAccountId?: string | null;
-      /** @enum {string} */
-      accountCategory: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      accountCategory: components["schemas"]["AccountCategory"];
       isContra?: boolean;
       isMonetary?: boolean;
-      /** @enum {string|null} */
-      incomeStatementSubType?: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss" | null;
+      incomeStatementSubType?: components["schemas"]["IncomeStatementSubType"];
     };
     AccountDto: {
       id?: string | null;
@@ -2520,14 +2522,11 @@ export interface components {
       enrollmentId?: string | null;
       /** Format: int32 */
       childrenAccountsCount?: number;
-      /** @enum {string} */
-      accountCategory?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      accountCategory?: components["schemas"]["AccountCategory"];
       isContra?: boolean;
       isMonetary?: boolean;
-      /** @enum {string|null} */
-      incomeStatementSubType?: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss" | null;
-      /** @enum {string} */
-      normalBalance?: "Debit" | "Credit";
+      incomeStatementSubType?: components["schemas"]["IncomeStatementSubType"];
+      normalBalance?: components["schemas"]["AccountBalanceCriteria"];
       balanceAmount?: components["schemas"]["Money"];
       creditsBalanceAmount?: components["schemas"]["Money"];
       debitsBalanceAmount?: components["schemas"]["Money"];
@@ -2767,12 +2766,10 @@ export interface components {
       contactId?: string | null;
       accountTypeId?: string | null;
       parentAccountId?: string | null;
-      /** @enum {string} */
-      accountCategory?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      accountCategory?: components["schemas"]["AccountCategory"];
       isContra?: boolean;
       isMonetary?: boolean;
-      /** @enum {string|null} */
-      incomeStatementSubType?: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss" | null;
+      incomeStatementSubType?: components["schemas"]["IncomeStatementSubType"];
     };
     AccountingEntryCreateDto: {
       /** Format: uuid */
@@ -2781,8 +2778,7 @@ export interface components {
       timestamp?: string;
       journalEntryId: string;
       accountId: string;
-      /** @enum {string} */
-      direction: "Debit" | "Credit";
+      direction: components["schemas"]["PostingDirection"];
       /** Format: double */
       transactionAmount?: number;
       transactionCurrencyId?: string | null;
@@ -2797,8 +2793,7 @@ export interface components {
       journalEntryId?: string | null;
       accountId?: string | null;
       accountName?: string | null;
-      /** @enum {string} */
-      direction?: "Debit" | "Credit";
+      direction?: components["schemas"]["PostingDirection"];
       description?: string | null;
       /** Format: double */
       transactionAmount?: number;
@@ -2869,8 +2864,7 @@ export interface components {
     AccountingEntryUpdateDto: {
       journalEntryId?: string | null;
       accountId?: string | null;
-      /** @enum {string} */
-      direction?: "Debit" | "Credit";
+      direction?: components["schemas"]["PostingDirection"];
       /** Format: double */
       transactionAmount?: number;
       transactionCurrencyId?: string | null;
@@ -3262,8 +3256,7 @@ export interface components {
       endDate?: string;
       /** Format: int32 */
       validityInDays?: number;
-      /** @enum {string} */
-      bankGuaranteeType?: "Receiving" | "Providing";
+      bankGuaranteeType?: components["schemas"]["BankGuaranteeType"];
       contactId?: string | null;
       projectId?: string | null;
       orderId?: string | null;
@@ -3291,8 +3284,7 @@ export interface components {
       /** Format: int32 */
       validityInDays?: number;
       tenantId?: string | null;
-      /** @enum {string} */
-      bankGuaranteeType?: "Receiving" | "Providing";
+      bankGuaranteeType?: components["schemas"]["BankGuaranteeType"];
       enrollmentId?: string | null;
       contactId?: string | null;
       projectId?: string | null;
@@ -3344,6 +3336,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["BankGuaranteeDto"][] | null;
     };
+    /** @enum {string} */
+    BankGuaranteeType: "Receiving" | "Providing";
     BankGuaranteeUpdateDto: {
       /** Format: double */
       margin?: number;
@@ -3360,8 +3354,7 @@ export interface components {
       endDate?: string;
       /** Format: int32 */
       validityInDays?: number;
-      /** @enum {string} */
-      bankGuaranteeType?: "Receiving" | "Providing";
+      bankGuaranteeType?: components["schemas"]["BankGuaranteeType"];
       contactId?: string | null;
       projectId?: string | null;
       orderId?: string | null;
@@ -3577,8 +3570,7 @@ export interface components {
       duns?: string | null;
       isPublicCompany?: boolean;
       isFactaCustomer?: boolean;
-      /** @enum {string} */
-      taxPayerType?: "Individual" | "Business";
+      taxPayerType?: components["schemas"]["TaxPayerType"];
       countryId: string;
       stateId: string;
       cityId: string;
@@ -3640,8 +3632,7 @@ export interface components {
       duns?: string | null;
       isPublicCompany?: boolean;
       isFactaCustomer?: boolean;
-      /** @enum {string} */
-      taxPayerType?: "Individual" | "Business";
+      taxPayerType?: components["schemas"]["TaxPayerType"];
       countryId: string;
       stateId?: string | null;
       cityId?: string | null;
@@ -3715,8 +3706,7 @@ export interface components {
       duns?: string | null;
       isPublicCompany?: boolean;
       isFactaCustomer?: boolean;
-      /** @enum {string} */
-      taxPayerType?: "Individual" | "Business";
+      taxPayerType?: components["schemas"]["TaxPayerType"];
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
@@ -3999,8 +3989,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -4070,9 +4059,21 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
     CostCentreBudgetCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -4147,8 +4148,7 @@ export interface components {
       name?: string | null;
       disabled?: boolean;
       description?: string | null;
-      /** @enum {string} */
-      costCentreType?: "Service" | "Production";
+      costCentreType?: components["schemas"]["CostCentreType"];
       costCentresGroupId?: string | null;
       parentCostCentreId?: string | null;
     };
@@ -4159,8 +4159,7 @@ export interface components {
       name?: string | null;
       disabled?: boolean;
       description?: string | null;
-      /** @enum {string} */
-      costCentreType?: "Service" | "Production";
+      costCentreType?: components["schemas"]["CostCentreType"];
       tenantId?: string | null;
       costCentresGroupId?: string | null;
       parentCostCentreId?: string | null;
@@ -4277,12 +4276,13 @@ export interface components {
       disabled?: boolean;
       parentCostCentresGroupId?: string | null;
     };
+    /** @enum {string} */
+    CostCentreType: "Service" | "Production";
     CostCentreUpdateDto: {
       name?: string | null;
       disabled?: boolean;
       description?: string | null;
-      /** @enum {string} */
-      costCentreType?: "Service" | "Production";
+      costCentreType?: components["schemas"]["CostCentreType"];
       costCentresGroupId?: string | null;
       parentCostCentreId?: string | null;
     };
@@ -4318,6 +4318,8 @@ export interface components {
       /** Format: double */
       result?: number;
     };
+    /** @enum {string} */
+    DocumentType: "Standard" | "DebitNote" | "CreditNote";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -4698,8 +4700,7 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
       fiscalYearId?: string | null;
-      /** @enum {string} */
-      status?: "Open" | "Closed" | "Locked";
+      status?: components["schemas"]["FiscalPeriodStatus"];
     };
     FiscalPeriodDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -4744,6 +4745,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["FiscalPeriodDto"][] | null;
     };
+    /** @enum {string} */
+    FiscalPeriodStatus: "Open" | "Closed" | "Locked";
     FiscalPeriodUpdateDto: {
       name: string;
       /** Format: date-time */
@@ -5119,6 +5122,8 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
+    /** @enum {string} */
+    IncomeStatementSubType: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss";
     InfoRequest: {
       newEmail?: string | null;
       newPassword?: string | null;
@@ -5164,8 +5169,7 @@ export interface components {
       /** Format: date-time */
       validTo: string;
       fiscalAuthorityId?: string | null;
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      documentType?: components["schemas"]["DocumentType"];
     };
     InvoiceEnumerationRangeDto: {
       id?: string | null;
@@ -5188,8 +5192,10 @@ export interface components {
       fiscalAuthorityId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      documentType?: components["schemas"]["DocumentType"];
+      /** Format: int64 */
+      remainingNumbers?: number;
+      health?: components["schemas"]["InvoiceEnumerationRangeHealth"];
     };
     InvoiceEnumerationRangeDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -5234,6 +5240,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["InvoiceEnumerationRangeDto"][] | null;
     };
+    /** @enum {string} */
+    InvoiceEnumerationRangeHealth: "Active" | "ExpiringSoon" | "NearlyExhausted" | "Exhausted" | "Expired" | "NotYetValid";
     InvoiceEnumerationRangeUpdateDto: {
       prefix?: string | null;
       suffix?: string | null;
@@ -5250,8 +5258,7 @@ export interface components {
       /** Format: date-time */
       validTo?: string;
       fiscalAuthorityId?: string | null;
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      documentType?: components["schemas"]["DocumentType"];
     };
     ItemTaxPolicyRecordCreateDto: {
       /** Format: uuid */
@@ -5420,10 +5427,8 @@ export interface components {
       fiscalPeriodId?: string | null;
       financialBookId?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      entryType?: "Simple" | "Compound" | "Adjusting" | "Reversing";
-      /** @enum {string} */
-      status?: "Draft" | "Posted" | "Reversed" | "Voided";
+      entryType?: components["schemas"]["JournalEntryType"];
+      status?: components["schemas"]["JournalEntryStatus"];
       /** Format: date-time */
       postingDate?: string | null;
       isOpeningBalance?: boolean;
@@ -5434,15 +5439,12 @@ export interface components {
       reversalOfJournalEntryId?: string | null;
       postedBy?: string | null;
       executionPrincipalId?: string | null;
-      /** @enum {string|null} */
-      executionPrincipalKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      executionPrincipalKind?: components["schemas"]["PrincipalKind"];
       executionPrincipalEnrollmentId?: string | null;
-      /** @enum {string|null} */
-      runAs?: "Invoker" | "Application" | "System" | "Service" | null;
+      runAs?: components["schemas"]["RunAs"];
       applicationId?: string | null;
       onBehalfOfPrincipalId?: string | null;
-      /** @enum {string|null} */
-      onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      onBehalfOfActorKind?: components["schemas"]["PrincipalKind"];
       hasDualAxisIdentity?: boolean;
       /** Format: double */
       forexRate?: number;
@@ -5504,6 +5506,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["JournalEntryDto"][] | null;
     };
+    /** @enum {string} */
+    JournalEntryStatus: "Draft" | "Posted" | "Reversed" | "Voided";
+    /** @enum {string} */
+    JournalEntryType: "Simple" | "Compound" | "Adjusting" | "Reversing";
     JournalEntryUpdateDto: {
       fiscalPeriodId: string;
       transactionCurrencyId: string;
@@ -5582,6 +5588,8 @@ export interface components {
       journalTypeId?: string | null;
       ledgerId?: string | null;
     };
+    /** @enum {string} */
+    LedgerClass: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
     LedgerDto: {
       id?: string | null;
       /** Format: date-time */
@@ -5643,16 +5651,14 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name: string;
-      /** @enum {string} */
-      ledgerClass?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      ledgerClass?: components["schemas"]["LedgerClass"];
     };
     LedgerTypeDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       name?: string | null;
-      /** @enum {string} */
-      ledgerClass?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      ledgerClass?: components["schemas"]["LedgerClass"];
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -5701,8 +5707,7 @@ export interface components {
     };
     LedgerTypeUpdateDto: {
       name?: string | null;
-      /** @enum {string|null} */
-      ledgerClass?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities" | null;
+      ledgerClass?: components["schemas"]["LedgerClass"];
     };
     LoanApplicationCreateDto: {
       /** Format: uuid */
@@ -6044,11 +6049,14 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       financialBookId?: string | null;
-      /** @enum {string} */
-      status?: "Posted" | "Duplicate" | "Rejected";
+      status?: components["schemas"]["PostingBookResultStatus"];
       journalEntryId?: string | null;
       failureCode?: string | null;
     };
+    /** @enum {string} */
+    PostingBookResultStatus: "Posted" | "Duplicate" | "Rejected";
+    /** @enum {string} */
+    PostingDirection: "Debit" | "Credit";
     PostingExecutionDto: {
       id?: string | null;
       /** Format: date-time */
@@ -6061,10 +6069,8 @@ export interface components {
       postingOperation?: string | null;
       sourceDocumentType?: string | null;
       sourceDocumentId?: string | null;
-      /** @enum {string} */
-      status?: "Received" | "Processing" | "Posted" | "Duplicate" | "PendingMapping" | "PendingPeriod" | "PendingRate" | "Rejected";
-      /** @enum {string|null} */
-      failureKind?: "UnknownOperation" | "UnknownRole" | "AmbiguousPolicy" | "MissingAccountMapping" | "MissingFinancialBook" | "MissingJournal" | "ClosedPeriod" | "MissingFxRate" | "InvalidFxEvidence" | "UnbalancedPlan" | "DuplicateIntent" | "DuplicateBookPosting" | "InvalidPartyReference" | "InvalidCustodyContext" | "PolicyConfigurationError" | null;
+      status?: components["schemas"]["PostingExecutionStatus"];
+      failureKind?: components["schemas"]["PostingFailureKind"];
       failureCode?: string | null;
       retryable?: boolean;
       correlationId?: string | null;
@@ -6076,8 +6082,7 @@ export interface components {
       /** Format: date-time */
       completedAtUtc?: string | null;
       bookResults?: components["schemas"]["PostingBookResultDto"][] | null;
-      /** @enum {string|null} */
-      failureClass?: "Retryable" | "OperatorActionRequired" | "ConfigurationError" | "ProducerError" | null;
+      failureClass?: components["schemas"]["PostingFailureClass"];
     };
     PostingExecutionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -6107,6 +6112,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PostingExecutionDto"][] | null;
     };
+    /** @enum {string} */
+    PostingExecutionStatus: "Received" | "Processing" | "Posted" | "Duplicate" | "PendingMapping" | "PendingPeriod" | "PendingRate" | "Rejected";
+    /** @enum {string} */
+    PostingFailureClass: "Retryable" | "OperatorActionRequired" | "ConfigurationError" | "ProducerError";
+    /** @enum {string} */
+    PostingFailureKind: "UnknownOperation" | "UnknownRole" | "AmbiguousPolicy" | "MissingAccountMapping" | "MissingFinancialBook" | "MissingJournal" | "ClosedPeriod" | "MissingFxRate" | "InvalidFxEvidence" | "UnbalancedPlan" | "DuplicateIntent" | "DuplicateBookPosting" | "InvalidPartyReference" | "InvalidCustodyContext" | "PolicyConfigurationError";
+    /** @enum {string} */
+    PrincipalKind: "Human" | "Agent" | "Application" | "Service" | "System";
     ReceiptCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -6169,18 +6182,15 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       paymentId?: string | null;
       /** Format: double */
       totalAmount?: number;
       /** Format: double */
       totalAmountInUSD?: number;
       contactId?: string | null;
-      /** @enum {string} */
-      receiptType?: "PaymentReceipt" | "PurchaseReceipt";
+      receiptType?: components["schemas"]["ReceiptType"];
       orderId?: string | null;
       invoiceId?: string | null;
     };
@@ -6194,8 +6204,7 @@ export interface components {
       userId?: string | null;
       contactId?: string | null;
       enrollmentId?: string | null;
-      /** @enum {string} */
-      receiptType?: "PaymentReceipt" | "PurchaseReceipt";
+      receiptType?: components["schemas"]["ReceiptType"];
       orderId?: string | null;
       invoiceId?: string | null;
     };
@@ -6242,6 +6251,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ReceiptDto"][] | null;
     };
+    /** @enum {string} */
+    ReceiptType: "PaymentReceipt" | "PurchaseReceipt";
     ReceiptUpdateDto: {
       paymentId?: string | null;
       /** Format: double */
@@ -6274,6 +6285,8 @@ export interface components {
     ReverseJournalEntryRequest: {
       reversalPeriodId: string;
     };
+    /** @enum {string} */
+    RunAs: "Invoker" | "Application" | "System" | "Service";
     SeedChartOfAccountsRequest: {
       fileUrl?: string | null;
     };
@@ -6563,14 +6576,15 @@ export interface components {
       formerShareHolderId?: string | null;
       shareTransferReasonId?: string | null;
     };
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TaxClassCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      /** @enum {string} */
-      type?: "Tax" | "Withholding";
+      type?: components["schemas"]["TaxClassType"];
       fiscalAuthorityId?: string | null;
     };
     TaxClassDto: {
@@ -6579,8 +6593,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Tax" | "Withholding";
+      type?: components["schemas"]["TaxClassType"];
       enrollmentId?: string | null;
       fiscalAuthorityId?: string | null;
     };
@@ -6627,12 +6640,15 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TaxClassDto"][] | null;
     };
+    /** @enum {string} */
+    TaxClassType: "Tax" | "Withholding";
     TaxClassUpdateDto: {
       name?: string | null;
-      /** @enum {string} */
-      type?: "Tax" | "Withholding";
+      type?: components["schemas"]["TaxClassType"];
       fiscalAuthorityId?: string | null;
     };
+    /** @enum {string} */
+    TaxPayerType: "Individual" | "Business";
     TaxPolicyCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -7120,8 +7136,7 @@ export interface components {
       accountId?: string | null;
       code?: string | null;
       name?: string | null;
-      /** @enum {string} */
-      normalBalance?: "Debit" | "Credit";
+      normalBalance?: components["schemas"]["AccountBalanceCriteria"];
       /** Format: double */
       debit?: number;
       /** Format: double */

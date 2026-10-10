@@ -126,12 +126,14 @@ export type BankAccountUpdateDto = {
     walletId?: string | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -189,6 +191,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -197,7 +202,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -255,9 +260,22 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
+
+export type DocumentType = 'Standard' | 'DebitNote' | 'CreditNote';
 
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -361,8 +379,8 @@ export type ExtendedOrderDtoReadable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -413,8 +431,11 @@ export type ExtendedOrderDtoReadable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    readonly numberLabel?: string | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -431,6 +452,11 @@ export type ExtendedOrderDtoReadable = {
     organization?: ContactDtoReadable;
     receiverTenant?: TenantDtoReadable;
     enrollment?: TenantEnrollmentDto;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
 };
 
 export type ExtendedOrderDtoWritable = {
@@ -458,8 +484,8 @@ export type ExtendedOrderDtoWritable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -510,8 +536,10 @@ export type ExtendedOrderDtoWritable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -528,6 +556,11 @@ export type ExtendedOrderDtoWritable = {
     organization?: ContactDtoWritable;
     receiverTenant?: TenantDtoWritable;
     enrollment?: TenantEnrollmentDto;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
 };
 
 export type ExtendedOrderDtoCollectionQueryParametersReadable = {
@@ -581,6 +614,10 @@ export type ExtendedOrderDtoListEnvelopeWritable = {
 export type ForgotPasswordRequest = {
     email: string | null;
 };
+
+export type FreightTerms = 'FOB' | 'NoCharge';
+
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
 
 export type HttpValidationProblemDetails = {
     type?: string | null;
@@ -657,8 +694,8 @@ export type InvoiceDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -699,6 +736,7 @@ export type InvoiceDto = {
     totalGlobalSurchargesInUsd?: number;
     totalInUsd?: number;
     paid?: boolean;
+    issuedAtUtc?: string | null;
     number?: number;
     notes?: string | null;
     orderId?: string | null;
@@ -710,9 +748,9 @@ export type InvoiceDto = {
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
     paymentDue?: string | null;
-    invoiceType?: 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+    invoiceType?: InvoiceType;
+    documentType?: DocumentType;
+    invoiceStatus?: InvoiceStatus;
 };
 
 export type InvoiceDtoCollectionQueryParametersReadable = {
@@ -762,6 +800,10 @@ export type InvoiceDtoListEnvelopeWritable = {
     } | null;
     result?: Array<InvoiceDto> | null;
 };
+
+export type InvoiceStatus = 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+
+export type InvoiceType = 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
 
 export type LocationCreateDto = {
     id?: string;
@@ -922,7 +964,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type OrderDto = {
+export type OnBehalfOf = 'Self' | 'Tenant' | 'Individual' | 'Organization';
+
+export type OrderDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -947,8 +991,8 @@ export type OrderDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -999,8 +1043,104 @@ export type OrderDto = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    readonly numberLabel?: string | null;
+    saleChannel?: SaleChannel;
+    requestedDeliveryDate?: string;
+    customTaxAmount?: number;
+    customTotalAmount?: number;
+    customDetailAmount?: number;
+    customProfitAmount?: number;
+    customDiscountsAmount?: number;
+    customSurchargesAmount?: number;
+    customShippingTaxAmount?: number;
+    customShippingCostAmount?: number;
+    customWithholdingTaxAmount?: number;
+};
+
+export type OrderDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    orderLinesCount?: number;
+    quoteId?: string | null;
+    walletId?: string | null;
+    paymentTermId?: string | null;
+    parentOrderId?: string | null;
+    shippingMethodId?: string | null;
+    billingLocationId?: string | null;
+    shippingLocationId?: string | null;
+    qualifiedIdentifier?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -1047,7 +1187,7 @@ export type OrderDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<OrderDto> | null;
+    result?: Array<OrderDtoReadable> | null;
 };
 
 export type OrderDtoListEnvelopeWritable = {
@@ -1058,8 +1198,10 @@ export type OrderDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<OrderDto> | null;
+    result?: Array<OrderDtoWritable> | null;
 };
+
+export type OrderStatus = 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
 
 export type PatchOperation = {
     op?: string | null;
@@ -1146,9 +1288,9 @@ export type PaymentCreateDto = {
     referenceCode?: string | null;
     correlationCode?: string | null;
     lastUpdated?: string;
-    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
-    paymentType?: 'Paid' | 'Received' | 'Internal';
-    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    onBehalfOf?: OnBehalfOf;
+    paymentType?: PaymentType;
+    paymentStatus?: PaymentStatus;
     baseCost?: number;
     signature?: string | null;
     signatureMismatch?: boolean;
@@ -1209,9 +1351,9 @@ export type PaymentDto = {
     referenceCode?: string | null;
     correlationCode?: string | null;
     lastUpdated?: string;
-    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
-    paymentType?: 'Paid' | 'Received' | 'Internal';
-    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    onBehalfOf?: OnBehalfOf;
+    paymentType?: PaymentType;
+    paymentStatus?: PaymentStatus;
     baseCost?: number;
     signature?: string | null;
     signatureMismatch?: boolean;
@@ -1356,6 +1498,8 @@ export type PaymentRefundDtoListEnvelopeWritable = {
     result?: Array<PaymentRefundDto> | null;
 };
 
+export type PaymentStatus = 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+
 export type PaymentTokenCreateDto = {
     id?: string;
     timestamp?: string;
@@ -1467,6 +1611,8 @@ export type PaymentTokenUpdateDto = {
     paymentGatewayId?: string | null;
 };
 
+export type PaymentType = 'Paid' | 'Received' | 'Internal';
+
 export type QuoteDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -1492,8 +1638,8 @@ export type QuoteDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -1537,8 +1683,8 @@ export type QuoteDto = {
     dealUnitId?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
-    freightTerms?: 'FOB' | 'NoCharge';
+    quoteStatus?: QuoteStatus;
+    freightTerms?: FreightTerms;
     customDiscountsAmount?: number;
 };
 
@@ -1590,6 +1736,8 @@ export type QuoteDtoListEnvelopeWritable = {
     result?: Array<QuoteDto> | null;
 };
 
+export type QuoteStatus = 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1609,11 +1757,17 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
+
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1654,7 +1808,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1717,6 +1871,8 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1741,7 +1897,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1760,11 +1916,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -1790,7 +1946,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1809,11 +1965,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type WalletDto = {
@@ -1865,7 +2021,7 @@ export type WalletDtoEnvelopeWritable = {
 export type WalletWithdrawDto = {
     id?: string | null;
     timestamp?: string | null;
-    withdrawStatus?: 'OnHold' | 'Retained' | 'Processing' | 'OnValidation' | 'Processed';
+    withdrawStatus?: WithdrawStatus;
     walletAccountId?: string | null;
     walletWithdrawRequestId?: string | null;
     balanceBeforeWithdraw?: number;
@@ -1935,7 +2091,7 @@ export type WalletWithdrawRequestDto = {
     timestamp?: string | null;
     requestedWithdrawAmount?: number;
     requestedWithdrawAmountInUSD?: number;
-    walletWithdrawRequestStatus?: 'Pending' | 'Processed' | 'Cancelled' | 'OnHold' | 'Denied';
+    walletWithdrawRequestStatus?: WalletWithdrawRequestStatus;
     currencyId?: string | null;
     businessId?: string | null;
     walletAccountId?: string | null;
@@ -1989,6 +2145,10 @@ export type WalletWithdrawRequestDtoListEnvelopeWritable = {
     } | null;
     result?: Array<WalletWithdrawRequestDto> | null;
 };
+
+export type WalletWithdrawRequestStatus = 'Pending' | 'Processed' | 'Cancelled' | 'OnHold' | 'Denied';
+
+export type WithdrawStatus = 'OnHold' | 'Retained' | 'Processing' | 'OnValidation' | 'Processed';
 
 export type PlatformGetVersionData = {
     body?: never;

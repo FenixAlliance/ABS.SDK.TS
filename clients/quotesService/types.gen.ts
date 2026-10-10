@@ -38,12 +38,14 @@ export type BooleanEnvelopeWritable = {
     result?: boolean;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -101,6 +103,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -109,7 +114,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -167,9 +172,22 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
+
+export type EmailAlertType = 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
 
 export type EmailDispatchRequest = {
     title: string;
@@ -177,7 +195,7 @@ export type EmailDispatchRequest = {
     buttonLink?: string | null;
     buttonText?: string | null;
     alertMessage?: string | null;
-    alertType?: 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+    alertType?: EmailAlertType;
     culture: string;
     uiCulture: string;
     recipients: Array<string>;
@@ -259,8 +277,8 @@ export type ExtendedQuoteDtoReadable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -304,8 +322,8 @@ export type ExtendedQuoteDtoReadable = {
     dealUnitId?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
-    freightTerms?: 'FOB' | 'NoCharge';
+    quoteStatus?: QuoteStatus;
+    freightTerms?: FreightTerms;
     customDiscountsAmount?: number;
     user?: UserDtoReadable;
     tenant?: TenantDtoReadable;
@@ -313,6 +331,11 @@ export type ExtendedQuoteDtoReadable = {
     organization?: ContactDtoReadable;
     receiverTenant?: TenantDtoReadable;
     enrollment?: TenantEnrollmentDto;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
 };
 
 export type ExtendedQuoteDtoWritable = {
@@ -340,8 +363,8 @@ export type ExtendedQuoteDtoWritable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -385,8 +408,8 @@ export type ExtendedQuoteDtoWritable = {
     dealUnitId?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
-    freightTerms?: 'FOB' | 'NoCharge';
+    quoteStatus?: QuoteStatus;
+    freightTerms?: FreightTerms;
     customDiscountsAmount?: number;
     user?: UserDtoWritable;
     tenant?: TenantDtoWritable;
@@ -394,6 +417,11 @@ export type ExtendedQuoteDtoWritable = {
     organization?: ContactDtoWritable;
     receiverTenant?: TenantDtoWritable;
     enrollment?: TenantEnrollmentDto;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
 };
 
 export type ExtendedQuoteDtoCollectionQueryParametersReadable = {
@@ -417,6 +445,31 @@ export type ExtendedQuoteDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type ExtendedQuoteDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ExtendedQuoteDtoReadable;
+};
+
+export type ExtendedQuoteDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ExtendedQuoteDtoWritable;
 };
 
 export type ExtendedQuoteDtoListEnvelopeReadable = {
@@ -447,6 +500,10 @@ export type ExtendedQuoteDtoListEnvelopeWritable = {
 export type ForgotPasswordRequest = {
     email: string | null;
 };
+
+export type FreightTerms = 'FOB' | 'NoCharge';
+
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
 
 export type HttpValidationProblemDetails = {
     type?: string | null;
@@ -505,6 +562,33 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type OrderId = string;
+
+export type OrderIdEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: OrderId;
+};
+
+export type OrderIdEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: OrderId;
+};
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
@@ -559,13 +643,13 @@ export type QuoteCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     cartId?: string | null;
     dealUnitId?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
+    quoteStatus?: QuoteStatus;
     quoteLines?: Array<QuoteLineCreateDto> | null;
 };
 
@@ -594,8 +678,8 @@ export type QuoteDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -639,8 +723,8 @@ export type QuoteDto = {
     dealUnitId?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
-    freightTerms?: 'FOB' | 'NoCharge';
+    quoteStatus?: QuoteStatus;
+    freightTerms?: FreightTerms;
     customDiscountsAmount?: number;
 };
 
@@ -764,8 +848,8 @@ export type QuoteLineCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -830,7 +914,7 @@ export type QuoteLineCreateDto = {
     quoteId?: string | null;
 };
 
-export type QuoteLineDto = {
+export type QuoteLineDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -855,8 +939,125 @@ export type QuoteLineDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    itemId?: string | null;
+    itemTitle?: string | null;
+    itemShortDescription?: string | null;
+    itemPrimaryImageUrl?: string | null;
+    shippingPolicyId?: string | null;
+    quantity?: number;
+    readonly unitPrice?: number;
+    free?: boolean;
+    freeReason?: string | null;
+    freeReasonCode?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    itemPriceId?: string | null;
+    priceListItemId?: string | null;
+    unitId?: string | null;
+    unitGroupId?: string | null;
+    totalWarrantyCostInUsd?: number;
+    totalReturnCostInUsd?: number;
+    totalRefundCostInUsd?: number;
+    customGlobalSurchargesAmount?: number;
+    customGlobalDiscountsAmount?: number;
+    returnPolicyId?: string | null;
+    refundPolicyId?: string | null;
+    warrantyPolicyId?: string | null;
+    shipmentPolicyId?: string | null;
+    shippingLocationId?: string | null;
+    locationId?: string | null;
+    quoteItemRecordId?: string | null;
+    businessProfileRecordId?: string | null;
+    parentBillingItemRecordId?: string | null;
+    quoteId?: string | null;
+};
+
+export type QuoteLineDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -980,7 +1181,7 @@ export type QuoteLineDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: QuoteLineDto;
+    result?: QuoteLineDtoReadable;
 };
 
 export type QuoteLineDtoEnvelopeWritable = {
@@ -991,7 +1192,7 @@ export type QuoteLineDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: QuoteLineDto;
+    result?: QuoteLineDtoWritable;
 };
 
 export type QuoteLineDtoListEnvelopeReadable = {
@@ -1005,7 +1206,7 @@ export type QuoteLineDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<QuoteLineDto> | null;
+    result?: Array<QuoteLineDtoReadable> | null;
 };
 
 export type QuoteLineDtoListEnvelopeWritable = {
@@ -1016,7 +1217,7 @@ export type QuoteLineDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<QuoteLineDto> | null;
+    result?: Array<QuoteLineDtoWritable> | null;
 };
 
 export type QuoteLineUpdateDto = {
@@ -1068,8 +1269,8 @@ export type QuoteLineUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -1181,8 +1382,8 @@ export type QuoteLineUpsertDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -1247,6 +1448,8 @@ export type QuoteLineUpsertDto = {
     quoteId?: string | null;
 };
 
+export type QuoteStatus = 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
+
 export type QuoteUpdateDto = {
     closed?: boolean;
     title?: string | null;
@@ -1296,11 +1499,11 @@ export type QuoteUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     cartId?: string | null;
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
-    freightTerms?: 'FOB' | 'NoCharge';
+    quoteStatus?: QuoteStatus;
+    freightTerms?: FreightTerms;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
     customTaxAmount?: number;
@@ -1333,11 +1536,15 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1378,7 +1585,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1441,6 +1648,8 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1465,7 +1674,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1484,11 +1693,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -1514,7 +1723,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1533,11 +1742,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type PlatformGetVersionData = {
@@ -1976,6 +2185,222 @@ export type QuotesGetExtendedQuotesResponses = {
 
 export type QuotesGetExtendedQuotesResponse = QuotesGetExtendedQuotesResponses[keyof QuotesGetExtendedQuotesResponses];
 
+export type QuotesGetReceivedQuotesData = {
+    body?: ExtendedQuoteDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/Received';
+};
+
+export type QuotesGetReceivedQuotesErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuotesError = QuotesGetReceivedQuotesErrors[keyof QuotesGetReceivedQuotesErrors];
+
+export type QuotesGetReceivedQuotesResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedQuoteDtoListEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuotesResponse = QuotesGetReceivedQuotesResponses[keyof QuotesGetReceivedQuotesResponses];
+
+export type QuotesGetReceivedQuotesCountData = {
+    body?: ExtendedQuoteDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/Received/Count';
+};
+
+export type QuotesGetReceivedQuotesCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuotesCountError = QuotesGetReceivedQuotesCountErrors[keyof QuotesGetReceivedQuotesCountErrors];
+
+export type QuotesGetReceivedQuotesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuotesCountResponse = QuotesGetReceivedQuotesCountResponses[keyof QuotesGetReceivedQuotesCountResponses];
+
+export type QuotesGetReceivedQuoteData = {
+    body?: never;
+    path: {
+        quoteId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/Received/{quoteId}';
+};
+
+export type QuotesGetReceivedQuoteErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuoteError = QuotesGetReceivedQuoteErrors[keyof QuotesGetReceivedQuoteErrors];
+
+export type QuotesGetReceivedQuoteResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedQuoteDtoEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuoteResponse = QuotesGetReceivedQuoteResponses[keyof QuotesGetReceivedQuoteResponses];
+
+export type QuotesGetMyReceivedQuotesData = {
+    body?: ExtendedQuoteDtoCollectionQueryParametersWritable;
+    path?: never;
+    query?: never;
+    url: '/api/v2/QuotesService/Quotes/Me/Received';
+};
+
+export type QuotesGetMyReceivedQuotesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuotesError = QuotesGetMyReceivedQuotesErrors[keyof QuotesGetMyReceivedQuotesErrors];
+
+export type QuotesGetMyReceivedQuotesResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedQuoteDtoListEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuotesResponse = QuotesGetMyReceivedQuotesResponses[keyof QuotesGetMyReceivedQuotesResponses];
+
+export type QuotesGetMyReceivedQuotesCountData = {
+    body?: ExtendedQuoteDtoCollectionQueryParametersWritable;
+    path?: never;
+    query?: never;
+    url: '/api/v2/QuotesService/Quotes/Me/Received/Count';
+};
+
+export type QuotesGetMyReceivedQuotesCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuotesCountError = QuotesGetMyReceivedQuotesCountErrors[keyof QuotesGetMyReceivedQuotesCountErrors];
+
+export type QuotesGetMyReceivedQuotesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuotesCountResponse = QuotesGetMyReceivedQuotesCountResponses[keyof QuotesGetMyReceivedQuotesCountResponses];
+
+export type QuotesGetMyReceivedQuoteData = {
+    body?: never;
+    path: {
+        quoteId: string;
+    };
+    query?: never;
+    url: '/api/v2/QuotesService/Quotes/Me/Received/{quoteId}';
+};
+
+export type QuotesGetMyReceivedQuoteErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuoteError = QuotesGetMyReceivedQuoteErrors[keyof QuotesGetMyReceivedQuoteErrors];
+
+export type QuotesGetMyReceivedQuoteResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedQuoteDtoEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuoteResponse = QuotesGetMyReceivedQuoteResponses[keyof QuotesGetMyReceivedQuoteResponses];
+
+export type QuotesGetReceivedQuoteLinesData = {
+    body?: QuoteLineDtoCollectionQueryParametersWritable;
+    path: {
+        quoteId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/Received/{quoteId}/Lines';
+};
+
+export type QuotesGetReceivedQuoteLinesErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuoteLinesError = QuotesGetReceivedQuoteLinesErrors[keyof QuotesGetReceivedQuoteLinesErrors];
+
+export type QuotesGetReceivedQuoteLinesResponses = {
+    /**
+     * OK
+     */
+    200: QuoteLineDtoListEnvelopeReadable;
+};
+
+export type QuotesGetReceivedQuoteLinesResponse = QuotesGetReceivedQuoteLinesResponses[keyof QuotesGetReceivedQuoteLinesResponses];
+
+export type QuotesGetMyReceivedQuoteLinesData = {
+    body?: QuoteLineDtoCollectionQueryParametersWritable;
+    path: {
+        quoteId: string;
+    };
+    query?: never;
+    url: '/api/v2/QuotesService/Quotes/Me/Received/{quoteId}/Lines';
+};
+
+export type QuotesGetMyReceivedQuoteLinesErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuoteLinesError = QuotesGetMyReceivedQuoteLinesErrors[keyof QuotesGetMyReceivedQuoteLinesErrors];
+
+export type QuotesGetMyReceivedQuoteLinesResponses = {
+    /**
+     * OK
+     */
+    200: QuoteLineDtoListEnvelopeReadable;
+};
+
+export type QuotesGetMyReceivedQuoteLinesResponse = QuotesGetMyReceivedQuoteLinesResponses[keyof QuotesGetMyReceivedQuoteLinesResponses];
+
 export type QuotesDeleteQuoteData = {
     body?: never;
     path: {
@@ -2215,6 +2640,78 @@ export type QuotesCreateOrderFromQuoteResponses = {
 };
 
 export type QuotesCreateOrderFromQuoteResponse = QuotesCreateOrderFromQuoteResponses[keyof QuotesCreateOrderFromQuoteResponses];
+
+export type QuotesPlaceOrderFromQuoteData = {
+    body?: never;
+    path: {
+        quoteId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/{quoteId}/PlaceOrder';
+};
+
+export type QuotesPlaceOrderFromQuoteErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type QuotesPlaceOrderFromQuoteError = QuotesPlaceOrderFromQuoteErrors[keyof QuotesPlaceOrderFromQuoteErrors];
+
+export type QuotesPlaceOrderFromQuoteResponses = {
+    /**
+     * OK
+     */
+    200: OrderIdEnvelopeReadable;
+};
+
+export type QuotesPlaceOrderFromQuoteResponse = QuotesPlaceOrderFromQuoteResponses[keyof QuotesPlaceOrderFromQuoteResponses];
+
+export type QuotesPlaceMyOrderFromQuoteData = {
+    body?: never;
+    path: {
+        quoteId: string;
+    };
+    query?: never;
+    url: '/api/v2/QuotesService/Quotes/Me/{quoteId}/PlaceOrder';
+};
+
+export type QuotesPlaceMyOrderFromQuoteErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type QuotesPlaceMyOrderFromQuoteError = QuotesPlaceMyOrderFromQuoteErrors[keyof QuotesPlaceMyOrderFromQuoteErrors];
+
+export type QuotesPlaceMyOrderFromQuoteResponses = {
+    /**
+     * OK
+     */
+    200: OrderIdEnvelopeReadable;
+};
+
+export type QuotesPlaceMyOrderFromQuoteResponse = QuotesPlaceMyOrderFromQuoteResponses[keyof QuotesPlaceMyOrderFromQuoteResponses];
 
 export type QuotesGetQuoteLinesData = {
     body?: QuoteLineDtoCollectionQueryParametersWritable;

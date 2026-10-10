@@ -191,7 +191,7 @@ export type AirwayBillUpdateDto = {
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -236,7 +236,7 @@ export type ContactCreateDtoReadable = {
 export type ContactCreateDtoWritable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -282,7 +282,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -340,6 +340,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -348,7 +351,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -406,9 +409,18 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
 
 export type DeliveryNoteCreateDto = {
     id?: string;

@@ -5,6 +5,142 @@
 
 
 export interface paths {
+  "/api/v2/MarketingService/BannerCreatives/Public/{bannerCreativeId}/Click": {
+    /**
+     * Follow a banner click
+     * @description Redirects to the creative's stored target URL, or to the portal's home page for an unknown or inactive creative. Anonymous.
+     */
+    get: operations["BannerCreatives_GetPublicBannerClick"];
+  };
+  "/api/v2/MarketingService/BannerPlacementAssignments": {
+    /**
+     * Get banner placement assignments
+     * @description Retrieves the tenant's banner placement assignments using OData query options.
+     */
+    get: operations["BannerPlacementAssignments_GetBannerPlacementAssignments"];
+    /**
+     * Create a banner placement assignment
+     * @description Assigns a banner set to a placement key on one portal, or on every portal when no portal is given. One assignment per key and portal scope.
+     */
+    post: operations["BannerPlacementAssignments_CreateBannerPlacementAssignment"];
+  };
+  "/api/v2/MarketingService/BannerPlacementAssignments/Count": {
+    /**
+     * Get banner placement assignments count
+     * @description Returns the count of the tenant's banner placement assignments using OData query options.
+     */
+    get: operations["BannerPlacementAssignments_GetBannerPlacementAssignmentsCount"];
+  };
+  "/api/v2/MarketingService/BannerPlacementAssignments/{bannerPlacementAssignmentId}": {
+    /**
+     * Get banner placement assignment by ID
+     * @description Retrieves one of the tenant's banner placement assignments by its ID.
+     */
+    get: operations["BannerPlacementAssignments_GetBannerPlacementAssignmentById"];
+    /**
+     * Update a banner placement assignment
+     * @description Points the assignment at another banner set of the tenant with a new priority. The key and portal are not editable.
+     */
+    put: operations["BannerPlacementAssignments_UpdateBannerPlacementAssignment"];
+    /**
+     * Delete a banner placement assignment
+     * @description Deletes one of the tenant's banner placement assignments.
+     */
+    delete: operations["BannerPlacementAssignments_DeleteBannerPlacementAssignment"];
+  };
+  "/api/v2/MarketingService/BannerPlacementKeys": {
+    /**
+     * Get banner placement keys
+     * @description Returns the placement-key catalog: each key with its display name, binding aspect ratio and recommended upload size.
+     */
+    get: operations["BannerPlacementKeys_GetBannerPlacementKeys"];
+  };
+  "/api/v2/MarketingService/BannerPlacements/Public/{placementKey}": {
+    /**
+     * Get the banners of a placement
+     * @description Returns up to 'count' (1 to 4) banners for a placement key on a portal, sampled by weight and localized for 'culture'. Anonymous; no-store.
+     */
+    get: operations["BannerPlacements_GetPublicBannerPlacement"];
+  };
+  "/api/v2/MarketingService/BannerSets": {
+    /**
+     * Get banner sets
+     * @description Retrieves the tenant's banner sets using OData query options.
+     */
+    get: operations["BannerSets_GetBannerSets"];
+    /**
+     * Create a banner set
+     * @description Creates a banner set for the specified tenant.
+     */
+    post: operations["BannerSets_CreateBannerSet"];
+  };
+  "/api/v2/MarketingService/BannerSets/Count": {
+    /**
+     * Get banner sets count
+     * @description Returns the count of the tenant's banner sets using OData query options.
+     */
+    get: operations["BannerSets_GetBannerSetsCount"];
+  };
+  "/api/v2/MarketingService/BannerSets/{bannerSetId}": {
+    /**
+     * Get banner set by ID
+     * @description Retrieves one of the tenant's banner sets by its ID.
+     */
+    get: operations["BannerSets_GetBannerSetById"];
+    /**
+     * Update a banner set
+     * @description Replaces the editable fields of one of the tenant's banner sets.
+     */
+    put: operations["BannerSets_UpdateBannerSet"];
+    /**
+     * Delete a banner set
+     * @description Deletes one of the tenant's banner sets with its creatives, and the placement assignments that point at it. Daily counts are kept.
+     */
+    delete: operations["BannerSets_DeleteBannerSet"];
+  };
+  "/api/v2/MarketingService/BannerSets/{bannerSetId}/Performance": {
+    /**
+     * Get banner set performance
+     * @description Returns the daily counts (served in page renders, recorded clicks) of the set's creatives for UTC days from 'from' to 'to'. A missing day is unavailable, not zero.
+     */
+    get: operations["BannerSets_GetBannerSetPerformance"];
+  };
+  "/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives": {
+    /**
+     * Get banner creatives
+     * @description Retrieves the creatives of one of the tenant's banner sets using OData query options.
+     */
+    get: operations["BannerSets_GetBannerCreatives"];
+    /**
+     * Add a banner creative
+     * @description Adds a creative, with its localizations, to one of the tenant's banner sets.
+     */
+    post: operations["BannerSets_CreateBannerCreative"];
+  };
+  "/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/Count": {
+    /**
+     * Get banner creatives count
+     * @description Returns the count of the creatives of one of the tenant's banner sets using OData query options.
+     */
+    get: operations["BannerSets_GetBannerCreativesCount"];
+  };
+  "/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/{bannerCreativeId}": {
+    /**
+     * Get banner creative by ID
+     * @description Retrieves one creative of one of the tenant's banner sets by its ID.
+     */
+    get: operations["BannerSets_GetBannerCreativeById"];
+    /**
+     * Update a banner creative
+     * @description Replaces every field of a creative; its localizations become exactly the list given.
+     */
+    put: operations["BannerSets_UpdateBannerCreative"];
+    /**
+     * Remove a banner creative
+     * @description Removes a creative and its localizations from one of the tenant's banner sets. Its daily counts are kept.
+     */
+    delete: operations["BannerSets_DeleteBannerCreative"];
+  };
   "/api/v2/MarketingService/EmailGroups": {
     /**
      * Get email groups
@@ -505,6 +641,354 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    BannerCreativeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      imageUrl?: string | null;
+      /** Format: int32 */
+      width?: number;
+      /** Format: int32 */
+      height?: number;
+      defaultCulture?: string | null;
+      altText?: string | null;
+      headline?: string | null;
+      ctaText?: string | null;
+      targetUrl?: string | null;
+      /** Format: int32 */
+      weight?: number;
+      /** Format: date-time */
+      startsAt?: string | null;
+      /** Format: date-time */
+      endsAt?: string | null;
+      active?: boolean;
+      /** Format: int32 */
+      sortOrder?: number;
+      localizations?: components["schemas"]["BannerCreativeLocalizationDto"][] | null;
+    };
+    BannerCreativeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      bannerSetId?: string | null;
+      name?: string | null;
+      imageUrl?: string | null;
+      /** Format: int32 */
+      width?: number;
+      /** Format: int32 */
+      height?: number;
+      defaultCulture?: string | null;
+      altText?: string | null;
+      headline?: string | null;
+      ctaText?: string | null;
+      targetUrl?: string | null;
+      /** Format: int32 */
+      weight?: number;
+      /** Format: date-time */
+      startsAt?: string | null;
+      /** Format: date-time */
+      endsAt?: string | null;
+      active?: boolean;
+      /** Format: int32 */
+      sortOrder?: number;
+      localizations?: components["schemas"]["BannerCreativeLocalizationDto"][] | null;
+    };
+    BannerCreativeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    BannerCreativeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerCreativeDto"];
+    };
+    BannerCreativeDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerCreativeDto"][] | null;
+    };
+    BannerCreativeLocalizationDto: {
+      culture?: string | null;
+      altText?: string | null;
+      headline?: string | null;
+      ctaText?: string | null;
+    };
+    BannerCreativeUpdateDto: {
+      name?: string | null;
+      imageUrl?: string | null;
+      /** Format: int32 */
+      width?: number;
+      /** Format: int32 */
+      height?: number;
+      defaultCulture?: string | null;
+      altText?: string | null;
+      headline?: string | null;
+      ctaText?: string | null;
+      targetUrl?: string | null;
+      /** Format: int32 */
+      weight?: number;
+      /** Format: date-time */
+      startsAt?: string | null;
+      /** Format: date-time */
+      endsAt?: string | null;
+      active?: boolean;
+      /** Format: int32 */
+      sortOrder?: number;
+      localizations?: components["schemas"]["BannerCreativeLocalizationDto"][] | null;
+    };
+    BannerPerformanceDto: {
+      /** Format: date-time */
+      day?: string;
+      bannerCreativeId?: string | null;
+      placementKey?: string | null;
+      webPortalId?: string | null;
+      /** Format: int64 */
+      impressions?: number;
+      /** Format: int64 */
+      clicks?: number;
+    };
+    BannerPerformanceDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerPerformanceDto"][] | null;
+    };
+    BannerPlacementAssignmentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      placementKey?: string | null;
+      webPortalId?: string | null;
+      bannerSetId?: string | null;
+      /** Format: int32 */
+      priority?: number;
+    };
+    BannerPlacementAssignmentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      placementKey?: string | null;
+      webPortalId?: string | null;
+      bannerSetId?: string | null;
+      /** Format: int32 */
+      priority?: number;
+      /** Format: date-time */
+      lastModifiedUtc?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    BannerPlacementAssignmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    BannerPlacementAssignmentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerPlacementAssignmentDto"];
+    };
+    BannerPlacementAssignmentDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerPlacementAssignmentDto"][] | null;
+    };
+    BannerPlacementAssignmentUpdateDto: {
+      bannerSetId?: string | null;
+      /** Format: int32 */
+      priority?: number;
+    };
+    BannerPlacementKeyDto: {
+      key?: string | null;
+      displayName?: string | null;
+      /** Format: int32 */
+      ratioWidth?: number;
+      /** Format: int32 */
+      ratioHeight?: number;
+      /** Format: int32 */
+      recommendedWidth?: number;
+      /** Format: int32 */
+      recommendedHeight?: number;
+    };
+    BannerPlacementKeyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerPlacementKeyDto"][] | null;
+    };
+    BannerSetCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      description?: string | null;
+      active?: boolean;
+      /** Format: date-time */
+      startsAt?: string | null;
+      /** Format: date-time */
+      endsAt?: string | null;
+      allPortals?: boolean;
+      webPortalIds?: string[] | null;
+      marketingCampaignId?: string | null;
+    };
+    BannerSetDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      active?: boolean;
+      /** Format: date-time */
+      startsAt?: string | null;
+      /** Format: date-time */
+      endsAt?: string | null;
+      allPortals?: boolean;
+      webPortalIds?: string[] | null;
+      marketingCampaignId?: string | null;
+      /** Format: int32 */
+      creativesCount?: number;
+      /** Format: date-time */
+      lastModifiedUtc?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    BannerSetDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    BannerSetDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerSetDto"];
+    };
+    BannerSetDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["BannerSetDto"][] | null;
+    };
+    BannerSetUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      active?: boolean;
+      /** Format: date-time */
+      startsAt?: string | null;
+      /** Format: date-time */
+      endsAt?: string | null;
+      allPortals?: boolean;
+      webPortalIds?: string[] | null;
+      marketingCampaignId?: string | null;
+    };
+    /** @enum {string} */
+    CodeFileType: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
     EmailGroupCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -583,15 +1067,13 @@ export interface components {
       code?: string | null;
       markup?: string | null;
       featuredImageUrl?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
     };
     EmailSignatureDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -722,8 +1204,7 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -767,16 +1248,14 @@ export interface components {
       code?: string | null;
       markup?: string | null;
       featuredImageUrl?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       marketingCampaignId?: string | null;
     };
     EmailTemplateDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -909,8 +1388,7 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -975,6 +1453,8 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    FreightTerms: "FOB" | "NoCharge";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -1298,10 +1778,8 @@ export interface components {
       /** Format: date-time */
       lastUsedOn?: string;
       currencyId?: string | null;
-      /** @enum {string} */
-      marketingListType?: "Static" | "Dynamic";
-      /** @enum {string} */
-      marketingListTarget?: "Individual" | "Organization" | "Lead";
+      marketingListType?: components["schemas"]["MarketingListType"];
+      marketingListTarget?: components["schemas"]["MarketingListTarget"];
     };
     MarketingListDto: {
       id?: string | null;
@@ -1321,10 +1799,8 @@ export interface components {
       currencyId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
-      /** @enum {string} */
-      marketingListType?: "Static" | "Dynamic";
-      /** @enum {string} */
-      marketingListTarget?: "Individual" | "Organization" | "Lead";
+      marketingListType?: components["schemas"]["MarketingListType"];
+      marketingListTarget?: components["schemas"]["MarketingListTarget"];
     };
     MarketingListDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1369,6 +1845,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["MarketingListDto"][] | null;
     };
+    /** @enum {string} */
+    MarketingListTarget: "Individual" | "Organization" | "Lead";
+    /** @enum {string} */
+    MarketingListType: "Static" | "Dynamic";
     MarketingListUpdateDto: {
       locked?: boolean;
       name?: string | null;
@@ -1382,10 +1862,8 @@ export interface components {
       /** Format: date-time */
       lastUsedOn?: string;
       currencyId?: string | null;
-      /** @enum {string} */
-      marketingListType?: "Static" | "Dynamic";
-      /** @enum {string} */
-      marketingListTarget?: "Individual" | "Organization" | "Lead";
+      marketingListType?: components["schemas"]["MarketingListType"];
+      marketingListTarget?: components["schemas"]["MarketingListTarget"];
     };
     NewsletterCreateDto: {
       /** Format: uuid */
@@ -1536,10 +2014,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1616,10 +2092,12 @@ export interface components {
       qualifiedIdentifier?: string | null;
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
-      /** @enum {string} */
-      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      freightTerms?: components["schemas"]["FreightTerms"];
+      orderStatus?: components["schemas"]["OrderStatus"];
+      /** Format: int64 */
+      number?: number | null;
+      numberLabel?: string | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -1656,11 +2134,45 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"];
     };
+    /** @enum {string} */
+    OrderStatus: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
     PatchOperation: {
       op?: string | null;
       path?: string | null;
       from?: string | null;
       value?: unknown;
+    };
+    PublicBannerDto: {
+      bannerSetId?: string | null;
+      bannerCreativeId?: string | null;
+      placementKey?: string | null;
+      imageUrl?: string | null;
+      /** Format: int32 */
+      width?: number;
+      /** Format: int32 */
+      height?: number;
+      /** Format: date-time */
+      showUntil?: string | null;
+      culture?: string | null;
+      altText?: string | null;
+      headline?: string | null;
+      ctaText?: string | null;
+      clickUrl?: string | null;
+    };
+    PublicBannerDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PublicBannerDto"][] | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1677,6 +2189,8 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
     SocialMediaPostCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1810,6 +2324,8 @@ export interface components {
     SocialPostBucketUpdateDto: {
       name?: string | null;
     };
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -1839,6 +2355,1212 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Follow a banner click
+   * @description Redirects to the creative's stored target URL, or to the portal's home page for an unknown or inactive creative. Anonymous.
+   */
+  BannerCreatives_GetPublicBannerClick: {
+    parameters: {
+      query: {
+        portalId: string;
+        placementKey?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerCreativeId: string;
+      };
+    };
+    responses: {
+      /** @description Found */
+      302: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner placement assignments
+   * @description Retrieves the tenant's banner placement assignments using OData query options.
+   */
+  BannerPlacementAssignments_GetBannerPlacementAssignments: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BannerPlacementAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BannerPlacementAssignmentDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerPlacementAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["BannerPlacementAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a banner placement assignment
+   * @description Assigns a banner set to a placement key on one portal, or on every portal when no portal is given. One assignment per key and portal scope.
+   */
+  BannerPlacementAssignments_CreateBannerPlacementAssignment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BannerPlacementAssignmentCreateDto"];
+        "application/xml": components["schemas"]["BannerPlacementAssignmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner placement assignments count
+   * @description Returns the count of the tenant's banner placement assignments using OData query options.
+   */
+  BannerPlacementAssignments_GetBannerPlacementAssignmentsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BannerPlacementAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BannerPlacementAssignmentDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner placement assignment by ID
+   * @description Retrieves one of the tenant's banner placement assignments by its ID.
+   */
+  BannerPlacementAssignments_GetBannerPlacementAssignmentById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerPlacementAssignmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerPlacementAssignmentDtoEnvelope"];
+          "application/xml": components["schemas"]["BannerPlacementAssignmentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a banner placement assignment
+   * @description Points the assignment at another banner set of the tenant with a new priority. The key and portal are not editable.
+   */
+  BannerPlacementAssignments_UpdateBannerPlacementAssignment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerPlacementAssignmentId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BannerPlacementAssignmentUpdateDto"];
+        "application/xml": components["schemas"]["BannerPlacementAssignmentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a banner placement assignment
+   * @description Deletes one of the tenant's banner placement assignments.
+   */
+  BannerPlacementAssignments_DeleteBannerPlacementAssignment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerPlacementAssignmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner placement keys
+   * @description Returns the placement-key catalog: each key with its display name, binding aspect ratio and recommended upload size.
+   */
+  BannerPlacementKeys_GetBannerPlacementKeys: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerPlacementKeyDtoListEnvelope"];
+          "application/xml": components["schemas"]["BannerPlacementKeyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the banners of a placement
+   * @description Returns up to 'count' (1 to 4) banners for a placement key on a portal, sampled by weight and localized for 'culture'. Anonymous; no-store.
+   */
+  BannerPlacements_GetPublicBannerPlacement: {
+    parameters: {
+      query: {
+        portalId: string;
+        culture?: string;
+        bannerSetId?: string;
+        count?: number;
+        countImpression?: boolean;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        placementKey: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PublicBannerDtoListEnvelope"];
+          "application/xml": components["schemas"]["PublicBannerDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner sets
+   * @description Retrieves the tenant's banner sets using OData query options.
+   */
+  BannerSets_GetBannerSets: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BannerSetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BannerSetDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerSetDtoListEnvelope"];
+          "application/xml": components["schemas"]["BannerSetDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a banner set
+   * @description Creates a banner set for the specified tenant.
+   */
+  BannerSets_CreateBannerSet: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BannerSetCreateDto"];
+        "application/xml": components["schemas"]["BannerSetCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner sets count
+   * @description Returns the count of the tenant's banner sets using OData query options.
+   */
+  BannerSets_GetBannerSetsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BannerSetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BannerSetDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner set by ID
+   * @description Retrieves one of the tenant's banner sets by its ID.
+   */
+  BannerSets_GetBannerSetById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerSetDtoEnvelope"];
+          "application/xml": components["schemas"]["BannerSetDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a banner set
+   * @description Replaces the editable fields of one of the tenant's banner sets.
+   */
+  BannerSets_UpdateBannerSet: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BannerSetUpdateDto"];
+        "application/xml": components["schemas"]["BannerSetUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a banner set
+   * @description Deletes one of the tenant's banner sets with its creatives, and the placement assignments that point at it. Daily counts are kept.
+   */
+  BannerSets_DeleteBannerSet: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner set performance
+   * @description Returns the daily counts (served in page renders, recorded clicks) of the set's creatives for UTC days from 'from' to 'to'. A missing day is unavailable, not zero.
+   */
+  BannerSets_GetBannerSetPerformance: {
+    parameters: {
+      query: {
+        tenantId: string;
+        from?: string;
+        to?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerPerformanceDtoListEnvelope"];
+          "application/xml": components["schemas"]["BannerPerformanceDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner creatives
+   * @description Retrieves the creatives of one of the tenant's banner sets using OData query options.
+   */
+  BannerSets_GetBannerCreatives: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BannerCreativeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BannerCreativeDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerCreativeDtoListEnvelope"];
+          "application/xml": components["schemas"]["BannerCreativeDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a banner creative
+   * @description Adds a creative, with its localizations, to one of the tenant's banner sets.
+   */
+  BannerSets_CreateBannerCreative: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BannerCreativeCreateDto"];
+        "application/xml": components["schemas"]["BannerCreativeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner creatives count
+   * @description Returns the count of the creatives of one of the tenant's banner sets using OData query options.
+   */
+  BannerSets_GetBannerCreativesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BannerCreativeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BannerCreativeDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get banner creative by ID
+   * @description Retrieves one creative of one of the tenant's banner sets by its ID.
+   */
+  BannerSets_GetBannerCreativeById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+        bannerCreativeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BannerCreativeDtoEnvelope"];
+          "application/xml": components["schemas"]["BannerCreativeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a banner creative
+   * @description Replaces every field of a creative; its localizations become exactly the list given.
+   */
+  BannerSets_UpdateBannerCreative: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+        bannerCreativeId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BannerCreativeUpdateDto"];
+        "application/xml": components["schemas"]["BannerCreativeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a banner creative
+   * @description Removes a creative and its localizations from one of the tenant's banner sets. Its daily counts are kept.
+   */
+  BannerSets_DeleteBannerCreative: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bannerSetId: string;
+        bannerCreativeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /**
    * Get email groups
    * @description Retrieves a collection of email groups for the specified tenant using OData query options.

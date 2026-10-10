@@ -47,7 +47,7 @@ export type AverageDtoEnvelopeWritable = {
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -92,7 +92,7 @@ export type ContactCreateDtoReadable = {
 export type ContactCreateDtoWritable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -138,7 +138,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -196,6 +196,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -204,7 +207,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -262,9 +265,18 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
 
 export type CountDto = {
     id?: string | null;
@@ -704,6 +716,7 @@ export type CourseCollectionDto = {
     name?: string | null;
     description?: string | null;
     businessID?: string | null;
+    tenantId?: string | null;
 };
 
 export type CourseCollectionDtoCollectionQueryParametersReadable = {
@@ -1153,6 +1166,9 @@ export type CourseEnrollmentDto = {
     tenantId?: string | null;
     enrollmentId?: string | null;
     courseCompletionCertificateId?: string | null;
+    status?: CourseEnrollmentStatus;
+    completedAtUtc?: string | null;
+    revokedAtUtc?: string | null;
 };
 
 export type CourseEnrollmentDtoCollectionQueryParametersReadable = {
@@ -1202,6 +1218,8 @@ export type CourseEnrollmentDtoIReadOnlyListEnvelopeWritable = {
     } | null;
     result?: Array<CourseEnrollmentDto> | null;
 };
+
+export type CourseEnrollmentStatus = 'Active' | 'Completed' | 'Revoked';
 
 export type CourseEnrollmentUpdateDto = {
     courseCohortId?: string | null;
@@ -1712,7 +1730,7 @@ export type CourseTeamMembershipCreateDto = {
     timestamp?: string;
     courseId: string;
     instructorProfileId: string;
-    courseTeamMembershipType?: 'Admin' | 'Staff';
+    courseTeamMembershipType?: CourseTeamMembershipType;
 };
 
 export type CourseTeamMembershipDto = {
@@ -1720,7 +1738,7 @@ export type CourseTeamMembershipDto = {
     timestamp?: string | null;
     courseId?: string | null;
     instructorProfileId?: string | null;
-    courseTeamMembershipType?: 'Admin' | 'Staff';
+    courseTeamMembershipType?: CourseTeamMembershipType;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -1748,9 +1766,11 @@ export type CourseTeamMembershipDtoCollectionQueryParametersWritable = {
     expand?: string | null;
 };
 
+export type CourseTeamMembershipType = 'Admin' | 'Staff';
+
 export type CourseTeamMembershipUpdateDto = {
     instructorProfileId?: string | null;
-    courseTeamMembershipType?: 'Admin' | 'Staff';
+    courseTeamMembershipType?: CourseTeamMembershipType;
 };
 
 export type CourseUnitComponentCreateDto = {
@@ -2233,6 +2253,38 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type MyCourseEnrollmentStatusDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    courseId?: string | null;
+    isEnrolled?: boolean;
+};
+
+export type MyCourseEnrollmentStatusDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: MyCourseEnrollmentStatusDto;
+};
+
+export type MyCourseEnrollmentStatusDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: MyCourseEnrollmentStatusDto;
 };
 
 export type PatchOperation = {
@@ -10079,6 +10131,38 @@ export type MeGetMyStudentCoursesCountResponses = {
 };
 
 export type MeGetMyStudentCoursesCountResponse = MeGetMyStudentCoursesCountResponses[keyof MeGetMyStudentCoursesCountResponses];
+
+export type MeGetMyCourseEnrollmentStatusData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Me/Courses/{courseId}/Enrollment';
+};
+
+export type MeGetMyCourseEnrollmentStatusErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type MeGetMyCourseEnrollmentStatusError = MeGetMyCourseEnrollmentStatusErrors[keyof MeGetMyCourseEnrollmentStatusErrors];
+
+export type MeGetMyCourseEnrollmentStatusResponses = {
+    /**
+     * OK
+     */
+    200: MyCourseEnrollmentStatusDtoEnvelopeReadable;
+};
+
+export type MeGetMyCourseEnrollmentStatusResponse = MeGetMyCourseEnrollmentStatusResponses[keyof MeGetMyCourseEnrollmentStatusResponses];
 
 export type MeGetMyInstructorCoursesData = {
     body?: CourseDtoCollectionQueryParametersWritable;

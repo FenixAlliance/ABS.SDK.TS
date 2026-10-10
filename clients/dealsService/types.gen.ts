@@ -13,12 +13,14 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -76,6 +78,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -84,7 +89,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -142,9 +147,22 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
+
+export type DealUnitAmountsCalculation = 'UserProvided' | 'SystemCalculated';
 
 export type DealUnitCreateDto = {
     id?: string;
@@ -193,8 +211,8 @@ export type DealUnitCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     dealUnitFlowId?: string | null;
     dealUnitFlowStageId?: string | null;
     partnerCreated?: boolean;
@@ -208,10 +226,10 @@ export type DealUnitCreateDto = {
     deliveredDate?: string;
     closedTimestamp?: string;
     expectedCloseDate?: string;
-    dealUnitStatus?: 'Open' | 'Won' | 'Lost' | 'Frozen';
-    dealUnitPurchaseProcess?: 'None' | 'Individual' | 'Commitee' | 'Unknown';
-    dealUnitForecastCategory?: 'None' | 'Pipeline' | 'BestCase' | 'Commited' | 'Ommited' | 'Won' | 'Lost';
-    dealUnitAmountsCalculation?: 'UserProvided' | 'SystemCalculated';
+    dealUnitStatus?: DealUnitStatus;
+    dealUnitPurchaseProcess?: DealUnitPurchaseProcess;
+    dealUnitForecastCategory?: DealUnitForecastCategory;
+    dealUnitAmountsCalculation?: DealUnitAmountsCalculation;
     dealUnitLines?: Array<DealUnitLineCreateDto> | null;
 };
 
@@ -240,8 +258,8 @@ export type DealUnitDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -298,10 +316,10 @@ export type DealUnitDto = {
     deliveredDate?: string;
     closedTimestamp?: string;
     expectedCloseDate?: string;
-    dealUnitStatus?: 'Open' | 'Won' | 'Lost' | 'Frozen';
-    dealUnitPurchaseProcess?: 'None' | 'Individual' | 'Commitee' | 'Unknown';
-    dealUnitForecastCategory?: 'None' | 'Pipeline' | 'BestCase' | 'Commited' | 'Ommited' | 'Won' | 'Lost';
-    dealUnitAmountsCalculation?: 'UserProvided' | 'SystemCalculated';
+    dealUnitStatus?: DealUnitStatus;
+    dealUnitPurchaseProcess?: DealUnitPurchaseProcess;
+    dealUnitForecastCategory?: DealUnitForecastCategory;
+    dealUnitAmountsCalculation?: DealUnitAmountsCalculation;
     linesCount?: number;
     customTotalAmount?: number;
     customDetailAmount?: number;
@@ -586,6 +604,8 @@ export type DealUnitFlowUpdateDto = {
     parentBusinessProcessId?: string | null;
 };
 
+export type DealUnitForecastCategory = 'None' | 'Pipeline' | 'BestCase' | 'Commited' | 'Ommited' | 'Won' | 'Lost';
+
 export type DealUnitLineCreateDto = {
     id?: string;
     timestamp?: string;
@@ -633,8 +653,8 @@ export type DealUnitLineCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -699,7 +719,7 @@ export type DealUnitLineCreateDto = {
     dealUnitId?: string | null;
 };
 
-export type DealUnitLineDto = {
+export type DealUnitLineDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -724,8 +744,125 @@ export type DealUnitLineDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    itemId?: string | null;
+    itemTitle?: string | null;
+    itemShortDescription?: string | null;
+    itemPrimaryImageUrl?: string | null;
+    shippingPolicyId?: string | null;
+    quantity?: number;
+    readonly unitPrice?: number;
+    free?: boolean;
+    freeReason?: string | null;
+    freeReasonCode?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    itemPriceId?: string | null;
+    priceListItemId?: string | null;
+    unitId?: string | null;
+    unitGroupId?: string | null;
+    totalWarrantyCostInUsd?: number;
+    totalReturnCostInUsd?: number;
+    totalRefundCostInUsd?: number;
+    customGlobalSurchargesAmount?: number;
+    customGlobalDiscountsAmount?: number;
+    returnPolicyId?: string | null;
+    refundPolicyId?: string | null;
+    warrantyPolicyId?: string | null;
+    shipmentPolicyId?: string | null;
+    shippingLocationId?: string | null;
+    locationId?: string | null;
+    quoteItemRecordId?: string | null;
+    businessProfileRecordId?: string | null;
+    parentBillingItemRecordId?: string | null;
+    dealUnitId?: string | null;
+};
+
+export type DealUnitLineDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -849,7 +986,7 @@ export type DealUnitLineDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: DealUnitLineDto;
+    result?: DealUnitLineDtoReadable;
 };
 
 export type DealUnitLineDtoEnvelopeWritable = {
@@ -860,7 +997,7 @@ export type DealUnitLineDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: DealUnitLineDto;
+    result?: DealUnitLineDtoWritable;
 };
 
 export type DealUnitLineDtoListEnvelopeReadable = {
@@ -874,7 +1011,7 @@ export type DealUnitLineDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<DealUnitLineDto> | null;
+    result?: Array<DealUnitLineDtoReadable> | null;
 };
 
 export type DealUnitLineDtoListEnvelopeWritable = {
@@ -885,7 +1022,7 @@ export type DealUnitLineDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<DealUnitLineDto> | null;
+    result?: Array<DealUnitLineDtoWritable> | null;
 };
 
 export type DealUnitLineUpdateDto = {
@@ -937,8 +1074,8 @@ export type DealUnitLineUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -1001,6 +1138,10 @@ export type DealUnitLineUpdateDto = {
     parentBillingItemRecordId?: string | null;
 };
 
+export type DealUnitPurchaseProcess = 'None' | 'Individual' | 'Commitee' | 'Unknown';
+
+export type DealUnitStatus = 'Open' | 'Won' | 'Lost' | 'Frozen';
+
 export type DealUnitUpdateDto = {
     closed?: boolean;
     title?: string | null;
@@ -1050,8 +1191,8 @@ export type DealUnitUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     ordered?: boolean;
     cartId?: string | null;
     dealUnitFeedId?: string | null;
@@ -1068,10 +1209,10 @@ export type DealUnitUpdateDto = {
     deliveredDate?: string;
     closedTimestamp?: string;
     expectedCloseDate?: string;
-    dealUnitStatus?: 'Open' | 'Won' | 'Lost' | 'Frozen';
-    dealUnitPurchaseProcess?: 'None' | 'Individual' | 'Commitee' | 'Unknown';
-    dealUnitForecastCategory?: 'None' | 'Pipeline' | 'BestCase' | 'Commited' | 'Ommited' | 'Won' | 'Lost';
-    dealUnitAmountsCalculation?: 'UserProvided' | 'SystemCalculated';
+    dealUnitStatus?: DealUnitStatus;
+    dealUnitPurchaseProcess?: DealUnitPurchaseProcess;
+    dealUnitForecastCategory?: DealUnitForecastCategory;
+    dealUnitAmountsCalculation?: DealUnitAmountsCalculation;
 };
 
 export type EmptyEnvelopeReadable = {
@@ -1145,8 +1286,8 @@ export type ExtendedDealUnitDtoReadable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -1203,10 +1344,10 @@ export type ExtendedDealUnitDtoReadable = {
     deliveredDate?: string;
     closedTimestamp?: string;
     expectedCloseDate?: string;
-    dealUnitStatus?: 'Open' | 'Won' | 'Lost' | 'Frozen';
-    dealUnitPurchaseProcess?: 'None' | 'Individual' | 'Commitee' | 'Unknown';
-    dealUnitForecastCategory?: 'None' | 'Pipeline' | 'BestCase' | 'Commited' | 'Ommited' | 'Won' | 'Lost';
-    dealUnitAmountsCalculation?: 'UserProvided' | 'SystemCalculated';
+    dealUnitStatus?: DealUnitStatus;
+    dealUnitPurchaseProcess?: DealUnitPurchaseProcess;
+    dealUnitForecastCategory?: DealUnitForecastCategory;
+    dealUnitAmountsCalculation?: DealUnitAmountsCalculation;
     linesCount?: number;
     customTotalAmount?: number;
     customDetailAmount?: number;
@@ -1249,8 +1390,8 @@ export type ExtendedDealUnitDtoWritable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -1307,10 +1448,10 @@ export type ExtendedDealUnitDtoWritable = {
     deliveredDate?: string;
     closedTimestamp?: string;
     expectedCloseDate?: string;
-    dealUnitStatus?: 'Open' | 'Won' | 'Lost' | 'Frozen';
-    dealUnitPurchaseProcess?: 'None' | 'Individual' | 'Commitee' | 'Unknown';
-    dealUnitForecastCategory?: 'None' | 'Pipeline' | 'BestCase' | 'Commited' | 'Ommited' | 'Won' | 'Lost';
-    dealUnitAmountsCalculation?: 'UserProvided' | 'SystemCalculated';
+    dealUnitStatus?: DealUnitStatus;
+    dealUnitPurchaseProcess?: DealUnitPurchaseProcess;
+    dealUnitForecastCategory?: DealUnitForecastCategory;
+    dealUnitAmountsCalculation?: DealUnitAmountsCalculation;
     linesCount?: number;
     customTotalAmount?: number;
     customDetailAmount?: number;
@@ -1405,6 +1546,8 @@ export type ForgotPasswordRequest = {
     email: string | null;
 };
 
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+
 export type HttpValidationProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -1488,11 +1631,15 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1533,7 +1680,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1596,6 +1743,8 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1620,7 +1769,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1639,11 +1788,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -1669,7 +1818,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1688,11 +1837,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type DealUnitFlowsGetDealUnitFlowsData = {
@@ -2380,6 +2529,36 @@ export type DealUnitsCalculateDealUnitResponses = {
 };
 
 export type DealUnitsCalculateDealUnitResponse = DealUnitsCalculateDealUnitResponses[keyof DealUnitsCalculateDealUnitResponses];
+
+export type DealUnitsCloseDealUnitData = {
+    body?: never;
+    path: {
+        dealUnitId: string;
+    };
+    query: {
+        tenantId: string;
+        won: boolean;
+    };
+    url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Close';
+};
+
+export type DealUnitsCloseDealUnitErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DealUnitsCloseDealUnitError = DealUnitsCloseDealUnitErrors[keyof DealUnitsCloseDealUnitErrors];
+
+export type DealUnitsCloseDealUnitResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DealUnitsCloseDealUnitResponse = DealUnitsCloseDealUnitResponses[keyof DealUnitsCloseDealUnitResponses];
 
 export type DealUnitsGetDealUnitLinesData = {
     body?: DealUnitLineDtoCollectionQueryParametersWritable;

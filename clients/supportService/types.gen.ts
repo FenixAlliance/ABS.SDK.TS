@@ -36,6 +36,8 @@ export type EmptyEnvelopeWritable = {
     } | null;
 };
 
+export type EntitlementStatus = 'Active' | 'GracePeriod' | 'Disabled' | 'Deleted';
+
 export type ErrorEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -58,6 +60,8 @@ export type ErrorEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
 };
+
+export type FileUploadPublicAccessType = 'Off' | 'Container' | 'Blob' | 'Unknown';
 
 export type ForgotPasswordRequest = {
     email: string | null;
@@ -931,7 +935,7 @@ export type PrivateMessageDto = {
     receivedTimestamp?: string;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
 };
 
 export type PrivateMessageDtoListEnvelopeReadable = {
@@ -1199,6 +1203,12 @@ export type ReturnRequestUpdateDto = {
     returnPolicyId?: string | null;
 };
 
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
+
+export type StorageScanStatus = 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+
+export type StorageThumbnailStatus = 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+
 export type SupportEntitlementCreateDto = {
     id?: string;
     timestamp?: string;
@@ -1254,7 +1264,7 @@ export type SupportEntitlementDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
-    status?: 'Active' | 'GracePeriod' | 'Disabled' | 'Deleted';
+    status?: EntitlementStatus;
     startDateTime?: string;
     endDateTime?: string;
     nextInvoiceDateTime?: string;
@@ -1436,7 +1446,7 @@ export type SupportRequestAttachmentCreateDto = {
     validResponse?: boolean;
     parentFileUploadId?: string | null;
     filePath?: string | null;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     metadata?: string | null;
     supportRequestId?: string | null;
 };
@@ -1466,14 +1476,14 @@ export type SupportRequestAttachmentDtoReadable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     readonly hasThumbnail?: boolean;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     supportRequestId?: string | null;
 };
 
@@ -1502,13 +1512,13 @@ export type SupportRequestAttachmentDtoWritable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     supportRequestId?: string | null;
 };
 
@@ -1804,7 +1814,7 @@ export type SupportTicketCreateDto = {
     timestamp?: string;
     title?: string | null;
     description?: string | null;
-    supportTicketStatus?: 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+    supportTicketStatus?: SupportTicketStatus;
     contactId?: string | null;
     supportTicketTypeId?: string | null;
     supportEntitlementId?: string | null;
@@ -1816,7 +1826,7 @@ export type SupportTicketDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
-    supportTicketStatus?: 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+    supportTicketStatus?: SupportTicketStatus;
     userId?: string | null;
     contactId?: string | null;
     tenantId?: string | null;
@@ -1995,6 +2005,8 @@ export type SupportTicketPriorityUpdateDto = {
     supportEntitlementId?: string | null;
 };
 
+export type SupportTicketStatus = 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+
 export type SupportTicketTypeCreateDto = {
     id?: string;
     timestamp?: string;
@@ -2093,7 +2105,7 @@ export type SupportTicketTypeUpdateDto = {
 export type SupportTicketUpdateDto = {
     title?: string | null;
     description?: string | null;
-    supportTicketStatus?: 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+    supportTicketStatus?: SupportTicketStatus;
     contactId?: string | null;
     supportTicketTypeId?: string | null;
     supportEntitlementId?: string | null;

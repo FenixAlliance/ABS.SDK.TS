@@ -695,6 +695,8 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    BodyFormat: "PlainText" | "Html";
     BooleanEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -734,8 +736,7 @@ export interface components {
       counterpartySocialProfileId?: string | null;
       counterpartyName?: string | null;
       counterpartyAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      counterpartyType?: "User" | "Tenant" | "Contact" | null;
+      counterpartyType?: components["schemas"]["SocialProfileType"];
       /** Format: int32 */
       unreadCount?: number;
     };
@@ -1074,6 +1075,8 @@ export interface components {
       }) | null;
       activityId?: string | null;
     };
+    /** @enum {string} */
+    FileUploadPublicAccessType: "Off" | "Container" | "Blob" | "Unknown";
     FollowRecordDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1166,8 +1169,7 @@ export interface components {
       message?: string | null;
       imageUrl?: string | null;
       redirectUrl?: string | null;
-      /** @enum {string} */
-      type?: "Event" | "Alert" | "Log";
+      type?: components["schemas"]["NotificationType"];
       socialProfileId?: string | null;
       /** Format: date-time */
       readTimestamp?: string;
@@ -1238,6 +1240,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["NotificationIssuanceReceiptDto"];
     };
+    /** @enum {string} */
+    NotificationType: "Event" | "Alert" | "Log";
     PatchOperation: {
       op?: string | null;
       path?: string | null;
@@ -1273,8 +1277,7 @@ export interface components {
       receivedTimestamp?: string;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
     };
     PrivateMessageDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1308,6 +1311,8 @@ export interface components {
       title?: string | null;
       message?: string | null;
     };
+    /** @enum {string} */
+    Reaction: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1332,8 +1337,7 @@ export interface components {
       url?: string | null;
       iconUrl?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      skillType?: "Skill" | "Certification";
+      skillType?: components["schemas"]["SkillType"];
     };
     SkillDto: {
       id?: string | null;
@@ -1344,8 +1348,7 @@ export interface components {
       type?: string | null;
       iconUrl?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      skillType?: "Skill" | "Certification";
+      skillType?: components["schemas"]["SkillType"];
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -1392,26 +1395,25 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SkillDto"][] | null;
     };
+    /** @enum {string} */
+    SkillType: "Skill" | "Certification";
     SkillUpdateDto: {
       name?: string | null;
       url?: string | null;
       iconUrl?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      skillType?: "Skill" | "Certification";
+      skillType?: components["schemas"]["SkillType"];
     };
     SocialCommentReactionDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reaction?: components["schemas"]["Reaction"];
       reactionValue?: string | null;
       socialProfileId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
       socialCommentId?: string | null;
     };
     SocialCommentReactionDtoCollectionQueryParameters: {
@@ -1518,8 +1520,7 @@ export interface components {
       socialFeedId?: string | null;
       socialProfileId?: string | null;
       bodyHtml?: string | null;
-      /** @enum {string|null} */
-      bodyFormat?: "PlainText" | "Html" | null;
+      bodyFormat?: components["schemas"]["BodyFormat"];
       backgroundStyle?: string | null;
     };
     SocialFeedPostDto: {
@@ -1535,17 +1536,14 @@ export interface components {
       commentsCount?: number;
       /** Format: int32 */
       reactionsCount?: number;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
       bodyHtml?: string | null;
-      /** @enum {string|null} */
-      bodyFormat?: "PlainText" | "Html" | null;
+      bodyFormat?: components["schemas"]["BodyFormat"];
       backgroundStyle?: string | null;
       socialFeedId?: string | null;
       facepile?: components["schemas"]["SocialPostReactionFacepileDto"][] | null;
       attachments?: components["schemas"]["SocialPostAttachmentRefDto"][] | null;
-      /** @enum {string|null} */
-      myReaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid" | null;
+      myReaction?: components["schemas"]["Reaction"];
       myReactionId?: string | null;
     };
     SocialFeedPostDtoCollectionQueryParameters: {
@@ -1595,8 +1593,7 @@ export interface components {
       title?: string | null;
       message?: string | null;
       bodyHtml?: string | null;
-      /** @enum {string|null} */
-      bodyFormat?: "PlainText" | "Html" | null;
+      bodyFormat?: components["schemas"]["BodyFormat"];
       backgroundStyle?: string | null;
     };
     SocialGroupCreateDto: {
@@ -1683,8 +1680,7 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
       socialPostId?: string | null;
     };
     SocialPostAttachmentDto: {
@@ -1714,10 +1710,8 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
-      /** @enum {string} */
-      scanStatus?: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
-      /** @enum {string} */
-      thumbnailStatus?: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+      thumbnailStatus?: components["schemas"]["StorageThumbnailStatus"];
       hasThumbnail?: boolean;
       thumbnailStorageKey?: string | null;
       thumbnailContentType?: string | null;
@@ -1725,8 +1719,7 @@ export interface components {
       thumbnailWidth?: number;
       /** Format: int32 */
       thumbnailHeight?: number;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
       socialPostId?: string | null;
     };
     SocialPostAttachmentDtoCollectionQueryParameters: {
@@ -1798,8 +1791,7 @@ export interface components {
       timestamp?: string;
       message?: string | null;
       bodyHtml?: string | null;
-      /** @enum {string|null} */
-      bodyFormat?: "PlainText" | "Html" | null;
+      bodyFormat?: components["schemas"]["BodyFormat"];
       parentCommentId?: string | null;
       socialProfileId?: string | null;
       socialFeedPostId?: string | null;
@@ -1815,19 +1807,16 @@ export interface components {
       socialFeedPostId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
       bodyHtml?: string | null;
-      /** @enum {string|null} */
-      bodyFormat?: "PlainText" | "Html" | null;
+      bodyFormat?: components["schemas"]["BodyFormat"];
       /** Format: int32 */
       replyCount?: number;
       /** Format: int32 */
       reactionsCount?: number;
       socialPostId?: string | null;
       facepile?: components["schemas"]["SocialPostReactionFacepileDto"][] | null;
-      /** @enum {string|null} */
-      myReaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid" | null;
+      myReaction?: components["schemas"]["Reaction"];
       myReactionId?: string | null;
     };
     SocialPostCommentDtoCollectionQueryParameters: {
@@ -1900,11 +1889,9 @@ export interface components {
       commentsCount?: number;
       /** Format: int32 */
       reactionsCount?: number;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
       bodyHtml?: string | null;
-      /** @enum {string|null} */
-      bodyFormat?: "PlainText" | "Html" | null;
+      bodyFormat?: components["schemas"]["BodyFormat"];
       backgroundStyle?: string | null;
     };
     SocialPostDtoCollectionQueryParameters: {
@@ -1954,14 +1941,12 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reaction?: components["schemas"]["Reaction"];
       reactionValue?: string | null;
       socialProfileId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
       socialPostId?: string | null;
     };
     SocialPostReactionDtoCollectionQueryParameters: {
@@ -1996,10 +1981,8 @@ export interface components {
       socialProfileId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
-      /** @enum {string} */
-      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      socialProfileType?: components["schemas"]["SocialProfileType"];
+      reaction?: components["schemas"]["Reaction"];
     };
     SocialPostUpdateDto: {
       title?: string | null;
@@ -2028,8 +2011,7 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /** @enum {string|null} */
-      type?: "User" | "Tenant" | "Contact" | null;
+      type?: components["schemas"]["SocialProfileType"];
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -2084,13 +2066,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"][] | null;
     };
+    /** @enum {string} */
+    SocialProfileType: "User" | "Tenant" | "Contact";
     SocialReactionCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reaction?: components["schemas"]["Reaction"];
       reactionValue?: string | null;
       socialProfileId?: string | null;
     };
@@ -2098,14 +2081,12 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reaction?: components["schemas"]["Reaction"];
       reactionValue?: string | null;
       socialProfileId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
     };
     SocialReactionDtoEnvelope: {
       isSuccess?: boolean;
@@ -2141,10 +2122,13 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reaction?: components["schemas"]["Reaction"];
       reactionValue?: string | null;
     };
+    /** @enum {string} */
+    StorageScanStatus: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
+    /** @enum {string} */
+    StorageThumbnailStatus: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
     StringEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;

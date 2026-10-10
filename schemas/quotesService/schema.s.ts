@@ -80,6 +80,62 @@ export interface paths {
      */
     get: operations["Quotes_GetExtendedQuotes"];
   };
+  "/api/v2/QuotesService/Quotes/Received": {
+    /**
+     * List the quotes the tenant received.
+     * @description Quotes whose receiver is the tenant and which it did not issue, supporting OData query options.
+     */
+    get: operations["Quotes_GetReceivedQuotes"];
+  };
+  "/api/v2/QuotesService/Quotes/Received/Count": {
+    /**
+     * Count the quotes the tenant received.
+     * @description The count companion of GetReceivedQuotes, supporting OData query options.
+     */
+    get: operations["Quotes_GetReceivedQuotesCount"];
+  };
+  "/api/v2/QuotesService/Quotes/Received/{quoteId}": {
+    /**
+     * Get a quote the tenant received.
+     * @description A quote the tenant did not receive (one it issued included) is not found.
+     */
+    get: operations["Quotes_GetReceivedQuote"];
+  };
+  "/api/v2/QuotesService/Quotes/Me/Received": {
+    /**
+     * List the quotes the current user received.
+     * @description Quotes whose account holder is the current user and that name no receiving tenant.
+     */
+    get: operations["Quotes_GetMyReceivedQuotes"];
+  };
+  "/api/v2/QuotesService/Quotes/Me/Received/Count": {
+    /**
+     * Count the quotes the current user received.
+     * @description The count companion of GetMyReceivedQuotes, supporting OData query options.
+     */
+    get: operations["Quotes_GetMyReceivedQuotesCount"];
+  };
+  "/api/v2/QuotesService/Quotes/Me/Received/{quoteId}": {
+    /**
+     * Get a quote the current user received.
+     * @description A quote the current user did not receive is not found.
+     */
+    get: operations["Quotes_GetMyReceivedQuote"];
+  };
+  "/api/v2/QuotesService/Quotes/Received/{quoteId}/Lines": {
+    /**
+     * List the lines of a quote the tenant received.
+     * @description A quote the tenant did not receive is not found. Supports OData query options.
+     */
+    get: operations["Quotes_GetReceivedQuoteLines"];
+  };
+  "/api/v2/QuotesService/Quotes/Me/Received/{quoteId}/Lines": {
+    /**
+     * List the lines of a quote the current user received.
+     * @description A quote the current user did not receive is not found. Supports OData query options.
+     */
+    get: operations["Quotes_GetMyReceivedQuoteLines"];
+  };
   "/api/v2/QuotesService/Quotes/{quoteId}": {
     /**
      * Get a quote by ID.
@@ -129,6 +185,20 @@ export interface paths {
      * @description Creates an order based on the specified quote for the tenant.
      */
     post: operations["Quotes_CreateOrderFromQuote"];
+  };
+  "/api/v2/QuotesService/Quotes/{quoteId}/PlaceOrder": {
+    /**
+     * Place an order from a quote the tenant received.
+     * @description The receiving tenant accepts an open, unexpired quote and places an order from it. Answers the order id; a repeat call answers the same order. A quote the tenant does not receive is not found.
+     */
+    post: operations["Quotes_PlaceOrderFromQuote"];
+  };
+  "/api/v2/QuotesService/Quotes/Me/{quoteId}/PlaceOrder": {
+    /**
+     * Place an order from a quote the current user received.
+     * @description The current user, as the quote's personal receiver, accepts an open, unexpired quote and places an order from it. Answers the order id; a repeat call answers the same order. A quote the user does not receive is not found.
+     */
+    post: operations["Quotes_PlaceMyOrderFromQuote"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines": {
     /**
@@ -234,14 +304,15 @@ export interface components {
       activityId?: string | null;
       result?: boolean;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -311,9 +382,23 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
+    /** @enum {string} */
+    EmailAlertType: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
     EmailDispatchRequest: {
       title: string;
       message: string;
@@ -321,8 +406,7 @@ export interface components {
       buttonLink?: string | null;
       buttonText?: string | null;
       alertMessage?: string | null;
-      /** @enum {string} */
-      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      alertType?: components["schemas"]["EmailAlertType"];
       culture: string;
       uiCulture: string;
       recipients: string[];
@@ -387,10 +471,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -461,10 +543,8 @@ export interface components {
       effectiveTo?: string | null;
       /** Format: date-time */
       effectiveFrom?: string | null;
-      /** @enum {string} */
-      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
+      quoteStatus?: components["schemas"]["QuoteStatus"];
+      freightTerms?: components["schemas"]["FreightTerms"];
       /** Format: double */
       customDiscountsAmount?: number;
       user?: components["schemas"]["UserDto"];
@@ -473,6 +553,16 @@ export interface components {
       organization?: components["schemas"]["ContactDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
       enrollment?: components["schemas"]["TenantEnrollmentDto"];
+      /** Format: double */
+      effectiveDiscountPercent?: number;
+      /** Format: double */
+      effectiveSurchargePercent?: number;
+      /** Format: double */
+      effectiveTaxesPercent?: number;
+      /** Format: double */
+      effectiveGlobalDiscountPercent?: number;
+      /** Format: double */
+      effectiveGlobalSurchargePercent?: number;
     };
     ExtendedQuoteDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -486,6 +576,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    ExtendedQuoteDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ExtendedQuoteDto"];
     };
     ExtendedQuoteDtoListEnvelope: {
       isSuccess?: boolean;
@@ -505,6 +610,10 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    FreightTerms: "FOB" | "NoCharge";
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -547,6 +656,23 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    /** Format: uuid */
+    OrderId: string;
+    OrderIdEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["OrderId"];
     };
     PatchOperation: {
       op?: string | null;
@@ -616,18 +742,15 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       cartId?: string | null;
       dealUnitId?: string | null;
       /** Format: date-time */
       effectiveTo?: string | null;
       /** Format: date-time */
       effectiveFrom?: string | null;
-      /** @enum {string} */
-      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
+      quoteStatus?: components["schemas"]["QuoteStatus"];
       quoteLines?: components["schemas"]["QuoteLineCreateDto"][] | null;
     };
     QuoteDto: {
@@ -656,10 +779,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -730,10 +851,8 @@ export interface components {
       effectiveTo?: string | null;
       /** Format: date-time */
       effectiveFrom?: string | null;
-      /** @enum {string} */
-      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
+      quoteStatus?: components["schemas"]["QuoteStatus"];
+      freightTerms?: components["schemas"]["FreightTerms"];
       /** Format: double */
       customDiscountsAmount?: number;
     };
@@ -842,10 +961,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -954,10 +1071,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1029,6 +1144,8 @@ export interface components {
       shippingPolicyId?: string | null;
       /** Format: double */
       quantity?: number;
+      /** Format: double */
+      unitPrice?: number;
       free?: boolean;
       freeReason?: string | null;
       freeReasonCode?: string | null;
@@ -1182,10 +1299,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -1328,10 +1443,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -1414,6 +1527,8 @@ export interface components {
       id?: string | null;
       quoteId?: string | null;
     };
+    /** @enum {string} */
+    QuoteStatus: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
     QuoteUpdateDto: {
       closed?: boolean;
       title?: string | null;
@@ -1476,15 +1591,11 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       cartId?: string | null;
-      /** @enum {string} */
-      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
+      quoteStatus?: components["schemas"]["QuoteStatus"];
+      freightTerms?: components["schemas"]["FreightTerms"];
       /** Format: date-time */
       effectiveTo?: string | null;
       /** Format: date-time */
@@ -1523,13 +1634,16 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SiteTheme: "System" | "Light" | "Dark";
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TenantDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1592,6 +1706,8 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    UserAvailability: "DND" | "Busy" | "Away" | "Offline" | "Available";
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1618,8 +1734,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -1638,15 +1753,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
   };
   responses: never;
@@ -2074,6 +2187,254 @@ export interface operations {
     };
   };
   /**
+   * List the quotes the tenant received.
+   * @description Quotes whose receiver is the tenant and which it did not issue, supporting OData query options.
+   */
+  Quotes_GetReceivedQuotes: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedQuoteDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedQuoteDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count the quotes the tenant received.
+   * @description The count companion of GetReceivedQuotes, supporting OData query options.
+   */
+  Quotes_GetReceivedQuotesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a quote the tenant received.
+   * @description A quote the tenant did not receive (one it issued included) is not found.
+   */
+  Quotes_GetReceivedQuote: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        quoteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedQuoteDtoEnvelope"];
+          "application/xml": components["schemas"]["ExtendedQuoteDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the quotes the current user received.
+   * @description Quotes whose account holder is the current user and that name no receiving tenant.
+   */
+  Quotes_GetMyReceivedQuotes: {
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedQuoteDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedQuoteDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count the quotes the current user received.
+   * @description The count companion of GetMyReceivedQuotes, supporting OData query options.
+   */
+  Quotes_GetMyReceivedQuotesCount: {
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedQuoteDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a quote the current user received.
+   * @description A quote the current user did not receive is not found.
+   */
+  Quotes_GetMyReceivedQuote: {
+    parameters: {
+      path: {
+        quoteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedQuoteDtoEnvelope"];
+          "application/xml": components["schemas"]["ExtendedQuoteDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the lines of a quote the tenant received.
+   * @description A quote the tenant did not receive is not found. Supports OData query options.
+   */
+  Quotes_GetReceivedQuoteLines: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        quoteId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["QuoteLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["QuoteLineDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["QuoteLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["QuoteLineDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the lines of a quote the current user received.
+   * @description A quote the current user did not receive is not found. Supports OData query options.
+   */
+  Quotes_GetMyReceivedQuoteLines: {
+    parameters: {
+      path: {
+        quoteId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["QuoteLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["QuoteLineDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["QuoteLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["QuoteLineDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get a quote by ID.
    * @description Retrieves a single quote by its unique identifier for the specified tenant.
    */
@@ -2328,6 +2689,91 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Place an order from a quote the tenant received.
+   * @description The receiving tenant accepts an open, unexpired quote and places an order from it. Answers the order id; a repeat call answers the same order. A quote the tenant does not receive is not found.
+   */
+  Quotes_PlaceOrderFromQuote: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        quoteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderIdEnvelope"];
+          "application/xml": components["schemas"]["OrderIdEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Place an order from a quote the current user received.
+   * @description The current user, as the quote's personal receiver, accepts an open, unexpired quote and places an order from it. Answers the order id; a repeat call answers the same order. A quote the user does not receive is not found.
+   */
+  Quotes_PlaceMyOrderFromQuote: {
+    parameters: {
+      path: {
+        quoteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderIdEnvelope"];
+          "application/xml": components["schemas"]["OrderIdEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Not Found */

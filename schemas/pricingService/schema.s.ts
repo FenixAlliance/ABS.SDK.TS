@@ -432,8 +432,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      /** @enum {string} */
-      discountListType?: "Amount" | "Percentage";
+      discountListType?: components["schemas"]["DiscountListType"];
       currencyId?: string | null;
     };
     DiscountListDto: {
@@ -441,8 +440,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       name?: string | null;
-      /** @enum {string} */
-      discountListType?: "Amount" | "Percentage";
+      discountListType?: components["schemas"]["DiscountListType"];
       currencyId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
@@ -490,10 +488,11 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["DiscountListDto"][] | null;
     };
+    /** @enum {string} */
+    DiscountListType: "Amount" | "Percentage";
     DiscountListUpdateDto: {
       name?: string | null;
-      /** @enum {string} */
-      discountListType?: "Amount" | "Percentage";
+      discountListType?: components["schemas"]["DiscountListType"];
       currencyId?: string | null;
     };
     DiscountUpdateDto: {
@@ -749,6 +748,8 @@ export interface components {
       from?: string | null;
       value?: unknown;
     };
+    /** @enum {string} */
+    PriceListContext: "Sales" | "Purchase" | "Cost";
     PriceListCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -756,8 +757,7 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
-      /** @enum {string} */
-      context?: "Sales" | "Purchase" | "Cost";
+      context?: components["schemas"]["PriceListContext"];
       /** Format: date-time */
       startDate?: string;
       /** Format: date-time */
@@ -778,8 +778,7 @@ export interface components {
       /** Format: date-time */
       endDate?: string;
       description?: string | null;
-      /** @enum {string} */
-      context?: "Sales" | "Purchase" | "Cost";
+      context?: components["schemas"]["PriceListContext"];
       currencyId?: string | null;
       tenantId?: string | null;
       unitId?: string | null;
@@ -834,8 +833,7 @@ export interface components {
     PriceListUpdateDto: {
       name: string;
       description?: string | null;
-      /** @enum {string} */
-      context?: "Sales" | "Purchase" | "Cost";
+      context?: components["schemas"]["PriceListContext"];
       /** Format: date-time */
       startDate?: string;
       /** Format: date-time */

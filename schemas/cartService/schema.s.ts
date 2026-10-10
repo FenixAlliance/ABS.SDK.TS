@@ -565,6 +565,8 @@ export interface components {
       itemCartRecordsCount?: number | null;
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
+      directSellerTenantId?: string | null;
     };
     CartDtoEnvelope: {
       isSuccess?: boolean;
@@ -585,6 +587,8 @@ export interface components {
       currencyId?: string | null;
       countryId?: string | null;
     };
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
     CountryDto: {
       id?: string | null;
       /** Format: date-time */
@@ -730,10 +734,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -805,6 +807,8 @@ export interface components {
       shippingPolicyId?: string | null;
       /** Format: double */
       quantity?: number;
+      /** Format: double */
+      unitPrice?: number;
       free?: boolean;
       freeReason?: string | null;
       freeReasonCode?: string | null;
@@ -1009,6 +1013,10 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;

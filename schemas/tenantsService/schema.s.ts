@@ -1128,6 +1128,8 @@ export interface components {
       activityId?: string | null;
       result?: boolean;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     BusinessRelationshipCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1214,6 +1216,8 @@ export interface components {
       itemCartRecordsCount?: number | null;
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
+      directSellerTenantId?: string | null;
     };
     CartDtoEnvelope: {
       isSuccess?: boolean;
@@ -1263,8 +1267,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1363,6 +1366,8 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -1415,8 +1420,7 @@ export interface components {
       message?: string | null;
       imageUrl?: string | null;
       redirectUrl?: string | null;
-      /** @enum {string} */
-      type?: "Event" | "Alert" | "Log";
+      type?: components["schemas"]["NotificationType"];
       socialProfileId?: string | null;
       /** Format: date-time */
       readTimestamp?: string;
@@ -1453,6 +1457,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["NotificationDto"][] | null;
     };
+    /** @enum {string} */
+    NotificationType: "Event" | "Alert" | "Log";
     OptionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1554,6 +1560,10 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
+    /** @enum {string} */
+    SiteTheme: "System" | "Light" | "Dark";
     SocialProfileDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1577,8 +1587,7 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /** @enum {string|null} */
-      type?: "User" | "Tenant" | "Contact" | null;
+      type?: components["schemas"]["SocialProfileType"];
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -1605,6 +1614,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
     };
+    /** @enum {string} */
+    SocialProfileType: "User" | "Tenant" | "Contact";
     StringListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1703,8 +1714,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       name: string;
       legalName?: string | null;
       /** Format: email */
@@ -1809,8 +1819,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -2828,8 +2837,7 @@ export interface components {
       parentBusinessUnitId?: string | null;
     };
     TenantUpdateDto: {
-      /** @enum {string|null} */
-      kind?: "Organization" | "Individual" | null;
+      kind?: components["schemas"]["BusinessEntityKind"];
       name: string;
       legalName?: string | null;
       /** Format: email */
@@ -3016,6 +3024,8 @@ export interface components {
       baseUnitId?: string | null;
       unECECode?: string | null;
     };
+    /** @enum {string} */
+    UserAvailability: "DND" | "Busy" | "Away" | "Offline" | "Available";
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -3042,8 +3052,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -3062,15 +3071,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
     UserDtoListEnvelope: {
       isSuccess?: boolean;

@@ -14,7 +14,7 @@ export type AccessTokenResponseWritable = {
 };
 
 export type BlobReadable = {
-    kind?: 'File' | 'Folder';
+    kind?: BlobItemKind;
     readonly isFolder?: boolean;
     readonly isFile?: boolean;
     readonly folderPath?: string | null;
@@ -34,7 +34,7 @@ export type BlobReadable = {
 };
 
 export type BlobWritable = {
-    kind?: 'File' | 'Folder';
+    kind?: BlobItemKind;
     size?: number | null;
     md5?: string | null;
     createdTime?: string | null;
@@ -66,6 +66,8 @@ export type BlobEnvelopeWritable = {
     } | null;
     result?: BlobWritable;
 };
+
+export type BlobItemKind = 'File' | 'Folder';
 
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -113,6 +115,8 @@ export type ErrorEnvelopeWritable = {
     } | null;
 };
 
+export type FileSource = 'Unknown' | 'HttpUpload' | 'Integration' | 'InternalProcess' | 'ApiClient' | 'WorkflowEngine';
+
 export type FileUploadDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -138,14 +142,14 @@ export type FileUploadDtoReadable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     readonly hasThumbnail?: boolean;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
 };
 
 export type FileUploadDtoWritable = {
@@ -173,13 +177,13 @@ export type FileUploadDtoWritable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
 };
 
 export type FileUploadDtoCollectionQueryParametersReadable = {
@@ -229,6 +233,8 @@ export type FileUploadDtoEnvelopeWritable = {
     } | null;
     result?: FileUploadDtoWritable;
 };
+
+export type FileUploadPublicAccessType = 'Off' | 'Container' | 'Blob' | 'Unknown';
 
 export type ForgotPasswordRequest = {
     email: string | null;
@@ -299,6 +305,12 @@ export type ResolveEditorAssetRequest = {
     recordId?: string | null;
     target?: string | null;
 };
+
+export type StoragePurpose = 'Unknown' | 'IdentityAvatar' | 'IdentityBanner' | 'ProfileAsset' | 'EngagementInline' | 'EngagementAttachment' | 'MessageAttachment' | 'SocialPost' | 'RecordAttachment' | 'AiGenerated' | 'SystemArtifact' | 'Temporary';
+
+export type StorageScanStatus = 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+
+export type StorageThumbnailStatus = 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
 
 export type TwoFactorRequest = {
     enable?: boolean | null;
@@ -1069,8 +1081,8 @@ export type FilesCreateFileData = {
         validResponse?: boolean;
         parentFileUploadId?: string;
         filePath?: string;
-        publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
-        purpose?: 'Unknown' | 'IdentityAvatar' | 'IdentityBanner' | 'ProfileAsset' | 'EngagementInline' | 'EngagementAttachment' | 'MessageAttachment' | 'SocialPost' | 'RecordAttachment' | 'AiGenerated' | 'SystemArtifact' | 'Temporary';
+        publicAccessType?: FileUploadPublicAccessType;
+        purpose?: StoragePurpose;
         'socialProfileId.value'?: string;
         'appFile.content'?: string;
         'appFile.sha256'?: string;
@@ -1078,7 +1090,7 @@ export type FilesCreateFileData = {
         'appFile.userId.value'?: string;
         'appFile.tenantId.value'?: string;
         'appFile.enrollmentId.value'?: string;
-        'appFile.source'?: 'Unknown' | 'HttpUpload' | 'Integration' | 'InternalProcess' | 'ApiClient' | 'WorkflowEngine';
+        'appFile.source'?: FileSource;
         'appFile.length'?: number;
         'appFile.name'?: string;
         'appFile.fileName'?: string;
@@ -1262,7 +1274,7 @@ export type FilesUpdateFileData = {
         'appFile.userId.value'?: string;
         'appFile.tenantId.value'?: string;
         'appFile.enrollmentId.value'?: string;
-        'appFile.source'?: 'Unknown' | 'HttpUpload' | 'Integration' | 'InternalProcess' | 'ApiClient' | 'WorkflowEngine';
+        'appFile.source'?: FileSource;
         'appFile.length'?: number;
         'appFile.name'?: string;
         'appFile.fileName'?: string;
@@ -1597,8 +1609,8 @@ export type UploadsSaveFileData = {
         validResponse?: boolean;
         parentFileUploadId?: string;
         filePath?: string;
-        publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
-        purpose?: 'Unknown' | 'IdentityAvatar' | 'IdentityBanner' | 'ProfileAsset' | 'EngagementInline' | 'EngagementAttachment' | 'MessageAttachment' | 'SocialPost' | 'RecordAttachment' | 'AiGenerated' | 'SystemArtifact' | 'Temporary';
+        publicAccessType?: FileUploadPublicAccessType;
+        purpose?: StoragePurpose;
         'socialProfileId.value'?: string;
         'appFile.content'?: string;
         'appFile.sha256'?: string;
@@ -1606,7 +1618,7 @@ export type UploadsSaveFileData = {
         'appFile.userId.value'?: string;
         'appFile.tenantId.value'?: string;
         'appFile.enrollmentId.value'?: string;
-        'appFile.source'?: 'Unknown' | 'HttpUpload' | 'Integration' | 'InternalProcess' | 'ApiClient' | 'WorkflowEngine';
+        'appFile.source'?: FileSource;
         'appFile.length'?: number;
         'appFile.name'?: string;
         'appFile.fileName'?: string;

@@ -13,6 +13,430 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BannerCreativeCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    imageUrl?: string | null;
+    width?: number;
+    height?: number;
+    defaultCulture?: string | null;
+    altText?: string | null;
+    headline?: string | null;
+    ctaText?: string | null;
+    targetUrl?: string | null;
+    weight?: number;
+    startsAt?: string | null;
+    endsAt?: string | null;
+    active?: boolean;
+    sortOrder?: number;
+    localizations?: Array<BannerCreativeLocalizationDto> | null;
+};
+
+export type BannerCreativeDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    bannerSetId?: string | null;
+    name?: string | null;
+    imageUrl?: string | null;
+    width?: number;
+    height?: number;
+    defaultCulture?: string | null;
+    altText?: string | null;
+    headline?: string | null;
+    ctaText?: string | null;
+    targetUrl?: string | null;
+    weight?: number;
+    startsAt?: string | null;
+    endsAt?: string | null;
+    active?: boolean;
+    sortOrder?: number;
+    localizations?: Array<BannerCreativeLocalizationDto> | null;
+};
+
+export type BannerCreativeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BannerCreativeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type BannerCreativeDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: BannerCreativeDto;
+};
+
+export type BannerCreativeDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: BannerCreativeDto;
+};
+
+export type BannerCreativeDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BannerCreativeDto> | null;
+};
+
+export type BannerCreativeDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BannerCreativeDto> | null;
+};
+
+export type BannerCreativeLocalizationDto = {
+    culture?: string | null;
+    altText?: string | null;
+    headline?: string | null;
+    ctaText?: string | null;
+};
+
+export type BannerCreativeUpdateDto = {
+    name?: string | null;
+    imageUrl?: string | null;
+    width?: number;
+    height?: number;
+    defaultCulture?: string | null;
+    altText?: string | null;
+    headline?: string | null;
+    ctaText?: string | null;
+    targetUrl?: string | null;
+    weight?: number;
+    startsAt?: string | null;
+    endsAt?: string | null;
+    active?: boolean;
+    sortOrder?: number;
+    localizations?: Array<BannerCreativeLocalizationDto> | null;
+};
+
+export type BannerPerformanceDto = {
+    day?: string;
+    bannerCreativeId?: string | null;
+    placementKey?: string | null;
+    webPortalId?: string | null;
+    impressions?: number;
+    clicks?: number;
+};
+
+export type BannerPerformanceDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BannerPerformanceDto> | null;
+};
+
+export type BannerPerformanceDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BannerPerformanceDto> | null;
+};
+
+export type BannerPlacementAssignmentCreateDto = {
+    id?: string;
+    timestamp?: string;
+    placementKey?: string | null;
+    webPortalId?: string | null;
+    bannerSetId?: string | null;
+    priority?: number;
+};
+
+export type BannerPlacementAssignmentDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    placementKey?: string | null;
+    webPortalId?: string | null;
+    bannerSetId?: string | null;
+    priority?: number;
+    lastModifiedUtc?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type BannerPlacementAssignmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BannerPlacementAssignmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type BannerPlacementAssignmentDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: BannerPlacementAssignmentDto;
+};
+
+export type BannerPlacementAssignmentDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: BannerPlacementAssignmentDto;
+};
+
+export type BannerPlacementAssignmentDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BannerPlacementAssignmentDto> | null;
+};
+
+export type BannerPlacementAssignmentDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BannerPlacementAssignmentDto> | null;
+};
+
+export type BannerPlacementAssignmentUpdateDto = {
+    bannerSetId?: string | null;
+    priority?: number;
+};
+
+export type BannerPlacementKeyDto = {
+    key?: string | null;
+    displayName?: string | null;
+    ratioWidth?: number;
+    ratioHeight?: number;
+    recommendedWidth?: number;
+    recommendedHeight?: number;
+};
+
+export type BannerPlacementKeyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BannerPlacementKeyDto> | null;
+};
+
+export type BannerPlacementKeyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BannerPlacementKeyDto> | null;
+};
+
+export type BannerSetCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    description?: string | null;
+    active?: boolean;
+    startsAt?: string | null;
+    endsAt?: string | null;
+    allPortals?: boolean;
+    webPortalIds?: Array<string> | null;
+    marketingCampaignId?: string | null;
+};
+
+export type BannerSetDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    description?: string | null;
+    active?: boolean;
+    startsAt?: string | null;
+    endsAt?: string | null;
+    allPortals?: boolean;
+    webPortalIds?: Array<string> | null;
+    marketingCampaignId?: string | null;
+    creativesCount?: number;
+    lastModifiedUtc?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type BannerSetDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BannerSetDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type BannerSetDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: BannerSetDto;
+};
+
+export type BannerSetDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: BannerSetDto;
+};
+
+export type BannerSetDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BannerSetDto> | null;
+};
+
+export type BannerSetDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BannerSetDto> | null;
+};
+
+export type BannerSetUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+    active?: boolean;
+    startsAt?: string | null;
+    endsAt?: string | null;
+    allPortals?: boolean;
+    webPortalIds?: Array<string> | null;
+    marketingCampaignId?: string | null;
+};
+
+export type CodeFileType = 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
+
 export type EmailGroupCreateDto = {
     id?: string;
     timestamp?: string;
@@ -119,13 +543,13 @@ export type EmailSignatureCreateDto = {
     code?: string | null;
     markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
 };
 
 export type EmailSignatureDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -285,7 +709,7 @@ export type EmailSignatureUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -323,14 +747,14 @@ export type EmailTemplateCreateDto = {
     code?: string | null;
     markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     marketingCampaignId?: string | null;
 };
 
 export type EmailTemplateDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -492,7 +916,7 @@ export type EmailTemplateUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -571,6 +995,8 @@ export type ErrorEnvelopeWritable = {
 export type ForgotPasswordRequest = {
     email: string | null;
 };
+
+export type FreightTerms = 'FOB' | 'NoCharge';
 
 export type HttpValidationProblemDetails = {
     type?: string | null;
@@ -957,8 +1383,8 @@ export type MarketingListCreateDto = {
     modifiedOn?: string;
     lastUsedOn?: string;
     currencyId?: string | null;
-    marketingListType?: 'Static' | 'Dynamic';
-    marketingListTarget?: 'Individual' | 'Organization' | 'Lead';
+    marketingListType?: MarketingListType;
+    marketingListTarget?: MarketingListTarget;
 };
 
 export type MarketingListDto = {
@@ -975,8 +1401,8 @@ export type MarketingListDto = {
     currencyId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
-    marketingListType?: 'Static' | 'Dynamic';
-    marketingListTarget?: 'Individual' | 'Organization' | 'Lead';
+    marketingListType?: MarketingListType;
+    marketingListTarget?: MarketingListTarget;
 };
 
 export type MarketingListDtoCollectionQueryParametersReadable = {
@@ -1052,6 +1478,10 @@ export type MarketingListDtoListEnvelopeWritable = {
     result?: Array<MarketingListDto> | null;
 };
 
+export type MarketingListTarget = 'Individual' | 'Organization' | 'Lead';
+
+export type MarketingListType = 'Static' | 'Dynamic';
+
 export type MarketingListUpdateDto = {
     locked?: boolean;
     name?: string | null;
@@ -1062,8 +1492,8 @@ export type MarketingListUpdateDto = {
     modifiedOn?: string;
     lastUsedOn?: string;
     currencyId?: string | null;
-    marketingListType?: 'Static' | 'Dynamic';
-    marketingListTarget?: 'Individual' | 'Organization' | 'Lead';
+    marketingListType?: MarketingListType;
+    marketingListTarget?: MarketingListTarget;
 };
 
 export type NewsletterCreateDto = {
@@ -1239,7 +1669,7 @@ export type NewsletterUpdateDto = {
     name?: string | null;
 };
 
-export type OrderDto = {
+export type OrderDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -1264,8 +1694,8 @@ export type OrderDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -1316,8 +1746,104 @@ export type OrderDto = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    readonly numberLabel?: string | null;
+    saleChannel?: SaleChannel;
+    requestedDeliveryDate?: string;
+    customTaxAmount?: number;
+    customTotalAmount?: number;
+    customDetailAmount?: number;
+    customProfitAmount?: number;
+    customDiscountsAmount?: number;
+    customSurchargesAmount?: number;
+    customShippingTaxAmount?: number;
+    customShippingCostAmount?: number;
+    customWithholdingTaxAmount?: number;
+};
+
+export type OrderDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    orderLinesCount?: number;
+    quoteId?: string | null;
+    walletId?: string | null;
+    paymentTermId?: string | null;
+    parentOrderId?: string | null;
+    shippingMethodId?: string | null;
+    billingLocationId?: string | null;
+    shippingLocationId?: string | null;
+    qualifiedIdentifier?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -1341,7 +1867,7 @@ export type OrderDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: OrderDto;
+    result?: OrderDtoReadable;
 };
 
 export type OrderDtoEnvelopeWritable = {
@@ -1352,14 +1878,56 @@ export type OrderDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: OrderDto;
+    result?: OrderDtoWritable;
 };
+
+export type OrderStatus = 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
 
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
     from?: string | null;
     value?: unknown;
+};
+
+export type PublicBannerDto = {
+    bannerSetId?: string | null;
+    bannerCreativeId?: string | null;
+    placementKey?: string | null;
+    imageUrl?: string | null;
+    width?: number;
+    height?: number;
+    showUntil?: string | null;
+    culture?: string | null;
+    altText?: string | null;
+    headline?: string | null;
+    ctaText?: string | null;
+    clickUrl?: string | null;
+};
+
+export type PublicBannerDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<PublicBannerDto> | null;
+};
+
+export type PublicBannerDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<PublicBannerDto> | null;
 };
 
 export type RefreshRequest = {
@@ -1380,6 +1948,8 @@ export type ResetPasswordRequest = {
     resetCode: string | null;
     newPassword: string | null;
 };
+
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
 
 export type SocialMediaPostCreateDto = {
     id?: string;
@@ -1572,6 +2142,8 @@ export type SocialPostBucketUpdateDto = {
     name?: string | null;
 };
 
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -1587,6 +2159,903 @@ export type TwoFactorResponse = {
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
 };
+
+export type BannerCreativesGetPublicBannerClickData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerCreativeId: string;
+    };
+    query: {
+        portalId: string;
+        placementKey?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerCreatives/Public/{bannerCreativeId}/Click';
+};
+
+export type BannerCreativesGetPublicBannerClickErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerCreativesGetPublicBannerClickError = BannerCreativesGetPublicBannerClickErrors[keyof BannerCreativesGetPublicBannerClickErrors];
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsData = {
+    body?: BannerPlacementAssignmentDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementAssignments';
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsError = BannerPlacementAssignmentsGetBannerPlacementAssignmentsErrors[keyof BannerPlacementAssignmentsGetBannerPlacementAssignmentsErrors];
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsResponses = {
+    /**
+     * OK
+     */
+    200: BannerPlacementAssignmentDtoListEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsResponse = BannerPlacementAssignmentsGetBannerPlacementAssignmentsResponses[keyof BannerPlacementAssignmentsGetBannerPlacementAssignmentsResponses];
+
+export type BannerPlacementAssignmentsCreateBannerPlacementAssignmentData = {
+    body: BannerPlacementAssignmentCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementAssignments';
+};
+
+export type BannerPlacementAssignmentsCreateBannerPlacementAssignmentErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsCreateBannerPlacementAssignmentError = BannerPlacementAssignmentsCreateBannerPlacementAssignmentErrors[keyof BannerPlacementAssignmentsCreateBannerPlacementAssignmentErrors];
+
+export type BannerPlacementAssignmentsCreateBannerPlacementAssignmentResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsCreateBannerPlacementAssignmentResponse = BannerPlacementAssignmentsCreateBannerPlacementAssignmentResponses[keyof BannerPlacementAssignmentsCreateBannerPlacementAssignmentResponses];
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountData = {
+    body?: BannerPlacementAssignmentDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementAssignments/Count';
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountError = BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountErrors[keyof BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountErrors];
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountResponse = BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountResponses[keyof BannerPlacementAssignmentsGetBannerPlacementAssignmentsCountResponses];
+
+export type BannerPlacementAssignmentsDeleteBannerPlacementAssignmentData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerPlacementAssignmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementAssignments/{bannerPlacementAssignmentId}';
+};
+
+export type BannerPlacementAssignmentsDeleteBannerPlacementAssignmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsDeleteBannerPlacementAssignmentError = BannerPlacementAssignmentsDeleteBannerPlacementAssignmentErrors[keyof BannerPlacementAssignmentsDeleteBannerPlacementAssignmentErrors];
+
+export type BannerPlacementAssignmentsDeleteBannerPlacementAssignmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsDeleteBannerPlacementAssignmentResponse = BannerPlacementAssignmentsDeleteBannerPlacementAssignmentResponses[keyof BannerPlacementAssignmentsDeleteBannerPlacementAssignmentResponses];
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerPlacementAssignmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementAssignments/{bannerPlacementAssignmentId}';
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdError = BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdErrors[keyof BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdErrors];
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdResponses = {
+    /**
+     * OK
+     */
+    200: BannerPlacementAssignmentDtoEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdResponse = BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdResponses[keyof BannerPlacementAssignmentsGetBannerPlacementAssignmentByIdResponses];
+
+export type BannerPlacementAssignmentsUpdateBannerPlacementAssignmentData = {
+    body: BannerPlacementAssignmentUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerPlacementAssignmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementAssignments/{bannerPlacementAssignmentId}';
+};
+
+export type BannerPlacementAssignmentsUpdateBannerPlacementAssignmentErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsUpdateBannerPlacementAssignmentError = BannerPlacementAssignmentsUpdateBannerPlacementAssignmentErrors[keyof BannerPlacementAssignmentsUpdateBannerPlacementAssignmentErrors];
+
+export type BannerPlacementAssignmentsUpdateBannerPlacementAssignmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type BannerPlacementAssignmentsUpdateBannerPlacementAssignmentResponse = BannerPlacementAssignmentsUpdateBannerPlacementAssignmentResponses[keyof BannerPlacementAssignmentsUpdateBannerPlacementAssignmentResponses];
+
+export type BannerPlacementKeysGetBannerPlacementKeysData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacementKeys';
+};
+
+export type BannerPlacementKeysGetBannerPlacementKeysErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementKeysGetBannerPlacementKeysError = BannerPlacementKeysGetBannerPlacementKeysErrors[keyof BannerPlacementKeysGetBannerPlacementKeysErrors];
+
+export type BannerPlacementKeysGetBannerPlacementKeysResponses = {
+    /**
+     * OK
+     */
+    200: BannerPlacementKeyDtoListEnvelopeReadable;
+};
+
+export type BannerPlacementKeysGetBannerPlacementKeysResponse = BannerPlacementKeysGetBannerPlacementKeysResponses[keyof BannerPlacementKeysGetBannerPlacementKeysResponses];
+
+export type BannerPlacementsGetPublicBannerPlacementData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        placementKey: string;
+    };
+    query: {
+        portalId: string;
+        culture?: string;
+        bannerSetId?: string;
+        count?: number;
+        countImpression?: boolean;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerPlacements/Public/{placementKey}';
+};
+
+export type BannerPlacementsGetPublicBannerPlacementErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type BannerPlacementsGetPublicBannerPlacementError = BannerPlacementsGetPublicBannerPlacementErrors[keyof BannerPlacementsGetPublicBannerPlacementErrors];
+
+export type BannerPlacementsGetPublicBannerPlacementResponses = {
+    /**
+     * OK
+     */
+    200: PublicBannerDtoListEnvelopeReadable;
+};
+
+export type BannerPlacementsGetPublicBannerPlacementResponse = BannerPlacementsGetPublicBannerPlacementResponses[keyof BannerPlacementsGetPublicBannerPlacementResponses];
+
+export type BannerSetsGetBannerSetsData = {
+    body?: BannerSetDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets';
+};
+
+export type BannerSetsGetBannerSetsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetsError = BannerSetsGetBannerSetsErrors[keyof BannerSetsGetBannerSetsErrors];
+
+export type BannerSetsGetBannerSetsResponses = {
+    /**
+     * OK
+     */
+    200: BannerSetDtoListEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetsResponse = BannerSetsGetBannerSetsResponses[keyof BannerSetsGetBannerSetsResponses];
+
+export type BannerSetsCreateBannerSetData = {
+    body: BannerSetCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets';
+};
+
+export type BannerSetsCreateBannerSetErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsCreateBannerSetError = BannerSetsCreateBannerSetErrors[keyof BannerSetsCreateBannerSetErrors];
+
+export type BannerSetsCreateBannerSetResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type BannerSetsCreateBannerSetResponse = BannerSetsCreateBannerSetResponses[keyof BannerSetsCreateBannerSetResponses];
+
+export type BannerSetsGetBannerSetsCountData = {
+    body?: BannerSetDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/Count';
+};
+
+export type BannerSetsGetBannerSetsCountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetsCountError = BannerSetsGetBannerSetsCountErrors[keyof BannerSetsGetBannerSetsCountErrors];
+
+export type BannerSetsGetBannerSetsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetsCountResponse = BannerSetsGetBannerSetsCountResponses[keyof BannerSetsGetBannerSetsCountResponses];
+
+export type BannerSetsDeleteBannerSetData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}';
+};
+
+export type BannerSetsDeleteBannerSetErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsDeleteBannerSetError = BannerSetsDeleteBannerSetErrors[keyof BannerSetsDeleteBannerSetErrors];
+
+export type BannerSetsDeleteBannerSetResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type BannerSetsDeleteBannerSetResponse = BannerSetsDeleteBannerSetResponses[keyof BannerSetsDeleteBannerSetResponses];
+
+export type BannerSetsGetBannerSetByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}';
+};
+
+export type BannerSetsGetBannerSetByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetByIdError = BannerSetsGetBannerSetByIdErrors[keyof BannerSetsGetBannerSetByIdErrors];
+
+export type BannerSetsGetBannerSetByIdResponses = {
+    /**
+     * OK
+     */
+    200: BannerSetDtoEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetByIdResponse = BannerSetsGetBannerSetByIdResponses[keyof BannerSetsGetBannerSetByIdResponses];
+
+export type BannerSetsUpdateBannerSetData = {
+    body: BannerSetUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}';
+};
+
+export type BannerSetsUpdateBannerSetErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsUpdateBannerSetError = BannerSetsUpdateBannerSetErrors[keyof BannerSetsUpdateBannerSetErrors];
+
+export type BannerSetsUpdateBannerSetResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type BannerSetsUpdateBannerSetResponse = BannerSetsUpdateBannerSetResponses[keyof BannerSetsUpdateBannerSetResponses];
+
+export type BannerSetsGetBannerSetPerformanceData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        from?: string;
+        to?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Performance';
+};
+
+export type BannerSetsGetBannerSetPerformanceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetPerformanceError = BannerSetsGetBannerSetPerformanceErrors[keyof BannerSetsGetBannerSetPerformanceErrors];
+
+export type BannerSetsGetBannerSetPerformanceResponses = {
+    /**
+     * OK
+     */
+    200: BannerPerformanceDtoListEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerSetPerformanceResponse = BannerSetsGetBannerSetPerformanceResponses[keyof BannerSetsGetBannerSetPerformanceResponses];
+
+export type BannerSetsGetBannerCreativesData = {
+    body?: BannerCreativeDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives';
+};
+
+export type BannerSetsGetBannerCreativesErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerCreativesError = BannerSetsGetBannerCreativesErrors[keyof BannerSetsGetBannerCreativesErrors];
+
+export type BannerSetsGetBannerCreativesResponses = {
+    /**
+     * OK
+     */
+    200: BannerCreativeDtoListEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerCreativesResponse = BannerSetsGetBannerCreativesResponses[keyof BannerSetsGetBannerCreativesResponses];
+
+export type BannerSetsCreateBannerCreativeData = {
+    body: BannerCreativeCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives';
+};
+
+export type BannerSetsCreateBannerCreativeErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsCreateBannerCreativeError = BannerSetsCreateBannerCreativeErrors[keyof BannerSetsCreateBannerCreativeErrors];
+
+export type BannerSetsCreateBannerCreativeResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type BannerSetsCreateBannerCreativeResponse = BannerSetsCreateBannerCreativeResponses[keyof BannerSetsCreateBannerCreativeResponses];
+
+export type BannerSetsGetBannerCreativesCountData = {
+    body?: BannerCreativeDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/Count';
+};
+
+export type BannerSetsGetBannerCreativesCountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerCreativesCountError = BannerSetsGetBannerCreativesCountErrors[keyof BannerSetsGetBannerCreativesCountErrors];
+
+export type BannerSetsGetBannerCreativesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type BannerSetsGetBannerCreativesCountResponse = BannerSetsGetBannerCreativesCountResponses[keyof BannerSetsGetBannerCreativesCountResponses];
+
+export type BannerSetsDeleteBannerCreativeData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+        bannerCreativeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/{bannerCreativeId}';
+};
+
+export type BannerSetsDeleteBannerCreativeErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsDeleteBannerCreativeError = BannerSetsDeleteBannerCreativeErrors[keyof BannerSetsDeleteBannerCreativeErrors];
+
+export type BannerSetsDeleteBannerCreativeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type BannerSetsDeleteBannerCreativeResponse = BannerSetsDeleteBannerCreativeResponses[keyof BannerSetsDeleteBannerCreativeResponses];
+
+export type BannerSetsGetBannerCreativeByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+        bannerCreativeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/{bannerCreativeId}';
+};
+
+export type BannerSetsGetBannerCreativeByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerCreativeByIdError = BannerSetsGetBannerCreativeByIdErrors[keyof BannerSetsGetBannerCreativeByIdErrors];
+
+export type BannerSetsGetBannerCreativeByIdResponses = {
+    /**
+     * OK
+     */
+    200: BannerCreativeDtoEnvelopeReadable;
+};
+
+export type BannerSetsGetBannerCreativeByIdResponse = BannerSetsGetBannerCreativeByIdResponses[keyof BannerSetsGetBannerCreativeByIdResponses];
+
+export type BannerSetsUpdateBannerCreativeData = {
+    body: BannerCreativeUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bannerSetId: string;
+        bannerCreativeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/BannerSets/{bannerSetId}/Creatives/{bannerCreativeId}';
+};
+
+export type BannerSetsUpdateBannerCreativeErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type BannerSetsUpdateBannerCreativeError = BannerSetsUpdateBannerCreativeErrors[keyof BannerSetsUpdateBannerCreativeErrors];
+
+export type BannerSetsUpdateBannerCreativeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type BannerSetsUpdateBannerCreativeResponse = BannerSetsUpdateBannerCreativeResponses[keyof BannerSetsUpdateBannerCreativeResponses];
 
 export type EmailGroupsGetEmailGroupsODataData = {
     body?: EmailGroupDtoCollectionQueryParametersWritable;

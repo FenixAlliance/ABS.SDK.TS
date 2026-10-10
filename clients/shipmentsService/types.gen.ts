@@ -605,7 +605,7 @@ export type ShipmentCreateDto = {
     isInternational?: boolean;
     expectedShippingDate?: string;
     expectedDeliveryDate?: string;
-    shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
+    shippingTerms?: ShippingTerms;
     orderId?: string | null;
 };
 
@@ -620,7 +620,7 @@ export type ShipmentDto = {
     deliveryTimestamp?: string;
     expectedShippingDate?: string;
     expectedDeliveryDate?: string;
-    shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
+    shippingTerms?: ShippingTerms;
     orderId?: string | null;
     tenantId?: string | null;
     sellerBillingProfileId?: string | null;
@@ -709,9 +709,11 @@ export type ShipmentUpdateDto = {
     deliveryTimestamp?: string;
     expectedShippingDate?: string;
     expectedDeliveryDate?: string;
-    shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
+    shippingTerms?: ShippingTerms;
     orderId?: string | null;
 };
+
+export type ShippingClassCalculationType = 'PerClass' | 'PerOrder';
 
 export type ShippingClassCreateDto = {
     id?: string;
@@ -1014,7 +1016,7 @@ export type ShippingMethodCreateDto = {
     taxable?: boolean;
     taxIncluded?: boolean;
     currencyId?: string | null;
-    shippingClassCalculationType?: 'PerClass' | 'PerOrder';
+    shippingClassCalculationType?: ShippingClassCalculationType;
 };
 
 export type ShippingMethodDto = {
@@ -1027,7 +1029,7 @@ export type ShippingMethodDto = {
     taxIncluded?: boolean;
     currencyId?: string | null;
     tenantId?: string | null;
-    shippingClassCalculationType?: 'PerClass' | 'PerOrder';
+    shippingClassCalculationType?: ShippingClassCalculationType;
 };
 
 export type ShippingMethodDtoCollectionQueryParametersReadable = {
@@ -1110,7 +1112,7 @@ export type ShippingMethodUpdateDto = {
     taxable?: boolean;
     taxIncluded?: boolean;
     currencyId?: string | null;
-    shippingClassCalculationType?: 'PerClass' | 'PerOrder';
+    shippingClassCalculationType?: ShippingClassCalculationType;
 };
 
 export type ShippingRegionCreateDto = {
@@ -1205,6 +1207,8 @@ export type ShippingRegionUpdateDto = {
     name?: string | null;
     postalCodes?: string | null;
 };
+
+export type ShippingTerms = 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
 
 export type ShippingZoneCreateDto = {
     id?: string;

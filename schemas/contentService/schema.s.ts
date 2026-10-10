@@ -901,6 +901,8 @@ export interface components {
       customerAccountPageID?: string | null;
       termsAndConditionsPageID?: string | null;
     };
+    /** @enum {string} */
+    Alignment: "Center" | "Right" | "Left";
     AllianceBusinessSuiteIntegrationOptions: {
       enable?: boolean;
       appId?: string | null;
@@ -932,10 +934,8 @@ export interface components {
       correlationId?: string | null;
       scopes?: string[] | null;
       error?: string | null;
-      /** @enum {string} */
-      runAs?: "Invoker" | "Application" | "System" | "Service";
-      /** @enum {string} */
-      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      runAs?: components["schemas"]["RunAs"];
+      principalKind?: components["schemas"]["PrincipalKind"];
       provenance?: components["schemas"]["ExecutionProvenance"];
       executionPrincipalId?: components["schemas"]["UserId"];
       executionPrincipalEnrollmentId?: components["schemas"]["EnrollmentId"];
@@ -973,10 +973,8 @@ export interface components {
       connectionString?: string | null;
     };
     Background: {
-      /** @enum {string} */
-      bgRepeat?: "All" | "Horizontally" | "Vertically" | "NoRepeat";
-      /** @enum {string} */
-      bgPosition?: "TopLeft" | "TopRight" | "TopCenter" | "CenterLeft" | "CenterRight" | "CenterCenter" | "BottomLeft" | "BottomRight" | "BottomCenter";
+      bgRepeat?: components["schemas"]["BgRepeat"];
+      bgPosition?: components["schemas"]["BgPosition"];
       backgroundColor?: string | null;
       backgroundImageUrl?: string | null;
       enableFullWidthBackgroundImage?: boolean;
@@ -990,10 +988,16 @@ export interface components {
       mainContentColor?: string | null;
       mainContentImageURL?: string | null;
     };
+    /** Format: uuid */
+    BannerSetId: string;
     BaseThemePackageOptions: {
       url?: string | null;
       sha256?: string | null;
     };
+    /** @enum {string} */
+    BgPosition: "TopLeft" | "TopRight" | "TopCenter" | "CenterLeft" | "CenterRight" | "CenterCenter" | "BottomLeft" | "BottomRight" | "BottomCenter";
+    /** @enum {string} */
+    BgRepeat: "All" | "Horizontally" | "Vertically" | "NoRepeat";
     BlogAuthorDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1022,15 +1026,13 @@ export interface components {
       instagramUrl?: string | null;
       socialFeedId?: string | null;
       socialProfileId?: string | null;
-      /** @enum {string} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay";
+      gender?: components["schemas"]["Gender"];
       walletId?: string | null;
       status?: string | null;
       userName?: string | null;
       publicIdentifier?: string | null;
       phoneNumberConfirmed?: boolean;
-      /** @enum {string} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available";
+      availability?: components["schemas"]["UserAvailability"];
     };
     BlogAuthorDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1079,6 +1081,10 @@ export interface components {
       /** Format: int32 */
       postsPerPage?: number;
       enableBlogPostComments?: boolean;
+    };
+    BlogPostBannerSlotDto: {
+      placementKey?: string | null;
+      bannerSetId?: components["schemas"]["BannerSetId"];
     };
     BlogPostCategoryCreateDto: {
       /** Format: uuid */
@@ -1236,18 +1242,17 @@ export interface components {
       code?: string | null;
       markup?: string | null;
       featuredImageUrl?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       slug?: string | null;
       blogPostCategoryId?: string | null;
       webTemplateId?: string | null;
+      bannerSlots?: components["schemas"]["BlogPostBannerSlotDto"][] | null;
     };
     BlogPostDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -1477,8 +1482,7 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -1512,6 +1516,7 @@ export interface components {
       allowSearchEngineIndexing?: boolean;
       blogPostCategoryId?: string | null;
       webTemplateId?: string | null;
+      bannerSlots?: components["schemas"]["BlogPostBannerSlotDto"][] | null;
     };
     BrandingOptions: {
       defaultLang?: string | null;
@@ -1597,6 +1602,8 @@ export interface components {
     BusinessDomainUpdateDto: {
       domain?: string | null;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     CartDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1617,6 +1624,8 @@ export interface components {
       itemCartRecordsCount?: number | null;
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
+      directSellerTenantId?: string | null;
     };
     CartOptions: {
       enableGuestCart?: boolean;
@@ -1624,9 +1633,10 @@ export interface components {
       redirectToCartPageAfterAddingProducts?: boolean;
     };
     CodeFieldsOptions: Record<string, never>;
+    /** @enum {string} */
+    CodeFileType: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup";
     ColorOptions: {
-      /** @enum {string} */
-      primarySkin?: "Dark" | "Light";
+      primarySkin?: components["schemas"]["Skin"];
       primaryColor?: string | null;
       secondaryColor?: string | null;
       colorScheme?: components["schemas"]["ColorScheme"];
@@ -1649,8 +1659,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -1720,6 +1729,10 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
@@ -1745,6 +1758,12 @@ export interface components {
       areaServed?: string[] | null;
       type?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
     CountryDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1788,6 +1807,8 @@ export interface components {
       code?: string | null;
       country?: string | null;
     };
+    /** @enum {string} */
+    CurrencyPosition: "Left" | "Right" | "LeftWithSpace" | "RightWithSpace";
     CustomFont: {
       name?: string | null;
       wofF2?: string | null;
@@ -1803,6 +1824,12 @@ export interface components {
       iconColor?: string | null;
       favicon?: string | null;
     };
+    /** @enum {string} */
+    DefaultCustomerLocation: "None" | "Geolocate" | "StoreAddressBased" | "GeolocateWithCaching";
+    /** @enum {string} */
+    DimensionUInit: "cms" | "m" | "mm" | "inc" | "yr";
+    /** @enum {string} */
+    Divider: "None" | "Solid" | "Dotted" | "Double" | "Groove" | "Ridge";
     DownloadablesOptions: {
       maskFileNames?: boolean;
       grantAccessAfterPayment?: boolean;
@@ -1936,11 +1963,9 @@ export interface components {
       result?: components["schemas"]["ExecutionContext"];
     };
     ExecutionProvenance: {
-      /** @enum {string} */
-      initiation?: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System" | "Manual";
+      initiation?: components["schemas"]["RunInitiation"];
       onBehalfOfActorId?: components["schemas"]["UserId"];
-      /** @enum {string|null} */
-      onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      onBehalfOfActorKind?: components["schemas"]["PrincipalKind"];
       /** Format: uuid */
       causationId?: string | null;
       originatingWorkflowInstanceId?: string | null;
@@ -1967,8 +1992,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -2047,8 +2071,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -2067,15 +2090,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
       cart?: components["schemas"]["CartDto"];
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
@@ -2122,8 +2143,7 @@ export interface components {
       borderSize?: number;
       borderColor?: string | null;
       widgetDividerColor?: string | null;
-      /** @enum {string} */
-      widgetDivider?: "None" | "Solid" | "Dotted" | "Double" | "Groove" | "Ridge";
+      widgetDivider?: components["schemas"]["Divider"];
       copyrightPadding?: components["schemas"]["Padding"];
       widgetsAreaPadding?: components["schemas"]["Padding"];
       footerAreaPadding?: components["schemas"]["Padding"];
@@ -2138,8 +2158,7 @@ export interface components {
       exchangeRateHostApiKey?: string | null;
       /** Format: int32 */
       staleAfterHours?: number;
-      /** @enum {string} */
-      stalenessMode?: "Off" | "Flag" | "Block";
+      stalenessMode?: components["schemas"]["ForexStalenessMode"];
     };
     ForexRatesDto: {
       success?: boolean;
@@ -2156,6 +2175,8 @@ export interface components {
         [key: string]: number;
       } | null;
     };
+    /** @enum {string} */
+    ForexStalenessMode: "Off" | "Flag" | "Block";
     ForgotPasswordRequest: {
       email: string | null;
     };
@@ -2168,6 +2189,8 @@ export interface components {
       enable?: boolean;
       apiKey?: string | null;
     };
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     GoogleAnalytics: {
       enable?: boolean;
       trackingCode?: string | null;
@@ -2217,6 +2240,10 @@ export interface components {
       id?: string | null;
     };
     GridOptions: Record<string, never>;
+    /** @enum {string} */
+    HeaderContentType: "NavigationMenu" | "AccountMenu" | "ContactInfo" | "SocialLinks" | "LeaveEmpty";
+    /** @enum {string} */
+    HeaderLayout: "_01" | "_02" | "_03" | "_04" | "_05" | "_06";
     HeaderOptions: {
       headerPadding?: components["schemas"]["Padding"];
       headerBackgroundImageURL?: string | null;
@@ -2225,18 +2252,16 @@ export interface components {
       enableStickyHeader?: boolean;
       enableHeaderShadow?: boolean;
       enableFullWidthHeader?: boolean;
-      /** @enum {string} */
-      headerLayout?: "_01" | "_02" | "_03" | "_04" | "_05" | "_06";
-      /** @enum {string} */
-      headerPosition?: "Top" | "Right" | "Center";
-      /** @enum {string} */
-      topHeaderContentType2?: "NavigationMenu" | "AccountMenu" | "ContactInfo" | "SocialLinks" | "LeaveEmpty";
-      /** @enum {string} */
-      topHeaderContentType1?: "NavigationMenu" | "AccountMenu" | "ContactInfo" | "SocialLinks" | "LeaveEmpty";
+      headerLayout?: components["schemas"]["HeaderLayout"];
+      headerPosition?: components["schemas"]["HeaderPosition"];
+      topHeaderContentType2?: components["schemas"]["HeaderContentType"];
+      topHeaderContentType1?: components["schemas"]["HeaderContentType"];
       topHeaderBackgroundColor?: string | null;
       topHeaderContent1?: string | null;
       topHeaderContent2?: string | null;
     };
+    /** @enum {string} */
+    HeaderPosition: "Top" | "Right" | "Center";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -2257,8 +2282,7 @@ export interface components {
       allowRemovePersonalDataFromSubscriptionsOnRequest?: boolean;
       storeCheckoutPrivacyPolicyNotice?: string | null;
       storeRegistrationPrivacyPolicyNotice?: string | null;
-      /** @enum {string} */
-      defaultCustomerLocation?: "None" | "Geolocate" | "StoreAddressBased" | "GeolocateWithCaching";
+      defaultCustomerLocation?: components["schemas"]["DefaultCustomerLocation"];
       inactiveCartsRetentionPolicy?: components["schemas"]["StoreDataRetentionPolicy"];
       pendingOrdersRetentionPolicy?: components["schemas"]["StoreDataRetentionPolicy"];
       failedOrdersRetentionPolicy?: components["schemas"]["StoreDataRetentionPolicy"];
@@ -2325,9 +2349,10 @@ export interface components {
       lowStockThreshold?: number;
       /** Format: int32 */
       outOfStockThreshold?: number;
-      /** @enum {string} */
-      stockDisplayFormat?: "AlwaysDisplayRemainingQuantity" | "OnlyDisplayRemainingQuantityWhenStockIsLow" | "NeverDisplayRemainingQuantity";
+      stockDisplayFormat?: components["schemas"]["StoreStockDisplayFormat"];
     };
+    /** @enum {string} */
+    Layout: "Boxed" | "Wide";
     LayoutOptions: {
       singleSidebarWidth?: string | null;
       singleSidebarGutter?: string | null;
@@ -2338,8 +2363,7 @@ export interface components {
       pageContentPaddingBottom?: string | null;
       pageContentPaddingTop?: string | null;
       siteWidth?: string | null;
-      /** @enum {string} */
-      layout?: "Boxed" | "Wide";
+      layout?: components["schemas"]["Layout"];
     };
     LightboxOptions: Record<string, never>;
     LocalizationStringCreateDto: {
@@ -2416,8 +2440,7 @@ export interface components {
     };
     Logo: {
       margin?: components["schemas"]["Margin"];
-      /** @enum {string} */
-      alignment?: "Center" | "Right" | "Left";
+      alignment?: components["schemas"]["Alignment"];
       /** Format: int32 */
       width?: number | null;
       /** Format: int32 */
@@ -2447,6 +2470,8 @@ export interface components {
       logo310W?: string | null;
       logo70?: string | null;
     };
+    /** @enum {string} */
+    MainMenuSearchLayout: "Dropdown" | "Overlay";
     MansoryOptions: Record<string, never>;
     Margin: {
       top?: string | null;
@@ -2455,10 +2480,8 @@ export interface components {
       left?: string | null;
     };
     MeasurementOptions: {
-      /** @enum {string} */
-      defaultWeightUnit?: "Kg" | "g" | "lbs" | "oz";
-      /** @enum {string} */
-      defaultDimensionUInit?: "cms" | "m" | "mm" | "inc" | "yr";
+      defaultWeightUnit?: components["schemas"]["WeightUnit"];
+      defaultDimensionUInit?: components["schemas"]["DimensionUInit"];
     };
     MenuContextCreateDto: {
       /** Format: uuid */
@@ -2566,6 +2589,12 @@ export interface components {
       backgroundImage?: string | null;
       webPortalId?: string | null;
     };
+    /** @enum {string} */
+    MenuDropdownAnimation: "Fade" | "Slide";
+    /** @enum {string} */
+    MenuDropdownIndicator: "None" | "Parent" | "ParentAndChild";
+    /** @enum {string} */
+    MenuHighlightStyle: "TopBar" | "BottomBar" | "Arrow" | "ColorOnly" | "Background";
     MenuOptions: {
       sideNavigationFontSize?: string | null;
       mainMenuDropdownFontColor?: string | null;
@@ -2599,14 +2628,10 @@ export interface components {
       /** Format: int32 */
       mainMenuHighlightBackgroundColor?: number;
       mainMenuTypography?: components["schemas"]["Typography"];
-      /** @enum {string} */
-      menuHighlightStyle?: "TopBar" | "BottomBar" | "Arrow" | "ColorOnly" | "Background";
-      /** @enum {string} */
-      mainMenuSearchLayout?: "Dropdown" | "Overlay";
-      /** @enum {string} */
-      menuDropdownAnimation?: "Fade" | "Slide";
-      /** @enum {string} */
-      menuDropdownIndicator?: "None" | "Parent" | "ParentAndChild";
+      menuHighlightStyle?: components["schemas"]["MenuHighlightStyle"];
+      mainMenuSearchLayout?: components["schemas"]["MainMenuSearchLayout"];
+      menuDropdownAnimation?: components["schemas"]["MenuDropdownAnimation"];
+      menuDropdownIndicator?: components["schemas"]["MenuDropdownIndicator"];
     };
     MicrosoftAzureIntegrationOptions: {
       enable?: boolean;
@@ -2645,6 +2670,10 @@ export interface components {
       right?: string | null;
       left?: string | null;
     };
+    /** @enum {string} */
+    PageTitleBar: "ShowBarAndContent" | "ShowContentOnly" | "Hide";
+    /** @enum {string} */
+    PageTitleBarContent: "None" | "SearchBar" | "Breadcrumbs";
     PaginationOptions: Record<string, never>;
     PatchOperation: {
       op?: string | null;
@@ -2669,8 +2698,7 @@ export interface components {
     PortalOptions: {
       title?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      portalUiEngine?: "Angular" | "React" | "Razor";
+      portalUiEngine?: components["schemas"]["PortalUiEngine"];
       seo?: components["schemas"]["SeoOptions"];
       store?: components["schemas"]["StoreOptions"];
       theming?: components["schemas"]["ThemingOptions"];
@@ -2728,6 +2756,7 @@ export interface components {
       authTokenExpiration?: number;
       options?: components["schemas"]["PortalOptions"];
       baseThemePackage?: components["schemas"]["BaseThemePackageOptions"];
+      codeAuthoringTenantIds?: string[] | null;
     };
     PortalSettingsEnvelope: {
       isSuccess?: boolean;
@@ -2744,14 +2773,22 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PortalSettings"];
     };
+    /** @enum {string} */
+    PortalUiEngine: "Angular" | "React" | "Razor";
     PortfolioOptions: Record<string, never>;
+    /** @enum {string} */
+    Position: "Bottom" | "Right" | "Left" | "Top";
     PriceCalculationOptions: {
       pricingListID?: string | null;
     };
+    /** @enum {string} */
+    PrincipalKind: "Human" | "Agent" | "Application" | "Service" | "System";
     PrivacyOptions: {
       cookiesNoticeMessage?: string | null;
     };
     ProductOptions: Record<string, never>;
+    /** @enum {string} */
+    ProrateFirstRenewal: "AlwaysAndNoCharge" | "NeverAndNoCharge" | "NeverAndFullCharge" | "AlwaysAndFullCharge" | "ForVirtualProductsOnly" | "ForServiceProductsOnly" | "ForSubscriptionProductsOnly";
     PublicBlogAuthorDto: {
       publicName?: string | null;
       jobTitle?: string | null;
@@ -2776,6 +2813,7 @@ export interface components {
       canonicalUrl?: string | null;
       blogPostCategoryId?: string | null;
       author?: components["schemas"]["PublicBlogAuthorDto"];
+      bannerSlots?: components["schemas"]["BlogPostBannerSlotDto"][] | null;
     };
     PublicBlogPostDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2823,8 +2861,7 @@ export interface components {
     PublicPortalOptions: {
       title?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      portalUiEngine?: "Angular" | "React" | "Razor";
+      portalUiEngine?: components["schemas"]["PortalUiEngine"];
       seo?: components["schemas"]["SeoOptions"];
       theming?: components["schemas"]["ThemingOptions"];
       branding?: components["schemas"]["BrandingOptions"];
@@ -2948,6 +2985,8 @@ export interface components {
       /** Format: float */
       typographyResponsiveSensitivity?: number;
     };
+    /** @enum {string} */
+    RetentionTimeSpan: "Days" | "Weeks" | "Months" | "Years";
     ReviewsOptions: {
       enableReviews?: boolean;
       enableStarRatings?: boolean;
@@ -2955,6 +2994,12 @@ export interface components {
       displayVerifiedOwnerBadge?: boolean;
       forceVerifiedOwnerVerification?: boolean;
     };
+    /** @enum {string} */
+    RunAs: "Invoker" | "Application" | "System" | "Service";
+    /** @enum {string} */
+    RunInitiation: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System" | "Manual";
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
     SearchOptions: Record<string, never>;
     SendgridIntegrationsOptions: {
       enable?: boolean;
@@ -2997,18 +3042,19 @@ export interface components {
       enableSubscriptionSwitchingBetweenGroups?: number;
       /** Format: int32 */
       enableSubscriptionSwitchingBetweenVariations?: number;
-      /** @enum {string} */
-      prorateFirstRenewal?: "AlwaysAndNoCharge" | "NeverAndNoCharge" | "NeverAndFullCharge" | "AlwaysAndFullCharge" | "ForVirtualProductsOnly" | "ForServiceProductsOnly" | "ForSubscriptionProductsOnly";
+      prorateFirstRenewal?: components["schemas"]["ProrateFirstRenewal"];
     };
     SidebarOptions: Record<string, never>;
+    /** @enum {string} */
+    SiteTheme: "System" | "Light" | "Dark";
+    /** @enum {string} */
+    Skin: "Dark" | "Light";
     SliderOptions: Record<string, never>;
     SlideshowOptions: Record<string, never>;
     SlidingBarOptions: {
-      /** @enum {string} */
-      position?: "Bottom" | "Right" | "Left" | "Top";
+      position?: components["schemas"]["Position"];
       contentPadding?: components["schemas"]["Padding"];
-      /** @enum {string} */
-      contentAlignment?: "Center" | "Right" | "Left";
+      contentAlignment?: components["schemas"]["Alignment"];
       /** Format: int32 */
       columnsCount?: number;
       enableSticky?: boolean;
@@ -3052,8 +3098,7 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /** @enum {string|null} */
-      type?: "User" | "Tenant" | "Contact" | null;
+      type?: components["schemas"]["SocialProfileType"];
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -3065,11 +3110,12 @@ export interface components {
       domain?: string | null;
       notes?: string | null;
     };
+    /** @enum {string} */
+    SocialProfileType: "User" | "Tenant" | "Contact";
     StoreDataRetentionPolicy: {
       /** Format: int32 */
       dataRetentionTimeSpanAmmount?: number;
-      /** @enum {string} */
-      retentionTimeSpan?: "Days" | "Weeks" | "Months" | "Years";
+      retentionTimeSpan?: components["schemas"]["RetentionTimeSpan"];
     };
     StoreOptions: {
       enable?: boolean;
@@ -3110,9 +3156,10 @@ export interface components {
       excludedSellingLocations?: string[] | null;
       includedShippingLocations?: string[] | null;
       excludedShippingLocations?: string[] | null;
-      /** @enum {string} */
-      currencyPosition?: "Left" | "Right" | "LeftWithSpace" | "RightWithSpace";
+      currencyPosition?: components["schemas"]["CurrencyPosition"];
     };
+    /** @enum {string} */
+    StoreStockDisplayFormat: "AlwaysDisplayRemainingQuantity" | "OnlyDisplayRemainingQuantityWhenStockIsLow" | "NeverDisplayRemainingQuantity";
     StudioOptions: {
       logo?: string | null;
       logoDark?: string | null;
@@ -3146,8 +3193,7 @@ export interface components {
       enableSubscriptionSwitchingBetweenGroups?: number;
       /** Format: int32 */
       enableSubscriptionSwitchingBetweenVariations?: number;
-      /** @enum {string} */
-      prorateFirstRenewal?: "AlwaysAndNoCharge" | "NeverAndNoCharge" | "NeverAndFullCharge" | "AlwaysAndFullCharge" | "ForVirtualProductsOnly" | "ForServiceProductsOnly" | "ForSubscriptionProductsOnly";
+      prorateFirstRenewal?: components["schemas"]["ProrateFirstRenewal"];
     };
     SuiteLicenseFeatureDto: {
       key?: string | null;
@@ -3170,8 +3216,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -3242,12 +3287,9 @@ export interface components {
       headingLineHeight?: string | null;
       subheadingFontColor?: string | null;
       subheadingFontSize?: string | null;
-      /** @enum {string} */
-      pageTitleBar?: "ShowBarAndContent" | "ShowContentOnly" | "Hide";
-      /** @enum {string} */
-      pageTitleBarContent?: "None" | "SearchBar" | "Breadcrumbs";
-      /** @enum {string} */
-      pageTitleBarTextAlignment?: "Center" | "Right" | "Left";
+      pageTitleBar?: components["schemas"]["PageTitleBar"];
+      pageTitleBarContent?: components["schemas"]["PageTitleBarContent"];
+      pageTitleBarTextAlignment?: components["schemas"]["Alignment"];
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -3279,6 +3321,8 @@ export interface components {
       headersTypography?: components["schemas"]["Typography"];
       customFonts?: components["schemas"]["CustomFont"][] | null;
     };
+    /** @enum {string} */
+    UserAvailability: "DND" | "Busy" | "Away" | "Offline" | "Available";
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -3305,8 +3349,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -3325,15 +3368,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
     /** Format: uuid */
     UserId: string;
@@ -3346,8 +3387,7 @@ export interface components {
       dateFormat?: string | null;
       currencyFormat?: string | null;
       dateTimeFormat?: string | null;
-      /** @enum {string} */
-      siteTheme?: "System" | "Light" | "Dark";
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
     WalletDto: {
       id?: string | null;
@@ -3387,8 +3427,7 @@ export interface components {
       htmlContent?: string | null;
       cssContent?: string | null;
       jsContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       published?: boolean;
       enable?: boolean;
       featuredImageUrl?: string | null;
@@ -3404,8 +3443,7 @@ export interface components {
       htmlContent?: string | null;
       cssContent?: string | null;
       jsContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       published?: boolean;
       enable?: boolean;
       featuredImageUrl?: string | null;
@@ -3463,8 +3501,7 @@ export interface components {
       htmlContent?: string | null;
       cssContent?: string | null;
       jsContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       published?: boolean;
       enable?: boolean;
       featuredImageUrl?: string | null;
@@ -3480,15 +3517,13 @@ export interface components {
       code?: string | null;
       markup?: string | null;
       featuredImageUrl?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
     };
     WebContentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -3619,8 +3654,7 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -3757,8 +3791,7 @@ export interface components {
       code?: string | null;
       markup?: string | null;
       featuredImageUrl?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       slug?: string | null;
       webPortalId?: string | null;
       webTemplateId?: string | null;
@@ -3768,8 +3801,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -4006,8 +4038,7 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
-      /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      codeType?: components["schemas"]["CodeFileType"];
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -4295,6 +4326,8 @@ export interface components {
       tags?: string | null;
       enable?: boolean | null;
     };
+    /** @enum {string} */
+    WeightUnit: "Kg" | "g" | "lbs" | "oz";
   };
   responses: never;
   parameters: never;

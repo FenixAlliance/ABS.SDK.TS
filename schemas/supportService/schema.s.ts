@@ -598,6 +598,8 @@ export interface components {
       }) | null;
       activityId?: string | null;
     };
+    /** @enum {string} */
+    EntitlementStatus: "Active" | "GracePeriod" | "Disabled" | "Deleted";
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -612,6 +614,8 @@ export interface components {
       }) | null;
       activityId?: string | null;
     };
+    /** @enum {string} */
+    FileUploadPublicAccessType: "Off" | "Container" | "Blob" | "Unknown";
     ForgotPasswordRequest: {
       email: string | null;
     };
@@ -1356,8 +1360,7 @@ export interface components {
       receivedTimestamp?: string;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
-      /** @enum {string|null} */
-      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialProfileType?: components["schemas"]["SocialProfileType"];
     };
     PrivateMessageDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1556,6 +1559,12 @@ export interface components {
       supportEntitlementId?: string | null;
       returnPolicyId?: string | null;
     };
+    /** @enum {string} */
+    SocialProfileType: "User" | "Tenant" | "Contact";
+    /** @enum {string} */
+    StorageScanStatus: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
+    /** @enum {string} */
+    StorageThumbnailStatus: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
     SupportEntitlementCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1623,8 +1632,7 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      status?: "Active" | "GracePeriod" | "Disabled" | "Deleted";
+      status?: components["schemas"]["EntitlementStatus"];
       /** Format: date-time */
       startDateTime?: string;
       /** Format: date-time */
@@ -1795,8 +1803,7 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
       metadata?: string | null;
       supportRequestId?: string | null;
     };
@@ -1827,10 +1834,8 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
-      /** @enum {string} */
-      scanStatus?: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
-      /** @enum {string} */
-      thumbnailStatus?: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+      thumbnailStatus?: components["schemas"]["StorageThumbnailStatus"];
       hasThumbnail?: boolean;
       thumbnailStorageKey?: string | null;
       thumbnailContentType?: string | null;
@@ -1838,8 +1843,7 @@ export interface components {
       thumbnailWidth?: number;
       /** Format: int32 */
       thumbnailHeight?: number;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
       supportRequestId?: string | null;
     };
     SupportRequestAttachmentDtoCollectionQueryParameters: {
@@ -2052,8 +2056,7 @@ export interface components {
       timestamp?: string;
       title?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      supportTicketStatus?: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
+      supportTicketStatus?: components["schemas"]["SupportTicketStatus"];
       contactId?: string | null;
       supportTicketTypeId?: string | null;
       supportEntitlementId?: string | null;
@@ -2065,8 +2068,7 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      supportTicketStatus?: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
+      supportTicketStatus?: components["schemas"]["SupportTicketStatus"];
       userId?: string | null;
       contactId?: string | null;
       tenantId?: string | null;
@@ -2184,6 +2186,8 @@ export interface components {
       description?: string | null;
       supportEntitlementId?: string | null;
     };
+    /** @enum {string} */
+    SupportTicketStatus: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
     SupportTicketTypeCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2253,8 +2257,7 @@ export interface components {
     SupportTicketUpdateDto: {
       title?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      supportTicketStatus?: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
+      supportTicketStatus?: components["schemas"]["SupportTicketStatus"];
       contactId?: string | null;
       supportTicketTypeId?: string | null;
       supportEntitlementId?: string | null;

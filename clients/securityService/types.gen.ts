@@ -17,8 +17,8 @@ export type ApplicationPrincipalDetailDto = {
     id?: string | null;
     timestamp?: string | null;
     displayName?: string | null;
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
-    principalStatus?: 'Active' | 'Suspended' | 'Disabled';
+    principalKind?: PrincipalKind;
+    principalStatus?: PrincipalStatus;
     businessApplicationId?: string | null;
     businessApplicationName?: string | null;
     businessApplicationNamespace?: string | null;
@@ -59,8 +59,8 @@ export type ApplicationPrincipalDto = {
     id?: string | null;
     timestamp?: string | null;
     displayName?: string | null;
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
-    principalStatus?: 'Active' | 'Suspended' | 'Disabled';
+    principalKind?: PrincipalKind;
+    principalStatus?: PrincipalStatus;
     businessApplicationId?: string | null;
     businessApplicationName?: string | null;
     systemLocked?: boolean;
@@ -493,6 +493,8 @@ export type ForgotPasswordRequest = {
     email: string | null;
 };
 
+export type HttpStatusCode = 'Continue' | 'SwitchingProtocols' | 'Processing' | 'EarlyHints' | 'OK' | 'Created' | 'Accepted' | 'NonAuthoritativeInformation' | 'NoContent' | 'ResetContent' | 'PartialContent' | 'MultiStatus' | 'AlreadyReported' | 'IMUsed' | 'MultipleChoices' | 'MovedPermanently' | 'Found' | 'SeeOther' | 'NotModified' | 'UseProxy' | 'Unused' | 'TemporaryRedirect' | 'PermanentRedirect' | 'BadRequest' | 'Unauthorized' | 'PaymentRequired' | 'Forbidden' | 'NotFound' | 'MethodNotAllowed' | 'NotAcceptable' | 'ProxyAuthenticationRequired' | 'RequestTimeout' | 'Conflict' | 'Gone' | 'LengthRequired' | 'PreconditionFailed' | 'RequestEntityTooLarge' | 'RequestUriTooLong' | 'UnsupportedMediaType' | 'RequestedRangeNotSatisfiable' | 'ExpectationFailed' | 'MisdirectedRequest' | 'UnprocessableEntity' | 'Locked' | 'FailedDependency' | 'UpgradeRequired' | 'PreconditionRequired' | 'TooManyRequests' | 'RequestHeaderFieldsTooLarge' | 'UnavailableForLegalReasons' | 'InternalServerError' | 'NotImplemented' | 'BadGateway' | 'ServiceUnavailable' | 'GatewayTimeout' | 'HttpVersionNotSupported' | 'VariantAlsoNegotiates' | 'InsufficientStorage' | 'LoopDetected' | 'NotExtended' | 'NetworkAuthenticationRequired';
+
 export type HttpValidationProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -548,7 +550,7 @@ export type LogDto = {
     timestamp?: string | null;
     type?: string | null;
     message?: string | null;
-    logType?: 'Continue' | 'SwitchingProtocols' | 'Processing' | 'EarlyHints' | 'OK' | 'Created' | 'Accepted' | 'NonAuthoritativeInformation' | 'NoContent' | 'ResetContent' | 'PartialContent' | 'MultiStatus' | 'AlreadyReported' | 'IMUsed' | 'MultipleChoices' | 'MovedPermanently' | 'Found' | 'SeeOther' | 'NotModified' | 'UseProxy' | 'Unused' | 'TemporaryRedirect' | 'PermanentRedirect' | 'BadRequest' | 'Unauthorized' | 'PaymentRequired' | 'Forbidden' | 'NotFound' | 'MethodNotAllowed' | 'NotAcceptable' | 'ProxyAuthenticationRequired' | 'RequestTimeout' | 'Conflict' | 'Gone' | 'LengthRequired' | 'PreconditionFailed' | 'RequestEntityTooLarge' | 'RequestUriTooLong' | 'UnsupportedMediaType' | 'RequestedRangeNotSatisfiable' | 'ExpectationFailed' | 'MisdirectedRequest' | 'UnprocessableEntity' | 'Locked' | 'FailedDependency' | 'UpgradeRequired' | 'PreconditionRequired' | 'TooManyRequests' | 'RequestHeaderFieldsTooLarge' | 'UnavailableForLegalReasons' | 'InternalServerError' | 'NotImplemented' | 'BadGateway' | 'ServiceUnavailable' | 'GatewayTimeout' | 'HttpVersionNotSupported' | 'VariantAlsoNegotiates' | 'InsufficientStorage' | 'LoopDetected' | 'NotExtended' | 'NetworkAuthenticationRequired';
+    logType?: HttpStatusCode;
     businessID?: string | null;
 };
 
@@ -776,6 +778,10 @@ export type PatchOperation = {
     from?: string | null;
     value?: unknown;
 };
+
+export type PrincipalKind = 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+
+export type PrincipalStatus = 'Active' | 'Suspended' | 'Disabled';
 
 export type RefreshRequest = {
     refreshToken: string | null;

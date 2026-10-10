@@ -13,12 +13,14 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -76,6 +78,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -84,7 +89,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -142,9 +147,22 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
+
+export type EmailAlertType = 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
 
 export type EmailDispatchRequest = {
     title: string;
@@ -152,7 +170,7 @@ export type EmailDispatchRequest = {
     buttonLink?: string | null;
     buttonText?: string | null;
     alertMessage?: string | null;
-    alertType?: 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+    alertType?: EmailAlertType;
     culture: string;
     uiCulture: string;
     recipients: Array<string>;
@@ -234,8 +252,8 @@ export type ExtendedOrderDtoReadable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -286,8 +304,11 @@ export type ExtendedOrderDtoReadable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    readonly numberLabel?: string | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -304,6 +325,11 @@ export type ExtendedOrderDtoReadable = {
     organization?: ContactDtoReadable;
     receiverTenant?: TenantDtoReadable;
     enrollment?: TenantEnrollmentDto;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
 };
 
 export type ExtendedOrderDtoWritable = {
@@ -331,8 +357,8 @@ export type ExtendedOrderDtoWritable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -383,8 +409,10 @@ export type ExtendedOrderDtoWritable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -401,6 +429,11 @@ export type ExtendedOrderDtoWritable = {
     organization?: ContactDtoWritable;
     receiverTenant?: TenantDtoWritable;
     enrollment?: TenantEnrollmentDto;
+    effectiveDiscountPercent?: number;
+    effectiveSurchargePercent?: number;
+    effectiveTaxesPercent?: number;
+    effectiveGlobalDiscountPercent?: number;
+    effectiveGlobalSurchargePercent?: number;
 };
 
 export type ExtendedOrderDtoCollectionQueryParametersReadable = {
@@ -424,6 +457,31 @@ export type ExtendedOrderDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type ExtendedOrderDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ExtendedOrderDtoReadable;
+};
+
+export type ExtendedOrderDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ExtendedOrderDtoWritable;
 };
 
 export type ExtendedOrderDtoListEnvelopeReadable = {
@@ -454,6 +512,10 @@ export type ExtendedOrderDtoListEnvelopeWritable = {
 export type ForgotPasswordRequest = {
     email: string | null;
 };
+
+export type FreightTerms = 'FOB' | 'NoCharge';
+
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
 
 export type HttpValidationProblemDetails = {
     type?: string | null;
@@ -559,8 +621,8 @@ export type OrderCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     cartId?: string | null;
     quoteId?: string | null;
     walletId?: string | null;
@@ -568,9 +630,9 @@ export type OrderCreateDto = {
     shippingMethodId?: string | null;
     billingLocationId?: string | null;
     customerNotes?: string | null;
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
-    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
-    freightTerms?: 'FOB' | 'NoCharge';
+    orderStatus?: OrderStatus;
+    quoteStatus?: QuoteStatus;
+    freightTerms?: FreightTerms;
     shippingLocationId?: string | null;
     qualifiedIdentifier?: string | null;
     totalTaxesInUsd?: number;
@@ -584,7 +646,7 @@ export type OrderCreateDto = {
     orderLines?: Array<OrderLineCreateDto> | null;
 };
 
-export type OrderDto = {
+export type OrderDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -609,8 +671,8 @@ export type OrderDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -661,8 +723,104 @@ export type OrderDto = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    freightTerms?: 'FOB' | 'NoCharge';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    readonly numberLabel?: string | null;
+    saleChannel?: SaleChannel;
+    requestedDeliveryDate?: string;
+    customTaxAmount?: number;
+    customTotalAmount?: number;
+    customDetailAmount?: number;
+    customProfitAmount?: number;
+    customDiscountsAmount?: number;
+    customSurchargesAmount?: number;
+    customShippingTaxAmount?: number;
+    customShippingCostAmount?: number;
+    customWithholdingTaxAmount?: number;
+};
+
+export type OrderDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    orderLinesCount?: number;
+    quoteId?: string | null;
+    walletId?: string | null;
+    paymentTermId?: string | null;
+    parentOrderId?: string | null;
+    shippingMethodId?: string | null;
+    billingLocationId?: string | null;
+    shippingLocationId?: string | null;
+    qualifiedIdentifier?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
+    freightTerms?: FreightTerms;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    saleChannel?: SaleChannel;
     requestedDeliveryDate?: string;
     customTaxAmount?: number;
     customTotalAmount?: number;
@@ -709,7 +867,7 @@ export type OrderDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: OrderDto;
+    result?: OrderDtoReadable;
 };
 
 export type OrderDtoEnvelopeWritable = {
@@ -720,7 +878,7 @@ export type OrderDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: OrderDto;
+    result?: OrderDtoWritable;
 };
 
 export type OrderDtoListEnvelopeReadable = {
@@ -734,7 +892,7 @@ export type OrderDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<OrderDto> | null;
+    result?: Array<OrderDtoReadable> | null;
 };
 
 export type OrderDtoListEnvelopeWritable = {
@@ -745,7 +903,7 @@ export type OrderDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<OrderDto> | null;
+    result?: Array<OrderDtoWritable> | null;
 };
 
 export type OrderLineCreateDto = {
@@ -795,8 +953,8 @@ export type OrderLineCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -861,7 +1019,7 @@ export type OrderLineCreateDto = {
     orderId?: string | null;
 };
 
-export type OrderLineDto = {
+export type OrderLineDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -886,8 +1044,125 @@ export type OrderLineDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    itemId?: string | null;
+    itemTitle?: string | null;
+    itemShortDescription?: string | null;
+    itemPrimaryImageUrl?: string | null;
+    shippingPolicyId?: string | null;
+    quantity?: number;
+    readonly unitPrice?: number;
+    free?: boolean;
+    freeReason?: string | null;
+    freeReasonCode?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    itemPriceId?: string | null;
+    priceListItemId?: string | null;
+    unitId?: string | null;
+    unitGroupId?: string | null;
+    totalWarrantyCostInUsd?: number;
+    totalReturnCostInUsd?: number;
+    totalRefundCostInUsd?: number;
+    customGlobalSurchargesAmount?: number;
+    customGlobalDiscountsAmount?: number;
+    returnPolicyId?: string | null;
+    refundPolicyId?: string | null;
+    warrantyPolicyId?: string | null;
+    shipmentPolicyId?: string | null;
+    shippingLocationId?: string | null;
+    locationId?: string | null;
+    quoteItemRecordId?: string | null;
+    businessProfileRecordId?: string | null;
+    parentBillingItemRecordId?: string | null;
+    orderId?: string | null;
+};
+
+export type OrderLineDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -1011,7 +1286,7 @@ export type OrderLineDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: OrderLineDto;
+    result?: OrderLineDtoReadable;
 };
 
 export type OrderLineDtoEnvelopeWritable = {
@@ -1022,7 +1297,7 @@ export type OrderLineDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: OrderLineDto;
+    result?: OrderLineDtoWritable;
 };
 
 export type OrderLineDtoListEnvelopeReadable = {
@@ -1036,7 +1311,7 @@ export type OrderLineDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<OrderLineDto> | null;
+    result?: Array<OrderLineDtoReadable> | null;
 };
 
 export type OrderLineDtoListEnvelopeWritable = {
@@ -1047,7 +1322,7 @@ export type OrderLineDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<OrderLineDto> | null;
+    result?: Array<OrderLineDtoWritable> | null;
 };
 
 export type OrderLineUpdateDto = {
@@ -1099,8 +1374,8 @@ export type OrderLineUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
@@ -1163,6 +1438,8 @@ export type OrderLineUpdateDto = {
     parentBillingItemRecordId?: string | null;
 };
 
+export type OrderStatus = 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+
 export type OrderUpdateDto = {
     closed?: boolean;
     title?: string | null;
@@ -1212,8 +1489,8 @@ export type OrderUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     cartId?: string | null;
     totalAmountInUsd?: number;
     totalTaxesInUsd?: number;
@@ -1228,6 +1505,8 @@ export type PatchOperation = {
     from?: string | null;
     value?: unknown;
 };
+
+export type QuoteStatus = 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
 
 export type RefreshRequest = {
     refreshToken: string | null;
@@ -1248,11 +1527,17 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
+
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1293,7 +1578,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1356,6 +1641,8 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1380,7 +1667,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1399,11 +1686,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -1429,7 +1716,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1448,11 +1735,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type PlatformGetVersionData = {
@@ -1917,6 +2204,222 @@ export type OrdersGetOrdersCountResponses = {
 };
 
 export type OrdersGetOrdersCountResponse = OrdersGetOrdersCountResponses[keyof OrdersGetOrdersCountResponses];
+
+export type OrdersGetReceivedOrdersData = {
+    body?: ExtendedOrderDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/OrdersService/Orders/Received';
+};
+
+export type OrdersGetReceivedOrdersErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrdersError = OrdersGetReceivedOrdersErrors[keyof OrdersGetReceivedOrdersErrors];
+
+export type OrdersGetReceivedOrdersResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedOrderDtoListEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrdersResponse = OrdersGetReceivedOrdersResponses[keyof OrdersGetReceivedOrdersResponses];
+
+export type OrdersGetReceivedOrdersCountData = {
+    body?: ExtendedOrderDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/OrdersService/Orders/Received/Count';
+};
+
+export type OrdersGetReceivedOrdersCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrdersCountError = OrdersGetReceivedOrdersCountErrors[keyof OrdersGetReceivedOrdersCountErrors];
+
+export type OrdersGetReceivedOrdersCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrdersCountResponse = OrdersGetReceivedOrdersCountResponses[keyof OrdersGetReceivedOrdersCountResponses];
+
+export type OrdersGetReceivedOrderData = {
+    body?: never;
+    path: {
+        orderId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/OrdersService/Orders/Received/{orderId}';
+};
+
+export type OrdersGetReceivedOrderErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrderError = OrdersGetReceivedOrderErrors[keyof OrdersGetReceivedOrderErrors];
+
+export type OrdersGetReceivedOrderResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedOrderDtoEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrderResponse = OrdersGetReceivedOrderResponses[keyof OrdersGetReceivedOrderResponses];
+
+export type OrdersGetMyReceivedOrdersData = {
+    body?: ExtendedOrderDtoCollectionQueryParametersWritable;
+    path?: never;
+    query?: never;
+    url: '/api/v2/OrdersService/Orders/Me/Received';
+};
+
+export type OrdersGetMyReceivedOrdersErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrdersError = OrdersGetMyReceivedOrdersErrors[keyof OrdersGetMyReceivedOrdersErrors];
+
+export type OrdersGetMyReceivedOrdersResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedOrderDtoListEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrdersResponse = OrdersGetMyReceivedOrdersResponses[keyof OrdersGetMyReceivedOrdersResponses];
+
+export type OrdersGetMyReceivedOrdersCountData = {
+    body?: ExtendedOrderDtoCollectionQueryParametersWritable;
+    path?: never;
+    query?: never;
+    url: '/api/v2/OrdersService/Orders/Me/Received/Count';
+};
+
+export type OrdersGetMyReceivedOrdersCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrdersCountError = OrdersGetMyReceivedOrdersCountErrors[keyof OrdersGetMyReceivedOrdersCountErrors];
+
+export type OrdersGetMyReceivedOrdersCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrdersCountResponse = OrdersGetMyReceivedOrdersCountResponses[keyof OrdersGetMyReceivedOrdersCountResponses];
+
+export type OrdersGetMyReceivedOrderData = {
+    body?: never;
+    path: {
+        orderId: string;
+    };
+    query?: never;
+    url: '/api/v2/OrdersService/Orders/Me/Received/{orderId}';
+};
+
+export type OrdersGetMyReceivedOrderErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrderError = OrdersGetMyReceivedOrderErrors[keyof OrdersGetMyReceivedOrderErrors];
+
+export type OrdersGetMyReceivedOrderResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedOrderDtoEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrderResponse = OrdersGetMyReceivedOrderResponses[keyof OrdersGetMyReceivedOrderResponses];
+
+export type OrdersGetReceivedOrderLinesData = {
+    body?: OrderLineDtoCollectionQueryParametersWritable;
+    path: {
+        orderId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/OrdersService/Orders/Received/{orderId}/Lines';
+};
+
+export type OrdersGetReceivedOrderLinesErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrderLinesError = OrdersGetReceivedOrderLinesErrors[keyof OrdersGetReceivedOrderLinesErrors];
+
+export type OrdersGetReceivedOrderLinesResponses = {
+    /**
+     * OK
+     */
+    200: OrderLineDtoListEnvelopeReadable;
+};
+
+export type OrdersGetReceivedOrderLinesResponse = OrdersGetReceivedOrderLinesResponses[keyof OrdersGetReceivedOrderLinesResponses];
+
+export type OrdersGetMyReceivedOrderLinesData = {
+    body?: OrderLineDtoCollectionQueryParametersWritable;
+    path: {
+        orderId: string;
+    };
+    query?: never;
+    url: '/api/v2/OrdersService/Orders/Me/Received/{orderId}/Lines';
+};
+
+export type OrdersGetMyReceivedOrderLinesErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrderLinesError = OrdersGetMyReceivedOrderLinesErrors[keyof OrdersGetMyReceivedOrderLinesErrors];
+
+export type OrdersGetMyReceivedOrderLinesResponses = {
+    /**
+     * OK
+     */
+    200: OrderLineDtoListEnvelopeReadable;
+};
+
+export type OrdersGetMyReceivedOrderLinesResponse = OrdersGetMyReceivedOrderLinesResponses[keyof OrdersGetMyReceivedOrderLinesResponses];
 
 export type OrdersDeleteOrderData = {
     body?: never;

@@ -109,13 +109,15 @@ export type AssetCategoryUpdateDto = {
     description?: string | null;
 };
 
+export type AssetClass = 'Fixed' | 'Stock';
+
 export type AssetCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
     description?: string | null;
-    assetClass?: 'Fixed' | 'Stock';
-    assetOwner?: 'Business' | 'Organization' | 'Contact' | 'Supplier';
+    assetClass?: AssetClass;
+    assetOwner?: AssetOwner;
     isExistingAsset?: boolean;
     calculateDepreciation?: boolean;
     allowMonthlyDepreciation?: boolean;
@@ -260,8 +262,8 @@ export type AssetDto = {
     enrollmentId?: string | null;
     name?: string | null;
     description?: string | null;
-    assetClass?: 'Fixed' | 'Stock';
-    assetOwner?: 'Business' | 'Organization' | 'Contact' | 'Supplier';
+    assetClass?: AssetClass;
+    assetOwner?: AssetOwner;
     isExistingAsset?: boolean;
     calculateDepreciation?: boolean;
     allowMonthlyDepreciation?: boolean;
@@ -360,11 +362,13 @@ export type AssetDtoListEnvelopeWritable = {
     result?: Array<AssetDto> | null;
 };
 
+export type AssetOwner = 'Business' | 'Organization' | 'Contact' | 'Supplier';
+
 export type AssetRepairCreateDto = {
     id?: string;
     timestamp?: string;
     assetId?: string | null;
-    repairStatus?: 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
+    repairStatus?: RepairStatusDto;
     scheduledDate?: string;
     completionDate?: string | null;
     reportedDate?: string;
@@ -383,7 +387,7 @@ export type AssetRepairDto = {
     enrollmentId?: string | null;
     assetId?: string | null;
     assetName?: string | null;
-    repairStatus?: 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
+    repairStatus?: RepairStatusDto;
     scheduledDate?: string;
     completionDate?: string | null;
     reportedDate?: string;
@@ -470,7 +474,7 @@ export type AssetRepairDtoListEnvelopeWritable = {
 };
 
 export type AssetRepairUpdateDto = {
-    repairStatus?: 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
+    repairStatus?: RepairStatusDto;
     scheduledDate?: string | null;
     completionDate?: string | null;
     estimatedCost?: number | null;
@@ -705,8 +709,8 @@ export type AssetTypeUpdateDto = {
 export type AssetUpdateDto = {
     name?: string | null;
     description?: string | null;
-    assetClass?: 'Fixed' | 'Stock';
-    assetOwner?: 'Business' | 'Organization' | 'Contact' | 'Supplier';
+    assetClass?: AssetClass;
+    assetOwner?: AssetOwner;
     calculateDepreciation?: boolean;
     allowMonthlyDepreciation?: boolean;
     openingDepreciation?: number | null;
@@ -950,6 +954,8 @@ export type RegisterRequest = {
     email: string | null;
     password: string | null;
 };
+
+export type RepairStatusDto = 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
 
 export type ResendConfirmationEmailRequest = {
     email: string | null;

@@ -503,6 +503,8 @@ export interface components {
       name?: string | null;
       description?: string | null;
     };
+    /** @enum {string} */
+    AssetClass: "Fixed" | "Stock";
     AssetCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -510,10 +512,8 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      assetClass?: "Fixed" | "Stock";
-      /** @enum {string} */
-      assetOwner?: "Business" | "Organization" | "Contact" | "Supplier";
+      assetClass?: components["schemas"]["AssetClass"];
+      assetOwner?: components["schemas"]["AssetOwner"];
       isExistingAsset?: boolean;
       calculateDepreciation?: boolean;
       allowMonthlyDepreciation?: boolean;
@@ -654,10 +654,8 @@ export interface components {
       enrollmentId?: string | null;
       name?: string | null;
       description?: string | null;
-      /** @enum {string} */
-      assetClass?: "Fixed" | "Stock";
-      /** @enum {string} */
-      assetOwner?: "Business" | "Organization" | "Contact" | "Supplier";
+      assetClass?: components["schemas"]["AssetClass"];
+      assetOwner?: components["schemas"]["AssetOwner"];
       isExistingAsset?: boolean;
       calculateDepreciation?: boolean;
       allowMonthlyDepreciation?: boolean;
@@ -728,14 +726,15 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AssetDto"][] | null;
     };
+    /** @enum {string} */
+    AssetOwner: "Business" | "Organization" | "Contact" | "Supplier";
     AssetRepairCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
       assetId?: string | null;
-      /** @enum {string} */
-      repairStatus?: "Scheduled" | "InProgress" | "Completed" | "Cancelled";
+      repairStatus?: components["schemas"]["RepairStatusDto"];
       /** Format: date-time */
       scheduledDate?: string;
       /** Format: date-time */
@@ -759,8 +758,7 @@ export interface components {
       enrollmentId?: string | null;
       assetId?: string | null;
       assetName?: string | null;
-      /** @enum {string} */
-      repairStatus?: "Scheduled" | "InProgress" | "Completed" | "Cancelled";
+      repairStatus?: components["schemas"]["RepairStatusDto"];
       /** Format: date-time */
       scheduledDate?: string;
       /** Format: date-time */
@@ -821,8 +819,7 @@ export interface components {
       result?: components["schemas"]["AssetRepairDto"][] | null;
     };
     AssetRepairUpdateDto: {
-      /** @enum {string|null} */
-      repairStatus?: "Scheduled" | "InProgress" | "Completed" | "Cancelled" | null;
+      repairStatus?: components["schemas"]["RepairStatusDto"];
       /** Format: date-time */
       scheduledDate?: string | null;
       /** Format: date-time */
@@ -1001,10 +998,8 @@ export interface components {
     AssetUpdateDto: {
       name?: string | null;
       description?: string | null;
-      /** @enum {string|null} */
-      assetClass?: "Fixed" | "Stock" | null;
-      /** @enum {string|null} */
-      assetOwner?: "Business" | "Organization" | "Contact" | "Supplier" | null;
+      assetClass?: components["schemas"]["AssetClass"];
+      assetOwner?: components["schemas"]["AssetOwner"];
       calculateDepreciation?: boolean;
       allowMonthlyDepreciation?: boolean;
       /** Format: double */
@@ -1194,6 +1189,8 @@ export interface components {
       email: string | null;
       password: string | null;
     };
+    /** @enum {string} */
+    RepairStatusDto: "Scheduled" | "InProgress" | "Completed" | "Cancelled";
     ResendConfirmationEmailRequest: {
       email: string | null;
     };

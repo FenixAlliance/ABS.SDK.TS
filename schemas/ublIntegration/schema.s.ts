@@ -165,6 +165,8 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    UblProfileType: "Generic" | "Dian";
     UblRenderedDocumentModel: {
       documentType?: string | null;
       profile?: string | null;
@@ -205,7 +207,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        profile?: "Generic" | "Dian";
+        profile?: components["schemas"]["UblProfileType"];
         "api-version"?: string;
       };
       header?: {
@@ -258,7 +260,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        profile?: "Generic" | "Dian";
+        profile?: components["schemas"]["UblProfileType"];
         "api-version"?: string;
       };
       header?: {
@@ -311,7 +313,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        profile?: "Generic" | "Dian";
+        profile?: components["schemas"]["UblProfileType"];
         "api-version"?: string;
       };
       header?: {
@@ -643,7 +645,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        profile?: "Generic" | "Dian";
+        profile?: components["schemas"]["UblProfileType"];
         "api-version"?: string;
       };
       header?: {
@@ -696,7 +698,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        profile?: "Generic" | "Dian";
+        profile?: components["schemas"]["UblProfileType"];
         "api-version"?: string;
       };
       header?: {
@@ -749,7 +751,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        profile?: "Generic" | "Dian";
+        profile?: components["schemas"]["UblProfileType"];
         "api-version"?: string;
       };
       header?: {

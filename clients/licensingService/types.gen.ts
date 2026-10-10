@@ -13,6 +13,8 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BillingCycle = 'Monthly' | 'Annual';
+
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -539,6 +541,31 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type StringEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: string | null;
+};
+
+export type StringEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: string | null;
+};
+
 export type TenantUsageDto = {
     tenantId?: string | null;
     tenantName?: string | null;
@@ -578,13 +605,24 @@ export type TenantUsageDtoEnvelopeWritable = {
     result?: TenantUsageDto;
 };
 
+export type TenantUsageLimitOverrideCreateDto = {
+    licenseId: string;
+    meterKey: string;
+    kind: UsageLimitOverrideKind;
+    quantity?: number | null;
+    expectedRevision: string;
+    expectedEffectiveAllowance?: number | null;
+    expiresAtUtc?: string | null;
+    reason: string;
+};
+
 export type TenantUsageLimitOverrideDto = {
     id?: string | null;
     tenantId?: string | null;
     licenseId?: string | null;
     meterKey?: string | null;
     entitlementKey?: string | null;
-    kind?: 'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop';
+    kind?: UsageLimitOverrideKind;
     quantity?: number | null;
     createdAtUtc?: string;
     expiresAtUtc?: string | null;
@@ -600,6 +638,31 @@ export type TenantUsageLimitOverrideDto = {
     active?: boolean;
 };
 
+export type TenantUsageLimitOverrideDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantUsageLimitOverrideDto> | null;
+};
+
+export type TenantUsageLimitOverrideDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantUsageLimitOverrideDto> | null;
+};
+
 export type TenantUsageSummaryDto = {
     tenantId?: string | null;
     tenantName?: string | null;
@@ -608,7 +671,7 @@ export type TenantUsageSummaryDto = {
     periodEndUtc?: string | null;
     maxPercentUsed?: number | null;
     maxPercentMeterKey?: string | null;
-    worstStatus?: 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
+    worstStatus?: UsageMeterStatus;
     metersNear?: number;
     metersAtOrOver?: number;
     hardStopActive?: boolean;
@@ -656,6 +719,10 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UsageAggregationKind = 'PeriodCumulative' | 'Gauge' | 'TimeIntegral';
+
+export type UsageAllowanceKind = 'Finite' | 'Unlimited' | 'NotIncluded' | 'Unknown' | 'Unlicensed';
+
 export type UsageBudgetDto = {
     budget?: UsageMoneyDto;
     used?: UsageMoneyDto;
@@ -669,9 +736,13 @@ export type UsageCapabilitiesDto = {
     canOverrideLimits?: boolean;
 };
 
+export type UsageCostStatus = 'NotRated' | 'Estimated' | 'Invoiced';
+
+export type UsageDataState = 'Measured' | 'Partial' | 'Delayed' | 'Unavailable';
+
 export type UsageGrantDto = {
     licenseId?: string | null;
-    allowanceKind?: 'Finite' | 'Unlimited' | 'NotIncluded' | 'Unknown' | 'Unlicensed';
+    allowanceKind?: UsageAllowanceKind;
     planAllowance?: number | null;
     allowance?: number | null;
     overridden?: boolean;
@@ -688,12 +759,16 @@ export type UsageLicenseDto = {
     pooledEntitlementKeys?: Array<string> | null;
 };
 
+export type UsageLimitBehavior = 'None' | 'HardStop' | 'Overage';
+
+export type UsageLimitOverrideKind = 'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop';
+
 export type UsageMeterDefinitionDto = {
     key?: string | null;
     labelKey?: string | null;
     label?: string | null;
     unit?: string | null;
-    aggregation?: 'PeriodCumulative' | 'Gauge' | 'TimeIntegral';
+    aggregation?: UsageAggregationKind;
     entitlementKey?: string | null;
     sourceService?: string | null;
     rated?: boolean;
@@ -733,15 +808,15 @@ export type UsageMeterDto = {
     labelKey?: string | null;
     label?: string | null;
     unit?: string | null;
-    aggregation?: 'PeriodCumulative' | 'Gauge' | 'TimeIntegral';
-    allowanceKind?: 'Finite' | 'Unlimited' | 'NotIncluded' | 'Unknown' | 'Unlicensed';
+    aggregation?: UsageAggregationKind;
+    allowanceKind?: UsageAllowanceKind;
     allowance?: number | null;
     planAllowance?: number | null;
     overridden?: boolean;
     nearThresholdPercent?: number;
-    allowedOverrides?: Array<'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop'> | null;
+    allowedOverrides?: Array<UsageLimitOverrideKind> | null;
     overrideNote?: string | null;
-    dataState?: 'Measured' | 'Partial' | 'Delayed' | 'Unavailable';
+    dataState?: UsageDataState;
     consumed?: number | null;
     peak?: number | null;
     unmeasuredEvents?: number;
@@ -749,12 +824,12 @@ export type UsageMeterDto = {
     percentUsed?: number | null;
     projectedAtPeriodEnd?: number | null;
     projectionBasis?: string | null;
-    status?: 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
-    limitBehavior?: 'None' | 'HardStop' | 'Overage';
+    status?: UsageMeterStatus;
+    limitBehavior?: UsageLimitBehavior;
     stopped?: boolean;
     includedQuantity?: number | null;
     overageQuantity?: number | null;
-    costStatus?: 'NotRated' | 'Estimated' | 'Invoiced';
+    costStatus?: UsageCostStatus;
     overageCost?: UsageMoneyDto;
     costBasis?: string | null;
     trend?: Array<UsageTrendPointDto> | null;
@@ -762,6 +837,8 @@ export type UsageMeterDto = {
     asOfUtc?: string | null;
     note?: string | null;
 };
+
+export type UsageMeterStatus = 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
 
 export type UsageMoneyDto = {
     amount?: number;
@@ -781,7 +858,7 @@ export type UsagePlanDto = {
     offeringKey?: string | null;
     planSku?: string | null;
     name?: string | null;
-    billingCycle?: 'Monthly' | 'Annual';
+    billingCycle?: BillingCycle;
     periodPrice?: UsageMoneyDto;
     hardStop?: boolean;
 };
@@ -2349,7 +2426,7 @@ export type UsageGetTenantsUsageData = {
     path?: never;
     query: {
         tenantId: string;
-        minimumStatus?: 'Ok' | 'Near' | 'AtLimit' | 'Over' | 'NoAllowance' | 'Unavailable' | 'Unlicensed';
+        minimumStatus?: UsageMeterStatus;
         search?: string;
         sortBy?: string;
         descending?: boolean;
@@ -2410,6 +2487,80 @@ export type UsageGetTenantUsageAsAdminResponses = {
 };
 
 export type UsageGetTenantUsageAsAdminResponse = UsageGetTenantUsageAsAdminResponses[keyof UsageGetTenantUsageAsAdminResponses];
+
+export type UsageGetTenantUsageLimitOverridesData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        targetTenantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Admin/Usage/{targetTenantId}/LimitOverrides';
+};
+
+export type UsageGetTenantUsageLimitOverridesErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UsageGetTenantUsageLimitOverridesError = UsageGetTenantUsageLimitOverridesErrors[keyof UsageGetTenantUsageLimitOverridesErrors];
+
+export type UsageGetTenantUsageLimitOverridesResponses = {
+    /**
+     * OK
+     */
+    200: TenantUsageLimitOverrideDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type UsageGetTenantUsageLimitOverridesResponse = UsageGetTenantUsageLimitOverridesResponses[keyof UsageGetTenantUsageLimitOverridesResponses];
+
+export type UsageCreateTenantUsageLimitOverrideData = {
+    body?: TenantUsageLimitOverrideCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        targetTenantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Admin/Usage/{targetTenantId}/LimitOverrides';
+};
+
+export type UsageCreateTenantUsageLimitOverrideErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type UsageCreateTenantUsageLimitOverrideError = UsageCreateTenantUsageLimitOverrideErrors[keyof UsageCreateTenantUsageLimitOverrideErrors];
+
+export type UsageCreateTenantUsageLimitOverrideResponses = {
+    /**
+     * OK
+     */
+    200: StringEnvelopeReadable;
+};
+
+export type UsageCreateTenantUsageLimitOverrideResponse = UsageCreateTenantUsageLimitOverrideResponses[keyof UsageCreateTenantUsageLimitOverrideResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

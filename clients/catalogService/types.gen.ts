@@ -680,6 +680,8 @@ export type ErrorEnvelopeWritable = {
     } | null;
 };
 
+export type FileUploadPublicAccessType = 'Off' | 'Container' | 'Blob' | 'Unknown';
+
 export type ForgotPasswordRequest = {
     email: string | null;
 };
@@ -747,7 +749,7 @@ export type ItemAttachmentCreateDto = {
     validResponse?: boolean;
     parentFileUploadId?: string | null;
     filePath?: string | null;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     itemId?: string | null;
 };
 
@@ -776,14 +778,14 @@ export type ItemAttachmentDtoReadable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     readonly hasThumbnail?: boolean;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     itemId?: string | null;
 };
 
@@ -812,13 +814,13 @@ export type ItemAttachmentDtoWritable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     itemId?: string | null;
 };
 
@@ -2967,6 +2969,10 @@ export type ResetPasswordRequest = {
     resetCode: string | null;
     newPassword: string | null;
 };
+
+export type StorageScanStatus = 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+
+export type StorageThumbnailStatus = 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
 
 export type TwoFactorRequest = {
     enable?: boolean | null;

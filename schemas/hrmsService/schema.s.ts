@@ -241,6 +241,20 @@ export interface paths {
      */
     patch: operations["Employers_PatchEmployer"];
   };
+  "/api/v2/HrmsService/Employers/{employerId}/Publish": {
+    /**
+     * Publish an employer profile
+     * @description Opts the employer into the public employer directory.
+     */
+    post: operations["Employers_PublishEmployerProfile"];
+  };
+  "/api/v2/HrmsService/Employers/{employerId}/Unpublish": {
+    /**
+     * Unpublish an employer profile
+     * @description Withdraws the employer from the public employer directory.
+     */
+    post: operations["Employers_UnpublishEmployerProfile"];
+  };
   "/version": {
     get: operations["Platform_GetVersion"];
   };
@@ -378,6 +392,34 @@ export interface paths {
      * @description Partially updates an existing gig for the specified tenant.
      */
     patch: operations["Gigs_PatchGig"];
+  };
+  "/api/v2/HrmsService/Gigs/{gigId}/Publish": {
+    /**
+     * Publish a gig
+     * @description Publishes a draft gig.
+     */
+    post: operations["Gigs_PublishGig"];
+  };
+  "/api/v2/HrmsService/Gigs/{gigId}/Award": {
+    /**
+     * Award a gig
+     * @description Marks a published gig as awarded.
+     */
+    post: operations["Gigs_AwardGig"];
+  };
+  "/api/v2/HrmsService/Gigs/{gigId}/Complete": {
+    /**
+     * Complete a gig
+     * @description Marks an awarded gig as completed.
+     */
+    post: operations["Gigs_CompleteGig"];
+  };
+  "/api/v2/HrmsService/Gigs/{gigId}/Cancel": {
+    /**
+     * Cancel a gig
+     * @description Cancels a gig before it is completed.
+     */
+    post: operations["Gigs_CancelGig"];
   };
   "/api/v2/HrmsService/JobApplicants": {
     /**
@@ -1381,13 +1423,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["BusinessPositionAssignmentDto"][] | null;
     };
+    /** @enum {string} */
+    CareerLevel: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
     ContactCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      type: "Individual" | "Organization";
+      type: components["schemas"]["ContactType"];
       firstName: string;
       lastName?: string | null;
       /** Format: email */
@@ -1438,8 +1481,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -1509,9 +1551,21 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    DayOfTheWeek: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
     EmployeeAppraisalSessionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1874,6 +1928,7 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
+      isPublicProfile?: boolean;
     };
     EmployerProfileDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2137,6 +2192,7 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       externalUrl?: string | null;
+      status?: components["schemas"]["GigStatus"];
       tenantId?: string | null;
       enrollmentId?: string | null;
       employerProfileId?: string | null;
@@ -2188,6 +2244,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["GigDto"][] | null;
     };
+    /** @enum {string} */
+    GigStatus: "Draft" | "Published" | "Awarded" | "Completed" | "Cancelled";
     GigUpdateDto: {
       remote?: boolean;
       type?: string | null;
@@ -2295,8 +2353,7 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       availableForHire?: boolean;
-      /** @enum {string} */
-      careerLevel?: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
+      careerLevel?: components["schemas"]["CareerLevel"];
       /** Format: int32 */
       experienceInYears?: number;
       /** Format: double */
@@ -2344,8 +2401,7 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       availableForHire?: boolean;
-      /** @enum {string} */
-      careerLevel?: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
+      careerLevel?: components["schemas"]["CareerLevel"];
       /** Format: int32 */
       experienceInYears?: number;
       /** Format: double */
@@ -2425,8 +2481,7 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       availableForHire?: boolean;
-      /** @enum {string} */
-      careerLevel?: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
+      careerLevel?: components["schemas"]["CareerLevel"];
       /** Format: int32 */
       experienceInYears?: number;
       /** Format: double */
@@ -2437,6 +2492,8 @@ export interface components {
       maxSalaryExpectation?: number;
       currencyId?: string | null;
     };
+    /** @enum {string} */
+    JobApplicationStatus: "Submitted" | "UnderReview" | "Interviewing" | "Offered" | "Hired" | "Rejected" | "Withdrawn";
     JobFieldCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2526,8 +2583,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      status?: "Submitted" | "UnderReview" | "Interviewing" | "Offered" | "Hired" | "Rejected" | "Withdrawn";
+      status?: components["schemas"]["JobApplicationStatus"];
       /** Format: date-time */
       start?: string;
       /** Format: date-time */
@@ -2658,8 +2714,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      status?: "Draft" | "Published" | "Closed" | "Filled";
+      status?: components["schemas"]["JobOfferStatus"];
       remote?: boolean;
       /** Format: date-time */
       expectedHireDate?: string;
@@ -2904,6 +2959,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["JobOfferPublicDto"][] | null;
     };
+    /** @enum {string} */
+    JobOfferStatus: "Draft" | "Published" | "Closed" | "Filled";
     JobOfferUpdateDto: {
       remote?: boolean;
       /** Format: date-time */
@@ -3274,8 +3331,7 @@ export interface components {
       start?: string | null;
       /** Format: date-time */
       end?: string | null;
-      /** @enum {string} */
-      status?: "Open" | "Closed";
+      status?: components["schemas"]["PayrollPeriodStatus"];
     };
     PayrollPeriodDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -3320,6 +3376,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PayrollPeriodDto"][] | null;
     };
+    /** @enum {string} */
+    PayrollPeriodStatus: "Open" | "Closed";
     PayrollPeriodUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -3353,6 +3411,8 @@ export interface components {
       email: string | null;
       password: string | null;
     };
+    /** @enum {string} */
+    RepetitionCriteria: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
     RequiredSkillRecordCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -3365,8 +3425,7 @@ export interface components {
       experienceInYears?: number;
       /** Format: double */
       priority?: number;
-      /** @enum {string} */
-      requiredSkillRecordType?: "MustHave" | "Optional";
+      requiredSkillRecordType?: components["schemas"]["RequiredSkillRecordType"];
     };
     RequiredSkillRecordDto: {
       id?: string | null;
@@ -3376,8 +3435,7 @@ export interface components {
       experienceInYears?: number;
       /** Format: double */
       priority?: number;
-      /** @enum {string} */
-      requiredSkillRecordType?: "MustHave" | "Optional";
+      requiredSkillRecordType?: components["schemas"]["RequiredSkillRecordType"];
       skillId?: string | null;
       jobOfferId?: string | null;
       employerProfileId?: string | null;
@@ -3427,6 +3485,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["RequiredSkillRecordDto"][] | null;
     };
+    /** @enum {string} */
+    RequiredSkillRecordType: "MustHave" | "Optional";
     RequiredSkillRecordUpdateDto: {
       skillId?: string | null;
       jobOfferId?: string | null;
@@ -3435,8 +3495,7 @@ export interface components {
       experienceInYears?: number;
       /** Format: double */
       priority?: number;
-      /** @enum {string} */
-      requiredSkillRecordType?: "MustHave" | "Optional";
+      requiredSkillRecordType?: components["schemas"]["RequiredSkillRecordType"];
     };
     ResendConfirmationEmailRequest: {
       email: string | null;
@@ -3651,14 +3710,12 @@ export interface components {
       occustOnSunday?: boolean;
       /** Format: int32 */
       repeatEvery?: number;
-      /** @enum {string} */
-      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      repetitionCriteria?: components["schemas"]["RepetitionCriteria"];
       /** Format: date-time */
       recurrenceStart?: string | null;
       /** Format: date-time */
       recurrenceEnd?: string | null;
-      /** @enum {string} */
-      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      dayOfTheWeek?: components["schemas"]["DayOfTheWeek"];
       scheduleId?: string | null;
       parentTimeIntervalId?: string | null;
       employeeProfileId: string;
@@ -3683,14 +3740,12 @@ export interface components {
       occustOnSunday?: boolean;
       /** Format: int32 */
       repeatEvery?: number;
-      /** @enum {string} */
-      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      repetitionCriteria?: components["schemas"]["RepetitionCriteria"];
       /** Format: date-time */
       recurrenceStart?: string | null;
       /** Format: date-time */
       recurrenceEnd?: string | null;
-      /** @enum {string} */
-      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      dayOfTheWeek?: components["schemas"]["DayOfTheWeek"];
       scheduleId?: string | null;
       parentTimeIntervalId?: string | null;
       tenantId?: string | null;
@@ -3756,14 +3811,12 @@ export interface components {
       occustOnSunday?: boolean | null;
       /** Format: int32 */
       repeatEvery?: number | null;
-      /** @enum {string|null} */
-      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year" | null;
+      repetitionCriteria?: components["schemas"]["RepetitionCriteria"];
       /** Format: date-time */
       recurrenceStart?: string | null;
       /** Format: date-time */
       recurrenceEnd?: string | null;
-      /** @enum {string|null} */
-      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | null;
+      dayOfTheWeek?: components["schemas"]["DayOfTheWeek"];
       scheduleId?: string | null;
       parentTimeIntervalId?: string | null;
       employeeProfileId?: string | null;
@@ -4021,14 +4074,12 @@ export interface components {
       occustOnSunday?: boolean;
       /** Format: int32 */
       repeatEvery?: number;
-      /** @enum {string} */
-      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      repetitionCriteria?: components["schemas"]["RepetitionCriteria"];
       /** Format: date-time */
       recurrenceStart?: string | null;
       /** Format: date-time */
       recurrenceEnd?: string | null;
-      /** @enum {string} */
-      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      dayOfTheWeek?: components["schemas"]["DayOfTheWeek"];
       scheduleId?: string | null;
       parentTimeIntervalId?: string | null;
       trainingProgramId: string;
@@ -4053,14 +4104,12 @@ export interface components {
       occustOnSunday?: boolean;
       /** Format: int32 */
       repeatEvery?: number;
-      /** @enum {string} */
-      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      repetitionCriteria?: components["schemas"]["RepetitionCriteria"];
       /** Format: date-time */
       recurrenceStart?: string | null;
       /** Format: date-time */
       recurrenceEnd?: string | null;
-      /** @enum {string} */
-      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      dayOfTheWeek?: components["schemas"]["DayOfTheWeek"];
       scheduleId?: string | null;
       parentTimeIntervalId?: string | null;
       tenantId?: string | null;
@@ -4127,14 +4176,12 @@ export interface components {
       occustOnSunday?: boolean | null;
       /** Format: int32 */
       repeatEvery?: number | null;
-      /** @enum {string|null} */
-      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year" | null;
+      repetitionCriteria?: components["schemas"]["RepetitionCriteria"];
       /** Format: date-time */
       recurrenceStart?: string | null;
       /** Format: date-time */
       recurrenceEnd?: string | null;
-      /** @enum {string|null} */
-      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | null;
+      dayOfTheWeek?: components["schemas"]["DayOfTheWeek"];
       scheduleId?: string | null;
       parentTimeIntervalId?: string | null;
       trainingProgramId?: string | null;
@@ -6080,6 +6127,102 @@ export interface operations {
       };
     };
   };
+  /**
+   * Publish an employer profile
+   * @description Opts the employer into the public employer directory.
+   */
+  Employers_PublishEmployerProfile: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employerId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Unpublish an employer profile
+   * @description Withdraws the employer from the public employer directory.
+   */
+  Employers_UnpublishEmployerProfile: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employerId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   Platform_GetVersion: {
     responses: {
       /** @description OK */
@@ -7073,6 +7216,198 @@ export interface operations {
     };
   };
   /**
+   * Publish a gig
+   * @description Publishes a draft gig.
+   */
+  Gigs_PublishGig: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Award a gig
+   * @description Marks a published gig as awarded.
+   */
+  Gigs_AwardGig: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Complete a gig
+   * @description Marks an awarded gig as completed.
+   */
+  Gigs_CompleteGig: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a gig
+   * @description Cancels a gig before it is completed.
+   */
+  Gigs_CancelGig: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get job applicants
    * @description Retrieves job applicant (candidate) profiles for the specified tenant.
    */
@@ -7752,7 +8087,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        status: "Submitted" | "UnderReview" | "Interviewing" | "Offered" | "Hired" | "Rejected" | "Withdrawn";
+        status: components["schemas"]["JobApplicationStatus"];
         "api-version"?: string;
       };
       header?: {

@@ -467,14 +467,15 @@ export interface components {
       bankProfileId?: string | null;
       walletId?: string | null;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -544,9 +545,23 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
+    /** @enum {string} */
+    DocumentType: "Standard" | "DebitNote" | "CreditNote";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -622,10 +637,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -702,10 +715,12 @@ export interface components {
       qualifiedIdentifier?: string | null;
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
-      /** @enum {string} */
-      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      freightTerms?: components["schemas"]["FreightTerms"];
+      orderStatus?: components["schemas"]["OrderStatus"];
+      /** Format: int64 */
+      number?: number | null;
+      numberLabel?: string | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -732,6 +747,16 @@ export interface components {
       organization?: components["schemas"]["ContactDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
       enrollment?: components["schemas"]["TenantEnrollmentDto"];
+      /** Format: double */
+      effectiveDiscountPercent?: number;
+      /** Format: double */
+      effectiveSurchargePercent?: number;
+      /** Format: double */
+      effectiveTaxesPercent?: number;
+      /** Format: double */
+      effectiveGlobalDiscountPercent?: number;
+      /** Format: double */
+      effectiveGlobalSurchargePercent?: number;
     };
     ExtendedOrderDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -764,6 +789,10 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    FreightTerms: "FOB" | "NoCharge";
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -827,10 +856,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -896,6 +923,8 @@ export interface components {
       /** Format: double */
       totalInUsd?: number;
       paid?: boolean;
+      /** Format: date-time */
+      issuedAtUtc?: string | null;
       /** Format: int64 */
       number?: number;
       notes?: string | null;
@@ -909,12 +938,9 @@ export interface components {
       receiverWalletAccountId?: string | null;
       /** Format: date-time */
       paymentDue?: string | null;
-      /** @enum {string} */
-      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
-      /** @enum {string} */
-      documentType?: "Standard" | "DebitNote" | "CreditNote";
-      /** @enum {string} */
-      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+      invoiceType?: components["schemas"]["InvoiceType"];
+      documentType?: components["schemas"]["DocumentType"];
+      invoiceStatus?: components["schemas"]["InvoiceStatus"];
     };
     InvoiceDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -944,6 +970,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["InvoiceDto"][] | null;
     };
+    /** @enum {string} */
+    InvoiceStatus: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+    /** @enum {string} */
+    InvoiceType: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
     LocationCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1078,6 +1108,8 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    /** @enum {string} */
+    OnBehalfOf: "Self" | "Tenant" | "Individual" | "Organization";
     OrderDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1104,10 +1136,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1184,10 +1214,12 @@ export interface components {
       qualifiedIdentifier?: string | null;
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
-      /** @enum {string} */
-      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      freightTerms?: components["schemas"]["FreightTerms"];
+      orderStatus?: components["schemas"]["OrderStatus"];
+      /** Format: int64 */
+      number?: number | null;
+      numberLabel?: string | null;
+      saleChannel?: components["schemas"]["SaleChannel"];
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -1237,6 +1269,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"][] | null;
     };
+    /** @enum {string} */
+    OrderStatus: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
     PatchOperation: {
       op?: string | null;
       path?: string | null;
@@ -1309,12 +1343,9 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /** @enum {string} */
-      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
-      /** @enum {string} */
-      paymentType?: "Paid" | "Received" | "Internal";
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      onBehalfOf?: components["schemas"]["OnBehalfOf"];
+      paymentType?: components["schemas"]["PaymentType"];
+      paymentStatus?: components["schemas"]["PaymentStatus"];
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -1382,12 +1413,9 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /** @enum {string} */
-      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
-      /** @enum {string} */
-      paymentType?: "Paid" | "Received" | "Internal";
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      onBehalfOf?: components["schemas"]["OnBehalfOf"];
+      paymentType?: components["schemas"]["PaymentType"];
+      paymentStatus?: components["schemas"]["PaymentStatus"];
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -1495,6 +1523,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PaymentRefundDto"][] | null;
     };
+    /** @enum {string} */
+    PaymentStatus: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
     PaymentTokenCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1579,6 +1609,8 @@ export interface components {
       validUntil?: string | null;
       paymentGatewayId?: string | null;
     };
+    /** @enum {string} */
+    PaymentType: "Paid" | "Received" | "Internal";
     QuoteDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1605,10 +1637,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1679,10 +1709,8 @@ export interface components {
       effectiveTo?: string | null;
       /** Format: date-time */
       effectiveFrom?: string | null;
-      /** @enum {string} */
-      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
-      /** @enum {string} */
-      freightTerms?: "FOB" | "NoCharge";
+      quoteStatus?: components["schemas"]["QuoteStatus"];
+      freightTerms?: components["schemas"]["FreightTerms"];
       /** Format: double */
       customDiscountsAmount?: number;
     };
@@ -1714,6 +1742,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["QuoteDto"][] | null;
     };
+    /** @enum {string} */
+    QuoteStatus: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1729,13 +1759,18 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SaleChannel: "Unset" | "Marketplace" | "Direct";
+    /** @enum {string} */
+    SiteTheme: "System" | "Light" | "Dark";
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TenantDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1798,6 +1833,8 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    UserAvailability: "DND" | "Busy" | "Away" | "Offline" | "Available";
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1824,8 +1861,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -1844,15 +1880,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
     WalletDto: {
       id?: string | null;
@@ -1898,8 +1932,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** @enum {string} */
-      withdrawStatus?: "OnHold" | "Retained" | "Processing" | "OnValidation" | "Processed";
+      withdrawStatus?: components["schemas"]["WithdrawStatus"];
       walletAccountId?: string | null;
       walletWithdrawRequestId?: string | null;
       /** Format: double */
@@ -1955,8 +1988,7 @@ export interface components {
       requestedWithdrawAmount?: number;
       /** Format: double */
       requestedWithdrawAmountInUSD?: number;
-      /** @enum {string} */
-      walletWithdrawRequestStatus?: "Pending" | "Processed" | "Cancelled" | "OnHold" | "Denied";
+      walletWithdrawRequestStatus?: components["schemas"]["WalletWithdrawRequestStatus"];
       currencyId?: string | null;
       businessId?: string | null;
       walletAccountId?: string | null;
@@ -1990,6 +2022,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["WalletWithdrawRequestDto"][] | null;
     };
+    /** @enum {string} */
+    WalletWithdrawRequestStatus: "Pending" | "Processed" | "Cancelled" | "OnHold" | "Denied";
+    /** @enum {string} */
+    WithdrawStatus: "OnHold" | "Retained" | "Processing" | "OnValidation" | "Processed";
   };
   responses: never;
   parameters: never;

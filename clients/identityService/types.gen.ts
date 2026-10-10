@@ -24,8 +24,8 @@ export type AuthResult = {
     correlationId?: string | null;
     scopes?: Array<string> | null;
     error?: string | null;
-    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    runAs?: RunAs;
+    principalKind?: PrincipalKind;
     provenance?: ExecutionProvenance;
     executionPrincipalId?: UserId;
     executionPrincipalEnrollmentId?: EnrollmentId;
@@ -83,9 +83,9 @@ export type ErrorEnvelopeWritable = {
 };
 
 export type ExecutionProvenance = {
-    initiation?: 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System' | 'Manual';
+    initiation?: RunInitiation;
     onBehalfOfActorId?: UserId;
-    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    onBehalfOfActorKind?: PrincipalKind;
     causationId?: string | null;
     originatingWorkflowInstanceId?: string | null;
     eventDepth?: number;
@@ -94,6 +94,8 @@ export type ExecutionProvenance = {
 export type ForgotPasswordRequest = {
     email: string | null;
 };
+
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
 
 export type HttpValidationProblemDetails = {
     type?: string | null;
@@ -269,6 +271,8 @@ export type OpenIdConfigurationEnvelopeWritable = {
 
 export type PortalId = string;
 
+export type PrincipalKind = 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -287,6 +291,10 @@ export type ResetPasswordRequest = {
     resetCode: string | null;
     newPassword: string | null;
 };
+
+export type RunAs = 'Invoker' | 'Application' | 'System' | 'Service';
+
+export type RunInitiation = 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System' | 'Manual';
 
 export type SigninModel = {
     email?: string | null;
@@ -345,7 +353,7 @@ export type UserCreateDto = {
     lastName?: string | null;
     publicName?: string | null;
     idProvider?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     email?: string | null;
     about?: string | null;
     status?: string | null;

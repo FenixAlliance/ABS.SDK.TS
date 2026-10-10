@@ -189,13 +189,14 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    BillingCycle: "Monthly" | "Annual";
     CommercialSubscriptionDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       subscriptionPlanId?: string | null;
-      /** @enum {string|null} */
-      lifecycleState?: "Pending" | "Active" | "Suspended" | "Ended" | null;
+      lifecycleState?: components["schemas"]["SubscriptionLifecycleState"];
       /** Format: int32 */
       quantity?: number;
       /** Format: int32 */
@@ -259,10 +260,8 @@ export interface components {
     };
     CommercialSubscriptionPayableObligationDto: {
       subscriptionId?: string | null;
-      /** @enum {string} */
-      status?: "Payable" | "PendingMaterialization" | "Satisfied" | "NoOpenObligation";
-      /** @enum {string} */
-      obligationType?: "Invoice";
+      status?: components["schemas"]["SubscriptionPayableObligationStatus"];
+      obligationType?: components["schemas"]["PaymentObligationType"];
       obligationReference?: string | null;
       /** Format: int32 */
       periodSequenceNumber?: number | null;
@@ -328,8 +327,7 @@ export interface components {
     EstablishCommercialSubscriptionRequest: {
       /** Format: uuid */
       subscriptionPlanId: string;
-      /** @enum {string} */
-      billToMode: "Unknown" | "BusinessToConsumer" | "BusinessToBusiness" | "TenantToTenant";
+      billToMode: components["schemas"]["PayerRelationshipMode"];
       billToReference: string;
       /** Format: date-time */
       periodStartUtc: string;
@@ -392,10 +390,13 @@ export interface components {
       from?: string | null;
       value?: unknown;
     };
+    /** @enum {string} */
+    PayerRelationshipMode: "Unknown" | "BusinessToConsumer" | "BusinessToBusiness" | "TenantToTenant";
+    /** @enum {string} */
+    PaymentObligationType: "Invoice";
     PlatformPlanPriceDto: {
       offeringKey?: string | null;
-      /** @enum {string} */
-      billingCycle?: "Monthly" | "Annual";
+      billingCycle?: components["schemas"]["BillingCycle"];
       planSku?: string | null;
       name?: string | null;
       /** Format: int32 */
@@ -432,8 +433,7 @@ export interface components {
     };
     PurchaseOfferingRequest: {
       offeringKey: string;
-      /** @enum {string} */
-      billingCycle?: "Monthly" | "Annual";
+      billingCycle?: components["schemas"]["BillingCycle"];
       /** Format: date-time */
       periodStartUtc?: string;
       /** Format: date-time */
@@ -458,6 +458,8 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SubscriptionClass: "Trial" | "Standard";
     SubscriptionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -466,8 +468,7 @@ export interface components {
       individualId?: string | null;
       organizationId?: string | null;
       subscriptionPlanId?: string | null;
-      /** @enum {string} */
-      subscriptionClass?: "Trial" | "Standard";
+      subscriptionClass?: components["schemas"]["SubscriptionClass"];
     };
     SubscriptionDto: {
       id?: string | null;
@@ -476,8 +477,7 @@ export interface components {
       individualId?: string | null;
       organizationId?: string | null;
       subscriptionPlanId?: string | null;
-      /** @enum {string} */
-      subscriptionClass?: "Trial" | "Standard";
+      subscriptionClass?: components["schemas"]["SubscriptionClass"];
     };
     SubscriptionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -522,6 +522,10 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SubscriptionDto"][] | null;
     };
+    /** @enum {string} */
+    SubscriptionLifecycleState: "Pending" | "Active" | "Suspended" | "Ended";
+    /** @enum {string} */
+    SubscriptionPayableObligationStatus: "Payable" | "PendingMaterialization" | "Satisfied" | "NoOpenObligation";
     SubscriptionPlanCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1208,8 +1212,7 @@ export interface components {
       individualId?: string | null;
       organizationId?: string | null;
       subscriptionPlanId?: string | null;
-      /** @enum {string} */
-      subscriptionClass?: "Trial" | "Standard";
+      subscriptionClass?: components["schemas"]["SubscriptionClass"];
     };
     TwoFactorRequest: {
       enable?: boolean | null;

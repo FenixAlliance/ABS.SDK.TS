@@ -13,6 +13,8 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -639,7 +641,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -680,7 +682,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;

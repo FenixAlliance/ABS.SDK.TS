@@ -127,7 +127,7 @@ export type DiscountListCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    discountListType?: 'Amount' | 'Percentage';
+    discountListType?: DiscountListType;
     currencyId?: string | null;
 };
 
@@ -135,7 +135,7 @@ export type DiscountListDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
-    discountListType?: 'Amount' | 'Percentage';
+    discountListType?: DiscountListType;
     currencyId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
@@ -214,9 +214,11 @@ export type DiscountListDtoListEnvelopeWritable = {
     result?: Array<DiscountListDto> | null;
 };
 
+export type DiscountListType = 'Amount' | 'Percentage';
+
 export type DiscountListUpdateDto = {
     name?: string | null;
-    discountListType?: 'Amount' | 'Percentage';
+    discountListType?: DiscountListType;
     currencyId?: string | null;
 };
 
@@ -579,12 +581,14 @@ export type PatchOperation = {
     value?: unknown;
 };
 
+export type PriceListContext = 'Sales' | 'Purchase' | 'Cost';
+
 export type PriceListCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
     description?: string | null;
-    context?: 'Sales' | 'Purchase' | 'Cost';
+    context?: PriceListContext;
     startDate?: string;
     endDate?: string;
     currencyId?: string | null;
@@ -601,7 +605,7 @@ export type PriceListDto = {
     startDate?: string;
     endDate?: string;
     description?: string | null;
-    context?: 'Sales' | 'Purchase' | 'Cost';
+    context?: PriceListContext;
     currencyId?: string | null;
     tenantId?: string | null;
     unitId?: string | null;
@@ -687,7 +691,7 @@ export type PriceListDtoListEnvelopeWritable = {
 export type PriceListUpdateDto = {
     name: string;
     description?: string | null;
-    context?: 'Sales' | 'Purchase' | 'Cost';
+    context?: PriceListContext;
     startDate?: string;
     endDate?: string;
     currencyId?: string | null;

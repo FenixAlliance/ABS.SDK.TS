@@ -145,6 +145,13 @@ export interface paths {
      */
     get: operations["AiRuns_GetAiRunById"];
   };
+  "/api/v2/IntelligenceService/AiUsage/Summary": {
+    /**
+     * Get the AI usage summary
+     * @description Returns the tenant's AI usage summary over the half-open UTC window [fromUtc, toUtc): quantities only, split managed, BYOK and unresolved, with one point per UTC day (read-only, tenant-scoped).
+     */
+    get: operations["AiUsage_GetAiUsageSummary"];
+  };
   "/api/v2/IntelligenceService/AiUsageObservations": {
     /**
      * Get all AI usage observations
@@ -562,20 +569,20 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    AgentExecutionAnomalyCode: "None" | "WaitingForApproval" | "RetryableInfrastructure" | "StaleFence" | "OutcomeUnknown" | "AlreadyFinalized" | "ClaimNotFound" | "StuckOrphaned";
     AgentExecutionDiagnosticDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      status?: "Pending" | "Claimed" | "Completed" | "Failed" | "Cancelled";
+      status?: components["schemas"]["AgentWorkOrderStatus"];
       statusName?: string | null;
       /** Format: date-time */
       createdAt?: string;
       /** Format: int32 */
       currentLeaseGeneration?: number | null;
-      /** @enum {string|null} */
-      currentLeaseStatus?: "Claimed" | "Completed" | "Failed" | null;
+      currentLeaseStatus?: components["schemas"]["AgentWorkLeaseStatus"];
       currentLeaseStatusName?: string | null;
       /** Format: date-time */
       currentLeaseClaimedAtUtc?: string | null;
@@ -583,16 +590,13 @@ export interface components {
       leaseCount?: number;
       /** Format: date-time */
       observedAtUtc?: string;
-      /** @enum {string} */
-      anomalyCode?: "None" | "WaitingForApproval" | "RetryableInfrastructure" | "StaleFence" | "OutcomeUnknown" | "AlreadyFinalized" | "ClaimNotFound" | "StuckOrphaned";
+      anomalyCode?: components["schemas"]["AgentExecutionAnomalyCode"];
       anomalyCodeName?: string | null;
-      /** @enum {string} */
-      recommendedAction?: "Wait" | "Retry" | "Reconcile" | "Completed" | "ManualAction";
+      recommendedAction?: components["schemas"]["AgentExecutionRecoveryAction"];
       recommendedActionName?: string | null;
       diagnosticSummary?: string | null;
       claimObserved?: boolean | null;
-      /** @enum {string|null} */
-      claimState?: "Pending" | "Claimed" | "Executing" | "Finalized" | "Failed" | "OutcomeUnknown" | null;
+      claimState?: components["schemas"]["GovernedInvocationClaimState"];
       claimFingerprintRecorded?: boolean | null;
     };
     AgentExecutionDiagnosticDtoCollectionQueryParameters: {
@@ -638,6 +642,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AgentExecutionDiagnosticDto"][] | null;
     };
+    /** @enum {string} */
+    AgentExecutionRecoveryAction: "Wait" | "Retry" | "Reconcile" | "Completed" | "ManualAction";
     AgentPermissionReadinessDto: {
       agentId?: string | null;
       executionEnrollmentId?: string | null;
@@ -723,6 +729,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AgentWorkAssignmentDto"];
     };
+    /** @enum {string} */
+    AgentWorkLeaseStatus: "Claimed" | "Completed" | "Failed";
     AgentWorkOrderCancellationDto: {
       cancelled?: boolean;
     };
@@ -741,22 +749,22 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AgentWorkOrderCancellationDto"];
     };
+    /** @enum {string} */
+    AgentWorkOrderStatus: "Pending" | "Claimed" | "Completed" | "Failed" | "Cancelled";
     AgentWorkOrderStatusDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       requiredCapabilities?: string | null;
       preferredPoolId?: string | null;
-      /** @enum {string} */
-      status?: "Pending" | "Claimed" | "Completed" | "Failed" | "Cancelled";
+      status?: components["schemas"]["AgentWorkOrderStatus"];
       statusName?: string | null;
       /** Format: date-time */
       createdAt?: string;
       tenantId?: string | null;
       /** Format: int32 */
       currentLeaseGeneration?: number | null;
-      /** @enum {string|null} */
-      currentLeaseStatus?: "Claimed" | "Completed" | "Failed" | null;
+      currentLeaseStatus?: components["schemas"]["AgentWorkLeaseStatus"];
       currentLeaseStatusName?: string | null;
       /** Format: int32 */
       leaseCount?: number;
@@ -818,8 +826,7 @@ export interface components {
       specialized?: boolean;
       jurisdiction?: string | null;
       available?: boolean;
-      /** @enum {string|null} */
-      connectionScope?: "Instance" | "Tenant" | null;
+      connectionScope?: components["schemas"]["AiProviderConnectionScope"];
     };
     AiModelCategoryDto: {
       key?: string | null;
@@ -830,8 +837,7 @@ export interface components {
       providerKey?: string | null;
       displayName?: string | null;
       available?: boolean;
-      /** @enum {string|null} */
-      connectionScope?: "Instance" | "Tenant" | null;
+      connectionScope?: components["schemas"]["AiProviderConnectionScope"];
       categories?: components["schemas"]["AiModelCategoryDto"][] | null;
     };
     AiProviderAvailabilityDtoListEnvelope: {
@@ -849,6 +855,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AiProviderAvailabilityDto"][] | null;
     };
+    /** @enum {string} */
+    AiProviderConnectionScope: "Instance" | "Tenant";
     AiProviderDto: {
       providerKey?: string | null;
     };
@@ -877,17 +885,14 @@ export interface components {
       providerKey?: string | null;
       modelId?: string | null;
       engineKey?: string | null;
-      /** @enum {string|null} */
-      fundingScope?: "Instance" | "Tenant" | null;
+      fundingScope?: components["schemas"]["AiProviderConnectionScope"];
       fundingScopeName?: string | null;
       remoteIdentifier?: string | null;
       endpoint?: string | null;
       credentialRef?: string | null;
-      /** @enum {string} */
-      status?: "Started" | "Succeeded" | "Failed" | "Rejected" | "AwaitingApproval" | "InDoubt";
+      status?: components["schemas"]["AiRunStatus"];
       statusName?: string | null;
-      /** @enum {string} */
-      kind?: "Chat" | "ToolAugmented";
+      kind?: components["schemas"]["AiRunKind"];
       /** Format: date-time */
       startedAt?: string;
       /** Format: date-time */
@@ -904,10 +909,8 @@ export interface components {
       promptTokens?: number | null;
       /** Format: int64 */
       completionTokens?: number | null;
-      /** @enum {string} */
-      runAs?: "Invoker" | "Application" | "System" | "Service";
-      /** @enum {string} */
-      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      runAs?: components["schemas"]["RunAs"];
+      principalKind?: components["schemas"]["PrincipalKind"];
       tenantId?: string | null;
       userId?: string | null;
       enrollmentId?: string | null;
@@ -955,6 +958,28 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AiRunDto"][] | null;
     };
+    /** @enum {string} */
+    AiRunKind: "Chat" | "ToolAugmented";
+    /** @enum {string} */
+    AiRunStatus: "Started" | "Succeeded" | "Failed" | "Rejected" | "AwaitingApproval" | "InDoubt";
+    AiUsageBreakdownDto: {
+      /** Format: int64 */
+      managed?: number;
+      /** Format: int64 */
+      byok?: number;
+      /** Format: int64 */
+      unresolved?: number;
+      /** Format: int64 */
+      unmeasuredEvents?: number;
+      daily?: components["schemas"]["AiUsageDailyDto"][] | null;
+    };
+    AiUsageDailyDto: {
+      /** Format: date-time */
+      dateUtc?: string;
+      /** Format: int64 */
+      managed?: number;
+      missing?: boolean;
+    };
     AiUsageObservationDto: {
       id?: string | null;
       /** Format: date-time */
@@ -962,8 +987,7 @@ export interface components {
       aiRunId?: string | null;
       providerKey?: string | null;
       modelKey?: string | null;
-      /** @enum {string|null} */
-      connectionScope?: "Instance" | "Tenant" | null;
+      connectionScope?: components["schemas"]["AiProviderConnectionScope"];
       connectionScopeName?: string | null;
       /** Format: int64 */
       promptUnits?: number | null;
@@ -973,8 +997,7 @@ export interface components {
       reasoningUnits?: number | null;
       /** Format: date-time */
       observedAt?: string;
-      /** @enum {string} */
-      usageState?: "Measured" | "Unknown" | "LateMeasured";
+      usageState?: components["schemas"]["AiUsageObservationState"];
       usageStateName?: string | null;
       /** Format: date-time */
       unitsAttachedAt?: string | null;
@@ -1024,6 +1047,36 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AiUsageObservationDto"][] | null;
     };
+    /** @enum {string} */
+    AiUsageObservationState: "Measured" | "Unknown" | "LateMeasured";
+    AiUsageSummaryDto: {
+      tenantId?: string | null;
+      /** Format: date-time */
+      fromUtc?: string;
+      /** Format: date-time */
+      toUtc?: string;
+      /** Format: date-time */
+      asOfUtc?: string;
+      inputTokens?: components["schemas"]["AiUsageBreakdownDto"];
+      outputTokens?: components["schemas"]["AiUsageBreakdownDto"];
+      runs?: components["schemas"]["AiUsageBreakdownDto"];
+      decisionCalls?: components["schemas"]["AiUsageBreakdownDto"];
+    };
+    AiUsageSummaryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiUsageSummaryDto"];
+    };
     ApprovalAdviceAdvisorDisclosureDto: {
       templateId?: string | null;
       templateVersion?: string | null;
@@ -1042,8 +1095,7 @@ export interface components {
     };
     ApprovalAdviceConsentDto: {
       tenantId?: string | null;
-      /** @enum {string|null} */
-      state?: "OptedIn" | "OptedOut" | null;
+      state?: components["schemas"]["ApprovalAdviceConsentState"];
       isOptedIn?: boolean;
       disclosureFingerprint?: string | null;
       currentDisclosureFingerprint?: string | null;
@@ -1060,6 +1112,8 @@ export interface components {
       optedOutByEnrollmentId?: string | null;
       /** Format: date-time */
       optedOutAt?: string | null;
+      optedInByDisplayName?: string | null;
+      optedOutByDisplayName?: string | null;
     };
     ApprovalAdviceConsentDtoEnvelope: {
       isSuccess?: boolean;
@@ -1076,6 +1130,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ApprovalAdviceConsentDto"];
     };
+    /** @enum {string} */
+    ApprovalAdviceConsentState: "OptedIn" | "OptedOut";
     ApprovalAdviceDisclosureDto: {
       formatVersion?: string | null;
       instanceEnabled?: boolean;
@@ -1112,8 +1168,7 @@ export interface components {
       name?: string | null;
       description?: string | null;
       category?: string | null;
-      /** @enum {string} */
-      kind?: "SelfState" | "CurrentContext";
+      kind?: components["schemas"]["BuiltInAgentCapabilityKind"];
     };
     BuiltInAgentCapabilityDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1130,6 +1185,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["BuiltInAgentCapabilityDto"][] | null;
     };
+    /** @enum {string} */
+    BuiltInAgentCapabilityKind: "SelfState" | "CurrentContext";
     CapabilityDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1184,6 +1241,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["CapabilityDto"][] | null;
     };
+    /** @enum {string} */
+    CapabilitySurface: "None" | "Workflow" | "AI" | "Mcp" | "Job" | "Integration" | "Webhook" | "Admin";
     ClaimNextAgentWorkerRequest: {
       /** Format: uuid */
       workerId?: string;
@@ -1637,6 +1696,8 @@ export interface components {
       /** Format: int32 */
       leaseGeneration?: number;
     };
+    /** @enum {string} */
+    ConversationAccessScope: "Mine" | "AllUsers";
     ConversationAttachmentUploadResultDto: {
       fileId?: string | null;
       name?: string | null;
@@ -1688,19 +1749,21 @@ export interface components {
     };
     DefinitionCoordinateRequest: {
       sourceKey: string;
-      /** @enum {string} */
-      kind: "Agent" | "Skill" | "Workflow";
+      kind: components["schemas"]["DefinitionKind"];
       key: string;
       commitSha?: string | null;
       path: string;
     };
+    /** @enum {string} */
+    DefinitionInstallStatus: "Installed" | "UpdateAvailable" | "MissingFromSource";
+    /** @enum {string} */
+    DefinitionKind: "Agent" | "Skill" | "Workflow";
     DefinitionSkillReferenceDto: {
       key?: string | null;
       versionRange?: string | null;
     };
     DefinitionValidationDto: {
-      /** @enum {string} */
-      kind?: "Agent" | "Skill" | "Workflow";
+      kind?: components["schemas"]["DefinitionKind"];
       key?: string | null;
       name?: string | null;
       description?: string | null;
@@ -1714,8 +1777,7 @@ export interface components {
       optionalCapabilities?: string[] | null;
       skills?: components["schemas"]["DefinitionSkillReferenceDto"][] | null;
       alreadyInstalled?: boolean;
-      /** @enum {string|null} */
-      installedStatus?: "Installed" | "UpdateAvailable" | "MissingFromSource" | null;
+      installedStatus?: components["schemas"]["DefinitionInstallStatus"];
       message?: string | null;
     };
     DefinitionValidationDtoEnvelope: {
@@ -1804,6 +1866,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["GovernedAgentEffectDto"];
     };
+    /** @enum {string} */
+    GovernedInvocationClaimState: "Pending" | "Claimed" | "Executing" | "Finalized" | "Failed" | "OutcomeUnknown";
     GrantAgentToolPermissionsRequestDto: {
       permissions?: string[] | null;
     };
@@ -1830,8 +1894,7 @@ export interface components {
     };
     InstalledDefinitionDto: {
       canonicalId?: string | null;
-      /** @enum {string} */
-      kind?: "Agent" | "Skill" | "Workflow";
+      kind?: components["schemas"]["DefinitionKind"];
       definitionKey?: string | null;
       name?: string | null;
       version?: string | null;
@@ -1839,8 +1902,7 @@ export interface components {
       sourcePath?: string | null;
       commitSha?: string | null;
       contentDigest?: string | null;
-      /** @enum {string} */
-      status?: "Installed" | "UpdateAvailable" | "MissingFromSource";
+      status?: components["schemas"]["DefinitionInstallStatus"];
       /** Format: date-time */
       installedAt?: string;
       executionIdentityProvisioned?: boolean;
@@ -1898,6 +1960,8 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    /** @enum {string} */
+    PrincipalKind: "Human" | "Agent" | "Application" | "Service" | "System";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1922,6 +1986,8 @@ export interface components {
     RevokeAgentToolPermissionsRequestDto: {
       permissions?: string[] | null;
     };
+    /** @enum {string} */
+    RunAs: "Invoker" | "Application" | "System" | "Service";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -1940,8 +2006,7 @@ export interface components {
     UninstallDefinitionRequestDto: {
       canonicalId?: string | null;
       sourceKey?: string | null;
-      /** @enum {string|null} */
-      kind?: "Agent" | "Skill" | "Workflow" | null;
+      kind?: components["schemas"]["DefinitionKind"];
       key?: string | null;
     };
   };
@@ -2745,6 +2810,46 @@ export interface operations {
     };
   };
   /**
+   * Get the AI usage summary
+   * @description Returns the tenant's AI usage summary over the half-open UTC window [fromUtc, toUtc): quantities only, split managed, BYOK and unresolved, with one point per UTC day (read-only, tenant-scoped).
+   */
+  AiUsage_GetAiUsageSummary: {
+    parameters: {
+      query: {
+        tenantId: string;
+        fromUtc: string;
+        toUtc: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiUsageSummaryDtoEnvelope"];
+          "application/xml": components["schemas"]["AiUsageSummaryDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all AI usage observations
    * @description Retrieves the per-run AI consumption observations for the specified tenant (read-only, tenant-scoped).
    */
@@ -3004,7 +3109,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        surface?: "None" | "Workflow" | "AI" | "Mcp" | "Job" | "Integration" | "Webhook" | "Admin";
+        surface?: components["schemas"]["CapabilitySurface"];
         "api-version"?: string;
       };
       header?: {
@@ -3036,7 +3141,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        surface?: "None" | "Workflow" | "AI" | "Mcp" | "Job" | "Integration" | "Webhook" | "Admin";
+        surface?: components["schemas"]["CapabilitySurface"];
         "api-version"?: string;
       };
       header?: {
@@ -3166,7 +3271,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3251,7 +3356,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3292,7 +3397,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3335,7 +3440,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3381,7 +3486,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3421,7 +3526,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3463,7 +3568,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3505,7 +3610,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -3549,7 +3654,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        scope?: "Mine" | "AllUsers";
+        scope?: components["schemas"]["ConversationAccessScope"];
         "api-version"?: string;
       };
       header?: {
@@ -4959,7 +5064,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        kind?: "Agent" | "Skill" | "Workflow";
+        kind?: components["schemas"]["DefinitionKind"];
         "api-version"?: string;
       };
       header?: {

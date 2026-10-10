@@ -1997,6 +1997,8 @@ export interface components {
       }) | null;
       activityId?: string | null;
     };
+    /** @enum {string} */
+    FileUploadPublicAccessType: "Off" | "Container" | "Blob" | "Unknown";
     ForgotPasswordRequest: {
       email: string | null;
     };
@@ -2052,8 +2054,7 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
       itemId?: string | null;
     };
     ItemAttachmentDto: {
@@ -2083,10 +2084,8 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
-      /** @enum {string} */
-      scanStatus?: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
-      /** @enum {string} */
-      thumbnailStatus?: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+      thumbnailStatus?: components["schemas"]["StorageThumbnailStatus"];
       hasThumbnail?: boolean;
       thumbnailStorageKey?: string | null;
       thumbnailContentType?: string | null;
@@ -2094,8 +2093,7 @@ export interface components {
       thumbnailWidth?: number;
       /** Format: int32 */
       thumbnailHeight?: number;
-      /** @enum {string} */
-      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
+      publicAccessType?: components["schemas"]["FileUploadPublicAccessType"];
       itemId?: string | null;
     };
     ItemAttachmentDtoCollectionQueryParameters: {
@@ -3661,6 +3659,10 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    StorageScanStatus: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
+    /** @enum {string} */
+    StorageThumbnailStatus: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;

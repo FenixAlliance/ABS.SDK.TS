@@ -1568,8 +1568,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @enum {string} */
-      type: "Individual" | "Organization";
+      type: components["schemas"]["ContactType"];
       firstName: string;
       lastName?: string | null;
       /** Format: email */
@@ -1620,8 +1619,7 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -1691,9 +1689,19 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
     DeliveryNoteCreateDto: {
       /** Format: uuid */
       id?: string;

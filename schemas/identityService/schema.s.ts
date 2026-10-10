@@ -178,10 +178,8 @@ export interface components {
       correlationId?: string | null;
       scopes?: string[] | null;
       error?: string | null;
-      /** @enum {string} */
-      runAs?: "Invoker" | "Application" | "System" | "Service";
-      /** @enum {string} */
-      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      runAs?: components["schemas"]["RunAs"];
+      principalKind?: components["schemas"]["PrincipalKind"];
       provenance?: components["schemas"]["ExecutionProvenance"];
       executionPrincipalId?: components["schemas"]["UserId"];
       executionPrincipalEnrollmentId?: components["schemas"]["EnrollmentId"];
@@ -219,11 +217,9 @@ export interface components {
       activityId?: string | null;
     };
     ExecutionProvenance: {
-      /** @enum {string} */
-      initiation?: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System" | "Manual";
+      initiation?: components["schemas"]["RunInitiation"];
       onBehalfOfActorId?: components["schemas"]["UserId"];
-      /** @enum {string|null} */
-      onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      onBehalfOfActorKind?: components["schemas"]["PrincipalKind"];
       /** Format: uuid */
       causationId?: string | null;
       originatingWorkflowInstanceId?: string | null;
@@ -233,6 +229,8 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -370,6 +368,8 @@ export interface components {
     };
     /** Format: uuid */
     PortalId: string;
+    /** @enum {string} */
+    PrincipalKind: "Human" | "Agent" | "Application" | "Service" | "System";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -385,6 +385,10 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    RunAs: "Invoker" | "Application" | "System" | "Service";
+    /** @enum {string} */
+    RunInitiation: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System" | "Manual";
     SigninModel: {
       email?: string | null;
       password?: string | null;
@@ -433,8 +437,7 @@ export interface components {
       lastName?: string | null;
       publicName?: string | null;
       idProvider?: string | null;
-      /** @enum {string} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay";
+      gender?: components["schemas"]["Gender"];
       email?: string | null;
       about?: string | null;
       status?: string | null;

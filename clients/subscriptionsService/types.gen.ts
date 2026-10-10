@@ -13,11 +13,13 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BillingCycle = 'Monthly' | 'Annual';
+
 export type CommercialSubscriptionDto = {
     id?: string | null;
     timestamp?: string | null;
     subscriptionPlanId?: string | null;
-    lifecycleState?: 'Pending' | 'Active' | 'Suspended' | 'Ended';
+    lifecycleState?: SubscriptionLifecycleState;
     quantity?: number;
     activeCommercialTermsVersion?: number | null;
     receiverBusinessId?: string | null;
@@ -108,8 +110,8 @@ export type CommercialSubscriptionEstablishedDtoEnvelopeWritable = {
 
 export type CommercialSubscriptionPayableObligationDto = {
     subscriptionId?: string | null;
-    status?: 'Payable' | 'PendingMaterialization' | 'Satisfied' | 'NoOpenObligation';
-    obligationType?: 'Invoice';
+    status?: SubscriptionPayableObligationStatus;
+    obligationType?: PaymentObligationType;
     obligationReference?: string | null;
     periodSequenceNumber?: number | null;
 };
@@ -212,7 +214,7 @@ export type ErrorEnvelopeWritable = {
 
 export type EstablishCommercialSubscriptionRequest = {
     subscriptionPlanId: string;
-    billToMode: 'Unknown' | 'BusinessToConsumer' | 'BusinessToBusiness' | 'TenantToTenant';
+    billToMode: PayerRelationshipMode;
     billToReference: string;
     periodStartUtc: string;
     periodEndUtc: string;
@@ -289,9 +291,13 @@ export type PatchOperation = {
     value?: unknown;
 };
 
+export type PayerRelationshipMode = 'Unknown' | 'BusinessToConsumer' | 'BusinessToBusiness' | 'TenantToTenant';
+
+export type PaymentObligationType = 'Invoice';
+
 export type PlatformPlanPriceDto = {
     offeringKey?: string | null;
-    billingCycle?: 'Monthly' | 'Annual';
+    billingCycle?: BillingCycle;
     planSku?: string | null;
     name?: string | null;
     periodDays?: number;
@@ -336,7 +342,7 @@ export type PlatformPricingDtoEnvelopeWritable = {
 
 export type PurchaseOfferingRequest = {
     offeringKey: string;
-    billingCycle?: 'Monthly' | 'Annual';
+    billingCycle?: BillingCycle;
     periodStartUtc?: string;
     periodEndUtc?: string;
     timezoneId?: string | null;
@@ -363,13 +369,15 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SubscriptionClass = 'Trial' | 'Standard';
+
 export type SubscriptionCreateDto = {
     id?: string;
     timestamp?: string;
     individualId?: string | null;
     organizationId?: string | null;
     subscriptionPlanId?: string | null;
-    subscriptionClass?: 'Trial' | 'Standard';
+    subscriptionClass?: SubscriptionClass;
 };
 
 export type SubscriptionDto = {
@@ -378,7 +386,7 @@ export type SubscriptionDto = {
     individualId?: string | null;
     organizationId?: string | null;
     subscriptionPlanId?: string | null;
-    subscriptionClass?: 'Trial' | 'Standard';
+    subscriptionClass?: SubscriptionClass;
 };
 
 export type SubscriptionDtoCollectionQueryParametersReadable = {
@@ -453,6 +461,10 @@ export type SubscriptionDtoIReadOnlyListEnvelopeWritable = {
     } | null;
     result?: Array<SubscriptionDto> | null;
 };
+
+export type SubscriptionLifecycleState = 'Pending' | 'Active' | 'Suspended' | 'Ended';
+
+export type SubscriptionPayableObligationStatus = 'Payable' | 'PendingMaterialization' | 'Satisfied' | 'NoOpenObligation';
 
 export type SubscriptionPlanCreateDto = {
     id?: string;
@@ -1026,7 +1038,7 @@ export type SubscriptionUpdateDto = {
     individualId?: string | null;
     organizationId?: string | null;
     subscriptionPlanId?: string | null;
-    subscriptionClass?: 'Trial' | 'Standard';
+    subscriptionClass?: SubscriptionClass;
 };
 
 export type TwoFactorRequest = {

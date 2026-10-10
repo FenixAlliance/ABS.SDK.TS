@@ -231,9 +231,11 @@ export type ForexRatesDtoEnvelopeWritable = {
     result?: ForexRatesDtoWritable;
 };
 
+export type ForexSetRepairAction = 'Create' | 'Replace' | 'Unchanged' | 'NoSnapshot';
+
 export type ForexSetRepairDay = {
     date?: string;
-    action?: 'Create' | 'Replace' | 'Unchanged' | 'NoSnapshot';
+    action?: ForexSetRepairAction;
     snapshotRevision?: string | null;
     snapshotCommittedAtUtc?: string | null;
     oldRatesAsOfUtc?: string | null;

@@ -994,8 +994,7 @@ export interface components {
       expectedShippingDate?: string;
       /** Format: date-time */
       expectedDeliveryDate?: string;
-      /** @enum {string} */
-      shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
+      shippingTerms?: components["schemas"]["ShippingTerms"];
       orderId?: string | null;
     };
     ShipmentDto: {
@@ -1014,8 +1013,7 @@ export interface components {
       expectedShippingDate?: string;
       /** Format: date-time */
       expectedDeliveryDate?: string;
-      /** @enum {string} */
-      shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
+      shippingTerms?: components["schemas"]["ShippingTerms"];
       orderId?: string | null;
       tenantId?: string | null;
       sellerBillingProfileId?: string | null;
@@ -1077,10 +1075,11 @@ export interface components {
       expectedShippingDate?: string;
       /** Format: date-time */
       expectedDeliveryDate?: string;
-      /** @enum {string} */
-      shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
+      shippingTerms?: components["schemas"]["ShippingTerms"];
       orderId?: string | null;
     };
+    /** @enum {string} */
+    ShippingClassCalculationType: "PerClass" | "PerOrder";
     ShippingClassCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1298,8 +1297,7 @@ export interface components {
       taxable?: boolean;
       taxIncluded?: boolean;
       currencyId?: string | null;
-      /** @enum {string} */
-      shippingClassCalculationType?: "PerClass" | "PerOrder";
+      shippingClassCalculationType?: components["schemas"]["ShippingClassCalculationType"];
     };
     ShippingMethodDto: {
       id?: string | null;
@@ -1313,8 +1311,7 @@ export interface components {
       taxIncluded?: boolean;
       currencyId?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      shippingClassCalculationType?: "PerClass" | "PerOrder";
+      shippingClassCalculationType?: components["schemas"]["ShippingClassCalculationType"];
     };
     ShippingMethodDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1367,8 +1364,7 @@ export interface components {
       taxable?: boolean;
       taxIncluded?: boolean;
       currencyId?: string | null;
-      /** @enum {string} */
-      shippingClassCalculationType?: "PerClass" | "PerOrder";
+      shippingClassCalculationType?: components["schemas"]["ShippingClassCalculationType"];
     };
     ShippingRegionCreateDto: {
       /** Format: uuid */
@@ -1433,6 +1429,8 @@ export interface components {
       name?: string | null;
       postalCodes?: string | null;
     };
+    /** @enum {string} */
+    ShippingTerms: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
     ShippingZoneCreateDto: {
       /** Format: uuid */
       id?: string;

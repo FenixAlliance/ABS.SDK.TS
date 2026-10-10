@@ -38,6 +38,8 @@ export type BooleanEnvelopeWritable = {
     result?: boolean;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type BusinessRelationshipCreateDto = {
     id?: string;
     timestamp?: string;
@@ -144,6 +146,8 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+    saleChannel?: SaleChannel;
+    directSellerTenantId?: string | null;
 };
 
 export type CartDtoEnvelopeReadable = {
@@ -221,7 +225,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -265,7 +269,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -407,6 +411,8 @@ export type ForgotPasswordRequest = {
     email: string | null;
 };
 
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+
 export type HttpValidationProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -472,7 +478,7 @@ export type NotificationDto = {
     message?: string | null;
     imageUrl?: string | null;
     redirectUrl?: string | null;
-    type?: 'Event' | 'Alert' | 'Log';
+    type?: NotificationType;
     socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
@@ -527,6 +533,8 @@ export type NotificationDtoListEnvelopeWritable = {
     } | null;
     result?: Array<NotificationDto> | null;
 };
+
+export type NotificationType = 'Event' | 'Alert' | 'Log';
 
 export type OptionCreateDto = {
     id?: string;
@@ -661,6 +669,10 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
+
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
 export type SocialProfileDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -677,7 +689,7 @@ export type SocialProfileDto = {
     notificationsCount?: number | null;
     unreadNotificationsCount?: number | null;
     unreadMessagesCount?: number | null;
-    type?: 'User' | 'Tenant' | 'Contact';
+    type?: SocialProfileType;
     socialFeedId?: string | null;
     twitterUrl?: string | null;
     facebookURL?: string | null;
@@ -714,6 +726,8 @@ export type SocialProfileDtoEnvelopeWritable = {
     } | null;
     result?: SocialProfileDto;
 };
+
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
 
 export type StringListEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -846,7 +860,7 @@ export type SuiteLicenseFeatureDtoListEnvelopeWritable = {
 export type TenantCreateDto = {
     id?: string;
     timestamp?: string;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     name: string;
     legalName?: string | null;
     email: string;
@@ -977,7 +991,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1018,7 +1032,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -2458,7 +2472,7 @@ export type TenantUnitUpdateDto = {
 };
 
 export type TenantUpdateDto = {
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     name: string;
     legalName?: string | null;
     email: string;
@@ -2699,6 +2713,8 @@ export type UnitUpdateDto = {
     unECECode?: string | null;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -2723,7 +2739,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -2742,11 +2758,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -2772,7 +2788,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -2791,11 +2807,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoListEnvelopeReadable = {

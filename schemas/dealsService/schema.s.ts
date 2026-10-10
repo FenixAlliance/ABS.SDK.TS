@@ -149,6 +149,13 @@ export interface paths {
      */
     put: operations["DealUnits_CalculateDealUnit"];
   };
+  "/api/v2/DealsService/DealUnits/{dealUnitId}/Close": {
+    /**
+     * Close a deal unit
+     * @description Closes the specified deal unit for the tenant as won (won=true) or lost (won=false).
+     */
+    put: operations["DealUnits_CloseDealUnit"];
+  };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines": {
     /**
      * Get deal unit lines
@@ -259,14 +266,15 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    BusinessEntityKind: "Organization" | "Individual";
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      type?: "Individual" | "Organization";
+      type?: components["schemas"]["ContactType"];
       /** Format: email */
       email?: string | null;
       /** Format: tel */
@@ -336,9 +344,23 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
+      contactStage?: components["schemas"]["ContactStage"];
+      contactStatus?: components["schemas"]["ContactStatus"];
+      /** Format: date-time */
+      lastContactDate?: string | null;
       tikTokUsername?: string | null;
       instagramUsername?: string | null;
     };
+    /** @enum {string} */
+    ContactStage: "Lead" | "Prospect" | "Customer" | "Opportunity";
+    /** @enum {string} */
+    ContactStatus: "New" | "Active" | "Qualified" | "Unqualified";
+    /** @enum {string} */
+    ContactType: "Individual" | "Organization";
+    /** @enum {string} */
+    CostCalculationMethod: "Automatic" | "Custom";
+    /** @enum {string} */
+    DealUnitAmountsCalculation: "UserProvided" | "SystemCalculated";
     DealUnitCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -401,10 +423,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       dealUnitFlowId?: string | null;
       dealUnitFlowStageId?: string | null;
       partnerCreated?: boolean;
@@ -424,14 +444,10 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /** @enum {string} */
-      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
-      /** @enum {string} */
-      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
-      /** @enum {string} */
-      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
-      /** @enum {string} */
-      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
+      dealUnitStatus?: components["schemas"]["DealUnitStatus"];
+      dealUnitPurchaseProcess?: components["schemas"]["DealUnitPurchaseProcess"];
+      dealUnitForecastCategory?: components["schemas"]["DealUnitForecastCategory"];
+      dealUnitAmountsCalculation?: components["schemas"]["DealUnitAmountsCalculation"];
       dealUnitLines?: components["schemas"]["DealUnitLineCreateDto"][] | null;
     };
     DealUnitDto: {
@@ -460,10 +476,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -551,14 +565,10 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /** @enum {string} */
-      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
-      /** @enum {string} */
-      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
-      /** @enum {string} */
-      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
-      /** @enum {string} */
-      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
+      dealUnitStatus?: components["schemas"]["DealUnitStatus"];
+      dealUnitPurchaseProcess?: components["schemas"]["DealUnitPurchaseProcess"];
+      dealUnitForecastCategory?: components["schemas"]["DealUnitForecastCategory"];
+      dealUnitAmountsCalculation?: components["schemas"]["DealUnitAmountsCalculation"];
       /** Format: int32 */
       linesCount?: number;
       /** Format: double */
@@ -764,6 +774,8 @@ export interface components {
       description?: string | null;
       parentBusinessProcessId?: string | null;
     };
+    /** @enum {string} */
+    DealUnitForecastCategory: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
     DealUnitLineCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -826,10 +838,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -938,10 +948,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1013,6 +1021,8 @@ export interface components {
       shippingPolicyId?: string | null;
       /** Format: double */
       quantity?: number;
+      /** Format: double */
+      unitPrice?: number;
       free?: boolean;
       freeReason?: string | null;
       freeReasonCode?: string | null;
@@ -1166,10 +1176,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
@@ -1250,6 +1258,10 @@ export interface components {
       quoteItemRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
     };
+    /** @enum {string} */
+    DealUnitPurchaseProcess: "None" | "Individual" | "Commitee" | "Unknown";
+    /** @enum {string} */
+    DealUnitStatus: "Open" | "Won" | "Lost" | "Frozen";
     DealUnitUpdateDto: {
       closed?: boolean;
       title?: string | null;
@@ -1312,10 +1324,8 @@ export interface components {
       /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
       ordered?: boolean;
       cartId?: string | null;
       dealUnitFeedId?: string | null;
@@ -1338,14 +1348,10 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /** @enum {string} */
-      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
-      /** @enum {string} */
-      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
-      /** @enum {string} */
-      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
-      /** @enum {string} */
-      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
+      dealUnitStatus?: components["schemas"]["DealUnitStatus"];
+      dealUnitPurchaseProcess?: components["schemas"]["DealUnitPurchaseProcess"];
+      dealUnitForecastCategory?: components["schemas"]["DealUnitForecastCategory"];
+      dealUnitAmountsCalculation?: components["schemas"]["DealUnitAmountsCalculation"];
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -1401,10 +1407,8 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
+      taxCalculationMethod?: components["schemas"]["TaxCalculationMethod"];
+      costCalculationMethod?: components["schemas"]["CostCalculationMethod"];
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1492,14 +1496,10 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /** @enum {string} */
-      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
-      /** @enum {string} */
-      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
-      /** @enum {string} */
-      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
-      /** @enum {string} */
-      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
+      dealUnitStatus?: components["schemas"]["DealUnitStatus"];
+      dealUnitPurchaseProcess?: components["schemas"]["DealUnitPurchaseProcess"];
+      dealUnitForecastCategory?: components["schemas"]["DealUnitForecastCategory"];
+      dealUnitAmountsCalculation?: components["schemas"]["DealUnitAmountsCalculation"];
       /** Format: int32 */
       linesCount?: number;
       /** Format: double */
@@ -1571,6 +1571,8 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    /** @enum {string} */
+    Gender: "Unknown" | "Male" | "Female" | "PreferNotToSay";
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -1635,13 +1637,16 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    /** @enum {string} */
+    SiteTheme: "System" | "Light" | "Dark";
+    /** @enum {string} */
+    TaxCalculationMethod: "Included" | "Excluded";
     TenantDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
-      /** @enum {string} */
-      kind?: "Organization" | "Individual";
+      kind?: components["schemas"]["BusinessEntityKind"];
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1704,6 +1709,8 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    UserAvailability: "DND" | "Busy" | "Away" | "Offline" | "Available";
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1730,8 +1737,7 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /** @enum {string|null} */
-      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      gender?: components["schemas"]["Gender"];
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -1750,15 +1756,13 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /** @enum {string|null} */
-      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      availability?: components["schemas"]["UserAvailability"];
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /** @enum {string|null} */
-      siteTheme?: "System" | "Light" | "Dark" | null;
+      siteTheme?: components["schemas"]["SiteTheme"];
     };
   };
   responses: never;
@@ -2551,6 +2555,37 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Close a deal unit
+   * @description Closes the specified deal unit for the tenant as won (won=true) or lost (won=false).
+   */
+  DealUnits_CloseDealUnit: {
+    parameters: {
+      query: {
+        tenantId: string;
+        won: boolean;
       };
       path: {
         dealUnitId: string;

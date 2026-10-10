@@ -13,6 +13,8 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type ApprovalStatus = 'Pending' | 'Approved' | 'Rejected';
+
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -238,7 +240,7 @@ export type ProjectHoursApprovalCreateDto = {
 };
 
 export type ProjectHoursApprovalStatusUpdateDto = {
-    approvalStatus?: 'Pending' | 'Approved' | 'Rejected';
+    approvalStatus?: ApprovalStatus;
     comments?: string | null;
 };
 
@@ -401,7 +403,7 @@ export type ProjectTimeLogCreateDto = {
     comments?: string | null;
     projectTaskId: string;
     projectPeriodId: string;
-    projectTimeLogRecordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
+    projectTimeLogRecordType?: ProjectTimeLogRecordType;
     projectId?: string | null;
 };
 
@@ -414,7 +416,7 @@ export type ProjectTimeLogDto = {
     projectPeriodId?: string | null;
     responsibleContactId?: string | null;
     creatorContactId?: string | null;
-    recordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
+    recordType?: ProjectTimeLogRecordType;
     timeSpan?: string;
     logDate?: string;
     comments?: string | null;
@@ -494,13 +496,15 @@ export type ProjectTimeLogDtoListEnvelopeWritable = {
     result?: Array<ProjectTimeLogDto> | null;
 };
 
+export type ProjectTimeLogRecordType = 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
+
 export type ProjectTimeLogUpdateDto = {
     logDate?: string;
     timeSpan?: string;
     comments?: string | null;
     projectTaskId?: string | null;
     projectPeriodId?: string | null;
-    projectTimeLogRecordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
+    projectTimeLogRecordType?: ProjectTimeLogRecordType;
 };
 
 export type ProjectUpdateDto = {

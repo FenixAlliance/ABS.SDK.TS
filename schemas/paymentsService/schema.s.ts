@@ -291,6 +291,15 @@ export interface paths {
      */
     post: operations["ProviderOperations_ReconcileOutcome"];
   };
+  "/api/v2/PaymentsService/ProviderOperations/{providerOperationId}/Refund": {
+    /**
+     * Refunds one collection through its own rail
+     * @description Returns the money of ONE succeeded collection instruction through the rail that collected it, on the governed refund path (the same use case the ePayco connector route dispatches; the rail is chosen from the collection, never from the route). Gated on payment_refunds_create; the operation is re-checked against the acting tenant, and a missing instruction and another tenant's instruction answer identically.
+     *
+     * A POST because it is an external effect on money. A refund is SINGLE-SHOT unless the rail certifies idempotent replay for refunds: the refund intent is committed before the rail is contacted, so a repeated call is refused with a conflict and a lost answer is reconciled, never re-sent. Read the outcome's Certainty.
+     */
+    post: operations["ProviderOperations_RefundCollection"];
+  };
   "/api/v2/PaymentsService/PublicPaymentLinks": {
     /**
      * Issues a public payment link for one of the tenant's obligations
@@ -318,16 +327,16 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    CanonicalPaymentStatus: "Pending" | "RequiresAction" | "Authorized" | "Succeeded" | "Failed" | "Cancelled";
     CreateProviderWebhookRegistrationRequest: {
       providerCode?: string | null;
       externalAccountId?: string | null;
       webhookSigningSecret?: string | null;
-      /** @enum {string|null} */
-      environment?: "Unknown" | "Test" | "Live" | null;
+      environment?: components["schemas"]["PaymentEnvironment"];
     };
     DeclarePaymentProviderEnvironmentRequest: {
-      /** @enum {string|null} */
-      environment?: "Unknown" | "Test" | "Live" | null;
+      environment?: components["schemas"]["PaymentEnvironment"];
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -398,23 +407,20 @@ export interface components {
       result?: number;
     };
     IssuePaymentLinkCreateDto: {
-      /** @enum {string} */
-      obligationType?: "Invoice";
+      obligationType?: components["schemas"]["PaymentObligationType"];
       /** Format: uuid */
       obligationId?: string;
       /** Format: date-time */
       expiresAt?: string | null;
     };
     IssuePublicPaymentReferenceCreateDto: {
-      /** @enum {string} */
-      obligationType?: "Invoice";
+      obligationType?: components["schemas"]["PaymentObligationType"];
       /** Format: uuid */
       obligationId?: string;
     };
     IssuedPaymentLinkDto: {
       id?: string | null;
-      /** @enum {string} */
-      obligationType?: "Invoice";
+      obligationType?: components["schemas"]["PaymentObligationType"];
       obligationId?: string | null;
       tenantId?: string | null;
       token?: string | null;
@@ -443,6 +449,12 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    /** @enum {string} */
+    OnBehalfOf: "Self" | "Tenant" | "Individual" | "Organization";
+    /** @enum {string} */
+    OperationOutcomeCertainty: "Unknown" | "KnownNoEffect" | "KnownSucceeded" | "KnownFailed";
+    /** @enum {string} */
+    OutcomeReconciliationAvailability: "Unknown" | "Unavailable" | "Available" | "AlreadyEstablished";
     PatchOperation: {
       op?: string | null;
       path?: string | null;
@@ -475,12 +487,9 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /** @enum {string} */
-      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
-      /** @enum {string} */
-      paymentType?: "Paid" | "Received" | "Internal";
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      onBehalfOf?: components["schemas"]["OnBehalfOf"];
+      paymentType?: components["schemas"]["PaymentType"];
+      paymentStatus?: components["schemas"]["PaymentStatus"];
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -548,12 +557,9 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /** @enum {string} */
-      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
-      /** @enum {string} */
-      paymentType?: "Paid" | "Received" | "Internal";
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      onBehalfOf?: components["schemas"]["OnBehalfOf"];
+      paymentType?: components["schemas"]["PaymentType"];
+      paymentStatus?: components["schemas"]["PaymentStatus"];
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -623,6 +629,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
     };
+    /** @enum {string} */
+    PaymentEnvironment: "Unknown" | "Test" | "Live";
     PaymentMethodCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -754,6 +762,12 @@ export interface components {
       description?: string | null;
       paymentMeansCode?: string | null;
     };
+    /** @enum {string} */
+    PaymentObligationType: "Invoice";
+    /** @enum {string} */
+    PaymentProviderCapability: "None" | "Collection" | "Authorization" | "Capture" | "Refund" | "Void" | "SplitPayment" | "Transfer" | "Payout" | "RecipientOnboarding" | "BalanceInquiry";
+    /** @enum {string} */
+    PaymentProviderCredentialMode: "TenantManaged" | "PlatformManaged" | "ExternalReference";
     PaymentProviderRegistrationDto: {
       id?: string | null;
       /** Format: date-time */
@@ -765,15 +779,11 @@ export interface components {
       providerCode?: string | null;
       credentialSetReference?: string | null;
       hasCredential?: boolean;
-      /** @enum {string} */
-      credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference";
-      /** @enum {string} */
-      environment?: "Unknown" | "Test" | "Live";
+      credentialMode?: components["schemas"]["PaymentProviderCredentialMode"];
+      environment?: components["schemas"]["PaymentEnvironment"];
       externalAccountId?: string | null;
-      /** @enum {string} */
-      enabledCapabilities?: "None" | "Collection" | "Authorization" | "Capture" | "Refund" | "Void" | "SplitPayment" | "Transfer" | "Payout" | "RecipientOnboarding" | "BalanceInquiry";
-      /** @enum {string} */
-      status?: "Draft" | "Active" | "Disabled" | "Suspended";
+      enabledCapabilities?: components["schemas"]["PaymentProviderCapability"];
+      status?: components["schemas"]["PaymentProviderRegistrationStatus"];
     };
     PaymentProviderRegistrationDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -803,11 +813,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PaymentProviderRegistrationDto"][] | null;
     };
+    /** @enum {string} */
+    PaymentProviderRegistrationStatus: "Draft" | "Active" | "Disabled" | "Suspended";
     PaymentProviderRegistrationUpdateDto: {
-      /** @enum {string} */
-      enabledCapabilities?: "None" | "Collection" | "Authorization" | "Capture" | "Refund" | "Void" | "SplitPayment" | "Transfer" | "Payout" | "RecipientOnboarding" | "BalanceInquiry";
+      enabledCapabilities?: components["schemas"]["PaymentProviderCapability"];
       externalAccountId?: string | null;
     };
+    /** @enum {string} */
+    PaymentStatus: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
     PaymentTermCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -908,6 +921,8 @@ export interface components {
       creditYears?: number | null;
       paymentModeId?: string | null;
     };
+    /** @enum {string} */
+    PaymentType: "Paid" | "Received" | "Internal";
     PaymentUpdateDto: {
       invoiceId?: string | null;
       emisorWalletId?: string | null;
@@ -930,12 +945,9 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /** @enum {string} */
-      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
-      /** @enum {string} */
-      paymentType?: "Paid" | "Received" | "Internal";
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      onBehalfOf?: components["schemas"]["OnBehalfOf"];
+      paymentType?: components["schemas"]["PaymentType"];
+      paymentStatus?: components["schemas"]["PaymentStatus"];
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -978,13 +990,10 @@ export interface components {
     };
     ProviderOperationOutcomeReconciliation: {
       providerOperationId?: string | null;
-      /** @enum {string|null} */
-      operationKind?: "Collection" | "Refund" | "Payout" | "FxQuote" | "Tokenization" | "VirtualAccountIssuance" | "Void" | null;
+      operationKind?: components["schemas"]["ProviderOperationType"];
       providerCode?: string | null;
-      /** @enum {string} */
-      certainty?: "Unknown" | "KnownNoEffect" | "KnownSucceeded" | "KnownFailed";
-      /** @enum {string} */
-      availability?: "Unknown" | "Unavailable" | "Available" | "AlreadyEstablished";
+      certainty?: components["schemas"]["OperationOutcomeCertainty"];
+      availability?: components["schemas"]["OutcomeReconciliationAvailability"];
       disposition?: string | null;
       requiresReconciliation?: boolean;
       requiresOperatorResolution?: boolean;
@@ -1009,14 +1018,10 @@ export interface components {
       tenantId?: string | null;
       paymentAttemptId?: string | null;
       providerCode?: string | null;
-      /** @enum {string} */
-      operationKind?: "Collection" | "Refund" | "Payout" | "FxQuote" | "Tokenization" | "VirtualAccountIssuance" | "Void";
-      /** @enum {string} */
-      environment?: "Unknown" | "Test" | "Live";
-      /** @enum {string} */
-      state?: "Prepared" | "Dispatched" | "Observed" | "Settled" | "Failed" | "Discontinued";
-      /** @enum {string|null} */
-      canonicalStatus?: "Pending" | "RequiresAction" | "Authorized" | "Succeeded" | "Failed" | "Cancelled" | null;
+      operationKind?: components["schemas"]["ProviderOperationType"];
+      environment?: components["schemas"]["PaymentEnvironment"];
+      state?: components["schemas"]["ProviderOperationState"];
+      canonicalStatus?: components["schemas"]["CanonicalPaymentStatus"];
       /** Format: double */
       requestedAmount?: number;
       requestedCurrencyId?: string | null;
@@ -1027,8 +1032,7 @@ export interface components {
       createdAtUtc?: string;
       /** Format: date-time */
       lastModifiedUtc?: string | null;
-      /** @enum {string} */
-      outcomeReconciliation?: "Unknown" | "Unavailable" | "Available" | "AlreadyEstablished";
+      outcomeReconciliation?: components["schemas"]["OutcomeReconciliationAvailability"];
       reconciliationDisposition?: string | null;
     };
     ProviderOperationOutcomeReviewDtoCollectionQueryParameters: {
@@ -1059,11 +1063,38 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ProviderOperationOutcomeReviewDto"][] | null;
     };
+    ProviderOperationRefundOutcome: {
+      providerOperationId?: string | null;
+      refundedProviderOperationId?: string | null;
+      providerResourceId?: string | null;
+      canonicalStatus?: components["schemas"]["CanonicalPaymentStatus"];
+      certainty?: components["schemas"]["OperationOutcomeCertainty"];
+      message?: string | null;
+      requiresReconciliation?: boolean;
+    };
+    ProviderOperationRefundOutcomeEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ProviderOperationRefundOutcome"];
+    };
+    /** @enum {string} */
+    ProviderOperationState: "Prepared" | "Dispatched" | "Observed" | "Settled" | "Failed" | "Discontinued";
+    /** @enum {string} */
+    ProviderOperationType: "Collection" | "Refund" | "Payout" | "FxQuote" | "Tokenization" | "VirtualAccountIssuance" | "Void";
     ProviderWebhookRegistrationCreatedDto: {
       id?: string | null;
       providerCode?: string | null;
-      /** @enum {string} */
-      status?: "Draft" | "Active" | "Disabled" | "Suspended";
+      status?: components["schemas"]["PaymentProviderRegistrationStatus"];
       webhookRegistrationKey?: string | null;
       webhookUrl?: string | null;
     };
@@ -1085,13 +1116,11 @@ export interface components {
     PublicPaymentReferenceDto: {
       id?: string | null;
       tenantId?: string | null;
-      /** @enum {string} */
-      obligationType?: "Invoice";
+      obligationType?: components["schemas"]["PaymentObligationType"];
       obligationId?: string | null;
       reference?: string | null;
       displayReference?: string | null;
-      /** @enum {string} */
-      state?: "Unminted" | "Active" | "Revoked" | "Rotated";
+      state?: components["schemas"]["PublicPaymentReferenceState"];
       /** Format: date-time */
       mintedAt?: string | null;
     };
@@ -1110,6 +1139,8 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["PublicPaymentReferenceDto"];
     };
+    /** @enum {string} */
+    PublicPaymentReferenceState: "Unminted" | "Active" | "Revoked" | "Rotated";
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1126,8 +1157,7 @@ export interface components {
       newPassword: string | null;
     };
     SetPaymentProviderRegistrationCredentialRequest: {
-      /** @enum {string|null} */
-      credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference" | null;
+      credentialMode?: components["schemas"]["PaymentProviderCredentialMode"];
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -3116,6 +3146,59 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Refunds one collection through its own rail
+   * @description Returns the money of ONE succeeded collection instruction through the rail that collected it, on the governed refund path (the same use case the ePayco connector route dispatches; the rail is chosen from the collection, never from the route). Gated on payment_refunds_create; the operation is re-checked against the acting tenant, and a missing instruction and another tenant's instruction answer identically.
+   *
+   * A POST because it is an external effect on money. A refund is SINGLE-SHOT unless the rail certifies idempotent replay for refunds: the refund intent is committed before the rail is contacted, so a repeated call is refused with a conflict and a lost answer is reconciled, never re-sent. Read the outcome's Certainty.
+   */
+  ProviderOperations_RefundCollection: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        providerOperationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProviderOperationRefundOutcomeEnvelope"];
+          "application/xml": components["schemas"]["ProviderOperationRefundOutcomeEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

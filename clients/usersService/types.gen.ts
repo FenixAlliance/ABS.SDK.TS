@@ -90,6 +90,8 @@ export type AddressDtoListEnvelopeWritable = {
     result?: Array<AddressDto> | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type CartDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -103,6 +105,8 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+    saleChannel?: SaleChannel;
+    directSellerTenantId?: string | null;
 };
 
 export type CartDtoEnvelopeReadable = {
@@ -180,7 +184,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -224,7 +228,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -363,7 +367,7 @@ export type ExtendedUserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -382,11 +386,11 @@ export type ExtendedUserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -417,7 +421,7 @@ export type ExtendedUserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -436,11 +440,11 @@ export type ExtendedUserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -534,6 +538,8 @@ export type ForgotPasswordRequest = {
     email: string | null;
 };
 
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+
 export type HttpValidationProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -599,7 +605,7 @@ export type NotificationDto = {
     message?: string | null;
     imageUrl?: string | null;
     redirectUrl?: string | null;
-    type?: 'Event' | 'Alert' | 'Log';
+    type?: NotificationType;
     socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
@@ -654,6 +660,8 @@ export type NotificationDtoListEnvelopeWritable = {
     } | null;
     result?: Array<NotificationDto> | null;
 };
+
+export type NotificationType = 'Event' | 'Alert' | 'Log';
 
 export type OptionCreateDto = {
     id?: string;
@@ -788,6 +796,10 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
+
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
 export type SocialProfileDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -804,7 +816,7 @@ export type SocialProfileDto = {
     notificationsCount?: number | null;
     unreadNotificationsCount?: number | null;
     unreadMessagesCount?: number | null;
-    type?: 'User' | 'Tenant' | 'Contact';
+    type?: SocialProfileType;
     socialFeedId?: string | null;
     twitterUrl?: string | null;
     facebookURL?: string | null;
@@ -842,6 +854,8 @@ export type SocialProfileDtoEnvelopeWritable = {
     result?: SocialProfileDto;
 };
 
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
+
 export type StudioAccessDto = {
     canAccessStudio?: boolean;
 };
@@ -875,7 +889,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -916,7 +930,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1140,6 +1154,8 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1164,7 +1180,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1183,11 +1199,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -1213,7 +1229,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1232,11 +1248,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoEnvelopeReadable = {
@@ -1302,7 +1318,7 @@ export type UserSettingsDto = {
     dateFormat?: string | null;
     currencyFormat?: string | null;
     dateTimeFormat?: string | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserSettingsDtoEnvelopeReadable = {
@@ -1335,7 +1351,7 @@ export type UserSettingsUpdateDto = {
     dateFormat: string;
     currencyFormat: string;
     dateTimeFormat: string;
-    siteTheme: 'System' | 'Light' | 'Dark';
+    siteTheme: SiteTheme;
 };
 
 export type UserUpdateDto = {
@@ -1345,7 +1361,7 @@ export type UserUpdateDto = {
     lastName?: string | null;
     publicName?: string | null;
     idProvider?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     email?: string | null;
     about?: string | null;
     status?: string | null;
@@ -1364,7 +1380,7 @@ export type UserUpdateDto = {
     linkedInUrl?: string | null;
     instagramUrl?: string | null;
     webUrl?: string | null;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
 };
 
 export type WalletDto = {

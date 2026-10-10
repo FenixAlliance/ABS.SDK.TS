@@ -22,6 +22,8 @@ export type AdvancedOptions = {
     termsAndConditionsPageID?: string | null;
 };
 
+export type Alignment = 'Center' | 'Right' | 'Left';
+
 export type AllianceBusinessSuiteIntegrationOptions = {
     enable?: boolean;
     appId?: string | null;
@@ -55,8 +57,8 @@ export type AuthResult = {
     correlationId?: string | null;
     scopes?: Array<string> | null;
     error?: string | null;
-    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    runAs?: RunAs;
+    principalKind?: PrincipalKind;
     provenance?: ExecutionProvenance;
     executionPrincipalId?: UserId;
     executionPrincipalEnrollmentId?: EnrollmentId;
@@ -99,8 +101,8 @@ export type AzureStorageIntegrationOptions = {
 };
 
 export type Background = {
-    bgRepeat?: 'All' | 'Horizontally' | 'Vertically' | 'NoRepeat';
-    bgPosition?: 'TopLeft' | 'TopRight' | 'TopCenter' | 'CenterLeft' | 'CenterRight' | 'CenterCenter' | 'BottomLeft' | 'BottomRight' | 'BottomCenter';
+    bgRepeat?: BgRepeat;
+    bgPosition?: BgPosition;
     backgroundColor?: string | null;
     backgroundImageUrl?: string | null;
     enableFullWidthBackgroundImage?: boolean;
@@ -115,10 +117,16 @@ export type BackgroundOptions = {
     mainContentImageURL?: string | null;
 };
 
+export type BannerSetId = string;
+
 export type BaseThemePackageOptions = {
     url?: string | null;
     sha256?: string | null;
 };
+
+export type BgPosition = 'TopLeft' | 'TopRight' | 'TopCenter' | 'CenterLeft' | 'CenterRight' | 'CenterCenter' | 'BottomLeft' | 'BottomRight' | 'BottomCenter';
+
+export type BgRepeat = 'All' | 'Horizontally' | 'Vertically' | 'NoRepeat';
 
 export type BlogAuthorDto = {
     id?: string | null;
@@ -146,13 +154,13 @@ export type BlogAuthorDto = {
     instagramUrl?: string | null;
     socialFeedId?: string | null;
     socialProfileId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     walletId?: string | null;
     status?: string | null;
     userName?: string | null;
     publicIdentifier?: string | null;
     phoneNumberConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
 };
 
 export type BlogAuthorDtoCollectionQueryParametersReadable = {
@@ -231,6 +239,11 @@ export type BlogAuthorDtoListEnvelopeWritable = {
 export type BlogOptions = {
     postsPerPage?: number;
     enableBlogPostComments?: boolean;
+};
+
+export type BlogPostBannerSlotDto = {
+    placementKey?: string | null;
+    bannerSetId?: BannerSetId;
 };
 
 export type BlogPostCategoryCreateDto = {
@@ -436,16 +449,17 @@ export type BlogPostCreateDto = {
     code?: string | null;
     markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     slug?: string | null;
     blogPostCategoryId?: string | null;
     webTemplateId?: string | null;
+    bannerSlots?: Array<BlogPostBannerSlotDto> | null;
 };
 
 export type BlogPostDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -734,7 +748,7 @@ export type BlogPostUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -763,6 +777,7 @@ export type BlogPostUpdateDto = {
     allowSearchEngineIndexing?: boolean;
     blogPostCategoryId?: string | null;
     webTemplateId?: string | null;
+    bannerSlots?: Array<BlogPostBannerSlotDto> | null;
 };
 
 export type BrandingOptions = {
@@ -881,6 +896,8 @@ export type BusinessDomainUpdateDto = {
     domain?: string | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type CartDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -894,6 +911,8 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+    saleChannel?: SaleChannel;
+    directSellerTenantId?: string | null;
 };
 
 export type CartOptions = {
@@ -906,8 +925,10 @@ export type CodeFieldsOptions = {
     [key: string]: never;
 };
 
+export type CodeFileType = 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+
 export type ColorOptions = {
-    primarySkin?: 'Dark' | 'Light';
+    primarySkin?: Skin;
     primaryColor?: string | null;
     secondaryColor?: string | null;
     colorScheme?: ColorScheme;
@@ -931,7 +952,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -989,6 +1010,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -997,7 +1021,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1055,6 +1079,9 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -1082,6 +1109,12 @@ export type ContactPoint = {
     areaServed?: Array<string> | null;
     type?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
 
 export type CountryDto = {
     id?: string | null;
@@ -1144,6 +1177,8 @@ export type CurrencyIdWritable = {
     country?: string | null;
 };
 
+export type CurrencyPosition = 'Left' | 'Right' | 'LeftWithSpace' | 'RightWithSpace';
+
 export type CustomFont = {
     name?: string | null;
     wofF2?: string | null;
@@ -1160,6 +1195,12 @@ export type DashboardOptions = {
     iconColor?: string | null;
     favicon?: string | null;
 };
+
+export type DefaultCustomerLocation = 'None' | 'Geolocate' | 'StoreAddressBased' | 'GeolocateWithCaching';
+
+export type DimensionUInit = 'cms' | 'm' | 'mm' | 'inc' | 'yr';
+
+export type Divider = 'None' | 'Solid' | 'Dotted' | 'Double' | 'Groove' | 'Ridge';
 
 export type DownloadablesOptions = {
     maskFileNames?: boolean;
@@ -1355,9 +1396,9 @@ export type ExecutionContextEnvelopeWritable = {
 };
 
 export type ExecutionProvenance = {
-    initiation?: 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System' | 'Manual';
+    initiation?: RunInitiation;
     onBehalfOfActorId?: UserId;
-    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    onBehalfOfActorKind?: PrincipalKind;
     causationId?: string | null;
     originatingWorkflowInstanceId?: string | null;
     eventDepth?: number;
@@ -1395,7 +1436,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1439,7 +1480,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1528,7 +1569,7 @@ export type ExtendedUserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1547,11 +1588,11 @@ export type ExtendedUserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -1582,7 +1623,7 @@ export type ExtendedUserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -1601,11 +1642,11 @@ export type ExtendedUserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -1656,7 +1697,7 @@ export type FooterOptions = {
     borderSize?: number;
     borderColor?: string | null;
     widgetDividerColor?: string | null;
-    widgetDivider?: 'None' | 'Solid' | 'Dotted' | 'Double' | 'Groove' | 'Ridge';
+    widgetDivider?: Divider;
     copyrightPadding?: Padding;
     widgetsAreaPadding?: Padding;
     footerAreaPadding?: Padding;
@@ -1671,7 +1712,7 @@ export type ForexIntegrationOptions = {
     enable?: boolean;
     exchangeRateHostApiKey?: string | null;
     staleAfterHours?: number;
-    stalenessMode?: 'Off' | 'Flag' | 'Block';
+    stalenessMode?: ForexStalenessMode;
 };
 
 export type ForexRatesDtoReadable = {
@@ -1699,6 +1740,8 @@ export type ForexRatesDtoWritable = {
     } | null;
 };
 
+export type ForexStalenessMode = 'Off' | 'Flag' | 'Block';
+
 export type ForgotPasswordRequest = {
     email: string | null;
 };
@@ -1715,6 +1758,8 @@ export type FreeGeoIpIntegrationOptions = {
     enable?: boolean;
     apiKey?: string | null;
 };
+
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
 
 export type GoogleAnalytics = {
     enable?: boolean;
@@ -1774,6 +1819,10 @@ export type GridOptions = {
     [key: string]: never;
 };
 
+export type HeaderContentType = 'NavigationMenu' | 'AccountMenu' | 'ContactInfo' | 'SocialLinks' | 'LeaveEmpty';
+
+export type HeaderLayout = '_01' | '_02' | '_03' | '_04' | '_05' | '_06';
+
 export type HeaderOptions = {
     headerPadding?: Padding;
     headerBackgroundImageURL?: string | null;
@@ -1782,14 +1831,16 @@ export type HeaderOptions = {
     enableStickyHeader?: boolean;
     enableHeaderShadow?: boolean;
     enableFullWidthHeader?: boolean;
-    headerLayout?: '_01' | '_02' | '_03' | '_04' | '_05' | '_06';
-    headerPosition?: 'Top' | 'Right' | 'Center';
-    topHeaderContentType2?: 'NavigationMenu' | 'AccountMenu' | 'ContactInfo' | 'SocialLinks' | 'LeaveEmpty';
-    topHeaderContentType1?: 'NavigationMenu' | 'AccountMenu' | 'ContactInfo' | 'SocialLinks' | 'LeaveEmpty';
+    headerLayout?: HeaderLayout;
+    headerPosition?: HeaderPosition;
+    topHeaderContentType2?: HeaderContentType;
+    topHeaderContentType1?: HeaderContentType;
     topHeaderBackgroundColor?: string | null;
     topHeaderContent1?: string | null;
     topHeaderContent2?: string | null;
 };
+
+export type HeaderPosition = 'Top' | 'Right' | 'Center';
 
 export type HttpValidationProblemDetails = {
     type?: string | null;
@@ -1813,7 +1864,7 @@ export type IdentityAndPrivacyOptions = {
     allowRemovePersonalDataFromSubscriptionsOnRequest?: boolean;
     storeCheckoutPrivacyPolicyNotice?: string | null;
     storeRegistrationPrivacyPolicyNotice?: string | null;
-    defaultCustomerLocation?: 'None' | 'Geolocate' | 'StoreAddressBased' | 'GeolocateWithCaching';
+    defaultCustomerLocation?: DefaultCustomerLocation;
     inactiveCartsRetentionPolicy?: StoreDataRetentionPolicy;
     pendingOrdersRetentionPolicy?: StoreDataRetentionPolicy;
     failedOrdersRetentionPolicy?: StoreDataRetentionPolicy;
@@ -1892,8 +1943,10 @@ export type InventoryOptions = {
     holdStock?: number;
     lowStockThreshold?: number;
     outOfStockThreshold?: number;
-    stockDisplayFormat?: 'AlwaysDisplayRemainingQuantity' | 'OnlyDisplayRemainingQuantityWhenStockIsLow' | 'NeverDisplayRemainingQuantity';
+    stockDisplayFormat?: StoreStockDisplayFormat;
 };
+
+export type Layout = 'Boxed' | 'Wide';
 
 export type LayoutOptions = {
     singleSidebarWidth?: string | null;
@@ -1905,7 +1958,7 @@ export type LayoutOptions = {
     pageContentPaddingBottom?: string | null;
     pageContentPaddingTop?: string | null;
     siteWidth?: string | null;
-    layout?: 'Boxed' | 'Wide';
+    layout?: Layout;
 };
 
 export type LightboxOptions = {
@@ -2017,7 +2070,7 @@ export type LoginRequest = {
 
 export type Logo = {
     margin?: Margin;
-    alignment?: 'Center' | 'Right' | 'Left';
+    alignment?: Alignment;
     width?: number | null;
     height?: number | null;
     maxWidth?: number | null;
@@ -2045,6 +2098,8 @@ export type MsAppTile = {
     logo70?: string | null;
 };
 
+export type MainMenuSearchLayout = 'Dropdown' | 'Overlay';
+
 export type MansoryOptions = {
     [key: string]: never;
 };
@@ -2057,8 +2112,8 @@ export type Margin = {
 };
 
 export type MeasurementOptions = {
-    defaultWeightUnit?: 'Kg' | 'g' | 'lbs' | 'oz';
-    defaultDimensionUInit?: 'cms' | 'm' | 'mm' | 'inc' | 'yr';
+    defaultWeightUnit?: WeightUnit;
+    defaultDimensionUInit?: DimensionUInit;
 };
 
 export type MenuContextCreateDto = {
@@ -2196,6 +2251,12 @@ export type MenuContextUpdateDto = {
     webPortalId?: string | null;
 };
 
+export type MenuDropdownAnimation = 'Fade' | 'Slide';
+
+export type MenuDropdownIndicator = 'None' | 'Parent' | 'ParentAndChild';
+
+export type MenuHighlightStyle = 'TopBar' | 'BottomBar' | 'Arrow' | 'ColorOnly' | 'Background';
+
 export type MenuOptions = {
     sideNavigationFontSize?: string | null;
     mainMenuDropdownFontColor?: string | null;
@@ -2220,10 +2281,10 @@ export type MenuOptions = {
     mainMenuItemPaddingOnMobile?: number;
     mainMenuHighlightBackgroundColor?: number;
     mainMenuTypography?: Typography;
-    menuHighlightStyle?: 'TopBar' | 'BottomBar' | 'Arrow' | 'ColorOnly' | 'Background';
-    mainMenuSearchLayout?: 'Dropdown' | 'Overlay';
-    menuDropdownAnimation?: 'Fade' | 'Slide';
-    menuDropdownIndicator?: 'None' | 'Parent' | 'ParentAndChild';
+    menuHighlightStyle?: MenuHighlightStyle;
+    mainMenuSearchLayout?: MainMenuSearchLayout;
+    menuDropdownAnimation?: MenuDropdownAnimation;
+    menuDropdownIndicator?: MenuDropdownIndicator;
 };
 
 export type MicrosoftAzureIntegrationOptions = {
@@ -2276,6 +2337,10 @@ export type Padding = {
     left?: string | null;
 };
 
+export type PageTitleBar = 'ShowBarAndContent' | 'ShowContentOnly' | 'Hide';
+
+export type PageTitleBarContent = 'None' | 'SearchBar' | 'Breadcrumbs';
+
 export type PaginationOptions = {
     [key: string]: never;
 };
@@ -2309,7 +2374,7 @@ export type PortalId = string;
 export type PortalOptions = {
     title?: string | null;
     description?: string | null;
-    portalUiEngine?: 'Angular' | 'React' | 'Razor';
+    portalUiEngine?: PortalUiEngine;
     seo?: SeoOptions;
     store?: StoreOptions;
     theming?: ThemingOptions;
@@ -2367,6 +2432,7 @@ export type PortalSettings = {
     authTokenExpiration?: number;
     options?: PortalOptions;
     baseThemePackage?: BaseThemePackageOptions;
+    codeAuthoringTenantIds?: Array<string> | null;
 };
 
 export type PortalSettingsEnvelopeReadable = {
@@ -2394,13 +2460,19 @@ export type PortalSettingsEnvelopeWritable = {
     result?: PortalSettings;
 };
 
+export type PortalUiEngine = 'Angular' | 'React' | 'Razor';
+
 export type PortfolioOptions = {
     [key: string]: never;
 };
 
+export type Position = 'Bottom' | 'Right' | 'Left' | 'Top';
+
 export type PriceCalculationOptions = {
     pricingListID?: string | null;
 };
+
+export type PrincipalKind = 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
 
 export type PrivacyOptions = {
     cookiesNoticeMessage?: string | null;
@@ -2409,6 +2481,8 @@ export type PrivacyOptions = {
 export type ProductOptions = {
     [key: string]: never;
 };
+
+export type ProrateFirstRenewal = 'AlwaysAndNoCharge' | 'NeverAndNoCharge' | 'NeverAndFullCharge' | 'AlwaysAndFullCharge' | 'ForVirtualProductsOnly' | 'ForServiceProductsOnly' | 'ForSubscriptionProductsOnly';
 
 export type PublicBlogAuthorDto = {
     publicName?: string | null;
@@ -2433,6 +2507,7 @@ export type PublicBlogPostDto = {
     canonicalUrl?: string | null;
     blogPostCategoryId?: string | null;
     author?: PublicBlogAuthorDto;
+    bannerSlots?: Array<BlogPostBannerSlotDto> | null;
 };
 
 export type PublicBlogPostDtoCollectionQueryParametersReadable = {
@@ -2511,7 +2586,7 @@ export type PublicBlogPostDtoListEnvelopeWritable = {
 export type PublicPortalOptions = {
     title?: string | null;
     description?: string | null;
-    portalUiEngine?: 'Angular' | 'React' | 'Razor';
+    portalUiEngine?: PortalUiEngine;
     seo?: SeoOptions;
     theming?: ThemingOptions;
     branding?: BrandingOptions;
@@ -2650,6 +2725,8 @@ export type ResponsiveOptions = {
     typographyResponsiveSensitivity?: number;
 };
 
+export type RetentionTimeSpan = 'Days' | 'Weeks' | 'Months' | 'Years';
+
 export type ReviewsOptions = {
     enableReviews?: boolean;
     enableStarRatings?: boolean;
@@ -2657,6 +2734,12 @@ export type ReviewsOptions = {
     displayVerifiedOwnerBadge?: boolean;
     forceVerifiedOwnerVerification?: boolean;
 };
+
+export type RunAs = 'Invoker' | 'Application' | 'System' | 'Service';
+
+export type RunInitiation = 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System' | 'Manual';
+
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
 
 export type SearchOptions = {
     [key: string]: never;
@@ -2698,12 +2781,16 @@ export type ServicesOptions = {
     customerSuspensions?: number;
     enableSubscriptionSwitchingBetweenGroups?: number;
     enableSubscriptionSwitchingBetweenVariations?: number;
-    prorateFirstRenewal?: 'AlwaysAndNoCharge' | 'NeverAndNoCharge' | 'NeverAndFullCharge' | 'AlwaysAndFullCharge' | 'ForVirtualProductsOnly' | 'ForServiceProductsOnly' | 'ForSubscriptionProductsOnly';
+    prorateFirstRenewal?: ProrateFirstRenewal;
 };
 
 export type SidebarOptions = {
     [key: string]: never;
 };
+
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
+export type Skin = 'Dark' | 'Light';
 
 export type SliderOptions = {
     [key: string]: never;
@@ -2714,9 +2801,9 @@ export type SlideshowOptions = {
 };
 
 export type SlidingBarOptions = {
-    position?: 'Bottom' | 'Right' | 'Left' | 'Top';
+    position?: Position;
     contentPadding?: Padding;
-    contentAlignment?: 'Center' | 'Right' | 'Left';
+    contentAlignment?: Alignment;
     columnsCount?: number;
     enableSticky?: boolean;
     openOnPageLoad?: boolean;
@@ -2754,7 +2841,7 @@ export type SocialProfileDto = {
     notificationsCount?: number | null;
     unreadNotificationsCount?: number | null;
     unreadMessagesCount?: number | null;
-    type?: 'User' | 'Tenant' | 'Contact';
+    type?: SocialProfileType;
     socialFeedId?: string | null;
     twitterUrl?: string | null;
     facebookURL?: string | null;
@@ -2767,9 +2854,11 @@ export type SocialProfileDto = {
     notes?: string | null;
 };
 
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
+
 export type StoreDataRetentionPolicy = {
     dataRetentionTimeSpanAmmount?: number;
-    retentionTimeSpan?: 'Days' | 'Weeks' | 'Months' | 'Years';
+    retentionTimeSpan?: RetentionTimeSpan;
 };
 
 export type StoreOptions = {
@@ -2810,8 +2899,10 @@ export type StoreOptions = {
     excludedSellingLocations?: Array<string> | null;
     includedShippingLocations?: Array<string> | null;
     excludedShippingLocations?: Array<string> | null;
-    currencyPosition?: 'Left' | 'Right' | 'LeftWithSpace' | 'RightWithSpace';
+    currencyPosition?: CurrencyPosition;
 };
+
+export type StoreStockDisplayFormat = 'AlwaysDisplayRemainingQuantity' | 'OnlyDisplayRemainingQuantityWhenStockIsLow' | 'NeverDisplayRemainingQuantity';
 
 export type StudioOptions = {
     logo?: string | null;
@@ -2840,7 +2931,7 @@ export type SubscriptionsOptions = {
     customerSuspensions?: number;
     enableSubscriptionSwitchingBetweenGroups?: number;
     enableSubscriptionSwitchingBetweenVariations?: number;
-    prorateFirstRenewal?: 'AlwaysAndNoCharge' | 'NeverAndNoCharge' | 'NeverAndFullCharge' | 'AlwaysAndFullCharge' | 'ForVirtualProductsOnly' | 'ForServiceProductsOnly' | 'ForSubscriptionProductsOnly';
+    prorateFirstRenewal?: ProrateFirstRenewal;
 };
 
 export type SuiteLicenseFeatureDto = {
@@ -2865,7 +2956,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -2906,7 +2997,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -2977,9 +3068,9 @@ export type TitleBarOptions = {
     headingLineHeight?: string | null;
     subheadingFontColor?: string | null;
     subheadingFontSize?: string | null;
-    pageTitleBar?: 'ShowBarAndContent' | 'ShowContentOnly' | 'Hide';
-    pageTitleBarContent?: 'None' | 'SearchBar' | 'Breadcrumbs';
-    pageTitleBarTextAlignment?: 'Center' | 'Right' | 'Left';
+    pageTitleBar?: PageTitleBar;
+    pageTitleBarContent?: PageTitleBarContent;
+    pageTitleBarTextAlignment?: Alignment;
 };
 
 export type TwoFactorRequest = {
@@ -3015,6 +3106,8 @@ export type TypographyOptions = {
     customFonts?: Array<CustomFont> | null;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -3039,7 +3132,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -3058,11 +3151,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -3088,7 +3181,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -3107,11 +3200,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserId = string;
@@ -3123,7 +3216,7 @@ export type UserSettingsDto = {
     dateFormat?: string | null;
     currencyFormat?: string | null;
     dateTimeFormat?: string | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type WalletDto = {
@@ -3158,7 +3251,7 @@ export type WebComponentCreateDto = {
     htmlContent?: string | null;
     cssContent?: string | null;
     jsContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     published?: boolean;
     enable?: boolean;
     featuredImageUrl?: string | null;
@@ -3174,7 +3267,7 @@ export type WebComponentDto = {
     htmlContent?: string | null;
     cssContent?: string | null;
     jsContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     published?: boolean;
     enable?: boolean;
     featuredImageUrl?: string | null;
@@ -3263,7 +3356,7 @@ export type WebComponentUpdateDto = {
     htmlContent?: string | null;
     cssContent?: string | null;
     jsContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     published?: boolean;
     enable?: boolean;
     featuredImageUrl?: string | null;
@@ -3278,13 +3371,13 @@ export type WebContentCreateDto = {
     code?: string | null;
     markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
 };
 
 export type WebContentDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -3444,7 +3537,7 @@ export type WebContentUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -3605,7 +3698,7 @@ export type WebPageCreateDto = {
     code?: string | null;
     markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     slug?: string | null;
     webPortalId?: string | null;
     webTemplateId?: string | null;
@@ -3615,7 +3708,7 @@ export type WebPageCreateDto = {
 export type WebPageDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -3911,7 +4004,7 @@ export type WebPageUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    codeType?: CodeFileType;
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -4270,6 +4363,8 @@ export type WebsiteThemeUpdateDto = {
     tags?: string | null;
     enable?: boolean | null;
 };
+
+export type WeightUnit = 'Kg' | 'g' | 'lbs' | 'oz';
 
 export type BlogPostAuthorsGetBlogAuthorsData = {
     body?: BlogAuthorDtoCollectionQueryParametersWritable;

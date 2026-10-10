@@ -107,6 +107,8 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type UblProfileType = 'Generic' | 'Dian';
+
 export type UblRenderedDocumentModel = {
     documentType?: string | null;
     profile?: string | null;
@@ -149,7 +151,7 @@ export type CreditNotesGetUblCreditNoteData = {
     };
     query: {
         tenantId: string;
-        profile?: 'Generic' | 'Dian';
+        profile?: UblProfileType;
         'api-version'?: string;
     };
     url: '/api/v2/UblService/CreditNotes/{invoiceId}';
@@ -195,7 +197,7 @@ export type DebitNotesGetUblDebitNoteData = {
     };
     query: {
         tenantId: string;
-        profile?: 'Generic' | 'Dian';
+        profile?: UblProfileType;
         'api-version'?: string;
     };
     url: '/api/v2/UblService/DebitNotes/{invoiceId}';
@@ -241,7 +243,7 @@ export type DespatchAdvicesGetUblDespatchAdviceData = {
     };
     query: {
         tenantId: string;
-        profile?: 'Generic' | 'Dian';
+        profile?: UblProfileType;
         'api-version'?: string;
     };
     url: '/api/v2/UblService/DespatchAdvices/{shipmentId}';
@@ -615,7 +617,7 @@ export type InvoicesGetUblInvoiceData = {
     };
     query: {
         tenantId: string;
-        profile?: 'Generic' | 'Dian';
+        profile?: UblProfileType;
         'api-version'?: string;
     };
     url: '/api/v2/UblService/Invoices/{invoiceId}';
@@ -661,7 +663,7 @@ export type ReceiptAdvicesGetUblReceiptAdviceData = {
     };
     query: {
         tenantId: string;
-        profile?: 'Generic' | 'Dian';
+        profile?: UblProfileType;
         'api-version'?: string;
     };
     url: '/api/v2/UblService/ReceiptAdvices/{itemRestockId}';
@@ -707,7 +709,7 @@ export type ReceiptAdvicesGetUblReceiptAdvicePartitionsData = {
     };
     query: {
         tenantId: string;
-        profile?: 'Generic' | 'Dian';
+        profile?: UblProfileType;
         'api-version'?: string;
     };
     url: '/api/v2/UblService/ReceiptAdvices/{itemRestockId}/partitions';

@@ -13,26 +13,28 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type AgentExecutionAnomalyCode = 'None' | 'WaitingForApproval' | 'RetryableInfrastructure' | 'StaleFence' | 'OutcomeUnknown' | 'AlreadyFinalized' | 'ClaimNotFound' | 'StuckOrphaned';
+
 export type AgentExecutionDiagnosticDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    status?: AgentWorkOrderStatus;
     readonly statusName?: string | null;
     createdAt?: string;
     currentLeaseGeneration?: number | null;
-    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    currentLeaseStatus?: AgentWorkLeaseStatus;
     readonly currentLeaseStatusName?: string | null;
     currentLeaseClaimedAtUtc?: string | null;
     leaseCount?: number;
     observedAtUtc?: string;
-    anomalyCode?: 'None' | 'WaitingForApproval' | 'RetryableInfrastructure' | 'StaleFence' | 'OutcomeUnknown' | 'AlreadyFinalized' | 'ClaimNotFound' | 'StuckOrphaned';
+    anomalyCode?: AgentExecutionAnomalyCode;
     readonly anomalyCodeName?: string | null;
-    recommendedAction?: 'Wait' | 'Retry' | 'Reconcile' | 'Completed' | 'ManualAction';
+    recommendedAction?: AgentExecutionRecoveryAction;
     readonly recommendedActionName?: string | null;
     diagnosticSummary?: string | null;
     claimObserved?: boolean | null;
-    claimState?: 'Pending' | 'Claimed' | 'Executing' | 'Finalized' | 'Failed' | 'OutcomeUnknown';
+    claimState?: GovernedInvocationClaimState;
     claimFingerprintRecorded?: boolean | null;
 };
 
@@ -40,18 +42,18 @@ export type AgentExecutionDiagnosticDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    status?: AgentWorkOrderStatus;
     createdAt?: string;
     currentLeaseGeneration?: number | null;
-    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    currentLeaseStatus?: AgentWorkLeaseStatus;
     currentLeaseClaimedAtUtc?: string | null;
     leaseCount?: number;
     observedAtUtc?: string;
-    anomalyCode?: 'None' | 'WaitingForApproval' | 'RetryableInfrastructure' | 'StaleFence' | 'OutcomeUnknown' | 'AlreadyFinalized' | 'ClaimNotFound' | 'StuckOrphaned';
-    recommendedAction?: 'Wait' | 'Retry' | 'Reconcile' | 'Completed' | 'ManualAction';
+    anomalyCode?: AgentExecutionAnomalyCode;
+    recommendedAction?: AgentExecutionRecoveryAction;
     diagnosticSummary?: string | null;
     claimObserved?: boolean | null;
-    claimState?: 'Pending' | 'Claimed' | 'Executing' | 'Finalized' | 'Failed' | 'OutcomeUnknown';
+    claimState?: GovernedInvocationClaimState;
     claimFingerprintRecorded?: boolean | null;
 };
 
@@ -127,6 +129,8 @@ export type AgentExecutionDiagnosticDtoListEnvelopeWritable = {
     } | null;
     result?: Array<AgentExecutionDiagnosticDtoWritable> | null;
 };
+
+export type AgentExecutionRecoveryAction = 'Wait' | 'Retry' | 'Reconcile' | 'Completed' | 'ManualAction';
 
 export type AgentPermissionReadinessDto = {
     agentId?: string | null;
@@ -257,6 +261,8 @@ export type AgentWorkAssignmentDtoEnvelopeWritable = {
     result?: AgentWorkAssignmentDto;
 };
 
+export type AgentWorkLeaseStatus = 'Claimed' | 'Completed' | 'Failed';
+
 export type AgentWorkOrderCancellationDto = {
     cancelled?: boolean;
 };
@@ -286,17 +292,19 @@ export type AgentWorkOrderCancellationDtoEnvelopeWritable = {
     result?: AgentWorkOrderCancellationDto;
 };
 
+export type AgentWorkOrderStatus = 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+
 export type AgentWorkOrderStatusDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     requiredCapabilities?: string | null;
     preferredPoolId?: string | null;
-    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    status?: AgentWorkOrderStatus;
     readonly statusName?: string | null;
     createdAt?: string;
     tenantId?: string | null;
     currentLeaseGeneration?: number | null;
-    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    currentLeaseStatus?: AgentWorkLeaseStatus;
     readonly currentLeaseStatusName?: string | null;
     leaseCount?: number;
 };
@@ -306,11 +314,11 @@ export type AgentWorkOrderStatusDtoWritable = {
     timestamp?: string | null;
     requiredCapabilities?: string | null;
     preferredPoolId?: string | null;
-    status?: 'Pending' | 'Claimed' | 'Completed' | 'Failed' | 'Cancelled';
+    status?: AgentWorkOrderStatus;
     createdAt?: string;
     tenantId?: string | null;
     currentLeaseGeneration?: number | null;
-    currentLeaseStatus?: 'Claimed' | 'Completed' | 'Failed';
+    currentLeaseStatus?: AgentWorkLeaseStatus;
     leaseCount?: number;
 };
 
@@ -401,7 +409,7 @@ export type AiModelAvailabilityDto = {
     specialized?: boolean;
     jurisdiction?: string | null;
     available?: boolean;
-    connectionScope?: 'Instance' | 'Tenant';
+    connectionScope?: AiProviderConnectionScope;
 };
 
 export type AiModelCategoryDto = {
@@ -414,7 +422,7 @@ export type AiProviderAvailabilityDto = {
     providerKey?: string | null;
     displayName?: string | null;
     available?: boolean;
-    connectionScope?: 'Instance' | 'Tenant';
+    connectionScope?: AiProviderConnectionScope;
     categories?: Array<AiModelCategoryDto> | null;
 };
 
@@ -442,6 +450,8 @@ export type AiProviderAvailabilityDtoListEnvelopeWritable = {
     } | null;
     result?: Array<AiProviderAvailabilityDto> | null;
 };
+
+export type AiProviderConnectionScope = 'Instance' | 'Tenant';
 
 export type AiProviderDto = {
     providerKey?: string | null;
@@ -481,14 +491,14 @@ export type AiRunDtoReadable = {
     providerKey?: string | null;
     modelId?: string | null;
     engineKey?: string | null;
-    fundingScope?: 'Instance' | 'Tenant';
+    fundingScope?: AiProviderConnectionScope;
     readonly fundingScopeName?: string | null;
     remoteIdentifier?: string | null;
     endpoint?: string | null;
     credentialRef?: string | null;
-    status?: 'Started' | 'Succeeded' | 'Failed' | 'Rejected' | 'AwaitingApproval' | 'InDoubt';
+    status?: AiRunStatus;
     readonly statusName?: string | null;
-    kind?: 'Chat' | 'ToolAugmented';
+    kind?: AiRunKind;
     startedAt?: string;
     completedAt?: string | null;
     summary?: string | null;
@@ -501,8 +511,8 @@ export type AiRunDtoReadable = {
     parentRunId?: string | null;
     promptTokens?: number | null;
     completionTokens?: number | null;
-    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    runAs?: RunAs;
+    principalKind?: PrincipalKind;
     tenantId?: string | null;
     userId?: string | null;
     enrollmentId?: string | null;
@@ -517,12 +527,12 @@ export type AiRunDtoWritable = {
     providerKey?: string | null;
     modelId?: string | null;
     engineKey?: string | null;
-    fundingScope?: 'Instance' | 'Tenant';
+    fundingScope?: AiProviderConnectionScope;
     remoteIdentifier?: string | null;
     endpoint?: string | null;
     credentialRef?: string | null;
-    status?: 'Started' | 'Succeeded' | 'Failed' | 'Rejected' | 'AwaitingApproval' | 'InDoubt';
-    kind?: 'Chat' | 'ToolAugmented';
+    status?: AiRunStatus;
+    kind?: AiRunKind;
     startedAt?: string;
     completedAt?: string | null;
     summary?: string | null;
@@ -535,8 +545,8 @@ export type AiRunDtoWritable = {
     parentRunId?: string | null;
     promptTokens?: number | null;
     completionTokens?: number | null;
-    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    runAs?: RunAs;
+    principalKind?: PrincipalKind;
     tenantId?: string | null;
     userId?: string | null;
     enrollmentId?: string | null;
@@ -615,19 +625,37 @@ export type AiRunDtoListEnvelopeWritable = {
     result?: Array<AiRunDtoWritable> | null;
 };
 
+export type AiRunKind = 'Chat' | 'ToolAugmented';
+
+export type AiRunStatus = 'Started' | 'Succeeded' | 'Failed' | 'Rejected' | 'AwaitingApproval' | 'InDoubt';
+
+export type AiUsageBreakdownDto = {
+    managed?: number;
+    byok?: number;
+    unresolved?: number;
+    unmeasuredEvents?: number;
+    daily?: Array<AiUsageDailyDto> | null;
+};
+
+export type AiUsageDailyDto = {
+    dateUtc?: string;
+    managed?: number;
+    missing?: boolean;
+};
+
 export type AiUsageObservationDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     aiRunId?: string | null;
     providerKey?: string | null;
     modelKey?: string | null;
-    connectionScope?: 'Instance' | 'Tenant';
+    connectionScope?: AiProviderConnectionScope;
     readonly connectionScopeName?: string | null;
     promptUnits?: number | null;
     completionUnits?: number | null;
     reasoningUnits?: number | null;
     observedAt?: string;
-    usageState?: 'Measured' | 'Unknown' | 'LateMeasured';
+    usageState?: AiUsageObservationState;
     readonly usageStateName?: string | null;
     unitsAttachedAt?: string | null;
     source?: string | null;
@@ -640,12 +668,12 @@ export type AiUsageObservationDtoWritable = {
     aiRunId?: string | null;
     providerKey?: string | null;
     modelKey?: string | null;
-    connectionScope?: 'Instance' | 'Tenant';
+    connectionScope?: AiProviderConnectionScope;
     promptUnits?: number | null;
     completionUnits?: number | null;
     reasoningUnits?: number | null;
     observedAt?: string;
-    usageState?: 'Measured' | 'Unknown' | 'LateMeasured';
+    usageState?: AiUsageObservationState;
     unitsAttachedAt?: string | null;
     source?: string | null;
     tenantId?: string | null;
@@ -724,6 +752,44 @@ export type AiUsageObservationDtoListEnvelopeWritable = {
     result?: Array<AiUsageObservationDtoWritable> | null;
 };
 
+export type AiUsageObservationState = 'Measured' | 'Unknown' | 'LateMeasured';
+
+export type AiUsageSummaryDto = {
+    tenantId?: string | null;
+    fromUtc?: string;
+    toUtc?: string;
+    asOfUtc?: string;
+    inputTokens?: AiUsageBreakdownDto;
+    outputTokens?: AiUsageBreakdownDto;
+    runs?: AiUsageBreakdownDto;
+    decisionCalls?: AiUsageBreakdownDto;
+};
+
+export type AiUsageSummaryDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AiUsageSummaryDto;
+};
+
+export type AiUsageSummaryDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AiUsageSummaryDto;
+};
+
 export type ApprovalAdviceAdvisorDisclosureDto = {
     templateId?: string | null;
     templateVersion?: string | null;
@@ -744,7 +810,7 @@ export type ApprovalAdviceAnswerDisclosureDto = {
 
 export type ApprovalAdviceConsentDto = {
     tenantId?: string | null;
-    state?: 'OptedIn' | 'OptedOut';
+    state?: ApprovalAdviceConsentState;
     isOptedIn?: boolean;
     disclosureFingerprint?: string | null;
     currentDisclosureFingerprint?: string | null;
@@ -759,6 +825,8 @@ export type ApprovalAdviceConsentDto = {
     optedInAt?: string | null;
     optedOutByEnrollmentId?: string | null;
     optedOutAt?: string | null;
+    optedInByDisplayName?: string | null;
+    optedOutByDisplayName?: string | null;
 };
 
 export type ApprovalAdviceConsentDtoEnvelopeReadable = {
@@ -785,6 +853,8 @@ export type ApprovalAdviceConsentDtoEnvelopeWritable = {
     } | null;
     result?: ApprovalAdviceConsentDto;
 };
+
+export type ApprovalAdviceConsentState = 'OptedIn' | 'OptedOut';
 
 export type ApprovalAdviceDisclosureDto = {
     formatVersion?: string | null;
@@ -834,7 +904,7 @@ export type BuiltInAgentCapabilityDto = {
     name?: string | null;
     description?: string | null;
     category?: string | null;
-    kind?: 'SelfState' | 'CurrentContext';
+    kind?: BuiltInAgentCapabilityKind;
 };
 
 export type BuiltInAgentCapabilityDtoListEnvelopeReadable = {
@@ -861,6 +931,8 @@ export type BuiltInAgentCapabilityDtoListEnvelopeWritable = {
     } | null;
     result?: Array<BuiltInAgentCapabilityDto> | null;
 };
+
+export type BuiltInAgentCapabilityKind = 'SelfState' | 'CurrentContext';
 
 export type CapabilityDto = {
     id?: string | null;
@@ -935,6 +1007,8 @@ export type CapabilityDtoListEnvelopeWritable = {
     } | null;
     result?: Array<CapabilityDto> | null;
 };
+
+export type CapabilitySurface = 'None' | 'Workflow' | 'AI' | 'Mcp' | 'Job' | 'Integration' | 'Webhook' | 'Admin';
 
 export type ClaimNextAgentWorkerRequest = {
     workerId?: string;
@@ -1565,6 +1639,8 @@ export type CompleteAgentWorkOrderRequest = {
     leaseGeneration?: number;
 };
 
+export type ConversationAccessScope = 'Mine' | 'AllUsers';
+
 export type ConversationAttachmentUploadResultDto = {
     fileId?: string | null;
     name?: string | null;
@@ -1637,11 +1713,15 @@ export type CreateAgentRuntimePoolRequest = {
 
 export type DefinitionCoordinateRequest = {
     sourceKey: string;
-    kind: 'Agent' | 'Skill' | 'Workflow';
+    kind: DefinitionKind;
     key: string;
     commitSha?: string | null;
     path: string;
 };
+
+export type DefinitionInstallStatus = 'Installed' | 'UpdateAvailable' | 'MissingFromSource';
+
+export type DefinitionKind = 'Agent' | 'Skill' | 'Workflow';
 
 export type DefinitionSkillReferenceDto = {
     key?: string | null;
@@ -1649,7 +1729,7 @@ export type DefinitionSkillReferenceDto = {
 };
 
 export type DefinitionValidationDto = {
-    kind?: 'Agent' | 'Skill' | 'Workflow';
+    kind?: DefinitionKind;
     key?: string | null;
     name?: string | null;
     description?: string | null;
@@ -1663,7 +1743,7 @@ export type DefinitionValidationDto = {
     optionalCapabilities?: Array<string> | null;
     skills?: Array<DefinitionSkillReferenceDto> | null;
     alreadyInstalled?: boolean;
-    installedStatus?: 'Installed' | 'UpdateAvailable' | 'MissingFromSource';
+    installedStatus?: DefinitionInstallStatus;
     message?: string | null;
 };
 
@@ -1789,6 +1869,8 @@ export type GovernedAgentEffectDtoEnvelopeWritable = {
     result?: GovernedAgentEffectDto;
 };
 
+export type GovernedInvocationClaimState = 'Pending' | 'Claimed' | 'Executing' | 'Finalized' | 'Failed' | 'OutcomeUnknown';
+
 export type GrantAgentToolPermissionsRequestDto = {
     permissions?: Array<string> | null;
 };
@@ -1820,7 +1902,7 @@ export type InfoResponse = {
 
 export type InstalledDefinitionDto = {
     canonicalId?: string | null;
-    kind?: 'Agent' | 'Skill' | 'Workflow';
+    kind?: DefinitionKind;
     definitionKey?: string | null;
     name?: string | null;
     version?: string | null;
@@ -1828,7 +1910,7 @@ export type InstalledDefinitionDto = {
     sourcePath?: string | null;
     commitSha?: string | null;
     contentDigest?: string | null;
-    status?: 'Installed' | 'UpdateAvailable' | 'MissingFromSource';
+    status?: DefinitionInstallStatus;
     installedAt?: string;
     executionIdentityProvisioned?: boolean;
     note?: string | null;
@@ -1916,6 +1998,8 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type PrincipalKind = 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1945,6 +2029,8 @@ export type RevokeAgentToolPermissionsRequestDto = {
     permissions?: Array<string> | null;
 };
 
+export type RunAs = 'Invoker' | 'Application' | 'System' | 'Service';
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -1964,7 +2050,7 @@ export type TwoFactorResponse = {
 export type UninstallDefinitionRequestDto = {
     canonicalId?: string | null;
     sourceKey?: string | null;
-    kind?: 'Agent' | 'Skill' | 'Workflow';
+    kind?: DefinitionKind;
     key?: string | null;
 };
 
@@ -2643,6 +2729,43 @@ export type AiRunsGetAiRunByIdResponses = {
 
 export type AiRunsGetAiRunByIdResponse = AiRunsGetAiRunByIdResponses[keyof AiRunsGetAiRunByIdResponses];
 
+export type AiUsageGetAiUsageSummaryData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        fromUtc: string;
+        toUtc: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiUsage/Summary';
+};
+
+export type AiUsageGetAiUsageSummaryErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiUsageGetAiUsageSummaryError = AiUsageGetAiUsageSummaryErrors[keyof AiUsageGetAiUsageSummaryErrors];
+
+export type AiUsageGetAiUsageSummaryResponses = {
+    /**
+     * OK
+     */
+    200: AiUsageSummaryDtoEnvelopeReadable;
+};
+
+export type AiUsageGetAiUsageSummaryResponse = AiUsageGetAiUsageSummaryResponses[keyof AiUsageGetAiUsageSummaryResponses];
+
 export type AiUsageObservationsGetAiUsageObservationsData = {
     body?: AiUsageObservationDtoCollectionQueryParametersWritable;
     headers?: {
@@ -2878,7 +3001,7 @@ export type CapabilitiesGetCapabilitiesData = {
     path?: never;
     query: {
         tenantId: string;
-        surface?: 'None' | 'Workflow' | 'AI' | 'Mcp' | 'Job' | 'Integration' | 'Webhook' | 'Admin';
+        surface?: CapabilitySurface;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/Capabilities';
@@ -2910,7 +3033,7 @@ export type CapabilitiesGetCapabilitiesCountData = {
     path?: never;
     query: {
         tenantId: string;
-        surface?: 'None' | 'Workflow' | 'AI' | 'Mcp' | 'Job' | 'Integration' | 'Webhook' | 'Admin';
+        surface?: CapabilitySurface;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/Capabilities/Count';
@@ -3025,7 +3148,7 @@ export type CognitiveAgentConversationsGetCognitiveAgentConversationsData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations';
@@ -3094,7 +3217,7 @@ export type CognitiveAgentConversationsGetCognitiveAgentConversationsCountData =
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/Count';
@@ -3129,7 +3252,7 @@ export type CognitiveAgentConversationsDeleteCognitiveAgentConversationData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}';
@@ -3166,7 +3289,7 @@ export type CognitiveAgentConversationsGetCognitiveAgentConversationByIdData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}';
@@ -3205,7 +3328,7 @@ export type CognitiveAgentConversationsUpdateCognitiveAgentConversationData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{id}';
@@ -3242,7 +3365,7 @@ export type CognitiveAgentMessagesGetCognitiveAgentMessagesData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages';
@@ -3277,7 +3400,7 @@ export type CognitiveAgentMessagesGetCognitiveAgentMessagesCountData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages/Count';
@@ -3313,7 +3436,7 @@ export type CognitiveAgentMessagesGetCognitiveAgentMessageByIdData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Messages/{id}';
@@ -3352,7 +3475,7 @@ export type CognitiveAgentMessagesGetConversationPendingApprovalsData = {
     };
     query: {
         tenantId: string;
-        scope?: 'Mine' | 'AllUsers';
+        scope?: ConversationAccessScope;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/PendingApprovals';
@@ -4524,7 +4647,7 @@ export type DefinitionDistributionGetInstalledDefinitionStateData = {
     path?: never;
     query: {
         tenantId: string;
-        kind?: 'Agent' | 'Skill' | 'Workflow';
+        kind?: DefinitionKind;
         'api-version'?: string;
     };
     url: '/api/v2/IntelligenceService/DefinitionDistribution/InstalledState';

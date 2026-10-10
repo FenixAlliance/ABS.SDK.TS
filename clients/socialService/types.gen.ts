@@ -13,6 +13,8 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BodyFormat = 'PlainText' | 'Html';
+
 export type BooleanEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -58,7 +60,7 @@ export type ConversationDto = {
     counterpartySocialProfileId?: string | null;
     counterpartyName?: string | null;
     counterpartyAvatarUrl?: string | null;
-    counterpartyType?: 'User' | 'Tenant' | 'Contact';
+    counterpartyType?: SocialProfileType;
     unreadCount?: number;
 };
 
@@ -492,6 +494,8 @@ export type ErrorEnvelopeWritable = {
     } | null;
 };
 
+export type FileUploadPublicAccessType = 'Off' | 'Container' | 'Blob' | 'Unknown';
+
 export type FollowRecordDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -618,7 +622,7 @@ export type NotificationDto = {
     message?: string | null;
     imageUrl?: string | null;
     redirectUrl?: string | null;
-    type?: 'Event' | 'Alert' | 'Log';
+    type?: NotificationType;
     socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
@@ -729,6 +733,8 @@ export type NotificationIssuanceReceiptDtoEnvelopeWritable = {
     result?: NotificationIssuanceReceiptDto;
 };
 
+export type NotificationType = 'Event' | 'Alert' | 'Log';
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
@@ -760,7 +766,7 @@ export type PrivateMessageDto = {
     receivedTimestamp?: string;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
 };
 
 export type PrivateMessageDtoCollectionQueryParametersReadable = {
@@ -816,6 +822,8 @@ export type PrivateMessageUpdateDto = {
     message?: string | null;
 };
 
+export type Reaction = 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -842,7 +850,7 @@ export type SkillCreateDto = {
     url?: string | null;
     iconUrl?: string | null;
     description?: string | null;
-    skillType?: 'Skill' | 'Certification';
+    skillType?: SkillType;
 };
 
 export type SkillDto = {
@@ -853,7 +861,7 @@ export type SkillDto = {
     type?: string | null;
     iconUrl?: string | null;
     description?: string | null;
-    skillType?: 'Skill' | 'Certification';
+    skillType?: SkillType;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -931,23 +939,25 @@ export type SkillDtoListEnvelopeWritable = {
     result?: Array<SkillDto> | null;
 };
 
+export type SkillType = 'Skill' | 'Certification';
+
 export type SkillUpdateDto = {
     name?: string | null;
     url?: string | null;
     iconUrl?: string | null;
     description?: string | null;
-    skillType?: 'Skill' | 'Certification';
+    skillType?: SkillType;
 };
 
 export type SocialCommentReactionDto = {
     id?: string | null;
     timestamp?: string | null;
-    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reaction?: Reaction;
     reactionValue?: string | null;
     socialProfileId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
     socialCommentId?: string | null;
 };
 
@@ -1112,7 +1122,7 @@ export type SocialFeedPostCreateDto = {
     socialFeedId?: string | null;
     socialProfileId?: string | null;
     bodyHtml?: string | null;
-    bodyFormat?: 'PlainText' | 'Html';
+    bodyFormat?: BodyFormat;
     backgroundStyle?: string | null;
 };
 
@@ -1126,14 +1136,14 @@ export type SocialFeedPostDto = {
     socialProfileAvatarUrl?: string | null;
     commentsCount?: number;
     reactionsCount?: number;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
     bodyHtml?: string | null;
-    bodyFormat?: 'PlainText' | 'Html';
+    bodyFormat?: BodyFormat;
     backgroundStyle?: string | null;
     socialFeedId?: string | null;
     facepile?: Array<SocialPostReactionFacepileDto> | null;
     attachments?: Array<SocialPostAttachmentRefDto> | null;
-    myReaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    myReaction?: Reaction;
     myReactionId?: string | null;
 };
 
@@ -1214,7 +1224,7 @@ export type SocialFeedPostUpdateDto = {
     title?: string | null;
     message?: string | null;
     bodyHtml?: string | null;
-    bodyFormat?: 'PlainText' | 'Html';
+    bodyFormat?: BodyFormat;
     backgroundStyle?: string | null;
 };
 
@@ -1330,7 +1340,7 @@ export type SocialPostAttachmentCreateDto = {
     validResponse?: boolean;
     parentFileUploadId?: string | null;
     filePath?: string | null;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     socialPostId?: string | null;
 };
 
@@ -1359,14 +1369,14 @@ export type SocialPostAttachmentDtoReadable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     readonly hasThumbnail?: boolean;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     socialPostId?: string | null;
 };
 
@@ -1395,13 +1405,13 @@ export type SocialPostAttachmentDtoWritable = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
-    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    scanStatus?: StorageScanStatus;
+    thumbnailStatus?: StorageThumbnailStatus;
     thumbnailStorageKey?: string | null;
     thumbnailContentType?: string | null;
     thumbnailWidth?: number;
     thumbnailHeight?: number;
-    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    publicAccessType?: FileUploadPublicAccessType;
     socialPostId?: string | null;
 };
 
@@ -1504,7 +1514,7 @@ export type SocialPostCommentCreateDto = {
     timestamp?: string;
     message?: string | null;
     bodyHtml?: string | null;
-    bodyFormat?: 'PlainText' | 'Html';
+    bodyFormat?: BodyFormat;
     parentCommentId?: string | null;
     socialProfileId?: string | null;
     socialFeedPostId?: string | null;
@@ -1520,14 +1530,14 @@ export type SocialPostCommentDto = {
     socialFeedPostId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
     bodyHtml?: string | null;
-    bodyFormat?: 'PlainText' | 'Html';
+    bodyFormat?: BodyFormat;
     replyCount?: number;
     reactionsCount?: number;
     socialPostId?: string | null;
     facepile?: Array<SocialPostReactionFacepileDto> | null;
-    myReaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    myReaction?: Reaction;
     myReactionId?: string | null;
 };
 
@@ -1628,9 +1638,9 @@ export type SocialPostDto = {
     socialProfileAvatarUrl?: string | null;
     commentsCount?: number;
     reactionsCount?: number;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
     bodyHtml?: string | null;
-    bodyFormat?: 'PlainText' | 'Html';
+    bodyFormat?: BodyFormat;
     backgroundStyle?: string | null;
 };
 
@@ -1710,12 +1720,12 @@ export type SocialPostDtoListEnvelopeWritable = {
 export type SocialPostReactionDto = {
     id?: string | null;
     timestamp?: string | null;
-    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reaction?: Reaction;
     reactionValue?: string | null;
     socialProfileId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
     socialPostId?: string | null;
 };
 
@@ -1771,8 +1781,8 @@ export type SocialPostReactionFacepileDto = {
     socialProfileId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
-    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    socialProfileType?: SocialProfileType;
+    reaction?: Reaction;
 };
 
 export type SocialPostUpdateDto = {
@@ -1796,7 +1806,7 @@ export type SocialProfileDto = {
     notificationsCount?: number | null;
     unreadNotificationsCount?: number | null;
     unreadMessagesCount?: number | null;
-    type?: 'User' | 'Tenant' | 'Contact';
+    type?: SocialProfileType;
     socialFeedId?: string | null;
     twitterUrl?: string | null;
     facebookURL?: string | null;
@@ -1882,10 +1892,12 @@ export type SocialProfileDtoListEnvelopeWritable = {
     result?: Array<SocialProfileDto> | null;
 };
 
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
+
 export type SocialReactionCreateDto = {
     id?: string;
     timestamp?: string;
-    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reaction?: Reaction;
     reactionValue?: string | null;
     socialProfileId?: string | null;
 };
@@ -1893,12 +1905,12 @@ export type SocialReactionCreateDto = {
 export type SocialReactionDto = {
     id?: string | null;
     timestamp?: string | null;
-    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reaction?: Reaction;
     reactionValue?: string | null;
     socialProfileId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
-    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialProfileType?: SocialProfileType;
 };
 
 export type SocialReactionDtoEnvelopeReadable = {
@@ -1954,9 +1966,13 @@ export type SocialReactionDtoListEnvelopeWritable = {
 export type SocialReactionUpdateDto = {
     id?: string | null;
     timestamp?: string | null;
-    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reaction?: Reaction;
     reactionValue?: string | null;
 };
+
+export type StorageScanStatus = 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+
+export type StorageThumbnailStatus = 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
 
 export type StringEnvelopeReadable = {
     readonly isSuccess?: boolean;

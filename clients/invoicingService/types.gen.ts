@@ -44,9 +44,17 @@ export type BillingCouponRecognitionDtoEnvelopeWritable = {
     result?: BillingCouponRecognitionDto;
 };
 
+export type BillingNoteReason = 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
+
 export type CreditNoteCreateDto = {
     amount?: number;
-    reason?: 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+    reason?: BillingNoteReason;
     reasonDescription?: string | null;
 };
 
@@ -63,9 +71,13 @@ export type CurrencyIdWritable = {
 
 export type DebitNoteCreateDto = {
     amount?: number;
-    reason?: 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+    reason?: BillingNoteReason;
     reasonDescription?: string | null;
 };
+
+export type DocumentType = 'Standard' | 'DebitNote' | 'CreditNote';
+
+export type EmailAlertType = 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
 
 export type EmailDispatchRequest = {
     title: string;
@@ -73,7 +85,7 @@ export type EmailDispatchRequest = {
     buttonLink?: string | null;
     buttonText?: string | null;
     alertMessage?: string | null;
-    alertType?: 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+    alertType?: EmailAlertType;
     culture: string;
     uiCulture: string;
     recipients: Array<string>;
@@ -180,8 +192,8 @@ export type ExtendedInvoiceDtoReadable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -222,6 +234,7 @@ export type ExtendedInvoiceDtoReadable = {
     totalGlobalSurchargesInUsd?: number;
     totalInUsd?: number;
     paid?: boolean;
+    issuedAtUtc?: string | null;
     number?: number;
     notes?: string | null;
     orderId?: string | null;
@@ -233,17 +246,17 @@ export type ExtendedInvoiceDtoReadable = {
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
     paymentDue?: string | null;
-    invoiceType?: 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+    invoiceType?: InvoiceType;
+    documentType?: DocumentType;
+    invoiceStatus?: InvoiceStatus;
     tenant?: TenantDtoReadable;
     user?: SimpleUserDtoReadable;
     receiverTenant?: TenantDtoReadable;
     individual?: SimpleContactDtoReadable;
     organization?: SimpleContactDtoReadable;
     enrollment?: SimpleTenantEnrollmentDto;
-    invoiceLines?: Array<InvoiceLineDto> | null;
-    invoiceEnumerationRange?: InvoiceEnumerationRangeDto;
+    invoiceLines?: Array<InvoiceLineDtoReadable> | null;
+    invoiceEnumerationRange?: InvoiceEnumerationRangeDtoReadable;
     expiration?: string;
     effectiveDiscountPercent?: number;
     effectiveSurchargePercent?: number;
@@ -281,8 +294,8 @@ export type ExtendedInvoiceDtoWritable = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -323,6 +336,7 @@ export type ExtendedInvoiceDtoWritable = {
     totalGlobalSurchargesInUsd?: number;
     totalInUsd?: number;
     paid?: boolean;
+    issuedAtUtc?: string | null;
     number?: number;
     notes?: string | null;
     orderId?: string | null;
@@ -334,17 +348,17 @@ export type ExtendedInvoiceDtoWritable = {
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
     paymentDue?: string | null;
-    invoiceType?: 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+    invoiceType?: InvoiceType;
+    documentType?: DocumentType;
+    invoiceStatus?: InvoiceStatus;
     tenant?: TenantDtoWritable;
     user?: SimpleUserDtoWritable;
     receiverTenant?: TenantDtoWritable;
     individual?: SimpleContactDtoWritable;
     organization?: SimpleContactDtoWritable;
     enrollment?: SimpleTenantEnrollmentDto;
-    invoiceLines?: Array<InvoiceLineDto> | null;
-    invoiceEnumerationRange?: InvoiceEnumerationRangeDto;
+    invoiceLines?: Array<InvoiceLineDtoWritable> | null;
+    invoiceEnumerationRange?: InvoiceEnumerationRangeDtoWritable;
     expiration?: string;
     effectiveDiscountPercent?: number;
     effectiveSurchargePercent?: number;
@@ -472,7 +486,7 @@ export type InvoiceAdjustmentCreateDto = {
     discountAmount?: number;
     totalSurcharge?: number;
     totalDiscount?: number;
-    type?: 'Discount' | 'Surcharge';
+    type?: InvoiceAdjustmentType;
 };
 
 export type InvoiceAdjustmentDto = {
@@ -491,7 +505,7 @@ export type InvoiceAdjustmentDto = {
     discountAmount?: number;
     totalSurcharge?: number;
     totalDiscount?: number;
-    type?: 'Discount' | 'Surcharge';
+    type?: InvoiceAdjustmentType;
 };
 
 export type InvoiceAdjustmentDtoCollectionQueryParametersReadable = {
@@ -567,6 +581,8 @@ export type InvoiceAdjustmentDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<InvoiceAdjustmentDto> | null;
 };
 
+export type InvoiceAdjustmentType = 'Discount' | 'Surcharge';
+
 export type InvoiceAdjustmentUpdateDto = {
     currencyId?: string | null;
     priority?: number;
@@ -578,7 +594,7 @@ export type InvoiceAdjustmentUpdateDto = {
     discountAmount?: number;
     totalSurcharge?: number;
     totalDiscount?: number;
-    type?: 'Discount' | 'Surcharge';
+    type?: InvoiceAdjustmentType;
 };
 
 export type InvoiceCreateDto = {
@@ -628,8 +644,8 @@ export type InvoiceCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     paid?: boolean;
     number?: number;
     notes?: string | null;
@@ -642,9 +658,9 @@ export type InvoiceCreateDto = {
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
     customerNotes?: string | null;
-    invoiceType?: 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+    invoiceType?: InvoiceType;
+    documentType?: DocumentType;
+    invoiceStatus?: InvoiceStatus;
     paymentDue?: string | null;
     validFrom?: string | null;
     validTo?: string | null;
@@ -709,8 +725,8 @@ export type InvoiceDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -751,6 +767,7 @@ export type InvoiceDto = {
     totalGlobalSurchargesInUsd?: number;
     totalInUsd?: number;
     paid?: boolean;
+    issuedAtUtc?: string | null;
     number?: number;
     notes?: string | null;
     orderId?: string | null;
@@ -762,9 +779,9 @@ export type InvoiceDto = {
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
     paymentDue?: string | null;
-    invoiceType?: 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+    invoiceType?: InvoiceType;
+    documentType?: DocumentType;
+    invoiceStatus?: InvoiceStatus;
 };
 
 export type InvoiceDtoCollectionQueryParametersReadable = {
@@ -840,7 +857,7 @@ export type InvoiceDtoListEnvelopeWritable = {
     result?: Array<InvoiceDto> | null;
 };
 
-export type InvoiceEnumerationRangeDto = {
+export type InvoiceEnumerationRangeDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     prefix?: string | null;
@@ -855,8 +872,69 @@ export type InvoiceEnumerationRangeDto = {
     fiscalAuthorityId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
+    documentType?: DocumentType;
+    readonly remainingNumbers?: number;
+    health?: InvoiceEnumerationRangeHealth;
 };
+
+export type InvoiceEnumerationRangeDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    prefix?: string | null;
+    suffix?: string | null;
+    identifier?: string | null;
+    qualifiedName?: string | null;
+    currentNumeration?: number;
+    numerationTo?: number;
+    numerationFrom?: number;
+    validFrom?: string;
+    validTo?: string;
+    fiscalAuthorityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    documentType?: DocumentType;
+    health?: InvoiceEnumerationRangeHealth;
+};
+
+export type InvoiceEnumerationRangeHealth = 'Active' | 'ExpiringSoon' | 'NearlyExhausted' | 'Exhausted' | 'Expired' | 'NotYetValid';
+
+export type InvoiceEstablishmentRepostRequest = {
+    reason?: string | null;
+};
+
+export type InvoiceEstablishmentRepostResultDto = {
+    invoiceId?: InvoiceId;
+    repostNumber?: number;
+    idempotencyKey?: string | null;
+    originalOutboxMessageId?: OutboxMessageId;
+};
+
+export type InvoiceEstablishmentRepostResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InvoiceEstablishmentRepostResultDto;
+};
+
+export type InvoiceEstablishmentRepostResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InvoiceEstablishmentRepostResultDto;
+};
+
+export type InvoiceId = string;
 
 export type InvoiceIssuedAtBackfillResultDto = {
     invoicesStamped?: number;
@@ -1010,15 +1088,15 @@ export type InvoiceLineCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     quantity?: number;
     itemId?: string | null;
     invoiceId?: string | null;
     itemPriceId?: string | null;
 };
 
-export type InvoiceLineDto = {
+export type InvoiceLineDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -1043,8 +1121,125 @@ export type InvoiceLineDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    itemId?: string | null;
+    itemTitle?: string | null;
+    itemShortDescription?: string | null;
+    itemPrimaryImageUrl?: string | null;
+    shippingPolicyId?: string | null;
+    quantity?: number;
+    readonly unitPrice?: number;
+    free?: boolean;
+    freeReason?: string | null;
+    freeReasonCode?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    itemPriceId?: string | null;
+    priceListItemId?: string | null;
+    unitId?: string | null;
+    unitGroupId?: string | null;
+    totalWarrantyCostInUsd?: number;
+    totalReturnCostInUsd?: number;
+    totalRefundCostInUsd?: number;
+    customGlobalSurchargesAmount?: number;
+    customGlobalDiscountsAmount?: number;
+    returnPolicyId?: string | null;
+    refundPolicyId?: string | null;
+    warrantyPolicyId?: string | null;
+    shipmentPolicyId?: string | null;
+    shippingLocationId?: string | null;
+    locationId?: string | null;
+    quoteItemRecordId?: string | null;
+    businessProfileRecordId?: string | null;
+    parentBillingItemRecordId?: string | null;
+    invoiceId?: string | null;
+};
+
+export type InvoiceLineDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -1168,7 +1363,7 @@ export type InvoiceLineDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: InvoiceLineDto;
+    result?: InvoiceLineDtoReadable;
 };
 
 export type InvoiceLineDtoEnvelopeWritable = {
@@ -1179,7 +1374,7 @@ export type InvoiceLineDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: InvoiceLineDto;
+    result?: InvoiceLineDtoWritable;
 };
 
 export type InvoiceLineDtoIReadOnlyListEnvelopeReadable = {
@@ -1193,7 +1388,7 @@ export type InvoiceLineDtoIReadOnlyListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<InvoiceLineDto> | null;
+    result?: Array<InvoiceLineDtoReadable> | null;
 };
 
 export type InvoiceLineDtoIReadOnlyListEnvelopeWritable = {
@@ -1204,7 +1399,7 @@ export type InvoiceLineDtoIReadOnlyListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<InvoiceLineDto> | null;
+    result?: Array<InvoiceLineDtoWritable> | null;
 };
 
 export type InvoiceLineDtoListEnvelopeReadable = {
@@ -1218,7 +1413,7 @@ export type InvoiceLineDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<InvoiceLineDto> | null;
+    result?: Array<InvoiceLineDtoReadable> | null;
 };
 
 export type InvoiceLineDtoListEnvelopeWritable = {
@@ -1229,7 +1424,7 @@ export type InvoiceLineDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<InvoiceLineDto> | null;
+    result?: Array<InvoiceLineDtoWritable> | null;
 };
 
 export type InvoiceLineUpdateDto = {
@@ -1281,8 +1476,8 @@ export type InvoiceLineUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     quantity?: number;
     itemId?: string | null;
     itemPriceId?: string | null;
@@ -1294,8 +1489,8 @@ export type InvoiceLineUpdateDto = {
 export type InvoiceNoteDto = {
     id?: string | null;
     parentInvoiceId?: string | null;
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    reason?: 'Return' | 'Annulment' | 'Discount' | 'PriceAdjustment' | 'Other' | 'Interest' | 'Charges' | 'ValueChange';
+    documentType?: DocumentType;
+    reason?: BillingNoteReason;
     reasonDescription?: string | null;
     enumeration?: string | null;
     amount?: number;
@@ -1436,6 +1631,10 @@ export type InvoiceReferenceUpdateDto = {
     referencedInvoiceId?: string | null;
 };
 
+export type InvoiceStatus = 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+
+export type InvoiceType = 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
+
 export type InvoiceUpdateDto = {
     closed?: boolean;
     title?: string | null;
@@ -1485,8 +1684,8 @@ export type InvoiceUpdateDto = {
     totalTaxesCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     paid?: boolean;
     number?: number;
     notes?: string | null;
@@ -1499,9 +1698,9 @@ export type InvoiceUpdateDto = {
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
     customerNotes?: string | null;
-    invoiceType?: 'PurchaseInvoice' | 'SalesInvoice' | 'CreditNote' | 'DebitNote';
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
-    invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
+    invoiceType?: InvoiceType;
+    documentType?: DocumentType;
+    invoiceStatus?: InvoiceStatus;
     paymentDue?: string | null;
     validFrom?: string | null;
     validTo?: string | null;
@@ -1552,6 +1751,10 @@ export type MoneyEnvelopeWritable = {
     result?: MoneyWritable;
 };
 
+export type OnBehalfOf = 'Self' | 'Tenant' | 'Individual' | 'Organization';
+
+export type OutboxMessageId = string;
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
@@ -1581,9 +1784,9 @@ export type PaymentDto = {
     referenceCode?: string | null;
     correlationCode?: string | null;
     lastUpdated?: string;
-    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
-    paymentType?: 'Paid' | 'Received' | 'Internal';
-    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    onBehalfOf?: OnBehalfOf;
+    paymentType?: PaymentType;
+    paymentStatus?: PaymentStatus;
     baseCost?: number;
     signature?: string | null;
     signatureMismatch?: boolean;
@@ -1671,6 +1874,10 @@ export type PaymentDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<PaymentDto> | null;
 };
 
+export type PaymentStatus = 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+
+export type PaymentType = 'Paid' | 'Received' | 'Internal';
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1695,7 +1902,7 @@ export type SimpleContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1726,7 +1933,7 @@ export type SimpleContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1805,11 +2012,13 @@ export type SimpleUserDtoWritable = {
     socialProfileId?: string | null;
 };
 
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1850,7 +2059,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -2289,6 +2498,51 @@ export type PlatformPostAccountManageDownloadPersonalDataResponses = {
      */
     200: unknown;
 };
+
+export type InvoiceEstablishmentRepostRepostInvoiceEstablishmentData = {
+    body?: InvoiceEstablishmentRepostRequest;
+    path: {
+        invoiceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/EstablishmentRepost';
+};
+
+export type InvoiceEstablishmentRepostRepostInvoiceEstablishmentErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+    /**
+     * Too Many Requests
+     */
+    429: ErrorEnvelopeReadable;
+};
+
+export type InvoiceEstablishmentRepostRepostInvoiceEstablishmentError = InvoiceEstablishmentRepostRepostInvoiceEstablishmentErrors[keyof InvoiceEstablishmentRepostRepostInvoiceEstablishmentErrors];
+
+export type InvoiceEstablishmentRepostRepostInvoiceEstablishmentResponses = {
+    /**
+     * OK
+     */
+    200: InvoiceEstablishmentRepostResultDtoEnvelopeReadable;
+};
+
+export type InvoiceEstablishmentRepostRepostInvoiceEstablishmentResponse = InvoiceEstablishmentRepostRepostInvoiceEstablishmentResponses[keyof InvoiceEstablishmentRepostRepostInvoiceEstablishmentResponses];
 
 export type InvoicesGetInvoicesData = {
     body?: InvoiceDtoCollectionQueryParametersWritable;

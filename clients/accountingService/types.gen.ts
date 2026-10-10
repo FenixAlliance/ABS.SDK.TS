@@ -20,6 +20,10 @@ export type Account = {
     type?: string | null;
 };
 
+export type AccountBalanceCriteria = 'Debit' | 'Credit';
+
+export type AccountCategory = 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+
 export type AccountCreateDto = {
     id?: string;
     timestamp?: string;
@@ -33,10 +37,10 @@ export type AccountCreateDto = {
     contactId?: string | null;
     accountTypeId?: string | null;
     parentAccountId?: string | null;
-    accountCategory: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    accountCategory: AccountCategory;
     isContra?: boolean;
     isMonetary?: boolean;
-    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
+    incomeStatementSubType?: IncomeStatementSubType;
 };
 
 export type AccountDtoReadable = {
@@ -65,11 +69,11 @@ export type AccountDtoReadable = {
     tenantId?: string | null;
     enrollmentId?: string | null;
     childrenAccountsCount?: number;
-    accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    accountCategory?: AccountCategory;
     isContra?: boolean;
     isMonetary?: boolean;
-    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
-    normalBalance?: 'Debit' | 'Credit';
+    incomeStatementSubType?: IncomeStatementSubType;
+    normalBalance?: AccountBalanceCriteria;
     balanceAmount?: MoneyReadable;
     creditsBalanceAmount?: MoneyReadable;
     debitsBalanceAmount?: MoneyReadable;
@@ -104,11 +108,11 @@ export type AccountDtoWritable = {
     tenantId?: string | null;
     enrollmentId?: string | null;
     childrenAccountsCount?: number;
-    accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    accountCategory?: AccountCategory;
     isContra?: boolean;
     isMonetary?: boolean;
-    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
-    normalBalance?: 'Debit' | 'Credit';
+    incomeStatementSubType?: IncomeStatementSubType;
+    normalBalance?: AccountBalanceCriteria;
     balanceAmount?: MoneyWritable;
     creditsBalanceAmount?: MoneyWritable;
     debitsBalanceAmount?: MoneyWritable;
@@ -459,10 +463,10 @@ export type AccountUpdateDto = {
     contactId?: string | null;
     accountTypeId?: string | null;
     parentAccountId?: string | null;
-    accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    accountCategory?: AccountCategory;
     isContra?: boolean;
     isMonetary?: boolean;
-    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
+    incomeStatementSubType?: IncomeStatementSubType;
 };
 
 export type AccountingEntryCreateDto = {
@@ -470,7 +474,7 @@ export type AccountingEntryCreateDto = {
     timestamp?: string;
     journalEntryId: string;
     accountId: string;
-    direction: 'Debit' | 'Credit';
+    direction: PostingDirection;
     transactionAmount?: number;
     transactionCurrencyId?: string | null;
     description: string;
@@ -484,7 +488,7 @@ export type AccountingEntryDtoReadable = {
     journalEntryId?: string | null;
     accountId?: string | null;
     accountName?: string | null;
-    direction?: 'Debit' | 'Credit';
+    direction?: PostingDirection;
     description?: string | null;
     transactionAmount?: number;
     transactionCurrencyId?: string | null;
@@ -511,7 +515,7 @@ export type AccountingEntryDtoWritable = {
     journalEntryId?: string | null;
     accountId?: string | null;
     accountName?: string | null;
-    direction?: 'Debit' | 'Credit';
+    direction?: PostingDirection;
     description?: string | null;
     transactionAmount?: number;
     transactionCurrencyId?: string | null;
@@ -604,7 +608,7 @@ export type AccountingEntryDtoListEnvelopeWritable = {
 export type AccountingEntryUpdateDto = {
     journalEntryId?: string | null;
     accountId?: string | null;
-    direction?: 'Debit' | 'Credit';
+    direction?: PostingDirection;
     transactionAmount?: number;
     transactionCurrencyId?: string | null;
     description?: string | null;
@@ -1110,7 +1114,7 @@ export type BankGuaranteeCreateDto = {
     startDate?: string;
     endDate?: string;
     validityInDays?: number;
-    bankGuaranteeType?: 'Receiving' | 'Providing';
+    bankGuaranteeType?: BankGuaranteeType;
     contactId?: string | null;
     projectId?: string | null;
     orderId?: string | null;
@@ -1132,7 +1136,7 @@ export type BankGuaranteeDto = {
     endDate?: string;
     validityInDays?: number;
     tenantId?: string | null;
-    bankGuaranteeType?: 'Receiving' | 'Providing';
+    bankGuaranteeType?: BankGuaranteeType;
     enrollmentId?: string | null;
     contactId?: string | null;
     projectId?: string | null;
@@ -1215,6 +1219,8 @@ export type BankGuaranteeDtoListEnvelopeWritable = {
     result?: Array<BankGuaranteeDto> | null;
 };
 
+export type BankGuaranteeType = 'Receiving' | 'Providing';
+
 export type BankGuaranteeUpdateDto = {
     margin?: number;
     charges?: number;
@@ -1225,7 +1231,7 @@ export type BankGuaranteeUpdateDto = {
     startDate?: string;
     endDate?: string;
     validityInDays?: number;
-    bankGuaranteeType?: 'Receiving' | 'Providing';
+    bankGuaranteeType?: BankGuaranteeType;
     contactId?: string | null;
     projectId?: string | null;
     orderId?: string | null;
@@ -1512,7 +1518,7 @@ export type BillingProfileCreateDto = {
     duns?: string | null;
     isPublicCompany?: boolean;
     isFactaCustomer?: boolean;
-    taxPayerType?: 'Individual' | 'Business';
+    taxPayerType?: TaxPayerType;
     countryId: string;
     stateId: string;
     cityId: string;
@@ -1573,7 +1579,7 @@ export type BillingProfileDtoReadable = {
     duns?: string | null;
     isPublicCompany?: boolean;
     isFactaCustomer?: boolean;
-    taxPayerType?: 'Individual' | 'Business';
+    taxPayerType?: TaxPayerType;
     countryId: string;
     stateId?: string | null;
     cityId?: string | null;
@@ -1636,7 +1642,7 @@ export type BillingProfileDtoWritable = {
     duns?: string | null;
     isPublicCompany?: boolean;
     isFactaCustomer?: boolean;
-    taxPayerType?: 'Individual' | 'Business';
+    taxPayerType?: TaxPayerType;
     countryId: string;
     stateId?: string | null;
     cityId?: string | null;
@@ -1741,7 +1747,7 @@ export type BillingProfileUpdateDto = {
     duns?: string | null;
     isPublicCompany?: boolean;
     isFactaCustomer?: boolean;
-    taxPayerType?: 'Individual' | 'Business';
+    taxPayerType?: TaxPayerType;
     countryId?: string | null;
     stateId?: string | null;
     cityId?: string | null;
@@ -2124,7 +2130,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -2182,6 +2188,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -2190,7 +2199,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -2248,9 +2257,20 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
+
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
 
 export type CostCentreBudgetCreateDto = {
     id?: string;
@@ -2354,7 +2374,7 @@ export type CostCentreCreateDto = {
     name?: string | null;
     disabled?: boolean;
     description?: string | null;
-    costCentreType?: 'Service' | 'Production';
+    costCentreType?: CostCentreType;
     costCentresGroupId?: string | null;
     parentCostCentreId?: string | null;
 };
@@ -2365,7 +2385,7 @@ export type CostCentreDto = {
     name?: string | null;
     disabled?: boolean;
     description?: string | null;
-    costCentreType?: 'Service' | 'Production';
+    costCentreType?: CostCentreType;
     tenantId?: string | null;
     costCentresGroupId?: string | null;
     parentCostCentreId?: string | null;
@@ -2543,11 +2563,13 @@ export type CostCentreGroupUpdateDto = {
     parentCostCentresGroupId?: string | null;
 };
 
+export type CostCentreType = 'Service' | 'Production';
+
 export type CostCentreUpdateDto = {
     name?: string | null;
     disabled?: boolean;
     description?: string | null;
-    costCentreType?: 'Service' | 'Production';
+    costCentreType?: CostCentreType;
     costCentresGroupId?: string | null;
     parentCostCentreId?: string | null;
 };
@@ -2596,6 +2618,8 @@ export type DecimalEnvelopeWritable = {
     } | null;
     result?: number;
 };
+
+export type DocumentType = 'Standard' | 'DebitNote' | 'CreditNote';
 
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -3139,7 +3163,7 @@ export type FiscalPeriodDto = {
     tenantId?: string | null;
     enrollmentId?: string | null;
     fiscalYearId?: string | null;
-    status?: 'Open' | 'Closed' | 'Locked';
+    status?: FiscalPeriodStatus;
 };
 
 export type FiscalPeriodDtoCollectionQueryParametersReadable = {
@@ -3214,6 +3238,8 @@ export type FiscalPeriodDtoListEnvelopeWritable = {
     } | null;
     result?: Array<FiscalPeriodDto> | null;
 };
+
+export type FiscalPeriodStatus = 'Open' | 'Closed' | 'Locked';
 
 export type FiscalPeriodUpdateDto = {
     name: string;
@@ -3748,6 +3774,8 @@ export type HttpValidationProblemDetails = {
     } | null) | undefined;
 };
 
+export type IncomeStatementSubType = 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
+
 export type InfoRequest = {
     newEmail?: string | null;
     newPassword?: string | null;
@@ -3797,10 +3825,10 @@ export type InvoiceEnumerationRangeCreateDto = {
     validFrom: string;
     validTo: string;
     fiscalAuthorityId?: string | null;
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
+    documentType?: DocumentType;
 };
 
-export type InvoiceEnumerationRangeDto = {
+export type InvoiceEnumerationRangeDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     prefix?: string | null;
@@ -3815,7 +3843,28 @@ export type InvoiceEnumerationRangeDto = {
     fiscalAuthorityId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
+    documentType?: DocumentType;
+    readonly remainingNumbers?: number;
+    health?: InvoiceEnumerationRangeHealth;
+};
+
+export type InvoiceEnumerationRangeDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    prefix?: string | null;
+    suffix?: string | null;
+    identifier?: string | null;
+    qualifiedName?: string | null;
+    currentNumeration?: number;
+    numerationTo?: number;
+    numerationFrom?: number;
+    validFrom?: string;
+    validTo?: string;
+    fiscalAuthorityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    documentType?: DocumentType;
+    health?: InvoiceEnumerationRangeHealth;
 };
 
 export type InvoiceEnumerationRangeDtoCollectionQueryParametersReadable = {
@@ -3852,7 +3901,7 @@ export type InvoiceEnumerationRangeDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: InvoiceEnumerationRangeDto;
+    result?: InvoiceEnumerationRangeDtoReadable;
 };
 
 export type InvoiceEnumerationRangeDtoEnvelopeWritable = {
@@ -3863,7 +3912,7 @@ export type InvoiceEnumerationRangeDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: InvoiceEnumerationRangeDto;
+    result?: InvoiceEnumerationRangeDtoWritable;
 };
 
 export type InvoiceEnumerationRangeDtoListEnvelopeReadable = {
@@ -3877,7 +3926,7 @@ export type InvoiceEnumerationRangeDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<InvoiceEnumerationRangeDto> | null;
+    result?: Array<InvoiceEnumerationRangeDtoReadable> | null;
 };
 
 export type InvoiceEnumerationRangeDtoListEnvelopeWritable = {
@@ -3888,8 +3937,10 @@ export type InvoiceEnumerationRangeDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<InvoiceEnumerationRangeDto> | null;
+    result?: Array<InvoiceEnumerationRangeDtoWritable> | null;
 };
+
+export type InvoiceEnumerationRangeHealth = 'Active' | 'ExpiringSoon' | 'NearlyExhausted' | 'Exhausted' | 'Expired' | 'NotYetValid';
 
 export type InvoiceEnumerationRangeUpdateDto = {
     prefix?: string | null;
@@ -3902,7 +3953,7 @@ export type InvoiceEnumerationRangeUpdateDto = {
     validFrom?: string;
     validTo?: string;
     fiscalAuthorityId?: string | null;
-    documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
+    documentType?: DocumentType;
 };
 
 export type ItemTaxPolicyRecordCreateDto = {
@@ -4128,8 +4179,8 @@ export type JournalEntryDtoReadable = {
     fiscalPeriodId?: string | null;
     financialBookId?: string | null;
     description?: string | null;
-    entryType?: 'Simple' | 'Compound' | 'Adjusting' | 'Reversing';
-    status?: 'Draft' | 'Posted' | 'Reversed' | 'Voided';
+    entryType?: JournalEntryType;
+    status?: JournalEntryStatus;
     postingDate?: string | null;
     isOpeningBalance?: boolean;
     transactionCurrencyId?: string | null;
@@ -4139,12 +4190,12 @@ export type JournalEntryDtoReadable = {
     reversalOfJournalEntryId?: string | null;
     postedBy?: string | null;
     executionPrincipalId?: string | null;
-    executionPrincipalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    executionPrincipalKind?: PrincipalKind;
     executionPrincipalEnrollmentId?: string | null;
-    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    runAs?: RunAs;
     applicationId?: string | null;
     onBehalfOfPrincipalId?: string | null;
-    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    onBehalfOfActorKind?: PrincipalKind;
     readonly hasDualAxisIdentity?: boolean;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
@@ -4170,8 +4221,8 @@ export type JournalEntryDtoWritable = {
     fiscalPeriodId?: string | null;
     financialBookId?: string | null;
     description?: string | null;
-    entryType?: 'Simple' | 'Compound' | 'Adjusting' | 'Reversing';
-    status?: 'Draft' | 'Posted' | 'Reversed' | 'Voided';
+    entryType?: JournalEntryType;
+    status?: JournalEntryStatus;
     postingDate?: string | null;
     isOpeningBalance?: boolean;
     transactionCurrencyId?: string | null;
@@ -4181,12 +4232,12 @@ export type JournalEntryDtoWritable = {
     reversalOfJournalEntryId?: string | null;
     postedBy?: string | null;
     executionPrincipalId?: string | null;
-    executionPrincipalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    executionPrincipalKind?: PrincipalKind;
     executionPrincipalEnrollmentId?: string | null;
-    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    runAs?: RunAs;
     applicationId?: string | null;
     onBehalfOfPrincipalId?: string | null;
-    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    onBehalfOfActorKind?: PrincipalKind;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     debitInUsd?: number;
@@ -4270,6 +4321,10 @@ export type JournalEntryDtoIReadOnlyListEnvelopeWritable = {
     } | null;
     result?: Array<JournalEntryDtoWritable> | null;
 };
+
+export type JournalEntryStatus = 'Draft' | 'Posted' | 'Reversed' | 'Voided';
+
+export type JournalEntryType = 'Simple' | 'Compound' | 'Adjusting' | 'Reversing';
 
 export type JournalEntryUpdateDto = {
     fiscalPeriodId: string;
@@ -4380,6 +4435,8 @@ export type JournalUpdateDto = {
     ledgerId?: string | null;
 };
 
+export type LedgerClass = 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+
 export type LedgerDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -4468,14 +4525,14 @@ export type LedgerTypeCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
-    ledgerClass?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    ledgerClass?: LedgerClass;
 };
 
 export type LedgerTypeDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
-    ledgerClass?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    ledgerClass?: LedgerClass;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -4555,7 +4612,7 @@ export type LedgerTypeDtoIReadOnlyListEnvelopeWritable = {
 
 export type LedgerTypeUpdateDto = {
     name?: string | null;
-    ledgerClass?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    ledgerClass?: LedgerClass;
 };
 
 export type LoanApplicationCreateDto = {
@@ -5016,10 +5073,14 @@ export type PostingBookResultDto = {
     id?: string | null;
     timestamp?: string | null;
     financialBookId?: string | null;
-    status?: 'Posted' | 'Duplicate' | 'Rejected';
+    status?: PostingBookResultStatus;
     journalEntryId?: string | null;
     failureCode?: string | null;
 };
+
+export type PostingBookResultStatus = 'Posted' | 'Duplicate' | 'Rejected';
+
+export type PostingDirection = 'Debit' | 'Credit';
 
 export type PostingExecutionDto = {
     id?: string | null;
@@ -5032,8 +5093,8 @@ export type PostingExecutionDto = {
     postingOperation?: string | null;
     sourceDocumentType?: string | null;
     sourceDocumentId?: string | null;
-    status?: 'Received' | 'Processing' | 'Posted' | 'Duplicate' | 'PendingMapping' | 'PendingPeriod' | 'PendingRate' | 'Rejected';
-    failureKind?: 'UnknownOperation' | 'UnknownRole' | 'AmbiguousPolicy' | 'MissingAccountMapping' | 'MissingFinancialBook' | 'MissingJournal' | 'ClosedPeriod' | 'MissingFxRate' | 'InvalidFxEvidence' | 'UnbalancedPlan' | 'DuplicateIntent' | 'DuplicateBookPosting' | 'InvalidPartyReference' | 'InvalidCustodyContext' | 'PolicyConfigurationError';
+    status?: PostingExecutionStatus;
+    failureKind?: PostingFailureKind;
     failureCode?: string | null;
     retryable?: boolean;
     correlationId?: string | null;
@@ -5042,7 +5103,7 @@ export type PostingExecutionDto = {
     processingStartedAtUtc?: string | null;
     completedAtUtc?: string | null;
     bookResults?: Array<PostingBookResultDto> | null;
-    failureClass?: 'Retryable' | 'OperatorActionRequired' | 'ConfigurationError' | 'ProducerError';
+    failureClass?: PostingFailureClass;
 };
 
 export type PostingExecutionDtoCollectionQueryParametersReadable = {
@@ -5093,6 +5154,14 @@ export type PostingExecutionDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<PostingExecutionDto> | null;
 };
 
+export type PostingExecutionStatus = 'Received' | 'Processing' | 'Posted' | 'Duplicate' | 'PendingMapping' | 'PendingPeriod' | 'PendingRate' | 'Rejected';
+
+export type PostingFailureClass = 'Retryable' | 'OperatorActionRequired' | 'ConfigurationError' | 'ProducerError';
+
+export type PostingFailureKind = 'UnknownOperation' | 'UnknownRole' | 'AmbiguousPolicy' | 'MissingAccountMapping' | 'MissingFinancialBook' | 'MissingJournal' | 'ClosedPeriod' | 'MissingFxRate' | 'InvalidFxEvidence' | 'UnbalancedPlan' | 'DuplicateIntent' | 'DuplicateBookPosting' | 'InvalidPartyReference' | 'InvalidCustodyContext' | 'PolicyConfigurationError';
+
+export type PrincipalKind = 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+
 export type ReceiptCreateDto = {
     id?: string;
     timestamp?: string;
@@ -5140,13 +5209,13 @@ export type ReceiptCreateDto = {
     totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: CostCalculationMethod;
+    taxCalculationMethod?: TaxCalculationMethod;
     paymentId?: string | null;
     totalAmount?: number;
     totalAmountInUSD?: number;
     contactId?: string | null;
-    receiptType?: 'PaymentReceipt' | 'PurchaseReceipt';
+    receiptType?: ReceiptType;
     orderId?: string | null;
     invoiceId?: string | null;
 };
@@ -5160,7 +5229,7 @@ export type ReceiptDto = {
     userId?: string | null;
     contactId?: string | null;
     enrollmentId?: string | null;
-    receiptType?: 'PaymentReceipt' | 'PurchaseReceipt';
+    receiptType?: ReceiptType;
     orderId?: string | null;
     invoiceId?: string | null;
 };
@@ -5238,6 +5307,8 @@ export type ReceiptDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<ReceiptDto> | null;
 };
 
+export type ReceiptType = 'PaymentReceipt' | 'PurchaseReceipt';
+
 export type ReceiptUpdateDto = {
     paymentId?: string | null;
     forexRate?: number;
@@ -5272,6 +5343,8 @@ export type ResetPasswordRequest = {
 export type ReverseJournalEntryRequest = {
     reversalPeriodId: string;
 };
+
+export type RunAs = 'Invoker' | 'Application' | 'System' | 'Service';
 
 export type SeedChartOfAccountsRequest = {
     fileUrl?: string | null;
@@ -5674,11 +5747,13 @@ export type ShareTransferUpdateDto = {
     shareTransferReasonId?: string | null;
 };
 
+export type TaxCalculationMethod = 'Included' | 'Excluded';
+
 export type TaxClassCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    type?: 'Tax' | 'Withholding';
+    type?: TaxClassType;
     fiscalAuthorityId?: string | null;
 };
 
@@ -5687,7 +5762,7 @@ export type TaxClassDto = {
     timestamp?: string | null;
     name?: string | null;
     tenantId?: string | null;
-    type?: 'Tax' | 'Withholding';
+    type?: TaxClassType;
     enrollmentId?: string | null;
     fiscalAuthorityId?: string | null;
 };
@@ -5765,11 +5840,15 @@ export type TaxClassDtoListEnvelopeWritable = {
     result?: Array<TaxClassDto> | null;
 };
 
+export type TaxClassType = 'Tax' | 'Withholding';
+
 export type TaxClassUpdateDto = {
     name?: string | null;
-    type?: 'Tax' | 'Withholding';
+    type?: TaxClassType;
     fiscalAuthorityId?: string | null;
 };
+
+export type TaxPayerType = 'Individual' | 'Business';
 
 export type TaxPolicyCreateDto = {
     id?: string;
@@ -6336,7 +6415,7 @@ export type TrialBalanceRowDto = {
     accountId?: string | null;
     code?: string | null;
     name?: string | null;
-    normalBalance?: 'Debit' | 'Credit';
+    normalBalance?: AccountBalanceCriteria;
     debit?: number;
     credit?: number;
 };

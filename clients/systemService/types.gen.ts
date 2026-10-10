@@ -17,8 +17,8 @@ export type ApplicationPrincipalDetailDto = {
     id?: string | null;
     timestamp?: string | null;
     displayName?: string | null;
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
-    principalStatus?: 'Active' | 'Suspended' | 'Disabled';
+    principalKind?: PrincipalKind;
+    principalStatus?: PrincipalStatus;
     businessApplicationId?: string | null;
     businessApplicationName?: string | null;
     businessApplicationNamespace?: string | null;
@@ -59,8 +59,8 @@ export type ApplicationPrincipalDto = {
     id?: string | null;
     timestamp?: string | null;
     displayName?: string | null;
-    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
-    principalStatus?: 'Active' | 'Suspended' | 'Disabled';
+    principalKind?: PrincipalKind;
+    principalStatus?: PrincipalStatus;
     businessApplicationId?: string | null;
     businessApplicationName?: string | null;
     systemLocked?: boolean;
@@ -266,6 +266,8 @@ export type BusinessDomainDtoListEnvelopeWritable = {
     result?: Array<BusinessDomainDto> | null;
 };
 
+export type BusinessEntityKind = 'Organization' | 'Individual';
+
 export type CartDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -279,6 +281,8 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+    saleChannel?: SaleChannel;
+    directSellerTenantId?: string | null;
 };
 
 export type CartDtoCollectionQueryParametersReadable = {
@@ -354,13 +358,15 @@ export type CartDtoListEnvelopeWritable = {
     result?: Array<CartDto> | null;
 };
 
+export type EmailAlertType = 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+
 export type EmailDispatchRequest = {
     title: string;
     message: string;
     buttonLink?: string | null;
     buttonText?: string | null;
     alertMessage?: string | null;
-    alertType?: 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+    alertType?: EmailAlertType;
     culture: string;
     uiCulture: string;
     recipients: Array<string>;
@@ -446,7 +452,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -490,7 +496,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -601,7 +607,7 @@ export type ExtendedUserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -620,11 +626,11 @@ export type ExtendedUserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -655,7 +661,7 @@ export type ExtendedUserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -674,11 +680,11 @@ export type ExtendedUserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
     cart?: CartDto;
     wallet?: WalletDto;
     socialProfile?: SocialProfileDto;
@@ -762,6 +768,8 @@ export type ExtendedUserDtoListEnvelopeWritable = {
 export type ForgotPasswordRequest = {
     email: string | null;
 };
+
+export type Gender = 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
 
 export type GuestCartPurgeResultDto = {
     guestCartsDeleted?: number;
@@ -1011,10 +1019,10 @@ export type InboxMessageDto = {
     messageType?: string | null;
     version?: string | null;
     contentType?: string | null;
-    status?: 'Received' | 'AuthenticityPending' | 'Accepted' | 'Processing' | 'Succeeded' | 'RetryScheduled' | 'Rejected' | 'Quarantined' | 'DeadLettered' | 'Cancelled';
+    status?: InboxMessageStatus;
     attempts?: number;
     maxAttempts?: number;
-    verificationStatus?: 'Unverified' | 'Verified' | 'Failed' | 'Untrusted' | 'NotRequired';
+    verificationStatus?: InboxVerificationStatus;
     verificationProfile?: string | null;
     verificationAlgorithm?: string | null;
     verifiedAtUtc?: string | null;
@@ -1108,6 +1116,8 @@ export type InboxMessageDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<InboxMessageDto> | null;
 };
 
+export type InboxMessageStatus = 'Received' | 'AuthenticityPending' | 'Accepted' | 'Processing' | 'Succeeded' | 'RetryScheduled' | 'Rejected' | 'Quarantined' | 'DeadLettered' | 'Cancelled';
+
 export type InboxReplayResultDto = {
     newInboxMessageId?: string | null;
     rootInboxMessageId?: string | null;
@@ -1138,6 +1148,8 @@ export type InboxReplayResultDtoEnvelopeWritable = {
     } | null;
     result?: InboxReplayResultDto;
 };
+
+export type InboxVerificationStatus = 'Unverified' | 'Verified' | 'Failed' | 'Untrusted' | 'NotRequired';
 
 export type InfoRequest = {
     newEmail?: string | null;
@@ -1186,6 +1198,8 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type ModuleCategory = 'Other' | 'FinanceAndAccounting' | 'SalesAndCommerce' | 'MarketingAndEngagement' | 'CustomerRelations' | 'OperationsAndSupplyChain' | 'ProjectsAndProductivity' | 'PeopleAndWorkforce' | 'LearningAndEducation' | 'ContentAndWeb' | 'DataAndAnalytics' | 'ArtificialIntelligence' | 'SecurityAndIdentity' | 'TrustAndCompliance' | 'Communication' | 'DeveloperAndPlatform' | 'IndustrySolutions';
+
 export type ModuleGrantDto = {
     module?: string | null;
     expiresAt?: string | null;
@@ -1219,13 +1233,15 @@ export type ModuleGrantDtoListEnvelopeWritable = {
     result?: Array<ModuleGrantDto> | null;
 };
 
+export type ModuleType = 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration' | 'WasmModule' | 'WasmIntegration';
+
 export type ObjectEmailDispatchRequest = {
     title: string;
     message: string;
     buttonLink?: string | null;
     buttonText?: string | null;
     alertMessage?: string | null;
-    alertType?: 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+    alertType?: EmailAlertType;
     culture: string;
     uiCulture: string;
     recipients: Array<string>;
@@ -1344,6 +1360,10 @@ export type OptionUpdateDto = {
     expiration?: number;
 };
 
+export type OrderStatus = 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+
+export type OrderType = 'SalesOrder' | 'PurchaseOrder';
+
 export type OutboxAdminReasonDto = {
     reason: string;
 };
@@ -1389,9 +1409,9 @@ export type OutboxMessageDto = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    kind?: 'Event' | 'Command';
+    kind?: OutboxMessageKind;
     messageType?: string | null;
-    status?: 'Pending' | 'Processing' | 'Succeeded' | 'Failed' | 'DeadLettered' | 'Cancelled';
+    status?: OutboxMessageStatus;
     attempts?: number;
     maxAttempts?: number;
     failureCode?: string | null;
@@ -1480,6 +1500,10 @@ export type OutboxMessageDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<OutboxMessageDto> | null;
 };
 
+export type OutboxMessageKind = 'Event' | 'Command';
+
+export type OutboxMessageStatus = 'Pending' | 'Processing' | 'Succeeded' | 'Failed' | 'DeadLettered' | 'Cancelled';
+
 export type OutboxPoisonPositionDto = {
     consumerKey?: string | null;
     partitionKey?: string | null;
@@ -1520,12 +1544,18 @@ export type OutboxPoisonPositionDtoIReadOnlyListEnvelopeWritable = {
     result?: Array<OutboxPoisonPositionDto> | null;
 };
 
+export type OutboxPoisonResolutionKind = 'Replayed' | 'Superseded';
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
     from?: string | null;
     value?: unknown;
 };
+
+export type PrincipalKind = 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+
+export type PrincipalStatus = 'Active' | 'Suspended' | 'Disabled';
 
 export type RefreshRequest = {
     refreshToken: string | null;
@@ -1550,10 +1580,12 @@ export type ResolveOutboxPoisonRequest = {
     consumerKey?: string | null;
     partitionKey: string;
     sequence?: number;
-    kind: 'Replayed' | 'Superseded';
+    kind: OutboxPoisonResolutionKind;
     reason: string;
     replacementSequence?: number | null;
 };
+
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
 
 export type SecurityPermissionDto = {
     id?: string | null;
@@ -1578,6 +1610,8 @@ export type SetUserPasswordDto = {
     newPassword: string;
 };
 
+export type SiteTheme = 'System' | 'Light' | 'Dark';
+
 export type SocialProfileDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -1594,7 +1628,7 @@ export type SocialProfileDto = {
     notificationsCount?: number | null;
     unreadNotificationsCount?: number | null;
     unreadMessagesCount?: number | null;
-    type?: 'User' | 'Tenant' | 'Contact';
+    type?: SocialProfileType;
     socialFeedId?: string | null;
     twitterUrl?: string | null;
     facebookURL?: string | null;
@@ -1606,6 +1640,8 @@ export type SocialProfileDto = {
     domain?: string | null;
     notes?: string | null;
 };
+
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
 
 export type StringListEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -1776,8 +1812,8 @@ export type SuiteModuleReadable = {
     name?: string | null;
     readonly fullName?: string | null;
     description?: string | null;
-    type?: 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration' | 'WasmModule' | 'WasmIntegration';
-    category?: 'Other' | 'FinanceAndAccounting' | 'SalesAndCommerce' | 'MarketingAndEngagement' | 'CustomerRelations' | 'OperationsAndSupplyChain' | 'ProjectsAndProductivity' | 'PeopleAndWorkforce' | 'LearningAndEducation' | 'ContentAndWeb' | 'DataAndAnalytics' | 'ArtificialIntelligence' | 'SecurityAndIdentity' | 'TrustAndCompliance' | 'Communication' | 'DeveloperAndPlatform' | 'IndustrySolutions';
+    type?: ModuleType;
+    category?: ModuleCategory;
     configuration?: string | null;
     author?: string | null;
     authorUrl?: string | null;
@@ -1807,8 +1843,8 @@ export type SuiteModuleWritable = {
     id?: string | null;
     name?: string | null;
     description?: string | null;
-    type?: 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration' | 'WasmModule' | 'WasmIntegration';
-    category?: 'Other' | 'FinanceAndAccounting' | 'SalesAndCommerce' | 'MarketingAndEngagement' | 'CustomerRelations' | 'OperationsAndSupplyChain' | 'ProjectsAndProductivity' | 'PeopleAndWorkforce' | 'LearningAndEducation' | 'ContentAndWeb' | 'DataAndAnalytics' | 'ArtificialIntelligence' | 'SecurityAndIdentity' | 'TrustAndCompliance' | 'Communication' | 'DeveloperAndPlatform' | 'IndustrySolutions';
+    type?: ModuleType;
+    category?: ModuleCategory;
     configuration?: string | null;
     author?: string | null;
     authorUrl?: string | null;
@@ -1904,7 +1940,7 @@ export type SystemOverviewDtoEnvelopeWritable = {
 export type TenantCreateDto = {
     id?: string;
     timestamp?: string;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     name: string;
     legalName?: string | null;
     email: string;
@@ -1932,7 +1968,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1973,7 +2009,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -2094,7 +2130,7 @@ export type TenantEnrollmentDto = {
 };
 
 export type TenantUpdateDto = {
-    kind?: 'Organization' | 'Individual';
+    kind?: BusinessEntityKind;
     name: string;
     legalName?: string | null;
     email: string;
@@ -2187,6 +2223,8 @@ export type UserAdminUpdateDto = {
     lockoutEnd?: string | null;
 };
 
+export type UserAvailability = 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+
 export type UserCreateDto = {
     id?: string;
     timestamp?: string;
@@ -2196,7 +2234,7 @@ export type UserCreateDto = {
     lastName?: string | null;
     publicName?: string | null;
     idProvider?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     email?: string | null;
     about?: string | null;
     status?: string | null;
@@ -2241,7 +2279,7 @@ export type UserDtoReadable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -2260,11 +2298,11 @@ export type UserDtoReadable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoWritable = {
@@ -2290,7 +2328,7 @@ export type UserDtoWritable = {
     birthday?: string | null;
     idProvider?: string | null;
     languageId?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     cityId?: string | null;
     stateId?: string | null;
     email?: string | null;
@@ -2309,11 +2347,11 @@ export type UserDtoWritable = {
     identityProvider?: string | null;
     phoneNumberConfirmed?: boolean;
     emailConfirmed?: boolean;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
     lockoutEnabled?: boolean;
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserDtoCollectionQueryParametersReadable = {
@@ -2395,10 +2433,24 @@ export type UserExternalLoginDto = {
     providerDisplayName?: string | null;
 };
 
-export type UserOrderSummaryDto = {
+export type UserOrderSummaryDtoReadable = {
     id?: string | null;
-    orderType?: 'SalesOrder' | 'PurchaseOrder';
-    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
+    orderType?: OrderType;
+    orderStatus?: OrderStatus;
+    number?: number | null;
+    readonly numberLabel?: string | null;
+    tenantId?: string | null;
+    receiverTenantId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    timestamp?: string;
+};
+
+export type UserOrderSummaryDtoWritable = {
+    id?: string | null;
+    orderType?: OrderType;
+    orderStatus?: OrderStatus;
+    number?: number | null;
     tenantId?: string | null;
     receiverTenantId?: string | null;
     total?: number;
@@ -2413,7 +2465,7 @@ export type UserSettingsDto = {
     dateFormat?: string | null;
     currencyFormat?: string | null;
     dateTimeFormat?: string | null;
-    siteTheme?: 'System' | 'Light' | 'Dark';
+    siteTheme?: SiteTheme;
 };
 
 export type UserUpdateDto = {
@@ -2423,7 +2475,7 @@ export type UserUpdateDto = {
     lastName?: string | null;
     publicName?: string | null;
     idProvider?: string | null;
-    gender?: 'Unknown' | 'Male' | 'Female' | 'PreferNotToSay';
+    gender?: Gender;
     email?: string | null;
     about?: string | null;
     status?: string | null;
@@ -2442,7 +2494,7 @@ export type UserUpdateDto = {
     linkedInUrl?: string | null;
     instagramUrl?: string | null;
     webUrl?: string | null;
-    availability?: 'DND' | 'Busy' | 'Away' | 'Offline' | 'Available';
+    availability?: UserAvailability;
 };
 
 export type WalletDto = {
@@ -7865,3 +7917,4 @@ export type UsersAdminSendUserEmailResponse = UsersAdminSendUserEmailResponses[k
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});
 };
+export type UserOrderSummaryDto = UserOrderSummaryDtoReadable;

@@ -282,6 +282,18 @@ export interface paths {
      */
     get: operations["Usage_GetTenantUsageAsAdmin"];
   };
+  "/api/v2/LicensingService/Admin/Usage/{targetTenantId}/LimitOverrides": {
+    /**
+     * Get a tenant's usage limit overrides (root admin)
+     * @description Root-admin audit read of one tenant's usage limit overrides, active and past: the license and meter, the grant and pool before and after, the hard stop before and after, the actor, reason and expiry.
+     */
+    get: operations["Usage_GetTenantUsageLimitOverrides"];
+    /**
+     * Override a tenant's usage limit (root admin)
+     * @description Root-admin, audited change to ONE license's grant of one meter: set or extend the allowance, or reset a reached hard stop for the current period. Requires ExpectedRevision (the grant's Revision): 400 when missing, 409 when stale. Changes enforcement limits only. Returns the new override's id.
+     */
+    post: operations["Usage_CreateTenantUsageLimitOverride"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -295,6 +307,8 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    /** @enum {string} */
+    BillingCycle: "Monthly" | "Annual";
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -692,6 +706,21 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    StringEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: string | null;
+    };
     TenantUsageDto: {
       tenantId?: string | null;
       tenantName?: string | null;
@@ -721,14 +750,26 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TenantUsageDto"];
     };
+    TenantUsageLimitOverrideCreateDto: {
+      licenseId: string;
+      meterKey: string;
+      kind: components["schemas"]["UsageLimitOverrideKind"];
+      /** Format: double */
+      quantity?: number | null;
+      expectedRevision: string;
+      /** Format: double */
+      expectedEffectiveAllowance?: number | null;
+      /** Format: date-time */
+      expiresAtUtc?: string | null;
+      reason: string;
+    };
     TenantUsageLimitOverrideDto: {
       id?: string | null;
       tenantId?: string | null;
       licenseId?: string | null;
       meterKey?: string | null;
       entitlementKey?: string | null;
-      /** @enum {string} */
-      kind?: "SetAllowance" | "ExtendAllowance" | "ResetHardStop";
+      kind?: components["schemas"]["UsageLimitOverrideKind"];
       /** Format: double */
       quantity?: number | null;
       /** Format: date-time */
@@ -751,6 +792,21 @@ export interface components {
       stoppedAfter?: boolean;
       active?: boolean;
     };
+    TenantUsageLimitOverrideDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantUsageLimitOverrideDto"][] | null;
+    };
     TenantUsageSummaryDto: {
       tenantId?: string | null;
       tenantName?: string | null;
@@ -761,8 +817,7 @@ export interface components {
       /** Format: double */
       maxPercentUsed?: number | null;
       maxPercentMeterKey?: string | null;
-      /** @enum {string} */
-      worstStatus?: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
+      worstStatus?: components["schemas"]["UsageMeterStatus"];
       /** Format: int32 */
       metersNear?: number;
       /** Format: int32 */
@@ -801,6 +856,10 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    /** @enum {string} */
+    UsageAggregationKind: "PeriodCumulative" | "Gauge" | "TimeIntegral";
+    /** @enum {string} */
+    UsageAllowanceKind: "Finite" | "Unlimited" | "NotIncluded" | "Unknown" | "Unlicensed";
     UsageBudgetDto: {
       budget?: components["schemas"]["UsageMoneyDto"];
       used?: components["schemas"]["UsageMoneyDto"];
@@ -813,10 +872,13 @@ export interface components {
       canManageBudget?: boolean;
       canOverrideLimits?: boolean;
     };
+    /** @enum {string} */
+    UsageCostStatus: "NotRated" | "Estimated" | "Invoiced";
+    /** @enum {string} */
+    UsageDataState: "Measured" | "Partial" | "Delayed" | "Unavailable";
     UsageGrantDto: {
       licenseId?: string | null;
-      /** @enum {string} */
-      allowanceKind?: "Finite" | "Unlimited" | "NotIncluded" | "Unknown" | "Unlicensed";
+      allowanceKind?: components["schemas"]["UsageAllowanceKind"];
       /** Format: double */
       planAllowance?: number | null;
       /** Format: double */
@@ -834,13 +896,16 @@ export interface components {
       entitlements?: components["schemas"]["UsageMeterDto"][] | null;
       pooledEntitlementKeys?: string[] | null;
     };
+    /** @enum {string} */
+    UsageLimitBehavior: "None" | "HardStop" | "Overage";
+    /** @enum {string} */
+    UsageLimitOverrideKind: "SetAllowance" | "ExtendAllowance" | "ResetHardStop";
     UsageMeterDefinitionDto: {
       key?: string | null;
       labelKey?: string | null;
       label?: string | null;
       unit?: string | null;
-      /** @enum {string} */
-      aggregation?: "PeriodCumulative" | "Gauge" | "TimeIntegral";
+      aggregation?: components["schemas"]["UsageAggregationKind"];
       entitlementKey?: string | null;
       sourceService?: string | null;
       rated?: boolean;
@@ -869,10 +934,8 @@ export interface components {
       labelKey?: string | null;
       label?: string | null;
       unit?: string | null;
-      /** @enum {string} */
-      aggregation?: "PeriodCumulative" | "Gauge" | "TimeIntegral";
-      /** @enum {string} */
-      allowanceKind?: "Finite" | "Unlimited" | "NotIncluded" | "Unknown" | "Unlicensed";
+      aggregation?: components["schemas"]["UsageAggregationKind"];
+      allowanceKind?: components["schemas"]["UsageAllowanceKind"];
       /** Format: double */
       allowance?: number | null;
       /** Format: double */
@@ -880,10 +943,9 @@ export interface components {
       overridden?: boolean;
       /** Format: double */
       nearThresholdPercent?: number;
-      allowedOverrides?: (("SetAllowance" | "ExtendAllowance" | "ResetHardStop")[]) | null;
+      allowedOverrides?: components["schemas"]["UsageLimitOverrideKind"][] | null;
       overrideNote?: string | null;
-      /** @enum {string} */
-      dataState?: "Measured" | "Partial" | "Delayed" | "Unavailable";
+      dataState?: components["schemas"]["UsageDataState"];
       /** Format: double */
       consumed?: number | null;
       /** Format: double */
@@ -897,17 +959,14 @@ export interface components {
       /** Format: double */
       projectedAtPeriodEnd?: number | null;
       projectionBasis?: string | null;
-      /** @enum {string} */
-      status?: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
-      /** @enum {string} */
-      limitBehavior?: "None" | "HardStop" | "Overage";
+      status?: components["schemas"]["UsageMeterStatus"];
+      limitBehavior?: components["schemas"]["UsageLimitBehavior"];
       stopped?: boolean;
       /** Format: double */
       includedQuantity?: number | null;
       /** Format: double */
       overageQuantity?: number | null;
-      /** @enum {string} */
-      costStatus?: "NotRated" | "Estimated" | "Invoiced";
+      costStatus?: components["schemas"]["UsageCostStatus"];
       overageCost?: components["schemas"]["UsageMoneyDto"];
       costBasis?: string | null;
       trend?: components["schemas"]["UsageTrendPointDto"][] | null;
@@ -916,6 +975,8 @@ export interface components {
       asOfUtc?: string | null;
       note?: string | null;
     };
+    /** @enum {string} */
+    UsageMeterStatus: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
     UsageMoneyDto: {
       /** Format: double */
       amount?: number;
@@ -937,8 +998,7 @@ export interface components {
       offeringKey?: string | null;
       planSku?: string | null;
       name?: string | null;
-      /** @enum {string} */
-      billingCycle?: "Monthly" | "Annual";
+      billingCycle?: components["schemas"]["BillingCycle"];
       periodPrice?: components["schemas"]["UsageMoneyDto"];
       hardStop?: boolean;
     };
@@ -2692,7 +2752,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        minimumStatus?: "Ok" | "Near" | "AtLimit" | "Over" | "NoAllowance" | "Unavailable" | "Unlicensed";
+        minimumStatus?: components["schemas"]["UsageMeterStatus"];
         search?: string;
         sortBy?: string;
         descending?: boolean;
@@ -2748,6 +2808,135 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a tenant's usage limit overrides (root admin)
+   * @description Root-admin audit read of one tenant's usage limit overrides, active and past: the license and meter, the grant and pool before and after, the hard stop before and after, the actor, reason and expiry.
+   */
+  Usage_GetTenantUsageLimitOverrides: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        targetTenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantUsageLimitOverrideDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["TenantUsageLimitOverrideDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Override a tenant's usage limit (root admin)
+   * @description Root-admin, audited change to ONE license's grant of one meter: set or extend the allowance, or reset a reached hard stop for the current period. Requires ExpectedRevision (the grant's Revision): 400 when missing, 409 when stale. Changes enforcement limits only. Returns the new override's id.
+   */
+  Usage_CreateTenantUsageLimitOverride: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        targetTenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.streaming=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.streaming=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;IEEE754Compatible=false": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json;IEEE754Compatible=true": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/xml": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "text/plain": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "text/xml": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/*+xml": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/json-patch+json": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "text/json": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+        "application/*+json": components["schemas"]["TenantUsageLimitOverrideCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEnvelope"];
+          "application/xml": components["schemas"]["StringEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

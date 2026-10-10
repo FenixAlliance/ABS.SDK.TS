@@ -26,6 +26,8 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+    saleChannel?: SaleChannel;
+    directSellerTenantId?: string | null;
 };
 
 export type CartDtoEnvelopeReadable = {
@@ -56,7 +58,7 @@ export type CartDtoEnvelopeWritable = {
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -101,7 +103,7 @@ export type ContactCreateDtoReadable = {
 export type ContactCreateDtoWritable = {
     id?: string;
     timestamp?: string;
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     firstName: string;
     lastName?: string | null;
     email: string;
@@ -147,7 +149,7 @@ export type ContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -205,6 +207,9 @@ export type ContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -213,7 +218,7 @@ export type ContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -271,6 +276,9 @@ export type ContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
 };
@@ -859,8 +867,14 @@ export type ContactSourceUpdateDto = {
     description?: string | null;
 };
 
+export type ContactStage = 'Lead' | 'Prospect' | 'Customer' | 'Opportunity';
+
+export type ContactStatus = 'New' | 'Active' | 'Qualified' | 'Unqualified';
+
+export type ContactType = 'Individual' | 'Organization';
+
 export type ContactUpdateDtoReadable = {
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     birthday?: string | null;
     duns?: string | null;
     taxId?: string | null;
@@ -903,7 +917,7 @@ export type ContactUpdateDtoReadable = {
 };
 
 export type ContactUpdateDtoWritable = {
-    type: 'Individual' | 'Organization';
+    type: ContactType;
     birthday?: string | null;
     duns?: string | null;
     taxId?: string | null;
@@ -1013,13 +1027,15 @@ export type ContactsGroupUpdateDto = {
     description?: string | null;
 };
 
+export type EmailAlertType = 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+
 export type EmailDispatchRequest = {
     title: string;
     message: string;
     buttonLink?: string | null;
     buttonText?: string | null;
     alertMessage?: string | null;
-    alertType?: 'None' | 'Info' | 'Error' | 'Warning' | 'Success' | 'Action' | 'Alert';
+    alertType?: EmailAlertType;
     culture: string;
     uiCulture: string;
     recipients: Array<string>;
@@ -1106,7 +1122,7 @@ export type ExtendedContactDtoReadable = {
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1164,6 +1180,9 @@ export type ExtendedContactDtoReadable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
     cart?: CartDto;
@@ -1177,7 +1196,7 @@ export type ExtendedContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1235,6 +1254,9 @@ export type ExtendedContactDtoWritable = {
      */
     identityProviderAccessToken?: string | null;
     birthday?: string | null;
+    contactStage?: ContactStage;
+    contactStatus?: ContactStatus;
+    lastContactDate?: string | null;
     tikTokUsername?: string | null;
     instagramUsername?: string | null;
     cart?: CartDto;
@@ -1511,12 +1533,14 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
+
 export type SimpleContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1547,7 +1571,7 @@ export type SimpleContactDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    type?: 'Individual' | 'Organization';
+    type?: ContactType;
     email?: string | null;
     phone?: string | null;
     publicName?: string | null;
@@ -1590,7 +1614,7 @@ export type SocialProfileDto = {
     notificationsCount?: number | null;
     unreadNotificationsCount?: number | null;
     unreadMessagesCount?: number | null;
-    type?: 'User' | 'Tenant' | 'Contact';
+    type?: SocialProfileType;
     socialFeedId?: string | null;
     twitterUrl?: string | null;
     facebookURL?: string | null;
@@ -1627,6 +1651,8 @@ export type SocialProfileDtoEnvelopeWritable = {
     } | null;
     result?: SocialProfileDto;
 };
+
+export type SocialProfileType = 'User' | 'Tenant' | 'Contact';
 
 export type TwoFactorRequest = {
     enable?: boolean | null;

@@ -62,6 +62,8 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+    saleChannel?: SaleChannel;
+    directSellerTenantId?: string | null;
 };
 
 export type CartDtoEnvelopeReadable = {
@@ -93,6 +95,8 @@ export type CartUpdateRequest = {
     currencyId?: string | null;
     countryId?: string | null;
 };
+
+export type CostCalculationMethod = 'Automatic' | 'Custom';
 
 export type CountryDto = {
     id?: string | null;
@@ -256,7 +260,7 @@ export type ItemCartRecordCreateDto = {
     quantity?: number;
 };
 
-export type ItemCartRecordDto = {
+export type ItemCartRecordDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
@@ -281,8 +285,125 @@ export type ItemCartRecordDto = {
     stateId?: string | null;
     cityId?: string | null;
     customerNotes?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    itemId?: string | null;
+    itemTitle?: string | null;
+    itemShortDescription?: string | null;
+    itemPrimaryImageUrl?: string | null;
+    shippingPolicyId?: string | null;
+    quantity?: number;
+    readonly unitPrice?: number;
+    free?: boolean;
+    freeReason?: string | null;
+    freeReasonCode?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    itemPriceId?: string | null;
+    priceListItemId?: string | null;
+    unitId?: string | null;
+    unitGroupId?: string | null;
+    totalWarrantyCostInUsd?: number;
+    totalReturnCostInUsd?: number;
+    totalRefundCostInUsd?: number;
+    customGlobalSurchargesAmount?: number;
+    customGlobalDiscountsAmount?: number;
+    returnPolicyId?: string | null;
+    refundPolicyId?: string | null;
+    warrantyPolicyId?: string | null;
+    shipmentPolicyId?: string | null;
+    shippingLocationId?: string | null;
+    locationId?: string | null;
+    quoteItemRecordId?: string | null;
+    businessProfileRecordId?: string | null;
+    parentBillingItemRecordId?: string | null;
+    cartId?: string | null;
+};
+
+export type ItemCartRecordDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: TaxCalculationMethod;
+    costCalculationMethod?: CostCalculationMethod;
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -383,7 +504,7 @@ export type ItemCartRecordDtoEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: ItemCartRecordDto;
+    result?: ItemCartRecordDtoReadable;
 };
 
 export type ItemCartRecordDtoEnvelopeWritable = {
@@ -394,7 +515,7 @@ export type ItemCartRecordDtoEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: ItemCartRecordDto;
+    result?: ItemCartRecordDtoWritable;
 };
 
 export type ItemCartRecordDtoListEnvelopeReadable = {
@@ -408,7 +529,7 @@ export type ItemCartRecordDtoListEnvelopeReadable = {
         [key: string]: Array<string> | null;
     } | null;
     readonly activityId?: string | null;
-    result?: Array<ItemCartRecordDto> | null;
+    result?: Array<ItemCartRecordDtoReadable> | null;
 };
 
 export type ItemCartRecordDtoListEnvelopeWritable = {
@@ -419,7 +540,7 @@ export type ItemCartRecordDtoListEnvelopeWritable = {
     validationDetails?: {
         [key: string]: Array<string> | null;
     } | null;
-    result?: Array<ItemCartRecordDto> | null;
+    result?: Array<ItemCartRecordDtoWritable> | null;
 };
 
 export type ItemCartRecordUpdateDto = {
@@ -579,6 +700,10 @@ export type ResetPasswordRequest = {
     resetCode: string | null;
     newPassword: string | null;
 };
+
+export type SaleChannel = 'Unset' | 'Marketplace' | 'Direct';
+
+export type TaxCalculationMethod = 'Included' | 'Excluded';
 
 export type TwoFactorRequest = {
     enable?: boolean | null;
@@ -2210,7 +2335,7 @@ export type CartsAddItemToCartCompareTableResponses = {
     /**
      * OK
      */
-    200: ItemCartRecordDto;
+    200: ItemCartRecordDtoReadable;
 };
 
 export type CartsAddItemToCartCompareTableResponse = CartsAddItemToCartCompareTableResponses[keyof CartsAddItemToCartCompareTableResponses];
@@ -2345,7 +2470,7 @@ export type CompareAddItemToCompareTableResponses = {
     /**
      * OK
      */
-    200: ItemCartRecordDto;
+    200: ItemCartRecordDtoReadable;
 };
 
 export type CompareAddItemToCompareTableResponse = CompareAddItemToCompareTableResponses[keyof CompareAddItemToCompareTableResponses];
