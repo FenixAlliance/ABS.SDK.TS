@@ -5122,6 +5122,12 @@ export interface operations {
       200: {
         content: never;
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
     };
   };
   Platform_PostForgotPassword: {

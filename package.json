@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "access": "public",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "name": "@fenixalliance/abs-api-client",
   "main": "wwwroot/build/bundle.js",
   "module": "wwwroot/build/bundle.js",

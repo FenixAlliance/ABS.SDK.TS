@@ -81,6 +81,8 @@ export type ApprovalAssignmentDto = {
     stageIndex?: number;
     slotId?: string | null;
     approverAccountHolderId?: string | null;
+    approverDisplayName?: string | null;
+    approverAvatarUrl?: string | null;
     approverEnrollmentId?: string | null;
     isRoleSlot?: boolean;
     required?: boolean;
@@ -172,11 +174,16 @@ export type ApprovalRequestDto = {
     requestedByEnrollmentId?: string | null;
     requestedByRunAs?: RunAs;
     requestedByPrincipalKind?: PrincipalKind;
+    requestedOnBehalfOfUserId?: string | null;
+    requestedByDisplayName?: string | null;
+    requestedByAvatarUrl?: string | null;
+    requestedOnBehalfOfDisplayName?: string | null;
     subjectTitle?: string | null;
     subjectSummary?: string | null;
     subjectEffect?: string | null;
     subjectRisk?: string | null;
     subjectDetailsJson?: string | null;
+    capabilityKey?: string | null;
     status?: ApprovalRequestStatus;
     currentStageIndex?: number;
     resolutionGeneration?: number;
@@ -692,6 +699,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

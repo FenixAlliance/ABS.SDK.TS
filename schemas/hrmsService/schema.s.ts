@@ -878,7 +878,7 @@ export interface paths {
     get: operations["PositionSeats_GetPositionAssignments"];
     /**
      * Assign a position
-     * @description Fills a seat on the position with an enrollment of the tenant (a human, application or agent principal). Conflict when every seat is filled or the enrollment already holds one.
+     * @description Fills a seat on the position with an enrollment of the tenant (a human, application or agent principal). Conflict when every seat is filled or the enrollment already holds one. Answers the new assignment id and the position's Revision after the commit (Undo: End that assignment). Requires positions_assign; a seat grants nothing.
      */
     post: operations["PositionSeats_AssignPosition"];
   };
@@ -892,9 +892,37 @@ export interface paths {
   "/api/v2/HrmsService/Positions/{positionId}/Assignments/{assignmentId}/End": {
     /**
      * End a position assignment
-     * @description Vacates a seat. The assignment is kept as history.
+     * @description Vacates a seat. The assignment is kept as history and nothing is revoked. Requires positions_assign.
      */
     post: operations["PositionSeats_EndPositionAssignment"];
+  };
+  "/api/v2/HrmsService/Positions/{targetPositionId}/Assignments/Reassign": {
+    /**
+     * Reassign a member's seat to another position
+     * @description Ends the member's current seat on FromPositionId and seats them on the target in ONE unit of work and one commit, or changes nothing. Answers the ended and new assignment ids and both positions' revisions after the commit; Undo is the same call with from and target swapped and those revisions. 409 codes: positions.revision_stale, positions.no_free_seat, positions.already_seated. Requires positions_assign; a seat grants nothing.
+     */
+    post: operations["PositionSeats_ReassignPosition"];
+  };
+  "/api/v2/HrmsService/Positions/Assignments/ReassignToNewPosition": {
+    /**
+     * Reassign a member into a new position
+     * @description Creates a position in the target department (the composite Save-Add's rules), ends the member's current seat on FromPositionId and seats them in the new position, in ONE unit of work and one commit, or changes nothing. Answers the new position's id and revision, the ended and new assignment ids and the from position's revision. 404 for a foreign department, job role, position or member; 409 codes: departments.archived, positions.revision_stale. Requires positions_create AND positions_assign; a seat grants nothing.
+     */
+    post: operations["PositionSeats_ReassignToNewPosition"];
+  };
+  "/api/v2/HrmsService/Positions/{targetPositionId}/Assignments/AssignWithCapacity": {
+    /**
+     * Raise a position's capacity and assign a member
+     * @description Raises the target's capacity to NewCapacity (above the current value) and seats the member; when FromPositionId is set it is a move and the member's seat there ends. ONE unit of work and one commit, or nothing changes. Answers the new assignment id, the target's revision and capacity, and for a move the ended assignment and the from position's revision. 409 codes: positions.revision_stale, positions.already_seated. Requires positions_update AND positions_assign; a seat grants nothing.
+     */
+    post: operations["PositionSeats_AssignWithCapacity"];
+  };
+  "/api/v2/HrmsService/Positions/{positionId}/Assignments/{assignmentId}/Primary": {
+    /**
+     * Make a seat its holder's primary seat
+     * @description Makes the active seat its holder's primary seat; the previous primary clears in the same commit. A seat that is not an active seat of this position (or not the named MemberEnrollmentId's) answers 404; a stale ExpectedRevision answers 409 positions.revision_stale. Answers the previous primary (undo: set it back). Requires positions_assign; a seat grants nothing.
+     */
+    put: operations["PositionSeats_SetPrimarySeat"];
   };
   "/api/v2/HrmsService/Positions/{positionId}/Capacity": {
     /**
@@ -906,7 +934,7 @@ export interface paths {
   "/api/v2/HrmsService/Positions/{positionId}/Department": {
     /**
      * Change a position's department
-     * @description Moves the position to an enabled department of the same tenant.
+     * @description Moves the position to an enabled department of the same tenant. Answers the position's Revision after the move, the departments before and after, and the department whose head was cleared (R5), or null (Undo: move back with the Revision as ExpectedRevision; 409 positions.revision_stale when stale).
      */
     put: operations["PositionSeats_ChangePositionDepartment"];
   };
@@ -1393,6 +1421,7 @@ export interface components {
       /** Format: date-time */
       until?: string | null;
       acting?: boolean;
+      isPrimary?: boolean;
       enrollmentId?: string | null;
     };
     BusinessPositionAssignmentDtoCollectionQueryParameters: {
@@ -3389,6 +3418,53 @@ export interface components {
     PayrollUpdateDto: {
       payrollPeriodId?: string | null;
     };
+    PositionAssignWithCapacityDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      memberEnrollmentId?: string | null;
+      acting?: boolean;
+      /** Format: int32 */
+      newCapacity?: number;
+      /** Format: int32 */
+      expectedTargetRevision?: number | null;
+      fromPositionId?: string | null;
+      fromAssignmentId?: string | null;
+      /** Format: int32 */
+      expectedFromRevision?: number | null;
+    };
+    PositionAssignWithCapacityResultDto: {
+      assignmentId?: string | null;
+      positionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      /** Format: int32 */
+      capacity?: number;
+      endedAssignmentId?: string | null;
+      fromPositionId?: string | null;
+      /** Format: int32 */
+      fromRevision?: number | null;
+      primaryAssignmentId?: string | null;
+      primaryPositionId?: string | null;
+      /** Format: int32 */
+      primaryPositionRevision?: number | null;
+    };
+    PositionAssignWithCapacityResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PositionAssignWithCapacityResultDto"];
+    };
     PositionAssignmentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -3397,12 +3473,183 @@ export interface components {
       occupantEnrollmentId?: string | null;
       acting?: boolean;
     };
+    PositionAssignmentReassignDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      memberEnrollmentId?: string | null;
+      fromPositionId?: string | null;
+      fromAssignmentId?: string | null;
+      acting?: boolean;
+      /** Format: int32 */
+      expectedFromRevision?: number | null;
+      /** Format: int32 */
+      expectedTargetRevision?: number | null;
+    };
+    PositionAssignmentReassignResultDto: {
+      endedAssignmentId?: string | null;
+      newAssignmentId?: string | null;
+      fromPositionId?: string | null;
+      /** Format: int32 */
+      fromRevision?: number;
+      targetPositionId?: string | null;
+      /** Format: int32 */
+      targetRevision?: number;
+      primaryAssignmentId?: string | null;
+      primaryPositionId?: string | null;
+      /** Format: int32 */
+      primaryPositionRevision?: number | null;
+    };
+    PositionAssignmentReassignResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PositionAssignmentReassignResultDto"];
+    };
+    PositionAssignmentReassignToNewDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      memberEnrollmentId?: string | null;
+      fromPositionId?: string | null;
+      fromAssignmentId?: string | null;
+      acting?: boolean;
+      /** Format: int32 */
+      expectedFromRevision?: number | null;
+      title?: string | null;
+      departmentId?: string | null;
+      /** Format: int32 */
+      capacity?: number;
+      jobRoleId?: string | null;
+      description?: string | null;
+      reportsToPositionId?: string | null;
+    };
+    PositionAssignmentReassignToNewResultDto: {
+      newPositionId?: string | null;
+      /** Format: int32 */
+      newPositionRevision?: number;
+      endedAssignmentId?: string | null;
+      newAssignmentId?: string | null;
+      fromPositionId?: string | null;
+      /** Format: int32 */
+      fromRevision?: number;
+      primaryAssignmentId?: string | null;
+      primaryPositionId?: string | null;
+      /** Format: int32 */
+      primaryPositionRevision?: number | null;
+    };
+    PositionAssignmentReassignToNewResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PositionAssignmentReassignToNewResultDto"];
+    };
+    PositionAssignmentResultDto: {
+      assignmentId?: string | null;
+      positionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      primaryAssignmentId?: string | null;
+      primaryPositionId?: string | null;
+      /** Format: int32 */
+      primaryPositionRevision?: number | null;
+    };
+    PositionAssignmentResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PositionAssignmentResultDto"];
+    };
     PositionCapacityUpdateDto: {
       /** Format: int32 */
       capacity?: number;
     };
+    PositionDepartmentChangeResultDto: {
+      positionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      departmentId?: string | null;
+      previousDepartmentId?: string | null;
+      clearedHeadOfDepartmentId?: string | null;
+    };
+    PositionDepartmentChangeResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PositionDepartmentChangeResultDto"];
+    };
     PositionDepartmentUpdateDto: {
       departmentId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    PositionPrimarySeatDto: {
+      /** Format: int32 */
+      expectedRevision?: number | null;
+      memberEnrollmentId?: string | null;
+    };
+    PositionPrimarySeatResultDto: {
+      assignmentId?: string | null;
+      positionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      previousPrimaryAssignmentId?: string | null;
+      previousPrimaryPositionId?: string | null;
+      /** Format: int32 */
+      previousPrimaryPositionRevision?: number | null;
+    };
+    PositionPrimarySeatResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PositionPrimarySeatResultDto"];
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -6327,6 +6574,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };
@@ -10988,7 +11241,7 @@ export interface operations {
   };
   /**
    * Assign a position
-   * @description Fills a seat on the position with an enrollment of the tenant (a human, application or agent principal). Conflict when every seat is filled or the enrollment already holds one.
+   * @description Fills a seat on the position with an enrollment of the tenant (a human, application or agent principal). Conflict when every seat is filled or the enrollment already holds one. Answers the new assignment id and the position's Revision after the commit (Undo: End that assignment). Requires positions_assign; a seat grants nothing.
    */
   PositionSeats_AssignPosition: {
     parameters: {
@@ -11013,8 +11266,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
+          "application/json": components["schemas"]["PositionAssignmentResultDtoEnvelope"];
+          "application/xml": components["schemas"]["PositionAssignmentResultDtoEnvelope"];
         };
       };
       /** @description Bad Request */
@@ -11096,7 +11349,7 @@ export interface operations {
   };
   /**
    * End a position assignment
-   * @description Vacates a seat. The assignment is kept as history.
+   * @description Vacates a seat. The assignment is kept as history and nothing is revoked. Requires positions_assign.
    */
   PositionSeats_EndPositionAssignment: {
     parameters: {
@@ -11118,6 +11371,241 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Reassign a member's seat to another position
+   * @description Ends the member's current seat on FromPositionId and seats them on the target in ONE unit of work and one commit, or changes nothing. Answers the ended and new assignment ids and both positions' revisions after the commit; Undo is the same call with from and target swapped and those revisions. 409 codes: positions.revision_stale, positions.no_free_seat, positions.already_seated. Requires positions_assign; a seat grants nothing.
+   */
+  PositionSeats_ReassignPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        targetPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionAssignmentReassignDto"];
+        "application/xml": components["schemas"]["PositionAssignmentReassignDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PositionAssignmentReassignResultDtoEnvelope"];
+          "application/xml": components["schemas"]["PositionAssignmentReassignResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Reassign a member into a new position
+   * @description Creates a position in the target department (the composite Save-Add's rules), ends the member's current seat on FromPositionId and seats them in the new position, in ONE unit of work and one commit, or changes nothing. Answers the new position's id and revision, the ended and new assignment ids and the from position's revision. 404 for a foreign department, job role, position or member; 409 codes: departments.archived, positions.revision_stale. Requires positions_create AND positions_assign; a seat grants nothing.
+   */
+  PositionSeats_ReassignToNewPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionAssignmentReassignToNewDto"];
+        "application/xml": components["schemas"]["PositionAssignmentReassignToNewDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PositionAssignmentReassignToNewResultDtoEnvelope"];
+          "application/xml": components["schemas"]["PositionAssignmentReassignToNewResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Raise a position's capacity and assign a member
+   * @description Raises the target's capacity to NewCapacity (above the current value) and seats the member; when FromPositionId is set it is a move and the member's seat there ends. ONE unit of work and one commit, or nothing changes. Answers the new assignment id, the target's revision and capacity, and for a move the ended assignment and the from position's revision. 409 codes: positions.revision_stale, positions.already_seated. Requires positions_update AND positions_assign; a seat grants nothing.
+   */
+  PositionSeats_AssignWithCapacity: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        targetPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionAssignWithCapacityDto"];
+        "application/xml": components["schemas"]["PositionAssignWithCapacityDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PositionAssignWithCapacityResultDtoEnvelope"];
+          "application/xml": components["schemas"]["PositionAssignWithCapacityResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Make a seat its holder's primary seat
+   * @description Makes the active seat its holder's primary seat; the previous primary clears in the same commit. A seat that is not an active seat of this position (or not the named MemberEnrollmentId's) answers 404; a stale ExpectedRevision answers 409 positions.revision_stale. Answers the previous primary (undo: set it back). Requires positions_assign; a seat grants nothing.
+   */
+  PositionSeats_SetPrimarySeat: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        positionId: string;
+        assignmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PositionPrimarySeatDto"];
+        "application/xml": components["schemas"]["PositionPrimarySeatDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PositionPrimarySeatResultDtoEnvelope"];
+          "application/xml": components["schemas"]["PositionPrimarySeatResultDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -11206,7 +11694,7 @@ export interface operations {
   };
   /**
    * Change a position's department
-   * @description Moves the position to an enabled department of the same tenant.
+   * @description Moves the position to an enabled department of the same tenant. Answers the position's Revision after the move, the departments before and after, and the department whose head was cleared (R5), or null (Undo: move back with the Revision as ExpectedRevision; 409 positions.revision_stale when stale).
    */
   PositionSeats_ChangePositionDepartment: {
     parameters: {
@@ -11231,8 +11719,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
+          "application/json": components["schemas"]["PositionDepartmentChangeResultDtoEnvelope"];
+          "application/xml": components["schemas"]["PositionDepartmentChangeResultDtoEnvelope"];
         };
       };
       /** @description Bad Request */
@@ -11251,6 +11739,13 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

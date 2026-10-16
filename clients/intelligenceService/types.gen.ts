@@ -13,6 +13,47 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type AgentCardDto = {
+    agentId?: string | null;
+    name?: string | null;
+    avatar?: string | null;
+    kind?: string | null;
+    providerDisplayName?: string | null;
+    modelDisplayName?: string | null;
+    state?: string | null;
+    since?: string | null;
+    ownerDisplayName?: string | null;
+    ownerEnrollmentId?: string | null;
+    positionTitle?: string | null;
+    departmentName?: string | null;
+    skillCount?: number;
+};
+
+export type AgentCardDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AgentCardDto;
+};
+
+export type AgentCardDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AgentCardDto;
+};
+
 export type AgentExecutionAnomalyCode = 'None' | 'WaitingForApproval' | 'RetryableInfrastructure' | 'StaleFence' | 'OutcomeUnknown' | 'AlreadyFinalized' | 'ClaimNotFound' | 'StuckOrphaned';
 
 export type AgentExecutionDiagnosticDtoReadable = {
@@ -230,10 +271,49 @@ export type AgentRuntimeWorkerRegistrationDtoEnvelopeWritable = {
     result?: AgentRuntimeWorkerRegistrationDto;
 };
 
+export type AgentStateDto = {
+    agentId?: string | null;
+    state?: string | null;
+    since?: string | null;
+};
+
+export type AgentStateDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AgentStateDto> | null;
+};
+
+export type AgentStateDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AgentStateDto> | null;
+};
+
+export type AgentStatesRequest = {
+    agentIds?: Array<string> | null;
+};
+
 export type AgentWorkAssignmentDto = {
     workOrderId?: string | null;
     leaseGeneration?: number;
     requiredCapabilities?: string | null;
+    maxWallClockSeconds?: number;
+    maxVCpu?: number;
+    maxMemoryGiB?: number;
+    maxRetries?: number;
 };
 
 export type AgentWorkAssignmentDtoEnvelopeReadable = {
@@ -410,12 +490,125 @@ export type AiModelAvailabilityDto = {
     jurisdiction?: string | null;
     available?: boolean;
     connectionScope?: AiProviderConnectionScope;
+    contextWindowTokens?: number | null;
+    maxInputTokens?: number | null;
+    maxOutputTokens?: number | null;
+    isTenantDefault?: boolean;
+    disabledReason?: string | null;
 };
 
 export type AiModelCategoryDto = {
     key?: string | null;
     displayName?: string | null;
     models?: Array<AiModelAvailabilityDto> | null;
+};
+
+export type AiModelPriceCreateDto = {
+    id?: string;
+    timestamp?: string;
+    providerKey?: string | null;
+    modelKey?: string | null;
+    inputPricePerMillion?: number;
+    outputPricePerMillion?: number;
+    reasoningPricePerMillion?: number | null;
+    currencyCode?: string | null;
+    effectiveFromUtc?: string;
+    source?: string | null;
+};
+
+export type AiModelPriceDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    providerKey?: string | null;
+    modelKey?: string | null;
+    inputPricePerMillion?: number;
+    outputPricePerMillion?: number;
+    reasoningPricePerMillion?: number | null;
+    currencyCode?: string | null;
+    effectiveFromUtc?: string;
+    source?: string | null;
+    createdAt?: string;
+};
+
+export type AiModelPriceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AiModelPriceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type AiModelPriceDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: AiModelPriceDto;
+};
+
+export type AiModelPriceDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: AiModelPriceDto;
+};
+
+export type AiModelPriceDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AiModelPriceDto> | null;
+};
+
+export type AiModelPriceDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AiModelPriceDto> | null;
+};
+
+export type AiModelPriceUpdateDto = {
+    inputPricePerMillion?: number;
+    outputPricePerMillion?: number;
+    reasoningPricePerMillion?: number | null;
+    currencyCode?: string | null;
+    source?: string | null;
 };
 
 export type AiProviderAvailabilityDto = {
@@ -511,6 +704,7 @@ export type AiRunDtoReadable = {
     parentRunId?: string | null;
     promptTokens?: number | null;
     completionTokens?: number | null;
+    reasoningTokens?: number | null;
     runAs?: RunAs;
     principalKind?: PrincipalKind;
     tenantId?: string | null;
@@ -545,6 +739,7 @@ export type AiRunDtoWritable = {
     parentRunId?: string | null;
     promptTokens?: number | null;
     completionTokens?: number | null;
+    reasoningTokens?: number | null;
     runAs?: RunAs;
     principalKind?: PrincipalKind;
     tenantId?: string | null;
@@ -1673,6 +1868,44 @@ export type ConversationAttachmentUploadResultDtoEnvelopeWritable = {
     result?: ConversationAttachmentUploadResultDto;
 };
 
+export type ConversationContextUsageDto = {
+    measurement?: string | null;
+    promptTokens?: number | null;
+    completionTokens?: number | null;
+    reasoningTokens?: number | null;
+    contextWindowTokens?: number | null;
+    maxInputTokens?: number | null;
+    maxOutputTokens?: number | null;
+    modelId?: string | null;
+    asOfRunId?: string | null;
+    asOfUtc?: string | null;
+};
+
+export type ConversationContextUsageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ConversationContextUsageDto;
+};
+
+export type ConversationContextUsageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ConversationContextUsageDto;
+};
+
 export type ConversationPendingApprovalDto = {
     approvalRequestId?: string | null;
     toolKey?: string | null;
@@ -2030,6 +2263,31 @@ export type RevokeAgentToolPermissionsRequestDto = {
 };
 
 export type RunAs = 'Invoker' | 'Application' | 'System' | 'Service';
+
+export type StringEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: string | null;
+};
+
+export type StringEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: string | null;
+};
 
 export type TwoFactorRequest = {
     enable?: boolean | null;
@@ -2564,6 +2822,303 @@ export type AgentRuntimeStatusGetWorkOrderByIdResponses = {
 };
 
 export type AgentRuntimeStatusGetWorkOrderByIdResponse = AgentRuntimeStatusGetWorkOrderByIdResponses[keyof AgentRuntimeStatusGetWorkOrderByIdResponses];
+
+export type AgentStatesGetAgentStatesData = {
+    body?: AgentStatesRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/Agents/State';
+};
+
+export type AgentStatesGetAgentStatesErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AgentStatesGetAgentStatesError = AgentStatesGetAgentStatesErrors[keyof AgentStatesGetAgentStatesErrors];
+
+export type AgentStatesGetAgentStatesResponses = {
+    /**
+     * OK
+     */
+    200: AgentStateDtoListEnvelopeReadable;
+};
+
+export type AgentStatesGetAgentStatesResponse = AgentStatesGetAgentStatesResponses[keyof AgentStatesGetAgentStatesResponses];
+
+export type AgentStatesGetAgentCardData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/Agents/{agentId}/Card';
+};
+
+export type AgentStatesGetAgentCardErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AgentStatesGetAgentCardError = AgentStatesGetAgentCardErrors[keyof AgentStatesGetAgentCardErrors];
+
+export type AgentStatesGetAgentCardResponses = {
+    /**
+     * OK
+     */
+    200: AgentCardDtoEnvelopeReadable;
+};
+
+export type AgentStatesGetAgentCardResponse = AgentStatesGetAgentCardResponses[keyof AgentStatesGetAgentCardResponses];
+
+export type AiModelPricesGetAiModelPricesData = {
+    body?: AiModelPriceDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiModelPrices';
+};
+
+export type AiModelPricesGetAiModelPricesErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiModelPricesGetAiModelPricesError = AiModelPricesGetAiModelPricesErrors[keyof AiModelPricesGetAiModelPricesErrors];
+
+export type AiModelPricesGetAiModelPricesResponses = {
+    /**
+     * OK
+     */
+    200: AiModelPriceDtoListEnvelopeReadable;
+};
+
+export type AiModelPricesGetAiModelPricesResponse = AiModelPricesGetAiModelPricesResponses[keyof AiModelPricesGetAiModelPricesResponses];
+
+export type AiModelPricesCreateAiModelPriceData = {
+    body?: AiModelPriceCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiModelPrices';
+};
+
+export type AiModelPricesCreateAiModelPriceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type AiModelPricesCreateAiModelPriceError = AiModelPricesCreateAiModelPriceErrors[keyof AiModelPricesCreateAiModelPriceErrors];
+
+export type AiModelPricesCreateAiModelPriceResponses = {
+    /**
+     * OK
+     */
+    200: StringEnvelopeReadable;
+};
+
+export type AiModelPricesCreateAiModelPriceResponse = AiModelPricesCreateAiModelPriceResponses[keyof AiModelPricesCreateAiModelPriceResponses];
+
+export type AiModelPricesGetAiModelPricesCountData = {
+    body?: AiModelPriceDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiModelPrices/Count';
+};
+
+export type AiModelPricesGetAiModelPricesCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AiModelPricesGetAiModelPricesCountError = AiModelPricesGetAiModelPricesCountErrors[keyof AiModelPricesGetAiModelPricesCountErrors];
+
+export type AiModelPricesGetAiModelPricesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type AiModelPricesGetAiModelPricesCountResponse = AiModelPricesGetAiModelPricesCountResponses[keyof AiModelPricesGetAiModelPricesCountResponses];
+
+export type AiModelPricesGetEffectiveAiModelPriceData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        providerKey: string;
+        modelKey: string;
+        atUtc: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiModelPrices/Effective';
+};
+
+export type AiModelPricesGetEffectiveAiModelPriceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AiModelPricesGetEffectiveAiModelPriceError = AiModelPricesGetEffectiveAiModelPriceErrors[keyof AiModelPricesGetEffectiveAiModelPriceErrors];
+
+export type AiModelPricesGetEffectiveAiModelPriceResponses = {
+    /**
+     * OK
+     */
+    200: AiModelPriceDtoEnvelopeReadable;
+};
+
+export type AiModelPricesGetEffectiveAiModelPriceResponse = AiModelPricesGetEffectiveAiModelPriceResponses[keyof AiModelPricesGetEffectiveAiModelPriceResponses];
+
+export type AiModelPricesGetAiModelPriceByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiModelPrices/{id}';
+};
+
+export type AiModelPricesGetAiModelPriceByIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type AiModelPricesGetAiModelPriceByIdError = AiModelPricesGetAiModelPriceByIdErrors[keyof AiModelPricesGetAiModelPriceByIdErrors];
+
+export type AiModelPricesGetAiModelPriceByIdResponses = {
+    /**
+     * OK
+     */
+    200: AiModelPriceDtoEnvelopeReadable;
+};
+
+export type AiModelPricesGetAiModelPriceByIdResponse = AiModelPricesGetAiModelPriceByIdResponses[keyof AiModelPricesGetAiModelPriceByIdResponses];
+
+export type AiModelPricesUpdateAiModelPriceData = {
+    body?: AiModelPriceUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiModelPrices/{id}';
+};
+
+export type AiModelPricesUpdateAiModelPriceErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type AiModelPricesUpdateAiModelPriceError = AiModelPricesUpdateAiModelPriceErrors[keyof AiModelPricesUpdateAiModelPriceErrors];
+
+export type AiModelPricesUpdateAiModelPriceResponses = {
+    /**
+     * OK
+     */
+    200: StringEnvelopeReadable;
+};
+
+export type AiModelPricesUpdateAiModelPriceResponse = AiModelPricesUpdateAiModelPriceResponses[keyof AiModelPricesUpdateAiModelPriceResponses];
 
 export type AiProvidersGetAiProvidersData = {
     body?: never;
@@ -3498,6 +4053,45 @@ export type CognitiveAgentMessagesGetConversationPendingApprovalsResponses = {
 };
 
 export type CognitiveAgentMessagesGetConversationPendingApprovalsResponse = CognitiveAgentMessagesGetConversationPendingApprovalsResponses[keyof CognitiveAgentMessagesGetConversationPendingApprovalsResponses];
+
+export type CognitiveAgentMessagesGetConversationContextUsageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+        conversationId: string;
+    };
+    query: {
+        tenantId: string;
+        scope?: ConversationAccessScope;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/ContextUsage';
+};
+
+export type CognitiveAgentMessagesGetConversationContextUsageErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CognitiveAgentMessagesGetConversationContextUsageError = CognitiveAgentMessagesGetConversationContextUsageErrors[keyof CognitiveAgentMessagesGetConversationContextUsageErrors];
+
+export type CognitiveAgentMessagesGetConversationContextUsageResponses = {
+    /**
+     * OK
+     */
+    200: ConversationContextUsageDtoEnvelopeReadable;
+};
+
+export type CognitiveAgentMessagesGetConversationContextUsageResponse = CognitiveAgentMessagesGetConversationContextUsageResponses[keyof CognitiveAgentMessagesGetConversationContextUsageResponses];
 
 export type CognitiveAgentsGetCognitiveAgentsData = {
     body?: CognitiveAgentDtoCollectionQueryParametersWritable;
@@ -4799,6 +5393,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

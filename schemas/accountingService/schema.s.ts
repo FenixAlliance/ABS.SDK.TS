@@ -117,13 +117,13 @@ export interface paths {
   };
   "/api/v2/AccountingService/Accounts": {
     /**
-     * Creates a new account
-     * @description Creates a new account.
+     * List accounts
+     * @description Lists the accounts of the workspace's chart of accounts.
      */
     get: operations["Accounts_GetAccounts"];
     /**
-     * Get root accounts
-     * @description Get root accounts.
+     * Create an account
+     * @description Creates a new account in the workspace's chart of accounts.
      */
     post: operations["Accounts_CreateAccount"];
   };
@@ -8018,8 +8018,8 @@ export interface operations {
     };
   };
   /**
-   * Creates a new account
-   * @description Creates a new account.
+   * List accounts
+   * @description Lists the accounts of the workspace's chart of accounts.
    */
   Accounts_GetAccounts: {
     parameters: {
@@ -8062,8 +8062,8 @@ export interface operations {
     };
   };
   /**
-   * Get root accounts
-   * @description Get root accounts.
+   * Create an account
+   * @description Creates a new account in the workspace's chart of accounts.
    */
   Accounts_CreateAccount: {
     parameters: {
@@ -14663,6 +14663,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

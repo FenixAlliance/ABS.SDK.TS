@@ -214,6 +214,7 @@ export type BusinessPositionAssignmentDto = {
     from?: string;
     until?: string | null;
     acting?: boolean;
+    isPrimary?: boolean;
     enrollmentId?: string | null;
 };
 
@@ -3012,6 +3013,56 @@ export type PayrollUpdateDto = {
     payrollPeriodId?: string | null;
 };
 
+export type PositionAssignWithCapacityDto = {
+    id?: string;
+    timestamp?: string;
+    memberEnrollmentId?: string | null;
+    acting?: boolean;
+    newCapacity?: number;
+    expectedTargetRevision?: number | null;
+    fromPositionId?: string | null;
+    fromAssignmentId?: string | null;
+    expectedFromRevision?: number | null;
+};
+
+export type PositionAssignWithCapacityResultDto = {
+    assignmentId?: string | null;
+    positionId?: string | null;
+    revision?: number;
+    capacity?: number;
+    endedAssignmentId?: string | null;
+    fromPositionId?: string | null;
+    fromRevision?: number | null;
+    primaryAssignmentId?: string | null;
+    primaryPositionId?: string | null;
+    primaryPositionRevision?: number | null;
+};
+
+export type PositionAssignWithCapacityResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PositionAssignWithCapacityResultDto;
+};
+
+export type PositionAssignWithCapacityResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PositionAssignWithCapacityResultDto;
+};
+
 export type PositionAssignmentCreateDto = {
     id?: string;
     timestamp?: string;
@@ -3019,12 +3070,220 @@ export type PositionAssignmentCreateDto = {
     acting?: boolean;
 };
 
+export type PositionAssignmentReassignDto = {
+    id?: string;
+    timestamp?: string;
+    memberEnrollmentId?: string | null;
+    fromPositionId?: string | null;
+    fromAssignmentId?: string | null;
+    acting?: boolean;
+    expectedFromRevision?: number | null;
+    expectedTargetRevision?: number | null;
+};
+
+export type PositionAssignmentReassignResultDto = {
+    endedAssignmentId?: string | null;
+    newAssignmentId?: string | null;
+    fromPositionId?: string | null;
+    fromRevision?: number;
+    targetPositionId?: string | null;
+    targetRevision?: number;
+    primaryAssignmentId?: string | null;
+    primaryPositionId?: string | null;
+    primaryPositionRevision?: number | null;
+};
+
+export type PositionAssignmentReassignResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PositionAssignmentReassignResultDto;
+};
+
+export type PositionAssignmentReassignResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PositionAssignmentReassignResultDto;
+};
+
+export type PositionAssignmentReassignToNewDto = {
+    id?: string;
+    timestamp?: string;
+    memberEnrollmentId?: string | null;
+    fromPositionId?: string | null;
+    fromAssignmentId?: string | null;
+    acting?: boolean;
+    expectedFromRevision?: number | null;
+    title?: string | null;
+    departmentId?: string | null;
+    capacity?: number;
+    jobRoleId?: string | null;
+    description?: string | null;
+    reportsToPositionId?: string | null;
+};
+
+export type PositionAssignmentReassignToNewResultDto = {
+    newPositionId?: string | null;
+    newPositionRevision?: number;
+    endedAssignmentId?: string | null;
+    newAssignmentId?: string | null;
+    fromPositionId?: string | null;
+    fromRevision?: number;
+    primaryAssignmentId?: string | null;
+    primaryPositionId?: string | null;
+    primaryPositionRevision?: number | null;
+};
+
+export type PositionAssignmentReassignToNewResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PositionAssignmentReassignToNewResultDto;
+};
+
+export type PositionAssignmentReassignToNewResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PositionAssignmentReassignToNewResultDto;
+};
+
+export type PositionAssignmentResultDto = {
+    assignmentId?: string | null;
+    positionId?: string | null;
+    revision?: number;
+    primaryAssignmentId?: string | null;
+    primaryPositionId?: string | null;
+    primaryPositionRevision?: number | null;
+};
+
+export type PositionAssignmentResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PositionAssignmentResultDto;
+};
+
+export type PositionAssignmentResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PositionAssignmentResultDto;
+};
+
 export type PositionCapacityUpdateDto = {
     capacity?: number;
 };
 
+export type PositionDepartmentChangeResultDto = {
+    positionId?: string | null;
+    revision?: number;
+    departmentId?: string | null;
+    previousDepartmentId?: string | null;
+    clearedHeadOfDepartmentId?: string | null;
+};
+
+export type PositionDepartmentChangeResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PositionDepartmentChangeResultDto;
+};
+
+export type PositionDepartmentChangeResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PositionDepartmentChangeResultDto;
+};
+
 export type PositionDepartmentUpdateDto = {
     departmentId?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type PositionPrimarySeatDto = {
+    expectedRevision?: number | null;
+    memberEnrollmentId?: string | null;
+};
+
+export type PositionPrimarySeatResultDto = {
+    assignmentId?: string | null;
+    positionId?: string | null;
+    revision?: number;
+    previousPrimaryAssignmentId?: string | null;
+    previousPrimaryPositionId?: string | null;
+    previousPrimaryPositionRevision?: number | null;
+};
+
+export type PositionPrimarySeatResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PositionPrimarySeatResultDto;
+};
+
+export type PositionPrimarySeatResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PositionPrimarySeatResultDto;
 };
 
 export type RefreshRequest = {
@@ -5757,6 +6016,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**
@@ -9633,7 +9901,7 @@ export type PositionSeatsAssignPositionResponses = {
     /**
      * OK
      */
-    200: EmptyEnvelopeReadable;
+    200: PositionAssignmentResultDtoEnvelopeReadable;
 };
 
 export type PositionSeatsAssignPositionResponse = PositionSeatsAssignPositionResponses[keyof PositionSeatsAssignPositionResponses];
@@ -9717,6 +9985,181 @@ export type PositionSeatsEndPositionAssignmentResponses = {
 
 export type PositionSeatsEndPositionAssignmentResponse = PositionSeatsEndPositionAssignmentResponses[keyof PositionSeatsEndPositionAssignmentResponses];
 
+export type PositionSeatsReassignPositionData = {
+    body?: PositionAssignmentReassignDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        targetPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{targetPositionId}/Assignments/Reassign';
+};
+
+export type PositionSeatsReassignPositionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsReassignPositionError = PositionSeatsReassignPositionErrors[keyof PositionSeatsReassignPositionErrors];
+
+export type PositionSeatsReassignPositionResponses = {
+    /**
+     * OK
+     */
+    200: PositionAssignmentReassignResultDtoEnvelopeReadable;
+};
+
+export type PositionSeatsReassignPositionResponse = PositionSeatsReassignPositionResponses[keyof PositionSeatsReassignPositionResponses];
+
+export type PositionSeatsReassignToNewPositionData = {
+    body?: PositionAssignmentReassignToNewDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/Assignments/ReassignToNewPosition';
+};
+
+export type PositionSeatsReassignToNewPositionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsReassignToNewPositionError = PositionSeatsReassignToNewPositionErrors[keyof PositionSeatsReassignToNewPositionErrors];
+
+export type PositionSeatsReassignToNewPositionResponses = {
+    /**
+     * OK
+     */
+    200: PositionAssignmentReassignToNewResultDtoEnvelopeReadable;
+};
+
+export type PositionSeatsReassignToNewPositionResponse = PositionSeatsReassignToNewPositionResponses[keyof PositionSeatsReassignToNewPositionResponses];
+
+export type PositionSeatsAssignWithCapacityData = {
+    body?: PositionAssignWithCapacityDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        targetPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{targetPositionId}/Assignments/AssignWithCapacity';
+};
+
+export type PositionSeatsAssignWithCapacityErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsAssignWithCapacityError = PositionSeatsAssignWithCapacityErrors[keyof PositionSeatsAssignWithCapacityErrors];
+
+export type PositionSeatsAssignWithCapacityResponses = {
+    /**
+     * OK
+     */
+    200: PositionAssignWithCapacityResultDtoEnvelopeReadable;
+};
+
+export type PositionSeatsAssignWithCapacityResponse = PositionSeatsAssignWithCapacityResponses[keyof PositionSeatsAssignWithCapacityResponses];
+
+export type PositionSeatsSetPrimarySeatData = {
+    body?: PositionPrimarySeatDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        positionId: string;
+        assignmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Positions/{positionId}/Assignments/{assignmentId}/Primary';
+};
+
+export type PositionSeatsSetPrimarySeatErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionSeatsSetPrimarySeatError = PositionSeatsSetPrimarySeatErrors[keyof PositionSeatsSetPrimarySeatErrors];
+
+export type PositionSeatsSetPrimarySeatResponses = {
+    /**
+     * OK
+     */
+    200: PositionPrimarySeatResultDtoEnvelopeReadable;
+};
+
+export type PositionSeatsSetPrimarySeatResponse = PositionSeatsSetPrimarySeatResponses[keyof PositionSeatsSetPrimarySeatResponses];
+
 export type PositionSeatsChangePositionCapacityData = {
     body?: PositionCapacityUpdateDto;
     headers?: {
@@ -9790,6 +10233,10 @@ export type PositionSeatsChangePositionDepartmentErrors = {
      * Not Found
      */
     404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
 };
 
 export type PositionSeatsChangePositionDepartmentError = PositionSeatsChangePositionDepartmentErrors[keyof PositionSeatsChangePositionDepartmentErrors];
@@ -9798,7 +10245,7 @@ export type PositionSeatsChangePositionDepartmentResponses = {
     /**
      * OK
      */
-    200: EmptyEnvelopeReadable;
+    200: PositionDepartmentChangeResultDtoEnvelopeReadable;
 };
 
 export type PositionSeatsChangePositionDepartmentResponse = PositionSeatsChangePositionDepartmentResponses[keyof PositionSeatsChangePositionDepartmentResponses];

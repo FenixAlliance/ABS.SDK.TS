@@ -44,7 +44,7 @@ export interface paths {
   "/api/v2/TenantsService/Departments": {
     /**
      * Retrieve a list of tenant departments
-     * @description Retrieve a list of tenant departments
+     * @description Retrieve a list of tenant departments. Archived (disabled) departments are included unless includeArchived=false (the default keeps the list's behaviour before 2.5).
      */
     get: operations["Departments_GetTenantDepartments"];
     /**
@@ -56,7 +56,7 @@ export interface paths {
   "/api/v2/TenantsService/Departments/Count": {
     /**
      * Get the count of tenant departments
-     * @description Get the count of tenant departments
+     * @description Get the count of tenant departments. Archived (disabled) departments are counted unless includeArchived=false.
      */
     get: operations["Departments_GetTenantDepartmentsCount"];
   };
@@ -73,7 +73,7 @@ export interface paths {
     put: operations["Departments_UpdateTenantDepartment"];
     /**
      * Delete a tenant department
-     * @description Delete a tenant department
+     * @description Deletes the department. Never cascades: refused (409, departments.has_children or departments.has_positions) while any child department or position remains. Requires departments_delete.
      */
     delete: operations["Departments_DeleteTenantDepartment"];
     /**
@@ -81,6 +81,41 @@ export interface paths {
      * @description Patch a tenant department
      */
     patch: operations["Departments_PatchTenantDepartment"];
+  };
+  "/api/v2/TenantsService/Departments/{tenantDepartmentId}/Move": {
+    /**
+     * Move a tenant department under another department
+     * @description Re-parents the department (a null parent moves it to the top). The parent must be a department of the same tenant, and a move into the department's own subtree is refused. Answers the department's Revision after the move (Undo: move back with it as ExpectedRevision). Requires departments_update.
+     */
+    post: operations["Departments_MoveTenantDepartment"];
+  };
+  "/api/v2/TenantsService/Departments/{tenantDepartmentId}/Head": {
+    /**
+     * Set or clear a tenant department's head position
+     * @description Sets the head seat (HeadPositionId, or the 2.4 PositionId; null clears it). The position must be in the tenant (404), of this department (409 departments.head_not_in_department) and not archived (409 positions.archived); a stale ExpectedRevision answers 409 departments.revision_stale. Answers the heads before and after and the Revision after the commit (Undo: set the previous head back with it). Requires departments_update.
+     */
+    put: operations["Departments_SetTenantDepartmentHead"];
+  };
+  "/api/v2/TenantsService/Departments/{tenantDepartmentId}/Head/Member": {
+    /**
+     * Make a member the head of a tenant department
+     * @description Exactly one branch, chosen explicitly (neither or both: 400). ExistingPositionId: a live position of this department the member holds becomes head; nothing is created, no seat changes; requires departments_update (409 positions.not_held_by_member). NewPosition: a head position is created in the department and the member seated there, SeatMode Add (keep other seats) or Transfer (end the seat named by FromPositionId and FromAssignmentId); requires departments_update, positions_create and positions_assign. 409: departments.archived, departments.revision_stale, positions.revision_stale. ONE commit; answers a receipt with every post-commit revision.
+     */
+    post: operations["Departments_MakeTenantDepartmentHead"];
+  };
+  "/api/v2/TenantsService/Departments/{tenantDepartmentId}/Archive": {
+    /**
+     * Archive (disable) a tenant department
+     * @description Disables the department. Refused (409, departments.has_children or departments.has_positions) while it has enabled child departments or non-archived positions. Requires departments_delete.
+     */
+    post: operations["Departments_ArchiveTenantDepartment"];
+  };
+  "/api/v2/TenantsService/Departments/{tenantDepartmentId}/Restore": {
+    /**
+     * Restore (enable) an archived tenant department
+     * @description Enables the department again. Requires departments_delete.
+     */
+    post: operations["Departments_RestoreTenantDepartment"];
   };
   "/api/v2/TenantsService/EmployeeEnrollments": {
     /**
@@ -320,6 +355,89 @@ export interface paths {
      */
     post: operations["Invitations_ResendTenantInvitation"];
   };
+  "/api/v2/TenantsService/JobRoles": {
+    /**
+     * Retrieve a list of tenant job roles
+     * @description Retrieve the tenant's job roles. Requires job_roles_read.
+     */
+    get: operations["JobRoles_GetTenantJobRoles"];
+    /**
+     * Create a new tenant job role
+     * @description Create a job role; names are unique in the tenant (case-insensitive). Requires job_roles_create.
+     */
+    post: operations["JobRoles_CreateTenantJobRole"];
+  };
+  "/api/v2/TenantsService/JobRoles/Count": {
+    /**
+     * Get the count of tenant job roles
+     * @description Get the count of the tenant's job roles. Requires job_roles_read.
+     */
+    get: operations["JobRoles_GetTenantJobRolesCount"];
+  };
+  "/api/v2/TenantsService/JobRoles/CapabilityCatalog": {
+    /**
+     * List the requestable capability (permission) names
+     * @description The permission names a job role or position may request, sorted: the same catalog requested capabilities are validated with. Requires job_roles_read.
+     */
+    get: operations["JobRoles_GetTenantJobRoleCapabilityCatalog"];
+  };
+  "/api/v2/TenantsService/JobRoles/{jobRoleId}": {
+    /**
+     * Retrieve a single tenant job role by its ID
+     * @description Retrieve one job role of the tenant; another tenant's id answers 404. Requires job_roles_read.
+     */
+    get: operations["JobRoles_GetTenantJobRoleById"];
+    /**
+     * Update a tenant job role
+     * @description Replace the job role's name, description, responsibilities and disabled flag. A stale ExpectedRevision answers 409. Requires job_roles_update.
+     */
+    put: operations["JobRoles_UpdateTenantJobRole"];
+    /**
+     * Delete a tenant job role
+     * @description Delete a job role. Refused (409) while any position uses it. Requires job_roles_delete.
+     */
+    delete: operations["JobRoles_DeleteTenantJobRole"];
+    /**
+     * Patch a tenant job role
+     * @description Patch the job role's editable fields. Requires job_roles_update.
+     */
+    patch: operations["JobRoles_PatchTenantJobRole"];
+  };
+  "/api/v2/TenantsService/JobRoles/{jobRoleId}/ReadingPack": {
+    /**
+     * Replace a tenant job role's reading pack
+     * @description Replace the whole default reading pack (at most 40 items; https, safe relative paths or document ids only). Requires job_roles_update.
+     */
+    put: operations["JobRoles_SetTenantJobRoleReadingPack"];
+  };
+  "/api/v2/TenantsService/JobRoles/{jobRoleId}/RequestedCapabilities": {
+    /**
+     * Replace a tenant job role's requested capabilities
+     * @description Replace the whole list of advisory permission requests; each must be a known permission. Grants nothing. Requires job_roles_update.
+     */
+    put: operations["JobRoles_SetTenantJobRoleRequestedCapabilities"];
+  };
+  "/api/v2/TenantsService/Members/{enrollmentId}/Card": {
+    /**
+     * Retrieve a person's hover card
+     * @description The person's display name, avatar, primary seat (title and department), manager and active teams (at most 20, with the count beyond). People only: an agent, a foreign or an unknown enrollment answers 404. Never presence, contact details or an email. Requires teams_read. Cache-Control: private.
+     */
+    get: operations["Members_GetTenantMemberCard"];
+  };
+  "/api/v2/TenantsService/Members/ByAccountHolder/{accountHolderId}/Card": {
+    /**
+     * Retrieve a member's card by account-holder id
+     * @description Resolves the account holder to its enrollment in THIS tenant. A person answers Kind Person with the same card as Members/{enrollmentId}/Card; an agent with an enabled enrollment here answers Kind Agent with its AgentId only (open the AI Engine's agent card). Every miss answers the same 404. Requires teams_read. Cache-Control: private.
+     */
+    get: operations["Members_GetTenantMemberCardByAccountHolder"];
+  };
+  "/api/v2/TenantsService/Members/BySocialProfile/{socialProfileId}/Card": {
+    /**
+     * Retrieve a member's card by social-profile id
+     * @description Resolves a person's or an agent's social profile to its enrollment in THIS tenant (a business, contact or group profile answers 404). A person answers Kind Person with the same card as Members/{enrollmentId}/Card; an agent with an enabled enrollment here answers Kind Agent with its AgentId only. Every miss answers the same 404. Requires teams_read. Cache-Control: private.
+     */
+    get: operations["Members_GetTenantMemberCardBySocialProfile"];
+  };
   "/api/v2/TenantsService/Options": {
     /**
      * Retrieve a list of tenant options
@@ -375,10 +493,17 @@ export interface paths {
      */
     put: operations["Options_UpsertTenantOption"];
   };
+  "/api/v2/TenantsService/Organization/Chart": {
+    /**
+     * Retrieve the tenant's org chart
+     * @description Departments, the positions in them (archived ones left out) with reports-to edges, and each position's active holders (no email), for the tenant only. departmentId scopes the chart to one department's subtree (another tenant's id answers 404). depth defaults to 3 and is clamped at 10; at most 500 positions are returned, and truncated says when a bound cut the chart. Requires departments_read and positions_read.
+     */
+    get: operations["Organization_GetTenantOrgChart"];
+  };
   "/api/v2/TenantsService/Positions": {
     /**
      * Retrieve a list of tenant positions
-     * @description Retrieve a list of tenant positions
+     * @description Retrieve a list of tenant positions. Archived positions are left out unless includeArchived=true.
      */
     get: operations["Positions_GetTenantPositions"];
     /**
@@ -390,9 +515,16 @@ export interface paths {
   "/api/v2/TenantsService/Positions/Count": {
     /**
      * Get the count of tenant positions
-     * @description Get the count of tenant positions
+     * @description Get the count of tenant positions. Archived positions are left out unless includeArchived=true.
      */
     get: operations["Positions_GetTenantPositionsCount"];
+  };
+  "/api/v2/TenantsService/Positions/ByEnrollment/{enrollmentId}": {
+    /**
+     * Retrieve a member's current positions
+     * @description The enrollment's current seats (Until null or in the future) on non-archived positions of the tenant, with the department and a head flag. A foreign or unknown enrollment answers 404. Requires positions_read.
+     */
+    get: operations["Positions_GetTenantMemberPositions"];
   };
   "/api/v2/TenantsService/Positions/{tenantPositionId}": {
     /**
@@ -415,6 +547,62 @@ export interface paths {
      * @description Patch a tenant position
      */
     patch: operations["Positions_PatchTenantPosition"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/ReportsTo": {
+    /**
+     * Change who a tenant position reports to
+     * @description Report to another position of the tenant, or to nobody (null clears the line). A foreign id answers 404; self answers 400; a cycle (positions.reports_to_cycle), an archived position on either side (positions.archived) and a stale ExpectedRevision (positions.revision_stale) answer 409. Answers the lines before and after and the Revision after the commit (Undo: set the previous line back with it). Department heads are independent of reporting lines. Requires positions_update.
+     */
+    put: operations["Positions_SetTenantPositionReportsTo"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/JobRole": {
+    /**
+     * Change the job role a tenant position instantiates
+     * @description Instantiate a job role of the tenant, or none. A foreign id answers 404. A job role grants nothing. Requires positions_update.
+     */
+    put: operations["Positions_SetTenantPositionJobRole"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/ReadingPack": {
+    /**
+     * Replace a tenant position's reading pack
+     * @description Replace the position's own reading pack (at most 40 items; https, safe relative paths or document ids only). An empty list goes back to the job role's default. Requires positions_update.
+     */
+    put: operations["Positions_SetTenantPositionReadingPack"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/RequestedCapabilities": {
+    /**
+     * Replace a tenant position's requested capabilities
+     * @description Replace the position's own advisory permission requests; each must be a known permission. Grants nothing. Requires positions_update.
+     */
+    put: operations["Positions_SetTenantPositionRequestedCapabilities"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/Archive": {
+    /**
+     * Archive a tenant position (Remove)
+     * @description Ends every held seat (history is kept, nothing is revoked), clears a department head that points here, and archives the position. Refused (409) while positions report to it. Requires positions_delete, plus positions_assign while seats are held.
+     */
+    post: operations["Positions_ArchiveTenantPosition"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/Restore": {
+    /**
+     * Restore an archived tenant position
+     * @description Brings an archived position back, with open seats. Requires positions_delete.
+     */
+    post: operations["Positions_RestoreTenantPosition"];
+  };
+  "/api/v2/TenantsService/Positions/{tenantPositionId}/Save": {
+    /**
+     * Save a tenant position in one call
+     * @description Applies the editor's whole draft (fields, reading pack, requested capabilities, seats to fill and to end) in a fixed order and commits once: all or nothing. Every id is checked against the tenant (404). Answers the position's Revision after the commit and the assignment ids created and ended, in request order. Requires positions_update, plus positions_assign when the body has holder entries.
+     */
+    post: operations["Positions_SaveTenantPosition"];
+  };
+  "/api/v2/TenantsService/Positions/Save": {
+    /**
+     * Add a tenant position in one call
+     * @description The composite Save for a new position (the body's Id becomes its id), committed once. Answers 201 with the position's Revision and the assignment ids created for the Assign entries, in request order. Requires positions_create, plus positions_assign when the body has holder entries.
+     */
+    post: operations["Positions_AddTenantPosition"];
   };
   "/api/v2/TenantsService/Segments": {
     /**
@@ -497,6 +685,27 @@ export interface paths {
      * @description Patch a tenant size
      */
     patch: operations["Sizes_PatchTenantSize"];
+  };
+  "/api/v2/TenantsService/Team": {
+    /**
+     * List the tenant's team members
+     * @description List the people and agents enrolled in the tenant, sorted by display name. kind: all | person | agent. eligibleFor: positionHolder | approver. pageSize defaults to 25 and is capped at 50.
+     */
+    get: operations["Team_GetTeamMembers"];
+  };
+  "/api/v2/TenantsService/Team/Count": {
+    /**
+     * Count the tenant's team members
+     * @description Count the team members the same filters select.
+     */
+    get: operations["Team_GetTeamMembersCount"];
+  };
+  "/api/v2/TenantsService/Team/{enrollmentId}": {
+    /**
+     * Retrieve one team member
+     * @description Retrieve one team member by enrollment id. An id from another tenant reads like an unknown one (404).
+     */
+    get: operations["Team_GetTeamMember"];
   };
   "/api/v2/TenantsService/TeamContactEnrollments": {
     /**
@@ -624,7 +833,7 @@ export interface paths {
   "/api/v2/TenantsService/Teams": {
     /**
      * Retrieve a list of tenant teams
-     * @description Retrieve a list of tenant teams
+     * @description Retrieve the tenant's teams with their member count, lead names and home department. Archived teams are left out unless includeArchived=true; departmentId lists the teams of that home department. Requires teams_read.
      */
     get: operations["Teams_GetTenantTeams"];
     /**
@@ -639,6 +848,81 @@ export interface paths {
      * @description Get the count of tenant teams
      */
     get: operations["Teams_GetTenantTeamsCount"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/Members": {
+    /**
+     * Retrieve a team's members
+     * @description The team's active members (includeEnded=true adds history): kind, agent id, enrollment id, role and join date; never an email. A foreign team answers 404. Requires teams_read.
+     */
+    get: operations["Teams_GetTenantTeamMembers"];
+    /**
+     * Add a member to a team
+     * @description Adds an enabled person or agent of the tenant (as a lead when AsLead). 409: teams.already_member, teams.archived, teams.revision_stale; 400: teams.member_disabled. Undo: Remove(MembershipId). Requires teams_update.
+     */
+    post: operations["Teams_AddTenantTeamMember"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/Members/Count": {
+    /**
+     * Count a team's members
+     * @description The number of the team's active members (includeEnded=true counts history). Requires teams_read.
+     */
+    get: operations["Teams_GetTenantTeamMembersCount"];
+  };
+  "/api/v2/TenantsService/Teams/ByMember/{enrollmentId}": {
+    /**
+     * Retrieve a member's active teams
+     * @description The member's active memberships in live teams (chips and the hover card). A foreign or unknown enrollment answers 404. Requires teams_read.
+     */
+    get: operations["Teams_GetTenantTeamsByMember"];
+  };
+  "/api/v2/TenantsService/Teams/ByMembers": {
+    /**
+     * Retrieve several members' active teams
+     * @description One row per (member, team) for the comma-separated enrollmentIds (at most 200; more, or a token that is not a Guid, answers 400). Ids that are not enrollments of this tenant are simply absent; archived teams are hidden. Requires teams_read.
+     */
+    get: operations["Teams_GetTenantTeamsByMembers"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/Members/{membershipId}/Remove": {
+    /**
+     * Remove a member from a team
+     * @description Ends the membership (kept as history). 409: teams.not_member, teams.archived, teams.revision_stale. Undo: Add with AsLead = (EndedRole == Lead). Requires teams_update.
+     */
+    post: operations["Teams_RemoveTenantTeamMember"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/Members/{membershipId}/Role": {
+    /**
+     * Set a team member's role
+     * @description Role Member or Lead; several leads (or none) are allowed. 409: teams.not_member, teams.archived, teams.revision_stale. Undo: set PreviousRole. Requires teams_update.
+     */
+    put: operations["Teams_SetTenantTeamMemberRole"];
+  };
+  "/api/v2/TenantsService/Teams/Members/Move": {
+    /**
+     * Move a member between teams
+     * @description An explicit source-to-target choice in ONE unit of work: the source membership ends and a new one starts in the target (as a lead when AsLead), or nothing changes. Undo: Move back with the teams swapped and AsLead = (EndedRole == Lead). Requires teams_update.
+     */
+    post: operations["Teams_MoveTenantTeamMember"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/HomeDepartment": {
+    /**
+     * Set a team's home department
+     * @description A live department of the tenant (archived answers 409 departments.archived), or null to clear the label. Undo: set PreviousHomeDepartmentId. Requires teams_update.
+     */
+    put: operations["Teams_SetTenantTeamHomeDepartment"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/Archive": {
+    /**
+     * Archive a team
+     * @description Hides the team from lists and refuses writes; no membership ends. Undo: Restore. Requires teams_delete.
+     */
+    post: operations["Teams_ArchiveTenantTeam"];
+  };
+  "/api/v2/TenantsService/Teams/{tenantTeamId}/Restore": {
+    /**
+     * Restore an archived team
+     * @description Brings the team back. Undo: Archive. Requires teams_delete.
+     */
+    post: operations["Teams_RestoreTenantTeam"];
   };
   "/api/v2/TenantsService/Teams/{tenantTeamId}": {
     /**
@@ -1196,6 +1480,10 @@ export interface components {
       /** Format: double */
       ownershipPercentage?: number;
     };
+    CapabilityRequestDto: {
+      permission?: string | null;
+      why?: string | null;
+    };
     CartDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1233,6 +1521,62 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CartDto"];
+    };
+    DepartmentMakeHeadDto: {
+      memberEnrollmentId?: string | null;
+      acting?: boolean;
+      /** Format: int32 */
+      expectedDepartmentRevision?: number | null;
+      existingPositionId?: string | null;
+      newPosition?: components["schemas"]["DepartmentMakeHeadNewPositionDto"];
+      seatMode?: string | null;
+      fromPositionId?: string | null;
+      fromAssignmentId?: string | null;
+      /** Format: int32 */
+      expectedFromRevision?: number | null;
+    };
+    DepartmentMakeHeadNewPositionDto: {
+      /** Format: uuid */
+      id?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      capacity?: number;
+      jobRoleId?: string | null;
+    };
+    DepartmentMakeHeadResultDto: {
+      departmentId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      headPositionId?: string | null;
+      previousHeadPositionId?: string | null;
+      branch?: string | null;
+      createdPositionId?: string | null;
+      /** Format: int32 */
+      createdPositionRevision?: number | null;
+      newAssignmentId?: string | null;
+      endedAssignmentId?: string | null;
+      fromPositionId?: string | null;
+      /** Format: int32 */
+      fromRevision?: number | null;
+      primaryAssignmentId?: string | null;
+      primaryPositionId?: string | null;
+      /** Format: int32 */
+      primaryPositionRevision?: number | null;
+    };
+    DepartmentMakeHeadResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["DepartmentMakeHeadResultDto"];
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -1411,6 +1755,26 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    MemberCardLookupDto: {
+      kind?: string | null;
+      person?: components["schemas"]["PersonCardDto"];
+      agentId?: string | null;
+    };
+    MemberCardLookupDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["MemberCardLookupDto"];
+    };
     NotificationDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1485,6 +1849,8 @@ export interface components {
       transient?: boolean;
       /** Format: int32 */
       expiration?: number;
+      isSecret?: boolean;
+      hasValue?: boolean;
     };
     OptionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1539,11 +1905,143 @@ export interface components {
       /** Format: int32 */
       expiration?: number;
     };
+    OrgChartDepartmentDto: {
+      id?: string | null;
+      name?: string | null;
+      parentId?: string | null;
+      headPositionId?: string | null;
+      /** Format: int32 */
+      level?: number;
+      /** Format: int32 */
+      positionCount?: number;
+      /** Format: int32 */
+      descendantPositionCount?: number;
+      /** Format: int32 */
+      directCapacity?: number;
+      /** Format: int32 */
+      directFilled?: number;
+      /** Format: int32 */
+      hiddenChildDepartmentCount?: number;
+    };
+    OrgChartDto: {
+      departmentId?: string | null;
+      /** Format: int32 */
+      depth?: number;
+      departments?: components["schemas"]["OrgChartDepartmentDto"][] | null;
+      positions?: components["schemas"]["OrgChartPositionDto"][] | null;
+      truncated?: boolean;
+      /** Format: int32 */
+      truncatedDepartmentCount?: number;
+      /** Format: int32 */
+      truncatedPositionCount?: number;
+      /** Format: int32 */
+      totalPositionCount?: number;
+    };
+    OrgChartDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["OrgChartDto"];
+    };
+    OrgChartHolderDto: {
+      assignmentId?: string | null;
+      displayName?: string | null;
+      avatarUrl?: string | null;
+      kind?: string | null;
+      agentId?: string | null;
+      enrollmentId?: string | null;
+      acting?: boolean;
+      isPrimary?: boolean;
+      /** Format: date-time */
+      from?: string;
+      /** Format: date-time */
+      until?: string | null;
+    };
+    OrgChartPositionDto: {
+      id?: string | null;
+      title?: string | null;
+      departmentId?: string | null;
+      departmentName?: string | null;
+      reportsToId?: string | null;
+      reportsToTitle?: string | null;
+      jobRoleId?: string | null;
+      jobRoleName?: string | null;
+      /** Format: int32 */
+      capacity?: number;
+      /** Format: int32 */
+      filled?: number;
+      /** Format: int32 */
+      open?: number;
+      holders?: components["schemas"]["OrgChartHolderDto"][] | null;
+      hasAssignmentHistory?: boolean;
+      /** Format: int32 */
+      pastHolderCount?: number;
+      /** Format: date-time */
+      lastVacatedAtUtc?: string | null;
+      pastHolders?: components["schemas"]["OrgChartHolderDto"][] | null;
+    };
     PatchOperation: {
       op?: string | null;
       path?: string | null;
       from?: string | null;
       value?: unknown;
+    };
+    PersonCardDto: {
+      enrollmentId?: string | null;
+      kind?: string | null;
+      displayName?: string | null;
+      avatarUrl?: string | null;
+      active?: boolean;
+      positionTitle?: string | null;
+      departmentName?: string | null;
+      managerPositionTitle?: string | null;
+      managerName?: string | null;
+      teams?: string[] | null;
+      /** Format: int32 */
+      teamsMoreCount?: number;
+    };
+    PersonCardDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PersonCardDto"];
+    };
+    PositionAssignmentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      occupantEnrollmentId?: string | null;
+      acting?: boolean;
+    };
+    ReadingPackItemDto: {
+      /** Format: int32 */
+      order?: number;
+      title?: string | null;
+      reference?: string | null;
+    };
+    ReadingPackUpdateDto: {
+      items?: components["schemas"]["ReadingPackItemDto"][] | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1551,6 +2049,11 @@ export interface components {
     RegisterRequest: {
       email: string | null;
       password: string | null;
+    };
+    RequestedCapabilitiesUpdateDto: {
+      items?: components["schemas"]["CapabilityRequestDto"][] | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
     };
     ResendConfirmationEmailRequest: {
       email: string | null;
@@ -1709,6 +2212,52 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SuiteLicenseFeatureDto"][] | null;
     };
+    TeamMemberDto: {
+      enrollmentId?: string | null;
+      kind?: string | null;
+      displayName?: string | null;
+      avatarUrl?: string | null;
+      positionTitle?: string | null;
+      departmentName?: string | null;
+      /** Format: int32 */
+      positionCount?: number;
+      agentId?: string | null;
+      disabled?: boolean;
+    };
+    TeamMemberDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TeamMemberDto"];
+    };
+    TeamMemberDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TeamMemberDto"][] | null;
+    };
+    /** @enum {string} */
+    TeamMemberEligibility: "None" | "PositionHolder" | "Approver";
+    /** @enum {string} */
+    TeamMemberKindFilter: "All" | "Person" | "Agent";
     TenantCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1751,6 +2300,7 @@ export interface components {
       disabled?: boolean;
       organizationProfileId?: string | null;
       parentDepartmentId?: string | null;
+      externalReference?: string | null;
     };
     TenantDepartmentDto: {
       id?: string | null;
@@ -1763,6 +2313,12 @@ export interface components {
       disabled?: boolean;
       organizationProfileId?: string | null;
       parentDepartmentId?: string | null;
+      parentDepartmentName?: string | null;
+      headPositionId?: string | null;
+      headPositionTitle?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      externalReference?: string | null;
     };
     TenantDepartmentDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1807,12 +2363,72 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TenantDepartmentDto"][] | null;
     };
+    TenantDepartmentHeadDto: {
+      positionId?: string | null;
+      headPositionId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantDepartmentHeadResultDto: {
+      departmentId?: string | null;
+      headPositionId?: string | null;
+      previousHeadPositionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+    };
+    TenantDepartmentHeadResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantDepartmentHeadResultDto"];
+    };
+    TenantDepartmentLifecycleDto: {
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantDepartmentMoveDto: {
+      parentDepartmentId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantDepartmentMoveResultDto: {
+      departmentId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      parentDepartmentId?: string | null;
+    };
+    TenantDepartmentMoveResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantDepartmentMoveResultDto"];
+    };
     TenantDepartmentUpdateDto: {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
       organizationProfileId?: string | null;
       parentDepartmentId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
     };
     TenantDto: {
       id?: string | null;
@@ -2085,6 +2701,111 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TenantInvitationSendResultDto"];
     };
+    TenantJobRoleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      description?: string | null;
+      responsibilities?: string | null;
+    };
+    TenantJobRoleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      name?: string | null;
+      description?: string | null;
+      responsibilities?: string | null;
+      readingPack?: components["schemas"]["ReadingPackItemDto"][] | null;
+      requestedCapabilities?: components["schemas"]["CapabilityRequestDto"][] | null;
+      disabled?: boolean;
+      /** Format: int32 */
+      positionCount?: number;
+      /** Format: int32 */
+      revision?: number;
+    };
+    TenantJobRoleDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    TenantJobRoleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantJobRoleDto"];
+    };
+    TenantJobRoleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantJobRoleDto"][] | null;
+    };
+    TenantJobRoleUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      responsibilities?: string | null;
+      disabled?: boolean;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantMemberPositionDto: {
+      positionId?: string | null;
+      title?: string | null;
+      departmentId?: string | null;
+      departmentName?: string | null;
+      assignmentId?: string | null;
+      /** Format: date-time */
+      from?: string;
+      /** Format: date-time */
+      until?: string | null;
+      acting?: boolean;
+      isPrimary?: boolean;
+      isDepartmentHead?: boolean;
+    };
+    TenantMemberPositionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantMemberPositionDto"][] | null;
+    };
     TenantPositionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2093,6 +2814,13 @@ export interface components {
       title?: string | null;
       description?: string | null;
       type?: string | null;
+      departmentId?: string | null;
+      /** Format: int32 */
+      capacity?: number | null;
+      reportsToPositionId?: string | null;
+      jobRoleId?: string | null;
+      responsibilities?: string | null;
+      externalReference?: string | null;
     };
     TenantPositionDto: {
       id?: string | null;
@@ -2110,6 +2838,22 @@ export interface components {
       filledSeats?: number | null;
       activeHolderEnrollmentIds?: string[] | null;
       hasAssignmentHistory?: boolean | null;
+      departmentName?: string | null;
+      reportsToPositionId?: string | null;
+      reportsToTitle?: string | null;
+      jobRoleId?: string | null;
+      jobRoleName?: string | null;
+      responsibilities?: string | null;
+      effectiveResponsibilities?: string | null;
+      readingPack?: components["schemas"]["ReadingPackItemDto"][] | null;
+      effectiveReadingPack?: components["schemas"]["ReadingPackItemDto"][] | null;
+      requestedCapabilities?: components["schemas"]["CapabilityRequestDto"][] | null;
+      effectiveRequestedCapabilities?: components["schemas"]["CapabilityRequestDto"][] | null;
+      /** Format: int32 */
+      revision?: number;
+      /** Format: date-time */
+      archivedAtUtc?: string | null;
+      externalReference?: string | null;
     };
     TenantPositionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2154,10 +2898,102 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TenantPositionDto"][] | null;
     };
+    TenantPositionJobRoleDto: {
+      jobRoleId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantPositionLifecycleDto: {
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantPositionReportsToDto: {
+      reportsToPositionId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantPositionReportsToResultDto: {
+      positionId?: string | null;
+      reportsToPositionId?: string | null;
+      previousReportsToPositionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+    };
+    TenantPositionReportsToResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantPositionReportsToResultDto"];
+    };
+    TenantPositionSaveDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string | null;
+      description: string | null;
+      type: string | null;
+      departmentId: string | null;
+      /** Format: int32 */
+      capacity: number | null;
+      reportsToPositionId: string | null;
+      jobRoleId: string | null;
+      responsibilities: string | null;
+      readingPack: components["schemas"]["ReadingPackItemDto"][] | null;
+      requestedCapabilities: components["schemas"]["CapabilityRequestDto"][] | null;
+      assign: components["schemas"]["PositionAssignmentCreateDto"][] | null;
+      end: string[] | null;
+      /** Format: int32 */
+      expectedRevision: number | null;
+      externalReference?: string | null;
+    };
+    TenantPositionSaveResultDto: {
+      positionId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      assignedAssignmentIds?: string[] | null;
+      endedAssignmentIds?: string[] | null;
+      primaryAssignmentId?: string | null;
+      primaryPositionId?: string | null;
+      /** Format: int32 */
+      primaryPositionRevision?: number | null;
+    };
+    TenantPositionSaveResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantPositionSaveResultDto"];
+    };
     TenantPositionUpdateDto: {
       title?: string | null;
       description?: string | null;
       type?: string | null;
+      departmentId?: string | null;
+      /** Format: int32 */
+      capacity?: number | null;
+      reportsToPositionId?: string | null;
+      jobRoleId?: string | null;
+      responsibilities?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
     };
     TenantSegmentCreateDto: {
       /** Format: uuid */
@@ -2299,6 +3135,28 @@ export interface components {
       /** Format: int32 */
       employeeHighRangeValue?: number;
     };
+    TenantTeamArchiveResultDto: {
+      teamId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      /** Format: date-time */
+      archivedAtUtc?: string | null;
+    };
+    TenantTeamArchiveResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamArchiveResultDto"];
+    };
     TenantTeamContactEnrollmentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2388,6 +3246,15 @@ export interface components {
       isPublic?: boolean;
       businessUnitId?: string | null;
       organizationProfileId?: string | null;
+      homeDepartmentId?: string | null;
+      homeDepartmentName?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      /** Format: date-time */
+      archivedAtUtc?: string | null;
+      /** Format: int32 */
+      memberCount?: number;
+      leadNames?: string[] | null;
     };
     TenantTeamDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2495,6 +3362,245 @@ export interface components {
     TenantTeamEmployeeEnrollmentUpdateDto: {
       businessTeamId?: string | null;
       employeeProfileId?: string | null;
+    };
+    TenantTeamHomeDepartmentDto: {
+      departmentId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantTeamHomeDepartmentResultDto: {
+      teamId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      homeDepartmentId?: string | null;
+      previousHomeDepartmentId?: string | null;
+    };
+    TenantTeamHomeDepartmentResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamHomeDepartmentResultDto"];
+    };
+    TenantTeamMemberAddDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      memberEnrollmentId?: string | null;
+      asLead?: boolean;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantTeamMemberAddResultDto: {
+      teamId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      membershipId?: string | null;
+      role?: string | null;
+    };
+    TenantTeamMemberAddResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamMemberAddResultDto"];
+    };
+    TenantTeamMemberDto: {
+      membershipId?: string | null;
+      teamId?: string | null;
+      enrollmentId?: string | null;
+      displayName?: string | null;
+      avatarUrl?: string | null;
+      kind?: string | null;
+      agentId?: string | null;
+      role?: string | null;
+      /** Format: date-time */
+      joinedAtUtc?: string;
+    };
+    TenantTeamMemberDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    TenantTeamMemberDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamMemberDto"][] | null;
+    };
+    TenantTeamMemberMoveDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      memberEnrollmentId?: string | null;
+      fromTeamId?: string | null;
+      toTeamId?: string | null;
+      asLead?: boolean;
+      /** Format: int32 */
+      expectedFromRevision?: number | null;
+      /** Format: int32 */
+      expectedToRevision?: number | null;
+    };
+    TenantTeamMemberMoveResultDto: {
+      fromTeamId?: string | null;
+      /** Format: int32 */
+      fromRevision?: number;
+      endedMembershipId?: string | null;
+      endedRole?: string | null;
+      toTeamId?: string | null;
+      /** Format: int32 */
+      toRevision?: number;
+      newMembershipId?: string | null;
+      newRole?: string | null;
+    };
+    TenantTeamMemberMoveResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamMemberMoveResultDto"];
+    };
+    TenantTeamMemberRemoveResultDto: {
+      teamId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      endedMembershipId?: string | null;
+      endedRole?: string | null;
+    };
+    TenantTeamMemberRemoveResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamMemberRemoveResultDto"];
+    };
+    TenantTeamMemberRoleDto: {
+      role?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
+    TenantTeamMemberRoleResultDto: {
+      teamId?: string | null;
+      /** Format: int32 */
+      revision?: number;
+      membershipId?: string | null;
+      role?: string | null;
+      previousRole?: string | null;
+    };
+    TenantTeamMemberRoleResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamMemberRoleResultDto"];
+    };
+    TenantTeamOfMemberDto: {
+      membershipId?: string | null;
+      teamId?: string | null;
+      teamName?: string | null;
+      role?: string | null;
+      /** Format: date-time */
+      joinedAtUtc?: string;
+      homeDepartmentId?: string | null;
+    };
+    TenantTeamOfMemberDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamOfMemberDto"][] | null;
+    };
+    TenantTeamOfMembersDto: {
+      membershipId?: string | null;
+      teamId?: string | null;
+      teamName?: string | null;
+      role?: string | null;
+      /** Format: date-time */
+      joinedAtUtc?: string;
+      homeDepartmentId?: string | null;
+      enrollmentId?: string | null;
+    };
+    TenantTeamOfMembersDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TenantTeamOfMembersDto"][] | null;
     };
     TenantTeamProjectEnrollmentCreateDto: {
       /** Format: uuid */
@@ -2621,6 +3727,10 @@ export interface components {
     TenantTeamRecordUpdateDto: {
       businessTeamId?: string | null;
     };
+    TenantTeamRevisionDto: {
+      /** Format: int32 */
+      expectedRevision?: number | null;
+    };
     TenantTeamUpdateDto: {
       name?: string | null;
       description?: string | null;
@@ -2628,6 +3738,8 @@ export interface components {
       isPublic?: boolean;
       businessUnitId?: string | null;
       organizationProfileId?: string | null;
+      /** Format: int32 */
+      expectedRevision?: number | null;
     };
     TenantTerritoryCreateDto: {
       /** Format: uuid */
@@ -2849,7 +3961,7 @@ export interface components {
       about?: string | null;
       slogan?: string | null;
       handler?: string | null;
-      currencyId: string;
+      currencyId?: string | null;
       duns?: string | null;
       taxId?: string | null;
       /** Format: uri */
@@ -3476,12 +4588,13 @@ export interface operations {
   };
   /**
    * Retrieve a list of tenant departments
-   * @description Retrieve a list of tenant departments
+   * @description Retrieve a list of tenant departments. Archived (disabled) departments are included unless includeArchived=false (the default keeps the list's behaviour before 2.5).
    */
   Departments_GetTenantDepartments: {
     parameters: {
       query: {
         tenantId: string;
+        includeArchived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -3564,12 +4677,13 @@ export interface operations {
   };
   /**
    * Get the count of tenant departments
-   * @description Get the count of tenant departments
+   * @description Get the count of tenant departments. Archived (disabled) departments are counted unless includeArchived=false.
    */
   Departments_GetTenantDepartmentsCount: {
     parameters: {
       query: {
         tenantId: string;
+        includeArchived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -3696,7 +4810,7 @@ export interface operations {
   };
   /**
    * Delete a tenant department
-   * @description Delete a tenant department
+   * @description Deletes the department. Never cascades: refused (409, departments.has_children or departments.has_positions) while any child department or position remains. Requires departments_delete.
    */
   Departments_DeleteTenantDepartment: {
     parameters: {
@@ -3728,6 +4842,20 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -3775,6 +4903,318 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Move a tenant department under another department
+   * @description Re-parents the department (a null parent moves it to the top). The parent must be a department of the same tenant, and a move into the department's own subtree is refused. Answers the department's Revision after the move (Undo: move back with it as ExpectedRevision). Requires departments_update.
+   */
+  Departments_MoveTenantDepartment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantDepartmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantDepartmentMoveDto"];
+        "application/xml": components["schemas"]["TenantDepartmentMoveDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantDepartmentMoveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantDepartmentMoveResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Set or clear a tenant department's head position
+   * @description Sets the head seat (HeadPositionId, or the 2.4 PositionId; null clears it). The position must be in the tenant (404), of this department (409 departments.head_not_in_department) and not archived (409 positions.archived); a stale ExpectedRevision answers 409 departments.revision_stale. Answers the heads before and after and the Revision after the commit (Undo: set the previous head back with it). Requires departments_update.
+   */
+  Departments_SetTenantDepartmentHead: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantDepartmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantDepartmentHeadDto"];
+        "application/xml": components["schemas"]["TenantDepartmentHeadDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantDepartmentHeadResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantDepartmentHeadResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Make a member the head of a tenant department
+   * @description Exactly one branch, chosen explicitly (neither or both: 400). ExistingPositionId: a live position of this department the member holds becomes head; nothing is created, no seat changes; requires departments_update (409 positions.not_held_by_member). NewPosition: a head position is created in the department and the member seated there, SeatMode Add (keep other seats) or Transfer (end the seat named by FromPositionId and FromAssignmentId); requires departments_update, positions_create and positions_assign. 409: departments.archived, departments.revision_stale, positions.revision_stale. ONE commit; answers a receipt with every post-commit revision.
+   */
+  Departments_MakeTenantDepartmentHead: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantDepartmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DepartmentMakeHeadDto"];
+        "application/xml": components["schemas"]["DepartmentMakeHeadDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DepartmentMakeHeadResultDtoEnvelope"];
+          "application/xml": components["schemas"]["DepartmentMakeHeadResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Archive (disable) a tenant department
+   * @description Disables the department. Refused (409, departments.has_children or departments.has_positions) while it has enabled child departments or non-archived positions. Requires departments_delete.
+   */
+  Departments_ArchiveTenantDepartment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantDepartmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantDepartmentLifecycleDto"];
+        "application/xml": components["schemas"]["TenantDepartmentLifecycleDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Restore (enable) an archived tenant department
+   * @description Enables the department again. Requires departments_delete.
+   */
+  Departments_RestoreTenantDepartment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantDepartmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantDepartmentLifecycleDto"];
+        "application/xml": components["schemas"]["TenantDepartmentLifecycleDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -4591,6 +6031,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };
@@ -5412,6 +6858,653 @@ export interface operations {
     };
   };
   /**
+   * Retrieve a list of tenant job roles
+   * @description Retrieve the tenant's job roles. Requires job_roles_read.
+   */
+  JobRoles_GetTenantJobRoles: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantJobRoleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TenantJobRoleDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantJobRoleDtoListEnvelope"];
+          "application/xml": components["schemas"]["TenantJobRoleDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new tenant job role
+   * @description Create a job role; names are unique in the tenant (case-insensitive). Requires job_roles_create.
+   */
+  JobRoles_CreateTenantJobRole: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantJobRoleCreateDto"];
+        "application/xml": components["schemas"]["TenantJobRoleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of tenant job roles
+   * @description Get the count of the tenant's job roles. Requires job_roles_read.
+   */
+  JobRoles_GetTenantJobRolesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantJobRoleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TenantJobRoleDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the requestable capability (permission) names
+   * @description The permission names a job role or position may request, sorted: the same catalog requested capabilities are validated with. Requires job_roles_read.
+   */
+  JobRoles_GetTenantJobRoleCapabilityCatalog: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringListEnvelope"];
+          "application/xml": components["schemas"]["StringListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single tenant job role by its ID
+   * @description Retrieve one job role of the tenant; another tenant's id answers 404. Requires job_roles_read.
+   */
+  JobRoles_GetTenantJobRoleById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobRoleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantJobRoleDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantJobRoleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a tenant job role
+   * @description Replace the job role's name, description, responsibilities and disabled flag. A stale ExpectedRevision answers 409. Requires job_roles_update.
+   */
+  JobRoles_UpdateTenantJobRole: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobRoleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantJobRoleUpdateDto"];
+        "application/xml": components["schemas"]["TenantJobRoleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a tenant job role
+   * @description Delete a job role. Refused (409) while any position uses it. Requires job_roles_delete.
+   */
+  JobRoles_DeleteTenantJobRole: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobRoleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant job role
+   * @description Patch the job role's editable fields. Requires job_roles_update.
+   */
+  JobRoles_PatchTenantJobRole: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobRoleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replace a tenant job role's reading pack
+   * @description Replace the whole default reading pack (at most 40 items; https, safe relative paths or document ids only). Requires job_roles_update.
+   */
+  JobRoles_SetTenantJobRoleReadingPack: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobRoleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReadingPackUpdateDto"];
+        "application/xml": components["schemas"]["ReadingPackUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replace a tenant job role's requested capabilities
+   * @description Replace the whole list of advisory permission requests; each must be a known permission. Grants nothing. Requires job_roles_update.
+   */
+  JobRoles_SetTenantJobRoleRequestedCapabilities: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobRoleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RequestedCapabilitiesUpdateDto"];
+        "application/xml": components["schemas"]["RequestedCapabilitiesUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a person's hover card
+   * @description The person's display name, avatar, primary seat (title and department), manager and active teams (at most 20, with the count beyond). People only: an agent, a foreign or an unknown enrollment answers 404. Never presence, contact details or an email. Requires teams_read. Cache-Control: private.
+   */
+  Members_GetTenantMemberCard: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PersonCardDtoEnvelope"];
+          "application/xml": components["schemas"]["PersonCardDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a member's card by account-holder id
+   * @description Resolves the account holder to its enrollment in THIS tenant. A person answers Kind Person with the same card as Members/{enrollmentId}/Card; an agent with an enabled enrollment here answers Kind Agent with its AgentId only (open the AI Engine's agent card). Every miss answers the same 404. Requires teams_read. Cache-Control: private.
+   */
+  Members_GetTenantMemberCardByAccountHolder: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountHolderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MemberCardLookupDtoEnvelope"];
+          "application/xml": components["schemas"]["MemberCardLookupDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a member's card by social-profile id
+   * @description Resolves a person's or an agent's social profile to its enrollment in THIS tenant (a business, contact or group profile answers 404). A person answers Kind Person with the same card as Members/{enrollmentId}/Card; an agent with an enabled enrollment here answers Kind Agent with its AgentId only. Every miss answers the same 404. Requires teams_read. Cache-Control: private.
+   */
+  Members_GetTenantMemberCardBySocialProfile: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MemberCardLookupDtoEnvelope"];
+          "application/xml": components["schemas"]["MemberCardLookupDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant options
    * @description Retrieve a list of tenant options
    */
@@ -5814,13 +7907,61 @@ export interface operations {
     };
   };
   /**
+   * Retrieve the tenant's org chart
+   * @description Departments, the positions in them (archived ones left out) with reports-to edges, and each position's active holders (no email), for the tenant only. departmentId scopes the chart to one department's subtree (another tenant's id answers 404). depth defaults to 3 and is clamped at 10; at most 500 positions are returned, and truncated says when a bound cut the chart. Requires departments_read and positions_read.
+   */
+  Organization_GetTenantOrgChart: {
+    parameters: {
+      query: {
+        tenantId: string;
+        departmentId?: string;
+        depth?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrgChartDtoEnvelope"];
+          "application/xml": components["schemas"]["OrgChartDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant positions
-   * @description Retrieve a list of tenant positions
+   * @description Retrieve a list of tenant positions. Archived positions are left out unless includeArchived=true.
    */
   Positions_GetTenantPositions: {
     parameters: {
       query: {
         tenantId: string;
+        includeArchived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -5903,12 +8044,13 @@ export interface operations {
   };
   /**
    * Get the count of tenant positions
-   * @description Get the count of tenant positions
+   * @description Get the count of tenant positions. Archived positions are left out unless includeArchived=true.
    */
   Positions_GetTenantPositionsCount: {
     parameters: {
       query: {
         tenantId: string;
+        includeArchived?: boolean;
         "api-version"?: string;
       };
       header?: {
@@ -5938,6 +8080,54 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a member's current positions
+   * @description The enrollment's current seats (Until null or in the future) on non-archived positions of the tenant, with the department and a head flag. A foreign or unknown enrollment answers 404. Requires positions_read.
+   */
+  Positions_GetTenantMemberPositions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantMemberPositionDtoListEnvelope"];
+          "application/xml": components["schemas"]["TenantMemberPositionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -6114,6 +8304,484 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Change who a tenant position reports to
+   * @description Report to another position of the tenant, or to nobody (null clears the line). A foreign id answers 404; self answers 400; a cycle (positions.reports_to_cycle), an archived position on either side (positions.archived) and a stale ExpectedRevision (positions.revision_stale) answer 409. Answers the lines before and after and the Revision after the commit (Undo: set the previous line back with it). Department heads are independent of reporting lines. Requires positions_update.
+   */
+  Positions_SetTenantPositionReportsTo: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantPositionReportsToDto"];
+        "application/xml": components["schemas"]["TenantPositionReportsToDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantPositionReportsToResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantPositionReportsToResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Change the job role a tenant position instantiates
+   * @description Instantiate a job role of the tenant, or none. A foreign id answers 404. A job role grants nothing. Requires positions_update.
+   */
+  Positions_SetTenantPositionJobRole: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantPositionJobRoleDto"];
+        "application/xml": components["schemas"]["TenantPositionJobRoleDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replace a tenant position's reading pack
+   * @description Replace the position's own reading pack (at most 40 items; https, safe relative paths or document ids only). An empty list goes back to the job role's default. Requires positions_update.
+   */
+  Positions_SetTenantPositionReadingPack: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReadingPackUpdateDto"];
+        "application/xml": components["schemas"]["ReadingPackUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replace a tenant position's requested capabilities
+   * @description Replace the position's own advisory permission requests; each must be a known permission. Grants nothing. Requires positions_update.
+   */
+  Positions_SetTenantPositionRequestedCapabilities: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RequestedCapabilitiesUpdateDto"];
+        "application/xml": components["schemas"]["RequestedCapabilitiesUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Archive a tenant position (Remove)
+   * @description Ends every held seat (history is kept, nothing is revoked), clears a department head that points here, and archives the position. Refused (409) while positions report to it. Requires positions_delete, plus positions_assign while seats are held.
+   */
+  Positions_ArchiveTenantPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantPositionLifecycleDto"];
+        "application/xml": components["schemas"]["TenantPositionLifecycleDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Restore an archived tenant position
+   * @description Brings an archived position back, with open seats. Requires positions_delete.
+   */
+  Positions_RestoreTenantPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantPositionLifecycleDto"];
+        "application/xml": components["schemas"]["TenantPositionLifecycleDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Save a tenant position in one call
+   * @description Applies the editor's whole draft (fields, reading pack, requested capabilities, seats to fill and to end) in a fixed order and commits once: all or nothing. Every id is checked against the tenant (404). Answers the position's Revision after the commit and the assignment ids created and ended, in request order. Requires positions_update, plus positions_assign when the body has holder entries.
+   */
+  Positions_SaveTenantPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantPositionSaveDto"];
+        "application/xml": components["schemas"]["TenantPositionSaveDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantPositionSaveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantPositionSaveResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a tenant position in one call
+   * @description The composite Save for a new position (the body's Id becomes its id), committed once. Answers 201 with the position's Revision and the assignment ids created for the Assign entries, in request order. Requires positions_create, plus positions_assign when the body has holder entries.
+   */
+  Positions_AddTenantPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantPositionSaveDto"];
+        "application/xml": components["schemas"]["TenantPositionSaveDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["TenantPositionSaveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantPositionSaveResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -6730,6 +9398,154 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List the tenant's team members
+   * @description List the people and agents enrolled in the tenant, sorted by display name. kind: all | person | agent. eligibleFor: positionHolder | approver. pageSize defaults to 25 and is capped at 50.
+   */
+  Team_GetTeamMembers: {
+    parameters: {
+      query: {
+        tenantId: string;
+        search?: string;
+        kind?: components["schemas"]["TeamMemberKindFilter"];
+        departmentId?: string;
+        eligibleFor?: components["schemas"]["TeamMemberEligibility"];
+        page?: number;
+        pageSize?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TeamMemberDtoListEnvelope"];
+          "application/xml": components["schemas"]["TeamMemberDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count the tenant's team members
+   * @description Count the team members the same filters select.
+   */
+  Team_GetTeamMembersCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        search?: string;
+        kind?: components["schemas"]["TeamMemberKindFilter"];
+        departmentId?: string;
+        eligibleFor?: components["schemas"]["TeamMemberEligibility"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve one team member
+   * @description Retrieve one team member by enrollment id. An id from another tenant reads like an unknown one (404).
+   */
+  Team_GetTeamMember: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TeamMemberDtoEnvelope"];
+          "application/xml": components["schemas"]["TeamMemberDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -7663,12 +10479,14 @@ export interface operations {
   };
   /**
    * Retrieve a list of tenant teams
-   * @description Retrieve a list of tenant teams
+   * @description Retrieve the tenant's teams with their member count, lead names and home department. Archived teams are left out unless includeArchived=true; departmentId lists the teams of that home department. Requires teams_read.
    */
   Teams_GetTenantTeams: {
     parameters: {
       query: {
         tenantId: string;
+        includeArchived?: boolean;
+        departmentId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7757,6 +10575,8 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+        includeArchived?: boolean;
+        departmentId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -7786,6 +10606,580 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a team's members
+   * @description The team's active members (includeEnded=true adds history): kind, agent id, enrollment id, role and join date; never an email. A foreign team answers 404. Requires teams_read.
+   */
+  Teams_GetTenantTeamMembers: {
+    parameters: {
+      query: {
+        tenantId: string;
+        includeEnded?: boolean;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamMemberDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TenantTeamMemberDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamMemberDtoListEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamMemberDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a member to a team
+   * @description Adds an enabled person or agent of the tenant (as a lead when AsLead). 409: teams.already_member, teams.archived, teams.revision_stale; 400: teams.member_disabled. Undo: Remove(MembershipId). Requires teams_update.
+   */
+  Teams_AddTenantTeamMember: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamMemberAddDto"];
+        "application/xml": components["schemas"]["TenantTeamMemberAddDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamMemberAddResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamMemberAddResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count a team's members
+   * @description The number of the team's active members (includeEnded=true counts history). Requires teams_read.
+   */
+  Teams_GetTenantTeamMembersCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        includeEnded?: boolean;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamMemberDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TenantTeamMemberDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a member's active teams
+   * @description The member's active memberships in live teams (chips and the hover card). A foreign or unknown enrollment answers 404. Requires teams_read.
+   */
+  Teams_GetTenantTeamsByMember: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamOfMemberDtoListEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamOfMemberDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve several members' active teams
+   * @description One row per (member, team) for the comma-separated enrollmentIds (at most 200; more, or a token that is not a Guid, answers 400). Ids that are not enrollments of this tenant are simply absent; archived teams are hidden. Requires teams_read.
+   */
+  Teams_GetTenantTeamsByMembers: {
+    parameters: {
+      query: {
+        tenantId: string;
+        enrollmentIds?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamOfMembersDtoListEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamOfMembersDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a member from a team
+   * @description Ends the membership (kept as history). 409: teams.not_member, teams.archived, teams.revision_stale. Undo: Add with AsLead = (EndedRole == Lead). Requires teams_update.
+   */
+  Teams_RemoveTenantTeamMember: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+        membershipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamRevisionDto"];
+        "application/xml": components["schemas"]["TenantTeamRevisionDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamMemberRemoveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamMemberRemoveResultDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Set a team member's role
+   * @description Role Member or Lead; several leads (or none) are allowed. 409: teams.not_member, teams.archived, teams.revision_stale. Undo: set PreviousRole. Requires teams_update.
+   */
+  Teams_SetTenantTeamMemberRole: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+        membershipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamMemberRoleDto"];
+        "application/xml": components["schemas"]["TenantTeamMemberRoleDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamMemberRoleResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamMemberRoleResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Move a member between teams
+   * @description An explicit source-to-target choice in ONE unit of work: the source membership ends and a new one starts in the target (as a lead when AsLead), or nothing changes. Undo: Move back with the teams swapped and AsLead = (EndedRole == Lead). Requires teams_update.
+   */
+  Teams_MoveTenantTeamMember: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamMemberMoveDto"];
+        "application/xml": components["schemas"]["TenantTeamMemberMoveDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamMemberMoveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamMemberMoveResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Set a team's home department
+   * @description A live department of the tenant (archived answers 409 departments.archived), or null to clear the label. Undo: set PreviousHomeDepartmentId. Requires teams_update.
+   */
+  Teams_SetTenantTeamHomeDepartment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamHomeDepartmentDto"];
+        "application/xml": components["schemas"]["TenantTeamHomeDepartmentDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamHomeDepartmentResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamHomeDepartmentResultDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Archive a team
+   * @description Hides the team from lists and refuses writes; no membership ends. Undo: Restore. Requires teams_delete.
+   */
+  Teams_ArchiveTenantTeam: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamRevisionDto"];
+        "application/xml": components["schemas"]["TenantTeamRevisionDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamArchiveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamArchiveResultDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Restore an archived team
+   * @description Brings the team back. Undo: Archive. Requires teams_delete.
+   */
+  Teams_RestoreTenantTeam: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantTeamRevisionDto"];
+        "application/xml": components["schemas"]["TenantTeamRevisionDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantTeamArchiveResultDtoEnvelope"];
+          "application/xml": components["schemas"]["TenantTeamArchiveResultDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

@@ -199,14 +199,14 @@ export interface paths {
   "/api/v2/SystemService/Emails/SendBasic": {
     /**
      * Send a basic transactional email to recipients.
-     * @description This action is only available for global administrators (business_owner role).
+     * @description Requires the email send permission in the root workspace.
      */
     post: operations["Emails_AdminSendBasicEmail"];
   };
   "/api/v2/SystemService/Emails/Preview": {
     /**
      * Preview a rendered basic email template.
-     * @description This action is only available for global administrators (business_owner role).
+     * @description Requires the email send permission in the root workspace.
      */
     post: operations["Emails_AdminPreviewBasicEmailTemplate"];
   };
@@ -787,14 +787,14 @@ export interface paths {
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview": {
     /**
      * Preview the rendered email for a tenant.
-     * @description This action is only available for global administrators.
+     * @description Requires the email send permission in this workspace.
      */
     post: operations["Tenants_AdminPreviewTenantEmail"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Send": {
     /**
      * Send an email to a tenant.
-     * @description This action is only available for global administrators.
+     * @description Requires the email send permission in this workspace.
      */
     post: operations["Tenants_AdminSendTenantEmail"];
   };
@@ -932,14 +932,14 @@ export interface paths {
   "/api/v2/SystemService/Users/{userId}/Emails/Preview": {
     /**
      * Preview the rendered email for a user.
-     * @description This action is only available for global administrators.
+     * @description Requires the email send permission in the root workspace.
      */
     post: operations["Users_AdminPreviewUserEmailTemplate"];
   };
   "/api/v2/SystemService/Users/{userId}/Emails/Send": {
     /**
      * Send an email to a user.
-     * @description This action is only available for global administrators.
+     * @description Requires the email send permission in the root workspace.
      */
     post: operations["Users_AdminSendUserEmail"];
   };
@@ -1842,6 +1842,8 @@ export interface components {
       transient?: boolean;
       /** Format: int32 */
       expiration?: number;
+      isSecret?: boolean;
+      hasValue?: boolean;
     };
     OptionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -2092,6 +2094,7 @@ export interface components {
       category?: string | null;
       description?: string | null;
       isSystemPermission?: boolean;
+      grantedVia?: string[] | null;
     };
     SecurityRoleDto: {
       id?: string | null;
@@ -2491,7 +2494,7 @@ export interface components {
       about?: string | null;
       slogan?: string | null;
       handler?: string | null;
-      currencyId: string;
+      currencyId?: string | null;
       duns?: string | null;
       taxId?: string | null;
       /** Format: uri */
@@ -4141,7 +4144,7 @@ export interface operations {
   };
   /**
    * Send a basic transactional email to recipients.
-   * @description This action is only available for global administrators (business_owner role).
+   * @description Requires the email send permission in the root workspace.
    */
   Emails_AdminSendBasicEmail: {
     parameters: {
@@ -4184,7 +4187,7 @@ export interface operations {
   };
   /**
    * Preview a rendered basic email template.
-   * @description This action is only available for global administrators (business_owner role).
+   * @description Requires the email send permission in the root workspace.
    */
   Emails_AdminPreviewBasicEmailTemplate: {
     parameters: {
@@ -4312,6 +4315,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };
@@ -9145,7 +9154,7 @@ export interface operations {
   };
   /**
    * Preview the rendered email for a tenant.
-   * @description This action is only available for global administrators.
+   * @description Requires the email send permission in this workspace.
    */
   Tenants_AdminPreviewTenantEmail: {
     parameters: {
@@ -9174,7 +9183,7 @@ export interface operations {
   };
   /**
    * Send an email to a tenant.
-   * @description This action is only available for global administrators.
+   * @description Requires the email send permission in this workspace.
    */
   Tenants_AdminSendTenantEmail: {
     parameters: {
@@ -10135,7 +10144,7 @@ export interface operations {
   };
   /**
    * Preview the rendered email for a user.
-   * @description This action is only available for global administrators.
+   * @description Requires the email send permission in the root workspace.
    */
   Users_AdminPreviewUserEmailTemplate: {
     parameters: {
@@ -10174,7 +10183,7 @@ export interface operations {
   };
   /**
    * Send an email to a user.
-   * @description This action is only available for global administrators.
+   * @description Requires the email send permission in the root workspace.
    */
   Users_AdminSendUserEmail: {
     parameters: {

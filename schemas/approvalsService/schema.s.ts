@@ -158,6 +158,8 @@ export interface components {
       stageIndex?: number;
       slotId?: string | null;
       approverAccountHolderId?: string | null;
+      approverDisplayName?: string | null;
+      approverAvatarUrl?: string | null;
       approverEnrollmentId?: string | null;
       isRoleSlot?: boolean;
       required?: boolean;
@@ -230,11 +232,16 @@ export interface components {
       requestedByEnrollmentId?: string | null;
       requestedByRunAs?: components["schemas"]["RunAs"];
       requestedByPrincipalKind?: components["schemas"]["PrincipalKind"];
+      requestedOnBehalfOfUserId?: string | null;
+      requestedByDisplayName?: string | null;
+      requestedByAvatarUrl?: string | null;
+      requestedOnBehalfOfDisplayName?: string | null;
       subjectTitle?: string | null;
       subjectSummary?: string | null;
       subjectEffect?: string | null;
       subjectRisk?: string | null;
       subjectDetailsJson?: string | null;
+      capabilityKey?: string | null;
       status?: components["schemas"]["ApprovalRequestStatus"];
       /** Format: int32 */
       currentStageIndex?: number;
@@ -759,6 +766,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

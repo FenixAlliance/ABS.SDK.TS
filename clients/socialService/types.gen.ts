@@ -1999,6 +1999,94 @@ export type StringEnvelopeWritable = {
     result?: string | null;
 };
 
+export type TeamMessageCreateDto = {
+    id?: string;
+    timestamp?: string;
+    conversationId?: string | null;
+    subject?: string | null;
+    body?: string | null;
+    kind?: string | null;
+    ask?: string | null;
+    commit?: string | null;
+    path?: string | null;
+    metric?: string | null;
+    state?: TeamMessageState;
+    blockedBy?: string | null;
+    idempotencyKey?: string | null;
+};
+
+export type TeamMessageDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    conversationId?: string | null;
+    seq?: number;
+    senderSocialProfileId?: string | null;
+    kind?: string | null;
+    subject?: string | null;
+    body?: string | null;
+    ask?: string | null;
+    commit?: string | null;
+    path?: string | null;
+    metric?: string | null;
+    state?: TeamMessageState;
+    blockedBy?: string | null;
+    sentAtUtc?: string;
+    readAtUtc?: string | null;
+    ackedAtUtc?: string | null;
+};
+
+export type TeamMessageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TeamMessageDto;
+};
+
+export type TeamMessageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TeamMessageDto;
+};
+
+export type TeamMessageDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TeamMessageDto> | null;
+};
+
+export type TeamMessageDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TeamMessageDto> | null;
+};
+
+export type TeamMessageState = 'Doing' | 'Blocked' | 'Review' | 'Done';
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -2707,6 +2795,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**
@@ -6193,6 +6290,327 @@ export type SocialProfilesMarkConversationReadResponses = {
 };
 
 export type SocialProfilesMarkConversationReadResponse = SocialProfilesMarkConversationReadResponses[keyof SocialProfilesMarkConversationReadResponses];
+
+export type TeamConversationsGetTeamConversationMessagesData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        /**
+         * The Team conversation.
+         */
+        conversationId: string;
+    };
+    query: {
+        /**
+         * The tenant that owns the conversation.
+         */
+        tenantId: string;
+        /**
+         * The acting social profile.
+         */
+        socialProfileId: string;
+        /**
+         * Return messages after this sequence number (0 for the start).
+         */
+        afterSeq?: number;
+        /**
+         * The most messages to return (capped server-side).
+         */
+        take?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/TeamConversations/{conversationId}/Messages';
+};
+
+export type TeamConversationsGetTeamConversationMessagesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamConversationsGetTeamConversationMessagesError = TeamConversationsGetTeamConversationMessagesErrors[keyof TeamConversationsGetTeamConversationMessagesErrors];
+
+export type TeamConversationsGetTeamConversationMessagesResponses = {
+    /**
+     * OK
+     */
+    200: TeamMessageDtoListEnvelopeReadable;
+};
+
+export type TeamConversationsGetTeamConversationMessagesResponse = TeamConversationsGetTeamConversationMessagesResponses[keyof TeamConversationsGetTeamConversationMessagesResponses];
+
+export type TeamConversationsSendTeamMessageData = {
+    body?: TeamMessageCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        /**
+         * The Team conversation.
+         */
+        conversationId: string;
+    };
+    query: {
+        /**
+         * The tenant that owns the conversation.
+         */
+        tenantId: string;
+        /**
+         * The acting social profile.
+         */
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/TeamConversations/{conversationId}/Messages';
+};
+
+export type TeamConversationsSendTeamMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamConversationsSendTeamMessageError = TeamConversationsSendTeamMessageErrors[keyof TeamConversationsSendTeamMessageErrors];
+
+export type TeamConversationsSendTeamMessageResponses = {
+    /**
+     * OK
+     */
+    200: TeamMessageDtoEnvelopeReadable;
+};
+
+export type TeamConversationsSendTeamMessageResponse = TeamConversationsSendTeamMessageResponses[keyof TeamConversationsSendTeamMessageResponses];
+
+export type TeamConversationsGetTeamInboxData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        /**
+         * The tenant whose Team conversations are read.
+         */
+        tenantId: string;
+        /**
+         * The acting social profile.
+         */
+        socialProfileId: string;
+        /**
+         * Only unacknowledged messages.
+         */
+        unackedOnly?: boolean;
+        /**
+         * How many inbox rows to skip.
+         */
+        skip?: number;
+        /**
+         * The most inbox rows to return (capped server-side).
+         */
+        take?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/TeamConversations/Inbox';
+};
+
+export type TeamConversationsGetTeamInboxErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type TeamConversationsGetTeamInboxError = TeamConversationsGetTeamInboxErrors[keyof TeamConversationsGetTeamInboxErrors];
+
+export type TeamConversationsGetTeamInboxResponses = {
+    /**
+     * OK
+     */
+    200: TeamMessageDtoListEnvelopeReadable;
+};
+
+export type TeamConversationsGetTeamInboxResponse = TeamConversationsGetTeamInboxResponses[keyof TeamConversationsGetTeamInboxResponses];
+
+export type TeamConversationsMarkTeamMessageReadData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        /**
+         * The message.
+         */
+        messageId: string;
+    };
+    query: {
+        /**
+         * The tenant that owns the conversation.
+         */
+        tenantId: string;
+        /**
+         * The acting social profile.
+         */
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/TeamConversations/Messages/{messageId}/Read';
+};
+
+export type TeamConversationsMarkTeamMessageReadErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamConversationsMarkTeamMessageReadError = TeamConversationsMarkTeamMessageReadErrors[keyof TeamConversationsMarkTeamMessageReadErrors];
+
+export type TeamConversationsMarkTeamMessageReadResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type TeamConversationsMarkTeamMessageReadResponse = TeamConversationsMarkTeamMessageReadResponses[keyof TeamConversationsMarkTeamMessageReadResponses];
+
+export type TeamConversationsAckTeamMessageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        /**
+         * The message.
+         */
+        messageId: string;
+    };
+    query: {
+        /**
+         * The tenant that owns the conversation.
+         */
+        tenantId: string;
+        /**
+         * The acting social profile.
+         */
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/TeamConversations/Messages/{messageId}/Ack';
+};
+
+export type TeamConversationsAckTeamMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamConversationsAckTeamMessageError = TeamConversationsAckTeamMessageErrors[keyof TeamConversationsAckTeamMessageErrors];
+
+export type TeamConversationsAckTeamMessageResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type TeamConversationsAckTeamMessageResponse = TeamConversationsAckTeamMessageResponses[keyof TeamConversationsAckTeamMessageResponses];
+
+export type TeamConversationsMarkTeamMessageNotifiedData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        /**
+         * The message.
+         */
+        messageId: string;
+    };
+    query: {
+        /**
+         * The tenant that owns the conversation.
+         */
+        tenantId: string;
+        /**
+         * The acting social profile.
+         */
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/TeamConversations/Messages/{messageId}/Notified';
+};
+
+export type TeamConversationsMarkTeamMessageNotifiedErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamConversationsMarkTeamMessageNotifiedError = TeamConversationsMarkTeamMessageNotifiedErrors[keyof TeamConversationsMarkTeamMessageNotifiedErrors];
+
+export type TeamConversationsMarkTeamMessageNotifiedResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type TeamConversationsMarkTeamMessageNotifiedResponse = TeamConversationsMarkTeamMessageNotifiedResponses[keyof TeamConversationsMarkTeamMessageNotifiedResponses];
 
 export type ClientOptions = {
     baseUrl: `${string}://{server}` | (string & {});

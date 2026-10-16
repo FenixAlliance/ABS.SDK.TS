@@ -221,28 +221,28 @@ export interface paths {
   "/api/v2/PricingService/Prices/{itemId}/Price": {
     /**
      * Gets the calculated price for an item
-     * @description Calculates the price for an item considering price list, discount list, quantity, and currency.
+     * @description Calculates the price for an item considering price list, discount list, quantity, and currency (the item's own currency when none is given).
      */
     get: operations["Prices_GetPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/FinalPrice": {
     /**
      * Gets the final price for an item
-     * @description Gets the final price for an item after all discounts and taxes in the specified currency.
+     * @description Gets the final price for an item after all discounts and taxes in the specified currency, or the item's own currency when none is given.
      */
     get: operations["Prices_GetFinalPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/TotalTaxes": {
     /**
      * Gets total taxes for an item
-     * @description Gets the total tax amount for an item in the specified currency.
+     * @description Gets the total tax amount for an item in the specified currency, or the item's own currency when none is given.
      */
     get: operations["Prices_GetTotalTaxesInUsd"];
   };
   "/api/v2/PricingService/Prices/{itemId}/TotalSavings": {
     /**
      * Gets total savings for an item
-     * @description Gets the total savings amount for an item in the specified currency.
+     * @description Gets the total savings amount for an item in the specified currency, or the item's own currency when none is given.
      */
     get: operations["Prices_GetTotalSavingsInUsd"];
   };
@@ -1947,6 +1947,12 @@ export interface operations {
       200: {
         content: never;
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
     };
   };
   Platform_PostForgotPassword: {
@@ -2599,7 +2605,7 @@ export interface operations {
   };
   /**
    * Gets the calculated price for an item
-   * @description Calculates the price for an item considering price list, discount list, quantity, and currency.
+   * @description Calculates the price for an item considering price list, discount list, quantity, and currency (the item's own currency when none is given).
    */
   Prices_GetPrice: {
     parameters: {
@@ -2636,7 +2642,7 @@ export interface operations {
   };
   /**
    * Gets the final price for an item
-   * @description Gets the final price for an item after all discounts and taxes in the specified currency.
+   * @description Gets the final price for an item after all discounts and taxes in the specified currency, or the item's own currency when none is given.
    */
   Prices_GetFinalPrice: {
     parameters: {
@@ -2670,7 +2676,7 @@ export interface operations {
   };
   /**
    * Gets total taxes for an item
-   * @description Gets the total tax amount for an item in the specified currency.
+   * @description Gets the total tax amount for an item in the specified currency, or the item's own currency when none is given.
    */
   Prices_GetTotalTaxesInUsd: {
     parameters: {
@@ -2704,7 +2710,7 @@ export interface operations {
   };
   /**
    * Gets total savings for an item
-   * @description Gets the total savings amount for an item in the specified currency.
+   * @description Gets the total savings amount for an item in the specified currency, or the item's own currency when none is given.
    */
   Prices_GetTotalSavingsInUsd: {
     parameters: {

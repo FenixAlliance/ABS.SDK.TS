@@ -876,6 +876,7 @@ export type SecurityPermissionDto = {
     category?: string | null;
     description?: string | null;
     isSystemPermission?: boolean;
+    grantedVia?: Array<string> | null;
 };
 
 export type SecurityPermissionDtoCollectionQueryParametersReadable = {
@@ -1048,6 +1049,35 @@ export type SecurityRoleDtoListEnvelopeWritable = {
 export type SecurityRoleUpdateDto = {
     name: string;
     description?: string | null;
+};
+
+export type StringBooleanDictionaryEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: {
+        [key: string]: boolean;
+    } | null;
+};
+
+export type StringBooleanDictionaryEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: {
+        [key: string]: boolean;
+    } | null;
 };
 
 export type TenantEnrollmentDto = {
@@ -1982,6 +2012,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**
@@ -3362,6 +3401,87 @@ export type PermissionsGetPermissionsByEnrollmentResponses = {
 };
 
 export type PermissionsGetPermissionsByEnrollmentResponse = PermissionsGetPermissionsByEnrollmentResponses[keyof PermissionsGetPermissionsByEnrollmentResponses];
+
+export type PermissionsGetMyPermissionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        keys?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Permissions/Mine';
+};
+
+export type PermissionsGetMyPermissionsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PermissionsGetMyPermissionsError = PermissionsGetMyPermissionsErrors[keyof PermissionsGetMyPermissionsErrors];
+
+export type PermissionsGetMyPermissionsResponses = {
+    /**
+     * OK
+     */
+    200: StringBooleanDictionaryEnvelopeReadable;
+};
+
+export type PermissionsGetMyPermissionsResponse = PermissionsGetMyPermissionsResponses[keyof PermissionsGetMyPermissionsResponses];
+
+export type PermissionsGetGrantablePermissionsForEnrollmentData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Permissions/GrantableFor/{enrollmentId}';
+};
+
+export type PermissionsGetGrantablePermissionsForEnrollmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PermissionsGetGrantablePermissionsForEnrollmentError = PermissionsGetGrantablePermissionsForEnrollmentErrors[keyof PermissionsGetGrantablePermissionsForEnrollmentErrors];
+
+export type PermissionsGetGrantablePermissionsForEnrollmentResponses = {
+    /**
+     * OK
+     */
+    200: SecurityPermissionDtoListEnvelopeReadable;
+};
+
+export type PermissionsGetGrantablePermissionsForEnrollmentResponse = PermissionsGetGrantablePermissionsForEnrollmentResponses[keyof PermissionsGetGrantablePermissionsForEnrollmentResponses];
 
 export type RolesGetRolesData = {
     body?: SecurityRoleDtoCollectionQueryParametersWritable;

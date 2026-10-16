@@ -204,8 +204,8 @@ export interface paths {
   };
   "/api/v2/CrmService/Contacts/Extended": {
     /**
-     * Get all business owned contacts
-     * @description Get all business owned contacts
+     * Get all business owned contacts with related details
+     * @description Get all business owned contacts with related details
      */
     get: operations["Contacts_GetExtendedContacts"];
   };
@@ -254,8 +254,8 @@ export interface paths {
   };
   "/api/v2/CrmService/Contacts/Individuals/Extended": {
     /**
-     * Get all contacts of type individual
-     * @description Get all contacts of type individual
+     * Get all contacts of type individual with related details
+     * @description Get all contacts of type individual with related details
      */
     get: operations["Contacts_GetExtendedBusinessOwnedIndividuals"];
   };
@@ -282,8 +282,8 @@ export interface paths {
   };
   "/api/v2/CrmService/Contacts/Organizations/Extended": {
     /**
-     * Get all contacts of type organization
-     * @description Get all contacts of type organization
+     * Get all contacts of type organization with related details
+     * @description Get all contacts of type organization with related details
      */
     get: operations["Contacts_GetExtendedBusinessOwnedOrganizations"];
   };
@@ -322,8 +322,8 @@ export interface paths {
   };
   "/api/v2/CrmService/Contacts/{contactId}/Profiles": {
     /**
-     * Get a contact's social profiles
-     * @description Get a contact's social profiles
+     * Get a contact's profiles
+     * @description Get a contact's profiles
      */
     get: operations["Contacts_GetProfilesForContact"];
     /**
@@ -618,8 +618,8 @@ export interface paths {
   };
   "/api/v2/CrmService/Sync": {
     /**
-     * Sync the current user into the current tenant's contact list
-     * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list.
+     * Sync the current user into the current tenant's contact list (same as Sync/Me)
+     * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list. Same operation as POST Sync/Me; use Sync/Me.
      */
     post: operations["Sync_SyncCurrentHolderToCurrentTenantCrm"];
   };
@@ -1572,6 +1572,8 @@ export interface components {
       transient?: boolean;
       /** Format: int32 */
       expiration?: number;
+      isSecret?: boolean;
+      hasValue?: boolean;
     };
     OptionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -3162,8 +3164,8 @@ export interface operations {
     };
   };
   /**
-   * Get all business owned contacts
-   * @description Get all business owned contacts
+   * Get all business owned contacts with related details
+   * @description Get all business owned contacts with related details
    */
   Contacts_GetExtendedContacts: {
     parameters: {
@@ -3511,8 +3513,8 @@ export interface operations {
     };
   };
   /**
-   * Get all contacts of type individual
-   * @description Get all contacts of type individual
+   * Get all contacts of type individual with related details
+   * @description Get all contacts of type individual with related details
    */
   Contacts_GetExtendedBusinessOwnedIndividuals: {
     parameters: {
@@ -3691,8 +3693,8 @@ export interface operations {
     };
   };
   /**
-   * Get all contacts of type organization
-   * @description Get all contacts of type organization
+   * Get all contacts of type organization with related details
+   * @description Get all contacts of type organization with related details
    */
   Contacts_GetExtendedBusinessOwnedOrganizations: {
     parameters: {
@@ -3977,8 +3979,8 @@ export interface operations {
     };
   };
   /**
-   * Get a contact's social profiles
-   * @description Get a contact's social profiles
+   * Get a contact's profiles
+   * @description Get a contact's profiles
    */
   Contacts_GetProfilesForContact: {
     parameters: {
@@ -5274,6 +5276,12 @@ export interface operations {
       200: {
         content: never;
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
+      };
     };
   };
   Platform_PostForgotPassword: {
@@ -5914,8 +5922,8 @@ export interface operations {
     };
   };
   /**
-   * Sync the current user into the current tenant's contact list
-   * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list.
+   * Sync the current user into the current tenant's contact list (same as Sync/Me)
+   * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list. Same operation as POST Sync/Me; use Sync/Me.
    */
   Sync_SyncCurrentHolderToCurrentTenantCrm: {
     parameters: {

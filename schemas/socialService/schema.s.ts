@@ -682,6 +682,46 @@ export interface paths {
      */
     post: operations["SocialProfiles_MarkConversationRead"];
   };
+  "/api/v2/SocialService/TeamConversations/{conversationId}/Messages": {
+    /**
+     * Get Team Conversation Messages
+     * @description Get the messages of a Team conversation, in sequence order, after a sequence number.
+     */
+    get: operations["TeamConversations_GetTeamConversationMessages"];
+    /**
+     * Send Team Message
+     * @description Post a message to a Team conversation and deliver it to every other participant.
+     */
+    post: operations["TeamConversations_SendTeamMessage"];
+  };
+  "/api/v2/SocialService/TeamConversations/Inbox": {
+    /**
+     * Get Team Inbox
+     * @description Get the acting profile's copies of Team messages in a tenant, newest first.
+     */
+    get: operations["TeamConversations_GetTeamInbox"];
+  };
+  "/api/v2/SocialService/TeamConversations/Messages/{messageId}/Read": {
+    /**
+     * Mark Team Message Read
+     * @description Mark the acting profile's own copy of a Team message read.
+     */
+    post: operations["TeamConversations_MarkTeamMessageRead"];
+  };
+  "/api/v2/SocialService/TeamConversations/Messages/{messageId}/Ack": {
+    /**
+     * Acknowledge Team Message
+     * @description Acknowledge the acting profile's own copy of a Team message.
+     */
+    post: operations["TeamConversations_AckTeamMessage"];
+  };
+  "/api/v2/SocialService/TeamConversations/Messages/{messageId}/Notified": {
+    /**
+     * Mark Team Message Notified
+     * @description Record that the acting profile was notified of its own copy of a Team message.
+     */
+    post: operations["TeamConversations_MarkTeamMessageNotified"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -2144,6 +2184,79 @@ export interface components {
       activityId?: string | null;
       result?: string | null;
     };
+    TeamMessageCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      conversationId?: string | null;
+      subject?: string | null;
+      body?: string | null;
+      kind?: string | null;
+      ask?: string | null;
+      commit?: string | null;
+      path?: string | null;
+      metric?: string | null;
+      state?: components["schemas"]["TeamMessageState"];
+      blockedBy?: string | null;
+      idempotencyKey?: string | null;
+    };
+    TeamMessageDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      conversationId?: string | null;
+      /** Format: int64 */
+      seq?: number;
+      senderSocialProfileId?: string | null;
+      kind?: string | null;
+      subject?: string | null;
+      body?: string | null;
+      ask?: string | null;
+      commit?: string | null;
+      path?: string | null;
+      metric?: string | null;
+      state?: components["schemas"]["TeamMessageState"];
+      blockedBy?: string | null;
+      /** Format: date-time */
+      sentAtUtc?: string;
+      /** Format: date-time */
+      readAtUtc?: string | null;
+      /** Format: date-time */
+      ackedAtUtc?: string | null;
+    };
+    TeamMessageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TeamMessageDto"];
+    };
+    TeamMessageDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TeamMessageDto"][] | null;
+    };
+    /** @enum {string} */
+    TeamMessageState: "Doing" | "Blocked" | "Review" | "Done";
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -2982,6 +3095,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };
@@ -7147,6 +7266,330 @@ export interface operations {
       };
       path: {
         conversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Team Conversation Messages
+   * @description Get the messages of a Team conversation, in sequence order, after a sequence number.
+   */
+  TeamConversations_GetTeamConversationMessages: {
+    parameters: {
+      query: {
+        /** @description The tenant that owns the conversation. */
+        tenantId: string;
+        /** @description The acting social profile. */
+        socialProfileId: string;
+        /** @description Return messages after this sequence number (0 for the start). */
+        afterSeq?: number;
+        /** @description The most messages to return (capped server-side). */
+        take?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        /** @description The Team conversation. */
+        conversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TeamMessageDtoListEnvelope"];
+          "application/xml": components["schemas"]["TeamMessageDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Send Team Message
+   * @description Post a message to a Team conversation and deliver it to every other participant.
+   */
+  TeamConversations_SendTeamMessage: {
+    parameters: {
+      query: {
+        /** @description The tenant that owns the conversation. */
+        tenantId: string;
+        /** @description The acting social profile. */
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        /** @description The Team conversation. */
+        conversationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TeamMessageCreateDto"];
+        "application/xml": components["schemas"]["TeamMessageCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TeamMessageDtoEnvelope"];
+          "application/xml": components["schemas"]["TeamMessageDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Team Inbox
+   * @description Get the acting profile's copies of Team messages in a tenant, newest first.
+   */
+  TeamConversations_GetTeamInbox: {
+    parameters: {
+      query: {
+        /** @description The tenant whose Team conversations are read. */
+        tenantId: string;
+        /** @description The acting social profile. */
+        socialProfileId: string;
+        /** @description Only unacknowledged messages. */
+        unackedOnly?: boolean;
+        /** @description How many inbox rows to skip. */
+        skip?: number;
+        /** @description The most inbox rows to return (capped server-side). */
+        take?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TeamMessageDtoListEnvelope"];
+          "application/xml": components["schemas"]["TeamMessageDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark Team Message Read
+   * @description Mark the acting profile's own copy of a Team message read.
+   */
+  TeamConversations_MarkTeamMessageRead: {
+    parameters: {
+      query: {
+        /** @description The tenant that owns the conversation. */
+        tenantId: string;
+        /** @description The acting social profile. */
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        /** @description The message. */
+        messageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Acknowledge Team Message
+   * @description Acknowledge the acting profile's own copy of a Team message.
+   */
+  TeamConversations_AckTeamMessage: {
+    parameters: {
+      query: {
+        /** @description The tenant that owns the conversation. */
+        tenantId: string;
+        /** @description The acting social profile. */
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        /** @description The message. */
+        messageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark Team Message Notified
+   * @description Record that the acting profile was notified of its own copy of a Team message.
+   */
+  TeamConversations_MarkTeamMessageNotified: {
+    parameters: {
+      query: {
+        /** @description The tenant that owns the conversation. */
+        tenantId: string;
+        /** @description The acting social profile. */
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        /** @description The message. */
+        messageId: string;
       };
     };
     responses: {

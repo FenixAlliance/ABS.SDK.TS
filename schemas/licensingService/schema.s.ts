@@ -734,6 +734,7 @@ export interface components {
       /** Format: date-time */
       generatedAtUtc?: string;
       capabilities?: components["schemas"]["UsageCapabilitiesDto"];
+      categories?: components["schemas"]["UsageCategoryDto"][] | null;
     };
     TenantUsageDtoEnvelope: {
       isSuccess?: boolean;
@@ -872,6 +873,13 @@ export interface components {
       canManageBudget?: boolean;
       canOverrideLimits?: boolean;
     };
+    UsageCategoryDto: {
+      key?: string | null;
+      label?: string | null;
+      meterKeys?: string[] | null;
+      additionalUsageApproved?: components["schemas"]["UsageMoneyDto"];
+      additionalUsageAvailable?: boolean;
+    };
     /** @enum {string} */
     UsageCostStatus: "NotRated" | "Estimated" | "Invoiced";
     /** @enum {string} */
@@ -899,7 +907,7 @@ export interface components {
     /** @enum {string} */
     UsageLimitBehavior: "None" | "HardStop" | "Overage";
     /** @enum {string} */
-    UsageLimitOverrideKind: "SetAllowance" | "ExtendAllowance" | "ResetHardStop";
+    UsageLimitOverrideKind: "SetAllowance" | "ExtendAllowance" | "ResetHardStop" | "ApproveAdditionalUsage";
     UsageMeterDefinitionDto: {
       key?: string | null;
       labelKey?: string | null;
@@ -1129,6 +1137,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

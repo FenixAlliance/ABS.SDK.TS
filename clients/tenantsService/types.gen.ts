@@ -133,6 +133,11 @@ export type BusinessRelationshipUpdateDto = {
     ownershipPercentage?: number;
 };
 
+export type CapabilityRequestDto = {
+    permission?: string | null;
+    why?: string | null;
+};
+
 export type CartDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -173,6 +178,67 @@ export type CartDtoEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: CartDto;
+};
+
+export type DepartmentMakeHeadDto = {
+    memberEnrollmentId?: string | null;
+    acting?: boolean;
+    expectedDepartmentRevision?: number | null;
+    existingPositionId?: string | null;
+    newPosition?: DepartmentMakeHeadNewPositionDto;
+    seatMode?: string | null;
+    fromPositionId?: string | null;
+    fromAssignmentId?: string | null;
+    expectedFromRevision?: number | null;
+};
+
+export type DepartmentMakeHeadNewPositionDto = {
+    id?: string | null;
+    title?: string | null;
+    capacity?: number;
+    jobRoleId?: string | null;
+};
+
+export type DepartmentMakeHeadResultDto = {
+    departmentId?: string | null;
+    revision?: number;
+    headPositionId?: string | null;
+    previousHeadPositionId?: string | null;
+    branch?: string | null;
+    createdPositionId?: string | null;
+    createdPositionRevision?: number | null;
+    newAssignmentId?: string | null;
+    endedAssignmentId?: string | null;
+    fromPositionId?: string | null;
+    fromRevision?: number | null;
+    primaryAssignmentId?: string | null;
+    primaryPositionId?: string | null;
+    primaryPositionRevision?: number | null;
+};
+
+export type DepartmentMakeHeadResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: DepartmentMakeHeadResultDto;
+};
+
+export type DepartmentMakeHeadResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: DepartmentMakeHeadResultDto;
 };
 
 export type EmptyEnvelopeReadable = {
@@ -470,6 +536,37 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type MemberCardLookupDto = {
+    kind?: string | null;
+    person?: PersonCardDto;
+    agentId?: string | null;
+};
+
+export type MemberCardLookupDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: MemberCardLookupDto;
+};
+
+export type MemberCardLookupDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: MemberCardLookupDto;
+};
+
 export type NotificationDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -558,6 +655,8 @@ export type OptionDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+    isSecret?: boolean;
+    hasValue?: boolean;
 };
 
 export type OptionDtoCollectionQueryParametersReadable = {
@@ -643,11 +742,149 @@ export type OptionUpdateDto = {
     expiration?: number;
 };
 
+export type OrgChartDepartmentDto = {
+    id?: string | null;
+    name?: string | null;
+    parentId?: string | null;
+    headPositionId?: string | null;
+    level?: number;
+    positionCount?: number;
+    descendantPositionCount?: number;
+    directCapacity?: number;
+    directFilled?: number;
+    hiddenChildDepartmentCount?: number;
+};
+
+export type OrgChartDto = {
+    departmentId?: string | null;
+    depth?: number;
+    departments?: Array<OrgChartDepartmentDto> | null;
+    positions?: Array<OrgChartPositionDto> | null;
+    truncated?: boolean;
+    truncatedDepartmentCount?: number;
+    truncatedPositionCount?: number;
+    totalPositionCount?: number;
+};
+
+export type OrgChartDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: OrgChartDto;
+};
+
+export type OrgChartDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: OrgChartDto;
+};
+
+export type OrgChartHolderDto = {
+    assignmentId?: string | null;
+    displayName?: string | null;
+    avatarUrl?: string | null;
+    kind?: string | null;
+    agentId?: string | null;
+    enrollmentId?: string | null;
+    acting?: boolean;
+    isPrimary?: boolean;
+    from?: string;
+    until?: string | null;
+};
+
+export type OrgChartPositionDto = {
+    id?: string | null;
+    title?: string | null;
+    departmentId?: string | null;
+    departmentName?: string | null;
+    reportsToId?: string | null;
+    reportsToTitle?: string | null;
+    jobRoleId?: string | null;
+    jobRoleName?: string | null;
+    capacity?: number;
+    filled?: number;
+    open?: number;
+    holders?: Array<OrgChartHolderDto> | null;
+    hasAssignmentHistory?: boolean;
+    pastHolderCount?: number;
+    lastVacatedAtUtc?: string | null;
+    pastHolders?: Array<OrgChartHolderDto> | null;
+};
+
 export type PatchOperation = {
     op?: string | null;
     path?: string | null;
     from?: string | null;
     value?: unknown;
+};
+
+export type PersonCardDto = {
+    enrollmentId?: string | null;
+    kind?: string | null;
+    displayName?: string | null;
+    avatarUrl?: string | null;
+    active?: boolean;
+    positionTitle?: string | null;
+    departmentName?: string | null;
+    managerPositionTitle?: string | null;
+    managerName?: string | null;
+    teams?: Array<string> | null;
+    teamsMoreCount?: number;
+};
+
+export type PersonCardDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: PersonCardDto;
+};
+
+export type PersonCardDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: PersonCardDto;
+};
+
+export type PositionAssignmentCreateDto = {
+    id?: string;
+    timestamp?: string;
+    occupantEnrollmentId?: string | null;
+    acting?: boolean;
+};
+
+export type ReadingPackItemDto = {
+    order?: number;
+    title?: string | null;
+    reference?: string | null;
+};
+
+export type ReadingPackUpdateDto = {
+    items?: Array<ReadingPackItemDto> | null;
+    expectedRevision?: number | null;
 };
 
 export type RefreshRequest = {
@@ -657,6 +894,11 @@ export type RefreshRequest = {
 export type RegisterRequest = {
     email: string | null;
     password: string | null;
+};
+
+export type RequestedCapabilitiesUpdateDto = {
+    items?: Array<CapabilityRequestDto> | null;
+    expectedRevision?: number | null;
 };
 
 export type ResendConfirmationEmailRequest = {
@@ -857,6 +1099,72 @@ export type SuiteLicenseFeatureDtoListEnvelopeWritable = {
     result?: Array<SuiteLicenseFeatureDto> | null;
 };
 
+export type TeamMemberDto = {
+    enrollmentId?: string | null;
+    kind?: string | null;
+    displayName?: string | null;
+    avatarUrl?: string | null;
+    positionTitle?: string | null;
+    departmentName?: string | null;
+    positionCount?: number;
+    agentId?: string | null;
+    disabled?: boolean;
+};
+
+export type TeamMemberDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TeamMemberDto;
+};
+
+export type TeamMemberDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TeamMemberDto;
+};
+
+export type TeamMemberDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TeamMemberDto> | null;
+};
+
+export type TeamMemberDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TeamMemberDto> | null;
+};
+
+export type TeamMemberEligibility = 'None' | 'PositionHolder' | 'Approver';
+
+export type TeamMemberKindFilter = 'All' | 'Person' | 'Agent';
+
 export type TenantCreateDto = {
     id?: string;
     timestamp?: string;
@@ -892,6 +1200,7 @@ export type TenantDepartmentCreateDto = {
     disabled?: boolean;
     organizationProfileId?: string | null;
     parentDepartmentId?: string | null;
+    externalReference?: string | null;
 };
 
 export type TenantDepartmentDto = {
@@ -904,6 +1213,11 @@ export type TenantDepartmentDto = {
     disabled?: boolean;
     organizationProfileId?: string | null;
     parentDepartmentId?: string | null;
+    parentDepartmentName?: string | null;
+    headPositionId?: string | null;
+    headPositionTitle?: string | null;
+    revision?: number;
+    externalReference?: string | null;
 };
 
 export type TenantDepartmentDtoCollectionQueryParametersReadable = {
@@ -979,12 +1293,91 @@ export type TenantDepartmentDtoListEnvelopeWritable = {
     result?: Array<TenantDepartmentDto> | null;
 };
 
+export type TenantDepartmentHeadDto = {
+    positionId?: string | null;
+    headPositionId?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type TenantDepartmentHeadResultDto = {
+    departmentId?: string | null;
+    headPositionId?: string | null;
+    previousHeadPositionId?: string | null;
+    revision?: number;
+};
+
+export type TenantDepartmentHeadResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantDepartmentHeadResultDto;
+};
+
+export type TenantDepartmentHeadResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantDepartmentHeadResultDto;
+};
+
+export type TenantDepartmentLifecycleDto = {
+    expectedRevision?: number | null;
+};
+
+export type TenantDepartmentMoveDto = {
+    parentDepartmentId?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type TenantDepartmentMoveResultDto = {
+    departmentId?: string | null;
+    revision?: number;
+    parentDepartmentId?: string | null;
+};
+
+export type TenantDepartmentMoveResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantDepartmentMoveResultDto;
+};
+
+export type TenantDepartmentMoveResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantDepartmentMoveResultDto;
+};
+
 export type TenantDepartmentUpdateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
     organizationProfileId?: string | null;
     parentDepartmentId?: string | null;
+    expectedRevision?: number | null;
 };
 
 export type TenantDtoReadable = {
@@ -1405,12 +1798,159 @@ export type TenantInvitationSendResultDtoEnvelopeWritable = {
     result?: TenantInvitationSendResultDto;
 };
 
+export type TenantJobRoleCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    description?: string | null;
+    responsibilities?: string | null;
+};
+
+export type TenantJobRoleDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    name?: string | null;
+    description?: string | null;
+    responsibilities?: string | null;
+    readingPack?: Array<ReadingPackItemDto> | null;
+    requestedCapabilities?: Array<CapabilityRequestDto> | null;
+    disabled?: boolean;
+    positionCount?: number;
+    revision?: number;
+};
+
+export type TenantJobRoleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantJobRoleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type TenantJobRoleDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantJobRoleDto;
+};
+
+export type TenantJobRoleDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantJobRoleDto;
+};
+
+export type TenantJobRoleDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantJobRoleDto> | null;
+};
+
+export type TenantJobRoleDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantJobRoleDto> | null;
+};
+
+export type TenantJobRoleUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+    responsibilities?: string | null;
+    disabled?: boolean;
+    expectedRevision?: number | null;
+};
+
+export type TenantMemberPositionDto = {
+    positionId?: string | null;
+    title?: string | null;
+    departmentId?: string | null;
+    departmentName?: string | null;
+    assignmentId?: string | null;
+    from?: string;
+    until?: string | null;
+    acting?: boolean;
+    isPrimary?: boolean;
+    isDepartmentHead?: boolean;
+};
+
+export type TenantMemberPositionDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantMemberPositionDto> | null;
+};
+
+export type TenantMemberPositionDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantMemberPositionDto> | null;
+};
+
 export type TenantPositionCreateDto = {
     id?: string;
     timestamp?: string;
     title?: string | null;
     description?: string | null;
     type?: string | null;
+    departmentId?: string | null;
+    capacity?: number | null;
+    reportsToPositionId?: string | null;
+    jobRoleId?: string | null;
+    responsibilities?: string | null;
+    externalReference?: string | null;
 };
 
 export type TenantPositionDto = {
@@ -1426,6 +1966,20 @@ export type TenantPositionDto = {
     filledSeats?: number | null;
     activeHolderEnrollmentIds?: Array<string> | null;
     hasAssignmentHistory?: boolean | null;
+    departmentName?: string | null;
+    reportsToPositionId?: string | null;
+    reportsToTitle?: string | null;
+    jobRoleId?: string | null;
+    jobRoleName?: string | null;
+    responsibilities?: string | null;
+    effectiveResponsibilities?: string | null;
+    readingPack?: Array<ReadingPackItemDto> | null;
+    effectiveReadingPack?: Array<ReadingPackItemDto> | null;
+    requestedCapabilities?: Array<CapabilityRequestDto> | null;
+    effectiveRequestedCapabilities?: Array<CapabilityRequestDto> | null;
+    revision?: number;
+    archivedAtUtc?: string | null;
+    externalReference?: string | null;
 };
 
 export type TenantPositionDtoCollectionQueryParametersReadable = {
@@ -1501,10 +2055,116 @@ export type TenantPositionDtoListEnvelopeWritable = {
     result?: Array<TenantPositionDto> | null;
 };
 
+export type TenantPositionJobRoleDto = {
+    jobRoleId?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type TenantPositionLifecycleDto = {
+    expectedRevision?: number | null;
+};
+
+export type TenantPositionReportsToDto = {
+    reportsToPositionId?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type TenantPositionReportsToResultDto = {
+    positionId?: string | null;
+    reportsToPositionId?: string | null;
+    previousReportsToPositionId?: string | null;
+    revision?: number;
+};
+
+export type TenantPositionReportsToResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantPositionReportsToResultDto;
+};
+
+export type TenantPositionReportsToResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantPositionReportsToResultDto;
+};
+
+export type TenantPositionSaveDto = {
+    id?: string;
+    timestamp?: string;
+    title: string | null;
+    description: string | null;
+    type: string | null;
+    departmentId: string | null;
+    capacity: number | null;
+    reportsToPositionId: string | null;
+    jobRoleId: string | null;
+    responsibilities: string | null;
+    readingPack: Array<ReadingPackItemDto> | null;
+    requestedCapabilities: Array<CapabilityRequestDto> | null;
+    assign: Array<PositionAssignmentCreateDto> | null;
+    end: Array<string> | null;
+    expectedRevision: number | null;
+    externalReference?: string | null;
+};
+
+export type TenantPositionSaveResultDto = {
+    positionId?: string | null;
+    revision?: number;
+    assignedAssignmentIds?: Array<string> | null;
+    endedAssignmentIds?: Array<string> | null;
+    primaryAssignmentId?: string | null;
+    primaryPositionId?: string | null;
+    primaryPositionRevision?: number | null;
+};
+
+export type TenantPositionSaveResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantPositionSaveResultDto;
+};
+
+export type TenantPositionSaveResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantPositionSaveResultDto;
+};
+
 export type TenantPositionUpdateDto = {
     title?: string | null;
     description?: string | null;
     type?: string | null;
+    departmentId?: string | null;
+    capacity?: number | null;
+    reportsToPositionId?: string | null;
+    jobRoleId?: string | null;
+    responsibilities?: string | null;
+    expectedRevision?: number | null;
 };
 
 export type TenantSegmentCreateDto = {
@@ -1695,6 +2355,37 @@ export type TenantSizeUpdateDto = {
     employeeHighRangeValue?: number;
 };
 
+export type TenantTeamArchiveResultDto = {
+    teamId?: string | null;
+    revision?: number;
+    archivedAtUtc?: string | null;
+};
+
+export type TenantTeamArchiveResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantTeamArchiveResultDto;
+};
+
+export type TenantTeamArchiveResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantTeamArchiveResultDto;
+};
+
 export type TenantTeamContactEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
@@ -1811,6 +2502,12 @@ export type TenantTeamDto = {
     isPublic?: boolean;
     businessUnitId?: string | null;
     organizationProfileId?: string | null;
+    homeDepartmentId?: string | null;
+    homeDepartmentName?: string | null;
+    revision?: number;
+    archivedAtUtc?: string | null;
+    memberCount?: number;
+    leadNames?: Array<string> | null;
 };
 
 export type TenantTeamDtoCollectionQueryParametersReadable = {
@@ -1978,6 +2675,329 @@ export type TenantTeamEmployeeEnrollmentDtoListEnvelopeWritable = {
 export type TenantTeamEmployeeEnrollmentUpdateDto = {
     businessTeamId?: string | null;
     employeeProfileId?: string | null;
+};
+
+export type TenantTeamHomeDepartmentDto = {
+    departmentId?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type TenantTeamHomeDepartmentResultDto = {
+    teamId?: string | null;
+    revision?: number;
+    homeDepartmentId?: string | null;
+    previousHomeDepartmentId?: string | null;
+};
+
+export type TenantTeamHomeDepartmentResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantTeamHomeDepartmentResultDto;
+};
+
+export type TenantTeamHomeDepartmentResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantTeamHomeDepartmentResultDto;
+};
+
+export type TenantTeamMemberAddDto = {
+    id?: string;
+    timestamp?: string;
+    memberEnrollmentId?: string | null;
+    asLead?: boolean;
+    expectedRevision?: number | null;
+};
+
+export type TenantTeamMemberAddResultDto = {
+    teamId?: string | null;
+    revision?: number;
+    membershipId?: string | null;
+    role?: string | null;
+};
+
+export type TenantTeamMemberAddResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantTeamMemberAddResultDto;
+};
+
+export type TenantTeamMemberAddResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantTeamMemberAddResultDto;
+};
+
+export type TenantTeamMemberDto = {
+    membershipId?: string | null;
+    teamId?: string | null;
+    enrollmentId?: string | null;
+    displayName?: string | null;
+    avatarUrl?: string | null;
+    kind?: string | null;
+    agentId?: string | null;
+    role?: string | null;
+    joinedAtUtc?: string;
+};
+
+export type TenantTeamMemberDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTeamMemberDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type TenantTeamMemberDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantTeamMemberDto> | null;
+};
+
+export type TenantTeamMemberDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantTeamMemberDto> | null;
+};
+
+export type TenantTeamMemberMoveDto = {
+    id?: string;
+    timestamp?: string;
+    memberEnrollmentId?: string | null;
+    fromTeamId?: string | null;
+    toTeamId?: string | null;
+    asLead?: boolean;
+    expectedFromRevision?: number | null;
+    expectedToRevision?: number | null;
+};
+
+export type TenantTeamMemberMoveResultDto = {
+    fromTeamId?: string | null;
+    fromRevision?: number;
+    endedMembershipId?: string | null;
+    endedRole?: string | null;
+    toTeamId?: string | null;
+    toRevision?: number;
+    newMembershipId?: string | null;
+    newRole?: string | null;
+};
+
+export type TenantTeamMemberMoveResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantTeamMemberMoveResultDto;
+};
+
+export type TenantTeamMemberMoveResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantTeamMemberMoveResultDto;
+};
+
+export type TenantTeamMemberRemoveResultDto = {
+    teamId?: string | null;
+    revision?: number;
+    endedMembershipId?: string | null;
+    endedRole?: string | null;
+};
+
+export type TenantTeamMemberRemoveResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantTeamMemberRemoveResultDto;
+};
+
+export type TenantTeamMemberRemoveResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantTeamMemberRemoveResultDto;
+};
+
+export type TenantTeamMemberRoleDto = {
+    role?: string | null;
+    expectedRevision?: number | null;
+};
+
+export type TenantTeamMemberRoleResultDto = {
+    teamId?: string | null;
+    revision?: number;
+    membershipId?: string | null;
+    role?: string | null;
+    previousRole?: string | null;
+};
+
+export type TenantTeamMemberRoleResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TenantTeamMemberRoleResultDto;
+};
+
+export type TenantTeamMemberRoleResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TenantTeamMemberRoleResultDto;
+};
+
+export type TenantTeamOfMemberDto = {
+    membershipId?: string | null;
+    teamId?: string | null;
+    teamName?: string | null;
+    role?: string | null;
+    joinedAtUtc?: string;
+    homeDepartmentId?: string | null;
+};
+
+export type TenantTeamOfMemberDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantTeamOfMemberDto> | null;
+};
+
+export type TenantTeamOfMemberDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantTeamOfMemberDto> | null;
+};
+
+export type TenantTeamOfMembersDto = {
+    membershipId?: string | null;
+    teamId?: string | null;
+    teamName?: string | null;
+    role?: string | null;
+    joinedAtUtc?: string;
+    homeDepartmentId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type TenantTeamOfMembersDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<TenantTeamOfMembersDto> | null;
+};
+
+export type TenantTeamOfMembersDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<TenantTeamOfMembersDto> | null;
 };
 
 export type TenantTeamProjectEnrollmentCreateDto = {
@@ -2165,6 +3185,10 @@ export type TenantTeamRecordUpdateDto = {
     businessTeamId?: string | null;
 };
 
+export type TenantTeamRevisionDto = {
+    expectedRevision?: number | null;
+};
+
 export type TenantTeamUpdateDto = {
     name?: string | null;
     description?: string | null;
@@ -2172,6 +3196,7 @@ export type TenantTeamUpdateDto = {
     isPublic?: boolean;
     businessUnitId?: string | null;
     organizationProfileId?: string | null;
+    expectedRevision?: number | null;
 };
 
 export type TenantTerritoryCreateDto = {
@@ -2481,7 +3506,7 @@ export type TenantUpdateDto = {
     about?: string | null;
     slogan?: string | null;
     handler?: string | null;
-    currencyId: string;
+    currencyId?: string | null;
     duns?: string | null;
     taxId?: string | null;
     avatarUrl?: string | null;
@@ -3169,6 +4194,7 @@ export type DepartmentsGetTenantDepartmentsData = {
     path?: never;
     query: {
         tenantId: string;
+        includeArchived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Departments';
@@ -3239,6 +4265,7 @@ export type DepartmentsGetTenantDepartmentsCountData = {
     path?: never;
     query: {
         tenantId: string;
+        includeArchived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Departments/Count';
@@ -3290,6 +4317,14 @@ export type DepartmentsDeleteTenantDepartmentErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
 };
 
 export type DepartmentsDeleteTenantDepartmentError = DepartmentsDeleteTenantDepartmentErrors[keyof DepartmentsDeleteTenantDepartmentErrors];
@@ -3413,6 +4448,235 @@ export type DepartmentsUpdateTenantDepartmentResponses = {
 };
 
 export type DepartmentsUpdateTenantDepartmentResponse = DepartmentsUpdateTenantDepartmentResponses[keyof DepartmentsUpdateTenantDepartmentResponses];
+
+export type DepartmentsMoveTenantDepartmentData = {
+    body?: TenantDepartmentMoveDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantDepartmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}/Move';
+};
+
+export type DepartmentsMoveTenantDepartmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DepartmentsMoveTenantDepartmentError = DepartmentsMoveTenantDepartmentErrors[keyof DepartmentsMoveTenantDepartmentErrors];
+
+export type DepartmentsMoveTenantDepartmentResponses = {
+    /**
+     * OK
+     */
+    200: TenantDepartmentMoveResultDtoEnvelopeReadable;
+};
+
+export type DepartmentsMoveTenantDepartmentResponse = DepartmentsMoveTenantDepartmentResponses[keyof DepartmentsMoveTenantDepartmentResponses];
+
+export type DepartmentsSetTenantDepartmentHeadData = {
+    body?: TenantDepartmentHeadDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantDepartmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}/Head';
+};
+
+export type DepartmentsSetTenantDepartmentHeadErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DepartmentsSetTenantDepartmentHeadError = DepartmentsSetTenantDepartmentHeadErrors[keyof DepartmentsSetTenantDepartmentHeadErrors];
+
+export type DepartmentsSetTenantDepartmentHeadResponses = {
+    /**
+     * OK
+     */
+    200: TenantDepartmentHeadResultDtoEnvelopeReadable;
+};
+
+export type DepartmentsSetTenantDepartmentHeadResponse = DepartmentsSetTenantDepartmentHeadResponses[keyof DepartmentsSetTenantDepartmentHeadResponses];
+
+export type DepartmentsMakeTenantDepartmentHeadData = {
+    body?: DepartmentMakeHeadDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantDepartmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}/Head/Member';
+};
+
+export type DepartmentsMakeTenantDepartmentHeadErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DepartmentsMakeTenantDepartmentHeadError = DepartmentsMakeTenantDepartmentHeadErrors[keyof DepartmentsMakeTenantDepartmentHeadErrors];
+
+export type DepartmentsMakeTenantDepartmentHeadResponses = {
+    /**
+     * OK
+     */
+    200: DepartmentMakeHeadResultDtoEnvelopeReadable;
+};
+
+export type DepartmentsMakeTenantDepartmentHeadResponse = DepartmentsMakeTenantDepartmentHeadResponses[keyof DepartmentsMakeTenantDepartmentHeadResponses];
+
+export type DepartmentsArchiveTenantDepartmentData = {
+    body?: TenantDepartmentLifecycleDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantDepartmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}/Archive';
+};
+
+export type DepartmentsArchiveTenantDepartmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DepartmentsArchiveTenantDepartmentError = DepartmentsArchiveTenantDepartmentErrors[keyof DepartmentsArchiveTenantDepartmentErrors];
+
+export type DepartmentsArchiveTenantDepartmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DepartmentsArchiveTenantDepartmentResponse = DepartmentsArchiveTenantDepartmentResponses[keyof DepartmentsArchiveTenantDepartmentResponses];
+
+export type DepartmentsRestoreTenantDepartmentData = {
+    body?: TenantDepartmentLifecycleDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantDepartmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}/Restore';
+};
+
+export type DepartmentsRestoreTenantDepartmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type DepartmentsRestoreTenantDepartmentError = DepartmentsRestoreTenantDepartmentErrors[keyof DepartmentsRestoreTenantDepartmentErrors];
+
+export type DepartmentsRestoreTenantDepartmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DepartmentsRestoreTenantDepartmentResponse = DepartmentsRestoreTenantDepartmentResponses[keyof DepartmentsRestoreTenantDepartmentResponses];
 
 export type EmployeeEnrollmentsGetTenantEmployeeEnrollmentsData = {
     body?: TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersWritable;
@@ -4115,6 +5379,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**
@@ -4862,6 +6135,527 @@ export type InvitationsResendTenantInvitationResponses = {
 
 export type InvitationsResendTenantInvitationResponse = InvitationsResendTenantInvitationResponses[keyof InvitationsResendTenantInvitationResponses];
 
+export type JobRolesGetTenantJobRolesData = {
+    body?: TenantJobRoleDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles';
+};
+
+export type JobRolesGetTenantJobRolesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRolesError = JobRolesGetTenantJobRolesErrors[keyof JobRolesGetTenantJobRolesErrors];
+
+export type JobRolesGetTenantJobRolesResponses = {
+    /**
+     * OK
+     */
+    200: TenantJobRoleDtoListEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRolesResponse = JobRolesGetTenantJobRolesResponses[keyof JobRolesGetTenantJobRolesResponses];
+
+export type JobRolesCreateTenantJobRoleData = {
+    body?: TenantJobRoleCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles';
+};
+
+export type JobRolesCreateTenantJobRoleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type JobRolesCreateTenantJobRoleError = JobRolesCreateTenantJobRoleErrors[keyof JobRolesCreateTenantJobRoleErrors];
+
+export type JobRolesCreateTenantJobRoleResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type JobRolesCreateTenantJobRoleResponse = JobRolesCreateTenantJobRoleResponses[keyof JobRolesCreateTenantJobRoleResponses];
+
+export type JobRolesGetTenantJobRolesCountData = {
+    body?: TenantJobRoleDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/Count';
+};
+
+export type JobRolesGetTenantJobRolesCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRolesCountError = JobRolesGetTenantJobRolesCountErrors[keyof JobRolesGetTenantJobRolesCountErrors];
+
+export type JobRolesGetTenantJobRolesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRolesCountResponse = JobRolesGetTenantJobRolesCountResponses[keyof JobRolesGetTenantJobRolesCountResponses];
+
+export type JobRolesGetTenantJobRoleCapabilityCatalogData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/CapabilityCatalog';
+};
+
+export type JobRolesGetTenantJobRoleCapabilityCatalogErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRoleCapabilityCatalogError = JobRolesGetTenantJobRoleCapabilityCatalogErrors[keyof JobRolesGetTenantJobRoleCapabilityCatalogErrors];
+
+export type JobRolesGetTenantJobRoleCapabilityCatalogResponses = {
+    /**
+     * OK
+     */
+    200: StringListEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRoleCapabilityCatalogResponse = JobRolesGetTenantJobRoleCapabilityCatalogResponses[keyof JobRolesGetTenantJobRoleCapabilityCatalogResponses];
+
+export type JobRolesDeleteTenantJobRoleData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/{jobRoleId}';
+};
+
+export type JobRolesDeleteTenantJobRoleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type JobRolesDeleteTenantJobRoleError = JobRolesDeleteTenantJobRoleErrors[keyof JobRolesDeleteTenantJobRoleErrors];
+
+export type JobRolesDeleteTenantJobRoleResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type JobRolesDeleteTenantJobRoleResponse = JobRolesDeleteTenantJobRoleResponses[keyof JobRolesDeleteTenantJobRoleResponses];
+
+export type JobRolesGetTenantJobRoleByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/{jobRoleId}';
+};
+
+export type JobRolesGetTenantJobRoleByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRoleByIdError = JobRolesGetTenantJobRoleByIdErrors[keyof JobRolesGetTenantJobRoleByIdErrors];
+
+export type JobRolesGetTenantJobRoleByIdResponses = {
+    /**
+     * OK
+     */
+    200: TenantJobRoleDtoEnvelopeReadable;
+};
+
+export type JobRolesGetTenantJobRoleByIdResponse = JobRolesGetTenantJobRoleByIdResponses[keyof JobRolesGetTenantJobRoleByIdResponses];
+
+export type JobRolesPatchTenantJobRoleData = {
+    body?: Array<PatchOperation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/{jobRoleId}';
+};
+
+export type JobRolesPatchTenantJobRoleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type JobRolesPatchTenantJobRoleError = JobRolesPatchTenantJobRoleErrors[keyof JobRolesPatchTenantJobRoleErrors];
+
+export type JobRolesPatchTenantJobRoleResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type JobRolesPatchTenantJobRoleResponse = JobRolesPatchTenantJobRoleResponses[keyof JobRolesPatchTenantJobRoleResponses];
+
+export type JobRolesUpdateTenantJobRoleData = {
+    body?: TenantJobRoleUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/{jobRoleId}';
+};
+
+export type JobRolesUpdateTenantJobRoleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type JobRolesUpdateTenantJobRoleError = JobRolesUpdateTenantJobRoleErrors[keyof JobRolesUpdateTenantJobRoleErrors];
+
+export type JobRolesUpdateTenantJobRoleResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type JobRolesUpdateTenantJobRoleResponse = JobRolesUpdateTenantJobRoleResponses[keyof JobRolesUpdateTenantJobRoleResponses];
+
+export type JobRolesSetTenantJobRoleReadingPackData = {
+    body?: ReadingPackUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/{jobRoleId}/ReadingPack';
+};
+
+export type JobRolesSetTenantJobRoleReadingPackErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type JobRolesSetTenantJobRoleReadingPackError = JobRolesSetTenantJobRoleReadingPackErrors[keyof JobRolesSetTenantJobRoleReadingPackErrors];
+
+export type JobRolesSetTenantJobRoleReadingPackResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type JobRolesSetTenantJobRoleReadingPackResponse = JobRolesSetTenantJobRoleReadingPackResponses[keyof JobRolesSetTenantJobRoleReadingPackResponses];
+
+export type JobRolesSetTenantJobRoleRequestedCapabilitiesData = {
+    body?: RequestedCapabilitiesUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/JobRoles/{jobRoleId}/RequestedCapabilities';
+};
+
+export type JobRolesSetTenantJobRoleRequestedCapabilitiesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type JobRolesSetTenantJobRoleRequestedCapabilitiesError = JobRolesSetTenantJobRoleRequestedCapabilitiesErrors[keyof JobRolesSetTenantJobRoleRequestedCapabilitiesErrors];
+
+export type JobRolesSetTenantJobRoleRequestedCapabilitiesResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type JobRolesSetTenantJobRoleRequestedCapabilitiesResponse = JobRolesSetTenantJobRoleRequestedCapabilitiesResponses[keyof JobRolesSetTenantJobRoleRequestedCapabilitiesResponses];
+
+export type MembersGetTenantMemberCardData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Members/{enrollmentId}/Card';
+};
+
+export type MembersGetTenantMemberCardErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type MembersGetTenantMemberCardError = MembersGetTenantMemberCardErrors[keyof MembersGetTenantMemberCardErrors];
+
+export type MembersGetTenantMemberCardResponses = {
+    /**
+     * OK
+     */
+    200: PersonCardDtoEnvelopeReadable;
+};
+
+export type MembersGetTenantMemberCardResponse = MembersGetTenantMemberCardResponses[keyof MembersGetTenantMemberCardResponses];
+
+export type MembersGetTenantMemberCardByAccountHolderData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        accountHolderId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Members/ByAccountHolder/{accountHolderId}/Card';
+};
+
+export type MembersGetTenantMemberCardByAccountHolderErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type MembersGetTenantMemberCardByAccountHolderError = MembersGetTenantMemberCardByAccountHolderErrors[keyof MembersGetTenantMemberCardByAccountHolderErrors];
+
+export type MembersGetTenantMemberCardByAccountHolderResponses = {
+    /**
+     * OK
+     */
+    200: MemberCardLookupDtoEnvelopeReadable;
+};
+
+export type MembersGetTenantMemberCardByAccountHolderResponse = MembersGetTenantMemberCardByAccountHolderResponses[keyof MembersGetTenantMemberCardByAccountHolderResponses];
+
+export type MembersGetTenantMemberCardBySocialProfileData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Members/BySocialProfile/{socialProfileId}/Card';
+};
+
+export type MembersGetTenantMemberCardBySocialProfileErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type MembersGetTenantMemberCardBySocialProfileError = MembersGetTenantMemberCardBySocialProfileErrors[keyof MembersGetTenantMemberCardBySocialProfileErrors];
+
+export type MembersGetTenantMemberCardBySocialProfileResponses = {
+    /**
+     * OK
+     */
+    200: MemberCardLookupDtoEnvelopeReadable;
+};
+
+export type MembersGetTenantMemberCardBySocialProfileResponse = MembersGetTenantMemberCardBySocialProfileResponses[keyof MembersGetTenantMemberCardBySocialProfileResponses];
+
 export type OptionsGetTenantOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
@@ -5195,6 +6989,47 @@ export type OptionsUpsertTenantOptionResponses = {
 
 export type OptionsUpsertTenantOptionResponse = OptionsUpsertTenantOptionResponses[keyof OptionsUpsertTenantOptionResponses];
 
+export type OrganizationGetTenantOrgChartData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        departmentId?: string;
+        depth?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Organization/Chart';
+};
+
+export type OrganizationGetTenantOrgChartErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type OrganizationGetTenantOrgChartError = OrganizationGetTenantOrgChartErrors[keyof OrganizationGetTenantOrgChartErrors];
+
+export type OrganizationGetTenantOrgChartResponses = {
+    /**
+     * OK
+     */
+    200: OrgChartDtoEnvelopeReadable;
+};
+
+export type OrganizationGetTenantOrgChartResponse = OrganizationGetTenantOrgChartResponses[keyof OrganizationGetTenantOrgChartResponses];
+
 export type PositionsGetTenantPositionsData = {
     body?: TenantPositionDtoCollectionQueryParametersWritable;
     headers?: {
@@ -5203,6 +7038,7 @@ export type PositionsGetTenantPositionsData = {
     path?: never;
     query: {
         tenantId: string;
+        includeArchived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Positions';
@@ -5273,6 +7109,7 @@ export type PositionsGetTenantPositionsCountData = {
     path?: never;
     query: {
         tenantId: string;
+        includeArchived?: boolean;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Positions/Count';
@@ -5299,6 +7136,47 @@ export type PositionsGetTenantPositionsCountResponses = {
 };
 
 export type PositionsGetTenantPositionsCountResponse = PositionsGetTenantPositionsCountResponses[keyof PositionsGetTenantPositionsCountResponses];
+
+export type PositionsGetTenantMemberPositionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/ByEnrollment/{enrollmentId}';
+};
+
+export type PositionsGetTenantMemberPositionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PositionsGetTenantMemberPositionsError = PositionsGetTenantMemberPositionsErrors[keyof PositionsGetTenantMemberPositionsErrors];
+
+export type PositionsGetTenantMemberPositionsResponses = {
+    /**
+     * OK
+     */
+    200: TenantMemberPositionDtoListEnvelopeReadable;
+};
+
+export type PositionsGetTenantMemberPositionsResponse = PositionsGetTenantMemberPositionsResponses[keyof PositionsGetTenantMemberPositionsResponses];
 
 export type PositionsDeleteTenantPositionData = {
     body?: never;
@@ -5447,6 +7325,360 @@ export type PositionsUpdateTenantPositionResponses = {
 };
 
 export type PositionsUpdateTenantPositionResponse = PositionsUpdateTenantPositionResponses[keyof PositionsUpdateTenantPositionResponses];
+
+export type PositionsSetTenantPositionReportsToData = {
+    body?: TenantPositionReportsToDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/ReportsTo';
+};
+
+export type PositionsSetTenantPositionReportsToErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionReportsToError = PositionsSetTenantPositionReportsToErrors[keyof PositionsSetTenantPositionReportsToErrors];
+
+export type PositionsSetTenantPositionReportsToResponses = {
+    /**
+     * OK
+     */
+    200: TenantPositionReportsToResultDtoEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionReportsToResponse = PositionsSetTenantPositionReportsToResponses[keyof PositionsSetTenantPositionReportsToResponses];
+
+export type PositionsSetTenantPositionJobRoleData = {
+    body?: TenantPositionJobRoleDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/JobRole';
+};
+
+export type PositionsSetTenantPositionJobRoleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionJobRoleError = PositionsSetTenantPositionJobRoleErrors[keyof PositionsSetTenantPositionJobRoleErrors];
+
+export type PositionsSetTenantPositionJobRoleResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionJobRoleResponse = PositionsSetTenantPositionJobRoleResponses[keyof PositionsSetTenantPositionJobRoleResponses];
+
+export type PositionsSetTenantPositionReadingPackData = {
+    body?: ReadingPackUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/ReadingPack';
+};
+
+export type PositionsSetTenantPositionReadingPackErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionReadingPackError = PositionsSetTenantPositionReadingPackErrors[keyof PositionsSetTenantPositionReadingPackErrors];
+
+export type PositionsSetTenantPositionReadingPackResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionReadingPackResponse = PositionsSetTenantPositionReadingPackResponses[keyof PositionsSetTenantPositionReadingPackResponses];
+
+export type PositionsSetTenantPositionRequestedCapabilitiesData = {
+    body?: RequestedCapabilitiesUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/RequestedCapabilities';
+};
+
+export type PositionsSetTenantPositionRequestedCapabilitiesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionRequestedCapabilitiesError = PositionsSetTenantPositionRequestedCapabilitiesErrors[keyof PositionsSetTenantPositionRequestedCapabilitiesErrors];
+
+export type PositionsSetTenantPositionRequestedCapabilitiesResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionsSetTenantPositionRequestedCapabilitiesResponse = PositionsSetTenantPositionRequestedCapabilitiesResponses[keyof PositionsSetTenantPositionRequestedCapabilitiesResponses];
+
+export type PositionsArchiveTenantPositionData = {
+    body?: TenantPositionLifecycleDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/Archive';
+};
+
+export type PositionsArchiveTenantPositionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsArchiveTenantPositionError = PositionsArchiveTenantPositionErrors[keyof PositionsArchiveTenantPositionErrors];
+
+export type PositionsArchiveTenantPositionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionsArchiveTenantPositionResponse = PositionsArchiveTenantPositionResponses[keyof PositionsArchiveTenantPositionResponses];
+
+export type PositionsRestoreTenantPositionData = {
+    body?: TenantPositionLifecycleDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/Restore';
+};
+
+export type PositionsRestoreTenantPositionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsRestoreTenantPositionError = PositionsRestoreTenantPositionErrors[keyof PositionsRestoreTenantPositionErrors];
+
+export type PositionsRestoreTenantPositionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PositionsRestoreTenantPositionResponse = PositionsRestoreTenantPositionResponses[keyof PositionsRestoreTenantPositionResponses];
+
+export type PositionsSaveTenantPositionData = {
+    body?: TenantPositionSaveDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}/Save';
+};
+
+export type PositionsSaveTenantPositionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PositionsSaveTenantPositionError = PositionsSaveTenantPositionErrors[keyof PositionsSaveTenantPositionErrors];
+
+export type PositionsSaveTenantPositionResponses = {
+    /**
+     * OK
+     */
+    200: TenantPositionSaveResultDtoEnvelopeReadable;
+};
+
+export type PositionsSaveTenantPositionResponse = PositionsSaveTenantPositionResponses[keyof PositionsSaveTenantPositionResponses];
+
+export type PositionsAddTenantPositionData = {
+    body?: TenantPositionSaveDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/Save';
+};
+
+export type PositionsAddTenantPositionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PositionsAddTenantPositionError = PositionsAddTenantPositionErrors[keyof PositionsAddTenantPositionErrors];
+
+export type PositionsAddTenantPositionResponses = {
+    /**
+     * Created
+     */
+    201: TenantPositionSaveResultDtoEnvelopeReadable;
+};
+
+export type PositionsAddTenantPositionResponse = PositionsAddTenantPositionResponses[keyof PositionsAddTenantPositionResponses];
 
 export type SegmentsGetTenantSegmentsData = {
     body?: TenantSegmentDtoCollectionQueryParametersWritable;
@@ -5953,6 +8185,135 @@ export type SizesUpdateTenantSizeResponses = {
 };
 
 export type SizesUpdateTenantSizeResponse = SizesUpdateTenantSizeResponses[keyof SizesUpdateTenantSizeResponses];
+
+export type TeamGetTeamMembersData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        search?: string;
+        kind?: TeamMemberKindFilter;
+        departmentId?: string;
+        eligibleFor?: TeamMemberEligibility;
+        page?: number;
+        pageSize?: number;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Team';
+};
+
+export type TeamGetTeamMembersErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type TeamGetTeamMembersError = TeamGetTeamMembersErrors[keyof TeamGetTeamMembersErrors];
+
+export type TeamGetTeamMembersResponses = {
+    /**
+     * OK
+     */
+    200: TeamMemberDtoListEnvelopeReadable;
+};
+
+export type TeamGetTeamMembersResponse = TeamGetTeamMembersResponses[keyof TeamGetTeamMembersResponses];
+
+export type TeamGetTeamMembersCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        search?: string;
+        kind?: TeamMemberKindFilter;
+        departmentId?: string;
+        eligibleFor?: TeamMemberEligibility;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Team/Count';
+};
+
+export type TeamGetTeamMembersCountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type TeamGetTeamMembersCountError = TeamGetTeamMembersCountErrors[keyof TeamGetTeamMembersCountErrors];
+
+export type TeamGetTeamMembersCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type TeamGetTeamMembersCountResponse = TeamGetTeamMembersCountResponses[keyof TeamGetTeamMembersCountResponses];
+
+export type TeamGetTeamMemberData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Team/{enrollmentId}';
+};
+
+export type TeamGetTeamMemberErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamGetTeamMemberError = TeamGetTeamMemberErrors[keyof TeamGetTeamMemberErrors];
+
+export type TeamGetTeamMemberResponses = {
+    /**
+     * OK
+     */
+    200: TeamMemberDtoEnvelopeReadable;
+};
+
+export type TeamGetTeamMemberResponse = TeamGetTeamMemberResponses[keyof TeamGetTeamMemberResponses];
 
 export type TeamContactEnrollmentsGetTenantTeamContactEnrollmentsData = {
     body?: TenantTeamContactEnrollmentDtoCollectionQueryParametersWritable;
@@ -6721,6 +9082,8 @@ export type TeamsGetTenantTeamsData = {
     path?: never;
     query: {
         tenantId: string;
+        includeArchived?: boolean;
+        departmentId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Teams';
@@ -6791,6 +9154,8 @@ export type TeamsGetTenantTeamsCountData = {
     path?: never;
     query: {
         tenantId: string;
+        includeArchived?: boolean;
+        departmentId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/TenantsService/Teams/Count';
@@ -6817,6 +9182,454 @@ export type TeamsGetTenantTeamsCountResponses = {
 };
 
 export type TeamsGetTenantTeamsCountResponse = TeamsGetTenantTeamsCountResponses[keyof TeamsGetTenantTeamsCountResponses];
+
+export type TeamsGetTenantTeamMembersData = {
+    body?: TenantTeamMemberDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        includeEnded?: boolean;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Members';
+};
+
+export type TeamsGetTenantTeamMembersErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamMembersError = TeamsGetTenantTeamMembersErrors[keyof TeamsGetTenantTeamMembersErrors];
+
+export type TeamsGetTenantTeamMembersResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamMemberDtoListEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamMembersResponse = TeamsGetTenantTeamMembersResponses[keyof TeamsGetTenantTeamMembersResponses];
+
+export type TeamsAddTenantTeamMemberData = {
+    body?: TenantTeamMemberAddDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Members';
+};
+
+export type TeamsAddTenantTeamMemberErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsAddTenantTeamMemberError = TeamsAddTenantTeamMemberErrors[keyof TeamsAddTenantTeamMemberErrors];
+
+export type TeamsAddTenantTeamMemberResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamMemberAddResultDtoEnvelopeReadable;
+};
+
+export type TeamsAddTenantTeamMemberResponse = TeamsAddTenantTeamMemberResponses[keyof TeamsAddTenantTeamMemberResponses];
+
+export type TeamsGetTenantTeamMembersCountData = {
+    body?: TenantTeamMemberDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        includeEnded?: boolean;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Members/Count';
+};
+
+export type TeamsGetTenantTeamMembersCountErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamMembersCountError = TeamsGetTenantTeamMembersCountErrors[keyof TeamsGetTenantTeamMembersCountErrors];
+
+export type TeamsGetTenantTeamMembersCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamMembersCountResponse = TeamsGetTenantTeamMembersCountResponses[keyof TeamsGetTenantTeamMembersCountResponses];
+
+export type TeamsGetTenantTeamsByMemberData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/ByMember/{enrollmentId}';
+};
+
+export type TeamsGetTenantTeamsByMemberErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamsByMemberError = TeamsGetTenantTeamsByMemberErrors[keyof TeamsGetTenantTeamsByMemberErrors];
+
+export type TeamsGetTenantTeamsByMemberResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamOfMemberDtoListEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamsByMemberResponse = TeamsGetTenantTeamsByMemberResponses[keyof TeamsGetTenantTeamsByMemberResponses];
+
+export type TeamsGetTenantTeamsByMembersData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        enrollmentIds?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/ByMembers';
+};
+
+export type TeamsGetTenantTeamsByMembersErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamsByMembersError = TeamsGetTenantTeamsByMembersErrors[keyof TeamsGetTenantTeamsByMembersErrors];
+
+export type TeamsGetTenantTeamsByMembersResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamOfMembersDtoListEnvelopeReadable;
+};
+
+export type TeamsGetTenantTeamsByMembersResponse = TeamsGetTenantTeamsByMembersResponses[keyof TeamsGetTenantTeamsByMembersResponses];
+
+export type TeamsRemoveTenantTeamMemberData = {
+    body?: TenantTeamRevisionDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+        membershipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Members/{membershipId}/Remove';
+};
+
+export type TeamsRemoveTenantTeamMemberErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsRemoveTenantTeamMemberError = TeamsRemoveTenantTeamMemberErrors[keyof TeamsRemoveTenantTeamMemberErrors];
+
+export type TeamsRemoveTenantTeamMemberResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamMemberRemoveResultDtoEnvelopeReadable;
+};
+
+export type TeamsRemoveTenantTeamMemberResponse = TeamsRemoveTenantTeamMemberResponses[keyof TeamsRemoveTenantTeamMemberResponses];
+
+export type TeamsSetTenantTeamMemberRoleData = {
+    body?: TenantTeamMemberRoleDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+        membershipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Members/{membershipId}/Role';
+};
+
+export type TeamsSetTenantTeamMemberRoleErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsSetTenantTeamMemberRoleError = TeamsSetTenantTeamMemberRoleErrors[keyof TeamsSetTenantTeamMemberRoleErrors];
+
+export type TeamsSetTenantTeamMemberRoleResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamMemberRoleResultDtoEnvelopeReadable;
+};
+
+export type TeamsSetTenantTeamMemberRoleResponse = TeamsSetTenantTeamMemberRoleResponses[keyof TeamsSetTenantTeamMemberRoleResponses];
+
+export type TeamsMoveTenantTeamMemberData = {
+    body?: TenantTeamMemberMoveDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/Members/Move';
+};
+
+export type TeamsMoveTenantTeamMemberErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsMoveTenantTeamMemberError = TeamsMoveTenantTeamMemberErrors[keyof TeamsMoveTenantTeamMemberErrors];
+
+export type TeamsMoveTenantTeamMemberResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamMemberMoveResultDtoEnvelopeReadable;
+};
+
+export type TeamsMoveTenantTeamMemberResponse = TeamsMoveTenantTeamMemberResponses[keyof TeamsMoveTenantTeamMemberResponses];
+
+export type TeamsSetTenantTeamHomeDepartmentData = {
+    body?: TenantTeamHomeDepartmentDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/HomeDepartment';
+};
+
+export type TeamsSetTenantTeamHomeDepartmentErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsSetTenantTeamHomeDepartmentError = TeamsSetTenantTeamHomeDepartmentErrors[keyof TeamsSetTenantTeamHomeDepartmentErrors];
+
+export type TeamsSetTenantTeamHomeDepartmentResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamHomeDepartmentResultDtoEnvelopeReadable;
+};
+
+export type TeamsSetTenantTeamHomeDepartmentResponse = TeamsSetTenantTeamHomeDepartmentResponses[keyof TeamsSetTenantTeamHomeDepartmentResponses];
+
+export type TeamsArchiveTenantTeamData = {
+    body?: TenantTeamRevisionDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Archive';
+};
+
+export type TeamsArchiveTenantTeamErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsArchiveTenantTeamError = TeamsArchiveTenantTeamErrors[keyof TeamsArchiveTenantTeamErrors];
+
+export type TeamsArchiveTenantTeamResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamArchiveResultDtoEnvelopeReadable;
+};
+
+export type TeamsArchiveTenantTeamResponse = TeamsArchiveTenantTeamResponses[keyof TeamsArchiveTenantTeamResponses];
+
+export type TeamsRestoreTenantTeamData = {
+    body?: TenantTeamRevisionDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}/Restore';
+};
+
+export type TeamsRestoreTenantTeamErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type TeamsRestoreTenantTeamError = TeamsRestoreTenantTeamErrors[keyof TeamsRestoreTenantTeamErrors];
+
+export type TeamsRestoreTenantTeamResponses = {
+    /**
+     * OK
+     */
+    200: TenantTeamArchiveResultDtoEnvelopeReadable;
+};
+
+export type TeamsRestoreTenantTeamResponse = TeamsRestoreTenantTeamResponses[keyof TeamsRestoreTenantTeamResponses];
 
 export type TeamsDeleteTenantTeamData = {
     body?: never;

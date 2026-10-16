@@ -1275,6 +1275,8 @@ export type OptionDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+    isSecret?: boolean;
+    hasValue?: boolean;
 };
 
 export type OptionDtoCollectionQueryParametersReadable = {
@@ -1595,6 +1597,7 @@ export type SecurityPermissionDto = {
     category?: string | null;
     description?: string | null;
     isSystemPermission?: boolean;
+    grantedVia?: Array<string> | null;
 };
 
 export type SecurityRoleDto = {
@@ -2139,7 +2142,7 @@ export type TenantUpdateDto = {
     about?: string | null;
     slogan?: string | null;
     handler?: string | null;
-    currencyId: string;
+    currencyId?: string | null;
     duns?: string | null;
     taxId?: string | null;
     avatarUrl?: string | null;
@@ -3860,6 +3863,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

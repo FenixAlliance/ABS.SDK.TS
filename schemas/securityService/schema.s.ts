@@ -367,6 +367,20 @@ export interface paths {
      */
     get: operations["Permissions_GetPermissionsByEnrollment"];
   };
+  "/api/v2/SecurityService/Permissions/Mine": {
+    /**
+     * Get which of the named permissions the caller holds
+     * @description Answers, for the signed-in caller only, which of up to 32 comma-separated permission keys it effectively holds in the tenant. Unknown keys are false.
+     */
+    get: operations["Permissions_GetMyPermissions"];
+  };
+  "/api/v2/SecurityService/Permissions/GrantableFor/{enrollmentId}": {
+    /**
+     * Get the permissions the caller may grant to an enrollment
+     * @description Lists the security permissions the caller holds and may grant to the given member of the tenant, on the same rules the grant endpoints enforce.
+     */
+    get: operations["Permissions_GetGrantablePermissionsForEnrollment"];
+  };
   "/api/v2/SecurityService/Roles": {
     /**
      * Get all roles
@@ -1176,6 +1190,7 @@ export interface components {
       category?: string | null;
       description?: string | null;
       isSystemPermission?: boolean;
+      grantedVia?: string[] | null;
     };
     SecurityPermissionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1287,6 +1302,23 @@ export interface components {
     SecurityRoleUpdateDto: {
       name: string;
       description?: string | null;
+    };
+    StringBooleanDictionaryEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: {
+        [key: string]: boolean;
+      } | null;
     };
     TenantEnrollmentDto: {
       id?: string | null;
@@ -2336,6 +2368,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };
@@ -3901,6 +3939,100 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get which of the named permissions the caller holds
+   * @description Answers, for the signed-in caller only, which of up to 32 comma-separated permission keys it effectively holds in the tenant. Unknown keys are false.
+   */
+  Permissions_GetMyPermissions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        keys?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringBooleanDictionaryEnvelope"];
+          "application/xml": components["schemas"]["StringBooleanDictionaryEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the permissions the caller may grant to an enrollment
+   * @description Lists the security permissions the caller holds and may grant to the given member of the tenant, on the same rules the grant endpoints enforce.
+   */
+  Permissions_GetGrantablePermissionsForEnrollment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SecurityPermissionDtoListEnvelope"];
+          "application/xml": components["schemas"]["SecurityPermissionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

@@ -1530,7 +1530,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      mask: string;
+      mask?: string | null;
       tokenType?: string | null;
       cardFranchise?: string | null;
       cardExpirationMonth: string;
@@ -2144,6 +2144,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

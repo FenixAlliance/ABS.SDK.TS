@@ -1422,6 +1422,8 @@ export type OptionDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+    isSecret?: boolean;
+    hasValue?: boolean;
 };
 
 export type OptionDtoCollectionQueryParametersReadable = {
@@ -4644,6 +4646,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

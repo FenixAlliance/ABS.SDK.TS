@@ -578,6 +578,7 @@ export type TenantUsageDto = {
     activeOverrides?: Array<TenantUsageLimitOverrideDto> | null;
     generatedAtUtc?: string;
     capabilities?: UsageCapabilitiesDto;
+    categories?: Array<UsageCategoryDto> | null;
 };
 
 export type TenantUsageDtoEnvelopeReadable = {
@@ -736,6 +737,14 @@ export type UsageCapabilitiesDto = {
     canOverrideLimits?: boolean;
 };
 
+export type UsageCategoryDto = {
+    key?: string | null;
+    label?: string | null;
+    meterKeys?: Array<string> | null;
+    additionalUsageApproved?: UsageMoneyDto;
+    additionalUsageAvailable?: boolean;
+};
+
 export type UsageCostStatus = 'NotRated' | 'Estimated' | 'Invoiced';
 
 export type UsageDataState = 'Measured' | 'Partial' | 'Delayed' | 'Unavailable';
@@ -761,7 +770,7 @@ export type UsageLicenseDto = {
 
 export type UsageLimitBehavior = 'None' | 'HardStop' | 'Overage';
 
-export type UsageLimitOverrideKind = 'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop';
+export type UsageLimitOverrideKind = 'SetAllowance' | 'ExtendAllowance' | 'ResetHardStop' | 'ApproveAdditionalUsage';
 
 export type UsageMeterDefinitionDto = {
     key?: string | null;
@@ -994,6 +1003,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

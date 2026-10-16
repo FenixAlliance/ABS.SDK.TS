@@ -110,6 +110,58 @@ export interface paths {
      */
     get: operations["AgentRuntimeStatus_GetWorkOrderById"];
   };
+  "/api/v2/IntelligenceService/Agents/State": {
+    /**
+     * Get the state of a tenant's agents
+     * @description Returns active (a run in flight), idle or asleep (execution principal suspended or disabled) for up to 200 agent ids, with the time since. Ids that are not agents of the tenant are left out. No run content, prompts, models, costs or counts.
+     */
+    post: operations["AgentStates_GetAgentStates"];
+  };
+  "/api/v2/IntelligenceService/Agents/{agentId}/Card": {
+    /**
+     * Get an agent's hover card
+     * @description Name, avatar, the provider and model labels, state and since, the hiring member's display name and the skill count. Never instructions, memory, tools, grants, connections, costs or run content.
+     */
+    get: operations["AgentStates_GetAgentCard"];
+  };
+  "/api/v2/IntelligenceService/AiModelPrices": {
+    /**
+     * Get the AI model price catalogue (root admin)
+     * @description Root-admin read of the platform-global, effective-dated provider costs per provider and model, history included.
+     */
+    get: operations["AiModelPrices_GetAiModelPrices"];
+    /**
+     * Record a new AI model price (root admin)
+     * @description Records a NEW effective-dated provider-cost row: the normal way to change a price, since history is kept. 409 when a row for the same provider, model and start already exists. Returns the new id.
+     */
+    post: operations["AiModelPrices_CreateAiModelPrice"];
+  };
+  "/api/v2/IntelligenceService/AiModelPrices/Count": {
+    /**
+     * Get the AI model price catalogue count (root admin)
+     * @description Returns the count of price catalogue rows matching the filter.
+     */
+    get: operations["AiModelPrices_GetAiModelPricesCount"];
+  };
+  "/api/v2/IntelligenceService/AiModelPrices/Effective": {
+    /**
+     * Get the AI model price in force (root admin)
+     * @description Returns the price row in force for the provider and model at atUtc: the row with the greatest effective start at or before that instant. 404 when no price applies.
+     */
+    get: operations["AiModelPrices_GetEffectiveAiModelPrice"];
+  };
+  "/api/v2/IntelligenceService/AiModelPrices/{id}": {
+    /**
+     * Get an AI model price by ID (root admin)
+     * @description Retrieves one price catalogue row by its identifier.
+     */
+    get: operations["AiModelPrices_GetAiModelPriceById"];
+    /**
+     * Correct an AI model price before it takes effect (root admin)
+     * @description Corrects a typo in the rates, currency or source of a row that has not yet taken effect. 409 when the row is already in effect (create a new row instead). Returns the row's id.
+     */
+    put: operations["AiModelPrices_UpdateAiModelPrice"];
+  };
   "/api/v2/IntelligenceService/AiProviders": {
     /**
      * Get the available AI providers
@@ -120,7 +172,7 @@ export interface paths {
   "/api/v2/IntelligenceService/AiProviders/Availability": {
     /**
      * Get AI provider/model availability for a tenant
-     * @description Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned.
+     * @description Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned. Each model also carries its context window and token limits, whether it is the tenant's default (the ai.models tenant setting) and, when it cannot be selected, a plain reason. No prices.
      */
     get: operations["AiProviders_GetAiProviderAvailability"];
   };
@@ -292,6 +344,13 @@ export interface paths {
      * @description Reconstructs the durable, unresolved (AwaitingApproval) approval cards for the specified conversation, agent and tenant from AiRun suspend-state — the durable counterpart to the live SSE approval frame. Read-only; empty when the conversation has no unresolved approvals.
      */
     get: operations["CognitiveAgentMessages_GetConversationPendingApprovals"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/ContextUsage": {
+    /**
+     * Get the context usage of a cognitive agent conversation
+     * @description The latest run of the conversation that reported token usage, against that run's model window: prompt plus completion tokens is the context occupied (never cumulative usage; reasoning tokens are reported separately). Unknown values are null. Carries measurement, asOfRunId and asOfUtc. No price.
+     */
+    get: operations["CognitiveAgentMessages_GetConversationContextUsage"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents": {
     /**
@@ -569,6 +628,38 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    AgentCardDto: {
+      agentId?: string | null;
+      name?: string | null;
+      avatar?: string | null;
+      kind?: string | null;
+      providerDisplayName?: string | null;
+      modelDisplayName?: string | null;
+      state?: string | null;
+      /** Format: date-time */
+      since?: string | null;
+      ownerDisplayName?: string | null;
+      ownerEnrollmentId?: string | null;
+      positionTitle?: string | null;
+      departmentName?: string | null;
+      /** Format: int32 */
+      skillCount?: number;
+    };
+    AgentCardDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentCardDto"];
+    };
     /** @enum {string} */
     AgentExecutionAnomalyCode: "None" | "WaitingForApproval" | "RetryableInfrastructure" | "StaleFence" | "OutcomeUnknown" | "AlreadyFinalized" | "ClaimNotFound" | "StuckOrphaned";
     AgentExecutionDiagnosticDto: {
@@ -708,11 +799,43 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AgentRuntimeWorkerRegistrationDto"];
     };
+    AgentStateDto: {
+      agentId?: string | null;
+      state?: string | null;
+      /** Format: date-time */
+      since?: string | null;
+    };
+    AgentStateDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AgentStateDto"][] | null;
+    };
+    AgentStatesRequest: {
+      agentIds?: string[] | null;
+    };
     AgentWorkAssignmentDto: {
       workOrderId?: string | null;
       /** Format: int32 */
       leaseGeneration?: number;
       requiredCapabilities?: string | null;
+      /** Format: int32 */
+      maxWallClockSeconds?: number;
+      /** Format: double */
+      maxVCpu?: number;
+      /** Format: double */
+      maxMemoryGiB?: number;
+      /** Format: int32 */
+      maxRetries?: number;
     };
     AgentWorkAssignmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -827,11 +950,109 @@ export interface components {
       jurisdiction?: string | null;
       available?: boolean;
       connectionScope?: components["schemas"]["AiProviderConnectionScope"];
+      /** Format: int32 */
+      contextWindowTokens?: number | null;
+      /** Format: int32 */
+      maxInputTokens?: number | null;
+      /** Format: int32 */
+      maxOutputTokens?: number | null;
+      isTenantDefault?: boolean;
+      disabledReason?: string | null;
     };
     AiModelCategoryDto: {
       key?: string | null;
       displayName?: string | null;
       models?: components["schemas"]["AiModelAvailabilityDto"][] | null;
+    };
+    AiModelPriceCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      providerKey?: string | null;
+      modelKey?: string | null;
+      /** Format: double */
+      inputPricePerMillion?: number;
+      /** Format: double */
+      outputPricePerMillion?: number;
+      /** Format: double */
+      reasoningPricePerMillion?: number | null;
+      currencyCode?: string | null;
+      /** Format: date-time */
+      effectiveFromUtc?: string;
+      source?: string | null;
+    };
+    AiModelPriceDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      providerKey?: string | null;
+      modelKey?: string | null;
+      /** Format: double */
+      inputPricePerMillion?: number;
+      /** Format: double */
+      outputPricePerMillion?: number;
+      /** Format: double */
+      reasoningPricePerMillion?: number | null;
+      currencyCode?: string | null;
+      /** Format: date-time */
+      effectiveFromUtc?: string;
+      source?: string | null;
+      /** Format: date-time */
+      createdAt?: string;
+    };
+    AiModelPriceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    AiModelPriceDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiModelPriceDto"];
+    };
+    AiModelPriceDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiModelPriceDto"][] | null;
+    };
+    AiModelPriceUpdateDto: {
+      /** Format: double */
+      inputPricePerMillion?: number;
+      /** Format: double */
+      outputPricePerMillion?: number;
+      /** Format: double */
+      reasoningPricePerMillion?: number | null;
+      currencyCode?: string | null;
+      source?: string | null;
     };
     AiProviderAvailabilityDto: {
       providerKey?: string | null;
@@ -909,6 +1130,8 @@ export interface components {
       promptTokens?: number | null;
       /** Format: int64 */
       completionTokens?: number | null;
+      /** Format: int64 */
+      reasoningTokens?: number | null;
       runAs?: components["schemas"]["RunAs"];
       principalKind?: components["schemas"]["PrincipalKind"];
       tenantId?: string | null;
@@ -1720,6 +1943,40 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ConversationAttachmentUploadResultDto"];
     };
+    ConversationContextUsageDto: {
+      measurement?: string | null;
+      /** Format: int64 */
+      promptTokens?: number | null;
+      /** Format: int64 */
+      completionTokens?: number | null;
+      /** Format: int64 */
+      reasoningTokens?: number | null;
+      /** Format: int32 */
+      contextWindowTokens?: number | null;
+      /** Format: int32 */
+      maxInputTokens?: number | null;
+      /** Format: int32 */
+      maxOutputTokens?: number | null;
+      modelId?: string | null;
+      asOfRunId?: string | null;
+      /** Format: date-time */
+      asOfUtc?: string | null;
+    };
+    ConversationContextUsageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ConversationContextUsageDto"];
+    };
     ConversationPendingApprovalDto: {
       approvalRequestId?: string | null;
       toolKey?: string | null;
@@ -1988,6 +2245,21 @@ export interface components {
     };
     /** @enum {string} */
     RunAs: "Invoker" | "Application" | "System" | "Service";
+    StringEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: string | null;
+    };
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -2627,6 +2899,366 @@ export interface operations {
     };
   };
   /**
+   * Get the state of a tenant's agents
+   * @description Returns active (a run in flight), idle or asleep (execution principal suspended or disabled) for up to 200 agent ids, with the time since. Ids that are not agents of the tenant are left out. No run content, prompts, models, costs or counts.
+   */
+  AgentStates_GetAgentStates: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AgentStatesRequest"];
+        "application/xml": components["schemas"]["AgentStatesRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentStateDtoListEnvelope"];
+          "application/xml": components["schemas"]["AgentStateDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an agent's hover card
+   * @description Name, avatar, the provider and model labels, state and since, the hiring member's display name and the skill count. Never instructions, memory, tools, grants, connections, costs or run content.
+   */
+  AgentStates_GetAgentCard: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AgentCardDtoEnvelope"];
+          "application/xml": components["schemas"]["AgentCardDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the AI model price catalogue (root admin)
+   * @description Root-admin read of the platform-global, effective-dated provider costs per provider and model, history included.
+   */
+  AiModelPrices_GetAiModelPrices: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiModelPriceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AiModelPriceDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiModelPriceDtoListEnvelope"];
+          "application/xml": components["schemas"]["AiModelPriceDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Record a new AI model price (root admin)
+   * @description Records a NEW effective-dated provider-cost row: the normal way to change a price, since history is kept. 409 when a row for the same provider, model and start already exists. Returns the new id.
+   */
+  AiModelPrices_CreateAiModelPrice: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiModelPriceCreateDto"];
+        "application/xml": components["schemas"]["AiModelPriceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEnvelope"];
+          "application/xml": components["schemas"]["StringEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the AI model price catalogue count (root admin)
+   * @description Returns the count of price catalogue rows matching the filter.
+   */
+  AiModelPrices_GetAiModelPricesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiModelPriceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AiModelPriceDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the AI model price in force (root admin)
+   * @description Returns the price row in force for the provider and model at atUtc: the row with the greatest effective start at or before that instant. 404 when no price applies.
+   */
+  AiModelPrices_GetEffectiveAiModelPrice: {
+    parameters: {
+      query: {
+        tenantId: string;
+        providerKey: string;
+        modelKey: string;
+        atUtc: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiModelPriceDtoEnvelope"];
+          "application/xml": components["schemas"]["AiModelPriceDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an AI model price by ID (root admin)
+   * @description Retrieves one price catalogue row by its identifier.
+   */
+  AiModelPrices_GetAiModelPriceById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiModelPriceDtoEnvelope"];
+          "application/xml": components["schemas"]["AiModelPriceDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Correct an AI model price before it takes effect (root admin)
+   * @description Corrects a typo in the rates, currency or source of a row that has not yet taken effect. 409 when the row is already in effect (create a new row instead). Returns the row's id.
+   */
+  AiModelPrices_UpdateAiModelPrice: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AiModelPriceUpdateDto"];
+        "application/xml": components["schemas"]["AiModelPriceUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringEnvelope"];
+          "application/xml": components["schemas"]["StringEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get the available AI providers
    * @description Returns every AI provider key this instance has a registered adapter for. The set is a property of the deployment, so it is not tenant-scoped; what varies per tenant is the credential for a provider, which is never returned here.
    */
@@ -2658,7 +3290,7 @@ export interface operations {
   };
   /**
    * Get AI provider/model availability for a tenant
-   * @description Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned.
+   * @description Returns the credential-free, category-grouped provider/model availability for the tenant — the single, server-owned catalog BOTH the agent editor and the chat toolbar select from, so no client hardcodes providers, models or categories. A provider is available when it has a registered adapter AND a credential is configured for it; a model additionally requires its catalog row be enabled. Credentials, endpoints and connection ids are never returned. Each model also carries its context window and token limits, whether it is the tenant's default (the ai.models tenant setting) and, when it cannot be selected, a plain reason. No prices.
    */
   AiProviders_GetAiProviderAvailability: {
     parameters: {
@@ -3675,6 +4307,49 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the context usage of a cognitive agent conversation
+   * @description The latest run of the conversation that reported token usage, against that run's model window: prompt plus completion tokens is the context occupied (never cumulative usage; reasoning tokens are reported separately). Unknown values are null. Carries measurement, asOfRunId and asOfUtc. No price.
+   */
+  CognitiveAgentMessages_GetConversationContextUsage: {
+    parameters: {
+      query: {
+        tenantId: string;
+        scope?: components["schemas"]["ConversationAccessScope"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+        conversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ConversationContextUsageDtoEnvelope"];
+          "application/xml": components["schemas"]["ConversationContextUsageDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -5199,6 +5874,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

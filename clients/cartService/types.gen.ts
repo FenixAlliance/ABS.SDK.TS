@@ -2632,6 +2632,15 @@ export type PlatformPostResendConfirmationEmailData = {
     url: '/resendConfirmationEmail';
 };
 
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
+
 export type PlatformPostResendConfirmationEmailResponses = {
     /**
      * OK

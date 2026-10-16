@@ -5,6 +5,57 @@
 
 
 export interface paths {
+  "/api/v2/ArtifactsService/Artifacts": {
+    /**
+     * List the tenant's artifacts
+     * @description Active artifacts by default; archived=true lists the archived ones. Optional department, project and kind filters.
+     */
+    get: operations["Artifacts_GetArtifacts"];
+    /**
+     * Publish a new artifact
+     * @description Uploads a zip (or a single index.html) as version 1 of a new artifact. index.html is required; at most 200 files and 20 MB per version, 10 MB per file, web media types only. A version is viewable only after every file scans Clean.
+     */
+    post: operations["Artifacts_PublishArtifact"];
+  };
+  "/api/v2/ArtifactsService/Artifacts/{artifactId}": {
+    /** Get one artifact with its versions and files */
+    get: operations["Artifacts_GetArtifact"];
+  };
+  "/api/v2/ArtifactsService/Artifacts/{artifactId}/Versions": {
+    /**
+     * Publish the next version of an artifact
+     * @description Uploads a zip (or a single index.html) as the next version. Only the note is read from the form; rename and move change the artifact's metadata.
+     */
+    post: operations["Artifacts_PublishArtifactVersion"];
+  };
+  "/api/v2/ArtifactsService/Artifacts/{artifactId}/Archive": {
+    /**
+     * Archive an artifact
+     * @description The only removal: an archived artifact is never served and refuses every later change. There is no hard delete.
+     */
+    post: operations["Artifacts_ArchiveArtifact"];
+  };
+  "/api/v2/ArtifactsService/Artifacts/{artifactId}/Move": {
+    /**
+     * Move an artifact to another department, project or kind
+     * @description A null member keeps the current value; an empty departmentId or projectId clears it.
+     */
+    post: operations["Artifacts_MoveArtifact"];
+  };
+  "/api/v2/ArtifactsService/Artifacts/{artifactId}/Rename": {
+    /**
+     * Rename an artifact
+     * @description Changes the title and description. A null member keeps the current value.
+     */
+    post: operations["Artifacts_RenameArtifact"];
+  };
+  "/api/v2/ArtifactsService/Artifacts/{artifactId}/ViewCapability": {
+    /**
+     * Mint a view capability
+     * @description Returns a short-lived opaque token for the serving origin. Mint a new one per view. Omit version for the current version.
+     */
+    post: operations["Artifacts_MintArtifactViewCapability"];
+  };
   "/api/v2/StorageService/Avatars/{socialProfileId}": {
     /** Get the avatar for a given social profile. */
     get: operations["Avatars_GetAvatar"];
@@ -163,6 +214,135 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    ArtifactDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      ownerEnrollmentId?: string | null;
+      title?: string | null;
+      description?: string | null;
+      departmentId?: string | null;
+      projectId?: string | null;
+      kind?: string | null;
+      archived?: boolean;
+      /** Format: date-time */
+      archivedAt?: string | null;
+      /** Format: int32 */
+      currentVersion?: number;
+      /** Format: date-time */
+      createdAt?: string;
+      /** Format: date-time */
+      updatedAt?: string;
+      versions?: components["schemas"]["ArtifactVersionDto"][] | null;
+    };
+    ArtifactDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    ArtifactDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ArtifactDto"];
+    };
+    ArtifactDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ArtifactDto"][] | null;
+    };
+    ArtifactFileDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      artifactVersionId?: string | null;
+      relativePath?: string | null;
+      contentType?: string | null;
+      /** Format: int64 */
+      bytes?: number;
+      sha256?: string | null;
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+    };
+    ArtifactUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      departmentId?: string | null;
+      projectId?: string | null;
+      kind?: string | null;
+    };
+    ArtifactVersionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      artifactId?: string | null;
+      /** Format: int32 */
+      number?: number;
+      createdByEnrollmentId?: string | null;
+      /** Format: date-time */
+      createdAt?: string;
+      note?: string | null;
+      entryPath?: string | null;
+      /** Format: int64 */
+      bytes?: number;
+      /** Format: int32 */
+      fileCount?: number;
+      scanStatus?: components["schemas"]["StorageScanStatus"];
+      isServable?: boolean;
+      files?: components["schemas"]["ArtifactFileDto"][] | null;
+    };
+    ArtifactViewCapabilityDto: {
+      token?: string | null;
+      /** Format: date-time */
+      expiresAt?: string;
+      artifactId?: string | null;
+      /** Format: int32 */
+      version?: number;
+    };
+    ArtifactViewCapabilityDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ArtifactViewCapabilityDto"];
     };
     Blob: {
       kind?: components["schemas"]["BlobItemKind"];
@@ -395,6 +575,440 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * List the tenant's artifacts
+   * @description Active artifacts by default; archived=true lists the archived ones. Optional department, project and kind filters.
+   */
+  Artifacts_GetArtifacts: {
+    parameters: {
+      query: {
+        tenantId: string;
+        departmentId?: string;
+        projectId?: string;
+        kind?: string;
+        archived?: boolean;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.streaming=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.streaming=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;IEEE754Compatible=false": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json;IEEE754Compatible=true": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "text/plain": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "text/xml": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/*+xml": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/json-patch+json": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "text/json": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+        "application/*+json": components["schemas"]["ArtifactDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ArtifactDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Publish a new artifact
+   * @description Uploads a zip (or a single index.html) as version 1 of a new artifact. index.html is required; at most 200 files and 20 MB per version, 10 MB per file, web media types only. A version is viewable only after every file scans Clean.
+   */
+  Artifacts_PublishArtifact: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          description?: string;
+          departmentId?: string;
+          projectId?: string;
+          kind?: string;
+          note?: string;
+          /** Format: uuid */
+          id?: string;
+          /** Format: date-time */
+          timestamp?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ArtifactDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get one artifact with its versions and files */
+  Artifacts_GetArtifact: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        artifactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ArtifactDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Publish the next version of an artifact
+   * @description Uploads a zip (or a single index.html) as the next version. Only the note is read from the form; rename and move change the artifact's metadata.
+   */
+  Artifacts_PublishArtifactVersion: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        artifactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          description?: string;
+          departmentId?: string;
+          projectId?: string;
+          kind?: string;
+          note?: string;
+          /** Format: uuid */
+          id?: string;
+          /** Format: date-time */
+          timestamp?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ArtifactDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Archive an artifact
+   * @description The only removal: an archived artifact is never served and refuses every later change. There is no hard delete.
+   */
+  Artifacts_ArchiveArtifact: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        artifactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Move an artifact to another department, project or kind
+   * @description A null member keeps the current value; an empty departmentId or projectId clears it.
+   */
+  Artifacts_MoveArtifact: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        artifactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ArtifactUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Rename an artifact
+   * @description Changes the title and description. A null member keeps the current value.
+   */
+  Artifacts_RenameArtifact: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        artifactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ArtifactUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mint a view capability
+   * @description Returns a short-lived opaque token for the serving origin. Mint a new one per view. Omit version for the current version.
+   */
+  Artifacts_MintArtifactViewCapability: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        artifactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ArtifactViewCapabilityDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Get the avatar for a given social profile. */
   Avatars_GetAvatar: {
     parameters: {
@@ -1053,6 +1667,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

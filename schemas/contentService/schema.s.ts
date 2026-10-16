@@ -1246,6 +1246,10 @@ export interface components {
       slug?: string | null;
       blogPostCategoryId?: string | null;
       webTemplateId?: string | null;
+      webPortalId?: string | null;
+      excerpt?: string | null;
+      seoTitle?: string | null;
+      metaDescription?: string | null;
       bannerSlots?: components["schemas"]["BlogPostBannerSlotDto"][] | null;
     };
     BlogPostDto: {
@@ -1516,6 +1520,7 @@ export interface components {
       allowSearchEngineIndexing?: boolean;
       blogPostCategoryId?: string | null;
       webTemplateId?: string | null;
+      webPortalId?: string | null;
       bannerSlots?: components["schemas"]["BlogPostBannerSlotDto"][] | null;
     };
     BrandingOptions: {
@@ -2159,6 +2164,7 @@ export interface components {
       /** Format: int32 */
       staleAfterHours?: number;
       stalenessMode?: components["schemas"]["ForexStalenessMode"];
+      officialRateRules?: components["schemas"]["OfficialRateRule"][] | null;
     };
     ForexRatesDto: {
       success?: boolean;
@@ -2647,6 +2653,12 @@ export interface components {
       /** Format: double */
       amount?: number;
       currency?: components["schemas"]["CurrencyId"];
+    };
+    OfficialRateRule: {
+      authority?: string | null;
+      quoteCurrency?: string | null;
+      baseCurrency?: string | null;
+      required?: boolean;
     };
     OpenExchangeRatesIntegrationsOptions: {
       enable?: boolean;
@@ -6440,6 +6452,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

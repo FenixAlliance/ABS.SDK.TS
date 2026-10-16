@@ -757,6 +757,8 @@ export interface components {
       transient?: boolean;
       /** Format: int32 */
       expiration?: number;
+      isSecret?: boolean;
+      hasValue?: boolean;
     };
     OptionDtoCollectionQueryParameters: {
       /** Format: int32 */
@@ -1387,6 +1389,12 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+        };
       };
     };
   };

@@ -453,6 +453,10 @@ export type BlogPostCreateDto = {
     slug?: string | null;
     blogPostCategoryId?: string | null;
     webTemplateId?: string | null;
+    webPortalId?: string | null;
+    excerpt?: string | null;
+    seoTitle?: string | null;
+    metaDescription?: string | null;
     bannerSlots?: Array<BlogPostBannerSlotDto> | null;
 };
 
@@ -777,6 +781,7 @@ export type BlogPostUpdateDto = {
     allowSearchEngineIndexing?: boolean;
     blogPostCategoryId?: string | null;
     webTemplateId?: string | null;
+    webPortalId?: string | null;
     bannerSlots?: Array<BlogPostBannerSlotDto> | null;
 };
 
@@ -1713,6 +1718,7 @@ export type ForexIntegrationOptions = {
     exchangeRateHostApiKey?: string | null;
     staleAfterHours?: number;
     stalenessMode?: ForexStalenessMode;
+    officialRateRules?: Array<OfficialRateRule> | null;
 };
 
 export type ForexRatesDtoReadable = {
@@ -2310,6 +2316,13 @@ export type MoneyReadable = {
 export type MoneyWritable = {
     amount?: number;
     currency?: CurrencyIdWritable;
+};
+
+export type OfficialRateRule = {
+    authority?: string | null;
+    quoteCurrency?: string | null;
+    baseCurrency?: string | null;
+    required?: boolean;
 };
 
 export type OpenExchangeRatesIntegrationsOptions = {
@@ -6128,6 +6141,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

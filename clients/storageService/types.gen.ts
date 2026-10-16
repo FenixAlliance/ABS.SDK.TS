@@ -13,6 +13,166 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type ArtifactDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    ownerEnrollmentId?: string | null;
+    title?: string | null;
+    description?: string | null;
+    departmentId?: string | null;
+    projectId?: string | null;
+    kind?: string | null;
+    archived?: boolean;
+    archivedAt?: string | null;
+    currentVersion?: number;
+    createdAt?: string;
+    updatedAt?: string;
+    versions?: Array<ArtifactVersionDto> | null;
+};
+
+export type ArtifactDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ArtifactDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type ArtifactDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ArtifactDto;
+};
+
+export type ArtifactDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ArtifactDto;
+};
+
+export type ArtifactDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<ArtifactDto> | null;
+};
+
+export type ArtifactDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<ArtifactDto> | null;
+};
+
+export type ArtifactFileDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    artifactVersionId?: string | null;
+    relativePath?: string | null;
+    contentType?: string | null;
+    bytes?: number;
+    sha256?: string | null;
+    scanStatus?: StorageScanStatus;
+};
+
+export type ArtifactUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    departmentId?: string | null;
+    projectId?: string | null;
+    kind?: string | null;
+};
+
+export type ArtifactVersionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    artifactId?: string | null;
+    number?: number;
+    createdByEnrollmentId?: string | null;
+    createdAt?: string;
+    note?: string | null;
+    entryPath?: string | null;
+    bytes?: number;
+    fileCount?: number;
+    scanStatus?: StorageScanStatus;
+    isServable?: boolean;
+    files?: Array<ArtifactFileDto> | null;
+};
+
+export type ArtifactViewCapabilityDto = {
+    token?: string | null;
+    expiresAt?: string;
+    artifactId?: string | null;
+    version?: number;
+};
+
+export type ArtifactViewCapabilityDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ArtifactViewCapabilityDto;
+};
+
+export type ArtifactViewCapabilityDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ArtifactViewCapabilityDto;
+};
+
 export type BlobReadable = {
     kind?: BlobItemKind;
     readonly isFolder?: boolean;
@@ -327,6 +487,350 @@ export type TwoFactorResponse = {
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
 };
+
+export type ArtifactsGetArtifactsData = {
+    body?: ArtifactDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        departmentId?: string;
+        projectId?: string;
+        kind?: string;
+        archived?: boolean;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts';
+};
+
+export type ArtifactsGetArtifactsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsGetArtifactsError = ArtifactsGetArtifactsErrors[keyof ArtifactsGetArtifactsErrors];
+
+export type ArtifactsGetArtifactsResponses = {
+    /**
+     * OK
+     */
+    200: ArtifactDtoListEnvelopeReadable;
+};
+
+export type ArtifactsGetArtifactsResponse = ArtifactsGetArtifactsResponses[keyof ArtifactsGetArtifactsResponses];
+
+export type ArtifactsPublishArtifactData = {
+    body?: {
+        file?: Blob | File;
+        title?: string;
+        description?: string;
+        departmentId?: string;
+        projectId?: string;
+        kind?: string;
+        note?: string;
+        id?: string;
+        timestamp?: string;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts';
+};
+
+export type ArtifactsPublishArtifactErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsPublishArtifactError = ArtifactsPublishArtifactErrors[keyof ArtifactsPublishArtifactErrors];
+
+export type ArtifactsPublishArtifactResponses = {
+    /**
+     * OK
+     */
+    200: ArtifactDtoEnvelopeReadable;
+};
+
+export type ArtifactsPublishArtifactResponse = ArtifactsPublishArtifactResponses[keyof ArtifactsPublishArtifactResponses];
+
+export type ArtifactsGetArtifactData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        artifactId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts/{artifactId}';
+};
+
+export type ArtifactsGetArtifactErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsGetArtifactError = ArtifactsGetArtifactErrors[keyof ArtifactsGetArtifactErrors];
+
+export type ArtifactsGetArtifactResponses = {
+    /**
+     * OK
+     */
+    200: ArtifactDtoEnvelopeReadable;
+};
+
+export type ArtifactsGetArtifactResponse = ArtifactsGetArtifactResponses[keyof ArtifactsGetArtifactResponses];
+
+export type ArtifactsPublishArtifactVersionData = {
+    body?: {
+        file?: Blob | File;
+        title?: string;
+        description?: string;
+        departmentId?: string;
+        projectId?: string;
+        kind?: string;
+        note?: string;
+        id?: string;
+        timestamp?: string;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        artifactId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts/{artifactId}/Versions';
+};
+
+export type ArtifactsPublishArtifactVersionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsPublishArtifactVersionError = ArtifactsPublishArtifactVersionErrors[keyof ArtifactsPublishArtifactVersionErrors];
+
+export type ArtifactsPublishArtifactVersionResponses = {
+    /**
+     * OK
+     */
+    200: ArtifactDtoEnvelopeReadable;
+};
+
+export type ArtifactsPublishArtifactVersionResponse = ArtifactsPublishArtifactVersionResponses[keyof ArtifactsPublishArtifactVersionResponses];
+
+export type ArtifactsArchiveArtifactData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        artifactId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts/{artifactId}/Archive';
+};
+
+export type ArtifactsArchiveArtifactErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsArchiveArtifactError = ArtifactsArchiveArtifactErrors[keyof ArtifactsArchiveArtifactErrors];
+
+export type ArtifactsArchiveArtifactResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ArtifactsArchiveArtifactResponse = ArtifactsArchiveArtifactResponses[keyof ArtifactsArchiveArtifactResponses];
+
+export type ArtifactsMoveArtifactData = {
+    body?: ArtifactUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        artifactId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts/{artifactId}/Move';
+};
+
+export type ArtifactsMoveArtifactErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsMoveArtifactError = ArtifactsMoveArtifactErrors[keyof ArtifactsMoveArtifactErrors];
+
+export type ArtifactsMoveArtifactResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ArtifactsMoveArtifactResponse = ArtifactsMoveArtifactResponses[keyof ArtifactsMoveArtifactResponses];
+
+export type ArtifactsRenameArtifactData = {
+    body?: ArtifactUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        artifactId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts/{artifactId}/Rename';
+};
+
+export type ArtifactsRenameArtifactErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsRenameArtifactError = ArtifactsRenameArtifactErrors[keyof ArtifactsRenameArtifactErrors];
+
+export type ArtifactsRenameArtifactResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ArtifactsRenameArtifactResponse = ArtifactsRenameArtifactResponses[keyof ArtifactsRenameArtifactResponses];
+
+export type ArtifactsMintArtifactViewCapabilityData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        artifactId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ArtifactsService/Artifacts/{artifactId}/ViewCapability';
+};
+
+export type ArtifactsMintArtifactViewCapabilityErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type ArtifactsMintArtifactViewCapabilityError = ArtifactsMintArtifactViewCapabilityErrors[keyof ArtifactsMintArtifactViewCapabilityErrors];
+
+export type ArtifactsMintArtifactViewCapabilityResponses = {
+    /**
+     * OK
+     */
+    200: ArtifactViewCapabilityDtoEnvelopeReadable;
+};
+
+export type ArtifactsMintArtifactViewCapabilityResponse = ArtifactsMintArtifactViewCapabilityResponses[keyof ArtifactsMintArtifactViewCapabilityResponses];
 
 export type AvatarsGetAvatarData = {
     body?: never;
@@ -829,6 +1333,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**

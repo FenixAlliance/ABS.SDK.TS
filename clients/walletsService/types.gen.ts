@@ -1503,7 +1503,7 @@ export type PaymentStatus = 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Fail
 export type PaymentTokenCreateDto = {
     id?: string;
     timestamp?: string;
-    mask: string;
+    mask?: string | null;
     tokenType?: string | null;
     cardFranchise?: string | null;
     cardExpirationMonth: string;
@@ -2274,6 +2274,15 @@ export type PlatformPostResendConfirmationEmailData = {
     query?: never;
     url: '/resendConfirmationEmail';
 };
+
+export type PlatformPostResendConfirmationEmailErrors = {
+    /**
+     * Bad Request
+     */
+    400: HttpValidationProblemDetails;
+};
+
+export type PlatformPostResendConfirmationEmailError = PlatformPostResendConfirmationEmailErrors[keyof PlatformPostResendConfirmationEmailErrors];
 
 export type PlatformPostResendConfirmationEmailResponses = {
     /**
