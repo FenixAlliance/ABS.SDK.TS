@@ -15,6 +15,65 @@
   </a>
 </p>
 
+# @fenixalliance/abs-api-client: Getting started
+
+Typed clients for every ABS REST API service (49 in 2.5), generated from the platform's OpenAPI documents with
+@hey-api/openapi-ts. The package version follows the platform: 2.5.x targets ABS 2.5.
+
+## What the package ships
+
+- **TypeScript sources**, one folder per service: `clients/<service>/` contains `sdk.gen.ts` (one function per
+  operation), `types.gen.ts` (request and response types) and `client.gen.ts` (that service's default client).
+- There are no compiled `.d.ts` files and no `exports` map. The `main` bundle exports every service as a namespace, but
+  it carries no types.
+- **So a consumer needs a TypeScript-aware build:** a bundler (esbuild, Vite, webpack with a TS loader) or a TS runtime
+  such as tsx. Plain `tsc` output run with `node` fails, because Node does not run `.ts` files inside `node_modules`.
+
+## Install
+
+```
+npm install @fenixalliance/abs-api-client
+```
+
+TypeScript settings that work: `"moduleResolution": "bundler"` (recommended) or `"NodeNext"`, with `"skipLibCheck": true`.
+
+## Authenticate and make a call
+
+```ts
+import { usersGetCurrentUser } from '@fenixalliance/abs-api-client/clients/usersService';
+import { createClient, createConfig } from '@hey-api/client-fetch'; // installed with this package
+
+const baseUrl = 'https://your-abs-instance';
+
+// 1. Sign in: POST /login returns { accessToken, refreshToken }.
+const login = await fetch(`${baseUrl}/login`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ Email: process.env.ABS_EMAIL, Password: process.env.ABS_PASSWORD }),
+});
+const { accessToken } = await login.json();
+
+// 2. One configured client, shared by every service.
+const client = createClient(createConfig({ baseUrl, headers: { Authorization: `Bearer ${accessToken}` } }));
+
+// 3. Call any operation, passing the shared client.
+const me = await usersGetCurrentUser({ client });
+console.log(me.response.status, me.data);
+```
+
+Notes:
+- **One client for every service.** Each service folder has its own default `client` (import it from
+  `clients/<service>/client.gen`), so configuring one service's default does not configure the others. Create one client
+  as above and pass `{ client }` to every call.
+- **Tenant-scoped operations:** many take the tenant id as a path parameter, for example
+  `{ client, path: { tenantId } }`. Each function's type names its exact parameters.
+- **Machine-to-machine:** use an OAuth client-credentials token from `POST /api/v2/OAuth/Token` instead of `/login`.
+- **Local development** with a self-signed certificate: trust the certificate (for example `NODE_EXTRA_CA_CERTS`).
+  Never disable TLS verification outside a local test.
+
+Verified on 2026-10-16 against 2.5.0 from npmjs: a clean folder, `npm install`, a bundle built with esbuild, `POST /login`
+and then `GET /api/v2/Me` returning HTTP 200.
+
 # Welcome to the Alliance Business Suite Documentation!
 
 Aiming to help organizations reach beyond expectations, the Alliance Business Suite is designed to augment businesses across industries worldwide through a low-code, and fully customizable business development platform.
