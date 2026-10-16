@@ -1,14 +1,14 @@
 ![Alliance Business Suite](https://cdn.absuite.net/_content/FenixAlliance.ABS.Assets/images/branding/logo.png "Alliance Business Suite")
 
 <p>
-  <a href="https://docs.absuite.net/reference/1.4.0/" target="_blank">
-     <img alt="Version" src="https://img.shields.io/badge/Version-1.4.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://www.npmjs.com/package/@fenixalliance/abs-api-client" target="_blank">
+     <img alt="npm version" src="https://img.shields.io/npm/v/@fenixalliance/abs-api-client.svg" />
   </a>
   <a href="https://docs.absuite.net" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/Documentation-yes-brightgreen.svg" />
   </a>
-  <a href="http://absuite.net/eula" target="_blank">
-    <img alt="License: ABS EULA" src="https://img.shields.io/static/v1?label=License&message=ABS%20EULA&color=blue" />
+  <a href="./LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
   </a>
   <a href="https://twitter.com/fenixalliance" target="_blank">
     <img alt="Twitter: fenixalliance" src="https://img.shields.io/twitter/follow/fenixalliance.svg?style=social" />
@@ -340,14 +340,14 @@ Alliance Business Systems owns and oversees the trademarks for the ABS name and 
 
 ## Licensing and Contributions
 
-Your access to and use of the Alliance Business Suite's source code is governed by the Alliance Business Systems's [End User License Agreement "EULA"](http://absuite.net/eula). If you don't agree to those terms, as amended from time to time, you are not permitted to access or use the Alliance Business Suite.
+This package, @fenixalliance/abs-api-client, is licensed under the [MIT License](./LICENSE). The Alliance Business Suite platform it connects to is a separate, commercial product governed by its own [End User License Agreement](http://absuite.net/eula).
 
-We welcome any contributions to the Alliance Business Suite development through pull requests on GitHub. Most of our active development is in the development branch, so we prefer to take pull requests there (particularly for new features). We try to make sure that all new code adheres to the Alliance Business Systems coding standards. All contributions are governed by the terms of the EULA.
+We welcome any contributions to the Alliance Business Suite development through pull requests on GitHub. Most of our active development is in the development branch, so we prefer to take pull requests there (particularly for new features). We try to make sure that all new code adheres to the Alliance Business Systems coding standards. Contributions to this package are accepted under the MIT License.
 
 
 # Legal Notices
 
-Alliance Business Systems and any contributors grant you a license to the documentation and other content in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode) and grant you a license to any code or binary form Alliance Business Systems through the [ABS EULA](http://absuite.net/eula).
+Alliance Business Systems and any contributors grant you a license to the documentation and other content in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode) and grant you a license to the code in this package under the [MIT License](./LICENSE).
 
 Alliance Business Systems, Alliance Business Suite, Infinity Comex, and/or other Alliance Business Systems products and services referenced in the documentation may be trademarks or registered trademarks of Alliance Business Systems Inc. in the United States/or other countries. The licenses for this project do not grant you rights to use any of Alliance Business Systems's names, logos, or trademarks. Alliance Business Systems's general trademark guidelines can be found at http://docs.fenix-alliance.com.
 
