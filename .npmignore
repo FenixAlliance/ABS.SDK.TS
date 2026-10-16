@@ -10,3 +10,5 @@ storybook-static/
 *.csproj
 .npmrc
 *.ps1
+*.sln
+FenixAlliance.ABP.SDK.TypeScript.xml

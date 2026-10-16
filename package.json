@@ -4,6 +4,7 @@
   "version": "2.4.0",
   "name": "@fenixalliance/abs-api-client",
   "main": "wwwroot/build/bundle.js",
+  "module": "wwwroot/build/bundle.js",
   "homepage": "https://absuite.net",
   "author": "Fenix Alliance <contact@fenix-alliance.com>",
   "description": "Clients and types for the ABS Platform API, provided by Fenix Alliance.",
@@ -27,8 +28,8 @@
   ],
   "scripts": {
     "watch": "vite",
-    "build": "vite build",
-    "build:prod": "vite build",
+    "build": "tsc --noEmit -p tsconfig.json && vite build",
+    "build:prod": "tsc --noEmit -p tsconfig.json && vite build",
     "build:clients": "./Update.ps1; Update-SuiteApiTypeScriptClients -hostName https://qa.absuite.net/swagger"
   },
   "dependencies": {
